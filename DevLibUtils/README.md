@@ -2,9 +2,9 @@
 
 > 只需要在 Application 中调用 DevUtils.init() 进行初始化就行
 > <p>DevUtils.openLog() 是打开内部工具类 日志输出, 发包则不调用此句
-> <p> DevLogger => [DevLogger](https://github.com/afkT/DevLogger)
+> <p> DevLogger => https://github.com/afkT/DevLogger
 
-```
+```java
 /**
  * detail: 全局Application
  * Created by Ttt
