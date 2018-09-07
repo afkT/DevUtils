@@ -25,7 +25,7 @@ dependencies {
 
 ## Documentation
 
-* [README][DevLibUtils-cn]
+* [README - API][DevLibUtils]
 
 # Thanks
 
