@@ -25,7 +25,7 @@ dependencies {
 
 ## Documentation
 
-* [README - API][DevLibUtils]
+- [README - API](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/README.md)
 
 # Thanks
 
