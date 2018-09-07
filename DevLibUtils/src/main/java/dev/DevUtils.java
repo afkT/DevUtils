@@ -193,6 +193,14 @@ public final class DevUtils {
         DevUtils.debug = true;
     }
 
+    /**
+     * 判断是否Debug模式
+     * @return
+     */
+    public static boolean isDebug() {
+        return debug;
+    }
+
     // ==================
     // ==== Activity ====
     // ==================
