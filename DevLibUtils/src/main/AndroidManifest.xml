@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dev.utils">
+
+    <application>
+
+        <activity
+            android:name="dev.utils.app.PermissionUtils$PermissionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/DevActivityTranslucentTheme"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+
+    </application>
+</manifest>

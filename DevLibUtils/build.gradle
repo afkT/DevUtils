@@ -1,0 +1,115 @@
+apply plugin: 'com.android.library'
+
+def dev_utils_version = "1.0.0";
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName dev_utils_version
+
+        /**
+         <!-- 工具类版本 -->
+         <meta-data
+         android:name="utils_version"
+         android:value="${dev_utils_version}" />
+         */
+        manifestPlaceholders = [ dev_utils_version : dev_utils_version ]
+    }
+
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+}
+
+// == 打包, 包含注释 ==
+
+// 指定编码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+// 打包源码
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    failOnError  false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+// 制作文档(Javadoc)
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+// https://www.jianshu.com/p/44f2d0ee32c8
+
+// https://www.jianshu.com/p/1777a634db5e
+
+// https://www.cnblogs.com/xinaixia/p/7660173.html
+
+// ==== 项目打包 aar =====
+
+// 将被嵌入的应用打包成 aar 包，这也是 Android Studio 的一种新特性，可以将应用所使用的资源性文件一起打包。编译即可打包生成 aar 包，而且也不用担心漏掉资源问题。
+// 直接使用aar, 内部包含 jar
+// build\outputs\aar\DevUtils-debug.aar, DevUtils-release.aar
+
+// ==== 项目打包 jar =====
+
+// Terminal 输入 gradlew makeJar
+
+// 方式 A ：点击 Android Studio 右侧(一般在这个位置)的 Gradle 面板，在项目或者该类库的目录中找到 Tasks -> other -> makeJar 命令，双击这个makeJar之后等一会就会编译好jar包。
+
+// DevUtils.jar
+// DevUtils_v1.0.jar
+
+def _BASENAME = "DevLibUtils";
+def _VERSION = "_v" + android.defaultConfig.versionName;
+def _DestinationPath = "build"; //生成jar包的位置
+def zipFile = file('build/intermediates/bundles/debug/classes.jar'); //待打包文件位置
+
+task deleteBuild(type:Delete){
+    delete _DestinationPath + _BASENAME + _VERSION + ".jar"
+}
+
+task makeJar(type:Jar){
+    from zipTree(zipFile)
+    from fileTree(dir:'src/main',includes:['assets/**']) //将assets目录打入jar包
+    baseName = _BASENAME + _VERSION
+    destinationDir = file(_DestinationPath)
+}
+
+makeJar.dependsOn(deleteBuild, build)

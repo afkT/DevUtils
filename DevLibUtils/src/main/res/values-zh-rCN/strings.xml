@@ -1,0 +1,26 @@
+<resources>
+    <string name="dev_str_to">至</string>
+
+    <string name="dev_str_packname">应用包名</string>
+    <string name="dev_str_md5">应用 MD5签名</string>
+    <string name="dev_str_version_code">应用版本号(内部判断)</string>
+    <string name="dev_str_version_name">应用版本名(用户展示)</string>
+    <string name="dev_str_apk_uri">安装包地址</string>
+    <string name="dev_str_sha1">SHA1</string>
+    <string name="dev_str_sha256">SHA256</string>
+    <string name="dev_str_first_install_time">首次安装时间</string>
+    <string name="dev_str_last_update_time">最近更新时间</string>
+    <string name="dev_str_minsdkversion">app 最低支持版本</string>
+    <string name="dev_str_targetsdkversion">app 兼容sdk版本</string>
+    <string name="dev_str_apk_length">Apk 安装包大小</string>
+    <string name="dev_str_effective">有效时间</string>
+    <string name="dev_str_iseffective">签名是否过期</string>
+    <string name="dev_str_overdue">已过期</string>
+    <string name="dev_str_notoverdue">未过期</string>
+    <string name="dev_str_principal">证书发布方</string>
+    <string name="dev_str_version">证书版本号</string>
+    <string name="dev_str_sigalgname">证书算法名称</string>
+    <string name="dev_str_sigalgoid">证书算法OID</string>
+    <string name="dev_str_dercode">证书DER编码</string>
+    <string name="dev_str_serialnumber">证书机器码</string>
+</resources>

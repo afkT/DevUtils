@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/decelerate_interpolator">
+
+    <!-- 左滑切出 -->
+
+    <translate
+        android:duration="1000"
+        android:fromXDelta="0%p"
+        android:fromYDelta="0%p"
+        android:toXDelta="-100%p"
+        android:toYDelta="0%p" />
+
+</set> 
