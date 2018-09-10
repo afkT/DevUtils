@@ -46,17 +46,18 @@ DevUtils.openDebug();
 
 ### `dev.utils.app`
 
-* View 操作相关工具类 -> [ViewUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ViewUtils.java)
+* **View 操作相关工具类 ->** [ViewUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ViewUtils.java)
 
-```
-getContext					通过 View 获取上下文
-isEmpty						判断 View 是否为null
-isEmpty						判断 View... views 是否存在为null
-isVisibility				判断 View Visibility 是否 View.VISIBLE
-isVisibilityIN				判断 View 是否 View.INVISIBLE
-isVisibilityGone			判断 View 是否 View.GONE
-getVisibility				获取显示的状态 (View.VISIBLE : View.GONE)
-getVisibilityIN				获取显示的状态 (View.VISIBLE : View.INVISIBLE)
-setVisibility				设置 View 显示状态
+|方法|注释|
+| :-: | :-: |
+|getContext | 通过 View 获取上下文
+|isEmpty | 判断 View 是否为null
+|isEmpty | 判断 View... views 是否存在为null
+|isVisibility | 判断 View Visibility 是否 View.VISIBLE
+|isVisibilityIN | 判断 View 是否 View.INVISIBLE
+|isVisibilityGone | 判断 View 是否 View.GONE
+|getVisibility | 获取显示的状态 (View.VISIBLE : View.GONE)
+|getVisibilityIN | 获取显示的状态 (View.VISIBLE : View.INVISIBLE)
+|setVisibility | 设置 View 显示状态
 
 ```
