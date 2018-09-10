@@ -1,4 +1,4 @@
-## Use
+## 使用
 
 > ##### 只需要在 Application 中调用 `DevUtils.init()` 进行初始化就行
 
@@ -24,10 +24,10 @@
 		- validator	| 数据校验工具类
 ```
 
-## 注意事项
+## 事项
 
 - 内部存在两个日志工具类
-```
+```java
 // dev.utils.app - App 打印日志工具类
 LogPrintUtils
 // dev.utils.common - Java Common 日志打印工具类
@@ -35,7 +35,7 @@ JCLogUtils
 ```
 
 - 需要开启日志, 单独调用
-```
+```java
 // 打开 lib 内部日志
 DevUtils.openLog();
 // 标示 debug 模式
@@ -43,3 +43,20 @@ DevUtils.openDebug();
 ```
 
 ## API
+
+### `dev.utils.app`
+
+* View 操作相关工具类 -> [ViewUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ViewUtils.java)
+
+```
+getContext					通过 View 获取上下文
+isEmpty						判断 View 是否为null
+isEmpty						判断 View... views 是否存在为null
+isVisibility				判断 View Visibility 是否 View.VISIBLE
+isVisibilityIN				判断 View 是否 View.INVISIBLE
+isVisibilityGone			判断 View 是否 View.GONE
+getVisibility				获取显示的状态 (View.VISIBLE : View.GONE)
+getVisibilityIN				获取显示的状态 (View.VISIBLE : View.INVISIBLE)
+setVisibility				设置 View 显示状态
+
+```
