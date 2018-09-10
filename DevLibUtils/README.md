@@ -5,23 +5,23 @@
 ## 目录结构
 
 ```
-- dev.utils			| 根目录
-	- app 			| app相关工具类
-		- anim		| 动画相关
-		- assist	| 辅助类, 如 Camera，ScreenSensor
-		- cache		| 缓存工具类
-		- image		| 图片相关处理
-		- info		| App信息, PackageInfo 等
-		- logger	| 日志库 DevLogger
-		- share		| SharedPreferences 封装
-		- toast		| Toast、Toasty
-		- wifi		| wifi、热点
-	- common		| java工具类, 不依赖android api
-		- assist	| 各种快捷辅助类
-		- cipher	| 编/解码工具类
-		- encrypt	| 加密工具类
-		- thread	| 线程相关
-		- validator	| 数据校验工具类
+- dev.utils             | 根目录
+   - app                | app相关工具类
+      - anim            | 动画相关
+      - assist          | 辅助类, 如 Camera，ScreenSensor
+      - cache           | 缓存工具类
+      - image           | 图片相关处理
+      - info            | App信息, PackageInfo 等
+      - logger          | 日志库 DevLogger
+	  - share           | SharedPreferences 封装
+      - toast           | Toast、Toasty
+      - wifi            | wifi、热点
+   - common             | java工具类, 不依赖android api
+      - assist          | 各种快捷辅助类
+      - cipher          | 编/解码工具类
+      - encrypt         | 加密工具类
+      - thread          | 线程相关
+      - validator       | 数据校验工具类
 ```
 
 ## 事项
@@ -58,4 +58,5 @@ DevUtils.openDebug();
 | isVisibilityGone | 判断 View 是否 View.GONE |
 | getVisibility | 获取显示的状态 (View.VISIBLE : View.GONE) |
 | getVisibilityIN | 获取显示的状态 (View.VISIBLE : View.INVISIBLE) |
-| setVisibility | 设置 View 显示状态 |
+| setVisibility | 设置View显示状态 visibility |
+| toggleVisibilitys | 设置View显示状态 (View.VISIBLE : View.GONE) |

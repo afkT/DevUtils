@@ -77,7 +77,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断View 是否显示
+     * 判断 View 是否显示
      * @param view
      * @param isDf
      * @return
@@ -92,7 +92,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断View 是否显示
+     * 判断 View 是否都显示显示
      * @param views
      * @return
      */
@@ -101,9 +101,11 @@ public final class ViewUtils {
             for (int i = 0, len = views.length; i < len; i++){
                 View view = views[i];
                 if (view != null && view.getVisibility() == View.VISIBLE){
-                    return true;
+                } else {
+                    return false;
                 }
             }
+            return true;
         }
         return false;
     }
