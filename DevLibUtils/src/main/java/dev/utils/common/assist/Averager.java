@@ -3,7 +3,7 @@ package dev.utils.common.assist;
 import java.util.ArrayList;
 
 /**
- * 用以统计平均数
+ * detail: 用以统计平均数
  * @author MaTianyu
  */
 public class Averager {

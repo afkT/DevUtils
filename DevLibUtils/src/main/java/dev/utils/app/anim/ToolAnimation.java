@@ -7,6 +7,7 @@ import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 
 /**
+ * detail: 控件点击效果动画工具类
  * @Description:主要功能:控件点击效果动画工具类
  * @Prject: CommonUtilLibrary
  * @Package: com.jingewenku.abrahamcaijin.commonutil

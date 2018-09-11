@@ -7,7 +7,7 @@ import java.util.Date;
 import dev.utils.JCLogUtils;
 
 /**
- * 类工具
+ * detail: 类工具
  * @author mty
  */
 public final class ClassUtils {

@@ -9,7 +9,7 @@ import android.os.Build;
 import android.os.SystemClock;
 
 /**
- * 轮询工具类
+ * detail: 轮询工具类
  * @author MaTianyu
  */
 public final class PollingUtils {

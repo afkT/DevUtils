@@ -14,7 +14,7 @@ import android.support.annotation.RequiresApi;
 import dev.DevUtils;
 
 /**
- * 路径相关工具类
+ * detail: 路径相关工具类
  * @author: Blankj
  */
 public final class PathUtils {
@@ -23,8 +23,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取 Android 系统根目录
-     * path: /system
+     * 获取 Android 系统根目录 - path: /system
      * @return 系统根目录
      */
     public static String getRootPath() {
@@ -32,8 +31,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取 data 目录
-     * path: /data
+     * 获取 data 目录 - path: /data
      * @return data 目录
      */
     public static String getDataPath() {
@@ -41,8 +39,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取缓存目录
-     * path: data/cache
+     * 获取缓存目录 - path: data/cache
      * @return 缓存目录
      */
     public static String getIntDownloadCachePath() {
@@ -50,8 +47,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用的缓存目录
-     * path: /data/data/package/cache
+     * 获取此应用的缓存目录 - path: /data/data/package/cache
      * @return 此应用的缓存目录
      */
     public static String getAppIntCachePath() {
@@ -59,8 +55,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用的文件目录
-     * path: /data/data/package/files
+     * 获取此应用的文件目录 - path: /data/data/package/files
      * @return 此应用的文件目录
      */
     public static String getAppIntFilesPath() {
@@ -68,8 +63,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用的数据库文件目录
-     * path: /data/data/package/databases/name
+     * 获取此应用的数据库文件目录 - path: /data/data/package/databases/name
      * @param name 数据库文件名
      * @return 数据库文件目录
      */
@@ -78,8 +72,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取 Android 外置储存的根目录
-     * path: /storage/emulated/0
+     * 获取 Android 外置储存的根目录 - path: /storage/emulated/0
      * @return 外置储存根目录
      */
     public static String getExtStoragePath() {
@@ -87,8 +80,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取闹钟铃声目录
-     * path: /storage/emulated/0/Alarms
+     * 获取闹钟铃声目录 - path: /storage/emulated/0/Alarms
      * @return 闹钟铃声目录
      */
     public static String getExtAlarmsPath() {
@@ -96,8 +88,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取相机拍摄的照片和视频的目录
-     * path: /storage/emulated/0/DCIM
+     * 获取相机拍摄的照片和视频的目录 - path: /storage/emulated/0/DCIM
      * @return 照片和视频目录
      */
     public static String getExtDcimPath() {
@@ -105,8 +96,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取文档目录
-     * path: /storage/emulated/0/Documents
+     * 获取文档目录 - path: /storage/emulated/0/Documents
      * @return 文档目录
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -115,8 +105,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取下载目录
-     * path: /storage/emulated/0/Download
+     * 获取下载目录 - path: /storage/emulated/0/Download
      * @return 下载目录
      */
     public static String getExtDownloadsPath() {
@@ -124,8 +113,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取视频目录
-     * path: /storage/emulated/0/Movies
+     * 获取视频目录 - path: /storage/emulated/0/Movies
      * @return 视频目录
      */
     public static String getExtMoviesPath() {
@@ -133,8 +121,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取音乐目录
-     * path: /storage/emulated/0/Music
+     * 获取音乐目录 - path: /storage/emulated/0/Music
      * @return 音乐目录
      */
     public static String getExtMusicPath() {
@@ -142,8 +129,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取提示音目录
-     * path: /storage/emulated/0/Notifications
+     * 获取提示音目录 - path: /storage/emulated/0/Notifications
      * @return 提示音目录
      */
     public static String getExtNotificationsPath() {
@@ -151,8 +137,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取图片目录
-     * path: /storage/emulated/0/Pictures
+     * 获取图片目录 - path: /storage/emulated/0/Pictures
      * @return 图片目录
      */
     public static String getExtPicturesPath() {
@@ -160,8 +145,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取 Podcasts 目录
-     * path: /storage/emulated/0/Podcasts
+     * 获取 Podcasts 目录 - path: /storage/emulated/0/Podcasts
      * @return Podcasts 目录
      */
     public static String getExtPodcastsPath() {
@@ -169,8 +153,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取铃声目录
-     * path: /storage/emulated/0/Ringtones
+     * 获取铃声目录 - path: /storage/emulated/0/Ringtones
      * @return 下载目录
      */
     public static String getExtRingtonesPath() {
@@ -178,8 +161,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的缓存目录
-     * path: /storage/emulated/0/Android/data/package/cache
+     * 获取此应用在外置储存中的缓存目录 - path: /storage/emulated/0/Android/data/package/cache
      * @return 此应用在外置储存中的缓存目录
      */
     public static String getAppExtCachePath() {
@@ -187,8 +169,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的文件目录
-     * path: /storage/emulated/0/Android/data/package/files
+     * 获取此应用在外置储存中的文件目录 - path: /storage/emulated/0/Android/data/package/files
      * @return 此应用在外置储存中的文件目录
      */
     public static String getAppExtFilePath() {
@@ -196,8 +177,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的闹钟铃声目录
-     * path: /storage/emulated/0/Android/data/package/files/Alarms
+     * 获取此应用在外置储存中的闹钟铃声目录 - path: /storage/emulated/0/Android/data/package/files/Alarms
      * @return 此应用在外置储存中的闹钟铃声目录
      */
     public static String getAppExtAlarmsPath() {
@@ -205,8 +185,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的相机目录
-     * path: /storage/emulated/0/Android/data/package/files/DCIM
+     * 获取此应用在外置储存中的相机目录 - path: /storage/emulated/0/Android/data/package/files/DCIM
      * @return 此应用在外置储存中的相机目录
      */
     public static String getAppExtDcimPath() {
@@ -214,8 +193,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的文档目录
-     * path: /storage/emulated/0/Android/data/package/files/Documents
+     * 获取此应用在外置储存中的文档目录 - path: /storage/emulated/0/Android/data/package/files/Documents
      * @return 此应用在外置储存中的文档目录
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -224,8 +202,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的闹钟目录
-     * path: /storage/emulated/0/Android/data/package/files/Download
+     * 获取此应用在外置储存中的闹钟目录 - path: /storage/emulated/0/Android/data/package/files/Download
      * @return 此应用在外置储存中的闹钟目录
      */
     public static String getAppExtDownloadPath() {
@@ -233,8 +210,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的视频目录
-     * path: /storage/emulated/0/Android/data/package/files/Movies
+     * 获取此应用在外置储存中的视频目录 - path: /storage/emulated/0/Android/data/package/files/Movies
      * @return 此应用在外置储存中的视频目录
      */
     public static String getAppExtMoviesPath() {
@@ -242,8 +218,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的音乐目录
-     * path: /storage/emulated/0/Android/data/package/files/Music
+     * 获取此应用在外置储存中的音乐目录 - path: /storage/emulated/0/Android/data/package/files/Music
      * @return 此应用在外置储存中的音乐目录
      */
     public static String getAppExtMusicPath() {
@@ -251,8 +226,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的提示音目录
-     * path: /storage/emulated/0/Android/data/package/files/Notifications
+     * 获取此应用在外置储存中的提示音目录 - path: /storage/emulated/0/Android/data/package/files/Notifications
      * @return 此应用在外置储存中的提示音目录
      */
     public static String getAppExtNotificationsPath() {
@@ -260,8 +234,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的图片目录
-     * path: /storage/emulated/0/Android/data/package/files/Pictures
+     * 获取此应用在外置储存中的图片目录 - path: /storage/emulated/0/Android/data/package/files/Pictures
      * @return 此应用在外置储存中的图片目录
      */
     public static String getAppExtPicturesPath() {
@@ -269,8 +242,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的 Podcasts 目录
-     * path: /storage/emulated/0/Android/data/package/files/Podcasts
+     * 获取此应用在外置储存中的 Podcasts 目录 - path: /storage/emulated/0/Android/data/package/files/Podcasts
      * @return 此应用在外置储存中的 Podcasts 目录
      */
     public static String getAppExtPodcastsPath() {
@@ -278,8 +250,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用在外置储存中的铃声目录
-     * path: /storage/emulated/0/Android/data/package/files/Ringtones
+     * 获取此应用在外置储存中的铃声目录 - path: /storage/emulated/0/Android/data/package/files/Ringtones
      * @return 此应用在外置储存中的铃声目录
      */
     public static String getAppExtRingtonesPath() {
@@ -287,8 +258,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取此应用的 Obb 目录
-     * path: /storage/emulated/0/Android/obb/package
+     * 获取此应用的 Obb 目录 - path: /storage/emulated/0/Android/obb/package
      * 一般用来存放游戏数据包
      * @return 此应用的 Obb 目录
      */

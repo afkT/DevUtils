@@ -13,8 +13,8 @@ import static android.hardware.Camera.Parameters.FLASH_MODE_OFF;
 import static android.hardware.Camera.Parameters.FLASH_MODE_TORCH;
 
 /**
- * 手电筒工具类
- * @author: Blankj
+ * detail: 手电筒工具类
+ * Created by Ttt
  */
 public final class FlashlightUtils {
 

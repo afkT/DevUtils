@@ -10,7 +10,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail:  Uri 工具类
+ * detail: Uri 工具类
  * Created by Blankj
  * http://blankj.com
  * Update to Ttt

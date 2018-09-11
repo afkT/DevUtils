@@ -8,7 +8,7 @@ import java.util.List;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail:  Shell 相关工具类
+ * detail: Shell 相关工具类
  * Created by Blankj
  * http://blankj.com
  * Update to Ttt

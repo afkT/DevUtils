@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * detail:  App通用工具类
+ * detail: App通用工具类
  * Created by Ttt
  */
 public final class AppCommonUtils {

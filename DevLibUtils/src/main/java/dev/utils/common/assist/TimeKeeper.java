@@ -3,7 +3,7 @@ package dev.utils.common.assist;
 import android.os.SystemClock;
 
 /**
- * 时间堵塞保留
+ * detail: 时间堵塞保留
  * @author 氢一
  */
 public class TimeKeeper {

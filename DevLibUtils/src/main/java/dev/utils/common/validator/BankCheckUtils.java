@@ -1,6 +1,7 @@
 package dev.utils.common.validator;
 
 /**
+ * detail: 银行卡管理
  * @Description:主要功能:银行卡管理
  * @Prject: CommonUtilLibrary
  * @Package: com.jingewenku.abrahamcaijin.commonutil

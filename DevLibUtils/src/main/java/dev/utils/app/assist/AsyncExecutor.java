@@ -13,7 +13,7 @@ import java.util.concurrent.FutureTask;
 import dev.utils.LogPrintUtils;
 
 /**
- * 异步执行
+ * detail: 异步执行
  * @author MaTianyu
  */
 public class AsyncExecutor {

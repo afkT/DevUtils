@@ -10,6 +10,7 @@ import java.util.Map;
 import dev.utils.JCLogUtils;
 
 /**
+ * detail: 居民身份证工具类
  * @Description:主要功能: 居民身份证工具类
  * @Prject: CommonUtilLibrary
  * @Package: com.jingewenku.abrahamcaijin.commonutil

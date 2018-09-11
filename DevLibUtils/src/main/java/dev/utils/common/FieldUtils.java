@@ -11,7 +11,7 @@ import java.util.List;
 import dev.utils.JCLogUtils;
 
 /**
- * 域工具
+ * detail: 域工具
  * @author mty
  */
 public final class FieldUtils {
