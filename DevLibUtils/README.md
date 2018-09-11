@@ -139,3 +139,64 @@ DevUtils.openDebug();
 | setIpAddress | 设置Ip地址 |
 | setStaticIpConfig | 设置Ip地址、网关、DNS(5.0之后) |
 
+
+* **震动相关工具类 ->** [VibrationUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/VibrationUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| vibrate | 震动 |
+| vibrate | 指定手机以pattern模式振动 |
+| cancel | 取消振动 |
+
+
+* **Uri 工具类 ->** [UriUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/UriUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| getUriForFileToName | 返回处理后的Uri, 单独传递名字, 自动添加包名 ${applicationId} |
+| getUriForFile | 返回处理后的Uri |
+
+
+* **TextView 工具类 ->** [TextViewUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/TextViewUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| getTextView | 获取TextView |
+| getText | 获取文本 |
+| setTextColor | 设置字体颜色 |
+| setText | 设置内容 |
+| setHtmlText | 设置 Html 内容 |
+| setTVUnderLine | 给TextView设置下划线 |
+| getTextHeight | 获取字体高度 |
+| getTextTopOffsetHeight | 获取字体顶部偏移高度 |
+| getTextWidth | 计算字体宽度 |
+| getCenterRectY | 获取画布中间居中位置 |
+| reckonTextSize | 通过需要的高度, 计算字体大小 |
+| calcTextWidth | 计算第几位超过宽度 |
+
+
+* **状态列表(字体按压、View按压) 工具类 ->** [StateListUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/StateListUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| getColorStateList | 获取ColorStateList |
+| createColorStateList | 创建 颜色状态列表 |
+| newSelector | 创建 Drawable选择切换 list |
+
+
+* **dp，px，sp转换、View获取宽高等 工具类 ->** [SizeUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/SizeUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| dipConvertPx | 根据手机的分辨率从 dp 的单位 转成为 px(像素) |
+| pxConvertDip | 根据手机的分辨率从 px(像素) 的单位 转成为 dp |
+| pxConvertSp | 根据手机的分辨率从 px(像素) 的单位 转成为 sp |
+| spConvertPx | 根据手机的分辨率从 sp 的单位 转成为 px |
+| dipConvertPx2 | 根据手机的分辨率从 dp 的单位 转成为 px(像素) 第二种 |
+| spConvertPx2 | 根据手机的分辨率从 sp 的单位 转成为 px 第二种 |
+| applyDimension | 各种单位转换 - 该方法存在于 TypedValue |
+| forceGetViewSize | 获取视图的尺寸 - 需回调 onGetSizeListener 接口，在 onGetSize 中获取 view 宽高 |
+| measureView | 测量视图尺寸 |
+| getMeasuredWidth | 获取测量视图宽度 |
+| getMeasuredHeight | 获取测量视图高度 |
+
