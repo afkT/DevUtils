@@ -54,6 +54,34 @@ public final class DevCommonUtils {
         return true;
     }
 
+    /**
+     * 获取空格
+     * @param number 空格数量
+     * @return
+     */
+    private static String getSpace(int number){
+        StringBuffer buffer = new StringBuffer();
+        // 循环空格
+        for (int i = 0; i < number; i++){
+            buffer.append("");
+        }
+        return buffer.toString();
+    }
+
+    /**
+     * 获取 Tab
+     * @param number tab 键数量
+     * @return
+     */
+    private static String getTab(int number){
+        StringBuffer buffer = new StringBuffer();
+        // 循环空格
+        for (int i = 0; i < number; i++){
+            buffer.append("\t");
+        }
+        return buffer.toString();
+    }
+
     // ========================
     // == 判断数据是否为null ==
     // ========================
