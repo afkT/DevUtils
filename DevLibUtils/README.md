@@ -266,4 +266,61 @@ DevUtils.openDebug();
 | unbindService | 解绑服务 |
 
 
+* **SD卡相关辅助类 ->** [SDCardUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/SDCardUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| isSDCardEnable | 判断SDCard是否正常挂载 |
+| getSDCardFile | 获取SD卡路径（File对象） |
+| getSDCardPath | 获取SD卡路径（无添加  -> / -> File.separator） |
+| isSDCardEnablePath | 判断 SD 卡是否可用 |
+| getSDCardPaths | 获取 SD 卡路径 |
+| getAllBlockSize | 返回对应路径的空间总大小 |
+| getAvailableBlocks | 返回对应路径的空闲空间(byte 字节大小) |
+| getAlreadyBlock | 返回对应路径,已使用的空间大小 |
+| getBlockSizeInfos | 返回对应路径的空间大小信息 |
+| getSDTotalSize | 获得 SD 卡总大小 |
+| getSDAvailableSize | 获得 SD 卡剩余容量，即可用大小 |
+| getRomTotalSize | 获得机身内存总大小 |
+| getRomAvailableSize | 获得机身可用内存 |
+| getDiskCacheDir | 获取缓存地址 |
+| getCacheFile | 获取缓存资源地址 |
+
+
+* **屏幕相关工具类 ->** [ScreenUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ScreenUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| getDisplayMetrics | 通过上下文获取 DisplayMetrics (获取关于显示的通用信息，如显示大小，分辨率和字体) |
+| getScreenWidth | 获取屏幕的宽度（单位：px） |
+| getScreenHeight | 获取屏幕的高度（单位：px） |
+| getScreenWidthHeightToPoint | 通过上下文获取屏幕宽度高度 |
+| getScreenWidthHeight | 通过上下文获取屏幕宽度高度 |
+| getScreenSize | 获取屏幕分辨率 |
+| getScreenSizeOfDevice | 获取屏幕英寸 例5.5英寸 |
+| getDensity | 通过上下文获取屏幕密度 |
+| getDensityDpi | 通过上下文获取屏幕密度Dpi |
+| getScaledDensity | 通过上下文获取屏幕缩放密度 |
+| getXDpi | 获取 X轴 dpi |
+| getYDpi | 获取 Y轴 dpi |
+| getWidthDpi | 获取 宽度比例 dpi 基准 |
+| getHeightDpi | 获取 高度比例 dpi 基准 |
+| getScreenInfo | 获取屏幕信息 |
+| setFullScreen | 设置屏幕为全屏 |
+| setLandscape | 设置屏幕为横屏 |
+| setPortrait | 设置屏幕为竖屏 |
+| isLandscape | 判断是否横屏 |
+| isPortrait | 判断是否竖屏 |
+| getScreenRotation | 获取屏幕旋转角度 |
+| isScreenLock | 判断是否锁屏 |
+| isTablet | 判断是否是平板 |
+| getStatusHeight | 获得状态栏的高度(无关 android:theme 获取状态栏高度) |
+| getStatusBarHeight | 获取应用区域 TitleBar 高度 |
+| setSleepDuration | 设置进入休眠时长 |
+| getSleepDuration | 获取进入休眠时长 |
+| snapShotWithStatusBar | 获取当前屏幕截图，包含状态栏 |
+| snapShotWithoutStatusBar | 获取当前屏幕截图，不包含状态栏 |
+| getNavigationBarHeight | 获取底部导航栏高度 |
+| checkDeviceHasNavigationBar | 检测是否具有底部导航栏 |
+
 
