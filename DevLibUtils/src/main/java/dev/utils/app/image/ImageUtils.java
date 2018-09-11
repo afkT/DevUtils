@@ -352,8 +352,7 @@ public final class ImageUtils {
     }
 
     /**
-     * 获取图片旋转角度
-     * <p>返回 -1 表示异常</p>
+     * 获取图片旋转角度 - 返回 -1 表示异常
      * @param filePath The path of file.
      * @return 旋转角度
      */
@@ -761,8 +760,7 @@ public final class ImageUtils {
     }
 
     /**
-     * 快速模糊
-     * <p>先缩小原图，对小图进行模糊，再放大回原先尺寸</p>
+     * 快速模糊 - 先缩小原图，对小图进行模糊，再放大回原先尺寸
      * @param src 源图片
      * @param scale 缩放比例(0...1)
      * @param radius 模糊半径
@@ -775,8 +773,7 @@ public final class ImageUtils {
     }
 
     /**
-     * 快速模糊图片
-     * <p>先缩小原图，对小图进行模糊，再放大回原先尺寸</p>
+     * 快速模糊图片 - 先缩小原图，对小图进行模糊，再放大回原先尺寸
      * @param src 源图片
      * @param scale 缩放比例(0...1)
      * @param radius 模糊半径(0...25)
@@ -814,8 +811,7 @@ public final class ImageUtils {
     }
 
     /**
-     * renderScript 模糊图片
-     * <p>API 大于 17</p>
+     * renderScript 模糊图片 - API 大于 17
      * @param src 源图片
      * @param radius 模糊半径(0...25)
      * @return 模糊后的图片
@@ -826,8 +822,7 @@ public final class ImageUtils {
     }
 
     /**
-     * renderScript 模糊图片
-     * <p>API 大于 17</p>
+     * renderScript 模糊图片 - API 大于 17
      * @param src 源图片
      * @param radius 模糊半径(0...25)
      * @param recycle 是否回收

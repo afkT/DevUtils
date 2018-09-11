@@ -443,8 +443,7 @@ public final class IntentUtils {
     }
 
     /**
-     * 打开网络设置界面
-     * <p>3.0以下打开设置界面</p>
+     * 打开网络设置界面 - 3.0以下打开设置界面
      */
     public static void openWirelessSettings(Activity activity) {
         if (android.os.Build.VERSION.SDK_INT > 10) {

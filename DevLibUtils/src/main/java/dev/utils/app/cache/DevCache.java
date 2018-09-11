@@ -187,7 +187,6 @@ public final class DevCache {
      * Provides a means to save a cached file before the data are available.
      * Since writing about the file is complete, and its close method is called,
      * its contents will be registered in the cache. Example of use:
-     * <p>
      * DevCache cache = new DevCache(this) try { OutputStream stream =
      * cache.put("myFileName") stream.write("some bytes".getBytes()); // now
      * update cache! stream.close(); } catch(FileNotFoundException e){
