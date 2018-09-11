@@ -63,7 +63,7 @@ public final class DevCommonUtils {
         StringBuffer buffer = new StringBuffer();
         // 循环空格
         for (int i = 0; i < number; i++){
-            buffer.append("");
+            buffer.append(" ");
         }
         return buffer.toString();
     }
