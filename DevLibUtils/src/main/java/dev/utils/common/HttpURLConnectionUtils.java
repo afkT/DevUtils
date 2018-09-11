@@ -87,14 +87,14 @@ public final class HttpURLConnectionUtils {
      * @return
      */
     public static void request(final String method, final String urlStr, final HashMap<String, String> headers, final String params, final CallBack callBack) {
-        // 得到连接对象
+        // 获取连接对象
         HttpURLConnection connection = null;
         InputStream inputStream = null;
         ByteArrayOutputStream bout = null;
         try {
             // 请求路径
             URL url = new URL(urlStr);
-            // 得到连接对象
+            // 获取连接对象
             connection = (HttpURLConnection) url.openConnection();
             // 设置请求方法
             connection.setRequestMethod(method);
@@ -229,12 +229,12 @@ public final class HttpURLConnectionUtils {
      * @param timeCallBack
      */
     private static void reqNetTime(String urlStr, TimeCallBack timeCallBack){
-        // 得到连接对象
+        // 获取连接对象
         HttpURLConnection connection = null;
         try {
             // 请求路径
             URL url = new URL(urlStr);
-            // 得到连接对象
+            // 获取连接对象
             connection = (HttpURLConnection) url.openConnection();
             // 获取时间
             long date = connection.getDate();

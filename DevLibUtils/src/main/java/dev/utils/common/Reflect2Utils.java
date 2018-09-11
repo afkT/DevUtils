@@ -20,7 +20,7 @@ public final class Reflect2Utils {
     private static final String TAG = Reflect2Utils.class.getSimpleName();
 
     /**
-     * 得到某个对象的公共属性
+     * 获取某个对象的公共属性
      * @param owner, fieldName
      * @return 该属性对象
      */
@@ -37,7 +37,7 @@ public final class Reflect2Utils {
     }
 
     /**
-     * 得到某类的静态公共属性
+     * 获取某类的静态公共属性
      * @param className 类名
      * @param fieldName 属性名
      * @return 该属性对象
@@ -137,7 +137,7 @@ public final class Reflect2Utils {
     }
 
     /**
-     * 得到数组中的某个元素
+     * 获取数组中的某个元素
      * @param array 数组
      * @param index 索引
      * @return 返回指定数组对象中索引组件的值

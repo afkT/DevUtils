@@ -262,7 +262,7 @@ public final class DateUtils {
 	// ======= 获取时间 =======
 
 	/**
-	 * 得到年
+	 * 获取年
 	 * @param date Date对象
 	 * @return 年
 	 */
@@ -277,7 +277,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * 得到月 (0 - 11) + 1
+	 * 获取月 (0 - 11) + 1
 	 * @param date Date对象
 	 * @return 月
 	 */
@@ -292,7 +292,7 @@ public final class DateUtils {
 	}
 
 	/**
-	 * 得到日
+	 * 获取日
 	 * @param date Date对象
 	 * @return 日
 	 */

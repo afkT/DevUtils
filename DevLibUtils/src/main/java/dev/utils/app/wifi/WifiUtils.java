@@ -106,37 +106,37 @@ public final class WifiUtils {
 		return mWifiManager.startScan();
 	}
 
-	/** 得到已配置的网络 */
+	/** 获取已配置的网络 */
 	public List<WifiConfiguration> getConfiguration() {
 		return mWifiManager.getConfiguredNetworks();
 	}
 
-	/** 得到网络列表 */
+	/** 获取网络列表 */
 	public List<ScanResult> getWifiList() {
 		return mWifiManager.getScanResults();
 	}
 
-	/** 得到WifiInfo对象 */
+	/** 获取WifiInfo对象 */
 	public WifiInfo getWifiInfo(){
 		return mWifiManager.getConnectionInfo();
 	}
 
-	/** 得到MAC地址 */
+	/** 获取MAC地址 */
 	public String getMacAddress(WifiInfo wifiInfo) {
 		return wifiInfo.getMacAddress();
 	}
 
-	/** 得到接入点的BSSID */
+	/** 获取接入点的BSSID */
 	public String getBSSID(WifiInfo wifiInfo) {
 		return wifiInfo.getBSSID();
 	}
 
-	/** 得到IP地址 */
+	/** 获取IP地址 */
 	public int getIPAddress(WifiInfo wifiInfo) {
 		return wifiInfo.getIpAddress();
 	}
 
-	/** 得到连接的ID */
+	/** 获取连接的ID */
 	public int getNetworkId(WifiInfo wifiInfo) {
 		return wifiInfo.getNetworkId();
 	}

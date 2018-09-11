@@ -541,7 +541,7 @@ final class LoggerPrinter implements IPrinter {
 		logTopBorder(logType, tag);
 		// 打印头部线程信息
 		logHeaderContent(lConfig,logType, tag, methodCount, methodOffset);
-		// 得到系统的默认字符集的信息字节(UTF-8)
+		// 获取系统的默认字符集的信息字节(UTF-8)
 		byte[] bytes = message.getBytes();
 		// 获取字节总数
 		int length = bytes.length;

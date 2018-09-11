@@ -105,7 +105,7 @@ public final class DevThreadPool {
         // http://blog.csdn.net/sadfishsc/article/details/16980213
 
         // 如果当前线程意外终止，会创建一个新线程继续执行任务，这和我们直接创建线程不同，也和newFixedThreadPool(1)不同。
-        SINGLE, // newSingleThreadExecutor 得到的是一个单个的线程，这个线程会保证你的任务执行完成。
+        SINGLE, // newSingleThreadExecutor 获取的是一个单个的线程，这个线程会保证你的任务执行完成。
 
         AUTO_CPU, // 根据CPU来创建(自定义创建)
 

@@ -149,7 +149,7 @@ public final class MemoryUtils {
     }
 
     /**
-     * 得到 type info
+     * 获取 type info
      * @param type
      * @return
      */

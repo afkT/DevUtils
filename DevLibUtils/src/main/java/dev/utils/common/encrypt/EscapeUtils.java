@@ -96,7 +96,7 @@ public final class EscapeUtils {
 	}
 
 	/**
-	 * 解码 说明：本方法保证 不论参数s是否经过escape()编码，均能得到正确的“解码”结果
+	 * 解码 说明：本方法保证 不论参数s是否经过escape()编码，均能获取正确的“解码”结果
 	 * @param str
 	 * @return
 	 */

@@ -1203,7 +1203,7 @@ public final class BitmapExtendUtils {
         android.content.ContentResolver resolver = DevUtils.getContext().getContentResolver();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeStream(new BufferedInputStream(resolver.openInputStream(uri), 16 * 1024), null, options);
-        // 得到图片的宽度、高度；
+        // 获取图片的宽度、高度；
         float imgWidth = options.outWidth;
         float imgHeight = options.outHeight;
         // 分别计算图片宽度、高度与目标宽度、高度的比例；取大于等于该比例的最小整数；

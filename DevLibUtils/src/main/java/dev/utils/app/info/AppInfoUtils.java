@@ -173,7 +173,7 @@ public final class AppInfoUtils {
             PackageInfo packageInfo = packageManager.getPackageInfo(pckName, PackageManager.GET_PERMISSIONS);
             String [] usesPermissionsArray = packageInfo.requestedPermissions;
             for (int i = 0; i < usesPermissionsArray.length; i++) {
-                // 得到每个权限的名字,如:android.permission.INTERNET
+                // 获取每个权限的名字,如:android.permission.INTERNET
                 String usesPermissionName = usesPermissionsArray[i];
                 LogPrintUtils.dTag(TAG, "usesPermissionName = " + usesPermissionName);
 

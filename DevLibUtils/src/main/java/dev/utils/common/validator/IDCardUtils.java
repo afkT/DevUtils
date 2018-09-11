@@ -109,7 +109,7 @@ public final class IDCardUtils {
     }
 
     /**
-     * 将身份证的每位和对应位的加权因子相乘之后，再得到和值
+     * 将身份证的每位和对应位的加权因子相乘之后，再获取和值
      *
      * @param iArr int[]
      * @return 身份证编码

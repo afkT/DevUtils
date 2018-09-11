@@ -564,7 +564,7 @@ public final class ViewUtils {
         //int hSpaec = gridView.getHorizontalSpacing();
         // 每行之间的间隔 -
         int vSpace = gridView.getVerticalSpacing();
-        // 最后得到整个gridView完整显示需要的高度
+        // 最后获取整个gridView完整显示需要的高度
         totalHeight += (vSpace * (count - 1));
         // 判断是否需要设置高度
         if (isSet){

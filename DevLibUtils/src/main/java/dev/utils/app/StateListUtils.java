@@ -31,7 +31,7 @@ public final class StateListUtils {
 //    android:state_checked	是否已勾选
 //    android:state_enabled	是否可用
 //    android:state_first	是否开始状态
-//    android:state_focused	是否已得到焦点
+//    android:state_focused	是否已获取焦点
 //    android:state_last	是否处于结束
 //    android:state_middle	是否处于中间
 //    android:state_pressed	是否处于按下状态 .

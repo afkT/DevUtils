@@ -482,7 +482,7 @@ public final class ConverUtils {
 
     /**
      * 二进制字符串, 转换成byte数组
-     * 例: "011000010111001101100100" 传入 bits2Bytes, 返回 byte[], 通过new String(byte()) 得到 asd => 配合 bytes2Bits 使用
+     * 例: "011000010111001101100100" 传入 bits2Bytes, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 bytes2Bits 使用
      * @param bits The bits.
      * @return bytes
      */
