@@ -42,6 +42,8 @@ DevUtils.openLog();
 DevUtils.openDebug();
 ```
 
+- 部分api更新不及时或有遗漏等，`具体以对应的工具类为准`
+
 ## API
 
 ### `dev.utils.app`
@@ -195,8 +197,73 @@ DevUtils.openDebug();
 | dipConvertPx2 | 根据手机的分辨率从 dp 的单位 转成为 px(像素) 第二种 |
 | spConvertPx2 | 根据手机的分辨率从 sp 的单位 转成为 px 第二种 |
 | applyDimension | 各种单位转换 - 该方法存在于 TypedValue |
-| forceGetViewSize | 获取视图的尺寸 - 需回调 onGetSizeListener 接口，在 onGetSize 中获取 view 宽高 |
+| forceGetViewSize | 获取视图的尺寸 |
 | measureView | 测量视图尺寸 |
 | getMeasuredWidth | 获取测量视图宽度 |
 | getMeasuredHeight | 获取测量视图高度 |
+
+
+* **签名工具类（获取app，签名信息） ->** [SignaturesUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/SignaturesUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| toHexString | 进行转换 |
+| signatureMD5 | 返回MD5 |
+| signatureSHA1 | SHA1 |
+| signatureSHA256 | SHA256 |
+| isDebuggable | 判断签名是debug签名还是release签名 |
+| getX509Certificate | 获取App 证书对象 |
+| printSignatureName | 打印签名信息 |
+| getSignaturesFromApk | 从APK中读取签名 |
+| getCertificateFromApk | 从APK中读取签名 |
+| loadCertificates | 加载签名 |
+
+
+* **快捷图标工具类 ->** [ShortCutUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ShortCutUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| hasShortcut | 检测是否存在桌面快捷方式 |
+| addShortcut | 为程序创建桌面快捷方式 |
+| delShortcut | 删除程序的快捷方式 |
+
+
+* **Shell 相关工具类 ->** [ShellUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ShellUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| execCmd | 执行命令 |
+
+
+* **Shape 工具类 ->** [ShapeUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ShapeUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| getDrawable | 获取处理后的 Drawable |
+| setDrawable | 设置 View Drawable |
+| setRadius | 设置圆角 |
+| setRadiusLeft | 设置圆角 |
+| setRadiusRight | 设置圆角 |
+| setCornerRadii | 设置圆角 |
+| setColor | 设置背景色(填充铺满) |
+| setStroke | 设置边框颜色 |
+| setSize | 设置大小 |
+| newBuilder | 创建新的 Shape Builder 对象 |
+| newBuilderToLeft | 创建新的 Shape Builder 对象 |
+| newBuilderToRight | 创建新的 Shape Builder 对象 |
+| newBuilderToGradient | 创建渐变的 Shape Builder 对象 |
+
+
+* **服务相关工具类 ->** [ServiceUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ServiceUtils.java)
+
+| 方法 | 注释 |
+| :-: | :-: |
+| isServiceRunning | 判断服务是否运行 |
+| getAllRunningService | 获取所有运行的服务 |
+| startService | 启动服务 |
+| stopService | 停止服务 |
+| bindService | 绑定服务 |
+| unbindService | 解绑服务 |
+
+
 
