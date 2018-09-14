@@ -4,9 +4,11 @@ import android.Manifest;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.SurfaceView;
 
 import dev.utils.app.SDCardUtils;
 import dev.utils.app.player.DevMediaManager;
+import dev.utils.app.player.DevVideoPlayerControl;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,5 +56,9 @@ public class MainActivity extends AppCompatActivity {
 //        DevMediaManager.getInstance().playPrepare(SDCardUtils.getSDCardPath() + "/video_3.mp4");
 //        DevMediaManager.getInstance().playPrepareAssets("a.mp3");
 //        DevMediaManager.getInstance().playPrepare(SDCardUtils.getSDCardPath() + "/a.mp3");
+
+//        DevVideoPlayerControl control = new DevVideoPlayerControl((SurfaceView) findViewById(R.id.surface));
+        //control.startPlayer(SDCardUtils.getSDCardPath() + "/video_3.mp4");
+
     }
 }

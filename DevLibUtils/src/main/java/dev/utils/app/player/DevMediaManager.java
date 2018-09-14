@@ -254,7 +254,7 @@ public class DevMediaManager implements OnBufferingUpdateListener,
 				}
 			});
 		} catch (Exception e) {
-			LogPrintUtils.eTag(TAG, e, "playPrepare - " + playUri);
+			LogPrintUtils.eTag(TAG, e, "playPrepare - playUri : " + playUri);
 			// 销毁资源
 			destroyMedia();
 		}
@@ -448,7 +448,7 @@ public class DevMediaManager implements OnBufferingUpdateListener,
 	 * detail: 播放 设置
 	 * Created by Ttt
 	 */
-	public abstract class MediaSet {
+	public static abstract class MediaSet {
 
 		/**
 		 * 是否循环播放 - 默认不循环
@@ -474,6 +474,22 @@ public class DevMediaManager implements OnBufferingUpdateListener,
 	}
 
 	// =============== get/set方法 =================
+
+	/**
+	 * 判断 MediaPlayer 是否为null
+	 * @return
+	 */
+	public boolean isNullMediaPlayer(){
+		return mMediaPlayer == null;
+	}
+
+	/**
+	 * 判断 MediaPlayer 是否不为null
+	 * @return
+	 */
+	public boolean isNotNullMediaPlayer(){
+		return mMediaPlayer != null;
+	}
 
 	/**
 	 * 获取 MediaPlayer 对象
@@ -566,5 +582,40 @@ public class DevMediaManager implements OnBufferingUpdateListener,
 	 */
 	public int getVideoHeight() {
 		return mVideoHeight;
+	}
+
+	/**
+	 * 获取当前播放时间
+	 * @return
+	 */
+	public int getCurrentPosition(){
+		if (mMediaPlayer != null){
+			return mMediaPlayer.getCurrentPosition();
+		}
+		return 0;
+	}
+
+	/**
+	 * 获取资源总时间
+	 * @return
+	 */
+	public int getDuration(){
+		if (mMediaPlayer != null){
+			return mMediaPlayer.getDuration();
+		}
+		return 0;
+	}
+
+	/**
+	 * 获取播放进度百分比
+	 * @return
+	 */
+	public int getPlayPercent(){
+		try {
+			return (getCurrentPosition() * 100) / getDuration();
+		} catch (Exception e){
+			LogPrintUtils.eTag(TAG, e, "getPlayPercent");
+		}
+		return 0;
 	}
 }
