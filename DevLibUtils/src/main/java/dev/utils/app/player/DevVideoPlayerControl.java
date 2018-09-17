@@ -24,13 +24,25 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	private SurfaceView mSurfaceview;
 	/** 画面预览回调 */
 	private SurfaceHolder mSurfaceHolder;
+	/** 判断是否自动播放 */
+	private boolean isAutoPlay = false;
 
 	/**
 	 * 初始化构造函数
 	 * @param surfaceview
 	 */
 	public DevVideoPlayerControl(SurfaceView surfaceview) {
+		this(surfaceview, false);
+	}
+
+	/**
+	 * 初始化构造函数
+	 * @param surfaceview
+	 * @param isAutoPlay
+	 */
+	public DevVideoPlayerControl(SurfaceView surfaceview, boolean isAutoPlay) {
 		this.mSurfaceview = surfaceview;
+		this.isAutoPlay = isAutoPlay;
 
 		// = 初始化操作 =
 
@@ -100,16 +112,17 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "onPrepared");
 			}
-
-			// 触发回调
-			if (mMediaListener != null){
-				mMediaListener.onPrepared();
-			} else {
+			// 判断是否自动播放
+			if (isAutoPlay){
 				try { // 如果没有设置则直接播放
 					DevMediaManager.getInstance().getMediaPlayer().start();
 				} catch (Exception e){
 					LogPrintUtils.eTag(TAG, e, "onPrepared - start");
 				}
+			}
+			// 触发回调
+			if (mMediaListener != null){
+				mMediaListener.onPrepared();
 			}
 		}
 	}
@@ -263,6 +276,22 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 			}
 		}
 		return isPlaying();
+	}
+
+	/**
+	 * 判断是否自动播放
+	 * @return
+	 */
+	public boolean isAutoPlay() {
+		return isAutoPlay;
+	}
+
+	/**
+	 * 设置自动播放
+	 * @param autoPlay
+	 */
+	public void setAutoPlay(boolean autoPlay) {
+		isAutoPlay = autoPlay;
 	}
 
 	/**
