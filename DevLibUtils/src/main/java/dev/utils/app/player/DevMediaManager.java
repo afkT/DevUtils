@@ -146,7 +146,7 @@ public class DevMediaManager implements OnBufferingUpdateListener,
 			// 预播放
 			return playPrepare(new MediaSet() {
 				@Override
-				void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+				public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
 					// 获取资源文件
 					AssetFileDescriptor file = DevUtils.getContext().getResources().openRawResourceFd(rawId);
 					try {
@@ -198,7 +198,7 @@ public class DevMediaManager implements OnBufferingUpdateListener,
 			// 预播放
 			return playPrepare(new MediaSet() {
 				@Override
-				void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+				public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
 					// 获取资源文件
 					AssetFileDescriptor file = DevUtils.getContext().getResources().getAssets().openNonAssetFd("assets"  + tempPlayUri);
 					try {
@@ -244,7 +244,7 @@ public class DevMediaManager implements OnBufferingUpdateListener,
 			// 预播放
 			return playPrepare(new MediaSet() {
 				@Override
-				void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+				public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
 					mediaPlayer.setDataSource(playUri);
 				}
 
@@ -470,7 +470,7 @@ public class DevMediaManager implements OnBufferingUpdateListener,
 		 * 设置播放配置 uri等
 		 * @param mediaPlayer
 		 */
-		abstract void setMediaConfig(MediaPlayer mediaPlayer) throws Exception;
+		public abstract void setMediaConfig(MediaPlayer mediaPlayer) throws Exception;
 	}
 
 	// =============== get/set方法 =================

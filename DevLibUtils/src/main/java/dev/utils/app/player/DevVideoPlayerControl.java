@@ -220,7 +220,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 			}
 
 			@Override
-			void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+			public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
 				mediaPlayer.setDataSource(playUri);
 			}
 		};
