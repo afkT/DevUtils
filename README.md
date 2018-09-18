@@ -63,6 +63,10 @@ public class BaseApplication extends Application{
 }
 ```
 
+## Other
+
+> [DevQuickUtils](https://github.com/afkT/DevQuickUtils) 是一个 基于 [DevUtils](https://github.com/afkT/DevUtils) 二次封装的快捷开发实现库, 封装多数逻辑判断优化实体类、如 基类Activity、Fragment、Adapter、ReqInfoAssist(请求信息辅助类)、PageInfoAssist(分页辅助类)、MultiSelectListAssist、MultiSelectMapAssist(多选辅助类) 等 便于开发人员，基于 [DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils) 快速开发 Android 项目
+
 # Thanks
 
 > 感谢以下开源项目的作者，本项目中有些功能受你们项目灵感的启发，有些功能也用到你们的代码完成。
