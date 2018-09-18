@@ -1,4 +1,4 @@
-package com.dev.config.logger;
+package com.dev.use.logger;
 
 /**
  * detail: 测试数据
