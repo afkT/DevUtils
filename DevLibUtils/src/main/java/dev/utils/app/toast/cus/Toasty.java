@@ -154,6 +154,48 @@ public final class Toasty {
             return this;
         }
 
+        public int getTextColor() {
+            return DEFAULT_TEXT_COLOR;
+        }
+
+        public int getNormalColor() {
+            return NORMAL_COLOR;
+        }
+
+        public int getErrorColor() {
+            return ERROR_COLOR;
+        }
+
+        public int getInfoColor() {
+            return INFO_COLOR;
+        }
+
+        public int getSuccessColor() {
+            return SUCCESS_COLOR;
+        }
+
+        public int getWarningColor() {
+            return WARNING_COLOR;
+        }
+
+        public Typeface getTypeface() {
+            return typeface;
+        }
+
+        public int getTextSize() {
+            return textSize;
+        }
+
+        public boolean isTintIcon() {
+            return tintIcon;
+        }
+
+        public boolean isNewToast() {
+            return isNewToast;
+        }
+
+        // =
+
         /** 应用配置参数生效 */
         public void apply() {
             Toasty.DEFAULT_TEXT_COLOR = DEFAULT_TEXT_COLOR;
