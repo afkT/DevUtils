@@ -62,6 +62,9 @@ class LogOperate {
         // try, catch 保存异常日志
         exLog();
 
+        // 正常保存日志
+        saveLog();
+
         // 使用日志操作
         tempLog();
     }
@@ -122,7 +125,7 @@ class LogOperate {
      * 打印异常日志
      */
     private static void exLog() {
-        // =================== 保存异常保存日志  ====================
+        // =================== 保存异常日志  ====================
         try {
             String s = null;
             s.indexOf("c");
@@ -144,6 +147,25 @@ class LogOperate {
             // 保存日志信息
             DevLoggerUtils.saveErrorLog(e, fName, true, eHint);
         }
+    }
+
+    /**
+     * 保存日志
+     */
+    private static void saveLog(){
+        // =================== 保存日志  ====================
+        // 保存文件名
+        String fName = System.currentTimeMillis() + ".log";
+        // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
+        String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
+        // 保存日志
+        DevLoggerUtils.saveLog("保存日志", LOG_SD_PATH, fName, eHint);
+
+        // === 保存日志, 包含头部信息、底部信息 ===
+        // 保存文件名
+        fName = System.currentTimeMillis() + ".log";
+        // 保存日志
+        DevLoggerUtils.saveLog("保存日志", "头部", "底部", LOG_SD_PATH, fName, eHint);
     }
 
     /**

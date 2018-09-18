@@ -19,9 +19,19 @@ public class MainActivity extends AppCompatActivity {
 
         // 申请权限
         if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            requestPermissions(new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
 
+        // 多媒体相关
+        media();
+    }
+
+    /**
+     * 多媒体相关操作
+     */
+    private void media(){
+//        // 默认事件监听
 //        DevMediaManager.getInstance().setMeidaListener(new DevMediaManager.MediaListener() {
 //            @Override
 //            public void onPrepared() {
@@ -30,35 +40,36 @@ public class MainActivity extends AppCompatActivity {
 //
 //            @Override
 //            public void onCompletion() {
-//
 //            }
 //
 //            @Override
 //            public void onBufferingUpdate(int percent) {
-//
 //            }
 //
 //            @Override
 //            public void onSeekComplete() {
-//
 //            }
 //
 //            @Override
 //            public void onError(int what, int extra) {
-//
 //            }
 //
 //            @Override
 //            public void onVideoSizeChanged(int width, int height) {
-//
 //            }
 //        });
-//        DevMediaManager.getInstance().playPrepare(SDCardUtils.getSDCardPath() + "/video_3.mp4");
+
+//        // 播放音频
+//        DevMediaManager.getInstance().playPrepareRaw(R.raw.dev_beep);
 //        DevMediaManager.getInstance().playPrepareAssets("a.mp3");
 //        DevMediaManager.getInstance().playPrepare(SDCardUtils.getSDCardPath() + "/a.mp3");
+//        DevMediaManager.getInstance().playPrepare("http://xxx.mp3");
+//        DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet(){}); // 自由设置信息
 
+//        // 播放视频
 //        DevVideoPlayerControl control = new DevVideoPlayerControl((SurfaceView) findViewById(R.id.surface));
-        //control.startPlayer(SDCardUtils.getSDCardPath() + "/video_3.mp4");
-
+//        control.startPlayer(SDCardUtils.getSDCardPath() + "/video_3.mp4");
+//        control.startPlayer("http://xxx.mp4");
+//        control.startPlayer(new DevMediaManager.MediaSet(){}); // 自由设置信息
     }
 }
