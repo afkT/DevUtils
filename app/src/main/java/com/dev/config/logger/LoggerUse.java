@@ -12,15 +12,16 @@ import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
 
 /**
- * 日志操作 - 使用方法
+ * detail: 日志使用方法
+ * Created by Ttt
  */
-class LogOperate {
+class LoggerUse {
 
-    private LogOperate() {
+    private LoggerUse() {
     }
 
     /** 日志Tag */
-    private final static String LOG_TAG = LogOperate.class.getSimpleName();
+    private final static String LOG_TAG = LoggerUse.class.getSimpleName();
     /** 日志文件夹路径 */
     public static final String LOG_SD_PATH = Config.SDP_PATH + File.separator + "Logger" + File.separator;
 
