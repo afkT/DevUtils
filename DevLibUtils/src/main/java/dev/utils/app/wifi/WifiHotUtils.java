@@ -34,7 +34,7 @@ public class WifiHotUtils {
 
     // 日志TAG
     private final static String TAG = WifiHotUtils.class.getSimpleName();
-    // 对应的上下文
+    // Context
     private Context mContext;
     /** 定义WifiManager对象 */
     private WifiManager mWifiManager;

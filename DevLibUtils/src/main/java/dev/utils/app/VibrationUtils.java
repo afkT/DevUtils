@@ -20,7 +20,7 @@ public final class VibrationUtils {
     /**
      * 震动
      * <uses-permission android:name="android.permission.VIBRATE" />
-     * @param context      上下文
+     * @param context
      * @param milliseconds 振动时长
      */
     public static void vibrate(final Context context, final long milliseconds) {
@@ -49,7 +49,7 @@ public final class VibrationUtils {
 
     /**
      * 取消振动
-     * @param context 上下文
+     * @param context
      */
     public static void cancel(final Context context) {
         try {

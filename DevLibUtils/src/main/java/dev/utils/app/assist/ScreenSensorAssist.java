@@ -118,7 +118,7 @@ public final class ScreenSensorAssist {
 	// ===
 	/**
 	 * 初始化操作
-	 * @param context 上下文
+	 * @param context
 	 * @param handler 回调Handler
 	 */
 	private void init(Context context, Handler handler){

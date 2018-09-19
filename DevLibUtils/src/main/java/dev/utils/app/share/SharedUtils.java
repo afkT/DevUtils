@@ -16,7 +16,7 @@ public final class SharedUtils {
     private SharedUtils(){
     }
 
-    /** 全局上下文 */
+    /** 全局 Context */
     private static Context mContext;
 
     /**
@@ -25,7 +25,7 @@ public final class SharedUtils {
      */
     public static void init(Context context) {
         if (mContext == null && context != null) {
-            // 初始化全局上下文
+            // 初始化全局 Context
             mContext = context.getApplicationContext();
         }
     }

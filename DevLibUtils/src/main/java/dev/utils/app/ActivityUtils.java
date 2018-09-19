@@ -33,7 +33,7 @@ public final class ActivityUtils {
 
     /**
      * 判断是否存在指定的Activity
-     * @param context 上下文
+     * @param context
      * @param packageName 包名
      * @param className activity全路径类名
      * @return

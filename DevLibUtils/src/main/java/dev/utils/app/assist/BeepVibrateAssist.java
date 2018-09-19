@@ -20,7 +20,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     // 日志TAG
     private static final String TAG = BeepVibrateAssist.class.getSimpleName();
-    // 上下文
+    // Context
     private final Context context;
     // 播放资源对象
     private MediaPlayer mediaPlayer = null;
@@ -176,7 +176,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 创建 MediaPlayer 对象
-     * @param context 上下文
+     * @param context
      * @param rawId 响声资源id
      * @return
      */
@@ -186,7 +186,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 创建 MediaPlayer 对象
-     * @param context 上下文
+     * @param context
      * @param rawId 响声资源id
      * @param beepVolume 音量
      * @return

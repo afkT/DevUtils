@@ -193,7 +193,7 @@ public final class ToastUtils {
 	 * @param objs
 	 */
 	private static Toast handlerToastStr(boolean isSingle, Context context, String text, int duration, Object... objs) {
-		// 防止上下文为null
+		// 防止 Context 为null
 		if (context != null) {
 			// 表示需要格式化字符串,只是为了减少 format步骤,增加判断，为null不影响
 			if (objs != null && objs.length != 0) {

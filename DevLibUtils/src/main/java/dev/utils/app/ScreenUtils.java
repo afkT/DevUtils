@@ -37,7 +37,7 @@ public final class ScreenUtils {
 	private static final String TAG = ScreenUtils.class.getSimpleName();
 
 	/**
-	 * 通过上下文获取 DisplayMetrics (获取关于显示的通用信息，如显示大小，分辨率和字体)
+	 * 通过 Context 获取 DisplayMetrics (获取关于显示的通用信息，如显示大小，分辨率和字体)
 	 * @return
 	 */
 	private static DisplayMetrics getDisplayMetrics() {
@@ -57,7 +57,7 @@ public final class ScreenUtils {
 	// == ----------------------------------------- ==
     
 //	/**
-//	 * 通过上下文获取屏幕宽度
+//	 * 通过 Context 获取屏幕宽度
 //	 * @param mContext
 //	 * @return
 //	 */
@@ -81,7 +81,7 @@ public final class ScreenUtils {
 //	}
 //
 //	/**
-//	 * 通过上下文获取屏幕高度
+//	 * 通过 Context 获取屏幕高度
 //	 * @param mContext
 //	 * @return
 //	 */
@@ -105,7 +105,7 @@ public final class ScreenUtils {
 //	}
 //
 //	/**
-//	 * 通过上下文获取屏幕宽度高度
+//	 * 通过 Context 获取屏幕宽度高度
 //	 * @param mContext
 //	 * @return int[] 0 = 宽度，1 = 高度
 //	 */
@@ -177,7 +177,7 @@ public final class ScreenUtils {
 	}
 
 	/**
-	 * 通过上下文获取屏幕宽度高度
+	 * 通过 Context 获取屏幕宽度高度
 	 * @return point.x 宽, point.y 高
 	 */
 	public static Point getScreenWidthHeightToPoint() {
@@ -201,7 +201,7 @@ public final class ScreenUtils {
 	}
 
 	/**
-	 * 通过上下文获取屏幕宽度高度
+	 * 通过 Context 获取屏幕宽度高度
 	 * @return int[] 0 = 宽度，1 = 高度
 	 */
 	public static int[] getScreenWidthHeight() {
@@ -266,7 +266,7 @@ public final class ScreenUtils {
 	// ==
 
 	/**
-	 * 通过上下文获取屏幕密度
+	 * 通过 Context 获取屏幕密度
 	 * @return
 	 */
 	public static float getDensity() {
@@ -284,7 +284,7 @@ public final class ScreenUtils {
 	}
 
 	/**
-	 * 通过上下文获取屏幕密度Dpi
+	 * 通过 Context 获取屏幕密度Dpi
 	 * @return
 	 */
 	public static int getDensityDpi() {
@@ -302,7 +302,7 @@ public final class ScreenUtils {
 	}
 
 	/**
-	 * 通过上下文获取屏幕缩放密度
+	 * 通过 Context 获取屏幕缩放密度
 	 * @return
 	 */
 	public static float getScaledDensity() {

@@ -21,7 +21,7 @@ public final class DevLoggerUtils {
 
 	/**
 	 * App初始化调用方法(获取版本号)
-	 * @param context 上下文
+	 * @param context
 	 */
 	public static void appInit(Context context) {
 		// 保存APP版本信息

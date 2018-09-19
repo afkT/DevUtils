@@ -39,7 +39,7 @@ public final class StateListUtils {
 //    android:state_window_focused	是否窗口已获得焦点
 
     /**
-     * 通过上下文获取
+     * 通过 Context 获取 ColorStateList
      * @param id
      * @return
      */

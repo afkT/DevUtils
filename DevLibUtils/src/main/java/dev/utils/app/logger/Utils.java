@@ -58,7 +58,7 @@ final class Utils {
 
 	/**
 	 * 获取app版本信息
-	 * @param context 上下文
+	 * @param context
 	 */
 	static String[] getAppVersion(Context context) {
 		String[] aVersion = null;
@@ -268,7 +268,7 @@ final class Utils {
 
 	/**
 	 * App初始化调用方法
-	 * @param context 上下文
+	 * @param context
 	 */
 	public static void appInit(Context context) {
 		// 如果版本信息为null，才进行处理

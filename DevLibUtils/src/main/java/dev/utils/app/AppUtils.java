@@ -49,7 +49,7 @@ public final class AppUtils {
 	private static final String TAG = AppUtils.class.getSimpleName();
     
     /**
-	 * 通过上下文获取 WindowManager
+	 * 通过 Context 获取 WindowManager
 	 * @return
 	 */
 	public static WindowManager getWindowManager() {
@@ -62,7 +62,7 @@ public final class AppUtils {
 	}
 
 //	/**
-//	 * 通过上下文获取 DisplayMetrics (获取关于显示的通用信息，如显示大小，分辨率和字体)
+//	 * 通过 Context 获取 DisplayMetrics (获取关于显示的通用信息，如显示大小，分辨率和字体)
 //	 * @return
 //	 */
 //	public static DisplayMetrics getDisplayMetrics() {
@@ -541,7 +541,7 @@ public final class AppUtils {
 
 	/**
 	 * 判断是否安装指定包名的APP
-	 * @param context 上下文
+	 * @param context
 	 * @param packageName 包路径
 	 * @return
 	 */
@@ -898,7 +898,7 @@ public final class AppUtils {
 
 	/**
 	 * 启动本地应用打开PDF
-	 * @param context 上下文
+	 * @param context
 	 * @param filePath 文件路径
 	 */
 	public static boolean openPDFFile(Context context, String filePath) {
@@ -920,7 +920,7 @@ public final class AppUtils {
 
 	/**
 	 * 启动本地应用打开PDF
-	 * @param context 上下文
+	 * @param context
 	 * @param filePath 文件路径
 	 */
 	public static boolean openWordFile(Context context, String filePath) {
@@ -943,7 +943,7 @@ public final class AppUtils {
 
 	/**
 	 * 调用WPS打开office文档
-	 * @param context 上下文
+	 * @param context
 	 * @param filePath 文件路径
 	 */
 	public static boolean openOfficeByWPS(Context context, String filePath) {

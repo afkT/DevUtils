@@ -32,7 +32,7 @@ public final class ActivityManager {
     }
 
     /**
-     * 通过上下文 获取Activity
+     * 通过 Context 获取Activity
      * @param context
      * @return
      */

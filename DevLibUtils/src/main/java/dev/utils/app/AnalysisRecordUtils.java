@@ -37,7 +37,7 @@ public final class AnalysisRecordUtils {
     // 日志TAG
     private static final String TAG = AnalysisRecordUtils.class.getSimpleName();
 
-    // 上下文
+    // Context
     private static Context sContext;
     // 日志文件夹名字(目录名)
     private static String logFolderName = "LogRecord";

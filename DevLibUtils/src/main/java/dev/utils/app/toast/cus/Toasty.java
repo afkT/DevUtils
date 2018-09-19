@@ -316,7 +316,7 @@ public final class Toasty {
     }
     /**
      * 通用自定义显示Toast
-     * @param context 上下文
+     * @param context
      * @param message 显示的内容
      * @param icon 图标
      * @param tintColor 背景颜色渲染
@@ -329,7 +329,7 @@ public final class Toasty {
 
     /**
      * 通用自定义显示Toast
-     * @param context 上下文
+     * @param context
      * @param message 显示的内容
      * @param icon 图标
      * @param tintColor 背景颜色渲染
@@ -411,7 +411,7 @@ public final class Toasty {
      * @param isNewToast
      */
     public static void showToasty(Context context, View view, int duration, boolean isNewToast) {
-        // 防止上下文为null
+        // 防止 Context 为null
         if (context == null){
             return;
         } else if (view == null) { // 防止显示的View 为null

@@ -39,7 +39,7 @@ public final class DevUtils {
 
     /** 全局 Application 对象 */
     private static Application sApplication;
-    /** 全局上下文 - getApplicationContext() */
+    /** 全局 Context - getApplicationContext() */
     private static Context sContext;
     /** 获取当前线程,主要判断是否属于主线程 */
     private static Thread sUiThread;
@@ -50,10 +50,10 @@ public final class DevUtils {
 
     /**
      * 默认初始化方法 - 必须调用 - Application.onCreate 中调用
-     * @param context 上下文
+     * @param context
      */
     public static void init(Context context) {
-        // 设置全局上下文
+        // 设置全局 Context
         initContext(context);
         // 初始化全局 Application
         initApplication(context);
@@ -78,7 +78,7 @@ public final class DevUtils {
     }
 
     /**
-     * 初始化全局上下文
+     * 初始化全局 Context
      * @param context
      */
     private static void initContext(Context context) {
@@ -116,7 +116,7 @@ public final class DevUtils {
     }
 
     /**
-     * 获取全局上下文
+     * 获取全局 Context
      * @return
      */
     public static Context getContext() {
@@ -124,7 +124,7 @@ public final class DevUtils {
     }
 
     /**
-     * 获取上下文(判断null,视情况返回全局上下文)
+     * 获取 Context(判断null,视情况返回全局 Context)
      * @param context
      */
     public static Context getContext(Context context) {

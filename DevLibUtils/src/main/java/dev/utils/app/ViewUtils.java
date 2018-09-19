@@ -29,7 +29,7 @@ public final class ViewUtils {
     private static final String TAG = ViewUtils.class.getSimpleName();
 
     /**
-     * 获取上下文
+     * 获取 Context
      * @param view
      * @return
      */
@@ -440,7 +440,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 获取view的上下文
+     * 获取 View 的 Context
      * @param view
      * @return
      */

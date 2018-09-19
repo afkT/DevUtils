@@ -159,7 +159,7 @@ public final class WifiUtils {
 	}
 
 	/**
-	 * 通过上下文获取当前连接的ssid
+	 * 通过 Context 获取当前连接的ssid
 	 * @param context
 	 */
 	public static String getSSID(Context context){

@@ -37,7 +37,7 @@ public final class AppInfoItem {
         if (TextUtils.isEmpty(packName)){
             return null;
         }
-        // 获取上下文
+        // 获取 Context
         Context context = DevUtils.getContext();
         // 初始化包管理类
         PackageManager pManager = context.getPackageManager();

@@ -54,7 +54,7 @@ public final class ApkInfoItem {
 
         // https://blog.csdn.net/sljjyy/article/details/17370665
 
-        // 获取上下文
+        // 获取 Context
         Context context = DevUtils.getContext();
         // 初始化包管理类
         PackageManager pManager = context.getPackageManager();

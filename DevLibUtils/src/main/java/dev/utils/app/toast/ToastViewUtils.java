@@ -47,7 +47,7 @@ public final class ToastViewUtils {
 	 * @param isNewToast
 	 */
 	public static void showToast(Context context, View view, int duration, boolean isNewToast) {
-		// 防止上下文为null
+		// 防止 Context 为null
 		if (context == null){
 			return;
 		} else if (view == null) { // 防止显示的View 为null
