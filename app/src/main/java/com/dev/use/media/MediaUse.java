@@ -64,7 +64,7 @@ class MediaUse {
 
         // =======
 
-        SurfaceView surfaceView = null; // findViewById(R.id.surface);
+        SurfaceView surfaceView = null;
         // 播放视频
         DevVideoPlayerControl control = new DevVideoPlayerControl(surfaceView);
         control.startPlayer(SDCardUtils.getSDCardPath() + "/video_3.mp4");
