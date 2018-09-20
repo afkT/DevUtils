@@ -366,8 +366,14 @@ public final class DateUtils {
 		return -1;
 	}
 
-	public static String convertTime(int time, boolean isAppand){
-		if (isAppand){
+	/**
+	 * 转换时间处理, 小于10, 则自动补充 0x
+	 * @param time
+	 * @param append
+	 * @return
+	 */
+	public static String convertTime(int time, boolean append){
+		if (append){
 			return time >= 10 ? time + "" : "0" + time;
 		}
 		return time + "";

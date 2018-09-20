@@ -1,9 +1,17 @@
 package com.dev.use.toasty;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import dev.DevUtils;
+import dev.utils.app.ViewUtils;
 import dev.utils.app.toast.cus.Toasty;
+import dev.utils.app.toast.cus.ToastyUtils;
 
 /**
  * detail: Toasty 使用方法
@@ -64,6 +72,16 @@ class ToastyUse {
 //        // 初始化View
 //        final ImageView toastIcon = (ImageView) toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_igview);
 //        final TextView toastTextView = (TextView) toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_tv);
+//
+//        // 设置背景色
+//        // ToastyUtils.setBackground(toastLayout, xxx);
+//        // 设置字体色
+//        // toastTextView.setTextColor(xxx);
+//        // toastTextView.setTextColor(Toasty.Config.getInstance().getErrorColor());
+//        // 是否显示图标
+//        // ViewUtils.setVisibility(false, toastIcon);
+//
+//        // 可以通过 Toasty.Config.getInstance().getXxx 获取配置的参数
 //
 //        // 显示Toast
 //        Toasty.showToasty(mActivity, toastLayout, duration, isNewToast);

@@ -25,10 +25,14 @@ class LoggerUse {
     /** 日志文件夹路径 */
     public static final String LOG_SD_PATH = Config.SDP_PATH + File.separator + "Logger" + File.separator;
 
+    // ================
+    // ===== 配置 =====
+    // ================
+
     /**
-     * 配置相关
+     * 日志配置相关
      */
-    private void config(){
+    private void logConfig(){
         // == 在BaseApplication 中调用 ==
         // 初始化日志配置
         LogConfig lConfig = new LogConfig();
@@ -52,11 +56,12 @@ class LoggerUse {
 //        DevLoggerUtils.appInit(mContext);
     }
 
+    // === 使用 ===
 
     /**
-     * 操作方法 - 防止测试Activity 代码过多
+     * 日志使用方法
      */
-    public static void operate() {
+    public static void loggerUse() {
         // 测试打印Log所用时间
         textTime();
 
