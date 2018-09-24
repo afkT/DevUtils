@@ -403,3 +403,248 @@ class MediaUse {
     }
 }
 ```
+
+
+## 线程工具类 使用 - [DevThreadManager](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/common/thread/DevThreadManager.java)
+
+> [ThreadUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/use/thread/ThreadUse.java) 介绍了配置参数及使用
+
+```java
+/**
+ * detail: 线程使用方法
+ * Created by Ttt
+ */
+class ThreadUse {
+
+    /**
+     * 线程使用方法
+     */
+    private void threadUse(){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        };
+
+        // == 优先判断 10个线程数, 的线程池是否存在, 不存在则创建, 存在则复用 ==
+        DevThreadManager.getInstance(10).execute(runnable);
+
+        // 与上面 传入 int 是完全不同的线程池
+        DevThreadManager.getInstance("10").execute(runnable);
+
+        // 可以先增加配置
+        DevThreadManager.putConfig("QPQP", new DevThreadPool(DevThreadPool.DevThreadPoolType.CALC_CPU));
+        // 使用配置的信息
+        DevThreadManager.getInstance("QPQP").execute(runnable);
+
+
+        DevThreadManager.putConfig("QQQQQQ", 10);
+        // 使用配置的信息
+        DevThreadManager.getInstance("QQQQQQ").execute(runnable);
+
+
+        // 另外一个线程管理工具类, 单独使用简化版 DevThreadPool
+        ThreadManager.getInstance().addTask(runnable);
+    }
+}
+```
+
+
+## Wifi热点工具类 使用 - [WifiHotUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/wifi/WifiHotUtils.java)
+
+> [WifiHotUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/use/wifi/WifiHotUse.java) 介绍了配置参数及使用
+
+```java
+/**
+ * detail: Wifi热点使用方法
+ * Created by Ttt
+ */
+class WifiHotUse {
+
+    /**
+     * Wifi热点使用方法
+     */
+    private void wifiHotUse(){
+
+//        // 需要权限
+//        <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+//        <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+//        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+//        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+//        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+//        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+        final WifiHotUtils wifiHotUtils = new WifiHotUtils(DevUtils.getContext());
+
+        // 有密码
+        WifiConfiguration wifiConfiguration = WifiHotUtils.createWifiConfigToAp("WifiHot_AP", "123456789");
+
+        // 无密码
+        wifiConfiguration = WifiHotUtils.createWifiConfigToAp("WifiHot_AP", null);
+
+        // 开启热点(兼容8.0)  7.1 跳转到热点页面, 需手动开启(但是配置信息使用上面的 WifiConfig)
+        wifiHotUtils.stratWifiAp(wifiConfiguration);
+
+        // 关闭热点
+        wifiHotUtils.closeWifiAp();
+
+        // === 8.0 特殊处理 ===
+
+        // 8.0 以后热点是针对应用开启, 并且必须强制使用随机生成的 WifiConfig 信息, 无法替换
+
+        // 如果应用开启了热点, 然后后台清空内存, 对应的热点会关闭, 应用开启的热点是系统随机的，不影响系统设置中的热点配置信息
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            wifiHotUtils.setOnWifiAPListener(new WifiHotUtils.onWifiAPListener() {
+                @Override
+                public void onStarted(WifiConfiguration wifiConfig) {
+                    String ssid = wifiHotUtils.getApWifiSSID();
+                    String pwd = wifiHotUtils.getApWifiPwd();
+                }
+
+                @Override
+                public void onStopped() {
+
+                }
+
+                @Override
+                public void onFailed(int reason) {
+
+                }
+            });
+        }
+
+        // 还有其他方法, 具体看 WifiHotUtils 类
+    }
+}
+```
+
+
+## 日志、异常文件记录保存工具类 使用 - [FileRecordUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/FileRecordUtils.java)
+
+> [FileRecordUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/use/record/FileRecordUse.java) 介绍了配置参数及使用
+
+```java
+/**
+ * detail: 日志、异常文件记录保存使用方法
+ * Created by Ttt
+ */
+class FileRecordUse {
+
+    // 日志TAG
+    private static final String TAG = FileRecordUse.class.getSimpleName();
+
+    /**
+     * 日志、异常文件记录保存使用方法
+     */
+    private void fileRecordUse() {
+        // AnalysisRecordUtils
+
+        // DevLoggerUtils
+
+        // FileRecordUtils
+
+        // DevLoggerUtils => 内部的 Utils, 实际和 FileRecordUtils 代码相同, 使用方式一致
+
+        // == 记录文件 ==
+
+        // AnalysisRecordUtils 工具类使用方法
+        analysisRecord();
+
+        // DevLoggerUtils、FileRecordUtils 工具类
+        logRecord();
+    }
+
+    /** 日志文件夹路径 */
+    public static final String LOG_SD_PATH = Config.SDP_PATH + File.separator + "Logger" + File.separator;
+
+    /**
+     * AnalysisRecordUtils 工具类使用方法
+     */
+    private void analysisRecord(){
+
+        // 默认存储到 android/data/包名/cache文件/ , 可以自己特殊设置
+//        AnalysisRecordUtils.setLogStoragePath(SDCardUtils.getSDCardPath());
+
+        // 设置存储文件夹名
+        AnalysisRecordUtils.setLogFolderName(AnalysisRecordUtils.getLogFolderName() + "/v" + AppUtils.getAppVersionName());
+
+        // AnalysisRecordUtils.HH、MM、SS => 以对应的时间, 创建文件夹 HH_23/MM_13/SS_01 依此类推，放到对应文件夹, 不传则放到当日文件夹下
+        AnalysisRecordUtils.FileInfo fileInfo = AnalysisRecordUtils.FileInfo.obtain("test_log.txt", "测试记录", AnalysisRecordUtils.HH);
+
+//        // 存储路径、存储文件夹、文件名、记录功能提示、时间间隔
+//        // FileInfo(String storagePath, String folderName, String fileName, String fileFunction, @AnalysisRecordUtils.TIME int fileIntervalTime)
+//
+//        // ==
+//
+//        AnalysisRecordUtils.FileInfo.obtain("test_log.txt", "测试记录");
+//
+//        AnalysisRecordUtils.FileInfo.obtain("TempRecord","test_log.txt", "测试记录");
+//
+//        AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath(),"TempRecord","test_log.txt", "测试记录");
+//
+//        // ==
+//
+//        AnalysisRecordUtils.FileInfo.obtain("test_log.txt", "测试记录", AnalysisRecordUtils.HH);
+//
+//        AnalysisRecordUtils.FileInfo.obtain("TempRecord","test_log.txt", "测试记录", AnalysisRecordUtils.MM);
+//
+//        AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath(),"TempRecord","test_log.txt", "测试记录", AnalysisRecordUtils.SS);
+
+        // =============================
+
+        // 存储到 android/data/包名/LogFolderName/2018-08-23/LogFolderName/xxx/log.txt
+        AnalysisRecordUtils.record(fileInfo, "急哦撒点娇阿什库大街阿奎罗圣诞节几点佛山的金佛i适当放宽就是可怜的");
+
+        // 存储到 sdcard/LogFolderName/2018-08-23/SDRecord/xxx/log.txt
+        AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath(),"SDRecord","sd_log.txt", "根目录保存", AnalysisRecordUtils.HH),
+                "奇葩奇葩奇葩撒开排名第");
+
+        // 存储到 sdcard/特殊地址/LogFolderName/2018-08-23/OtherRecord/xxx/log.txt
+        AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath() + "/特殊地址","OtherRecord","log.txt", "临时地址", AnalysisRecordUtils.HH),
+                "手机发的啥地方加快速度加快");
+
+        // =
+
+        // 保存错误信息
+        NullPointerException nullPointerException = new NullPointerException("报错啦， null 异常啊");
+        // 记录日志
+        AnalysisRecordUtils.record(fileInfo, ErrorUtils.getThrowableMsg(nullPointerException));
+    }
+
+    /**
+     * DevLoggerUtils、FileRecordUtils 工具类
+     */
+    private void logRecord(){
+        // = 异常日志保存 =
+
+        try {
+            String s = null;
+            s.indexOf("c");
+        } catch (NullPointerException e) {
+            // 保存的路径
+            String fName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
+            // 保存日志信息
+            DevLoggerUtils.saveErrorLog(e, fName, true);
+            // --
+            // 保存自定义头部、底部信息
+            DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
+            // --
+            // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
+            String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
+            // 保存的路径
+            fName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
+            // 保存日志信息
+            DevLoggerUtils.saveErrorLog(e, fName, true, eHint);
+
+            // ==  FileRecordUtils 使用方法 ==
+
+            FileRecordUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true, true, "xaskdjaslkd");
+
+            FileRecordUtils.saveLog("撒开多久阿什利", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true, "qqqqweqweqwe");
+        }
+    }
+
+}
+```
