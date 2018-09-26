@@ -15,7 +15,8 @@ import dev.DevUtils;
 
 /**
  * detail: 路径相关工具类
- * @author: Blankj
+ * Created by Blankj
+ * Update to Ttt
  */
 public final class PathUtils {
 

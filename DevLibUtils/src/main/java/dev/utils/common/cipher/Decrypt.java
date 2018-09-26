@@ -2,7 +2,8 @@ package dev.utils.common.cipher;
 
 /**
  * detail: 解密/解码接口
- * @author MaTianyu
+ * Created by MaTianyu
+ * Update to Ttt
  */
 public interface Decrypt {
 

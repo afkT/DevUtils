@@ -9,9 +9,9 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 字节工具类，提供一些有关字节的便捷方法
+ * Created by Ttt
  * (01)、位移加密：static void byteJiaMi(byte[] bytes)
  * (02)、从bytes上截取一段：static byte[] cutOut(byte[] bytes, int off, int length)
- * Created by Ttt
  * http://www.runoob.com/java/java-operators.html
  */
 public final class ByteUtils {

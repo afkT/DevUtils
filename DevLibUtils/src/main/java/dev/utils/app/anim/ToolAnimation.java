@@ -8,16 +8,8 @@ import android.widget.ImageView;
 
 /**
  * detail: 控件点击效果动画工具类
- * @Description:主要功能:控件点击效果动画工具类
- * @Prject: CommonUtilLibrary
- * @Package: com.jingewenku.abrahamcaijin.commonutil
- * @author: AbrahamCaiJin
- * @date: 2017年05月15日 11:42
- * @Copyright: 个人版权所有
- * @Company:
- * @version: 1.0.0
+ * Created by AbrahamCaiJin
  */
-
 public class ToolAnimation {
     /**
      * 给视图添加点击效果,让背景变深

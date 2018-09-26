@@ -14,7 +14,6 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 缓存检查(时间)工具类
  * Created by 杨福海（michael） www.yangfuhai.com
- * https://github.com/yangfuhai/ASimpleCache
  * Update to Ttt
  */
 final class DevCacheUtils {

@@ -8,7 +8,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 类工具
- * @author mty
+ * Created by Ttt
  */
 public final class ClassUtils {
 

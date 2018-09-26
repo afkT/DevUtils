@@ -7,7 +7,6 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 关闭工具类 - （关闭IO流等）
  * Created by Blankj
- * http://blankj.com
  * Update to Ttt
  */
 public final class CloseUtils {

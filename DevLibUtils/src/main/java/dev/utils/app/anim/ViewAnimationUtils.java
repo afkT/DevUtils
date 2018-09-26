@@ -10,6 +10,7 @@ import android.view.animation.TranslateAnimation;
 /**
  * detail: 视图动画工具箱，提供简单的控制视图的动画的工具方法
  * Created by Ttt
+ * Update to Ttt
  */
 public final class ViewAnimationUtils {
 

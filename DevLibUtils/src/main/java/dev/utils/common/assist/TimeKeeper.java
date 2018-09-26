@@ -4,7 +4,8 @@ import android.os.SystemClock;
 
 /**
  * detail: 时间堵塞保留
- * @author 氢一
+ * Created by 氢一
+ * Update to Ttt
  */
 public class TimeKeeper {
 

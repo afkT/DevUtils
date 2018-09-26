@@ -4,7 +4,8 @@ import static java.lang.Math.PI;
 
 /**
  * detail: 坐标相关工具类
- * @author Blankj
+ * Created by Blankj
+ * Update to Ttt
  */
 public final class CoordinateUtils {
 

@@ -5,7 +5,8 @@ import java.util.List;
 
 /**
  * detail: 用以统计平均数
- * @author MaTianyu
+ * Created by MaTianyu
+ * Update to Ttt
  */
 public class Averager {
 

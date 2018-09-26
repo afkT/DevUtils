@@ -2,7 +2,8 @@ package dev.utils.common.assist;
 
 /**
  * detail: 时间均值计算器, 只能用于单线程计时。
- * @author MaTianyu
+ * Created by MaTianyu
+ * Update to Ttt
  */
 public class TimeAverager {
 
