@@ -30,8 +30,9 @@ public class BaseApplication extends Application{
 }
 ```
 
-# 配置使用相关 - [目录](https://github.com/afkT/DevUtils/tree/master/app/src/main/java/com/dev/use)
+# 配置与使用相关 - [目录](https://github.com/afkT/DevUtils/tree/master/app/src/main/java/com/dev/use)
 
+# == 配置相关 ==
 
 ## 日志配置 - [DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLogger.java)
 
@@ -186,6 +187,7 @@ class ToastyUse {
 }
 ```
 
+# == 使用相关 ==
 
 ## 定时器工具类 使用 - [TimerManager](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/assist/manager/TimerManager.java)
 
