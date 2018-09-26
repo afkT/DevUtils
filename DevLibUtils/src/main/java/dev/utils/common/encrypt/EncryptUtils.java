@@ -7,9 +7,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.DigestInputStream;
 import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
@@ -17,11 +21,11 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import dev.utils.JCLogUtils;
-import dev.utils.common.CloseUtils;
 
 /**
- * detail: 加密工具类
- * Created by Ttt
+ * detail: 加/解密工具类
+ * Created by Blankj
+ * Update to Ttt
  */
 public final class EncryptUtils {
 
@@ -31,79 +35,76 @@ public final class EncryptUtils {
     // 日志TAG
     private static final String TAG = EncryptUtils.class.getSimpleName();
 
-    ///////////////////////////////////////////////////////////////////////////
-    // hash encryption
-    ///////////////////////////////////////////////////////////////////////////
-
     /**
-     * Return the hex string of MD2 encryption.
-     * @param data The data.
-     * @return the hex string of MD2 encryption
+     * MD2 加密
+     * @param data
+     * @return
      */
     public static String encryptMD2ToString(final String data) {
+        if (data == null || data.length() == 0) return "";
         return encryptMD2ToString(data.getBytes());
     }
 
     /**
-     * Return the hex string of MD2 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of MD2 encryption
+     * MD2 加密
+     * @param data
+     * @return
      */
     public static String encryptMD2ToString(final byte[] data) {
         return bytes2HexString(encryptMD2(data));
     }
 
     /**
-     * Return the bytes of MD2 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of MD2 encryption
+     * MD2 加密
+     * @param data
+     * @return
      */
     public static byte[] encryptMD2(final byte[] data) {
         return hashTemplate(data, "MD2");
     }
 
     /**
-     * Return the hex string of MD5 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of MD5 encryption
+     * MD5 加密
+     * @param data
+     * @return
      */
     public static String encryptMD5ToString(final String data) {
+        if (data == null || data.length() == 0) return "";
         return encryptMD5ToString(data.getBytes());
     }
 
     /**
-     * Return the hex string of MD5 encryption.
-     *
-     * @param data The data.
-     * @param salt The salt.
-     * @return the hex string of MD5 encryption
+     * MD5 加密
+     * @param data
+     * @param salt
+     * @return
      */
     public static String encryptMD5ToString(final String data, final String salt) {
+        if (data == null && salt == null) return "";
+        if (salt == null) return bytes2HexString(encryptMD5(data.getBytes()));
+        if (data == null) return bytes2HexString(encryptMD5(salt.getBytes()));
         return bytes2HexString(encryptMD5((data + salt).getBytes()));
     }
 
     /**
-     * Return the hex string of MD5 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of MD5 encryption
+     * MD5 加密
+     * @param data
+     * @return
      */
     public static String encryptMD5ToString(final byte[] data) {
         return bytes2HexString(encryptMD5(data));
     }
 
     /**
-     * Return the hex string of MD5 encryption.
-     *
-     * @param data The data.
-     * @param salt The salt.
-     * @return the hex string of MD5 encryption
+     * MD5 加密
+     * @param data
+     * @param salt
+     * @return
      */
     public static String encryptMD5ToString(final byte[] data, final byte[] salt) {
-        if (data == null || salt == null) return null;
+        if (data == null && salt == null) return "";
+        if (salt == null) return bytes2HexString(encryptMD5(data));
+        if (data == null) return bytes2HexString(encryptMD5(salt));
         byte[] dataSalt = new byte[data.length + salt.length];
         System.arraycopy(data, 0, dataSalt, 0, data.length);
         System.arraycopy(salt, 0, dataSalt, data.length, salt.length);
@@ -111,20 +112,18 @@ public final class EncryptUtils {
     }
 
     /**
-     * Return the bytes of MD5 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of MD5 encryption
+     * MD5 加密
+     * @param data
+     * @return
      */
     public static byte[] encryptMD5(final byte[] data) {
         return hashTemplate(data, "MD5");
     }
 
     /**
-     * Return the hex string of file's MD5 encryption.
-     *
-     * @param filePath The path of file.
-     * @return the hex string of file's MD5 encryption
+     * MD5 加密文件
+     * @param filePath
+     * @return
      */
     public static String encryptMD5File2String(final String filePath) {
         File file = isSpace(filePath) ? null : new File(filePath);
@@ -132,10 +131,9 @@ public final class EncryptUtils {
     }
 
     /**
-     * Return the bytes of file's MD5 encryption.
-     *
-     * @param filePath The path of file.
-     * @return the bytes of file's MD5 encryption
+     * MD5 加密文件
+     * @param filePath
+     * @return
      */
     public static byte[] encryptMD5File(final String filePath) {
         File file = isSpace(filePath) ? null : new File(filePath);
@@ -143,20 +141,18 @@ public final class EncryptUtils {
     }
 
     /**
-     * Return the hex string of file's MD5 encryption.
-     *
-     * @param file The file.
-     * @return the hex string of file's MD5 encryption
+     * MD5 加密文件
+     * @param file
+     * @return
      */
     public static String encryptMD5File2String(final File file) {
         return bytes2HexString(encryptMD5File(file));
     }
 
     /**
-     * Return the bytes of file's MD5 encryption.
-     *
-     * @param file The file.
-     * @return the bytes of file's MD5 encryption
+     * MD5 加密文件
+     * @param file
+     * @return
      */
     public static byte[] encryptMD5File(final File file) {
         if (file == null) return null;
@@ -176,166 +172,160 @@ public final class EncryptUtils {
             JCLogUtils.eTag(TAG, e, "encryptMD5File");
             return null;
         } finally {
-            CloseUtils.closeIO(fis);
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) {
+            }
         }
     }
 
     /**
-     * Return the hex string of SHA1 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA1 encryption
+     * SHA1 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA1ToString(final String data) {
+        if (data == null || data.length() == 0) return "";
         return encryptSHA1ToString(data.getBytes());
     }
 
     /**
-     * Return the hex string of SHA1 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA1 encryption
+     * SHA1 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA1ToString(final byte[] data) {
         return bytes2HexString(encryptSHA1(data));
     }
 
     /**
-     * Return the bytes of SHA1 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of SHA1 encryption
+     * SHA1 加密
+     * @param data
+     * @return
      */
     public static byte[] encryptSHA1(final byte[] data) {
-        return hashTemplate(data, "SHA1");
+        return hashTemplate(data, "SHA-1");
     }
 
     /**
-     * Return the hex string of SHA224 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA224 encryption
+     * SHA224 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA224ToString(final String data) {
+        if (data == null || data.length() == 0) return "";
         return encryptSHA224ToString(data.getBytes());
     }
 
     /**
-     * Return the hex string of SHA224 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA224 encryption
+     * SHA224 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA224ToString(final byte[] data) {
         return bytes2HexString(encryptSHA224(data));
     }
 
     /**
-     * Return the bytes of SHA224 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of SHA224 encryption
+     * SHA224 加密
+     * @param data
+     * @return
      */
     public static byte[] encryptSHA224(final byte[] data) {
         return hashTemplate(data, "SHA224");
     }
 
     /**
-     * Return the hex string of SHA256 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA256 encryption
+     * SHA256 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA256ToString(final String data) {
+        if (data == null || data.length() == 0) return "";
         return encryptSHA256ToString(data.getBytes());
     }
 
     /**
-     * Return the hex string of SHA256 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA256 encryption
+     * SHA256 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA256ToString(final byte[] data) {
         return bytes2HexString(encryptSHA256(data));
     }
 
     /**
-     * Return the bytes of SHA256 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of SHA256 encryption
+     * SHA256 加密
+     * @param data
+     * @return
      */
     public static byte[] encryptSHA256(final byte[] data) {
-        return hashTemplate(data, "SHA256");
+        return hashTemplate(data, "SHA-256");
     }
 
     /**
-     * Return the hex string of SHA384 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA384 encryption
+     * SHA384 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA384ToString(final String data) {
+        if (data == null || data.length() == 0) return "";
         return encryptSHA384ToString(data.getBytes());
     }
 
     /**
-     * Return the hex string of SHA384 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA384 encryption
+     * SHA384 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA384ToString(final byte[] data) {
         return bytes2HexString(encryptSHA384(data));
     }
 
     /**
-     * Return the bytes of SHA384 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of SHA384 encryption
+     * SHA384 加密
+     * @param data
+     * @return
      */
     public static byte[] encryptSHA384(final byte[] data) {
-        return hashTemplate(data, "SHA384");
+        return hashTemplate(data, "SHA-384");
     }
 
     /**
-     * Return the hex string of SHA512 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA512 encryption
+     * SHA512 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA512ToString(final String data) {
+        if (data == null || data.length() == 0) return "";
         return encryptSHA512ToString(data.getBytes());
     }
 
     /**
-     * Return the hex string of SHA512 encryption.
-     *
-     * @param data The data.
-     * @return the hex string of SHA512 encryption
+     * SHA512 加密
+     * @param data
+     * @return
      */
     public static String encryptSHA512ToString(final byte[] data) {
         return bytes2HexString(encryptSHA512(data));
     }
 
     /**
-     * Return the bytes of SHA512 encryption.
-     *
-     * @param data The data.
-     * @return the bytes of SHA512 encryption
+     * SHA512 加密
+     * @param data
+     * @return
      */
     public static byte[] encryptSHA512(final byte[] data) {
-        return hashTemplate(data, "SHA512");
+        return hashTemplate(data, "SHA-512");
     }
 
     /**
-     * Return the bytes of hash encryption.
-     *
-     * @param data      The data.
-     * @param algorithm The name of hash encryption.
-     * @return the bytes of hash encryption
+     * hash 加密模版方法
+     * @param data 数据
+     * @param algorithm 算法
+     * @return
      */
     private static byte[] hashTemplate(final byte[] data, final String algorithm) {
         if (data == null || data.length <= 0) return null;
@@ -349,219 +339,200 @@ public final class EncryptUtils {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // hmac encryption
-    ///////////////////////////////////////////////////////////////////////////
-
     /**
-     * Return the hex string of HmacMD5 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacMD5 encryption
+     * HmacMD5 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacMD5ToString(final String data, final String key) {
+        if (data == null || data.length() == 0 || key == null || key.length() == 0) return "";
         return encryptHmacMD5ToString(data.getBytes(), key.getBytes());
     }
 
     /**
-     * Return the hex string of HmacMD5 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacMD5 encryption
+     * HmacMD5 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacMD5ToString(final byte[] data, final byte[] key) {
         return bytes2HexString(encryptHmacMD5(data, key));
     }
 
     /**
-     * Return the bytes of HmacMD5 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the bytes of HmacMD5 encryption
+     * HmacMD5 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static byte[] encryptHmacMD5(final byte[] data, final byte[] key) {
         return hmacTemplate(data, key, "HmacMD5");
     }
 
     /**
-     * Return the hex string of HmacSHA1 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA1 encryption
+     * HmacSHA1 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA1ToString(final String data, final String key) {
+        if (data == null || data.length() == 0 || key == null || key.length() == 0) return "";
         return encryptHmacSHA1ToString(data.getBytes(), key.getBytes());
     }
 
     /**
-     * Return the hex string of HmacSHA1 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA1 encryption
+     * HmacSHA1 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA1ToString(final byte[] data, final byte[] key) {
         return bytes2HexString(encryptHmacSHA1(data, key));
     }
 
     /**
-     * Return the bytes of HmacSHA1 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the bytes of HmacSHA1 encryption
+     * HmacSHA1 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static byte[] encryptHmacSHA1(final byte[] data, final byte[] key) {
         return hmacTemplate(data, key, "HmacSHA1");
     }
 
     /**
-     * Return the hex string of HmacSHA224 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA224 encryption
+     * HmacSHA224 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA224ToString(final String data, final String key) {
+        if (data == null || data.length() == 0 || key == null || key.length() == 0) return "";
         return encryptHmacSHA224ToString(data.getBytes(), key.getBytes());
     }
 
     /**
-     * Return the hex string of HmacSHA224 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA224 encryption
+     * HmacSHA224 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA224ToString(final byte[] data, final byte[] key) {
         return bytes2HexString(encryptHmacSHA224(data, key));
     }
 
     /**
-     * Return the bytes of HmacSHA224 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the bytes of HmacSHA224 encryption
+     * HmacSHA224 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static byte[] encryptHmacSHA224(final byte[] data, final byte[] key) {
         return hmacTemplate(data, key, "HmacSHA224");
     }
 
     /**
-     * Return the hex string of HmacSHA256 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA256 encryption
+     * HmacSHA256 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA256ToString(final String data, final String key) {
+        if (data == null || data.length() == 0 || key == null || key.length() == 0) return "";
         return encryptHmacSHA256ToString(data.getBytes(), key.getBytes());
     }
 
     /**
-     * Return the hex string of HmacSHA256 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA256 encryption
+     * HmacSHA256 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA256ToString(final byte[] data, final byte[] key) {
         return bytes2HexString(encryptHmacSHA256(data, key));
     }
 
     /**
-     * Return the bytes of HmacSHA256 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the bytes of HmacSHA256 encryption
+     * HmacSHA256 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static byte[] encryptHmacSHA256(final byte[] data, final byte[] key) {
         return hmacTemplate(data, key, "HmacSHA256");
     }
 
     /**
-     * Return the hex string of HmacSHA384 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA384 encryption
+     * HmacSHA384 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA384ToString(final String data, final String key) {
+        if (data == null || data.length() == 0 || key == null || key.length() == 0) return "";
         return encryptHmacSHA384ToString(data.getBytes(), key.getBytes());
     }
 
     /**
-     * Return the hex string of HmacSHA384 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA384 encryption
+     * HmacSHA384 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA384ToString(final byte[] data, final byte[] key) {
         return bytes2HexString(encryptHmacSHA384(data, key));
     }
 
     /**
-     * Return the bytes of HmacSHA384 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the bytes of HmacSHA384 encryption
+     * HmacSHA384 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static byte[] encryptHmacSHA384(final byte[] data, final byte[] key) {
         return hmacTemplate(data, key, "HmacSHA384");
     }
 
     /**
-     * Return the hex string of HmacSHA512 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA512 encryption
+     * HmacSHA512 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA512ToString(final String data, final String key) {
+        if (data == null || data.length() == 0 || key == null || key.length() == 0) return "";
         return encryptHmacSHA512ToString(data.getBytes(), key.getBytes());
     }
 
     /**
-     * Return the hex string of HmacSHA512 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the hex string of HmacSHA512 encryption
+     * HmacSHA512 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static String encryptHmacSHA512ToString(final byte[] data, final byte[] key) {
         return bytes2HexString(encryptHmacSHA512(data, key));
     }
 
     /**
-     * Return the bytes of HmacSHA512 encryption.
-     *
-     * @param data The data.
-     * @param key  The key.
-     * @return the bytes of HmacSHA512 encryption
+     * HmacSHA512 加密
+     * @param data
+     * @param key
+     * @return
      */
     public static byte[] encryptHmacSHA512(final byte[] data, final byte[] key) {
         return hmacTemplate(data, key, "HmacSHA512");
     }
 
     /**
-     * Return the bytes of hmac encryption.
-     *
-     * @param data      The data.
-     * @param key       The key.
-     * @param algorithm The name of hmac encryption.
-     * @return the bytes of hmac encryption
+     * hmac 加密模版方法
+     * @param data 数据
+     * @param key
+     * @param algorithm 算法
+     * @return
      */
-    private static byte[] hmacTemplate(final byte[] data,
-                                       final byte[] key,
-                                       final String algorithm) {
+    private static byte[] hmacTemplate(final byte[] data, final byte[] key, final String algorithm) {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
         try {
             SecretKeySpec secretKey = new SecretKeySpec(key, algorithm);
@@ -574,340 +545,233 @@ public final class EncryptUtils {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // DES encryption
-    ///////////////////////////////////////////////////////////////////////////
-
     /**
-     * Return the Base64-encode bytes of DES encryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the Base64-encode bytes of DES encryption
+     * DES 加密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] encryptDES2Base64(final byte[] data,
-                                           final byte[] key,
-                                           final String transformation,
-                                           final byte[] iv) {
+    public static byte[] encryptDES2Base64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return base64Encode(encryptDES(data, key, transformation, iv));
     }
 
     /**
-     * Return the hex string of DES encryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the hex string of DES encryption
+     * DES 加密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static String encryptDES2HexString(final byte[] data,
-                                              final byte[] key,
-                                              final String transformation,
-                                              final byte[] iv) {
+    public static String encryptDES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return bytes2HexString(encryptDES(data, key, transformation, iv));
     }
 
     /**
-     * Return the bytes of DES encryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of DES encryption
+     * DES 加密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] encryptDES(final byte[] data,
-                                    final byte[] key,
-                                    final String transformation,
-                                    final byte[] iv) {
+    public static byte[] encryptDES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return symmetricTemplate(data, key, "DES", transformation, iv, true);
     }
 
     /**
-     * Return the bytes of DES decryption for Base64-encode bytes.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of DES decryption for Base64-encode bytes
+     * DES 解密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @returndata
      */
-    public static byte[] decryptBase64DES(final byte[] data,
-                                          final byte[] key,
-                                          final String transformation,
-                                          final byte[] iv) {
+    public static byte[] decryptBase64DES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return decryptDES(base64Decode(data), key, transformation, iv);
     }
 
     /**
-     * Return the bytes of DES decryption for hex string.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of DES decryption for hex string
+     * DES 解密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] decryptHexStringDES(final String data,
-                                             final byte[] key,
-                                             final String transformation,
-                                             final byte[] iv) {
+    public static byte[] decryptHexStringDES(final String data, final byte[] key, final String transformation, final byte[] iv) {
         return decryptDES(hexString2Bytes(data), key, transformation, iv);
     }
 
     /**
-     * Return the bytes of DES decryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of DES decryption
+     * DES 解密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] decryptDES(final byte[] data,
-                                    final byte[] key,
-                                    final String transformation,
-                                    final byte[] iv) {
+    public static byte[] decryptDES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return symmetricTemplate(data, key, "DES", transformation, iv, false);
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // 3DES encryption
-    ///////////////////////////////////////////////////////////////////////////
-
     /**
-     * Return the Base64-encode bytes of 3DES encryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the Base64-encode bytes of 3DES encryption
+     * 3DES 加密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] encrypt3DES2Base64(final byte[] data,
-                                            final byte[] key,
-                                            final String transformation,
-                                            final byte[] iv) {
+    public static byte[] encrypt3DES2Base64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return base64Encode(encrypt3DES(data, key, transformation, iv));
     }
 
     /**
-     * Return the hex string of 3DES encryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the hex string of 3DES encryption
+     * 3DES 加密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static String encrypt3DES2HexString(final byte[] data,
-                                               final byte[] key,
-                                               final String transformation,
-                                               final byte[] iv) {
+    public static String encrypt3DES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return bytes2HexString(encrypt3DES(data, key, transformation, iv));
     }
 
     /**
-     * Return the bytes of 3DES encryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of 3DES encryption
+     * 3DES 加密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] encrypt3DES(final byte[] data,
-                                     final byte[] key,
-                                     final String transformation,
-                                     final byte[] iv) {
+    public static byte[] encrypt3DES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return symmetricTemplate(data, key, "DESede", transformation, iv, true);
     }
 
     /**
-     * Return the bytes of 3DES decryption for Base64-encode bytes.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of 3DES decryption for Base64-encode bytes
+     * 3DES 解密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] decryptBase64_3DES(final byte[] data,
-                                            final byte[] key,
-                                            final String transformation,
-                                            final byte[] iv) {
+    public static byte[] decryptBase64_3DES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return decrypt3DES(base64Decode(data), key, transformation, iv);
     }
 
     /**
-     * Return the bytes of 3DES decryption for hex string.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of 3DES decryption for hex string
+     * 3DES 解密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] decryptHexString3DES(final String data,
-                                              final byte[] key,
-                                              final String transformation,
-                                              final byte[] iv) {
+    public static byte[] decryptHexString3DES(final String data, final byte[] key, final String transformation, final byte[] iv) {
         return decrypt3DES(hexString2Bytes(data), key, transformation, iv);
     }
 
     /**
-     * Return the bytes of 3DES decryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of 3DES decryption
+     * 3DES 解密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] decrypt3DES(final byte[] data,
-                                     final byte[] key,
-                                     final String transformation,
-                                     final byte[] iv) {
+    public static byte[] decrypt3DES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return symmetricTemplate(data, key, "DESede", transformation, iv, false);
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // AES encryption
-    ///////////////////////////////////////////////////////////////////////////
-
     /**
-     * Return the Base64-encode bytes of AES encryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the Base64-encode bytes of AES encryption
+     * AES 加密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] encryptAES2Base64(final byte[] data,
-                                           final byte[] key,
-                                           final String transformation,
-                                           final byte[] iv) {
+    public static byte[] encryptAES2Base64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return base64Encode(encryptAES(data, key, transformation, iv));
     }
 
     /**
-     * Return the hex string of AES encryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the hex string of AES encryption
+     * AES 加密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static String encryptAES2HexString(final byte[] data,
-                                              final byte[] key,
-                                              final String transformation,
-                                              final byte[] iv) {
+    public static String encryptAES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return bytes2HexString(encryptAES(data, key, transformation, iv));
     }
 
     /**
-     * Return the bytes of AES encryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of AES encryption
+     * AES 加密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] encryptAES(final byte[] data,
-                                    final byte[] key,
-                                    final String transformation,
-                                    final byte[] iv) {
+    public static byte[] encryptAES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return symmetricTemplate(data, key, "AES", transformation, iv, true);
     }
 
     /**
-     * Return the bytes of AES decryption for Base64-encode bytes.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of AES decryption for Base64-encode bytes
+     * AES 解密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] decryptBase64AES(final byte[] data,
-                                          final byte[] key,
-                                          final String transformation,
-                                          final byte[] iv) {
+    public static byte[] decryptBase64AES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return decryptAES(base64Decode(data), key, transformation, iv);
     }
 
     /**
-     * Return the bytes of AES decryption for hex string.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of AES decryption for hex string
+     * AES 解密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] decryptHexStringAES(final String data,
-                                             final byte[] key,
-                                             final String transformation,
-                                             final byte[] iv) {
+    public static byte[] decryptHexStringAES(final String data, final byte[] key, final String transformation, final byte[] iv) {
         return decryptAES(hexString2Bytes(data), key, transformation, iv);
     }
 
     /**
-     * Return the bytes of AES decryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param iv             The buffer with the IV. The contents of the
-     *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of AES decryption
+     * AES 解密
+     * @param data
+     * @param key
+     * @param transformation
+     * @param iv
+     * @return
      */
-    public static byte[] decryptAES(final byte[] data,
-                                    final byte[] key,
-                                    final String transformation,
-                                    final byte[] iv) {
+    public static byte[] decryptAES(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return symmetricTemplate(data, key, "AES", transformation, iv, false);
     }
 
     /**
-     * Return the bytes of symmetric encryption or decryption.
-     *
-     * @param data           The data.
-     * @param key            The key.
-     * @param algorithm      The name of algorithm.
-     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
-     * @param isEncrypt      True to encrypt, false otherwise.
-     * @return the bytes of symmetric encryption or decryption
+     * 对称加密模版方法
+     * @param data
+     * @param key
+     * @param algorithm
+     * @param transformation
+     * @param isEncrypt
+     * @return
      */
-    private static byte[] symmetricTemplate(final byte[] data,
-                                            final byte[] key,
-                                            final String algorithm,
-                                            final String transformation,
-                                            final byte[] iv,
-                                            final boolean isEncrypt) {
+    private static byte[] symmetricTemplate(final byte[] data, final byte[] key, final String algorithm,
+                                        final String transformation, final byte[] iv, final boolean isEncrypt) {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
         try {
             SecretKeySpec keySpec = new SecretKeySpec(key, algorithm);
@@ -925,9 +789,149 @@ public final class EncryptUtils {
         }
     }
 
-    private static final char HEX_DIGITS[] =
-            {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    /**
+     * RSA 加密
+     * @param data
+     * @param key
+     * @param isPublicKey
+     * @param transformation
+     * @return
+     */
+    public static byte[] encryptRSA2Base64(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
+        return base64Encode(encryptRSA(data, key, isPublicKey, transformation));
+    }
 
+    /**
+     * RSA 加密
+     * @param data
+     * @param key
+     * @param isPublicKey
+     * @param transformation
+     * @return
+     */
+    public static String encryptRSA2HexString(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
+        return bytes2HexString(encryptRSA(data, key, isPublicKey, transformation));
+    }
+
+    /**
+     * RSA 加密
+     * @param data
+     * @param key
+     * @param isPublicKey
+     * @param transformation
+     * @return
+     */
+    public static byte[] encryptRSA(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
+        return rsaTemplate(data, key, isPublicKey, transformation, true);
+    }
+
+    /**
+     * RSA 解密
+     * @param data
+     * @param key
+     * @param isPublicKey
+     * @param transformation
+     * @return
+     */
+    public static byte[] decryptBase64RSA(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
+        return decryptRSA(base64Decode(data), key, isPublicKey, transformation);
+    }
+
+    /**
+     * RSA 解密
+     * @param data
+     * @param key
+     * @param isPublicKey
+     * @param transformation
+     * @return
+     */
+    public static byte[] decryptHexStringRSA(final String data, final byte[] key, final boolean isPublicKey, final String transformation) {
+        return decryptRSA(hexString2Bytes(data), key, isPublicKey, transformation);
+    }
+
+    /**
+     * RSA 解密
+     * @param data
+     * @param key
+     * @param isPublicKey
+     * @param transformation
+     * @return
+     */
+    public static byte[] decryptRSA(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
+        return rsaTemplate(data, key, isPublicKey, transformation, false);
+    }
+
+    /**
+     * RSA 加/解密模版方法
+     * @param data
+     * @param key
+     * @param isPublicKey
+     * @param transformation
+     * @param isEncrypt
+     * @return
+     */
+    private static byte[] rsaTemplate(final byte[] data, final byte[] key,
+                                      final boolean isPublicKey, final String transformation, final boolean isEncrypt) {
+        if (data == null || data.length == 0 || key == null || key.length == 0) {
+            return null;
+        }
+        try {
+            Key rsaKey;
+            if (isPublicKey) {
+                X509EncodedKeySpec keySpec = new X509EncodedKeySpec(key);
+                rsaKey = KeyFactory.getInstance("RSA").generatePublic(keySpec);
+            } else {
+                PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(key);
+                rsaKey = KeyFactory.getInstance("RSA").generatePrivate(keySpec);
+            }
+            if (rsaKey == null) return null;
+            Cipher cipher = Cipher.getInstance(transformation);
+            cipher.init(isEncrypt ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE, rsaKey);
+            int len = data.length;
+            int maxLen = isEncrypt ? 117 : 128;
+            int count = len / maxLen;
+            if (count > 0) {
+                byte[] ret = new byte[0];
+                byte[] buff = new byte[maxLen];
+                int index = 0;
+                for (int i = 0; i < count; i++) {
+                    System.arraycopy(data, index, buff, 0, maxLen);
+                    ret = joins(ret, cipher.doFinal(buff));
+                    index += maxLen;
+                }
+                if (index != len) {
+                    int restLen = len - index;
+                    buff = new byte[restLen];
+                    System.arraycopy(data, index, buff, 0, restLen);
+                    ret = joins(ret, cipher.doFinal(buff));
+                }
+                return ret;
+            } else {
+                return cipher.doFinal(data);
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "rsaTemplate");
+        }
+        return null;
+    }
+
+    // =
+
+    private static byte[] joins(final byte[] prefix, final byte[] suffix) {
+        byte[] ret = new byte[prefix.length + suffix.length];
+        System.arraycopy(prefix, 0, ret, 0, prefix.length);
+        System.arraycopy(suffix, 0, ret, prefix.length, suffix.length);
+        return ret;
+    }
+
+    // Hash 加密转换
+    private static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+    /**
+     * 数据加密转换16进制
+     * @param bytes
+     * @return
+     */
     private static String bytes2HexString(final byte[] bytes) {
         if (bytes == null) return null;
         int len = bytes.length;
@@ -940,6 +944,11 @@ public final class EncryptUtils {
         return new String(ret);
     }
 
+    /**
+     * 十六进制字符串 转换byte数组
+     * @param hexString
+     * @return
+     */
     private static byte[] hexString2Bytes(String hexString) {
         if (isSpace(hexString)) return null;
         int len = hexString.length();
@@ -950,12 +959,12 @@ public final class EncryptUtils {
         char[] hexBytes = hexString.toUpperCase().toCharArray();
         byte[] ret = new byte[len >> 1];
         for (int i = 0; i < len; i += 2) {
-            ret[i >> 1] = (byte) (hex2Dec(hexBytes[i]) << 4 | hex2Dec(hexBytes[i + 1]));
+            ret[i >> 1] = (byte) (hex2Int(hexBytes[i]) << 4 | hex2Int(hexBytes[i + 1]));
         }
         return ret;
     }
 
-    private static int hex2Dec(final char hexChar) {
+    private static int hex2Int(final char hexChar) {
         if (hexChar >= '0' && hexChar <= '9') {
             return hexChar - '0';
         } else if (hexChar >= 'A' && hexChar <= 'F') {
@@ -973,10 +982,15 @@ public final class EncryptUtils {
         return Base64.decode(input, Base64.NO_WRAP);
     }
 
-    private static boolean isSpace(final String s) {
-        if (s == null) return true;
-        for (int i = 0, len = s.length(); i < len; ++i) {
-            if (!Character.isWhitespace(s.charAt(i))) {
+    /**
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return
+     */
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
                 return false;
             }
         }
