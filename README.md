@@ -18,7 +18,7 @@ Step 2. Add the dependency
 ```
 dependencies {
 	// 因为内含 res 文件, 使用 aar 方式调用
-	implementation 'com.github.afkT:DevUtils:1.0.4@aar'
+	implementation 'com.github.afkT:DevUtils:1.0.5@aar'
 	// implementation 'com.github.afkT:DevUtils:latest.release@aar'
 }
 ```
@@ -27,7 +27,7 @@ dependencies {
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/README.md)
 
-- [Use Config](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/USE_CONFIG.md)
+- [Use and Config](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/USE_CONFIG.md)
 
 
 ## Use
