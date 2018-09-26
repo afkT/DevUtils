@@ -11,6 +11,7 @@ import java.security.cert.CertificateNotYetValidException;
 import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.R;
@@ -27,7 +28,7 @@ public final class AppInfoItem {
     // App 信息实体类
     private AppInfoBean appInfoBean;
     // App 参数集
-    private ArrayList<KeyValueBean> listKeyValues = new ArrayList<>();
+    private List<KeyValueBean> listKeyValues = new ArrayList<>();
 
     private AppInfoItem(){
     }
@@ -160,7 +161,7 @@ public final class AppInfoItem {
         return appInfoBean;
     }
 
-    public ArrayList<KeyValueBean> getListKeyValues() {
+    public List<KeyValueBean> getListKeyValues() {
         return listKeyValues;
     }
 }

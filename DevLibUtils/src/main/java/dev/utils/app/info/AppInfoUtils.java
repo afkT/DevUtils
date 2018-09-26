@@ -90,7 +90,7 @@ public final class AppInfoUtils {
      * 获取全部App 列表
      * @return
      */
-    public static ArrayList<AppInfoBean> getAppLists() {
+    public static List<AppInfoBean> getAppLists() {
         return getAppLists(AppInfoBean.AppType.ALL);
     }
 
@@ -99,7 +99,7 @@ public final class AppInfoUtils {
      * @param appType app类型
      * @return
      */
-    public static ArrayList<AppInfoBean> getAppLists(AppInfoBean.AppType appType) {
+    public static List<AppInfoBean> getAppLists(AppInfoBean.AppType appType) {
         // App信息
         ArrayList<AppInfoBean> listApps = new ArrayList<>();
         // 防止为null

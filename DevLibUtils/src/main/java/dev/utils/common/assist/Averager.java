@@ -1,6 +1,7 @@
 package dev.utils.common.assist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * detail: 用以统计平均数
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Averager {
 
-    private ArrayList<Number> numList = new ArrayList<Number>();
+    private List<Number> numList = new ArrayList<Number>();
 
     /**
      * 添加一个数字

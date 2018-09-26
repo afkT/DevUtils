@@ -188,8 +188,8 @@ public final class AccessibilityUtils {
      * @param claName
      * @return
      */
-    private ArrayList<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(AccessibilityService service, String text, String claName) {
-        ArrayList<AccessibilityNodeInfo> lists = new ArrayList<>();
+    private List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(AccessibilityService service, String text, String claName) {
+        List<AccessibilityNodeInfo> lists = new ArrayList<>();
         // 获取根节点
         AccessibilityNodeInfo accessibilityNodeInfo = service.getRootInActiveWindow();
         // 取得当前激活窗体的根节点

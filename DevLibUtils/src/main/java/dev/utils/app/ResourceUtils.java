@@ -349,11 +349,11 @@ public final class ResourceUtils {
 	// ==
 
 	/**
-	 * 获取 Assets 资源文件数据(返回ArrayList<String> 一行的全部内容属于一个索引)
+	 * 获取 Assets 资源文件数据(返回List<String> 一行的全部内容属于一个索引)
 	 * @param fileName 资源文件名，可分成，如根目录，a.txt 或者子目录 /www/a.html
 	 * @return
 	 */
-	public static ArrayList<String> geFileToListFromAssets(String fileName) {
+	public static List<String> geFileToListFromAssets(String fileName) {
 		if (DevUtils.getContext() != null && !TextUtils.isEmpty(fileName)) {
 			InputStream iStream = null;
 			InputStreamReader inReader = null;
@@ -362,7 +362,7 @@ public final class ResourceUtils {
 				iStream = DevUtils.getContext().getResources().getAssets().open(fileName);
 				inReader = new InputStreamReader(iStream);
 				bufReader = new BufferedReader(inReader);
-				ArrayList<String> fileContent = new ArrayList<String>();
+				List<String> fileContent = new ArrayList<>();
 				String line;
 				while ((line = bufReader.readLine()) != null) {
 					fileContent.add(line);
@@ -383,7 +383,7 @@ public final class ResourceUtils {
 	}
 	
 	/**
-	 * 从res/raw 中获取内容。(返回ArrayList<String> 一行的全部内容属于一个索引)
+	 * 从res/raw 中获取内容。(返回List<String>一行的全部内容属于一个索引)
 	 * @param resId 资源id
 	 * @return
 	 */
@@ -396,7 +396,7 @@ public final class ResourceUtils {
 				iStream = DevUtils.getContext().getResources().openRawResource(resId);
 				inReader = new InputStreamReader(iStream);
 				bufReader = new BufferedReader(inReader);
-				List<String> fileContent = new ArrayList<String>();
+				List<String> fileContent = new ArrayList<>();
 				String line = null;
 				while ((line = bufReader.readLine()) != null) {
 					fileContent.add(line);

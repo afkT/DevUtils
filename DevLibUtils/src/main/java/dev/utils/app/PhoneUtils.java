@@ -431,8 +431,8 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.READ_CONTACTS" />
      * return
      */
-    public static ArrayList<HashMap<String, String>> getAllContactInfo() {
-        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+    public static List<HashMap<String, String>> getAllContactInfo() {
+        List<HashMap<String, String>> list = new ArrayList<>();
         // 1.获取内容解析者
         ContentResolver resolver = DevUtils.getContext().getContentResolver();
         // 2.获取内容提供者的地址:com.android.contacts
@@ -499,8 +499,8 @@ public final class PhoneUtils {
      * 获取手机联系人
      * @return
      */
-    public static ArrayList<HashMap<String, String>> getAllContactInfo2() {
-        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+    public static List<HashMap<String, String>> getAllContactInfo2() {
+        List<HashMap<String, String>> list = new ArrayList<>();
         try {
             Cursor cursor = DevUtils.getContext().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
             while (cursor.moveToNext()) {
