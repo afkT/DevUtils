@@ -1,8 +1,12 @@
 package dev.utils.app;
 
+import android.content.ComponentName;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ProviderInfo;
+import android.content.pm.ServiceInfo;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -20,17 +24,191 @@ public final class ManifestUtils {
     private static final String TAG = ManifestUtils.class.getSimpleName();
 
     /**
-     * 获取 Manifest Meta Data
+     * 获取 Application Meta Data
      * @param metaKey
      * @return
      */
     public static String getMetaData(String metaKey) {
+        return getMetaData(DevUtils.getContext().getPackageName(), metaKey);
+    }
+
+    /**
+     * 获取 Application Meta Data
+     * @param pck
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaData(String pck, String metaKey) {
         try {
-            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_META_DATA);
+            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(pck, PackageManager.GET_META_DATA);
             String data = appInfo.metaData.getString(metaKey);
             return data;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaData");
+        }
+        return null;
+    }
+
+    // -
+
+    /**
+     * 获取 Activity Meta Data
+     * @param cla
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInActivity(Class<?> cla, String metaKey) {
+        return getMetaDataInActivity(DevUtils.getContext().getPackageName(), cla.getCanonicalName(), metaKey);
+    }
+
+    /**
+     * 获取 Activity Meta Data
+     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInActivity(String name, String metaKey) {
+        return getMetaDataInActivity(DevUtils.getContext().getPackageName(), name, metaKey);
+    }
+
+    /**
+     * 获取 Activity Meta Data
+     * @param pck
+     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInActivity(String pck, String name, String metaKey) {
+        try {
+            ComponentName componentName = new ComponentName(pck, name);
+            ActivityInfo activityInfo = DevUtils.getContext().getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
+            String data = activityInfo.metaData.getString(metaKey);
+            return data;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
+        }
+        return null;
+    }
+
+    // -
+
+    /**
+     * 获取 Service Meta Data
+     * @param cla
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInService(Class<?> cla, String metaKey) {
+        return getMetaDataInService(DevUtils.getContext().getPackageName(), cla.getCanonicalName(), metaKey);
+    }
+
+    /**
+     * 获取 Service Meta Data
+     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInService(String name, String metaKey) {
+        return getMetaDataInService(DevUtils.getContext().getPackageName(), name, metaKey);
+    }
+
+    /**
+     * 获取 Service Meta Data
+     * @param pck
+     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInService(String pck, String name, String metaKey) {
+        try {
+            ComponentName componentName = new ComponentName(pck, name);
+            ServiceInfo serviceInfo = DevUtils.getContext().getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
+            String data = serviceInfo.metaData.getString(metaKey);
+            return data;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
+        }
+        return null;
+    }
+
+    // -
+
+    /**
+     * 获取 Receiver Meta Data
+     * @param cla
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInReceiver(Class<?> cla, String metaKey) {
+        return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), cla.getCanonicalName(), metaKey);
+    }
+
+    /**
+     * 获取 Receiver Meta Data
+     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInReceiver(String name, String metaKey) {
+        return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), name, metaKey);
+    }
+
+    /**
+     * 获取 Receiver Meta Data
+     * @param pck
+     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInReceiver(String pck, String name, String metaKey) {
+        try {
+            ComponentName componentName = new ComponentName(pck, name);
+            ActivityInfo receiverInfo = DevUtils.getContext().getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
+            String data = receiverInfo.metaData.getString(metaKey);
+            return data;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
+        }
+        return null;
+    }
+
+    // -
+
+    /**
+     * 获取 ContentProvider Meta Data
+     * @param cla
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInProvider(Class<?> cla, String metaKey) {
+        return getMetaDataInProvider(DevUtils.getContext().getPackageName(), cla.getCanonicalName(), metaKey);
+    }
+
+    /**
+     * 获取 ContentProvider Meta Data
+     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInProvider(String name, String metaKey) {
+        return getMetaDataInProvider(DevUtils.getContext().getPackageName(), name, metaKey);
+    }
+
+    /**
+     * 获取 ContentProvider Meta Data
+     * @param pck
+     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param metaKey
+     * @return
+     */
+    public static String getMetaDataInProvider(String pck, String name, String metaKey) {
+        try {
+            ComponentName componentName = new ComponentName(pck, name);
+            ProviderInfo providerInfo = DevUtils.getContext().getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
+            String data = providerInfo.metaData.getString(metaKey);
+            return data;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
         }
         return null;
     }

@@ -79,22 +79,6 @@ public final class AppUtils {
 //		return null;
 //	}
 
-	/**
-	 * 获取 Manifest Meta Data
-	 * @param metaKey
-	 * @return
-	 */
-	public static String getMetaData(String metaKey) {
-		try {
-			ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_META_DATA);
-			String data = appInfo.metaData.getString(metaKey);
-			return data;
-		} catch (Exception e) {
-			LogPrintUtils.eTag(TAG, e, "getMetaData");
-		}
-		return null;
-	}
-
 	// == 快捷获取方法 ==
 
 	/**
