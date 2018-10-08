@@ -242,6 +242,29 @@ public final class BitmapUtils {
 		return bitmap;
 	}
 
+	/**
+	 * Drawable 转换 Bitmap
+	 * @param drawable The drawable.
+	 * @return bitmap
+	 */
+	public static Bitmap drawable3Bitmap(final Drawable drawable) {
+		if (drawable == null){
+			return null;
+		}
+		Bitmap bitmap;
+		if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+			bitmap = Bitmap.createBitmap(1, 1,
+					drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
+		} else {
+			bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(),
+					drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
+		}
+		Canvas canvas = new Canvas(bitmap);
+		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+		drawable.draw(canvas);
+		return bitmap;
+	}
+
 	// ===
 
 	/**

@@ -19,7 +19,7 @@ public final class FastBlurUtils {
      * @param canReuseInBitmap 是否重用
      * @return 位图
      */
-    public static Bitmap doBlur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
+    public static Bitmap blur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
         Bitmap bitmap;
         if (canReuseInBitmap) {
             bitmap = sentBitmap;
@@ -231,12 +231,12 @@ public final class FastBlurUtils {
      * @param blurRadius 毛玻璃化比率，虚化程度
      * @return 位图
      */
-    public static Bitmap doBlur(Bitmap originBitmap, int scaleRatio, int blurRadius){
+    public static Bitmap blur(Bitmap originBitmap, int scaleRatio, int blurRadius){
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(originBitmap,
                 originBitmap.getWidth() / scaleRatio,
                 originBitmap.getHeight() / scaleRatio,
                 false);
-        Bitmap blurBitmap = doBlur(scaledBitmap, blurRadius, false);
+        Bitmap blurBitmap = blur(scaledBitmap, blurRadius, false);
         scaledBitmap.recycle();
         return blurBitmap;
     }
@@ -250,9 +250,9 @@ public final class FastBlurUtils {
      * @param blurRadius 虚化程度
      * @return 位图
      */
-    public static Bitmap doBlur(Bitmap originBitmap, int width, int height, int blurRadius){
+    public static Bitmap blur(Bitmap originBitmap, int width, int height, int blurRadius){
         Bitmap thumbnail = ThumbnailUtils.extractThumbnail(originBitmap, width, height);
-        Bitmap blurBitmap = doBlur(thumbnail, blurRadius, true);
+        Bitmap blurBitmap = blur(thumbnail, blurRadius, true);
         thumbnail.recycle();
         return blurBitmap;
     }
