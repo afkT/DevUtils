@@ -858,6 +858,28 @@ public final class DevCommonUtils {
     }
 
     /**
+     * 裁减超出的内容, 并且追加符号(如 ...)
+     * @param maxLength 允许最大的长度
+     * @param content
+     * @param symbol
+     * @return
+     */
+    public static String subEllipsize(int maxLength, String content, String symbol){
+        if (maxLength >= 1){
+            // 获取内容长度
+            int contentLength = length(content);
+            // 防止为不存在数据
+            if (contentLength != 0){
+                if (maxLength >= contentLength){
+                    return content;
+                }
+                return content.substring(0, maxLength) + toCheckValue(symbol);
+            }
+        }
+        return "";
+    }
+
+    /**
      * 裁剪符号处理
      * @param start 开始位置
      * @param symbolNumber 转换数量

@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.app.Activity;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.text.Html;
@@ -118,7 +119,6 @@ public final class TextViewUtils {
         return null;
     }
 
-
     /**
      * 获取文本
      * @param view
@@ -169,6 +169,34 @@ public final class TextViewUtils {
 
     // =
 
+    /**
+     * 设置是否加粗
+     * @param view
+     * @param isBold
+     * @return
+     */
+    public static void setBold(View view, boolean isBold){
+        if (view != null){
+            if (view instanceof TextView){
+                ((TextView) view).setTypeface(Typeface.defaultFromStyle(isBold ? Typeface.BOLD : Typeface.NORMAL));
+            }
+        }
+    }
+
+    /**
+     * 设置是否加粗
+     * @param view
+     * @param typeface
+     * @param isBold
+     * @return
+     */
+    public static void setBold(View view, Typeface typeface, boolean isBold){
+        if (view != null && typeface != null){
+            if (view instanceof TextView){
+                ((TextView) view).setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
+            }
+        }
+    }
 
     /**
      * 设置字体颜色
