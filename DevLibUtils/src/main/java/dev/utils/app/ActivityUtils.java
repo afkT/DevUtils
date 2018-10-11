@@ -66,6 +66,7 @@ public final class ActivityUtils {
     public static void startHomeActivity() {
         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
         homeIntent.addCategory(Intent.CATEGORY_HOME);
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         DevUtils.getContext().startActivity(homeIntent);
     }
 
