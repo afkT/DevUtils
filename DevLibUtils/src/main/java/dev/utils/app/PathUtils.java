@@ -267,6 +267,12 @@ public final class PathUtils {
         return DevUtils.getContext().getObbDir().getAbsolutePath();
     }
 
+    /**
+     * 通过 Uri 获取 文件路径
+     * @param context
+     * @param uri
+     * @return
+     */
     public static String getFilePathByUri(Context context, Uri uri) {
         String path = null;
         // 以 file:// 开头的

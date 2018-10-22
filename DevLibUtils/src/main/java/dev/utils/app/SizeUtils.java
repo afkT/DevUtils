@@ -155,6 +155,11 @@ public final class SizeUtils {
 
 	/** 获取到 View 尺寸的监听 */
 	public interface onGetSizeListener {
+
+		/**
+		 * 获取到 View 尺寸 通知
+		 * @param view
+		 */
 		void onGetSize(View view);
 	}
 

@@ -243,7 +243,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * color
+	 * 获取 Color id
 	 * @param resName color 名称
 	 * @return
 	 */

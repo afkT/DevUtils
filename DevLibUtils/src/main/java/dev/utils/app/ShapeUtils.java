@@ -34,10 +34,18 @@ public final class ShapeUtils {
         drawable = builder.gradientDrawable;
     }
 
+    /**
+     * 获取 GradientDrawable
+     * @return
+     */
     public GradientDrawable getDrawable() {
         return drawable;
     }
 
+    /**
+     * 设置 Drawable 背景
+     * @param view
+     */
     public void setDrawable(View view){
         if (view != null){
             view.setBackground(drawable);

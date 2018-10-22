@@ -378,7 +378,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 关机 需要 root 权限或者系统权限 <android:sharedUserId="android.uid.system" />
+     * 关机(需要 root 权限或者系统权限)
      * @return
      */
     public static boolean shutdown() {
@@ -395,7 +395,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 重启 需要 root 权限或者系统权限 <android:sharedUserId="android.uid.system" />
+     * 重启(需要 root 权限或者系统权限)
      * @return
      */
     public static boolean reboot() {
@@ -414,8 +414,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 重启
-     * 需系统权限 <android:sharedUserId="android.uid.system" />
+     * 重启(需要 root 权限或者系统权限)
      * @param reason 传递给内核来请求特殊的引导模式，如"recovery"
      */
     public static void reboot(final String reason) {
@@ -440,9 +439,8 @@ public final class DeviceUtils {
     }
 
     /**
-     * BASEBAND-VER
-     * 基带版本
-     * return String
+     * 获取 基带版本 BASEBAND-VER
+     * @return
      */
     public static String getBaseband_Ver() {
         String Version = "";
@@ -459,9 +457,8 @@ public final class DeviceUtils {
     }
 
     /**
-     * CORE-VER
-     * 内核版本
-     * return String
+     * 获取 内核版本 CORE-VER
+     * @return
      */
     public static String getLinuxCore_Ver() {
         String kernelVersion = "";

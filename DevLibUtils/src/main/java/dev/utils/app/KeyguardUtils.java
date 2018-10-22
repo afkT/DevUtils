@@ -71,10 +71,18 @@ public final class KeyguardUtils {
         return keyguardManager.inKeyguardRestrictedInputMode();
     }
 
+    /**
+     * 获取 KeyguardManager
+     * @return
+     */
     public KeyguardManager getKeyguardManager() {
         return keyguardManager;
     }
 
+    /**
+     * 设置 KeyguardManager
+     * @param keyguardManager
+     */
     public void setKeyguardManager(KeyguardManager keyguardManager) {
         this.keyguardManager = keyguardManager;
     }
@@ -106,14 +114,26 @@ public final class KeyguardUtils {
         }
     }
 
+    /**
+     * 生成一个新的 KeyguardLock, 并且设置 Tag
+     * @param tag
+     */
     public void newKeyguardLock (String tag){
         keyguardLock = keyguardManager.newKeyguardLock(tag);
     }
 
+    /**
+     * 获取 KeyguardManager.KeyguardLock
+     * @return
+     */
     public KeyguardManager.KeyguardLock getKeyguardLock() {
         return keyguardLock;
     }
 
+    /**
+     * 设置 KeyguardManager.KeyguardLock
+     * @param keyguardLock
+     */
     public void setKeyguardLock(KeyguardManager.KeyguardLock keyguardLock) {
         this.keyguardLock = keyguardLock;
     }

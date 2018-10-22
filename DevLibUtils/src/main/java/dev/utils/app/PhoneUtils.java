@@ -656,8 +656,9 @@ public final class PhoneUtils {
     }
 
     /**
-     * MTK Phone.
      * 获取 MTK 神机的双卡 IMSI、IMSI 信息
+     * @param context
+     * @return
      */
     public static TeleInfo getMtkTeleInfo(Context context) {
         TeleInfo teleInfo = new TeleInfo();
@@ -698,8 +699,9 @@ public final class PhoneUtils {
     }
 
     /**
-     * MTK Phone.
      * 获取 MTK 神机的双卡 IMSI、IMSI 信息
+     * @param context
+     * @return
      */
     public static TeleInfo getMtkTeleInfo2(Context context) {
         TeleInfo teleInfo = new TeleInfo();
@@ -738,8 +740,9 @@ public final class PhoneUtils {
     }
 
     /**
-     * Qualcomm Phone.
      * 获取 高通 神机的双卡 IMSI、IMSI 信息
+     * @param context
+     * @return
      */
     public static TeleInfo getQualcommTeleInfo(Context context) {
         TeleInfo teleInfo = new TeleInfo();
@@ -774,8 +777,8 @@ public final class PhoneUtils {
     }
 
     /**
-     * Spreadtrum Phone.
      * 获取 展讯 神机的双卡 IMSI、IMSI 信息
+     * @return
      */
     public static TeleInfo getSpreadtrumTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();

@@ -49,7 +49,7 @@ public final class AppUtils {
 	private static final String TAG = AppUtils.class.getSimpleName();
     
     /**
-	 * 通过 Context 获取 WindowManager
+	 *  获取 WindowManager
 	 * @return
 	 */
 	public static WindowManager getWindowManager() {
@@ -62,7 +62,7 @@ public final class AppUtils {
 	}
 
 //	/**
-//	 * 通过 Context 获取 DisplayMetrics (获取关于显示的通用信息，如显示大小，分辨率和字体)
+//	 * 获取 DisplayMetrics
 //	 * @return
 //	 */
 //	public static DisplayMetrics getDisplayMetrics() {
@@ -82,7 +82,7 @@ public final class AppUtils {
 	// == 快捷获取方法 ==
 
 	/**
-	 * 获取View
+	 * 获取 View
 	 * @param resource
 	 * @return
 	 */
@@ -105,6 +105,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 Resources
+	 * @return
+	 */
 	public static Resources getResources() {
 		try {
 			return DevUtils.getContext().getResources();
@@ -114,6 +118,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 String
+	 * @return
+	 */
 	public static String getString(@StringRes int id) {
 		try {
 			return DevUtils.getContext().getResources().getString(id);
@@ -123,6 +131,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 Resources.Theme
+	 * @return
+	 */
 	public static Resources.Theme getTheme() {
 		try {
 			return DevUtils.getContext().getTheme();
@@ -132,6 +144,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 AssetManager
+	 * @return
+	 */
 	public static AssetManager getAssets() {
 		try {
 			return DevUtils.getContext().getAssets();
@@ -141,6 +157,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 Drawable
+	 * @return
+	 */
 	public static Drawable getDrawable(@DrawableRes int id) {
 		try {
 			return ContextCompat.getDrawable(DevUtils.getContext(), id);
@@ -150,6 +170,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 Color
+	 * @return
+	 */
 	public static int getColor( @ColorRes int id) {
 		try {
 			return ContextCompat.getColor(DevUtils.getContext(), id);
@@ -159,6 +183,10 @@ public final class AppUtils {
 		return -1;
 	}
 
+	/**
+	 * 获取 ColorStateList
+	 * @return
+	 */
 	public static ColorStateList getColorStateList(int id) {
 		try {
 			return ContextCompat.getColorStateList(DevUtils.getContext(), id);
@@ -168,6 +196,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 SystemService
+	 * @return
+	 */
 	public static <T> T getSystemService(String name){
 		try {
 			return (T) DevUtils.getContext().getSystemService(name);
@@ -177,6 +209,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 PackageManager
+	 * @return
+	 */
 	public static PackageManager getPackageManager(){
 		try {
 			return DevUtils.getContext().getPackageManager();
@@ -186,6 +222,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 Configuration
+	 * @return
+	 */
 	public static Configuration getConfiguration() {
 		try {
 			return DevUtils.getContext().getResources().getConfiguration();
@@ -195,6 +235,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 DisplayMetrics
+	 * @return
+	 */
 	public static DisplayMetrics getDisplayMetrics() {
 		try {
 			return DevUtils.getContext().getResources().getDisplayMetrics();
@@ -204,6 +248,10 @@ public final class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 获取 ContentResolver
+	 * @return
+	 */
 	public static ContentResolver getContentResolver() {
 		try {
 			return DevUtils.getContext().getContentResolver();

@@ -25,10 +25,18 @@ public class KeyValueBean {
         this.value = value;
     }
 
+    /**
+     * 获取 key
+     * @return
+     */
     public String getKey() {
         return key;
     }
 
+    /**
+     * 获取 value
+     * @return
+     */
     public String getValue() {
         return value;
     }
@@ -38,6 +46,12 @@ public class KeyValueBean {
         return key + ": " + value;
     }
 
+    /**
+     * 通过 resId 设置key, 并且初始化 KeyValueBean
+     * @param resId
+     * @param value
+     * @return
+     */
     public static KeyValueBean get(@StringRes int resId, String value) {
         return new KeyValueBean(DevUtils.getContext().getString(resId), value);
     }

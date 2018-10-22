@@ -135,7 +135,7 @@ public final class BitmapExtendUtils {
 
 
     /**
-     * Stream转换成Byte
+     * Stream 转换成 byte[]
      * @param inputStream InputStream
      * @return Byte数组
      */
@@ -413,12 +413,9 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * Returns a Bitmap representing the thumbnail of the specified Bitmap. The
-     * size of the thumbnail is defined by the dimension
-     * android.R.dimen.launcher_application_icon_size.
-     * This method is not thread-safe and should be invoked on the UI thread only.
-     * @param bitmap  The bitmap to get a thumbnail of.
-     * @return A thumbnail for the specified bitmap or the bitmap itself if the thumbnail could not be created.
+     * 创建图片缩略图
+     * @param bitmap
+     * @return
      */
     public static Bitmap createThumbnailBitmap(Bitmap bitmap) {
         int sIconWidth = -1;

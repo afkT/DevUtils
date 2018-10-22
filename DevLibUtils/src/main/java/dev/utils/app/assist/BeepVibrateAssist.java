@@ -164,6 +164,9 @@ public final class BeepVibrateAssist implements Closeable {
         }
     }
 
+    /**
+     * 关闭震动、提示声, 并释放资源
+     */
     @Override
     public synchronized void close() {
         if (mediaPlayer != null) {

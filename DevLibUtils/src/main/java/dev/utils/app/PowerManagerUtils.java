@@ -73,18 +73,34 @@ public final class PowerManagerUtils {
         }
     }
 
+    /**
+     * 获取 PowerManager.WakeLock
+     * @return
+     */
     public PowerManager.WakeLock getWakeLock() {
         return wakeLock;
     }
 
+    /**
+     * 设置 PowerManager.WakeLock
+     * @param wakeLock
+     */
     public void setWakeLock(PowerManager.WakeLock wakeLock) {
         this.wakeLock = wakeLock;
     }
 
+    /**
+     * 获取 PowerManager
+     * @return
+     */
     public PowerManager getPowerManager() {
         return powerManager;
     }
 
+    /**
+     * 设置 PowerManager
+     * @param powerManager
+     */
     public void setPowerManager(PowerManager powerManager) {
         this.powerManager = powerManager;
     }

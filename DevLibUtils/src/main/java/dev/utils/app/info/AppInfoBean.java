@@ -206,30 +206,58 @@ public class AppInfoBean {
         return ((pInfo.applicationInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0);
     }
 
+    /**
+     * 获取 versionCode
+     * @return
+     */
     public int getVersionCode() {
         return versionCode;
     }
 
+    /**
+     * 获取 versionName
+     * @return
+     */
     public String getVersionName() {
         return versionName;
     }
 
+    /**
+     * 获取首次安装时间
+     * @return
+     */
     public long getFirstInstallTime() {
         return firstInstallTime;
     }
 
+    /**
+     * 获取最后更新时间
+     * @return
+     */
     public long getLastUpdateTime() {
         return lastUpdateTime;
     }
 
+    /**
+     * 获取 apk 地址
+     * @return
+     */
     public String getSourceDir() {
         return sourceDir;
     }
 
+    /**
+     * 获取 apk 大小
+     * @return
+     */
     public long getApkSize() {
         return apkSize;
     }
 
+    /**
+     * 获取 apk 注册的权限
+     * @return
+     */
     public String[] getApkPermissionsArys() {
         return apkPermissionsArys;
     }

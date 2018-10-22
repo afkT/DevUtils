@@ -405,6 +405,10 @@ public final class AnalysisRecordUtils {
 
         // = get/set 方法 =
 
+        /**
+         * 获取存储路径
+         * @return
+         */
         public String getStoragePath() {
             if (TextUtils.isEmpty(storagePath)){
                 return storagePath = getLogStoragePath();
@@ -412,18 +416,34 @@ public final class AnalysisRecordUtils {
             return storagePath;
         }
 
+        /**
+         * 获取日志文件名
+         * @return
+         */
         public String getFileName() {
             return fileName;
         }
 
+        /**
+         * 获取日志文件记录的功能
+         * @return
+         */
         public String getFileFunction() {
             return fileFunction;
         }
 
+        /**
+         * 获取日志文件记录间隔时间
+         * @return
+         */
         public int getFileIntervalTime() {
             return fileIntervalTime;
         }
 
+        /**
+         * 获取日志文件夹名
+         * @return
+         */
         public String getFolderName(){
             if (TextUtils.isEmpty(folderName)){
                 return folderName = getLogFolderName();

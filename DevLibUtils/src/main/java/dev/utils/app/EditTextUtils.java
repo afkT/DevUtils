@@ -319,22 +319,42 @@ public final class EditTextUtils {
             this.markId = UUID.randomUUID().hashCode();
         }
 
+        /**
+         * 获取标记id
+         * @return
+         */
         public final int getMarkId() {
             return markId;
         }
 
+        /**
+         * 判断是否操作中
+         * @return
+         */
         public final boolean isOperate() {
             return isOperate;
         }
 
+        /**
+         * 设置是否操作中
+         * @param operate
+         */
         public final void setOperate(boolean operate) {
             isOperate = operate;
         }
 
+        /**
+         * 获取操作状态
+         * @return
+         */
         public final int getOperateState() {
             return operateState;
         }
 
+        /**
+         * 设置操作状态
+         * @param operateState
+         */
         public final void setOperateState(int operateState) {
             this.operateState = operateState;
         }

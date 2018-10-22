@@ -33,6 +33,12 @@ public final class AppInfoItem {
     private AppInfoItem(){
     }
 
+    /**
+     * 初始化并获取 AppInfoItem 对象
+     * @param packName
+     * @return
+     * @throws Exception
+     */
     public static AppInfoItem obtain(String packName) throws Exception {
         // 如果包名为null, 则直接不处理
         if (TextUtils.isEmpty(packName)){
@@ -157,10 +163,18 @@ public final class AppInfoItem {
         return appInfoItem;
     }
 
+    /**
+     * 获取 AppInfoBean
+     * @return
+     */
     public AppInfoBean getAppInfoBean() {
         return appInfoBean;
     }
 
+    /**
+     * 获取 List<KeyValueBean>
+     * @return
+     */
     public List<KeyValueBean> getListKeyValues() {
         return listKeyValues;
     }

@@ -25,6 +25,7 @@ public final class MemoryUtils {
     private static final String TAG = MemoryUtils.class.getSimpleName();
 
     /**
+     * 打印内存信息
      * Print memory info. such as:
      * MemTotal:        1864292 kB
      * MemFree:          779064 kB
@@ -95,7 +96,9 @@ public final class MemoryUtils {
     }
 
     /**
-     * Print Memory info.
+     * 打印内存信息
+     * @param context
+     * @return
      */
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo printMemoryInfo(Context context) {
@@ -112,7 +115,9 @@ public final class MemoryUtils {
     }
 
     /**
+     * 获取可用内存信息
      * Get available memory info.
+     * @return
      */
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static String getAvailMemory() {// 获取android 当前可用内存大小
@@ -122,7 +127,6 @@ public final class MemoryUtils {
         // 将获取的内存大小规格化
         return Formatter.formatFileSize(DevUtils.getContext(), mi.availMem);
     }
-
 
     // 内存信息文件地址
     private static final String MEM_INFO_PATH = "/proc/meminfo";
@@ -149,7 +153,7 @@ public final class MemoryUtils {
     }
 
     /**
-     * 获取 type info
+     * 通过不同 type 获取对应的内存信息
      * @param type
      * @return
      */

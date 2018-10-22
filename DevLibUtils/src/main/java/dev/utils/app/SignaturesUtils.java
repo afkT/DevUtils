@@ -54,7 +54,7 @@ public final class SignaturesUtils {
     }
 
     /**
-     * 返回MD5
+     * 返回 MD5
      * @param signatures
      * @return
      */
@@ -73,7 +73,9 @@ public final class SignaturesUtils {
     }
 
     /**
-     * SHA1
+     * 返回 SHA1 加密字符串
+     * @param signatures
+     * @return
      */
     public static String signatureSHA1(Signature[] signatures) {
         try {
@@ -90,7 +92,9 @@ public final class SignaturesUtils {
     }
 
     /**
-     * SHA256
+     * 返回 SHA256 加密字符串
+     * @param signatures
+     * @return
      */
     public static String signatureSHA256(Signature[] signatures) {
         try {

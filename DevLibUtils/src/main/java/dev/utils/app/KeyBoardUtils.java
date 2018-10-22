@@ -484,6 +484,11 @@ public final class KeyBoardUtils {
 	/** 输入法弹出、隐藏改变事件 */
 	public interface OnSoftInputChangedListener {
 
+		/**
+		 * 输入法弹出、隐藏改变通知
+		 * @param visible
+		 * @param height
+		 */
 		void onSoftInputChanged(boolean visible, int height);
 	}
 

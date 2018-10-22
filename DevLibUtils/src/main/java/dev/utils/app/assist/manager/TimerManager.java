@@ -230,21 +230,39 @@ public final class TimerManager {
 		/** String 标记 */
 		private String markStr = null;
 
+		/**
+		 * 获取标记id
+		 * @return
+		 */
 		public final int getMarkId() {
 			return markId;
 		}
 
+		/**
+		 * 获取标记字符串
+		 * @return
+		 */
 		public final String getMarkStr() {
 			return markStr;
 		}
 
 		// --
 
+		/**
+		 * 设置标记id
+		 * @param markId
+		 * @return
+		 */
 		public final AbsTimer setMarkId(int markId) {
 			this.markId = markId;
 			return this;
 		}
 
+		/**
+		 * 设置标记字符串
+		 * @param markStr
+		 * @return
+		 */
 		public final AbsTimer setMarkStr(String markStr) {
 			this.markStr = markStr;
 			return this;

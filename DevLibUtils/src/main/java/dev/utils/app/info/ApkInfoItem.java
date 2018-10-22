@@ -41,6 +41,12 @@ public final class ApkInfoItem {
     private ApkInfoItem(){
     }
 
+    /**
+     * 初始化并获取 ApkInfoItem 对象
+     * @param apkUri
+     * @return
+     * @throws Exception
+     */
     public static ApkInfoItem obtain(String apkUri) throws Exception {
         // 如果地址为null, 则直接不处理
         if (TextUtils.isEmpty(apkUri)){
@@ -200,14 +206,26 @@ public final class ApkInfoItem {
         return appInfoItem;
     }
 
+    /**
+     * 获取 apk uri
+     * @return
+     */
     public String getApkUri() {
         return apkUri;
     }
 
+    /**
+     * 获取 AppInfoBean
+     * @return
+     */
     public AppInfoBean getAppInfoBean() {
         return appInfoBean;
     }
 
+    /**
+     * 获取 List<KeyValueBean>
+     * @return
+     */
     public List<KeyValueBean> getListKeyValues() {
         return listKeyValues;
     }

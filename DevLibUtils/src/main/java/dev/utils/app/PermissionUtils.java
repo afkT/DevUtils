@@ -290,12 +290,20 @@ public final class PermissionUtils {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static class PermissionActivity extends Activity {
 
+        /**
+         * 跳转 PermissionActivity 请求权限 内部方法
+         * @param context
+         */
         public static void start(final Context context) {
             Intent starter = new Intent(context, PermissionActivity.class);
             starter.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(starter);
         }
 
+        /**
+         * PermissionActivity - onCreate 内部方法
+         * @param savedInstanceState
+         */
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

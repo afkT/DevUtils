@@ -41,6 +41,9 @@ public class AsyncExecutor {
         }
     }
 
+    /**
+     * 立即关闭线程池任务
+     */
     public static synchronized void shutdownNow() {
         if (threadPool != null && !threadPool.isShutdown()) threadPool.shutdownNow();
         threadPool = null;
@@ -119,12 +122,26 @@ public class AsyncExecutor {
 
     public static abstract class Worker<T> {
 
+        /**
+         * 后台运行
+         * @return
+         */
         protected abstract T doInBackground();
 
+        /**
+         * 将子线程结果传递到UI线程
+         * @param data
+         */
         protected void onPostExecute(T data) {}
 
+        /**
+         * 取消任务
+         */
         protected void onCanceled() {}
 
+        /**
+         * 中止任务
+         */
         protected void abort() {}
     }
 }
