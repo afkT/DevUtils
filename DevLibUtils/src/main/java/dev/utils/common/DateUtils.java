@@ -307,6 +307,22 @@ public final class DateUtils {
 	}
 
 	/**
+	 * 获取日期是星期几
+	 * @param date Date对象
+	 * @return 日
+	 */
+	public static int getWeek(Date date) {
+		try {
+			Calendar c = Calendar.getInstance();
+			c.setTime(date);
+			int week = c.get(Calendar.DAY_OF_WEEK);
+			return week;
+		} catch (Exception e) {
+		}
+		return -1;
+	}
+
+	/**
 	 * 获取时 - 24
 	 * @param date Date对象
 	 * @return 时
@@ -383,6 +399,7 @@ public final class DateUtils {
 	
 	/**
 	 * 获取年
+	 * @return
 	 */
 	public static int getYear() {
         return Calendar.getInstance().get(Calendar.YEAR);
@@ -390,6 +407,7 @@ public final class DateUtils {
  
 	/**
 	 * 获取月 (0 - 11) + 1
+	 * @return
 	 */
     public static int getMonth() {
         int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
@@ -398,13 +416,23 @@ public final class DateUtils {
  
     /**
      * 获取日
+	 * @return
      */
     public static int getDay() {
         return Calendar.getInstance().get(Calendar.DATE);
     }
+
+	/**
+	 * 获取星期数
+	 * @return
+	 */
+	public static int getWeek(){
+    	return Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+	}
  
     /**
      * 获取时 - 24
+	 * @return
      */
     public static int get24Hour() {
         return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -412,6 +440,7 @@ public final class DateUtils {
 
 	/**
 	 * 获取时 - 12
+	 * @return
 	 */
 	public static int get12Hour() {
 		return Calendar.getInstance().get(Calendar.HOUR);
@@ -419,6 +448,7 @@ public final class DateUtils {
  
     /**
      * 获取分
+	 * @return
      */
     public static int getMinute() {
         return Calendar.getInstance().get(Calendar.MINUTE);
