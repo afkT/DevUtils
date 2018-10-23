@@ -121,22 +121,38 @@ public final class WifiUtils {
 		return mWifiManager.getConnectionInfo();
 	}
 
-	/** 获取MAC地址 */
+	/**
+	 * 获取MAC地址
+	 * @param wifiInfo
+	 * @return
+	 */
 	public String getMacAddress(WifiInfo wifiInfo) {
 		return wifiInfo.getMacAddress();
 	}
 
-	/** 获取接入点的BSSID */
+	/**
+	 * 获取接入点的BSSID
+	 * @param wifiInfo
+	 * @return
+	 */
 	public String getBSSID(WifiInfo wifiInfo) {
 		return wifiInfo.getBSSID();
 	}
 
-	/** 获取IP地址 */
+	/**
+	 * 获取IP地址
+	 * @param wifiInfo
+	 * @return
+	 */
 	public int getIPAddress(WifiInfo wifiInfo) {
 		return wifiInfo.getIpAddress();
 	}
 
-	/** 获取连接的ID */
+	/**
+	 * 获取连接的ID
+	 * @param wifiInfo
+	 * @return
+	 */
 	public int getNetworkId(WifiInfo wifiInfo) {
 		return wifiInfo.getNetworkId();
 	}
@@ -180,6 +196,7 @@ public final class WifiUtils {
 
 	/**
 	 * 判断是否存在\"ssid\"，存在则裁剪返回
+	 * @param ssid
 	 */
 	public static String formatSSID(String ssid){
 		// 自动去掉SSID
@@ -306,7 +323,7 @@ public final class WifiUtils {
 	}
 
 	/**
-	 * 判断是否连接为null - <unknown ssid>
+	 * 判断是否连接为null - unknown ssid
 	 * @param ssid
 	 * @return
 	 */
@@ -321,6 +338,7 @@ public final class WifiUtils {
 
 	/**
 	 * 判断是否连接上Wifi(非连接中)
+	 * @param context
 	 * @return 返回ssid
 	 */
 	public static String isConnectAphot(Context context){

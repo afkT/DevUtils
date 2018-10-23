@@ -263,7 +263,7 @@ public final class ToastUtils {
 	// =======================
 
 	/**
-	 * 显示Toast
+	 * 显示新的 Toast
 	 * @param context
 	 * @param resId
 	 * @param duration
@@ -273,7 +273,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示Toast
+	 * 显示新的 Toast
 	 * @param context
 	 * @param text
 	 * @param duration

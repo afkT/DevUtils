@@ -27,7 +27,7 @@ final class DevCacheUtils {
     /**
      * 判断缓存的 String 数据是否到期
      * @param str
-     * @return true: 到期了 false: 还没有到期
+     * @return true: 到期了, false: 还没有到期
      */
     public static boolean isDue(String str) {
         return isDue(str.getBytes());
@@ -36,7 +36,7 @@ final class DevCacheUtils {
     /**
      * 判断缓存的 byte 数据是否到期
      * @param data
-     * @return true: 到期了 false: 还没有到期
+     * @return true: 到期了, false: 还没有到期
      */
     public static boolean isDue(byte[] data) {
         // 获取时间数据信息

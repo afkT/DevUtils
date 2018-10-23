@@ -72,11 +72,13 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	
 	// == Surface回调事件 ==
 
+	/** surface 改变通知 */
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 		LogPrintUtils.dTag(TAG, "surfaceChanged -> format: " + format + ", width: " + width + ", height: " + height);
 	}
-	
+
+	/** surface 创建 */
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		LogPrintUtils.dTag(TAG, "surfaceCreated");
@@ -89,7 +91,8 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 			LogPrintUtils.eTag(TAG, e, "setDisplay(surfaceHolder) - Error");
 		}
 	}
-	
+
+	/** surface 销毁 */
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		LogPrintUtils.dTag(TAG, "surfaceDestroyed");
@@ -97,6 +100,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	
 	// == MediaPlayer回调事件 ==
 
+	/** 准备完成回调 */
 	@Override
 	public void onPrepared() {
 		LogPrintUtils.dTag(TAG, "onPrepared");
@@ -126,7 +130,8 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 			}
 		}
 	}
-	
+
+	/** 播放完成/结束 */
 	@Override
 	public void onCompletion() {
 		LogPrintUtils.dTag(TAG, "onCompletion");
@@ -136,6 +141,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 		}
 	}
 
+	/** 缓存进度 */
 	@Override
 	public void onBufferingUpdate(int percent) {
 		LogPrintUtils.dTag(TAG, "onBufferingUpdate: " + percent);
@@ -145,6 +151,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 		}
 	}
 
+	/** 滑动进度加载成功 */
 	@Override
 	public void onSeekComplete() {
 		LogPrintUtils.dTag(TAG, "onSeekComplete");
@@ -153,7 +160,8 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 			mMediaListener.onSeekComplete();
 		}
 	}
-	
+
+	/** 异常回调 */
 	@Override
 	public void onError(int what, int extra) {
 		LogPrintUtils.dTag(TAG, "onError -> what: " + what + ", extra: " + extra);
@@ -163,6 +171,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 		}
 	}
 
+	/** 视频大小改变通知 */
 	@Override
 	public void onVideoSizeChanged(int width, int height) {
 		LogPrintUtils.dTag(TAG, "onVideoSizeChanged -> width: " + width + ", height: " + height);

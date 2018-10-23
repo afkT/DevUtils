@@ -44,7 +44,7 @@ public final class ApkInfoItem {
     /**
      * 初始化并获取 ApkInfoItem 对象
      * @param apkUri
-     * @return
+     * @return {@link ApkInfoItem}
      * @throws Exception
      */
     public static ApkInfoItem obtain(String apkUri) throws Exception {
@@ -208,7 +208,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取 apk uri
-     * @return
+     * @return apkUri
      */
     public String getApkUri() {
         return apkUri;
@@ -216,7 +216,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取 AppInfoBean
-     * @return
+     * @return {@link AppInfoBean}
      */
     public AppInfoBean getAppInfoBean() {
         return appInfoBean;
@@ -224,7 +224,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取 List<KeyValueBean>
-     * @return
+     * @return app 信息键对值集合
      */
     public List<KeyValueBean> getListKeyValues() {
         return listKeyValues;

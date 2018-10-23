@@ -10,7 +10,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
 
 /**
- * detail: app 信息实体类
+ * detail: APP 信息实体类
  * Created by Ttt
  */
 public class AppInfoBean {

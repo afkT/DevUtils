@@ -63,7 +63,7 @@ public final class DevLoggerUtils {
 	/**
 	 * 获取调试Log配置(打印线程信息,显示方法总数3,从0开始,进行排序)
 	 * @param tag
-	 * @param lLevel 日志级别(分四种) - LogLevel
+	 * @param lLevel 日志级别(分四种) - {@link LogLevel}
 	 * @return
 	 */
 	public static LogConfig getDebugLogConfig(String tag, LogLevel lLevel) {

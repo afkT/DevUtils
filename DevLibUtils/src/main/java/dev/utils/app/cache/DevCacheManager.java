@@ -97,7 +97,7 @@ final class DevCacheManager {
     /**
      * 获取文件
      * @param key
-     * @return
+     * @return {@link File}
      */
     protected File get(String key) {
         File file = newFile(key);
@@ -113,7 +113,7 @@ final class DevCacheManager {
     /**
      * 创建文件对象
      * @param key
-     * @return
+     * @return {@link File}
      */
     protected File newFile(String key) {
         if (key != null){
@@ -125,7 +125,7 @@ final class DevCacheManager {
     /**
      * 删除文件
      * @param key
-     * @return
+     * @return true: 删除成功, false: 删除失败
      */
     protected boolean remove(String key) {
         File file = get(key);
@@ -151,7 +151,7 @@ final class DevCacheManager {
 
     /**
      * 移除旧的文件
-     * @return
+     * @return 返回移除的文件大小
      */
     private long removeNext() {
         if (lastUsageDates.isEmpty()) {
@@ -185,7 +185,7 @@ final class DevCacheManager {
     /**
      * 计算文件大小
      * @param file
-     * @return
+     * @return 文件大小
      */
     private long calculateSize(File file) {
         if (file != null){

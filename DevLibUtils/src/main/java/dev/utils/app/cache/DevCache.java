@@ -66,7 +66,7 @@ public final class DevCache {
     // 不限制存放数据的数量
     private static final int MAX_COUNT = Integer.MAX_VALUE;
     // 不同地址配置缓存对象
-    private static Map<String, DevCache> mInstanceMap = new HashMap<String, DevCache>();
+    private static Map<String, DevCache> mInstanceMap = new HashMap<>();
     // 缓存管理类
     private DevCacheManager mCache;
     // 缓存地址
@@ -74,7 +74,7 @@ public final class DevCache {
 
     /**
      * 内部处理防止 Context 为null奔溃问题
-     * @return
+     * @return {@link Context}
      */
     private static Context getContext(Context context){
         if (context != null){
@@ -88,7 +88,7 @@ public final class DevCache {
     /**
      * 获取缓存地址
      * @param ctx
-     * @return
+     * @return 应用缓存地址
      */
     public static File getCacheDir(Context ctx){
         if (ctxCacheDir == null){
@@ -100,7 +100,7 @@ public final class DevCache {
     /**
      * 默认缓存地址
      * @param ctx
-     * @return
+     * @return {@link DevCache} 缓存工具类对象
      */
     public static DevCache get(Context ctx) {
         return get(ctx, DF_FILE_NAME);
@@ -110,7 +110,7 @@ public final class DevCache {
      * 获取缓存地址
      * @param ctx
      * @param cacheName
-     * @return
+     * @return {@link DevCache} 缓存工具类对象
      */
     public static DevCache get(Context ctx, String cacheName) {
         // 进行处理
@@ -122,7 +122,7 @@ public final class DevCache {
     /**
      * 设置自定义缓存地址
      * @param cacheDir
-     * @return
+     * @return {@link DevCache} 缓存工具类对象
      */
     public static DevCache get(File cacheDir) {
         return get(cacheDir, MAX_SIZE, MAX_COUNT);
@@ -133,7 +133,7 @@ public final class DevCache {
      * @param ctx
      * @param max_zise
      * @param max_count
-     * @return
+     * @return {@link DevCache} 缓存工具类对象
      */
     public static DevCache get(Context ctx, long max_zise, int max_count) {
         File file = new File(getCacheDir(ctx), DF_FILE_NAME);
@@ -146,7 +146,7 @@ public final class DevCache {
      * @param cacheDir
      * @param max_zise
      * @param max_count
-     * @return
+     * @return {@link DevCache} 缓存工具类对象
      */
     public static DevCache get(File cacheDir, long max_zise, int max_count) {
         // 判断是否存在缓存信息
@@ -161,7 +161,7 @@ public final class DevCache {
 
     /**
      * 获取进程pid
-     * @return
+     * @return _android.os.Process.myPid()
      */
     private static String myPid() {
         return "_" + android.os.Process.myPid();
@@ -172,6 +172,7 @@ public final class DevCache {
      * @param cacheDir
      * @param max_size
      * @param max_count
+     * @return {@link DevCache} 缓存工具类对象
      */
     private DevCache(File cacheDir, long max_size, int max_count) {
         if (cacheDir == null){
@@ -185,11 +186,7 @@ public final class DevCache {
     /**
      * Provides a means to save a cached file before the data are available.
      * Since writing about the file is complete, and its close method is called,
-     * its contents will be registered in the cache. Example of use:
-     * DevCache cache = new DevCache(this) try { OutputStream stream =
-     * cache.put("myFileName") stream.write("some bytes".getBytes()); // now
-     * update cache! stream.close(); } catch(FileNotFoundException e){
-     * e.printStackTrace() }
+     * its contents will be registered in the cache
      */
     class xFileOutputStream extends FileOutputStream {
         File file;
@@ -330,7 +327,7 @@ public final class DevCache {
     /**
      * 读取 JSONObject 数据
      * @param key
-     * @return JSONObject 数据
+     * @return {@link JSONObject}
      */
     public JSONObject getAsJSONObject(String key) {
         String JSONString = getAsString(key);
@@ -383,7 +380,7 @@ public final class DevCache {
     /**
      * 读取 JSONArray 数据
      * @param key
-     * @return JSONArray 数据
+     * @return {@link JSONArray}
      */
     public JSONArray getAsJSONArray(String key) {
         String JSONString = getAsString(key);
@@ -431,9 +428,9 @@ public final class DevCache {
     }
 
     /**
-     * Cache for a stream
+     * 返回缓存流写入数据对象
      * @param key the file name.
-     * @return OutputStream stream for writing data.
+     * @return OutputStream stream for writing data
      * @throws FileNotFoundException if the file can not be created.
      */
     public OutputStream put(String key) throws FileNotFoundException {
@@ -468,9 +465,9 @@ public final class DevCache {
     }
 
     /**
-     * 获取 byte 数据
+     * 获取 byte[] 数据
      * @param key
-     * @return byte 数据
+     * @return byte[] 数据
      */
     public byte[] getAsBinary(String key) {
         RandomAccessFile RAFile = null;

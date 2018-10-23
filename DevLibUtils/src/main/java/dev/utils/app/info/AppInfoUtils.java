@@ -64,7 +64,7 @@ public final class AppInfoUtils {
     }
 
     /**
-     * 获取 app 详细信息
+     * 获取 App 详细信息
      * @param pckName
      * @return
      */
@@ -77,7 +77,7 @@ public final class AppInfoUtils {
     }
 
     /**
-     * 获取 app 详细信息
+     * 获取 App 详细信息
      * @return
      */
     public static AppInfoItem getAppInfoItem(){
@@ -87,8 +87,8 @@ public final class AppInfoUtils {
     // =
 
     /**
-     * 获取全部App 列表
-     * @return
+     * 获取全部 App 列表
+     * @return 返回 App 信息实体类集合
      */
     public static List<AppInfoBean> getAppLists() {
         return getAppLists(AppInfoBean.AppType.ALL);
@@ -96,8 +96,8 @@ public final class AppInfoUtils {
 
     /**
      * 获取 App 列表
-     * @param appType app类型
-     * @return
+     * @param appType App 类型
+     * @return 返回 App 信息实体类集合
      */
     public static List<AppInfoBean> getAppLists(AppInfoBean.AppType appType) {
         // App信息
@@ -110,14 +110,14 @@ public final class AppInfoUtils {
             List<PackageInfo> packlist = pManager.getInstalledPackages(0);
             // 判断是否属于添加全部
             if (appType == AppInfoBean.AppType.ALL){
-                // 遍历 app 列表
+                // 遍历 App 列表
                 for (int i = 0, len = packlist.size(); i < len; i++) {
                     PackageInfo pInfo = packlist.get(i);
                     // 添加符合条件的 App 应用信息
                     listApps.add(new AppInfoBean(pInfo, pManager));
                 }
             } else {
-                // 遍历 app 列表
+                // 遍历 App 列表
                 for (int i = 0, len = packlist.size(); i < len; i++) {
                     PackageInfo pInfo = packlist.get(i);
                     // 获取app 类型
@@ -147,7 +147,7 @@ public final class AppInfoUtils {
     // =
 
     /**
-     * 获取 APK 权限
+     * 获取 APK 注册的权限
      * @param pckName
      * https://www.cnblogs.com/leaven/p/5485864.html
      */
@@ -163,7 +163,7 @@ public final class AppInfoUtils {
     }
 
     /**
-     * 打印 APK 权限
+     * 打印 APK 注册的权限
      * @param pckName
      * https://www.cnblogs.com/leaven/p/5485864.html
      */

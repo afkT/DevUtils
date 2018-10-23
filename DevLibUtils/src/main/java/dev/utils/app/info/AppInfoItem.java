@@ -36,7 +36,7 @@ public final class AppInfoItem {
     /**
      * 初始化并获取 AppInfoItem 对象
      * @param packName
-     * @return
+     * @return {@link AppInfoItem}
      * @throws Exception
      */
     public static AppInfoItem obtain(String packName) throws Exception {
@@ -165,7 +165,7 @@ public final class AppInfoItem {
 
     /**
      * 获取 AppInfoBean
-     * @return
+     * @return {@link AppInfoBean }
      */
     public AppInfoBean getAppInfoBean() {
         return appInfoBean;
@@ -173,7 +173,7 @@ public final class AppInfoItem {
 
     /**
      * 获取 List<KeyValueBean>
-     * @return
+     * @return app 信息键对值集合
      */
     public List<KeyValueBean> getListKeyValues() {
         return listKeyValues;

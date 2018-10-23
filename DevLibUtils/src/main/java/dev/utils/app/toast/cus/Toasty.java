@@ -100,96 +100,181 @@ public final class Toasty {
 
         // ==
 
+        /**
+         * 设置 Toast 默认字体颜色
+         * @param textColor
+         * @return
+         */
         @CheckResult
         public Config setTextColor(@ColorInt int textColor) {
             DEFAULT_TEXT_COLOR = textColor;
             return this;
         }
 
+        /**
+         * 设置 Toast Error 字体颜色
+         * @param errorColor
+         * @return
+         */
         @CheckResult
         public Config setErrorColor(@ColorInt int errorColor) {
             ERROR_COLOR = errorColor;
             return this;
         }
 
+        /**
+         * 设置 Toast Info 字体颜色
+         * @param infoColor
+         * @return
+         */
         @CheckResult
         public Config setInfoColor(@ColorInt int infoColor) {
             INFO_COLOR = infoColor;
             return this;
         }
 
+        /**
+         * 设置 Toast Success 字体颜色
+         * @param successColor
+         * @return
+         */
         @CheckResult
         public Config setSuccessColor(@ColorInt int successColor) {
             SUCCESS_COLOR = successColor;
             return this;
         }
 
+        /**
+         * 设置 Toast Warning 字体颜色
+         * @param warningColor
+         * @return
+         */
         @CheckResult
         public Config setWarningColor(@ColorInt int warningColor) {
             WARNING_COLOR = warningColor;
             return this;
         }
 
+        /**
+         * 设置 Toast 字体(样式)
+         * @param typeface
+         * @return
+         */
         @CheckResult
         public Config setToastTypeface(@NonNull Typeface typeface) {
             this.typeface = typeface;
             return this;
         }
 
+        /**
+         * 设置 Toast 字体大小
+         * @param sizeInSp
+         * @return
+         */
         @CheckResult
         public Config setTextSize(int sizeInSp) {
             this.textSize = sizeInSp;
             return this;
         }
 
+        /**
+         * 设置图标是否着色
+         * @param tintIcon
+         * @return
+         */
         @CheckResult
         public Config setTintIcon(boolean tintIcon) {
             this.tintIcon = tintIcon;
             return this;
         }
 
+        /**
+         * 是否适用新的 Toast
+         * @param isNewToast
+         * @return
+         */
         @CheckResult
         public Config setNewToast(boolean isNewToast) {
             this.isNewToast = isNewToast;
             return this;
         }
 
+        /**
+         * 获取 Toast 默认字体颜色
+         * @return
+         */
         public int getTextColor() {
             return DEFAULT_TEXT_COLOR;
         }
 
+        /**
+         * 获取 Toast Normal 字体颜色
+         * @return
+         */
         public int getNormalColor() {
             return NORMAL_COLOR;
         }
 
+        /**
+         * 获取 Toast Error 字体颜色
+         * @return
+         */
         public int getErrorColor() {
             return ERROR_COLOR;
         }
 
+        /**
+         * 获取 Toast Info 字体颜色
+         * @return
+         */
         public int getInfoColor() {
             return INFO_COLOR;
         }
 
+        /**
+         * 获取 Toast Success 字体颜色
+         * @return
+         */
         public int getSuccessColor() {
             return SUCCESS_COLOR;
         }
 
+        /**
+         * 获取 Toast Warning 字体颜色
+         * @return
+         */
         public int getWarningColor() {
             return WARNING_COLOR;
         }
 
+        /**
+         * 获取 Toast 字体(样式)
+         * @return
+         */
         public Typeface getTypeface() {
             return typeface;
         }
 
+        /**
+         * 获取 Toast 字体大小
+         * @return
+         */
         public int getTextSize() {
             return textSize;
         }
 
+        /**
+         * 获取图片是否着色
+         * @return
+         */
         public boolean isTintIcon() {
             return tintIcon;
         }
 
+        /**
+         * 是否使用新的 Toast
+         * @return
+         */
         public boolean isNewToast() {
             return isNewToast;
         }

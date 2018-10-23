@@ -172,7 +172,7 @@ public final class ImageBmpUtils {
 	 * 保存Bmp图片
 	 * @param path 保存路径
 	 * @param bitmap 图片信息
-	 * @return
+	 * @return true: 保存成功, false: 保存失败
 	 */
 	public static boolean saveBmpImg(String path, Bitmap bitmap){
 		FileOutputStream fos = null;

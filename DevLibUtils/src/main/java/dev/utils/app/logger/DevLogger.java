@@ -51,7 +51,7 @@ public final class DevLogger {
 
 	// -- 日志打印方法 --
 	/**
-	 * Log.DEBUG
+	 * 打印 Log.DEBUG
 	 * @param message
 	 * @param args
 	 */
@@ -60,7 +60,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.ERROR
+	 * 打印 Log.ERROR
 	 * @param message
 	 * @param args
 	 */
@@ -69,7 +69,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.ERROR
+	 * 打印 Log.ERROR
 	 * @param throwable
 	 */
 	public static void e(Throwable throwable) {
@@ -77,7 +77,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.ERROR
+	 * 打印 Log.ERROR
 	 * @param throwable
 	 * @param message
 	 * @param args
@@ -87,7 +87,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.WARN
+	 * 打印 Log.WARN
 	 * @param message
 	 * @param args
 	 */
@@ -96,7 +96,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.INFO
+	 * 打印 Log.INFO
 	 * @param message
 	 * @param args
 	 */
@@ -105,7 +105,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.VERBOSE
+	 * 打印 Log.VERBOSE
 	 * @param message
 	 * @param args
 	 */
@@ -114,7 +114,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.ASSERT
+	 * 打印 Log.ASSERT
 	 * @param message
 	 * @param args
 	 */
@@ -145,7 +145,7 @@ public final class DevLogger {
 
 	// -- 日志打印方法 --
 	/**
-	 * Log.DEBUG
+	 * 打印 Log.DEBUG
 	 * @param tag
 	 * @param message
 	 * @param args
@@ -155,7 +155,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.ERROR
+	 * 打印 Log.ERROR
 	 * @param tag
 	 * @param message
 	 * @param args
@@ -165,7 +165,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.ERROR
+	 * 打印 Log.ERROR
 	 * @param tag
 	 * @param throwable
 	 * @param message
@@ -176,7 +176,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.ERROR
+	 * 打印 Log.ERROR
 	 * @param tag
 	 * @param throwable
 	 */
@@ -185,7 +185,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.WARN
+	 * 打印 Log.WARN
 	 * @param tag
 	 * @param message
 	 * @param args
@@ -195,7 +195,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.INFO
+	 * 打印 Log.INFO
 	 * @param tag
 	 * @param message
 	 * @param args
@@ -205,7 +205,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.VERBOSE
+	 * 打印 Log.VERBOSE
 	 * @param tag
 	 * @param message
 	 * @param args
@@ -215,7 +215,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * Log.ASSERT
+	 * 打印 Log.ASSERT
 	 * @param tag
 	 * @param message
 	 * @param args
