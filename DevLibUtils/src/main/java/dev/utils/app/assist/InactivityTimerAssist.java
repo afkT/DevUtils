@@ -43,7 +43,7 @@ public final class InactivityTimerAssist {
     // = 内部方法 =
 
     /**
-     * 开始任务
+     * 开始计时任务
      */
     public synchronized void start() {
         // 取消任务
@@ -59,7 +59,7 @@ public final class InactivityTimerAssist {
     }
 
     /**
-     * 取消任务
+     * 取消计时任务
      */
     private synchronized void cancel() {
         AsyncTask<?, ?, ?> task = inactivityTask;
@@ -86,7 +86,7 @@ public final class InactivityTimerAssist {
     }
 
     /**
-     * 回到页面处理
+     * 回到 Activity/xx 处理
      */
     public synchronized void onResume() {
         try {

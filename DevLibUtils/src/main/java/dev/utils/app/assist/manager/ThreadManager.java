@@ -35,7 +35,7 @@ public final class ThreadManager {
 
     /**
      * 获取线程数
-     * @return
+     * @return 线程数量
      */
     private final int getThreads() {
         // 使用计算过后的
@@ -46,7 +46,7 @@ public final class ThreadManager {
 
     /**
      * 获取线程数
-     * @return
+     * @return 线程数量
      */
     private final int getCaclThreads() {
         // return Runtime.getRuntime().availableProcessors() * 2 + 1
@@ -97,23 +97,23 @@ public final class ThreadManager {
     // ==
 
     /**
-     * shutdown 会等待所有提交的任务执行完成，不管是正在执行还是保存在任务队列中的已提交任务
+     * shutdown() 会等待所有提交的任务执行完成，不管是正在执行还是保存在任务队列中的已提交任务
      */
     public void shutdown() {
         threadPool.shutdown();
     }
 
     /**
-     * shutdownNow会尝试中断正在执行的任务（其主要是中断一些指定方法如sleep方法），并且停止执行等待队列中提交的任务。
-     * @return
+     * shutdownNow 会尝试中断正在执行的任务（其主要是中断一些指定方法如sleep方法），并且停止执行等待队列中提交的任务。
+     * @return 返回等待执行的线程任务列表
      */
     public List<Runnable> shutdownNow() {
         return threadPool.shutdownNow();
     }
 
     /**
-     * isShutDown当调用shutdown()方法后返回为true。
-     * @return
+     * isShutDown 当调用 shutdown() 方法后返回为true。
+     * @return true: 调用了 shutdown(), false: 没调用
      */
     public boolean isShutdown() {
         return threadPool.isShutdown();
@@ -124,7 +124,7 @@ public final class ThreadManager {
      * 注意除非首先调用shutdown或shutdownNow, 否则isTerminated 永不为true.
      * // --
      * isTerminated当调用shutdown()方法后，并且所有提交的任务完成后返回为true
-     * @return
+     * @return true: 是否全部已完成, false: 未完成
      */
     public boolean isTerminated() {
         return threadPool.isTerminated();

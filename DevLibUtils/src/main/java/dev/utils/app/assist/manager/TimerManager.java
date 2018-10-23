@@ -60,7 +60,10 @@ public final class TimerManager {
 		}
 	}
 
-	/** 获取全部任务总数 */
+	/**
+	 * 获取全部任务总数
+	 * @return 全部任务总数
+	 */
 	public static int timerSize() {
 		return listAbsTimers.size();
 	}
@@ -68,7 +71,7 @@ public final class TimerManager {
 	/**
 	 * 获取属于对应字符串标记的定时器任务(优先获取符合的)
 	 * @param markStr
-	 * @return
+	 * @return 获取对应标记的定时任务 {@link AbsTimer} 对象
 	 */
 	public static AbsTimer getTimer(String markStr) {
 		try {
@@ -88,7 +91,7 @@ public final class TimerManager {
 	/**
 	 * 获取属于标记id的定时器任务(优先获取符合的)
 	 * @param markId
-	 * @return
+	 * @return 获取对应标记的定时任务 {@link AbsTimer} 对象
 	 */
 	public static AbsTimer getTimer(int markId) {
 		try {
@@ -171,32 +174,69 @@ public final class TimerManager {
 
 	// =============== 对外公开初始化AbsTimer方法(内部控制对 TimerTask的生成)  =============
 
-	/** 创建定时器 => 立即执行,无限循环,通知默认what */
+	/**
+	 * 创建定时器 => 立即执行,无限循环,通知默认what
+	 * @param handler 通知的Handler
+	 * @param period 循环时间 - 每隔多少秒执行一次
+	 * @return 定时器抽象对象
+	 */
 	public static AbsTimer creTimer(Handler handler, long period) {
 		return creTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, -1);
 	}
 
-	/** 创建定时器 => 无限循环,通知默认what */
+	/**
+	 * 创建定时器 => 无限循环,通知默认what
+	 * @param handler 通知的Handler
+	 * @param delay 延迟时间 - 多少毫秒后开始执行
+	 * @param period 循环时间 - 每隔多少秒执行一次
+	 * @return 定时器抽象对象
+	 */
 	public static AbsTimer creTimer(Handler handler, long delay, long period) {
 		return creTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
 	}
 
-	/** 创建定时器 => 立即执行,通知默认what */
+	/**
+	 * 创建定时器 => 立即执行,通知默认what
+	 * @param handler 通知的Handler
+	 * @param period 循环时间 - 每隔多少秒执行一次
+	 * @param triggerLimit 触发次数上限(-1,表示无限循环)
+	 * @return 定时器抽象对象
+	 */
 	public static AbsTimer creTimer(Handler handler, long period, int triggerLimit) {
 		return creTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, triggerLimit);
 	}
 
-	/** 创建定时器 => 立即执行,无限循环 */
+	/**
+	 * 创建定时器 => 立即执行,无限循环
+	 * @param handler 通知的Handler
+	 * @param what 通知的what
+	 * @param period 循环时间 - 每隔多少秒执行一次
+	 * @return 定时器抽象对象
+	 */
 	public static AbsTimer creTimer(Handler handler, int what, long period) {
 		return creTimer(handler, what, 0l, period, -1);
 	}
 
-	/** 创建定时器 => 无限循环 */
+	/**
+	 * 创建定时器 => 无限循环
+	 * @param handler 通知的Handler
+	 * @param what 通知的what
+	 * @param delay 延迟时间 - 多少毫秒后开始执行
+	 * @param period 循环时间 - 每隔多少秒执行一次
+	 * @return 定时器抽象对象
+	 */
 	public static AbsTimer creTimer(Handler handler, int what, long delay, long period) {
 		return creTimer(handler, what, delay, period, -1);
 	}
 
-	/** 创建定时器 => 立即执行 */
+	/**
+	 * 创建定时器 => 立即执行
+	 * @param handler 通知的Handler
+	 * @param what 通知的what
+	 * @param period 循环时间 - 每隔多少秒执行一次
+	 * @param triggerLimit 触发次数上限(-1,表示无限循环)
+	 * @return 定时器抽象对象
+	 */
 	public static AbsTimer creTimer(Handler handler, int what, long period, int triggerLimit) {
 		return creTimer(handler, what, 0l, period, triggerLimit);
 	}
@@ -208,7 +248,7 @@ public final class TimerManager {
 	 * @param delay 延迟时间 - 多少毫秒后开始执行
 	 * @param period 循环时间 - 每隔多少秒执行一次
 	 * @param triggerLimit 触发次数上限(-1,表示无限循环)
-	 * @return
+	 * @return 定时器抽象对象
 	 */
 	public static AbsTimer creTimer(Handler handler, int what, long delay, long period, int triggerLimit) {
 		return new TimerTask(handler, what, delay, period, triggerLimit);
@@ -224,7 +264,6 @@ public final class TimerManager {
 		public static final int TIMER_NOTIFY_WHAT = 50000;
 		/** 状态标识 - 是否标记清除 */
 		private boolean isMarkSweep = true;
-		// --
 		/** int 标记 */
 		private int markId = -1;
 		/** String 标记 */
@@ -232,7 +271,7 @@ public final class TimerManager {
 
 		/**
 		 * 获取标记id
-		 * @return
+		 * @return markId
 		 */
 		public final int getMarkId() {
 			return markId;
@@ -240,7 +279,7 @@ public final class TimerManager {
 
 		/**
 		 * 获取标记字符串
-		 * @return
+		 * @return markStr
 		 */
 		public final String getMarkStr() {
 			return markStr;
@@ -251,7 +290,7 @@ public final class TimerManager {
 		/**
 		 * 设置标记id
 		 * @param markId
-		 * @return
+		 * @return 定时器抽象对象
 		 */
 		public final AbsTimer setMarkId(int markId) {
 			this.markId = markId;
@@ -261,7 +300,7 @@ public final class TimerManager {
 		/**
 		 * 设置标记字符串
 		 * @param markStr
-		 * @return
+		 * @return 定时器抽象对象
 		 */
 		public final AbsTimer setMarkStr(String markStr) {
 			this.markStr = markStr;
@@ -306,18 +345,21 @@ public final class TimerManager {
 		/**
 		 * 设置通知的Handler
 		 * @param handler
+		 * @return 定时器抽象对象
 		 */
 		public abstract AbsTimer setHandler(Handler handler);
 
 		/**
 		 * 设置通知的What
 		 * @param notifyWhat
+		 * @return 定时器抽象对象
 		 */
 		public abstract AbsTimer setNotifyWhat(int notifyWhat);
 
 		/**
 		 * 设置通知的Obj
 		 * @param notifyObj
+		 * @return 定时器抽象对象
 		 */
 		public abstract AbsTimer setNotifyObject(Object notifyObj);
 
@@ -325,12 +367,14 @@ public final class TimerManager {
 		 * 设置时间
 		 * @param delay 延迟时间 - 多少毫秒后开始执行
 		 * @param period 循环时间 - 每隔多少秒执行一次
+		 * @return 定时器抽象对象
 		 */
 		public abstract AbsTimer setTime(long delay, long period);
 
 		/**
 		 * 设置触发次数上限
 		 * @param triggerLimit
+		 * @return 定时器抽象对象
 		 */
 		public abstract AbsTimer setTriggerLimit(int triggerLimit);
 	}

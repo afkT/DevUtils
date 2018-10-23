@@ -34,7 +34,7 @@ public final class ActivityManager {
     /**
      * 通过 Context 获取Activity
      * @param context
-     * @return
+     * @return context 所属的 Activity
      */
     public static Activity getActivity(Context context) {
         try {
@@ -51,7 +51,7 @@ public final class ActivityManager {
     /**
      * 判断页面是否关闭
      * @param activity
-     * @return
+     * @return true: 关闭, false: 未关闭
      */
     public static boolean isFinishing(Activity activity){
         if (activity != null){
@@ -63,7 +63,7 @@ public final class ActivityManager {
     /**
      * 判断页面是否关闭
      * @param context
-     * @return
+     * @return true: 关闭, false: 未关闭
      */
     public static boolean isFinishingCtx(Context context){
         if (context != null){
@@ -83,7 +83,7 @@ public final class ActivityManager {
 
     /**
      * 获取 Activity 栈
-     * @return
+     * @return Activity 栈
      */
     public Stack<Activity> getActivityStacks() {
         return activityStacks;
@@ -135,15 +135,15 @@ public final class ActivityManager {
     }
 
     /**
-     * 获取当前Activity
-     * @return
+     * 获取最后一个(当前)Activity
+     * @return lastElement() activity
      */
     public Activity currentActivity() {
         return activityStacks.lastElement();
     }
 
     /**
-     * 结束当前Activity
+     * 结束最后一个(当前)Activity
      */
     public void finishActivity() {
         finishActivity(activityStacks.lastElement());

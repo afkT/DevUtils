@@ -294,7 +294,7 @@ public final class PermissionUtils {
          * 跳转 PermissionActivity 请求权限 内部方法
          * @param context
          */
-        public static void start(final Context context) {
+        protected static void start(final Context context) {
             Intent starter = new Intent(context, PermissionActivity.class);
             starter.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(starter);

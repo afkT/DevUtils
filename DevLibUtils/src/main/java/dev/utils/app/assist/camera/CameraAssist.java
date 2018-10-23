@@ -51,6 +51,7 @@ public final class CameraAssist {
     /**
      * 打开摄像头程序
      * @param holder
+     * @return 返回自身对象(摄像头辅助类)
      */
     public synchronized CameraAssist openDriver(SurfaceHolder holder) throws IOException {
         Camera theCamera = mCamera;
@@ -104,7 +105,7 @@ public final class CameraAssist {
     }
 
     /**
-     * 停止 Cmaera 画面预览
+     * 停止 Camera 画面预览
      */
     public synchronized void stopPreview() {
         if (autoFocusAssist != null) {
@@ -148,7 +149,7 @@ public final class CameraAssist {
 
     /**
      * 获取相机分辨率
-     * @return
+     * @return Camera 分辨率
      */
     public Camera.Size getCameraResolution() {
         if (mPreviewSize == null){
@@ -161,7 +162,7 @@ public final class CameraAssist {
 
     /**
      * 获取预览大小
-     * @return
+     * @return Camera 预览分辨率
      */
     public Camera.Size getPreviewSize() {
         if (null != mCamera) {
@@ -172,7 +173,7 @@ public final class CameraAssist {
 
     /**
      * 获取 Camera.Size 计算辅助类
-     * @return
+     * @return {@link CameraSizeAssist}
      */
     public CameraSizeAssist getCameraSizeAssist() {
         return cameraSizeAssist;
@@ -180,7 +181,7 @@ public final class CameraAssist {
 
     /**
      * 获取摄像头
-     * @return
+     * @return {@link android.hardware.Camera}
      */
     public Camera getCamera() {
         return mCamera;
@@ -199,6 +200,7 @@ public final class CameraAssist {
     /**
      * 设置预览回调
      * @param previewNotify
+     * @return 返回自身对象(摄像头辅助类)
      */
     public CameraAssist setPreviewNotify(PreviewNotify previewNotify) {
         this.previewNotify = previewNotify;
@@ -208,6 +210,7 @@ public final class CameraAssist {
     /**
      * 设置是否开启自动对焦
      * @param autoFocus
+     * @return 返回自身对象(摄像头辅助类)
      */
     public CameraAssist setAutoFocus(boolean autoFocus) {
         if (autoFocusAssist != null){
@@ -218,7 +221,7 @@ public final class CameraAssist {
 
     /**
      * 是否预览中
-     * @return
+     * @return true: 预览中, false: 非预览
      */
     public boolean isPreviewing() {
         return previewing;
@@ -266,7 +269,7 @@ public final class CameraAssist {
 
     /**
      * 是否打开闪光灯
-     * @return
+     * @return true: 打开, false: 关闭
      */
     public boolean isFlashlightOn() {
         if (mCamera == null) {
@@ -278,7 +281,7 @@ public final class CameraAssist {
 
     /**
      * 是否支持手机闪光灯
-     * @return
+     * @return true: 支持, false: 不支持
      */
     public static boolean isFlashlightEnable() {
         return DevUtils.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
@@ -287,7 +290,7 @@ public final class CameraAssist {
     // = 接口 =
 
     /**
-     * detail: 预览通知
+     * detail: 预览通知接口
      * Created by Ttt
      */
     public interface PreviewNotify {

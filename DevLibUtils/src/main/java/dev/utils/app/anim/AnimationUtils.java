@@ -3,8 +3,10 @@ package dev.utils.app.anim;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
+import android.view.animation.CycleInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 
 /**
  * detail: 动画工具类
@@ -15,9 +17,7 @@ public final class AnimationUtils {
     private AnimationUtils() {
     }
 
-    /**
-     * 默认动画持续时间
-     */
+    /** 默认动画持续时间 */
     public static final long DEFAULT_ANIMATION_DURATION = 400;
 
     /**
@@ -202,7 +202,7 @@ public final class AnimationUtils {
      * 获取一个缩小动画
      * @param durationMillis
      * @param animationListener
-     * @return
+     * @return 一个缩放动画
      */
     public static ScaleAnimation getLessenScaleAnimation(long durationMillis, AnimationListener animationListener) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f, ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF);
@@ -214,7 +214,7 @@ public final class AnimationUtils {
     /**
      * 获取一个缩小动画
      * @param durationMillis
-     * @return
+     * @return 一个缩放动画
      */
     public static ScaleAnimation getLessenScaleAnimation(long durationMillis) {
         return getLessenScaleAnimation(durationMillis, null);
@@ -223,7 +223,7 @@ public final class AnimationUtils {
     /**
      * 获取一个缩小动画
      * @param animationListener
-     * @return
+     * @return 一个缩放动画
      */
     public static ScaleAnimation getLessenScaleAnimation(AnimationListener animationListener) {
         return getLessenScaleAnimation(DEFAULT_ANIMATION_DURATION, animationListener);
@@ -233,7 +233,7 @@ public final class AnimationUtils {
      * 获取一个放大动画
      * @param durationMillis
      * @param animationListener
-     * @return
+     * @return 一个缩放动画
      */
     public static ScaleAnimation getAmplificationAnimation(long durationMillis, AnimationListener animationListener) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF);
@@ -245,7 +245,7 @@ public final class AnimationUtils {
     /**
      * 获取一个放大动画
      * @param durationMillis
-     * @return
+     * @return 一个缩放动画
      */
     public static ScaleAnimation getAmplificationAnimation(long durationMillis) {
         return getAmplificationAnimation(durationMillis, null);
@@ -254,10 +254,81 @@ public final class AnimationUtils {
     /**
      * 获取一个放大动画
      * @param animationListener
-     * @return
+     * @return 一个缩放动画
      */
     public static ScaleAnimation getAmplificationAnimation(AnimationListener animationListener) {
         return getAmplificationAnimation(DEFAULT_ANIMATION_DURATION, animationListener);
+    }
+
+    // ============
+    // 视图移动动画
+    // ============
+
+    /**
+     * 视图移动
+     * @param fromXDelta X轴开始坐标
+     * @param toXDelta X轴结束坐标
+     * @param fromYDelta Y轴开始坐标
+     * @param toYDelta Y轴结束坐标
+     * @param cycles 重复
+     * @param durationMillis 持续时间
+     * @return 一个平移动画
+     */
+    public static TranslateAnimation translate(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, float cycles, long durationMillis) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
+        translateAnimation.setDuration(durationMillis);
+        if (cycles > 0.0) {
+            translateAnimation.setInterpolator(new CycleInterpolator(cycles));
+        }
+        return translateAnimation;
+    }
+
+    /**
+     * 视图摇晃
+     * @param fromXDelta X轴开始坐标
+     * @param toXDelta X轴结束坐标
+     * @param cycles 重复次数
+     * @param durationMillis 持续时间
+     * @return 一个平移动画
+     */
+    public static TranslateAnimation shake(float fromXDelta, float toXDelta, float cycles, long durationMillis) {
+        return translate(fromXDelta, toXDelta, 0.0f, 0.0f, cycles, durationMillis);
+    }
+
+    /**
+     * 视图摇晃，默认摇晃幅度为10
+     * @param cycles 重复次数
+     * @param durationMillis 持续时间
+     * @return 一个平移动画
+     */
+    public static TranslateAnimation shake(float cycles, long durationMillis) {
+        return translate(0.0f, 10.0f, 0.0f, 0.0f, cycles, durationMillis);
+    }
+
+    /**
+     * 视图摇晃，默认摇晃幅度为10，持续700毫秒
+     * @param cycles 重复次数
+     * @return 一个平移动画
+     */
+    public static TranslateAnimation shake(float cycles) {
+        return translate(0.0f, 10.0f, 0.0f, 0.0f, cycles, 700);
+    }
+
+    /**
+     * 视图摇晃，默认摇晃幅度为10，重复7次
+     * @param durationMillis 持续时间
+     * @return 一个平移动画
+     */
+    public static TranslateAnimation shake(long durationMillis) {
+        return translate(0.0f, 10.0f, 0.0f, 0.0f, 7, durationMillis);
+    }
+
+    /**
+     * 视图摇晃，默认摇晃幅度为10，重复7次，持续700毫秒
+     * @return 一个平移动画
+     */
+    public static TranslateAnimation shake() {
+        return translate(0.0f, 10.0f, 0.0f, 0.0f, 7, 700);
     }
 
 }

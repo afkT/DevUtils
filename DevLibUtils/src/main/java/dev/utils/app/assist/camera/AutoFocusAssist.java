@@ -20,7 +20,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // 日志 TAG
     private final String TAG = AutoFocusAssist.class.getSimpleName();
     // 设置对焦模式
-    private static final Collection<String> FOCUS_MODES_CALLING_AF;
+    public static final Collection<String> FOCUS_MODES_CALLING_AF;
 
     static {
         // 对焦模式
@@ -71,7 +71,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
     /**
      * 是否允许自动对焦
-     * @return
+     * @return true: 自动对焦, false: 非自动对焦
      */
     public boolean isAutoFocus() {
         return isAutoFocus;
@@ -92,7 +92,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     }
 
     /**
-     * Camera.AutoFocusCallback 重写方法
+     * 对焦回调 {@link Camera.AutoFocusCallback} 重写方法
      * @param success 是否对焦成功
      * @param theCamera 对焦的摄像头
      */

@@ -61,7 +61,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 检查是否允许播放声音
-     * @return
+     * @return true: 允许, false: 不允许
      */
     private boolean shouldBeep() {
         boolean shouldPlayBeep = true;
@@ -98,7 +98,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 判断是否允许播放声音
-     * @return
+     * @return true: 允许, false: 不允许
      */
     public boolean isPlayBeep() {
         return shouldBeep();
@@ -106,7 +106,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 获取是否允许震动
-     * @return
+     * @return true: 允许, false: 不允许
      */
     public boolean isVibrate() {
         return vibrate;
@@ -115,6 +115,7 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 设置是否允许震动
      * @param vibrate
+     * @return {@link BeepVibrateAssist}
      */
     public BeepVibrateAssist setVibrate(boolean vibrate) {
         setVibrate(vibrate, 200l);
@@ -125,6 +126,7 @@ public final class BeepVibrateAssist implements Closeable {
      * 设置是否允许震动
      * @param vibrate
      * @param vibrateDuration 震动时间
+     * @return {@link BeepVibrateAssist}
      */
     public BeepVibrateAssist setVibrate(boolean vibrate, long vibrateDuration) {
         this.vibrate = vibrate;
@@ -134,6 +136,7 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 设置播放资源对象
      * @param mediaPlayer
+     * @return {@link BeepVibrateAssist}
      */
     public BeepVibrateAssist setMediaPlayer(MediaPlayer mediaPlayer) {
         this.mediaPlayer = mediaPlayer;
@@ -181,7 +184,7 @@ public final class BeepVibrateAssist implements Closeable {
      * 创建 MediaPlayer 对象
      * @param context
      * @param rawId 响声资源id
-     * @return
+     * @return {@link MediaPlayer}
      */
     public static final MediaPlayer buildMediaPlayer(Context context, @RawRes int rawId) {
         return buildMediaPlayer(context, rawId, 0.1f);
@@ -192,7 +195,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param context
      * @param rawId 响声资源id
      * @param beepVolume 音量
-     * @return
+     * @return {@link MediaPlayer}
      */
     public static final MediaPlayer buildMediaPlayer(Context context, @RawRes int rawId, float beepVolume) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
@@ -236,7 +239,7 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 创建 MediaPlayer 对象
      * @param path 响声资源路径(只支持本地资源)
-     * @return
+     * @return {@link MediaPlayer}
      */
     public static final MediaPlayer buildMediaPlayer(String path) {
         return buildMediaPlayer(path, 0.1f);
@@ -246,7 +249,7 @@ public final class BeepVibrateAssist implements Closeable {
      * 创建 MediaPlayer 对象
      * @param path 响声资源路径(只支持本地资源)
      * @param beepVolume 音量
-     * @return
+     * @return {@link MediaPlayer}
      */
     public static final MediaPlayer buildMediaPlayer(String path, float beepVolume) {
         final MediaPlayer mediaPlayer = new MediaPlayer();

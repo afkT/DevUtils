@@ -52,7 +52,7 @@ public class AsyncExecutor {
     /**
      * 将任务投入线程池执行
      * @param worker
-     * @return
+     * @return {@link FutureTask<T> }
      */
     public <T> FutureTask<T> execute(final Worker<T> worker) {
         Callable<T> call = new Callable<T>() {
@@ -88,7 +88,7 @@ public class AsyncExecutor {
      * 将子线程结果传递到UI线程
      * @param worker
      * @param result
-     * @return
+     * @return <T>
      */
     private <T> T postResult(final Worker<T> worker, final T result) {
         handler.post(new Runnable() {
@@ -103,7 +103,6 @@ public class AsyncExecutor {
     /**
      * 将子线程结果传递到UI线程
      * @param worker
-     * @return
      */
     private void postCancel(final Worker worker) {
         handler.post(new Runnable() {
@@ -114,6 +113,12 @@ public class AsyncExecutor {
         });
     }
 
+    /**
+     * 执行任务
+     * @param call
+     * @param <T>
+     * @return {@link FutureTask<T>}
+     */
     public <T> FutureTask<T> execute(Callable<T> call) {
         FutureTask<T> task = new FutureTask<T>(call);
         threadPool.execute(task);

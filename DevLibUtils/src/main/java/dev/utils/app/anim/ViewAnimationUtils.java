@@ -4,11 +4,10 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 
 /**
- * detail: 视图动画工具箱，提供简单的控制视图的动画的工具方法
+ * detail: 视图动画工具箱(AnimationUtils 基础上封装)，提供简单的控制视图的动画的工具方法
  * Created by Ttt
  */
 public final class ViewAnimationUtils {
@@ -372,11 +371,7 @@ public final class ViewAnimationUtils {
      * @param isBanClick 在执行动画的过程中是否禁止点击
      */
     public static void translate(final View view, float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, float cycles, long durationMillis, final boolean isBanClick) {
-        TranslateAnimation translateAnimation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
-        translateAnimation.setDuration(durationMillis);
-        if (cycles > 0.0) {
-            translateAnimation.setInterpolator(new CycleInterpolator(cycles));
-        }
+        TranslateAnimation translateAnimation = AnimationUtils.translate(fromXDelta, toXDelta, fromYDelta, toYDelta, cycles, durationMillis);
         translateAnimation.setAnimationListener(new AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
