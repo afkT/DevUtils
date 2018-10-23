@@ -1,9 +1,9 @@
 package dev.utils.app;
 
-import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.format.Formatter;
 
 import java.io.BufferedReader;
@@ -87,7 +87,7 @@ public final class MemoryUtils {
      * 获取内存信息
      * @return
      */
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo getMemoryInfo() {
         ActivityManager am = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
@@ -100,7 +100,7 @@ public final class MemoryUtils {
      * @param context
      * @return
      */
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo printMemoryInfo(Context context) {
         ActivityManager.MemoryInfo mi = getMemoryInfo();
         StringBuilder sBuilder = new StringBuilder();
@@ -119,7 +119,7 @@ public final class MemoryUtils {
      * Get available memory info.
      * @return
      */
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static String getAvailMemory() {// 获取android 当前可用内存大小
         ActivityManager am = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();

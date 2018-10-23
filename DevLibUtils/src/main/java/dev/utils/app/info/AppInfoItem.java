@@ -52,31 +52,31 @@ public final class AppInfoItem {
         PackageInfo pInfo = pManager.getPackageInfo(packName, PackageManager.GET_SIGNATURES); // 64
         // 初始化实体类
         AppInfoItem appInfoItem = new AppInfoItem();
-        // 获取app 信息
+        // 获取 App 信息
         appInfoItem.appInfoBean = new AppInfoBean(pInfo, pManager);
         // == 获取 ==
         // 格式化日期
         SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         // ===========
-        // app 签名MD5
+        // App 签名MD5
         String md5 = SignaturesUtils.signatureMD5(pInfo.signatures);
-        // app SHA1
+        // App SHA1
         String sha1 = SignaturesUtils.signatureSHA1(pInfo.signatures);
-        // app SHA256
+        // App SHA256
         String sha256 = SignaturesUtils.signatureSHA256(pInfo.signatures);
-        // app 首次安装时间
+        // App 首次安装时间
         String firstInstallTime = dFormat.format(pInfo.firstInstallTime);
         // 获取最后一次更新时间
         String lastUpdateTime = dFormat.format(pInfo.lastUpdateTime);
-        // app 最低支持版本
+        // App 最低支持版本
         int minSdkVersion = -1;
         // 属于7.0以上才有的方法
         if (AppCommonUtils.isN()){
             minSdkVersion = pInfo.applicationInfo.minSdkVersion;
         }
-        // app 兼容sdk版本
+        // App 兼容sdk版本
         int targetSdkVersion = pInfo.applicationInfo.targetSdkVersion;
-        // 获取 app 安装包大小
+        // 获取 App 安装包大小
         String apkLength = Formatter.formatFileSize(DevUtils.getContext(), FileUtils.getFileLength(appInfoItem.appInfoBean.getSourceDir()));
         // 获取证书对象
         X509Certificate cert = SignaturesUtils.getX509Certificate(pInfo.signatures);
@@ -120,27 +120,27 @@ public final class AppInfoItem {
         // ================
         // === 保存集合 ===
         // ================
-        // app 包名
+        // App 包名
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_packname, appInfoItem.appInfoBean.getAppPackName()));
-        // app 签名MD5
+        // App 签名MD5
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_md5, md5));
-        // app 版本号 - 主要用于app内部版本判断 int 类型
+        // App 版本号 - 主要用于app内部版本判断 int 类型
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_code, appInfoItem.appInfoBean.getVersionCode() + ""));
-        // app 版本名 - 主要用于对用户显示版本信息
+        // App 版本名 - 主要用于对用户显示版本信息
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_name, appInfoItem.appInfoBean.getVersionName()));
-        // app SHA1
+        // App SHA1
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha1, sha1));
-        // app SHA256.
+        // App SHA256.
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha256, sha256));
-        // app 首次安装时间
+        // App 首次安装时间
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_first_install_time, firstInstallTime));
         // 获取最后一次更新时间
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_last_update_time, lastUpdateTime));
-        // app 最低支持版本
+        // App 最低支持版本
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(minSdkVersion) + "+ )"));
-        // app 兼容sdk版本
+        // App 兼容sdk版本
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
-        // 获取 apk 大小
+        // 获取 Apk 大小
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_apk_length, apkLength));
         // 获取有效期
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_effective, effective));
@@ -173,7 +173,7 @@ public final class AppInfoItem {
 
     /**
      * 获取 List<KeyValueBean>
-     * @return app 信息键对值集合
+     * @return App 信息键对值集合
      */
     public List<KeyValueBean> getListKeyValues() {
         return listKeyValues;

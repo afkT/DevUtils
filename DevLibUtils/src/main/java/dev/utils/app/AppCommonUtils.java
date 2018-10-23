@@ -134,7 +134,7 @@ public final class AppCommonUtils {
      * @return 是否在7.0版本及以上
      */
     public static boolean isN(){
-        return  Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N;
+        return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N;
     }
 
     /**
@@ -142,7 +142,7 @@ public final class AppCommonUtils {
      * @return 是否在7.1.1版本及以上
      */
     public static boolean isN_MR1(){
-        return  Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N_MR1;
+        return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N_MR1;
     }
 
     /**
@@ -150,11 +150,11 @@ public final class AppCommonUtils {
      * @return 是否在8.0版本及以上
      */
     public static boolean isO(){
-        return  Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O;
+        return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O;
     }
 
     /**
-     * 转换SDK版本
+     * 转换SDK版本 (convertSDKVersion(14) => Android 4.0.0-2)
      * @param sdkVersion
      * @return
      */

@@ -1,6 +1,5 @@
 package dev.utils.app.image;
 
-import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.renderscript.Allocation;
@@ -9,6 +8,7 @@ import android.renderscript.RSRuntimeException;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.IntRange;
+import android.support.annotation.RequiresApi;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -33,7 +33,7 @@ public final class RSBlurUtils {
      * @return
      * @throws RSRuntimeException
      */
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static Bitmap blur(Bitmap bitmap, @IntRange(from = 0, to = 25) int radius) throws RSRuntimeException {
         try {
             RenderScript rs = RenderScript.create(DevUtils.getContext());

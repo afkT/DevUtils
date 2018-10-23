@@ -244,7 +244,7 @@ public final class AnalysisRecordUtils {
 
     // === 设备信息统计 ====
 
-    // app 信息
+    // App 信息
     private static String APP_INFO_STR = null;
     // 设备信息
     private static String DEVICE_INFO_STR = null;
@@ -325,7 +325,7 @@ public final class AnalysisRecordUtils {
     }
 
     /**
-     * 获取app 信息
+     * 获取 App 信息
      * @return
      */
     private static String getAppInfo() {

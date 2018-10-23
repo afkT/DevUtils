@@ -71,7 +71,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 跳转到桌面
+     * 获取 launcher activity
      * @return
      */
     public static String getLauncherActivity() {
@@ -79,7 +79,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 跳转到桌面
+     * 获取 launcher activity
      * @param pkg
      * @return
      */
@@ -98,7 +98,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 返回Activity 对应的图标
+     * 返回 Activity 对应的图标
      * @param clz
      * @return
      */
@@ -107,7 +107,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 返回Activity 对应的图标
+     * 返回 Activity 对应的图标
      * @param activityName
      * @return
      */
@@ -121,7 +121,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 返回Activity 对应的Logo
+     * 返回 Activity 对应的Logo
      * @param clz
      * @return
      */
@@ -130,7 +130,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 返回Activity 对应的Logo
+     * 返回 Activity 对应的Logo
      * @param activityName
      * @return
      */

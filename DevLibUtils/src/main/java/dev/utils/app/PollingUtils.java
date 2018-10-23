@@ -1,12 +1,12 @@
 package dev.utils.app;
 
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.SystemClock;
+import android.support.annotation.RequiresApi;
 
 /**
  * detail: 轮询工具类
@@ -21,7 +21,7 @@ public final class PollingUtils {
     /**
      * 开启轮询
      */
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startPolling(Context context, int mills, PendingIntent pendingIntent) {
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), mills, pendingIntent);
@@ -30,7 +30,7 @@ public final class PollingUtils {
     /**
      * 停止轮询
      */
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopPolling(Context context, PendingIntent pendingIntent) {
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         manager.cancel(pendingIntent);
@@ -39,7 +39,7 @@ public final class PollingUtils {
     /**
      * 开启轮询服务
      */
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startPollingService(Context context, int mills, Class<?> cls, String action) {
         Intent intent = new Intent(context, cls);
         intent.setAction(action);
@@ -48,9 +48,9 @@ public final class PollingUtils {
     }
 
     /**
-     * 停止启轮询服务
+     * 停止轮询服务
      */
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopPollingService(Context context, Class<?> cls, String action) {
         Intent intent = new Intent(context, cls);
         intent.setAction(action);

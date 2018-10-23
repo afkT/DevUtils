@@ -287,7 +287,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app 包名
+	 * 获取 App 包名
 	 * @return
 	 */
 	public static String getAppPackageName() {
@@ -295,7 +295,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app 名
+	 * 获取 App 名
 	 * @return
 	 */
 	public static String getAppName() {
@@ -303,7 +303,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app 名
+	 * 获取 App 名
 	 * @param packageName
 	 * @return
 	 */
@@ -370,7 +370,7 @@ public final class AppUtils {
 	// =
 
  	/**
- 	 * 对内设置指定语言 (app 多语言,单独改变app语言)
+ 	 * 对内设置指定语言 ( App 多语言,单独改变app语言)
  	 * @param locale
  	 */
  	public static void setLanguage(Locale locale) {
@@ -602,7 +602,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 判断是否app 是否debug模式
+	 * 判断是否 App 是否debug模式
 	 * @return true : yes, false : no
 	 */
 	public static boolean isAppDebug() {
@@ -610,7 +610,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 判断是否app 是否debug模式
+	 * 判断是否 App 是否debug模式
 	 * @param packageName
 	 * @return true : yes, false : no
 	 */
@@ -626,7 +626,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 判断app 是否系统app
+	 * 判断 App 是否系统app
 	 * @return true : yes, false : no
 	 */
 	public static boolean isAppSystem() {
@@ -634,7 +634,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 判断app 是否系统app
+	 * 判断 App 是否系统app
 	 * @param packageName
 	 * @return true : yes, false : no
 	 */
@@ -650,7 +650,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 判断app 是否在前台
+	 * 判断 App 是否在前台
 	 * @return true : yes, false : no
 	 */
 	public static boolean isAppForeground() {
@@ -670,7 +670,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 判断app 是否在前台
+	 * 判断 App 是否在前台
 	 * <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" /> => 属于系统权限
 	 * @param packageName
 	 * @return
@@ -711,13 +711,13 @@ public final class AppUtils {
 		return false;
 	}
 
-	/** 跳转到 专门的APP 设置详情页面 */
+	/** 跳转到 专门的 App 设置详情页面 */
 	public static boolean launchAppDetailsSettings() {
 		return launchAppDetailsSettings(DevUtils.getContext().getPackageName());
 	}
 
 	/**
-	 * 跳转到 专门的APP 设置详情页面
+	 * 跳转到 专门的 App 设置详情页面
 	 * @param packageName
 	 */
 	public static boolean launchAppDetailsSettings(final String packageName) {
@@ -732,7 +732,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 跳转到 专门的APP 应用商城详情页面
+	 * 跳转到 专门的 App 应用商城详情页面
 	 * @param marketPkg
 	 * @return
 	 */
@@ -741,7 +741,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 跳转到 专门的APP 应用商城详情页面
+	 * 跳转到 专门的 App 应用商城详情页面
 	 * @param marketPkg
 	 * @param marketPkg
 	 * @return
@@ -758,7 +758,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app 路径 /data/data/包名/.apk
+	 * 获取 App 路径 /data/data/包名/.apk
 	 * @return
 	 */
 	public static String getAppPath() {
@@ -766,7 +766,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app 路径 /data/data/包名/.apk
+	 * 获取 App 路径 /data/data/包名/.apk
 	 * @param packageName
 	 * @return
 	 */
@@ -785,7 +785,7 @@ public final class AppUtils {
 	// ==
 
 	/**
-	 * 获取app 签名
+	 * 获取 App 签名
 	 * @return
 	 */
 	public static Signature[] getAppSignature() {
@@ -793,7 +793,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app 签名
+	 * 获取 App 签名
 	 * @param packageName
 	 * @return
 	 */
@@ -811,7 +811,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取 app sha1值
+	 * 获取 App sha1值
 	 * @return
 	 */
 	public static String getAppSignatureSHA1() {
@@ -819,7 +819,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取 app sha1值
+	 * 获取 App sha1值
 	 * @param packageName
 	 * @return
 	 */

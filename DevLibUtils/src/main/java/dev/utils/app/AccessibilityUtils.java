@@ -2,7 +2,9 @@ package dev.utils.app;
 
 import android.accessibilityservice.AccessibilityService;
 import android.content.Intent;
+import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
@@ -84,7 +86,7 @@ public final class AccessibilityUtils {
     // == 快捷方法 ==
 
     /**
-     * 打印Event 日志
+     * 打印 AccessibilityEvent 信息日志
      * @param event
      */
     public static void printAccessibilityEvent(AccessibilityEvent event){
@@ -92,7 +94,7 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 打印Event 日志
+     * 打印 AccessibilityEvent 信息日志
      * @param event
      * @param tag
      */
@@ -155,6 +157,7 @@ public final class AccessibilityUtils {
      * @param text
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(AccessibilityService service, String text) {
         // 获取根节点
         AccessibilityNodeInfo accessibilityNodeInfo = service.getRootInActiveWindow();
@@ -171,6 +174,7 @@ public final class AccessibilityUtils {
      * @param id
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     private List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(AccessibilityService service, String id) {
         // 获取根节点
         AccessibilityNodeInfo accessibilityNodeInfo = service.getRootInActiveWindow();
@@ -188,6 +192,7 @@ public final class AccessibilityUtils {
      * @param claName
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(AccessibilityService service, String text, String claName) {
         List<AccessibilityNodeInfo> lists = new ArrayList<>();
         // 获取根节点

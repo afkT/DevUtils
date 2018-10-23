@@ -10,7 +10,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
 
 /**
- * detail: APP 信息实体类
+ * detail: App 信息实体类
  * Created by Ttt
  */
 public class AppInfoBean {
@@ -19,11 +19,11 @@ public class AppInfoBean {
 
     // 日志Tag
     private static final String TAG = AppInfoBean.class.getSimpleName();
-    // app 包名
+    // App 包名
     private String appPackName;
-    // app 名
+    // App 名
     private String appName;
-    // app 图标
+    // App 图标
     private transient Drawable appIcon;
     // App 类型
     private AppType appType;
@@ -31,11 +31,11 @@ public class AppInfoBean {
     private int versionCode;
     // 获取版本名
     private String versionName;
-    // app 首次安装时间
+    // App 首次安装时间
     private long firstInstallTime;
     // 获取最后一次更新时间
     private long lastUpdateTime;
-    // 获取 app 地址
+    // 获取 App 地址
     private String sourceDir;
     // APK 大小
     private long apkSize;
@@ -51,7 +51,7 @@ public class AppInfoBean {
             // https://blog.csdn.net/sljjyy/article/details/17370665
             PackageManager pManager = DevUtils.getApplication().getPackageManager();
             PackageInfo pInfo = pManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
-            // = 设置 apk 位置信息 =
+            // = 设置 Apk 位置信息 =
             ApplicationInfo appInfo = pInfo.applicationInfo;
                 /* 必须加这两句，不然下面icon获取是default icon而不是应用包的icon */
             appInfo.sourceDir = apkUri;
@@ -104,11 +104,11 @@ public class AppInfoBean {
      * @param pManager
      */
     public AppInfoBean(PackageInfo pInfo, PackageManager pManager){
-        // app 包名
+        // App 包名
         appPackName = pInfo.applicationInfo.packageName;
-        // app 名
+        // App 名
         appName = pManager.getApplicationLabel(pInfo.applicationInfo).toString();
-        // app 图标
+        // App 图标
         appIcon = pManager.getApplicationIcon(pInfo.applicationInfo);
         // 获取App 类型
         appType = AppInfoBean.getAppType(pInfo);
@@ -116,11 +116,11 @@ public class AppInfoBean {
         versionCode = pInfo.versionCode;
         // 获取版本名
         versionName = pInfo.versionName;
-        // app 首次安装时间
+        // App 首次安装时间
         firstInstallTime = pInfo.firstInstallTime;
         // 获取最后一次更新时间
         lastUpdateTime = pInfo.lastUpdateTime;
-        // 获取 app 地址
+        // 获取 App 地址
         sourceDir = pInfo.applicationInfo.sourceDir;
         // 获取 APK 大小
         apkSize = FileUtils.getFileLength(sourceDir);
@@ -239,7 +239,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 获取 apk 地址
+     * 获取 Apk 地址
      * @return
      */
     public String getSourceDir() {
@@ -247,7 +247,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 获取 apk 大小
+     * 获取 Apk 大小
      * @return
      */
     public long getApkSize() {
@@ -255,7 +255,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 获取 apk 注册的权限
+     * 获取 Apk 注册的权限
      * @return
      */
     public String[] getApkPermissionsArys() {

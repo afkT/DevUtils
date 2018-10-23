@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -10,6 +9,7 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.View;
@@ -549,7 +549,7 @@ public final class BarUtils {
      * 设置沉浸模式
      * @param activity The activity.
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     public static void setNavBarImmersive(@NonNull final Activity activity) {
         setNavBarImmersive(activity.getWindow());
     }
@@ -558,7 +558,7 @@ public final class BarUtils {
      * 设置顶部沉浸模式
      * @param window The window.
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     public static void setNavBarImmersive(@NonNull final Window window) {
         View decorView = window.getDecorView();
         window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -595,6 +595,7 @@ public final class BarUtils {
      * @param activity
      * @param isVisible
      */
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     public static void setNavBar(Activity activity, boolean isVisible){
         setNavBar(activity.getWindow(), isVisible);
     }
@@ -603,7 +604,7 @@ public final class BarUtils {
      * 设置是否显示状态栏图标等
      * @param window The window.
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     public static void setNavBar(@NonNull final Window window, boolean isVisible) {
         if (isVisible){
             // 显示状态栏

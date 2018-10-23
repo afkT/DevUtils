@@ -1,11 +1,11 @@
 <resources>
     <string name="dev_str_to">to</string>
 
-    <string name="dev_str_packname">Pack name</string>
-    <string name="dev_str_md5">APP md5 signatures</string>
+    <string name="dev_str_packname">App Pack name</string>
+    <string name="dev_str_md5">App md5 signatures</string>
     <string name="dev_str_version_code">App version code</string>
     <string name="dev_str_version_name">App version name</string>
-    <string name="dev_str_apk_uri">apk file path</string>
+    <string name="dev_str_apk_uri">Apk file path</string>
     <string name="dev_str_sha1">SHA1</string>
     <string name="dev_str_sha256">SHA256</string>
     <string name="dev_str_first_install_time">First install time</string>

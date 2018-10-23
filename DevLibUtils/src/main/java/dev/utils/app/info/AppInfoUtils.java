@@ -51,7 +51,7 @@ public final class AppInfoUtils {
     // ==================
 
     /**
-     * 获取 apk 详细信息
+     * 获取 Apk 详细信息
      * @param apkUri
      * @return
      */
@@ -120,7 +120,7 @@ public final class AppInfoUtils {
                 // 遍历 App 列表
                 for (int i = 0, len = packlist.size(); i < len; i++) {
                     PackageInfo pInfo = packlist.get(i);
-                    // 获取app 类型
+                    // 获取 App 类型
                     AppInfoBean.AppType cAppType = AppInfoBean.getAppType(pInfo);
                     // 判断类型
                     if (appType == cAppType){

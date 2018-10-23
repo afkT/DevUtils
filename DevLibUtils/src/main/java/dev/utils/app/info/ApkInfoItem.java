@@ -67,7 +67,7 @@ public final class ApkInfoItem {
         PackageManager pManager = context.getPackageManager();
         // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
         PackageInfo pInfo = pManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
-        // = 设置 apk 位置信息 =
+        // = 设置 Apk 位置信息 =
         ApplicationInfo appInfo = pInfo.applicationInfo;
         /* 必须加这两句，不然下面icon获取是default icon而不是应用包的icon */
         appInfo.sourceDir = apkUri;
@@ -76,7 +76,7 @@ public final class ApkInfoItem {
         ApkInfoItem appInfoItem = new ApkInfoItem();
         // 保存apk文件地址
         appInfoItem.apkUri = apkUri;
-        // 获取app 信息
+        // 获取 App 信息
         appInfoItem.appInfoBean = new AppInfoBean(pInfo, pManager);
         // == 获取 ==
         // 格式化日期
@@ -84,21 +84,21 @@ public final class ApkInfoItem {
         // 获取签名信息
         Signature[] signatures = SignaturesUtils.getSignaturesFromApk(apkFile);
         // ===========
-        // app 签名MD5
+        // App 签名MD5
         String md5 = SignaturesUtils.signatureMD5(signatures);
-        // app SHA1
+        // App SHA1
         String sha1 = SignaturesUtils.signatureSHA1(signatures);
-        // app SHA256
+        // App SHA256
         String sha256 = SignaturesUtils.signatureSHA256(signatures);
-        // app 最低支持版本
+        // App 最低支持版本
         int minSdkVersion = -1;
         // 属于7.0以上才有的方法
         if (AppCommonUtils.isN()){
             minSdkVersion = pInfo.applicationInfo.minSdkVersion;
         }
-        // app 兼容sdk版本
+        // App 兼容sdk版本
         int targetSdkVersion = pInfo.applicationInfo.targetSdkVersion;
-        // 获取 app 安装包大小
+        // 获取 App 安装包大小
         String apkLength = Formatter.formatFileSize(DevUtils.getContext(), FileUtils.getFileLength(apkFile));
 
         // = 临时数据存储 =
@@ -172,31 +172,31 @@ public final class ApkInfoItem {
         // ================
         // === 保存集合 ===
         // ================
-        // app 包名
+        // App 包名
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_packname, appInfoItem.appInfoBean.getAppPackName()));
         // 没报错才存储 MD5 信息
         if (!isError) {
-            // app 签名MD5
+            // App 签名MD5
             appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_md5, md5));
         }
-        // app 版本号 - 主要用于app内部版本判断 int 类型
+        // App 版本号 - 主要用于app内部版本判断 int 类型
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_code, appInfoItem.appInfoBean.getVersionCode() + ""));
-        // app 版本名 - 主要用于对用户显示版本信息
+        // App 版本名 - 主要用于对用户显示版本信息
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_name, appInfoItem.appInfoBean.getVersionName()));
         // 安装包地址
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_apk_uri, apkUri));
         // 没报错才存储 SHA 信息
         if (!isError) {
-            // app SHA1
+            // App SHA1
             appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha1, sha1));
-            // app SHA256.
+            // App SHA256.
             appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha256, sha256));
         }
-        // app 最低支持版本
+        // App 最低支持版本
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(minSdkVersion) + "+ )"));
-        // app 兼容sdk版本
+        // App 兼容sdk版本
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
-        // 获取 apk 大小
+        // 获取 Apk 大小
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_apk_length, apkLength));
         // 没报错才存储 其他签名信息
         if (!isError) {
@@ -207,7 +207,7 @@ public final class ApkInfoItem {
     }
 
     /**
-     * 获取 apk uri
+     * 获取 Apk uri
      * @return apkUri
      */
     public String getApkUri() {
@@ -224,7 +224,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取 List<KeyValueBean>
-     * @return app 信息键对值集合
+     * @return App 信息键对值集合
      */
     public List<KeyValueBean> getListKeyValues() {
         return listKeyValues;
