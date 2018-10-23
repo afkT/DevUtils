@@ -85,7 +85,7 @@ public final class NetWorkUtils {
 				Method mMethod = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
 				// 设置移动网络
 				mMethod.invoke(cManager, isOpen);
-			} else { // 需要 android.Manifest.permission.MODIFY_PHONE_STATE 权限, 普通APP无法获取
+			} else { // 需要 android.Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 App 无法获取
 				TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
 				// 通过反射设置移动网络
 				Method mMethod = tm.getClass().getDeclaredMethod("setDataEnabled", boolean.class);

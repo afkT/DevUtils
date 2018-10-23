@@ -36,7 +36,7 @@ final class Utils {
 
 	// ===================  配置信息  =======================
 
-	/** App版本(如1.0.01) 显示给用户看的 */
+	/** App 版本(如1.0.01) 显示给用户看的 */
 	static String APP_VERSION_NAME = "";
 
 	/** android:versionCode——整数值,代表应用程序代码的相对版本,也就是版本更新过多少次。(不显示给用户看) */
@@ -54,10 +54,10 @@ final class Utils {
 	/** 换行字符串 - 两行 */
 	static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
-	// ================== APP、设备信息处理  ===================
+	// ================== App、设备信息处理  ===================
 
 	/**
-	 * 获取app版本信息
+	 * 获取 App 版本信息
 	 * @param context
 	 */
 	static String[] getAppVersion(Context context) {
@@ -267,15 +267,15 @@ final class Utils {
 	// ==================  对外公开方法  ===================
 
 	/**
-	 * App初始化调用方法
+	 * App 初始化调用方法
 	 * @param context
 	 */
 	public static void appInit(Context context) {
 		// 如果版本信息为null，才进行处理
 		if (TextUtils.isEmpty(APP_VERSION_CODE) || TextUtils.isEmpty(APP_VERSION_NAME)) {
-			// 获取app版本信息
+			// 获取 App 版本信息
 			String[] aVersion = getAppVersion(context);
-			// 保存app版本信息
+			// 保存 App 版本信息
 			APP_VERSION_NAME = aVersion[0];
 			APP_VERSION_CODE = aVersion[1];
 		}
@@ -331,7 +331,7 @@ final class Utils {
 			sBuilder.append(NEW_LINE_STR_X2);
 		}
 		// ============
-		// 保存App信息
+		// 保存 App 信息
 		sBuilder.append("date: " + getDateNow());
 		sBuilder.append(NEW_LINE_STR);
 		sBuilder.append("versionName: " + APP_VERSION_NAME);
@@ -406,7 +406,7 @@ final class Utils {
 			sBuilder.append(NEW_LINE_STR_X2);
 		}
 		// ============
-		// 保存App信息
+		// 保存 App 信息
 		sBuilder.append("date: " + getDateNow());
 		sBuilder.append(NEW_LINE_STR);
 		sBuilder.append("versionName: " + APP_VERSION_NAME);

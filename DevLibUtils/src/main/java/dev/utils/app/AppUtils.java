@@ -262,7 +262,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app的图标
+	 * 获取 App 的图标
 	 * @return
 	 */
 	public static Drawable getAppIcon() {
@@ -270,7 +270,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app的图标
+	 * 获取 App 的图标
 	 * @param packageName
 	 * @return
 	 */
@@ -320,7 +320,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app版本名 - 对外显示
+	 * 获取 App 版本名 - 对外显示
 	 * @return
 	 */
 	public static String getAppVersionName() {
@@ -328,7 +328,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app版本名 - 对外显示
+	 * 获取 App 版本名 - 对外显示
 	 * @param packageName The name of the package.
 	 * @return
 	 */
@@ -344,7 +344,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app版本号 - 内部判断
+	 * 获取 App 版本号 - 内部判断
 	 * @return
 	 */
 	public static int getAppVersionCode() {
@@ -352,7 +352,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 获取app版本号 - 内部判断
+	 * 获取 App 版本号 - 内部判断
 	 * @param packageName The name of the package.
 	 * @return
 	 */
@@ -572,7 +572,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 判断是否安装指定包名的APP
+	 * 判断是否安装指定包名的 App
 	 * @param context
 	 * @param packageName 包路径
 	 * @return

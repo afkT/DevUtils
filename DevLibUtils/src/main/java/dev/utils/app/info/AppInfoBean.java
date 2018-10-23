@@ -110,7 +110,7 @@ public class AppInfoBean {
         appName = pManager.getApplicationLabel(pInfo.applicationInfo).toString();
         // App 图标
         appIcon = pManager.getApplicationIcon(pInfo.applicationInfo);
-        // 获取App 类型
+        // 获取 App 类型
         appType = AppInfoBean.getAppType(pInfo);
         // 获取版本号
         versionCode = pInfo.versionCode;
@@ -133,7 +133,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 获取App 包名
+     * 获取 App 包名
      * @return
      */
     public String getAppPackName() {
@@ -141,7 +141,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 获取App 名
+     * 获取 App 名
      * @return
      */
     public String getAppName() {
@@ -149,7 +149,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 获取App 图标
+     * 获取 App 图标
      * @return
      */
     public Drawable getAppIcon() {
@@ -177,7 +177,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 获取App 类型
+     * 获取 App 类型
      * @param pInfo
      * @return
      */

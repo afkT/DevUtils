@@ -216,7 +216,7 @@ public final class ManifestUtils {
     // ==
 
     /**
-     * 获取app版本信息
+     * 获取 App 版本信息
      * @return 0 = versionName , 1 = versionCode
      */
     public static String[] getAppVersion() {
@@ -236,7 +236,7 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取app版本号
+     * 获取 App 版本号
      * @return 当前版本Code
      */
     public static int getAppVersionCode() {
@@ -253,7 +253,7 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取app版本信息
+     * 获取 App 版本信息
      * @return 当前版本信息
      */
     public static String getAppVersionName() {
@@ -272,7 +272,7 @@ public final class ManifestUtils {
     // =
 
     /**
-     * 获取app版本号 - 内部判断
+     * 获取 App 版本号 - 内部判断
      * @param packageName
      * @return
      */
@@ -290,7 +290,7 @@ public final class ManifestUtils {
 
 
     /**
-     * 获取app版本名 - 对外显示
+     * 获取 App 版本名 - 对外显示
      * @param packageName
      * @return
      */

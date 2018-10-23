@@ -18,7 +18,7 @@ import javax.security.auth.x500.X500Principal;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 签名工具类（获取app，签名信息）
+ * detail: 签名工具类（获取 App 签名信息）
  * Created by Ttt
  */
 public final class SignaturesUtils {
@@ -134,7 +134,7 @@ public final class SignaturesUtils {
     }
 
     /**
-     * 获取App 证书对象
+     * 获取 App 证书对象
      */
     public static X509Certificate getX509Certificate(Signature[] signatures){
         try {

@@ -24,7 +24,7 @@ public final class DevLoggerUtils {
 	 * @param context
 	 */
 	public static void appInit(Context context) {
-		// 保存APP版本信息
+		// 保存 App 版本信息
 		Utils.appInit(context);
 	}
 	
