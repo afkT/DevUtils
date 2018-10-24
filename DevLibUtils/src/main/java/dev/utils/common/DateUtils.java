@@ -517,7 +517,7 @@ public final class DateUtils {
 
 	/**
 	 * 传入时间，获取时间(00:00:00 格式) - 不处理大于一天
-	 * @param time 时间（秒为单位）
+	 * @param time 时间(秒为单位)
 	 * @return
 	 */
 	public static String secToTimeRetain(int time) {
@@ -526,7 +526,7 @@ public final class DateUtils {
 	
 	/**
 	 * 传入时间，获取时间(00:00:00 格式)
-	 * @param time 时间（秒为单位）
+	 * @param time 时间(秒为单位)
 	 * @param isHandlerMDay 是否处理大于一天的时间
 	 * @return
 	 */
@@ -575,7 +575,7 @@ public final class DateUtils {
 
 	/**
 	 * 传入时间,时间参数(小时、分钟、秒)
-	 * @param time 时间（秒为单位）
+	 * @param time 时间(秒为单位)
 	 * @return
 	 */
 	public static int[] convertTimeArys(int time) {

@@ -44,12 +44,12 @@ public final class DeviceUtils {
 //    android.os.Build.BOARD：获取设备基板名称
 //    android.os.Build.BOOTLOADER:获取设备引导程序版本号
 //    android.os.Build.BRAND：获取设备品牌
-//    android.os.Build.CPU_ABI：获取设备指令集名称（CPU的类型）
+//    android.os.Build.CPU_ABI：获取设备指令集名称(CPU的类型)
 //    android.os.Build.CPU_ABI2：获取第二个指令集名称
 //    android.os.Build.DEVICE：获取设备驱动名称
-//    android.os.Build.DISPLAY：获取设备显示的版本包（在系统设置中显示为版本号）和ID一样
+//    android.os.Build.DISPLAY：获取设备显示的版本包(在系统设置中显示为版本号)和ID一样
 //    android.os.Build.FINGERPRINT：设备的唯一标识。由设备的多个信息拼接合成。
-//    android.os.Build.HARDWARE：设备硬件名称,一般和基板名称一样（BOARD）
+//    android.os.Build.HARDWARE：设备硬件名称,一般和基板名称一样(BOARD)
 //    android.os.Build.HOST：设备主机地址
 //    android.os.Build.ID:设备版本号。
 //    android.os.Build.MODEL ：获取手机的型号 设备名称。

@@ -101,7 +101,7 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取 CPU 最大频率（单位KHZ）
+     * 获取 CPU 最大频率(单位KHZ)
      * @return
      */
     public static String getMaxCpuFreq() {
@@ -134,7 +134,7 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取 CPU 最小频率（单位KHZ）
+     * 获取 CPU 最小频率(单位KHZ)
      * @return
      */
     public static String getMinCpuFreq() {
@@ -167,7 +167,7 @@ public final class CPUUtils {
     }
 
     /**
-     * 实时获取 CPU 当前频率（单位KHZ）
+     * 实时获取 CPU 当前频率(单位KHZ)
      * @return
      */
     public static String getCurCpuFreq() {

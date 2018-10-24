@@ -18,7 +18,7 @@ class TestData {
         public String sImageUrl = null; // 分享图片路径(QQ空间需要)
         public String sTitleUrl = null; // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
         // ======= 不一定使用 =======
-        public String sUrl = null; // url仅在微信（包括好友和朋友圈）中使用
+        public String sUrl = null; // url仅在微信(包括好友和朋友圈)中使用
         public String sComment = null; // 分享的评论，仅在人人网和QQ空间使用
         public String sSite = null; // site是分享此内容的网站名称，仅在QQ空间使用
         public String sSiteUrl = null; // siteUrl是分享此内容的网站地址，仅在QQ空间使用

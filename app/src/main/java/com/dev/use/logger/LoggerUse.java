@@ -48,7 +48,7 @@ class LoggerUse {
         lConfig.isSortLog = false;
         // 日志级别
         lConfig.logLevel = LogLevel.DEBUG;
-        // 设置Tag（特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下）
+        // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
         lConfig.tag = "BaseLog";
         // 进行初始化配置 => 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
         DevLogger.init(lConfig);
@@ -257,7 +257,7 @@ class LoggerUse {
         lConfig.isSortLog = true;
         // 日志级别
         lConfig.logLevel = LogLevel.DEBUG;
-        // 设置Tag（特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下）
+        // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
         lConfig.tag = "SAD";
         // 打印不换行的日志信息
         DevLogger.other(lConfig).e("new Config - e");
@@ -277,7 +277,7 @@ class LoggerUse {
         tLConfig.isSortLog = true;
         // 日志级别
         tLConfig.logLevel = LogLevel.DEBUG;
-        // 设置Tag（特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下）
+        // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
         tLConfig.tag = "SAD";
         try {
             String s = null;

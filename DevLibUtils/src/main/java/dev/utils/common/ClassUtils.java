@@ -61,7 +61,7 @@ public final class ClassUtils {
     }
 
     /**
-     * 判断 Class 是否为原始类型（boolean、char、byte、short、int、long、float、double）
+     * 判断 Class 是否为原始类型(boolean、char、byte、short、int、long、float、double)
      * @param clazz
      * @return
      */

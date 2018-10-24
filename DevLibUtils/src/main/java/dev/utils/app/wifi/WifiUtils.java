@@ -226,7 +226,7 @@ public final class WifiUtils {
 	}
 
 	/**
-	 * 获取密码（经过处理）
+	 * 获取密码(经过处理)
 	 * @param pwd 需要处理的密码
 	 * @param isJudge 是否需要判断
 	 * @return
@@ -612,7 +612,7 @@ public final class WifiUtils {
 	}
 
 	/**
-	 * 创建Wifi配置信息（无其他操作，单独返回WifiConfig）
+	 * 创建Wifi配置信息(无其他操作，单独返回WifiConfig)
 	 * @param ssid
 	 * @param pwd
 	 * @param wType

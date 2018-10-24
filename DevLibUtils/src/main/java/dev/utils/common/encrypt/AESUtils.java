@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: AES对称加密（Advanced Encryption Standard，高级数据加密标准，AES算法可以有效抵制针对DES的攻击算法，对称加密算法）
+ * detail: AES对称加密(Advanced Encryption Standard，高级数据加密标准，AES算法可以有效抵制针对DES的攻击算法，对称加密算法)
  * Created by Ttt
  */
 public final class AESUtils {

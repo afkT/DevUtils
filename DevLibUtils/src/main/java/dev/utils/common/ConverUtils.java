@@ -17,7 +17,7 @@ public final class ConverUtils {
     private static final String TAG = ConverUtils.class.getSimpleName();
 
     // byte是字节数据类型、有符号型的、占1个字节、大小范围为-128——127
-    // char是字符数据类型、无符号型的、占2个字节（unicode码）、大小范围为0-65535
+    // char是字符数据类型、无符号型的、占2个字节(unicode码)、大小范围为0-65535
 
     // byte[] (-128) - 127
     // 当大于127时则开始缩进  127 = 127, 128 = -128 , 129 = -127

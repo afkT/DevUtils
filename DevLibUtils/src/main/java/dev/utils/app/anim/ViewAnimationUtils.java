@@ -20,7 +20,7 @@ public final class ViewAnimationUtils {
 	// ==================
 
     /**
-     * 将给定视图渐渐隐去（view.setVisibility(View.INVISIBLE)）
+     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))
      * @param view 被处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      * @param durationMillis 持续时间，毫秒
@@ -63,7 +63,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去（view.setVisibility(View.INVISIBLE)）
+     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      * @param animationListener 动画监听器
@@ -73,7 +73,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去（view.setVisibility(View.INVISIBLE)）
+     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -83,7 +83,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去（view.setVisibility(View.INVISIBLE)）
+     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      */
@@ -92,7 +92,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去（view.setVisibility(View.INVISIBLE)），
+     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -103,7 +103,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去（view.setVisibility(View.INVISIBLE)），
+     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      * @param animationListener 动画监听器
@@ -113,7 +113,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去（view.setVisibility(View.INVISIBLE)），
+     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -123,7 +123,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去（view.setVisibility(View.INVISIBLE)），
+     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      */
@@ -132,7 +132,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除（view.setVisibility(View.GONE)）
+     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -175,7 +175,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除（view.setVisibility(View.GONE)）
+     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      * @param animationListener 动画监听器
@@ -185,7 +185,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除（view.setVisibility(View.GONE)）
+     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -195,7 +195,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除（view.setVisibility(View.GONE)）
+     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      */
@@ -204,7 +204,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除（view.setVisibility(View.GONE)），
+     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -215,7 +215,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除（view.setVisibility(View.GONE)），
+     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      * @param animationListener 动画监听器
@@ -225,7 +225,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除（view.setVisibility(View.GONE)），
+     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -235,7 +235,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除（view.setVisibility(View.GONE)），
+     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      */
@@ -244,7 +244,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来（view.setVisibility(View.VISIBLE)）
+     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -287,7 +287,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来（view.setVisibility(View.VISIBLE)）
+     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      * @param animationListener 动画监听器
@@ -297,7 +297,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来（view.setVisibility(View.VISIBLE)）
+     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -307,7 +307,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来（view.setVisibility(View.VISIBLE)）
+     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))
      * @param view 被处理的视图
      * @param durationMillis 持续时间，毫秒
      */
@@ -316,7 +316,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来（view.setVisibility(View.VISIBLE)），
+     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      * @param animationListener 动画监听器
@@ -327,7 +327,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来（view.setVisibility(View.VISIBLE)），
+     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      * @param animationListener 动画监听器
@@ -337,7 +337,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来（view.setVisibility(View.VISIBLE)），
+     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -347,7 +347,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来（view.setVisibility(View.VISIBLE)），
+     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))，
      * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
      * @param view 被处理的视图
      */

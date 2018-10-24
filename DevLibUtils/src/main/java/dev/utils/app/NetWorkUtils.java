@@ -104,7 +104,7 @@ public final class NetWorkUtils {
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
 	public static boolean isConnect() {
-		// 获取手机所有连接管理对象（包括对wi-fi,net等连接的管理）
+		// 获取手机所有连接管理对象(包括对wi-fi,net等连接的管理)
 		try {
 			ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 			if (cManager != null) {
@@ -129,7 +129,7 @@ public final class NetWorkUtils {
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
 	public static int getConnectType() {
-		// 获取手机所有连接管理对象（包括对wi-fi,net等连接的管理）
+		// 获取手机所有连接管理对象(包括对wi-fi,net等连接的管理)
 		try {
 			// 获取网络连接状态
 			ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);

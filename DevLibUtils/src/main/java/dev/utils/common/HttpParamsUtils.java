@@ -195,7 +195,7 @@ public final class HttpParamsUtils {
     // objStr[key] => sex%3D%E7%94%B7%26name%3DTtt
 
     /**
-     * 进行转换对象处理（请求发送对象）
+     * 进行转换对象处理(请求发送对象)
      * @param mapParams
      * @param objStr
      * @param key
@@ -214,7 +214,7 @@ public final class HttpParamsUtils {
     }
 
     /**
-     * 进行转换对象处理（请求发送对象）
+     * 进行转换对象处理(请求发送对象)
      * @param mapParams
      * @param objStr
      * @param key

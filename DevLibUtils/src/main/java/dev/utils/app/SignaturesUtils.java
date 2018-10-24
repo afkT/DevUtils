@@ -18,7 +18,7 @@ import javax.security.auth.x500.X500Principal;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 签名工具类（获取 App 签名信息）
+ * detail: 签名工具类(获取 App 签名信息)
  * Created by Ttt
  */
 public final class SignaturesUtils {
@@ -112,7 +112,7 @@ public final class SignaturesUtils {
 
     /**
      * 判断签名是debug签名还是release签名
-     * @return true = 开发(debug.keystore)，false = 上线发布（非.android默认debug.keystore）
+     * @return true = 开发(debug.keystore)，false = 上线发布(非.android默认debug.keystore)
      */
     public static boolean isDebuggable(Signature[] signatures) {
         // 判断是否默认key(默认是)
@@ -176,11 +176,11 @@ public final class SignaturesUtils {
 
     // --
 
-    // Android的APK应用签名机制以及读取签名的方法
+    // Android的 Apk 应用签名机制以及读取签名的方法
     // http://www.jb51.net/article/79894.htm
 
     /**
-     * 从APK中读取签名
+     * 从 Apk 中读取签名
      * @param file
      * @return
      * @throws IOException
@@ -197,7 +197,7 @@ public final class SignaturesUtils {
     }
 
     /**
-     * 从APK中读取签名
+     * 从 Apk 中读取签名
      * @param file
      * @return
      * @throws IOException

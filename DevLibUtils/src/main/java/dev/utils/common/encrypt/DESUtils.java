@@ -11,7 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: DES对称加密（Data Encryption Standard，数据加密标准，对称加密算法）
+ * detail: DES对称加密(Data Encryption Standard，数据加密标准，对称加密算法)
  * Created by Ttt
  */
 public final class DESUtils {

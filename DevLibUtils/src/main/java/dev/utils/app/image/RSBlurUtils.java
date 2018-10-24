@@ -29,7 +29,7 @@ public final class RSBlurUtils {
     /**
      * RenderScript 实现图片模糊
      * @param bitmap 待模糊图片
-     * @param radius 模糊度（0-25）
+     * @param radius 模糊度(0-25)
      * @return
      * @throws RSRuntimeException
      */

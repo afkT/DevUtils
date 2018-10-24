@@ -43,7 +43,7 @@ public final class BitmapExtendUtils {
     private static final String TAG = BitmapExtendUtils.class.getSimpleName();
 
     /**
-     * 图片压缩处理（使用Options的方法）
+     * 图片压缩处理(使用Options的方法)
      * ================
      * 说明 使用方法：
      * 首先你要将Options的inJustDecodeBounds属性设置为true，BitmapFactory.decode一次图片 。
@@ -502,7 +502,7 @@ public final class BitmapExtendUtils {
     /**
      * 重新编码Bitmap
      * @param src 需要重新编码的Bitmap
-     * @param format 编码后的格式（目前只支持png和jpeg这两种格式）
+     * @param format 编码后的格式(目前只支持png和jpeg这两种格式)
      * @param quality 重新生成后的bitmap的质量
      * @return 返回重新生成后的bitmap
      */
@@ -514,13 +514,13 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 图片压缩方法：（使用compress的方法）
+     * 图片压缩方法：(使用compress的方法)
      * 说明 如果bitmap本身的大小小于maxSize，则不作处理
      * @param bitmap  要压缩的图片
      * @param maxSize 压缩后的大小，单位kb
      */
     public static void compress(Bitmap bitmap, double maxSize) {
-        // 将bitmap放至数组中，意在获得bitmap的大小（与实际读取的原文件要大）
+        // 将bitmap放至数组中，意在获得bitmap的大小(与实际读取的原文件要大)
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         // 格式、质量、输出流
         bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
@@ -532,7 +532,7 @@ public final class BitmapExtendUtils {
         // 判断bitmap占用空间是否大于允许最大空间 如果大于则压缩 小于则不压缩
         if (i > 1) {
             // 缩放图片 此处用到平方根 将宽带和高度压缩掉对应的平方根倍
-            // （保持宽高不变，缩放后也达到了最大占用空间的大小）
+            // (保持宽高不变，缩放后也达到了最大占用空间的大小)
             bitmap = scale(bitmap, bitmap.getWidth() / Math.sqrt(i),bitmap.getHeight() / Math.sqrt(i));
         }
     }

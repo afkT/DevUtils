@@ -88,7 +88,7 @@ public final class PhoneUtils {
 
     /**
      * 判断地区，是否属于国内
-     * @return 状态码 1 属于国内（中国），2 属于 国外，3 属于无SIM卡
+     * @return 状态码 1 属于国内(中国)，2 属于 国外，3 属于无SIM卡
      */
     public static int judgeArea() {
         // 默认属于无sim卡
@@ -140,7 +140,7 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return IMEI 码
      * ==========
-     * IMEI是International Mobile Equipment Identity （国际移动设备标识）的简称
+     * IMEI是International Mobile Equipment Identity (国际移动设备标识)的简称
      * IMEI由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的
      * 其组成为：
      * 1. 前6位数(TAC)是”型号核准号码”，一般代表机型
@@ -170,7 +170,7 @@ public final class PhoneUtils {
      * MCC：Mobile Country Code，移动国家码，共3位，中国为460;
      * MNC:Mobile NetworkCode，移动网络码，共2位
      * 在中国，移动的代码为电00和02，联通的代码为01，电信的代码为03
-     * 合起来就是（也是Android手机中APN配置文件中的代码）：
+     * 合起来就是(也是Android手机中APN配置文件中的代码)：
      * 中国移动：46000 46002
      * 中国联通：46001
      * 中国电信：46003

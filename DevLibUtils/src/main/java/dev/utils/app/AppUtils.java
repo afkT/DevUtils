@@ -37,7 +37,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: App（Android 工具类）
+ * detail: App(Android 工具类)
  * Created by Ttt
  */
 public final class AppUtils {
@@ -329,7 +329,7 @@ public final class AppUtils {
 
 	/**
 	 * 获取 App 版本名 - 对外显示
-	 * @param packageName The name of the package.
+	 * @param packageName
 	 * @return
 	 */
 	public static String getAppVersionName(final String packageName) {
@@ -353,7 +353,7 @@ public final class AppUtils {
 
 	/**
 	 * 获取 App 版本号 - 内部判断
-	 * @param packageName The name of the package.
+	 * @param packageName
 	 * @return
 	 */
 	public static int getAppVersionCode(final String packageName) {
@@ -370,7 +370,7 @@ public final class AppUtils {
 	// =
 
  	/**
- 	 * 对内设置指定语言 ( App 多语言,单独改变app语言)
+ 	 * 对内设置指定语言 ( App 多语言,单独改变 App 语言)
  	 * @param locale
  	 */
  	public static void setLanguage(Locale locale) {
@@ -393,7 +393,7 @@ public final class AppUtils {
  	// =
 
 	/**
-	 * 安装 App（支持 8.0）的意图
+	 * 安装 App(支持 8.0)的意图
 	 * @param filePath The path of file.
 	 * @param authority 7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
 	 * @return 是否可以跳转

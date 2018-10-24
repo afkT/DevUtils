@@ -231,7 +231,7 @@ public final class ValidatorUtils {
     // =======
 
 //     // http://blog.csdn.net/myfuturein/article/details/6885216
-//    [\\u0391-\\uFFE5]匹配双字节字符（汉字+符号）
+//    [\\u0391-\\uFFE5]匹配双字节字符(汉字+符号)
 //    [\\u4e00-\\u9fa5]注意只匹配汉字，不匹配双字节字符
 
     /** 正则表达式:验证汉字 */

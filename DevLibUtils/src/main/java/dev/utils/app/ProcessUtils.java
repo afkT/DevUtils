@@ -183,7 +183,7 @@ public final class ProcessUtils {
     /**
      * 杀死后台服务进程
      * <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
-     * @param packageName The name of the package.
+     * @param packageName
      * @return true : 杀死成功, false : 杀死失败
      */
     @SuppressLint("MissingPermission")

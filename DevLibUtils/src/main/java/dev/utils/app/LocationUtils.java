@@ -120,8 +120,8 @@ public final class LocationUtils {
      * 如果{@code minDistance}为0，则通过{@code minTime}来定时更新；
      * {@code minDistance}不为0，则以{@code minDistance}为准；
      * 两者都为0，则随时刷新。
-     * @param minTime 位置信息更新周期（单位：毫秒）
-     * @param minDistance 位置变化最小距离：当位置距离变化超过此值时，将更新位置信息（单位：米）
+     * @param minTime 位置信息更新周期(单位：毫秒)
+     * @param minDistance 位置变化最小距离：当位置距离变化超过此值时，将更新位置信息(单位：米)
      * @param listener 位置刷新的回调接口
      * @return true : 初始化成功, false : 初始化失败
      */

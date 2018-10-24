@@ -104,7 +104,7 @@ public final class ThreadManager {
     }
 
     /**
-     * shutdownNow 会尝试中断正在执行的任务（其主要是中断一些指定方法如sleep方法），并且停止执行等待队列中提交的任务。
+     * shutdownNow 会尝试中断正在执行的任务(其主要是中断一些指定方法如sleep方法)，并且停止执行等待队列中提交的任务。
      * @return 返回等待执行的线程任务列表
      */
     public List<Runnable> shutdownNow() {
