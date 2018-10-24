@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -8,9 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.provider.Settings;
+import android.support.annotation.RequiresPermission;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -300,7 +303,15 @@ public final class PhoneUtils {
      * @return
      */
     public static String getSerialNumber(){
-        return android.os.Build.SERIAL;
+        try {
+            if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.P){
+                return Build.getSerial();
+            }
+            return android.os.Build.SERIAL;
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getSerialNumber");
+        }
+        return null;
     }
 
     /**
