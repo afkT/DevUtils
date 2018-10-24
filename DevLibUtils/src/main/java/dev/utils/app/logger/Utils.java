@@ -291,7 +291,7 @@ final class Utils {
 	// ========= 保存错误日志信息 ==========
 
 	/**
-	 * 保存app错误日志
+	 * 保存 App 错误日志
 	 * @param ex 错误信息
 	 * @param fPath 保存路径
 	 * @param fName 文件名(含后缀)
@@ -304,7 +304,7 @@ final class Utils {
 	}
 
 	/**
-	 * 保存app错误日志
+	 * 保存 App 错误日志
 	 * @param ex 错误信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容
@@ -368,7 +368,7 @@ final class Utils {
 	}
 
 	/**
-	 * 保存app日志
+	 * 保存 App 日志
 	 * @param log 日志信息
 	 * @param fPath 保存路径
 	 * @param fName 文件名(含后缀)
@@ -380,7 +380,7 @@ final class Utils {
 	}
 
 	/**
-	 * 保存app日志
+	 * 保存 App 日志
 	 * @param log 日志信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容

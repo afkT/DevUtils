@@ -24,7 +24,7 @@ public final class AppInfoUtils {
     private static final String TAG = AppInfoUtils.class.getSimpleName();
 
     /**
-     * 通过 apk路径 初始化 App 信息实体类
+     * 通过 Apk 路径 初始化 App 信息实体类
      * @param apkUri apk路径
      */
     public static AppInfoBean obtainUri(String apkUri){
@@ -147,7 +147,7 @@ public final class AppInfoUtils {
     // =
 
     /**
-     * 获取 APK 注册的权限
+     * 获取 Apk 注册的权限
      * @param pckName
      * https://www.cnblogs.com/leaven/p/5485864.html
      */
@@ -163,7 +163,7 @@ public final class AppInfoUtils {
     }
 
     /**
-     * 打印 APK 注册的权限
+     * 打印 Apk 注册的权限
      * @param pckName
      * https://www.cnblogs.com/leaven/p/5485864.html
      */

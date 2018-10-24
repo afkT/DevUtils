@@ -108,7 +108,8 @@ public final class InactivityTimerAssist {
     // =
 
     /**
-     * 电池广播
+     * detail: 电池监听广播
+     * Created by Ttt
      */
     private class PowerStatusReceiver extends BroadcastReceiver {
         @Override
@@ -126,7 +127,8 @@ public final class InactivityTimerAssist {
     }
 
     /**
-     * 定时检测任务
+     * detail: 定时检测任务
+     * Created by Ttt
      */
     private class InactivityAsyncTask extends AsyncTask<Object, Object, Object> {
         @Override

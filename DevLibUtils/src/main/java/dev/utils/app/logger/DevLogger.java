@@ -32,7 +32,7 @@ public final class DevLogger {
 	}
 
 	/**
-	 * 初始化日志配置信息(可以不调用,使用了App默认配置)
+	 * 初始化日志配置信息(可以不调用,使用了 App 默认配置)
 	 * @return
 	 */
 	public static LogConfig init() {

@@ -18,7 +18,7 @@ final class LogConstants {
 	public static final boolean JUDGE_DISPLAY_THREAD_LOG = false;
 	
 	/** 默认的日志Tag */
-	public static final String DEFAULT_LOG_TAG = "DevLogger";
+	public static final String DEFAULT_LOG_TAG = DevLogger.class.getSimpleName();
 
 	/** 默认输出方法数量 */
 	public static final int DEFAULT_LOG_METHOD_COUNT = 3;

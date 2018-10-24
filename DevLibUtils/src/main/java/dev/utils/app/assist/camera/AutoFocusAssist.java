@@ -70,6 +70,19 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     }
 
     /**
+     * 设置对焦模式
+     * @param collection
+     */
+    public static void setFocusModes(Collection<String> collection){
+        // 清空旧的
+        FOCUS_MODES_CALLING_AF.clear();
+        // 防止为null
+        if (collection != null){
+            FOCUS_MODES_CALLING_AF.addAll(collection);
+        }
+    }
+
+    /**
      * 是否允许自动对焦
      * @return true: 自动对焦, false: 非自动对焦
      */

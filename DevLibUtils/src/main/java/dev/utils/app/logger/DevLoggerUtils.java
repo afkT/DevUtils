@@ -20,7 +20,7 @@ public final class DevLoggerUtils {
 	private static final String TAG = DevLoggerUtils.class.getSimpleName();
 
 	/**
-	 * App初始化调用方法(获取版本号)
+	 * App 初始化调用方法(获取版本号)
 	 * @param context
 	 */
 	public static void appInit(Context context) {
@@ -31,7 +31,7 @@ public final class DevLoggerUtils {
 	// ================= 内部快速初始化LogConfig  ==================
 	
 	/**
-	 * 获取发布Log配置(打印线程信息,显示方法总数3,从0开始,不进行排序, 默认属于ERROR级别日志)
+	 * 获取发布 Log 配置(打印线程信息,显示方法总数3,从0开始,不进行排序, 默认属于ERROR级别日志)
 	 * @param tag
 	 * @return
 	 */
@@ -40,7 +40,7 @@ public final class DevLoggerUtils {
 	}
 	
 	/**
-	 * 获取发布Log配置(打印线程信息,显示方法总数3,从0开始,不进行排序)
+	 * 获取发布 Log 配置(打印线程信息,显示方法总数3,从0开始,不进行排序)
 	 * @param tag
 	 * @param lLevel 日志级别(分四种) - LogLevel
 	 * @return
@@ -52,7 +52,7 @@ public final class DevLoggerUtils {
 	// --
 	
 	/**
-	 * 获取调试Log配置(打印线程信息,显示方法总数3,从0开始,不进行排序, 默认属于ERROR级别日志)
+	 * 获取调试 Log 配置(打印线程信息,显示方法总数3,从0开始,不进行排序, 默认属于ERROR级别日志)
 	 * @param tag
 	 * @return
 	 */
@@ -61,7 +61,7 @@ public final class DevLoggerUtils {
 	}
 	
 	/**
-	 * 获取调试Log配置(打印线程信息,显示方法总数3,从0开始,进行排序)
+	 * 获取调试 Log 配置(打印线程信息,显示方法总数3,从0开始,进行排序)
 	 * @param tag
 	 * @param lLevel 日志级别(分四种) - {@link LogLevel}
 	 * @return
@@ -73,7 +73,7 @@ public final class DevLoggerUtils {
 	// --
 	
 	/**
-	 * 获取Log配置(打印线程信息,显示方法总数3,从0开始,并且美化日志信息, 默认属于DEBUG级别日志)
+	 * 获取 Log 配置(打印线程信息,显示方法总数3,从0开始,并且美化日志信息, 默认属于DEBUG级别日志)
 	 * @param tag 日志Tag
 	 * @return
 	 */
@@ -82,7 +82,7 @@ public final class DevLoggerUtils {
 	}
 
 	/**
-	 * 获取Log配置(打印线程信息,显示方法总数3,从0开始,并且美化日志信息)
+	 * 获取 Log 配置(打印线程信息,显示方法总数3,从0开始,并且美化日志信息)
 	 * @param tag 日志Tag
 	 * @param lLevel 日志级别(分四种) - LogLevel
 	 * @return
@@ -94,7 +94,7 @@ public final class DevLoggerUtils {
 	// --
 	
 	/**
-	 * 获取Log配置
+	 * 获取 Log 配置
 	 * @param tag 日志Tag
 	 * @param mCount 显示的方法总数(推荐3)
 	 * @param mOffset 方法偏移索引(从第几个方法开始打印,默认推荐0)
@@ -128,7 +128,7 @@ public final class DevLoggerUtils {
 	// =============== 错误日志处理   ==================
 
 	/**
-	 * 保存app错误日志
+	 * 保存 App 错误日志
 	 * @param ex 错误信息
 	 * @param fPath 保存路径 + 文件名(含后缀)
 	 * @param isNewLines 是否换行
@@ -139,7 +139,7 @@ public final class DevLoggerUtils {
 	}
 	
 	/**
-	 * 保存app错误日志
+	 * 保存 App 错误日志
 	 * @param ex 错误信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容
@@ -172,7 +172,7 @@ public final class DevLoggerUtils {
 	}
 
 	/**
-	 * 保存app错误日志
+	 * 保存 App 错误日志
 	 * @param ex 错误信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容
@@ -192,7 +192,7 @@ public final class DevLoggerUtils {
 	}
 
 	/**
-	 * 保存app日志
+	 * 保存 App 日志
 	 * @param log 日志信息
 	 * @param fPath 保存路径
 	 * @param fName 文件名(含后缀)
@@ -204,7 +204,7 @@ public final class DevLoggerUtils {
 	}
 
 	/**
-	 * 保存app日志
+	 * 保存 App 日志
 	 * @param log 日志信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容

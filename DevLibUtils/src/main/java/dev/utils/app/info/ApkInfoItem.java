@@ -31,7 +31,7 @@ public final class ApkInfoItem {
 
     // 日志Tag
     private static final String TAG = ApkInfoItem.class.getSimpleName();
-    // apk文件地址
+    // Apk 文件地址
     private String apkUri;
     // App 信息实体类
     private AppInfoBean appInfoBean;
@@ -74,7 +74,7 @@ public final class ApkInfoItem {
         appInfo.publicSourceDir = apkUri;
         // 初始化实体类
         ApkInfoItem appInfoItem = new ApkInfoItem();
-        // 保存apk文件地址
+        // 保存 Apk 文件地址
         appInfoItem.apkUri = apkUri;
         // 获取 App 信息
         appInfoItem.appInfoBean = new AppInfoBean(pInfo, pManager);
@@ -107,7 +107,7 @@ public final class ApkInfoItem {
         // 临时签名信息
         ArrayList<KeyValueBean> listTemps = new ArrayList<>();
 
-        // Android的APK应用签名机制以及读取签名的方法
+        // Android 的 Apk 应用签名机制以及读取签名的方法
         // http://www.jb51.net/article/79894.htm
         try {
             // 获取证书对象
@@ -176,10 +176,10 @@ public final class ApkInfoItem {
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_packname, appInfoItem.appInfoBean.getAppPackName()));
         // 没报错才存储 MD5 信息
         if (!isError) {
-            // App 签名MD5
+            // App 签名 MD5
             appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_md5, md5));
         }
-        // App 版本号 - 主要用于app内部版本判断 int 类型
+        // App 版本号 - 主要用于 App 内部版本判断 int 类型
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_code, appInfoItem.appInfoBean.getVersionCode() + ""));
         // App 版本名 - 主要用于对用户显示版本信息
         appInfoItem.listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_name, appInfoItem.appInfoBean.getVersionName()));

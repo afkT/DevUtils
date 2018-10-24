@@ -37,13 +37,13 @@ public class AppInfoBean {
     private long lastUpdateTime;
     // 获取 App 地址
     private String sourceDir;
-    // APK 大小
+    // Apk 大小
     private long apkSize;
     // 申请的权限
     private String [] apkPermissionsArys;
 
     /**
-     * 通过 apk路径 初始化 App 信息实体类
+     * 通过 Apk 路径 初始化 App 信息实体类
      * @param apkUri apk路径
      */
     public static AppInfoBean obtainUri(String apkUri){
@@ -53,7 +53,7 @@ public class AppInfoBean {
             PackageInfo pInfo = pManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
             // = 设置 Apk 位置信息 =
             ApplicationInfo appInfo = pInfo.applicationInfo;
-                /* 必须加这两句，不然下面icon获取是default icon而不是应用包的icon */
+            /* 必须加这两句，不然下面icon获取是default icon而不是应用包的icon */
             appInfo.sourceDir = apkUri;
             appInfo.publicSourceDir = apkUri;
             return new AppInfoBean(pInfo, pManager);
@@ -122,7 +122,7 @@ public class AppInfoBean {
         lastUpdateTime = pInfo.lastUpdateTime;
         // 获取 App 地址
         sourceDir = pInfo.applicationInfo.sourceDir;
-        // 获取 APK 大小
+        // 获取 Apk 大小
         apkSize = FileUtils.getFileLength(sourceDir);
         try {
             // 获取权限
@@ -189,7 +189,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 表示系统程序
+     * 是否系统程序
      * @param pInfo
      * @return
      */
@@ -198,7 +198,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 表示系统程序被手动更新后，也成为第三方应用程序
+     * 是否系统程序被手动更新后，也成为第三方应用程序
      * @param pInfo
      * @return
      */

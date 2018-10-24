@@ -218,11 +218,6 @@ public final class ActivityManager {
      * @param clss Activity.class, x.class
      */
     public void finishActivity(Class<?>... clss) {
-//        if (clss != null && clss.length != 0) {
-//            for (int i = 0, len = clss.length; i < len; i++){
-//                finishActivity(clss[i]);
-//            }
-//        }
         if (clss != null && clss.length != 0){
             synchronized (activityStacks) {
                 // 保存新的任务,防止出现同步问题
@@ -422,7 +417,7 @@ public final class ActivityManager {
     }
 
     /**
-     * 重启app
+     * 重启 App
      */
     public static void restartApplication() {
         try {

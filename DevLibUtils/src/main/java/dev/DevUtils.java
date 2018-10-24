@@ -43,7 +43,7 @@ public final class DevUtils {
     private static Context sContext;
     /** 获取当前线程,主要判断是否属于主线程 */
     private static Thread sUiThread;
-    /** 全局Handler,便于子线程快捷操作等 */
+    /** 全局 Handler,便于子线程快捷操作等 */
     private static Handler sHandler;
     /** 是否内部debug模式 */
     private static boolean debug = false;
