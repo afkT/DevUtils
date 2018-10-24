@@ -471,6 +471,10 @@ public final class ReflectUtils {
         return accessible;
     }
 
+    /**
+     * 获取类型
+     * @return
+     */
     public Class<?> type() {
         return type;
     }

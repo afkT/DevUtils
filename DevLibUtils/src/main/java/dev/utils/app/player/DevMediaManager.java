@@ -428,16 +428,33 @@ public class DevMediaManager implements OnBufferingUpdateListener,
 	 */
 	public interface MediaListener {
 
+		/** 使用 mMediaPlayer.prepareAsync(); 异步播放准备成功回调 */
 		void onPrepared();
 
+		/** 视频播放结束回调 */
 		void onCompletion();
 
+		/**
+		 * 	MediaPlayer 缓冲更新回调
+		 * @param percent
+		 */
 		void onBufferingUpdate(int percent);
 
+		/** 滑动加载完成回调 */
 		void onSeekComplete();
 
+		/**
+		 * 播放出错回调
+		 * @param what
+		 * @param extra
+		 */
 		void onError(int what, int extra);
 
+		/**
+		 * 视频大小改变回调
+		 * @param width
+		 * @param height
+		 */
 		void onVideoSizeChanged(int width, int height);
 	}
 

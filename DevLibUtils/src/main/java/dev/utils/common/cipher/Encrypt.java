@@ -7,6 +7,11 @@ package dev.utils.common.cipher;
  */
 public interface Encrypt {
 
+    /**
+     * 加密/编码方法
+     * @param res
+     * @return
+     */
     byte[] encrypt(byte[] res);
 
 }

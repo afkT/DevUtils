@@ -239,6 +239,11 @@ public final class WifiUtils {
 		}
 	}
 
+	/**
+	 * 判断是否 wep 加密
+	 * @param wepKey
+	 * @return
+	 */
 	protected static boolean isHexWepKey(String wepKey) {
 		// WEP-40, WEP-104, and some vendors using 256-bit WEP (WEP-232?)
 		int len = wepKey.length();

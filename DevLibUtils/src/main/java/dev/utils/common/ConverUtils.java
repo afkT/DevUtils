@@ -363,7 +363,7 @@ public final class ConverUtils {
     // 以0x开始的数据表示16进制
 
     /**
-     * 一个整数参数的字符串表示形式在基数为16的无符号整数
+     * 一个 int 参数的字符串表示形式在基数为16的无符号 int
      * @param val
      * @return
      * --
@@ -373,14 +373,29 @@ public final class ConverUtils {
         return Integer.toHexString(val);
     }
 
+    /**
+     * 一个 long 参数的字符串表示形式在基数为16的无符号 long
+     * @param val
+     * @return
+     */
     public static String toHexString(long val){
         return Long.toHexString(val);
     }
 
+    /**
+     * 一个 double 参数的字符串表示形式在基数为16的无符号 double
+     * @param val
+     * @return
+     */
     public static String toHexString(double val){
         return Double.toHexString(val);
     }
 
+    /**
+     * 一个 float 参数的字符串表示形式在基数为16的无符号 float
+     * @param val
+     * @return
+     */
     public static String toHexString(float val){
         return Float.toHexString(val);
     }

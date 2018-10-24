@@ -146,12 +146,6 @@ public final class Reflect2Utils {
         return Array.get(array, index);
     }
 
-    public static Class<?> GetClassListByPackage(String pPackage) {
-        Package _Package = Package.getPackage(pPackage);
-        Class<?> _List = _Package.getClass();
-        return _List;
-    }
-
     // =
 
     /**

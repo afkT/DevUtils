@@ -507,6 +507,10 @@ public class WifiHotUtils {
 
     private onWifiAPListener wifiAPListener;
 
+    /**
+     * 设置 Wifi 热点监听
+     * @param wifiAPListener
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setOnWifiAPListener(onWifiAPListener wifiAPListener) {
         this.wifiAPListener = wifiAPListener;
@@ -518,10 +522,21 @@ public class WifiHotUtils {
      */
     public interface onWifiAPListener {
 
+        /**
+         * 开启热点触发
+         * @param wifiConfig
+         */
         void onStarted(WifiConfiguration wifiConfig);
 
+        /**
+         * 关闭热点回调
+         */
         void onStopped();
 
+        /**
+         * 失败回调
+         * @param reason
+         */
         void onFailed(int reason);
     }
 }

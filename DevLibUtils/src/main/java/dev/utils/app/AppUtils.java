@@ -451,7 +451,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 静默安装app
+	 * 静默安装 App
 	 * @param filePath
 	 * @return
 	 */
@@ -460,7 +460,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 静默安装app
+	 * 静默安装 App
 	 * <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
 	 * @param file The file.
 	 * @return true : success, false : fail
@@ -524,7 +524,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 静默卸载 app
+	 * 静默卸载 App
 	 * @param packageName
 	 * @param isKeepData
 	 * @return
@@ -592,7 +592,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 判断是否存在root 权限
+	 * 判断是否存在 root 权限
 	 * @return true : yes, false : no
 	 */
 	public static boolean isAppRoot() {
@@ -680,7 +680,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 打开app
+	 * 打开 App
 	 * @param packageName
 	 */
 	public static boolean launchApp(final String packageName) {
@@ -695,8 +695,8 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 打开app, 并且回传
-	 * @param activity    The activity.
+	 * 打开 App, 并且回传
+	 * @param activity
 	 * @param packageName
 	 * @param requestCode
 	 */

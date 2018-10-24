@@ -49,7 +49,7 @@ public final class BarUtils {
 
     /**
      * 设置状态栏是否显示
-     * @param activity  The activity.
+     * @param activity
      * @param isVisible True to set status bar visible, false otherwise.
      */
     public static void setStatusBarVisibility(@NonNull final Activity activity, final boolean isVisible) {
@@ -520,7 +520,7 @@ public final class BarUtils {
 
     /**
      * 设置导航栏是否可见(图标显示)
-     * @param activity  The activity.
+     * @param activity
      * @param isVisible True to set notification bar visible, false otherwise.
      */
     public static void setNavBarVisibility(@NonNull final Activity activity, boolean isVisible) {

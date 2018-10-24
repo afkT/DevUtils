@@ -342,18 +342,34 @@ public final class OSUtils {
         private int baseVersion = -1;
         private String version;
 
+        /**
+         * 设置 Rom 具体版本号
+         * @param version
+         */
         void setVersion(String version) {
             this.version = version;
         }
 
+        /**
+         * 设置 Rom 版本
+         * @param baseVersion
+         */
         void setBaseVersion(int baseVersion) {
             this.baseVersion = baseVersion;
         }
 
+        /**
+         * 获取 Rom 版本, 如 MIUI 9 获取的是 9
+         * @return
+         */
         public int getBaseVersion() {
             return baseVersion;
         }
 
+        /**
+         * 获取 Rom 具体版本号, 如 MIUI 9 8.4.26 获取的是 8.4.26
+         * @return
+         */
         public String getVersion() {
             return version;
         }

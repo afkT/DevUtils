@@ -49,6 +49,11 @@ public class TimeKeeper {
         return this;
     }
 
+    /**
+     * 设置等待一段时间后, 通知方法
+     * @param endCallback
+     * @return
+     */
     public TimeKeeper waitForEnd(OnEndCallback endCallback) {
         long costMillis = SystemClock.elapsedRealtime() - startMillis;
         long leftMillis = keepTimeMillis - costMillis;

@@ -2014,7 +2014,15 @@ public final class FileUtils {
 		return list;
 	}
 
+	/**
+	 * 覆盖/替换事件
+	 */
     public interface OnReplaceListener {
-        boolean onReplace();
+
+		/**
+		 * 是否覆盖/替换文件
+		 * @return
+		 */
+		boolean onReplace();
     }
 }

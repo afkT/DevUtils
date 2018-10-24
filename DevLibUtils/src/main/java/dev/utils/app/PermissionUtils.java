@@ -312,6 +312,12 @@ public final class PermissionUtils {
             requestPermissions(sInstance.mPermissionsRequest.toArray(new String[size]), 1);
         }
 
+        /**
+         * 请求权限回调
+         * @param requestCode
+         * @param permissions
+         * @param grantResults
+         */
         @Override
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             sInstance.onRequestPermissionsResultCommon(this); // 处理回调

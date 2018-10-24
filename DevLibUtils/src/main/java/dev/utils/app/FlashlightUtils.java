@@ -24,6 +24,10 @@ public final class FlashlightUtils {
     // 日志TAG
     private final String TAG = FileRecordUtils.class.getSimpleName();
 
+    /**
+     * 获取 FlashlightUtils 实例 ,单例模式
+     * @return
+     */
     public static FlashlightUtils getInstance() {
         return LazyHolder.INSTANCE;
     }

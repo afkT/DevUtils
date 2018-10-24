@@ -17,7 +17,7 @@ public class CipherUtils {
     // 获取 Object obj = CipherUtils.decrypt(SP.get(key), cipher);
 
     /**
-     *  加密工具类
+     * 加密工具类
      * @param obj
      * @return
      */
@@ -26,7 +26,7 @@ public class CipherUtils {
     }
 
     /**
-     *  加密工具类
+     * 加密工具类
      * @param obj
      * @param cipher
      * @return

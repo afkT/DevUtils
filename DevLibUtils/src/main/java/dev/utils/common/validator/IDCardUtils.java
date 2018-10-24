@@ -371,7 +371,6 @@ public final class IDCardUtils {
      * 身份证前2位为英文字符，如果只出现一个英文字符则表示第一位是空格，对应数字58 前2位英文字符A-Z分别对应数字10-35
      * 最后一位校验码为0-9的数字加上字符"A"，"A"代表10
      * 将身份证号码全部转换为数字，分别对应乘9-1相加的总和，整除11则证件号码有效
-     *
      * @param idCard 身份证号码
      * @return 验证码是否符合
      */
@@ -400,6 +399,11 @@ public final class IDCardUtils {
         return (sum % 11 == 0);
     }
 
+    /**
+     * 判断 10 位数的身份证号, 是否合法
+     * @param idCard
+     * @return
+     */
     public static String[] validateIdCard10(String idCard) {
         String[] info = new String[3];
         String card = idCard.replaceAll("[\\(|\\)]", "");
@@ -435,7 +439,6 @@ public final class IDCardUtils {
 
     /**
      * 验证身份证是否合法
-     *
      * @param idCard 待验证的字符串
      * @return 身份证是否合法
      */

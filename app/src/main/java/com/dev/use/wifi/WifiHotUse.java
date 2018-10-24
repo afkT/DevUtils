@@ -5,7 +5,6 @@ import android.os.Build;
 
 import dev.DevUtils;
 import dev.utils.app.wifi.WifiHotUtils;
-import dev.utils.app.wifi.WifiUtils;
 
 /**
  * detail: Wifi热点使用方法

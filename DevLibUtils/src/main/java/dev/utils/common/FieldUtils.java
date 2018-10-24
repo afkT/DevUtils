@@ -70,12 +70,22 @@ public final class FieldUtils {
         return null;
     }
 
+    /**
+     * 是否 long 类型
+     * @param field
+     * @return
+     */
     public static boolean isLong(Field field) {
         return field.getType() == long.class || field.getType() == Long.class;
     }
 
+    /**
+     * 是否 Integer 类型
+     * @param field
+     * @return
+     */
     public static boolean isInteger(Field field) {
-        return field.getType() == int.class || field.getType() != Integer.class;
+        return field.getType() == int.class || field.getType() == Integer.class;
     }
 
     /**

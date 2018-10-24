@@ -1,17 +1,9 @@
 package com.dev.use.toasty;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import dev.DevUtils;
-import dev.utils.app.ViewUtils;
 import dev.utils.app.toast.cus.Toasty;
-import dev.utils.app.toast.cus.ToastyUtils;
 
 /**
  * detail: Toasty 使用方法

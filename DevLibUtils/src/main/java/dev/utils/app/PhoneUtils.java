@@ -642,8 +642,11 @@ public final class PhoneUtils {
         public int phoneType_1;
         public int phoneType_2;
 
-        @Override
-        public String toString() {
+        /**
+         * 打印 TeleInfo 信息
+         * @return
+         */
+        public String printInfo() {
             return "TeleInfo{" +
                     "imsi_1='" + imsi_1 + '\'' +
                     ", imsi_2='" + imsi_2 + '\'' +

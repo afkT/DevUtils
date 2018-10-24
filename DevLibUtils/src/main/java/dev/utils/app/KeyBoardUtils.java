@@ -229,6 +229,12 @@ public final class KeyBoardUtils {
 		}
 	}
 
+	/**
+	 * 关闭软键盘 - 特殊处理
+	 * @param mEditText
+	 * @param mDialog
+	 * @param vHandler
+	 */
 	public static void closeKeyBoardSpecial(final EditText mEditText, final Dialog mDialog, Handler vHandler){
 		closeKeyBoardSpecial(mEditText, mDialog, vHandler, DELAY_MILLIS);
 	}
@@ -254,6 +260,11 @@ public final class KeyBoardUtils {
 
 	// -
 
+	/**
+	 * 关闭软键盘
+	 * @param mEditText
+	 * @param vHandler
+	 */
 	public static void closeKeyboard(final EditText mEditText, Handler vHandler){
 		closeKeyboard(mEditText, vHandler, DELAY_MILLIS);
 	}
@@ -276,6 +287,10 @@ public final class KeyBoardUtils {
 		}
 	}
 
+	/**
+	 * 关闭软键盘
+	 * @param vHandler
+	 */
 	public static void closeKeyboard(Handler vHandler){
 		closeKeyboard(vHandler, DELAY_MILLIS);
 	}
@@ -297,6 +312,11 @@ public final class KeyBoardUtils {
 		}
 	}
 
+	/**
+	 * 关闭软键盘
+	 * @param mActivity
+	 * @param vHandler
+	 */
 	public static void closeKeyboard(final Activity mActivity, Handler vHandler){
 		closeKeyboard(mActivity, vHandler, DELAY_MILLIS);
 	}
@@ -319,6 +339,11 @@ public final class KeyBoardUtils {
 		}
 	}
 
+	/**
+	 * 关闭软键盘
+	 * @param mDialog
+	 * @param vHandler
+	 */
 	public static void closeKeyboard(final Dialog mDialog, Handler vHandler){
 		closeKeyboard(mDialog, vHandler, DELAY_MILLIS);
 	}
