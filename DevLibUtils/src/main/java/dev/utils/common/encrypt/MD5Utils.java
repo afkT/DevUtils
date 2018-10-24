@@ -44,11 +44,11 @@ public final class MD5Utils {
 	 */
 	public final static String md5(byte[] bytes) {
 		try {
-			// 获得MD5摘要算法的 MessageDigest 对象
+			// 获取MD5摘要算法的 MessageDigest 对象
 			MessageDigest mdInst = MessageDigest.getInstance("MD5");
 			// 使用指定的字节更新摘要
 			mdInst.update(bytes);
-			// 获得密文
+			// 获取密文
 			byte[] md = mdInst.digest();
 			return toHexString(md, HEX_DIGITS);
 		} catch (Exception e) {
@@ -78,11 +78,11 @@ public final class MD5Utils {
 	 */
 	public final static String md5Upper(byte[] bytes) {
 		try {
-			// 获得MD5摘要算法的 MessageDigest 对象
+			// 获取MD5摘要算法的 MessageDigest 对象
 			MessageDigest mdInst = MessageDigest.getInstance("MD5");
 			// 使用指定的字节更新摘要
 			mdInst.update(bytes);
-			// 获得密文
+			// 获取密文
 			byte[] md = mdInst.digest();
 			return toHexString(md, HEX_DIGITS_UPPER);
 		} catch (Exception e) {

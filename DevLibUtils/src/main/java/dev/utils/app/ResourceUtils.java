@@ -48,7 +48,7 @@ public final class ResourceUtils {
 	public static final String ATTR = "attr";
 
 	/**
-	 * 获得字符串
+	 * 获取字符串
 	 * @param strId 字符串id
 	 * @return 字符串
 	 */
@@ -62,7 +62,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * 获得颜色
+	 * 获取 Color
 	 * @param colorId 颜色id
 	 * @return 颜色
 	 */
@@ -76,7 +76,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * 获得Drawable
+	 * 获取 Drawable
 	 * @param drawableId Drawable的id
 	 * @return Drawable
 	 */
@@ -90,7 +90,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * 根据资源名获得资源id
+	 * 根据资源名获取资源id
 	 * @param name 资源名
 	 * @param type 资源类型
 	 * @return 资源id，找不到返回0
@@ -107,7 +107,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * 获取资源id
+	 * 获取 drawable id
 	 * @param imageName
 	 * @return
 	 */
@@ -129,7 +129,7 @@ public final class ResourceUtils {
 	// ==
 
 	/**
-	 * 获取 layout 布局文件
+	 * 获取 layout 布局文件 id
 	 * @param resName layout xml 的文件名
 	 * @return layout
 	 */
@@ -143,7 +143,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * 获取 string 值
+	 * 获取 string id
 	 * @param resName string name的名称
 	 * @return string
 	 */
@@ -157,7 +157,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * 获取 drawable
+	 * 获取 drawable id
 	 * @param resName drawable 的名称
 	 * @return drawable
 	 */
@@ -171,7 +171,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * 获取 mipmap
+	 * 获取 mipmap id
 	 * @param resName
 	 * @return
 	 */
@@ -186,7 +186,7 @@ public final class ResourceUtils {
 
 
 	/**
-	 * 获取 style
+	 * 获取 style id
 	 * @param resName style的名称
 	 * @return style
 	 */
@@ -200,7 +200,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * 获取 styleable
+	 * 获取 styleable id
 	 * @param resName styleable 的名称
 	 * @return styleable
 	 */
@@ -215,7 +215,7 @@ public final class ResourceUtils {
 
 
 	/**
-	 * 获取 anim
+	 * 获取 anim id
 	 * @param resName anim xml 文件名称
 	 * @return anim
 	 */
@@ -243,7 +243,7 @@ public final class ResourceUtils {
 	}
 
 	/**
-	 * 获取 Color id
+	 * 获取 color id
 	 * @param resName color 名称
 	 * @return
 	 */

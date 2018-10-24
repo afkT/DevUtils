@@ -664,7 +664,7 @@ public final class BankCheckUtils {
     }
 
     /**
-     * 从不含校验位的银行卡卡号采用 Luhm 校验算法获得校验位
+     * 从不含校验位的银行卡卡号采用 Luhm 校验算法获取校验位
      * @param nonCheckCodeCardId
      * @return
      */

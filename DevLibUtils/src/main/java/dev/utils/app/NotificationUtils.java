@@ -264,8 +264,8 @@ public final class NotificationUtils {
      */
     public static class VibratePattern {
         /**
-         * vibrate 属性是一个长整型的数组，用于设置手机静止和振动的时长，以毫秒为单位。
-         * 参数中下标为0的值表示手机静止的时长，下标为1的值表示手机振动的时长， 下标为2的值又表示手机静止的时长，以此类推。
+         * vibrate 属性是一个长整型的数组，用于设置手机静止和震动的时长，以毫秒为单位。
+         * 参数中下标为0的值表示手机静止的时长，下标为1的值表示手机震动的时长， 下标为2的值又表示手机静止的时长，以此类推。
          */
         // long[] vibrates = { 0, 1000, 1000, 1000 };
         private long[] vibrates = null;

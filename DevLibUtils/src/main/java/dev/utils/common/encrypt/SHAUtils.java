@@ -77,11 +77,11 @@ public final class SHAUtils {
     final static String shaHex(String str, String sha) {
         try {
             byte[] btInput = str.getBytes();
-            // 获得 SHA-1 摘要算法的 MessageDigest 对象
+            // 获取 SHA-1 摘要算法的 MessageDigest 对象
             MessageDigest mdInst = MessageDigest.getInstance(sha);
             // 使用指定的字节更新摘要
             mdInst.update(btInput);
-            // 获得密文
+            // 获取密文
             byte[] md = mdInst.digest();
             return toHexString(md, HEX_DIGITS);
         } catch (Exception e) {

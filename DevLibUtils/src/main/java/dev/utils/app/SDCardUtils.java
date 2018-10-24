@@ -211,7 +211,7 @@ public final class SDCardUtils {
 	}
 
 	/**
-	 * 获得 SD 卡总大小
+	 * 获取 SD 卡总大小
 	 * @return
 	 */
 	public static String getSDTotalSize() {
@@ -228,7 +228,7 @@ public final class SDCardUtils {
 	}
 
 	/**
-	 * 获得 SD 卡剩余容量，即可用大小
+	 * 获取 SD 卡剩余容量，即可用大小
 	 * @return
 	 */
 	public static String getSDAvailableSize() {
@@ -245,7 +245,7 @@ public final class SDCardUtils {
 	}
 
 	/**
-	 * 获得机身内存总大小
+	 * 获取机身内存总大小
 	 * @return
 	 */
 	public static String getRomTotalSize() {
@@ -262,7 +262,7 @@ public final class SDCardUtils {
 	}
 
 	/**
-	 * 获得机身可用内存
+	 * 获取机身可用内存
 	 * @return
 	 */
 	public static String getRomAvailableSize() {

@@ -64,7 +64,7 @@ public final class ProcessUtils {
     }
 
     /**
-     * 获得当前进程的名字
+     * 获取当前进程的名字
      * hit: 获取当前进程 DevUtils.getContext().getApplicationInfo().packageName
      * @return 进程号
      */

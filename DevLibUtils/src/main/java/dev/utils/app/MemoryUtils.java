@@ -171,7 +171,7 @@ public final class MemoryUtils {
             /* \\s表示   空格,回车,换行等空白符,
             +号表示一个或多个的意思     */
             String[] array = str.split("\\s+");
-            // 获得系统总内存，单位是KB，乘以1024转换为Byte
+            // 获取系统总内存，单位是KB，乘以1024转换为Byte
             long length = Long.valueOf(array[1]).longValue() * 1024;
             return android.text.format.Formatter.formatFileSize(DevUtils.getContext(), length);
         } catch (Exception e) {

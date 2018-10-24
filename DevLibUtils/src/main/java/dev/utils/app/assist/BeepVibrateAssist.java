@@ -146,7 +146,7 @@ public final class BeepVibrateAssist implements Closeable {
     }
 
     /**
-     * 进行播放声音, 并且振动
+     * 进行播放声音, 并且震动
      */
     public synchronized void playBeepSoundAndVibrate() {
         // 判断是否允许播放

@@ -319,7 +319,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获得文件后缀名(无.,单独后缀)
+     * 获取文件后缀名(无.,单独后缀)
      * @param file
      * @return
      */
@@ -328,7 +328,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获得文件后缀名(无.,单独后缀)
+     * 获取文件后缀名(无.,单独后缀)
      * @param filePath 文件地址、文件名都行
      * @return
      */
@@ -347,7 +347,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获得文件名(无后缀)
+     * 获取文件名(无后缀)
      * @param file
      * @return
      */
@@ -356,7 +356,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获得文件名(无后缀)
+     * 获取文件名(无后缀)
      * @param filePath
      * @return
      */
@@ -365,7 +365,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获得文件名(无后缀)
+     * 获取文件名(无后缀)
      * @param fileName 文件名
      * @return
      */
@@ -1559,7 +1559,7 @@ public final class FileUtils {
                             if (filePath.indexOf(dealSource) == 0){
                                 // 获取处理后的地址
                                 dealSource = filePath.substring(dealSource.length(), filePath.length());
-                                // 获得需要复制保存的地址
+                                // 获取需要复制保存的地址
                                 String savePath = new File(destFolderPath, dealSource).getAbsolutePath();
                                 // 进行复制文件
                                 boolean isResult = copyFile(filePath, savePath, overlay);

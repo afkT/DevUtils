@@ -22,7 +22,7 @@ public final class EncodeUtils {
     private static final String TAG = EncodeUtils.class.getSimpleName();
 
     /**
-     * url编码 - UTF-8
+     * url 编码 - UTF-8
      * @param input The input.
      * @return the urlencoded string
      */
@@ -31,7 +31,7 @@ public final class EncodeUtils {
     }
 
     /**
-     * url编码
+     * url 编码
      * @param input The input.
      * @param charsetName The name of charset.
      * @return the urlencoded string
@@ -139,7 +139,7 @@ public final class EncodeUtils {
     }
 
     /**
-     * html编码
+     * html 编码
      * @param input The input.
      * @return html-encode string
      */
@@ -177,7 +177,7 @@ public final class EncodeUtils {
     }
 
     /**
-     * html解码
+     * html 解码
      * @param input The input.
      * @return the string of decode html-encode string
      */

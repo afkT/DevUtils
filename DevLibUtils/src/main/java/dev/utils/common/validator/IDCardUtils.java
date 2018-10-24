@@ -123,7 +123,7 @@ public final class IDCardUtils {
     }
 
     /**
-     * 将power和值与1 1取模获得余数进行校验码判断
+     * 将power和值与1 1取模获取余数进行校验码判断
      *
      * @param iSum sum
      * @return 校验位

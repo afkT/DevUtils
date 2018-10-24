@@ -36,7 +36,7 @@ public final class StateListUtils {
 //    android:state_middle	是否处于中间
 //    android:state_pressed	是否处于按下状态 .
 //    android:state_selected	是否处于选中状态
-//    android:state_window_focused	是否窗口已获得焦点
+//    android:state_window_focused	是否窗口已获取焦点
 
     /**
      * 通过 Context 获取 ColorStateList

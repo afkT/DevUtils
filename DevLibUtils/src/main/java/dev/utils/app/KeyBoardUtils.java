@@ -490,9 +490,9 @@ public final class KeyBoardUtils {
 						decorView.getWindowVisibleDisplayFrame(rect);
 						// 计算出可见屏幕的高度
 						int displayHight = rect.bottom - rect.top;
-						// 获得屏幕整体的高度
+						// 获取屏幕整体的高度
 						int hight = decorView.getHeight();
-						// 获得键盘高度
+						// 获取键盘高度
 						int keyboardHeight = hight - displayHight;
 						// 计算一定比例
 						boolean visible = (double) displayHight / hight < 0.8;

@@ -143,7 +143,7 @@ public final class LocationUtils {
     }
 
     /**
-     * 注销
+     * 注销监听
      */
     @SuppressLint("MissingPermission")
     public static void unregister() {

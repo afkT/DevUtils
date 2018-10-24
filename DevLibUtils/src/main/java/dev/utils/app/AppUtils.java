@@ -375,11 +375,11 @@ public final class AppUtils {
  	 */
  	public static void setLanguage(Locale locale) {
  		try {
- 			// 获得res资源对象
+ 			// 获取res资源对象
  			Resources resources = DevUtils.getContext().getResources();
- 			// 获得设置对象
+ 			// 获取设置对象
  			Configuration config = resources.getConfiguration();
- 			// 获得屏幕参数：主要是分辨率，像素等。
+ 			// 获取屏幕参数：主要是分辨率，像素等。
  			DisplayMetrics dm = resources.getDisplayMetrics();
  			// 语言
  			config.locale = locale;

@@ -71,7 +71,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 获取 launcher activity
+     * 获取 Launcher activity
      * @return
      */
     public static String getLauncherActivity() {

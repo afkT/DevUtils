@@ -245,7 +245,7 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 获得圆角图片的方法
+     * 获取圆角图片的方法
      * @param bitmap 源Bitmap
      * @param roundPx 圆角大小
      * @return 期望Bitmap
@@ -271,7 +271,7 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 获得带倒影的图片方法
+     * 获取带倒影的图片方法
      * @param bitmap 源Bitmap
      * @return 带倒影的Bitmap
      */
@@ -520,7 +520,7 @@ public final class BitmapExtendUtils {
      * @param maxSize 压缩后的大小，单位kb
      */
     public static void compress(Bitmap bitmap, double maxSize) {
-        // 将bitmap放至数组中，意在获得bitmap的大小(与实际读取的原文件要大)
+        // 将bitmap放至数组中，意在获取bitmap的大小(与实际读取的原文件要大)
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         // 格式、质量、输出流
         bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);

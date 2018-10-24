@@ -558,7 +558,7 @@ public final class ScreenUtils {
 	// == ----------------------------------------- ==
 
 	/**
-	 * 获得状态栏的高度(无关 android:theme 获取状态栏高度)
+	 * 获取状态栏的高度(无关 android:theme 获取状态栏高度)
 	 * @return
 	 */
 	public static int getStatusHeight() {

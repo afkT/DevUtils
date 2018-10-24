@@ -14,7 +14,7 @@ public class TimeCounter {
     }
 
     /**
-     * Count start.
+     * 开始计时
      */
     public long start() {
         t = System.currentTimeMillis();
@@ -22,7 +22,8 @@ public class TimeCounter {
     }
 
     /**
-     * Get duration and restart.
+     * 获取持续的时间并重新启动。
+     * @return
      */
     public long durationRestart() {
         long now = System.currentTimeMillis();
@@ -32,7 +33,8 @@ public class TimeCounter {
     }
 
     /**
-     * Get duration.
+     * 获取持续的时间
+     * @return
      */
     public long duration() {
         return System.currentTimeMillis() - t;
