@@ -244,7 +244,7 @@ public final class WifiUtils {
 	 * @param wepKey
 	 * @return
 	 */
-	protected static boolean isHexWepKey(String wepKey) {
+	public static boolean isHexWepKey(String wepKey) {
 		// WEP-40, WEP-104, and some vendors using 256-bit WEP (WEP-232?)
 		int len = wepKey.length();
 		if (len != 10 && len != 26 && len != 58) {
@@ -253,7 +253,12 @@ public final class WifiUtils {
 		return isHex(wepKey);
 	}
 
-	protected static boolean isHex(String key) {
+	/**
+	 * 判断是否 十六进制
+	 * @param key
+	 * @return
+	 */
+	private static boolean isHex(String key) {
 		for (int i = key.length() - 1;i >= 0;i--) {
 			char c = key.charAt(i);
 			if (!(c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f')) {

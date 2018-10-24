@@ -516,16 +516,29 @@ public final class ReflectUtils {
         return (T) object;
     }
 
+    /**
+     * 获取 HashCode
+     * @return
+     */
     @Override
     public int hashCode() {
         return object.hashCode();
     }
 
+    /**
+     * 判断反射的两个对象是否一样
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         return obj instanceof ReflectUtils && object.equals(((ReflectUtils) obj).get());
     }
 
+    /**
+     * 获取反射获取的对象 toString
+     * @return
+     */
     @Override
     public String toString() {
         return object.toString();

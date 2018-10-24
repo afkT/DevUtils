@@ -93,6 +93,10 @@ public final class Toasty {
         Config() {
         }
 
+        /**
+         * 获取 Toasty 配置实例
+         * @return
+         */
         @CheckResult
         public static Config getInstance() {
             return new Config();
@@ -314,93 +318,188 @@ public final class Toasty {
 
     // === normal ===
 
+    /**
+     * 显示 normal 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void normal(@NonNull Context context, @NonNull CharSequence message) {
         normal(context, message, Toast.LENGTH_SHORT, null);
     }
 
+    /**
+     * 显示 normal 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void normal(@NonNull Context context, @NonNull CharSequence message, Drawable icon) {
         normal(context, message, Toast.LENGTH_SHORT, icon);
     }
 
+    /**
+     * 显示 normal 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void normal(@NonNull Context context, @NonNull CharSequence message, int duration) {
         normal(context, message, duration, null);
     }
 
+    /**
+     * 显示 normal 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void normal(@NonNull Context context, @NonNull CharSequence message, int duration, Drawable icon) {
         custom(context, message, icon, NORMAL_COLOR, duration, true);
     }
 
     // === warning ===
 
+    /**
+     * 显示 warning 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void warning(@NonNull Context context, @NonNull CharSequence message) {
         warning(context, message, Toast.LENGTH_SHORT, true);
     }
 
+    /**
+     * 显示 warning 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void warning(@NonNull Context context, @NonNull CharSequence message, int duration) {
         warning(context, message, duration, true);
     }
 
+    /**
+     * 显示 warning 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void warning(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
         custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_ic_error_outline_white), WARNING_COLOR, duration, withIcon);
     }
 
     // === info ===
 
+    /**
+     * 显示 info 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void info(@NonNull Context context, @NonNull CharSequence message) {
         info(context, message, Toast.LENGTH_SHORT, true);
     }
 
+    /**
+     * 显示 info 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void info(@NonNull Context context, @NonNull CharSequence message, int duration) {
         info(context, message, duration, true);
     }
 
+    /**
+     * 显示 info 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void info(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
         custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_ic_info_outline_white), INFO_COLOR, duration, withIcon);
     }
 
     // === success ===
 
+    /**
+     * 显示 success 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void success(@NonNull Context context, @NonNull CharSequence message) {
         success(context, message, Toast.LENGTH_SHORT, true);
     }
 
+    /**
+     * 显示 success 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void success(@NonNull Context context, @NonNull CharSequence message, int duration) {
         success(context, message, duration, true);
     }
 
+    /**
+     * 显示 success 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void success(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
         custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_ic_check_white), SUCCESS_COLOR, duration, withIcon);
     }
 
     // === error ===
 
+    /**
+     * 显示 error 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void error(@NonNull Context context, @NonNull CharSequence message) {
         error(context, message, Toast.LENGTH_SHORT, true);
     }
 
+    /**
+     * 显示 error 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void error(@NonNull Context context, @NonNull CharSequence message, int duration) {
         error(context, message, duration, true);
     }
 
+    /**
+     * 显示 error 样式 Toast
+     * @param context
+     * @param message
+     */
     public static void error(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
         custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_ic_clear_white), ERROR_COLOR, duration, withIcon);
     }
 
     // === custom ===
 
+    /**
+     * 显示 通用自定义Toast
+     * @param context
+     * @param message
+     */
     public static void custom(@NonNull Context context, @NonNull CharSequence message) {
         custom(context, message, null, -1, Toast.LENGTH_SHORT, false);
     }
 
+    /**
+     * 显示 通用自定义Toast
+     * @param context
+     * @param message
+     */
     public static void custom(@NonNull Context context, @NonNull CharSequence message, Drawable icon) {
         custom(context, message, icon, -1, Toast.LENGTH_SHORT, true);
     }
 
+    /**
+     * 显示 通用自定义Toast
+     * @param context
+     * @param message
+     */
     public static void custom(@NonNull Context context, @NonNull CharSequence message, @DrawableRes int iconRes, @ColorInt int tintColor) {
         custom(context, message, ToastyUtils.getDrawable(context, iconRes), tintColor, Toast.LENGTH_SHORT, true);
     }
     /**
-     * 通用自定义显示Toast
+     * 显示 通用自定义Toast
      * @param context
      * @param message 显示的内容
      * @param icon 图标
@@ -413,7 +512,7 @@ public final class Toasty {
     }
 
     /**
-     * 通用自定义显示Toast
+     * 显示 通用自定义Toast
      * @param context
      * @param message 显示的内容
      * @param icon 图标

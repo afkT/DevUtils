@@ -50,18 +50,44 @@ public final class ToastUtils {
 	// == Toast.LENGTH_SHORT ==
 	// ========================
 
+	/**
+	 * 显示 一个短Toast
+	 * @param context
+	 * @param text
+	 * @return
+	 */
 	public static Toast showShort(Context context, String text) {
 		return handlerToastStr(true, context, text, Toast.LENGTH_SHORT);
 	}
 
+	/**
+	 * 显示 一个短Toast
+	 * @param context
+	 * @param text
+	 * @param objs
+	 * @return
+	 */
 	public static Toast showShort(Context context, String text, Object... objs) {
 		return handlerToastStr(true, context, text, Toast.LENGTH_SHORT, objs);
 	}
 
+	/**
+	 * 显示 一个短Toast
+	 * @param context
+	 * @param resId
+	 * @return
+	 */
 	public static Toast showShort(Context context, int resId) {
 		return handlerToastRes(true, context, resId, Toast.LENGTH_SHORT);
 	}
 
+	/**
+	 * 显示 一个短Toast
+	 * @param context
+	 * @param resId
+	 * @param objs
+	 * @return
+	 */
 	public static Toast showShort(Context context, int resId, Object... objs) {
 		return handlerToastRes(true, context, resId, Toast.LENGTH_SHORT, objs);
 	}
@@ -70,18 +96,44 @@ public final class ToastUtils {
 	// == Toast.LENGTH_LONG ===
 	// ========================
 
+	/**
+	 * 显示 一个长Toast
+	 * @param context
+	 * @param text
+	 * @return
+	 */
 	public static Toast showLong(Context context, String text) {
 		return handlerToastStr(true, context, text, Toast.LENGTH_LONG);
 	}
 
+	/**
+	 * 显示 一个长Toast
+	 * @param context
+	 * @param text
+	 * @param objs
+	 * @return
+	 */
 	public static Toast showLong(Context context, String text, Object... objs) {
 		return handlerToastStr(true, context, text, Toast.LENGTH_LONG, objs);
 	}
 
+	/**
+	 * 显示 一个长Toast
+	 * @param context
+	 * @param resId
+	 * @return
+	 */
 	public static Toast showLong(Context context, int resId) {
 		return handlerToastRes(true, context, resId, Toast.LENGTH_LONG);
 	}
 
+	/**
+	 * 显示 一个长Toast
+	 * @param context
+	 * @param resId
+	 * @param objs
+	 * @return
+	 */
 	public static Toast showLong(Context context, int resId, Object...objs) {
 		return handlerToastRes(true, context, resId, Toast.LENGTH_LONG, objs);
 	}
@@ -222,18 +274,44 @@ public final class ToastUtils {
 	// == Toast.LENGTH_SHORT ==
 	// ========================
 
+	/**
+	 * 显示 一个新的短Toast
+	 * @param context
+	 * @param text
+	 * @return
+	 */
 	public static Toast showShortNew(Context context, String text) {
 		return handlerToastStr(false, context, text, Toast.LENGTH_SHORT);
 	}
 
+	/**
+	 * 显示 一个新的短Toast
+	 * @param context
+	 * @param text
+	 * @param objs
+	 * @return
+	 */
 	public static Toast showShortNew(Context context, String text, Object... objs) {
 		return handlerToastStr(false, context, text, Toast.LENGTH_SHORT, objs);
 	}
 
+	/**
+	 * 显示 一个新的短Toast
+	 * @param context
+	 * @param resId
+	 * @return
+	 */
 	public static Toast showShortNew(Context context, int resId) {
 		return handlerToastRes(false, context, resId, Toast.LENGTH_SHORT);
 	}
 
+	/**
+	 * 显示 一个新的短Toast
+	 * @param context
+	 * @param resId
+	 * @param objs
+	 * @return
+	 */
 	public static Toast showShortNew(Context context, int resId, Object... objs) {
 		return handlerToastRes(false, context, resId, Toast.LENGTH_SHORT, objs);
 	}
@@ -242,18 +320,44 @@ public final class ToastUtils {
 	// == Toast.LENGTH_LONG ===
 	// ========================
 
+	/**
+	 * 显示 一个新的长Toast
+	 * @param context
+	 * @param text
+	 * @return
+	 */
 	public static Toast showLongNew(Context context, String text) {
 		return handlerToastStr(false, context, text, Toast.LENGTH_LONG);
 	}
 
+	/**
+	 * 显示 一个新的长Toast
+	 * @param context
+	 * @param text
+	 * @param objs
+	 * @return
+	 */
 	public static Toast showLongNew(Context context, String text, Object... objs) {
 		return handlerToastStr(false, context, text, Toast.LENGTH_LONG, objs);
 	}
 
+	/**
+	 * 显示 一个新的长Toast
+	 * @param context
+	 * @param resId
+	 * @return
+	 */
 	public static Toast showLongNew(Context context, int resId) {
 		return handlerToastRes(false, context, resId, Toast.LENGTH_LONG);
 	}
 
+	/**
+	 * 显示 一个新的长Toast
+	 * @param context
+	 * @param resId
+	 * @param objs
+	 * @return
+	 */
 	public static Toast showLongNew(Context context, int resId, Object...objs) {
 		return handlerToastRes(false, context, resId, Toast.LENGTH_LONG, objs);
 	}
