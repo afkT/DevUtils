@@ -180,8 +180,8 @@ public final class TimerManager {
 	 * @param period 循环时间 - 每隔多少秒执行一次
 	 * @return 定时器抽象对象
 	 */
-	public static AbsTimer creTimer(Handler handler, long period) {
-		return creTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, -1);
+	public static AbsTimer createTimer(Handler handler, long period) {
+		return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, -1);
 	}
 
 	/**
@@ -191,8 +191,8 @@ public final class TimerManager {
 	 * @param period 循环时间 - 每隔多少秒执行一次
 	 * @return 定时器抽象对象
 	 */
-	public static AbsTimer creTimer(Handler handler, long delay, long period) {
-		return creTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
+	public static AbsTimer createTimer(Handler handler, long delay, long period) {
+		return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
 	}
 
 	/**
@@ -202,8 +202,8 @@ public final class TimerManager {
 	 * @param triggerLimit 触发次数上限(-1,表示无限循环)
 	 * @return 定时器抽象对象
 	 */
-	public static AbsTimer creTimer(Handler handler, long period, int triggerLimit) {
-		return creTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, triggerLimit);
+	public static AbsTimer createTimer(Handler handler, long period, int triggerLimit) {
+		return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, triggerLimit);
 	}
 
 	/**
@@ -213,8 +213,8 @@ public final class TimerManager {
 	 * @param period 循环时间 - 每隔多少秒执行一次
 	 * @return 定时器抽象对象
 	 */
-	public static AbsTimer creTimer(Handler handler, int what, long period) {
-		return creTimer(handler, what, 0l, period, -1);
+	public static AbsTimer createTimer(Handler handler, int what, long period) {
+		return createTimer(handler, what, 0l, period, -1);
 	}
 
 	/**
@@ -225,8 +225,8 @@ public final class TimerManager {
 	 * @param period 循环时间 - 每隔多少秒执行一次
 	 * @return 定时器抽象对象
 	 */
-	public static AbsTimer creTimer(Handler handler, int what, long delay, long period) {
-		return creTimer(handler, what, delay, period, -1);
+	public static AbsTimer createTimer(Handler handler, int what, long delay, long period) {
+		return createTimer(handler, what, delay, period, -1);
 	}
 
 	/**
@@ -237,8 +237,8 @@ public final class TimerManager {
 	 * @param triggerLimit 触发次数上限(-1,表示无限循环)
 	 * @return 定时器抽象对象
 	 */
-	public static AbsTimer creTimer(Handler handler, int what, long period, int triggerLimit) {
-		return creTimer(handler, what, 0l, period, triggerLimit);
+	public static AbsTimer createTimer(Handler handler, int what, long period, int triggerLimit) {
+		return createTimer(handler, what, 0l, period, triggerLimit);
 	}
 
 	/**
@@ -250,7 +250,7 @@ public final class TimerManager {
 	 * @param triggerLimit 触发次数上限(-1,表示无限循环)
 	 * @return 定时器抽象对象
 	 */
-	public static AbsTimer creTimer(Handler handler, int what, long delay, long period, int triggerLimit) {
+	public static AbsTimer createTimer(Handler handler, int what, long delay, long period, int triggerLimit) {
 		return new TimerTask(handler, what, delay, period, triggerLimit);
 	}
 
@@ -310,7 +310,7 @@ public final class TimerManager {
 		// ======= 定时器任务,功能实现方法  =========
 
 		/** 运行定时器 */
-		public void startTimer() { // 如果外部通过了creTimer或者直接new AbsTimer 初始化了对象，没有调用startTimer,都不会保存到 listAbsTimers 并不影响对定时器的控制
+		public void startTimer() { // 如果外部通过了createTimer或者直接new AbsTimer 初始化了对象，没有调用startTimer,都不会保存到 listAbsTimers 并不影响对定时器的控制
 			//  标记状态 - 不需要回收
 			this.isMarkSweep = false;
 			synchronized (listAbsTimers) {

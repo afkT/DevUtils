@@ -213,33 +213,33 @@ class TimerUse {
     private void timerUse(){
 
 //        /** 创建定时器 => 立即执行,无限循环,通知默认what */
-//        public static TimerManager.AbsTimer creTimer(Handler handler, long period) {
-//            return creTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, -1);
+//        public static TimerManager.AbsTimer createTimer(Handler handler, long period) {
+//            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, -1);
 //        }
 //
 //        /** 创建定时器 => 无限循环,通知默认what */
-//        public static TimerManager.AbsTimer creTimer(Handler handler, long delay, long period) {
-//            return creTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
+//        public static TimerManager.AbsTimer createTimer(Handler handler, long delay, long period) {
+//            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
 //        }
 //
 //        /** 创建定时器 => 立即执行,通知默认what */
-//        public static TimerManager.AbsTimer creTimer(Handler handler, long period, int triggerLimit) {
-//            return creTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, triggerLimit);
+//        public static TimerManager.AbsTimer createTimer(Handler handler, long period, int triggerLimit) {
+//            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, triggerLimit);
 //        }
 //
 //        /** 创建定时器 => 立即执行,无限循环 */
-//        public static TimerManager.AbsTimer creTimer(Handler handler, int what, long period) {
-//            return creTimer(handler, what, 0l, period, -1);
+//        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period) {
+//            return createTimer(handler, what, 0l, period, -1);
 //        }
 //
 //        /** 创建定时器 => 无限循环 */
-//        public static TimerManager.AbsTimer creTimer(Handler handler, int what, long delay, long period) {
-//            return creTimer(handler, what, delay, period, -1);
+//        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long delay, long period) {
+//            return createTimer(handler, what, delay, period, -1);
 //        }
 //
 //        /** 创建定时器 => 立即执行 */
-//        public static TimerManager.AbsTimer creTimer(Handler handler, int what, long period, int triggerLimit) {
-//            return creTimer(handler, what, 0l, period, triggerLimit);
+//        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period, int triggerLimit) {
+//            return createTimer(handler, what, 0l, period, triggerLimit);
 //        }
 //
 //        /**
@@ -251,12 +251,12 @@ class TimerUse {
 //         * @param triggerLimit 触发次数上限(-1,表示无限循环)
 //         * @return
 //         */
-//        public static TimerManager.AbsTimer creTimer(Handler handler, int what, long delay, long period, int triggerLimit) {
+//        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long delay, long period, int triggerLimit) {
 //            return new TimerManager.TimerTask(handler, what, delay, period, triggerLimit);
 //        }
 
         // 初始化定时器任务
-        absTimer = TimerManager.creTimer(new Handler(){
+        absTimer = TimerManager.createTimer(new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);

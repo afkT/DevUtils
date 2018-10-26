@@ -110,7 +110,7 @@ public final class NotificationUtils {
      * @param id
      * @return
      */
-    public static PendingIntent crePendingIntent(Intent intent, int id){
+    public static PendingIntent createPendingIntent(Intent intent, int id){
         /* 跳转Intent */
         PendingIntent pIntent = PendingIntent.getActivity(DevUtils.getContext(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         return pIntent;
@@ -123,8 +123,8 @@ public final class NotificationUtils {
      * @param msg
      * @return
      */
-    public static Notification creNotification(int icon, String title, String msg) {
-        return creNotification(null, icon, title, title, msg, true, VibratePattern.obtain(0, 100, 300), LightPattern.obtain(Color.WHITE, 1000, 1000));
+    public static Notification createNotification(int icon, String title, String msg) {
+        return createNotification(null, icon, title, title, msg, true, VibratePattern.obtain(0, 100, 300), LightPattern.obtain(Color.WHITE, 1000, 1000));
     }
 
     /**
@@ -136,8 +136,8 @@ public final class NotificationUtils {
      * @param lightPattern
      * @return
      */
-    public static Notification creNotification(int icon, String title, String msg, VibratePattern vibratePattern, LightPattern lightPattern) {
-        return creNotification(null, icon, title, title, msg, true, vibratePattern, lightPattern);
+    public static Notification createNotification(int icon, String title, String msg, VibratePattern vibratePattern, LightPattern lightPattern) {
+        return createNotification(null, icon, title, title, msg, true, vibratePattern, lightPattern);
     }
 
     /**
@@ -152,7 +152,7 @@ public final class NotificationUtils {
      * @param lightPattern
      * @return
      */
-    public static Notification creNotification(PendingIntent pendingIntent, int icon, String ticker, String title, String msg, boolean isAutoCancel, VibratePattern vibratePattern, LightPattern lightPattern) {
+    public static Notification createNotification(PendingIntent pendingIntent, int icon, String ticker, String title, String msg, boolean isAutoCancel, VibratePattern vibratePattern, LightPattern lightPattern) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             Notification.Builder builder = new Notification.Builder(DevUtils.getContext());
             // 点击通知执行intent
