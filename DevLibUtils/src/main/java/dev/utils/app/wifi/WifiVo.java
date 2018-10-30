@@ -3,6 +3,7 @@ package dev.utils.app.wifi;
 import android.net.wifi.ScanResult;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Keep;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,16 @@ public class WifiVo implements Parcelable {
 	// 日志TAG
 	private static final String TAG = WifiVo.class.getSimpleName();
 	/** wifi SSID */
+	@Keep
 	public String wSSID = null;
 	/** wifi 密码 */
+	@Keep
 	public String wPwd = null;
 	/** wifi 加密类型 */
+	@Keep
 	public int wType = WifiUtils.NOPWD;
 	/** wifi 信号等级 */
+	@Keep
 	public int wLevel = 0;
 
 	// --

@@ -1,5 +1,6 @@
 package dev.utils.app.info;
 
+import android.support.annotation.Keep;
 import android.support.annotation.StringRes;
 
 import dev.DevUtils;
@@ -11,8 +12,10 @@ import dev.DevUtils;
 public class KeyValueBean {
 
     // 键 - 提示
+    @Keep
     protected String key = "";
     // 值 - 参数值
+    @Keep
     protected String value = "";
 
     /**

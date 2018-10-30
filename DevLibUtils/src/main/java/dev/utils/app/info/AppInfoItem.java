@@ -3,6 +3,7 @@ package dev.utils.app.info;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.support.annotation.Keep;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 
@@ -26,8 +27,10 @@ import dev.utils.common.FileUtils;
 public final class AppInfoItem {
 
     // App 信息实体类
+    @Keep
     private AppInfoBean appInfoBean;
     // App 参数集
+    @Keep
     private List<KeyValueBean> listKeyValues = new ArrayList<>();
 
     private AppInfoItem(){

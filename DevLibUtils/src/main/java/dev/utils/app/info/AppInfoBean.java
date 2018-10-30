@@ -4,6 +4,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Keep;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -20,26 +21,37 @@ public class AppInfoBean {
     // 日志Tag
     private static final String TAG = AppInfoBean.class.getSimpleName();
     // App 包名
+    @Keep
     private String appPackName;
     // App 名
+    @Keep
     private String appName;
     // App 图标
+    @Keep
     private transient Drawable appIcon;
     // App 类型
+    @Keep
     private AppType appType;
     // 获取版本号
+    @Keep
     private int versionCode;
     // 获取版本名
+    @Keep
     private String versionName;
     // App 首次安装时间
+    @Keep
     private long firstInstallTime;
     // 获取最后一次更新时间
+    @Keep
     private long lastUpdateTime;
     // 获取 App 地址
+    @Keep
     private String sourceDir;
     // Apk 大小
+    @Keep
     private long apkSize;
     // 申请的权限
+    @Keep
     private String [] apkPermissionsArys;
 
     /**

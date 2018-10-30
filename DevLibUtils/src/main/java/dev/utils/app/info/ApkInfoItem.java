@@ -5,6 +5,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.support.annotation.Keep;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 
@@ -32,10 +33,13 @@ public final class ApkInfoItem {
     // 日志Tag
     private static final String TAG = ApkInfoItem.class.getSimpleName();
     // Apk 文件地址
+    @Keep
     private String apkUri;
     // App 信息实体类
+    @Keep
     private AppInfoBean appInfoBean;
     // App 参数集
+    @Keep
     private List<KeyValueBean> listKeyValues = new ArrayList<>();
 
     private ApkInfoItem(){
