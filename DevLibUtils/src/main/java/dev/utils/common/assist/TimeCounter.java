@@ -39,4 +39,12 @@ public class TimeCounter {
     public long duration() {
         return System.currentTimeMillis() - t;
     }
+
+    /**
+     * 获取开始时间
+     * @return
+     */
+    public long getStartTime(){
+        return t;
+    }
 }
