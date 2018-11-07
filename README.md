@@ -1,3 +1,6 @@
+
+[![](https://jitpack.io/v/afkT/DevUtils.svg)](https://jitpack.io/#afkT/DevUtils) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
+
 # About (持续更新, 目前含100+工具类)
 
 > DevUtils 是一个 Android 工具库, 主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用。
@@ -18,7 +21,7 @@ Step 2. Add the dependency
 ```
 dependencies {
 	// 因为内含 res 文件, 使用 aar 方式调用
-	implementation 'com.github.afkT:DevUtils:1.0.8@aar'
+	implementation 'com.github.afkT:DevUtils:1.1.0@aar'
 	// implementation 'com.github.afkT:DevUtils:latest.release@aar'
 }
 ```
