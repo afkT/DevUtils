@@ -78,11 +78,7 @@ public class BaseApplication extends Application{
 
 > 感谢以下开源项目的作者，本项目中有些功能受你们项目灵感的启发，有些功能也用到你们的代码完成。
 
-- [orhanobut/logger](https://github.com/orhanobut/logger)
-- [laobie/StatusBarUtil](https://github.com/laobie/StatusBarUtil)
 - [GrenderG/Toasty](https://github.com/GrenderG/Toasty)
 - [Blankj/AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode)
-- [l123456789jy/Lazy](https://github.com/l123456789jy/Lazy)
-- [yangfuhai/ASimpleCache](https://github.com/yangfuhai/ASimpleCache)
-- [AbrahamCaiJin/CommonUtilLibrary](https://github.com/AbrahamCaiJin/CommonUtilLibrary)
 - [litesuits/android-common](https://github.com/litesuits/android-common)
+- [AbrahamCaiJin/CommonUtilLibrary](https://github.com/AbrahamCaiJin/CommonUtilLibrary)

@@ -38,13 +38,13 @@ public final class AppInfoItem {
 
     /**
      * 初始化并获取 AppInfoItem 对象
-     * @param packName
+     * @param packageName
      * @return {@link AppInfoItem}
      * @throws Exception
      */
-    public static AppInfoItem obtain(String packName) throws Exception {
+    public static AppInfoItem obtain(String packageName) throws Exception {
         // 如果包名为null, 则直接不处理
-        if (TextUtils.isEmpty(packName)){
+        if (TextUtils.isEmpty(packageName)){
             return null;
         }
         // 获取 Context
@@ -52,7 +52,7 @@ public final class AppInfoItem {
         // 初始化包管理类
         PackageManager pManager = context.getPackageManager();
         // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
-        PackageInfo pInfo = pManager.getPackageInfo(packName, PackageManager.GET_SIGNATURES); // 64
+        PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES); // 64
         // 初始化实体类
         AppInfoItem appInfoItem = new AppInfoItem();
         // 获取 App 信息

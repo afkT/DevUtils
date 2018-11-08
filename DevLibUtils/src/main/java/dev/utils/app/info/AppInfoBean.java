@@ -77,14 +77,14 @@ public class AppInfoBean {
 
     /**
      * 通过包名 初始化 App 信息实体类
-     * @param pckName 包名
+     * @param packageName 包名
      */
-    public static AppInfoBean obtainPck(String pckName){
+    public static AppInfoBean obtainPck(String packageName){
         try {
             // https://blog.csdn.net/sljjyy/article/details/17370665
             PackageManager pManager = DevUtils.getApplication().getPackageManager();
             // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
-            PackageInfo pInfo = pManager.getPackageInfo(pckName, PackageManager.GET_SIGNATURES); // 64
+            PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES); // 64
             // 返回app信息
             return new AppInfoBean(pInfo, pManager);
         } catch (Exception e){

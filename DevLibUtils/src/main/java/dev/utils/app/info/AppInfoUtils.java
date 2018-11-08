@@ -33,10 +33,10 @@ public final class AppInfoUtils {
 
     /**
      * 通过包名 初始化 App 信息实体类
-     * @param pckName 包名
+     * @param packageName 包名
      */
-    public static AppInfoBean obtainPck(String pckName){
-        return AppInfoBean.obtainPck(pckName);
+    public static AppInfoBean obtainPck(String packageName){
+        return AppInfoBean.obtainPck(packageName);
     }
 
     /**
@@ -65,12 +65,12 @@ public final class AppInfoUtils {
 
     /**
      * 获取 App 详细信息
-     * @param pckName
+     * @param packageName
      * @return
      */
-    public static AppInfoItem getAppInfoItem(String pckName){
+    public static AppInfoItem getAppInfoItem(String packageName){
         try {
-            return AppInfoItem.obtain(pckName);
+            return AppInfoItem.obtain(packageName);
         } catch (Exception e){
             return null;
         }
@@ -148,13 +148,13 @@ public final class AppInfoUtils {
 
     /**
      * 获取 Apk 注册的权限
-     * @param pckName
+     * @param packageName
      * https://www.cnblogs.com/leaven/p/5485864.html
      */
-    public static String [] getApkPermission(String pckName){
+    public static String [] getApkPermission(String packageName){
         try {
             PackageManager packageManager = DevUtils.getApplication().getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(pckName, PackageManager.GET_PERMISSIONS);
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             return packageInfo.requestedPermissions;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getUsesPermission");
@@ -164,13 +164,13 @@ public final class AppInfoUtils {
 
     /**
      * 打印 Apk 注册的权限
-     * @param pckName
+     * @param packageName
      * https://www.cnblogs.com/leaven/p/5485864.html
      */
-    public static void printApkPermission(String pckName){
+    public static void printApkPermission(String packageName){
         try {
             PackageManager packageManager = DevUtils.getApplication().getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(pckName, PackageManager.GET_PERMISSIONS);
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             String [] usesPermissionsArray = packageInfo.requestedPermissions;
             for (int i = 0; i < usesPermissionsArray.length; i++) {
                 // 获取每个权限的名字,如:android.permission.INTERNET

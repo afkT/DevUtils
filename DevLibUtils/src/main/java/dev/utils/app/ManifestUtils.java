@@ -34,13 +34,13 @@ public final class ManifestUtils {
 
     /**
      * 获取 Application Meta Data
-     * @param pck
+     * @param packageName
      * @param metaKey
      * @return
      */
-    public static String getMetaData(String pck, String metaKey) {
+    public static String getMetaData(String packageName, String metaKey) {
         try {
-            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(pck, PackageManager.GET_META_DATA);
+            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             String data = appInfo.metaData.getString(metaKey);
             return data;
         } catch (Exception e) {
@@ -73,14 +73,14 @@ public final class ManifestUtils {
 
     /**
      * 获取 Activity Meta Data
-     * @param pck
+     * @param packageName
      * @param name 完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInActivity(String pck, String name, String metaKey) {
+    public static String getMetaDataInActivity(String packageName, String name, String metaKey) {
         try {
-            ComponentName componentName = new ComponentName(pck, name);
+            ComponentName componentName = new ComponentName(packageName, name);
             ActivityInfo activityInfo = DevUtils.getContext().getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
             String data = activityInfo.metaData.getString(metaKey);
             return data;
@@ -114,14 +114,14 @@ public final class ManifestUtils {
 
     /**
      * 获取 Service Meta Data
-     * @param pck
+     * @param packageName
      * @param name 完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInService(String pck, String name, String metaKey) {
+    public static String getMetaDataInService(String packageName, String name, String metaKey) {
         try {
-            ComponentName componentName = new ComponentName(pck, name);
+            ComponentName componentName = new ComponentName(packageName, name);
             ServiceInfo serviceInfo = DevUtils.getContext().getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
             String data = serviceInfo.metaData.getString(metaKey);
             return data;
@@ -155,14 +155,14 @@ public final class ManifestUtils {
 
     /**
      * 获取 Receiver Meta Data
-     * @param pck
+     * @param packageName
      * @param name 完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInReceiver(String pck, String name, String metaKey) {
+    public static String getMetaDataInReceiver(String packageName, String name, String metaKey) {
         try {
-            ComponentName componentName = new ComponentName(pck, name);
+            ComponentName componentName = new ComponentName(packageName, name);
             ActivityInfo receiverInfo = DevUtils.getContext().getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
             String data = receiverInfo.metaData.getString(metaKey);
             return data;
@@ -196,14 +196,14 @@ public final class ManifestUtils {
 
     /**
      * 获取 ContentProvider Meta Data
-     * @param pck
+     * @param packageName
      * @param name 完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInProvider(String pck, String name, String metaKey) {
+    public static String getMetaDataInProvider(String packageName, String name, String metaKey) {
         try {
-            ComponentName componentName = new ComponentName(pck, name);
+            ComponentName componentName = new ComponentName(packageName, name);
             ProviderInfo providerInfo = DevUtils.getContext().getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
             String data = providerInfo.metaData.getString(metaKey);
             return data;

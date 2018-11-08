@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
@@ -141,6 +142,41 @@ public final class ActivityUtils {
             LogPrintUtils.eTag(TAG, e, "getActivityLogo");
             return null;
         }
+    }
+
+    /**
+     * 获取对应包名应用启动页面
+     * @param packageName
+     * @return
+     */
+    public static String getAppActivityToLauncher(String packageName){
+        try {
+            PackageManager pManager = DevUtils.getApplication().getPackageManager();
+            // 获取对应的PackageInfo
+            PackageInfo pInfo = pManager.getPackageInfo(packageName, 0);
+
+            if (pInfo == null){
+                return null;
+            }
+
+            // 创建一个类别为 CATEGORY_LAUNCHER 的该包名的 Intent
+            Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
+            resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+            resolveIntent.setPackage(pInfo.packageName);
+
+            // 通过 getPackageManager() 的 queryIntentActivities 方法遍历
+            List<ResolveInfo> lists = pManager.queryIntentActivities(resolveIntent, 0);
+            ResolveInfo resolveinfo = lists.iterator().next();
+            if (resolveinfo != null) {
+                // resolveinfo.activityInfo.packageName; => packageName
+                // 这个就是我们要找的该 App 的 LAUNCHER 的 Activity [ 组织形式：packageName.mainActivityname ]
+                String className = resolveinfo.activityInfo.name;
+                return className;
+            }
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getAppActivityToLauncher");
+        }
+        return null;
     }
 
     // == 以下方法使用介绍 ==

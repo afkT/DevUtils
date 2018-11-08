@@ -112,15 +112,15 @@ public final class ADBUtils {
 
     /**
      * 判断是否安装应用
-     * @param packName
+     * @param packageName
      * @return
      */
-    public static boolean isInstalledApp(String packName){
-        if (TextUtils.isEmpty(packName)){
+    public static boolean isInstalledApp(String packageName){
+        if (TextUtils.isEmpty(packageName)){
             return false;
         }
         // 执行 shell
-        ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packName, false);
+        ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packageName, false);
         if (result != null && result.result == SUCCESS){
             if (!TextUtils.isEmpty(result.successMsg)){
                 return true;
@@ -131,16 +131,16 @@ public final class ADBUtils {
 
     /**
      * 获取 App versionCode
-     * @param packName
+     * @param packageName
      * @return
      */
-    public static int getVersionCode(String packName){
-        if (TextUtils.isEmpty(packName)){
+    public static int getVersionCode(String packageName){
+        if (TextUtils.isEmpty(packageName)){
             return 0;
         }
         try {
             // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packName + " | grep version", true);
+            ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
             if (result != null && result.result == SUCCESS){
                 if (!TextUtils.isEmpty(result.successMsg)){
                     String[] arys = result.successMsg.split("\\s");
@@ -167,16 +167,16 @@ public final class ADBUtils {
 
     /**
      * 获取 App versionName
-     * @param packName
+     * @param packageName
      * @return
      */
-    public static String getVersionName(String packName){
-        if (TextUtils.isEmpty(packName)){
+    public static String getVersionName(String packageName){
+        if (TextUtils.isEmpty(packageName)){
             return "";
         }
         try {
             // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packName + " | grep version", true);
+            ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
             if (result != null && result.result == SUCCESS){
                 if (!TextUtils.isEmpty(result.successMsg)){
                     String[] arys = result.successMsg.split("\\s");
@@ -350,26 +350,26 @@ public final class ADBUtils {
 
     /**
      * 获取已经启动的 App 当前页面 Activity
-     * @param packName
+     * @param packageName
      * @return
      */
-    public static String getAppActivityToPack(String packName){
-        return getAppActivityToPack(packName, true);
+    public static String getAppActivityToPack(String packageName){
+        return getAppActivityToPack(packageName, true);
     }
 
     /**
      * 获取已经启动的 App 当前页面 Activity
-     * @param packName
+     * @param packageName
      * @param split 是否进行裁剪
      * @return
      */
-    public static String getAppActivityToPack(String packName, boolean split){
-        if (TextUtils.isEmpty(packName)){
+    public static String getAppActivityToPack(String packageName, boolean split){
+        if (TextUtils.isEmpty(packageName)){
             return "";
         }
         String cmd = "dumpsys window windows | grep '%s'";
         // 执行 shell
-        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packName), true);
+        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
         if (result != null && result.result == SUCCESS){
             if (!TextUtils.isEmpty(result.successMsg)){
                 if (split){
@@ -397,7 +397,7 @@ public final class ADBUtils {
                             }
                         }
                     } catch (Exception e){
-                        LogPrintUtils.eTag(TAG, e, "getAppActivityToPack " + packName);
+                        LogPrintUtils.eTag(TAG, e, "getAppActivityToPack " + packageName);
                     }
                 }
                 return result.successMsg;
@@ -407,17 +407,17 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取对应包名的 App 启动页 => android.intent.action.MAIN
-     * @param packName
+     * 获取对应包名应用启动页面 => android.intent.category.LAUNCHER (android.intent.action.MAIN)
+     * @param packageName
      * @return
      */
-    public static String getAppActivityToMain(String packName){
-        if (TextUtils.isEmpty(packName)){
+    public static String getAppActivityToLauncher(String packageName){
+        if (TextUtils.isEmpty(packageName)){
             return "";
         }
         String cmd = "dumpsys package %s";
         // 执行 shell
-        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packName), true);
+        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
         if (result != null && result.result == SUCCESS){
             if (!TextUtils.isEmpty(result.successMsg)){
                 String startStr = "android.intent.action.MAIN:";
@@ -434,7 +434,7 @@ public final class ADBUtils {
                             if (!TextUtils.isEmpty(str)){
                                 try {
                                     // 属于包名/ 前缀的
-                                    if (str.indexOf(packName + "/") != -1){
+                                    if (str.indexOf(packageName + "/") != -1){
                                         // 防止属于 包名/.xx.Main_Activity
                                         if (str.indexOf("/.") != -1){
                                             String pack = str.split("/.")[0];
@@ -447,7 +447,7 @@ public final class ADBUtils {
                             }
                         }
                     } catch (Exception e){
-                        LogPrintUtils.eTag(TAG, e, "getAppMainActivity " + packName);
+                        LogPrintUtils.eTag(TAG, e, "getAppActivityToLauncher " + packageName);
                     }
                 }
             }
@@ -490,17 +490,17 @@ public final class ADBUtils {
 
     /**
      * 销毁进程
-     * @param packName
+     * @param packageName
      * @return
      */
-    public static boolean kill(String packName){
-        if (TextUtils.isEmpty(packName)){
+    public static boolean kill(String packageName){
+        if (TextUtils.isEmpty(packageName)){
             return false;
         }
         try {
             String cmd = "am force-stop %s";
             // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packName), true);
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
             if (result != null && result.result == SUCCESS){
                 return true;
             }
