@@ -10,7 +10,7 @@ public final class EscapeUtils {
 	}
 
 	/** 十六进制 - 0-255 */
-	private final static String[] hex = { "00", "01", "02", "03", "04", "05",
+	private static final String[] hex = { "00", "01", "02", "03", "04", "05",
 			"06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10",
 			"11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B",
 			"1C", "1D", "1E", "1F", "20", "21", "22", "23", "24", "25", "26",
@@ -35,7 +35,7 @@ public final class EscapeUtils {
 			"ED", "EE", "EF", "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7",
 			"F8", "F9", "FA", "FB", "FC", "FD", "FE", "FF" };
 
-	private final static byte[] val = { 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
+	private static final byte[] val = { 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
 			0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
 			0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
 			0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,

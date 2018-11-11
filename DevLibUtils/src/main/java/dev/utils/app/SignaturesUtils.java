@@ -37,7 +37,7 @@ public final class SignaturesUtils {
      * 检测应用程序是否是用"CN=Android Debug,O=Android,C=US"的debug信息来签名的
      * 判断签名是debug签名还是release签名
      */
-    private final static X500Principal DEBUG_DN = new X500Principal("CN=Android Debug,O=Android,C=US");
+    private static final X500Principal DEBUG_DN = new X500Principal("CN=Android Debug,O=Android,C=US");
 
     /**
      * 进行转换

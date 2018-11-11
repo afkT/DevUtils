@@ -33,7 +33,7 @@ import dev.utils.LogPrintUtils;
 public class WifiHotUtils {
 
     // 日志TAG
-    private final static String TAG = WifiHotUtils.class.getSimpleName();
+    private static final String TAG = WifiHotUtils.class.getSimpleName();
     // Context
     private Context mContext;
     /** 定义WifiManager对象 */

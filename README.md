@@ -1,7 +1,7 @@
 
 [![Cocoapods](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Cocoapods](https://img.shields.io/badge/DevUtils-v1.1.0-brightgreen.svg)](https://github.com/afkT/DevUtils)
+[![Cocoapods](https://img.shields.io/badge/DevUtils-1.1.0-brightgreen.svg)](https://github.com/afkT/DevUtils)
 [![](https://jitpack.io/v/afkT/DevUtils.svg)](https://jitpack.io/#afkT/DevUtils)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 
@@ -26,7 +26,6 @@ Step 2. Add the dependency
 dependencies {
 	// 因为内含 res 文件, 使用 aar 方式调用
 	implementation 'com.github.afkT:DevUtils:1.1.0@aar'
-	// implementation 'com.github.afkT:DevUtils:latest.release@aar'
 }
 ```
 
@@ -40,8 +39,7 @@ dependencies {
 ## Use
 
 > 只需要在 Application 中调用 DevUtils.init() 进行初始化就行
-> <p>DevUtils.openLog() 是打开内部工具类 日志输出, 发包则不调用此句
-> <p> DevLogger => https://github.com/afkT/DevLogger
+> <p>DevUtils.openLog() 是打开内部工具类 日志输出([DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLogger.java)), 发布版本则不调用此句
 
 ```java
 /**

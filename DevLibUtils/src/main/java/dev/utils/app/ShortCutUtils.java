@@ -63,7 +63,7 @@ public final class ShortCutUtils {
      * @param res
      */
     public static void addShortcut(Context context, String clasName, String name, int res) {
-        Intent shortcut = new Intent( "com.android.launcher.action.INSTALL_SHORTCUT");
+        Intent shortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name); // 快捷方式的名称
         shortcut.putExtra("duplicate", false); // 不允许重复创建
         // 设置 快捷方式跳转页面
@@ -82,7 +82,7 @@ public final class ShortCutUtils {
      * @param name
      */
     public static void delShortcut(Context context, String clasName, String name) {
-        Intent shortcut = new Intent( "com.android.launcher.action.UNINSTALL_SHORTCUT");
+        Intent shortcut = new Intent("com.android.launcher.action.UNINSTALL_SHORTCUT");
         // 快捷方式的名称
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
         String appClass = context.getPackageName() + "." + clasName;

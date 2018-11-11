@@ -13,7 +13,7 @@ import dev.utils.app.logger.DevLogger;
 class TimerUse {
 
     /** 日志Tag */
-    private final static String TAG = TimerUse.class.getSimpleName();
+    private static final String TAG = TimerUse.class.getSimpleName();
     // 创建定时器
     TimerManager.AbsTimer absTimer;
     /** 通知常量 */

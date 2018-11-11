@@ -26,7 +26,7 @@ public final class SHAUtils {
      * @param str 加密内容
      * @return
      */
-    public final static String sha1(String str) {
+    public static final String sha1(String str) {
         return shaHex(str, "SHA-1");
     }
 
@@ -35,7 +35,7 @@ public final class SHAUtils {
      * @param str 加密内容
      * @return
      */
-    public final static String sha224(String str) {
+    public static final String sha224(String str) {
         return shaHex(str, "SHA-224");
     }
 
@@ -44,7 +44,7 @@ public final class SHAUtils {
      * @param str 加密内容
      * @return
      */
-    public final static String sha256(String str) {
+    public static final String sha256(String str) {
         return shaHex(str, "SHA-256");
     }
 
@@ -53,7 +53,7 @@ public final class SHAUtils {
      * @param str 加密内容
      * @return
      */
-    public final static String sha384(String str) {
+    public static final String sha384(String str) {
         return shaHex(str, "SHA-384");
     }
 
@@ -62,7 +62,7 @@ public final class SHAUtils {
      * @param str 加密内容
      * @return
      */
-    public final static String sha512(String str) {
+    public static final String sha512(String str) {
         return shaHex(str, "SHA-512");
     }
 
@@ -74,7 +74,7 @@ public final class SHAUtils {
      * @param sha 加密算法
      * @return
      */
-    final static String shaHex(String str, String sha) {
+    static final String shaHex(String str, String sha) {
         try {
             byte[] btInput = str.getBytes();
             // 获取 SHA-1 摘要算法的 MessageDigest 对象
@@ -95,7 +95,7 @@ public final class SHAUtils {
      * @param fPath 文件地址
      * @return
      */
-    final static String getFileSHA(String fPath, String sha) {
+    static final String getFileSHA(String fPath, String sha) {
         try {
             InputStream fis = new FileInputStream(fPath);
             byte[] buffer = new byte[1024];

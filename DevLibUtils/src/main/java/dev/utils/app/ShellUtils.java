@@ -148,7 +148,7 @@ public final class ShellUtils {
     public static class CommandResult {
 
         /** 结果码 */
-        public int    result;
+        public int result;
         /** 成功信息 */
         public String successMsg;
         /** 错误信息 */

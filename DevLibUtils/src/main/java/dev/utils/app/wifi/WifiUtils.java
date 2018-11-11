@@ -29,7 +29,7 @@ import dev.utils.LogPrintUtils;
 public final class WifiUtils {
 
 	// 日志TAG
-	private final static String TAG = WifiUtils.class.getSimpleName();
+	private static final String TAG = WifiUtils.class.getSimpleName();
 
 	// ======= wifi管理类对象 =======
 	/** 定义WifiManager对象 */

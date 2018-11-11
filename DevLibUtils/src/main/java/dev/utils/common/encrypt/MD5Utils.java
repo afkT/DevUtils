@@ -28,7 +28,7 @@ public final class MD5Utils {
 	 * @param str 加密内容
 	 * @return
 	 */
-	public final static String md5(String str) {
+	public static final String md5(String str) {
         try {
             return md5(str.getBytes());
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public final class MD5Utils {
 	 * @param bytes
 	 * @return
 	 */
-	public final static String md5(byte[] bytes) {
+	public static final String md5(byte[] bytes) {
 		try {
 			// 获取MD5摘要算法的 MessageDigest 对象
 			MessageDigest mdInst = MessageDigest.getInstance("MD5");
@@ -62,7 +62,7 @@ public final class MD5Utils {
 	 * @param str 加密内容
 	 * @return
 	 */
-    public final static String md5Upper(String str) {
+    public static final String md5Upper(String str) {
 		try {
 			return md5Upper(str.getBytes());
 		} catch (Exception e) {
@@ -76,7 +76,7 @@ public final class MD5Utils {
 	 * @param bytes
 	 * @return
 	 */
-	public final static String md5Upper(byte[] bytes) {
+	public static final String md5Upper(byte[] bytes) {
 		try {
 			// 获取MD5摘要算法的 MessageDigest 对象
 			MessageDigest mdInst = MessageDigest.getInstance("MD5");

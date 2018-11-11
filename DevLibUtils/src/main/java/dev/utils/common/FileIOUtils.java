@@ -423,7 +423,7 @@ public final class FileIOUtils {
             if (isSpace(charsetName)) {
                 reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
-                reader = new BufferedReader( new InputStreamReader(new FileInputStream(file), charsetName));
+                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
             }
             while ((line = reader.readLine()) != null) {
                 if (curLine > end) break;

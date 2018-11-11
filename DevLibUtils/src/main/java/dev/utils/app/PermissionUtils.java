@@ -59,7 +59,7 @@ public final class PermissionUtils {
     /** Permission 请求Code */
     public static final int P_REQUEST_CODE = 100;
     /** 全部权限 */
-    private final static Set<String> mAllPermissions = new HashSet<>(1);
+    private static final Set<String> mAllPermissions = new HashSet<>(1);
     // 判断是否请求过
     private boolean isRequest = false;
     /** 申请的权限 */

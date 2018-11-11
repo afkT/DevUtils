@@ -174,7 +174,7 @@ public final class AppUtils {
 	 * 获取 Color
 	 * @return
 	 */
-	public static int getColor( @ColorRes int id) {
+	public static int getColor(@ColorRes int id) {
 		try {
 			return ContextCompat.getColor(DevUtils.getContext(), id);
 		} catch (Exception e){
@@ -370,7 +370,7 @@ public final class AppUtils {
 	// =
 
  	/**
- 	 * 对内设置指定语言 ( App 多语言,单独改变 App 语言)
+ 	 * 对内设置指定语言 (App 多语言,单独改变 App 语言)
  	 * @param locale
  	 */
  	public static void setLanguage(Locale locale) {

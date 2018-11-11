@@ -58,7 +58,7 @@ public final class ShapeUtils {
      * detail: 构造者模式
      * Created by Ttt
      */
-    public final static class Builder {
+    public static final class Builder {
 
         private GradientDrawable gradientDrawable = new GradientDrawable();
 

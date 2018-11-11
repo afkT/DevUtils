@@ -2,7 +2,7 @@ package dev.utils.app;
 
 import android.text.TextUtils;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +21,13 @@ import dev.utils.LogPrintUtils;
  *
  * // adb shell input
  * https://blog.csdn.net/soslinken/article/details/49587497
+ *
+ * android 上发送adb 指令，不需要加 adb shell
+ *
+ * // https://www.imooc.com/qadetail/198264
+ * grep 是 linux 下的命令, windows 用 findstr
+ *
+ * 开启 Thread 执行, 非主线程, 否则无响应并无效
  */
 public final class ADBUtils {
 
@@ -29,33 +36,55 @@ public final class ADBUtils {
 
     // 日志 TAG
     private static final String TAG = ADBUtils.class.getSimpleName();
-    // 成功
-    private static int SUCCESS = 0;
+    // 操作成功
+    public static final int SUCCESS = 0;
+    // 正则 - 空格
+    private static final String SPACE_STR = "\\s";
     /** 换行字符串 */
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
-    // android 上发送adb 指令，不需要加 adb shell
-
-    // https://www.imooc.com/qadetail/198264
-    // grep 是 linux 下的命令, windows 用 findstr
+    /**
+     * 判断设备是否 root
+     * @return
+     */
+    public static boolean isDeviceRooted() {
+        String su = "su";
+        String[] locations = { "/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
+                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/" };
+        for (String location : locations) {
+            if (new File(location + su).exists()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
-     * 请求 root 权限
+     * 请求 Root 权限
      */
     public static void requestRoot(){
         ShellUtils.execCmd("exit", true);
     }
 
     /**
+     * 判断 App 是否授权 Root 权限
+     * @return
+     */
+    public static boolean isGrantedRoot(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("exit", true);
+        return result.result == SUCCESS;
+    }
+
+    /**
      * 获取 App 列表(包名)
      * @param type
      * @return
+     * https://blog.csdn.net/henni_719/article/details/62222439
      */
     public static List<String> getAppList(String type){
-        // https://blog.csdn.net/henni_719/article/details/62222439
         // adb shell pm list packages [options]
         String typeStr = TextUtils.isEmpty(type) ? "" : " " + type;
-        // 执行 shell
+        // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("pm list packages" + typeStr, false);
         if (result != null && result.result == SUCCESS){
             if (!TextUtils.isEmpty(result.successMsg)){
@@ -63,11 +92,11 @@ public final class ADBUtils {
                     String[] arys = result.successMsg.split(NEW_LINE_STR);
                     return Arrays.asList(arys);
                 } catch (Exception e){
-                    LogPrintUtils.eTag(TAG, e, "getAppList " + typeStr);
+                    LogPrintUtils.eTag(TAG, e, "getAppList type => " + typeStr);
                 }
             }
         }
-        return new ArrayList<>();
+        return null;
     }
 
     /**
@@ -143,7 +172,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
             if (result != null && result.result == SUCCESS){
                 if (!TextUtils.isEmpty(result.successMsg)){
-                    String[] arys = result.successMsg.split("\\s");
+                    String[] arys = result.successMsg.split(SPACE_STR);
                     for (String str : arys){
                         if (!TextUtils.isEmpty(str)){
                             try {
@@ -179,7 +208,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
             if (result != null && result.result == SUCCESS){
                 if (!TextUtils.isEmpty(result.successMsg)){
-                    String[] arys = result.successMsg.split("\\s");
+                    String[] arys = result.successMsg.split(SPACE_STR);
                     for (String str : arys){
                         if (!TextUtils.isEmpty(str)){
                             try {
@@ -205,10 +234,6 @@ public final class ADBUtils {
     // == Input ==
     // ===========
 
-    // ==============
-    // 开启 Thread 执行, 非主线程, 否则无响应并无效
-    // ==============
-
     // = tap = 模拟touch屏幕的事件
 
     /**
@@ -217,13 +242,13 @@ public final class ADBUtils {
      * @param y
      * @return
      */
-    public static boolean tap(int x, int y){
+    public static boolean tap(float x, float y){
         try {
             // input [touchscreen|touchpad|touchnavigation] tap <x> <y>
             // input [屏幕、触摸板、导航键] tap
             String cmd = "input touchscreen tap %s %s";
             // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, x, y), false);
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y), true);
             if (result != null && result.result == SUCCESS){
                 return true;
             }
@@ -241,7 +266,7 @@ public final class ADBUtils {
      * @param y
      * @return
      */
-    public static boolean swipeClick( int x, int y){
+    public static boolean swipeClick(float x, float y){
         return swipe(x, y, x, y, 100l);
     }
 
@@ -252,7 +277,7 @@ public final class ADBUtils {
      * @param time 按压时间
      * @return
      */
-    public static boolean swipeClick( int x, int y, long time){
+    public static boolean swipeClick(float x, float y, long time){
         return swipe(x, y, x, y, time);
     }
 
@@ -265,12 +290,12 @@ public final class ADBUtils {
      * @param time 滑动时间(毫秒)
      * @return
      */
-    public static boolean swipe( int x, int y, int tX, int tY, long time){
+    public static boolean swipe(float x, float y, float tX, float tY, long time){
         try {
             // input [touchscreen|touchpad|touchnavigation] swipe <x1> <y1> <x2> <y2> [duration(ms)]
             String cmd = "input touchscreen swipe %s %s %s %s %s";
             // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, x, y, tX, tY, time), false);
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y, (int) tX, (int) tY, time), true);
             if (result != null && result.result == SUCCESS){
                 return true;
             }
@@ -293,9 +318,9 @@ public final class ADBUtils {
         }
         try {
             // input text <string>
-            String cmd = "input text '%s'";
+            String cmd = "input text %s";
             // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, txt), false);
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, txt), true); // false 可以执行
             if (result != null && result.result == SUCCESS){
                 return true;
             }
@@ -317,7 +342,7 @@ public final class ADBUtils {
             // input keyevent <key code number or name>
             String cmd = "input keyevent %s";
             // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, keyCode), true);
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, keyCode), true); // false 可以执行
             if (result != null && result.result == SUCCESS){
                 return true;
             }
@@ -332,7 +357,7 @@ public final class ADBUtils {
     // =============
 
     /**
-     * 获取当前页面 Activity
+     * 获取当前显示的 Activity
      * @return
      */
     public static String getAppActivityToCurrent(){
@@ -340,7 +365,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取当前页面 Activity
+     * 获取当前显示的 Activity
      * @param split
      * @return
      */
@@ -391,6 +416,10 @@ public final class ADBUtils {
                                         if (str.indexOf("/") != -1){
                                             return str.substring(0, str.length() - 1);
                                         }
+                                    } else if (str.endsWith("};")){ // 处理 Current
+                                        if (str.indexOf("/") != -1){
+                                            return str.substring(0, str.length() - 2);
+                                        }
                                     }
                                 } catch (Exception e){
                                 }
@@ -400,7 +429,6 @@ public final class ADBUtils {
                         LogPrintUtils.eTag(TAG, e, "getAppActivityToPack " + packageName);
                     }
                 }
-                return result.successMsg;
             }
         }
         return "";
@@ -424,30 +452,63 @@ public final class ADBUtils {
                 int start = result.successMsg.indexOf(startStr);
                 int end = result.successMsg.indexOf("Action: \"android.intent.action.MAIN\"");
                 // 防止都为null
-                if (start != -1 && end != -1){
-                    try {
-                        // 获取数据
-                        String data = result.successMsg.substring(start + startStr.length(), end);
-                        // 进行拆分
-                        String[] arys = data.split("\\s");
-                        for (String str : arys){
-                            if (!TextUtils.isEmpty(str)){
-                                try {
-                                    // 属于包名/ 前缀的
-                                    if (str.indexOf(packageName + "/") != -1){
-                                        // 防止属于 包名/.xx.Main_Activity
-                                        if (str.indexOf("/.") != -1){
-                                            String pack = str.split("/.")[0];
-                                            str = str.replace("/", "/" + pack);
+                if (start != -1){
+                    if (end != -1){
+                        try {
+                            // 获取数据
+                            String data = result.successMsg.substring(start + startStr.length(), end);
+                            // 进行拆分
+                            String[] arys = data.split("\\s");
+                            for (String str : arys){
+                                if (!TextUtils.isEmpty(str)){
+                                    try {
+                                        // 属于包名/ 前缀的
+                                        if (str.indexOf(packageName + "/") != -1){
+                                            // 防止属于 包名/.xx.Main_Activity
+                                            if (str.indexOf("/.") != -1){
+                                                String pack = str.split("/.")[0];
+                                                str = str.replace("/", "/" + pack);
+                                            }
+                                            return str;
                                         }
-                                        return str;
+                                    } catch (Exception e){
                                     }
-                                } catch (Exception e){
                                 }
                             }
+                        } catch (Exception e){
+                            LogPrintUtils.eTag(TAG, e, "getAppActivityToLauncher " + packageName);
                         }
-                    } catch (Exception e){
-                        LogPrintUtils.eTag(TAG, e, "getAppActivityToLauncher " + packageName);
+                    } else { // 表示找不到
+                        // 获取数据
+                        String data = result.successMsg.substring(start + startStr.length(), result.successMsg.length());
+                        // 进行拆分
+                        String[] arys = data.split(NEW_LINE_STR);
+                        try {
+                            for (String str : arys){
+                                // 防止为null
+                                if (!TextUtils.isEmpty(str)){
+                                    // 存在包名才处理
+                                    if (str.indexOf(packageName) != -1){
+                                        String[] splitArys = str.split("\\s");
+                                        for (String strData : splitArys){
+                                            if (!TextUtils.isEmpty(strData)){
+                                                // 属于包名/ 前缀的
+                                                if (strData.indexOf(packageName + "/") != -1){
+                                                    // 防止属于 包名/.xx.Main_Activity
+                                                    if (strData.indexOf("/.") != -1){
+                                                        String pack = str.split("/.")[0];
+                                                        strData = strData.replace("/", "/" + pack);
+                                                    }
+                                                    return strData;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } catch (Exception e){
+                            LogPrintUtils.eTag(TAG, e, "getAppActivityToLauncher " + packageName);
+                        }
                     }
                 }
             }
