@@ -145,11 +145,11 @@ public final class ActivityUtils {
     }
 
     /**
-     * 获取对应包名应用启动页面
+     * 获取对应包名应用启动 Activity
      * @param packageName
      * @return
      */
-    public static String getAppActivityToLauncher(String packageName){
+    public static String getActivityToLauncher(String packageName){
         try {
             PackageManager pManager = DevUtils.getApplication().getPackageManager();
             // 获取对应的PackageInfo
@@ -174,7 +174,7 @@ public final class ActivityUtils {
                 return className;
             }
         } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "getAppActivityToLauncher");
+            LogPrintUtils.eTag(TAG, e, "getActivityToLauncher");
         }
         return null;
     }

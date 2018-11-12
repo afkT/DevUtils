@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.os.Build;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -140,6 +141,18 @@ public final class ADBUtils {
     }
 
     /**
+     * 获取包名包含字符串 xxx 的应用列表
+     * @param strFilter
+     * @return
+     */
+    public static List<String> getAppListToFilter(String strFilter){
+        if (TextUtils.isEmpty(strFilter)){
+            return null;
+        }
+        return getAppList("| grep " + strFilter.trim());
+    }
+
+    /**
      * 判断是否安装应用
      * @param packageName
      * @return
@@ -173,16 +186,16 @@ public final class ADBUtils {
             if (result != null && result.result == SUCCESS){
                 if (!TextUtils.isEmpty(result.successMsg)){
                     String[] arys = result.successMsg.split(SPACE_STR);
-                    for (String str : arys){
-                        if (!TextUtils.isEmpty(str)){
+                    for (String str : arys) {
+                        if (!TextUtils.isEmpty(str)) {
                             try {
                                 String[] datas = str.split("=");
-                                if (datas.length == 2){
-                                    if (datas[0].toLowerCase().equals("versionCode".toLowerCase())){
+                                if (datas.length == 2) {
+                                    if (datas[0].toLowerCase().equals("versionCode".toLowerCase())) {
                                         return Integer.parseInt(datas[1]);
                                     }
                                 }
-                            } catch (Exception e){
+                            } catch (Exception e) {
                             }
                         }
                     }
@@ -201,7 +214,7 @@ public final class ADBUtils {
      */
     public static String getVersionName(String packageName){
         if (TextUtils.isEmpty(packageName)){
-            return "";
+            return null;
         }
         try {
             // 执行 shell
@@ -209,16 +222,16 @@ public final class ADBUtils {
             if (result != null && result.result == SUCCESS){
                 if (!TextUtils.isEmpty(result.successMsg)){
                     String[] arys = result.successMsg.split(SPACE_STR);
-                    for (String str : arys){
-                        if (!TextUtils.isEmpty(str)){
+                    for (String str : arys) {
+                        if (!TextUtils.isEmpty(str)) {
                             try {
                                 String[] datas = str.split("=");
-                                if (datas.length == 2){
-                                    if (datas[0].toLowerCase().equals("versionName".toLowerCase())){
+                                if (datas.length == 2) {
+                                    if (datas[0].toLowerCase().equals("versionName".toLowerCase())) {
                                         return datas[1];
                                     }
                                 }
-                            } catch (Exception e){
+                            } catch (Exception e) {
                             }
                         }
                     }
@@ -227,7 +240,7 @@ public final class ADBUtils {
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "getVersionName");
         }
-        return "";
+        return null;
     }
 
     // ===========
@@ -357,163 +370,236 @@ public final class ADBUtils {
     // =============
 
     /**
-     * 获取当前显示的 Activity
-     * @return
-     */
-    public static String getAppActivityToCurrent(){
-        return getAppActivityToPack("Current", true);
-    }
-
-    /**
-     * 获取当前显示的 Activity
-     * @param split
-     * @return
-     */
-    public static String getAppActivityToCurrent(boolean split){
-        return getAppActivityToPack("Current", split);
-    }
-
-    /**
-     * 获取已经启动的 App 当前页面 Activity
+     * 获取对应包名应用启动 Activity
+     * android.intent.category.LAUNCHER (android.intent.action.MAIN)
      * @param packageName
      * @return
      */
-    public static String getAppActivityToPack(String packageName){
-        return getAppActivityToPack(packageName, true);
-    }
-
-    /**
-     * 获取已经启动的 App 当前页面 Activity
-     * @param packageName
-     * @param split 是否进行裁剪
-     * @return
-     */
-    public static String getAppActivityToPack(String packageName, boolean split){
+    public static String getActivityToLauncher(String packageName){
         if (TextUtils.isEmpty(packageName)){
-            return "";
-        }
-        String cmd = "dumpsys window windows | grep '%s'";
-        // 执行 shell
-        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
-        if (result != null && result.result == SUCCESS){
-            if (!TextUtils.isEmpty(result.successMsg)){
-                if (split){
-                    try {
-                        String[] arys = result.successMsg.split("\\s");
-                        for (String str : arys){
-                            if (!TextUtils.isEmpty(str)){
-                                try {
-                                    // 处理 包名
-                                    if (str.indexOf("/.") != -1){
-                                        if (str.endsWith("}")){
-                                            return str.substring(0, str.length() - 1);
-                                        }
-                                        // 获取包
-                                        String pack = str.split("/.")[0];
-                                        str = str.replace("/", "/" + pack);
-                                        return str;
-                                    } else if (str.endsWith("}")){ // 处理 Current
-                                        if (str.indexOf("/") != -1){
-                                            return str.substring(0, str.length() - 1);
-                                        }
-                                    } else if (str.endsWith("};")){ // 处理 Current
-                                        if (str.indexOf("/") != -1){
-                                            return str.substring(0, str.length() - 2);
-                                        }
-                                    }
-                                } catch (Exception e){
-                                }
-                            }
-                        }
-                    } catch (Exception e){
-                        LogPrintUtils.eTag(TAG, e, "getAppActivityToPack " + packageName);
-                    }
-                }
-            }
-        }
-        return "";
-    }
-
-    /**
-     * 获取对应包名应用启动页面 => android.intent.category.LAUNCHER (android.intent.action.MAIN)
-     * @param packageName
-     * @return
-     */
-    public static String getAppActivityToLauncher(String packageName){
-        if (TextUtils.isEmpty(packageName)){
-            return "";
+            return null;
         }
         String cmd = "dumpsys package %s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
         if (result != null && result.result == SUCCESS){
             if (!TextUtils.isEmpty(result.successMsg)){
-                String startStr = "android.intent.action.MAIN:";
-                int start = result.successMsg.indexOf(startStr);
-                int end = result.successMsg.indexOf("Action: \"android.intent.action.MAIN\"");
+                String mainStr = "android.intent.action.MAIN:";
+                int start = result.successMsg.indexOf(mainStr);
                 // 防止都为null
                 if (start != -1){
-                    if (end != -1){
-                        try {
-                            // 获取数据
-                            String data = result.successMsg.substring(start + startStr.length(), end);
-                            // 进行拆分
-                            String[] arys = data.split("\\s");
-                            for (String str : arys){
-                                if (!TextUtils.isEmpty(str)){
-                                    try {
-                                        // 属于包名/ 前缀的
-                                        if (str.indexOf(packageName + "/") != -1){
-                                            // 防止属于 包名/.xx.Main_Activity
-                                            if (str.indexOf("/.") != -1){
-                                                String pack = str.split("/.")[0];
-                                                str = str.replace("/", "/" + pack);
-                                            }
-                                            return str;
-                                        }
-                                    } catch (Exception e){
-                                    }
-                                }
-                            }
-                        } catch (Exception e){
-                            LogPrintUtils.eTag(TAG, e, "getAppActivityToLauncher " + packageName);
-                        }
-                    } else { // 表示找不到
-                        // 获取数据
-                        String data = result.successMsg.substring(start + startStr.length(), result.successMsg.length());
+                    try {
+                        // 进行裁减字符串
+                        String subData = result.successMsg.substring(start + mainStr.length(), result.successMsg.length());
                         // 进行拆分
-                        String[] arys = data.split(NEW_LINE_STR);
-                        try {
-                            for (String str : arys){
-                                // 防止为null
-                                if (!TextUtils.isEmpty(str)){
-                                    // 存在包名才处理
-                                    if (str.indexOf(packageName) != -1){
-                                        String[] splitArys = str.split("\\s");
-                                        for (String strData : splitArys){
-                                            if (!TextUtils.isEmpty(strData)){
-                                                // 属于包名/ 前缀的
-                                                if (strData.indexOf(packageName + "/") != -1){
-                                                    // 防止属于 包名/.xx.Main_Activity
-                                                    if (strData.indexOf("/.") != -1){
-                                                        String pack = str.split("/.")[0];
-                                                        strData = strData.replace("/", "/" + pack);
-                                                    }
-                                                    return strData;
+                        String[] arys = subData.split(NEW_LINE_STR);
+                        for (String str : arys){
+                            if (!TextUtils.isEmpty(str)){
+                                // 存在包名才处理
+                                if (str.indexOf(packageName) != -1){
+                                    String[] splitArys = str.split(SPACE_STR);
+                                    for (String strData : splitArys){
+                                        if (!TextUtils.isEmpty(strData)){
+                                            // 属于 包名/ 前缀的
+                                            if (strData.indexOf(packageName + "/") != -1){
+                                                // 防止属于 包名/.xx.Main_Activity
+                                                if (strData.indexOf("/.") != -1){
+                                                    // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
+                                                    strData = strData.replace("/", "/" + packageName);
                                                 }
+                                                return strData;
                                             }
                                         }
                                     }
                                 }
                             }
-                        } catch (Exception e){
-                            LogPrintUtils.eTag(TAG, e, "getAppActivityToLauncher " + packageName);
                         }
+                    } catch (Exception e){
+                        LogPrintUtils.eTag(TAG, e, "getActivityToLauncher " + packageName);
                     }
                 }
             }
         }
-        return "";
+        return null;
+    }
+
+    // == 获取当前Window ==
+
+    /**
+     * 获取当前显示的 Window
+     * adb shell dumpsys window -h
+     * @return
+     */
+    public static String getWindowCurrent(){
+        String cmd = "dumpsys window w | grep \\/  |  grep name=";
+        // 执行 shell
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
+        if (result != null && result.result == SUCCESS){
+            if (!TextUtils.isEmpty(result.successMsg)){
+                try {
+                    String nameStr = "name=";
+                    String[] arys = result.successMsg.split(NEW_LINE_STR);
+                    for (String str : arys){
+                        if (!TextUtils.isEmpty(str)){
+                            int start = str.indexOf(nameStr);
+                            if (start != -1){
+                                try {
+                                    String subData = str.substring(start + nameStr.length());
+                                    if (subData.indexOf(")") != -1){
+                                        return subData.substring(0, subData.length() - 1);
+                                    }
+                                    return subData;
+                                } catch (Exception e) {
+                                }
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getWindowCurrent");
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取当前显示的 Window
+     * @return
+     */
+    public static String getWindowCurrent2(){
+        String cmd = "dumpsys window windows | grep Current";
+        // 执行 shell
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
+        if (result != null && result.result == SUCCESS){
+            if (!TextUtils.isEmpty(result.successMsg)){
+                try {
+                    // 拆分换行, 并循环
+                    String[] arys = result.successMsg.split(NEW_LINE_STR);
+                    for (String str : arys){
+                        if (!TextUtils.isEmpty(str)){
+                            String[] splitArys = str.split(SPACE_STR);
+                            if (splitArys != null && splitArys.length != 0){
+                                for (String splitStr : splitArys){
+                                    if (!TextUtils.isEmpty(splitStr)){
+                                        int start = splitStr.indexOf("/");
+                                        int lastIndex = splitStr.lastIndexOf("}");
+                                        if (start != -1 && lastIndex != -1){
+                                            // 获取裁减数据
+                                            String strData = splitStr.substring(0, lastIndex);
+                                            // 防止属于 包名/.xx.Main_Activity
+                                            if (strData.indexOf("/.") != -1){
+                                                // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
+                                                strData = strData.replace("/", "/" + splitStr.substring(0, start));
+                                            }
+                                            return strData;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getWindowCurrent2");
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取对应包名 显示的 Window
+     * @param packageName
+     * @return
+     */
+    public static String getWindowCurrentToPackage(String packageName){
+        if (TextUtils.isEmpty(packageName)){
+            return null;
+        }
+        String cmd = "dumpsys window windows | grep %s";
+        // 执行 shell
+        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
+        if (result != null && result.result == SUCCESS) {
+            if (!TextUtils.isEmpty(result.successMsg)) {
+                try {
+                    // 拆分换行, 并循环
+                    String[] arys = result.successMsg.split(NEW_LINE_STR);
+                    for (String str : arys){
+                        if (!TextUtils.isEmpty(str)){
+                            String[] splitArys = str.split(SPACE_STR);
+                            if (splitArys != null && splitArys.length != 0){
+                                for (String splitStr : splitArys){
+                                    if (!TextUtils.isEmpty(splitStr)){
+                                        int start = splitStr.indexOf("/");
+                                        int lastIndex = splitStr.lastIndexOf("}");
+                                        if (start != -1 && lastIndex != -1 && splitStr.indexOf(packageName) == 0){
+                                            // 获取裁减数据
+                                            String strData = splitStr.substring(0, lastIndex);
+                                            // 防止属于 包名/.xx.Main_Activity
+                                            if (strData.indexOf("/.") != -1){
+                                                // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
+                                                strData = strData.replace("/", "/" + packageName);
+                                            }
+                                            return strData;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getWindowCurrentToPackage");
+                }
+            }
+        }
+        return null;
+    }
+
+    // == 获取当前Activity ==
+
+    /**
+     * 获取当前显示的 Activity
+     * @return
+     */
+    public static String getActivityCurrent(){
+        String cmd = "dumpsys activity activities | grep mFocusedActivity";
+        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O){
+            cmd = "dumpsys activity activities | grep mResumedActivity";
+        }
+        // 执行 shell
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
+        if (result != null && result.result == SUCCESS) {
+            if (!TextUtils.isEmpty(result.successMsg)) {
+                try {
+                    // 拆分换行, 并循环
+                    String[] arys = result.successMsg.split(NEW_LINE_STR);
+                    for (String str : arys){
+                        if (!TextUtils.isEmpty(str)){
+                            String[] splitArys = str.split(SPACE_STR);
+                            if (splitArys != null && splitArys.length != 0){
+                                for (String splitStr : splitArys){
+                                    if (!TextUtils.isEmpty(splitStr)){
+                                        int start = splitStr.indexOf("/");
+                                        if (start != -1){
+                                            // 获取裁减数据
+                                            String strData = splitStr;
+                                            // 防止属于 包名/.xx.Main_Activity
+                                            if (strData.indexOf("/.") != -1){
+                                                // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
+                                                strData = strData.replace("/", "/" + splitStr.substring(0, start));
+                                            }
+                                            return strData;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getActivityCurrent");
+                }
+            }
+        }
+        return null;
     }
 
     // ========
@@ -522,21 +608,21 @@ public final class ADBUtils {
 
     /**
      * 跳转页面 Activity
-     * @param packAddActivityName
+     * @param packageAndLauncher
      * @param closeActivity 关闭Activity所属的App进程后再启动Activity
      * @return
      */
-    public static boolean startActivity(String packAddActivityName, boolean closeActivity){
-        if (TextUtils.isEmpty(packAddActivityName)){
+    public static boolean startActivity(String packageAndLauncher, boolean closeActivity){
+        if (TextUtils.isEmpty(packageAndLauncher)){
             return false;
         }
         try {
             // am start [options] <INTENT>
             String cmd = "am start %s";
             if (closeActivity){
-                cmd = String.format(cmd, "-S " + packAddActivityName);
+                cmd = String.format(cmd, "-S " + packageAndLauncher);
             } else {
-                cmd = String.format(cmd, packAddActivityName);
+                cmd = String.format(cmd, packageAndLauncher);
             }
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
