@@ -4,6 +4,7 @@
 [![Cocoapods](https://img.shields.io/badge/DevUtils-1.1.1-brightgreen.svg)](https://github.com/afkT/DevUtils)
 [![](https://jitpack.io/v/afkT/DevUtils.svg)](https://jitpack.io/#afkT/DevUtils)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
+[![Cocoapods](https://img.shields.io/badge/utils-100+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/README.md)
 
 # About (持续更新, 目前含100+工具类)
 

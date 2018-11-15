@@ -17,6 +17,9 @@ public final class ShellUtils {
     private ShellUtils() {
     }
 
+    // 操作成功
+    public static final int SUCCESS = 0;
+
     // 日志TAG
     private static final String TAG = ShellUtils.class.getSimpleName();
 
@@ -158,6 +161,36 @@ public final class ShellUtils {
             this.result = result;
             this.successMsg = successMsg;
             this.errorMsg = errorMsg;
+        }
+
+        /**
+         * 判断是否执行成功
+         * @return
+         */
+        public boolean isSuccess(){
+            return result == SUCCESS;
+        }
+
+        /**
+         * 判断是否执行成功(判断 errorMsg)
+         * @return
+         */
+        public boolean isSuccess2(){
+            if (result == SUCCESS && (errorMsg == null || errorMsg.length() == 0)){
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         * 判断是否执行成功(判断 successMsg)
+         * @return
+         */
+        public boolean isSuccess3(){
+            if (result == SUCCESS && successMsg != null && successMsg.length() != 0){
+                return true;
+            }
+            return false;
         }
     }
 }

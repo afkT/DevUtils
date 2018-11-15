@@ -378,7 +378,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 关机(需要 root 权限或者系统权限)
+     * 关机 (需要 root 权限)
      * @return
      */
     public static boolean shutdown() {
@@ -395,7 +395,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 重启(需要 root 权限或者系统权限)
+     * 重启设备 (需要 root 权限)
      * @return
      */
     public static boolean reboot() {
@@ -414,8 +414,9 @@ public final class DeviceUtils {
     }
 
     /**
-     * 重启(需要 root 权限或者系统权限)
+     * 重启设备 (需要 root 权限) - 并进行特殊的引导模式 (recovery、 Fastboot)
      * @param reason 传递给内核来请求特殊的引导模式，如"recovery"
+     *               重启到 Fastboot 模式 bootloader
      */
     public static void reboot(final String reason) {
         try {
@@ -428,14 +429,22 @@ public final class DeviceUtils {
         }
     }
 
-    /** 重启到 recovery 需要 root 权限 */
-    public static void reboot2Recovery() {
-        ShellUtils.execCmd("reboot recovery", true);
+    /**
+     * 重启引导到 recovery (需要 root 权限)
+     * @return
+     */
+    public static boolean reboot2Recovery() {
+        ShellUtils.CommandResult result = ShellUtils.execCmd("reboot recovery", true);
+        return result.isSuccess2();
     }
 
-    /** 重启到 bootloader 需要 root 权限 */
-    public static void reboot2Bootloader() {
-        ShellUtils.execCmd("reboot bootloader", true);
+    /**
+     * 重启引导到 bootloader (需要 root 权限)
+     * @return
+     */
+    public static boolean reboot2Bootloader() {
+        ShellUtils.CommandResult result = ShellUtils.execCmd("reboot bootloader", true);
+        return result.isSuccess2();
     }
 
     /**

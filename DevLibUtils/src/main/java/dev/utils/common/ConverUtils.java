@@ -359,13 +359,12 @@ public final class ConverUtils {
     }
 
     // ======================================================================
-
+//    Binary(二进制) toBinaryString
 //    Oct(八进制)
 //    Dec(十进制)
 //    Hex(十六进制)
 //
 //    https://baike.baidu.com/item/ASCII/309296?fr=aladdin#3
-
 
     // 以0x开始的数据表示16进制
 
