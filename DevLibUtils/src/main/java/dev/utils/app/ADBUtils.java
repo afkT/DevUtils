@@ -7,6 +7,7 @@ import android.os.PowerManager;
 import android.text.TextUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -861,5 +862,82 @@ public final class ADBUtils {
     public static boolean reboot2Bootloader() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("reboot bootloader", true);
         return result.isSuccess2();
+    }
+
+    // == 滑动方法 ==
+
+    /**
+     * 发送事件滑动
+     * @param x
+     * @param y
+     * @param tX
+     * @param tY
+     * @param number 循环次数
+     * @return
+     */
+    public static void sendEventSlide(float x, float y, float tX, float tY, int number){
+        List<String> lists = new ArrayList<>();
+        // = 开头 =
+        lists.add("sendevent /dev/input/event1 3 57 109");
+        lists.add("sendevent /dev/input/event1 3 53 " + x);
+        lists.add("sendevent /dev/input/event1 3 54 " + y);
+        // 发送touch 事件(必须使用0 0 0配对)
+        lists.add("sendevent /dev/input/event1 1 330 1");
+        lists.add("sendevent /dev/input/event1 0 0 0");
+
+        // 判断方向(手势是否从左到右) - View 往左滑, 手势操作往右滑
+        boolean isLeftToRight = tX > x;
+        // 判断方向(手势是否从上到下) - View 往上滑, 手势操作往下滑
+        boolean isTopToBottom = tY > y;
+
+        // 计算差数
+        float diffX = isLeftToRight ? (tX - x) : (x - tX);
+        float diffY = isTopToBottom ? (tY - y) : (y - tY);
+
+        if (!isLeftToRight){
+            diffX = -diffX;
+        }
+
+        if (!isTopToBottom){
+            diffY = -diffY;
+        }
+
+        // 平均值
+        float averageX = diffX / number;
+        float averageY = diffY / number;
+        // 上次位置
+        int oldX = (int) x;
+        int oldY = (int) y;
+
+        // 循环处理
+        for (int i = 0; i <= number; i++){
+            if (averageX != 0f){
+                // 进行判断处理
+                int calcX = (int) (x + averageX * i);
+                if (oldX != calcX) {
+                    oldX = calcX;
+                    lists.add("sendevent /dev/input/event1 3 53 " + calcX);
+                }
+            }
+
+            if (averageY != 0f){
+                // 进行判断处理
+                int calcY = (int) (y + averageY * i);
+                if (oldY != calcY) {
+                    oldY = calcY;
+                    lists.add("sendevent /dev/input/event1 3 54 " + calcY);
+                }
+            }
+            // 每次操作结束发送
+            lists.add("sendevent /dev/input/event1 0 0 0");
+        }
+        // = 结尾 =
+        lists.add("sendevent /dev/input/event1 3 57 4294967295");
+        // 释放touch事件（必须使用0 0 0配对）
+        lists.add("sendevent /dev/input/event1 1 330 0");
+        lists.add("sendevent /dev/input/event1 0 0 0");
+
+        // 执行 Shell
+        ShellUtils.execCmd(lists, true);
     }
 }

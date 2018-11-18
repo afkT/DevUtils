@@ -1,5 +1,7 @@
 package dev.utils.common;
 
+import android.os.SystemClock;
+
 /**
  * detail: 快捷通用
  * Created by Ttt
@@ -41,5 +43,64 @@ public final class QuickCommonUtils {
         buffer.append("\n开始时间：" + sTime);
         buffer.append("\n结束时间：" + eTime);
         buffer.append("\n所用时间：" + uTime);
+    }
+
+    /**
+     * 获取操作时间
+     * @param operateTime 操作时间(毫秒)
+     * @return
+     */
+    public static long getOperateTime(long operateTime){
+        return getOperateTime(operateTime, -1);
+    }
+
+    /**
+     * 获取操作时间
+     * @param operateTime 操作时间(毫秒)
+     * @param randomTime 随机范围(毫秒)
+     */
+    public static long getOperateTime(long operateTime, int randomTime){
+        int random = 0;
+        // 大于2才处理
+        if (randomTime >= 2){
+            // 随机时间
+            random = RandomUtils.getRandom(randomTime);
+        }
+        if (operateTime >= 1){
+            // 返回操作时间
+            return operateTime + random;
+        }
+        return -1;
+    }
+
+    /**
+     * 堵塞操作
+     * @param sleepTime
+     */
+    public static void sleepOperate(long sleepTime){
+        sleepOperate(sleepTime, -1);
+    }
+
+    /**
+     * 堵塞操作
+     * @param sleepTime
+     * @param randomTime
+     */
+    public static void sleepOperate(long sleepTime, int randomTime){
+        long time = getOperateTime(sleepTime, randomTime);
+        if (time != -1){
+            try {
+                Thread.sleep(sleepTime);
+            } catch (Exception e1){
+            }
+//            try {
+//                SystemClock.sleep(sleepTime);
+//            } catch (Throwable e){
+//                try {
+//                    Thread.sleep(sleepTime);
+//                } catch (Exception e1){
+//                }
+//            }
+        }
     }
 }
