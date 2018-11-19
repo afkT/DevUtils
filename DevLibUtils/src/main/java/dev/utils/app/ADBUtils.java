@@ -167,6 +167,118 @@ public final class ADBUtils {
         return result.isSuccess3();
     }
 
+    /**
+     * 查看应用安装路径
+     * @param packageName
+     * @return
+     */
+    public static String getAppInstallPath(String packageName){
+        if (isSpace(packageName)) return null;
+        // 执行 shell
+        ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packageName, false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 清除应用数据与缓存 - 相当于在设置里的应用信息界面点击了「清除缓存」和「清除数据」
+     * @param packageName
+     * @return
+     */
+    public static boolean clearAppDataCache(String packageName) {
+        if (isSpace(packageName)) return false;
+        // adb shell pm clear <packagename>
+        String cmd = "pm clear %s";
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
+        return result.isSuccess4("success");
+    }
+
+    // = 应用信息 =
+
+    /**
+     * 查看应用详细信息
+     * 输出中包含很多信息，包括 Activity Resolver Table、Registered ContentProviders、包名、userId、安装后的文件资源代码等路径、版本信息、权限信息和授予状态、签名版本信息等。
+     * @param packageName
+     * @return
+     */
+    public static String getAppMessage(String packageName){
+        if (isSpace(packageName)) return null;
+        // 如果没root , 需要 android.permission.DUMP 权限
+        // 执行 shell
+        ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName, false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取 App versionCode
+     * @param packageName
+     * @return
+     */
+    public static int getVersionCode(String packageName){
+        if (isSpace(packageName)) return 0;
+        try {
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
+            if (result.isSuccess3()){
+                String[] arys = result.successMsg.split(SPACE_STR);
+                for (String str : arys) {
+                    if (!isSpace(str)) {
+                        try {
+                            String[] datas = str.split("=");
+                            if (datas.length == 2) {
+                                if (datas[0].toLowerCase().equals("versionCode".toLowerCase())) {
+                                    return Integer.parseInt(datas[1]);
+                                }
+                            }
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+            }
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getVersionCode");
+        }
+        return 0;
+    }
+
+    /**
+     * 获取 App versionName
+     * @param packageName
+     * @return
+     */
+    public static String getVersionName(String packageName){
+        if (isSpace(packageName)) return null;
+        try {
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
+            if (result.isSuccess3()){
+                String[] arys = result.successMsg.split(SPACE_STR);
+                for (String str : arys) {
+                    if (!TextUtils.isEmpty(str)) {
+                        try {
+                            String[] datas = str.split("=");
+                            if (datas.length == 2) {
+                                if (datas[0].toLowerCase().equals("versionName".toLowerCase())) {
+                                    return datas[1];
+                                }
+                            }
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+            }
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getVersionName");
+        }
+        return null;
+    }
+
     // = 安装/卸载 =
 
     /**
@@ -296,182 +408,6 @@ public final class ADBUtils {
             result = ShellUtils.execCmd(command, isRoot, true);
             return result.isSuccess4("success");
         }
-    }
-
-    /**
-     * 获取 App versionCode
-     * @param packageName
-     * @return
-     */
-    public static int getVersionCode(String packageName){
-        if (isSpace(packageName)) return 0;
-        try {
-            // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
-            if (result.isSuccess3()){
-                String[] arys = result.successMsg.split(SPACE_STR);
-                for (String str : arys) {
-                    if (!isSpace(str)) {
-                        try {
-                            String[] datas = str.split("=");
-                            if (datas.length == 2) {
-                                if (datas[0].toLowerCase().equals("versionCode".toLowerCase())) {
-                                    return Integer.parseInt(datas[1]);
-                                }
-                            }
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-            }
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "getVersionCode");
-        }
-        return 0;
-    }
-
-    /**
-     * 获取 App versionName
-     * @param packageName
-     * @return
-     */
-    public static String getVersionName(String packageName){
-        if (isSpace(packageName)) return null;
-        try {
-            // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
-            if (result.isSuccess3()){
-                String[] arys = result.successMsg.split(SPACE_STR);
-                for (String str : arys) {
-                    if (!TextUtils.isEmpty(str)) {
-                        try {
-                            String[] datas = str.split("=");
-                            if (datas.length == 2) {
-                                if (datas[0].toLowerCase().equals("versionName".toLowerCase())) {
-                                    return datas[1];
-                                }
-                            }
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-            }
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "getVersionName");
-        }
-        return null;
-    }
-
-    // ===========
-    // == Input ==
-    // ===========
-
-    // = tap = 模拟touch屏幕的事件
-
-    /**
-     * 点击某个区域
-     * @param x
-     * @param y
-     * @return
-     */
-    public static boolean tap(float x, float y){
-        try {
-            // input [touchscreen|touchpad|touchnavigation] tap <x> <y>
-            // input [屏幕、触摸板、导航键] tap
-            String cmd = "input touchscreen tap %s %s";
-            // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y), true);
-            return result.isSuccess();
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "tap");
-        }
-        return false;
-    }
-
-    // = swipe = 滑动事件
-
-    /**
-     * 按压某个区域(点击)
-     * @param x
-     * @param y
-     * @return
-     */
-    public static boolean swipeClick(float x, float y){
-        return swipe(x, y, x, y, 100l);
-    }
-
-    /**
-     * 按压某个区域 time 大于一定时间变成长按
-     * @param x
-     * @param y
-     * @param time 按压时间
-     * @return
-     */
-    public static boolean swipeClick(float x, float y, long time){
-        return swipe(x, y, x, y, time);
-    }
-
-    /**
-     * 滑动到某个区域
-     * @param x
-     * @param y
-     * @param tX
-     * @param tY
-     * @param time 滑动时间(毫秒)
-     * @return
-     */
-    public static boolean swipe(float x, float y, float tX, float tY, long time){
-        try {
-            // input [touchscreen|touchpad|touchnavigation] swipe <x1> <y1> <x2> <y2> [duration(ms)]
-            String cmd = "input touchscreen swipe %s %s %s %s %s";
-            // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y, (int) tX, (int) tY, time), true);
-            return result.isSuccess();
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "swipe");
-        }
-        return false;
-    }
-
-    // = text = 模拟输入
-
-    /**
-     * 输入文本 - 不支持中文
-     * @param txt
-     * @return
-     */
-    public static boolean text(String txt){
-        if (isSpace(txt)) return false;
-        try {
-            // input text <string>
-            String cmd = "input text %s";
-            // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, txt), true); // false 可以执行
-            return result.isSuccess();
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "text");
-        }
-        return false;
-    }
-
-    // = keyevent = 按键操作
-
-    /**
-     * 触发某些按键
-     * @param keyCode  KeyEvent.xxx => KeyEvent.KEYCODE_BACK(返回键)
-     * @return
-     */
-    public static boolean keyevent(int keyCode){
-        try {
-            // input keyevent <key code number or name>
-            String cmd = "input keyevent %s";
-            // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, keyCode), true); // false 可以执行
-            return result.isSuccess();
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "keyevent");
-        }
-        return false;
     }
 
     // =============
@@ -697,6 +633,32 @@ public final class ADBUtils {
         return null;
     }
 
+    // == 正在运行的 Services ==
+
+    /**
+     * 查看正在运行的 Services
+     * @return
+     */
+    public static String getServices(){
+        return getServices(null);
+    }
+
+    /**
+     * 查看正在运行的 Services
+     * @param packageName  参数不是必须的，指定 <packagename> 表示查看与某个包名相关的 Services，不指定表示查看所有 Services。
+     *                     <packagename> 不一定要给出完整的包名，比如运行 adb shell dumpsys activity services org.mazhuang，
+     *                     那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来。
+     * @return
+     */
+    public static String getServices(String packageName){
+        String cmd = "dumpsys activity services" + ((isSpace(packageName) ? "" : " " + packageName));
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
+        if (result.isSuccess()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
     // ========
     // == am ==
     // ========
@@ -740,6 +702,118 @@ public final class ADBUtils {
             return result.isSuccess();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "kill");
+        }
+        return false;
+    }
+
+    // ===========
+    // == Input ==
+    // ===========
+
+    // = tap = 模拟touch屏幕的事件
+
+    /**
+     * 点击某个区域
+     * @param x
+     * @param y
+     * @return
+     */
+    public static boolean tap(float x, float y){
+        try {
+            // input [touchscreen|touchpad|touchnavigation] tap <x> <y>
+            // input [屏幕、触摸板、导航键] tap
+            String cmd = "input touchscreen tap %s %s";
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y), true);
+            return result.isSuccess();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "tap");
+        }
+        return false;
+    }
+
+    // = swipe = 滑动事件
+
+    /**
+     * 按压某个区域(点击)
+     * @param x
+     * @param y
+     * @return
+     */
+    public static boolean swipeClick(float x, float y){
+        return swipe(x, y, x, y, 100l);
+    }
+
+    /**
+     * 按压某个区域 time 大于一定时间变成长按
+     * @param x
+     * @param y
+     * @param time 按压时间
+     * @return
+     */
+    public static boolean swipeClick(float x, float y, long time){
+        return swipe(x, y, x, y, time);
+    }
+
+    /**
+     * 滑动到某个区域
+     * @param x
+     * @param y
+     * @param tX
+     * @param tY
+     * @param time 滑动时间(毫秒)
+     * @return
+     */
+    public static boolean swipe(float x, float y, float tX, float tY, long time){
+        try {
+            // input [touchscreen|touchpad|touchnavigation] swipe <x1> <y1> <x2> <y2> [duration(ms)]
+            String cmd = "input touchscreen swipe %s %s %s %s %s";
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y, (int) tX, (int) tY, time), true);
+            return result.isSuccess();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "swipe");
+        }
+        return false;
+    }
+
+    // = text = 模拟输入
+
+    /**
+     * 输入文本 - 不支持中文
+     * @param txt
+     * @return
+     */
+    public static boolean text(String txt){
+        if (isSpace(txt)) return false;
+        try {
+            // input text <string>
+            String cmd = "input text %s";
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, txt), true); // false 可以执行
+            return result.isSuccess();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "text");
+        }
+        return false;
+    }
+
+    // = keyevent = 按键操作
+
+    /**
+     * 触发某些按键
+     * @param keyCode  KeyEvent.xxx => KeyEvent.KEYCODE_BACK(返回键)
+     * @return
+     */
+    public static boolean keyevent(int keyCode){
+        try {
+            // input keyevent <key code number or name>
+            String cmd = "input keyevent %s";
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, keyCode), true); // false 可以执行
+            return result.isSuccess();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "keyevent");
         }
         return false;
     }
