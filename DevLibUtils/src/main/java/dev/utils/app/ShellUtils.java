@@ -192,5 +192,19 @@ public final class ShellUtils {
             }
             return false;
         }
+
+        /**
+         * 判断是否执行成功(判断 successMsg) , 并且 successMsg 是否包含某个字符串
+         * @param contains
+         * @return
+         */
+        public boolean isSuccess4(String contains){
+            if (result == SUCCESS && successMsg != null && successMsg.length() != 0){
+                if (contains != null && contains.length() != 0 && successMsg.toLowerCase().contains(contains)){
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

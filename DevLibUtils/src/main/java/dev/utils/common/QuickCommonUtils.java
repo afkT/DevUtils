@@ -1,7 +1,5 @@
 package dev.utils.common;
 
-import android.os.SystemClock;
-
 /**
  * detail: 快捷通用
  * Created by Ttt

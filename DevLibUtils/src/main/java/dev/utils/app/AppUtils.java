@@ -470,13 +470,13 @@ public final class AppUtils {
 		boolean isRoot = isDeviceRooted();
 		String filePath = file.getAbsolutePath();
 		String command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib pm install " + filePath;
-		ShellUtils.CommandResult commandResult = ShellUtils.execCmd(command, isRoot);
-		if (commandResult.successMsg != null && commandResult.successMsg.toLowerCase().contains("success")) {
+		ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRoot);
+		if (result.successMsg != null && result.successMsg.toLowerCase().contains("success")) {
 			return true;
 		} else {
 			command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib64 pm install " + filePath;
-			commandResult = ShellUtils.execCmd(command, isRoot, true);
-			return commandResult.successMsg != null && commandResult.successMsg.toLowerCase().contains("success");
+			result = ShellUtils.execCmd(command, isRoot, true);
+			return result.successMsg != null && result.successMsg.toLowerCase().contains("success");
 		}
 	}
 
@@ -533,13 +533,13 @@ public final class AppUtils {
 		if (isSpace(packageName)) return false;
 		boolean isRoot = isDeviceRooted();
 		String command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib pm uninstall " + (isKeepData ? "-k " : "") + packageName;
-		ShellUtils.CommandResult commandResult = ShellUtils.execCmd(command, isRoot, true);
-		if (commandResult.successMsg != null && commandResult.successMsg.toLowerCase().contains("success")) {
+		ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRoot, true);
+		if (result.successMsg != null && result.successMsg.toLowerCase().contains("success")) {
 			return true;
 		} else {
 			command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib64 pm uninstall " + (isKeepData ? "-k " : "") + packageName;
-			commandResult = ShellUtils.execCmd(command, isRoot, true);
-			return commandResult.successMsg != null && commandResult.successMsg.toLowerCase().contains("success");
+			result = ShellUtils.execCmd(command, isRoot, true);
+			return result.successMsg != null && result.successMsg.toLowerCase().contains("success");
 		}
 	}
 

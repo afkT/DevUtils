@@ -338,7 +338,7 @@ public final class DeviceUtils {
      */
     private static String getMacAddressByFile() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("getprop wifi.interface", false);
-        if (result.result == 0) {
+        if (result.isSuccess()) {
             String name = result.successMsg;
             if (name != null) {
                 result = ShellUtils.execCmd("cat /sys/class/net/" + name + "/address", false);
