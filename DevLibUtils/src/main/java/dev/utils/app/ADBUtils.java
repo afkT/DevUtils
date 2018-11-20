@@ -653,7 +653,7 @@ public final class ADBUtils {
     public static String getServices(String packageName){
         String cmd = "dumpsys activity services" + ((isSpace(packageName) ? "" : " " + packageName));
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-        if (result.isSuccess()){
+        if (result.isSuccess3()){
             return result.successMsg;
         }
         return null;
@@ -681,7 +681,7 @@ public final class ADBUtils {
             }
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-            return result.isSuccess();
+            return result.isSuccess2();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "startActivity");
         }
@@ -699,12 +699,80 @@ public final class ADBUtils {
             String cmd = "am force-stop %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
-            return result.isSuccess();
+            return result.isSuccess2();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "kill");
         }
         return false;
     }
+
+    /**
+     * 收紧内存
+     * @param pid 进程 ID
+     * @param level HIDDEN、RUNNING_MODERATE、BACKGROUND、 RUNNING_LOW、MODERATE、RUNNING_CRITICAL、COMPLETE
+     * @return
+     */
+    public static boolean sendTrimMemory(int pid, String level){
+        if (isSpace(level)) return false;
+        try {
+            String cmd = "am send-trim-memory %s %s";
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, pid, level), true);
+            return result.isSuccess2();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "sendTrimMemory");
+        }
+        return false;
+    }
+
+//    // == 文件管理 ==
+//
+//    /**
+//     * 复制设备里的文件到电脑
+//     * @param remote 设备里的文件路径
+//     * @param local 电脑上的目录
+//     * @return
+//     */
+//    public static boolean pull(String remote, String local){
+//        if (isSpace(remote)) return false;
+//
+//        try {
+//            // adb pull <设备里的文件路径> [电脑上的目录]
+//            String cmd = "adb pull %s";
+//            // 判断是否存到默认地址
+//            if (!isSpace(local)){
+//                cmd += " " + local;
+//            }
+//            // 执行 shell
+//            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, remote), true);
+//            return result.isSuccess2();
+//        } catch (Exception e){
+//            LogPrintUtils.eTag(TAG, e, "pull");
+//        }
+//        return false;
+//    }
+//
+//    /**
+//     * 复制电脑里的文件到设备
+//     * @param local 电脑上的文件路径
+//     * @param remote 设备里的目录
+//     * @return
+//     */
+//    public static boolean push(String local, String remote){
+//        if (isSpace(local)) return false;
+//        if (isSpace(remote)) return false;
+//
+//        try {
+//            // adb push <电脑上的文件路径> <设备里的目录>
+//            String cmd = "adb push %s %s";
+//            // 执行 shell
+//            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, local, remote), true);
+//            return result.isSuccess2();
+//        } catch (Exception e){
+//            LogPrintUtils.eTag(TAG, e, "push");
+//        }
+//        return false;
+//    }
 
     // ===========
     // == Input ==
@@ -725,7 +793,7 @@ public final class ADBUtils {
             String cmd = "input touchscreen tap %s %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y), true);
-            return result.isSuccess();
+            return result.isSuccess2();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "tap");
         }
@@ -770,7 +838,7 @@ public final class ADBUtils {
             String cmd = "input touchscreen swipe %s %s %s %s %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y, (int) tX, (int) tY, time), true);
-            return result.isSuccess();
+            return result.isSuccess2();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "swipe");
         }
@@ -791,7 +859,7 @@ public final class ADBUtils {
             String cmd = "input text %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, txt), true); // false 可以执行
-            return result.isSuccess();
+            return result.isSuccess2();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "text");
         }
@@ -811,7 +879,7 @@ public final class ADBUtils {
             String cmd = "input keyevent %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, keyCode), true); // false 可以执行
-            return result.isSuccess();
+            return result.isSuccess2();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "keyevent");
         }
@@ -919,7 +987,7 @@ public final class ADBUtils {
             String cmd = "cat /data/misc/wifi/*.conf";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-            if (result.isSuccess()){
+            if (result.isSuccess3()){
                 return result.successMsg;
             }
         } catch (Exception e){
@@ -937,7 +1005,7 @@ public final class ADBUtils {
         String cmd = "svc wifi %s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, open ? "enable" : "disable"), true);
-        return result.isSuccess();
+        return result.isSuccess2();
     }
 
     /**
@@ -952,7 +1020,7 @@ public final class ADBUtils {
             String cmd = "date -s %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, time), true);
-            return result.isSuccess();
+            return result.isSuccess2();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "setSystemTime");
         }
@@ -1108,7 +1176,384 @@ public final class ADBUtils {
         ShellUtils.execCmd(lists, true);
     }
 
-    // ==
+    // == 查看设备信息 ==
+
+    /**
+     * 获取 SDK 版本
+     * @return
+     */
+    public static String getSDKVersion(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.build.version.sdk", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Android 系统版本
+     * @return
+     */
+    public static String getAndroidVersion(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.build.version.release", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取设备型号 如 RedmiNote4X
+     * @return
+     */
+    public static String getModel() {
+        // android.os.Build 内部有信息 android.os.Build.MODEL
+        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.product.model", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取品牌
+     * @return
+     */
+    public static String getBrand() {
+        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.product.brand", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取设备名
+     * @return
+     */
+    public static String getDeviceName() {
+        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.product.name", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取 CPU 支持的 abi 列表
+     * @return
+     */
+    public static String getCpuAbiList() {
+        ShellUtils.CommandResult result = ShellUtils.execCmd("cat /system/build.prop | grep ro.product.cpu.abi", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 每个应用程序的内存上限
+     * @return
+     */
+    public static String getAppHeapsize(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop dalvik.vm.heapsize", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取电池状况
+     * @return
+     */
+    public static String getBattery(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys battery", true);
+        if (result.isSuccess3()){ // scale 代表最大电量，level 代表当前电量
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取屏幕密度
+     * @return
+     */
+    public static String getDensity(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.sf.lcd_density", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取屏幕分辨率
+     * @return
+     */
+    public static String getScreenSize(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("wm size", true);
+        if (result.isSuccess3()){
+            // 正常返回 Physical size: 1080x1920
+            // 如果使用命令修改过，那输出可能是：
+            // Physical size: 1080x1920
+            // Override size: 480x1024
+            // 表明设备的屏幕分辨率原本是 1080px * 1920px，当前被修改为 480px * 1024px。
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取显示屏参数
+     * @return
+     */
+    public static String getDisplays(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys window displays", true);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Android id
+     * @return
+     */
+    public static String getAndroidId(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings get secure android_id", true);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取 IMEI 码
+     * @return
+     */
+    public static String getIMEI(){
+        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.LOLLIPOP){
+            ShellUtils.CommandResult result = ShellUtils.execCmd("service call iphonesubinfo 1", true);
+            if (result.isSuccess3()){
+                try {
+                    int index = 0;
+                    StringBuffer buffer = new StringBuffer();
+                    String subStr = result.successMsg.replaceAll("\\.", "");
+                    subStr = subStr.substring(subStr.indexOf("'") + 1, subStr.indexOf("')"));
+                    // 添加数据
+                    buffer.append(subStr.substring(0, subStr.indexOf("'")));
+                    // 从指定索引开始
+                    index = subStr.indexOf("'", buffer.toString().length() + 1);
+                    // 再次裁减
+                    subStr = subStr.substring(index + 1, subStr.length());
+                    // 添加数据
+                    buffer.append(subStr.substring(0, subStr.indexOf("'")));
+                    // 从指定索引开始
+                    index = subStr.indexOf("'", buffer.toString().length() + 1);
+                    // 再次裁减
+                    subStr = subStr.substring(index + 1, subStr.length());
+                    // 最后进行添加
+                    buffer.append(subStr.split(SPACE_STR)[0]);
+                    // 返回对应的数据
+                    return buffer.toString();
+                } catch (Exception e){
+                    LogPrintUtils.eTag(TAG, e, "getIMEI");
+                }
+            }
+        } else {
+            // 在 Android 4.4 及以下版本可通过如下命令获取 IMEI：
+            ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys iphonesubinfo", true);
+            if (result.isSuccess3()){ // 返回值中的 Device ID 就是 IMEI。
+                try {
+                    String[] splitArys = result.successMsg.split(NEW_LINE_STR);
+                    for (String str : splitArys){
+                        if (!TextUtils.isEmpty(str)){
+                            if (str.toLowerCase().indexOf("device") != -1){
+                                // 进行拆分
+                                String[] arys = str.split(SPACE_STR);
+                                return arys[arys.length - 1];
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getIMEI");
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取 ip 地址
+     * @return
+     */
+    public static String getIPAddress(){
+        boolean isRoot = false;
+        ShellUtils.CommandResult result = ShellUtils.execCmd("ifconfig | grep Mask", isRoot);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        } else { // 如果设备连着 WiFi，可以使用如下命令来查看局域网 IP：
+            result = ShellUtils.execCmd("ifconfig wlan0", isRoot);
+            if (result.isSuccess3()){
+                return result.successMsg;
+            } else {
+                // 可以看到网络连接名称、启用状态、IP 地址和 Mac 地址等信息。
+                result = ShellUtils.execCmd("netcfg", isRoot);
+                if (result.isSuccess3()){
+                    return result.successMsg;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Mac 地址
+     * @return
+     */
+    public static String getMac(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("cat /sys/class/net/wlan0/address", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取 CPU 信息
+     * @return
+     */
+    public static String getCPU(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("cat /proc/cpuinfo", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取内存信息
+     * @return
+     */
+    public static String getMeminfo(){
+        ShellUtils.CommandResult result = ShellUtils.execCmd("cat /proc/meminfo", false);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    // = 修改设置 =
+
+    /**
+     * 设置屏幕大小
+     * @param width
+     * @param height
+     * @return
+     */
+    public static boolean setScreenSize(int width, int height){
+        String cmd = "wm size %sx%s";
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, width, height), true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 恢复原分辨率命令
+     * @return
+     */
+    public static boolean resetScreen() {
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("wm size reset", true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 设置屏幕密度
+     * @param density
+     * @return
+     */
+    public static boolean setDensity(int density){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("wm density " + density, true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 恢复原屏幕密度
+     * @return
+     */
+    public static boolean resetDensity(){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("wm density reset", true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 显示区域 (设置留白边距)
+     * @param left
+     * @param top
+     * @param right
+     * @param bottom
+     * @return
+     */
+    public static boolean setOverscan(int left, int top, int right, int bottom){
+        String cmd = "wm overscan %s,%s,%s,%s";
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, left, top, right, bottom), true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 恢复原显示区域
+     * @return
+     */
+    public static boolean resetOverscan(){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("wm overscan reset", true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 关闭 USB 调试模式
+     * @return
+     */
+    public static boolean disableADB(){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings put global adb_enabled 0", true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 允许访问非 SDK API
+     * 不需要设备获得 Root 权限。
+     * @return
+     */
+    public static int putHiddenApi (){
+        String[] cmds = new String[2];
+        cmds[0] = "settings put global hidden_api_policy_pre_p_apps 1";
+        cmds[1] = "settings put global hidden_api_policy_p_apps 1";
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
+        return result.result;
+    }
+
+    /**
+     * 禁止访问非 SDK API
+     * 不需要设备获得 Root 权限。
+     * @return
+     */
+    public static int deleteHiddenApi (){
+        String[] cmds = new String[2];
+        cmds[0] = "settings delete global hidden_api_policy_pre_p_apps";
+        cmds[1] = "settings delete global hidden_api_policy_p_apps";
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
+        return result.result;
+    }
+
+    // == 内部方法 ==
 
     /**
      * 检查是否存在某个文件

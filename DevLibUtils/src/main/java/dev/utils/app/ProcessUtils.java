@@ -37,6 +37,23 @@ public final class ProcessUtils {
     private static final String TAG = ProcessUtils.class.getSimpleName();
 
     /**
+     * 获取当前进程的名字
+     * hit: 获取当前进程 DevUtils.getContext().getApplicationInfo().packageName
+     * @return 进程号
+     */
+    public static String getCurProcessName() {
+        int pid = android.os.Process.myPid();
+        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
+            if (appProcess.pid == pid) {
+                return appProcess.processName;
+            }
+        }
+        return null;
+    }
+
+    /**
      * 获取进程号对应的进程名
      * @param pid 进程号 => android.os.Process.myPid()
      * @return 进程名
@@ -64,20 +81,58 @@ public final class ProcessUtils {
     }
 
     /**
-     * 获取当前进程的名字
-     * hit: 获取当前进程 DevUtils.getContext().getApplicationInfo().packageName
-     * @return 进程号
+     * 获取进程id
+     * @param packageName
+     * @return
      */
-    public static String getCurProcessName() {
-        int pid = android.os.Process.myPid();
+    public static int getPid(String packageName){
+        if (TextUtils.isEmpty(packageName)){
+            return -1;
+        }
         ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager.getRunningAppProcesses()) {
+        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
+            if (appProcess.processName.equals(packageName)) {
+                return appProcess.pid;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 根据 pid 获取进程信息
+     * @param pid
+     * @return
+     */
+    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(int pid){
+        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
             if (appProcess.pid == pid) {
-                return appProcess.processName;
+                return appProcess;
             }
         }
         return null;
     }
+
+    /**
+     * 根据包名获取进程信息
+     * @param packageName
+     * @return
+     */
+    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(String packageName){
+        if (TextUtils.isEmpty(packageName)) return null;
+        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
+            if (appProcess.processName.equals(packageName)) {
+                return appProcess;
+            }
+        }
+        return null;
+    }
+
+    // =
 
     /**
      * 获取前台线程包名
