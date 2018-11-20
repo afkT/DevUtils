@@ -1,5 +1,9 @@
 package dev.utils.common;
 
+import android.os.SystemClock;
+
+import dev.utils.JCLogUtils;
+
 /**
  * detail: 快捷通用
  * Created by Ttt
@@ -8,6 +12,9 @@ public final class QuickCommonUtils {
 
     private QuickCommonUtils(){
     }
+
+    // 日志TAG
+    private static final String TAG = QuickCommonUtils.class.getSimpleName();
 
     /**
      * 转换手机号
@@ -29,6 +36,16 @@ public final class QuickCommonUtils {
     /**
      * 耗时时间记录
      * @param buffer
+     * @param sTime 开始时间
+     * @param eTime 结束时间
+     */
+    public static void timeRecord(StringBuffer buffer, long sTime, long eTime) {
+        timeRecord(buffer, null, sTime, eTime);
+    }
+
+    /**
+     * 耗时时间记录
+     * @param buffer
      * @param title 标题
      * @param sTime 开始时间
      * @param eTime 结束时间
@@ -37,10 +54,52 @@ public final class QuickCommonUtils {
         // 使用时间
         long uTime = eTime - sTime;
         // 计算时间
-        buffer.append("\n" + title);
+        if (!DevCommonUtils.isEmpty(title)) {
+            buffer.append("\n" + title);
+        }
         buffer.append("\n开始时间：" + sTime);
         buffer.append("\n结束时间：" + eTime);
         buffer.append("\n所用时间：" + uTime);
+    }
+
+    /**
+     * 获取格式化字符串(可变参数)
+     * @param args
+     * @return
+     */
+    public static String getFormatString(Object... args) {
+        if (args != null && args.length != 0){
+            int length = args.length;
+            StringBuffer buffer = new StringBuffer();
+            buffer.append("%s");
+            if (length > 1){
+                for (int i = 1; i < length; i++){
+                    buffer.append(" %s");
+                }
+            }
+            return String.format(buffer.toString(), args);
+        }
+        return "args is null";
+    }
+
+    /**
+     * 获取格式化字符串(可变参数)
+     * @param args
+     * @return
+     */
+    public static String getFormatString2(Object... args) {
+        if (args != null && args.length != 0){
+            int length = args.length;
+            StringBuffer buffer = new StringBuffer();
+            buffer.append("【%s】");
+            if (length > 1){
+                for (int i = 1; i < length; i++){
+                    buffer.append(" %s");
+                }
+            }
+            return String.format(buffer.toString(), args);
+        }
+        return "args is null";
     }
 
     /**
@@ -76,7 +135,7 @@ public final class QuickCommonUtils {
      * @param sleepTime
      */
     public static void sleepOperate(long sleepTime){
-        sleepOperate(sleepTime, -1);
+        sleepOperate(sleepTime, -1, false);
     }
 
     /**
@@ -85,20 +144,36 @@ public final class QuickCommonUtils {
      * @param randomTime
      */
     public static void sleepOperate(long sleepTime, int randomTime){
+        sleepOperate(sleepTime, randomTime, false);
+    }
+
+    /**
+     * 堵塞操作
+     * @param sleepTime
+     * @param randomTime
+     * @param isSystemClock
+     */
+    public static void sleepOperate(long sleepTime, int randomTime, boolean isSystemClock){
         long time = getOperateTime(sleepTime, randomTime);
         if (time != -1){
-            try {
-                Thread.sleep(sleepTime);
-            } catch (Exception e1){
+            if (isSystemClock){
+                try {
+                    SystemClock.sleep(sleepTime);
+                } catch (Throwable e){
+                    JCLogUtils.eTag(TAG, e, "sleepOperate - SystemClock");
+                    try {
+                        Thread.sleep(sleepTime);
+                    } catch (Throwable e1){
+                        JCLogUtils.eTag(TAG, e1, "sleepOperate - SystemClock Thread");
+                    }
+                }
+            } else {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (Throwable e1){
+                    JCLogUtils.eTag(TAG, e1, "sleepOperate - Thread");
+                }
             }
-//            try {
-//                SystemClock.sleep(sleepTime);
-//            } catch (Throwable e){
-//                try {
-//                    Thread.sleep(sleepTime);
-//                } catch (Exception e1){
-//                }
-//            }
         }
     }
 }

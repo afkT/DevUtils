@@ -228,7 +228,7 @@ public final class ADBUtils {
             if (result.isSuccess3()){
                 String[] arys = result.successMsg.split(SPACE_STR);
                 for (String str : arys) {
-                    if (!isSpace(str)) {
+                    if (!TextUtils.isEmpty(str)) {
                         try {
                             String[] datas = str.split("=");
                             if (datas.length == 2) {
@@ -331,7 +331,7 @@ public final class ADBUtils {
      * 静默安装 App
      * <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
      * @param file The file.
-     * @return true : success, false : fail
+     * @return
      */
     public static boolean installAppSilent(final File file) {
         if (!isFileExists(file)) return false;
@@ -629,6 +629,103 @@ public final class ADBUtils {
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getActivityCurrent");
             }
+        }
+        return null;
+    }
+
+    /**
+     * 获取 activity 栈
+     * @return
+     */
+    public static String getActivitys(){
+        return getActivitys(null);
+    }
+
+    /**
+     * 获取 activity 栈
+     * @param append
+     * @return
+     */
+    public static String getActivitys(String append){
+        String cmd = "dumpsys activity activities";
+        if (!isSpace(append)){
+            cmd += " " + append.trim();
+        }
+        // 执行 shell
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
+        if (result.isSuccess3()) {
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 获取对应包名的 Activity 栈
+     * @param packageName
+     * @return
+     */
+    public static String getActivitysToPackage(String packageName){
+        if (isSpace(packageName)){
+            return null;
+        }
+        return getActivitys("| grep " + packageName);
+    }
+
+    /**
+     * 获取对应包名的 Activity 栈 (处理成 List), 最新的 Activity 越靠后
+     * @param packageName
+     * @return
+     */
+    public static List<String> getActivitysToPackageLists(String packageName){
+        // 获取对应包名的 Activity 数据结果
+        String result = getActivitysToPackage(packageName);
+        // 防止数据为null
+        if (!TextUtils.isEmpty(result)){
+            List<String> lists = new ArrayList<>();
+            String[] dataSplit = result.split(NEW_LINE_STR);
+            // 拆分后, 数据长度
+            int splitLength = dataSplit.length;
+            // 获取 Activity 栈字符串
+            String activities = null;
+            // 判断最后一行是否符合条件
+            if (dataSplit[splitLength - 1].indexOf("Activities=") != -1){
+                activities = dataSplit[splitLength - 1];
+            } else {
+                for (String str : dataSplit){
+                    if (str.indexOf("Activities=") != -1){
+                        activities = str;
+                        break;
+                    }
+                }
+            }
+            // 进行特殊处理 Activities=[ActivityRecord{xx},ActivityRecord{xx}];
+            int startIndex = activities.indexOf("Activities=[");
+            activities = activities.substring(startIndex + "Activities=[".length(), activities.length() - 1);
+            // 再次进行拆分
+            String[] activityArys = activities.split("ActivityRecord");
+            for (String data : activityArys){
+                try {
+                    String[] splitArys = data.split(SPACE_STR);
+                    if (splitArys != null && splitArys.length != 0){
+                        for (String splitStr : splitArys){
+                            int start = splitStr.indexOf(packageName + "/");
+                            if (start != -1){
+                                // 获取裁减数据
+                                String strData = splitStr;
+                                // 防止属于 包名/.xx.XxxActivity
+                                if (strData.indexOf("/.") != -1){
+                                    // 包名/.xx.XxxActivity => 包名/包名.xx.XxxActivity
+                                    strData = strData.replace("/", "/" + splitStr.substring(0, start));
+                                }
+                                // 保存数据
+                                lists.add(strData);
+                            }
+                        }
+                    }
+                } catch (Exception e){
+                }
+            }
+            return lists;
         }
         return null;
     }
@@ -1552,6 +1649,47 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
         return result.result;
     }
+
+    /**
+     * 开启无障碍辅助功能
+     * @param packageName 包名
+     * @param accessibilityServiceName 无障碍服务名
+     * @return
+     */
+    public static boolean openAccessibility(String packageName, String accessibilityServiceName){
+        if (isSpace(packageName)) return false;
+        if (isSpace(accessibilityServiceName)) return false;
+
+        String cmd = "settings put secure enabled_accessibility_services %s/%s";
+        // 执行 shell cmd
+        String[] cmds = new String[2];
+        cmds[0] = String.format(cmd, packageName, accessibilityServiceName);
+        cmds[1] = "settings put secure accessibility_enabled 1";
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 关闭无障碍辅助功能
+     * @param packageName 包名
+     * @param accessibilityServiceName 无障碍服务名
+     * @return
+     */
+    public static boolean closeAccessibility(String packageName, String accessibilityServiceName){
+        if (isSpace(packageName)) return false;
+        if (isSpace(accessibilityServiceName)) return false;
+
+        String cmd = "settings put secure enabled_accessibility_services %s/%s";
+        // 执行 shell cmd
+        String[] cmds = new String[2];
+        cmds[0] = String.format(cmd, packageName, accessibilityServiceName);
+        cmds[1] = "settings put secure accessibility_enabled 0";
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
+        return result.isSuccess2();
+    }
+
 
     // == 内部方法 ==
 

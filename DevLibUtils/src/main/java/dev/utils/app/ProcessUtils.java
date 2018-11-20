@@ -81,7 +81,7 @@ public final class ProcessUtils {
     }
 
     /**
-     * 获取进程id
+     * 根据包名获取进程id
      * @param packageName
      * @return
      */
