@@ -57,9 +57,11 @@ public final class QuickCommonUtils {
         if (!DevCommonUtils.isEmpty(title)) {
             buffer.append("\n" + title);
         }
-        buffer.append("\n开始时间：" + sTime);
-        buffer.append("\n结束时间：" + eTime);
-        buffer.append("\n所用时间：" + uTime);
+        // 计算时间
+        buffer.append("\n开始时间：" + DateUtils.formatTime(sTime, DateUtils.yyyyMMddHHmmss));
+        buffer.append("\n结束时间：" + DateUtils.formatTime(eTime, DateUtils.yyyyMMddHHmmss));
+        buffer.append("\n所用时间(毫秒)：" + uTime);
+        buffer.append("\n所用时间(秒): " + (uTime / 1000));
     }
 
     /**

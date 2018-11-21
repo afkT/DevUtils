@@ -13,6 +13,7 @@ import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.DevCommonUtils;
 
 /**
  * detail: ADB shell 工具类
@@ -728,6 +729,68 @@ public final class ADBUtils {
             return lists;
         }
         return null;
+    }
+
+    /**
+     * 判断 Activity 栈顶 是否重复
+     * @param packageName
+     * @param activity
+     * @return
+     */
+    public static boolean isActivityTopRepeat(String packageName, String activity){
+        // 判断是否重复
+        boolean isRepeat = false;
+        // 获取
+        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        // 数据长度
+        int length = DevCommonUtils.length(lists);
+        // 防止数据为null
+        if (length >= 2){ // 两个页面以上, 才能够判断是否重复
+            if (lists.get(length - 1).endsWith(activity)){
+                // 倒序遍历, 越后面是 Activity 栈顶
+                for (int i = length - 2; i >= 0; i--){
+                    String data = lists.get(i);
+                    // 判断是否该页面结尾
+                    if (data.endsWith(activity)){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return isRepeat;
+    }
+
+    /**
+     * 判断 Activity 栈顶 重复总数
+     * @param packageName
+     * @param activity
+     * @return
+     */
+    public static int getActivityTopRepeatCount(String packageName, String activity){
+        // 重复数量
+        int number = 0;
+        // 获取
+        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        // 数据长度
+        int length = DevCommonUtils.length(lists);
+        // 防止数据为null
+        if (length >= 2){ // 两个页面以上, 才能够判断是否重复
+            if (lists.get(length - 1).endsWith(activity)){
+                // 倒序遍历, 越后面是 Activity 栈顶
+                for (int i = length - 2; i >= 0; i--){
+                    String data = lists.get(i);
+                    // 判断是否该页面结尾
+                    if (data.endsWith(activity)){
+                        number ++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return number;
     }
 
     // == 正在运行的 Services ==
