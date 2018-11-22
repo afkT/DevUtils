@@ -825,11 +825,22 @@ public final class ADBUtils {
 
     /**
      * 跳转页面 Activity
-     * @param packageAndLauncher
+     * @param packageAndLauncher 包名/包名.页面
      * @param closeActivity 关闭Activity所属的App进程后再启动Activity
      * @return
      */
     public static boolean startActivity(String packageAndLauncher, boolean closeActivity){
+        return startActivity(packageAndLauncher, null, closeActivity);
+    }
+
+    /**
+     * 跳转页面 Activity
+     * @param packageAndLauncher 包名/.xx
+     * @param append 追加的信息, 例如传递参数等
+     * @param closeActivity 关闭Activity所属的App进程后再启动Activity
+     * @return
+     */
+    public static boolean startActivity(String packageAndLauncher, String append, boolean closeActivity){
         if (isSpace(packageAndLauncher)) return false;
         try {
             // am start [options] <INTENT>
@@ -839,6 +850,10 @@ public final class ADBUtils {
             } else {
                 cmd = String.format(cmd, packageAndLauncher);
             }
+            // 判断是否追加
+            if (!isSpace(append)){
+                cmd += " " + append.trim();
+            }
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
             return result.isSuccess2();
@@ -847,6 +862,124 @@ public final class ADBUtils {
         }
         return false;
     }
+
+    /**
+     * 启动服务
+     * @param packageAndService 包名/.xxx
+     * @return
+     */
+    public static boolean startService(String packageAndService){
+        return startService(packageAndService, null);
+    }
+
+    /**
+     * 启动服务
+     * @param packageAndService 包名/.xxx
+     * @param append 追加的信息, 例如传递参数等
+     * @return
+     */
+    public static boolean startService(String packageAndService, String append){
+        if (isSpace(packageAndService)) return false;
+        try {
+            // am startservice [options] <INTENT>
+            String cmd = "am startservice %s";
+            // 进行格式化
+            cmd = String.format(cmd, packageAndService);
+            // 判断是否追加
+            if (!isSpace(append)){
+                cmd += " " + append.trim();
+            }
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
+            return result.isSuccess2();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "startService");
+        }
+        return false;
+    }
+
+    /**
+     * 停止服务
+     * @param packageAndService 包名/.xxx
+     * @return
+     */
+    public static boolean stopService(String packageAndService){
+        return stopService(packageAndService, null);
+    }
+
+    /**
+     * 停止服务
+     * @param packageAndService 包名/.xxx
+     * @param append 追加的信息, 例如传递参数等
+     * @return
+     */
+    public static boolean stopService(String packageAndService, String append){
+        if (isSpace(packageAndService)) return false;
+        try {
+            // am stopservice [options] <INTENT>
+            String cmd = "am stopservice %s";
+            // 进行格式化
+            cmd = String.format(cmd, packageAndService);
+            // 判断是否追加
+            if (!isSpace(append)){
+                cmd += " " + append.trim();
+            }
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
+            return result.isSuccess3();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "stopService");
+        }
+        return false;
+    }
+
+    /**
+     * 发送广播(向所有组件发送)
+     * @param broadcast
+     * @return
+     * 例:
+     * adb shell am broadcast -a android.intent.action.BOOT_COMPLETED
+     * 向所有组件广播 BOOT_COMPLETED
+     */
+    public static boolean sendBroadcastToAll(String broadcast){
+        if (isSpace(broadcast)) return false;
+        try {
+            // am broadcast [options] <INTENT>
+            String cmd = "am broadcast -a %s";
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, broadcast), true);
+            return result.isSuccess3();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "sendBroadcastAll");
+        }
+        return false;
+    }
+
+    /**
+     * 发送广播
+     * @param packageAndBroadcast 包名/.xxx
+     * @param broadcast
+     * @return
+     * 例:
+     * adb shell am broadcast -a android.intent.action.BOOT_COMPLETED -n org.mazhuang.boottimemeasure/.BootCompletedReceiver
+     * 只向 org.mazhuang.boottimemeasure/.BootCompletedReceiver 广播 BOOT_COMPLETED
+     */
+    public static boolean sendBroadcast(String packageAndBroadcast, String broadcast){
+        if (isSpace(packageAndBroadcast)) return false;
+        if (isSpace(broadcast)) return false;
+        try {
+            // am broadcast [options] <INTENT>
+            String cmd = "am broadcast -a %s -n %s";
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, broadcast, packageAndBroadcast), true);
+            return result.isSuccess3();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "sendBroadcast");
+        }
+        return false;
+    }
+
+    // =
 
     /**
      * 销毁进程
