@@ -763,7 +763,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 判断 Activity 栈顶 重复总数
+     * 获取 Activity 栈顶 重复总数
      * @param packageName
      * @param activity
      * @return
