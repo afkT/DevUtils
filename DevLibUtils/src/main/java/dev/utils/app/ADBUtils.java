@@ -77,7 +77,7 @@ public final class ADBUtils {
      */
     public static boolean isGrantedRoot(){
         ShellUtils.CommandResult result = ShellUtils.execCmd("exit", true);
-        return result.isSuccess();
+        return result.isSuccess2();
     }
 
     // == 应用管理 ==
