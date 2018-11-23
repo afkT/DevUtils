@@ -106,10 +106,6 @@ public final class HttpURLConnectionUtils {
                     connection.setRequestProperty(entry.getKey(), entry.getValue());
                 }
             }
-            // 请求响应时间
-            long response = connection.getDate();
-            // 获取请求时间
-            JCLogUtils.dTag(TAG, "response time: " + response);
             // 判断是否需要写入数据
             if(params != null && params.length() != 0) {
                 // 允许写入
@@ -145,7 +141,7 @@ public final class HttpURLConnectionUtils {
                 // 判断是否回调
                 if (callBack != null){
                     // 请求成功, 触发回调
-                    callBack.onResponse(result, response);
+                    callBack.onResponse(result, connection.getDate());
                 }
             } else {
                 // 响应成功,非200直接返回null
