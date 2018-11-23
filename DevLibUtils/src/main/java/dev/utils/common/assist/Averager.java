@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Averager {
 
-    private List<Number> numList = new ArrayList<Number>();
+    private List<Number> numList = new ArrayList<>();
 
     /**
      * 添加一个数字

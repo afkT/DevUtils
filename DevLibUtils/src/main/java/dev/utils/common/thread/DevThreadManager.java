@@ -2,6 +2,7 @@ package dev.utils.common.thread;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * detail: 线程池管理 - 开发类
@@ -14,7 +15,7 @@ public final class DevThreadManager {
     /** 线程池数据 */
     private static final LinkedHashMap<String, DevThreadPool> mapThreads = new LinkedHashMap<>();
     /** 配置数据 */
-    private static final HashMap<String, Object> mapConfig = new HashMap<>();
+    private static final Map<String, Object> mapConfig = new HashMap<>();
 
     /** 禁止构造对象 */
     private DevThreadManager() {
@@ -77,7 +78,7 @@ public final class DevThreadManager {
      * 初始化配置信息
      * @param mapConfig
      */
-    public static void initConfig(HashMap<String, Object> mapConfig){
+    public static void initConfig(Map<String, Object> mapConfig){
         if (mapConfig != null){
             mapConfig.putAll(mapConfig);
         }

@@ -2,6 +2,7 @@ package dev.utils.common.assist.search;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -35,7 +36,7 @@ public class FileBreadthFirstSearchUtils {
         public File file = null;
 
         // HashMap 保存目录信息
-        public HashMap<String, FileItem> mapChilds = null;
+        public Map<String, FileItem> mapChilds = null;
 
         /**
          * 保存子文件信息

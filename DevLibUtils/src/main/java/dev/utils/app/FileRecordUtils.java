@@ -46,7 +46,7 @@ public final class FileRecordUtils {
     static String DEVICE_INFO_STR = null;
 
     /** 用来存储设备信息 */
-    static HashMap<String, String> DEVICE_INFO_MAPS = new HashMap<String, String>();
+    static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
 
     /** 换行字符串 */
     static final String NEW_LINE_STR = System.getProperty("line.separator");
@@ -80,7 +80,7 @@ public final class FileRecordUtils {
      * 获取设备信息
      * @param dInfoMaps 传入设备信息传出HashMap
      */
-    static void getDeviceInfo(HashMap<String, String> dInfoMaps) {
+    static void getDeviceInfo(Map<String, String> dInfoMaps) {
         // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段。
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段

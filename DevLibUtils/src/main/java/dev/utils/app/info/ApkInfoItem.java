@@ -109,7 +109,7 @@ public final class ApkInfoItem {
         // 是否保存
         boolean isError = false;
         // 临时签名信息
-        ArrayList<KeyValueBean> listTemps = new ArrayList<>();
+        List<KeyValueBean> listTemps = new ArrayList<>();
 
         // Android 的 Apk 应用签名机制以及读取签名的方法
         // http://www.jb51.net/article/79894.htm

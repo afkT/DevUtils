@@ -249,7 +249,7 @@ public final class AnalysisRecordUtils {
     // 设备信息
     private static String DEVICE_INFO_STR = null;
     // 用来存储设备信息
-    private static HashMap<String, String> DEVICE_INFO_MAPS = new HashMap<>();
+    private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
@@ -273,7 +273,7 @@ public final class AnalysisRecordUtils {
      * 获取设备信息
      * @param dInfoMaps 传入设备信息传出HashMap
      */
-    private static void getDeviceInfo(HashMap<String, String> dInfoMaps) {
+    private static void getDeviceInfo(Map<String, String> dInfoMaps) {
         // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段。
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段

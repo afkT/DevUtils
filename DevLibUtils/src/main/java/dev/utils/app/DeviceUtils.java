@@ -20,7 +20,6 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
@@ -82,7 +81,7 @@ public final class DeviceUtils {
      * 获取设备信息
      * @param dInfoMaps 传入设备信息传出HashMap
      */
-    public static void getDeviceInfo(HashMap<String, String> dInfoMaps) {
+    public static void getDeviceInfo(Map<String, String> dInfoMaps) {
         // 获取设备信息类的所有申明的字段,即包括public、private和proteced， 但是不包括父类的申明字段。
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -102,7 +101,7 @@ public final class DeviceUtils {
      * 获取设备信息
      * @param dInfoMaps 传入设备信息传出HashMap
      */
-    public static void getDeviceInfo2(HashMap<String, String> dInfoMaps) {
+    public static void getDeviceInfo2(Map<String, String> dInfoMaps) {
         // 获取设备信息类的所有申明的字段,即包括public、private和proteced， 但是不包括父类的申明字段。
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -133,7 +132,7 @@ public final class DeviceUtils {
      * @param dInfoMaps 设备信息
      * @param eHint 错误提示，如获取设备信息失败
      */
-    public static String handleDeviceInfo(HashMap<String, String> dInfoMaps, String eHint) {
+    public static String handleDeviceInfo(Map<String, String> dInfoMaps, String eHint) {
         try {
             // 初始化StringBuilder，拼接字符串
             StringBuilder sBuilder = new StringBuilder();

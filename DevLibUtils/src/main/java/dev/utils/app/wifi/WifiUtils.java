@@ -819,7 +819,7 @@ public final class WifiUtils {
 		if (linkProperties == null)
 			throw new NullPointerException();
 
-		ArrayList<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(linkProperties, "mDnses");
+		List<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(linkProperties, "mDnses");
 		mDnses.clear(); // or add a new dns address , here I just want to replace DNS1
 		mDnses.add(dns);
 	}
@@ -890,7 +890,7 @@ public final class WifiUtils {
 		setValueField(staticIpConfigClass, InetAddress.getByName(gateway), "gateway");
 		if(dns != null){ // 判断是否需要设置域名
 			// 设置DNS
-			ArrayList<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(staticIpConfigClass, "dnsServers");
+			List<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(staticIpConfigClass, "dnsServers");
 			mDnses.clear(); // or add a new dns address , here I just want to replace DNS1
 			mDnses.add(InetAddress.getByName(dns));
 		}

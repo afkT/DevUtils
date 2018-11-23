@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import dev.DevUtils;
@@ -440,8 +441,8 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.READ_CONTACTS" />
      * return
      */
-    public static List<HashMap<String, String>> getAllContactInfo() {
-        List<HashMap<String, String>> list = new ArrayList<>();
+    public static List<Map<String, String>> getAllContactInfo() {
+        List<Map<String, String>> list = new ArrayList<>();
         // 1.获取内容解析者
         ContentResolver resolver = DevUtils.getContext().getContentResolver();
         // 2.获取内容提供者的地址:com.android.contacts
@@ -469,7 +470,7 @@ public final class PhoneUtils {
                         // sortOrder : 排序
                         // 空指针: 1.null.方法 2.参数为 null
                         Cursor c = resolver.query(date_uri, new String[]{"data1", "mimetype"}, "raw_contact_id=?", new String[]{contact_id}, null);
-                        HashMap<String, String> map = new HashMap<String, String>();
+                        Map<String, String> map = new HashMap<>();
                         // 8.解析 c
                         if (c != null) {
                             while (c.moveToNext()) {
@@ -508,12 +509,12 @@ public final class PhoneUtils {
      * 获取手机联系人
      * @return
      */
-    public static List<HashMap<String, String>> getAllContactInfo2() {
-        List<HashMap<String, String>> list = new ArrayList<>();
+    public static List<Map<String, String>> getAllContactInfo2() {
+        List<Map<String, String>> list = new ArrayList<>();
         try {
             Cursor cursor = DevUtils.getContext().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
             while (cursor.moveToNext()) {
-                HashMap<String, String> map = new HashMap<>();
+                Map<String, String> map = new HashMap<>();
                 // 电话号码
                 String phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)).trim().replaceAll(" ", "");
                 // 手机联系人名字

@@ -5,7 +5,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Keep;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
@@ -68,7 +67,7 @@ public class WifiVo implements Parcelable {
 	 * @param listWifiVos 处理后数据源
 	 * @param listScanResults 扫描返回的数据
 	 */
-	public static void scanWifiVos(ArrayList<WifiVo> listWifiVos, List<ScanResult> listScanResults){
+	public static void scanWifiVos(List<WifiVo> listWifiVos, List<ScanResult> listScanResults){
 		// 清空旧数据
 		listWifiVos.clear();
 		// 遍历wifi列表数据

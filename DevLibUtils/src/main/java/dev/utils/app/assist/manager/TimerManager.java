@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Timer;
 
 import dev.utils.LogPrintUtils;
@@ -35,14 +36,14 @@ public final class TimerManager {
 	private static final String TAG = TimerManager.class.getSimpleName();
 
 	/** 内部保存定时器对象,防止忘记关闭等其他情况,以及便于控制处理 */
-	private static final ArrayList<AbsTimer> listAbsTimers = new ArrayList<AbsTimer>();
+	private static final List<AbsTimer> listAbsTimers = new ArrayList<>();
 
 	// ============= ArrayList 对外公开的方法  =============
 	/** 回收资源 */
 	public static void gc() {
 		synchronized (listAbsTimers) {
 			// 临时数据源
-			ArrayList<AbsTimer> lists = new ArrayList<AbsTimer>(listAbsTimers);
+			List<AbsTimer> lists = new ArrayList<>(listAbsTimers);
 			// 清空旧的数据
 			listAbsTimers.clear();
 			// 开始删除无用资源

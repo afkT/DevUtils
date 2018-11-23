@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import dev.utils.LogPrintUtils;
 
@@ -23,9 +24,9 @@ public final class ClickUtils {
     /** 默认间隔时间 */
     private static long DF_DIFF = 1000l; // 点击间隔1秒内
     /** 配置数据 */
-    private static final HashMap<String, Long> mapConfig = new HashMap<>();
+    private static final Map<String, Long> mapConfig = new HashMap<>();
     /** 点击记录数据 */
-    private static final HashMap<String, Long> mapRecords = new HashMap<>();
+    private static final Map<String, Long> mapRecords = new HashMap<>();
 
     // ===
 
@@ -160,7 +161,7 @@ public final class ClickUtils {
      * 初始化配置信息
      * @param mapConfig
      */
-    public static void initConfig(HashMap<String, Object> mapConfig){
+    public static void initConfig(Map<String, Object> mapConfig){
         if (mapConfig != null){
             mapConfig.putAll(mapConfig);
         }

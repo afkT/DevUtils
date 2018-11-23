@@ -25,7 +25,7 @@ public final class HttpParamsUtils {
      * @param params
      * @return
      */
-    public static HashMap<String, String> splitParams(final String params) {
+    public static Map<String, String> splitParams(final String params) {
         return splitParams(params, false);
     }
 
@@ -35,8 +35,8 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static HashMap<String, String> splitParams(final String params, boolean urlEncode) {
-        HashMap<String, String> mapParams = new HashMap<>();
+    public static Map<String, String> splitParams(final String params, boolean urlEncode) {
+        Map<String, String> mapParams = new HashMap<>();
         if (params != null) {
             // 拆分数据
             String[] keyValues = params.split("&");
@@ -80,7 +80,7 @@ public final class HttpParamsUtils {
      * @param mapParams
      * @return
      */
-    public static String joinReqParams(final HashMap<String, String> mapParams) {
+    public static String joinReqParams(final Map<String, String> mapParams) {
         return joinReqParams(mapParams, false);
     }
 
@@ -90,7 +90,7 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static String joinReqParams(final HashMap<String, String> mapParams, boolean urlEncode) {
+    public static String joinReqParams(final Map<String, String> mapParams, boolean urlEncode) {
         if (mapParams != null) {
             int index = 0;
             // --
@@ -117,7 +117,7 @@ public final class HttpParamsUtils {
      * @param mapParams
      * @return
      */
-    public static String joinReqParamsObj(final HashMap<String, Object> mapParams) {
+    public static String joinReqParamsObj(final Map<String, Object> mapParams) {
         return joinReqParamsObj(mapParams, false);
     }
 
@@ -127,7 +127,7 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static String joinReqParamsObj(final HashMap<String, Object> mapParams, boolean urlEncode) {
+    public static String joinReqParamsObj(final Map<String, Object> mapParams, boolean urlEncode) {
         if (mapParams != null) {
             int index = 0;
             // --
@@ -160,7 +160,7 @@ public final class HttpParamsUtils {
      * @param mapParams
      * @return
      */
-    public static String toStringMap(final HashMap<String, String> mapParams) {
+    public static String toStringMap(final Map<String, String> mapParams) {
         return toStringMap(mapParams, false);
     }
 
@@ -170,7 +170,7 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static String toStringMap(final HashMap<String, String> mapParams, boolean urlEncode) {
+    public static String toStringMap(final Map<String, String> mapParams, boolean urlEncode) {
         if (mapParams != null) {
             StringBuilder sBuilder = new StringBuilder();
             // --
@@ -201,7 +201,7 @@ public final class HttpParamsUtils {
      * @param key
      * @param value
      */
-    public static void toConvertObjToMS(HashMap<String, String> mapParams, String objStr, String key, String value){
+    public static void toConvertObjToMS(Map<String, String> mapParams, String objStr, String key, String value){
         if (mapParams != null) {
             String data = null;
             try {
@@ -220,7 +220,7 @@ public final class HttpParamsUtils {
      * @param key
      * @param value
      */
-    public static void toConvertObjToMO(HashMap<String, Object> mapParams, String objStr, String key, Object value){
+    public static void toConvertObjToMO(Map<String, Object> mapParams, String objStr, String key, Object value){
         if (mapParams != null) {
             Object data = null;
             try {

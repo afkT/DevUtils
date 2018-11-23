@@ -32,7 +32,7 @@ public class FileDepthFirstSearchUtils {
         public File file;
 
         // 子文件夹、文件对象
-        public ArrayList<FileItem> listChilds = null;
+        public List<FileItem> listChilds = null;
     }
 
     /**
@@ -236,7 +236,7 @@ public class FileDepthFirstSearchUtils {
                         for (File f : files){
                             if (isRelation) {
                                 if (f.isDirectory()){
-                                    ArrayList<FileItem> childs = new ArrayList<>();
+                                    List<FileItem> childs = new ArrayList<>();
                                     // 查找文件
                                     queryFile(f, childs, isRelation);
                                     // 保存数据

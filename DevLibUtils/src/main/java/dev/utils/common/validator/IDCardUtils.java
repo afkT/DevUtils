@@ -22,10 +22,10 @@ public final class IDCardUtils {
     public static final int power[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
     private static final int CHINA_ID_MAX_LENGTH = 18;
     public static final int CHINA_ID_MIN_LENGTH = 15;
-    public static Map<String, String> cityCodes = new HashMap<String, String>();
-    public static Map<String, Integer> twFirstCode = new HashMap<String, Integer>();
+    public static Map<String, String> cityCodes = new HashMap<>();
+    public static Map<String, Integer> twFirstCode = new HashMap<>();
     //台湾身份首字母对应数字
-    public static Map<String, Integer> hkFirstCode = new HashMap<String, Integer>();
+    public static Map<String, Integer> hkFirstCode = new HashMap<>();
 
     //香港身份首字母对应数字
     static {

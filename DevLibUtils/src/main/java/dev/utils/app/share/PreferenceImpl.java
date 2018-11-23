@@ -171,7 +171,7 @@ final class PreferenceImpl implements IPreference {
 
     @Override
     public List<String> getAll(String key) {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         Set<String> set = get(key, DataType.STRING_SET);
         for(String value : set) {
             list.add(value);

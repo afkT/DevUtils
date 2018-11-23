@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -32,8 +31,9 @@ public final class HttpURLConnectionUtils {
         /**
          * 请求响应回调
          * @param result
+         * @param response 请求头响应时间
          */
-        void onResponse(String result);
+        void onResponse(String result, long response);
 
         /**
          * 请求失败
@@ -86,7 +86,7 @@ public final class HttpURLConnectionUtils {
      * @param callBack
      * @return
      */
-    public static void request(final String method, final String urlStr, final HashMap<String, String> headers, final String params, final CallBack callBack) {
+    public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final CallBack callBack) {
         // 获取连接对象
         HttpURLConnection connection = null;
         InputStream inputStream = null;
@@ -106,8 +106,10 @@ public final class HttpURLConnectionUtils {
                     connection.setRequestProperty(entry.getKey(), entry.getValue());
                 }
             }
+            // 请求响应时间
+            long response = connection.getDate();
             // 获取请求时间
-            JCLogUtils.dTag(TAG, "response time: " + connection.getDate());
+            JCLogUtils.dTag(TAG, "response time: " + response);
             // 判断是否需要写入数据
             if(params != null && params.length() != 0) {
                 // 允许写入
@@ -143,7 +145,7 @@ public final class HttpURLConnectionUtils {
                 // 判断是否回调
                 if (callBack != null){
                     // 请求成功, 触发回调
-                    callBack.onResponse(result);
+                    callBack.onResponse(result, response);
                 }
             } else {
                 // 响应成功,非200直接返回null
