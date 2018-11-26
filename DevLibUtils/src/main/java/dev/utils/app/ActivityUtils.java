@@ -179,6 +179,81 @@ public final class ActivityUtils {
         return null;
     }
 
+    /**
+     * 获取系统桌面信息
+     * @return
+     */
+    public static ResolveInfo getLauncherCategoryHomeToResolveInfo(){
+        try {
+            final Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            return DevUtils.getContext().getPackageManager().resolveActivity(intent, 0);
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getLauncherCategoryHomeToResolveInfo");
+        }
+        return null;
+    }
+
+    /**
+     * 获取系统桌面信息 -> packageName
+     * （注：存在多个桌面时且未指定默认桌面时，该方法返回Null,使用时需处理这个情况）
+     * @return
+     */
+    public static String getLauncherCategoryHomeToPackageName() {
+        final ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
+        if (res != null && res.activityInfo != null) {
+            // 有多个桌面程序存在，且未指定默认项时
+            if (res.activityInfo.packageName.equals("android")) {
+                return null;
+            } else {
+                return res.activityInfo.packageName;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取系统桌面信息 -> activityName
+     * @return
+     */
+    public static String getLauncherCategoryHomeToActivityName() {
+        final ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
+        if (res != null && res.activityInfo != null) {
+            // 有多个桌面程序存在，且未指定默认项时
+            if (res.activityInfo.packageName.equals("android")) {
+                return null;
+            } else {
+                return res.activityInfo.name;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取系统桌面信息 -> package/activityName
+     * @return
+     */
+    public static String getLauncherCategoryHomeToPackageAndName() {
+        final ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
+        if (res != null && res.activityInfo != null) {
+            // 有多个桌面程序存在，且未指定默认项时
+            if (res.activityInfo.packageName.equals("android")) {
+                return null;
+            } else {
+                // 判断是否.开头
+                String name = res.activityInfo.name;
+                if (name != null){
+                    // 判断是否 . 开头
+                    if (name.startsWith(".")){
+                        name = res.activityInfo.packageName + name;
+                    }
+                    return res.activityInfo.packageName + "/" + name;
+                }
+            }
+        }
+        return null;
+    }
+
     // == 以下方法使用介绍 ==
     // https://www.cnblogs.com/tianzhijiexian/p/4087917.html
     // ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
