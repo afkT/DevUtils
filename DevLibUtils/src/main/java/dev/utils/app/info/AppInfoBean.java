@@ -61,7 +61,7 @@ public class AppInfoBean {
     public static AppInfoBean obtainUri(String apkUri){
         try {
             // https://blog.csdn.net/sljjyy/article/details/17370665
-            PackageManager pManager = DevUtils.getApplication().getPackageManager();
+            PackageManager pManager = DevUtils.getContext().getPackageManager();
             PackageInfo pInfo = pManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
             // = 设置 Apk 位置信息 =
             ApplicationInfo appInfo = pInfo.applicationInfo;
@@ -82,7 +82,7 @@ public class AppInfoBean {
     public static AppInfoBean obtainPck(String packageName){
         try {
             // https://blog.csdn.net/sljjyy/article/details/17370665
-            PackageManager pManager = DevUtils.getApplication().getPackageManager();
+            PackageManager pManager = DevUtils.getContext().getPackageManager();
             // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
             PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES); // 64
             // 返回app信息
@@ -99,7 +99,7 @@ public class AppInfoBean {
     public static AppInfoBean obtain(){
         try {
             // https://blog.csdn.net/sljjyy/article/details/17370665
-            PackageManager pManager = DevUtils.getApplication().getPackageManager();
+            PackageManager pManager = DevUtils.getContext().getPackageManager();
             // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
             PackageInfo pInfo = pManager.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES); // 64
             // 返回app信息

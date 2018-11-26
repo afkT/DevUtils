@@ -153,7 +153,7 @@ public final class AppInfoUtils {
      */
     public static String [] getApkPermission(String packageName){
         try {
-            PackageManager packageManager = DevUtils.getApplication().getPackageManager();
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             return packageInfo.requestedPermissions;
         } catch (Exception e) {
@@ -169,7 +169,7 @@ public final class AppInfoUtils {
      */
     public static void printApkPermission(String packageName){
         try {
-            PackageManager packageManager = DevUtils.getApplication().getPackageManager();
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             String [] usesPermissionsArray = packageInfo.requestedPermissions;
             for (int i = 0; i < usesPermissionsArray.length; i++) {

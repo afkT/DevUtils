@@ -151,7 +151,7 @@ public final class ActivityUtils {
      */
     public static String getActivityToLauncher(String packageName){
         try {
-            PackageManager pManager = DevUtils.getApplication().getPackageManager();
+            PackageManager pManager = DevUtils.getContext().getPackageManager();
             // 获取对应的PackageInfo
             PackageInfo pInfo = pManager.getPackageInfo(packageName, 0);
 
