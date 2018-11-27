@@ -1,4 +1,4 @@
-package dev.utils.app.assist.camera;
+package dev.utils.app.camera1;
 
 import android.graphics.Point;
 import android.hardware.Camera;
@@ -51,28 +51,31 @@ public final class CameraSizeAssist {
     /**
      * 设置预览大小
      * @param previewSize
-     * @return 返回自身对象(摄像头分辨率大小辅助类)
+     * @return {@link Camera.Parameters}
      */
-    public CameraSizeAssist setPreviewSize(Camera.Size previewSize){
-        return setPreviewSize(mCamera, previewSize);
+    public Camera.Parameters setPreviewSize(Camera.Size previewSize){
+        return setPreviewSize(null, previewSize);
     }
 
     /**
      * 设置预览大小
-     * @param camera
+     * @param parameters
      * @param previewSize
-     * @return 返回自身对象(摄像头分辨率大小辅助类)
+     * @return {@link Camera.Parameters}
      */
-    public CameraSizeAssist setPreviewSize(Camera camera, Camera.Size previewSize){
-        if (camera != null && previewSize != null){
+    public Camera.Parameters setPreviewSize(Camera.Parameters parameters, Camera.Size previewSize){
+        if (mCamera != null && previewSize != null){
             try {
+                if (parameters == null){
+                    parameters = mCamera.getParameters();
+                }
                 // 设置预览大小
-                camera.getParameters().setPreviewSize(previewSize.width, previewSize.height);
+                parameters.setPreviewSize(previewSize.width, previewSize.height);
             } catch (Exception e){
                 LogPrintUtils.eTag(TAG, e, "setPreviewSize");
             }
         }
-        return this;
+        return parameters;
     }
 
     // =
@@ -130,32 +133,35 @@ public final class CameraSizeAssist {
     /**
      * 设置拍照图片大小
      * @param pictureSize
-     * @return 返回自身对象(摄像头分辨率大小辅助类)
+     * @return {@link Camera.Parameters}
      */
-    public CameraSizeAssist setPictureSize(Camera.Size pictureSize){
-        return setPictureSize(mCamera, pictureSize);
+    public Camera.Parameters setPictureSize(Camera.Size pictureSize){
+        return setPictureSize(null, pictureSize);
     }
 
     /**
      * 设置拍照图片大小
-     * @param camera
+     * @param parameters
      * @param pictureSize
-     * @return 返回自身对象(摄像头分辨率大小辅助类)
+     * @return {@link Camera.Parameters}
      */
-    public CameraSizeAssist setPictureSize(Camera camera, Camera.Size pictureSize){
-        if (camera != null && pictureSize != null){
+    public Camera.Parameters setPictureSize(Camera.Parameters parameters, Camera.Size pictureSize){
+        if (mCamera != null && pictureSize != null){
             try {
+                if (parameters == null){
+                    parameters = mCamera.getParameters();
+                }
                 // 设置预览大小
-                camera.getParameters().setPictureSize(pictureSize.width, pictureSize.height);
+                parameters.setPictureSize(pictureSize.width, pictureSize.height);
 //                // 设置拍照输出格式
-//                camera.getParameters().setPictureFormat(PixelFormat.JPEG);
+//                parameters.setPictureFormat(PixelFormat.JPEG);
 //                // 照片质量
-//                camera.getParameters().set("jpeg-quality", 70);
+//                parameters.set("jpeg-quality", 70);
             } catch (Exception e){
                 LogPrintUtils.eTag(TAG, e, "setPictureSize");
             }
         }
-        return this;
+        return parameters;
     }
 
     // =

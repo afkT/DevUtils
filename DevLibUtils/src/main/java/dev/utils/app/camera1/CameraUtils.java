@@ -1,4 +1,4 @@
-package dev.utils.app;
+package dev.utils.app.camera1;
 
 import android.hardware.Camera;
 

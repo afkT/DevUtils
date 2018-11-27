@@ -221,15 +221,15 @@ public final class ProcessUtils {
         List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
         Set<String> set = new HashSet<>();
         for (ActivityManager.RunningAppProcessInfo apInfo : listInfos) {
-            for (String pkg : apInfo.pkgList) {
-                activityManager.killBackgroundProcesses(pkg);
-                set.add(pkg);
+            for (String packageName : apInfo.pkgList) {
+                activityManager.killBackgroundProcesses(packageName);
+                set.add(packageName);
             }
         }
         listInfos = activityManager.getRunningAppProcesses();
         for (ActivityManager.RunningAppProcessInfo aInfo : listInfos) {
-            for (String pkg : aInfo.pkgList) {
-                set.remove(pkg);
+            for (String packageName : aInfo.pkgList) {
+                set.remove(packageName);
             }
         }
         return set;

@@ -81,18 +81,20 @@ public final class ActivityUtils {
 
     /**
      * 获取 launcher activity
-     * @param pkg
+     * @param packageName
      * @return
      */
-    public static String getLauncherActivity(@NonNull final String pkg) {
+    public static String getLauncherActivity(@NonNull final String packageName) {
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PackageManager pm = DevUtils.getContext().getPackageManager();
-        List<ResolveInfo> info = pm.queryIntentActivities(intent, 0);
-        for (ResolveInfo aInfo : info) {
-            if (aInfo.activityInfo.packageName.equals(pkg)) {
-                return aInfo.activityInfo.name;
+        List<ResolveInfo> lists = pm.queryIntentActivities(intent, 0);
+        for (ResolveInfo resolveinfo : lists) {
+            if (resolveinfo != null && resolveinfo.activityInfo != null) {
+                if (resolveinfo.activityInfo.packageName.equals(packageName)) {
+                    return resolveinfo.activityInfo.name;
+                }
             }
         }
         return null;
@@ -166,12 +168,13 @@ public final class ActivityUtils {
 
             // 通过 getPackageManager() 的 queryIntentActivities 方法遍历
             List<ResolveInfo> lists = pManager.queryIntentActivities(resolveIntent, 0);
-            ResolveInfo resolveinfo = lists.iterator().next();
-            if (resolveinfo != null) {
-                // resolveinfo.activityInfo.packageName; => packageName
-                // 这个就是我们要找的该 App 的 LAUNCHER 的 Activity [ 组织形式：packageName.mainActivityname ]
-                String className = resolveinfo.activityInfo.name;
-                return className;
+            // 循环返回
+            for (ResolveInfo resolveinfo : lists){
+                if (resolveinfo != null && resolveinfo.activityInfo != null){
+                    // resolveinfo.activityInfo.packageName; => packageName
+                    // 这个就是我们要找的该 App 的 LAUNCHER 的 Activity [ 组织形式：packageName.mainActivityname ]
+                    return resolveinfo.activityInfo.name;
+                }
             }
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "getActivityToLauncher");

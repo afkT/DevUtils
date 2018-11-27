@@ -66,12 +66,12 @@ public final class AccessibilityUtils {
 
     /**
      * 检查是否开启无障碍功能
-     * @param pkgName
+     * @param packageName
      * @return
      */
-    public static boolean checkAccessibility(String pkgName) {
+    public static boolean checkAccessibility(String packageName) {
         // 判断辅助功能是否开启
-        if (!AccessibilityUtils.isAccessibilitySettingsOn(pkgName)) {
+        if (!AccessibilityUtils.isAccessibilitySettingsOn(packageName)) {
             // 引导至辅助功能设置页面
             DevUtils.getContext().startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             return false;
@@ -81,10 +81,10 @@ public final class AccessibilityUtils {
 
     /**
      * 判断是否开启无障碍功能
-     * @param pkgName
+     * @param packageName
      * @return
      */
-    public static boolean isAccessibilitySettingsOn(String pkgName) {
+    public static boolean isAccessibilitySettingsOn(String packageName) {
         int accessibilityEnabled = 0;
         try {
             accessibilityEnabled = Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
@@ -95,7 +95,7 @@ public final class AccessibilityUtils {
             try {
                 String services = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
                 if (services != null) {
-                    return services.toLowerCase().contains(pkgName.toLowerCase());
+                    return services.toLowerCase().contains(packageName.toLowerCase());
                 }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES");

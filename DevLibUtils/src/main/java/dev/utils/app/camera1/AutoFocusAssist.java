@@ -1,4 +1,4 @@
-package dev.utils.app.assist.camera;
+package dev.utils.app.camera1;
 
 import android.annotation.SuppressLint;
 import android.hardware.Camera;
@@ -25,7 +25,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     static {
         // 对焦模式
         // https://blog.csdn.net/fulinwsuafcie/article/details/49558001
-        FOCUS_MODES_CALLING_AF = new ArrayList<>(2);
+        FOCUS_MODES_CALLING_AF = new ArrayList<>();
         FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_AUTO); // 自动对焦
         FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_MACRO); // 微距
     }
@@ -34,7 +34,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // 间隔获取焦点时间
     private long interval = 2000L;
     // 摄像头对象
-    private final Camera camera;
+    private final Camera mCamera;
     // 判断摄像头是否使用对焦
     private final boolean useAutoFocus;
     // 判断是否停止对焦
@@ -44,7 +44,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // 对焦任务
     private AsyncTask<?, ?, ?> outstandingTask;
     // 判断是否需要自动对焦
-    private boolean isAutoFocus = true;
+    private boolean autoFocus = true;
 
     // == 构造函数 ==
 
@@ -53,7 +53,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     }
 
     public AutoFocusAssist(Camera camera, long interval) {
-        this.camera = camera;
+        this.mCamera = camera;
         this.interval = interval;
         // 防止为null
         if (camera != null){
@@ -87,7 +87,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * @return true: 自动对焦, false: 非自动对焦
      */
     public boolean isAutoFocus() {
-        return isAutoFocus;
+        return autoFocus;
     }
 
     /**
@@ -95,9 +95,9 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * @param autoFocus
      */
     public void setAutoFocus(boolean autoFocus) {
-        isAutoFocus = autoFocus;
+        this.autoFocus = autoFocus;
         // 判断是否开启自动对焦
-        if (isAutoFocus){
+        if (autoFocus){
             start();
         } else {
             stop();
@@ -147,7 +147,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      */
     public synchronized void start() {
         // 如果不使用自动对焦, 则不处理
-        if (!isAutoFocus){
+        if (!autoFocus){
             return;
         }
         // 支持对焦才处理
@@ -158,7 +158,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
             if (!stopped && !focusing) {
                 try {
                     // 设置自动对焦回调
-                    camera.autoFocus(this);
+                    mCamera.autoFocus(this);
                     // 表示对焦中
                     focusing = true;
                 } catch (RuntimeException re) {
@@ -182,7 +182,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
             cancelOutstandingTask();
             try {
                 // 取消对焦
-                camera.cancelAutoFocus();
+                mCamera.cancelAutoFocus();
             } catch (RuntimeException re) {
                 LogPrintUtils.eTag(TAG, re,"stop");
             }
