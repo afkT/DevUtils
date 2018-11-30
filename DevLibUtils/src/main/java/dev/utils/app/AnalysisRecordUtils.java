@@ -45,6 +45,11 @@ public final class AnalysisRecordUtils {
     private static String logStoragePath;
     // 是否处理保存
     private static boolean isHandler = true;
+    // 判断是否加空格
+     private static boolean isAppendSpace = true;
+    // 正则 - 空格
+    private static final String SPACE_STR = "\\s";
+
 
     /**
      * 初始化操作
@@ -103,6 +108,22 @@ public final class AnalysisRecordUtils {
      */
     public static void setHandler(boolean isHandler) {
         AnalysisRecordUtils.isHandler = isHandler;
+    }
+
+    /**
+     * 是否追加空格
+     * @return
+     */
+    public static boolean isAppendSpace() {
+        return isAppendSpace;
+    }
+
+    /**
+     * 设置是否追加空格
+     * @param isAppendSpace
+     */
+    public static void setAppendSpace(boolean isAppendSpace) {
+        AnalysisRecordUtils.isAppendSpace = isAppendSpace;
     }
 
     /**
@@ -226,6 +247,9 @@ public final class AnalysisRecordUtils {
      * @return
      */
     private static String splitLog(String... args) {
+        // 判断是否追加空格
+        boolean isSpace = isAppendSpace;
+        // =
         StringBuffer sBuffer = new StringBuffer();
         // 增加换行
         sBuffer.append(NEW_LINE_STR);
@@ -236,6 +260,9 @@ public final class AnalysisRecordUtils {
         sBuffer.append(" => ");
         // 循环追加内容
         for (int i = 0, c = args.length; i < c; i++) {
+            if (isSpace){ // 判断是否追加空格
+                sBuffer.append(SPACE_STR);
+            }
             // 追加保存内容
             sBuffer.append(args[i]);
         }
