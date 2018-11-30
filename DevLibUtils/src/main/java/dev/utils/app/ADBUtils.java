@@ -682,51 +682,55 @@ public final class ADBUtils {
         String result = getActivitysToPackage(packageName);
         // 防止数据为null
         if (!TextUtils.isEmpty(result)){
-            List<String> lists = new ArrayList<>();
-            String[] dataSplit = result.split(NEW_LINE_STR);
-            // 拆分后, 数据长度
-            int splitLength = dataSplit.length;
-            // 获取 Activity 栈字符串
-            String activities = null;
-            // 判断最后一行是否符合条件
-            if (dataSplit[splitLength - 1].indexOf("Activities=") != -1){
-                activities = dataSplit[splitLength - 1];
-            } else {
-                for (String str : dataSplit){
-                    if (str.indexOf("Activities=") != -1){
-                        activities = str;
-                        break;
-                    }
-                }
-            }
-            // 进行特殊处理 Activities=[ActivityRecord{xx},ActivityRecord{xx}];
-            int startIndex = activities.indexOf("Activities=[");
-            activities = activities.substring(startIndex + "Activities=[".length(), activities.length() - 1);
-            // 再次进行拆分
-            String[] activityArys = activities.split("ActivityRecord");
-            for (String data : activityArys){
-                try {
-                    String[] splitArys = data.split(SPACE_STR);
-                    if (splitArys != null && splitArys.length != 0){
-                        for (String splitStr : splitArys){
-                            int start = splitStr.indexOf(packageName + "/");
-                            if (start != -1){
-                                // 获取裁减数据
-                                String strData = splitStr;
-                                // 防止属于 包名/.xx.XxxActivity
-                                if (strData.indexOf("/.") != -1){
-                                    // 包名/.xx.XxxActivity => 包名/包名.xx.XxxActivity
-                                    strData = strData.replace("/", "/" + splitStr.substring(0, start));
-                                }
-                                // 保存数据
-                                lists.add(strData);
-                            }
+            try {
+                List<String> lists = new ArrayList<>();
+                String[] dataSplit = result.split(NEW_LINE_STR);
+                // 拆分后, 数据长度
+                int splitLength = dataSplit.length;
+                // 获取 Activity 栈字符串
+                String activities = null;
+                // 判断最后一行是否符合条件
+                if (dataSplit[splitLength - 1].indexOf("Activities=") != -1){
+                    activities = dataSplit[splitLength - 1];
+                } else {
+                    for (String str : dataSplit){
+                        if (str.indexOf("Activities=") != -1){
+                            activities = str;
+                            break;
                         }
                     }
-                } catch (Exception e){
                 }
+                // 进行特殊处理 Activities=[ActivityRecord{xx},ActivityRecord{xx}];
+                int startIndex = activities.indexOf("Activities=[");
+                activities = activities.substring(startIndex + "Activities=[".length(), activities.length() - 1);
+                // 再次进行拆分
+                String[] activityArys = activities.split("ActivityRecord");
+                for (String data : activityArys){
+                    try {
+                        String[] splitArys = data.split(SPACE_STR);
+                        if (splitArys != null && splitArys.length != 0){
+                            for (String splitStr : splitArys){
+                                int start = splitStr.indexOf(packageName + "/");
+                                if (start != -1){
+                                    // 获取裁减数据
+                                    String strData = splitStr;
+                                    // 防止属于 包名/.xx.XxxActivity
+                                    if (strData.indexOf("/.") != -1){
+                                        // 包名/.xx.XxxActivity => 包名/包名.xx.XxxActivity
+                                        strData = strData.replace("/", "/" + splitStr.substring(0, start));
+                                    }
+                                    // 保存数据
+                                    lists.add(strData);
+                                }
+                            }
+                        }
+                    } catch (Exception e){
+                    }
+                }
+                return lists;
+            } catch (Exception e){
+                LogPrintUtils.eTag(TAG, e, "getActivitysToPackageLists");
             }
-            return lists;
         }
         return null;
     }
@@ -746,17 +750,21 @@ public final class ADBUtils {
         int length = DevCommonUtils.length(lists);
         // 防止数据为null
         if (length >= 2){ // 两个页面以上, 才能够判断是否重复
-            if (lists.get(length - 1).endsWith(activity)){
-                // 倒序遍历, 越后面是 Activity 栈顶
-                for (int i = length - 2; i >= 0; i--){
-                    String data = lists.get(i);
-                    // 判断是否该页面结尾
-                    if (data.endsWith(activity)){
-                        return true;
-                    } else {
-                        return false;
+            try {
+                if (lists.get(length - 1).endsWith(activity)){
+                    // 倒序遍历, 越后面是 Activity 栈顶
+                    for (int i = length - 2; i >= 0; i--){
+                        String data = lists.get(i);
+                        // 判断是否该页面结尾
+                        if (data.endsWith(activity)){
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 }
+            } catch (Exception e){
+                LogPrintUtils.eTag(TAG, e, "isActivityTopRepeat");
             }
         }
         return isRepeat;
@@ -777,17 +785,21 @@ public final class ADBUtils {
         int length = DevCommonUtils.length(lists);
         // 防止数据为null
         if (length >= 2){ // 两个页面以上, 才能够判断是否重复
-            if (lists.get(length - 1).endsWith(activity)){
-                // 倒序遍历, 越后面是 Activity 栈顶
-                for (int i = length - 2; i >= 0; i--){
-                    String data = lists.get(i);
-                    // 判断是否该页面结尾
-                    if (data.endsWith(activity)){
-                        number ++;
-                    } else {
-                        break;
+            try {
+                if (lists.get(length - 1).endsWith(activity)){
+                    // 倒序遍历, 越后面是 Activity 栈顶
+                    for (int i = length - 2; i >= 0; i--){
+                        String data = lists.get(i);
+                        // 判断是否该页面结尾
+                        if (data.endsWith(activity)){
+                            number ++;
+                        } else {
+                            break;
+                        }
                     }
                 }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getActivityTopRepeatCount");
             }
         }
         return number;
