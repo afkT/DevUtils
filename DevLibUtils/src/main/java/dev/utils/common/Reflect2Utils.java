@@ -110,7 +110,10 @@ public final class Reflect2Utils {
             for (int i = 0, j = args.length; i < j; i++) {
                 argsClass[i] = args[i].getClass();
             }
-            Method method = ownerClass.getMethod(methodName, argsClass);
+            // getDeclaredMethod() 获取的是类自身声明的所有方法，包含public、protected和private方法。
+            // getMethod() 获取的是类的所有共有方法，这就包括自身的所有public方法，和从基类继承的、从接口实现的所有public方法。
+            Method method = ownerClass.getDeclaredMethod(methodName, argsClass);
+            if (!method.isAccessible()) method.setAccessible(true);
             return method.invoke(null, args);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "invokeStaticMethod");
