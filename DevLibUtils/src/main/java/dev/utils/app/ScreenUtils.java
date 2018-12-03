@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.View;
@@ -77,7 +78,7 @@ public final class ScreenUtils {
 //		} catch (Exception e) {
 //			LogPrintUtils.eTag(TAG, e, "getScreenWidth");
 //		}
-//		return -1;
+//		return 0;
 //	}
 //
 //	/**
@@ -101,7 +102,7 @@ public final class ScreenUtils {
 //		} catch (Exception e) {
 //			LogPrintUtils.eTag(TAG, e, "getScreenHeight");
 //		}
-//		return -1;
+//		return 0;
 //	}
 //
 //	/**
@@ -150,7 +151,7 @@ public final class ScreenUtils {
 		} catch (Exception e){
 			LogPrintUtils.eTag(TAG, e, "getScreenWidth");
 		}
-		return -1;
+		return 0;
 	}
 
 	/**
@@ -173,7 +174,7 @@ public final class ScreenUtils {
 		} catch (Exception e){
 			LogPrintUtils.eTag(TAG, e, "getScreenHeight");
 		}
-		return -1;
+		return 0;
 	}
 
 	/**
@@ -244,6 +245,7 @@ public final class ScreenUtils {
 	 * 获取屏幕英寸 例5.5英寸
 	 * @return
 	 */
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
 	public static String getScreenSizeOfDevice() {
 		// https://blog.csdn.net/lincyang/article/details/42679589
 		try {
@@ -280,7 +282,7 @@ public final class ScreenUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getDensity");
 		}
-		return -1;
+		return 0;
 	}
 
 	/**
@@ -298,7 +300,7 @@ public final class ScreenUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getDensityDpi");
 		}
-		return -1;
+		return 0;
 	}
 
 	/**
@@ -315,7 +317,7 @@ public final class ScreenUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getScaledDensity");
 		}
-		return -1f;
+		return 0f;
 	}
 
 	/**
@@ -332,7 +334,7 @@ public final class ScreenUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getXDpi");
 		}
-		return -1f;
+		return 0f;
 	}
 
 	/**
@@ -349,7 +351,7 @@ public final class ScreenUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getYDpi");
 		}
-		return -1f;
+		return 0f;
 	}
 
 	/**
@@ -366,7 +368,7 @@ public final class ScreenUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getWidthDpi");
 		}
-		return -1f;
+		return 0f;
 	}
 
 	/**
@@ -383,7 +385,7 @@ public final class ScreenUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getHeightDpi");
 		}
-		return -1f;
+		return 0f;
 	}
 
 	/**
@@ -570,7 +572,7 @@ public final class ScreenUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getStatusHeight");
 		}
-		return -1;
+		return 0;
 	}
 	
 	/**
@@ -586,7 +588,7 @@ public final class ScreenUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getStatusBarHeight");
 		}
-		return -1;
+		return 0;
 	}
 
 	/**
@@ -603,7 +605,7 @@ public final class ScreenUtils {
 
 	/**
 	 * 获取进入休眠时长
-	 * @return 进入休眠时长，报错返回-123
+	 * @return 进入休眠时长，报错返回 -1
 	 */
 	public static int getSleepDuration() {
 		try {
@@ -660,9 +662,6 @@ public final class ScreenUtils {
 
 		// 获取状态栏高度
 		int statusBarHeight = getStatusBarHeight(activity);
-		if(statusBarHeight == -1) {
-			statusBarHeight = 0;
-		}
 
 		Rect frame = new Rect();
 		activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);

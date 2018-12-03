@@ -125,11 +125,8 @@ public final class QuickCommonUtils {
             // 随机时间
             random = RandomUtils.getRandom(randomTime);
         }
-        if (operateTime >= 1){
-            // 返回操作时间
-            return operateTime + Math.max(0, random);
-        }
-        return -1;
+        // 返回操作时间
+        return Math.max(0, operateTime) + random;
     }
 
     /**

@@ -87,7 +87,7 @@ public final class ProcessUtils {
      */
     public static int getPid(String packageName){
         if (TextUtils.isEmpty(packageName)){
-            return -1;
+            return 0;
         }
         ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
@@ -96,7 +96,7 @@ public final class ProcessUtils {
                 return appProcess.pid;
             }
         }
-        return -1;
+        return 0;
     }
 
     /**

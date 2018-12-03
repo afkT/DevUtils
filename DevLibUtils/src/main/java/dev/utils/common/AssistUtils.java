@@ -39,7 +39,7 @@ public final class AssistUtils {
         if (uuid != null){
             return uuid.hashCode();
         }
-        return -1;
+        return 0;
     }
 
     /**

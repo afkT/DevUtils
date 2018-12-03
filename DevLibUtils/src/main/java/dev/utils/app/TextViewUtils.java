@@ -441,7 +441,7 @@ public final class TextViewUtils {
         if (textView != null){
             return getTextHeight(textView.getPaint());
         }
-        return -1;
+        return 0;
     }
 
     /**
@@ -468,7 +468,7 @@ public final class TextViewUtils {
         if (textView != null){
             return getTextTopOffsetHeight(textView.getPaint());
         }
-        return -1;
+        return 0;
     }
 
     /**

@@ -533,7 +533,7 @@ public final class FileUtils {
 	 * @return 文件最后修改的毫秒时间戳
 	 */
 	public static long getFileLastModified(final File file) {
-		if (file == null) return -1;
+		if (file == null) return 0l;
 		return file.lastModified();
 	}
 

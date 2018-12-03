@@ -222,7 +222,7 @@ public final class PhoneUtils {
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "getPhoneType");
         }
-        return -1;
+        return 0;
     }
 
     /**

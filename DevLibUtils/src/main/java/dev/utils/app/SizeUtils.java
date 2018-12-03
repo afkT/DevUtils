@@ -23,6 +23,7 @@ public final class SizeUtils {
 	/**
 	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
 	 * @param dpValue
+	 * @return
 	 */
 	public static int dipConvertPx(float dpValue) {
 		try {
@@ -31,12 +32,30 @@ public final class SizeUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "dipConvertPx");
 		}
-		return -1;
+		return 0;
 	}
+
+	/**
+	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素) - float
+	 * @param dpValue
+	 * @return
+	 */
+	public static float dipConvertPxf(float dpValue){
+		try {
+			float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
+			return (dpValue * scale + 0.5f);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "dipConvertPxf");
+		}
+		return 0f;
+	}
+
+	// =
 
 	/**
 	 * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
 	 * @param pxValue
+	 * @return
 	 */
 	public static int pxConvertDip(float pxValue) {
 		try {
@@ -45,12 +64,30 @@ public final class SizeUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "pxConvertDip");
 		}
-		return -1;
+		return 0;
 	}
+
+	/**
+	 * 根据手机的分辨率从 px(像素) 的单位 转成为 dp - float
+	 * @param pxValue
+	 * @return
+	 */
+	public static float pxConvertDipf(float pxValue) {
+		try {
+			float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
+			return (pxValue / scale + 0.5f);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "pxConvertDipf");
+		}
+		return 0f;
+	}
+
+	// =
 
 	/**
 	 * 根据手机的分辨率从 px(像素) 的单位 转成为 sp
 	 * @param pxValue
+     * @return
 	 */
 	public static int pxConvertSp(float pxValue) {
 		try {
@@ -59,12 +96,30 @@ public final class SizeUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "pxConvertSp");
 		}
-		return -1;
+		return 0;
 	}
+
+	/**
+	 * 根据手机的分辨率从 px(像素) 的单位 转成为 sp - float
+	 * @param pxValue
+     * @return
+	 */
+	public static float pxConvertSpf(float pxValue) {
+		try {
+			float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
+			return (pxValue / scale + 0.5f);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "pxConvertSpf");
+		}
+		return 0f;
+	}
+
+	// =
 
 	/**
 	 * 根据手机的分辨率从 sp 的单位 转成为 px
 	 * @param spValue
+     * @return
 	 */
 	public static int spConvertPx(float spValue) {
 		try {
@@ -73,12 +128,30 @@ public final class SizeUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "spConvertPx");
 		}
-		return -1;
+		return 0;
 	}
+
+	/**
+	 * 根据手机的分辨率从 sp 的单位 转成为 px - float
+	 * @param spValue
+     * @return
+	 */
+	public static float spConvertPxf(float spValue) {
+		try {
+			float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
+			return (spValue * scale + 0.5f);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "spConvertPxf");
+		}
+		return 0f;
+	}
+
+	// =
 
 	/**
 	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素) 第二种
 	 * @param dpValue
+     * @return
 	 */
 	public static int dipConvertPx2(float dpValue) {
 		try {
@@ -86,22 +159,54 @@ public final class SizeUtils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "dipConvertPx2");
 		}
-		return -1;
+		return 0;
 	}
+
+	/**
+	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素) 第二种 - float
+	 * @param dpValue
+     * @return
+	 */
+	public static float dipConvertPx2f(float dpValue) {
+		try {
+			return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, DevUtils.getContext().getResources().getDisplayMetrics());
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "dipConvertPx2f");
+		}
+		return 0f;
+	}
+
+	// =
 
 	/**
 	 * 根据手机的分辨率从 sp 的单位 转成为 px 第二种
 	 * @param spValue
+     * @return
 	 */
 	public static int spConvertPx2(float spValue) {
 		try {
-			// android.util.TypedValue
 			return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, DevUtils.getContext().getResources().getDisplayMetrics());
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "spConvertPx2");
 		}
-		return -1;
+		return 0;
 	}
+
+	/**
+	 * 根据手机的分辨率从 sp 的单位 转成为 px 第二种 - float
+	 * @param spValue
+     * @return
+	 */
+	public static float spConvertPx2f(float spValue) {
+		try {
+			return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, DevUtils.getContext().getResources().getDisplayMetrics());
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "spConvertPx2f");
+		}
+		return 0f;
+	}
+
+	// =
 
 	/**
 	 * 各种单位转换 - 该方法存在于 TypedValue
@@ -125,7 +230,7 @@ public final class SizeUtils {
 			case TypedValue.COMPLEX_UNIT_MM:
 				return value * metrics.xdpi * (1.0f / 25.4f);
 		}
-		return -1;
+		return 0;
 	}
 
 	// ==

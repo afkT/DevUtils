@@ -735,6 +735,8 @@ public final class ADBUtils {
         return null;
     }
 
+    // =
+
     /**
      * 判断 Activity 栈顶 是否重复
      * @param packageName
@@ -742,6 +744,11 @@ public final class ADBUtils {
      * @return
      */
     public static boolean isActivityTopRepeat(String packageName, String activity){
+        if (TextUtils.isEmpty(packageName)){
+            return false;
+        } else if (TextUtils.isEmpty(activity)){
+            return false;
+        }
         // 判断是否重复
         boolean isRepeat = false;
         // 获取
@@ -771,12 +778,62 @@ public final class ADBUtils {
     }
 
     /**
+     * 判断 Activity 栈顶 是否重复
+     * @param packageName
+     * @param activitys
+     * @return
+     */
+    public static boolean isActivityTopRepeat(String packageName, List<String> activitys){
+        if (TextUtils.isEmpty(packageName)){
+            return false;
+        } else if (activitys == null || activitys.size() == 0){
+            return false;
+        }
+        // 判断是否重复
+        boolean isRepeat = false;
+        // 获取
+        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        // 数据长度
+        int length = DevCommonUtils.length(lists);
+        // 防止数据为null
+        if (length >= 2){ // 两个页面以上, 才能够判断是否重复
+            // 循环判断
+            for (String activity : activitys){
+                try {
+                    if (lists.get(length - 1).endsWith(activity)){
+                        // 倒序遍历, 越后面是 Activity 栈顶
+                        for (int i = length - 2; i >= 0; i--){
+                            String data = lists.get(i);
+                            // 判断是否该页面结尾
+                            if (data.endsWith(activity)){
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
+                    }
+                } catch (Exception e){
+                    LogPrintUtils.eTag(TAG, e, "isActivityTopRepeat");
+                }
+            }
+        }
+        return isRepeat;
+    }
+
+    // =
+
+    /**
      * 获取 Activity 栈顶 重复总数
      * @param packageName
      * @param activity
      * @return
      */
     public static int getActivityTopRepeatCount(String packageName, String activity){
+        if (TextUtils.isEmpty(packageName)){
+            return 0;
+        } else if (TextUtils.isEmpty(activity)){
+            return 0;
+        }
         // 重复数量
         int number = 0;
         // 获取
@@ -803,6 +860,52 @@ public final class ADBUtils {
             }
         }
         return number;
+    }
+
+    /**
+     * 获取 Activity 栈顶 重复总数
+     * @param packageName
+     * @param activitys
+     * @return
+     */
+    public static int getActivityTopRepeatCount(String packageName, List<String> activitys){
+        if (TextUtils.isEmpty(packageName)){
+            return 0;
+        } else if (activitys == null || activitys.size() == 0){
+            return 0;
+        }
+        // 获取
+        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        // 数据长度
+        int length = DevCommonUtils.length(lists);
+        // 防止数据为null
+        if (length >= 2){ // 两个页面以上, 才能够判断是否重复
+            // 循环判断
+            for (String activity : activitys) {
+                try {
+                    // 重复数量
+                    int number = 0;
+                    // 判断是否对应页面结尾
+                    if (lists.get(length - 1).endsWith(activity)) {
+                        // 倒序遍历, 越后面是 Activity 栈顶
+                        for (int i = length - 2; i >= 0; i--) {
+                            String data = lists.get(i);
+                            // 判断是否该页面结尾
+                            if (data.endsWith(activity)) {
+                                number++;
+                            } else {
+                                break;
+                            }
+                        }
+                        // 进行判断处理
+                        return number;
+                    }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getActivityTopRepeatCount");
+                }
+            }
+        }
+        return 0;
     }
 
     // == 正在运行的 Services ==
