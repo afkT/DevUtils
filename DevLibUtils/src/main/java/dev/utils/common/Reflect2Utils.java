@@ -54,6 +54,15 @@ public final class Reflect2Utils {
         return null;
     }
 
+    /**
+     * 执行某对象方法
+     * @param owner 对象
+     * @param methodName 方法名
+     * @return 方法返回值
+     */
+    public static Object invokeMethod(Object owner, String methodName) {
+        return invokeMethod(owner, methodName, new Object[0]);
+    }
 
     /**
      * 执行某对象方法
@@ -77,6 +86,15 @@ public final class Reflect2Utils {
         return null;
     }
 
+    /**
+     * 执行某类的静态方法
+     * @param className 类名
+     * @param methodName 方法名
+     * @return 执行方法返回的结果
+     */
+    public static Object invokeStaticMethod(String className, String methodName) {
+        return invokeStaticMethod(className, methodName, new Object[0]);
+    }
 
     /**
      * 执行某类的静态方法
