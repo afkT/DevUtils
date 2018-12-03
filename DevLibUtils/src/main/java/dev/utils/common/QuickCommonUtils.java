@@ -127,7 +127,7 @@ public final class QuickCommonUtils {
         }
         if (operateTime >= 1){
             // 返回操作时间
-            return operateTime + random;
+            return operateTime + Math.max(0, random);
         }
         return -1;
     }
