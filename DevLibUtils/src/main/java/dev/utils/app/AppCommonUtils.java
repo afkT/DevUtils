@@ -106,6 +106,22 @@ public final class AppCommonUtils {
     }
 
     /**
+     * 是否在4.2版本及以上
+     * @return 是否在4.2版本及以上
+     */
+    public static boolean isJellyBeanMR1() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1;
+    }
+
+    /**
+     * 是否在4.3版本及以上
+     * @return 是否在4.3版本及以上
+     */
+    public static boolean isJellyBeanMR2() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2;
+    }
+
+    /**
      * 是否在4.4.2版本及以上
      * @return 是否在4.4.2版本及以上
      */

@@ -20,15 +20,26 @@ public final class AlarmUtils {
 
     /**
      * 开启定时器
+     * @param context
+     * @param triggerAtMillis 执行时间
+     * @param pendingIntent 响应动作
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startAlarmIntent(Context context, int triggerAtMillis, PendingIntent pendingIntent) {
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        manager.set(AlarmManager.RTC_WAKEUP,triggerAtMillis, pendingIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            manager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        } else {
+            manager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        }
     }
 
     /**
      * 关闭定时器
+     * @param context
+     * @param pendingIntent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopAlarmIntent(Context context, PendingIntent pendingIntent) {
@@ -38,17 +49,24 @@ public final class AlarmUtils {
 
     /**
      * 开启轮询服务
+     * @param context
+     * @param triggerAtMillis
+     * @param cls
+     * @param action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startAlarmService(Context context, int triggerAtMillis, Class<?> cls, String action) {
         Intent intent = new Intent(context, cls);
         intent.setAction(action);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        startAlarmIntent(context, triggerAtMillis,pendingIntent);
+        startAlarmIntent(context, triggerAtMillis, pendingIntent);
     }
 
     /**
      * 停止轮询服务
+     * @param context
+     * @param cls
+     * @param action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopAlarmService(Context context, Class<?> cls, String action) {
