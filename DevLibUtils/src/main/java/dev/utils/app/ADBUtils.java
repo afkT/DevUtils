@@ -1924,6 +1924,123 @@ public final class ADBUtils {
     }
 
     /**
+     * 获取亮度是否为自动获取(自动调节亮度)
+     * @return 1 开启、0 未开启、-1 未知
+     */
+    public static int getScreenBrightnessMode(){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings get system screen_brightness_mode", true);
+        if (result.isSuccess3()){
+            try {
+                return Integer.parseInt(result.successMsg);
+            } catch (Exception e){
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 设置亮度是否为自动获取(自动调节亮度)
+     * @param isAuto
+     * @return
+     */
+    public static boolean setScreenBrightnessMode(boolean isAuto){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings put system screen_brightness_mode " + (isAuto ? 1 : 0), true);
+        return result.isSuccess3();
+    }
+
+    /**
+     * 获取当前亮度值
+     * @return
+     */
+    public static String getScreenBrightness(){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings get system screen_brightness", true);
+        if (result.isSuccess3()){
+            String suc = result.successMsg;
+            if (suc.startsWith("\"")){
+                suc = suc.substring(1, suc.length());
+            }
+            if (suc.endsWith("\"")){
+                suc = suc.substring(0, suc.length() - 1);
+            }
+            return suc;
+        }
+        return null;
+    }
+
+    /**
+     * 更改亮度值（亮度值在0—255之间）
+     * @param brightness
+     * @return
+     */
+    public static boolean setScreenBrightness(int brightness){
+        if (brightness < 0){
+            return false;
+        } else if (brightness > 255){
+            return false;
+        }
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings put system screen_brightness " + brightness, true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 获取自动锁屏休眠时间 (单位毫秒)
+     * @return
+     */
+    public static String getScreenOffTimeout(){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings get system screen_off_timeout", true);
+        if (result.isSuccess3()){
+            return result.successMsg;
+        }
+        return null;
+    }
+
+    /**
+     * 设置自动锁屏休眠时间 (单位毫秒)
+     * @param time
+     * @return
+     * tips: 设置永不休眠 Integer.MAX_VALUE
+     */
+    public static boolean setScreenOffTimeout(long time){
+        if (time <= 0){
+            return false;
+        }
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings put system screen_off_timeout " + time, true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 获取日期时间选项中通过网络获取时间的状态，
+     * @return 1 允许、0 不允许、-1 未知
+     */
+    public static int getGlobalAutoTime(){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings get global auto_time", true);
+        if (result.isSuccess3()){
+            try {
+                return Integer.parseInt(result.successMsg);
+            } catch (Exception e){
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 修改日期时间选项中通过网络获取时间的状态, 设置是否开启
+     * @return
+     */
+    public static boolean setGlobalAutoTime(boolean isOpen){
+        // 执行 shell cmd
+        ShellUtils.CommandResult result = ShellUtils.execCmd("settings put global auto_time " + (isOpen ? 1 : 0), true);
+        return result.isSuccess3();
+    }
+
+    /**
      * 关闭 USB 调试模式
      * @return
      */
