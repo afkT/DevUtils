@@ -84,6 +84,9 @@ public final class AnalysisRecordUtils {
             return "record not handler";
         }
         if (fileInfo != null) {
+            if (!fileInfo.isHandler()){
+                return "file record not handler";
+            }
             if (args != null && args.length != 0) {
                 return saveLogRecord(fileInfo, args);
             }
@@ -420,14 +423,18 @@ public final class AnalysisRecordUtils {
         // 文件记录间隔时间 如: HH
         private @TIME int fileIntervalTime = DEFAULT;
 
+        // 是否处理日志记录
+        private boolean isHandler = true;
+
         // = 构造函数 =
 
-        private FileInfo(String storagePath, String folderName, String fileName, String fileFunction, @TIME int fileIntervalTime) {
+        private FileInfo(String storagePath, String folderName, String fileName, String fileFunction, @TIME int fileIntervalTime, boolean isHandler) {
             this.storagePath = storagePath;
             this.folderName = folderName;
             this.fileName = fileName;
             this.fileFunction = fileFunction;
             this.fileIntervalTime = fileIntervalTime;
+            this.isHandler = isHandler;
         }
 
         // = get/set 方法 =
@@ -485,7 +492,7 @@ public final class AnalysisRecordUtils {
          * @return
          */
         public static FileInfo obtain(String fileName, String fileFunction) {
-            return new FileInfo(null, null, fileName, fileFunction, DEFAULT);
+            return new FileInfo(null, null, fileName, fileFunction, DEFAULT, true);
         }
 
         /**
@@ -496,7 +503,7 @@ public final class AnalysisRecordUtils {
          * @return
          */
         public static FileInfo obtain(String folderName, String fileName, String fileFunction) {
-            return new FileInfo(null, folderName, fileName, fileFunction, DEFAULT);
+            return new FileInfo(null, folderName, fileName, fileFunction, DEFAULT, true);
         }
 
         /**
@@ -508,7 +515,7 @@ public final class AnalysisRecordUtils {
          * @return
          */
         public static FileInfo obtain(String storagePath, String folderName, String fileName, String fileFunction) {
-            return new FileInfo(storagePath, folderName, fileName, fileFunction, DEFAULT);
+            return new FileInfo(storagePath, folderName, fileName, fileFunction, DEFAULT, true);
         }
 
         // ==
@@ -521,7 +528,7 @@ public final class AnalysisRecordUtils {
          * @return
          */
         public static FileInfo obtain(String fileName, String fileFunction, @TIME int fileIntervalTime) {
-            return new FileInfo(null, null, fileName, fileFunction, fileIntervalTime);
+            return new FileInfo(null, null, fileName, fileFunction, fileIntervalTime, true);
         }
 
         /**
@@ -533,7 +540,7 @@ public final class AnalysisRecordUtils {
          * @return
          */
         public static FileInfo obtain(String folderName, String fileName, String fileFunction, @TIME int fileIntervalTime) {
-            return new FileInfo(null, folderName, fileName, fileFunction, fileIntervalTime);
+            return new FileInfo(null, folderName, fileName, fileFunction, fileIntervalTime, true);
         }
 
         /**
@@ -546,7 +553,21 @@ public final class AnalysisRecordUtils {
          * @return
          */
         public static FileInfo obtain(String storagePath, String folderName, String fileName, String fileFunction, @TIME int fileIntervalTime) {
-            return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime);
+            return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, true);
+        }
+
+        /**
+         * 获取记录分析文件信息
+         * @param storagePath
+         * @param folderName
+         * @param fileName
+         * @param fileFunction
+         * @param fileIntervalTime
+         * @param isHandler
+         * @return
+         */
+        public static FileInfo obtain(String storagePath, String folderName, String fileName, String fileFunction, @TIME int fileIntervalTime, boolean isHandler) {
+            return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, isHandler);
         }
 
         // = 内部处理方法 =
@@ -599,6 +620,24 @@ public final class AnalysisRecordUtils {
             }
             // 放到未知目录下
             return "/Unknown/";
+        }
+
+        /**
+         * 是否处理日志记录
+         * @return
+         */
+        public boolean isHandler() {
+            return isHandler;
+        }
+
+        /**
+         * 设置是否处理日志记录
+         * @param handler
+         * @return
+         */
+        public FileInfo setHandler(boolean handler) {
+            this.isHandler = handler;
+            return this;
         }
 
         /**
