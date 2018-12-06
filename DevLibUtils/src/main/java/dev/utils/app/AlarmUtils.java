@@ -25,7 +25,7 @@ public final class AlarmUtils {
      * @param pendingIntent 响应动作
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmIntent(Context context, int triggerAtMillis, PendingIntent pendingIntent) {
+    public static void startAlarmIntent(Context context, long triggerAtMillis, PendingIntent pendingIntent) {
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
@@ -55,7 +55,7 @@ public final class AlarmUtils {
      * @param action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmService(Context context, int triggerAtMillis, Class<?> cls, String action) {
+    public static void startAlarmService(Context context, long triggerAtMillis, Class<?> cls, String action) {
         Intent intent = new Intent(context, cls);
         intent.setAction(action);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
