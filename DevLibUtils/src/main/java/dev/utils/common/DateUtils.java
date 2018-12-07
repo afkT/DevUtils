@@ -20,12 +20,16 @@ public final class DateUtils {
 	private static final String TAG = DateUtils.class.getSimpleName();
 
 	/** 日期格式类型 */
+	public static final String yyyy = "yyyy";
 	public static final String yyyyMMdd = "yyyy-MM-dd";
 	public static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
 	public static final String yyyyMMddHHmmss_2 = "yyyy年M月d日 HH:mm:ss";
+	public static final String MMdd = "MM-dd";
+	public static final String MMdd2 = "MM月dd日";
+	public static final String HHmm = "HH:mm";
 	public static final String HHmmss = "HH:mm:ss";
 	public static final String hhmmMMDDyyyy = "hh:mm M月d日 yyyy";
-	public static final String MMdd = "MM月dd日";
+	public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
 	// --
 	/** 一分钟 60秒 */
 	public static final int MINUTE_S = 60;
@@ -645,5 +649,165 @@ public final class DateUtils {
 			}
 		}
 		return sb.toString();
+	}
+
+	// == 判断是否在区间范围 ==
+
+	/**
+	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return
+	 */
+	public static boolean isInTimeHHmm(String startTime, String endTime){
+		return isInTimeHHmm(DateUtils.formatTime(System.currentTimeMillis(), HHmm), startTime, endTime);
+	}
+
+	/**
+	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+	 * @param nowTime 当前时间
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return
+	 */
+	public static boolean isInTimeHHmm(String nowTime, String startTime, String endTime){
+		return isInTime(nowTime, startTime, endTime, HHmm);
+	}
+
+	/**
+	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+	 * @param nowTime 当前时间
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @param format 时间格式
+	 * @return
+	 */
+	public static boolean isInTime(String nowTime, String startTime, String endTime, String format){
+		if (nowTime == null || startTime == null || endTime == null || format == null){
+			return false;
+		}
+		try {
+			Date now = DateUtils.parseDate(nowTime, format);
+			Date start = DateUtils.parseDate(startTime, format);
+			Date end = DateUtils.parseDate(endTime, format);
+			return isInDate(now, start, end);
+		} catch (Exception e){
+			JCLogUtils.eTag(TAG, e, "isInTime");
+		}
+		return false;
+	}
+
+	/**
+	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+	 * @param nowTime 当前时间
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return
+	 */
+	public static boolean isInTime(long nowTime, long startTime, long endTime){
+		return isInDate(new Date(nowTime), new Date(startTime), new Date(endTime));
+	}
+
+	/**
+	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+	 * @param nowTime 当前时间
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return
+	 */
+	public static boolean isInDate(Date nowTime, Date startTime, Date endTime) {
+		if (nowTime == null || startTime == null || endTime == null){
+			return false;
+		} else if (nowTime.getTime() == startTime.getTime() || nowTime.getTime() == endTime.getTime()) {
+			return true;
+		}
+		// 当前时间
+		Calendar now = Calendar.getInstance();
+		now.setTime(nowTime);
+		// 开始时间
+		Calendar begin = Calendar.getInstance();
+		begin.setTime(startTime);
+		// 结束时间
+		Calendar end = Calendar.getInstance();
+		end.setTime(endTime);
+		// 判断是否在 begin 之后的时间, 并且在 end 之前的时间
+		if (now.after(begin) && now.before(end)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
+	 * @param endTime 结束时间 HH:mm
+	 * @return
+	 */
+	public static final long getEndTimeDiffHHmm(String endTime){
+		return getEndTimeDiff(System.currentTimeMillis(), endTime, HHmm);
+	}
+
+	/**
+	 * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间 HH:mm
+	 * @return
+	 */
+	public static final long getEndTimeDiffHHmm(long startTime, String endTime){
+		return getEndTimeDiff(startTime, endTime, HHmm);
+	}
+
+	/**
+	 * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
+	 * @param endTime 结束时间
+	 * @param format 格式 如: HH:mm
+	 * @return
+	 */
+	public static final long getEndTimeDiff(String endTime, String format){
+		return getEndTimeDiff(System.currentTimeMillis(), endTime, format);
+	}
+
+	/**
+	 * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @param format 格式 如: HH:mm
+	 * @return
+	 * tips:
+	 * 如当前时间 2018-12-07 15:27:23, 判断距离 14:39:20(endTime) 有多久
+	 * 如果过了这个时间段, 则返回 2018-12-08 14:39:20 (明天的这个时间段时间)
+	 * 如果没有过这个时间段(如: 17:39:20) 则返回当天时间段 2018-12-07 17:39:20 (2018-12-07 + endTime)
+	 */
+	public static final long getEndTimeDiff(long startTime, String endTime, String format){
+		if (startTime < 1 || endTime == null || format == null){
+			return -1;
+		}
+		try {
+			// 判断格式是否加了秒
+			boolean isSecond = format.endsWith(":ss");
+			// 获取开始时间
+			String start = DateUtils.formatTime(startTime, format);
+			// 转换时间
+			int startNumber = Integer.parseInt(start.replace(":", ""));
+			// 获取结束时间转换
+			int endNumber = Integer.parseInt(endTime.replace(":", ""));
+			// 时间处理
+			Calendar cld = Calendar.getInstance();
+			cld.setTime(new Date(startTime)); // 设置当前时间
+			// 如果当前时间大于结束时间, 表示非第二天
+			if (startNumber > endNumber){
+				// 时间累加一天
+				cld.add(Calendar.DATE,1); // 当前日期加一天
+			}
+			// 获取天数时间
+			String yyyyMMdd = DateUtils.formatDate(cld.getTime(), DateUtils.yyyyMMdd);
+			// 累加时间
+			String yyyyMMddHHmmss = yyyyMMdd + " " + endTime + (isSecond ? "" : ":00");
+			// 返回转换后的时间
+			return DateUtils.parseLong(yyyyMMddHHmmss, DateUtils.yyyyMMddHHmmss);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return -1;
 	}
 }

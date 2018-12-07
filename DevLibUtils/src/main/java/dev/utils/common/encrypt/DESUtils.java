@@ -20,7 +20,7 @@ public final class DESUtils {
     }
 
     // 日志TAG
-    private static final String TAG = CRCUtils.class.getSimpleName();
+    private static final String TAG = DESUtils.class.getSimpleName();
 
     /**
      * 返回可逆算法DES的密钥

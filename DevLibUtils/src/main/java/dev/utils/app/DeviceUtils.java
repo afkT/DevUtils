@@ -37,7 +37,7 @@ public final class DeviceUtils {
     }
 
     // 日志TAG
-    private static final String TAG = DBUtils.class.getSimpleName();
+    private static final String TAG = DeviceUtils.class.getSimpleName();
 
 //    // http://blog.csdn.net/zhangcanyan/article/details/52817866
 //    android.os.Build.BOARD：获取设备基板名称

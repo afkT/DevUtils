@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import dev.utils.JCLogUtils;
-import dev.utils.LogPrintUtils;
 
 /**
  * detail: Http 参数工具类
@@ -253,7 +252,7 @@ public final class HttpParamsUtils {
         try {
             return URLEncoder.encode(input, charsetName);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "urlEncode");
+            JCLogUtils.eTag(TAG, e, "urlEncode");
             return input;
         }
     }

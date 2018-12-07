@@ -939,6 +939,33 @@ public final class ADBUtils {
     // ========
 
     /**
+     * 启动自身应用
+     * @return
+     */
+    public static boolean startSelfApp(){
+        return startSelfApp(false);
+    }
+
+    /**
+     * 启动自身应用
+     * @param closeActivity
+     * @return
+     */
+    public static boolean startSelfApp(boolean closeActivity){
+        try {
+            // 获取包名
+            String packageName = AppUtils.getAppPackageName();
+            // 获取 Launcher Activity
+            String activity = ActivityUtils.getLauncherActivity();
+            // 跳转应用启动页(启动应用)
+            startActivity(packageName + "/" + activity, closeActivity);
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "startSelfApp");
+        }
+        return false;
+    }
+
+    /**
      * 跳转页面 Activity
      * @param packageAndLauncher 包名/包名.页面
      * @param closeActivity 关闭Activity所属的App进程后再启动Activity

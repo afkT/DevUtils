@@ -10,6 +10,7 @@ import dev.utils.app.logger.DevLogger;
 import dev.utils.app.logger.DevLoggerUtils;
 import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
+import dev.utils.common.QuickCommonUtils;
 
 /**
  * detail: 日志使用方法
@@ -93,7 +94,7 @@ class LoggerUse {
             Log.d(tag, "A:" + (i + 1));
         }
         // 拼接时间信息
-        textTimeMosaic(sBuffer, "正常系统Log耗时记录", sTime, System.currentTimeMillis());
+        QuickCommonUtils.timeRecord(sBuffer, "正常系统Log耗时记录", sTime, System.currentTimeMillis());
 
         // =======================================
         // 设置开始时间
@@ -104,7 +105,7 @@ class LoggerUse {
             DevLogger.dTag(tag, "B:" + (i + 1));
         }
         // 拼接时间信息
-        textTimeMosaic(sBuffer, "Logger耗时记录", sTime, System.currentTimeMillis());
+        QuickCommonUtils.timeRecord(sBuffer, "Logger耗时记录", sTime, System.currentTimeMillis());
 
         // =======================================
         // 初始化日志配置
@@ -122,7 +123,7 @@ class LoggerUse {
             DevLogger.other(lConfig).dTag(tag, "C:" + (i + 1));
         }
         // 拼接时间信息
-        textTimeMosaic(sBuffer, "Logger耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
+        QuickCommonUtils.timeRecord(sBuffer, "Logger耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
         // 打印时间
         Log.d(LOG_TAG, sBuffer.toString());
     }
@@ -286,22 +287,5 @@ class LoggerUse {
             // 打印不换行的日志信息
             DevLogger.other(tLConfig).e(e, "new Config - e");
         }
-    }
-
-    /**
-     * 测试时间拼接公用方法
-     * @param buffer
-     * @param title 标题
-     * @param sTime 开始时间
-     * @param eTime 结束时间
-     */
-    private static void textTimeMosaic(StringBuffer buffer, String title, long sTime, long eTime) {
-        // 使用时间
-        long uTime = eTime - sTime;
-        // 计算时间
-        buffer.append("\n" + title);
-        buffer.append("\n开始时间：" + sTime);
-        buffer.append("\n结束时间：" + eTime);
-        buffer.append("\n所用时间：" + uTime);
     }
 }
