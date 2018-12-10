@@ -16,94 +16,37 @@ import dev.utils.common.FileUtils;
  */
 public class AppInfoBean {
 
-    // https://my.oschina.net/orgsky/blog/368768
-
     // 日志Tag
     private static final String TAG = AppInfoBean.class.getSimpleName();
-    // App 包名
-    @Keep
+    @Keep // App 包名
     private String appPackName;
-    // App 名
-    @Keep
+    @Keep // App 名
     private String appName;
-    // App 图标
-    @Keep
+    @Keep // App 图标
     private transient Drawable appIcon;
-    // App 类型
-    @Keep
+    @Keep // App 类型
     private AppType appType;
-    // 获取版本号
-    @Keep
+    @Keep // App 版本号
     private int versionCode;
-    // 获取版本名
-    @Keep
+    @Keep // App 版本名
     private String versionName;
-    // App 首次安装时间
-    @Keep
+    @Keep // App 首次安装时间
     private long firstInstallTime;
-    // 获取最后一次更新时间
-    @Keep
+    @Keep // App 最后一次更新时间
     private long lastUpdateTime;
-    // 获取 App 地址
-    @Keep
+    @Keep // App 地址
     private String sourceDir;
-    // Apk 大小
-    @Keep
+    @Keep // Apk 大小
     private long apkSize;
-    // 申请的权限
-    @Keep
-    private String [] apkPermissionsArys;
 
     /**
-     * 通过 Apk 路径 初始化 App 信息实体类
-     * @param apkUri apk路径
+     * 获取 AppInfoBean
+     * @param pInfo
+     * @return
      */
-    public static AppInfoBean obtainUri(String apkUri){
+    protected static AppInfoBean obtain(PackageInfo pInfo){
         try {
-            // https://blog.csdn.net/sljjyy/article/details/17370665
-            PackageManager pManager = DevUtils.getContext().getPackageManager();
-            PackageInfo pInfo = pManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
-            // = 设置 Apk 位置信息 =
-            ApplicationInfo appInfo = pInfo.applicationInfo;
-            /* 必须加这两句，不然下面icon获取是default icon而不是应用包的icon */
-            appInfo.sourceDir = apkUri;
-            appInfo.publicSourceDir = apkUri;
-            return new AppInfoBean(pInfo, pManager);
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "obtainUri");
-        }
-        return null;
-    }
-
-    /**
-     * 通过包名 初始化 App 信息实体类
-     * @param packageName 包名
-     */
-    public static AppInfoBean obtainPck(String packageName){
-        try {
-            // https://blog.csdn.net/sljjyy/article/details/17370665
-            PackageManager pManager = DevUtils.getContext().getPackageManager();
-            // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
-            PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES); // 64
-            // 返回app信息
-            return new AppInfoBean(pInfo, pManager);
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "obtainPck");
-        }
-        return null;
-    }
-
-    /**
-     * 初始化当前 App 信息实体类
-     */
-    public static AppInfoBean obtain(){
-        try {
-            // https://blog.csdn.net/sljjyy/article/details/17370665
-            PackageManager pManager = DevUtils.getContext().getPackageManager();
-            // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
-            PackageInfo pInfo = pManager.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES); // 64
-            // 返回app信息
-            return new AppInfoBean(pInfo, pManager);
+            return new AppInfoBean(pInfo);
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "obtain");
         }
@@ -113,35 +56,37 @@ public class AppInfoBean {
     /**
      * 初始化 App 信息实体类
      * @param pInfo
+     */
+    protected AppInfoBean(PackageInfo pInfo){
+        this(pInfo, DevUtils.getContext().getPackageManager());
+    }
+
+    /**
+     * 初始化 App 信息实体类
+     * @param pInfo
      * @param pManager
      */
-    public AppInfoBean(PackageInfo pInfo, PackageManager pManager){
+    protected AppInfoBean(PackageInfo pInfo, PackageManager pManager){
         // App 包名
         appPackName = pInfo.applicationInfo.packageName;
         // App 名
         appName = pManager.getApplicationLabel(pInfo.applicationInfo).toString();
         // App 图标
         appIcon = pManager.getApplicationIcon(pInfo.applicationInfo);
-        // 获取 App 类型
+        // App 类型
         appType = AppInfoBean.getAppType(pInfo);
-        // 获取版本号
+        // App 版本号
         versionCode = pInfo.versionCode;
-        // 获取版本名
+        // App 版本名
         versionName = pInfo.versionName;
         // App 首次安装时间
         firstInstallTime = pInfo.firstInstallTime;
-        // 获取最后一次更新时间
+        // App 最后一次更新时间
         lastUpdateTime = pInfo.lastUpdateTime;
-        // 获取 App 地址
+        // App 地址
         sourceDir = pInfo.applicationInfo.sourceDir;
-        // 获取 Apk 大小
+        // Apk 大小
         apkSize = FileUtils.getFileLength(sourceDir);
-        try {
-            // 获取权限
-            apkPermissionsArys = pInfo.requestedPermissions;
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "AppInfoBean");
-        }
     }
 
     /**
@@ -174,6 +119,54 @@ public class AppInfoBean {
      */
     public AppType getAppType() {
         return appType;
+    }
+
+    /**
+     * 获取 versionCode
+     * @return
+     */
+    public int getVersionCode() {
+        return versionCode;
+    }
+
+    /**
+     * 获取 versionName
+     * @return
+     */
+    public String getVersionName() {
+        return versionName;
+    }
+
+    /**
+     * 获取 App 首次安装时间
+     * @return
+     */
+    public long getFirstInstallTime() {
+        return firstInstallTime;
+    }
+
+    /**
+     * 获取 App 最后更新时间
+     * @return
+     */
+    public long getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    /**
+     * 获取 Apk 地址
+     * @return
+     */
+    public String getSourceDir() {
+        return sourceDir;
+    }
+
+    /**
+     * 获取 Apk 大小
+     * @return
+     */
+    public long getApkSize() {
+        return apkSize;
     }
 
     // =
@@ -216,61 +209,5 @@ public class AppInfoBean {
      */
     public static boolean isSystemUpdateApp(PackageInfo pInfo) {
         return ((pInfo.applicationInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0);
-    }
-
-    /**
-     * 获取 versionCode
-     * @return
-     */
-    public int getVersionCode() {
-        return versionCode;
-    }
-
-    /**
-     * 获取 versionName
-     * @return
-     */
-    public String getVersionName() {
-        return versionName;
-    }
-
-    /**
-     * 获取首次安装时间
-     * @return
-     */
-    public long getFirstInstallTime() {
-        return firstInstallTime;
-    }
-
-    /**
-     * 获取最后更新时间
-     * @return
-     */
-    public long getLastUpdateTime() {
-        return lastUpdateTime;
-    }
-
-    /**
-     * 获取 Apk 地址
-     * @return
-     */
-    public String getSourceDir() {
-        return sourceDir;
-    }
-
-    /**
-     * 获取 Apk 大小
-     * @return
-     */
-    public long getApkSize() {
-        return apkSize;
-    }
-
-    /**
-     * 获取 Apk 注册的权限
-     * @return
-     */
-    public String[] getApkPermissionsArys() {
-        return apkPermissionsArys;
     }
 }

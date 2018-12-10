@@ -1,10 +1,12 @@
 package dev.utils.app.info;
 
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionGroupInfo;
 import android.content.pm.PermissionInfo;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,26 +26,96 @@ public final class AppInfoUtils {
     private static final String TAG = AppInfoUtils.class.getSimpleName();
 
     /**
-     * 通过 Apk 路径 初始化 App 信息实体类
+     * 通过 Apk 路径 初始化 PackageInfo
+     * @param file apk路径
+     * @return
+     */
+    public static PackageInfo getPackageInfoToFile(File file){
+        if (!isFileExists(file)) return null;
+        return getPackageInfoToPath(file.getAbsolutePath());
+    }
+
+    /**
+     * 通过 Apk 路径 初始化 PackageInfo
+     * @param apkUri apk路径
+     * @return
+     */
+    public static PackageInfo getPackageInfoToPath(String apkUri){
+        try {
+            PackageManager pManager = DevUtils.getContext().getPackageManager();
+            PackageInfo pInfo = pManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
+            // = 设置 Apk 位置信息 =
+            ApplicationInfo appInfo = pInfo.applicationInfo;
+            /* 必须加这两句，不然下面icon获取是default icon而不是应用包的icon */
+            appInfo.sourceDir = apkUri;
+            appInfo.publicSourceDir = apkUri;
+            return pInfo;
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getPackageInfoToPath");
+        }
+        return null;
+    }
+
+    /**
+     * 获取当前应用 PackageInfo
+     * @return
+     */
+    public static PackageInfo getPackageInfo(){
+        return getPackageInfo(DevUtils.getContext().getPackageName());
+    }
+
+    /**
+     * 通过包名 获取 PackageInfo
+     * @param packageName 包名
+     * @return
+     */
+    public static PackageInfo getPackageInfo(String packageName){
+        try {
+            // https://blog.csdn.net/sljjyy/article/details/17370665
+            PackageManager pManager = DevUtils.getContext().getPackageManager();
+            // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
+            PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES); // 64
+            // 返回app信息
+            return pInfo;
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getPackageInfo");
+        }
+        return null;
+    }
+
+    // ==================
+    // == 获取基本信息 ==
+    // ==================
+
+    /**
+     * 通过 Apk 路径 获取 AppInfoBean
+     * @param file apk路径
+     */
+    public static AppInfoBean getAppInfoBeanToFile(File file){
+        return AppInfoBean.obtain(getPackageInfoToFile(file));
+    }
+
+    /**
+     * 通过 Apk 路径 获取 AppInfoBean
      * @param apkUri apk路径
      */
-    public static AppInfoBean obtainUri(String apkUri){
-        return AppInfoBean.obtainUri(apkUri);
+    public static AppInfoBean getAppInfoBeanToPath(String apkUri){
+        return AppInfoBean.obtain(getPackageInfoToPath(apkUri));
     }
 
     /**
-     * 通过包名 初始化 App 信息实体类
+     * 获取当前应用 AppInfoBean
+     */
+    public static AppInfoBean getAppInfoBean(){
+        return AppInfoBean.obtain(getPackageInfo());
+    }
+
+    /**
+     * 通过包名 获取 AppInfoBean
      * @param packageName 包名
      */
-    public static AppInfoBean obtainPck(String packageName){
-        return AppInfoBean.obtainPck(packageName);
-    }
-
-    /**
-     * 初始化当前 App 信息实体类
-     */
-    public static AppInfoBean obtain(){
-        return AppInfoBean.obtain();
+    public static AppInfoBean getAppInfoBean(String packageName){
+        return AppInfoBean.obtain(getPackageInfo(packageName));
     }
 
     // ==================
@@ -52,13 +124,39 @@ public final class AppInfoUtils {
 
     /**
      * 获取 Apk 详细信息
+     * @param file
+     * @return
+     */
+    public static ApkInfoItem getApkInfoItem(File file){
+        if (!isFileExists(file)) return null;
+        return getApkInfoItem(file.getAbsolutePath());
+    }
+
+    /**
+     * 获取 Apk 详细信息
      * @param apkUri
      * @return
      */
     public static ApkInfoItem getApkInfoItem(String apkUri){
         try {
-            return ApkInfoItem.obtain(apkUri);
+            return ApkInfoItem.obtain(getPackageInfoToPath(apkUri));
         } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getApkInfoItem");
+            return null;
+        }
+    }
+
+    // =
+
+    /**
+     * 获取 App 详细信息
+     * @return
+     */
+    public static AppInfoItem getAppInfoItem(){
+        try {
+            return AppInfoItem.obtain(getPackageInfo());
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getAppInfoItem");
             return null;
         }
     }
@@ -70,18 +168,11 @@ public final class AppInfoUtils {
      */
     public static AppInfoItem getAppInfoItem(String packageName){
         try {
-            return AppInfoItem.obtain(packageName);
+            return AppInfoItem.obtain(getPackageInfo(packageName));
         } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getAppInfoItem");
             return null;
         }
-    }
-
-    /**
-     * 获取 App 详细信息
-     * @return
-     */
-    public static AppInfoItem getAppInfoItem(){
-        return getAppInfoItem(DevUtils.getContext().getPackageName());
     }
 
     // =
@@ -148,8 +239,16 @@ public final class AppInfoUtils {
 
     /**
      * 获取 Apk 注册的权限
+     * @return
+     */
+    public static String[] getApkPermission(){
+        return getApkPermission(DevUtils.getContext().getPackageName());
+    }
+
+    /**
+     * 获取 Apk 注册的权限
      * @param packageName
-     * https://www.cnblogs.com/leaven/p/5485864.html
+     * @return
      */
     public static String [] getApkPermission(String packageName){
         try {
@@ -196,5 +295,16 @@ public final class AppInfoUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printApkPermission");
         }
+    }
+
+    // ==
+
+    /**
+     * 检查是否存在某个文件
+     * @param file 文件路径
+     * @return 是否存在文件
+     */
+    private static boolean isFileExists(final File file){
+        return file != null && file.exists();
     }
 }

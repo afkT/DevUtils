@@ -333,7 +333,7 @@ public final class EncryptUtils {
             MessageDigest md = MessageDigest.getInstance(algorithm);
             md.update(data);
             return md.digest();
-        } catch (NoSuchAlgorithmException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "hashTemplate");
             return null;
         }

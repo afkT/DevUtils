@@ -852,10 +852,49 @@ public final class AppUtils {
 	 * @return
 	 */
 	public static String getAppSignatureSHA1(@NonNull final String packageName) {
-		Signature[] signature = getAppSignature(packageName);
-		if (signature == null || signature.length <= 0) return null;
-		return encryptSHA1ToString(signature[0].toByteArray()).replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
+		return getAppSignatureHash(packageName, "SHA1");
 	}
+
+    /**
+     * 获取应用签名的的 SHA256 值
+     * @return
+     */
+    public static String getAppSignatureSHA256() {
+        return getAppSignatureSHA256(DevUtils.getContext().getPackageName());
+    }
+
+    /**
+     * 获取应用签名的的 SHA256 值
+     * @param packageName
+     * @return
+     */
+    public static String getAppSignatureSHA256(final String packageName) {
+        return getAppSignatureHash(packageName, "SHA256");
+    }
+
+    /**
+     * 获取应用签名的的 MD5 值
+     * @return
+     */
+    public static String getAppSignatureMD5() {
+        return getAppSignatureMD5(DevUtils.getContext().getPackageName());
+    }
+
+    /**
+     * 获取应用签名的的 MD5 值
+     * @param packageName
+     * @return
+     */
+    public static String getAppSignatureMD5(final String packageName) {
+        return getAppSignatureHash(packageName, "MD5");
+    }
+
+    private static String getAppSignatureHash(final String packageName, final String algorithm) {
+        if (isSpace(packageName)) return "";
+        Signature[] signature = getAppSignature(packageName);
+        if (signature == null || signature.length <= 0) return "";
+        return bytes2HexString(hashTemplate(signature[0].toByteArray(), algorithm)).replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
+    }
 
 	// ==
 
@@ -911,31 +950,23 @@ public final class AppUtils {
 	// 十六进制大写转换
 	private static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-	/**
-	 * SHA1加密
-	 * @param data
-	 * @return
-	 */
-	private static String encryptSHA1ToString(final byte[] data) {
-		return bytes2HexString(encryptSHA1(data));
-	}
-
-	/**
-	 * SHA1加密
-	 * @param data
-	 * @return
-	 */
-	private static byte[] encryptSHA1(final byte[] data) {
-		if (data == null || data.length <= 0) return null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA1");
-			md.update(data);
-			return md.digest();
-		} catch (Exception e) {
-			LogPrintUtils.eTag(TAG, e, "encryptSHA1");
-			return null;
-		}
-	}
+    /**
+     * hash 加密模版方法
+     * @param data
+     * @param algorithm
+     * @return
+     */
+    private static byte[] hashTemplate(final byte[] data, final String algorithm) {
+        if (data == null || data.length <= 0) return null;
+        try {
+            MessageDigest md = MessageDigest.getInstance(algorithm);
+            md.update(data);
+            return md.digest();
+        } catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "hashTemplate");
+            return null;
+        }
+    }
 
 	/**
 	 * 数据加密转换16进制
