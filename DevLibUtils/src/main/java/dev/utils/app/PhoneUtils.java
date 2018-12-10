@@ -138,6 +138,22 @@ public final class PhoneUtils {
     }
 
     /**
+     * 获取 MEID 移动设备识别码
+     * @return
+     */
+    public static String getMEID() {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return telephonyManager.getMeid();
+            }
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getMEID");
+        }
+        return null;
+    }
+
+    /**
      * 获取 IMEI 码
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return IMEI 码

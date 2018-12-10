@@ -189,4 +189,32 @@ public final class EncodeUtils {
             return Html.fromHtml(input);
         }
     }
+
+    /**
+     * 返回二进制编码后的字符串
+     * @param input
+     * @return
+     */
+    public static String binEncode(final String input) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (char i : input.toCharArray()) {
+            stringBuilder.append(Integer.toBinaryString(i));
+            stringBuilder.append(' ');
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
+     * 返回 UTF-8 字符串的二进制数据
+     * @param input
+     * @return
+     */
+    public static String binDecode(final String input) {
+        String[] splitted = input.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String i : splitted) {
+            sb.append(((char) Integer.parseInt(i.replace(" ", ""), 2)));
+        }
+        return sb.toString();
+    }
 }

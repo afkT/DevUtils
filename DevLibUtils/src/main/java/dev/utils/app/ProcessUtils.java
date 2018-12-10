@@ -37,6 +37,14 @@ public final class ProcessUtils {
     private static final String TAG = ProcessUtils.class.getSimpleName();
 
     /**
+     * 判断是否当前进程
+     * @return
+     */
+    public static boolean isCurProcess(){
+        return DevUtils.getContext().getPackageName().equals(getCurProcessName());
+    }
+
+    /**
      * 获取当前进程的名字
      * hit: 获取当前进程 DevUtils.getContext().getApplicationInfo().packageName
      * @return 进程号

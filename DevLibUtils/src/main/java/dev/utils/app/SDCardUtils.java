@@ -1,9 +1,11 @@
 package dev.utils.app;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.os.storage.StorageManager;
+import android.support.annotation.RequiresApi;
 import android.text.format.Formatter;
 
 import java.io.File;
@@ -214,6 +216,7 @@ public final class SDCardUtils {
 	 * 获取 SD 卡总大小
 	 * @return
 	 */
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 	public static String getSDTotalSize() {
 		try {
 			File path = Environment.getExternalStorageDirectory();
@@ -231,6 +234,7 @@ public final class SDCardUtils {
 	 * 获取 SD 卡剩余容量，即可用大小
 	 * @return
 	 */
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 	public static String getSDAvailableSize() {
 		try {
 			File path = Environment.getExternalStorageDirectory();
@@ -248,6 +252,7 @@ public final class SDCardUtils {
 	 * 获取机身内存总大小
 	 * @return
 	 */
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 	public static String getRomTotalSize() {
 		try {
 			File path = Environment.getDataDirectory();
@@ -265,6 +270,7 @@ public final class SDCardUtils {
 	 * 获取机身可用内存
 	 * @return
 	 */
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 	public static String getRomAvailableSize() {
 		try {
 			File path = Environment.getDataDirectory();

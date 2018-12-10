@@ -559,6 +559,23 @@ public final class ConverUtils {
     }
 
     /**
+     * byte 数组转换16进制字符串
+     * @param bytes
+     * @return
+     */
+    private static String bytes2HexString(final byte[] bytes) {
+        if (bytes == null) return null;
+        int len = bytes.length;
+        if (len <= 0) return null;
+        char[] ret = new char[len << 1];
+        for (int i = 0, j = 0; i < len; i++) {
+            ret[j++] = HEX_DIGITS[bytes[i] >>> 4 & 0x0f];
+            ret[j++] = HEX_DIGITS[bytes[i] & 0x0f];
+        }
+        return new String(ret);
+    }
+
+    /**
      * 判断字符串是否为 null 或全为空白字符
      * @param str 待校验字符串
      * @return

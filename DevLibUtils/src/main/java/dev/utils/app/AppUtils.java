@@ -456,28 +456,52 @@ public final class AppUtils {
 	 * @return
 	 */
 	public static boolean installAppSilent(final String filePath) {
-		return installAppSilent(getFileByPath(filePath));
+		return installAppSilent(filePath, null);
+	}
+
+	/**
+	 * 静默安装 App
+	 * @param file
+	 * @return
+	 */
+	public static boolean installAppSilent(final File file) {
+		return installAppSilent(file, null);
+	}
+
+	/**
+	 * 静默安装 App
+	 * @param filePath
+	 * @param params
+	 * @return
+	 */
+	public static boolean installAppSilent(final String filePath, final String params) {
+		return installAppSilent(getFileByPath(filePath), params, isDeviceRooted());
+	}
+
+	/**
+	 * 静默安装 App
+	 * @param file
+	 * @param params
+	 * @return
+	 */
+	public static boolean installAppSilent(final File file, final String params) {
+		return installAppSilent(file, params, isDeviceRooted());
 	}
 
 	/**
 	 * 静默安装 App
 	 * <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
-	 * @param file The file.
-	 * @return true : success, false : fail
+	 * @param file
+	 * @param params
+	 * @param isRooted
+	 * @return
 	 */
-	public static boolean installAppSilent(final File file) {
+	public static boolean installAppSilent(final File file, final String params, final boolean isRooted) {
 		if (!isFileExists(file)) return false;
-		boolean isRoot = isDeviceRooted();
-		String filePath = file.getAbsolutePath();
-		String command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib pm install " + filePath;
-		ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRoot);
-		if (result.successMsg != null && result.successMsg.toLowerCase().contains("success")) {
-			return true;
-		} else {
-			command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib64 pm install " + filePath;
-			result = ShellUtils.execCmd(command, isRoot, true);
-			return result.successMsg != null && result.successMsg.toLowerCase().contains("success");
-		}
+		String filePath = '"' + file.getAbsolutePath() + '"';
+		String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
+		ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
+		return result.isSuccess4("success");
 	}
 
 	/**
@@ -519,8 +543,8 @@ public final class AppUtils {
 	 * @param packageName
 	 * @return
 	 */
-	public static boolean uninstallAppSilent(final String packageName) {
-		return uninstallAppSilent(packageName, false);
+	public static boolean uninstallAppSilent(String packageName) {
+		return uninstallAppSilent(packageName, false, isDeviceRooted());
 	}
 
 	/**
@@ -529,18 +553,22 @@ public final class AppUtils {
 	 * @param isKeepData
 	 * @return
 	 */
-	public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData) {
+	public static boolean uninstallAppSilent(String packageName, boolean isKeepData) {
+		return uninstallAppSilent(packageName, isKeepData, isDeviceRooted());
+	}
+
+	/**
+	 * 静默卸载 App
+	 * @param packageName
+	 * @param isKeepData
+     * @param isRooted
+	 * @return
+	 */
+	public static boolean uninstallAppSilent(String packageName, boolean isKeepData, boolean isRooted) {
 		if (isSpace(packageName)) return false;
-		boolean isRoot = isDeviceRooted();
-		String command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib pm uninstall " + (isKeepData ? "-k " : "") + packageName;
-		ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRoot, true);
-		if (result.successMsg != null && result.successMsg.toLowerCase().contains("success")) {
-			return true;
-		} else {
-			command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib64 pm uninstall " + (isKeepData ? "-k " : "") + packageName;
-			result = ShellUtils.execCmd(command, isRoot, true);
-			return result.successMsg != null && result.successMsg.toLowerCase().contains("success");
-		}
+		String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
+		ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
+		return result.isSuccess4("success");
 	}
 
 	/**

@@ -8,6 +8,8 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -109,7 +111,6 @@ public final class DeviceUtils {
             try {
                 // 取消java的权限控制检查
                 field.setAccessible(true);
-
                 if (field.getName().toLowerCase().equals("SUPPORTED_ABIS".toLowerCase())) {
                     Object object = field.get(null);
                     // 判断是否数组
@@ -204,6 +205,35 @@ public final class DeviceUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 返回是否启用了 ADB
+     * @return
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isAdbEnabled() {
+        try {
+            return Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0;
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "isAdbEnabled");
+        }
+        return false;
+    }
+
+    /**
+     * 获取支持的指令集 如: [arm64-v8a, armeabi-v7a, armeabi]
+     * @return
+     */
+    public static String[] getABIs() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return Build.SUPPORTED_ABIS;
+        } else {
+            if (!TextUtils.isEmpty(Build.CPU_ABI2)) {
+                return new String[]{ Build.CPU_ABI, Build.CPU_ABI2 };
+            }
+            return new String[]{ Build.CPU_ABI };
+        }
     }
 
     // ==

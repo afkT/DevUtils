@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,15 @@ import dev.utils.common.FileUtils;
 public final class IntentUtils {
 
     private IntentUtils() {
+    }
+
+    /**
+     * 判断 Intent 是否可用
+     * @param intent
+     * @return
+     */
+    public static boolean isIntentAvailable(final Intent intent) {
+        return DevUtils.getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
     }
 
     /**
