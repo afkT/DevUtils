@@ -7,6 +7,7 @@ import android.os.PowerManager;
 import android.text.TextUtils;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -1473,7 +1474,7 @@ public final class ADBUtils {
 
     /**
      * 设置系统时间
-     * @param time 20160823.131500
+     * @param time yyyyMMdd.HHmmss 20160823.131500
      *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒。
      * @return
      */
@@ -1486,6 +1487,43 @@ public final class ADBUtils {
             return result.isSuccess2();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "setSystemTime");
+        }
+        return false;
+    }
+
+    /**
+     * 设置系统时间
+     * @param time MMddHHmmyyyy.ss 082313152016.00
+     *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒。
+     * @return
+     */
+    public static boolean setSystemTime2(String time){
+        if (isSpace(time)) return false;
+        try {
+            String cmd = "date %s";
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, time), true);
+            return result.isSuccess2();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "setSystemTime2");
+        }
+        return false;
+    }
+
+    /**
+     * 设置系统时间
+     * @param time 时间戳转换 MMddHHmmyyyy.ss
+     * @return
+     */
+    public static boolean setSystemTime2(long time){
+        if (time < 0) return false;
+        try {
+            String cmd = "date %s";
+            // 执行 shell
+            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, new SimpleDateFormat("MMddHHmmyyyy.ss").format(time)), true);
+            return result.isSuccess2();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "setSystemTime2");
         }
         return false;
     }
