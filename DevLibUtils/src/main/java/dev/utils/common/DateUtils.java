@@ -22,12 +22,16 @@ public final class DateUtils {
 	/** 日期格式类型 */
 	public static final String yyyy = "yyyy";
 	public static final String yyyyMMdd = "yyyy-MM-dd";
+	public static final String yyyyMMdd2 = "yyyyMMdd";
 	public static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
 	public static final String yyyyMMddHHmmss_2 = "yyyy年M月d日 HH:mm:ss";
 	public static final String MMdd = "MM-dd";
 	public static final String MMdd2 = "MM月dd日";
+	public static final String MMdd3 = "MMdd";
 	public static final String HHmm = "HH:mm";
+	public static final String HHmm2 = "HHmm";
 	public static final String HHmmss = "HH:mm:ss";
+	public static final String HHmmss2 = "HHmmss";
 	public static final String hhmmMMDDyyyy = "hh:mm M月d日 yyyy";
 	public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
 	// --
