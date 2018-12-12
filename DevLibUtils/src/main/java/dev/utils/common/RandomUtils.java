@@ -205,9 +205,14 @@ public final class RandomUtils {
 		}
 		return min + new Random().nextInt(max - min);
 	}
-	
+
+	// ==
+
+	// 内置洗牌算法
+	// java.util.Collections.shuffle(List<?> list);
+
 	/**
-	 * 洗牌算法，随机置换指定的数组使用的默认源的随机性
+	 * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
 	 * @param objArray
 	 * @return
 	 */
@@ -215,20 +220,20 @@ public final class RandomUtils {
 		if (objArray == null) {
 			return false;
 		}
-		return shuffle(objArray, getRandom(1,objArray.length));
+		return shuffle(objArray, getRandom(1, objArray.length));
 	}
 	
 	/**
-	 * 洗牌算法，随机置换指定的数组
+	 * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
 	 * @param objArray
-	 * @param shuffleCount
+	 * @param shuffleCount 洗牌次数
 	 * @return
 	 */
 	public static boolean shuffle(Object[] objArray, int shuffleCount) {
 		int length;
 		if(shuffleCount > 0 && objArray != null && (length = objArray.length) >= shuffleCount) {
 			for (int i = 1; i <= shuffleCount; i++) {
-				int random = getRandom(0,length - i);
+				int random = getRandom(0, length - i);
 				Object temp = objArray[length - i];
 				objArray[length - i] = objArray[random];
 				objArray[random] = temp;
@@ -239,7 +244,7 @@ public final class RandomUtils {
 	}
 	
 	/**
-	 * 洗牌算法，随机置换指定数组的使用随机的默认源
+	 * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
 	 * @param intArray
 	 * @return
 	 */
@@ -247,13 +252,13 @@ public final class RandomUtils {
 		if (intArray == null) {
 			return null;
 		}
-		return shuffle(intArray, getRandom(1,intArray.length));
+		return shuffle(intArray, getRandom(1, intArray.length));
 	}
 	
 	/**
-	 * 洗牌算法，随机置换指定的数组
+	 * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
 	 * @param intArray
-	 * @param shuffleCount
+	 * @param shuffleCount 洗牌次数
 	 * @return
 	 */
 	public static int[] shuffle(int[] intArray, int shuffleCount) {
@@ -261,7 +266,7 @@ public final class RandomUtils {
 		if(shuffleCount > 0 && intArray != null && (length = intArray.length) >= shuffleCount) {
 			int[] out = new int[shuffleCount];
 			for (int i = 1; i <= shuffleCount; i++) {
-				int random = getRandom(0,length - i);
+				int random = getRandom(0, length - i);
 				out[i - 1] = intArray[random];
 				int temp = intArray[length - i];
 				intArray[length - i] = intArray[random];
@@ -270,5 +275,29 @@ public final class RandomUtils {
 			return out;
 		}
 		return null;
+	}
+
+	// =
+
+	/**
+	 * 洗牌算法(第二种)，随机置换指定的数组使用的默认源的随机性
+	 * @param objArray
+	 * @return
+	 */
+	public static final boolean shuffle2(Object[] objArray){
+		if (objArray == null){
+			return false;
+		}
+		int len = objArray.length;
+		if (len > 0) {
+			for (int i = 0; i < len - 1; i++) {
+				int idx = (int) (Math.random() * (len - i));
+				Object temp = objArray[idx];
+				objArray[idx] = objArray[len - i - 1];
+				objArray[len - i - 1] = temp;
+			}
+			return true;
+		}
+		return false;
 	}
 }

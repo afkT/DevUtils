@@ -99,7 +99,8 @@ artifacts {
 def _BASENAME = "DevLibUtils";
 def _VERSION = "_v" + android.defaultConfig.versionName;
 def _DestinationPath = "build"; //生成jar包的位置
-def zipFile = file('build/intermediates/bundles/debug/classes.jar'); //待打包文件位置
+//def zipFile = file('build/intermediates/bundles/debug/classes.jar'); //待打包文件位置
+def zipFile = file('build/intermediates/intermediate-jars/debug/classes.jar'); //待打包文件位置
 
 task deleteBuild(type:Delete){
     delete _DestinationPath + _BASENAME + _VERSION + ".jar"
