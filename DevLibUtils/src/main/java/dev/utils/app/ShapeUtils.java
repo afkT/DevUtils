@@ -48,7 +48,10 @@ public final class ShapeUtils {
      */
     public void setDrawable(View view){
         if (view != null){
-            view.setBackground(drawable);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                view.setBackground(drawable);
+            else
+                view.setBackgroundDrawable(drawable);
         }
     }
 

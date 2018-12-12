@@ -10,6 +10,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+import dev.utils.LogPrintUtils;
 import dev.utils.R;
 
 /**
@@ -22,6 +23,9 @@ public final class ToastyUtils {
     private ToastyUtils() {
     }
 
+    // 日志Tag
+    private static final String TAG = ToastyUtils.class.getSimpleName();
+
     /**
      * 图片着色
      * @param drawable
@@ -29,7 +33,13 @@ public final class ToastyUtils {
      * @return
      */
     public static Drawable tintIcon(@NonNull Drawable drawable, @ColorInt int tintColor) {
-        drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+        if (drawable != null){
+            try {
+                drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+            } catch (Exception e){
+                LogPrintUtils.eTag(TAG, e, "tintIcon");
+            }
+        }
         return drawable;
     }
 
@@ -39,9 +49,14 @@ public final class ToastyUtils {
      * @param tintColor
      * @return
      */
-    public static Drawable tint9PatchDrawableFrame(@NonNull Context context, @ColorInt int tintColor) {
-        final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, R.drawable.dev_toast_frame);
-        return tintIcon(toastDrawable, tintColor);
+    public static Drawable tint9PatchDrawableFrame(Context context, @ColorInt int tintColor) {
+        try {
+            final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, R.drawable.dev_toast_frame);
+            return tintIcon(toastDrawable, tintColor);
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "tint9PatchDrawableFrame");
+        }
+        return null;
     }
 
     /**
@@ -50,10 +65,12 @@ public final class ToastyUtils {
      * @param drawable
      */
     public static void setBackground(@NonNull View view, Drawable drawable) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-            view.setBackground(drawable);
-        else
-            view.setBackgroundDrawable(drawable);
+        if (view != null){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                view.setBackground(drawable);
+            else
+                view.setBackgroundDrawable(drawable);
+        }
     }
 
     /**
@@ -62,7 +79,7 @@ public final class ToastyUtils {
      * @param id
      * @return
      */
-    public static Drawable getDrawable(@NonNull Context context, @DrawableRes int id) {
+    public static Drawable getDrawable(Context context, @DrawableRes int id) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             return context.getDrawable(id);
         else

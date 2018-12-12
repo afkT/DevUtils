@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.support.annotation.RawRes;
+import android.support.annotation.RequiresPermission;
 
 import java.io.Closeable;
 
@@ -148,6 +149,7 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 进行播放声音, 并且震动
      */
+    @RequiresPermission(android.Manifest.permission.VIBRATE)
     public synchronized void playBeepSoundAndVibrate() {
         // 判断是否允许播放
         if (shouldBeep() && mediaPlayer != null) {

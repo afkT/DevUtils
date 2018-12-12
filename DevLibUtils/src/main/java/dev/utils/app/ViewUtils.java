@@ -3,6 +3,8 @@ package dev.utils.app;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -512,6 +514,7 @@ public final class ViewUtils {
      * @param gridView
      * @param numColumns
      */
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     public static int calcGridViewItemHeight(GridView gridView, int numColumns) {
         return calcGridViewItemHeight(gridView, numColumns, false);
     }
@@ -524,6 +527,7 @@ public final class ViewUtils {
      * ==
      * hint: 解决 ScrollView 嵌套 GridView 时, 会无法正确的计算ListView的大小
      */
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     public static int calcGridViewItemHeight(GridView gridView, int numColumns, boolean isSet) {
         // 获取 Adapter
         ListAdapter listAdapter = gridView.getAdapter();

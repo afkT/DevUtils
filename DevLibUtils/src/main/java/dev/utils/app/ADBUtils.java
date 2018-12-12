@@ -208,7 +208,6 @@ public final class ADBUtils {
      */
     public static String getAppMessage(String packageName){
         if (isSpace(packageName)) return null;
-        // 如果没root , 需要 android.permission.DUMP 权限
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName, false);
         if (result.isSuccess3()){
@@ -360,7 +359,6 @@ public final class ADBUtils {
 
     /**
      * 静默安装 App
-     * <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
      * @param file
      * @param params
      * @param isRooted

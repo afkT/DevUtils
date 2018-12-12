@@ -1,5 +1,6 @@
 package dev.utils.app.wifi;
 
+import android.Manifest;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,6 +10,7 @@ import android.net.wifi.WifiConfiguration.KeyMgmt;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.support.annotation.RequiresPermission;
 import android.text.TextUtils;
 
 import java.lang.reflect.Constructor;
@@ -351,6 +353,7 @@ public final class WifiUtils {
 	 * @param context
 	 * @return 返回ssid
 	 */
+	@RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
 	public static String isConnectAphot(Context context){
 		try {
 			// 连接管理

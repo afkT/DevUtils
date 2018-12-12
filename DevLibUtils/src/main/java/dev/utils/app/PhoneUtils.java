@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.provider.Settings;
+import android.support.annotation.RequiresPermission;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -141,6 +143,7 @@ public final class PhoneUtils {
      * 获取 MEID 移动设备识别码
      * @return
      */
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getMEID() {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
@@ -317,6 +320,7 @@ public final class PhoneUtils {
      * 返回设备序列化
      * @return
      */
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getSerialNumber(){
         try {
             if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.P){
@@ -348,6 +352,7 @@ public final class PhoneUtils {
      * 获取设备唯一id
      * @return
      */
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getUUID(){
         String androidId = getAndroidId() + "";
         String deviceId = getDeviceId() + "";
@@ -732,6 +737,7 @@ public final class PhoneUtils {
      * @param context
      * @return
      */
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static TeleInfo getMtkTeleInfo2(Context context) {
         TeleInfo teleInfo = new TeleInfo();
         try {
@@ -809,6 +815,7 @@ public final class PhoneUtils {
      * 获取 展讯 神机的双卡 IMSI、IMSI 信息
      * @return
      */
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static TeleInfo getSpreadtrumTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {

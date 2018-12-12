@@ -384,15 +384,15 @@ public final class ActivityManager {
     }
 
     /**
-     * 退出应用程序
-     * @param context
+     * 退出应用程序, 并重启
+     * <uses-permission android:name="android.permission.RESTART_PACKAGES" />
      */
-    public void appExit(Context context) {
+    public void appExitRestart() {
         try {
             finishAllActivity();
             // --
-            android.app.ActivityManager activityMgr = (android.app.ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-            activityMgr.restartPackage(context.getPackageName());
+            android.app.ActivityManager activityMgr = (android.app.ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            activityMgr.restartPackage(DevUtils.getContext().getPackageName());
             System.exit(0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "appExit");
@@ -405,9 +405,9 @@ public final class ActivityManager {
     public void appExit() {
         try {
             finishAllActivity();
-            //退出JVM(java虚拟机),释放所占内存资源,0表示正常退出(非0的都为异常退出)
+            // 退出JVM(java虚拟机),释放所占内存资源,0表示正常退出(非0的都为异常退出)
             System.exit(0);
-            //从操作系统中结束掉当前程序的进程
+            // 从操作系统中结束掉当前程序的进程
             android.os.Process.killProcess(android.os.Process.myPid());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "appExit");

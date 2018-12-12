@@ -37,6 +37,22 @@ public final class ProcessUtils {
     private static final String TAG = ProcessUtils.class.getSimpleName();
 
     /**
+     * 销毁自身进程
+     */
+    public static void kill(){
+        kill(android.os.Process.myPid());
+    }
+
+    /**
+     * 销毁进程
+     * @param pid
+     */
+    public static void kill(int pid){
+        //从操作系统中结束掉当前程序的进程
+        android.os.Process.killProcess(pid);
+    }
+
+    /**
      * 判断是否当前进程
      * @return
      */
@@ -144,7 +160,7 @@ public final class ProcessUtils {
 
     /**
      * 获取前台线程包名
-     * <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" /> => 属于系统权限
+     * <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
      * @return 前台应用包名
      */
     public static String getForegroundProcessName() {
