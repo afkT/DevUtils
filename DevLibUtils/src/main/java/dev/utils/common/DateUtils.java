@@ -664,7 +664,7 @@ public final class DateUtils {
 	 * @return
 	 */
 	public static boolean isInTimeHHmm(String startTime, String endTime){
-		return isInTimeHHmm(DateUtils.formatTime(System.currentTimeMillis(), HHmm), startTime, endTime);
+		return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmm), startTime, endTime, HHmm);
 	}
 
 	/**
@@ -680,6 +680,27 @@ public final class DateUtils {
 
 	/**
 	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return
+	 */
+	public static boolean isInTimeHHmmss(String startTime, String endTime){
+		return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmmss), startTime, endTime, HHmmss);
+	}
+
+	/**
+	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+	 * @param nowTime 当前时间
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return
+	 */
+	public static boolean isInTimeHHmmss(String nowTime, String startTime, String endTime){
+		return isInTime(nowTime, startTime, endTime, HHmmss);
+	}
+
+	/**
+	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
 	 * @param nowTime 当前时间
 	 * @param startTime 开始时间
 	 * @param endTime 结束时间
@@ -691,10 +712,24 @@ public final class DateUtils {
 			return false;
 		}
 		try {
-			Date now = DateUtils.parseDate(nowTime, format);
-			Date start = DateUtils.parseDate(startTime, format);
-			Date end = DateUtils.parseDate(endTime, format);
-			return isInDate(now, start, end);
+			// 格式化日期
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			// 当前时间转换
+			long now = sdf.parse(nowTime).getTime();
+			// 开始时间转换
+			long start = sdf.parse(startTime).getTime();
+			// 结束时间转换
+			long end = sdf.parse(endTime).getTime();
+			// 判断结束时间是否小于开始时间
+			if (end < start){ // 结束属于第二天区域
+				if (now >= start || now <= end){
+					return true;
+				}
+			} else {
+				if (now >= start && now <= end){
+					return true;
+				}
+			}
 		} catch (Exception e){
 			JCLogUtils.eTag(TAG, e, "isInTime");
 		}
