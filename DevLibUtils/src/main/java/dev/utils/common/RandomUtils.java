@@ -313,6 +313,8 @@ public final class RandomUtils {
 	public static int nextIntRange(int origin, int bound) {
 		if (origin > bound){
 			throw new IllegalArgumentException("bound must be greater than origin");
+		} else if (origin == bound){
+			return origin;
 		}
 		Random random = new Random();
 		int n = bound - origin;
@@ -337,6 +339,8 @@ public final class RandomUtils {
 	public static long nextLongRange(long origin, long bound) {
 		if (origin > bound){
 			throw new IllegalArgumentException("bound must be greater than origin");
+		} else if (origin == bound){
+			return origin;
 		}
 		Random random = new Random();
 		long r = random.nextLong();
@@ -366,6 +370,8 @@ public final class RandomUtils {
 	public static double nextDoubleRange(double origin, double bound) {
 		if (origin > bound){
 			throw new IllegalArgumentException("bound must be greater than origin");
+		} else if (origin == bound){
+			return origin;
 		}
 		double r = new Random().nextDouble();
 		r = r * (bound - origin) + origin;
