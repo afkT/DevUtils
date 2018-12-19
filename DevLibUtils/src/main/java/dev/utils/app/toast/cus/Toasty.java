@@ -193,7 +193,7 @@ public final class Toasty {
         }
 
         /**
-         * 是否适用新的 Toast
+         * 是否使用新的 Toast
          * @param isNewToast
          * @return
          */
