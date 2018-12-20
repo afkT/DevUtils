@@ -31,9 +31,28 @@ public final class DevCommonUtils {
      */
     public static String getFormatString(String format, Object... args) {
         try {
-            String.format(format, args);
+            return String.format(format, args);
         } catch (Exception e){
             JCLogUtils.eTag(TAG, e, "getFormatString");
+        }
+        return null;
+    }
+
+    /**
+     * 获取格式化字符串
+     * @param format
+     * @param args
+     * @return
+     */
+    public static String getFormatString2(String format, Object... args) {
+        try {
+            if (args != null && args.length != 0){
+                return String.format(format, args);
+            } else {
+                return format;
+            }
+        } catch (Exception e){
+            JCLogUtils.eTag(TAG, e, "getFormatString2");
         }
         return null;
     }

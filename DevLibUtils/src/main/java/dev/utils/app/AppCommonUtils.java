@@ -5,6 +5,9 @@ import android.os.Build;
 import java.util.Random;
 import java.util.UUID;
 
+import dev.DevUtils;
+import dev.utils.LogPrintUtils;
+
 /**
  * detail: App通用工具类
  * Created by Ttt
@@ -13,6 +16,9 @@ public final class AppCommonUtils {
 
     private AppCommonUtils(){
     }
+
+    // 日志 TAG
+    private static final String TAG = AppCommonUtils.class.getSimpleName();
 
     /**
      * 获取设备唯一id
@@ -37,6 +43,38 @@ public final class AppCommonUtils {
         UUID randomUUID = new UUID(cTime.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
         // 获取uid
         return randomUUID.toString();
+    }
+
+    /**
+     * 获取 R.string 资源的格式化字符串
+     * @param resId
+     * @param objs
+     */
+    public static String getFormatRes(int resId, Object... objs) {
+        return getFormatRes(false, resId, objs);
+    }
+
+    /**
+     * 获取 R.string 资源的格式化字符串
+     * @param errorMsg 是否设置异常信息
+     * @param resId
+     * @param objs
+     */
+    public static String getFormatRes(boolean errorMsg, int resId, Object... objs) {
+        try {
+            // 获取字符串并且进行格式化
+            if (objs != null && objs.length != 0) {
+                return DevUtils.getContext().getString(resId, objs);
+            } else {
+                return DevUtils.getContext().getString(resId);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getFormatRes");
+            if (errorMsg && e != null){
+                return e.getMessage();
+            }
+        }
+        return null;
     }
 
     // == 版本判断处理 ==
