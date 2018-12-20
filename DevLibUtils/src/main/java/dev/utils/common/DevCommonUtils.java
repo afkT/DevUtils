@@ -24,6 +24,21 @@ public final class DevCommonUtils {
     public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
     /**
+     * 获取格式化字符串
+     * @param format
+     * @param args
+     * @return
+     */
+    public static String getFormatString(String format, Object... args) {
+        try {
+            String.format(format, args);
+        } catch (Exception e){
+            JCLogUtils.eTag(TAG, e, "getFormatString");
+        }
+        return null;
+    }
+
+    /**
      * 判断是否网络资源
      * @param resPath 资源地址
      * @return

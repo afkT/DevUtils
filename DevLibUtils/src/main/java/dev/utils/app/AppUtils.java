@@ -132,6 +132,19 @@ public final class AppUtils {
 	}
 
 	/**
+	 * 获取 String
+	 * @return
+	 */
+	public static String getString(@StringRes int id, Object... formatArgs) {
+		try {
+			return DevUtils.getContext().getResources().getString(id, formatArgs);
+		} catch (Exception e){
+			LogPrintUtils.eTag(TAG, e, "getString");
+		}
+		return null;
+	}
+
+	/**
 	 * 获取 Resources.Theme
 	 * @return
 	 */
