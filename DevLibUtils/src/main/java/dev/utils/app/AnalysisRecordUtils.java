@@ -294,7 +294,7 @@ public final class AnalysisRecordUtils {
         // 获取设备信息
         getDeviceInfo(DEVICE_INFO_MAPS);
         // 转换设备信息
-        handleDeviceInfo("获取设备信息失败");
+        handlerDeviceInfo("获取设备信息失败");
         // 返回设备信息
         return DEVICE_INFO_STR;
     }
@@ -322,7 +322,7 @@ public final class AnalysisRecordUtils {
      * 处理设备信息
      * @param eHint 错误提示,如获取设备信息失败
      */
-    private static String handleDeviceInfo(String eHint) {
+    private static String handlerDeviceInfo(String eHint) {
         try {
             // 如果不为null,则直接返回之前的信息
             if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
@@ -349,7 +349,7 @@ public final class AnalysisRecordUtils {
             // 返回设备信息
             return DEVICE_INFO_STR;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "handleDeviceInfo");
+            LogPrintUtils.eTag(TAG, e, "handlerDeviceInfo");
         }
         return eHint;
     }

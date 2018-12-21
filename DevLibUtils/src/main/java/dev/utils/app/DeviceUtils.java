@@ -133,7 +133,7 @@ public final class DeviceUtils {
      * @param dInfoMaps 设备信息
      * @param eHint 错误提示，如获取设备信息失败
      */
-    public static String handleDeviceInfo(Map<String, String> dInfoMaps, String eHint) {
+    public static String handlerDeviceInfo(Map<String, String> dInfoMaps, String eHint) {
         try {
             // 初始化StringBuilder，拼接字符串
             StringBuilder sBuilder = new StringBuilder();
@@ -153,7 +153,7 @@ public final class DeviceUtils {
             }
             return sBuilder.toString();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "handleDeviceInfo");
+            LogPrintUtils.eTag(TAG, e, "handlerDeviceInfo");
         }
         return eHint;
     }

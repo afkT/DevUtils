@@ -101,7 +101,7 @@ final class Utils {
 	 * 处理设备信息
 	 * @param eHint 错误提示,如获取设备信息失败
 	 */
-	static String handleDeviceInfo(String eHint) {
+	static String handlerDeviceInfo(String eHint) {
 		try {
 			// 如果不为null,则直接返回之前的信息
 			if(!TextUtils.isEmpty(DEVICE_INFO_STR)) {
@@ -128,7 +128,7 @@ final class Utils {
 			// 返回设备信息
 			return DEVICE_INFO_STR;
 		} catch (Exception e) {
-			LogPrintUtils.eTag(TAG, e, "handleDeviceInfo");
+			LogPrintUtils.eTag(TAG, e, "handlerDeviceInfo");
 		}
 		return eHint;
 	}
@@ -284,7 +284,7 @@ final class Utils {
 			// 获取设备信息
 			getDeviceInfo(DEVICE_INFO_MAPS);
 			// 转换字符串
-			handleDeviceInfo("");
+			handlerDeviceInfo("");
 		}
 	}
 
@@ -316,13 +316,13 @@ final class Utils {
 	 */
 	public static boolean saveErrorLog(Throwable ex, String head, String bottom, String fPath, String fName, boolean isNewLines, String... eHint) {
 		// 处理可变参数(错误提示)
-		eHint = handleVariable(2, eHint);
+		eHint = handlerVariable(2, eHint);
 		// 日志拼接
 		StringBuilder sBuilder = new StringBuilder();
 		// 防止文件夹不存在
 		createFile(fPath);
 		// 设备信息
-		String dInfo = handleDeviceInfo(eHint[0]);
+		String dInfo = handlerDeviceInfo(eHint[0]);
 		// 如果存在顶部内容,则进行添加
 		if(!TextUtils.isEmpty(head)) {
 			sBuilder.append(head);
@@ -391,13 +391,13 @@ final class Utils {
 	 */
 	public static boolean saveLog(String log, String head, String bottom, String fPath, String fName, String... eHint){
 		// 处理可变参数(错误提示)
-		eHint = handleVariable(2, eHint);
+		eHint = handlerVariable(2, eHint);
 		// 日志拼接
 		StringBuilder sBuilder = new StringBuilder();
 		// 防止文件夹不存在
 		createFile(fPath);
 		// 设备信息
-		String dInfo = handleDeviceInfo(eHint[0]);
+		String dInfo = handlerDeviceInfo(eHint[0]);
 		// 如果存在顶部内容,则进行添加
 		if(!TextUtils.isEmpty(head)) {
 			sBuilder.append(head);
@@ -442,7 +442,7 @@ final class Utils {
 	 * @param vArrays 可变参数数组
 	 * @return
 	 */
-	public static String[] handleVariable(int length, String[] vArrays) {
+	public static String[] handlerVariable(int length, String[] vArrays) {
 		// 处理后的数据,
 		String[] hArrays = new String[length];
 		// 是否统一处理
@@ -481,7 +481,7 @@ final class Utils {
 				}
 			}
 		} catch (Exception e) {
-			LogPrintUtils.eTag(TAG, e, "handleVariable");
+			LogPrintUtils.eTag(TAG, e, "handlerVariable");
 		}
 		return hArrays;
 	}

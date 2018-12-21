@@ -15,8 +15,8 @@ public class FileDepthFirstSearchUtils {
     public FileDepthFirstSearchUtils(){
     }
 
-    public FileDepthFirstSearchUtils(ISearchHandle iSearchHandle) {
-        this.iSearchHandle = iSearchHandle;
+    public FileDepthFirstSearchUtils(ISearchHandler iSearchHandler) {
+        this.iSearchHandler = iSearchHandler;
     }
 
     /**
@@ -38,14 +38,14 @@ public class FileDepthFirstSearchUtils {
     /**
      * 搜索处理接口
      */
-    public interface ISearchHandle {
+    public interface ISearchHandler {
 
         /**
          * 判断是否处理该文件
          * @param file
          * @return
          */
-        boolean isHandleFile(File file);
+        boolean isHandlerFile(File file);
 
         /**
          * 是否添加到集合
@@ -65,22 +65,22 @@ public class FileDepthFirstSearchUtils {
     }
 
     // 搜索处理接口
-    private ISearchHandle iSearchHandle;
+    private ISearchHandler iSearchHandler;
 
     // 内部实现接口
-    private ISearchHandle inside = new ISearchHandle() {
+    private ISearchHandler inside = new ISearchHandler() {
         @Override
-        public boolean isHandleFile(File file) {
-            if (iSearchHandle != null){
-                return iSearchHandle.isHandleFile(file);
+        public boolean isHandlerFile(File file) {
+            if (iSearchHandler != null){
+                return iSearchHandler.isHandlerFile(file);
             }
             return true;
         }
 
         @Override
         public boolean isAddToList(File file) {
-            if (iSearchHandle != null){
-                return iSearchHandle.isAddToList(file);
+            if (iSearchHandler != null){
+                return iSearchHandler.isAddToList(file);
             }
             return true;
         }
@@ -90,19 +90,19 @@ public class FileDepthFirstSearchUtils {
             // 表示非搜索中
             isRuning = false;
             // 触发回调
-            if (iSearchHandle != null){
-                iSearchHandle.OnEndListener(lists, startTime, endTime);
+            if (iSearchHandler != null){
+                iSearchHandler.OnEndListener(lists, startTime, endTime);
             }
         }
     };
 
     /**
      * 设置搜索处理接口
-     * @param iSearchHandle
+     * @param iSearchHandler
      * @return
      */
-    public FileDepthFirstSearchUtils setSearchHandle(ISearchHandle iSearchHandle) {
-        this.iSearchHandle = iSearchHandle;
+    public FileDepthFirstSearchUtils setSearchHandler(ISearchHandler iSearchHandler) {
+        this.iSearchHandler = iSearchHandler;
         return this;
     }
 
@@ -224,7 +224,7 @@ public class FileDepthFirstSearchUtils {
             }
             if (file != null && file.exists()) {
                 // 判断是否处理
-                if (inside.isHandleFile(file)){
+                if (inside.isHandlerFile(file)){
                     // 如果属于文件夹
                     if (file.isDirectory()){
                         // 获取文件夹全部子文件
