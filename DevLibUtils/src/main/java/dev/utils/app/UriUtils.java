@@ -18,8 +18,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Uri 工具类
- * Created by Blankj
- * Update to Ttt
+ * Created by Ttt
  */
 public final class UriUtils {
 

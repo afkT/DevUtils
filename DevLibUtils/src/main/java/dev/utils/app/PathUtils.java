@@ -7,8 +7,7 @@ import dev.DevUtils;
 
 /**
  * detail: 路径相关工具类
- * Created by Blankj
- * Update to Ttt
+ * Created by Ttt
  */
 public final class PathUtils {
 

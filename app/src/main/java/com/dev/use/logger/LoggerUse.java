@@ -54,7 +54,7 @@ class LoggerUse {
         // 进行初始化配置 => 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
         DevLogger.init(lConfig);
 //        // 进行初始化配置 - 必须调用 => 在DevUtils.init() 内部调用了
-//        DevLoggerUtils.appInit(mContext);
+//        DevLoggerUtils.init(mContext);
     }
 
     // === 使用 ===

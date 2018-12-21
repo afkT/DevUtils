@@ -16,8 +16,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 服务相关工具类
- * Created by Blankj
- * Update to Ttt
+ * Created by Ttt
  */
 public final class ServiceUtils {
 

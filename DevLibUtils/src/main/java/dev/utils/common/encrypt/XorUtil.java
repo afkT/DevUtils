@@ -2,7 +2,7 @@ package dev.utils.common.encrypt;
 
 /**
  * detail: 异或加密工具类
- * Created by albert-lii
+ * Created by Ttt
  * 位运算可以实现很多高级，高效的运算。
  * 可用于 IM 二进制数据包加密，第一能够实现加密，第二采用异或加密算法不会改变二进制数据的长度这对二进制数据包封包起到不小的好处
  * 也可用于记事本等场景

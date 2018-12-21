@@ -4,8 +4,7 @@ import dev.utils.common.assist.Base64;
 
 /**
  * detail: Baes64 编解码, 进行加密
- * Created by MaTianyu
- * Update to Ttt
+ * Created by Ttt
  */
 public class Base64Cipher implements Cipher {
 

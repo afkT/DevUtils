@@ -59,16 +59,16 @@ public final class DevUtils {
         initApplication(context);
         // 初始化Shared 工具类
         SharedUtils.init(context);
+        // 初始化缓存类
+        DevCache.get(context);
+        // 初始化Handler工具类
+        HandlerUtils.init(context);
         // 初始化记录文件配置
-        FileRecordUtils.appInit();
+        FileRecordUtils.init();
         // 初始化记录工具类
         AnalysisRecordUtils.init(context);
         // 初始化 DevLogger 配置
-        DevLoggerUtils.appInit(context);
-        // 初始化Handler工具类
-        HandlerUtils.init(context);
-        // 初始化缓存类
-        DevCache.get(context);
+        DevLoggerUtils.init(context);
         // 保存当前线程信息
         sUiThread = Thread.currentThread();
         // 初始化全局Handler - 主线程

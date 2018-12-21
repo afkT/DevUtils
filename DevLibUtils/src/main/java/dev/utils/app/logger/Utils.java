@@ -267,10 +267,10 @@ final class Utils {
 	// ==================  对外公开方法  ===================
 
 	/**
-	 * App 初始化调用方法
+	 * 初始化调用方法
 	 * @param context
 	 */
-	public static void appInit(Context context) {
+	public static void init(Context context) {
 		// 如果版本信息为null，才进行处理
 		if (TextUtils.isEmpty(APP_VERSION_CODE) || TextUtils.isEmpty(APP_VERSION_NAME)) {
 			// 获取 App 版本信息

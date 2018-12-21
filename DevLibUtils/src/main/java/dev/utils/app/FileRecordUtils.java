@@ -269,9 +269,9 @@ public final class FileRecordUtils {
     // ==================  对外公开方法  ===================
 
     /**
-     * App 初始化调用方法
+     * 初始化调用方法
      */
-    public static void appInit() {
+    public static void init() {
         // 如果版本信息为null，才进行处理
         if (TextUtils.isEmpty(APP_VERSION_CODE) || TextUtils.isEmpty(APP_VERSION_NAME)) {
             // 获取 App 版本信息

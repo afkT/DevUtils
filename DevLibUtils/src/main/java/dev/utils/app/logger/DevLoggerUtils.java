@@ -20,12 +20,12 @@ public final class DevLoggerUtils {
 	private static final String TAG = DevLoggerUtils.class.getSimpleName();
 
 	/**
-	 * App 初始化调用方法(获取版本号)
+	 * 初始化调用方法(获取版本号)
 	 * @param context
 	 */
-	public static void appInit(Context context) {
+	public static void init(Context context) {
 		// 保存 App 版本信息
-		Utils.appInit(context);
+		Utils.init(context);
 	}
 	
 	// ================= 内部快速初始化LogConfig  ==================

@@ -10,8 +10,7 @@ import android.support.annotation.RequiresApi;
 
 /**
  * detail: 轮询工具类
- * Created by MaTianyu
- * Update to Ttt
+ * Created by Ttt
  */
 public final class PollingUtils {
 
