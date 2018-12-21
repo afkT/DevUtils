@@ -26,7 +26,7 @@ final class LoggerPrinter implements IPrinter {
 	private static LogConfig LOG_CONFIG = null;
 
 	/** 每个线程的日志配置信息 */
-	private static final ThreadLocal<LogConfig> LOCAL_LOG_CONFIGS = new ThreadLocal<LogConfig>();
+	private static final ThreadLocal<LogConfig> LOCAL_LOG_CONFIGS = new ThreadLocal<>();
 
 	// ================== 实现IPrinter接口,对外公开方法 ===================
 
@@ -571,7 +571,7 @@ final class LoggerPrinter implements IPrinter {
 		logBottomBorder(logType, tag);
 	}
 
-	// ========================== 日志格式拼接   ==========================
+	// ========================== 日志格式拼接 ==========================
 	/**
 	 * 日志线程信息主体部分
 	 * @param lConfig 日志配置
@@ -690,7 +690,7 @@ final class LoggerPrinter implements IPrinter {
 		return "";
 	}
 
-	// ===================  获取堆栈信息     ============================
+	// ===================  获取堆栈信息 ============================
 	/**
 	 * 获取类名
 	 * @param name 类名.class
@@ -716,7 +716,7 @@ final class LoggerPrinter implements IPrinter {
 		return -1;
 	}
 
-	// ========================== 日志配置获取    ==========================
+	// ========================== 日志配置获取 ==========================
 	/**
 	 * 返回对应线程的日志配置信息
 	 */

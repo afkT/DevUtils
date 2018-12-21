@@ -86,8 +86,8 @@ public class AliasMethod {
         probabilities = new ArrayList<Double>(probabilities);
 
         /* Create two stacks to act as worklists as we populate the tables. */
-        Deque<Integer> small = new ArrayDeque<Integer>();
-        Deque<Integer> large = new ArrayDeque<Integer>();
+        Deque<Integer> small = new ArrayDeque<>();
+        Deque<Integer> large = new ArrayDeque<>();
 
         /* Populate the stacks with the input probabilities. */
         for (int i = 0; i < probabilities.size(); ++i) {
