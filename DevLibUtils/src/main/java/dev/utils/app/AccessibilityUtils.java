@@ -229,23 +229,23 @@ public final class AccessibilityUtils {
     /**
      * 查找符合条件的节点
      * @param text
-     * @param claName
+     * @param className
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(String text, String claName) {
-        return findAccessibilityNodeInfosByText(service, text, claName);
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(String text, String className) {
+        return findAccessibilityNodeInfosByText(service, text, className);
     }
 
     /**
      * 查找符合条件的节点
      * @param service
      * @param text
-     * @param claName
+     * @param className
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(AccessibilityService service, String text, String claName) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(AccessibilityService service, String text, String className) {
         List<AccessibilityNodeInfo> lists = new ArrayList<>();
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
@@ -257,7 +257,7 @@ public final class AccessibilityUtils {
         for (int i = 0; i < nodes.size(); i++) {
             AccessibilityNodeInfo node = nodes.get(i);
             // 判断是否符合的类型
-            if (node.getClassName().equals(claName) && node.isEnabled()) {
+            if (node.getClassName().equals(className) && node.isEnabled()) {
                 // 保存符合条件
                 lists.add(node);
             }

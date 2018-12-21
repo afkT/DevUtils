@@ -58,17 +58,17 @@ public final class ShortCutUtils {
     /**
      * 为程序创建桌面快捷方式
      * @param context
-     * @param clasName
+     * @param className
      * @param name
      * @param res
      */
-    public static void addShortcut(Context context, String clasName, String name, int res) {
+    public static void addShortcut(Context context, String className, String name, int res) {
         Intent shortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name); // 快捷方式的名称
         shortcut.putExtra("duplicate", false); // 不允许重复创建
         // 设置 快捷方式跳转页面
         Intent shortcutIntent = new Intent(Intent.ACTION_MAIN);
-        shortcutIntent.setClassName(context, clasName);
+        shortcutIntent.setClassName(context, className);
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         // 快捷方式的图标
         ShortcutIconResource iconRes = ShortcutIconResource.fromContext(context, res);
@@ -81,11 +81,11 @@ public final class ShortCutUtils {
      * @param context
      * @param name
      */
-    public static void delShortcut(Context context, String clasName, String name) {
+    public static void delShortcut(Context context, String className, String name) {
         Intent shortcut = new Intent("com.android.launcher.action.UNINSTALL_SHORTCUT");
         // 快捷方式的名称
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
-        String appClass = context.getPackageName() + "." + clasName;
+        String appClass = context.getPackageName() + "." + className;
         ComponentName comp = new ComponentName(context.getPackageName(), appClass);
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, new Intent(Intent.ACTION_MAIN).setComponent(comp));
         context.sendBroadcast(shortcut);
