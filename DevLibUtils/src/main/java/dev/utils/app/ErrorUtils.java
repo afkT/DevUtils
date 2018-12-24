@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import dev.utils.LogPrintUtils;
+
 /**
  * detail: 错误信息处理工具类
  * Created by Ttt
@@ -13,6 +15,8 @@ public final class ErrorUtils {
     private ErrorUtils(){
     }
 
+    // 日志TAG
+    private static final String TAG = ErrorUtils.class.getSimpleName();
     /** 换行字符串 */
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
     /** 换行字符串 - 两行 */
@@ -47,7 +51,12 @@ public final class ErrorUtils {
                 return writer.toString();
             }
         } catch (Exception ex){
-            return ex.getMessage();
+            LogPrintUtils.eTag(TAG, e, "getThrowableMsg");
+            if (ex != null){
+                return ex.getMessage();
+            } else {
+                return "ex(null)";
+            }
         }
         return "e(null)";
     }
@@ -74,6 +83,7 @@ public final class ErrorUtils {
                 return writer.toString();
             }
         } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getThrowableMsg");
         } finally {
             if(printWriter != null) {
                 printWriter.close();

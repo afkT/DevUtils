@@ -1,11 +1,13 @@
 package dev;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 
 import dev.utils.BuildConfig;
 import dev.utils.JCLogUtils;
@@ -36,7 +38,8 @@ public final class DevUtils {
 //    }
 
     // ---
-
+    /** 日志 TAG */
+    private static final String TAG = DevUtils.class.getSimpleName();
     /** 全局 Application 对象 */
     private static Application sApplication;
     /** 全局 Context - getApplicationContext() */
@@ -140,8 +143,42 @@ public final class DevUtils {
      * @return
      */
     public static Application getApplication(){
-        return DevUtils.sApplication;
+        if (DevUtils.sApplication != null) return DevUtils.sApplication;
+        try {
+            Application app = getApplicationByReflect();
+            if (app != null){
+                init(app); // 初始化操作
+            }
+            return app;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getApplication");
+        }
+        return null;
     }
+
+    // =
+
+    /**
+     * 反射获取 Application
+     * @return
+     */
+    private static Application getApplicationByReflect() {
+        try {
+            @SuppressLint("PrivateApi")
+            Class<?> activityThread = Class.forName("android.app.ActivityThread");
+            Object thread = activityThread.getMethod("currentActivityThread").invoke(null);
+            Object app = activityThread.getMethod("getApplication").invoke(thread);
+            if (app == null) {
+                throw new NullPointerException("u should init first");
+            }
+            return (Application) app;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getApplicationByReflect");
+        }
+        throw new NullPointerException("u should init first");
+    }
+
+    // =
 
     /**
      * 获取Handler
@@ -201,32 +238,84 @@ public final class DevUtils {
         return debug;
     }
 
-    // ==================
-    // ==== Activity ====
-    // ==================
+    // == 工具类版本 ==
+
+    /**
+     * 获取工具类版本
+     * @return
+     */
+    public static String getUtilsVersion(){
+        return BuildConfig.VERSION_NAME;
+    }
+
+    // =======================
+    // ==== Activity 监听 ====
+    // =======================
+
+    /** ActivityLifecycleCallbacks 实现类, 监听 Activity */
+    private static final ActivityLifecycleImpl ACTIVITY_LIFECYCLE = new ActivityLifecycleImpl();
+    /** 权限 Activity class name */
+    public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.PermissionUtils$PermissionActivity";
 
     /**
      * 注册绑定Activity 生命周期事件处理
      * @param application
      */
     private static void registerActivityLifecycleCallbacks(Application application){
+        // 先移除监听
+        unregisterActivityLifecycleCallbacks(application);
+        // 防止为null
         if (application != null){
-            // 先移除旧的监听
-            application.unregisterActivityLifecycleCallbacks(lifecycleCallbacks);
-            // 绑定新的监听
-            application.registerActivityLifecycleCallbacks(lifecycleCallbacks);
+            try {
+                // 绑定新的监听
+                application.registerActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "registerActivityLifecycleCallbacks");
+            }
         }
     }
 
-    /** 保留当前(前台) Activity */
-    private static Activity sCurActivity = null;
+    /**
+     * 解除注册 Activity 生命周期事件处理
+     * @param application
+     */
+    private static void unregisterActivityLifecycleCallbacks(Application application){
+        if (application != null){
+            try {
+                // 先移除旧的监听
+                application.unregisterActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "unregisterActivityLifecycleCallbacks");
+            }
+        }
+    }
+
+    // == 对外公开方法 ==
 
     /**
-     * 对Activity的生命周期事件进行集中处理。
+     * 获取 Activity 生命周期 相关信息获取接口类
+     * @return
+     */
+    public static ActivityLifecycleGet getActivityLifecycleGet(){
+        return ACTIVITY_LIFECYCLE;
+    }
+
+    /**
+     * 获取 Top Activity
+     * @return
+     */
+    public static Activity getTopActivity(){
+        return ACTIVITY_LIFECYCLE.getTopActivity();
+    }
+
+    /**
+     * detail: 对Activity的生命周期事件进行集中处理。  ActivityLifecycleCallbacks 实现方法
+     * Created by Ttt
      * http://blog.csdn.net/tongcpp/article/details/40344871
      */
-    private static Application.ActivityLifecycleCallbacks lifecycleCallbacks = new Application.ActivityLifecycleCallbacks() {
-        @Override
+    private static class ActivityLifecycleImpl implements Application.ActivityLifecycleCallbacks, ActivityLifecycleGet {
+
+         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
 
         }
@@ -238,8 +327,7 @@ public final class DevUtils {
 
         @Override
         public void onActivityResumed(Activity activity) {
-            // 保存当前Activity
-            DevUtils.sCurActivity = activity;
+
         }
 
         @Override
@@ -261,38 +349,61 @@ public final class DevUtils {
         public void onActivityDestroyed(Activity activity) {
 
         }
-    };
 
-    /**
-     * 获取当前Activity
-     * @return
-     */
-    public static Activity getCurActivity(){
-        return DevUtils.sCurActivity;
-    }
+        // == ActivityLifecycleGet 方法 ==
 
-    /**
-     * 判断是否相同的 Activity
-     * @param activity
-     * @return
-     */
-    public static boolean isSameActivity(Activity activity){
-        if (activity != null && DevUtils.sCurActivity != null){
-            try {
-                return DevUtils.sCurActivity.getClass().getName().equals(activity.getClass().getName());
-            } catch (Exception e){
-            }
+        @Override
+        public Activity getTopActivity() {
+            return null;
         }
-        return false;
+
+        @Override
+        public boolean isTopActivity(String activityClassName) {
+            if (!TextUtils.isEmpty(activityClassName)){
+                Activity activity = getTopActivity();
+                // 判断是否类是否一致
+                return (activity != null && activity.getClass().getCanonicalName().equals(activityClassName));
+            }
+            return false;
+        }
+
+        @Override
+        public boolean isTopActivity(Class clazz) {
+             if (clazz != null){
+                 Activity activity = getTopActivity();
+                 // 判断是否类是否一致
+                 return (activity != null && activity.getClass().getCanonicalName().equals(clazz.getCanonicalName()));
+             }
+            return false;
+        }
     }
 
-    // == 工具类版本 ==
-
     /**
-     * 获取工具类版本
-     * @return
+     * detail: Activity 生命周期 相关信息获取接口
+     * Created by Ttt
+     * http://blog.csdn.net/tongcpp/article/details/40344871
      */
-    public static String getUtilsVersion(){
-        return BuildConfig.VERSION_NAME;
+    public interface ActivityLifecycleGet {
+
+        /**
+         * 获取最顶部 (当前或最后一个显示) Activity
+         * @return
+         */
+        Activity getTopActivity();
+
+        /**
+         * 判断某个 Activity 是否 Top Activity
+         * @param activityClassName Activity.class.getCanonicalName()
+         * @return
+         */
+        boolean isTopActivity(String activityClassName);
+
+        /**
+         * 判断某个 Class(Activity) 是否 Top Activity
+         * @param clazz Activity.class or this.getClass()
+         * @return
+         */
+        boolean isTopActivity(Class clazz);
+
     }
 }
