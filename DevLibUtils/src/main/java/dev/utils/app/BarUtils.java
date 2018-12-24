@@ -37,14 +37,14 @@ import static android.Manifest.permission.EXPAND_STATUS_BAR;
  */
 public final class BarUtils {
 
+    private BarUtils() {
+    }
+
     private static final int DEFAULT_ALPHA = 112;
     private static final String TAG_COLOR = "TAG_COLOR";
     private static final String TAG_ALPHA = "TAG_ALPHA";
     private static final String TAG_OFFSET = "TAG_OFFSET";
     private static final int KEY_OFFSET = -123;
-
-    private BarUtils() {
-    }
 
     /**
      * 获取状态栏高度
@@ -589,7 +589,6 @@ public final class BarUtils {
             Method expand = statusBarManager.getMethod(methodName);
             expand.invoke(service);
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

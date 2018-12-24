@@ -203,7 +203,7 @@ public final class ImageUtils {
     public static Bitmap scale(final Bitmap src, final int newWidth, final int newHeight, final boolean recycle) {
         if (isEmptyBitmap(src)) return null;
         Bitmap ret = Bitmap.createScaledBitmap(src, newWidth, newHeight, true);
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -231,7 +231,7 @@ public final class ImageUtils {
         Matrix matrix = new Matrix();
         matrix.setScale(scaleWidth, scaleHeight);
         Bitmap ret = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -261,7 +261,7 @@ public final class ImageUtils {
     public static Bitmap clip(final Bitmap src, final int x, final int y, final int width, final int height, final boolean recycle) {
         if (isEmptyBitmap(src)) return null;
         Bitmap ret = Bitmap.createBitmap(src, x, y, width, height);
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -316,7 +316,7 @@ public final class ImageUtils {
         Matrix matrix = new Matrix();
         matrix.setSkew(kx, ky, px, py);
         Bitmap ret = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -347,7 +347,7 @@ public final class ImageUtils {
         Matrix matrix = new Matrix();
         matrix.setRotate(degrees, px, py);
         Bitmap ret = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -440,7 +440,7 @@ public final class ImageUtils {
             float radius = center - borderSize / 2f;
             canvas.drawCircle(width / 2f, height / 2f, radius, paint);
         }
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -507,7 +507,7 @@ public final class ImageUtils {
             paint.setStrokeCap(Paint.Cap.ROUND);
             canvas.drawRoundRect(rectF, radius, radius, paint);
         }
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -627,7 +627,7 @@ public final class ImageUtils {
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         canvas.drawRect(0, srcHeight + REFLECTION_GAP, srcWidth, ret.getHeight(), paint);
         if (!reflectionBitmap.isRecycled()) reflectionBitmap.recycle();
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -668,7 +668,7 @@ public final class ImageUtils {
         Rect bounds = new Rect();
         paint.getTextBounds(content, 0, content.length(), bounds);
         canvas.drawText(content, x, y + textSize, paint);
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -704,7 +704,7 @@ public final class ImageUtils {
             paint.setAlpha(alpha);
             canvas.drawBitmap(watermark, x, y, paint);
         }
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -726,7 +726,7 @@ public final class ImageUtils {
     public static Bitmap toAlpha(final Bitmap src, final Boolean recycle) {
         if (isEmptyBitmap(src)) return null;
         Bitmap ret = src.extractAlpha();
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -755,7 +755,7 @@ public final class ImageUtils {
         ColorMatrixColorFilter colorMatrixColorFilter = new ColorMatrixColorFilter(colorMatrix);
         paint.setColorFilter(colorMatrixColorFilter);
         canvas.drawBitmap(src, 0, 0, paint);
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 
@@ -801,12 +801,12 @@ public final class ImageUtils {
             scaleBitmap = stackBlur(scaleBitmap, (int) radius, recycle);
         }
         if (scale == 1) {
-            if (recycle && !src.isRecycled()) src.recycle();
+            if (recycle && !src.isRecycled() && scaleBitmap != src) src.recycle();
             return scaleBitmap;
         }
         Bitmap ret = Bitmap.createScaledBitmap(scaleBitmap, width, height, true);
         if (!scaleBitmap.isRecycled()) scaleBitmap.recycle();
-        if (recycle && !src.isRecycled()) src.recycle();
+        if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
     }
 

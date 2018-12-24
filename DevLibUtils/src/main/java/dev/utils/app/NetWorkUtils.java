@@ -9,13 +9,16 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
+import android.text.format.Formatter;
 
 import java.lang.reflect.Method;
 import java.net.InetAddress;
+import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,6 +26,8 @@ import java.util.concurrent.Future;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+
+import static android.Manifest.permission.ACCESS_WIFI_STATE;
 
 /**
  * detail: 网络管理工具类
@@ -335,6 +340,31 @@ public final class NetWorkUtils {
 	}
 
 	/**
+	 * 获取广播 ip 地址
+	 * @return
+	 */
+	public static String getBroadcastIpAddress() {
+		try {
+			Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
+			while (nis.hasMoreElements()) {
+				NetworkInterface ni = nis.nextElement();
+				if (!ni.isUp() || ni.isLoopback()) continue;
+				List<InterfaceAddress> ias = ni.getInterfaceAddresses();
+				for (int i = 0; i < ias.size(); i++) {
+					InterfaceAddress ia = ias.get(i);
+					InetAddress broadcast = ia.getBroadcast();
+					if (broadcast != null) {
+						return broadcast.getHostAddress();
+					}
+				}
+			}
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getBroadcastIpAddress");
+		}
+		return null;
+	}
+
+	/**
 	 * 获取域名ip地址
 	 * @param domain 域名  www.baidu.com  不需要加上http
 	 * @return ip地址
@@ -392,6 +422,70 @@ public final class NetWorkUtils {
 			}
 		} catch (SocketException e) {
 			LogPrintUtils.eTag(TAG, e, "getIPAddress");
+		}
+		return null;
+	}
+
+	/**
+	 * 根据 WiFi 获取网络 IP 地址
+	 * @return
+	 */
+	@RequiresPermission(ACCESS_WIFI_STATE)
+	public static String getIpAddressByWifi() {
+		try {
+			@SuppressLint("WifiManagerLeak")
+			WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+			return Formatter.formatIpAddress(wifiManager.getDhcpInfo().ipAddress);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getIpAddressByWifi");
+		}
+		return null;
+	}
+
+	/**
+	 * 根据 WiFi 获取网关 IP 地址
+	 * @return
+	 */
+	@RequiresPermission(ACCESS_WIFI_STATE)
+	public static String getGatewayByWifi() {
+		try {
+			@SuppressLint("WifiManagerLeak")
+			WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+			return Formatter.formatIpAddress(wifiManager.getDhcpInfo().gateway);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getGatewayByWifi");
+		}
+		return null;
+	}
+
+	/**
+	 * 根据 WiFi 获取子网掩码 IP 地址
+	 * @return
+	 */
+	@RequiresPermission(ACCESS_WIFI_STATE)
+	public static String getNetMaskByWifi() {
+		try {
+			@SuppressLint("WifiManagerLeak")
+			WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+			return Formatter.formatIpAddress(wifiManager.getDhcpInfo().netmask);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getNetMaskByWifi");
+		}
+		return null;
+	}
+
+	/**
+	 * 根据 WiFi 获取服务端 IP 地址
+	 * @return
+	 */
+	@RequiresPermission(ACCESS_WIFI_STATE)
+	public static String getServerAddressByWifi() {
+		try {
+			@SuppressLint("WifiManagerLeak")
+			WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+			return Formatter.formatIpAddress(wifiManager.getDhcpInfo().serverAddress);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getServerAddressByWifi");
 		}
 		return null;
 	}

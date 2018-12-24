@@ -845,7 +845,7 @@ public final class DateUtils {
 			// 返回转换后的时间
 			return DateUtils.parseLong(yyyyMMddHHmmss, DateUtils.yyyyMMddHHmmss);
 		} catch (Exception e){
-			e.printStackTrace();
+			JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
 		}
 		return -1;
 	}

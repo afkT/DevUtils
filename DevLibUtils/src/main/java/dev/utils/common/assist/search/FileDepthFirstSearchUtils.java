@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.utils.JCLogUtils;
+
 /**
  * detail: 文件深度优先搜索算法 (搜索某个目录下的全部文件)
  * Created by Ttt
@@ -264,7 +266,7 @@ public class FileDepthFirstSearchUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            JCLogUtils.eTag(FileDepthFirstSearchUtils.class.getSimpleName(), e, "queryFile");
         }
     }
 }

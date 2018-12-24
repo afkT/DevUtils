@@ -8,6 +8,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import dev.utils.JCLogUtils;
+
 /**
  * detail: 文件广度优先搜索算法 (多线程 + 队列搜索)
  * Created by Ttt
@@ -337,7 +339,7 @@ public class FileBreadthFirstSearchUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            JCLogUtils.eTag(FileBreadthFirstSearchUtils.class.getSimpleName(), e, "queryFile");
         }
     }
 

@@ -380,7 +380,6 @@ public final class ZipUtils {
             // 存在, 则返回新的路径
             return file.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
             return false;
         }
     }
