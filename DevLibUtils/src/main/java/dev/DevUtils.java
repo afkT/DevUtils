@@ -9,6 +9,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 import dev.utils.BuildConfig;
 import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
@@ -254,6 +263,8 @@ public final class DevUtils {
 
     /** ActivityLifecycleCallbacks 实现类, 监听 Activity */
     private static final ActivityLifecycleImpl ACTIVITY_LIFECYCLE = new ActivityLifecycleImpl();
+    // Activity 过滤判断接口
+    private static ActivityLifecycleFilter activityLifecycleFilter;
     /** 权限 Activity class name */
     public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.PermissionUtils$PermissionActivity";
 
@@ -301,6 +312,14 @@ public final class DevUtils {
     }
 
     /**
+     * 获取 Activity 生命周期 事件监听接口类
+     * @return
+     */
+    public static ActivityLifecycleNotify getActivityLifecycleNotify(){
+        return ACTIVITY_LIFECYCLE;
+    }
+
+    /**
      * 获取 Top Activity
      * @return
      */
@@ -309,35 +328,81 @@ public final class DevUtils {
     }
 
     /**
+     * 设置 Activity 生命周期 过滤判断接口
+     * @param activityLifecycleFilter
+     */
+    public static void setActivityLifecycleFilter(ActivityLifecycleFilter activityLifecycleFilter) {
+        DevUtils.activityLifecycleFilter = activityLifecycleFilter;
+    }
+
+    // == 接口相关 ==
+
+    /**
      * detail: 对Activity的生命周期事件进行集中处理。  ActivityLifecycleCallbacks 实现方法
      * Created by Ttt
      * http://blog.csdn.net/tongcpp/article/details/40344871
      */
-    private static class ActivityLifecycleImpl implements Application.ActivityLifecycleCallbacks, ActivityLifecycleGet {
+    private static class ActivityLifecycleImpl implements Application.ActivityLifecycleCallbacks, ActivityLifecycleGet, ActivityLifecycleNotify {
+
+        // 保存未销毁的 Activity
+        final LinkedList<Activity> mActivityList = new LinkedList<>();
+        // App 状态改变事件
+        final Map<Object, OnAppStatusChangedListener> mStatusListenerMap = new ConcurrentHashMap<>();
+        // Activity 销毁事件
+        final Map<Activity, Set<OnActivityDestroyedListener>> mDestroyedListenerMap = new ConcurrentHashMap<>();
+
+        // 前台 Activity 总数
+        private int mForegroundCount = 0;
+        // Activity Configuration 改变次数
+        private int mConfigCount = 0;
+        // 是否后台 Activity
+        private boolean mIsBackground = false;
+
+        // == ActivityLifecycleCallbacks ==
 
          @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+             setTopActivity(activity);
         }
 
         @Override
         public void onActivityStarted(Activity activity) {
-
+            if (!mIsBackground) {
+                setTopActivity(activity);
+            }
+            if (mConfigCount < 0) {
+                ++mConfigCount;
+            } else {
+                ++mForegroundCount;
+            }
         }
 
         @Override
         public void onActivityResumed(Activity activity) {
-
+            setTopActivity(activity);
+            // Activity 准备可见, 设置为非后台 Activity
+            if (mIsBackground) {
+                mIsBackground = false;
+                postStatus(true);
+            }
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
-
         }
 
         @Override
         public void onActivityStopped(Activity activity) {
-
+            // 检测当前的 Activity 是否因为 Configuration 的改变被销毁了
+            if (activity.isChangingConfigurations()) {
+                --mConfigCount;
+            } else {
+                --mForegroundCount;
+                if (mForegroundCount <= 0) {
+                    mIsBackground = true;
+                    postStatus(false);
+                }
+            }
         }
 
         @Override
@@ -347,18 +412,88 @@ public final class DevUtils {
 
         @Override
         public void onActivityDestroyed(Activity activity) {
+            mActivityList.remove(activity);
+            // 通知 Activity 销毁
+            consumeOnActivityDestroyedListener(activity);
+        }
 
+        // == 内部处理判断方法 ==
+
+        /**
+         * 保存 Activity 栈顶
+         * @param activity
+         */
+        private void setTopActivity(final Activity activity) {
+            // 判断是否过滤 Activity
+            if (ACTIVITY_LIFECYCLE_FILTER.filter(activity)) return;
+            // 判断是否已经包含该 Activity
+            if (mActivityList.contains(activity)) {
+                if (!mActivityList.getLast().equals(activity)) {
+                    mActivityList.remove(activity);
+                    mActivityList.addLast(activity);
+                }
+            } else {
+                mActivityList.addLast(activity);
+            }
+        }
+
+        /**
+         * 反射获取栈顶 Activity
+         * @return
+         */
+        private Activity getTopActivityByReflect() {
+            try {
+                @SuppressLint("PrivateApi")
+                Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+                Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
+                Field activitiesField = activityThreadClass.getDeclaredField("mActivityList");
+                activitiesField.setAccessible(true);
+                Map activities = (Map) activitiesField.get(activityThread);
+                if (activities == null) return null;
+                for (Object activityRecord : activities.values()) {
+                    Class activityRecordClass = activityRecord.getClass();
+                    Field pausedField = activityRecordClass.getDeclaredField("paused");
+                    pausedField.setAccessible(true);
+                    if (!pausedField.getBoolean(activityRecord)) {
+                        Field activityField = activityRecordClass.getDeclaredField("activity");
+                        activityField.setAccessible(true);
+                        return (Activity) activityField.get(activityRecord);
+                    }
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getTopActivityByReflect");
+            }
+            return null;
         }
 
         // == ActivityLifecycleGet 方法 ==
 
+        /**
+         * 获取最顶部 (当前或最后一个显示) Activity
+         * @return
+         */
         @Override
         public Activity getTopActivity() {
-            return null;
+            if (!mActivityList.isEmpty()) {
+                final Activity topActivity = mActivityList.getLast();
+                if (topActivity != null) {
+                    return topActivity;
+                }
+            }
+            Activity topActivityByReflect = getTopActivityByReflect();
+            if (topActivityByReflect != null) {
+                setTopActivity(topActivityByReflect);
+            }
+            return topActivityByReflect;
         }
 
+        /**
+         * 判断某个 Activity 是否 Top Activity
+         * @param activityClassName Activity.class.getCanonicalName()
+         * @return
+         */
         @Override
-        public boolean isTopActivity(String activityClassName) {
+        public boolean isTopActivity(final String activityClassName) {
             if (!TextUtils.isEmpty(activityClassName)){
                 Activity activity = getTopActivity();
                 // 判断是否类是否一致
@@ -367,8 +502,13 @@ public final class DevUtils {
             return false;
         }
 
+        /**
+         * 判断某个 Class(Activity) 是否 Top Activity
+         * @param clazz Activity.class or this.getClass()
+         * @return
+         */
         @Override
-        public boolean isTopActivity(Class clazz) {
+        public boolean isTopActivity(final Class clazz) {
              if (clazz != null){
                  Activity activity = getTopActivity();
                  // 判断是否类是否一致
@@ -376,12 +516,140 @@ public final class DevUtils {
              }
             return false;
         }
+
+        /**
+         * 判断应用是否后台(不可见)
+         * @return
+         */
+        @Override
+        public boolean isBackground() {
+            return mIsBackground;
+        }
+
+        /**
+         * 获取 Activity 总数
+         * @return
+         */
+        @Override
+        public int getActivityCount() {
+            return mActivityList.size();
+        }
+
+        // == ActivityLifecycleNotify ==
+
+        /**
+         * 添加 App 状态改变事件监听
+         * @param object
+         * @param listener
+         */
+        @Override
+        public void addOnAppStatusChangedListener(final Object object, final OnAppStatusChangedListener listener) {
+            mStatusListenerMap.put(object, listener);
+        }
+
+        /**
+         * 移除 App 状态改变事件监听
+         * @param object
+         */
+        @Override
+        public void removeOnAppStatusChangedListener(final Object object) {
+            mStatusListenerMap.remove(object);
+        }
+
+        /**
+         * 移除全部 App 状态改变事件监听
+         */
+        @Override
+        public void removeAllOnAppStatusChangedListener() {
+            mStatusListenerMap.clear();
+        }
+
+        // =
+
+        /**
+         * 添加 Activity 销毁通知事件
+         * @param activity
+         * @param listener
+         */
+        @Override
+        public void addOnActivityDestroyedListener(final Activity activity, final OnActivityDestroyedListener listener) {
+            if (activity == null || listener == null) return;
+            Set<OnActivityDestroyedListener> listeners;
+            if (!mDestroyedListenerMap.containsKey(activity)) {
+                listeners = new HashSet<>();
+                mDestroyedListenerMap.put(activity, listeners);
+            } else {
+                listeners = mDestroyedListenerMap.get(activity);
+                if (listeners.contains(listener)) return;
+            }
+            listeners.add(listener);
+        }
+
+        /**
+         * 移除 Activity 销毁通知事件
+         * @param activity
+         */
+        @Override
+        public void removeOnActivityDestroyedListener(final Activity activity) {
+            if (activity == null) return;
+            mDestroyedListenerMap.remove(activity);
+        }
+
+        /**
+         * 移除全部 Activity 销毁通知事件
+         */
+        @Override
+        public void removeAllOnActivityDestroyedListener() {
+            mDestroyedListenerMap.clear();
+        }
+
+
+        // == 事件通知相关 ==
+
+        /**
+         * 发送状态改变通知
+         * @param isForeground
+         */
+        private void postStatus(final boolean isForeground) {
+            if (mStatusListenerMap.isEmpty()) return;
+            // 保存到新的集合, 防止 ConcurrentModificationException
+            List<OnAppStatusChangedListener> lists = new ArrayList<>(mStatusListenerMap.values());
+            // 遍历通知
+            for (OnAppStatusChangedListener listener : lists) {
+                if (listener != null) {
+                    if (isForeground) {
+                        listener.onForeground();
+                    } else {
+                        listener.onBackground();
+                    }
+                }
+            }
+        }
+
+        /**
+         * 通知 Activity 销毁, 并且消费(移除)监听事件
+         * @param activity
+         */
+        private void consumeOnActivityDestroyedListener(final Activity activity) {
+            try {
+                // 保存到新的集合, 防止 ConcurrentModificationException
+                Set<OnActivityDestroyedListener> sets = new HashSet<>(mDestroyedListenerMap.get(activity));
+                // 遍历通知
+                for (OnActivityDestroyedListener listener : sets) {
+                    if (listener != null) {
+                        listener.onActivityDestroyed(activity);
+                    }
+                }
+            } catch (Exception e) {
+            }
+            // 移除已消费的事件
+            removeOnActivityDestroyedListener(activity);
+        }
     }
 
     /**
      * detail: Activity 生命周期 相关信息获取接口
      * Created by Ttt
-     * http://blog.csdn.net/tongcpp/article/details/40344871
      */
     public interface ActivityLifecycleGet {
 
@@ -405,5 +673,124 @@ public final class DevUtils {
          */
         boolean isTopActivity(Class clazz);
 
+        /**
+         * 判断应用是否后台(不可见)
+         * @return
+         */
+        boolean isBackground();
+
+        /**
+         * 获取 Activity 总数
+         * @return
+         */
+        int getActivityCount();
     }
+
+    /**
+     * detail: Activity 生命周期 过滤判断接口
+     * Created by Ttt
+     */
+    public interface ActivityLifecycleFilter {
+
+        /**
+         * 判断是否过滤该类(不进行添加等操作)
+         * @param activity
+         * @return true: return
+         */
+        boolean filter(Activity activity);
+    }
+
+    /**
+     * detail: Activity 生命周期 通知接口
+     * Created by Ttt
+     */
+    public interface ActivityLifecycleNotify {
+
+        /**
+         * 添加 App 状态改变事件监听
+         * @param object
+         * @param listener
+         */
+        void addOnAppStatusChangedListener(Object object, OnAppStatusChangedListener listener);
+
+        /**
+         * 移除 App 状态改变事件监听
+         * @param object
+         */
+        void removeOnAppStatusChangedListener(Object object);
+
+        /**
+         * 移除全部 App 状态改变事件监听
+         */
+        void removeAllOnAppStatusChangedListener();
+
+        // =
+
+        /**
+         * 添加 Activity 销毁通知事件
+         * @param activity
+         * @param listener
+         */
+        void addOnActivityDestroyedListener(Activity activity, OnActivityDestroyedListener listener);
+
+        /**
+         * 移除 Activity 销毁通知事件
+         * @param activity
+         */
+        void removeOnActivityDestroyedListener(Activity activity);
+
+        /**
+         * 移除全部 Activity 销毁通知事件
+         */
+        void removeAllOnActivityDestroyedListener();
+    }
+
+    /**
+     * detail: App 状态改变事件
+     * Created by Ttt
+     */
+    public interface OnAppStatusChangedListener {
+
+        /**
+         * 切换到前台
+         */
+        void onForeground();
+
+        /**
+         * 切换到后台
+         */
+        void onBackground();
+    }
+
+    /**
+     * detail: Activity 销毁事件
+     * Created by Ttt
+     */
+    public interface OnActivityDestroyedListener {
+
+        /**
+         * Activity 销毁通知
+         * @param activity
+         */
+        void onActivityDestroyed(Activity activity);
+    }
+
+    // == 接口实现 ==
+
+    private static final ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
+        @Override
+        public boolean filter(Activity activity) {
+            if (activity != null){
+                if (PERMISSION_ACTIVITY_CLASS_NAME.equals(activity.getClass().getName())){
+                    // 如果相同则不处理(该页面为内部权限框架, 申请权限页面)
+                    return true;
+                } else {
+                    if (activityLifecycleFilter != null){
+                        return activityLifecycleFilter.filter(activity);
+                    }
+                }
+            }
+            return false;
+        }
+    };
 }
