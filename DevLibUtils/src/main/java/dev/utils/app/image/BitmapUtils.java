@@ -29,7 +29,6 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.R;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ScreenUtils;
 
@@ -66,11 +65,12 @@ public final class BitmapUtils {
      * .9 图片着色
      * @param context
      * @param tintColor
+     * @param id
      * @return
      */
-    public static Drawable tint9PatchDrawableFrame(Context context, @ColorInt int tintColor) {
+    public static Drawable tint9PatchDrawableFrame(Context context, @ColorInt int tintColor, @DrawableRes int id) {
         try {
-            final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, R.drawable.dev_toast_frame);
+            final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, id);
             return tintIcon(toastDrawable, tintColor);
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "tint9PatchDrawableFrame");
