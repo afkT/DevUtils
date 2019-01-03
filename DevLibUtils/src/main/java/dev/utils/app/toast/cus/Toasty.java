@@ -380,7 +380,7 @@ public final class Toasty {
      * @param message
      */
     public static void warning(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
-        custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_ic_error_outline_white), WARNING_COLOR, duration, withIcon);
+        custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_icon_error_white), WARNING_COLOR, duration, withIcon);
     }
 
     // === info ===
@@ -409,7 +409,7 @@ public final class Toasty {
      * @param message
      */
     public static void info(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
-        custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_ic_info_outline_white), INFO_COLOR, duration, withIcon);
+        custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_icon_info_white), INFO_COLOR, duration, withIcon);
     }
 
     // === success ===
@@ -438,7 +438,7 @@ public final class Toasty {
      * @param message
      */
     public static void success(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
-        custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_ic_check_white), SUCCESS_COLOR, duration, withIcon);
+        custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_icon_success_white), SUCCESS_COLOR, duration, withIcon);
     }
 
     // === error ===
@@ -467,7 +467,7 @@ public final class Toasty {
      * @param message
      */
     public static void error(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
-        custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_ic_clear_white), ERROR_COLOR, duration, withIcon);
+        custom(context, message, ToastyUtils.getDrawable(context, R.drawable.dev_toast_icon_error_white), ERROR_COLOR, duration, withIcon);
     }
 
     // === custom ===
