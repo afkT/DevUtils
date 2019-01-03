@@ -75,7 +75,7 @@ public final class ToastUtils {
 	 * @param xOffset
 	 * @param yOffset
 	 */
-	public void setGravity(int gravity, int xOffset, int yOffset) {
+	public static void setGravity(int gravity, int xOffset, int yOffset) {
 		ToastUtils.mGravity = gravity;
 		ToastUtils.mX = xOffset;
 		ToastUtils.mY = yOffset;
@@ -86,7 +86,7 @@ public final class ToastUtils {
 	 * @param horizontalMargin
 	 * @param verticalMargin
 	 */
-	public void setMargin(float horizontalMargin, float verticalMargin) {
+	public static void setMargin(float horizontalMargin, float verticalMargin) {
 		ToastUtils.mHorizontalMargin = horizontalMargin;
 		ToastUtils.mVerticalMargin = verticalMargin;
 	}
