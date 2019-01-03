@@ -43,6 +43,16 @@ public final class ToastUtils {
 	private static float mHorizontalMargin, mVerticalMargin;
 
 	/**
+	 * 重置默认参数
+	 */
+	public static void reset(){
+		mIsHandler = true;
+		mNullText = "text is null";
+		mGravity = mX = mY = 0;
+		mHorizontalMargin = mVerticalMargin = 0.0f;
+	}
+
+	/**
 	 * 设置是否使用 Handler 显示 Toast
 	 * @param isHandler
 	 */
@@ -472,6 +482,15 @@ public final class ToastUtils {
 	 * 显示 View Toast 方法
 	 * @param isSingle
 	 * @param view
+	 */
+	public static void showToastView(boolean isSingle, View view) {
+		showToastView(isSingle,null, view, Toast.LENGTH_SHORT);
+	}
+
+	/**
+	 * 显示 View Toast 方法
+	 * @param isSingle
+	 * @param view
 	 * @param duration
 	 */
 	public static void showToastView(boolean isSingle, View view, int duration) {
@@ -568,7 +587,7 @@ public final class ToastUtils {
 				// 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
 				reflectToastHandler(toast);
 			} catch (Exception e){
-				LogPrintUtils.eTag(TAG, e, "newToastText");
+				LogPrintUtils.eTag(TAG, e, "newToastView");
 			}
 			return toast;
 		}
