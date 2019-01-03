@@ -1,17 +1,25 @@
 package dev.utils.app.toast;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
+
+import java.lang.reflect.Field;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 自定义Toast工具类
+ * detail: Simple Toast 工具类(简单的 Toast 工具类, 直接使用系统Toast)
  * Created by Ttt
+ * tips:
+ * 内部解决 Android 7.1.1 崩溃问题
+ * 但无处理 部分ROM 如魅族、小米、三星等关闭应用通知，无法显示 Toast 问题
  */
 public final class ToastUtils {
 
@@ -20,28 +28,56 @@ public final class ToastUtils {
 
 	// 日志TAG
 	private static final String TAG = ToastUtils.class.getSimpleName();
-
-	/** 内部持有唯一 */
+	// 内部持有单个Toast
 	private static Toast mToast = null;
 	// 判断是否使用 Handler
-	private static boolean isHandler = true;
+	private static boolean mIsHandler = true;
 	// 内部 Handler
 	private static final Handler sHandler = new Handler(Looper.getMainLooper());
+	// Null 值
+	private static String mNullText = "text is null";
+	// == 部分配置 ==
+	// Toast 的重心、X、Y 轴偏移
+	private static int mGravity, mX, mY;
+	// 水平边距、垂直边距
+	private static float mHorizontalMargin, mVerticalMargin;
 
 	/**
 	 * 设置是否使用 Handler 显示 Toast
 	 * @param isHandler
 	 */
-	public static void setHandler(boolean isHandler) {
-		ToastUtils.isHandler = isHandler;
+	public static void setIsHandler(boolean isHandler) {
+		ToastUtils.mIsHandler = isHandler;
 	}
 
 	/**
-	 * 获取内部唯一Toast对象
-	 * @return
+	 * 设置 Text 为 null 的文本
+	 * @param mNullText
 	 */
-	public static Toast getSignleToast(){
-		return mToast;
+	public static void setNullText(String mNullText) {
+		ToastUtils.mNullText = mNullText;
+	}
+
+	/**
+	 * 设置 Toast 显示在屏幕上的位置。
+	 * @param gravity
+	 * @param xOffset
+	 * @param yOffset
+	 */
+	public void setGravity(int gravity, int xOffset, int yOffset) {
+		ToastUtils.mGravity = gravity;
+		ToastUtils.mX = xOffset;
+		ToastUtils.mY = yOffset;
+	}
+
+	/**
+	 * 设置边距
+	 * @param horizontalMargin
+	 * @param verticalMargin
+	 */
+	public void setMargin(float horizontalMargin, float verticalMargin) {
+		ToastUtils.mHorizontalMargin = horizontalMargin;
+		ToastUtils.mVerticalMargin = verticalMargin;
 	}
 
 	// =====================
@@ -53,24 +89,7 @@ public final class ToastUtils {
 	// ========================
 
 	/**
-	 * 显示 一个短Toast
-	 * @param text
-	 */
-	public static void showShort(String text) {
-		showShort(null, text);
-	}
-
-	/**
-	 * 显示 一个短Toast
-	 * @param context
-	 * @param text
-	 */
-	public static void showShort(Context context, String text) {
-		handlerToastStr(true, context, text, Toast.LENGTH_SHORT);
-	}
-
-	/**
-	 * 显示 一个短Toast
+	 * 显示 LENGTH_SHORT Toast
 	 * @param text
 	 * @param objs
 	 */
@@ -79,7 +98,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示 一个短Toast
+	 * 显示 LENGTH_SHORT Toast
 	 * @param context
 	 * @param text
 	 * @param objs
@@ -88,25 +107,10 @@ public final class ToastUtils {
 		handlerToastStr(true, context, text, Toast.LENGTH_SHORT, objs);
 	}
 
-	/**
-	 * 显示 一个短Toast
-	 * @param resId
-	 */
-	public static void showShort(int resId) {
-		showShort(null, resId);
-	}
+	// =
 
 	/**
-	 * 显示 一个短Toast
-	 * @param context
-	 * @param resId
-	 */
-	public static void showShort(Context context, int resId) {
-		handlerToastRes(true, context, resId, Toast.LENGTH_SHORT);
-	}
-
-	/**
-	 * 显示 一个短Toast
+	 * * 显示 LENGTH_SHORT Toast
 	 * @param resId
 	 * @param objs
 	 */
@@ -115,7 +119,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示 一个短Toast
+	 * * 显示 LENGTH_SHORT Toast
 	 * @param context
 	 * @param resId
 	 * @param objs
@@ -129,24 +133,7 @@ public final class ToastUtils {
 	// ========================
 
 	/**
-	 * 显示 一个长Toast
-	 * @param text
-	 */
-	public static void showLong(String text) {
-		showLong(null, text);
-	}
-
-	/**
-	 * 显示 一个长Toast
-	 * @param context
-	 * @param text
-	 */
-	public static void showLong(Context context, String text) {
-		handlerToastStr(true, context, text, Toast.LENGTH_LONG);
-	}
-
-	/**
-	 * 显示 一个长Toast
+	 * 显示 LENGTH_LONG Toast
 	 * @param text
 	 * @param objs
 	 */
@@ -155,7 +142,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示 一个长Toast
+	 * 显示 LENGTH_LONG Toast
 	 * @param context
 	 * @param text
 	 * @param objs
@@ -164,25 +151,10 @@ public final class ToastUtils {
 		handlerToastStr(true, context, text, Toast.LENGTH_LONG, objs);
 	}
 
-	/**
-	 * 显示 一个长Toast
-	 * @param resId
-	 */
-	public static void showLong(int resId) {
-		showLong(null, resId);
-	}
+	// =
 
 	/**
-	 * 显示 一个长Toast
-	 * @param context
-	 * @param resId
-	 */
-	public static void showLong(Context context, int resId) {
-		handlerToastRes(true, context, resId, Toast.LENGTH_LONG);
-	}
-
-	/**
-	 * 显示 一个长Toast
+	 * 显示 LENGTH_LONG Toast
 	 * @param resId
 	 * @param objs
 	 */
@@ -191,7 +163,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示 一个长Toast
+	 * 显示 LENGTH_LONG Toast
 	 * @param context
 	 * @param resId
 	 * @param objs
@@ -200,12 +172,12 @@ public final class ToastUtils {
 		handlerToastRes(true, context, resId, Toast.LENGTH_LONG, objs);
 	}
 
-	// =======================
-	// ==== 最终Toast方法 ====
-	// =======================
+	// ===================
+	// ==== Toast方法 ====
+	// ===================
 
 	/**
-	 * 显示Toast
+	 * 显示 Toast
 	 * @param resId
 	 * @param duration
 	 */
@@ -214,7 +186,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示Toast
+	 * 显示 Toast
 	 * @param context
 	 * @param resId
 	 * @param duration
@@ -224,161 +196,22 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示Toast
+	 * 显示 Toast
 	 * @param text
 	 * @param duration
 	 */
 	public static void showToast(String text, int duration) {
-		showToast(null, text, duration);
+		priShowToastText(true, null, text, duration);
 	}
 
 	/**
-	 * 显示Toast
+	 * 显示 Toast
 	 * @param context
 	 * @param text
 	 * @param duration
 	 */
 	public static void showToast(Context context, String text, int duration) {
-		showToast(true, context, text, duration);
-	}
-
-	// ==
-
-	/**
-	 * 最终显示的Toast方法
-	 * @param isSingle
-	 * @param context
-	 * @param text
-	 * @param duration
-	 * @Toast
-	 */
-	private static void showToast(final boolean isSingle, final Context context, final String text, final int duration) {
-		if (isHandler){
-			sHandler.post(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						newToast(isSingle, context, text, duration).show();
-					} catch (Exception e) {
-						LogPrintUtils.eTag(TAG, e, "showToast");
-					}
-				}
-			});
-		} else {
-			try {
-				newToast(isSingle, context, text, duration).show();
-			} catch (Exception e) {
-				LogPrintUtils.eTag(TAG, e, "showToast");
-			}
-		}
-	}
-
-	/**
-	 * 获取一个新的 Toast
-	 * @param isSingle
-	 * @param context
-	 * @param text
-	 * @param duration
-	 * @return
-	 */
-	public static Toast newToast(boolean isSingle, Context context, String text, int duration){
-		if (context == null){
-			context = DevUtils.getContext();
-		}
-		// 尽心设置为null, 便于提示排查
-		if (text == null) {
-			text = "null";
-		}
-		// 判断是否显示唯一, 单独共用一个
-		if (isSingle) {
-			try {
-				if (mToast != null) {
-					mToast.setDuration(duration);
-					mToast.setText(text);
-				} else {
-					if (context != null) {
-						// 解决 MIUI 会显示应用名称问题
-						mToast = Toast.makeText(context, null, duration);
-						mToast.setText(text);
-					}
-				}
-			} catch (Exception e){
-				LogPrintUtils.eTag(TAG, e, "newToast");
-			}
-			return mToast;
-		} else {
-			Toast toast = null;
-			try {
-				// 解决 MIUI 会显示应用名称问题
-				toast = Toast.makeText(context, null, duration);
-				toast.setText(text);
-			} catch (Exception e){
-				LogPrintUtils.eTag(TAG, e, "newToast");
-			}
-			return toast;
-		}
-	}
-
-	// =====
-
-	/**
-	 * 处理 R.string 资源Toast的格式化
-	 * @param isSingle 是否单独共用显示一个
-	 * @param context
-	 * @param resId
-	 * @param duration
-	 * @param objs
-	 */
-	private static void handlerToastRes(boolean isSingle, Context context, int resId, int duration, Object... objs) {
-		if (context == null){
-			context = DevUtils.getContext();
-		}
-		if (context != null) {
-			String text;
-			try {
-				// 获取字符串并且进行格式化
-				if (objs != null && objs.length != 0) {
-					text = context.getString(resId, objs);
-				} else {
-					text = context.getString(resId);
-				}
-			} catch (Exception e) {
-				LogPrintUtils.eTag(TAG, e, "handlerToastRes");
-				text = e.getMessage();
-			}
-			showToast(isSingle, context, text, duration);
-		}
-	}
-
-	/**
-	 * 处理字符串Toast的格式化
-	 * @param context
-	 * @param text
-	 * @param duration
-	 * @param objs
-	 */
-	private static void handlerToastStr(boolean isSingle, Context context, String text, int duration, Object... objs) {
-		if (context == null){
-			context = DevUtils.getContext();
-		}
-		// 防止 Context 为null
-		if (context != null) {
-			// 表示需要格式化字符串,只是为了减少 format步骤,增加判断，为null不影响
-			if (objs != null && objs.length != 0) {
-				if (text != null) { // String.format() 中的 objs 可以为null,但是 text不能为null
-					try {
-						showToast(isSingle, context, String.format(text, objs), duration);
-					} catch (Exception e){
-						LogPrintUtils.eTag(TAG, e, "handlerToastStr");
-						showToast(isSingle, context, e.getMessage(), duration);
-					}
-				} else {
-					showToast(isSingle, context, text, duration);
-				}
-			} else {
-				showToast(isSingle, context, text, duration);
-			}
-		}
+		priShowToastText(true, context, text, duration);
 	}
 
 	// =====================
@@ -390,24 +223,7 @@ public final class ToastUtils {
 	// ========================
 
 	/**
-	 * 显示 一个新的短Toast
-	 * @param text
-	 */
-	public static void showShortNew(String text) {
-		showShortNew(null, text);
-	}
-
-	/**
-	 * 显示 一个新的短Toast
-	 * @param context
-	 * @param text
-	 */
-	public static void showShortNew(Context context, String text) {
-		handlerToastStr(false, context, text, Toast.LENGTH_SHORT);
-	}
-
-	/**
-	 * 显示 一个新的短Toast
+	 * 显示 new LENGTH_SHORT Toast
 	 * @param text
 	 * @param objs
 	 */
@@ -416,7 +232,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示 一个新的短Toast
+	 * 显示 new LENGTH_SHORT Toast
 	 * @param context
 	 * @param text
 	 * @param objs
@@ -425,25 +241,10 @@ public final class ToastUtils {
 		handlerToastStr(false, context, text, Toast.LENGTH_SHORT, objs);
 	}
 
-	/**
-	 * 显示 一个新的短Toast
-	 * @param resId
-	 */
-	public static void showShortNew(int resId) {
-		showShortNew(null, resId);
-	}
+	// =
 
 	/**
-	 * 显示 一个新的短Toast
-	 * @param context
-	 * @param resId
-	 */
-	public static void showShortNew(Context context, int resId) {
-		handlerToastRes(false, context, resId, Toast.LENGTH_SHORT);
-	}
-
-	/**
-	 * 显示 一个新的短Toast
+	 * 显示 new LENGTH_SHORT Toast
 	 * @param resId
 	 * @param objs
 	 */
@@ -452,7 +253,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示 一个新的短Toast
+	 * 显示 new LENGTH_SHORT Toast
 	 * @param context
 	 * @param resId
 	 * @param objs
@@ -466,24 +267,7 @@ public final class ToastUtils {
 	// ========================
 
 	/**
-	 * 显示 一个新的长Toast
-	 * @param text
-	 */
-	public static void showLongNew(String text) {
-		showLongNew(null, text);
-	}
-
-	/**
-	 * 显示 一个新的长Toast
-	 * @param context
-	 * @param text
-	 */
-	public static void showLongNew(Context context, String text) {
-		handlerToastStr(false, context, text, Toast.LENGTH_LONG);
-	}
-
-	/**
-	 * 显示 一个新的长Toast
+	 * 显示 new LENGTH_LONG Toast
 	 * @param text
 	 * @param objs
 	 */
@@ -492,7 +276,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示 一个新的长Toast
+	 * 显示 new LENGTH_LONG Toast
 	 * @param context
 	 * @param text
 	 * @param objs
@@ -501,25 +285,10 @@ public final class ToastUtils {
 		handlerToastStr(false, context, text, Toast.LENGTH_LONG, objs);
 	}
 
-	/**
-	 * 显示 一个新的长Toast
-	 * @param resId
-	 */
-	public static void showLongNew(int resId) {
-		showLongNew(null, resId);
-	}
+	// =
 
 	/**
-	 * 显示 一个新的长Toast
-	 * @param context
-	 * @param resId
-	 */
-	public static void showLongNew(Context context, int resId) {
-		handlerToastRes(false, context, resId, Toast.LENGTH_LONG);
-	}
-
-	/**
-	 * 显示 一个新的长Toast
+	 * 显示 new LENGTH_LONG Toast
 	 * @param resId
 	 * @param objs
 	 */
@@ -528,7 +297,7 @@ public final class ToastUtils {
 	}
 
 	/**
-	 * 显示 一个新的长Toast
+	 * 显示 new LENGTH_LONG Toast
 	 * @param context
 	 * @param resId
 	 * @param objs
@@ -537,9 +306,9 @@ public final class ToastUtils {
 		handlerToastRes(false, context, resId, Toast.LENGTH_LONG, objs);
 	}
 
-	// =======================
-	// ==== 最终Toast方法 ====
-	// =======================
+	// ===================
+	// ==== Toast方法 ====
+	// ===================
 
 	/**
 	 * 显示新的 Toast
@@ -566,7 +335,7 @@ public final class ToastUtils {
 	 * @param duration
 	 */
 	public static void showToastNew(String text, int duration) {
-		showToastNew(null, text, duration);
+		priShowToastText(false, null, text, duration);
 	}
 
 	/**
@@ -576,61 +345,182 @@ public final class ToastUtils {
 	 * @param duration
 	 */
 	public static void showToastNew(Context context, String text, int duration) {
-		showToast(false, context, text, duration);
+		priShowToastText(false, context, text, duration);
 	}
 
-	// =======================
-	// ==== 最终Toast方法 ====
-	// =======================
+	// ====================
+	// ==== 显示 Toast ====
+	// ====================
 
 	/**
-	 * 最终显示Toast方法
-	 * @param view
-	 * @param duration
-	 * @param isNewToast
-	 */
-	public static void showToast(View view, int duration, boolean isNewToast) {
-		showToast(null, view, duration, isNewToast);
-	}
-
-	/**
-	 * 最终显示Toast方法
+	 * 内部私有方法, 最终显示 Toast
+	 * @param isSingle
 	 * @param context
-	 * @param view
+	 * @param text
 	 * @param duration
-	 * @param isNewToast
+	 * @Toast
 	 */
-	public static void showToast(final Context context, final View view, final int duration, final boolean isNewToast) {
-		if (isHandler){
+	private static void priShowToastText(final boolean isSingle, final Context context, final String text, final int duration) {
+		if (mIsHandler){
 			sHandler.post(new Runnable() {
 				@Override
 				public void run() {
 					try {
-						newToast(context, view, duration, isNewToast).show();
+						Toast toast = newToastText(isSingle, context, text, duration);
+						if (toast != null){
+							toast.show();
+						}
 					} catch (Exception e) {
-						LogPrintUtils.eTag(TAG, e, "showToast");
+						LogPrintUtils.eTag(TAG, e, "priShowToastText");
 					}
 				}
 			});
 		} else {
 			try {
-				newToast(context, view, duration, isNewToast).show();
+				Toast toast = newToastText(isSingle, context, text, duration);
+				if (toast != null){
+					toast.show();
+				}
 			} catch (Exception e) {
-				LogPrintUtils.eTag(TAG, e, "showToast");
+				LogPrintUtils.eTag(TAG, e, "priShowToastText");
 			}
 		}
 	}
 
+	/**
+	 * 获取一个新的 Text Toast
+	 * @param isSingle
+	 * @param context
+	 * @param text
+	 * @param duration
+	 * @return
+	 */
+	public static Toast newToastText(boolean isSingle, Context context, String text, int duration){
+		if (context == null){
+			context = DevUtils.getContext();
+		}
+		// 设置为null, 便于提示排查
+		if (TextUtils.isEmpty(text)) {
+			text = mNullText;
+			// 如果还是为null, 则不处理
+			if (TextUtils.isEmpty(text)){
+				return null;
+			}
+		}
+		// 判断是否显示唯一, 单独共用一个
+		if (isSingle) {
+			try {
+				// 关闭旧的 Toast
+				if (mToast != null){
+					mToast.cancel();
+					mToast = null;
+				}
+				// 解决 MIUI 会显示应用名称问题
+				mToast = Toast.makeText(context, null, duration);
+				mToast.setText(text);
+				// 设置属性配置
+				if (mGravity != 0) {
+					mToast.setGravity(mGravity, mX, mY);
+				}
+				mToast.setMargin(mHorizontalMargin, mVerticalMargin);
+				// 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
+				reflectToastHandler(mToast);
+			} catch (Exception e){
+				LogPrintUtils.eTag(TAG, e, "newToastText");
+			}
+			return mToast;
+		} else {
+			Toast toast = null;
+			try {
+				// 解决 MIUI 会显示应用名称问题
+				toast = Toast.makeText(context, null, duration);
+				toast.setText(text);
+				// 设置属性配置
+				if (mGravity != 0) {
+					toast.setGravity(mGravity, mX, mY);
+				}
+				toast.setMargin(mHorizontalMargin, mVerticalMargin);
+				// 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
+				reflectToastHandler(toast);
+			} catch (Exception e){
+				LogPrintUtils.eTag(TAG, e, "newToastText");
+			}
+			return toast;
+		}
+	}
+
+	// = 显示 View Toast =
 
 	/**
-	 * 获取一个新的 Toast
+	 * 显示 View Toast 方法
+	 * @param view
+	 */
+	public static void showToastView(View view) {
+		showToastView(true,null, view, Toast.LENGTH_SHORT);
+	}
+
+	/**
+	 * 显示 View Toast 方法
+	 * @param view
+	 * @param duration
+	 */
+	public static void showToastView(View view, int duration) {
+		showToastView(true,null, view, duration);
+	}
+
+	/**
+	 * 显示 View Toast 方法
+	 * @param isSingle
+	 * @param view
+	 * @param duration
+	 */
+	public static void showToastView(boolean isSingle, View view, int duration) {
+		showToastView(isSingle,null, view, duration);
+	}
+
+	/**
+	 * 显示 View Toast 方法
+	 * @param isSingle
 	 * @param context
 	 * @param view
 	 * @param duration
-	 * @param isNewToast
+	 */
+	public static void showToastView(final boolean isSingle, final Context context, final View view, final int duration) {
+		if (mIsHandler){
+			sHandler.post(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						Toast toast = newToastView(isSingle, context, view, duration);
+						if (toast != null){
+							toast.show();
+						}
+					} catch (Exception e) {
+						LogPrintUtils.eTag(TAG, e, "showToastView");
+					}
+				}
+			});
+		} else {
+			try {
+				Toast toast = newToastView(isSingle, context, view, duration);
+				if (toast != null){
+					toast.show();
+				}
+			} catch (Exception e) {
+				LogPrintUtils.eTag(TAG, e, "showToastView");
+			}
+		}
+	}
+
+	/**
+	 * 获取一个新的 View Toast
+	 * @param isSingle
+	 * @param context
+	 * @param view
+	 * @param duration
 	 * @return
 	 */
-	public static Toast newToast(Context context, View view, int duration, boolean isNewToast){
+	public static Toast newToastView(boolean isSingle, Context context, View view, int duration){
 		if (context == null){
 			context = DevUtils.getContext();
 		}
@@ -640,30 +530,164 @@ public final class ToastUtils {
 		} else if (view == null) { // 防止显示的View 为null
 			return null;
 		}
-		try {
-			// 判断是否显示新的 Toast
-			if (isNewToast){
-				// 生成新的Toast
-				Toast toast = new Toast(context);
-				// 设置显示的View
-				toast.setView(view);
-				// 设置显示的时间
-				toast.setDuration(duration);
-				return toast;
-			} else {
-				if (mToast == null){
-					// 生成新的Toast
-					mToast = new Toast(context);
+		// 判断是否显示唯一, 单独共用一个
+		if (isSingle) {
+			try {
+				// 关闭旧的 Toast
+				if (mToast != null){
+					mToast.cancel();
+					mToast = null;
 				}
-				// 设置显示的View
+				// 解决 MIUI 会显示应用名称问题
+				mToast = new Toast(context);
 				mToast.setView(view);
-				// 设置显示的时间
 				mToast.setDuration(duration);
-				return mToast;
+				// 设置属性配置
+				if (mGravity != 0) {
+					mToast.setGravity(mGravity, mX, mY);
+				}
+				mToast.setMargin(mHorizontalMargin, mVerticalMargin);
+				// 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
+				reflectToastHandler(mToast);
+			} catch (Exception e){
+				LogPrintUtils.eTag(TAG, e, "newToastView");
 			}
-		} catch (Exception e){
-			LogPrintUtils.eTag(TAG, e, "newToast");
+			return mToast;
+		} else {
+			Toast toast = null;
+			try {
+				// 解决 MIUI 会显示应用名称问题
+				toast = new Toast(context);
+				toast.setView(view);
+				toast.setDuration(duration);
+				// 设置属性配置
+				if (mGravity != 0) {
+					toast.setGravity(mGravity, mX, mY);
+				}
+				toast.setMargin(mHorizontalMargin, mVerticalMargin);
+				// 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
+				reflectToastHandler(toast);
+			} catch (Exception e){
+				LogPrintUtils.eTag(TAG, e, "newToastText");
+			}
+			return toast;
 		}
-		return null;
+	}
+
+	// ====================
+	// === 内部处理方法 ===
+	// ====================
+
+	/**
+	 * 处理 R.string 资源Toast的格式化
+	 * @param isSingle 是否单独共用显示一个
+	 * @param context
+	 * @param resId
+	 * @param duration
+	 * @param objs
+	 */
+	private static void handlerToastRes(boolean isSingle, Context context, int resId, int duration, Object... objs) {
+		if (context == null){
+			context = DevUtils.getContext();
+		}
+		if (context != null) {
+			String text;
+			try {
+				// 获取字符串并且进行格式化
+				if (objs != null && objs.length != 0) {
+					text = context.getString(resId, objs);
+				} else {
+					text = context.getString(resId);
+				}
+			} catch (Exception e) {
+				LogPrintUtils.eTag(TAG, e, "handlerToastRes");
+				text = e.getMessage();
+			}
+			priShowToastText(isSingle, context, text, duration);
+		}
+	}
+
+	/**
+	 * 处理字符串Toast的格式化
+	 * @param context
+	 * @param text
+	 * @param duration
+	 * @param objs
+	 */
+	private static void handlerToastStr(boolean isSingle, Context context, String text, int duration, Object... objs) {
+		if (context == null){
+			context = DevUtils.getContext();
+		}
+		// 防止 Context 为null
+		if (context != null) {
+			// 表示需要格式化字符串,只是为了减少 format步骤,增加判断，为null不影响
+			if (objs != null && objs.length != 0) {
+				if (text != null) { // String.format() 中的 objs 可以为null,但是 text不能为null
+					try {
+						priShowToastText(isSingle, context, String.format(text, objs), duration);
+					} catch (Exception e){
+						LogPrintUtils.eTag(TAG, e, "handlerToastStr");
+						priShowToastText(isSingle, context, e.getMessage(), duration);
+					}
+				} else {
+					priShowToastText(isSingle, context, text, duration);
+				}
+			} else {
+				priShowToastText(isSingle, context, text, duration);
+			}
+		}
+	}
+
+	// ===============================
+	// = 解决 Android 7.1.1 崩溃问题 =
+	// ===============================
+
+	/**
+	 * 反射 Hook Toast 设置 Handler
+	 * @param toast
+	 */
+	private static final void reflectToastHandler(Toast toast){
+		if (toast == null) return;
+        // 反射设置 Toat Handler 解决 Android7.1.1Toast 崩溃 问题
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
+			try {
+				Field field_tn = Toast.class.getDeclaredField("mTN");
+				field_tn.setAccessible(true);
+
+				Object mTN = field_tn.get(toast);
+				Field field_handler = field_tn.getType().getDeclaredField("mHandler");
+				field_handler.setAccessible(true);
+
+				Handler handler = (Handler) field_handler.get(mTN);
+				field_handler.set(mTN, new SafeHandler(handler));
+			} catch (Exception ignored) {
+			}
+        }
+	}
+
+	/**
+	 * detail: Toast 安全显示 Handler
+	 * Created by Ttt
+	 */
+	private static final class SafeHandler extends Handler {
+
+		private Handler mHandler;
+
+		SafeHandler(Handler handler) {
+			mHandler = handler;
+		}
+
+		@Override
+		public void handleMessage(Message msg) {
+			mHandler.handleMessage(msg);
+		}
+
+		@Override
+		public void dispatchMessage(Message msg) {
+			try {
+				mHandler.dispatchMessage(msg);
+			} catch (Exception ignored) {
+			}
+		}
 	}
 }
