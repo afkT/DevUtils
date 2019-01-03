@@ -506,6 +506,9 @@ public final class ToastUtils {
 	 * @param duration
 	 */
 	public static void showToastView(final boolean isSingle, final Context context, final View view, final int duration) {
+		if (view == null) {
+			return; // 防止显示的View 为null
+		}
 		if (mIsHandler){
 			sHandler.post(new Runnable() {
 				@Override
