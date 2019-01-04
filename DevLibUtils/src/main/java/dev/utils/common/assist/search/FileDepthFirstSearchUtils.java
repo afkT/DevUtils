@@ -24,7 +24,7 @@ public class FileDepthFirstSearchUtils {
     /**
      * 文件信息 Item
      */
-    public static class FileItem {
+    public class FileItem {
 
         public FileItem(File file) {
             this.file = file;

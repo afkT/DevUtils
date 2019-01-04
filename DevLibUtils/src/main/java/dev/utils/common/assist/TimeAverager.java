@@ -2,30 +2,28 @@ package dev.utils.common.assist;
 
 /**
  * detail: 时间均值计算器, 只能用于单线程计时。
- * Created by MaTianyu
- * Update to Ttt
+ * Created by Ttt
  */
 public class TimeAverager {
 
     /** 计时器 */
-    private TimeCounter tc = new TimeCounter();
-
+    private TimeCounter timeCounter = new TimeCounter();
     /** 均值器 */
-    private Averager av = new Averager();
+    private Averager averager = new Averager();
 
     /**
      * 一个计时开始
      */
     public long start() {
-        return tc.start();
+        return timeCounter.start();
     }
 
     /**
      * 一个计时结束
      */
     public long end() {
-        long time = tc.duration();
-        av.add(time);
+        long time = timeCounter.duration();
+        averager.add(time);
         return time;
     }
 
@@ -33,8 +31,8 @@ public class TimeAverager {
      * 一个计时结束,并且启动下次计时。
      */
     public long endAndRestart() {
-        long time = tc.durationRestart();
-        av.add(time);
+        long time = timeCounter.durationRestart();
+        averager.add(time);
         return time;
     }
 
@@ -42,20 +40,20 @@ public class TimeAverager {
      * 求全部计时均值
      */
     public Number average() {
-        return av.getAverage();
+        return averager.getAverage();
     }
 
     /**
      * 打印全部时间值
      */
     public void print() {
-        av.print();
+        averager.print();
     }
 
     /**
      * 清除数据
      */
     public void clear() {
-        av.clear();
+        averager.clear();
     }
 }

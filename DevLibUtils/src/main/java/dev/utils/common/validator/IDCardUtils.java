@@ -16,18 +16,24 @@ import dev.utils.JCLogUtils;
  */
 public final class IDCardUtils {
 
+    private IDCardUtils() {
+    }
+
     // 日志TAG
     private static final String TAG = IDCardUtils.class.getSimpleName();
-
-    public static final int power[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+    // 加权因子
+    private static final int power[] = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
+    // 身份证最少位数
+    private static final int CHINA_ID_MIN_LENGTH = 15;
+    // 身份证最大位数
     private static final int CHINA_ID_MAX_LENGTH = 18;
-    public static final int CHINA_ID_MIN_LENGTH = 15;
-    public static Map<String, String> cityCodes = new HashMap<>();
-    public static Map<String, Integer> twFirstCode = new HashMap<>();
-    //台湾身份首字母对应数字
-    public static Map<String, Integer> hkFirstCode = new HashMap<>();
+    // 省份编码
+    private static Map<String, String> cityCodes = new HashMap<>();
+    // 台湾身份首字母对应数字
+    private static Map<String, Integer> twFirstCode = new HashMap<>();
+    // 香港身份首字母对应数字
+    private static Map<String, Integer> hkFirstCode = new HashMap<>();
 
-    //香港身份首字母对应数字
     static {
         cityCodes.put("11", "北京");
         cityCodes.put("12", "天津");
@@ -104,7 +110,6 @@ public final class IDCardUtils {
 
     /**
      * 将身份证的每位和对应位的加权因子相乘之后，再获取和值
-     *
      * @param iArr int[]
      * @return 身份证编码
      */
@@ -124,7 +129,6 @@ public final class IDCardUtils {
 
     /**
      * 将power和值与1 1取模获取余数进行校验码判断
-     *
      * @param iSum sum
      * @return 校验位
      */
@@ -170,7 +174,6 @@ public final class IDCardUtils {
 
     /**
      * 将字符数组转换成数字数组
-     *
      * @param ca 字符数组
      * @return 数字数组
      */
@@ -189,7 +192,6 @@ public final class IDCardUtils {
 
     /**
      * 数字验证
-     *
      * @param val 待验证的字符串
      * @return 是否是数字
      */
@@ -199,12 +201,10 @@ public final class IDCardUtils {
 
     /**
      * 身份证校验规则,验证18位身份编码是否合法
-     *
      * @param idCard 待验证的字符串
      * @return 校验结果
      */
     public static boolean validateIdCard18(String idCard) {
-
         boolean bTrue = false;
         if (idCard == null) {
             return false;
@@ -234,7 +234,6 @@ public final class IDCardUtils {
 
     /**
      * 身份证校验规则,验证15位身份编码是否合法
-     *
      * @param idCard 待验证的字符串
      * @return 校验结果
      */
@@ -267,7 +266,6 @@ public final class IDCardUtils {
 
     /**
      * 验证小于当前日期 是否有效
-     *
      * @param iYear  待验证日期(年)
      * @param iMonth 待验证日期(月 1-12)
      * @param iDate  待验证日期(日)
@@ -303,7 +301,6 @@ public final class IDCardUtils {
 
     /**
      * 将15位身份证号码转换为18位
-     *
      * @param idCard 15位身份编码
      * @return 18位身份编码
      */
@@ -347,7 +344,6 @@ public final class IDCardUtils {
 
     /**
      * 验证台湾身份证号码
-     *
      * @param idCard 身份证号码
      * @return 是否符合
      */
@@ -461,7 +457,6 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取年龄
-     *
      * @param idCard 身份编号
      * @return 年龄
      */
@@ -479,7 +474,6 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日
-     *
      * @param idCard 身份编号
      * @return 生日(yyyyMMdd)
      */
@@ -495,7 +489,6 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日
-     *
      * @param idCard 身份编号
      * @return 生日(yyyyMMdd)
      */
@@ -505,7 +498,6 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日年
-     *
      * @param idCard 身份编号
      * @return 生日(yyyy)
      */
@@ -521,7 +513,6 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日月
-     *
      * @param idCard 身份编号
      * @return 生日(MM)
      */
@@ -537,7 +528,6 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日天
-     *
      * @param idCard 身份编号
      * @return 生日(dd)
      */
@@ -553,7 +543,6 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取性别
-     *
      * @param idCard 身份编号
      * @return 性别(M-男，F-女，N-未知)
      */
@@ -573,7 +562,6 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取户籍省份
-     *
      * @param idCard 身份编码
      * @return 省级编码
      */
@@ -587,5 +575,4 @@ public final class IDCardUtils {
         sProvince = cityCodes.get(sProvinNum);
         return sProvince;
     }
-
 }

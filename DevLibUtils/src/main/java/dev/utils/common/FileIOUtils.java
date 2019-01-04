@@ -32,7 +32,6 @@ public final class FileIOUtils {
 
     // 日志TAG
     private static final String TAG = FileIOUtils.class.getSimpleName();
-
     // 换行符
     private static final String LINE_SEP = System.getProperty("line.separator");
     // 缓存大小

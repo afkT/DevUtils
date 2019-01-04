@@ -18,34 +18,34 @@ public final class ValidatorUtils {
     private static final String TAG = ValidatorUtils.class.getSimpleName();
 
     /** 正则表达式：验证数字 */
-    static final String REGEX_NUMBER = "^[0-9]*$";
+    private static final String REGEX_NUMBER = "^[0-9]*$";
 
     /** 正则表达式：不能输入特殊字符   ^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$ */
-    static final String REGEX_SPECIAL = "^[\\u4E00-\\u9FA5A-Za-z0-9]+$";
+    private static final String REGEX_SPECIAL = "^[\\u4E00-\\u9FA5A-Za-z0-9]+$";
 
     /** 正则表达式：验证微信号  ^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$ */
-    static final String REGEX_WX = "^[a-zA-Z\\\\d_]{5,19}$";
+    private static final String REGEX_WX = "^[a-zA-Z\\\\d_]{5,19}$";
 
     /** 正则表达式：验证真实姓名       |[\w·•])$  ^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$ */
-    static final String REGEX_REALNAME = "^[\\u4e00-\\u9fa5]+(•[\\u4e00-\\u9fa5]*)*$|^[\\u4e00-\\u9fa5]+(·[\\u4e00-\\u9fa5]*)*$";
+    private static final String REGEX_REALNAME = "^[\\u4e00-\\u9fa5]+(•[\\u4e00-\\u9fa5]*)*$|^[\\u4e00-\\u9fa5]+(·[\\u4e00-\\u9fa5]*)*$";
 
     /** 正则表达式：验证昵称 */
-    static final String REGEX_NICKNAME = "^[\\u4E00-\\u9FA5A-Za-z0-9_]+$";
+    private static final String REGEX_NICKNAME = "^[\\u4E00-\\u9FA5A-Za-z0-9_]+$";
 
     /** 正则表达式:验证用户名(不包含中文和特殊字符)如果用户名使用手机号码或邮箱 则结合手机号验证和邮箱验证 */
-    static final String REGEX_USERNAME = "^[a-zA-Z]\\w{5,17}$";
+    private static final String REGEX_USERNAME = "^[a-zA-Z]\\w{5,17}$";
 
     /** 正则表达式:验证密码(不包含特殊字符) */
-    static final String REGEX_PASSWORD = "^[a-zA-Z0-9]{6,18}$";
+    private static final String REGEX_PASSWORD = "^[a-zA-Z0-9]{6,18}$";
 
     /** 正则表达式:验证邮箱 */
-    static final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+    private static final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
 
     /** 正则表达式:验证URL */
-    static final String REGEX_URL = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?";
+    private static final String REGEX_URL = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?";
 
     /** 正则表达式:验证IP地址 */
-    static final String REGEX_IP_ADDR = "(2[5][0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})";
+    private static final String REGEX_IP_ADDR = "(2[5][0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})";
 
     // ==== 内部方法 =====
 
@@ -64,7 +64,7 @@ public final class ValidatorUtils {
      * @param input
      * @return
      */
-    static boolean match(String regex, String input) {
+    private static boolean match(String regex, String input) {
         return Pattern.matches(regex, input);
     }
 
@@ -235,9 +235,9 @@ public final class ValidatorUtils {
 //    [\\u4e00-\\u9fa5]注意只匹配汉字，不匹配双字节字符
 
     /** 正则表达式:验证汉字 */
-    static final String REGEX_CHINESE = "^[\u4e00-\u9fa5]+$";
+    private static final String REGEX_CHINESE = "^[\u4e00-\u9fa5]+$";
     /** 正则表达式:验证汉字(含双角符号) */
-    static final String REGEX_CHINESE_ALL = "^[\u0391-\uFFE5]+$";
+    private static final String REGEX_CHINESE_ALL = "^[\u0391-\uFFE5]+$";
 
     /**
      * 校验汉字(无符号,纯汉字)

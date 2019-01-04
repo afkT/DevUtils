@@ -31,7 +31,7 @@ public final class ValiToPhoneUtils {
      * @param input
      * @return
      */
-    static boolean match(String regex, String input) {
+    private static boolean match(String regex, String input) {
         return Pattern.matches(regex, input);
     }
 
@@ -126,27 +126,27 @@ public final class ValiToPhoneUtils {
     // == 手机号判断 ==
 
     /** 简单手机号码校验 => 校验手机号码的长度和1开头 (是否11位)*/
-    static final String CHAIN_PHONE_FORMAT_CHECK = "^(?:\\+86)?1\\d{10}$";
+    private static final String CHAIN_PHONE_FORMAT_CHECK = "^(?:\\+86)?1\\d{10}$";
 
     // 中国手机号正则
-    static final String CHINA_PHONE_PATTERN;
+    private static final String CHINA_PHONE_PATTERN;
 
     /** 中国电信号码正则 */
-    static final String CHINA_TELECOM_PATTERN;
+    private static final String CHINA_TELECOM_PATTERN;
 
     /** 中国联通号码正则 */
-    static final String CHINA_UNICOM_PATTERN;
+    private static final String CHINA_UNICOM_PATTERN;
 
     /** 中国移动号码正则 */
-    static final String CHINA_MOBILE_PATTERN;
+    private static final String CHINA_MOBILE_PATTERN;
 
     /* 香港手机号码正则 => 香港手机号码8位数，5|6|8|9开头+7位任意数*/
-    static final String HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
+    private static final String HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
 
     // == 座机判断 ==
 
     /** 座机电话格式验证 **/
-    static final String PHONE_CALL_PATTERN = "^(?:\\(\\d{3,4}\\)|\\d{3,4}-)?\\d{7,8}(?:-\\d{1,4})?$";
+    private static final String PHONE_CALL_PATTERN = "^(?:\\(\\d{3,4}\\)|\\d{3,4}-)?\\d{7,8}(?:-\\d{1,4})?$";
 
     static {
         // ====== 中国电信 ======

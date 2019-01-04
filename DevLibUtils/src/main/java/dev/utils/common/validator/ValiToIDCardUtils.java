@@ -12,16 +12,16 @@ public final class ValiToIDCardUtils {
     }
 
     /** 正则表达式:验证身份证 */
-    static final String REGEX_ID_CARD = "(^\\d{15}$)|(^\\d{17}([0-9]|X)$)";
+    private static final String REGEX_ID_CARD = "(^\\d{15}$)|(^\\d{17}([0-9]|X)$)";
 
     /** 正则表达式:验证台湾 */
-    static final String REGEX_TW_ID_CARD = "/^[a-zA-Z][0-9]{9}$/";
+    private static final String REGEX_TW_ID_CARD = "/^[a-zA-Z][0-9]{9}$/";
 
     /** 正则表达式:验证香港 */
-    static final String REGEX_XG_ID_CARD = "[A-Z][0-9]{6}\\([0-9A]\\)";
+    private static final String REGEX_XG_ID_CARD = "[A-Z][0-9]{6}\\([0-9A]\\)";
 
     /** 正则表达式:验证澳门 */
-    static final String REGEX_AM_ID_CARD = "[157][0-9]{6}\\([0-9]\\)";
+    private static final String REGEX_AM_ID_CARD = "[157][0-9]{6}\\([0-9]\\)";
 
     // ==== 内部方法 =====
 
@@ -40,7 +40,7 @@ public final class ValiToIDCardUtils {
      * @param input
      * @return
      */
-    static boolean match(String regex, String input) {
+    private static boolean match(String regex, String input) {
         return Pattern.matches(regex, input);
     }
 

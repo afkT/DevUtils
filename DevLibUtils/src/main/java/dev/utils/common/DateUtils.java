@@ -18,7 +18,6 @@ public final class DateUtils {
     
 	// 日志TAG
 	private static final String TAG = DateUtils.class.getSimpleName();
-
 	/** 日期格式类型 */
 	public static final String yyyy = "yyyy";
 	public static final String yyyyMMdd = "yyyy-MM-dd";

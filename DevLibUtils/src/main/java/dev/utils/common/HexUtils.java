@@ -47,7 +47,7 @@ public final class HexUtils {
      * @param toDigits 用于控制输出的char[]
      * @return 十六进制char[]
      */
-    protected static char[] encodeHex(byte[] data, char[] toDigits) {
+    private static char[] encodeHex(byte[] data, char[] toDigits) {
         if (data == null || toDigits == null) return null;
         try {
             int len = data.length;
@@ -89,7 +89,7 @@ public final class HexUtils {
      * @param toDigits 用于控制输出的char[]
      * @return 十六进制String
      */
-    protected static String encodeHexStr(byte[] data, char[] toDigits) {
+    private static String encodeHexStr(byte[] data, char[] toDigits) {
         try {
             return new String(encodeHex(data, toDigits));
         } catch (Exception e) {
@@ -131,7 +131,7 @@ public final class HexUtils {
      * @return 一个整数
      * @throws RuntimeException 当ch不是一个合法的十六进制字符时，抛出运行时异常
      */
-    protected static int toDigit(char ch, int index) {
+    private static int toDigit(char ch, int index) {
         int digit = Character.digit(ch, 16);
         if (digit == -1) {
             throw new RuntimeException("Illegal hexadecimal character " + ch + " at index " + index);

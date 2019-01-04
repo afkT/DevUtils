@@ -147,7 +147,7 @@ public final class LogPrintUtils {
         eTag(DEFAULT_DEFAULT_TAG, throwable, null);
     }
 
-    public void e(String message, Object... args) {
+    public static void e(String message, Object... args) {
         e(null, message, args);
     }
 

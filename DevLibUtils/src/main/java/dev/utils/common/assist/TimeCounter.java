@@ -2,12 +2,11 @@ package dev.utils.common.assist;
 
 /**
  * detail: 时间计时器
- * Created by MaTianyu
- * Update to Ttt
+ * Created by Ttt
  */
 public class TimeCounter {
 
-    private long t;
+    private long start;
 
     public TimeCounter() {
         start();
@@ -17,8 +16,8 @@ public class TimeCounter {
      * 开始计时
      */
     public long start() {
-        t = System.currentTimeMillis();
-        return t;
+        start = System.currentTimeMillis();
+        return start;
     }
 
     /**
@@ -27,8 +26,8 @@ public class TimeCounter {
      */
     public long durationRestart() {
         long now = System.currentTimeMillis();
-        long d = now - t;
-        t = now;
+        long d = now - start;
+        start = now;
         return d;
     }
 
@@ -37,7 +36,7 @@ public class TimeCounter {
      * @return
      */
     public long duration() {
-        return System.currentTimeMillis() - t;
+        return System.currentTimeMillis() - start;
     }
 
     /**
@@ -45,6 +44,6 @@ public class TimeCounter {
      * @return
      */
     public long getStartTime(){
-        return t;
+        return start;
     }
 }

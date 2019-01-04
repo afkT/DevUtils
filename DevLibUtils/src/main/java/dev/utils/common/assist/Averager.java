@@ -5,26 +5,25 @@ import java.util.List;
 
 /**
  * detail: 用以统计平均数
- * Created by MaTianyu
- * Update to Ttt
+ * Created by Ttt
  */
 public class Averager {
 
-    private List<Number> numList = new ArrayList<>();
+    private List<Number> mNumLists = new ArrayList<>();
 
     /**
      * 添加一个数字
      * @param num
      */
     public synchronized void add(Number num) {
-        numList.add(num);
+        mNumLists.add(num);
     }
 
     /**
      * 清除全部
      */
     public void clear() {
-        numList.clear();
+        mNumLists.clear();
     }
 
     /**
@@ -32,7 +31,7 @@ public class Averager {
      * @return
      */
     public Number size() {
-        return numList.size();
+        return mNumLists.size();
     }
 
     /**
@@ -40,14 +39,14 @@ public class Averager {
      * @return
      */
     public Number getAverage() {
-        if (numList.size() == 0) {
+        if (mNumLists.size() == 0) {
             return 0;
         } else {
             Float sum = 0f;
-            for (int i = 0, size = numList.size(); i < size; i++) {
-                sum = sum.floatValue() + numList.get(i).floatValue();
+            for (int i = 0, size = mNumLists.size(); i < size; i++) {
+                sum = sum.floatValue() + mNumLists.get(i).floatValue();
             }
-            return sum / numList.size();
+            return sum / mNumLists.size();
         }
     }
 
@@ -56,7 +55,7 @@ public class Averager {
      * @return
      */
     public String print() {
-        return "PrintList(" + size() + "): " + numList;
+        return "printList(" + size() + "): " + mNumLists;
     }
 
 }

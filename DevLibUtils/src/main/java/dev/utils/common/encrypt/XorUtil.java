@@ -16,7 +16,7 @@ public final class XorUtil {
     /**
      * 固定 key 的方式加密
      * 这种方式加密解密 算法一样
-     * 加密：byte[] bytes = encryptAsFix("liyi".getBytes());
+     * 加密：byte[] bytes = encryptAsFix("123".getBytes());
      * 解密：String str = new String(encryptAsFix(bytes));
      * @param bytes 待加密数据
      * @return 加密后的数据
@@ -32,7 +32,6 @@ public final class XorUtil {
         }
         return bytes;
     }
-
 
     /**
      * 非固定 key 的方式加密
@@ -57,7 +56,7 @@ public final class XorUtil {
      * @param bytes 待解密数据
      * @return 解密后的数据
      */
-    public byte[] decrypt(byte[] bytes) {
+    public static byte[] decrypt(byte[] bytes) {
         if (bytes == null) {
             return null;
         }

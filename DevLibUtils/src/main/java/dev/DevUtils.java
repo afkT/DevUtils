@@ -38,14 +38,6 @@ public final class DevUtils {
     private DevUtils() {
     }
 
-//    // DevUtils 实例
-//    private static DevUtils INSTANCE = new DevUtils();
-//
-//    /** 获取 DevUtils 实例 ,单例模式 */
-//    public static DevUtils getInstance() {
-//        return INSTANCE;
-//    }
-
     // ---
     /** 日志 TAG */
     private static final String TAG = DevUtils.class.getSimpleName();

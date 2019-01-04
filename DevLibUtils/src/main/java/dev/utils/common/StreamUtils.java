@@ -47,7 +47,7 @@ public final class StreamUtils {
      * @param out The output stream.
      * @return input stream
      */
-    public ByteArrayInputStream output2InputStream(final OutputStream out) {
+    public static ByteArrayInputStream output2InputStream(final OutputStream out) {
         if (out == null) return null;
         return new ByteArrayInputStream(((ByteArrayOutputStream) out).toByteArray());
     }

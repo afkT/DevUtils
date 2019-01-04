@@ -156,7 +156,7 @@ public final class JCLogUtils {
         eTag(DEFAULT_DEFAULT_TAG, throwable);
     }
 
-    public void e(String message, Object... args) {
+    public static void e(String message, Object... args) {
         e(null, message, args);
     }
 
