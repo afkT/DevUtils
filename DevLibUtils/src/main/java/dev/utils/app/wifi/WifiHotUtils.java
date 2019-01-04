@@ -155,6 +155,7 @@ public class WifiHotUtils {
             // https://www.cnblogs.com/bluestorm/p/3665555.html
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_MAIN);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.TetherSettings"));
             mContext.startActivity(intent);
         } else {

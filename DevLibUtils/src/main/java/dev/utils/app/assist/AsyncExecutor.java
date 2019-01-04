@@ -22,29 +22,29 @@ public class AsyncExecutor {
     // 日志TAG
     private final String TAG = AsyncExecutor.class.getSimpleName();
     // 线程池
-    private static ExecutorService threadPool;
+    private ExecutorService threadPool;
     // 主线程 Hander
-    public static Handler handler = new Handler(Looper.getMainLooper());
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     public AsyncExecutor() {
         this(null);
     }
 
-    public AsyncExecutor(ExecutorService threadPool) {
-        if (AsyncExecutor.threadPool != null) {
+    public AsyncExecutor(ExecutorService pool) {
+        if (threadPool != null) {
             shutdownNow();
         }
         if (threadPool == null) {
-            AsyncExecutor.threadPool = Executors.newCachedThreadPool();
+            threadPool = Executors.newCachedThreadPool();
         } else {
-            AsyncExecutor.threadPool = threadPool;
+            threadPool = pool;
         }
     }
 
     /**
      * 立即关闭线程池任务
      */
-    public static synchronized void shutdownNow() {
+    public synchronized void shutdownNow() {
         if (threadPool != null && !threadPool.isShutdown()) threadPool.shutdownNow();
         threadPool = null;
     }
@@ -125,7 +125,7 @@ public class AsyncExecutor {
         return task;
     }
 
-    public static abstract class Worker<T> {
+    public abstract class Worker<T> {
 
         /**
          * 后台运行

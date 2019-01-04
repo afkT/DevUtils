@@ -28,14 +28,12 @@ public final class KeyBoardUtils {
 
 	// 日志TAG
 	private static final String TAG = KeyBoardUtils.class.getSimpleName();
-
 	/** 默认延迟时间 */
 	private static int DELAY_MILLIS = 300;
 	/** 键盘显示 */
 	public static final int KEYBOARD_DISPLAY = 930;
 	/** 键盘隐藏 */
 	public static final int KEYBOARD_HIDE = 931;
-
 
 	/**
 	 * 避免输入法面板遮挡 manifest.xml 中 activity 中设置

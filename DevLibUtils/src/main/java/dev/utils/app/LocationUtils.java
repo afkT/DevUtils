@@ -33,7 +33,6 @@ public final class LocationUtils {
 
     // 日志TAG
     private static final String TAG = LocationUtils.class.getSimpleName();
-
     /** 时间常量 = 2分钟 */
     private static final int MINUTES_TWO = 1000 * 60 * 2;
     /** 定位改变通知事件 */

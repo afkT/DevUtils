@@ -781,7 +781,7 @@ public final class DateUtils {
 	 * @param endTime 结束时间 HH:mm
 	 * @return
 	 */
-	public static final long getEndTimeDiffHHmm(String endTime){
+	public static long getEndTimeDiffHHmm(String endTime){
 		return getEndTimeDiff(System.currentTimeMillis(), endTime, HHmm);
 	}
 
@@ -791,7 +791,7 @@ public final class DateUtils {
 	 * @param endTime 结束时间 HH:mm
 	 * @return
 	 */
-	public static final long getEndTimeDiffHHmm(long startTime, String endTime){
+	public static long getEndTimeDiffHHmm(long startTime, String endTime){
 		return getEndTimeDiff(startTime, endTime, HHmm);
 	}
 
@@ -801,7 +801,7 @@ public final class DateUtils {
 	 * @param format 格式 如: HH:mm
 	 * @return
 	 */
-	public static final long getEndTimeDiff(String endTime, String format){
+	public static long getEndTimeDiff(String endTime, String format){
 		return getEndTimeDiff(System.currentTimeMillis(), endTime, format);
 	}
 
@@ -816,7 +816,7 @@ public final class DateUtils {
 	 * 如果过了这个时间段, 则返回 2018-12-08 14:39:20 (明天的这个时间段时间)
 	 * 如果没有过这个时间段(如: 17:39:20) 则返回当天时间段 2018-12-07 17:39:20 (2018-12-07 + endTime)
 	 */
-	public static final long getEndTimeDiff(long startTime, String endTime, String format){
+	public static long getEndTimeDiff(long startTime, String endTime, String format){
 		if (startTime < 1 || endTime == null || format == null){
 			return -1;
 		}

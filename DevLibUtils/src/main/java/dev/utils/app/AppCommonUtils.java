@@ -1,6 +1,8 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.os.Build;
+import android.support.annotation.RequiresPermission;
 
 import java.util.Random;
 import java.util.UUID;
@@ -24,7 +26,8 @@ public final class AppCommonUtils {
      * 获取设备唯一id
      * @return
      */
-    public String getUUID(){
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
+    public static String getUUID(){
         return PhoneUtils.getUUID();
     }
 
@@ -32,7 +35,7 @@ public final class AppCommonUtils {
      * 获取随机数 唯一id
      * @return
      */
-    public String getRandomUUID(){
+    public static String getRandomUUID(){
         // 获取随机数
         String random1 = (900000 + new Random().nextInt(10000)) + "";
         // 获取随机数

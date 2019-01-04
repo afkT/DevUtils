@@ -419,7 +419,7 @@ public final class ActivityManager {
     /**
      * 重启 App
      */
-    public static void restartApplication() {
+    public void restartApplication() {
         try {
             Intent intent = DevUtils.getContext().getPackageManager().getLaunchIntentForPackage(DevUtils.getContext().getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

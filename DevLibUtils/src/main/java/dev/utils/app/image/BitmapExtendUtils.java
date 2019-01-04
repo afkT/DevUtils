@@ -1177,7 +1177,7 @@ public final class BitmapExtendUtils {
      * @param height 源图片的高
      * @return
      */
-    public static final byte[] yuvLandscapeToPortrait(byte[] sourceData, int width, int height) {
+    public static byte[] yuvLandscapeToPortrait(byte[] sourceData, int width, int height) {
         byte[] rotatedData = new byte[sourceData.length];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++)

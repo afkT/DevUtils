@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-def dev_utils_version = "1.2.3";
+def dev_utils_version = "1.2.4";
 
 android {
     compileSdkVersion 28

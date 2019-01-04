@@ -891,7 +891,7 @@ public final class ToastTintUtils {
      * 反射 Hook Toast 设置 Handler
      * @param toast
      */
-    private static final void reflectToastHandler(Toast toast){
+    private static void reflectToastHandler(Toast toast){
         if (toast == null) return;
         // 反射设置 Toat Handler 解决 Android7.1.1Toast 崩溃 问题
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {

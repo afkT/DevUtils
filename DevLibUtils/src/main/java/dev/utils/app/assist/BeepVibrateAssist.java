@@ -188,7 +188,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param rawId 响声资源id
      * @return {@link MediaPlayer}
      */
-    public static final MediaPlayer buildMediaPlayer(Context context, @RawRes int rawId) {
+    public static MediaPlayer buildMediaPlayer(Context context, @RawRes int rawId) {
         return buildMediaPlayer(context, rawId, 0.1f);
     }
 
@@ -199,7 +199,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */
-    public static final MediaPlayer buildMediaPlayer(Context context, @RawRes int rawId, float beepVolume) {
+    public static MediaPlayer buildMediaPlayer(Context context, @RawRes int rawId, float beepVolume) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -243,7 +243,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param path 响声资源路径(只支持本地资源)
      * @return {@link MediaPlayer}
      */
-    public static final MediaPlayer buildMediaPlayer(String path) {
+    public static MediaPlayer buildMediaPlayer(String path) {
         return buildMediaPlayer(path, 0.1f);
     }
 
@@ -253,7 +253,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */
-    public static final MediaPlayer buildMediaPlayer(String path, float beepVolume) {
+    public static MediaPlayer buildMediaPlayer(String path, float beepVolume) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

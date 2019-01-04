@@ -374,13 +374,13 @@ public final class WifiUtils {
 	// ================= Wifi配置操作 =================
 
 	/** 默认没有密码 */
-	static final int SECURITY_NONE = 0;
+	private static final int SECURITY_NONE = 0;
 	/** WEP加密方式 */
-	static final int SECURITY_WEP = 1;
+	private static final int SECURITY_WEP = 1;
 	/** PSK加密方式 */
-	static final int SECURITY_PSK = 2;
+	private static final int SECURITY_PSK = 2;
 	/** EAP加密方式 */
-	static final int SECURITY_EAP = 3;
+	private static final int SECURITY_EAP = 3;
 
 	/**
 	 * 获取Wifi配置,加密类型

@@ -37,22 +37,22 @@ final class Utils {
 	// ===================  配置信息  =======================
 
 	/** App 版本(如1.0.01) 显示给用户看的 */
-	static String APP_VERSION_NAME = "";
+	private static String APP_VERSION_NAME = "";
 
 	/** android:versionCode——整数值,代表应用程序代码的相对版本,也就是版本更新过多少次。(不显示给用户看) */
-	static String APP_VERSION_CODE = "";
+	private static String APP_VERSION_CODE = "";
 
 	/** 设备信息 */
-	static String DEVICE_INFO_STR = null;
+	private static String DEVICE_INFO_STR = null;
 
 	/** 用来存储设备信息 */
-	static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
+	private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
 
 	/** 换行字符串 */
-	static final String NEW_LINE_STR = System.getProperty("line.separator");
+	private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
 	/** 换行字符串 - 两行 */
-	static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
+	private static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
 	// ================== App、设备信息处理  ===================
 
@@ -60,7 +60,7 @@ final class Utils {
 	 * 获取 App 版本信息
 	 * @param context
 	 */
-	static String[] getAppVersion(Context context) {
+	private static String[] getAppVersion(Context context) {
 		String[] aVersion = null;
 		try {
 			PackageManager pm = context.getPackageManager();
@@ -81,7 +81,7 @@ final class Utils {
 	 * 获取设备信息
 	 * @param dInfoMaps 传入设备信息传出HashMap
 	 */
-	static void getDeviceInfo(Map<String, String> dInfoMaps) {
+	private static void getDeviceInfo(Map<String, String> dInfoMaps) {
 		// 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段。
 		Field[] fields = Build.class.getDeclaredFields();
 		// 遍历字段
@@ -101,7 +101,7 @@ final class Utils {
 	 * 处理设备信息
 	 * @param eHint 错误提示,如获取设备信息失败
 	 */
-	static String handlerDeviceInfo(String eHint) {
+	private static String handlerDeviceInfo(String eHint) {
 		try {
 			// 如果不为null,则直接返回之前的信息
 			if(!TextUtils.isEmpty(DEVICE_INFO_STR)) {
@@ -136,14 +136,14 @@ final class Utils {
 	// ==================  时间格式化  ===================
 
 	/** 日期格式类型 */
-	static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
+	private static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
 
 	/**
 	 * 获取当前日期的字符串
 	 * @return 字符串
 	 */
 	@SuppressLint("SimpleDateFormat")
-	static String getDateNow() {
+	private static String getDateNow() {
 		try {
 			Calendar cld = Calendar.getInstance();
 			DateFormat df = new SimpleDateFormat(yyyyMMddHHmmss);
@@ -160,7 +160,7 @@ final class Utils {
 	 * 判断某个文件夹是否创建,未创建则创建(不能加入文件名)
 	 * @param fPath 文件夹路径
 	 */
-	static File createFile(String fPath) {
+	private static File createFile(String fPath) {
 		try {
 			File file = new File(fPath);
 			// 当这个文件夹不存在的时候则创建文件夹
@@ -181,7 +181,7 @@ final class Utils {
 	 * @param fUrl 保存路径(包含文件名.后缀)
 	 * @return 是否保存成功
 	 */
-	static boolean saveFile(String txt, String fUrl) {
+	private static boolean saveFile(String txt, String fUrl) {
 		try {
 			// 保存内容到一个文件
 			FileOutputStream fos = new FileOutputStream(fUrl);
@@ -203,7 +203,7 @@ final class Utils {
 	 * @param ex 错误信息
 	 * @return
 	 */
-	static String getThrowableMsg(String eHint, Throwable ex) {
+	private static String getThrowableMsg(String eHint, Throwable ex) {
 		PrintWriter printWriter = null;
 		try {
 			if(ex != null) {
@@ -232,7 +232,7 @@ final class Utils {
 	 * @param ex 错误信息
 	 * @return
 	 */
-	static String getThrowableNewLinesMsg(String eHint, Throwable ex) {
+	private static String getThrowableNewLinesMsg(String eHint, Throwable ex) {
 		PrintWriter printWriter = null;
 		try {
 			if(ex != null) {

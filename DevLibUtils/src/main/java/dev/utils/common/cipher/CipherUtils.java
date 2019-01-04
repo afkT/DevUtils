@@ -7,7 +7,7 @@ import dev.utils.common.HexUtils;
  * detail: 加密工具类
  * Created by Ttt
  */
-public class CipherUtils {
+public final class CipherUtils {
 
     private CipherUtils(){
     }

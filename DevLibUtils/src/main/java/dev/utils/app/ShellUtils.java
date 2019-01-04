@@ -16,12 +16,10 @@ public final class ShellUtils {
     private ShellUtils() {
     }
 
-    // 操作成功
-    public static final int SUCCESS = 0;
-
     // 日志TAG
     private static final String TAG = ShellUtils.class.getSimpleName();
-
+    // 操作成功
+    public static final int SUCCESS = 0;
     // 换行符
     private static final String LINE_SEP = System.getProperty("line.separator");
 

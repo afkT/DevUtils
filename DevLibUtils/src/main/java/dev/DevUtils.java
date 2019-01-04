@@ -769,7 +769,7 @@ public final class DevUtils {
 
     // == 接口实现 ==
 
-    private static final ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
+    private static ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
         @Override
         public boolean filter(Activity activity) {
             if (activity != null){

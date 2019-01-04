@@ -36,7 +36,6 @@ public final class AnalysisRecordUtils {
 
     // 日志TAG
     private static final String TAG = AnalysisRecordUtils.class.getSimpleName();
-
     // Context
     private static Context sContext;
     // 日志文件夹名字(目录名)
@@ -46,7 +45,7 @@ public final class AnalysisRecordUtils {
     // 是否处理保存
     private static boolean isHandler = true;
     // 判断是否加空格
-     private static boolean isAppendSpace = true;
+    private static boolean isAppendSpace = true;
     // 正则 - 空格
     private static final String SPACE_STR = "\\s";
 
