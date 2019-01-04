@@ -99,6 +99,9 @@ public final class BitmapUtils {
      * @return
      */
     public static Drawable getDrawable(Context context, @DrawableRes int id) {
+		if (context == null){
+			return null;
+		}
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             return context.getDrawable(id);
         else

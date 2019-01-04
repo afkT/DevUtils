@@ -20,7 +20,18 @@ public final class FastBlurUtils {
      * @return 位图
      */
     public static Bitmap blur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
+        if (sentBitmap == null){
+            return null;
+        }
         Bitmap bitmap;
+        // 如果修改原图
+        if (canReuseInBitmap){
+            // 判断 Bitmap 是否可变
+            if (!sentBitmap.isMutable()){ // 不可变则修改
+                canReuseInBitmap = false;
+            }
+        }
+
         if (canReuseInBitmap) {
             bitmap = sentBitmap;
         } else {
@@ -220,12 +231,16 @@ public final class FastBlurUtils {
             }
         }
 
-        bitmap.setPixels(pix, 0, w, 0, 0, w, h);
+        try {
+            bitmap.setPixels(pix, 0, w, 0, 0, w, h);
+        } catch (Exception e){
+            return null;
+        }
         return (bitmap);
     }
 
     /**
-     * 对图片进行毛玻璃化  数值越大效果越明显
+     * 对图片进行毛玻璃化 数值越大效果越明显
      * @param originBitmap 位图
      * @param scaleRatio 缩放比率
      * @param blurRadius 毛玻璃化比率，虚化程度
@@ -243,7 +258,7 @@ public final class FastBlurUtils {
 
 
     /**
-     * 对图片进行 毛玻璃化，虚化   数值越大效果越明显
+     * 对图片进行 毛玻璃化，虚化 数值越大效果越明显
      * @param originBitmap 位图
      * @param width 缩放后的期望宽度
      * @param height 缩放后的期望高度
