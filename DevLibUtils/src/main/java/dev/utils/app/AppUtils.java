@@ -614,17 +614,16 @@ public final class AppUtils {
 
 	/**
 	 * 判断是否安装指定包名的 App
-	 * @param context
 	 * @param packageName 包路径
 	 * @return
 	 */
 	@SuppressWarnings("unused")
-	public static boolean isInstalledApp(Context context, String packageName) {
+	public static boolean isInstalledApp(String packageName) {
 		if (packageName == null || "".equals(packageName)) {
 			return false;
 		}
 		try {
-			ApplicationInfo info = context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
+			ApplicationInfo info = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
 			return true;
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "isInstalledApp");
@@ -1002,18 +1001,17 @@ public final class AppUtils {
 
 	/**
 	 * 启动本地应用打开PDF
-	 * @param context
 	 * @param filePath 文件路径
 	 */
-	public static boolean openPDFFile(Context context, String filePath) {
+	public static boolean openPDFFile(String filePath) {
 		try {
 			File file = new File(filePath);
 			if (file.exists()) {
 				Uri path = Uri.fromFile(file);
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setDataAndType(path, "application/pdf");
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				context.startActivity(intent);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				DevUtils.getContext().startActivity(intent);
 				return true;
 			}
 		} catch (Exception e) {
@@ -1024,10 +1022,9 @@ public final class AppUtils {
 
 	/**
 	 * 启动本地应用打开PDF
-	 * @param context
 	 * @param filePath 文件路径
 	 */
-	public static boolean openWordFile(Context context, String filePath) {
+	public static boolean openWordFile(String filePath) {
 		try {
 			File file = new File(filePath);
 			if (file.exists()) {
@@ -1036,7 +1033,7 @@ public final class AppUtils {
 				intent.addCategory("android.intent.category.DEFAULT");
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.setDataAndType(path, "application/msword");
-				context.startActivity(intent);
+				DevUtils.getContext().startActivity(intent);
 				return true;
 			}
 		} catch (Exception e) {
@@ -1047,10 +1044,9 @@ public final class AppUtils {
 
 	/**
 	 * 调用WPS打开office文档
-	 * @param context
 	 * @param filePath 文件路径
 	 */
-	public static boolean openOfficeByWPS(Context context, String filePath) {
+	public static boolean openOfficeByWPS(String filePath) {
 		try {
 			// 检查是否安装WPS
 			String wpsPackageEng = "cn.wps.moffice_eng";// 普通版与英文版一样
@@ -1064,7 +1060,7 @@ public final class AppUtils {
 
 			Uri uri = Uri.fromFile(new File(filePath));
 			intent.setData(uri);
-			context.startActivity(intent);
+			DevUtils.getContext().startActivity(intent);
 			return true;
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "openOfficeByWPS");

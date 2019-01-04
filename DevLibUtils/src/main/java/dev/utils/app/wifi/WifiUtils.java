@@ -188,12 +188,11 @@ public final class WifiUtils {
 
 	/**
 	 * 通过 Context 获取当前连接的ssid
-	 * @param context
 	 */
-	public static String getSSID(Context context){
+	public static String getSSID(){
 		try {
 			// 初始化WifiManager对象
-			WifiManager mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+			WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 			// 获取当前连接的wifi
 			WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
 			// 获取wifi - SSID
@@ -360,19 +359,18 @@ public final class WifiUtils {
 
 	/**
 	 * 判断是否连接上Wifi(非连接中)
-	 * @param context
 	 * @return 返回ssid
 	 */
 	@RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
-	public static String isConnectAphot(Context context){
+	public static String isConnectAphot(){
 		try {
 			// 连接管理
-			ConnectivityManager cManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+			ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 			// 连接状态
 			NetworkInfo.State nState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
 			if((nState == NetworkInfo.State.CONNECTED)){
 				// 获取连接的ssid
-				return getSSID(context);
+				return getSSID();
 			}
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "isConnectAphot");
@@ -468,14 +466,13 @@ public final class WifiUtils {
 	// ================= 配置操作 =================
 	/**
 	 * 删除指定的 Wifi(SSID) 配置信息
-	 * @param context
 	 * @param ssid
 	 * @return 删除结果
 	 */
-	public static boolean delWifiConfig(Context context, String ssid){
+	public static boolean delWifiConfig(String ssid){
 		try {
 			// 初始化WifiManager对象
-			WifiManager mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+			WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 			// 获取wifi 连接过的配置信息
 			List<WifiConfiguration> listWifiConfigs = mWifiManager.getConfiguredNetworks();
 			// 防止为null

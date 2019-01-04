@@ -691,10 +691,9 @@ public final class PhoneUtils {
 
     /**
      * 获取 MTK 神机的双卡 IMSI、IMSI 信息
-     * @param context
      * @return
      */
-    public static TeleInfo getMtkTeleInfo(Context context) {
+    public static TeleInfo getMtkTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {
             Class<?> phone = Class.forName("com.android.internal.telephony.Phone");
@@ -707,7 +706,7 @@ public final class PhoneUtils {
             fields2.setAccessible(true);
             int simId_2 = (Integer) fields2.get(null);
 
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             Method getSubscriberIdGemini = TelephonyManager.class.getDeclaredMethod("getSubscriberIdGemini", int.class);
             String imsi_1 = (String) getSubscriberIdGemini.invoke(tm, simId_1);
             String imsi_2 = (String) getSubscriberIdGemini.invoke(tm, simId_2);
@@ -734,14 +733,13 @@ public final class PhoneUtils {
 
     /**
      * 获取 MTK 神机的双卡 IMSI、IMSI 信息
-     * @param context
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
-    public static TeleInfo getMtkTeleInfo2(Context context) {
+    public static TeleInfo getMtkTeleInfo2() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             Class<?> phone = Class.forName("com.android.internal.telephony.Phone");
             Field fields1 = phone.getField("GEMINI_SIM_1");
             fields1.setAccessible(true);
@@ -776,15 +774,14 @@ public final class PhoneUtils {
 
     /**
      * 获取 高通 神机的双卡 IMSI、IMSI 信息
-     * @param context
      * @return
      */
-    public static TeleInfo getQualcommTeleInfo(Context context) {
+    public static TeleInfo getQualcommTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             Class<?> simTMclass = Class.forName("android.telephony.MSimTelephonyManager");
-            Object sim = context.getSystemService("phone_msim");
+            Object sim = DevUtils.getContext().getSystemService("phone_msim");
             int simId_1 = 0;
             int simId_2 = 1;
 

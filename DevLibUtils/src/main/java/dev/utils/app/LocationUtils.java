@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Criteria;
@@ -45,17 +44,16 @@ public final class LocationUtils {
     /**
      * 获取位置, 需要先判断是否开启了定位
      * <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-     * @param context
      * @param listener
      * @param time 间隔时间
      * @param distance 间隔距离
      * @return {@code Location}
      */
     @SuppressLint("MissingPermission")
-    public static Location getLocation(Context context, LocationListener listener, long time, float distance) {
+    public static Location getLocation(LocationListener listener, long time, float distance) {
         Location location = null;
         try {
-            mLocationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
+            mLocationManager = (LocationManager) DevUtils.getContext().getSystemService(LOCATION_SERVICE);
             if (isLocationEnabled()) {
                 mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, time, distance, listener);
                 if (mLocationManager != null) {

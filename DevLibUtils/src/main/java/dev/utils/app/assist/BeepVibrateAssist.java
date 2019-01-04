@@ -22,7 +22,7 @@ public final class BeepVibrateAssist implements Closeable {
     // 日志TAG
     private static final String TAG = BeepVibrateAssist.class.getSimpleName();
     // Context
-    private final Context context;
+    private final Context mContext;
     // 播放资源对象
     private MediaPlayer mediaPlayer = null;
     // 是否需要震动
@@ -35,7 +35,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param context
      */
     public BeepVibrateAssist(Context context) {
-        this.context = context;
+        this.mContext = context;
     }
 
     /**
@@ -44,7 +44,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param rawId
      */
     public BeepVibrateAssist(Context context, @RawRes int rawId) {
-        this.context = context;
+        this.mContext = context;
         this.mediaPlayer = buildMediaPlayer(context, rawId);
     }
 
@@ -54,7 +54,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param path 只支持本地资源
      */
     public BeepVibrateAssist(Context context, String path) {
-        this.context = context;
+        this.mContext = context;
         this.mediaPlayer = buildMediaPlayer(path);
     }
 
@@ -69,7 +69,7 @@ public final class BeepVibrateAssist implements Closeable {
         if (shouldPlayBeep) {
             try {
                 // RINGER_MODE_NORMAL(普通)、RINGER_MODE_SILENT(静音)、RINGER_MODE_VIBRATE(震动)
-                AudioManager audioService = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                AudioManager audioService = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
                 if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
                     shouldPlayBeep = false; // 进入只有属于, 静音、震动，才不播放
                 }
@@ -88,7 +88,7 @@ public final class BeepVibrateAssist implements Closeable {
             // The volume on STREAM_SYSTEM is not adjustable, and users found it too loud,
             // so we now play on the music stream.
             try {
-                ((Activity) context).setVolumeControlStream(AudioManager.STREAM_MUSIC);
+                ((Activity) mContext).setVolumeControlStream(AudioManager.STREAM_MUSIC);
             } catch (Exception e){
                 LogPrintUtils.eTag(TAG, e, "update");
             }
@@ -162,7 +162,7 @@ public final class BeepVibrateAssist implements Closeable {
         // 判断是否允许震动
         if (vibrate) {
             try {
-                Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(vibrateDuration);
             } catch (Exception e){
             }

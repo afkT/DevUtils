@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Vibrator;
 import android.support.annotation.RequiresPermission;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -20,13 +21,12 @@ public final class VibrationUtils {
 
     /**
      * 震动
-     * @param context
      * @param milliseconds 震动时长
      */
     @RequiresPermission(android.Manifest.permission.VIBRATE)
-    public static void vibrate(final Context context, final long milliseconds) {
+    public static void vibrate(final long milliseconds) {
         try {
-            Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            Vibrator vibrator = (Vibrator) DevUtils.getContext().getSystemService(Context.VIBRATOR_SERVICE);
             vibrator.vibrate(milliseconds);
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "vibrate");
@@ -35,14 +35,13 @@ public final class VibrationUtils {
 
     /**
      * 指定手机以pattern模式震动
-     * @param context
      * @param pattern new long[]{400,800,1200,1600}，就是指定在 400ms、800ms、1200ms、1600ms 这些时间点交替启动、关闭手机震动器
      * @param repeat  指定pattern数组的索引，指定pattern数组中从repeat索引开始的震动进行循环。-1表示只震动一次，非-1表示从 pattern的指定下标开始重复震动。
      */
     @RequiresPermission(android.Manifest.permission.VIBRATE)
-    public static void vibrate(final Context context, final long[] pattern, final int repeat) {
+    public static void vibrate(final long[] pattern, final int repeat) {
         try {
-            Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            Vibrator vibrator = (Vibrator) DevUtils.getContext().getSystemService(Context.VIBRATOR_SERVICE);
             vibrator.vibrate(pattern, repeat);
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "vibrate");
@@ -51,12 +50,11 @@ public final class VibrationUtils {
 
     /**
      * 取消震动
-     * @param context
      */
     @RequiresPermission(android.Manifest.permission.VIBRATE)
-    public static void cancel(final Context context) {
+    public static void cancel() {
         try {
-            ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).cancel();
+            ((Vibrator) DevUtils.getContext().getSystemService(Context.VIBRATOR_SERVICE)).cancel();
         } catch (Exception e){
             LogPrintUtils.eTag(TAG, e, "cancel");
         }

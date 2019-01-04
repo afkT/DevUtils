@@ -97,11 +97,10 @@ public final class MemoryUtils {
 
     /**
      * 打印内存信息
-     * @param context
      * @return
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static ActivityManager.MemoryInfo printMemoryInfo(Context context) {
+    public static ActivityManager.MemoryInfo printMemoryInfo() {
         ActivityManager.MemoryInfo mi = getMemoryInfo();
         StringBuilder sBuilder = new StringBuilder();
         sBuilder.append("_______  Memory :   ");

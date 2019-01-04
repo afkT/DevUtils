@@ -1,7 +1,6 @@
 package dev.utils.app.image;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -115,8 +114,7 @@ public final class BitmapUtils {
 	 * @return
 	 */
 	public static Bitmap getBitmapFromResources(Context context, int resId) {
-		Resources res = context.getResources();
-		return BitmapFactory.decodeResource(res, resId);
+		return BitmapFactory.decodeResource(context.getResources(), resId);
 	}
 
 	/**
@@ -126,8 +124,7 @@ public final class BitmapUtils {
 	 * @return
 	 */
 	public static Drawable getDrawableFromResources(Context context, int resId) {
-		Resources res = context.getResources();
-		return res.getDrawable(resId);
+		return context.getResources().getDrawable(resId);
 	}
 
 	/**
