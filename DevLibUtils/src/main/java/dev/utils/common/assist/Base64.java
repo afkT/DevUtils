@@ -25,7 +25,7 @@ import java.io.UnsupportedEncodingException;
  * href="http://www.ietf.org/rfc/rfc2045.txt">2045</a> and <a
  * href="http://www.ietf.org/rfc/rfc3548.txt">3548</a>.
  */
-public class Base64 {
+public final class Base64 {
     /**
      * Default values for encoder/decoder flags.
      */

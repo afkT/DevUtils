@@ -19,6 +19,7 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -32,7 +33,6 @@ public final class WifiUtils {
 
 	// 日志TAG
 	private static final String TAG = WifiUtils.class.getSimpleName();
-
 	// ======= wifi管理类对象 =======
 	/** 定义WifiManager对象 */
 	private WifiManager mWifiManager;
@@ -43,9 +43,19 @@ public final class WifiUtils {
 	public static final int WEP = 1;
 	/** wpa加密方式 */
 	public static final int WPA = 2;
-	// ====================================================
+	// ==============================
 
-	/** 构造器(只能进行初始化WifiManager操作，其他靠方法定义) */
+	/**
+	 * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
+	 */
+	public WifiUtils(){
+		this(DevUtils.getContext());
+	}
+
+	/**
+	 * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
+	 * @param context
+	 */
 	public WifiUtils(Context context) {
 		// 初始化WifiManager对象
 		mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);

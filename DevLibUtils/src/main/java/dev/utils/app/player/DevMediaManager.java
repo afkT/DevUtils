@@ -18,7 +18,7 @@ import dev.utils.LogPrintUtils;
  * detail: MediaPlayer 统一管理类
  * Created by Ttt
  */
-public class DevMediaManager implements OnBufferingUpdateListener,
+public final class DevMediaManager implements OnBufferingUpdateListener,
         OnCompletionListener, OnPreparedListener, OnVideoSizeChangedListener,
         OnErrorListener, OnSeekCompleteListener {
 

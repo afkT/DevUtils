@@ -14,7 +14,7 @@ import dev.utils.JCLogUtils;
  * detail: 文件广度优先搜索算法 (多线程 + 队列搜索)
  * Created by Ttt
  */
-public class FileBreadthFirstSearchUtils {
+public final class FileBreadthFirstSearchUtils {
 
     // = 构造函数 =
 
@@ -28,7 +28,7 @@ public class FileBreadthFirstSearchUtils {
     /**
      * 文件信息 Item
      */
-    public class FileItem {
+    public final class FileItem {
 
         public FileItem(File file) {
             this.file = file;

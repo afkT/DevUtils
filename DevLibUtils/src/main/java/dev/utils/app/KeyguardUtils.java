@@ -29,9 +29,9 @@ public final class KeyguardUtils {
     }
 
     // 锁屏管理类
-    KeyguardManager keyguardManager;
+    private KeyguardManager keyguardManager;
     // android-26 开始过时
-    KeyguardManager.KeyguardLock keyguardLock;
+    private KeyguardManager.KeyguardLock keyguardLock;
 
     /** 构造函数 */
     private KeyguardUtils() {

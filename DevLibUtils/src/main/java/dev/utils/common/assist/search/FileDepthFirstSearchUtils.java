@@ -10,7 +10,7 @@ import dev.utils.JCLogUtils;
  * detail: 文件深度优先搜索算法 (搜索某个目录下的全部文件)
  * Created by Ttt
  */
-public class FileDepthFirstSearchUtils {
+public final class FileDepthFirstSearchUtils {
 
     // = 构造函数 =
 
@@ -24,7 +24,7 @@ public class FileDepthFirstSearchUtils {
     /**
      * 文件信息 Item
      */
-    public class FileItem {
+    public final class FileItem {
 
         public FileItem(File file) {
             this.file = file;

@@ -28,7 +28,7 @@ import java.util.Random;
  * http://www.keithschwarz.com/interesting/
  * http://www.keithschwarz.com/darts-dice-coins/
  */
-public class AliasMethod {
+public final class AliasMethod {
 
     /* The random number generator used to sample from the distribution. */
     private final Random random;

@@ -10,16 +10,16 @@ import java.util.Map;
  */
 public final class DevThreadManager {
 
+    /** 禁止构造对象 */
+    private DevThreadManager() {
+    }
+
     /** 默认通用线程池 = 通过CPU自动处理 */
     private static final DevThreadPool sDevThreadPool = new DevThreadPool(DevThreadPool.DevThreadPoolType.CALC_CPU);
     /** 线程池数据 */
     private static final LinkedHashMap<String, DevThreadPool> mapThreads = new LinkedHashMap<>();
     /** 配置数据 */
     private static final Map<String, Object> mapConfig = new HashMap<>();
-
-    /** 禁止构造对象 */
-    private DevThreadManager() {
-    }
 
     /**
      * 获取 DevThreadManager 实例 ,单例模式

@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Method;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -41,7 +42,17 @@ public class WifiHotUtils {
     // 热点 Wifi 配置
     private WifiConfiguration apWifiConfig;
 
-    /** 构造器(只能进行初始化WifiManager操作，其他靠方法定义) */
+    /**
+     * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
+     */
+    public WifiHotUtils(){
+        this(DevUtils.getContext());
+    }
+
+    /**
+     * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
+     * @param context
+     */
     public WifiHotUtils(Context context) {
         this.mContext = context;
         // 初始化WifiManager对象
