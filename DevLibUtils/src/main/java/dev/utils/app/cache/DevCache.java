@@ -76,8 +76,8 @@ public final class DevCache {
      * 内部处理防止 Context 为 null 崩溃问题
      * @return {@link Context}
      */
-    private static Context getContext(Context context){
-        if (context != null){
+    private static Context getContext(Context context) {
+        if (context != null) {
             return context;
         } else {
             // 设置全局Context
@@ -90,8 +90,8 @@ public final class DevCache {
      * @param ctx
      * @return 应用缓存地址
      */
-    public static File getCacheDir(Context ctx){
-        if (ctxCacheDir == null){
+    public static File getCacheDir(Context ctx) {
+        if (ctxCacheDir == null) {
             ctxCacheDir = getContext(ctx).getCacheDir();
         }
         return ctxCacheDir;
@@ -175,7 +175,7 @@ public final class DevCache {
      * @return {@link DevCache} 缓存工具类对象
      */
     private DevCache(File cacheDir, long max_size, int max_count) {
-        if (cacheDir == null){
+        if (cacheDir == null) {
             new Exception("cacheDir is null");
         } else if (!cacheDir.exists() && !cacheDir.mkdirs()) {
             new Exception("can't make dirs in " + cacheDir.getAbsolutePath());
@@ -213,7 +213,7 @@ public final class DevCache {
      */
     public void put(String key, String value) {
         File file = mCache.newFile(key);
-        if (file == null || value == null){
+        if (file == null || value == null) {
             return;
         }
         BufferedWriter out = null;
@@ -241,7 +241,7 @@ public final class DevCache {
      * @param saveTime 保存的时间，单位：秒
      */
     public void put(String key, String value, int saveTime) {
-        if (key != null && value != null){
+        if (key != null && value != null) {
             put(key, DevCacheUtils.newStringWithDateInfo(saveTime, value));
         }
     }
@@ -253,7 +253,7 @@ public final class DevCache {
      */
     public String getAsString(String key) {
         File file = mCache.get(key);
-        if (file == null){
+        if (file == null) {
             return null;
         }
         if (!file.exists())
@@ -299,10 +299,10 @@ public final class DevCache {
      * @param value 保存的JSON数据
      */
     public void put(String key, JSONObject value) {
-        if (value != null){
+        if (value != null) {
             try {
                 put(key, value.toString());
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "put JSONObject");
             }
         }
@@ -315,10 +315,10 @@ public final class DevCache {
      * @param saveTime 保存的时间，单位：秒
      */
     public void put(String key, JSONObject value, int saveTime) {
-        if (value != null){
+        if (value != null) {
             try {
                 put(key, value.toString(), saveTime);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "put JSONObject");
             }
         }
@@ -331,7 +331,7 @@ public final class DevCache {
      */
     public JSONObject getAsJSONObject(String key) {
         String JSONString = getAsString(key);
-        if (JSONString != null){
+        if (JSONString != null) {
             try {
                 JSONObject obj = new JSONObject(JSONString);
                 return obj;
@@ -352,10 +352,10 @@ public final class DevCache {
      * @param value 保存的JSONArray数据
      */
     public void put(String key, JSONArray value) {
-        if (value != null){
+        if (value != null) {
             try {
                 put(key, value.toString());
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "put JSONArray");
             }
         }
@@ -368,10 +368,10 @@ public final class DevCache {
      * @param saveTime 保存的时间，单位：秒
      */
     public void put(String key, JSONArray value, int saveTime) {
-        if (value != null){
+        if (value != null) {
             try {
                 put(key, value.toString(), saveTime);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "put JSONArray");
             }
         }
@@ -405,7 +405,7 @@ public final class DevCache {
      * @param value 保存的数据
      */
     public void put(String key, byte[] value) {
-        if (key == null || value == null){
+        if (key == null || value == null) {
             return;
         }
         File file = mCache.newFile(key);
@@ -435,7 +435,7 @@ public final class DevCache {
      */
     public OutputStream put(String key) throws FileNotFoundException {
         File file = mCache.newFile(key);
-        if (file != null){
+        if (file != null) {
             return new xFileOutputStream(file);
         }
         return null;
@@ -448,7 +448,7 @@ public final class DevCache {
      */
     public InputStream get(String key) throws FileNotFoundException {
         File file = mCache.get(key);
-        if (file != null && file.exists()){
+        if (file != null && file.exists()) {
             return new FileInputStream(file);
         }
         return null;
@@ -666,7 +666,7 @@ public final class DevCache {
      */
     public File file(String key) {
         File f = mCache.newFile(key);
-        if (f != null && f.exists()){
+        if (f != null && f.exists()) {
             return f;
         }
         return null;

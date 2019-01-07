@@ -14,7 +14,7 @@ import android.support.annotation.RequiresApi;
  */
 public final class PollingUtils {
 
-    private PollingUtils(){
+    private PollingUtils() {
     }
 
     /**

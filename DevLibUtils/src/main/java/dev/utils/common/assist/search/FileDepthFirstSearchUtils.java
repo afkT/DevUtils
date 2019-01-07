@@ -14,7 +14,7 @@ public final class FileDepthFirstSearchUtils {
 
     // = 构造函数 =
 
-    public FileDepthFirstSearchUtils(){
+    public FileDepthFirstSearchUtils() {
     }
 
     public FileDepthFirstSearchUtils(ISearchHandler iSearchHandler) {
@@ -73,7 +73,7 @@ public final class FileDepthFirstSearchUtils {
     private ISearchHandler inside = new ISearchHandler() {
         @Override
         public boolean isHandlerFile(File file) {
-            if (iSearchHandler != null){
+            if (iSearchHandler != null) {
                 return iSearchHandler.isHandlerFile(file);
             }
             return true;
@@ -81,7 +81,7 @@ public final class FileDepthFirstSearchUtils {
 
         @Override
         public boolean isAddToList(File file) {
-            if (iSearchHandler != null){
+            if (iSearchHandler != null) {
                 return iSearchHandler.isAddToList(file);
             }
             return true;
@@ -92,7 +92,7 @@ public final class FileDepthFirstSearchUtils {
             // 表示非搜索中
             isRuning = false;
             // 触发回调
-            if (iSearchHandler != null){
+            if (iSearchHandler != null) {
                 iSearchHandler.OnEndListener(lists, startTime, endTime);
             }
         }
@@ -119,7 +119,7 @@ public final class FileDepthFirstSearchUtils {
     /**
      * 停止搜索
      */
-    public void stop(){
+    public void stop() {
         isStop = true;
     }
 
@@ -164,7 +164,7 @@ public final class FileDepthFirstSearchUtils {
      * @param isRelation 是否关联到 Child List
      */
     public synchronized void query(String path, final boolean isRelation) {
-        if (isRuning){
+        if (isRuning) {
             return;
         }
         // 表示运行中
@@ -177,7 +177,7 @@ public final class FileDepthFirstSearchUtils {
             final File file = new File(path);
             if (file != null) {
                 // 判断是否文件
-                if (file.isFile()){
+                if (file.isFile()) {
                     List<FileItem> lists = new ArrayList<>();
                     lists.add(new FileItem(file));
                     // 触发结束回调
@@ -221,23 +221,23 @@ public final class FileDepthFirstSearchUtils {
      */
     private void queryFile(File file, List<FileItem> lists, boolean isRelation) {
         try {
-            if (isStop){
+            if (isStop) {
                 return;
             }
             if (file != null && file.exists()) {
                 // 判断是否处理
-                if (inside.isHandlerFile(file)){
+                if (inside.isHandlerFile(file)) {
                     // 如果属于文件夹
-                    if (file.isDirectory()){
+                    if (file.isDirectory()) {
                         // 获取文件夹全部子文件
                         File[] files = file.listFiles();
-                        if (files == null){
+                        if (files == null) {
                             return;
                         }
                         // 循环处理
-                        for (File f : files){
+                        for (File f : files) {
                             if (isRelation) {
-                                if (f.isDirectory()){
+                                if (f.isDirectory()) {
                                     List<FileItem> childs = new ArrayList<>();
                                     // 查找文件
                                     queryFile(f, childs, isRelation);
@@ -247,7 +247,7 @@ public final class FileDepthFirstSearchUtils {
                                     lists.add(fileItem);
                                 } else {
                                     // 属于文件
-                                    if (inside.isAddToList(f)){
+                                    if (inside.isAddToList(f)) {
                                         // 属于文件则直接保存
                                         lists.add(new FileItem(f));
                                     }
@@ -258,7 +258,7 @@ public final class FileDepthFirstSearchUtils {
                             }
                         }
                     } else { // 属于文件
-                        if (inside.isAddToList(file)){
+                        if (inside.isAddToList(file)) {
                             // 属于文件则直接保存
                             lists.add(new FileItem(file));
                         }

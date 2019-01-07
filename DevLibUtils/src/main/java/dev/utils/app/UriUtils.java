@@ -48,11 +48,11 @@ public final class UriUtils {
      * getUriForFileToName(file, "fileProvider");
      * getUriForFile(file, "包名.fileProvider");
      */
-    public static Uri getUriForFileToName(final File file, String name){
+    public static Uri getUriForFileToName(final File file, String name) {
         try {
             String authority = DevUtils.getContext().getPackageName() + "." + name;
             return getUriForFile(file, authority);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getUriForFileToName");
         }
         return null;

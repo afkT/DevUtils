@@ -10,7 +10,7 @@ import dev.utils.JCLogUtils;
  */
 public final class QuickCommonUtils {
 
-    private QuickCommonUtils(){
+    private QuickCommonUtils() {
     }
 
     // 日志TAG
@@ -20,7 +20,7 @@ public final class QuickCommonUtils {
      * 转换手机号
      * @param phone
      */
-    public static String converHideMobile(String phone){
+    public static String converHideMobile(String phone) {
         return converHideMobile(phone, "*");
     }
 
@@ -29,7 +29,7 @@ public final class QuickCommonUtils {
      * @param phone
      * @param symbol 符号
      */
-    public static String converHideMobile(String phone, String symbol){
+    public static String converHideMobile(String phone, String symbol) {
         return DevCommonUtils.converSymbolHide(3, phone, symbol);
     }
 
@@ -70,12 +70,12 @@ public final class QuickCommonUtils {
      * @return
      */
     public static String getFormatString(Object... args) {
-        if (args != null && args.length != 0){
+        if (args != null && args.length != 0) {
             int length = args.length;
             StringBuffer buffer = new StringBuffer();
             buffer.append("%s");
-            if (length > 1){
-                for (int i = 1; i < length; i++){
+            if (length > 1) {
+                for (int i = 1; i < length; i++) {
                     buffer.append(" %s");
                 }
             }
@@ -90,12 +90,12 @@ public final class QuickCommonUtils {
      * @return
      */
     public static String getFormatString2(Object... args) {
-        if (args != null && args.length != 0){
+        if (args != null && args.length != 0) {
             int length = args.length;
             StringBuffer buffer = new StringBuffer();
             buffer.append("【%s】");
-            if (length > 1){
-                for (int i = 1; i < length; i++){
+            if (length > 1) {
+                for (int i = 1; i < length; i++) {
                     buffer.append(" %s");
                 }
             }
@@ -109,7 +109,7 @@ public final class QuickCommonUtils {
      * @param operateTime 操作时间(毫秒)
      * @return
      */
-    public static long getOperateTime(long operateTime){
+    public static long getOperateTime(long operateTime) {
         return getOperateTime(operateTime, -1);
     }
 
@@ -118,10 +118,10 @@ public final class QuickCommonUtils {
      * @param operateTime 操作时间(毫秒)
      * @param randomTime 随机范围(毫秒)
      */
-    public static long getOperateTime(long operateTime, int randomTime){
+    public static long getOperateTime(long operateTime, int randomTime) {
         int random = 0;
         // 大于2才处理
-        if (randomTime >= 2){
+        if (randomTime >= 2) {
             // 随机时间
             random = RandomUtils.getRandom(randomTime);
         }
@@ -133,7 +133,7 @@ public final class QuickCommonUtils {
      * 堵塞操作
      * @param sleepTime
      */
-    public static void sleepOperate(long sleepTime){
+    public static void sleepOperate(long sleepTime) {
         sleepOperate(sleepTime, -1, false);
     }
 
@@ -142,7 +142,7 @@ public final class QuickCommonUtils {
      * @param sleepTime
      * @param randomTime
      */
-    public static void sleepOperate(long sleepTime, int randomTime){
+    public static void sleepOperate(long sleepTime, int randomTime) {
         sleepOperate(sleepTime, randomTime, false);
     }
 
@@ -152,24 +152,24 @@ public final class QuickCommonUtils {
      * @param randomTime
      * @param isSystemClock
      */
-    public static void sleepOperate(long sleepTime, int randomTime, boolean isSystemClock){
+    public static void sleepOperate(long sleepTime, int randomTime, boolean isSystemClock) {
         long time = getOperateTime(sleepTime, randomTime);
-        if (time != -1){
-            if (isSystemClock){
+        if (time != -1) {
+            if (isSystemClock) {
                 try {
                     SystemClock.sleep(sleepTime);
-                } catch (Throwable e){
+                } catch (Throwable e) {
                     JCLogUtils.eTag(TAG, e, "sleepOperate - SystemClock");
                     try {
                         Thread.sleep(sleepTime);
-                    } catch (Throwable e1){
+                    } catch (Throwable e1) {
                         JCLogUtils.eTag(TAG, e1, "sleepOperate - SystemClock Thread");
                     }
                 }
             } else {
                 try {
                     Thread.sleep(sleepTime);
-                } catch (Throwable e1){
+                } catch (Throwable e1) {
                     JCLogUtils.eTag(TAG, e1, "sleepOperate - Thread");
                 }
             }

@@ -13,7 +13,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class ImageBmpUtils {
 
-	private ImageBmpUtils(){
+	private ImageBmpUtils() {
 	}
 
 	// 日志Tag
@@ -141,9 +141,9 @@ public final class ImageBmpUtils {
 	 * @param bitmap
 	 * @return
 	 */
-	private static byte[] getBmpBytes(Bitmap bitmap){
+	private static byte[] getBmpBytes(Bitmap bitmap) {
 		try {
-			if(bitmap != null){
+			if(bitmap != null) {
 				int w = bitmap.getWidth(), h = bitmap.getHeight();
 				int[] pixels = new int[w * h];
 				bitmap.getPixels(pixels, 0, w, 0, 0, w, h);
@@ -174,7 +174,7 @@ public final class ImageBmpUtils {
 	 * @param bitmap 图片信息
 	 * @return true: 保存成功, false: 保存失败
 	 */
-	public static boolean saveBmpImg(String path, Bitmap bitmap){
+	public static boolean saveBmpImg(String path, Bitmap bitmap) {
 		FileOutputStream fos = null;
 		try {
 			// 转换Bmp byte数据
@@ -188,13 +188,13 @@ public final class ImageBmpUtils {
 			LogPrintUtils.eTag(TAG, e, "saveBmpImg");
 		} finally { // 最终关闭写入流
 			try {
-				if(fos != null){
+				if(fos != null) {
 					fos.flush();
 				}
 			} catch (Exception e) {
 			}
 			try {
-				if(fos != null){
+				if(fos != null) {
 					fos.close();
 				}
 			} catch (Exception e) {

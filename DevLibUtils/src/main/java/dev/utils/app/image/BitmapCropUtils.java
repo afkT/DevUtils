@@ -11,7 +11,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class BitmapCropUtils {
 
-    private BitmapCropUtils(){
+    private BitmapCropUtils() {
     }
 
     // 日志Tag
@@ -23,7 +23,7 @@ public final class BitmapCropUtils {
      * @param fPath 保存路径
      * @param bitmap 图片
      */
-    public static void cropBitmap(String fPath, Bitmap bitmap){
+    public static void cropBitmap(String fPath, Bitmap bitmap) {
         cropBitmap(fPath, bitmap, 16.0f, 9.0f);
     }
 
@@ -34,10 +34,10 @@ public final class BitmapCropUtils {
      * @param wScale 宽度比例
      * @param hScale 高度比例
      */
-    public static void cropBitmap(String fPath, Bitmap bitmap, float wScale, float hScale){
-        if(TextUtils.isEmpty(fPath)){
+    public static void cropBitmap(String fPath, Bitmap bitmap, float wScale, float hScale) {
+        if(TextUtils.isEmpty(fPath)) {
             return; // 防止保存路径为null
-        } else if (bitmap == null){
+        } else if (bitmap == null) {
             return; // 防止图片为null
         }
         // 裁剪处理后的图片
@@ -53,7 +53,7 @@ public final class BitmapCropUtils {
             int dHeight = iHeight - rHeight;
             // --
             // 判断裁剪方式
-            if (dHeight >= 0){ // 属于宽度 * 对应比例 >= 高度  -> 以高度做偏移
+            if (dHeight >= 0) { // 属于宽度 * 对应比例 >= 高度  -> 以高度做偏移
                 // 计算偏移的y轴
                 int offsetY = dHeight / 2;
                 // 创建图片
@@ -68,7 +68,7 @@ public final class BitmapCropUtils {
                 // 创建图片
                 cBitmap = Bitmap.createBitmap(bitmap, offsetX, 0, rWidth, iHeight, null, false);
             }
-            if (cBitmap != null){
+            if (cBitmap != null) {
                 // 保存图片
                 BitmapUtils.saveBitmapToSDCardPNG(cBitmap, fPath, 85);
             }
@@ -77,7 +77,7 @@ public final class BitmapCropUtils {
         } finally {
             // -- 清空资源 --
             try {
-                if(cBitmap != null && !cBitmap.isRecycled()){
+                if(cBitmap != null && !cBitmap.isRecycled()) {
                     cBitmap.recycle();
                 }
             } catch (Exception e) {

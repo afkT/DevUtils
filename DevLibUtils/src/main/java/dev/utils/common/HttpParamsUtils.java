@@ -42,25 +42,25 @@ public final class HttpParamsUtils {
             // 数据长度
             int valLength = 0;
             // 进行循环遍历
-            for (String val : keyValues){
+            for (String val : keyValues) {
                 // 数据不为null
-                if (val != null && (valLength = val.length()) != 0){
+                if (val != null && (valLength = val.length()) != 0) {
                     // 获取首位 = 索引
                     int indexOf = val.indexOf('=');
                     // 不存在则不处理
-                    if (indexOf != -1){
+                    if (indexOf != -1) {
                         // 获取key
                         String key = val.substring(0, indexOf);
                         // 获取value
                         String value = null;
                         // 防止资源浪费
-                        if (indexOf + 1 == valLength){
+                        if (indexOf + 1 == valLength) {
                             value = "";
                         } else {
                             value = val.substring(indexOf + 1, valLength);
                         }
                         // 判断是否编码
-                        if (urlEncode){
+                        if (urlEncode) {
                             mapParams.put(key, urlEncode(value));
                         } else {
                             mapParams.put(key, value);
@@ -138,8 +138,8 @@ public final class HttpParamsUtils {
                 if (index > 0) sBuilder.append('&');
                 sBuilder.append(entry.getKey());
                 sBuilder.append('=');
-                if (urlEncode){
-                    if (entry.getValue() instanceof String){
+                if (urlEncode) {
+                    if (entry.getValue() instanceof String) {
                         sBuilder.append(urlEncode((String) entry.getValue()));
                     }
                 } else {
@@ -200,7 +200,7 @@ public final class HttpParamsUtils {
      * @param key
      * @param value
      */
-    public static void toConvertObjToMS(Map<String, String> mapParams, String objStr, String key, String value){
+    public static void toConvertObjToMS(Map<String, String> mapParams, String objStr, String key, String value) {
         if (mapParams != null) {
             String data = null;
             try {
@@ -219,7 +219,7 @@ public final class HttpParamsUtils {
      * @param key
      * @param value
      */
-    public static void toConvertObjToMO(Map<String, Object> mapParams, String objStr, String key, Object value){
+    public static void toConvertObjToMO(Map<String, Object> mapParams, String objStr, String key, Object value) {
         if (mapParams != null) {
             Object data = null;
             try {

@@ -13,7 +13,7 @@ import dev.utils.JCLogUtils;
  */
 public final class StreamUtils {
 
-    private StreamUtils(){
+    private StreamUtils() {
     }
 
     // 日志TAG

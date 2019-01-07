@@ -164,14 +164,14 @@ final class LoggerPrinter implements IPrinter {
 			}
 		} catch (Exception e) {
 			String eHint = "null";
-			if (e != null){
+			if (e != null) {
 				Throwable throwable = e.getCause();
-				if (throwable != null){
+				if (throwable != null) {
 					eHint = throwable.getMessage();
 				} else {
 					try {
 						eHint = e.getMessage();
-					} catch (Exception e1){
+					} catch (Exception e1) {
 						eHint = e1.getMessage();
 					}
 				}
@@ -209,14 +209,14 @@ final class LoggerPrinter implements IPrinter {
 			logHandle(lConfig, tag, Log.DEBUG, message);
 		} catch (Exception e) {
 			String eHint = "null";
-			if (e != null){
+			if (e != null) {
 				Throwable throwable = e.getCause();
-				if (throwable != null){
+				if (throwable != null) {
 					eHint = throwable.getMessage();
 				} else {
 					try {
 						eHint = e.getMessage();
-					} catch (Exception e1){
+					} catch (Exception e1) {
 						eHint = e1.getMessage();
 					}
 				}
@@ -310,14 +310,14 @@ final class LoggerPrinter implements IPrinter {
 			}
 		} catch (Exception e) {
 			String eHint = "null";
-			if (e != null){
+			if (e != null) {
 				Throwable throwable = e.getCause();
-				if (throwable != null){
+				if (throwable != null) {
 					eHint = throwable.getMessage();
 				} else {
 					try {
 						eHint = e.getMessage();
-					} catch (Exception e1){
+					} catch (Exception e1) {
 						eHint = e1.getMessage();
 					}
 				}
@@ -352,14 +352,14 @@ final class LoggerPrinter implements IPrinter {
 			logHandle(lConfig, tag, Log.DEBUG, message);
 		} catch (Exception e) {
 			String eHint = "null";
-			if (e != null){
+			if (e != null) {
 				Throwable throwable = e.getCause();
-				if (throwable != null){
+				if (throwable != null) {
 					eHint = throwable.getMessage();
 				} else {
 					try {
 						eHint = e.getMessage();
-					} catch (Exception e1){
+					} catch (Exception e1) {
 						eHint = e1.getMessage();
 					}
 				}

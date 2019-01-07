@@ -50,7 +50,7 @@ public final class ScreenSensorAssist {
 	/** 回调操作 */
 	private Handler handler;
 	/** 角度处理Handler */
-	private Handler rotateHandler = new Handler(){
+	private Handler rotateHandler = new Handler() {
 		public void handleMessage(Message msg) {
             switch (msg.what) {
             case CHANGE_ORIENTATION_WHAT:
@@ -64,7 +64,7 @@ public final class ScreenSensorAssist {
 					// -
 					if (isPortrait) {
 						isPortrait = false;
-						if(handler != null){
+						if(handler != null) {
 							Message vMsg = new Message();
 							vMsg.what = CHANGE_ORIENTATION_WHAT;
 							vMsg.arg1 = 1;
@@ -76,7 +76,7 @@ public final class ScreenSensorAssist {
 					// -
 					if (!isPortrait) {
 						isPortrait = true;
-						if(handler != null){
+						if(handler != null) {
 							Message vMsg = new Message();
 							vMsg.what = CHANGE_ORIENTATION_WHAT;
 							vMsg.arg1 = 2;
@@ -88,7 +88,7 @@ public final class ScreenSensorAssist {
 					// -
                     if (isPortrait) {
                         isPortrait = false;
-                        if(handler != null){
+                        if(handler != null) {
                         	Message vMsg = new Message();
                         	vMsg.what = CHANGE_ORIENTATION_WHAT;
                         	vMsg.arg1 = 1;
@@ -100,7 +100,7 @@ public final class ScreenSensorAssist {
 					// -
                     if (!isPortrait) {
                         isPortrait = true;
-                        if(handler != null){
+                        if(handler != null) {
                         	Message vMsg = new Message();
                         	vMsg.what = CHANGE_ORIENTATION_WHAT;
                         	vMsg.arg1 = 2;
@@ -121,7 +121,7 @@ public final class ScreenSensorAssist {
 	 * @param context
 	 * @param handler 回调Handler
 	 */
-	private void init(Context context, Handler handler){
+	private void init(Context context, Handler handler) {
 		this.handler = handler;
 		// 注册重力感应器,监听屏幕旋转
         sMamager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -170,7 +170,7 @@ public final class ScreenSensorAssist {
 	 * 是否竖屏
 	 * @return true: 是竖屏, false: 非竖屏
 	 */
-	public boolean isPortrait(){
+	public boolean isPortrait() {
         return this.isPortrait;
     }
 
@@ -178,7 +178,7 @@ public final class ScreenSensorAssist {
 	 * 是否允许切屏
 	 * @return true: 允许, false: 不允许
 	 */
-	public boolean isAllowChange(){
+	public boolean isAllowChange() {
     	return this.isAllowChange;
     }
     

@@ -55,15 +55,15 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	/**
 	 * 重置操作
 	 */
-	private void resetOperate(){
+	private void resetOperate() {
 		// 移除旧的回调
-		if(mSurfaceHolder != null){
+		if(mSurfaceHolder != null) {
 			mSurfaceHolder.removeCallback(this);
 		}
 		// 设置Holder
 		mSurfaceHolder = mSurfaceview.getHolder();
 		// 移除旧的回调
-		if(mSurfaceHolder != null){
+		if(mSurfaceHolder != null) {
 			mSurfaceHolder.removeCallback(this);
 		}
 		// 添加回调
@@ -117,15 +117,15 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 				LogPrintUtils.eTag(TAG, e, "onPrepared");
 			}
 			// 判断是否自动播放
-			if (isAutoPlay){
+			if (isAutoPlay) {
 				try { // 如果没有设置则直接播放
 					DevMediaManager.getInstance().getMediaPlayer().start();
-				} catch (Exception e){
+				} catch (Exception e) {
 					LogPrintUtils.eTag(TAG, e, "onPrepared - start");
 				}
 			}
 			// 触发回调
-			if (mMediaListener != null){
+			if (mMediaListener != null) {
 				mMediaListener.onPrepared();
 			}
 		}
@@ -136,7 +136,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	public void onCompletion() {
 		LogPrintUtils.dTag(TAG, "onCompletion");
 		// 触发回调
-		if (mMediaListener != null){
+		if (mMediaListener != null) {
 			mMediaListener.onCompletion();
 		}
 	}
@@ -146,7 +146,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	public void onBufferingUpdate(int percent) {
 		LogPrintUtils.dTag(TAG, "onBufferingUpdate: " + percent);
 		// 触发回调
-		if (mMediaListener != null){
+		if (mMediaListener != null) {
 			mMediaListener.onBufferingUpdate(percent);
 		}
 	}
@@ -156,7 +156,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	public void onSeekComplete() {
 		LogPrintUtils.dTag(TAG, "onSeekComplete");
 		// 触发回调
-		if (mMediaListener != null){
+		if (mMediaListener != null) {
 			mMediaListener.onSeekComplete();
 		}
 	}
@@ -166,7 +166,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	public void onError(int what, int extra) {
 		LogPrintUtils.dTag(TAG, "onError -> what: " + what + ", extra: " + extra);
 		// 触发回调
-		if (mMediaListener != null){
+		if (mMediaListener != null) {
 			mMediaListener.onError(what, extra);
 		}
 	}
@@ -176,7 +176,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	public void onVideoSizeChanged(int width, int height) {
 		LogPrintUtils.dTag(TAG, "onVideoSizeChanged -> width: " + width + ", height: " + height);
 		// 触发回调
-		if (mMediaListener != null){
+		if (mMediaListener != null) {
 			mMediaListener.onVideoSizeChanged(width, height);
 		}
 	}
@@ -197,12 +197,12 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	// ================== 播放快捷操作 ======================
 
 	/** 暂停播放 */
-	public void pausePlayer(){
+	public void pausePlayer() {
 		DevMediaManager.getInstance().pause();
 	}
 	
 	/** 停止播放 */
-	public void stopPlayer(){
+	public void stopPlayer() {
 		DevMediaManager.getInstance().stop();
 	}
 
@@ -211,7 +211,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * @param playUri 播放地址
 	 * @return
 	 */
-	public void startPlayer(String playUri){
+	public void startPlayer(String playUri) {
 		startPlayer(playUri, false);
 	}
 	
@@ -220,9 +220,9 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * @param playUri 播放地址
 	 * @param isLooping 是否循环播放
 	 */
-	public void startPlayer(final String playUri, final boolean isLooping){
+	public void startPlayer(final String playUri, final boolean isLooping) {
 		// 设置播放信息
-		this.mMediaSet = new DevMediaManager.MediaSet(){
+		this.mMediaSet = new DevMediaManager.MediaSet() {
 			@Override
 			public boolean isLooping() {
 				return isLooping;
@@ -241,7 +241,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * 开始播放
 	 * @param mediaSet 播放设置
 	 */
-	public void startPlayer(DevMediaManager.MediaSet mediaSet){
+	public void startPlayer(DevMediaManager.MediaSet mediaSet) {
 		// 设置播放信息
 		this.mMediaSet = mediaSet;
 		// 重置操作
@@ -262,7 +262,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * 是否播放中
 	 * @return
 	 */
-	public boolean isPlaying(){
+	public boolean isPlaying() {
 		return DevMediaManager.getInstance().isPlaying();
 	}
 
@@ -271,12 +271,12 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * @param uri 播放地址
 	 * @return
 	 */
-	public boolean isPlaying(String uri){
-		if(!TextUtils.isEmpty(uri)){ // 需要播放的地址,必须不等于null
+	public boolean isPlaying(String uri) {
+		if(!TextUtils.isEmpty(uri)) { // 需要播放的地址,必须不等于null
 			// 获取之前播放路径
 			String playUri = DevMediaManager.getInstance().getPlayUri();
 			// 如果不等于null,并且播放地址相同
-			if(playUri != null && playUri.equals(uri)){
+			if(playUri != null && playUri.equals(uri)) {
 				try {
 					return DevMediaManager.getInstance().isPlaying();
 				} catch (Exception e) {
@@ -307,7 +307,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * 获取当前播放的地址
 	 * @return
 	 */
-	public String getPlayUri(){
+	public String getPlayUri() {
 		return DevMediaManager.getInstance().getPlayUri();
 	}
 
@@ -332,7 +332,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * 获取当前播放时间
 	 * @return
 	 */
-	public int getCurrentPosition(){
+	public int getCurrentPosition() {
 		return DevMediaManager.getInstance().getCurrentPosition();
 	}
 
@@ -340,7 +340,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * 获取资源总时间
 	 * @return
 	 */
-	public int getDuration(){
+	public int getDuration() {
 		return DevMediaManager.getInstance().getDuration();
 	}
 
@@ -348,7 +348,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * 获取播放进度百分比
 	 * @return
 	 */
-	public int getPlayPercent(){
+	public int getPlayPercent() {
 		return DevMediaManager.getInstance().getPlayPercent();
 	}
 }

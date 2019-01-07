@@ -18,7 +18,7 @@ import dev.utils.LogPrintUtils;
  */
 final class DevCacheUtils {
 
-    private DevCacheUtils(){
+    private DevCacheUtils() {
     }
 
     // 日志Tag
@@ -79,14 +79,14 @@ final class DevCacheUtils {
      * @return
      */
     public static byte[] newByteArrayWithDateInfo(int second, byte[] data) {
-        if (data != null){
+        if (data != null) {
             try {
                 byte[] dataArys = createDateInfo(second).getBytes();
                 byte[] retData = new byte[dataArys.length + data.length];
                 System.arraycopy(dataArys, 0, retData, 0, dataArys.length);
                 System.arraycopy(data, 0, retData, dataArys.length, data.length);
                 return retData;
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "newByteArrayWithDateInfo");
             }
         }
@@ -129,7 +129,7 @@ final class DevCacheUtils {
         if (hasDateInfo(data)) {
             try {
                 return copyOfRange(data, indexOf(data, mSeparator) + 1, data.length);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "clearDateInfo");
             }
         }
@@ -159,7 +159,7 @@ final class DevCacheUtils {
                 String deleteAfter = new String(copyOfRange(data, 14, indexOf(data, mSeparator)));
                 // 返回数据
                 return new String[]{saveDate, deleteAfter};
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getDateInfoFromDate");
             }
         }
@@ -200,7 +200,7 @@ final class DevCacheUtils {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
             return baos.toByteArray();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bitmap2Bytes");
         }
         return null;
@@ -215,7 +215,7 @@ final class DevCacheUtils {
         if (bytes != null && bytes.length != 0) {
             try {
                 return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "bytes2Bimap");
             }
         }
@@ -245,7 +245,7 @@ final class DevCacheUtils {
             // 把 drawable 内容画到画布中
             drawable.draw(canvas);
             return bitmap;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "drawable2Bitmap");
         }
         return null;
@@ -265,7 +265,7 @@ final class DevCacheUtils {
             BitmapDrawable bd = new BitmapDrawable(bm);
             bd.setTargetDensity(bm.getDensity());
             return new BitmapDrawable(bm);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bitmap2Drawable");
         }
         return null;

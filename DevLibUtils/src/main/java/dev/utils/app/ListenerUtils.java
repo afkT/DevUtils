@@ -25,7 +25,7 @@ public final class ListenerUtils {
      * @param view
      * @return
      */
-    public static View.OnTouchListener getTouchListener(View view){
+    public static View.OnTouchListener getTouchListener(View view) {
         return (View.OnTouchListener) getListenerInfoListener(view, "mOnTouchListener");
     }
 
@@ -34,13 +34,13 @@ public final class ListenerUtils {
      * @param view
      * @return
      */
-    public static Object getListenerInfo(View view){
+    public static Object getListenerInfo(View view) {
         try {
             // 获取 ListenerInfo 对象
             Field infoField = View.class.getDeclaredField("mListenerInfo");
             infoField.setAccessible(true);
             return infoField.get(view);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getListenerInfo");
         }
         return null;
@@ -52,7 +52,7 @@ public final class ListenerUtils {
      * @param listener
      * @return
      */
-    public static Object getListenerInfoListener(View view, String listener){
+    public static Object getListenerInfoListener(View view, String listener) {
         try {
             // 获取 ListenerInfo 对象
             Object listenerInfo = getListenerInfo(view);
@@ -62,7 +62,7 @@ public final class ListenerUtils {
             listenerField.setAccessible(true);
             // 进行获取返回
             return listenerField.get(listenerInfo);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getListenerInfoListener");
         }
         return null;
@@ -76,9 +76,9 @@ public final class ListenerUtils {
      * @param onClickListener
      * @param viewIds
      */
-    public static void setOnClicks(final View view, final View.OnClickListener onClickListener, final int... viewIds){
-        if (view != null && onClickListener != null && viewIds != null){
-            for (int i = 0, len = viewIds.length; i < len; i++){
+    public static void setOnClicks(final View view, final View.OnClickListener onClickListener, final int... viewIds) {
+        if (view != null && onClickListener != null && viewIds != null) {
+            for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(view, viewIds[i]);
                 findView.setOnClickListener(onClickListener);
             }
@@ -91,9 +91,9 @@ public final class ListenerUtils {
      * @param onClickListener
      * @param viewIds
      */
-    public static void setOnClicks(final Activity activity, final View.OnClickListener onClickListener, final int... viewIds){
-        if (activity != null && onClickListener != null && viewIds != null){
-            for (int i = 0, len = viewIds.length; i < len; i++){
+    public static void setOnClicks(final Activity activity, final View.OnClickListener onClickListener, final int... viewIds) {
+        if (activity != null && onClickListener != null && viewIds != null) {
+            for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(activity, viewIds[i]);
                 findView.setOnClickListener(onClickListener);
             }
@@ -105,9 +105,9 @@ public final class ListenerUtils {
      * @param onClickListener
      * @param views
      */
-    public static void setOnClicks(final View.OnClickListener onClickListener, final View... views){
-        if (onClickListener != null && views != null){
-            for (int i = 0, len = views.length; i < len; i++){
+    public static void setOnClicks(final View.OnClickListener onClickListener, final View... views) {
+        if (onClickListener != null && views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
                 if (views[i] != null) {
                     views[i].setOnClickListener(onClickListener);
                 }
@@ -135,7 +135,7 @@ public final class ListenerUtils {
      * @param <T>
      * @return
      */
-    private static <T extends View> T findViewById(Window window, int id){
+    private static <T extends View> T findViewById(Window window, int id) {
         return window.findViewById(id);
     }
 

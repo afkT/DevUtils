@@ -15,7 +15,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class CleanUtils {
 
-    private CleanUtils(){
+    private CleanUtils() {
     }
 
     // 日志TAG
@@ -28,7 +28,7 @@ public final class CleanUtils {
     public static boolean cleanInternalCache() {
         try {
             return deleteFilesInDir(DevUtils.getContext().getCacheDir());
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanInternalCache");
         }
         return false;
@@ -54,7 +54,7 @@ public final class CleanUtils {
     public static boolean cleanInternalDbs() {
         try {
             return deleteFilesInDir(new File(DevUtils.getContext().getFilesDir().getParent(), "databases"));
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanInternalDbs");
         }
         return false;
@@ -68,7 +68,7 @@ public final class CleanUtils {
     public static boolean cleanInternalDbByName(final String dbName) {
         try {
             return DevUtils.getContext().deleteDatabase(dbName);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanInternalDbByName");
         }
         return false;
@@ -81,7 +81,7 @@ public final class CleanUtils {
     public static boolean cleanInternalSp() {
         try {
             return deleteFilesInDir(new File(DevUtils.getContext().getFilesDir().getParent(), "shared_prefs"));
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanInternalSp");
         }
         return false;
@@ -132,7 +132,7 @@ public final class CleanUtils {
             for (String fPath : filePaths) {
                 cleanCustomDir(fPath);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanApplicationData");
         }
     }
@@ -167,7 +167,7 @@ public final class CleanUtils {
      * @param file
      * @return
      */
-    public static String getCacheSize(File file){
+    public static String getCacheSize(File file) {
         return getFormatSize(getFolderSize(file));
     }
 
@@ -258,7 +258,7 @@ public final class CleanUtils {
      * @param filePath
      * @return
      */
-    private static File getFileByPath(final String filePath){
+    private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;
     }
 

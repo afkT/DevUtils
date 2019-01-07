@@ -23,9 +23,9 @@ class TextCalcUse{
     protected void textCalcUse() {
         LinearLayout vid_linear = null;
         // 打印信息
-        for (int i = 0, len = vid_linear.getChildCount(); i < len; i++){
+        for (int i = 0, len = vid_linear.getChildCount(); i < len; i++) {
             View view = vid_linear.getChildAt(i);
-            if (view != null && view instanceof TextView){
+            if (view != null && view instanceof TextView) {
                 printInfo((TextView) view);
             }
         }
@@ -46,7 +46,7 @@ class TextCalcUse{
      * 打印信息
      * @param textView
      */
-    private void printInfo(TextView textView){
+    private void printInfo(TextView textView) {
         StringBuilder builder = new StringBuilder();
         builder.append("\n内容：" + textView.getText().toString());
         builder.append("\n高度：" + TextViewUtils.getTextHeight(textView));

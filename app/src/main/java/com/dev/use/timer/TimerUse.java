@@ -22,7 +22,7 @@ class TimerUse {
     /**
      * 定时器使用方法
      */
-    private void timerUse(){
+    private void timerUse() {
 
 //        /** 创建定时器 => 立即执行,无限循环,通知默认what */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long period) {
@@ -68,7 +68,7 @@ class TimerUse {
 //        }
 
         // 初始化定时器任务
-        absTimer = TimerManager.createTimer(new Handler(){
+        absTimer = TimerManager.createTimer(new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -76,7 +76,7 @@ class TimerUse {
                 // 获取触发次数
                 int number = absTimer.getTriggerNumber();
                 // 触发次数
-                if (number == 1){
+                if (number == 1) {
                     DevLogger.dTag(TAG, "第一次触发, 0.5秒延迟");
                 } else {
                     DevLogger.dTag(TAG, "每隔2秒触发一次, 触发次数: " + number);
@@ -87,18 +87,18 @@ class TimerUse {
         absTimer.startTimer();
 
 
-//        Handler handler = new Handler(){
+//        Handler handler = new Handler() {
 //            @Override
 //            public void handleMessage(Message msg) {
 //                super.handleMessage(msg);
 //
-//                switch (msg.what){
+//                switch (msg.what) {
 //                    case NOTIFY:
 //                        // 获取触发次数
 //                        DevLogger.dTag(TAG, "已经触发次数：" + absTimer.getTriggerNumber());
 //                        DevLogger.dTag(TAG, "触发上限次数：" + absTimer.getTriggerLimit());
 //                        // 判断是否触发结束
-//                        if (absTimer.isTriggerEnd()){
+//                        if (absTimer.isTriggerEnd()) {
 //                            DevLogger.dTag(TAG, "触发结束");
 //                        }
 //                        break;

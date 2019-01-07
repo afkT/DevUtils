@@ -69,7 +69,7 @@ public class ImageProcessor {
      * @param bitmap 原图
      * @return 水平翻转后的图片
      */
-    public Bitmap reverseByHorizontal(Bitmap bitmap){
+    public Bitmap reverseByHorizontal(Bitmap bitmap) {
         Matrix matrix = new Matrix();
         matrix.preScale(-1, 1);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
@@ -80,7 +80,7 @@ public class ImageProcessor {
      * @param bitmap 原图
      * @return 垂直翻转后的图片
      */
-    public Bitmap reverseByVertical(Bitmap bitmap){
+    public Bitmap reverseByVertical(Bitmap bitmap) {
         Matrix matrix = new Matrix();
         matrix.preScale(1, -1);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
@@ -164,7 +164,7 @@ public class ImageProcessor {
      * @param py 旋转中心点在Y轴的坐标
      * @return 旋转后的图片
      */
-    public Bitmap rotate(float angle, float px, float py){
+    public Bitmap rotate(float angle, float px, float py) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle, px, py);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
@@ -175,7 +175,7 @@ public class ImageProcessor {
      * @param angle 旋转角度
      * @return 旋转后的图片
      */
-    public Bitmap rotate(float angle){
+    public Bitmap rotate(float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
@@ -186,7 +186,7 @@ public class ImageProcessor {
      * @param saturationValue 新的饱和度值
      * @return 改变了饱和度值之后的图片
      */
-    public Bitmap saturation(int saturationValue){
+    public Bitmap saturation(int saturationValue) {
         //计算出符合要求的饱和度值
         float newSaturationValue = saturationValue * 1.0F / 127;
         //创建一个颜色矩阵
@@ -209,7 +209,7 @@ public class ImageProcessor {
      * @param lumValue 新的亮度值
      * @return 改变了亮度值之后的图片
      */
-    public Bitmap lum(int lumValue){
+    public Bitmap lum(int lumValue) {
         //计算出符合要求的亮度值
         float newlumValue = lumValue * 1.0F / 127;
         //创建一个颜色矩阵
@@ -232,7 +232,7 @@ public class ImageProcessor {
      * @param hueValue 新的色相值
      * @return 改变了色相值之后的图片
      */
-    public Bitmap hue(int hueValue){
+    public Bitmap hue(int hueValue) {
         //计算出符合要求的色相值
         float newHueValue = (hueValue - 127) * 1.0F / 127 * 180;
         //创建一个颜色矩阵
@@ -261,7 +261,7 @@ public class ImageProcessor {
      * @param saturationValue 饱和度值
      * @return 亮度、色相、饱和度处理后的图片
      */
-    public Bitmap lumAndHueAndSaturation(int lumValue, int hueValue, int saturationValue){
+    public Bitmap lumAndHueAndSaturation(int lumValue, int hueValue, int saturationValue) {
         //计算出符合要求的饱和度值
         float newSaturationValue = saturationValue * 1.0F / 127;
         //计算出符合要求的亮度值

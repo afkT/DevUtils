@@ -48,7 +48,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
     // == 构造函数 ==
 
-    public AutoFocusAssist(Camera camera){
+    public AutoFocusAssist(Camera camera) {
         this(camera, 2000L);
     }
 
@@ -56,7 +56,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
         this.mCamera = camera;
         this.interval = interval;
         // 防止为null
-        if (camera != null){
+        if (camera != null) {
             // 获取对象对焦模式
             String currentFocusMode = camera.getParameters().getFocusMode();
             // 判断是否(使用/支持)对焦
@@ -73,11 +73,11 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * 设置对焦模式
      * @param collection
      */
-    public static void setFocusModes(Collection<String> collection){
+    public static void setFocusModes(Collection<String> collection) {
         // 清空旧的
         FOCUS_MODES_CALLING_AF.clear();
         // 防止为null
-        if (collection != null){
+        if (collection != null) {
             FOCUS_MODES_CALLING_AF.addAll(collection);
         }
     }
@@ -97,7 +97,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     public void setAutoFocus(boolean autoFocus) {
         this.autoFocus = autoFocus;
         // 判断是否开启自动对焦
-        if (autoFocus){
+        if (autoFocus) {
             start();
         } else {
             stop();
@@ -147,7 +147,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      */
     public synchronized void start() {
         // 如果不使用自动对焦, 则不处理
-        if (!autoFocus){
+        if (!autoFocus) {
             return;
         }
         // 支持对焦才处理

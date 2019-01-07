@@ -73,7 +73,7 @@ public final class BeepVibrateAssist implements Closeable {
                 if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
                     shouldPlayBeep = false; // 进入只有属于, 静音、震动，才不播放
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "shouldBeep");
             }
         }
@@ -89,7 +89,7 @@ public final class BeepVibrateAssist implements Closeable {
             // so we now play on the music stream.
             try {
                 ((Activity) mContext).setVolumeControlStream(AudioManager.STREAM_MUSIC);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "update");
             }
         }
@@ -156,7 +156,7 @@ public final class BeepVibrateAssist implements Closeable {
             try {
                 // 播放
                 mediaPlayer.start();
-            } catch (Exception e){
+            } catch (Exception e) {
             }
         }
         // 判断是否允许震动
@@ -164,7 +164,7 @@ public final class BeepVibrateAssist implements Closeable {
             try {
                 Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(vibrateDuration);
-            } catch (Exception e){
+            } catch (Exception e) {
             }
         }
     }
@@ -206,7 +206,7 @@ public final class BeepVibrateAssist implements Closeable {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 LogPrintUtils.dTag(TAG, "buildMediaPlayer - onCompletion");
-//                if (mediaPlayer != null){
+//                if (mediaPlayer != null) {
 //                    mediaPlayer.seekTo(0);
 //                }
             }
@@ -260,7 +260,7 @@ public final class BeepVibrateAssist implements Closeable {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 LogPrintUtils.dTag(TAG, "buildMediaPlayer - onCompletion");
-//                if (mediaPlayer != null){
+//                if (mediaPlayer != null) {
 //                    mediaPlayer.seekTo(0);
 //                }
             }

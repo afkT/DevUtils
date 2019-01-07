@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public final class SharedUtils {
 
-    private SharedUtils(){
+    private SharedUtils() {
     }
 
     /** 全局 Context */

@@ -11,14 +11,14 @@ import dev.utils.common.encrypt.MD5Utils;
  */
 public final class AssistUtils {
 
-    private AssistUtils(){
+    private AssistUtils() {
     }
 
     /**
      * 获取随机唯一数
      * @return
      */
-    public static UUID randomUUID(){
+    public static UUID randomUUID() {
         return UUID.randomUUID();
     }
 
@@ -26,7 +26,7 @@ public final class AssistUtils {
      * 获取随机唯一数 HashCode
      * @return
      */
-    public static int randomUUIDToHashCode(){
+    public static int randomUUIDToHashCode() {
         return UUID.randomUUID().hashCode();
     }
 
@@ -35,8 +35,8 @@ public final class AssistUtils {
      * @param uuid
      * @return
      */
-    public static int randomUUIDToHashCode(UUID uuid){
-        if (uuid != null){
+    public static int randomUUIDToHashCode(UUID uuid) {
+        if (uuid != null) {
             return uuid.hashCode();
         }
         return 0;
@@ -46,7 +46,7 @@ public final class AssistUtils {
      * 获取随机数 唯一id
      * @return
      */
-    public static String getRandomUUID(){
+    public static String getRandomUUID() {
         // 获取随机数
         String random1 = (900000 + new Random().nextInt(10000)) + "";
         // 获取随机数
@@ -69,16 +69,16 @@ public final class AssistUtils {
      * @param salts
      * @return
      */
-    public static String whileMD5(String data, int number, boolean isUppercase, String... salts){
-        if (data != null && number >= 1){
+    public static String whileMD5(String data, int number, boolean isUppercase, String... salts) {
+        if (data != null && number >= 1) {
             int saltLen = (salts != null) ? salts.length : 0;
             // 判断是否大写
-            if (isUppercase){
+            if (isUppercase) {
                 // 循环加密
-                for (int i = 0; i < number; i++){
-                    if (saltLen >= i){
+                for (int i = 0; i < number; i++) {
+                    if (saltLen >= i) {
                         String salt = salts[i];
-                        if (salt != null){
+                        if (salt != null) {
                             data = MD5Utils.md5Upper(data + salt);
                         } else {
                             data = MD5Utils.md5Upper(data);
@@ -89,10 +89,10 @@ public final class AssistUtils {
                 }
             } else {
                 // 循环加密
-                for (int i = 0; i < number; i++){
-                    if (saltLen >= i){
+                for (int i = 0; i < number; i++) {
+                    if (saltLen >= i) {
                         String salt = salts[i];
-                        if (salt != null){
+                        if (salt != null) {
                             data = MD5Utils.md5(data + salt);
                         } else {
                             data = MD5Utils.md5(data);

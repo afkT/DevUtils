@@ -10,7 +10,7 @@ import dev.utils.JCLogUtils;
  */
 public final class BigDecimalUtils {
 
-    private BigDecimalUtils(){
+    private BigDecimalUtils() {
     }
 
     // 日志TAG
@@ -44,7 +44,7 @@ public final class BigDecimalUtils {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
             return b1.add(b2);
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "add");
         }
         return new BigDecimal(0);
@@ -65,7 +65,7 @@ public final class BigDecimalUtils {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
             return b1.add(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "add");
         }
         return "0";
@@ -94,7 +94,7 @@ public final class BigDecimalUtils {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
             return b1.subtract(b2);
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "substract");
         }
         return new BigDecimal(0);
@@ -115,7 +115,7 @@ public final class BigDecimalUtils {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
             return b1.subtract(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "substract");
         }
         return "0";
@@ -164,7 +164,7 @@ public final class BigDecimalUtils {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
             return b1.multiply(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "multiply");
         }
         return "0";
@@ -215,7 +215,7 @@ public final class BigDecimalUtils {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v1);
             return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "divide");
         }
         return "0";
@@ -249,7 +249,7 @@ public final class BigDecimalUtils {
         try {
             BigDecimal b = new BigDecimal(v);
             return b.setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "round");
         }
         return "0";
@@ -288,7 +288,7 @@ public final class BigDecimalUtils {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
             return b1.remainder(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "remainder");
         }
         return "0";
@@ -307,7 +307,7 @@ public final class BigDecimalUtils {
         }
         try {
             return v1.remainder(v2).setScale(scale, BigDecimal.ROUND_HALF_UP);
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "remainder");
         }
         return new BigDecimal(0);
@@ -435,7 +435,7 @@ public final class BigDecimalUtils {
             if (lenth.compareTo(BigDecimal.valueOf(compare)) == -1) {
                 return false;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "compareBigDecimal");
         }
         return true;
@@ -449,7 +449,7 @@ public final class BigDecimalUtils {
      * @return 处理过的数据
      */
     public static String adjustDouble(String s, int numOfIntPart, int numOfDecimalPart) {
-        if (s == null){
+        if (s == null) {
             return null;
         }
         // 按小数点的位置分割成整数部分和小数部分

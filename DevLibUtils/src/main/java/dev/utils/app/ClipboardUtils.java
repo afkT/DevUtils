@@ -32,7 +32,7 @@ public final class ClipboardUtils {
             ClipData clipData = ClipData.newPlainText("text", text);
             // 设置复制的数据
             clipManager.setPrimaryClip(clipData);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "copyText");
         }
     }
@@ -48,7 +48,7 @@ public final class ClipboardUtils {
             if (clipData != null && clipData.getItemCount() > 0) {
                 return clipData.getItemAt(0).coerceToText(DevUtils.getContext());
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getText");
         }
         return null;
@@ -65,7 +65,7 @@ public final class ClipboardUtils {
             ClipData clipData = ClipData.newUri(DevUtils.getContext().getContentResolver(), "", uri);
             // 设置复制的数据
             clipManager.setPrimaryClip(clipData);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "copyUri");
         }
     }
@@ -81,7 +81,7 @@ public final class ClipboardUtils {
             if (clipData != null && clipData.getItemCount() > 0) {
                 return clipData.getItemAt(0).getUri();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getUri");
         }
         return null;
@@ -98,7 +98,7 @@ public final class ClipboardUtils {
             ClipData clipData = ClipData.newIntent("intent", intent);
             // 设置复制的数据
             clipManager.setPrimaryClip(clipData);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "copyIntent");
         }
     }
@@ -114,7 +114,7 @@ public final class ClipboardUtils {
             if (clipData != null && clipData.getItemCount() > 0) {
                 return clipData.getItemAt(0).getIntent();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIntent");
         }
         return null;

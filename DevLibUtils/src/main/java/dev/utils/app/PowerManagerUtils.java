@@ -21,7 +21,7 @@ public final class PowerManagerUtils {
 
     /** 获取 PowerManagerUtils 实例 ,单例模式 */
     public static PowerManagerUtils getInstance() {
-        if (INSTANCE == null){
+        if (INSTANCE == null) {
             INSTANCE = new PowerManagerUtils();
         }
         return INSTANCE;
@@ -109,8 +109,8 @@ public final class PowerManagerUtils {
      * 设置屏幕常亮
      * @param activity
      */
-    public static void setBright(Activity activity){
-        if (activity != null){
+    public static void setBright(Activity activity) {
+        if (activity != null) {
             setBright(activity.getWindow());
         }
     }
@@ -119,7 +119,7 @@ public final class PowerManagerUtils {
      * 设置屏幕常亮
      * @param window {@link Activity#getWindow()}
      */
-    public static void setBright(Window window){
+    public static void setBright(Window window) {
         if (window != null) {
             window.setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
@@ -130,13 +130,13 @@ public final class PowerManagerUtils {
      * @return
      * run: {@link Activity#onResume()}
      */
-    public static PowerManager.WakeLock setWakeLockToBright(){
+    public static PowerManager.WakeLock setWakeLockToBright() {
         // onResume()
         PowerManager.WakeLock mWakeLock = PowerManagerUtils.getInstance().getPowerManager().newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "setWakeLockToBright");
         mWakeLock.acquire(); // 常量, 持有不黑屏
 
 //        // onPause()
-//        if (mWakeLock != null){
+//        if (mWakeLock != null) {
 //            mWakeLock.release(); // 释放资源, 到休眠时间自动黑屏
 //        }
         return mWakeLock;

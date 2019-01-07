@@ -203,7 +203,7 @@ public final class NetWorkUtils {
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
 	private static NetworkInfo getActiveNetworkInfo() {
-		if (DevUtils.getContext() != null){
+		if (DevUtils.getContext() != null) {
 			try {
 				return ((ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
 			} catch (Exception e) {
@@ -220,7 +220,7 @@ public final class NetWorkUtils {
 	 * @return
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
-	public static boolean is4G(){
+	public static boolean is4G() {
 		return getNetworkType() == NetworkType.NETWORK_4G;
 	}
 
@@ -233,7 +233,7 @@ public final class NetWorkUtils {
 			@SuppressLint("WifiManagerLeak")
 			WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
 			return wifiManager.isWifiEnabled();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getWifiEnabled");
 		}
 		return false;
@@ -256,7 +256,7 @@ public final class NetWorkUtils {
 		try {
 			TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
 			return tm != null ? tm.getNetworkOperatorName() : null;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getNetworkOperatorName");
 		}
 		return null;
@@ -280,7 +280,7 @@ public final class NetWorkUtils {
 			// 属于可用则修改为未知
 			netType = NetworkType.NETWORK_UNKNOWN;
 			// 获取类型
-			switch (networkInfo.getType()){
+			switch (networkInfo.getType()) {
 				case ConnectivityManager.TYPE_WIFI: // 属于Wifi
 					netType = NetworkType.NETWORK_WIFI;
 					break;

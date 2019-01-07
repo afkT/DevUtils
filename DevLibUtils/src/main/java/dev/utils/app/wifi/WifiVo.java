@@ -32,18 +32,18 @@ public class WifiVo implements Parcelable {
 
 	// --
 
-	public  WifiVo(){
+	public  WifiVo() {
 	}
 
 	/**
 	 * 获取Wifi信息
 	 * @param sResult 扫描的Wifi信息
 	 */
-	public static WifiVo createWifiVo(ScanResult sResult){
-		if (sResult != null){
+	public static WifiVo createWifiVo(ScanResult sResult) {
+		if (sResult != null) {
 			try {
 				// 防止wifi名长度为0
-				if(sResult.SSID.length() == 0){
+				if(sResult.SSID.length() == 0) {
 					return null;
 				}
 				// 初始化wifi信息实体类
@@ -67,17 +67,17 @@ public class WifiVo implements Parcelable {
 	 * @param listWifiVos 处理后数据源
 	 * @param listScanResults 扫描返回的数据
 	 */
-	public static void scanWifiVos(List<WifiVo> listWifiVos, List<ScanResult> listScanResults){
+	public static void scanWifiVos(List<WifiVo> listWifiVos, List<ScanResult> listScanResults) {
 		// 清空旧数据
 		listWifiVos.clear();
 		// 遍历wifi列表数据
-		for(int i = 0, len = listScanResults.size();i < len;i++){
+		for(int i = 0, len = listScanResults.size();i < len;i++) {
 			// 如果出现异常，或者失败，则无视当前的索引wifi信息
 			try {
 				// 获取当前索引的wifi信息
 				ScanResult sResult = listScanResults.get(i);
 				// 防止wifi名长度为0
-				if(sResult.SSID.length() == 0){
+				if(sResult.SSID.length() == 0) {
 					continue;
 				}
 				// 保存wifi信息

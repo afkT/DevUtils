@@ -21,9 +21,9 @@ public final class ScaleUtils {
      * @param cHeight 当前高度
      * @return [0] = 宽度, [1] = 高度
      */
-    public static int[] calcScaleToWidth(int width, int cWidth, int cHeight){
+    public static int[] calcScaleToWidth(int width, int cWidth, int cHeight) {
         try {
-            if (cWidth == 0){
+            if (cWidth == 0) {
                 return new int[] { 0, 0 };
             }
             // 计算比例
@@ -45,9 +45,9 @@ public final class ScaleUtils {
      * @param cHeight 当前高度
      * @return [0] = 宽度, [1] = 高度
      */
-    public static int[] calcScaleToHeight(int height, int cWidth, int cHeight){
+    public static int[] calcScaleToHeight(int height, int cWidth, int cHeight) {
         try {
-            if (cHeight == 0){
+            if (cHeight == 0) {
                 return new int[] { 0, 0 };
             }
             // 计算比例
@@ -70,10 +70,10 @@ public final class ScaleUtils {
      * @param hScale
      * @return
      */
-    public static int[] calcWidthHeightToScale(int width, int height, float wScale, float hScale){
+    public static int[] calcWidthHeightToScale(int width, int height, float wScale, float hScale) {
         try {
             // 如果宽度的比例,大于等于高度比例
-            if (wScale >= hScale){ // 以宽度为基准
+            if (wScale >= hScale) { // 以宽度为基准
                 // 设置宽度 -> 以宽度为基准
                 int sWidth = width;
                 // 计算宽度
@@ -101,7 +101,7 @@ public final class ScaleUtils {
      * @param hScale
      * @return
      */
-    public static int[] calcWidthToScale(int width, float wScale, float hScale){
+    public static int[] calcWidthToScale(int width, float wScale, float hScale) {
         try {
             // 设置宽度
             int sWidth = width;
@@ -122,7 +122,7 @@ public final class ScaleUtils {
      * @param hScale
      * @return
      */
-    public static int[] calcHeightToScale(int height, float wScale, float hScale){
+    public static int[] calcHeightToScale(int height, float wScale, float hScale) {
         try {
             // 设置高度
             int sHeight = height;

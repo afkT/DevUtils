@@ -13,7 +13,7 @@ class ThreadUse {
     /**
      * 线程使用方法
      */
-    private void threadUse(){
+    private void threadUse() {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {

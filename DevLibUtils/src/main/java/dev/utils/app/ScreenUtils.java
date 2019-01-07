@@ -59,7 +59,6 @@ public final class ScreenUtils {
     
 //	/**
 //	 * 通过 Context 获取屏幕宽度
-//	 * @param mContext
 //	 * @return
 //	 */
 //	@SuppressWarnings("deprecation")
@@ -83,7 +82,6 @@ public final class ScreenUtils {
 //
 //	/**
 //	 * 通过 Context 获取屏幕高度
-//	 * @param mContext
 //	 * @return
 //	 */
 //	@SuppressWarnings("deprecation")
@@ -107,7 +105,6 @@ public final class ScreenUtils {
 //
 //	/**
 //	 * 通过 Context 获取屏幕宽度高度
-//	 * @param mContext
 //	 * @return int[] 0 = 宽度，1 = 高度
 //	 */
 //	@SuppressWarnings("deprecation")
@@ -148,7 +145,7 @@ public final class ScreenUtils {
 				windowManager.getDefaultDisplay().getSize(point);
 			}
 			return point.x;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getScreenWidth");
 		}
 		return 0;
@@ -171,7 +168,7 @@ public final class ScreenUtils {
 				windowManager.getDefaultDisplay().getSize(point);
 			}
 			return point.y;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getScreenHeight");
 		}
 		return 0;
@@ -235,7 +232,7 @@ public final class ScreenUtils {
 			int[] whArys = getScreenWidthHeight();
 			// 返回分辨率信息
 			return whArys[1] + "x" + whArys[0];
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getScreenSize");
 		}
 		return "unknown";
@@ -259,7 +256,7 @@ public final class ScreenUtils {
 			// 转换大小
 			DecimalFormat df = new DecimalFormat("#.0");
 			return df.format(screenInches);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getScreenSizeOfDevice");
 		}
 		return "unknown";
@@ -392,7 +389,7 @@ public final class ScreenUtils {
 	 * 获取屏幕信息
 	 * @return
 	 */
-	public static String getScreenInfo(){
+	public static String getScreenInfo() {
 		StringBuilder sBuilder = new StringBuilder();
 		// 获取屏幕信息
 		DisplayMetrics dMetrics = getDisplayMetrics();
@@ -462,7 +459,7 @@ public final class ScreenUtils {
 	public static void setLandscape(@NonNull final Activity activity) {
 		try {
 			activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "setLandscape");
 		}
 	}
@@ -474,7 +471,7 @@ public final class ScreenUtils {
 	public static void setPortrait(@NonNull final Activity activity) {
 		try {
 			activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "setPortrait");
 		}
 	}
@@ -486,7 +483,7 @@ public final class ScreenUtils {
 	public static boolean isLandscape() {
 		try {
 			return DevUtils.getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "isLandscape");
 		}
 		return false;
@@ -499,7 +496,7 @@ public final class ScreenUtils {
 	public static boolean isPortrait() {
 		try {
 			return DevUtils.getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "isPortrait");
 		}
 		return false;
@@ -524,7 +521,7 @@ public final class ScreenUtils {
 				default:
 					return 0;
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getScreenRotation");
 		}
 		return 0;
@@ -538,7 +535,7 @@ public final class ScreenUtils {
 		try {
 			KeyguardManager keyguardManager = (KeyguardManager) DevUtils.getContext().getSystemService(Context.KEYGUARD_SERVICE);
 			return keyguardManager != null && keyguardManager.inKeyguardRestrictedInputMode();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "isScreenLock");
 		}
 		return false;
@@ -551,7 +548,7 @@ public final class ScreenUtils {
 	public static boolean isTablet() {
 		try {
 			return (DevUtils.getContext().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "isTablet");
 		}
 		return false;
@@ -598,7 +595,7 @@ public final class ScreenUtils {
 	public static void setSleepDuration(final int duration) {
 		try {
 			Settings.System.putInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "setSleepDuration");
 		}
 	}
@@ -688,7 +685,7 @@ public final class ScreenUtils {
 			if (resourceId > 0 && checkDeviceHasNavigationBar()) {
 				navigationBarHeight = resources.getDimensionPixelSize(resourceId);
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getNavigationBarHeight");
 		}
 		return navigationBarHeight;
@@ -709,8 +706,8 @@ public final class ScreenUtils {
 			}
 			try {
 				Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
-				Method m = systemPropertiesClass.getMethod("get", String.class);
-				String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+				Method method = systemPropertiesClass.getMethod("get", String.class);
+				String navBarOverride = (String) method.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
 				if ("1".equals(navBarOverride)) {
 					hasNavigationBar = false;
 				} else if ("0".equals(navBarOverride)) {
@@ -719,7 +716,7 @@ public final class ScreenUtils {
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "checkDeviceHasNavigationBar - SystemProperties");
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "checkDeviceHasNavigationBar");
 		}
 		return hasNavigationBar;

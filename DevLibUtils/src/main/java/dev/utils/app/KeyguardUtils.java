@@ -22,7 +22,7 @@ public final class KeyguardUtils {
 
     /** 获取 KeyguardUtils 实例 ,单例模式 */
     public static KeyguardUtils getInstance() {
-        if (INSTANCE == null){
+        if (INSTANCE == null) {
             INSTANCE = new KeyguardUtils();
         }
         return INSTANCE;
@@ -123,7 +123,7 @@ public final class KeyguardUtils {
      * 生成一个新的 KeyguardLock, 并且设置 Tag
      * @param tag
      */
-    public void newKeyguardLock (String tag){
+    public void newKeyguardLock (String tag) {
         keyguardLock = keyguardManager.newKeyguardLock(tag);
     }
 

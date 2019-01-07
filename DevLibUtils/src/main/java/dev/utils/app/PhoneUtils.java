@@ -133,7 +133,7 @@ public final class PhoneUtils {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             return telephonyManager != null && telephonyManager.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isPhone");
         }
         return false;
@@ -150,7 +150,7 @@ public final class PhoneUtils {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 return telephonyManager.getMeid();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMEID");
         }
         return null;
@@ -174,7 +174,7 @@ public final class PhoneUtils {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             return telephonyManager != null ? telephonyManager.getDeviceId() : null;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIMEI");
         }
         return null;
@@ -202,7 +202,7 @@ public final class PhoneUtils {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             return telephonyManager != null ? telephonyManager.getSubscriberId() : null;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIMSI");
         }
         return null;
@@ -213,7 +213,7 @@ public final class PhoneUtils {
      * @param IMSI
      * @return
      */
-    public static String getIMSIIDName(String IMSI){
+    public static String getIMSIIDName(String IMSI) {
         if (IMSI != null) {
             if (IMSI.startsWith("46000") || IMSI.startsWith("46002")) {
                 return "中国移动";
@@ -238,7 +238,7 @@ public final class PhoneUtils {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             return telephonyManager != null ? telephonyManager.getPhoneType() : -1;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPhoneType");
         }
         return 0;
@@ -252,7 +252,7 @@ public final class PhoneUtils {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             return telephonyManager != null && telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isSimCardReady");
         }
         return false;
@@ -266,7 +266,7 @@ public final class PhoneUtils {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             return telephonyManager != null ? telephonyManager.getSimOperatorName() : null;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimOperatorName");
         }
         return null;
@@ -293,7 +293,7 @@ public final class PhoneUtils {
                 default:
                     return operator;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimOperatorByMnc");
         }
         return null;
@@ -305,12 +305,12 @@ public final class PhoneUtils {
      * @return
      */
     @SuppressLint({"HardwareIds", "MissingPermission"})
-    public static String getDeviceId(){
+    public static String getDeviceId() {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             if (telephonyManager == null) return "";
             return telephonyManager.getDeviceId();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDeviceId");
         }
         return null;
@@ -321,13 +321,13 @@ public final class PhoneUtils {
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
-    public static String getSerialNumber(){
+    public static String getSerialNumber() {
         try {
-            if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.P){
+            if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.P) {
                 return Build.getSerial();
             }
             return android.os.Build.SERIAL;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSerialNumber");
         }
         return null;
@@ -353,7 +353,7 @@ public final class PhoneUtils {
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
-    public static String getUUID(){
+    public static String getUUID() {
         String androidId = getAndroidId() + "";
         String deviceId = getDeviceId() + "";
         String serialNumber = getSerialNumber() + "";
@@ -404,7 +404,7 @@ public final class PhoneUtils {
             stringBuffer.append("SubscriberId(IMSI) = " + telephonyManager.getSubscriberId() + "(" + getIMSIIDName(telephonyManager.getSubscriberId()) + ")"+ "\n");
             stringBuffer.append("VoiceMailNumber = " + telephonyManager.getVoiceMailNumber() + "\n");
             return stringBuffer.toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPhoneStatus");
         }
         return "";
@@ -515,7 +515,7 @@ public final class PhoneUtils {
                     }
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllContactInfo");
         } finally {
             // 12.关闭 cursor
@@ -564,7 +564,7 @@ public final class PhoneUtils {
         ((Activity) DevUtils.getContext()).startActivityForResult(intent, 0);
 
 //        @Override
-//        protected void onActivityResult (int requestCode, int resultCode, Intent data){
+//        protected void onActivityResult (int requestCode, int resultCode, Intent data) {
 //            super.onActivityResult(requestCode, resultCode, data);
 //            if (data != null) {
 //                Uri uri = data.getData();

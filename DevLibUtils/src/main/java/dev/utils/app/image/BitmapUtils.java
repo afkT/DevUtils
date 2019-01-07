@@ -50,10 +50,10 @@ public final class BitmapUtils {
      * @return
      */
     public static Drawable tintIcon(@NonNull Drawable drawable, @ColorInt int tintColor) {
-        if (drawable != null){
+        if (drawable != null) {
             try {
                 drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "tintIcon");
             }
         }
@@ -71,7 +71,7 @@ public final class BitmapUtils {
         try {
             final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, id);
             return tintIcon(toastDrawable, tintColor);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "tint9PatchDrawableFrame");
         }
         return null;
@@ -83,7 +83,7 @@ public final class BitmapUtils {
      * @param drawable
      */
     public static void setBackground(@NonNull View view, Drawable drawable) {
-        if (view != null){
+        if (view != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                 view.setBackground(drawable);
             else
@@ -98,7 +98,7 @@ public final class BitmapUtils {
      * @return
      */
     public static Drawable getDrawable(Context context, @DrawableRes int id) {
-		if (context == null){
+		if (context == null) {
 			return null;
 		}
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -315,7 +315,7 @@ public final class BitmapUtils {
 	 * @return bitmap
 	 */
 	public static Bitmap drawable3Bitmap(final Drawable drawable) {
-		if (drawable == null){
+		if (drawable == null) {
 			return null;
 		}
 		Bitmap bitmap;
@@ -420,7 +420,7 @@ public final class BitmapUtils {
 			drawable.setBounds(0, 0, width, height);
 			drawable.draw(canvas);
 			return bitmap;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getBitmapFromDrawable");
 		}
 		return null;
@@ -444,7 +444,7 @@ public final class BitmapUtils {
 			}
 			view.draw(canvas);
 			return ret;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "bitmapToViewBackGround");
 		}
 		return null;
@@ -463,7 +463,7 @@ public final class BitmapUtils {
 			view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
 			view.draw(canvas);
 			return bitmap;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getBitmapFromView");
 		}
 		return null;
@@ -498,7 +498,7 @@ public final class BitmapUtils {
 			view.setWillNotCacheDrawing(willNotCache);
 			view.setDrawingCacheBackgroundColor(color);
 			return bitmap;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getBitmapFromView2");
 		}
 		return null;
@@ -618,7 +618,7 @@ public final class BitmapUtils {
 	 * @param path
 	 * @return
 	 */
-	public static int[] getImageWidthHeight(String path){
+	public static int[] getImageWidthHeight(String path) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		// 不解析图片信息
 		options.inJustDecodeBounds = true;

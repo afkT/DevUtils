@@ -42,8 +42,8 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneCheck(String phone){
-        if (!isEmpty(phone)){
+    public static boolean isPhoneCheck(String phone) {
+        if (!isEmpty(phone)) {
             return match(CHAIN_PHONE_FORMAT_CHECK, phone);
         }
         return false;
@@ -54,8 +54,8 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhone(String phone){
-        if (!isEmpty(phone)){
+    public static boolean isPhone(String phone) {
+        if (!isEmpty(phone)) {
             return match(CHINA_PHONE_PATTERN, phone);
         }
         return false;
@@ -66,8 +66,8 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneToChinaTelecom(String phone){
-        if (!isEmpty(phone)){
+    public static boolean isPhoneToChinaTelecom(String phone) {
+        if (!isEmpty(phone)) {
             return match(CHINA_TELECOM_PATTERN, phone);
         }
         return false;
@@ -78,8 +78,8 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneToChinaUnicom(String phone){
-        if (!isEmpty(phone)){
+    public static boolean isPhoneToChinaUnicom(String phone) {
+        if (!isEmpty(phone)) {
             return match(CHINA_UNICOM_PATTERN, phone);
         }
         return false;
@@ -90,8 +90,8 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneToChinaMobile(String phone){
-        if (!isEmpty(phone)){
+    public static boolean isPhoneToChinaMobile(String phone) {
+        if (!isEmpty(phone)) {
             return match(CHINA_MOBILE_PATTERN, phone);
         }
         return false;
@@ -102,8 +102,8 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneToHkMobile(String phone){
-        if (!isEmpty(phone)){
+    public static boolean isPhoneToHkMobile(String phone) {
+        if (!isEmpty(phone)) {
             return match(HK_PHONE_PATTERN, phone);
         }
         return false;
@@ -115,7 +115,7 @@ public final class ValiToPhoneUtils {
      * @return
      */
     public static boolean isPhoneCallNum(String phone) {
-        if (!isEmpty(phone)){
+        if (!isEmpty(phone)) {
             return match(PHONE_CALL_PATTERN, phone);
         }
         return false;

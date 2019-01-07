@@ -47,7 +47,7 @@ class FileRecordUse {
     /**
      * AnalysisRecordUtils 工具类使用方法
      */
-    private void analysisRecord(){
+    private void analysisRecord() {
 
         // 默认存储到 android/data/包名/cache文件/ , 可以自己特殊设置
 //        AnalysisRecordUtils.setLogStoragePath(SDCardUtils.getSDCardPath());
@@ -101,7 +101,7 @@ class FileRecordUse {
     /**
      * DevLoggerUtils、FileRecordUtils 工具类
      */
-    private void logRecord(){
+    private void logRecord() {
         // = 异常日志保存 =
 
         try {

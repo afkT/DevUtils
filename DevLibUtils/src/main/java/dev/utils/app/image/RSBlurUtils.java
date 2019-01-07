@@ -20,7 +20,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class RSBlurUtils {
 
-    private RSBlurUtils(){
+    private RSBlurUtils() {
     }
 
     // 日志TAG

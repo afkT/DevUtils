@@ -28,7 +28,7 @@ public final class VibrationUtils {
         try {
             Vibrator vibrator = (Vibrator) DevUtils.getContext().getSystemService(Context.VIBRATOR_SERVICE);
             vibrator.vibrate(milliseconds);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "vibrate");
         }
     }
@@ -43,7 +43,7 @@ public final class VibrationUtils {
         try {
             Vibrator vibrator = (Vibrator) DevUtils.getContext().getSystemService(Context.VIBRATOR_SERVICE);
             vibrator.vibrate(pattern, repeat);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "vibrate");
         }
     }
@@ -55,7 +55,7 @@ public final class VibrationUtils {
     public static void cancel() {
         try {
             ((Vibrator) DevUtils.getContext().getSystemService(Context.VIBRATOR_SERVICE)).cancel();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cancel");
         }
     }

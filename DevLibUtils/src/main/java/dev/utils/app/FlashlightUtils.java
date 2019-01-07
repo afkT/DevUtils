@@ -132,7 +132,7 @@ public final class FlashlightUtils {
                 Camera.Parameters parameter = camera.getParameters();
                 parameter.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                 camera.setParameters(parameter);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setFlashlightOn");
             }
         }
@@ -148,7 +148,7 @@ public final class FlashlightUtils {
                 Camera.Parameters parameter = camera.getParameters();
                 parameter.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
                 camera.setParameters(parameter);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setFlashlightOff");
             }
         }
@@ -166,7 +166,7 @@ public final class FlashlightUtils {
         try {
             Camera.Parameters parameters = camera.getParameters();
             return FLASH_MODE_TORCH.equals(parameters.getFlashMode());
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isFlashlightOn");
         }
         return false;

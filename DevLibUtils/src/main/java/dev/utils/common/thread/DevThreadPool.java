@@ -46,9 +46,9 @@ public final class DevThreadPool {
      * 构造函数
      * @param nThreads
      */
-    public DevThreadPool(int nThreads){
+    public DevThreadPool(int nThreads) {
         // 如果小于等于 0, 则默认使用 1
-        if (nThreads <= 0){
+        if (nThreads <= 0) {
             nThreads = 1;
         }
         this.threadPool = Executors.newFixedThreadPool(nThreads);
@@ -60,15 +60,15 @@ public final class DevThreadPool {
      * 构造函数
      * @param threadPool
      */
-    public DevThreadPool(ExecutorService threadPool){
+    public DevThreadPool(ExecutorService threadPool) {
         this.threadPool = threadPool;
     }
 
-    public DevThreadPool(DevThreadPoolType devThreadPoolType){
+    public DevThreadPool(DevThreadPoolType devThreadPoolType) {
         // 初始化定时器任务
         this.scheduleExec = Executors.newScheduledThreadPool(getThreads());
         // =
-        if (devThreadPoolType != null){
+        if (devThreadPoolType != null) {
             // =
             switch (devThreadPoolType) {
                 case SINGLE:
@@ -169,7 +169,7 @@ public final class DevThreadPool {
      * @param runnables
      */
     public void execute(final List<Runnable> runnables) {
-        if (threadPool == null || runnables == null){
+        if (threadPool == null || runnables == null) {
             return;
         }
         for (Runnable command : runnables) {
@@ -186,7 +186,7 @@ public final class DevThreadPool {
      * @param _class
      */
     public void execute(final Method method, final Object _class) {
-        if (threadPool != null){
+        if (threadPool != null) {
             threadPool.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -207,7 +207,7 @@ public final class DevThreadPool {
      * 如果已经关闭，则调用没有作用。
      */
     public void shutdown() {
-        if (threadPool != null){
+        if (threadPool != null) {
             threadPool.shutdown();
         }
     }
@@ -220,7 +220,7 @@ public final class DevThreadPool {
      * @return
      */
     public List<Runnable> shutdownNow() {
-        if (threadPool != null){
+        if (threadPool != null) {
             return threadPool.shutdownNow();
         }
         return null;
@@ -231,7 +231,7 @@ public final class DevThreadPool {
      * @return
      */
     public boolean isShutdown() {
-        if (threadPool != null){
+        if (threadPool != null) {
             return threadPool.isShutdown();
         }
         return false;
@@ -245,7 +245,7 @@ public final class DevThreadPool {
      * @return
      */
     public boolean isTerminated() {
-        if (threadPool != null){
+        if (threadPool != null) {
             return threadPool.isTerminated();
         }
         return false;

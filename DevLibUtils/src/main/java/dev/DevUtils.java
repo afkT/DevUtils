@@ -87,7 +87,7 @@ public final class DevUtils {
      */
     private static void initContext(Context context) {
         // 如果为null, 才进行判断处理
-        if (DevUtils.sContext == null){
+        if (DevUtils.sContext == null) {
             // 防止传进来的为null
             if (context == null) {
                 return;
@@ -102,14 +102,14 @@ public final class DevUtils {
      */
     private static void initApplication(Context context) {
         // 如果为null, 才进行判断处理
-        if (DevUtils.sApplication == null){
-            if (context == null){
+        if (DevUtils.sApplication == null) {
+            if (context == null) {
                 return;
             }
             Application mApplication = null;
             try {
                 mApplication = (Application) context.getApplicationContext();
-            } catch (Exception e){
+            } catch (Exception e) {
             }
             // 防止传进来的为null
             if (mApplication == null) {
@@ -133,7 +133,7 @@ public final class DevUtils {
      */
     public static Context getContext(Context context) {
         // 进行判断
-        if (context != null){
+        if (context != null) {
             return context;
         }
         return DevUtils.sContext;
@@ -143,11 +143,11 @@ public final class DevUtils {
      * 获取全局 Application
      * @return
      */
-    public static Application getApplication(){
+    public static Application getApplication() {
         if (DevUtils.sApplication != null) return DevUtils.sApplication;
         try {
             Application app = getApplicationByReflect();
-            if (app != null){
+            if (app != null) {
                 init(app); // 初始化操作
             }
             return app;
@@ -185,8 +185,8 @@ public final class DevUtils {
      * 获取Handler
      * @return
      */
-    public static Handler getHandler(){
-        if (sHandler == null){
+    public static Handler getHandler() {
+        if (sHandler == null) {
             // 初始化全局Handler - 主线程
             sHandler = new Handler(Looper.getMainLooper()); //Looper.myLooper();
         }
@@ -210,7 +210,7 @@ public final class DevUtils {
      * @param action
      * @param delayMillis
      */
-    public static void runOnUiThread(Runnable action, long delayMillis){
+    public static void runOnUiThread(Runnable action, long delayMillis) {
         sHandler.postDelayed(action, delayMillis);
     }
 
@@ -245,7 +245,7 @@ public final class DevUtils {
      * 获取工具类版本
      * @return
      */
-    public static String getUtilsVersion(){
+    public static String getUtilsVersion() {
         return BuildConfig.VERSION_NAME;
     }
 
@@ -264,11 +264,11 @@ public final class DevUtils {
      * 注册绑定Activity 生命周期事件处理
      * @param application
      */
-    private static void registerActivityLifecycleCallbacks(Application application){
+    private static void registerActivityLifecycleCallbacks(Application application) {
         // 先移除监听
         unregisterActivityLifecycleCallbacks(application);
         // 防止为null
-        if (application != null){
+        if (application != null) {
             try {
                 // 绑定新的监听
                 application.registerActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE);
@@ -282,8 +282,8 @@ public final class DevUtils {
      * 解除注册 Activity 生命周期事件处理
      * @param application
      */
-    private static void unregisterActivityLifecycleCallbacks(Application application){
-        if (application != null){
+    private static void unregisterActivityLifecycleCallbacks(Application application) {
+        if (application != null) {
             try {
                 // 先移除旧的监听
                 application.unregisterActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE);
@@ -299,7 +299,7 @@ public final class DevUtils {
      * 获取 Activity 生命周期 相关信息获取接口类
      * @return
      */
-    public static ActivityLifecycleGet getActivityLifecycleGet(){
+    public static ActivityLifecycleGet getActivityLifecycleGet() {
         return ACTIVITY_LIFECYCLE;
     }
 
@@ -307,7 +307,7 @@ public final class DevUtils {
      * 获取 Activity 生命周期 事件监听接口类
      * @return
      */
-    public static ActivityLifecycleNotify getActivityLifecycleNotify(){
+    public static ActivityLifecycleNotify getActivityLifecycleNotify() {
         return ACTIVITY_LIFECYCLE;
     }
 
@@ -315,7 +315,7 @@ public final class DevUtils {
      * 获取 Top Activity
      * @return
      */
-    public static Activity getTopActivity(){
+    public static Activity getTopActivity() {
         return ACTIVITY_LIFECYCLE.getTopActivity();
     }
 
@@ -486,7 +486,7 @@ public final class DevUtils {
          */
         @Override
         public boolean isTopActivity(final String activityClassName) {
-            if (!TextUtils.isEmpty(activityClassName)){
+            if (!TextUtils.isEmpty(activityClassName)) {
                 Activity activity = getTopActivity();
                 // 判断是否类是否一致
                 return (activity != null && activity.getClass().getCanonicalName().equals(activityClassName));
@@ -501,7 +501,7 @@ public final class DevUtils {
          */
         @Override
         public boolean isTopActivity(final Class clazz) {
-             if (clazz != null){
+             if (clazz != null) {
                  Activity activity = getTopActivity();
                  // 判断是否类是否一致
                  return (activity != null && activity.getClass().getCanonicalName().equals(clazz.getCanonicalName()));
@@ -772,12 +772,12 @@ public final class DevUtils {
     private static ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
         @Override
         public boolean filter(Activity activity) {
-            if (activity != null){
-                if (PERMISSION_ACTIVITY_CLASS_NAME.equals(activity.getClass().getName())){
+            if (activity != null) {
+                if (PERMISSION_ACTIVITY_CLASS_NAME.equals(activity.getClass().getName())) {
                     // 如果相同则不处理(该页面为内部权限框架, 申请权限页面)
                     return true;
                 } else {
-                    if (activityLifecycleFilter != null){
+                    if (activityLifecycleFilter != null) {
                         return activityLifecycleFilter.filter(activity);
                     }
                 }

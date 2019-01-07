@@ -101,7 +101,7 @@ final class DevCacheManager {
      */
     protected File get(String key) {
         File file = newFile(key);
-        if (file != null){
+        if (file != null) {
             Long currentTime = System.currentTimeMillis();
             file.setLastModified(currentTime);
             lastUsageDates.put(file, currentTime);
@@ -116,7 +116,7 @@ final class DevCacheManager {
      * @return {@link File}
      */
     protected File newFile(String key) {
-        if (key != null){
+        if (key != null) {
             return new File(cacheDir, key.hashCode() + "");
         }
         return null;
@@ -129,7 +129,7 @@ final class DevCacheManager {
      */
     protected boolean remove(String key) {
         File file = get(key);
-        if (file != null){
+        if (file != null) {
             return file.delete();
         }
         return false;
@@ -188,7 +188,7 @@ final class DevCacheManager {
      * @return 文件大小
      */
     private long calculateSize(File file) {
-        if (file != null){
+        if (file != null) {
             return file.length();
         }
         return 0l;

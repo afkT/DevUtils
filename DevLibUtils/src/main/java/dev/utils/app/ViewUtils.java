@@ -35,8 +35,8 @@ public final class ViewUtils {
      * @param view
      * @return
      */
-    public static Context getContext(View view){
-        if (view != null){
+    public static Context getContext(View view) {
+        if (view != null) {
             return view.getContext();
         }
         return null;
@@ -47,7 +47,7 @@ public final class ViewUtils {
      * @param view
      * @return
      */
-    public static boolean isEmpty(View view){
+    public static boolean isEmpty(View view) {
         return view == null;
     }
 
@@ -56,11 +56,11 @@ public final class ViewUtils {
      * @param views
      * @return
      */
-    public static boolean isEmpty(View... views){
-        if (views != null && views.length != 0){
-            for (int i = 0, len = views.length; i < len; i++){
+    public static boolean isEmpty(View... views) {
+        if (views != null && views.length != 0) {
+            for (int i = 0, len = views.length; i < len; i++) {
                 View view = views[i];
-                if (view == null){
+                if (view == null) {
                     return true;
                 }
             }
@@ -74,7 +74,7 @@ public final class ViewUtils {
      * @param view
      * @return
      */
-    public static boolean isVisibility(View view){
+    public static boolean isVisibility(View view) {
         return isVisibility(view, true);
     }
 
@@ -84,8 +84,8 @@ public final class ViewUtils {
      * @param isDf
      * @return
      */
-    public static boolean isVisibility(View view, boolean isDf){
-        if (view != null){
+    public static boolean isVisibility(View view, boolean isDf) {
+        if (view != null) {
             // 判断是否显示
             return (view.getVisibility() == View.VISIBLE);
         }
@@ -98,11 +98,11 @@ public final class ViewUtils {
      * @param views
      * @return
      */
-    public static boolean isVisibilitys(View... views){
-        if (views != null && views.length != 0){
-            for (int i = 0, len = views.length; i < len; i++){
+    public static boolean isVisibilitys(View... views) {
+        if (views != null && views.length != 0) {
+            for (int i = 0, len = views.length; i < len; i++) {
                 View view = views[i];
-                if (view != null && view.getVisibility() == View.VISIBLE){
+                if (view != null && view.getVisibility() == View.VISIBLE) {
                 } else {
                     return false;
                 }
@@ -117,7 +117,7 @@ public final class ViewUtils {
      * @param view
      * @return
      */
-    public static boolean isVisibilityIN(View view){
+    public static boolean isVisibilityIN(View view) {
         return isVisibilityIN(view, false);
     }
 
@@ -127,8 +127,8 @@ public final class ViewUtils {
      * @param isDf
      * @return
      */
-    public static boolean isVisibilityIN(View view, boolean isDf){
-        if (view != null){
+    public static boolean isVisibilityIN(View view, boolean isDf) {
+        if (view != null) {
             // 判断是否显示
             return (view.getVisibility() == View.INVISIBLE);
         }
@@ -141,7 +141,7 @@ public final class ViewUtils {
      * @param view
      * @return
      */
-    public static boolean isVisibilityGone(View view){
+    public static boolean isVisibilityGone(View view) {
         return isVisibilityGone(view, false);
     }
 
@@ -151,8 +151,8 @@ public final class ViewUtils {
      * @param isDf
      * @return
      */
-    public static boolean isVisibilityGone(View view, boolean isDf){
-        if (view != null){
+    public static boolean isVisibilityGone(View view, boolean isDf) {
+        if (view != null) {
             // 判断是否显示
             return (view.getVisibility() == View.GONE);
         }
@@ -167,7 +167,7 @@ public final class ViewUtils {
      * @param isVisibility
      * @return
      */
-    public static int getVisibility(boolean isVisibility){
+    public static int getVisibility(boolean isVisibility) {
         return isVisibility ? View.VISIBLE : View.GONE;
     }
 
@@ -176,7 +176,7 @@ public final class ViewUtils {
      * @param isVisibility
      * @return
      */
-    public static int getVisibilityIN(boolean isVisibility){
+    public static int getVisibilityIN(boolean isVisibility) {
         return isVisibility ? View.VISIBLE : View.INVISIBLE;
     }
 
@@ -187,8 +187,8 @@ public final class ViewUtils {
      * @param isVisibility
      * @param view
      */
-    public static boolean setVisibility(boolean isVisibility, View view){
-        if (view != null){
+    public static boolean setVisibility(boolean isVisibility, View view) {
+        if (view != null) {
             view.setVisibility(isVisibility ? View.VISIBLE : View.GONE);
         }
         return isVisibility;
@@ -199,8 +199,8 @@ public final class ViewUtils {
      * @param isVisibility
      * @param view
      */
-    public static boolean setVisibility(int isVisibility, View view){
-        if (view != null){
+    public static boolean setVisibility(int isVisibility, View view) {
+        if (view != null) {
             view.setVisibility(isVisibility);
         }
         return (isVisibility == View.VISIBLE);
@@ -213,7 +213,7 @@ public final class ViewUtils {
      * @param isVisibility
      * @param views
      */
-    public static boolean setVisibilitys(boolean isVisibility, View... views){
+    public static boolean setVisibilitys(boolean isVisibility, View... views) {
         return setVisibilitys(getVisibility(isVisibility), views);
     }
 
@@ -222,11 +222,11 @@ public final class ViewUtils {
      * @param isVisibility
      * @param views
      */
-    public static boolean setVisibilitys(int isVisibility, View... views){
-        if (views != null && views.length != 0){
-            for (int i = 0, len = views.length; i < len; i++){
+    public static boolean setVisibilitys(int isVisibility, View... views) {
+        if (views != null && views.length != 0) {
+            for (int i = 0, len = views.length; i < len; i++) {
                 View view = views[i];
-                if (view != null){
+                if (view != null) {
                     view.setVisibility(isVisibility);
                 }
             }
@@ -239,8 +239,8 @@ public final class ViewUtils {
      * @param view
      * @param views
      */
-    public static void toggleVisibilitys(View view, View... views){
-        if (view != null){
+    public static void toggleVisibilitys(View view, View... views) {
+        if (view != null) {
             view.setVisibility(View.VISIBLE);
         }
         setVisibilitys(View.GONE, views);
@@ -251,7 +251,7 @@ public final class ViewUtils {
      * @param viewArys
      * @param views
      */
-    public static void toggleVisibilitys(View[] viewArys, View... views){
+    public static void toggleVisibilitys(View[] viewArys, View... views) {
         toggleVisibilitys(viewArys, View.GONE, views);
     }
 
@@ -261,7 +261,7 @@ public final class ViewUtils {
      * @param status
      * @param views
      */
-    public static void toggleVisibilitys(View[] viewArys, int status, View... views){
+    public static void toggleVisibilitys(View[] viewArys, int status, View... views) {
         // 默认前面显示
         setVisibilitys(View.VISIBLE, viewArys);
         // 更具状态处理
@@ -277,8 +277,8 @@ public final class ViewUtils {
      * @param view 需要判断的View
      * @return
      */
-    public static boolean toogleView(boolean isChange, int isVisibility, View view){
-        if (isChange && view != null){
+    public static boolean toogleView(boolean isChange, int isVisibility, View view) {
+        if (isChange && view != null) {
             view.setVisibility(isVisibility);
         }
         return isChange;
@@ -291,7 +291,7 @@ public final class ViewUtils {
      * @param draw
      * @param views
      */
-    public static void setViewImageRes(int draw, ImageView... views){
+    public static void setViewImageRes(int draw, ImageView... views) {
         setViewImageRes(draw, View.VISIBLE, views);
     }
 
@@ -301,17 +301,17 @@ public final class ViewUtils {
      * @param isVisibility
      * @param views
      */
-    public static void setViewImageRes(int draw, int isVisibility, ImageView... views){
-        if (views != null && views.length != 0){
-            for (int i = 0, len = views.length; i < len; i++){
+    public static void setViewImageRes(int draw, int isVisibility, ImageView... views) {
+        if (views != null && views.length != 0) {
+            for (int i = 0, len = views.length; i < len; i++) {
                 ImageView view = views[i];
-                if (view != null){
+                if (view != null) {
                     try {
                         // 设置背景
                         view.setImageResource(draw);
                         // 是否显示
                         view.setVisibility(isVisibility);
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setViewImageRes");
                     }
                 }
@@ -339,7 +339,7 @@ public final class ViewUtils {
      * @param <T>
      * @return
      */
-    public static <T extends View> T findViewById(Window window, int id){
+    public static <T extends View> T findViewById(Window window, int id) {
         return window.findViewById(id);
     }
 
@@ -455,7 +455,7 @@ public final class ViewUtils {
                 }
                 context = ((ContextWrapper) context).getBaseContext();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivity");
         }
         return null;
@@ -498,7 +498,7 @@ public final class ViewUtils {
         // 累加分割线高度
         totalHeight += (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         // 判断是否需要设置高度
-        if (isSet){
+        if (isSet) {
             ViewGroup.LayoutParams params = listView.getLayoutParams();
             params.height = totalHeight;
             listView.setLayoutParams(params);
@@ -548,16 +548,16 @@ public final class ViewUtils {
             // 默认表示第一个的高度
             singleMax = getItemHeighet(listAdapter, gridView, i * numColumns);
             // 遍历判断
-            for (int eqI = 1; eqI < numColumns; eqI++){
+            for (int eqI = 1; eqI < numColumns; eqI++) {
                 // 临时高度
                 int tempHeight = 0;
                 // 进行判断处理
-                if (i * numColumns + eqI <= count){
+                if (i * numColumns + eqI <= count) {
                     // 获取对应的高度
                     tempHeight = getItemHeighet(listAdapter, gridView, i * numColumns + eqI);
                 }
                 // 判断是否在最大高度
-                if (tempHeight > singleMax){
+                if (tempHeight > singleMax) {
                     singleMax = tempHeight;
                 }
             }
@@ -571,7 +571,7 @@ public final class ViewUtils {
         // 最后获取整个gridView完整显示需要的高度
         totalHeight += (vSpace * (count - 1));
         // 判断是否需要设置高度
-        if (isSet){
+        if (isSet) {
             ViewGroup.LayoutParams params = gridView.getLayoutParams();
             params.height = totalHeight;
             gridView.setLayoutParams(params);
@@ -588,8 +588,8 @@ public final class ViewUtils {
      * @param pos
      * @return
      */
-    public static int getItemHeighet(AbsListView absViews, int pos){
-        if (absViews != null){
+    public static int getItemHeighet(AbsListView absViews, int pos) {
+        if (absViews != null) {
             return getItemHeighet(absViews.getAdapter(), absViews, pos, 0);
         }
         return 0;
@@ -602,8 +602,8 @@ public final class ViewUtils {
      * @param dfHeight
      * @return
      */
-    public static int getItemHeighet(AbsListView absViews, int pos, int dfHeight){
-        if (absViews != null){
+    public static int getItemHeighet(AbsListView absViews, int pos, int dfHeight) {
+        if (absViews != null) {
             return getItemHeighet(absViews.getAdapter(), absViews, pos, dfHeight);
         }
         return dfHeight;
@@ -616,7 +616,7 @@ public final class ViewUtils {
      * @param pos
      * @return
      */
-    public static int getItemHeighet(ListAdapter listAdapter, AbsListView absViews, int pos){
+    public static int getItemHeighet(ListAdapter listAdapter, AbsListView absViews, int pos) {
         return getItemHeighet(listAdapter, absViews, pos, 0);
     }
 
@@ -628,7 +628,7 @@ public final class ViewUtils {
      * @param dfHeight
      * @return
      */
-    public static int getItemHeighet(ListAdapter listAdapter, AbsListView absViews, int pos, int dfHeight){
+    public static int getItemHeighet(ListAdapter listAdapter, AbsListView absViews, int pos, int dfHeight) {
         try {
             // listAdapter.getCount()返回数据项的数目
             View listItem = listAdapter.getView(pos, null, absViews);
@@ -636,7 +636,7 @@ public final class ViewUtils {
             listItem.measure(0, 0);
             // 统计所有子项的总高度
             return listItem.getMeasuredHeight();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getItemHeighet");
             return dfHeight;
         }

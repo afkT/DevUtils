@@ -52,7 +52,7 @@ public final class ValiToIDCardUtils {
      * @return
      */
     public static boolean isIDCard(String idCard) {
-        if (!isEmpty(idCard)){
+        if (!isEmpty(idCard)) {
             return match(REGEX_ID_CARD, idCard);
         }
         return false;
@@ -63,8 +63,8 @@ public final class ValiToIDCardUtils {
      * @param idCard
      * @return
      */
-    public static boolean isHKIDCard(String idCard){
-        if (!isEmpty(idCard)){
+    public static boolean isHKIDCard(String idCard) {
+        if (!isEmpty(idCard)) {
             return match(REGEX_XG_ID_CARD, idCard);
         }
         return false;
@@ -75,8 +75,8 @@ public final class ValiToIDCardUtils {
      * @param idCard
      * @return
      */
-    public static boolean isAMIDCard(String idCard){
-        if (!isEmpty(idCard)){
+    public static boolean isAMIDCard(String idCard) {
+        if (!isEmpty(idCard)) {
             return match(REGEX_AM_ID_CARD, idCard);
         }
         return false;
@@ -87,8 +87,8 @@ public final class ValiToIDCardUtils {
      * @param idCard
      * @return
      */
-    public static boolean isTWIDCard(String idCard){
-        if (!isEmpty(idCard)){
+    public static boolean isTWIDCard(String idCard) {
+        if (!isEmpty(idCard)) {
             return match(REGEX_TW_ID_CARD, idCard);
         }
         return false;

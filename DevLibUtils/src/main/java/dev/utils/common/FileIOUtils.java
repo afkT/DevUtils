@@ -604,7 +604,7 @@ public final class FileIOUtils {
      * @param filePath
      * @return
      */
-    private static File getFileByPath(final String filePath){
+    private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;
     }
 
@@ -652,7 +652,7 @@ public final class FileIOUtils {
      * @param file 文件路径
      * @return 是否存在文件
      */
-    private static boolean isFileExists(final File file){
+    private static boolean isFileExists(final File file) {
         return file != null && file.exists();
     }
 

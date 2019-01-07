@@ -18,7 +18,7 @@ public final class FileBreadthFirstSearchUtils {
 
     // = 构造函数 =
 
-    public FileBreadthFirstSearchUtils(){
+    public FileBreadthFirstSearchUtils() {
     }
 
     public FileBreadthFirstSearchUtils(ISearchHandler iSearchHandler) {
@@ -44,11 +44,11 @@ public final class FileBreadthFirstSearchUtils {
          * 保存子文件信息
          * @param file
          */
-        private synchronized FileItem put(File file){
-            if (mapChilds == null){
+        private synchronized FileItem put(File file) {
+            if (mapChilds == null) {
                 mapChilds = new HashMap<>();
             }
-            if (file != null){
+            if (file != null) {
                 FileItem fileItem = new FileItem(file);
                 mapChilds.put(file.getAbsolutePath(), fileItem);
                 return fileItem;
@@ -109,7 +109,7 @@ public final class FileBreadthFirstSearchUtils {
     private ISearchHandler inside = new ISearchHandler() {
         @Override
         public boolean isHandlerFile(File file) {
-            if (iSearchHandler != null){
+            if (iSearchHandler != null) {
                 return iSearchHandler.isHandlerFile(file);
             }
             return true;
@@ -117,7 +117,7 @@ public final class FileBreadthFirstSearchUtils {
 
         @Override
         public boolean isAddToList(File file) {
-            if (iSearchHandler != null){
+            if (iSearchHandler != null) {
                 return iSearchHandler.isAddToList(file);
             }
             return true;
@@ -128,7 +128,7 @@ public final class FileBreadthFirstSearchUtils {
             // 表示非搜索中
             isRuning = false;
             // 触发回调
-            if (iSearchHandler != null){
+            if (iSearchHandler != null) {
                 iSearchHandler.OnEndListener(rootFileItem, startTime, endTime);
             }
         }
@@ -158,7 +158,7 @@ public final class FileBreadthFirstSearchUtils {
      * @return
      */
     public synchronized FileBreadthFirstSearchUtils setQueueSameTimeNumber(int queueSameTimeNumber) {
-        if (isRuning){
+        if (isRuning) {
             return this;
         }
         this.queueSameTimeNumber = queueSameTimeNumber;
@@ -176,7 +176,7 @@ public final class FileBreadthFirstSearchUtils {
     /**
      * 停止搜索
      */
-    public void stop(){
+    public void stop() {
         isStop = true;
     }
 
@@ -246,7 +246,7 @@ public final class FileBreadthFirstSearchUtils {
      * @param path 根目录地址
      */
     public synchronized void query(String path) {
-        if (isRuning){
+        if (isRuning) {
            return;
         }
         // 表示运行中
@@ -261,7 +261,7 @@ public final class FileBreadthFirstSearchUtils {
                 // 初始化根目录
                 rootFileItem = new FileItem(file);
                 // 判断是否文件
-                if (file.isFile()){
+                if (file.isFile()) {
                     // 触发结束回调
                     endTime = System.currentTimeMillis();
                     inside.OnEndListener(rootFileItem, startTime, endTime);
@@ -300,38 +300,38 @@ public final class FileBreadthFirstSearchUtils {
      */
     private void queryFile(File file, FileItem fileItem) {
         try {
-            if (isStop){
+            if (isStop) {
                 return;
             }
             if (file != null && file.exists()) {
                 // 判断是否处理
-                if (inside.isHandlerFile(file)){
+                if (inside.isHandlerFile(file)) {
                     // 如果属于文件夹
-                    if (file.isDirectory()){
+                    if (file.isDirectory()) {
                         // 获取文件夹全部子文件
                         File[] files = file.listFiles();
-                        if (files == null){
+                        if (files == null) {
                             return;
                         }
                         // 循环处理
-                        for (File f : files){
+                        for (File f : files) {
                             // 属于文件夹
-                            if (f.isDirectory()){
-                                if (isStop){
+                            if (f.isDirectory()) {
+                                if (isStop) {
                                     return;
                                 }
                                 FileItem subFileItem = fileItem.put(f);
                                 // 添加任务
                                 taskQueue.offer(new FileQueue(f, subFileItem));
                             } else { // 属于文件
-                                if (!isStop && inside.isAddToList(f)){
+                                if (!isStop && inside.isAddToList(f)) {
                                     // 属于文件则直接保存
                                     fileItem.put(f);
                                 }
                             }
                         }
                     } else { // 属于文件
-                        if (!isStop && inside.isAddToList(file)){
+                        if (!isStop && inside.isAddToList(file)) {
                             // 属于文件则直接保存
                             fileItem.put(file);
                         }
@@ -348,24 +348,24 @@ public final class FileBreadthFirstSearchUtils {
     /**
      * 循环队列
      */
-    private void whileQueue(){
+    private void whileQueue() {
         // 判断是否为null
         boolean isEmpty = taskQueue.isEmpty();
         // 循环则不处理
-        while (!isEmpty){
-            if (isStop){
+        while (!isEmpty) {
+            if (isStop) {
                 break;
             }
             // 获取线程活动数量
             int threadCount = ((ThreadPoolExecutor) executor).getActiveCount();
             // 判断是否超过
-            if (threadCount > queueSameTimeNumber){
+            if (threadCount > queueSameTimeNumber) {
                 continue;
             }
             // 获取文件对象
             final FileQueue fileQueue = taskQueue.poll();
             // 判断是否为null
-            if (fileQueue != null){
+            if (fileQueue != null) {
                 // 后台运行
                 executor.execute(new Runnable() {
                     @Override
@@ -377,8 +377,8 @@ public final class FileBreadthFirstSearchUtils {
 
             // 判断是否存在队列数据
             isEmpty = (taskQueue.isEmpty() && threadCount == 0);
-            if (isEmpty){ // 如果不存在, 防止搜索过快, 延迟再次判断
-                if (isStop){
+            if (isEmpty) { // 如果不存在, 防止搜索过快, 延迟再次判断
+                if (isStop) {
                     break;
                 }
                 try {

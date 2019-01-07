@@ -86,7 +86,7 @@ public final class AppUtils {
 	 * @param resource
 	 * @return
 	 */
-	public static View getView(@LayoutRes int resource){
+	public static View getView(@LayoutRes int resource) {
 		return getView(DevUtils.getContext(), resource);
 	}
 
@@ -96,10 +96,10 @@ public final class AppUtils {
 	 * @param resource
 	 * @return
 	 */
-	public static View getView(Context context, @LayoutRes int resource){
+	public static View getView(Context context, @LayoutRes int resource) {
 		try {
 			return ((LayoutInflater) DevUtils.getContext(context).getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, null);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getView");
 		}
 		return null;
@@ -112,7 +112,7 @@ public final class AppUtils {
 	public static Resources getResources() {
 		try {
 			return DevUtils.getContext().getResources();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getResources");
 		}
 		return null;
@@ -125,7 +125,7 @@ public final class AppUtils {
 	public static String getString(@StringRes int id) {
 		try {
 			return DevUtils.getContext().getResources().getString(id);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getString");
 		}
 		return null;
@@ -138,7 +138,7 @@ public final class AppUtils {
 	public static String getString(@StringRes int id, Object... formatArgs) {
 		try {
 			return DevUtils.getContext().getResources().getString(id, formatArgs);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getString");
 		}
 		return null;
@@ -151,7 +151,7 @@ public final class AppUtils {
 	public static Resources.Theme getTheme() {
 		try {
 			return DevUtils.getContext().getTheme();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getTheme");
 		}
 		return null;
@@ -164,7 +164,7 @@ public final class AppUtils {
 	public static AssetManager getAssets() {
 		try {
 			return DevUtils.getContext().getAssets();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getAssets");
 		}
 		return null;
@@ -177,7 +177,7 @@ public final class AppUtils {
 	public static Drawable getDrawable(@DrawableRes int id) {
 		try {
 			return ContextCompat.getDrawable(DevUtils.getContext(), id);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getDrawable");
 		}
 		return null;
@@ -190,7 +190,7 @@ public final class AppUtils {
 	public static int getColor(@ColorRes int id) {
 		try {
 			return ContextCompat.getColor(DevUtils.getContext(), id);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getColor");
 		}
 		return -1;
@@ -203,7 +203,7 @@ public final class AppUtils {
 	public static ColorStateList getColorStateList(int id) {
 		try {
 			return ContextCompat.getColorStateList(DevUtils.getContext(), id);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getColorStateList");
 		}
 		return null;
@@ -213,10 +213,10 @@ public final class AppUtils {
 	 * 获取 SystemService
 	 * @return
 	 */
-	public static <T> T getSystemService(String name){
+	public static <T> T getSystemService(String name) {
 		try {
 			return (T) DevUtils.getContext().getSystemService(name);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getSystemService");
 		}
 		return null;
@@ -226,10 +226,10 @@ public final class AppUtils {
 	 * 获取 PackageManager
 	 * @return
 	 */
-	public static PackageManager getPackageManager(){
+	public static PackageManager getPackageManager() {
 		try {
 			return DevUtils.getContext().getPackageManager();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getPackageManager");
 		}
 		return null;
@@ -242,7 +242,7 @@ public final class AppUtils {
 	public static Configuration getConfiguration() {
 		try {
 			return DevUtils.getContext().getResources().getConfiguration();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getConfiguration");
 		}
 		return null;
@@ -255,7 +255,7 @@ public final class AppUtils {
 	public static DisplayMetrics getDisplayMetrics() {
 		try {
 			return DevUtils.getContext().getResources().getDisplayMetrics();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getDisplayMetrics");
 		}
 		return null;
@@ -268,7 +268,7 @@ public final class AppUtils {
 	public static ContentResolver getContentResolver() {
 		try {
 			return DevUtils.getContext().getContentResolver();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getContentResolver");
 		}
 		return null;
@@ -425,7 +425,7 @@ public final class AppUtils {
 		if (!isFileExists(file)) return false;
 		try {
 			DevUtils.getContext().startActivity(IntentUtils.getInstallAppIntent(file, authority, true));
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "installApp");
 			return false;
 		}
@@ -456,7 +456,7 @@ public final class AppUtils {
 		if (!isFileExists(file)) return false;
 		try {
 			activity.startActivityForResult(IntentUtils.getInstallAppIntent(file, authority), requestCode);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "installApp");
 			return false;
 		}
@@ -527,7 +527,7 @@ public final class AppUtils {
 		if (isSpace(packageName)) return false;
 		try {
 			DevUtils.getContext().startActivity(IntentUtils.getUninstallAppIntent(packageName, true));
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "uninstallApp");
 			return false;
 		}
@@ -544,7 +544,7 @@ public final class AppUtils {
 		if (isSpace(packageName)) return false;
 		try {
 			activity.startActivityForResult(IntentUtils.getUninstallAppIntent(packageName), requestCode);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "uninstallApp");
 			return false;
 		}
@@ -597,7 +597,7 @@ public final class AppUtils {
 			PackageManager pm = DevUtils.getContext().getPackageManager();
 			ResolveInfo info = pm.resolveActivity(intent, 0);
 			return info != null;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "isAppInstalled");
 			return false;
 		}
@@ -703,7 +703,7 @@ public final class AppUtils {
 					return aInfo.processName.equals(DevUtils.getContext().getPackageName());
 				}
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "isAppForeground");
 		}
 		return false;
@@ -728,7 +728,7 @@ public final class AppUtils {
 		try {
 			DevUtils.getContext().startActivity(IntentUtils.getLaunchAppIntent(packageName, true));
 			return true;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "launchApp");
 		}
 		return false;
@@ -745,7 +745,7 @@ public final class AppUtils {
 		try {
 			activity.startActivityForResult(IntentUtils.getLaunchAppIntent(packageName), requestCode);
 			return true;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "launchApp");
 		}
 		return false;
@@ -765,7 +765,7 @@ public final class AppUtils {
 		try {
 			DevUtils.getContext().startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent(packageName, true));
 			return true;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "launchAppDetailsSettings");
 		}
 		return false;
@@ -791,7 +791,7 @@ public final class AppUtils {
 		try {
 			DevUtils.getContext().startActivity(IntentUtils.getlaunchAppDetailIntent(packageName, marketPkg, true));
 			return true;
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "launchAppDetails");
 		}
 		return false;
@@ -915,7 +915,7 @@ public final class AppUtils {
 	 * @param file 文件路径
 	 * @return 是否存在文件
 	 */
-	private static boolean isFileExists(final File file){
+	private static boolean isFileExists(final File file) {
 		return file != null && file.exists();
 	}
 
@@ -924,7 +924,7 @@ public final class AppUtils {
 	 * @param filePath
 	 * @return
 	 */
-	private static File getFileByPath(final String filePath){
+	private static File getFileByPath(final String filePath) {
 		return filePath != null ? new File(filePath) : null;
 	}
 

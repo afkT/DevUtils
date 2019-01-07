@@ -13,7 +13,7 @@ import dev.utils.JCLogUtils;
  */
 public final class Reflect2Utils {
 
-    private Reflect2Utils(){
+    private Reflect2Utils() {
     }
 
     // 日志TAG
@@ -30,7 +30,7 @@ public final class Reflect2Utils {
             Field field = ownerClass.getField(fieldName);
             Object property = field.get(owner);
             return property;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getProperty");
         }
         return null;
@@ -48,7 +48,7 @@ public final class Reflect2Utils {
             Field field = ownerClass.getField(fieldName);
             Object property = field.get(ownerClass);
             return property;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getStaticProperty");
         }
         return null;
@@ -189,12 +189,12 @@ public final class Reflect2Utils {
      * @param fieldName : 父类中的属性名
      * @return 父类中的变量对象
      */
-    public static Object getDeclaredFieldParentObj(Object object, String fieldName){
+    public static Object getDeclaredFieldParentObj(Object object, String fieldName) {
         try {
             Field field = getDeclaredFieldParent(object, fieldName);
             field.setAccessible(true);
             return field.get(object);
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getDeclaredFieldParentObj");
         }
         return null;
@@ -206,7 +206,7 @@ public final class Reflect2Utils {
      * @param fieldName : 父类中的属性名
      * @return 父类中的变量对象
      */
-    public static Field getDeclaredFieldParent(Object object, String fieldName){
+    public static Field getDeclaredFieldParent(Object object, String fieldName) {
         Field field = null ;
         Class<?> clazz = object.getClass() ;
         for(; clazz != Object.class ; clazz = clazz.getSuperclass()) {
@@ -227,18 +227,18 @@ public final class Reflect2Utils {
      * @param name 方法名
      * @param args 方法需要的参数
      */
-    public static boolean setFieldMethod(Object object, final String name, final Object... args){
+    public static boolean setFieldMethod(Object object, final String name, final Object... args) {
         try {
             Method method = object.getClass().getDeclaredMethod(name);
             method.setAccessible(true);
             // 如果不为null, 则不放参数
-            if (args != null && args.length != 0){
+            if (args != null && args.length != 0) {
                 method.invoke(object, args);
             } else {
                 method.invoke(object);
             }
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "setFieldMethod");
         }
         return false;

@@ -18,7 +18,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class MemoryUtils {
 
-    private MemoryUtils(){
+    private MemoryUtils() {
     }
 
     // 日志TAG

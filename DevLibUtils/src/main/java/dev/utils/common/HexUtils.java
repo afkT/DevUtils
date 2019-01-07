@@ -8,7 +8,7 @@ import dev.utils.JCLogUtils;
  */
 public final class HexUtils {
 
-    private HexUtils(){
+    private HexUtils() {
     }
 
     // 日志TAG
@@ -58,7 +58,7 @@ public final class HexUtils {
                 out[j++] = toDigits[0x0F & data[i]];
             }
             return out;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "encodeHex");
         }
         return null;
@@ -118,7 +118,7 @@ public final class HexUtils {
                 out[i] = (byte) (f & 0xFF);
             }
             return out;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "decodeHex");
         }
         return null;

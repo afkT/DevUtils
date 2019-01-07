@@ -8,7 +8,7 @@ import static java.lang.Math.PI;
  */
 public final class CoordinateUtils {
 
-    private CoordinateUtils(){
+    private CoordinateUtils() {
     }
 
     private static final double X_PI = 3.14159265358979324 * 3000.0 / 180.0;

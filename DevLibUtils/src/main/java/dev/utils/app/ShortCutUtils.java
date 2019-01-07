@@ -42,7 +42,7 @@ public final class ShortCutUtils {
             if (cursor != null && cursor.getCount() > 0) {
                 isInstallShortcut = true;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "hasShortcut");
         } finally {
             if (cursor != null) {

@@ -18,7 +18,7 @@ class MediaUse {
     /**
      * 多媒体使用方法
      */
-    private void mediaUse(){
+    private void mediaUse() {
         // 默认事件监听
         DevMediaManager.getInstance().setMeidaListener(new DevMediaManager.MediaListener() {
             @Override
@@ -54,7 +54,7 @@ class MediaUse {
         DevMediaManager.getInstance().playPrepareAssets("a.mp3");
         DevMediaManager.getInstance().playPrepare(SDCardUtils.getSDCardPath() + "/a.mp3");
         DevMediaManager.getInstance().playPrepare("http://xxx.mp3");
-        DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet(){
+        DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet() {
 
             @Override
             public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
@@ -69,7 +69,7 @@ class MediaUse {
         DevVideoPlayerControl control = new DevVideoPlayerControl(surfaceView);
         control.startPlayer(SDCardUtils.getSDCardPath() + "/video_3.mp4");
         control.startPlayer("http://xxx.mp4");
-        control.startPlayer(new DevMediaManager.MediaSet(){
+        control.startPlayer(new DevMediaManager.MediaSet() {
             @Override
             public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
                 mediaPlayer.setDataSource("xxx");

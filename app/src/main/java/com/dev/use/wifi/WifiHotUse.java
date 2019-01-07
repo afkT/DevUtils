@@ -15,7 +15,7 @@ class WifiHotUse {
     /**
      * Wifi热点使用方法
      */
-    private void wifiHotUse(){
+    private void wifiHotUse() {
 
 //        // 需要权限
 //        <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -45,7 +45,7 @@ class WifiHotUse {
 
         // 如果应用开启了热点, 然后后台清空内存, 对应的热点会关闭, 应用开启的热点是系统随机的，不影响系统设置中的热点配置信息
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             wifiHotUtils.setOnWifiAPListener(new WifiHotUtils.onWifiAPListener() {
                 @Override
                 public void onStarted(WifiConfiguration wifiConfig) {

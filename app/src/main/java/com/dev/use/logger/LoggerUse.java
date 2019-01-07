@@ -33,7 +33,7 @@ class LoggerUse {
     /**
      * 日志配置相关
      */
-    private void logConfig(){
+    private void logConfig() {
         // == 在BaseApplication 中调用 ==
         // 初始化日志配置
         LogConfig lConfig = new LogConfig();
@@ -159,7 +159,7 @@ class LoggerUse {
     /**
      * 保存日志
      */
-    private static void saveLog(){
+    private static void saveLog() {
         // =================== 保存日志  ====================
         // 保存文件名
         String fName = System.currentTimeMillis() + ".log";

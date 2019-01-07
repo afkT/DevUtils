@@ -23,13 +23,13 @@ public final class AESUtils {
      * 生成密钥
      * @return
      */
-    public static byte[] initKey(){
+    public static byte[] initKey() {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
             keyGen.init(256);  //192 256
             SecretKey secretKey = keyGen.generateKey();
             return secretKey.getEncoded();
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "initKey");
         }
         return null;
@@ -41,14 +41,14 @@ public final class AESUtils {
      * @param key
      * @return
      */
-    public static byte[] encrypt(byte[] data, byte[] key){
+    public static byte[] encrypt(byte[] data, byte[] key) {
         try {
             SecretKey secretKey = new SecretKeySpec(key, "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             byte[] cipherBytes = cipher.doFinal(data);
             return cipherBytes;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "encrypt");
         }
         return null;
@@ -60,14 +60,14 @@ public final class AESUtils {
      * @param key
      * @return
      */
-    public static byte[] decrypt(byte[] data, byte[] key){
+    public static byte[] decrypt(byte[] data, byte[] key) {
         try {
             SecretKey secretKey = new SecretKeySpec(key, "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             byte[] plainBytes = cipher.doFinal(data);
             return plainBytes;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "decrypt");
         }
         return null;

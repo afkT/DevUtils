@@ -39,7 +39,7 @@ public final class ProcessUtils {
     /**
      * 销毁自身进程
      */
-    public static void kill(){
+    public static void kill() {
         kill(android.os.Process.myPid());
     }
 
@@ -47,7 +47,7 @@ public final class ProcessUtils {
      * 销毁进程
      * @param pid
      */
-    public static void kill(int pid){
+    public static void kill(int pid) {
         //从操作系统中结束掉当前程序的进程
         android.os.Process.killProcess(pid);
     }
@@ -56,7 +56,7 @@ public final class ProcessUtils {
      * 判断是否当前进程
      * @return
      */
-    public static boolean isCurProcess(){
+    public static boolean isCurProcess() {
         return DevUtils.getContext().getPackageName().equals(getCurProcessName());
     }
 
@@ -109,8 +109,8 @@ public final class ProcessUtils {
      * @param packageName
      * @return
      */
-    public static int getPid(String packageName){
-        if (TextUtils.isEmpty(packageName)){
+    public static int getPid(String packageName) {
+        if (TextUtils.isEmpty(packageName)) {
             return 0;
         }
         ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
@@ -128,7 +128,7 @@ public final class ProcessUtils {
      * @param pid
      * @return
      */
-    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(int pid){
+    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(int pid) {
         ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
         for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
@@ -144,7 +144,7 @@ public final class ProcessUtils {
      * @param packageName
      * @return
      */
-    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(String packageName){
+    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(String packageName) {
         if (TextUtils.isEmpty(packageName)) return null;
         ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
@@ -164,7 +164,7 @@ public final class ProcessUtils {
      * @return 前台应用包名
      */
     public static String getForegroundProcessName() {
-        if (DevUtils.getContext() == null){
+        if (DevUtils.getContext() == null) {
             return null;
         }
         ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
@@ -215,7 +215,7 @@ public final class ProcessUtils {
      * @return 后台服务进程
      */
     public static Set<String> getAllBackgroundProcesses() {
-        if (DevUtils.getContext() == null){
+        if (DevUtils.getContext() == null) {
             return Collections.emptySet();
         }
         ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
@@ -237,7 +237,7 @@ public final class ProcessUtils {
      */
     @SuppressLint("MissingPermission")
     public static Set<String> killAllBackgroundProcesses() {
-        if (DevUtils.getContext() == null){
+        if (DevUtils.getContext() == null) {
             return null;
         }
         ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);

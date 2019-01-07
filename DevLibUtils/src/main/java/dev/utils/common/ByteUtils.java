@@ -16,7 +16,7 @@ import dev.utils.JCLogUtils;
  */
 public final class ByteUtils {
 
-    private ByteUtils(){
+    private ByteUtils() {
     }
 
     // 日志TAG
@@ -33,7 +33,7 @@ public final class ByteUtils {
      * @param bytes
      */
     public static void byteJiaMi(byte[] bytes) {
-        if (bytes == null){
+        if (bytes == null) {
             return;
         }
         for (int w = 0; w < bytes.length; w++) {

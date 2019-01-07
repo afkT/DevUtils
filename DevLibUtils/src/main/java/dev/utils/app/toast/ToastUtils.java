@@ -48,7 +48,7 @@ public final class ToastUtils {
 	/**
 	 * 重置默认参数
 	 */
-	public static void reset(){
+	public static void reset() {
 		mIsHandler = true;
 		mUseConfig = true;
 		mNullText = "text is null";
@@ -66,18 +66,18 @@ public final class ToastUtils {
 
 	/**
 	 * 设置 Text 为 null 的文本
-	 * @param mNullText
+	 * @param nullText
 	 */
-	public static void setNullText(String mNullText) {
-		ToastUtils.mNullText = mNullText;
+	public static void setNullText(String nullText) {
+		ToastUtils.mNullText = nullText;
 	}
 
 	/**
 	 * 判断是否使用配置
-	 * @param mUseConfig
+	 * @param useConfig
 	 */
-	public static void setUseConfig(boolean mUseConfig) {
-		ToastUtils.mUseConfig = mUseConfig;
+	public static void setUseConfig(boolean useConfig) {
+		ToastUtils.mUseConfig = useConfig;
 	}
 
 	/**
@@ -383,13 +383,13 @@ public final class ToastUtils {
 	 * @Toast
 	 */
 	private static void priShowToastText(final boolean isSingle, final Context context, final String text, final int duration) {
-		if (mIsHandler){
+		if (mIsHandler) {
 			sHandler.post(new Runnable() {
 				@Override
 				public void run() {
 					try {
 						Toast toast = newToastText(isSingle, context, text, duration);
-						if (toast != null){
+						if (toast != null) {
 							toast.show();
 						}
 					} catch (Exception e) {
@@ -400,7 +400,7 @@ public final class ToastUtils {
 		} else {
 			try {
 				Toast toast = newToastText(isSingle, context, text, duration);
-				if (toast != null){
+				if (toast != null) {
 					toast.show();
 				}
 			} catch (Exception e) {
@@ -417,15 +417,15 @@ public final class ToastUtils {
 	 * @param duration
 	 * @return
 	 */
-	public static Toast newToastText(boolean isSingle, Context context, String text, int duration){
-		if (context == null){
+	public static Toast newToastText(boolean isSingle, Context context, String text, int duration) {
+		if (context == null) {
 			context = DevUtils.getContext();
 		}
 		// 设置为null, 便于提示排查
 		if (TextUtils.isEmpty(text)) {
 			text = mNullText;
 			// 如果还是为null, 则不处理
-			if (TextUtils.isEmpty(text)){
+			if (TextUtils.isEmpty(text)) {
 				return null;
 			}
 		}
@@ -433,7 +433,7 @@ public final class ToastUtils {
 		if (isSingle) {
 			try {
 				// 关闭旧的 Toast
-				if (mToast != null){
+				if (mToast != null) {
 					mToast.cancel();
 					mToast = null;
 				}
@@ -450,7 +450,7 @@ public final class ToastUtils {
 				}
 				// 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
 				reflectToastHandler(mToast);
-			} catch (Exception e){
+			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "newToastText");
 			}
 			return mToast;
@@ -470,7 +470,7 @@ public final class ToastUtils {
 				}
 				// 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
 				reflectToastHandler(toast);
-			} catch (Exception e){
+			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "newToastText");
 			}
 			return toast;
@@ -526,13 +526,13 @@ public final class ToastUtils {
 		if (view == null) {
 			return; // 防止显示的View 为null
 		}
-		if (mIsHandler){
+		if (mIsHandler) {
 			sHandler.post(new Runnable() {
 				@Override
 				public void run() {
 					try {
 						Toast toast = newToastView(isSingle, context, view, duration);
-						if (toast != null){
+						if (toast != null) {
 							toast.show();
 						}
 					} catch (Exception e) {
@@ -543,7 +543,7 @@ public final class ToastUtils {
 		} else {
 			try {
 				Toast toast = newToastView(isSingle, context, view, duration);
-				if (toast != null){
+				if (toast != null) {
 					toast.show();
 				}
 			} catch (Exception e) {
@@ -560,12 +560,12 @@ public final class ToastUtils {
 	 * @param duration
 	 * @return
 	 */
-	public static Toast newToastView(boolean isSingle, Context context, View view, int duration){
-		if (context == null){
+	public static Toast newToastView(boolean isSingle, Context context, View view, int duration) {
+		if (context == null) {
 			context = DevUtils.getContext();
 		}
 		// 防止 Context 为null
-		if (context == null){
+		if (context == null) {
 			return null;
 		} else if (view == null) { // 防止显示的View 为null
 			return null;
@@ -574,7 +574,7 @@ public final class ToastUtils {
 		if (isSingle) {
 			try {
 				// 关闭旧的 Toast
-				if (mToast != null){
+				if (mToast != null) {
 					mToast.cancel();
 					mToast = null;
 				}
@@ -592,7 +592,7 @@ public final class ToastUtils {
 				}
 				// 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
 				reflectToastHandler(mToast);
-			} catch (Exception e){
+			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "newToastView");
 			}
 			return mToast;
@@ -613,7 +613,7 @@ public final class ToastUtils {
 				}
 				// 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
 				reflectToastHandler(toast);
-			} catch (Exception e){
+			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "newToastView");
 			}
 			return toast;
@@ -633,7 +633,7 @@ public final class ToastUtils {
 	 * @param objs
 	 */
 	private static void handlerToastRes(boolean isSingle, Context context, int resId, int duration, Object... objs) {
-		if (context == null){
+		if (context == null) {
 			context = DevUtils.getContext();
 		}
 		if (context != null) {
@@ -661,7 +661,7 @@ public final class ToastUtils {
 	 * @param objs
 	 */
 	private static void handlerToastStr(boolean isSingle, Context context, String text, int duration, Object... objs) {
-		if (context == null){
+		if (context == null) {
 			context = DevUtils.getContext();
 		}
 		// 防止 Context 为null
@@ -671,7 +671,7 @@ public final class ToastUtils {
 				if (text != null) { // String.format() 中的 objs 可以为null,但是 text不能为null
 					try {
 						priShowToastText(isSingle, context, String.format(text, objs), duration);
-					} catch (Exception e){
+					} catch (Exception e) {
 						LogPrintUtils.eTag(TAG, e, "handlerToastStr");
 						priShowToastText(isSingle, context, e.getMessage(), duration);
 					}
@@ -692,7 +692,7 @@ public final class ToastUtils {
 	 * 反射 Hook Toast 设置 Handler
 	 * @param toast
 	 */
-	private static void reflectToastHandler(Toast toast){
+	private static void reflectToastHandler(Toast toast) {
 		if (toast == null) return;
         // 反射设置 Toat Handler 解决 Android7.1.1Toast 崩溃 问题
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {

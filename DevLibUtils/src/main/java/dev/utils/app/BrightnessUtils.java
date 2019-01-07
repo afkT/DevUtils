@@ -52,7 +52,7 @@ public final class BrightnessUtils {
                 intent.setData(Uri.parse("package:" + DevUtils.getContext().getPackageName()));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 DevUtils.getContext().startActivity(intent);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setAutoBrightnessEnabled");
             }
             return false;
@@ -60,7 +60,7 @@ public final class BrightnessUtils {
         try {
             return Settings.System.putInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE,
                     enabled ? Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC : Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setAutoBrightnessEnabled");
         }
         return false;
@@ -91,7 +91,7 @@ public final class BrightnessUtils {
                 intent.setData(Uri.parse("package:" + DevUtils.getContext().getPackageName()));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 DevUtils.getContext().startActivity(intent);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setBrightness");
             }
             return false;
@@ -101,7 +101,7 @@ public final class BrightnessUtils {
             boolean result = Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
             resolver.notifyChange(Settings.System.getUriFor("screen_brightness"), null);
             return result;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setBrightness");
         }
         return false;

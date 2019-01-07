@@ -107,7 +107,7 @@ public final class ObjectUtils {
     public static <T> T converObj(Object obj) {
         try {
             return (T) obj;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "converObj");
         }
         return null;

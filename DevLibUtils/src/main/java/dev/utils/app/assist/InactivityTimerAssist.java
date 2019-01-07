@@ -81,7 +81,7 @@ public final class InactivityTimerAssist {
         try {
             // 取消注册广播
             activity.unregisterReceiver(powerStatusReceiver);
-        } catch (Exception e){
+        } catch (Exception e) {
         }
     }
 
@@ -92,7 +92,7 @@ public final class InactivityTimerAssist {
         try {
             // 注册广播
             activity.registerReceiver(powerStatusReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         // 开始检测
         start();
@@ -136,7 +136,7 @@ public final class InactivityTimerAssist {
             try {
                 Thread.sleep(inactivityTime);
                 // 关闭页面
-                if (activity != null){
+                if (activity != null) {
                     activity.finish();
                 }
             } catch (InterruptedException e) {

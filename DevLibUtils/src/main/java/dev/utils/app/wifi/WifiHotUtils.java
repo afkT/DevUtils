@@ -45,7 +45,7 @@ public class WifiHotUtils {
     /**
      * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
      */
-    public WifiHotUtils(){
+    public WifiHotUtils() {
         this(DevUtils.getContext());
     }
 
@@ -96,7 +96,7 @@ public class WifiHotUtils {
                 wifiConfig.status = WifiConfiguration.Status.ENABLED;
             }
             return wifiConfig;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "createWifiConfigToAp");
         }
         return null;
@@ -109,9 +109,9 @@ public class WifiHotUtils {
     public void stratWifiAp(WifiConfiguration wifiConfig) {
         this.apWifiConfig = wifiConfig;
         // 大于 8.0
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
             // 关闭热点
-            if (mReservation != null){
+            if (mReservation != null) {
                 mReservation.close();
             }
             // 清空信息
@@ -131,7 +131,7 @@ public class WifiHotUtils {
                     // 打印信息
                     LogPrintUtils.dTag(TAG, "Android 8.0 wifi Ap ssid: " + apWifiSSID + ", pwd: " + apWifiPwd);
                     // 触发回调
-                    if (wifiAPListener != null){
+                    if (wifiAPListener != null) {
                         wifiAPListener.onStarted(wifiConfiguration);
                     }
                 }
@@ -142,7 +142,7 @@ public class WifiHotUtils {
                     // 打印信息
                     LogPrintUtils.dTag(TAG, "Android 8.0 onStopped wifiAp");
                     // 触发回调
-                    if (wifiAPListener != null){
+                    if (wifiAPListener != null) {
                         wifiAPListener.onStopped();
                     }
                 }
@@ -153,12 +153,12 @@ public class WifiHotUtils {
                     // 打印信息
                     LogPrintUtils.eTag(TAG, "Android 8.0 onFailed wifiAp, reason : " + reason);
                     // 触发回调
-                    if (wifiAPListener != null){
+                    if (wifiAPListener != null) {
                         wifiAPListener.onFailed(reason);
                     }
                 }
             }, null);
-        } else if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N_MR1){ // android 7.1 系统以上不支持自动开启热点,需要手动开启热点
+        } else if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N_MR1) { // android 7.1 系统以上不支持自动开启热点,需要手动开启热点
             // 先设置wifi热点信息, 这样跳转前保存热点信息, 开启热点则是对应设置的信息
             boolean setResult = setWifiApConfiguration(wifiConfig);
             // 打印日志
@@ -184,11 +184,11 @@ public class WifiHotUtils {
     /**
      * 关闭Wifi热点
      */
-    public void closeWifiAp(){
+    public void closeWifiAp() {
         // 大于 8.0
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
             // 关闭热点
-            if (mReservation != null){
+            if (mReservation != null) {
                 mReservation.close();
             }
             // 清空信息
@@ -261,7 +261,7 @@ public class WifiHotUtils {
      * 获取Wifi热点配置信息
      * @return
      */
-    public WifiConfiguration getWifiApConfiguration(){
+    public WifiConfiguration getWifiApConfiguration() {
         try {
             // 获取Wifi热点方法
             Method method = mWifiManager.getClass().getMethod("getWifiApConfiguration");
@@ -280,13 +280,13 @@ public class WifiHotUtils {
      * @param apWifiConfig
      * @return 是否成功
      */
-    public boolean setWifiApConfiguration(WifiConfiguration apWifiConfig){
+    public boolean setWifiApConfiguration(WifiConfiguration apWifiConfig) {
         try {
             // 获取设置Wifi热点方法
             Method method = mWifiManager.getClass().getMethod("setWifiApConfiguration", WifiConfiguration.class);
             // 开启Wifi热点
             return (boolean) method.invoke(mWifiManager, apWifiConfig);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setWifiApConfiguration");
         }
         return false;
@@ -298,12 +298,12 @@ public class WifiHotUtils {
      * 判断是否打开Wifi热点
      * @return
      */
-    public boolean isOpenWifiAp(){
+    public boolean isOpenWifiAp() {
         // 判断是否开启热点(默认未打开)
         boolean isOpen = false;
         // 获取当前Wifi热点状态
         int wifiApState = getWifiApState();
-        switch(wifiApState){
+        switch(wifiApState) {
             case WIFI_AP_STATE_DISABLING: // Wifi热点正在关闭
                 break;
             case WIFI_AP_STATE_DISABLED: // Wifi热点已关闭
@@ -324,12 +324,12 @@ public class WifiHotUtils {
      * @param isExecute 是否执行关闭
      * @return 之前是否打开热点
      */
-    public boolean closeWifiApCheck(boolean isExecute){
+    public boolean closeWifiApCheck(boolean isExecute) {
         // 判断是否开启热点(默认是)
         boolean isOpen = true;
         // 获取当前Wifi热点状态
         int wifiApState = getWifiApState();
-        switch(wifiApState){
+        switch(wifiApState) {
             case WIFI_AP_STATE_DISABLING: // Wifi热点正在关闭
                 isExecute = false;
                 break;
@@ -344,7 +344,7 @@ public class WifiHotUtils {
                 break;
         }
         // 如果属于开启，则进行关闭
-        if(isOpen && isExecute){
+        if(isOpen && isExecute) {
             closeWifiAp();
         }
         return isOpen;
@@ -354,7 +354,7 @@ public class WifiHotUtils {
      * 是否有连接热点
      * @return
      */
-    public boolean isConnectHot(){
+    public boolean isConnectHot() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
             String line;
@@ -363,7 +363,7 @@ public class WifiHotUtils {
                 if (splitted != null && splitted.length >= 4) {
                     String ipAdr = splitted[0]; // Ip地址
                     // 防止地址为null,并且需要以.拆分 存在4个长度  255.255.255.255
-                    if(ipAdr != null && ipAdr.split("\\.").length >= 3){
+                    if(ipAdr != null && ipAdr.split("\\.").length >= 3) {
                         return true;
                     }
                 }
@@ -378,7 +378,7 @@ public class WifiHotUtils {
      * 获取热点主机ip地址
      * @return
      */
-    public String getHotspotServiceIp(){
+    public String getHotspotServiceIp() {
         try {
             // 获取网关信息
             DhcpInfo dhcpinfo = mWifiManager.getDhcpInfo();
@@ -394,7 +394,7 @@ public class WifiHotUtils {
      * 获取连接上的子网关热点IP(一个)
      * @return
      */
-    public String getHotspotAllotIp(){
+    public String getHotspotAllotIp() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
             String line;
@@ -403,7 +403,7 @@ public class WifiHotUtils {
                 if (splitted != null && splitted.length >= 4) {
                     String ipAdr = splitted[0]; // Ip地址
                     // 防止地址为null,并且需要以.拆分 存在4个长度  255.255.255.255
-                    if(ipAdr != null && ipAdr.split("\\.").length >= 3){
+                    if(ipAdr != null && ipAdr.split("\\.").length >= 3) {
                         return ipAdr;
                     }
                 }
@@ -420,11 +420,11 @@ public class WifiHotUtils {
      * @param ipAdr ip地址
      * @return
      */
-    public String getHotspotSplitIpMask(String df, String ipAdr){
+    public String getHotspotSplitIpMask(String df, String ipAdr) {
         // 网关掩码
         String hsMask = df;
         // 获取网关掩码
-        if(ipAdr != null){
+        if(ipAdr != null) {
             try {
                 int length = ipAdr.lastIndexOf(".");
                 // 进行裁剪
@@ -489,10 +489,10 @@ public class WifiHotUtils {
      */
     public String getApWifiSSID() {
         // 大于 8.0
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
             return apWifiSSID;
         } else {
-            if (apWifiConfig != null){
+            if (apWifiConfig != null) {
                 return apWifiConfig.SSID;
             }
         }
@@ -505,10 +505,10 @@ public class WifiHotUtils {
      */
     public String getApWifiPwd() {
         // 大于 8.0
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
             return apWifiPwd;
         } else {
-            if (apWifiConfig != null){
+            if (apWifiConfig != null) {
                 return apWifiConfig.preSharedKey;
             }
         }

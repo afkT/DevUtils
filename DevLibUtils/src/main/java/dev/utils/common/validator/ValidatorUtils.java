@@ -76,7 +76,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isNumber(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_NUMBER, str);
         }
         return false;
@@ -88,7 +88,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isLetter(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match("^[A-Za-z]+$", str);
         }
         return false;
@@ -100,7 +100,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isNumberLetter(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match("^[A-Za-z0-9]+$", str);
         }
         return false;
@@ -112,7 +112,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isSpec(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_SPECIAL, str);
         }
         return false;
@@ -124,7 +124,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isWx(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_WX, str);
         }
         return false;
@@ -136,7 +136,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isRealName(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_REALNAME, str);
         }
         return false;
@@ -148,7 +148,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isNickName(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_NICKNAME, str);
         }
         return false;
@@ -160,7 +160,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isUserName(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_USERNAME, str);
         }
         return false;
@@ -172,7 +172,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isPassword(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_PASSWORD, str);
         }
         return false;
@@ -184,7 +184,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isEmail(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_EMAIL, str);
         }
         return false;
@@ -196,7 +196,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isUrl(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_URL, str);
         }
         return false;
@@ -208,7 +208,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isIPAddress(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_IP_ADDR, str);
         }
         return false;
@@ -220,7 +220,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isIP(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             Pattern pattern = Pattern.compile("\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\b");
             Matcher matcher = pattern.matcher(str);
             return matcher.matches();
@@ -245,7 +245,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isChinese(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_CHINESE, str);
         }
         return false;
@@ -257,7 +257,7 @@ public final class ValidatorUtils {
      * @return
      */
     public static boolean isChineseAll(String str) {
-        if (!isEmpty(str)){
+        if (!isEmpty(str)) {
             return match(REGEX_CHINESE_ALL, str);
         }
         return false;

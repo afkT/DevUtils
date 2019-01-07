@@ -115,15 +115,15 @@ public final class SHAUtils {
 
     /**
      * 进行转换
-     * @param bData
+     * @param byteData
      * @param hexDigits
      * @return
      */
-    private static String toHexString(byte[] bData, char[] hexDigits) {
-        StringBuilder sBuilder = new StringBuilder(bData.length * 2);
-        for (int i = 0, len = bData.length; i < len; i++) {
-            sBuilder.append(hexDigits[(bData[i] & 0xf0) >>> 4]);
-            sBuilder.append(hexDigits[bData[i] & 0x0f]);
+    private static String toHexString(byte[] byteData, char[] hexDigits) {
+        StringBuilder sBuilder = new StringBuilder(byteData.length * 2);
+        for (int i = 0, len = byteData.length; i < len; i++) {
+            sBuilder.append(hexDigits[(byteData[i] & 0xf0) >>> 4]);
+            sBuilder.append(hexDigits[byteData[i] & 0x0f]);
         }
         return sBuilder.toString();
     }

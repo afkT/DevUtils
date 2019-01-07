@@ -284,8 +284,8 @@ public final class RandomUtils {
 	 * @param objArray
 	 * @return
 	 */
-	public static boolean shuffle2(Object[] objArray){
-		if (objArray == null){
+	public static boolean shuffle2(Object[] objArray) {
+		if (objArray == null) {
 			return false;
 		}
 		int len = objArray.length;
@@ -311,9 +311,9 @@ public final class RandomUtils {
 	 * @throws IllegalArgumentException
 	 */
 	public static int nextIntRange(int origin, int bound) {
-		if (origin > bound){
+		if (origin > bound) {
 			throw new IllegalArgumentException("bound must be greater than origin");
-		} else if (origin == bound){
+		} else if (origin == bound) {
 			return origin;
 		}
 		Random random = new Random();
@@ -337,9 +337,9 @@ public final class RandomUtils {
 	 * @throws IllegalArgumentException
 	 */
 	public static long nextLongRange(long origin, long bound) {
-		if (origin > bound){
+		if (origin > bound) {
 			throw new IllegalArgumentException("bound must be greater than origin");
-		} else if (origin == bound){
+		} else if (origin == bound) {
 			return origin;
 		}
 		Random random = new Random();
@@ -368,9 +368,9 @@ public final class RandomUtils {
 	 * @throws IllegalArgumentException
 	 */
 	public static double nextDoubleRange(double origin, double bound) {
-		if (origin > bound){
+		if (origin > bound) {
 			throw new IllegalArgumentException("bound must be greater than origin");
-		} else if (origin == bound){
+		} else if (origin == bound) {
 			return origin;
 		}
 		double r = new Random().nextDouble();
@@ -387,10 +387,10 @@ public final class RandomUtils {
 	 * @param randomNumberBound 结束值(最大值范围)
 	 * @return
 	 */
-	public static int[] ints(int streamSize, int randomNumberOrigin, int randomNumberBound){
-		if (randomNumberOrigin >= randomNumberBound){
+	public static int[] ints(int streamSize, int randomNumberOrigin, int randomNumberBound) {
+		if (randomNumberOrigin >= randomNumberBound) {
 			return null;
-		} else if (streamSize < 0){
+		} else if (streamSize < 0) {
 			return null;
 		}
 //		if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {
@@ -398,7 +398,7 @@ public final class RandomUtils {
 //			return intStream.toArray();
 //		} else {
 			int[] ints = new int[streamSize];
-			for (int i = 0; i < streamSize; i++){
+			for (int i = 0; i < streamSize; i++) {
 				ints[i] = nextIntRange(randomNumberOrigin, randomNumberBound);
 			}
 			return ints;
@@ -412,10 +412,10 @@ public final class RandomUtils {
 	 * @param randomNumberBound 结束值(最大值范围)
 	 * @return
 	 */
-	public static long[] longs(int streamSize, long randomNumberOrigin, long randomNumberBound){
-		if (randomNumberOrigin >= randomNumberBound){
+	public static long[] longs(int streamSize, long randomNumberOrigin, long randomNumberBound) {
+		if (randomNumberOrigin >= randomNumberBound) {
 			return null;
-		} else if (streamSize < 0){
+		} else if (streamSize < 0) {
 			return null;
 		}
 //		if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {
@@ -423,7 +423,7 @@ public final class RandomUtils {
 //			return longStream.toArray();
 //		} else {
 			long[] longs = new long[streamSize];
-			for (int i = 0; i < streamSize; i++){
+			for (int i = 0; i < streamSize; i++) {
 				longs[i] = nextLongRange(randomNumberOrigin, randomNumberBound);
 			}
 			return longs;
@@ -437,10 +437,10 @@ public final class RandomUtils {
 	 * @param randomNumberBound 结束值(最大值范围)
 	 * @return
 	 */
-	public static double[] doubles(int streamSize, double randomNumberOrigin, double randomNumberBound){
-		if (randomNumberOrigin >= randomNumberBound){
+	public static double[] doubles(int streamSize, double randomNumberOrigin, double randomNumberBound) {
+		if (randomNumberOrigin >= randomNumberBound) {
 			return null;
-		} else if (streamSize < 0){
+		} else if (streamSize < 0) {
 			return null;
 		}
 //		if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {
@@ -448,7 +448,7 @@ public final class RandomUtils {
 //			return doubleStream.toArray();
 //		} else {
 			double[] doubles = new double[streamSize];
-			for (int i = 0; i < streamSize; i++){
+			for (int i = 0; i < streamSize; i++) {
 				doubles[i] = nextDoubleRange(randomNumberOrigin, randomNumberBound);
 			}
 			return doubles;

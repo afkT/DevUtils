@@ -257,12 +257,12 @@ public final class ReflectUtils {
      * @param obj
      * @return
      */
-    public static Object getObject(Field field, Object obj){
+    public static Object getObject(Field field, Object obj) {
         try {
             field.setAccessible(true);
             Object out = field.get(obj);
             return out;
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         return null;
     }
@@ -273,7 +273,7 @@ public final class ReflectUtils {
      * @param name
      * @param val
      */
-    public ReflectUtils setEnumVal(Class<?> clas, String name, String val){
+    public ReflectUtils setEnumVal(Class<?> clas, String name, String val) {
         try {
             return field(name, Enum.valueOf((Class<Enum>) clas, val));
         } catch (Exception e) {
@@ -312,13 +312,13 @@ public final class ReflectUtils {
      * @param isSuper 是否一直跟到最后, 如果父类还有父类，并且有相同变量名, 则设置isSuper = true，一直会跟到最后的变量
      * @return 父类中的属性对象
      */
-    public static Field getDeclaredFieldBase(Object object, String fieldName, boolean isSuper){
+    public static Field getDeclaredFieldBase(Object object, String fieldName, boolean isSuper) {
         Field field = null ;
         Class<?> clazz = object.getClass() ;
         for(; clazz != Object.class ; clazz = clazz.getSuperclass()) {
             try {
                 field = clazz.getDeclaredField(fieldName);
-                if (!isSuper){
+                if (!isSuper) {
                     return field;
                 }
             } catch (Exception e) {

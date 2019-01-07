@@ -55,7 +55,7 @@ public final class ResourceUtils {
 	public static String getString(int strId) {
 		try {
 			return DevUtils.getContext().getResources().getString(strId);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getString");
 		}
 		return "";
@@ -111,7 +111,7 @@ public final class ResourceUtils {
 	 * @param imageName
 	 * @return
 	 */
-	public static int getDrawableId2(String imageName){
+	public static int getDrawableId2(String imageName) {
 		Class mipmap = R.drawable.class;
 		try {
 			Field field = mipmap.getField(imageName);
@@ -136,7 +136,7 @@ public final class ResourceUtils {
 	public static int getLayoutId(String resName) {
 		try {
 			return DevUtils.getContext().getResources().getIdentifier(resName, "layout", DevUtils.getContext().getPackageName());
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getLayoutId");
 		}
 		return 0;
@@ -150,7 +150,7 @@ public final class ResourceUtils {
 	public static int getStringId(String resName) {
 		try {
 			return DevUtils.getContext().getResources().getIdentifier(resName, "string", DevUtils.getContext().getPackageName());
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getStringId");
 		}
 		return 0;
@@ -164,7 +164,7 @@ public final class ResourceUtils {
 	public static int getDrawableId(String resName) {
 		try {
 			return DevUtils.getContext().getResources().getIdentifier(resName, "drawable", DevUtils.getContext().getPackageName());
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getDrawableId");
 		}
 		return 0;
@@ -178,7 +178,7 @@ public final class ResourceUtils {
 	public static int getMipmapId(String resName) {
 		try {
 			return DevUtils.getContext().getResources().getIdentifier(resName, "mipmap", DevUtils.getContext().getPackageName());
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getMipmapId");
 		}
 		return 0;
@@ -193,7 +193,7 @@ public final class ResourceUtils {
 	public static int getStyleId(String resName) {
 		try {
 			return DevUtils.getContext().getResources().getIdentifier(resName, "style", DevUtils.getContext().getPackageName());
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getStyleId");
 		}
 		return 0;
@@ -204,10 +204,10 @@ public final class ResourceUtils {
 	 * @param resName styleable 的名称
 	 * @return styleable
 	 */
-	public static Object getStyleableId(String resName){
+	public static Object getStyleableId(String resName) {
 		try {
 			return DevUtils.getContext().getResources().getIdentifier(resName, "styleable", DevUtils.getContext().getPackageName());
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getStyleableId");
 		}
 		return 0;
@@ -222,7 +222,7 @@ public final class ResourceUtils {
 	public static int getAnimId(String resName) {
 		try {
 			return DevUtils.getContext().getResources().getIdentifier(resName, "anim", DevUtils.getContext().getPackageName());
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getAnimId");
 		}
 		return 0;
@@ -236,7 +236,7 @@ public final class ResourceUtils {
 	public static int getId(String resName) {
 		try {
 			return DevUtils.getContext().getResources().getIdentifier(resName, "id", DevUtils.getContext().getPackageName());
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getId");
 		}
 		return 0;
@@ -250,7 +250,7 @@ public final class ResourceUtils {
 	public static int getColorId(String resName) {
 		try {
 			return DevUtils.getContext().getResources().getIdentifier(resName, "color", DevUtils.getContext().getPackageName());
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getColorId");
 		}
 		return 0;
@@ -296,7 +296,7 @@ public final class ResourceUtils {
 	public static String readStringFromAssets(String fileName) {
 		try {
 			return new String(readBytesFromAssets(fileName), "UTF-8");
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "readStringFromAssets");
 		}
 		return null;
@@ -340,7 +340,7 @@ public final class ResourceUtils {
 	public static String readStringFromRaw(int resId) {
 		try {
 			return new String(readBytesFromRaw(resId), "UTF-8");
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "readStringFromRaw");
 		}
 		return null;

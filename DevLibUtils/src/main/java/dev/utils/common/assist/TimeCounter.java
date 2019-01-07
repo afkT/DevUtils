@@ -43,7 +43,7 @@ public class TimeCounter {
      * 获取开始时间
      * @return
      */
-    public long getStartTime(){
+    public long getStartTime() {
         return start;
     }
 }

@@ -46,8 +46,8 @@ public final class ShapeUtils {
      * 设置 Drawable 背景
      * @param view
      */
-    public void setDrawable(View view){
-        if (view != null){
+    public void setDrawable(View view) {
+        if (view != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                 view.setBackground(drawable);
             else
@@ -68,8 +68,8 @@ public final class ShapeUtils {
         public Builder() {
         }
 
-        public Builder(GradientDrawable drawable){
-            if (drawable != null){
+        public Builder(GradientDrawable drawable) {
+            if (drawable != null) {
                 this.gradientDrawable = drawable;
             }
         }
@@ -78,7 +78,7 @@ public final class ShapeUtils {
          * 获取 Shape 工具类
          * @return
          */
-        public ShapeUtils build(){
+        public ShapeUtils build() {
             return new ShapeUtils(this);
         }
 
@@ -91,8 +91,8 @@ public final class ShapeUtils {
          * @param radius
          * @return
          */
-        public Builder setRadius(float radius){
-            if (gradientDrawable != null){
+        public Builder setRadius(float radius) {
+            if (gradientDrawable != null) {
                 gradientDrawable.setCornerRadius(radius);
             }
             return this;
@@ -105,7 +105,7 @@ public final class ShapeUtils {
          * @param left
          * @return
          */
-        public Builder setRadiusLeft(float left){
+        public Builder setRadiusLeft(float left) {
             setCornerRadii(left, 0, 0, left);
             return this;
         }
@@ -116,7 +116,7 @@ public final class ShapeUtils {
          * @param leftBottom
          * @return
          */
-        public Builder setRadiusLeft(float leftTop, float leftBottom){
+        public Builder setRadiusLeft(float leftTop, float leftBottom) {
             setCornerRadii(leftTop, 0, 0, leftBottom);
             return this;
         }
@@ -128,7 +128,7 @@ public final class ShapeUtils {
          * @param right
          * @return
          */
-        public Builder setRadiusRight(float right){
+        public Builder setRadiusRight(float right) {
             setCornerRadii(0, right, right, 0);
             return this;
         }
@@ -139,7 +139,7 @@ public final class ShapeUtils {
          * @param rightBottom
          * @return
          */
-        public Builder setRadiusRight(float rightTop, float rightBottom){
+        public Builder setRadiusRight(float rightTop, float rightBottom) {
             setCornerRadii(0, rightTop, rightBottom, 0);
             return this;
         }
@@ -160,7 +160,7 @@ public final class ShapeUtils {
 //            android:topLeftRadius="8dp"
 //            android:topRightRadius="8dp" />
 
-            if (gradientDrawable != null){
+            if (gradientDrawable != null) {
                 // radii 数组分别指定四个圆角的半径，每个角可以指定[X_Radius,Y_Radius]，四个圆角的顺序为左上，右上，右下，左下。如果X_Radius,Y_Radius为0表示还是直角。
                 gradientDrawable.setCornerRadii(new float[] { leftTop, leftTop, rightTop, rightTop, rightBottom, rightBottom, leftBottom, leftBottom });
             }
@@ -176,11 +176,11 @@ public final class ShapeUtils {
          * @param color
          * @return
          */
-        public Builder setColor(String color){
-            if (gradientDrawable != null && !TextUtils.isEmpty(color)){
+        public Builder setColor(String color) {
+            if (gradientDrawable != null && !TextUtils.isEmpty(color)) {
                 try {
                     gradientDrawable.setColor(Color.parseColor(color));
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setColor");
                 }
             }
@@ -192,11 +192,11 @@ public final class ShapeUtils {
          * @param color
          * @return
          */
-        public Builder setColor(@ColorRes int color){
-            if (gradientDrawable != null){
+        public Builder setColor(@ColorRes int color) {
+            if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setColor(ContextCompat.getColor(DevUtils.getContext(), color));
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setColor");
                 }
             }
@@ -218,11 +218,11 @@ public final class ShapeUtils {
          * @param color
          * @return
          */
-        public Builder setStroke(int width, String color){
-            if (gradientDrawable != null){
+        public Builder setStroke(int width, String color) {
+            if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setStroke(width, Color.parseColor(color));
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setStroke");
                 }
             }
@@ -235,11 +235,11 @@ public final class ShapeUtils {
          * @param color
          * @return
          */
-        public Builder setStroke(int width, @ColorRes int color){
-            if (gradientDrawable != null){
+        public Builder setStroke(int width, @ColorRes int color) {
+            if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setStroke(width, ContextCompat.getColor(DevUtils.getContext(), color));
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setStroke");
                 }
             }
@@ -253,11 +253,11 @@ public final class ShapeUtils {
          * @return
          */
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-        public Builder setStroke(int width, ColorStateList color){
-            if (gradientDrawable != null && color != null){
+        public Builder setStroke(int width, ColorStateList color) {
+            if (gradientDrawable != null && color != null) {
                 try {
                     gradientDrawable.setStroke(width, color);
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setStroke");
                 }
             }
@@ -277,11 +277,11 @@ public final class ShapeUtils {
          * @param height
          * @return
          */
-        public Builder setSize(int width, int height){
-            if (gradientDrawable != null){
+        public Builder setSize(int width, int height) {
+            if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setSize(width, height);
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setSize");
                 }
             }
@@ -295,8 +295,8 @@ public final class ShapeUtils {
 //         * @param padding
 //         * @return
 //         */
-//        public Builder setPadding(int padding){
-//            if (gradientDrawable != null){
+//        public Builder setPadding(int padding) {
+//            if (gradientDrawable != null) {
 //                try {
 //                    Rect rect = new Rect();
 //                    rect.left = padding;
@@ -304,7 +304,7 @@ public final class ShapeUtils {
 //                    rect.right = padding;
 //                    rect.bottom = padding;
 //                    gradientDrawable.getPadding(rect);
-//                } catch (Exception e){
+//                } catch (Exception e) {
 //                    LogPrintUtils.eTag(TAG, e, "setPadding");
 //                }
 //            }
@@ -374,7 +374,7 @@ public final class ShapeUtils {
          * 设置渐变颜色
          * @param colors
          */
-        public Builder(@ColorInt int[] colors){
+        public Builder(@ColorInt int[] colors) {
             this(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors));
         }
 
@@ -383,7 +383,7 @@ public final class ShapeUtils {
          * @param orientation
          * @param colors
          */
-        public Builder(GradientDrawable.Orientation orientation, @ColorInt int[] colors){
+        public Builder(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
             this(new GradientDrawable(orientation, colors));
         }
     }
@@ -396,7 +396,7 @@ public final class ShapeUtils {
      * @param color
      * @return
      */
-    public static Builder newBuilder(float radius, @ColorRes int color){
+    public static Builder newBuilder(float radius, @ColorRes int color) {
         return new Builder().setRadius(radius).setColor(color);
     }
 
@@ -406,7 +406,7 @@ public final class ShapeUtils {
      * @param color
      * @return
      */
-    public static Builder newBuilderToLeft(float left, @ColorRes int color){
+    public static Builder newBuilderToLeft(float left, @ColorRes int color) {
         return new Builder().setRadiusLeft(left).setColor(color);
     }
 
@@ -416,7 +416,7 @@ public final class ShapeUtils {
      * @param color
      * @return
      */
-    public static Builder newBuilderToRight(float right, @ColorRes int color){
+    public static Builder newBuilderToRight(float right, @ColorRes int color) {
         return new Builder().setRadiusRight(right).setColor(color);
     }
 
@@ -425,7 +425,7 @@ public final class ShapeUtils {
      * @param colors
      * @return
      */
-    public static Builder newBuilderToGradient(@ColorInt int[] colors){
+    public static Builder newBuilderToGradient(@ColorInt int[] colors) {
         return new Builder(colors);
     }
 
@@ -435,7 +435,7 @@ public final class ShapeUtils {
      * @param colors
      * @return
      */
-    public static Builder newBuilderToGradient(GradientDrawable.Orientation orientation, @ColorInt int[] colors){
+    public static Builder newBuilderToGradient(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
         return new Builder(orientation, colors);
     }
 }

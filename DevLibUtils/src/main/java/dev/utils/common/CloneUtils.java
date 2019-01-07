@@ -15,7 +15,7 @@ import dev.utils.JCLogUtils;
  */
 public final class CloneUtils {
 
-    private CloneUtils(){
+    private CloneUtils() {
     }
 
     // 日志TAG

@@ -142,9 +142,9 @@ public final class DeviceUtils {
             // 遍历设备信息
             while (mapIter.hasNext()) {
                 // 获取对应的key-value
-                Map.Entry<String, String> rnEntry = (Map.Entry<String, String>) mapIter.next();
-                String rnKey = (String) rnEntry.getKey(); // key
-                String rnValue = (String) rnEntry.getValue(); // value
+                Map.Entry<String, String> rnEntry = mapIter.next();
+                String rnKey = rnEntry.getKey(); // key
+                String rnValue = rnEntry.getValue(); // value
                 // 保存设备信息
                 sBuilder.append(rnKey);
                 sBuilder.append(" = ");
@@ -170,7 +170,7 @@ public final class DeviceUtils {
      * 获取当前SDK 版本号
      * @return
      */
-    public static int getSDKVersion(){
+    public static int getSDKVersion() {
         return Build.VERSION.SDK_INT;
     }
 
@@ -180,7 +180,7 @@ public final class DeviceUtils {
      * 在设备首次启动时，系统会随机生成一个64位的数字，并把这个数字以16进制字符串的形式保存下来，这个16进制的字符串就是ANDROID_ID，当设备被wipe后该值会被重置。
      * @return
      */
-    public static String getAndroidId(){
+    public static String getAndroidId() {
         // Android id 默认为null
         String androidId = null;
         try {
@@ -215,7 +215,7 @@ public final class DeviceUtils {
     public static boolean isAdbEnabled() {
         try {
             return Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAdbEnabled");
         }
         return false;
@@ -417,7 +417,7 @@ public final class DeviceUtils {
             intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
             DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shutdown");
         }
         return false;
@@ -436,7 +436,7 @@ public final class DeviceUtils {
             intent.putExtra("window", 0);
             DevUtils.getContext().sendBroadcast(intent);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
         return false;

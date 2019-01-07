@@ -136,7 +136,7 @@ public final class SignaturesUtils {
     /**
      * 获取 App 证书对象
      */
-    public static X509Certificate getX509Certificate(Signature[] signatures){
+    public static X509Certificate getX509Certificate(Signature[] signatures) {
         try {
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
             ByteArrayInputStream stream = new ByteArrayInputStream(signatures[0].toByteArray());
@@ -153,7 +153,7 @@ public final class SignaturesUtils {
      * @param signatures
      * @return
      */
-    public static void printSignatureName(Signature[] signatures){
+    public static void printSignatureName(Signature[] signatures) {
         try {
             for (int i = 0, len = signatures.length; i < len; i++) {
                 CertificateFactory cf = CertificateFactory.getInstance("X.509");

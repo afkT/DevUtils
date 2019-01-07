@@ -16,7 +16,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class AlarmUtils {
 
-    private AlarmUtils(){
+    private AlarmUtils() {
     }
 
     // 日志 TAG
@@ -39,7 +39,7 @@ public final class AlarmUtils {
             } else {
                 manager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmIntent");
         }
     }

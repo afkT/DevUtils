@@ -23,7 +23,7 @@ public final class CRCUtils {
      * @param str
      * @return
      */
-    public static long getCRC32(String str){
+    public static long getCRC32(String str) {
         try {
             CRC32 crc32 = new CRC32();
             crc32.update(str.getBytes());
@@ -39,7 +39,7 @@ public final class CRCUtils {
      * @param str
      * @return
      */
-    public static String getCRC32Str(String str){
+    public static String getCRC32Str(String str) {
         try {
             CRC32 crc32 = new CRC32();
             crc32.update(str.getBytes());
@@ -54,7 +54,7 @@ public final class CRCUtils {
      * 获取文件CRC32 值
      * @return
      */
-    public static String getFileCrc32(String fPath){
+    public static String getFileCrc32(String fPath) {
         try {
             InputStream fis = new FileInputStream(fPath);
             byte[] buffer = new byte[1024];

@@ -60,7 +60,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	/**
 	 * 销毁 MediaPlayer
 	 */
-	private void destroyMedia(){
+	private void destroyMedia() {
 		try {
 			// 表示非播放状态
 			if (mMediaPlayer != null) {
@@ -105,8 +105,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * 设置流类型
 	 * @param streamtype
 	 */
-	public void setAudioStreamType(int streamtype){
-		if(mMediaPlayer != null){
+	public void setAudioStreamType(int streamtype) {
+		if(mMediaPlayer != null) {
 			try {
 				// 播放流类型
 				mMediaPlayer.setAudioStreamType(streamtype);
@@ -119,7 +119,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	/**
 	 * 设置流类型(音量键可控制)
 	 */
-	private void setAudioStreamType(){
+	private void setAudioStreamType() {
 		setAudioStreamType(AudioManager.STREAM_MUSIC);
 	}
 
@@ -130,7 +130,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * @param rawId 播放资源
 	 * @return true: 执行成功, false: 执行中断(失败)
 	 */
-	public boolean playPrepareRaw(@RawRes int rawId){
+	public boolean playPrepareRaw(@RawRes int rawId) {
 		return playPrepareRaw(rawId, false);
 	}
 
@@ -140,7 +140,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * @param isLooping 是否循环播放
 	 * @return true: 执行成功, false: 执行中断(失败)
 	 */
-	public boolean playPrepareRaw(final @RawRes int rawId, final boolean isLooping){
+	public boolean playPrepareRaw(final @RawRes int rawId, final boolean isLooping) {
 		try {
 			mPlayRawId = rawId;
 			mPlayUri = null;
@@ -178,7 +178,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * @param playUri 播放地址
 	 * @return true: 执行成功, false: 执行中断(失败)
 	 */
-	public boolean playPrepareAssets(final String playUri){
+	public boolean playPrepareAssets(final String playUri) {
 		return playPrepareAssets(playUri, false);
 	}
 
@@ -188,10 +188,10 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * @param isLooping 是否循环播放
 	 * @return true: 执行成功, false: 执行中断(失败)
 	 */
-	public boolean playPrepareAssets(String playUri, final boolean isLooping){
+	public boolean playPrepareAssets(String playUri, final boolean isLooping) {
 		try {
 			mPlayRawId = -1;
-			if (playUri.startsWith("/")){
+			if (playUri.startsWith("/")) {
 				mPlayUri = playUri;
 			} else {
 				mPlayUri = "/" + playUri;
@@ -232,7 +232,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * @param playUri 播放地址
 	 * @return true: 执行成功, false: 执行中断(失败)
 	 */
-	public boolean playPrepare(final String playUri){
+	public boolean playPrepare(final String playUri) {
 		return playPrepare(playUri, false);
 	}
 
@@ -242,7 +242,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * @param isLooping 是否循环播放
 	 * @return true: 执行成功, false: 执行中断(失败)
 	 */
-	public boolean playPrepare(final String playUri, final boolean isLooping){
+	public boolean playPrepare(final String playUri, final boolean isLooping) {
 		try {
 			mPlayRawId = -1;
 			mPlayUri = playUri;
@@ -273,9 +273,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * @param mediaSet 播放设置
 	 * @return true: 执行成功, false: 执行中断(失败)
 	 */
-	public boolean playPrepare(MediaSet mediaSet){
+	public boolean playPrepare(MediaSet mediaSet) {
 		// 防止为null
-		if (mediaSet == null){
+		if (mediaSet == null) {
 			return false;
 		}
 		try {
@@ -306,8 +306,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * 是否播放中(判断null)
 	 * @return
 	 */
-	public boolean isPlaying(){
-		if(mMediaPlayer != null){
+	public boolean isPlaying() {
+		if(mMediaPlayer != null) {
 			return mMediaPlayer.isPlaying();
 		}
 		return false;
@@ -316,8 +316,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	/**
 	 * 暂停操作(判断null)
 	 */
-	public void pause(){
-		if(mMediaPlayer != null){
+	public void pause() {
+		if(mMediaPlayer != null) {
 			mMediaPlayer.pause();
 		}
 	}
@@ -325,7 +325,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	/**
 	 * 停止操作(判断null) - 销毁MediaPlayer
 	 */
-	public void stop(){
+	public void stop() {
 		// 销毁MediaPlayer
 		destroyMedia();
 	}
@@ -337,10 +337,10 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * @param eWhat
 	 * @return
 	 */
-	public static boolean isIgnoreWhat(int eWhat){
+	public static boolean isIgnoreWhat(int eWhat) {
 		// 是否忽略
 		boolean isIgnore = false;
-		switch(eWhat){
+		switch(eWhat) {
 			case -38:
 			case 1:
 			case 100:
@@ -360,7 +360,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	public boolean onError(MediaPlayer mp, int what, int extra) {
 		LogPrintUtils.dTag(TAG, "onError - what: " + what + ", extra: " + extra);
 		// 触发回调
-		if(mMeidaListener != null){
+		if(mMeidaListener != null) {
 			mMeidaListener.onError(what, extra);
 		}
 		return false;
@@ -373,7 +373,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 		mVideoWidth = width;
 		mVideoHeight = height;
 		// 触发回调
-		if(mMeidaListener != null){
+		if(mMeidaListener != null) {
 			mMeidaListener.onVideoSizeChanged(width, height);
 		}
 	}
@@ -383,7 +383,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	public void onPrepared(MediaPlayer mp) {
 		LogPrintUtils.dTag(TAG, "onPrepared");
 		// 触发回调
-		if(mMeidaListener != null){
+		if(mMeidaListener != null) {
 			mMeidaListener.onPrepared();
 		}
 	}
@@ -393,7 +393,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	public void onCompletion(MediaPlayer mp) {
 		LogPrintUtils.dTag(TAG, "onCompletion");
 		// 触发回调
-		if(mMeidaListener != null){
+		if(mMeidaListener != null) {
 			mMeidaListener.onCompletion();
 		}
 	}
@@ -403,7 +403,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	public void onBufferingUpdate(MediaPlayer mp, int percent) {
 		LogPrintUtils.dTag(TAG, "onBufferingUpdate - percent: " + percent);
 		// 触发回调
-		if(mMeidaListener != null){
+		if(mMeidaListener != null) {
 			mMeidaListener.onBufferingUpdate(percent);
 		}
 	}
@@ -413,7 +413,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	public void onSeekComplete(MediaPlayer mp) {
 		LogPrintUtils.dTag(TAG, "onSeekComplete");
 		// 触发回调
-		if(mMeidaListener != null){
+		if(mMeidaListener != null) {
 			mMeidaListener.onSeekComplete();
 		}
 	}
@@ -476,7 +476,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 		 * 是否循环播放 - 默认不循环
 		 * @return
 		 */
-		public boolean isLooping(){
+		public boolean isLooping() {
 			return false;
 		}
 
@@ -484,7 +484,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 		 * 获取播放音量(设置) - 默认使用全局统一音量
 		 * @return
 		 */
-		public float getVolume(){
+		public float getVolume() {
 			return DevMediaManager.getInstance().getVolume();
 		}
 
@@ -501,7 +501,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * 判断 MediaPlayer 是否为null
 	 * @return
 	 */
-	public boolean isNullMediaPlayer(){
+	public boolean isNullMediaPlayer() {
 		return mMediaPlayer == null;
 	}
 
@@ -509,7 +509,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * 判断 MediaPlayer 是否不为null
 	 * @return
 	 */
-	public boolean isNotNullMediaPlayer(){
+	public boolean isNotNullMediaPlayer() {
 		return mMediaPlayer != null;
 	}
 
@@ -567,7 +567,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	private float mVolume = -1f;
 
 	/** 清空播放信息 */
-	private void clearMPlayerData(){
+	private void clearMPlayerData() {
 		mPlayRawId = -1;
 		mPlayUri = null;
 		mVideoWidth = 0;
@@ -586,7 +586,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * 获取当前播放的地址
 	 * @return
 	 */
-	public String getPlayUri(){
+	public String getPlayUri() {
 		return mPlayUri;
 	}
 
@@ -610,8 +610,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * 获取当前播放时间
 	 * @return
 	 */
-	public int getCurrentPosition(){
-		if (mMediaPlayer != null){
+	public int getCurrentPosition() {
+		if (mMediaPlayer != null) {
 			return mMediaPlayer.getCurrentPosition();
 		}
 		return 0;
@@ -621,8 +621,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * 获取资源总时间
 	 * @return
 	 */
-	public int getDuration(){
-		if (mMediaPlayer != null){
+	public int getDuration() {
+		if (mMediaPlayer != null) {
 			return mMediaPlayer.getDuration();
 		}
 		return 0;
@@ -632,10 +632,10 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	 * 获取播放进度百分比
 	 * @return
 	 */
-	public int getPlayPercent(){
+	public int getPlayPercent() {
 		try {
 			return (getCurrentPosition() * 100) / getDuration();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getPlayPercent");
 		}
 		return 0;

@@ -11,7 +11,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class ClickUtils {
 
-    private ClickUtils(){
+    private ClickUtils() {
     }
 
     // 日志TAG
@@ -74,11 +74,11 @@ public final class ClickUtils {
      * @param tag
      * @return
      */
-    public static boolean isFastDoubleClick(String tag){
+    public static boolean isFastDoubleClick(String tag) {
         // 获取配置时间
         Long config_time = mapConfig.get(tag);
         // 如果等于null, 则传入默认时间
-        if (config_time == null){
+        if (config_time == null) {
             return isFastDoubleClick(tag, DF_DIFF);
         }
         return isFastDoubleClick(tag, config_time);
@@ -90,10 +90,10 @@ public final class ClickUtils {
      * @param diff
      * @return
      */
-    public static boolean isFastDoubleClick(String tag, long diff){
+    public static boolean isFastDoubleClick(String tag, long diff) {
         // 获取上次点击的时间
         Long lastTime = mapRecords.get(tag);
-        if (lastTime == null){
+        if (lastTime == null) {
             lastTime = 0l;
         }
         long cTime = System.currentTimeMillis();
@@ -116,13 +116,13 @@ public final class ClickUtils {
      * @param obj
      * @return
      */
-    public static boolean isFastDoubleClick(Object obj){
+    public static boolean isFastDoubleClick(Object obj) {
         // 获取TAG
         String tag = ((obj != null) ? ("obj_" + obj.hashCode()) : "obj_null");
         // 获取配置时间
         Long config_time = mapConfig.get(tag);
         // 如果等于null, 则传入默认时间
-        if (config_time == null){
+        if (config_time == null) {
             return isFastDoubleClick(tag, DF_DIFF);
         }
         return isFastDoubleClick(tag, config_time);
@@ -134,12 +134,12 @@ public final class ClickUtils {
      * @param diff
      * @return
      */
-    public static boolean isFastDoubleClick(Object obj, long diff){
+    public static boolean isFastDoubleClick(Object obj, long diff) {
         // 获取TAG
         String tag = ((obj != null) ? ("obj_" + obj.hashCode()) : "obj_null");
         // 获取上次点击的时间
         Long lastTime = mapRecords.get(tag);
-        if (lastTime == null){
+        if (lastTime == null) {
             lastTime = 0l;
         }
         long cTime = System.currentTimeMillis();
@@ -161,8 +161,8 @@ public final class ClickUtils {
      * 初始化配置信息
      * @param mapConfig
      */
-    public static void initConfig(Map<String, Object> mapConfig){
-        if (mapConfig != null){
+    public static void initConfig(Map<String, Object> mapConfig) {
+        if (mapConfig != null) {
             mapConfig.putAll(mapConfig);
         }
     }
@@ -172,7 +172,7 @@ public final class ClickUtils {
      * @param key
      * @param val
      */
-    public static void putConfig(String key, Long val){
+    public static void putConfig(String key, Long val) {
         mapConfig.put(key, val);
     }
 
@@ -180,7 +180,7 @@ public final class ClickUtils {
      * 移除配置信息
      * @param key
      */
-    public static void removeConfig(String key){
+    public static void removeConfig(String key) {
         mapConfig.remove(key);
     }
 }

@@ -87,7 +87,7 @@ public final class StringUtils {
 	 * @param str
 	 * @return
 	 */
-	public static String toGBKEncode(String str){
+	public static String toGBKEncode(String str) {
 		return toStrEncode(str, "GBK");
 	}
 
@@ -96,7 +96,7 @@ public final class StringUtils {
 	 * @param str
 	 * @return
 	 */
-	public static String toGBK2312Encode(String str){
+	public static String toGBK2312Encode(String str) {
 		return toStrEncode(str, "GBK-2312");
 	}
 
@@ -105,7 +105,7 @@ public final class StringUtils {
 	 * @param str
 	 * @return
 	 */
-	public static String toUTF8Encode(String str){
+	public static String toUTF8Encode(String str) {
 		return toStrEncode(str, "UTF-8");
 	}
 
@@ -115,7 +115,7 @@ public final class StringUtils {
 	 * @param enc
 	 * @return
 	 */
-	public static String toStrEncode(String str, String enc){
+	public static String toStrEncode(String str, String enc) {
 		try {
 			return new String(str.getBytes(), enc);
 		} catch (Exception e) {
@@ -131,7 +131,7 @@ public final class StringUtils {
 	 * @param str
 	 * @return
 	 */
-	public static String toUrlEncode(String str){
+	public static String toUrlEncode(String str) {
 		return toUrlEncode(str, "UTF-8");
 	}
 
@@ -141,7 +141,7 @@ public final class StringUtils {
 	 * @param enc
 	 * @return
 	 */
-	public static String toUrlEncode(String str, String enc){
+	public static String toUrlEncode(String str, String enc) {
 		try {
 			return URLEncoder.encode(str, enc);
 		} catch (Exception e) {
@@ -336,7 +336,7 @@ public final class StringUtils {
 		if (isEmpty(str) || !Character.isLowerCase(str.charAt(0))) return str;
 		try {
 			return String.valueOf((char) (str.charAt(0) - 32)) + str.substring(1);
-		} catch (Exception e){
+		} catch (Exception e) {
 			JCLogUtils.eTag(TAG, e, "upperFirstLetter");
 			return str;
 		}
@@ -351,7 +351,7 @@ public final class StringUtils {
 		if (isEmpty(str) || !Character.isUpperCase(str.charAt(0))) return str;
 		try {
 			return String.valueOf((char) (str.charAt(0) + 32)) + str.substring(1);
-		} catch (Exception e){
+		} catch (Exception e) {
 			JCLogUtils.eTag(TAG, e, "lowerFirstLetter");
 			return str;
 		}
@@ -454,7 +454,7 @@ public final class StringUtils {
 	 * @param keyWord
 	 * @return
 	 */
-	public static String sqliteEscape(String keyWord){
+	public static String sqliteEscape(String keyWord) {
 		if (isEmpty(keyWord)) return keyWord;
 		// 替换关键字
 		keyWord = keyWord.replace("/", "//");

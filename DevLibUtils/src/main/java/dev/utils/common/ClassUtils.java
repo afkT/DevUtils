@@ -12,7 +12,7 @@ import dev.utils.JCLogUtils;
  */
 public final class ClassUtils {
 
-    private ClassUtils(){
+    private ClassUtils() {
     }
 
     // 日志TAG
@@ -37,7 +37,7 @@ public final class ClassUtils {
      * @param claxx
      * @return
      */
-    public static <T> T newInstance(Class<T> claxx){
+    public static <T> T newInstance(Class<T> claxx) {
         try {
             Constructor<?>[] cons = claxx.getDeclaredConstructors();
             for (Constructor<?> c : cons) {
@@ -54,7 +54,7 @@ public final class ClassUtils {
                     return (T) c.newInstance(objs);
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "newInstance");
         }
         return null;

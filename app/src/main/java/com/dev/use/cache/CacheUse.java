@@ -21,7 +21,7 @@ class CacheUse {
     /**
      * 缓存使用方法
      */
-    private void cacheUse(){
+    private void cacheUse() {
         final Context mContext = DevUtils.getContext();
 
 //        // 保存数据
@@ -49,7 +49,7 @@ class CacheUse {
                     CacheVo ctva = (CacheVo) DevCache.get(mContext).getAsObject("ctva");
                     // 判断是否过期
                     DevLogger.dTag(TAG, "是否过期: " + (ctva == null));
-                } catch (Exception e){
+                } catch (Exception e) {
                 }
             }
         }).start();

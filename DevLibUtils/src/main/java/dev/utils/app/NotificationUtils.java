@@ -19,7 +19,7 @@ import dev.DevUtils;
  */
 public final class NotificationUtils {
 
-    private NotificationUtils(){
+    private NotificationUtils() {
     }
 
     // 通知栏管理类
@@ -30,7 +30,7 @@ public final class NotificationUtils {
      * @return
      */
     public static NotificationManager getNotificationManager() {
-        if (mNotificationManager == null){
+        if (mNotificationManager == null) {
             mNotificationManager = (NotificationManager) DevUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         }
         return mNotificationManager;
@@ -39,8 +39,8 @@ public final class NotificationUtils {
     /**
      * 移除通知 - 移除所有通知(只是针对当前Context下的Notification)
      */
-    public static void cancelAll(){
-        if (getNotificationManager() != null){
+    public static void cancelAll() {
+        if (getNotificationManager() != null) {
             mNotificationManager.cancelAll();
         }
     }
@@ -49,9 +49,9 @@ public final class NotificationUtils {
      * 移除通知 - 移除标记为id的通知 (只是针对当前Context下的所有Notification)
      * @param args
      */
-    public static void cancel(final int... args){
-        if (getNotificationManager() != null && args != null){
-            for (int id : args){
+    public static void cancel(final int... args) {
+        if (getNotificationManager() != null && args != null) {
+            for (int id : args) {
                 mNotificationManager.cancel(id);
             }
         }
@@ -62,8 +62,8 @@ public final class NotificationUtils {
      * @param tag
      * @param id
      */
-    public static void cancel(final String tag, final int id){
-        if (getNotificationManager() != null && tag != null){
+    public static void cancel(final String tag, final int id) {
+        if (getNotificationManager() != null && tag != null) {
             mNotificationManager.cancel(tag, id);
         }
     }
@@ -74,8 +74,8 @@ public final class NotificationUtils {
      * @param notification
      * @return
      */
-    public static boolean notify(final int id, final Notification notification){
-        if (getNotificationManager() != null && notification != null){
+    public static boolean notify(final int id, final Notification notification) {
+        if (getNotificationManager() != null && notification != null) {
             mNotificationManager.notify(id, notification);
             return true;
         }
@@ -89,8 +89,8 @@ public final class NotificationUtils {
      * @param notification
      * @return
      */
-    public static boolean notify(final String tag, final int id, final Notification notification){
-        if (getNotificationManager() != null && tag != null && notification != null){
+    public static boolean notify(final String tag, final int id, final Notification notification) {
+        if (getNotificationManager() != null && tag != null && notification != null) {
             mNotificationManager.notify(tag, id, notification);
             return true;
         }
@@ -110,7 +110,7 @@ public final class NotificationUtils {
      * @param id
      * @return
      */
-    public static PendingIntent createPendingIntent(Intent intent, int id){
+    public static PendingIntent createPendingIntent(Intent intent, int id) {
         /* 跳转Intent */
         PendingIntent pIntent = PendingIntent.getActivity(DevUtils.getContext(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         return pIntent;
@@ -174,11 +174,11 @@ public final class NotificationUtils {
             // 设置时间
             builder.setWhen(System.currentTimeMillis());
             // 设置震动参数
-            if (vibratePattern != null && !vibratePattern.isEmpty()){
+            if (vibratePattern != null && !vibratePattern.isEmpty()) {
                 builder.setVibrate(vibratePattern.vibrates);
             }
             // 设置 led 灯参数
-            if (lightPattern != null){
+            if (lightPattern != null) {
                 builder.setLights(lightPattern.argb, lightPattern.durationMS, lightPattern.startOffMS);
             }
             // = 初始化 Notification 对象 =
@@ -208,17 +208,17 @@ public final class NotificationUtils {
 //                notification.flags |= Notification.FLAG_AUTO_CANCEL;
 //            }
 //            // 设置震动参数
-//            if (vibratePattern != null && !vibratePattern.isEmpty()){
+//            if (vibratePattern != null && !vibratePattern.isEmpty()) {
 //                notification.vibrate = vibratePattern.vibrates;
 //            }
 //            // 设置 led 灯参数
-//            if (lightPattern != null){
+//            if (lightPattern != null) {
 //                try {
 //                    notification.ledARGB = lightPattern.argb; // 控制 LED 灯的颜色，一般有红绿蓝三种颜色可选
 //                    notification.ledOffMS = lightPattern.startOffMS; // 指定 LED 灯暗去的时长，也是以毫秒为单位
 //                    notification.ledOnMS = lightPattern.durationMS; // 指定 LED 灯亮起的时长，以毫秒为单位
 //                    notification.flags = Notification.FLAG_SHOW_LIGHTS;
-//                } catch (Exception e){
+//                } catch (Exception e) {
 //                }
 //            }
 //            // 设置标题内容等 - 已经移除, 现在都是支持 4.0以上, 不需要兼容处理
@@ -278,9 +278,9 @@ public final class NotificationUtils {
          * 判断是否为null
          * @return
          */
-        public boolean isEmpty(){
-            if (vibrates != null){
-                if (vibrates.length != 0){
+        public boolean isEmpty() {
+            if (vibrates != null) {
+                if (vibrates.length != 0) {
                     return false;
                 }
             }

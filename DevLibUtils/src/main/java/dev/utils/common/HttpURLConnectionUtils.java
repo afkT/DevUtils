@@ -16,7 +16,7 @@ import dev.utils.JCLogUtils;
  */
 public final class HttpURLConnectionUtils {
 
-    private HttpURLConnectionUtils(){
+    private HttpURLConnectionUtils() {
     }
 
     // 日志TAG
@@ -98,7 +98,7 @@ public final class HttpURLConnectionUtils {
             // 设置请求方法
             connection.setRequestMethod(method);
             // 设置请求头信息
-            if (headers != null){
+            if (headers != null) {
                 Iterator<Map.Entry<String, String>> iterator = headers.entrySet().iterator();
                 while (iterator.hasNext()) {
                     Map.Entry<String, String> entry = iterator.next();
@@ -138,39 +138,39 @@ public final class HttpURLConnectionUtils {
                 // 获取请求结果
                 String result = new String(bout.toByteArray());
                 // 判断是否回调
-                if (callBack != null){
+                if (callBack != null) {
                     // 请求成功, 触发回调
                     callBack.onResponse(result, connection.getDate());
                 }
             } else {
                 // 响应成功,非200直接返回null
-                if (callBack != null){
+                if (callBack != null) {
                     callBack.onFail(new Exception("responseCode not >= 200 or < 300 , code: " + responseCode));
                 }
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "request");
-            if (callBack != null){
+            if (callBack != null) {
                 callBack.onFail(e);
             }
         } finally {
             if (bout != null) {
                 try {
                     bout.close();
-                } catch(Exception ignore){
+                } catch(Exception ignore) {
                 }
             }
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                } catch(Exception ignore){
+                } catch(Exception ignore) {
                 }
             }
             if (connection != null) {
                 try {
                     // 关闭底层连接Socket
                     connection.disconnect();
-                } catch(Exception ignore){
+                } catch(Exception ignore) {
                 }
             }
         }
@@ -202,7 +202,7 @@ public final class HttpURLConnectionUtils {
      * 获取网络时间 - 默认使用百度链接
      * @param timeCallBack
      */
-    public static void getNetTime(TimeCallBack timeCallBack){
+    public static void getNetTime(TimeCallBack timeCallBack) {
         getNetTime(BAIDU_URL, timeCallBack);
     }
 
@@ -211,7 +211,7 @@ public final class HttpURLConnectionUtils {
      * @param urlStr
      * @param timeCallBack
      */
-    public static void getNetTime(final String urlStr, final TimeCallBack timeCallBack){
+    public static void getNetTime(final String urlStr, final TimeCallBack timeCallBack) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -225,7 +225,7 @@ public final class HttpURLConnectionUtils {
      * @param urlStr
      * @param timeCallBack
      */
-    private static void reqNetTime(String urlStr, TimeCallBack timeCallBack){
+    private static void reqNetTime(String urlStr, TimeCallBack timeCallBack) {
         // 获取连接对象
         HttpURLConnection connection = null;
         try {
@@ -236,17 +236,17 @@ public final class HttpURLConnectionUtils {
             // 获取时间
             long date = connection.getDate();
             // 获取失败, 则进行修改
-            if (date <= 0){
+            if (date <= 0) {
                 date = -1l;
             }
             // 触发回调
-            if (timeCallBack != null){
+            if (timeCallBack != null) {
                 timeCallBack.onResponse(date);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getNetTime");
             // 触发回调
-            if (timeCallBack != null){
+            if (timeCallBack != null) {
                 timeCallBack.onFail(e);
             }
         } finally {
@@ -254,7 +254,7 @@ public final class HttpURLConnectionUtils {
                 try {
                     // 关闭底层连接Socket
                     connection.disconnect();
-                } catch(Exception ignore){
+                } catch(Exception ignore) {
                 }
             }
         }

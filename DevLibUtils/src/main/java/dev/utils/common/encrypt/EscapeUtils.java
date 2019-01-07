@@ -6,7 +6,7 @@ package dev.utils.common.encrypt;
  */
 public final class EscapeUtils {
 
-	private EscapeUtils(){
+	private EscapeUtils() {
 	}
 
 	/** 十六进制 - 0-255 */
@@ -66,7 +66,7 @@ public final class EscapeUtils {
 	 * @return
 	 */
 	public static String escape(String str) {
-		if (str == null){
+		if (str == null) {
 			return null;
 		}
 		StringBuffer sbuf = new StringBuffer();
@@ -101,7 +101,7 @@ public final class EscapeUtils {
 	 * @return
 	 */
 	public static String unescape(String str) {
-		if (str == null){
+		if (str == null) {
 			return null;
 		}
 		StringBuffer sbuf = new StringBuffer();

@@ -16,7 +16,7 @@ import dev.utils.JCLogUtils;
  */
 public final class FieldUtils {
 
-    private FieldUtils(){
+    private FieldUtils() {
     }
 
     // 日志TAG
@@ -48,7 +48,7 @@ public final class FieldUtils {
             f.setAccessible(true);
             f.set(obj, value);
             return f.get(obj);
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "set");
         }
         return null;
@@ -64,7 +64,7 @@ public final class FieldUtils {
         try {
             f.setAccessible(true);
             return f.get(obj);
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "get");
         }
         return null;

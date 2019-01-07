@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class ErrorUtils {
 
-    private ErrorUtils(){
+    private ErrorUtils() {
     }
 
     // 日志TAG
@@ -27,12 +27,12 @@ public final class ErrorUtils {
      * @param e
      * @return
      */
-    public static String getErrorMsg(Exception e){
+    public static String getErrorMsg(Exception e) {
         try {
-            if (e != null){
+            if (e != null) {
                 return e.getMessage();
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return ex.getMessage();
         }
         return "e(null)";
@@ -50,9 +50,9 @@ public final class ErrorUtils {
                 e.printStackTrace(new PrintWriter(writer));
                 return writer.toString();
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             LogPrintUtils.eTag(TAG, e, "getThrowableMsg");
-            if (ex != null){
+            if (ex != null) {
                 return ex.getMessage();
             } else {
                 return "ex(null)";

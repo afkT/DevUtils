@@ -106,7 +106,7 @@ public final class MD5Utils {
 	 * @return
 	 */
 	public static String toHexString(byte[] bData, char[] hexDigits) {
-		if (bData == null || hexDigits == null){
+		if (bData == null || hexDigits == null) {
 			return null;
 		}
 		StringBuilder sBuilder = new StringBuilder(bData.length * 2);

@@ -52,7 +52,7 @@ public final class DBUtils {
      * @param destFilePath 目标文件地址
      * @return 是否倒出成功
      */
-    public static boolean startImportDatabase(String srcFilePath, String destFilePath){
+    public static boolean startImportDatabase(String srcFilePath, String destFilePath) {
         // 判断 SDCard 是否挂载
         if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             return false;
@@ -74,7 +74,7 @@ public final class DBUtils {
      * @param destFilePath 目标文件地址
      * @return 是否倒出成功
      */
-    public static boolean startImportDatabase(InputStream inputStream, String destFilePath){
+    public static boolean startImportDatabase(InputStream inputStream, String destFilePath) {
         // 判断 SDCard 是否挂载
         if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             return false;
@@ -96,7 +96,7 @@ public final class DBUtils {
      * 获取数据库路径
      * @return
      */
-    public static String getDBPath(){
+    public static String getDBPath() {
         try {
             //  Database 文件地址
             String dbPath = Environment.getDataDirectory() + "/data/" + DevUtils.getContext().getPackageName() + "/databases/";

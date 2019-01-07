@@ -19,7 +19,7 @@ import javax.xml.transform.stream.StreamSource;
  */
 public final class JCLogUtils {
 
-    private JCLogUtils(){
+    private JCLogUtils() {
     }
 
     // 普通信息模式
@@ -84,7 +84,7 @@ public final class JCLogUtils {
                 break;
         }
         // 打印信息
-        if (isEmpty(tag)){
+        if (isEmpty(tag)) {
             System.out.println(msg);
         } else {
             System.out.println(tag + " : " + msg);
@@ -100,8 +100,8 @@ public final class JCLogUtils {
     private static String createMessage(String message, Object... args) {
         String result = null;
         try {
-            if(message != null){
-                if(args == null){
+            if(message != null) {
+                if(args == null) {
                     // 动态参数为null
                     result = "params is null";
                 } else {
@@ -129,8 +129,8 @@ public final class JCLogUtils {
     private static String splitErrorMessage(Throwable throwable, String message, Object... args) {
         String result = null;
         try {
-            if(throwable != null){
-                if(message != null){
+            if(throwable != null) {
+                if(message != null) {
                     result = createMessage(message, args) + " : " + throwable.toString();
                 } else {
                     result = throwable.toString();
@@ -179,37 +179,37 @@ public final class JCLogUtils {
     // -- 日志打印方法 --
 
     public static void dTag(String tag, String message, Object... args) {
-        if (JUDGE_PRINT_LOG){
+        if (JUDGE_PRINT_LOG) {
             printLog(DEBUG, tag, createMessage(message, args));
         }
     }
 
     public static void eTag(String tag, String message, Object... args) {
-        if(JUDGE_PRINT_LOG){
+        if(JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, createMessage(message, args));
         }
     }
 
     public static void eTag(String tag, Throwable throwable) {
-        if(JUDGE_PRINT_LOG){
+        if(JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, splitErrorMessage(throwable, null));
         }
     }
 
     public static void eTag(String tag, Throwable throwable, String message, Object... args) {
-        if(JUDGE_PRINT_LOG){
+        if(JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, splitErrorMessage(throwable, message, args));
         }
     }
 
     public static void iTag(String tag, String message, Object... args) {
-        if(JUDGE_PRINT_LOG){
+        if(JUDGE_PRINT_LOG) {
             printLog(INFO, tag, createMessage(message, args));
         }
     }
 
     public static void jsonTag(String tag, String json) {
-        if (JUDGE_PRINT_LOG){
+        if (JUDGE_PRINT_LOG) {
             // 判断传入JSON格式信息是否为null
             if (isEmpty(json)) {
                 printLog(ERROR, tag, "Empty/Null json content");
@@ -233,14 +233,14 @@ public final class JCLogUtils {
                 }
             } catch (Exception e) {
                 String eHint = "null";
-                if (e != null){
+                if (e != null) {
                     Throwable throwable = e.getCause();
-                    if (throwable != null){
+                    if (throwable != null) {
                         eHint = throwable.getMessage();
                     } else {
                         try {
                             eHint = e.getMessage();
-                        } catch (Exception e1){
+                        } catch (Exception e1) {
                             eHint = e1.getMessage();
                         }
                     }
@@ -251,7 +251,7 @@ public final class JCLogUtils {
     }
 
     public static void xmlTag(String tag, String xml) {
-        if (JUDGE_PRINT_LOG){
+        if (JUDGE_PRINT_LOG) {
             // 判断传入XML格式信息是否为null
             if (isEmpty(xml)) {
                 printLog(ERROR, tag, "Empty/Null xml content");
@@ -270,14 +270,14 @@ public final class JCLogUtils {
                 printLog(DEBUG, tag, message);
             } catch (Exception e) {
                 String eHint = "null";
-                if (e != null){
+                if (e != null) {
                     Throwable throwable = e.getCause();
-                    if (throwable != null){
+                    if (throwable != null) {
                         eHint = throwable.getMessage();
                     } else {
                         try {
                             eHint = e.getMessage();
-                        } catch (Exception e1){
+                        } catch (Exception e1) {
                             eHint = e1.getMessage();
                         }
                     }

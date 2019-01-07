@@ -224,7 +224,7 @@ public final class SDCardUtils {
 			long blockSize = stat.getBlockSizeLong();
 			long totalBlocks = stat.getBlockCountLong();
 			return Formatter.formatFileSize(DevUtils.getContext(), blockSize * totalBlocks);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getSDTotalSize");
 		}
 		return "unknown";
@@ -242,7 +242,7 @@ public final class SDCardUtils {
 			long blockSize = stat.getBlockSizeLong();
 			long availableBlocks = stat.getAvailableBlocksLong();
 			return Formatter.formatFileSize(DevUtils.getContext(), blockSize * availableBlocks);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getSDAvailableSize");
 		}
 		return "unknown";
@@ -317,7 +317,7 @@ public final class SDCardUtils {
 	 * @param fPath 文件地址
 	 * @return
 	 */
-	public static String getCachePath(String fPath){
+	public static String getCachePath(String fPath) {
 		// 获取缓存地址
 		String cachePath = new File(getDiskCacheDir(), fPath).getAbsolutePath();
 		// 防止不存在目录文件，自动创建

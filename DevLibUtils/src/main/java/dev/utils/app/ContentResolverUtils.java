@@ -34,14 +34,14 @@ public final class ContentResolverUtils {
      * @param file
      * @return
      */
-    public static boolean notifyMediaStore(File file){
-        if (file != null){
+    public static boolean notifyMediaStore(File file) {
+        if (file != null) {
             try {
                 // 最后通知图库扫描更新
                 DevUtils.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
                 // 通知成功
                 return true;
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
             }
         }
@@ -55,15 +55,15 @@ public final class ContentResolverUtils {
      * @param isNotify
      * @return
      */
-    public static boolean insertImageIntoMediaStore(File file, String fileName, boolean isNotify){
-        if (file != null){
+    public static boolean insertImageIntoMediaStore(File file, String fileName, boolean isNotify) {
+        if (file != null) {
             try {
                 // 添加到相册
                 MediaStore.Images.Media.insertImage(DevUtils.getContext().getContentResolver(), file.getAbsolutePath(), TextUtils.isEmpty(fileName) ? file.getName() : fileName, null);
-                if (isNotify){
+                if (isNotify) {
                     notifyMediaStore(file);
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "insertImageIntoMediaStore");
             }
         }
@@ -75,7 +75,7 @@ public final class ContentResolverUtils {
      * @param file
      * @return
      */
-    public static boolean insertVideoIntoMediaStore(File file){
+    public static boolean insertVideoIntoMediaStore(File file) {
         return insertIntoMediaStore(file, -1, true, "video/3gp");
     }
 

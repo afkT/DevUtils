@@ -19,7 +19,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class EditTextUtils {
 
-    private EditTextUtils(){
+    private EditTextUtils() {
     }
 
     // 日志TAG
@@ -37,8 +37,8 @@ public final class EditTextUtils {
      * @param maxLength
      * @return
      */
-    public static EditText setMaxLengthAnText(EditText editText, String content, int maxLength){
-        if (editText != null){
+    public static EditText setMaxLengthAnText(EditText editText, String content, int maxLength) {
+        if (editText != null) {
             // 设置长度限制, 并且设置内容
             setText(setMaxLength(editText, maxLength), content);
         }
@@ -51,9 +51,9 @@ public final class EditTextUtils {
      * @param maxLength
      * @return
      */
-    public static EditText setMaxLength(EditText editText, int maxLength){
-        if (editText != null){
-            if (maxLength > 0){
+    public static EditText setMaxLength(EditText editText, int maxLength) {
+        if (editText != null) {
+            if (maxLength > 0) {
                 // 设置最大长度限制
                 InputFilter[] filters = { new InputFilter.LengthFilter(maxLength) };
                 editText.setFilters(filters);
@@ -67,8 +67,8 @@ public final class EditTextUtils {
      * @param editText
      * @return
      */
-    public static int getSelectionStart(EditText editText){
-        if (editText != null){
+    public static int getSelectionStart(EditText editText) {
+        if (editText != null) {
             return editText.getSelectionStart();
         }
         return 0;
@@ -79,8 +79,8 @@ public final class EditTextUtils {
      * @param editText
      * @return
      */
-    public static String getText(EditText editText){
-        if (editText != null){
+    public static String getText(EditText editText) {
+        if (editText != null) {
             return editText.getText().toString();
         }
         return "";
@@ -91,7 +91,7 @@ public final class EditTextUtils {
      * @param editText
      * @return
      */
-    public static int getTextLength(EditText editText){
+    public static int getTextLength(EditText editText) {
         return getText(editText).length();
     }
 
@@ -102,7 +102,7 @@ public final class EditTextUtils {
      * @param editText
      * @param content
      */
-    public static EditText setText(EditText editText, String content){
+    public static EditText setText(EditText editText, String content) {
         return setText(editText, content, true);
     }
 
@@ -112,12 +112,12 @@ public final class EditTextUtils {
      * @param content
      * @param isSelect 是否设置光标
      */
-    public static EditText setText(EditText editText, String content, boolean isSelect){
-        if (editText != null){
-            if (content != null){
+    public static EditText setText(EditText editText, String content, boolean isSelect) {
+        if (editText != null) {
+            if (content != null) {
                 // 设置文本
                 editText.setText(content);
-                if (isSelect){
+                if (isSelect) {
                     // 设置光标
                     editText.setSelection(editText.getText().toString().length());
                 }
@@ -133,8 +133,8 @@ public final class EditTextUtils {
      * @param isSelect
      * @return
      */
-    public static EditText insert(EditText editText, String content, boolean isSelect){
-        if (editText != null){
+    public static EditText insert(EditText editText, String content, boolean isSelect) {
+        if (editText != null) {
             return insert(editText, content, editText.getSelectionStart(), isSelect);
         }
         return editText;
@@ -148,19 +148,19 @@ public final class EditTextUtils {
      * @param isSelect
      * @return
      */
-    public static EditText insert(EditText editText, String content, int start, boolean isSelect){
-        if (editText != null){
-            if (!TextUtils.isEmpty(content)){
+    public static EditText insert(EditText editText, String content, int start, boolean isSelect) {
+        if (editText != null) {
+            if (!TextUtils.isEmpty(content)) {
                 try {
                     Editable editable = editText.getText();
                     // 在指定位置 追加内容
                     editable.insert(start, content);
                     // 判断是否选中
-                    if (isSelect){
+                    if (isSelect) {
                         // 设置光标
                         editText.setSelection(editText.getText().toString().length());
                     }
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "insert");
                 }
             }
@@ -175,7 +175,7 @@ public final class EditTextUtils {
      * @param editText
      * @return
      */
-    public static EditText setSelectTop(EditText editText){
+    public static EditText setSelectTop(EditText editText) {
         return setSelect(editText, 0);
     }
 
@@ -184,8 +184,8 @@ public final class EditTextUtils {
      * @param editText
      * @return
      */
-    public static EditText setSelectBottom(EditText editText){
-        if (editText != null){
+    public static EditText setSelectBottom(EditText editText) {
+        if (editText != null) {
             // 设置光标
             editText.setSelection(editText.getText().toString().length());
         }
@@ -198,13 +198,13 @@ public final class EditTextUtils {
      * @param select
      * @return
      */
-    public static EditText setSelect(EditText editText, int select){
-        if (editText != null){
-            if (select >= 0){
+    public static EditText setSelect(EditText editText, int select) {
+        if (editText != null) {
+            if (select >= 0) {
                 // 判断是否超过限制
                 int length = editText.getText().toString().length();
                 // 如果超过长度, 则设置最后
-                if (select > length){
+                if (select > length) {
                     // 设置光标
                     editText.setSelection(length);
                 } else {
@@ -225,8 +225,8 @@ public final class EditTextUtils {
      * @return
      * setKeyListener(editText, getNumberAndEnglishKeyListener());
      */
-    public static EditText setKeyListener(EditText editText, KeyListener keyListener){
-        if (editText != null){
+    public static EditText setKeyListener(EditText editText, KeyListener keyListener) {
+        if (editText != null) {
             editText.setKeyListener(keyListener);
         }
         return editText;
@@ -239,9 +239,9 @@ public final class EditTextUtils {
      * @return
      * setKeyListener(editText, "1234567890");
      */
-    public static EditText setKeyListener(EditText editText, String digits){
-        if (editText != null){
-            if (TextUtils.isEmpty(digits)){
+    public static EditText setKeyListener(EditText editText, String digits) {
+        if (editText != null) {
+            if (TextUtils.isEmpty(digits)) {
                 editText.setKeyListener(null);
             } else {
                 editText.setKeyListener(DigitsKeyListener.getInstance(digits));
@@ -314,7 +314,7 @@ public final class EditTextUtils {
         // 标记状态, 特殊需求处理
         private int operateState = -1;
 
-        public DevTextWatcher(){
+        public DevTextWatcher() {
             // 初始化id
             this.markId = UUID.randomUUID().hashCode();
         }

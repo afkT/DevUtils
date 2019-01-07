@@ -12,10 +12,10 @@ class LogTools {
 	 * @param sMsgVo 分享实体类对象
 	 * @return
 	 */
-	public static String getShareMsgVoData(TestData.ShareMsgVo sMsgVo){
+	public static String getShareMsgVoData(TestData.ShareMsgVo sMsgVo) {
 		StringBuilder sBuilder = new StringBuilder();
 		try {
-			if(sMsgVo != null){
+			if(sMsgVo != null) {
 				sBuilder.append("打印分享信息实体类数据");
 				sBuilder.append("\n分享标题：" + sMsgVo.sTitle);
 				sBuilder.append("\n分享文本：" + sMsgVo.sText);
@@ -34,10 +34,10 @@ class LogTools {
 	 * @param uInfoVo 用户信息实体类对象
 	 * @return
 	 */
-	public static String getUserInfoVoData(TestData.UserInfoVo uInfoVo){
+	public static String getUserInfoVoData(TestData.UserInfoVo uInfoVo) {
 		StringBuilder sBuilder = new StringBuilder();
 		try {
-			if(uInfoVo != null){
+			if(uInfoVo != null) {
 				sBuilder.append("打印用户信息实体类数据");
 				sBuilder.append("\n用户名：" + uInfoVo.uName);
 				sBuilder.append("\n用户密码：" + uInfoVo.uPwd);
@@ -57,7 +57,7 @@ class LogTools {
 	 * @param uAge 用户年龄
 	 * @return
 	 */
-	public static String getScatteredData(String uName, String sTitle, int uAge){
+	public static String getScatteredData(String uName, String sTitle, int uAge) {
 		StringBuilder sBuilder = new StringBuilder();
 		try {
 			sBuilder.append("打印零散参数数据");

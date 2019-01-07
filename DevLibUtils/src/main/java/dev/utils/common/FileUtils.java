@@ -73,7 +73,7 @@ public final class FileUtils {
 	 * @param filePath
 	 * @return
 	 */
-	public static File getFile(final String filePath){
+	public static File getFile(final String filePath) {
 		return getFileByPath(filePath);
 	}
 
@@ -83,7 +83,7 @@ public final class FileUtils {
 	 * @param fName 文件名
 	 * @return
 	 */
-	public static File getFile(final String filePath, final String fName){
+	public static File getFile(final String filePath, final String fName) {
 		return (filePath != null && fName != null) ? new File(filePath, fName) : null;
 	}
 
@@ -92,7 +92,7 @@ public final class FileUtils {
 	 * @param filePath
 	 * @return
 	 */
-	public static File getFileByPath(final String filePath){
+	public static File getFileByPath(final String filePath) {
 		return filePath != null ? new File(filePath) : null;
 	}
 
@@ -153,10 +153,10 @@ public final class FileUtils {
 	 * @param file
 	 * @return
 	 */
-	public static boolean createFolderByPath(final File file){
+	public static boolean createFolderByPath(final File file) {
         // 创建文件夹 - 如果失败才创建
 		if (file != null) {
-		    if (file.exists()){
+		    if (file.exists()) {
 		        return true;
             } else if (!file.getParentFile().mkdirs()) {
                 return createFolder(file.getParent());
@@ -169,9 +169,9 @@ public final class FileUtils {
 	 * 创建多个文件夹, 如果不存在则创建
 	 * @param filePaths
 	 */
-	public static void createFolderByPaths(final String... filePaths){
-		if (filePaths != null && filePaths.length != 0){
-			for (int i = 0, len = filePaths.length; i < len; i++){
+	public static void createFolderByPaths(final String... filePaths) {
+		if (filePaths != null && filePaths.length != 0) {
+			for (int i = 0, len = filePaths.length; i < len; i++) {
 				createFolder(filePaths[i]);
 			}
 		}
@@ -181,9 +181,9 @@ public final class FileUtils {
 	 * 创建多个文件夹, 如果不存在则创建
 	 * @param files
 	 */
-	public static void createFolderByPaths(final File... files){
-		if (files != null && files.length != 0){
-			for (int i = 0, len = files.length; i < len; i++){
+	public static void createFolderByPaths(final File... files) {
+		if (files != null && files.length != 0) {
+			for (int i = 0, len = files.length; i < len; i++) {
 				createFolder(files[i]);
 			}
 		}
@@ -272,7 +272,7 @@ public final class FileUtils {
      * @param file
      * @return
      */
-    public static String getPath(final File file){
+    public static String getPath(final File file) {
         return file != null ? file.getPath() : null;
     }
 
@@ -281,7 +281,7 @@ public final class FileUtils {
      * @param file
      * @return
      */
-    public static String getAbsolutePath(final File file){
+    public static String getAbsolutePath(final File file) {
         return file != null ? file.getAbsolutePath() : null;
     }
 
@@ -292,7 +292,7 @@ public final class FileUtils {
      * @param file
      * @return
      */
-    public static String getName(final File file){
+    public static String getName(final File file) {
         return file != null ? file.getName() : null;
     }
 
@@ -301,7 +301,7 @@ public final class FileUtils {
      * @param filePath 文件路径
      * @return
      */
-    public static String getName(final String filePath){
+    public static String getName(final String filePath) {
         return getName(filePath, "");
     }
 
@@ -311,7 +311,7 @@ public final class FileUtils {
      * @param dfStr
      * @return
      */
-    public static String getName(final String filePath, final String dfStr){
+    public static String getName(final String filePath, final String dfStr) {
         if (!isSpace(filePath)) {
             return new File(filePath).getName();
         }
@@ -323,7 +323,7 @@ public final class FileUtils {
      * @param file
      * @return
      */
-    public static String getFileSuffix(final File file){
+    public static String getFileSuffix(final File file) {
         return getFileSuffix(getAbsolutePath(file));
     }
 
@@ -370,7 +370,7 @@ public final class FileUtils {
      * @return
      */
     public static String getFileNotSuffix(final String fileName) {
-        if (fileName != null){
+        if (fileName != null) {
             if (fileName.lastIndexOf('.') != -1) {
                 return fileName.substring(0, fileName.lastIndexOf('.'));
             } else {
@@ -438,7 +438,7 @@ public final class FileUtils {
 	 * @param file 文件路径
 	 * @return 是否存在文件
 	 */
-	public static boolean isFileExists(final File file){
+	public static boolean isFileExists(final File file) {
 		return file != null && file.exists();
 	}
 
@@ -466,7 +466,7 @@ public final class FileUtils {
 	 * @param filePath
 	 * @return
 	 */
-	public static boolean isFile(final String filePath){
+	public static boolean isFile(final String filePath) {
 		return isFile(getFileByPath(filePath));
 	}
 
@@ -475,7 +475,7 @@ public final class FileUtils {
 	 * @param file
 	 * @return
 	 */
-	public static boolean isFile(final File file){
+	public static boolean isFile(final File file) {
 		return file != null && file.exists() && file.isFile();
 	}
 
@@ -484,7 +484,7 @@ public final class FileUtils {
 	 * @param filePath
 	 * @return
 	 */
-	public static boolean isDir(final String filePath){
+	public static boolean isDir(final String filePath) {
 		return isDir(getFileByPath(filePath));
 	}
 
@@ -493,7 +493,7 @@ public final class FileUtils {
 	 * @param file
 	 * @return
 	 */
-	public static boolean isDir(final File file){
+	public static boolean isDir(final File file) {
 		return file != null && file.exists() && file.isDirectory();
 	}
 
@@ -502,7 +502,7 @@ public final class FileUtils {
 	 * @param filePath
 	 * @return
 	 */
-	public static boolean isHide(final String filePath){
+	public static boolean isHide(final String filePath) {
 		return isHide(getFileByPath(filePath));
 	}
 
@@ -511,7 +511,7 @@ public final class FileUtils {
 	 * @param file
 	 * @return
 	 */
-	public static boolean isHide(final File file){
+	public static boolean isHide(final File file) {
 		return file != null && file.exists() && file.isHidden();
 	}
 
@@ -659,7 +659,7 @@ public final class FileUtils {
 	 * @param filePath
 	 * @return
 	 */
-	public static long getFileLength(final String filePath){
+	public static long getFileLength(final String filePath) {
 		return getFileLength(getFileByPath(filePath));
 	}
 
@@ -668,7 +668,7 @@ public final class FileUtils {
 	 * @param file
 	 * @return
 	 */
-	public static long getFileLength(final File file){
+	public static long getFileLength(final File file) {
 		return file != null ? file.length() : 0l;
 	}
 
@@ -805,7 +805,7 @@ public final class FileUtils {
 	 * @param filePath
 	 * @return
 	 */
-	public static String formatFileSize(final String filePath){
+	public static String formatFileSize(final String filePath) {
 		File file = getFileByPath(filePath);
 		return formatFileSize(file != null ? file.length() : 0);
 	}
@@ -815,7 +815,7 @@ public final class FileUtils {
 	 * @param file
 	 * @return
 	 */
-	public static String formatFileSize(final File file){
+	public static String formatFileSize(final File file) {
 		return formatFileSize(file != null ? file.length() : 0);
 	}
 
@@ -836,7 +836,7 @@ public final class FileUtils {
 			fileSizeString = df.format(fileS / 1024) + "KB";
 		} else if (fileS < 1073741824) {
 			fileSizeString = df.format(fileS / 1048576) + "MB";
-		} else if (fileS < 1099511627776d){
+		} else if (fileS < 1099511627776d) {
 			fileSizeString = df.format(fileS / 1073741824) + "GB";
 		} else {
 			fileSizeString = df.format(fileS / 1099511627776d) + "TB";
@@ -858,7 +858,7 @@ public final class FileUtils {
 			return String.format("%.3fKB", (double) byteNum / 1024);
 		} else if (byteNum < 1073741824) {
 			return String.format("%.3fMB", (double) byteNum / 1048576);
-		} else if (byteNum < 1099511627776d){
+		} else if (byteNum < 1099511627776d) {
 			return String.format("%.3fGB", (double) byteNum / 1073741824);
 		} else {
 			return String.format("%.3fTB", (double) byteNum / 1099511627776d);
@@ -880,7 +880,7 @@ public final class FileUtils {
 			return String.format("%." + number + "fKB", (double) byteNum / 1024);
 		} else if (byteNum < 1073741824) {
 			return String.format("%." + number + "fMB", (double) byteNum / 1048576);
-		} else if (byteNum < 1099511627776d){
+		} else if (byteNum < 1099511627776d) {
 			return String.format("%." + number + "fGB", (double) byteNum / 1073741824);
 		} else {
 			return String.format("%." + number + "fTB", (double) byteNum / 1099511627776d);
@@ -906,7 +906,7 @@ public final class FileUtils {
 	public static String getFileMD5ToString(final File file) {
 		try {
 			return toHexString(getFileMD5(file), HEX_DIGITS);
-		} catch (Exception e){
+		} catch (Exception e) {
 		}
 		return null;
 	}
@@ -991,7 +991,7 @@ public final class FileUtils {
 	 * @return
 	 */
 	private static String toHexString(final byte[] bData, final char[] hexDigits) {
-		if (bData == null || hexDigits == null){
+		if (bData == null || hexDigits == null) {
 			return null;
 		}
 		StringBuilder sBuilder = new StringBuilder(bData.length * 2);
@@ -1034,8 +1034,8 @@ public final class FileUtils {
 	 * @return
 	 */
 	public static void deleteFiles(final String... filePaths) {
-		if (filePaths != null && filePaths.length != 0){
-			for (int i = 0, len = filePaths.length; i < len; i++){
+		if (filePaths != null && filePaths.length != 0) {
+			for (int i = 0, len = filePaths.length; i < len; i++) {
 				deleteFile(filePaths[i]);
 			}
 		}
@@ -1047,8 +1047,8 @@ public final class FileUtils {
 	 * @return
 	 */
 	public static void deleteFiles(final File... files) {
-		if (files != null && files.length != 0){
-			for (int i = 0, len = files.length; i < len; i++){
+		if (files != null && files.length != 0) {
+			for (int i = 0, len = files.length; i < len; i++) {
 				deleteFile(files[i]);
 			}
 		}
@@ -1156,7 +1156,7 @@ public final class FileUtils {
 	 * @return 是否保存成功
 	 */
 	public static boolean saveFile(final String filePath, final String fName, final String content) {
-		if (content != null && filePath != null && fName != null){
+		if (content != null && filePath != null && fName != null) {
 			try {
 				// 防止文件没创建
 				createFolder(filePath);
@@ -1183,7 +1183,7 @@ public final class FileUtils {
 	 * @return 是否保存成功
 	 */
 	public static boolean saveFile(final String filePath, final String fName, final String content, final String coding) {
-		if (content != null && filePath != null && fName != null){
+		if (content != null && filePath != null && fName != null) {
 			try {
 				// 防止文件没创建
 				createFolder(filePath);
@@ -1255,7 +1255,7 @@ public final class FileUtils {
 	 * @return
 	 */
 	public static byte[] readFileBytes(final File file) {
-		if (file != null && file.exists()){
+		if (file != null && file.exists()) {
 			try {
 				FileInputStream fin = new FileInputStream(file);
 				int length = fin.available();
@@ -1275,7 +1275,7 @@ public final class FileUtils {
 	 * @return
 	 */
     public static byte[] readFileBytes(final InputStream iStream) {
-        if (iStream != null){
+        if (iStream != null) {
 			try {
 				int length = iStream.available();
 				byte[] buffer = new byte[length];
@@ -1304,10 +1304,10 @@ public final class FileUtils {
 	 * @return
 	 */
 	public static String readFile(final File file) {
-		if (file != null && file.exists()){
+		if (file != null && file.exists()) {
 			try {
 				return readFile(new FileInputStream(file));
-			} catch (Exception e){
+			} catch (Exception e) {
 				JCLogUtils.eTag(TAG, e, "readFile");
 			}
 		}
@@ -1320,7 +1320,7 @@ public final class FileUtils {
 	 * @return
 	 */
 	public static String readFile(final InputStream iStream) {
-		if (iStream != null){
+		if (iStream != null) {
 			try {
 				InputStreamReader isR = new InputStreamReader(iStream);
 				BufferedReader br = new BufferedReader(isR);
@@ -1346,10 +1346,10 @@ public final class FileUtils {
 	 * @return
 	 */
 	public static String readFile(final InputStream iStream, final String encode) {
-		if (iStream != null){
+		if (iStream != null) {
 			try {
 				InputStreamReader isR = null;
-				if (encode != null){
+				if (encode != null) {
 					new InputStreamReader(iStream, encode);
 				} else {
 					new InputStreamReader(iStream);
@@ -1379,14 +1379,14 @@ public final class FileUtils {
 	 * @param overlay 如果目标文件存在，是否覆盖
 	 * @return 如果复制成功返回true，否则返回false
 	 */
-	public static boolean copyFile(final InputStream inputStream, final String destFilePath, final boolean overlay){
-		if (inputStream == null || destFilePath == null){
+	public static boolean copyFile(final InputStream inputStream, final String destFilePath, final boolean overlay) {
+		if (inputStream == null || destFilePath == null) {
 			return false;
 		}
 		// 判断目标文件是否存在
 		File destFile = new File(destFilePath);
         // 如果属于文件夹则跳过
-        if (destFile.isDirectory()){
+        if (destFile.isDirectory()) {
             return false;
         }
 		if (destFile.exists()) {
@@ -1438,7 +1438,7 @@ public final class FileUtils {
 	 * @return 如果复制成功返回true，否则返回false
 	 */
 	public static boolean copyFile(final String srcFilePath, final String destFilePath, final boolean overlay) {
-		if (srcFilePath == null || destFilePath == null){
+		if (srcFilePath == null || destFilePath == null) {
 			return false;
 		}
 		File srcFile = new File(srcFilePath);
@@ -1451,7 +1451,7 @@ public final class FileUtils {
 		// 判断目标文件是否存在
 		File destFile = new File(destFilePath);
         // 如果属于文件夹则跳过
-        if (destFile.isDirectory()){
+        if (destFile.isDirectory()) {
             return false;
         }
 		if (destFile.exists()) {
@@ -1556,7 +1556,7 @@ public final class FileUtils {
                             // 获取源文件地址 - 并且进行判断
                             String dealSource = new File(sourcePath).getAbsolutePath();
                             // 属于最前才进行处理
-                            if (filePath.indexOf(dealSource) == 0){
+                            if (filePath.indexOf(dealSource) == 0) {
                                 // 获取处理后的地址
                                 dealSource = filePath.substring(dealSource.length(), filePath.length());
                                 // 获取需要复制保存的地址
@@ -1581,9 +1581,9 @@ public final class FileUtils {
      * @param overlay
      * @return
      */
-    public static boolean moveFile(final String srcFilePath, final String destFilePath, final boolean overlay){
+    public static boolean moveFile(final String srcFilePath, final String destFilePath, final boolean overlay) {
         // 复制文件
-        if (copyFile(srcFilePath, destFilePath, overlay)){
+        if (copyFile(srcFilePath, destFilePath, overlay)) {
             // 删除文件
             return deleteFile(srcFilePath);
         }
@@ -1597,9 +1597,9 @@ public final class FileUtils {
      * @param overlay
      * @return
      */
-    public static boolean moveFolder(final String srcFilePath, final String destFilePath, final boolean overlay){
+    public static boolean moveFolder(final String srcFilePath, final String destFilePath, final boolean overlay) {
         // 复制文件夹
-        if (copyFolder(srcFilePath, destFilePath, overlay)){
+        if (copyFolder(srcFilePath, destFilePath, overlay)) {
             // 删除文件夹
             return deleteFolder(srcFilePath);
         }

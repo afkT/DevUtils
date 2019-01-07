@@ -57,13 +57,13 @@ public final class KeyBoardUtils {
 	
 	/**
 	 * 打开软键盘
-	 * @param mEditText 输入框
+	 * @param editText 输入框
 	 */
-	public static void openKeyboard(EditText mEditText) {
-		if (mEditText != null) {
+	public static void openKeyboard(EditText editText) {
+		if (editText != null) {
 			try {
-				InputMethodManager imm = (InputMethodManager) mEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.showSoftInput(mEditText, InputMethodManager.SHOW_FORCED);
+				InputMethodManager imm = (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
 				imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "openKeyboard");
@@ -73,31 +73,31 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 打开软键盘
-	 * @param mEditText
-	 * @param vHandler
+	 * @param editText
+	 * @param handler
 	 */
-	public static void openKeyboard(final EditText mEditText, Handler vHandler){
-		openKeyboard(mEditText, vHandler, DELAY_MILLIS);
+	public static void openKeyboard(final EditText editText, Handler handler) {
+		openKeyboard(editText, handler, DELAY_MILLIS);
 	}
 
 	/**
 	 * 打开软键盘
-	 * @param mEditText
-	 * @param vHandler
+	 * @param editText
+	 * @param handler
 	 * @param delayMillis
 	 */
-	public static void openKeyboard(final EditText mEditText, Handler vHandler, int delayMillis){
-		if (vHandler != null && mEditText != null){
+	public static void openKeyboard(final EditText editText, Handler handler, int delayMillis) {
+		if (handler != null && editText != null) {
 			// 延迟打开
-			vHandler.postDelayed(new Runnable() {
+			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
 					try {
-						mEditText.requestFocus();
-						mEditText.setSelection(mEditText.getText().toString().length());
-					} catch (Exception e){
+						editText.requestFocus();
+						editText.setSelection(editText.getText().toString().length());
+					} catch (Exception e) {
 					}
-					openKeyboard(mEditText);
+					openKeyboard(editText);
 				}
 			}, delayMillis);
 		}
@@ -119,21 +119,21 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 打开软键盘
-	 * @param vHandler
+	 * @param handler
 	 */
-	public static void openKeyboard(Handler vHandler){
-		openKeyboard(vHandler, DELAY_MILLIS);
+	public static void openKeyboard(Handler handler) {
+		openKeyboard(handler, DELAY_MILLIS);
 	}
 
 	/**
 	 * 打开软键盘
-	 * @param vHandler
+	 * @param handler
 	 * @param delayMillis
 	 */
-	public static void openKeyboard(Handler vHandler, int delayMillis){
-		if (vHandler != null && DevUtils.getContext() != null){
+	public static void openKeyboard(Handler handler, int delayMillis) {
+		if (handler != null && DevUtils.getContext() != null) {
 			// 延迟打开
-			vHandler.postDelayed(new Runnable() {
+			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
 					openKeyboard();
@@ -148,13 +148,13 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 关闭软键盘
-	 * @param mEditText 输入框
+	 * @param editText 输入框
 	 */
-	public static void closeKeyboard(EditText mEditText) {
-		if (mEditText != null) {
+	public static void closeKeyboard(EditText editText) {
+		if (editText != null) {
 			try {
-				InputMethodManager imm = (InputMethodManager) mEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
+				InputMethodManager imm = (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "closeKeyboard");
 			}
@@ -177,14 +177,14 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 关闭软键盘
-	 * @param mActivity 当前页面
+	 * @param activity 当前页面
 	 */
-	public static void closeKeyboard(Activity mActivity) {
-		if (mActivity != null) {
+	public static void closeKeyboard(Activity activity) {
+		if (activity != null) {
 			try {
-				InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(mActivity.getWindow().peekDecorView().getWindowToken(), 0);
-				//imm.hideSoftInputFromWindow(mActivity.getCurrentFocus().getWindowToken(), 0);
+				InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(activity.getWindow().peekDecorView().getWindowToken(), 0);
+				//imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "closeKeyboard");
 			}
@@ -193,14 +193,14 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 关闭dialog中打开的键盘
-	 * @param mDialog
+	 * @param dialog
 	 */
-	public static void closeKeyboard(Dialog mDialog) {
-		if (mDialog != null) {
+	public static void closeKeyboard(Dialog dialog) {
+		if (dialog != null) {
 			try {
-				InputMethodManager imm = (InputMethodManager) mDialog.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(mDialog.getWindow().peekDecorView().getWindowToken(), 0);
-				//imm.hideSoftInputFromWindow(mDialog.getCurrentFocus().getWindowToken(), 0);
+				InputMethodManager imm = (InputMethodManager) dialog.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(dialog.getWindow().peekDecorView().getWindowToken(), 0);
+				//imm.hideSoftInputFromWindow(dialog.getCurrentFocus().getWindowToken(), 0);
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "closeKeyboard");
 			}
@@ -211,46 +211,46 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 关闭软键盘 - 特殊处理
-	 * @param mEditText
-	 * @param mDialog
+	 * @param editText
+	 * @param dialog
 	 */
-	public static void closeKeyBoardSpecial(EditText mEditText, Dialog mDialog){
+	public static void closeKeyBoardSpecial(EditText editText, Dialog dialog) {
 		try {
 			// 关闭输入法
 			closeKeyboard();
 			// 关闭输入法
-			closeKeyboard(mEditText);
+			closeKeyboard(editText);
 			// 关闭输入法
-			closeKeyboard(mDialog);
-		} catch (Exception e){
+			closeKeyboard(dialog);
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "closeKeyBoardSpecial");
 		}
 	}
 
 	/**
 	 * 关闭软键盘 - 特殊处理
-	 * @param mEditText
-	 * @param mDialog
-	 * @param vHandler
+	 * @param editText
+	 * @param dialog
+	 * @param handler
 	 */
-	public static void closeKeyBoardSpecial(final EditText mEditText, final Dialog mDialog, Handler vHandler){
-		closeKeyBoardSpecial(mEditText, mDialog, vHandler, DELAY_MILLIS);
+	public static void closeKeyBoardSpecial(final EditText editText, final Dialog dialog, Handler handler) {
+		closeKeyBoardSpecial(editText, dialog, handler, DELAY_MILLIS);
 	}
 
 	/**
 	 * 关闭软键盘 - 特殊处理(两个都关闭)
-	 * @param mEditText
-	 * @param mDialog
-	 * @param vHandler
+	 * @param editText
+	 * @param dialog
+	 * @param handler
 	 * @param delayMillis
 	 */
-	public static void closeKeyBoardSpecial(final EditText mEditText, final Dialog mDialog, Handler vHandler, int delayMillis){
-		if (vHandler != null){
+	public static void closeKeyBoardSpecial(final EditText editText, final Dialog dialog, Handler handler, int delayMillis) {
+		if (handler != null) {
 			// 延迟打开
-			vHandler.postDelayed(new Runnable() {
+			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					closeKeyBoardSpecial(mEditText, mDialog);
+					closeKeyBoardSpecial(editText, dialog);
 				}
 			}, delayMillis);
 		}
@@ -260,26 +260,26 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 关闭软键盘
-	 * @param mEditText
-	 * @param vHandler
+	 * @param editText
+	 * @param handler
 	 */
-	public static void closeKeyboard(final EditText mEditText, Handler vHandler){
-		closeKeyboard(mEditText, vHandler, DELAY_MILLIS);
+	public static void closeKeyboard(final EditText editText, Handler handler) {
+		closeKeyboard(editText, handler, DELAY_MILLIS);
 	}
 
 	/**
 	 * 关闭软键盘
-	 * @param mEditText
-	 * @param vHandler
+	 * @param editText
+	 * @param handler
 	 * @param delayMillis
 	 */
-	public static void closeKeyboard(final EditText mEditText, Handler vHandler, int delayMillis){
-		if (vHandler != null && mEditText != null){
+	public static void closeKeyboard(final EditText editText, Handler handler, int delayMillis) {
+		if (handler != null && editText != null) {
 			// 延迟打开
-			vHandler.postDelayed(new Runnable() {
+			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					closeKeyboard(mEditText);
+					closeKeyboard(editText);
 				}
 			}, delayMillis);
 		}
@@ -287,21 +287,21 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 关闭软键盘
-	 * @param vHandler
+	 * @param handler
 	 */
-	public static void closeKeyboard(Handler vHandler){
-		closeKeyboard(vHandler, DELAY_MILLIS);
+	public static void closeKeyboard(Handler handler) {
+		closeKeyboard(handler, DELAY_MILLIS);
 	}
 
 	/**
 	 * 关闭软键盘
-	 * @param vHandler
+	 * @param handler
 	 * @param delayMillis
 	 */
-	public static void closeKeyboard(Handler vHandler, int delayMillis){
-		if (vHandler != null && DevUtils.getContext() != null){
+	public static void closeKeyboard(Handler handler, int delayMillis) {
+		if (handler != null && DevUtils.getContext() != null) {
 			// 延迟打开
-			vHandler.postDelayed(new Runnable() {
+			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
 					closeKeyboard();
@@ -312,26 +312,26 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 关闭软键盘
-	 * @param mActivity
-	 * @param vHandler
+	 * @param activity
+	 * @param handler
 	 */
-	public static void closeKeyboard(final Activity mActivity, Handler vHandler){
-		closeKeyboard(mActivity, vHandler, DELAY_MILLIS);
+	public static void closeKeyboard(final Activity activity, Handler handler) {
+		closeKeyboard(activity, handler, DELAY_MILLIS);
 	}
 
 	/**
 	 * 关闭软键盘
-	 * @param mActivity
-	 * @param vHandler
+	 * @param activity
+	 * @param handler
 	 * @param delayMillis
 	 */
-	public static void closeKeyboard(final Activity mActivity, Handler vHandler, int delayMillis){
-		if (vHandler != null && mActivity != null){
+	public static void closeKeyboard(final Activity activity, Handler handler, int delayMillis) {
+		if (handler != null && activity != null) {
 			// 延迟打开
-			vHandler.postDelayed(new Runnable() {
+			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					closeKeyboard(mActivity);
+					closeKeyboard(activity);
 				}
 			}, delayMillis);
 		}
@@ -339,26 +339,26 @@ public final class KeyBoardUtils {
 
 	/**
 	 * 关闭软键盘
-	 * @param mDialog
-	 * @param vHandler
+	 * @param dialog
+	 * @param handler
 	 */
-	public static void closeKeyboard(final Dialog mDialog, Handler vHandler){
-		closeKeyboard(mDialog, vHandler, DELAY_MILLIS);
+	public static void closeKeyboard(final Dialog dialog, Handler handler) {
+		closeKeyboard(dialog, handler, DELAY_MILLIS);
 	}
 
 	/**
 	 * 关闭软键盘
-	 * @param mDialog
-	 * @param vHandler
+	 * @param dialog
+	 * @param handler
 	 * @param delayMillis
 	 */
-	public static void closeKeyboard(final Dialog mDialog, Handler vHandler, int delayMillis){
-		if (vHandler != null && mDialog != null){
+	public static void closeKeyboard(final Dialog dialog, Handler handler, int delayMillis) {
+		if (handler != null && dialog != null) {
 			// 延迟打开
-			vHandler.postDelayed(new Runnable() {
+			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					closeKeyboard(mDialog);
+					closeKeyboard(dialog);
 				}
 			}, delayMillis);
 		}
@@ -440,7 +440,7 @@ public final class KeyBoardUtils {
 			Rect rect = new Rect();
 			contentView.getWindowVisibleDisplayFrame(rect);
 			return contentView.getRootView().getHeight() - rect.height();
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getContentViewInvisibleHeight");
 			return 0;
 		}
@@ -467,7 +467,7 @@ public final class KeyBoardUtils {
 					}
 				}
 			});
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListener");
 		}
 	}
@@ -482,7 +482,7 @@ public final class KeyBoardUtils {
 		decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 			@Override
 			public void onGlobalLayout() {
-				if (listener != null){
+				if (listener != null) {
 					try {
 						Rect rect = new Rect();
 						decorView.getWindowVisibleDisplayFrame(rect);
@@ -496,7 +496,7 @@ public final class KeyBoardUtils {
 						boolean visible = (double) displayHight / hight < 0.8;
 						// 判断是否显示
 						listener.onSoftInputChanged(visible, keyboardHeight);
-					} catch (Exception e){
+					} catch (Exception e) {
 						LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListener2");
 					}
 				}
@@ -544,7 +544,7 @@ public final class KeyBoardUtils {
 				} catch (Throwable th) {
 				}
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 		}
 	}
 }

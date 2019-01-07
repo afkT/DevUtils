@@ -17,8 +17,8 @@ public final class HtmlUtils {
      * @param textView
      * @param content
      */
-    public static void setHtmlText(TextView textView, String content){
-        if (textView != null && content != null){
+    public static void setHtmlText(TextView textView, String content) {
+        if (textView != null && content != null) {
             textView.setText(Html.fromHtml(content));
         }
     }

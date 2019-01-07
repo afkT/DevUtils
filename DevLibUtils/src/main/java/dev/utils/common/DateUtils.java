@@ -60,7 +60,7 @@ public final class DateUtils {
 	 * 获取当前日期的字符串 - "yyyy-MM-dd HH:mm:ss"
 	 * @return 字符串
 	 */
-	public static String getDateNow(){
+	public static String getDateNow() {
 		return getDateNow(yyyyMMddHHmmss);
 	}
 
@@ -90,7 +90,7 @@ public final class DateUtils {
 	 * @param format 日期格式
 	 * @return 按照需求格式的日期字符串
 	 */
-	public static String formatTime(long time, String format){
+	public static String formatTime(long time, String format) {
 		try {
 			return new SimpleDateFormat(format).format(time);
 		} catch (Exception e) {
@@ -119,7 +119,7 @@ public final class DateUtils {
 	 * @param time
 	 * @return
 	 */
-	public static Date parseDate(long time){
+	public static Date parseDate(long time) {
 		try {
 			return new Date(time);
 		} catch (Exception e) {
@@ -133,7 +133,7 @@ public final class DateUtils {
 	 * @param time
 	 * @return
 	 */
-	public static Date parseDate(String time){
+	public static Date parseDate(String time) {
 		return parseDate(time, yyyyMMddHHmmss);
 	}
 
@@ -162,7 +162,7 @@ public final class DateUtils {
 	 * @param time
 	 * @return
 	 */
-	public static long parseLong(String time){
+	public static long parseLong(String time) {
 		return parseLong(time, yyyyMMddHHmmss);
 	}
 	
@@ -195,7 +195,7 @@ public final class DateUtils {
 	 * @param time(毫秒)
 	 * @return
 	 */
-	public static int getTimeDiffMinute(long time){
+	public static int getTimeDiffMinute(long time) {
 		return (int) (time / 60000); // 60 * 1000
 	}
 
@@ -204,7 +204,7 @@ public final class DateUtils {
 	 * @param time(毫秒)
 	 * @return
 	 */
-	public static int getTimeDiffHour(long time){
+	public static int getTimeDiffHour(long time) {
 		return (int) (time / 3600000); // 60 * 1000 * 60
 	}
 
@@ -213,7 +213,7 @@ public final class DateUtils {
 	 * @param time(毫秒)
 	 * @return
 	 */
-	public static int getTimeDiffDay(long time){
+	public static int getTimeDiffDay(long time) {
 		return (int) (time / 86400000); // 60 * 1000 * 60 * 24
 	}
 
@@ -222,7 +222,7 @@ public final class DateUtils {
 	 * @param time
 	 * @return
 	 */
-	public static long getTimeDiff(long time){
+	public static long getTimeDiff(long time) {
 		return time - System.currentTimeMillis();
 	}
 
@@ -232,10 +232,10 @@ public final class DateUtils {
 	 * @param timeVal2
 	 * @return
 	 */
-	public static long getTimeDiff(String timeVal1, String timeVal2){
+	public static long getTimeDiff(String timeVal1, String timeVal2) {
 		long time1 = parseLong(timeVal1);
 		long time2 = parseLong(timeVal2);
-		if (time1 > 1l && time2 > 1l){
+		if (time1 > 1l && time2 > 1l) {
 			return time1 - time2;
 		}
 		return -2l;
@@ -249,10 +249,10 @@ public final class DateUtils {
 	 * @param timeFormat2
 	 * @return
 	 */
-	public static long getTimeDiff(String timeVal1, String timeFormat1, String timeVal2, String timeFormat2){
+	public static long getTimeDiff(String timeVal1, String timeFormat1, String timeVal2, String timeFormat2) {
 		long time1 = parseLong(timeVal1, timeFormat1);
 		long time2 = parseLong(timeVal2, timeFormat2);
-		if (time1 > 1l && time2 > 1l){
+		if (time1 > 1l && time2 > 1l) {
 			return time1 - time2;
 		}
 		return -2l;
@@ -395,8 +395,8 @@ public final class DateUtils {
 	 * @param append
 	 * @return
 	 */
-	public static String convertTime(int time, boolean append){
-		if (append){
+	public static String convertTime(int time, boolean append) {
+		if (append) {
 			return time >= 10 ? time + "" : "0" + time;
 		}
 		return time + "";
@@ -433,7 +433,7 @@ public final class DateUtils {
 	 * 获取星期数
 	 * @return
 	 */
-	public static int getWeek(){
+	public static int getWeek() {
     	return Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
 	}
  
@@ -662,7 +662,7 @@ public final class DateUtils {
 	 * @param endTime 结束时间
 	 * @return
 	 */
-	public static boolean isInTimeHHmm(String startTime, String endTime){
+	public static boolean isInTimeHHmm(String startTime, String endTime) {
 		return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmm), startTime, endTime, HHmm);
 	}
 
@@ -673,7 +673,7 @@ public final class DateUtils {
 	 * @param endTime 结束时间
 	 * @return
 	 */
-	public static boolean isInTimeHHmm(String nowTime, String startTime, String endTime){
+	public static boolean isInTimeHHmm(String nowTime, String startTime, String endTime) {
 		return isInTime(nowTime, startTime, endTime, HHmm);
 	}
 
@@ -683,7 +683,7 @@ public final class DateUtils {
 	 * @param endTime 结束时间
 	 * @return
 	 */
-	public static boolean isInTimeHHmmss(String startTime, String endTime){
+	public static boolean isInTimeHHmmss(String startTime, String endTime) {
 		return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmmss), startTime, endTime, HHmmss);
 	}
 
@@ -694,7 +694,7 @@ public final class DateUtils {
 	 * @param endTime 结束时间
 	 * @return
 	 */
-	public static boolean isInTimeHHmmss(String nowTime, String startTime, String endTime){
+	public static boolean isInTimeHHmmss(String nowTime, String startTime, String endTime) {
 		return isInTime(nowTime, startTime, endTime, HHmmss);
 	}
 
@@ -706,8 +706,8 @@ public final class DateUtils {
 	 * @param format 时间格式
 	 * @return
 	 */
-	public static boolean isInTime(String nowTime, String startTime, String endTime, String format){
-		if (nowTime == null || startTime == null || endTime == null || format == null){
+	public static boolean isInTime(String nowTime, String startTime, String endTime, String format) {
+		if (nowTime == null || startTime == null || endTime == null || format == null) {
 			return false;
 		}
 		try {
@@ -720,16 +720,16 @@ public final class DateUtils {
 			// 结束时间转换
 			long end = sdf.parse(endTime).getTime();
 			// 判断结束时间是否小于开始时间
-			if (end < start){ // 结束属于第二天区域
-				if (now >= start || now <= end){
+			if (end < start) { // 结束属于第二天区域
+				if (now >= start || now <= end) {
 					return true;
 				}
 			} else {
-				if (now >= start && now <= end){
+				if (now >= start && now <= end) {
 					return true;
 				}
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			JCLogUtils.eTag(TAG, e, "isInTime");
 		}
 		return false;
@@ -742,7 +742,7 @@ public final class DateUtils {
 	 * @param endTime 结束时间
 	 * @return
 	 */
-	public static boolean isInTime(long nowTime, long startTime, long endTime){
+	public static boolean isInTime(long nowTime, long startTime, long endTime) {
 		return isInDate(new Date(nowTime), new Date(startTime), new Date(endTime));
 	}
 
@@ -754,7 +754,7 @@ public final class DateUtils {
 	 * @return
 	 */
 	public static boolean isInDate(Date nowTime, Date startTime, Date endTime) {
-		if (nowTime == null || startTime == null || endTime == null){
+		if (nowTime == null || startTime == null || endTime == null) {
 			return false;
 		} else if (nowTime.getTime() == startTime.getTime() || nowTime.getTime() == endTime.getTime()) {
 			return true;
@@ -781,7 +781,7 @@ public final class DateUtils {
 	 * @param endTime 结束时间 HH:mm
 	 * @return
 	 */
-	public static long getEndTimeDiffHHmm(String endTime){
+	public static long getEndTimeDiffHHmm(String endTime) {
 		return getEndTimeDiff(System.currentTimeMillis(), endTime, HHmm);
 	}
 
@@ -791,7 +791,7 @@ public final class DateUtils {
 	 * @param endTime 结束时间 HH:mm
 	 * @return
 	 */
-	public static long getEndTimeDiffHHmm(long startTime, String endTime){
+	public static long getEndTimeDiffHHmm(long startTime, String endTime) {
 		return getEndTimeDiff(startTime, endTime, HHmm);
 	}
 
@@ -801,7 +801,7 @@ public final class DateUtils {
 	 * @param format 格式 如: HH:mm
 	 * @return
 	 */
-	public static long getEndTimeDiff(String endTime, String format){
+	public static long getEndTimeDiff(String endTime, String format) {
 		return getEndTimeDiff(System.currentTimeMillis(), endTime, format);
 	}
 
@@ -816,8 +816,8 @@ public final class DateUtils {
 	 * 如果过了这个时间段, 则返回 2018-12-08 14:39:20 (明天的这个时间段时间)
 	 * 如果没有过这个时间段(如: 17:39:20) 则返回当天时间段 2018-12-07 17:39:20 (2018-12-07 + endTime)
 	 */
-	public static long getEndTimeDiff(long startTime, String endTime, String format){
-		if (startTime < 1 || endTime == null || format == null){
+	public static long getEndTimeDiff(long startTime, String endTime, String format) {
+		if (startTime < 1 || endTime == null || format == null) {
 			return -1;
 		}
 		try {
@@ -833,7 +833,7 @@ public final class DateUtils {
 			Calendar cld = Calendar.getInstance();
 			cld.setTime(new Date(startTime)); // 设置当前时间
 			// 如果当前时间大于结束时间, 表示非第二天
-			if (startNumber > endNumber){
+			if (startNumber > endNumber) {
 				// 时间累加一天
 				cld.add(Calendar.DATE,1); // 当前日期加一天
 			}
@@ -843,7 +843,7 @@ public final class DateUtils {
 			String yyyyMMddHHmmss = yyyyMMdd + " " + endTime + (isSecond ? "" : ":00");
 			// 返回转换后的时间
 			return DateUtils.parseLong(yyyyMMddHHmmss, DateUtils.yyyyMMddHHmmss);
-		} catch (Exception e){
+		} catch (Exception e) {
 			JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
 		}
 		return -1;

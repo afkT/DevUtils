@@ -10,7 +10,7 @@ import dev.utils.JCLogUtils;
  */
 public final class ConverUtils {
 
-    private ConverUtils(){
+    private ConverUtils() {
     }
 
     // 日志TAG
@@ -28,11 +28,11 @@ public final class ConverUtils {
      * @param dfStr
      * @return
      */
-    public static String toString(char[] chars, String dfStr){
-        if (chars != null){
+    public static String toString(char[] chars, String dfStr) {
+        if (chars != null) {
             try {
                 return new String(chars);
-            } catch (Exception e){
+            } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toString");
             }
         }
@@ -45,11 +45,11 @@ public final class ConverUtils {
      * @param dfStr
      * @return
      */
-    public static String toString(byte[] bytes, String dfStr){
-        if (bytes != null){
+    public static String toString(byte[] bytes, String dfStr) {
+        if (bytes != null) {
             try {
                 return new String(bytes);
-            } catch (Exception e){
+            } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toString");
             }
         }
@@ -64,7 +64,7 @@ public final class ConverUtils {
      * 97 - 122 = a-z, 48-57 = 0-9
      * toString((char) 97); = a
      */
-    public static String toString(char val){
+    public static String toString(char val) {
         return Character.toString(val);
     }
 
@@ -74,55 +74,55 @@ public final class ConverUtils {
      * @return
      */
     public static String toString(Object obj, String dfStr) {
-        if (obj != null){
+        if (obj != null) {
             // return (obj instanceof String ? (String) obj : obj.toString());
             try {
-                if (obj instanceof String){
+                if (obj instanceof String) {
                     return (String) obj;
                 } else {
                     Class<?> cla = obj.getClass();
                     // 判断是否数组类型
-                    if (cla.isArray()){
+                    if (cla.isArray()) {
                         // == 基本数据类型 ==
-                        if (cla.isAssignableFrom(int[].class)){
+                        if (cla.isAssignableFrom(int[].class)) {
                             return Arrays.toString((int[]) obj);
-                        } else if (cla.isAssignableFrom(boolean[].class)){
+                        } else if (cla.isAssignableFrom(boolean[].class)) {
                             return Arrays.toString((boolean[]) obj);
-                        } else if (cla.isAssignableFrom(long[].class)){
+                        } else if (cla.isAssignableFrom(long[].class)) {
                             return Arrays.toString((long[]) obj);
-                        } else if (cla.isAssignableFrom(double[].class)){
+                        } else if (cla.isAssignableFrom(double[].class)) {
                             return Arrays.toString((double[]) obj);
-                        } else if (cla.isAssignableFrom(float[].class)){
+                        } else if (cla.isAssignableFrom(float[].class)) {
                             return Arrays.toString((float[]) obj);
-                        } else if (cla.isAssignableFrom(byte[].class)){
+                        } else if (cla.isAssignableFrom(byte[].class)) {
                             return Arrays.toString((byte[]) obj);
-                        } else if (cla.isAssignableFrom(char[].class)){
+                        } else if (cla.isAssignableFrom(char[].class)) {
                             return Arrays.toString((char[]) obj);
-                        } else if (cla.isAssignableFrom(short[].class)){
+                        } else if (cla.isAssignableFrom(short[].class)) {
                             return Arrays.toString((short[]) obj);
                         }
                         // == 基本类型封装 ==
-                        if (cla.isAssignableFrom(Integer[].class)){
+                        if (cla.isAssignableFrom(Integer[].class)) {
                             return Arrays.toString((Integer[]) obj);
-                        } else if (cla.isAssignableFrom(Boolean[].class)){
+                        } else if (cla.isAssignableFrom(Boolean[].class)) {
                             return Arrays.toString((Boolean[]) obj);
-                        } else if (cla.isAssignableFrom(Long[].class)){
+                        } else if (cla.isAssignableFrom(Long[].class)) {
                             return Arrays.toString((Long[]) obj);
-                        } else if (cla.isAssignableFrom(Double[].class)){
+                        } else if (cla.isAssignableFrom(Double[].class)) {
                             return Arrays.toString((Double[]) obj);
-                        } else if (cla.isAssignableFrom(Float[].class)){
+                        } else if (cla.isAssignableFrom(Float[].class)) {
                             return Arrays.toString((Float[]) obj);
-                        } else if (cla.isAssignableFrom(Byte[].class)){
+                        } else if (cla.isAssignableFrom(Byte[].class)) {
                             return Arrays.toString((Byte[]) obj);
-                        } else if (cla.isAssignableFrom(Character[].class)){
+                        } else if (cla.isAssignableFrom(Character[].class)) {
                             return Arrays.toString((Character[]) obj);
-                        } else if (cla.isAssignableFrom(Short[].class)){
+                        } else if (cla.isAssignableFrom(Short[].class)) {
                             return Arrays.toString((Short[]) obj);
                         }
                     }
                     return obj.toString();
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toString");
             }
         }
@@ -150,10 +150,10 @@ public final class ConverUtils {
      * @param dfValue
      * @return
      */
-    public static boolean toBoolean(String str, boolean dfValue){
+    public static boolean toBoolean(String str, boolean dfValue) {
         try {
             // 判断是否0
-            if (str.equalsIgnoreCase("true") || str.equalsIgnoreCase("1")){
+            if (str.equalsIgnoreCase("true") || str.equalsIgnoreCase("1")) {
                 return true;
             } else {
                 return false;
@@ -170,7 +170,7 @@ public final class ConverUtils {
      * @param dfValue
      * @return
      */
-    public static float toFloat(String str, float dfValue){
+    public static float toFloat(String str, float dfValue) {
         try {
             return Float.parseFloat(str);
         } catch (Exception e) {
@@ -185,7 +185,7 @@ public final class ConverUtils {
      * @param dfValue
      * @return
      */
-    public static double toDouble(String str, double dfValue){
+    public static double toDouble(String str, double dfValue) {
         try {
             return Double.parseDouble(str);
         } catch (Exception e) {
@@ -200,7 +200,7 @@ public final class ConverUtils {
      * @param dfValue
      * @return
      */
-    public static long toLong(String str, long dfValue){
+    public static long toLong(String str, long dfValue) {
         try {
             return Long.parseLong(str);
         } catch (Exception e) {
@@ -231,7 +231,7 @@ public final class ConverUtils {
      * @param val
      * @return
      */
-    public static boolean toBoolean(Boolean val){
+    public static boolean toBoolean(Boolean val) {
         return (val != null && val);
     }
 
@@ -241,7 +241,7 @@ public final class ConverUtils {
      * @param dfValue
      * @return
      */
-    public static float toFloat(Float val, float dfValue){
+    public static float toFloat(Float val, float dfValue) {
         try {
             return val;
         } catch (Exception e) {
@@ -256,7 +256,7 @@ public final class ConverUtils {
      * @param dfValue
      * @return
      */
-    public static double toDouble(Double val, double dfValue){
+    public static double toDouble(Double val, double dfValue) {
         try {
             return val;
         } catch (Exception e) {
@@ -271,7 +271,7 @@ public final class ConverUtils {
      * @param dfValue
      * @return
      */
-    public static long toLong(Long val, long dfValue){
+    public static long toLong(Long val, long dfValue) {
         try {
             return val;
         } catch (Exception e) {
@@ -287,7 +287,7 @@ public final class ConverUtils {
      * @param val
      * @return
      */
-    public static int toInt(char val){
+    public static int toInt(char val) {
         return (int) val;
     }
 
@@ -297,7 +297,7 @@ public final class ConverUtils {
      * @param dfValue
      * @return
      */
-    public static char toChar(String str, char dfValue){
+    public static char toChar(String str, char dfValue) {
         return toChar(str, 0, dfValue);
     }
 
@@ -308,10 +308,10 @@ public final class ConverUtils {
      * @param dfValue
      * @return
      */
-    public static char toChar(String str, int pos, char dfValue){
+    public static char toChar(String str, int pos, char dfValue) {
         try {
             return str.charAt(pos);
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toChar");
         }
         return dfValue;
@@ -324,7 +324,7 @@ public final class ConverUtils {
      * --
      * toCharInt('a') = 97
      */
-    public static int toCharInt(char val){
+    public static int toCharInt(char val) {
         return (int) val;
     }
 
@@ -333,10 +333,10 @@ public final class ConverUtils {
      * @param str
      * @return
      */
-    public static char[] toCharArys(String str){
+    public static char[] toCharArys(String str) {
         try {
             return str.toCharArray();
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toCharArys");
         }
         return null;
@@ -347,7 +347,7 @@ public final class ConverUtils {
      * @param str
      * @return
      */
-    public static byte[] toByteArys(String str){
+    public static byte[] toByteArys(String str) {
         if (str != null) {
             try {
                 return str.getBytes();
@@ -375,7 +375,7 @@ public final class ConverUtils {
      * --
      * 例如 -> 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
      */
-    public static String toHexString(int val){
+    public static String toHexString(int val) {
         return Integer.toHexString(val);
     }
 
@@ -384,7 +384,7 @@ public final class ConverUtils {
      * @param val
      * @return
      */
-    public static String toHexString(long val){
+    public static String toHexString(long val) {
         return Long.toHexString(val);
     }
 
@@ -393,7 +393,7 @@ public final class ConverUtils {
      * @param val
      * @return
      */
-    public static String toHexString(double val){
+    public static String toHexString(double val) {
         return Double.toHexString(val);
     }
 
@@ -402,7 +402,7 @@ public final class ConverUtils {
      * @param val
      * @return
      */
-    public static String toHexString(float val){
+    public static String toHexString(float val) {
         return Float.toHexString(val);
     }
 
@@ -416,7 +416,7 @@ public final class ConverUtils {
      * --
      * 如: parseInt("1f603", 16) = 128515
      */
-    public static int parseInt(String s, int radix){
+    public static int parseInt(String s, int radix) {
         return Integer.parseInt(s, radix);
     }
 
@@ -442,7 +442,7 @@ public final class ConverUtils {
      * @return
      */
     public static String toHexString(byte[] bData, char[] hexDigits) {
-        if (bData == null || hexDigits == null){
+        if (bData == null || hexDigits == null) {
             return null;
         }
         StringBuilder sBuilder = new StringBuilder(bData.length * 2);

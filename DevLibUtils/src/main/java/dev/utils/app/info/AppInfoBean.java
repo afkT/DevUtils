@@ -44,10 +44,10 @@ public class AppInfoBean {
      * @param pInfo
      * @return
      */
-    protected static AppInfoBean obtain(PackageInfo pInfo){
+    protected static AppInfoBean obtain(PackageInfo pInfo) {
         try {
             return new AppInfoBean(pInfo);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "obtain");
         }
         return null;
@@ -57,7 +57,7 @@ public class AppInfoBean {
      * 初始化 App 信息实体类
      * @param pInfo
      */
-    protected AppInfoBean(PackageInfo pInfo){
+    protected AppInfoBean(PackageInfo pInfo) {
         this(pInfo, DevUtils.getContext().getPackageManager());
     }
 
@@ -66,7 +66,7 @@ public class AppInfoBean {
      * @param pInfo
      * @param pManager
      */
-    protected AppInfoBean(PackageInfo pInfo, PackageManager pManager){
+    protected AppInfoBean(PackageInfo pInfo, PackageManager pManager) {
         // App 包名
         appPackName = pInfo.applicationInfo.packageName;
         // App 名
@@ -186,8 +186,8 @@ public class AppInfoBean {
      * @param pInfo
      * @return
      */
-    public static AppType getAppType(PackageInfo pInfo){
-        if (!isSystemApp(pInfo) && !isSystemUpdateApp(pInfo)){
+    public static AppType getAppType(PackageInfo pInfo) {
+        if (!isSystemApp(pInfo) && !isSystemUpdateApp(pInfo)) {
             return AppType.USER;
         }
         return AppType.SYSTEM;

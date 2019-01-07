@@ -20,14 +20,14 @@ public final class FastBlurUtils {
      * @return 位图
      */
     public static Bitmap blur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
-        if (sentBitmap == null){
+        if (sentBitmap == null) {
             return null;
         }
         Bitmap bitmap;
         // 如果修改原图
-        if (canReuseInBitmap){
+        if (canReuseInBitmap) {
             // 判断 Bitmap 是否可变
-            if (!sentBitmap.isMutable()){ // 不可变则修改
+            if (!sentBitmap.isMutable()) { // 不可变则修改
                 canReuseInBitmap = false;
             }
         }
@@ -233,7 +233,7 @@ public final class FastBlurUtils {
 
         try {
             bitmap.setPixels(pix, 0, w, 0, 0, w, h);
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
         return (bitmap);
@@ -246,7 +246,7 @@ public final class FastBlurUtils {
      * @param blurRadius 毛玻璃化比率，虚化程度
      * @return 位图
      */
-    public static Bitmap blur(Bitmap originBitmap, int scaleRatio, int blurRadius){
+    public static Bitmap blur(Bitmap originBitmap, int scaleRatio, int blurRadius) {
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(originBitmap,
                 originBitmap.getWidth() / scaleRatio,
                 originBitmap.getHeight() / scaleRatio,
@@ -265,7 +265,7 @@ public final class FastBlurUtils {
      * @param blurRadius 虚化程度
      * @return 位图
      */
-    public static Bitmap blur(Bitmap originBitmap, int width, int height, int blurRadius){
+    public static Bitmap blur(Bitmap originBitmap, int width, int height, int blurRadius) {
         Bitmap thumbnail = ThumbnailUtils.extractThumbnail(originBitmap, width, height);
         Bitmap blurBitmap = blur(thumbnail, blurRadius, true);
         thumbnail.recycle();

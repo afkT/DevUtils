@@ -28,12 +28,12 @@ public final class DESUtils {
      * @return 生成的密钥
      * @throws Exception
      */
-    public static Key getDESKey(byte[] key){
+    public static Key getDESKey(byte[] key) {
         try {
             DESKeySpec des = new DESKeySpec(key);
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
             return keyFactory.generateSecret(des);
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getDESKey");
         }
         return null;
@@ -47,14 +47,14 @@ public final class DESUtils {
      * @return
      * @throws Exception
      */
-    public static byte[] encrypt(byte[] data, byte[] key){
+    public static byte[] encrypt(byte[] data, byte[] key) {
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DES");
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             byte[] cipherBytes = cipher.doFinal(data);
             return cipherBytes;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "encrypt");
         }
         return null;
@@ -67,14 +67,14 @@ public final class DESUtils {
      * @return
      * @throws Exception
      */
-    public static byte[] decrypt(byte[] data, byte[] key){
+    public static byte[] decrypt(byte[] data, byte[] key) {
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DES");
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             byte[] plainBytes = cipher.doFinal(data);
             return plainBytes;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "decrypt");
         }
         return null;

@@ -54,7 +54,7 @@ public final class ActivityUtils {
                     result = false;
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             result = false;
             LogPrintUtils.eTag(TAG, e, "isActivityExists");
         }
@@ -151,13 +151,13 @@ public final class ActivityUtils {
      * @param packageName
      * @return
      */
-    public static String getActivityToLauncher(String packageName){
+    public static String getActivityToLauncher(String packageName) {
         try {
             PackageManager pManager = DevUtils.getContext().getPackageManager();
             // 获取对应的PackageInfo
             PackageInfo pInfo = pManager.getPackageInfo(packageName, 0);
 
-            if (pInfo == null){
+            if (pInfo == null) {
                 return null;
             }
 
@@ -169,14 +169,14 @@ public final class ActivityUtils {
             // 通过 getPackageManager() 的 queryIntentActivities 方法遍历
             List<ResolveInfo> lists = pManager.queryIntentActivities(resolveIntent, 0);
             // 循环返回
-            for (ResolveInfo resolveinfo : lists){
-                if (resolveinfo != null && resolveinfo.activityInfo != null){
+            for (ResolveInfo resolveinfo : lists) {
+                if (resolveinfo != null && resolveinfo.activityInfo != null) {
                     // resolveinfo.activityInfo.packageName; => packageName
                     // 这个就是我们要找的该 App 的 LAUNCHER 的 Activity [ 组织形式：packageName.mainActivityname ]
                     return resolveinfo.activityInfo.name;
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivityToLauncher");
         }
         return null;
@@ -186,12 +186,12 @@ public final class ActivityUtils {
      * 获取系统桌面信息
      * @return
      */
-    public static ResolveInfo getLauncherCategoryHomeToResolveInfo(){
+    public static ResolveInfo getLauncherCategoryHomeToResolveInfo() {
         try {
             final Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             return DevUtils.getContext().getPackageManager().resolveActivity(intent, 0);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLauncherCategoryHomeToResolveInfo");
         }
         return null;
@@ -245,9 +245,9 @@ public final class ActivityUtils {
             } else {
                 // 判断是否.开头
                 String name = res.activityInfo.name;
-                if (name != null){
+                if (name != null) {
                     // 判断是否 . 开头
-                    if (name.startsWith(".")){
+                    if (name.startsWith(".")) {
                         name = res.activityInfo.packageName + name;
                     }
                     return res.activityInfo.packageName + "/" + name;

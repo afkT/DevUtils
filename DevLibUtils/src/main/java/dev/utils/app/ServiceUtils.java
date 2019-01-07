@@ -40,7 +40,7 @@ public final class ServiceUtils {
             for (RunningServiceInfo rInfo : listInfos) {
                 if (className.equals(rInfo.service.getClassName())) return true;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isServiceRunning");
         }
         return false;
@@ -70,7 +70,7 @@ public final class ServiceUtils {
                 names.add(rInfo.service.getClassName());
             }
             return names;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllRunningService");
         }
         return Collections.emptySet();
@@ -124,7 +124,7 @@ public final class ServiceUtils {
         try {
             Intent intent = new Intent(DevUtils.getContext(), cls);
             return DevUtils.getContext().stopService(intent);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
             return false;
         }
@@ -168,7 +168,7 @@ public final class ServiceUtils {
         try {
             Intent intent = new Intent(DevUtils.getContext(), cls);
             DevUtils.getContext().bindService(intent, conn, flags);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bindService");
         }
     }
@@ -180,7 +180,7 @@ public final class ServiceUtils {
     public static void unbindService(final ServiceConnection conn) {
         try {
             DevUtils.getContext().unbindService(conn);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unbindService");
         }
     }

@@ -34,7 +34,7 @@ public final class CameraAssist {
     // 自动获取焦点辅助类
     private AutoFocusAssist autoFocusAssist;
 
-    public CameraAssist(){
+    public CameraAssist() {
     }
 
     public CameraAssist(Camera camera) {
@@ -98,7 +98,7 @@ public final class CameraAssist {
             // 初始化自动获取焦点
             autoFocusAssist = new AutoFocusAssist(mCamera, autoInterval);
             // 开始预览通知
-            if (previewNotify != null){
+            if (previewNotify != null) {
                 previewNotify.startPreviewNotify();
             }
         }
@@ -118,7 +118,7 @@ public final class CameraAssist {
             // 表示非预览中
             previewing = false;
             // 停止预览通知
-            if (previewNotify != null){
+            if (previewNotify != null) {
                 previewNotify.stopPreviewNotify();
             }
         }
@@ -152,7 +152,7 @@ public final class CameraAssist {
      * @return Camera 分辨率
      */
     public Camera.Size getCameraResolution() {
-        if (mPreviewSize == null){
+        if (mPreviewSize == null) {
             // 获取预览大小
             mPreviewSize = cameraSizeAssist.getPreviewSize();
             return mPreviewSize;
@@ -213,7 +213,7 @@ public final class CameraAssist {
      * @return 返回自身对象(摄像头辅助类)
      */
     public CameraAssist setAutoFocus(boolean autoFocus) {
-        if (autoFocusAssist != null){
+        if (autoFocusAssist != null) {
             autoFocusAssist.setAutoFocus(autoFocus);
         }
         return this;

@@ -30,11 +30,11 @@ public final class TextViewUtils {
      * @param view
      * @return
      */
-    public static TextView getTextView(View view){
-        if (view != null){
+    public static TextView getTextView(View view) {
+        if (view != null) {
             try {
                 return (TextView) view;
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getTextView");
             }
         }
@@ -46,11 +46,11 @@ public final class TextViewUtils {
      * @param view
      * @return
      */
-    public static TextView getTextView(View view, @IdRes int id){
-        if (view != null){
+    public static TextView getTextView(View view, @IdRes int id) {
+        if (view != null) {
             try {
                 return view.findViewById(id);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getTextView");
             }
         }
@@ -62,11 +62,11 @@ public final class TextViewUtils {
      * @param activity
      * @return
      */
-    public static TextView getTextView(Activity activity, @IdRes int id){
-        if (activity != null){
+    public static TextView getTextView(Activity activity, @IdRes int id) {
+        if (activity != null) {
             try {
                 return activity.findViewById(id);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getTextView");
             }
         }
@@ -78,11 +78,11 @@ public final class TextViewUtils {
      * @param window
      * @return
      */
-    public static TextView getTextView(Window window, @IdRes int id){
-        if (window != null){
+    public static TextView getTextView(Window window, @IdRes int id) {
+        if (window != null) {
             try {
                 return window.findViewById(id);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getTextView");
             }
         }
@@ -96,8 +96,8 @@ public final class TextViewUtils {
      * @param textView
      * @return
      */
-    public static String getText(TextView textView){
-        if (textView != null){
+    public static String getText(TextView textView) {
+        if (textView != null) {
             return textView.getText().toString();
         }
         return null;
@@ -109,10 +109,10 @@ public final class TextViewUtils {
      * @return
      */
     public static String getText(View view) {
-        if (view != null){
+        if (view != null) {
             try {
                 return ((TextView) view).getText().toString();
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getText");
             }
         }
@@ -124,11 +124,11 @@ public final class TextViewUtils {
      * @param view
      * @return
      */
-    public static String getText(View view, @IdRes int id){
-        if (view != null){
+    public static String getText(View view, @IdRes int id) {
+        if (view != null) {
             try {
                 return ((TextView) view.findViewById(id)).getText().toString();
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getText");
             }
         }
@@ -140,11 +140,11 @@ public final class TextViewUtils {
      * @param activity
      * @return
      */
-    public static String getText(Activity activity, @IdRes int id){
-        if (activity != null){
+    public static String getText(Activity activity, @IdRes int id) {
+        if (activity != null) {
             try {
                 return ((TextView) activity.findViewById(id)).getText().toString();
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getText");
             }
         }
@@ -156,11 +156,11 @@ public final class TextViewUtils {
      * @param window
      * @return
      */
-    public static String getText(Window window, @IdRes int id){
-        if (window != null){
+    public static String getText(Window window, @IdRes int id) {
+        if (window != null) {
             try {
                 return ((TextView) window.findViewById(id)).getText().toString();
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getText");
             }
         }
@@ -175,9 +175,9 @@ public final class TextViewUtils {
      * @param isBold
      * @return
      */
-    public static void setBold(View view, boolean isBold){
-        if (view != null){
-            if (view instanceof TextView){
+    public static void setBold(View view, boolean isBold) {
+        if (view != null) {
+            if (view instanceof TextView) {
                 ((TextView) view).setTypeface(Typeface.defaultFromStyle(isBold ? Typeface.BOLD : Typeface.NORMAL));
             }
         }
@@ -190,9 +190,9 @@ public final class TextViewUtils {
      * @param isBold
      * @return
      */
-    public static void setBold(View view, Typeface typeface, boolean isBold){
-        if (view != null && typeface != null){
-            if (view instanceof TextView){
+    public static void setBold(View view, Typeface typeface, boolean isBold) {
+        if (view != null && typeface != null) {
+            if (view instanceof TextView) {
                 ((TextView) view).setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
             }
         }
@@ -203,9 +203,9 @@ public final class TextViewUtils {
      * @param view
      * @param color
      */
-    public static void setTextColor(View view, @ColorInt int color){
-        if (view != null){
-            if (view instanceof TextView){
+    public static void setTextColor(View view, @ColorInt int color) {
+        if (view != null) {
+            if (view instanceof TextView) {
                 ((TextView) view).setTextColor(color);
             }
         }
@@ -216,8 +216,8 @@ public final class TextViewUtils {
      * @param textView
      * @param color
      */
-    public static void setTextColor(TextView textView, @ColorInt int color){
-        if (textView != null){
+    public static void setTextColor(TextView textView, @ColorInt int color) {
+        if (textView != null) {
             textView.setTextColor(color);
         }
     }
@@ -228,11 +228,11 @@ public final class TextViewUtils {
      * @param id
      * @param color
      */
-    public static void setTextColor(View view, @IdRes int id, @ColorInt int color){
-        if (view != null){
+    public static void setTextColor(View view, @IdRes int id, @ColorInt int color) {
+        if (view != null) {
             try {
                 ((TextView) view.findViewById(id)).setTextColor(color);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setTextColor");
             }
         }
@@ -244,11 +244,11 @@ public final class TextViewUtils {
      * @param id
      * @param color
      */
-    public static void setTextColor(Activity activity, @IdRes int id, @ColorInt int color){
-        if (activity != null){
+    public static void setTextColor(Activity activity, @IdRes int id, @ColorInt int color) {
+        if (activity != null) {
             try {
                 ((TextView) activity.findViewById(id)).setTextColor(color);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setTextColor");
             }
         }
@@ -260,11 +260,11 @@ public final class TextViewUtils {
      * @param id
      * @param color
      */
-    public static void setTextColor(Window window, @IdRes int id, @ColorInt int color){
-        if (window != null){
+    public static void setTextColor(Window window, @IdRes int id, @ColorInt int color) {
+        if (window != null) {
             try {
                 ((TextView) window.findViewById(id)).setTextColor(color);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setTextColor");
             }
         }
@@ -277,9 +277,9 @@ public final class TextViewUtils {
      * @param view
      * @param content
      */
-    public static void setText(View view, String content){
-        if (view != null && content != null){
-            if (view instanceof TextView){
+    public static void setText(View view, String content) {
+        if (view != null && content != null) {
+            if (view instanceof TextView) {
                 ((TextView) view).setText(content);
             }
         }
@@ -291,11 +291,11 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setText(View view, @IdRes int id, String content){
-        if (view != null){
+    public static void setText(View view, @IdRes int id, String content) {
+        if (view != null) {
             try {
                 ((TextView) view.findViewById(id)).setText(content);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setText");
             }
         }
@@ -307,11 +307,11 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setText(Activity activity, @IdRes int id, String content){
-        if (activity != null){
+    public static void setText(Activity activity, @IdRes int id, String content) {
+        if (activity != null) {
             try {
                 ((TextView) activity.findViewById(id)).setText(content);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setText");
             }
         }
@@ -323,11 +323,11 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setText(Window window, @IdRes int id, String content){
-        if (window != null){
+    public static void setText(Window window, @IdRes int id, String content) {
+        if (window != null) {
             try {
                 ((TextView) window.findViewById(id)).setText(content);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setText");
             }
         }
@@ -340,9 +340,9 @@ public final class TextViewUtils {
      * @param view
      * @param content
      */
-    public static void setHtmlText(View view, String content){
-        if (view != null && content != null){
-            if (view instanceof TextView){
+    public static void setHtmlText(View view, String content) {
+        if (view != null && content != null) {
+            if (view instanceof TextView) {
                 ((TextView) view).setText(Html.fromHtml(content));
             }
         }
@@ -354,11 +354,11 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setHtmlText(View view, @IdRes int id, String content){
-        if (view != null){
+    public static void setHtmlText(View view, @IdRes int id, String content) {
+        if (view != null) {
             try {
                 ((TextView) view.findViewById(id)).setText(Html.fromHtml(content));
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setHtmlText");
             }
         }
@@ -370,11 +370,11 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setHtmlText(Activity activity, @IdRes int id, String content){
-        if (activity != null){
+    public static void setHtmlText(Activity activity, @IdRes int id, String content) {
+        if (activity != null) {
             try {
                 ((TextView) activity.findViewById(id)).setText(Html.fromHtml(content));
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setHtmlText");
             }
         }
@@ -386,11 +386,11 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setHtmlText(Window window, @IdRes int id, String content){
-        if (window != null){
+    public static void setHtmlText(Window window, @IdRes int id, String content) {
+        if (window != null) {
             try {
                 ((TextView) window.findViewById(id)).setText(Html.fromHtml(content));
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setHtmlText");
             }
         }
@@ -403,8 +403,8 @@ public final class TextViewUtils {
      * @param textView
      * @param content
      */
-    public static void setText(TextView textView, String content){
-        if (textView != null && content != null){
+    public static void setText(TextView textView, String content) {
+        if (textView != null && content != null) {
             textView.setText(content);
         }
     }
@@ -414,8 +414,8 @@ public final class TextViewUtils {
      * @param textView
      * @param content
      */
-    public static void setHtmlText(TextView textView, String content){
-        if (textView != null && content != null){
+    public static void setHtmlText(TextView textView, String content) {
+        if (textView != null && content != null) {
             textView.setText(Html.fromHtml(content));
         }
     }
@@ -425,7 +425,7 @@ public final class TextViewUtils {
      * @param textView
      */
     public static void setTVUnderLine(TextView textView) {
-        if (textView != null){
+        if (textView != null) {
             Paint paint = textView.getPaint();
             paint.setFlags(Paint.UNDERLINE_TEXT_FLAG);
             paint.setAntiAlias(true);
@@ -437,8 +437,8 @@ public final class TextViewUtils {
      * @param textView
      * @return
      */
-    public static int getTextHeight(TextView textView){
-        if (textView != null){
+    public static int getTextHeight(TextView textView) {
+        if (textView != null) {
             return getTextHeight(textView.getPaint());
         }
         return 0;
@@ -449,7 +449,7 @@ public final class TextViewUtils {
      * @param paint
      * @return
      */
-    public static int getTextHeight(Paint paint){
+    public static int getTextHeight(Paint paint) {
         // https://blog.csdn.net/superbigcupid/article/details/47153139
         // 获取字体高度
         Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
@@ -464,8 +464,8 @@ public final class TextViewUtils {
      * @param textView
      * @return
      */
-    public static int getTextTopOffsetHeight(TextView textView){
-        if (textView != null){
+    public static int getTextTopOffsetHeight(TextView textView) {
+        if (textView != null) {
             return getTextTopOffsetHeight(textView.getPaint());
         }
         return 0;
@@ -476,7 +476,7 @@ public final class TextViewUtils {
      * @param paint
      * @return
      */
-    public static int getTextTopOffsetHeight(Paint paint){
+    public static int getTextTopOffsetHeight(Paint paint) {
         // 获取字体高度
         Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
         // 计算字体偏差(顶部偏差)
@@ -490,7 +490,7 @@ public final class TextViewUtils {
      * @param textView
      * @return
      */
-    public static float getTextWidth(TextView textView){
+    public static float getTextWidth(TextView textView) {
         return getTextWidth(textView.getPaint(), textView.getText().toString());
     }
 
@@ -500,7 +500,7 @@ public final class TextViewUtils {
      * @param hintStr
      * @return
      */
-    public static float getTextWidth(Paint paint, String hintStr){
+    public static float getTextWidth(Paint paint, String hintStr) {
         return paint.measureText(hintStr);
     }
 
@@ -510,7 +510,7 @@ public final class TextViewUtils {
      * @param paint
      * @return
      */
-    public static int getCenterRectY(Rect targetRect, Paint paint){
+    public static int getCenterRectY(Rect targetRect, Paint paint) {
         // 将字画在矩形背景的正中位置
         // https://blog.csdn.net/superbigcupid/article/details/47153139
         // 获取字体高度
@@ -525,7 +525,7 @@ public final class TextViewUtils {
      * @param tHeight 需要的字体高度
      * @return
      */
-    public static float reckonTextSize(int tHeight){
+    public static float reckonTextSize(int tHeight) {
         // 创建画笔
         Paint paint = new Paint();
         // 默认字体大小
@@ -533,7 +533,7 @@ public final class TextViewUtils {
         // 计算内容高度
         int calcTextHeight = -1;
         // 循环计算
-        while (true){
+        while (true) {
             // 设置画笔大小
             paint.setTextSize(textSize);
             // 获取字体高度
@@ -541,9 +541,9 @@ public final class TextViewUtils {
             // 计算内容高度
             calcTextHeight = (int) Math.ceil((fontMetrics.descent - fontMetrics.ascent));
             // 符合条件则直接返回
-            if (calcTextHeight == tHeight){
+            if (calcTextHeight == tHeight) {
                 return textSize;
-            } else if (calcTextHeight > tHeight){ // 如果计算的字体高度大于
+            } else if (calcTextHeight > tHeight) { // 如果计算的字体高度大于
                 textSize -= 0.5f;
             } else {
                 textSize += 0.5f;
@@ -557,8 +557,8 @@ public final class TextViewUtils {
      * @param width
      * @return -1 表示没超过
      */
-    public static int calcTextWidth(TextView textView, float width){
-        if (textView != null){
+    public static int calcTextWidth(TextView textView, float width) {
+        if (textView != null) {
             return calcTextWidth(textView.getPaint(), textView.getText().toString(), width);
         }
         return -1;
@@ -570,11 +570,11 @@ public final class TextViewUtils {
      * @param width
      * @return -1 表示没超过
      */
-    public static int calcTextWidth(Paint paint, String text, float width){
+    public static int calcTextWidth(Paint paint, String text, float width) {
         // 先获取宽度
         float textWidth = getTextWidth(paint, text);
         // 判断是否超过
-        if (textWidth <= width){
+        if (textWidth <= width) {
             return -1; // 表示没超过
         }
         // 获取数据长度
@@ -590,18 +590,18 @@ public final class TextViewUtils {
             // 计算宽度
             textWidth = getTextWidth(paint, text.substring(0, length));
             // 判断是否小于宽度 - 进行返回长度
-            if (textWidth <= width){
+            if (textWidth <= width) {
                 break;
             }
         }
         // 遍历计算
-        for (int i = length, len = text.length(); i < len; i++){
+        for (int i = length, len = text.length(); i < len; i++) {
             // 获取字体内容宽度
             float tWidth = paint.measureText(text.substring(0, i));
             // 判断是否大于指定宽度
-            if (tWidth > width){
+            if (tWidth > width) {
                 return i - 1; // 返回超过前的长度
-            } else if (tWidth == width){
+            } else if (tWidth == width) {
                 return i; // 返回超过前的长度
             }
         }

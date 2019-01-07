@@ -14,7 +14,7 @@ import android.widget.PopupWindow;
  */
 public final class DialogUtils {
 
-    private DialogUtils(){
+    private DialogUtils() {
     }
 
     // ======== Dialog 相关 ========
@@ -23,8 +23,8 @@ public final class DialogUtils {
      * 关闭Dialog
      * @param dialog
      */
-    public static void closeDialog(Dialog dialog){
-        if (dialog != null && dialog.isShowing()){
+    public static void closeDialog(Dialog dialog) {
+        if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
     }
@@ -33,13 +33,13 @@ public final class DialogUtils {
      * 关闭多个Dialog
      * @param dialogs
      */
-    public static void closeDialogs(Dialog... dialogs){
-        if (dialogs != null && dialogs.length != 0){
-            for (int i = 0, len = dialogs.length; i < len; i++){
+    public static void closeDialogs(Dialog... dialogs) {
+        if (dialogs != null && dialogs.length != 0) {
+            for (int i = 0, len = dialogs.length; i < len; i++) {
                 // 获取Dialog
                 Dialog dialog = dialogs[i];
                 // 关闭Dialog
-                if (dialog != null && dialog.isShowing()){
+                if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
             }
@@ -50,8 +50,8 @@ public final class DialogUtils {
      * 关闭PopupWindow
      * @param popupWindow
      */
-    public static void closePopupWindow(PopupWindow popupWindow){
-        if (popupWindow != null && popupWindow.isShowing()){
+    public static void closePopupWindow(PopupWindow popupWindow) {
+        if (popupWindow != null && popupWindow.isShowing()) {
             popupWindow.dismiss();
         }
     }
@@ -60,13 +60,13 @@ public final class DialogUtils {
      * 关闭多个PopupWindow
      * @param popupWindows
      */
-    public static void closePopupWindows(PopupWindow... popupWindows){
-        if (popupWindows != null && popupWindows.length != 0){
-            for (int i = 0, len = popupWindows.length; i < len; i++){
+    public static void closePopupWindows(PopupWindow... popupWindows) {
+        if (popupWindows != null && popupWindows.length != 0) {
+            for (int i = 0, len = popupWindows.length; i < len; i++) {
                 // 获取Dialog
                 PopupWindow popupWindow = popupWindows[i];
                 // 关闭Dialog
-                if (popupWindow != null && popupWindow.isShowing()){
+                if (popupWindow != null && popupWindow.isShowing()) {
                     popupWindow.dismiss();
                 }
             }
@@ -85,7 +85,7 @@ public final class DialogUtils {
          * 最左边按钮点击事件
          * @param dialog
          */
-        public void onLeftButton(DialogInterface dialog){
+        public void onLeftButton(DialogInterface dialog) {
         }
 
         /**
@@ -98,7 +98,7 @@ public final class DialogUtils {
          * 关闭通知
          * @param dialog
          */
-        public void onDismiss(DialogInterface dialog){
+        public void onDismiss(DialogInterface dialog) {
         }
     }
 
@@ -110,7 +110,7 @@ public final class DialogUtils {
      * @param rightBtn 右边按钮文案
      * @return
      */
-    public static AlertDialog createAlertDialog(Context context, String title, String content, String rightBtn){
+    public static AlertDialog createAlertDialog(Context context, String title, String content, String rightBtn) {
         return createAlertDialog(context, title, content, null, rightBtn, null);
     }
 
@@ -123,7 +123,7 @@ public final class DialogUtils {
      * @param rightBtn 右边按钮文案
      * @return
      */
-    public static AlertDialog createAlertDialog(Context context, String title, String content, String leftBtn, String rightBtn){
+    public static AlertDialog createAlertDialog(Context context, String title, String content, String leftBtn, String rightBtn) {
         return createAlertDialog(context, title, content, leftBtn, rightBtn, null);
     }
 
@@ -136,7 +136,7 @@ public final class DialogUtils {
      * @param dialogListener 事件通知
      * @return
      */
-    public static AlertDialog createAlertDialog(Context context, String title, String content, String rightBtn, DialogListener dialogListener){
+    public static AlertDialog createAlertDialog(Context context, String title, String content, String rightBtn, DialogListener dialogListener) {
         return createAlertDialog(context, title, content, null, rightBtn, dialogListener);
     }
 
@@ -150,12 +150,12 @@ public final class DialogUtils {
      * @param dialogListener 事件通知
      * @return
      */
-    public static AlertDialog createAlertDialog(Context context, String title, String content, String leftBtn, String rightBtn, final DialogListener dialogListener){
+    public static AlertDialog createAlertDialog(Context context, String title, String content, String leftBtn, String rightBtn, final DialogListener dialogListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setMessage(content);
 
-        if (leftBtn != null){
+        if (leftBtn != null) {
             if (dialogListener == null) {
                 builder.setNegativeButton(leftBtn, null);
             } else {
@@ -170,7 +170,7 @@ public final class DialogUtils {
             }
         }
 
-        if (rightBtn != null){
+        if (rightBtn != null) {
             if (dialogListener == null) {
                 builder.setPositiveButton(rightBtn, null);
             } else {
@@ -185,7 +185,7 @@ public final class DialogUtils {
             }
         }
 
-        if (dialogListener != null){
+        if (dialogListener != null) {
             builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
@@ -207,7 +207,7 @@ public final class DialogUtils {
      * @param content dialog 内容
      * @return
      */
-    public static ProgressDialog createProgressDialog(Context context, String title, String content){
+    public static ProgressDialog createProgressDialog(Context context, String title, String content) {
         return createProgressDialog(context, title, content, false, null);
     }
 
@@ -219,7 +219,7 @@ public final class DialogUtils {
      * @param isCancel 是否可以返回键关闭
      * @return
      */
-    public static ProgressDialog createProgressDialog(Context context, String title, String content, boolean isCancel){
+    public static ProgressDialog createProgressDialog(Context context, String title, String content, boolean isCancel) {
         return createProgressDialog(context, title, content, isCancel, null);
     }
 
@@ -231,7 +231,7 @@ public final class DialogUtils {
      * @param isCancel 是否可以返回键关闭
      * @return
      */
-    public static ProgressDialog createProgressDialog(Context context, String title, String content, boolean isCancel, DialogInterface.OnCancelListener cancelListener){
+    public static ProgressDialog createProgressDialog(Context context, String title, String content, boolean isCancel, DialogInterface.OnCancelListener cancelListener) {
         ProgressDialog progressDialog = android.app.ProgressDialog.show(context, title, content, isCancel);
         progressDialog.setOnCancelListener(cancelListener);
         return progressDialog;
@@ -246,18 +246,18 @@ public final class DialogUtils {
      * @param handler
      * @return
      */
-    public static <T extends Dialog> T autoCloseDialog(final T dialog, final long time, Handler handler){
+    public static <T extends Dialog> T autoCloseDialog(final T dialog, final long time, Handler handler) {
         // 不为null, 并且显示中
-        if (dialog != null && dialog.isShowing()){
-            if (handler != null){
+        if (dialog != null && dialog.isShowing()) {
+            if (handler != null) {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            if (dialog != null && dialog.isShowing()){
+                            if (dialog != null && dialog.isShowing()) {
                                 dialog.dismiss();
                             }
-                        } catch (Exception e){
+                        } catch (Exception e) {
                         }
                     }
                 }, time);
@@ -273,18 +273,18 @@ public final class DialogUtils {
      * @param handler
      * @return
      */
-    public static <T extends PopupWindow> T autoClosePopupWindow(final T popupWindow, final long time, Handler handler){
+    public static <T extends PopupWindow> T autoClosePopupWindow(final T popupWindow, final long time, Handler handler) {
         // 不为null, 并且显示中
-        if (popupWindow != null && popupWindow.isShowing()){
-            if (handler != null){
+        if (popupWindow != null && popupWindow.isShowing()) {
+            if (handler != null) {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            if (popupWindow != null && popupWindow.isShowing()){
+                            if (popupWindow != null && popupWindow.isShowing()) {
                                 popupWindow.dismiss();
                             }
-                        } catch (Exception e){
+                        } catch (Exception e) {
                         }
                     }
                 }, time);

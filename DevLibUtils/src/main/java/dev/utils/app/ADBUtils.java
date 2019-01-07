@@ -39,7 +39,7 @@ import dev.utils.common.DevCommonUtils;
  */
 public final class ADBUtils {
 
-    private ADBUtils(){
+    private ADBUtils() {
     }
 
     // 日志 TAG
@@ -68,7 +68,7 @@ public final class ADBUtils {
     /**
      * 请求 Root 权限
      */
-    public static void requestRoot(){
+    public static void requestRoot() {
         ShellUtils.execCmd("exit", true);
     }
 
@@ -76,7 +76,7 @@ public final class ADBUtils {
      * 判断 App 是否授权 Root 权限
      * @return
      */
-    public static boolean isGrantedRoot(){
+    public static boolean isGrantedRoot() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("exit", true);
         return result.isSuccess2();
     }
@@ -91,16 +91,16 @@ public final class ADBUtils {
      * @return
      * https://blog.csdn.net/henni_719/article/details/62222439
      */
-    public static List<String> getAppList(String type){
+    public static List<String> getAppList(String type) {
         // adb shell pm list packages [options]
         String typeStr = isSpace(type) ? "" : " " + type;
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("pm list packages" + typeStr, false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             try {
                 String[] arys = result.successMsg.split(NEW_LINE_STR);
                 return Arrays.asList(arys);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getAppList type => " + typeStr);
             }
         }
@@ -111,7 +111,7 @@ public final class ADBUtils {
      * 获取 App 安装列表(包名)
      * @return
      */
-    public static List<String> getInstallAppList(){
+    public static List<String> getInstallAppList() {
         return getAppList(null);
     }
 
@@ -119,7 +119,7 @@ public final class ADBUtils {
      * 获取用户安装的应用列表(包名)
      * @return
      */
-    public static List<String> getUserAppList(){
+    public static List<String> getUserAppList() {
         return getAppList("-3");
     }
 
@@ -127,7 +127,7 @@ public final class ADBUtils {
      * 获取系统应用列表(包名)
      * @return
      */
-    public static List<String> getSystemAppList(){
+    public static List<String> getSystemAppList() {
         return getAppList("-s");
     }
 
@@ -135,7 +135,7 @@ public final class ADBUtils {
      * 获取启用的应用列表(包名)
      * @return
      */
-    public static List<String> getEnableAppList(){
+    public static List<String> getEnableAppList() {
         return getAppList("-e");
     }
 
@@ -143,7 +143,7 @@ public final class ADBUtils {
      * 获取禁用的应用列表(包名)
      * @return
      */
-    public static List<String> getDisableAppList(){
+    public static List<String> getDisableAppList() {
         return getAppList("-d");
     }
 
@@ -152,7 +152,7 @@ public final class ADBUtils {
      * @param strFilter
      * @return
      */
-    public static List<String> getAppListToFilter(String strFilter){
+    public static List<String> getAppListToFilter(String strFilter) {
         if (isSpace(strFilter)) return null;
         return getAppList("| grep " + strFilter.trim());
     }
@@ -162,7 +162,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static boolean isInstalledApp(String packageName){
+    public static boolean isInstalledApp(String packageName) {
         if (isSpace(packageName)) return false;
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packageName, false);
@@ -174,11 +174,11 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getAppInstallPath(String packageName){
+    public static String getAppInstallPath(String packageName) {
         if (isSpace(packageName)) return null;
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packageName, false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -206,11 +206,11 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getAppMessage(String packageName){
+    public static String getAppMessage(String packageName) {
         if (isSpace(packageName)) return null;
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName, false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -221,12 +221,12 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static int getVersionCode(String packageName){
+    public static int getVersionCode(String packageName) {
         if (isSpace(packageName)) return 0;
         try {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
-            if (result.isSuccess3()){
+            if (result.isSuccess3()) {
                 String[] arys = result.successMsg.split(SPACE_STR);
                 for (String str : arys) {
                     if (!TextUtils.isEmpty(str)) {
@@ -242,7 +242,7 @@ public final class ADBUtils {
                     }
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVersionCode");
         }
         return 0;
@@ -253,12 +253,12 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getVersionName(String packageName){
+    public static String getVersionName(String packageName) {
         if (isSpace(packageName)) return null;
         try {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
-            if (result.isSuccess3()){
+            if (result.isSuccess3()) {
                 String[] arys = result.successMsg.split(SPACE_STR);
                 for (String str : arys) {
                     if (!TextUtils.isEmpty(str)) {
@@ -274,7 +274,7 @@ public final class ADBUtils {
                     }
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVersionName");
         }
         return null;
@@ -287,7 +287,7 @@ public final class ADBUtils {
      * @param filePath /sdcard/xxx/x.apk
      * @return
      */
-    public static boolean installApp(String filePath){
+    public static boolean installApp(String filePath) {
         return installApp("-rtsd", filePath);
     }
 
@@ -296,7 +296,7 @@ public final class ADBUtils {
      * @param filePath /sdcard/xxx/x.apk
      * @return
      */
-    public static boolean installApp(String params, String filePath){
+    public static boolean installApp(String params, String filePath) {
         if (isSpace(params)) return false;
         boolean isRoot = isDeviceRooted();
 
@@ -313,7 +313,7 @@ public final class ADBUtils {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, params, filePath), isRoot);
         // 判断是否成功
-        if (result.isSuccess4("success")){
+        if (result.isSuccess4("success")) {
             return true;
         }
         return false;
@@ -392,14 +392,14 @@ public final class ADBUtils {
         boolean isRoot = isDeviceRooted();
         // adb uninstall [-k] <packagename>
         String cmd = "adb uninstall ";
-        if (isKeepData){
+        if (isKeepData) {
             cmd += " -k ";
         }
         cmd += packageName;
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, isRoot);
         // 判断是否成功
-        if (result.isSuccess4("success")){
+        if (result.isSuccess4("success")) {
             return true;
         }
         return false;
@@ -448,32 +448,32 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getActivityToLauncher(String packageName){
+    public static String getActivityToLauncher(String packageName) {
         if (isSpace(packageName)) return null;
         String cmd = "dumpsys package %s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             String mainStr = "android.intent.action.MAIN:";
             int start = result.successMsg.indexOf(mainStr);
             // 防止都为null
-            if (start != -1){
+            if (start != -1) {
                 try {
                     // 进行裁减字符串
                     String subData = result.successMsg.substring(start + mainStr.length(), result.successMsg.length());
                     // 进行拆分
                     String[] arys = subData.split(NEW_LINE_STR);
-                    for (String str : arys){
-                        if (!TextUtils.isEmpty(str)){
+                    for (String str : arys) {
+                        if (!TextUtils.isEmpty(str)) {
                             // 存在包名才处理
-                            if (str.indexOf(packageName) != -1){
+                            if (str.indexOf(packageName) != -1) {
                                 String[] splitArys = str.split(SPACE_STR);
-                                for (String strData : splitArys){
-                                    if (!TextUtils.isEmpty(strData)){
+                                for (String strData : splitArys) {
+                                    if (!TextUtils.isEmpty(strData)) {
                                         // 属于 包名/ 前缀的
-                                        if (strData.indexOf(packageName + "/") != -1){
+                                        if (strData.indexOf(packageName + "/") != -1) {
                                             // 防止属于 包名/.xx.Main_Activity
-                                            if (strData.indexOf("/.") != -1){
+                                            if (strData.indexOf("/.") != -1) {
                                                 // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
                                                 strData = strData.replace("/", "/" + packageName);
                                             }
@@ -484,7 +484,7 @@ public final class ADBUtils {
                             }
                         }
                     }
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "getActivityToLauncher " + packageName);
                 }
             }
@@ -499,21 +499,21 @@ public final class ADBUtils {
      * adb shell dumpsys window -h
      * @return
      */
-    public static String getWindowCurrent(){
+    public static String getWindowCurrent() {
         String cmd = "dumpsys window w | grep \\/  |  grep name=";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             try {
                 String nameStr = "name=";
                 String[] arys = result.successMsg.split(NEW_LINE_STR);
-                for (String str : arys){
-                    if (!TextUtils.isEmpty(str)){
+                for (String str : arys) {
+                    if (!TextUtils.isEmpty(str)) {
                         int start = str.indexOf(nameStr);
-                        if (start != -1){
+                        if (start != -1) {
                             try {
                                 String subData = str.substring(start + nameStr.length());
-                                if (subData.indexOf(")") != -1){
+                                if (subData.indexOf(")") != -1) {
                                     return subData.substring(0, subData.length() - 1);
                                 }
                                 return subData;
@@ -533,27 +533,27 @@ public final class ADBUtils {
      * 获取当前显示的 Window
      * @return
      */
-    public static String getWindowCurrent2(){
+    public static String getWindowCurrent2() {
         String cmd = "dumpsys window windows | grep Current";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             try {
                 // 拆分换行, 并循环
                 String[] arys = result.successMsg.split(NEW_LINE_STR);
-                for (String str : arys){
-                    if (!TextUtils.isEmpty(str)){
+                for (String str : arys) {
+                    if (!TextUtils.isEmpty(str)) {
                         String[] splitArys = str.split(SPACE_STR);
-                        if (splitArys != null && splitArys.length != 0){
-                            for (String splitStr : splitArys){
-                                if (!TextUtils.isEmpty(splitStr)){
+                        if (splitArys != null && splitArys.length != 0) {
+                            for (String splitStr : splitArys) {
+                                if (!TextUtils.isEmpty(splitStr)) {
                                     int start = splitStr.indexOf("/");
                                     int lastIndex = splitStr.lastIndexOf("}");
-                                    if (start != -1 && lastIndex != -1){
+                                    if (start != -1 && lastIndex != -1) {
                                         // 获取裁减数据
                                         String strData = splitStr.substring(0, lastIndex);
                                         // 防止属于 包名/.xx.Main_Activity
-                                        if (strData.indexOf("/.") != -1){
+                                        if (strData.indexOf("/.") != -1) {
                                             // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                         }
@@ -576,7 +576,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getWindowCurrentToPackage(String packageName){
+    public static String getWindowCurrentToPackage(String packageName) {
         if (isSpace(packageName)) return null;
         String cmd = "dumpsys window windows | grep %s";
         // 执行 shell
@@ -585,19 +585,19 @@ public final class ADBUtils {
             try {
                 // 拆分换行, 并循环
                 String[] arys = result.successMsg.split(NEW_LINE_STR);
-                for (String str : arys){
-                    if (!TextUtils.isEmpty(str)){
+                for (String str : arys) {
+                    if (!TextUtils.isEmpty(str)) {
                         String[] splitArys = str.split(SPACE_STR);
-                        if (splitArys != null && splitArys.length != 0){
-                            for (String splitStr : splitArys){
-                                if (!TextUtils.isEmpty(splitStr)){
+                        if (splitArys != null && splitArys.length != 0) {
+                            for (String splitStr : splitArys) {
+                                if (!TextUtils.isEmpty(splitStr)) {
                                     int start = splitStr.indexOf("/");
                                     int lastIndex = splitStr.lastIndexOf("}");
-                                    if (start != -1 && lastIndex != -1 && splitStr.indexOf(packageName) == 0){
+                                    if (start != -1 && lastIndex != -1 && splitStr.indexOf(packageName) == 0) {
                                         // 获取裁减数据
                                         String strData = splitStr.substring(0, lastIndex);
                                         // 防止属于 包名/.xx.Main_Activity
-                                        if (strData.indexOf("/.") != -1){
+                                        if (strData.indexOf("/.") != -1) {
                                             // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
                                             strData = strData.replace("/", "/" + packageName);
                                         }
@@ -621,9 +621,9 @@ public final class ADBUtils {
      * 获取当前显示的 Activity
      * @return
      */
-    public static String getActivityCurrent(){
+    public static String getActivityCurrent() {
         String cmd = "dumpsys activity activities | grep mFocusedActivity";
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
             cmd = "dumpsys activity activities | grep mResumedActivity";
         }
         // 执行 shell
@@ -632,18 +632,18 @@ public final class ADBUtils {
             try {
                 // 拆分换行, 并循环
                 String[] arys = result.successMsg.split(NEW_LINE_STR);
-                for (String str : arys){
-                    if (!TextUtils.isEmpty(str)){
+                for (String str : arys) {
+                    if (!TextUtils.isEmpty(str)) {
                         String[] splitArys = str.split(SPACE_STR);
-                        if (splitArys != null && splitArys.length != 0){
-                            for (String splitStr : splitArys){
-                                if (!TextUtils.isEmpty(splitStr)){
+                        if (splitArys != null && splitArys.length != 0) {
+                            for (String splitStr : splitArys) {
+                                if (!TextUtils.isEmpty(splitStr)) {
                                     int start = splitStr.indexOf("/");
-                                    if (start != -1){
+                                    if (start != -1) {
                                         // 获取裁减数据
                                         String strData = splitStr;
                                         // 防止属于 包名/.xx.Main_Activity
-                                        if (strData.indexOf("/.") != -1){
+                                        if (strData.indexOf("/.") != -1) {
                                             // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                         }
@@ -665,7 +665,7 @@ public final class ADBUtils {
      * 获取 activity 栈
      * @return
      */
-    public static String getActivitys(){
+    public static String getActivitys() {
         return getActivitys(null);
     }
 
@@ -674,9 +674,9 @@ public final class ADBUtils {
      * @param append
      * @return
      */
-    public static String getActivitys(String append){
+    public static String getActivitys(String append) {
         String cmd = "dumpsys activity activities";
-        if (!isSpace(append)){
+        if (!isSpace(append)) {
             cmd += " " + append.trim();
         }
         // 执行 shell
@@ -692,8 +692,8 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getActivitysToPackage(String packageName){
-        if (isSpace(packageName)){
+    public static String getActivitysToPackage(String packageName) {
+        if (isSpace(packageName)) {
             return null;
         }
         return getActivitys("| grep " + packageName);
@@ -704,11 +704,11 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static List<String> getActivitysToPackageLists(String packageName){
+    public static List<String> getActivitysToPackageLists(String packageName) {
         // 获取对应包名的 Activity 数据结果
         String result = getActivitysToPackage(packageName);
         // 防止数据为null
-        if (!TextUtils.isEmpty(result)){
+        if (!TextUtils.isEmpty(result)) {
             try {
                 List<String> lists = new ArrayList<>();
                 String[] dataSplit = result.split(NEW_LINE_STR);
@@ -717,11 +717,11 @@ public final class ADBUtils {
                 // 获取 Activity 栈字符串
                 String activities = null;
                 // 判断最后一行是否符合条件
-                if (dataSplit[splitLength - 1].indexOf("Activities=") != -1){
+                if (dataSplit[splitLength - 1].indexOf("Activities=") != -1) {
                     activities = dataSplit[splitLength - 1];
                 } else {
-                    for (String str : dataSplit){
-                        if (str.indexOf("Activities=") != -1){
+                    for (String str : dataSplit) {
+                        if (str.indexOf("Activities=") != -1) {
                             activities = str;
                             break;
                         }
@@ -732,17 +732,17 @@ public final class ADBUtils {
                 activities = activities.substring(startIndex + "Activities=[".length(), activities.length() - 1);
                 // 再次进行拆分
                 String[] activityArys = activities.split("ActivityRecord");
-                for (String data : activityArys){
+                for (String data : activityArys) {
                     try {
                         String[] splitArys = data.split(SPACE_STR);
-                        if (splitArys != null && splitArys.length != 0){
-                            for (String splitStr : splitArys){
+                        if (splitArys != null && splitArys.length != 0) {
+                            for (String splitStr : splitArys) {
                                 int start = splitStr.indexOf(packageName + "/");
-                                if (start != -1){
+                                if (start != -1) {
                                     // 获取裁减数据
                                     String strData = splitStr;
                                     // 防止属于 包名/.xx.XxxActivity
-                                    if (strData.indexOf("/.") != -1){
+                                    if (strData.indexOf("/.") != -1) {
                                         // 包名/.xx.XxxActivity => 包名/包名.xx.XxxActivity
                                         strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                     }
@@ -751,11 +751,11 @@ public final class ADBUtils {
                                 }
                             }
                         }
-                    } catch (Exception e){
+                    } catch (Exception e) {
                     }
                 }
                 return lists;
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getActivitysToPackageLists");
             }
         }
@@ -770,10 +770,10 @@ public final class ADBUtils {
      * @param activity
      * @return
      */
-    public static boolean isActivityTopRepeat(String packageName, String activity){
-        if (TextUtils.isEmpty(packageName)){
+    public static boolean isActivityTopRepeat(String packageName, String activity) {
+        if (TextUtils.isEmpty(packageName)) {
             return false;
-        } else if (TextUtils.isEmpty(activity)){
+        } else if (TextUtils.isEmpty(activity)) {
             return false;
         }
         // 判断是否重复
@@ -783,21 +783,21 @@ public final class ADBUtils {
         // 数据长度
         int length = DevCommonUtils.length(lists);
         // 防止数据为null
-        if (length >= 2){ // 两个页面以上, 才能够判断是否重复
+        if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
-                if (lists.get(length - 1).endsWith(activity)){
+                if (lists.get(length - 1).endsWith(activity)) {
                     // 倒序遍历, 越后面是 Activity 栈顶
-                    for (int i = length - 2; i >= 0; i--){
+                    for (int i = length - 2; i >= 0; i--) {
                         String data = lists.get(i);
                         // 判断是否该页面结尾
-                        if (data.endsWith(activity)){
+                        if (data.endsWith(activity)) {
                             return true;
                         } else {
                             return false;
                         }
                     }
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isActivityTopRepeat");
             }
         }
@@ -810,10 +810,10 @@ public final class ADBUtils {
      * @param activitys
      * @return
      */
-    public static boolean isActivityTopRepeat(String packageName, List<String> activitys){
-        if (TextUtils.isEmpty(packageName)){
+    public static boolean isActivityTopRepeat(String packageName, List<String> activitys) {
+        if (TextUtils.isEmpty(packageName)) {
             return false;
-        } else if (activitys == null || activitys.size() == 0){
+        } else if (activitys == null || activitys.size() == 0) {
             return false;
         }
         // 判断是否重复
@@ -823,23 +823,23 @@ public final class ADBUtils {
         // 数据长度
         int length = DevCommonUtils.length(lists);
         // 防止数据为null
-        if (length >= 2){ // 两个页面以上, 才能够判断是否重复
+        if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             // 循环判断
-            for (String activity : activitys){
+            for (String activity : activitys) {
                 try {
-                    if (lists.get(length - 1).endsWith(activity)){
+                    if (lists.get(length - 1).endsWith(activity)) {
                         // 倒序遍历, 越后面是 Activity 栈顶
-                        for (int i = length - 2; i >= 0; i--){
+                        for (int i = length - 2; i >= 0; i--) {
                             String data = lists.get(i);
                             // 判断是否该页面结尾
-                            if (data.endsWith(activity)){
+                            if (data.endsWith(activity)) {
                                 return true;
                             } else {
                                 return false;
                             }
                         }
                     }
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "isActivityTopRepeat");
                 }
             }
@@ -855,10 +855,10 @@ public final class ADBUtils {
      * @param activity
      * @return
      */
-    public static int getActivityTopRepeatCount(String packageName, String activity){
-        if (TextUtils.isEmpty(packageName)){
+    public static int getActivityTopRepeatCount(String packageName, String activity) {
+        if (TextUtils.isEmpty(packageName)) {
             return 0;
-        } else if (TextUtils.isEmpty(activity)){
+        } else if (TextUtils.isEmpty(activity)) {
             return 0;
         }
         // 重复数量
@@ -868,14 +868,14 @@ public final class ADBUtils {
         // 数据长度
         int length = DevCommonUtils.length(lists);
         // 防止数据为null
-        if (length >= 2){ // 两个页面以上, 才能够判断是否重复
+        if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
-                if (lists.get(length - 1).endsWith(activity)){
+                if (lists.get(length - 1).endsWith(activity)) {
                     // 倒序遍历, 越后面是 Activity 栈顶
-                    for (int i = length - 2; i >= 0; i--){
+                    for (int i = length - 2; i >= 0; i--) {
                         String data = lists.get(i);
                         // 判断是否该页面结尾
-                        if (data.endsWith(activity)){
+                        if (data.endsWith(activity)) {
                             number ++;
                         } else {
                             break;
@@ -895,10 +895,10 @@ public final class ADBUtils {
      * @param activitys
      * @return
      */
-    public static int getActivityTopRepeatCount(String packageName, List<String> activitys){
-        if (TextUtils.isEmpty(packageName)){
+    public static int getActivityTopRepeatCount(String packageName, List<String> activitys) {
+        if (TextUtils.isEmpty(packageName)) {
             return 0;
-        } else if (activitys == null || activitys.size() == 0){
+        } else if (activitys == null || activitys.size() == 0) {
             return 0;
         }
         // 获取
@@ -906,7 +906,7 @@ public final class ADBUtils {
         // 数据长度
         int length = DevCommonUtils.length(lists);
         // 防止数据为null
-        if (length >= 2){ // 两个页面以上, 才能够判断是否重复
+        if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             // 循环判断
             for (String activity : activitys) {
                 try {
@@ -941,7 +941,7 @@ public final class ADBUtils {
      * 查看正在运行的 Services
      * @return
      */
-    public static String getServices(){
+    public static String getServices() {
         return getServices(null);
     }
 
@@ -952,10 +952,10 @@ public final class ADBUtils {
      *                     那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来。
      * @return
      */
-    public static String getServices(String packageName){
+    public static String getServices(String packageName) {
         String cmd = "dumpsys activity services" + ((isSpace(packageName) ? "" : " " + packageName));
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -969,7 +969,7 @@ public final class ADBUtils {
      * 启动自身应用
      * @return
      */
-    public static boolean startSelfApp(){
+    public static boolean startSelfApp() {
         return startSelfApp(false);
     }
 
@@ -978,7 +978,7 @@ public final class ADBUtils {
      * @param closeActivity
      * @return
      */
-    public static boolean startSelfApp(boolean closeActivity){
+    public static boolean startSelfApp(boolean closeActivity) {
         try {
             // 获取包名
             String packageName = AppUtils.getAppPackageName();
@@ -986,7 +986,7 @@ public final class ADBUtils {
             String activity = ActivityUtils.getLauncherActivity();
             // 跳转应用启动页(启动应用)
             startActivity(packageName + "/" + activity, closeActivity);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSelfApp");
         }
         return false;
@@ -998,7 +998,7 @@ public final class ADBUtils {
      * @param closeActivity 关闭Activity所属的App进程后再启动Activity
      * @return
      */
-    public static boolean startActivity(String packageAndLauncher, boolean closeActivity){
+    public static boolean startActivity(String packageAndLauncher, boolean closeActivity) {
         return startActivity(packageAndLauncher, null, closeActivity);
     }
 
@@ -1009,24 +1009,24 @@ public final class ADBUtils {
      * @param closeActivity 关闭Activity所属的App进程后再启动Activity
      * @return
      */
-    public static boolean startActivity(String packageAndLauncher, String append, boolean closeActivity){
+    public static boolean startActivity(String packageAndLauncher, String append, boolean closeActivity) {
         if (isSpace(packageAndLauncher)) return false;
         try {
             // am start [options] <INTENT>
             String cmd = "am start %s";
-            if (closeActivity){
+            if (closeActivity) {
                 cmd = String.format(cmd, "-S " + packageAndLauncher);
             } else {
                 cmd = String.format(cmd, packageAndLauncher);
             }
             // 判断是否追加
-            if (!isSpace(append)){
+            if (!isSpace(append)) {
                 cmd += " " + append.trim();
             }
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startActivity");
         }
         return false;
@@ -1037,7 +1037,7 @@ public final class ADBUtils {
      * @param packageAndService 包名/.xxx
      * @return
      */
-    public static boolean startService(String packageAndService){
+    public static boolean startService(String packageAndService) {
         return startService(packageAndService, null);
     }
 
@@ -1047,7 +1047,7 @@ public final class ADBUtils {
      * @param append 追加的信息, 例如传递参数等
      * @return
      */
-    public static boolean startService(String packageAndService, String append){
+    public static boolean startService(String packageAndService, String append) {
         if (isSpace(packageAndService)) return false;
         try {
             // am startservice [options] <INTENT>
@@ -1055,13 +1055,13 @@ public final class ADBUtils {
             // 进行格式化
             cmd = String.format(cmd, packageAndService);
             // 判断是否追加
-            if (!isSpace(append)){
+            if (!isSpace(append)) {
                 cmd += " " + append.trim();
             }
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
         }
         return false;
@@ -1072,7 +1072,7 @@ public final class ADBUtils {
      * @param packageAndService 包名/.xxx
      * @return
      */
-    public static boolean stopService(String packageAndService){
+    public static boolean stopService(String packageAndService) {
         return stopService(packageAndService, null);
     }
 
@@ -1082,7 +1082,7 @@ public final class ADBUtils {
      * @param append 追加的信息, 例如传递参数等
      * @return
      */
-    public static boolean stopService(String packageAndService, String append){
+    public static boolean stopService(String packageAndService, String append) {
         if (isSpace(packageAndService)) return false;
         try {
             // am stopservice [options] <INTENT>
@@ -1090,13 +1090,13 @@ public final class ADBUtils {
             // 进行格式化
             cmd = String.format(cmd, packageAndService);
             // 判断是否追加
-            if (!isSpace(append)){
+            if (!isSpace(append)) {
                 cmd += " " + append.trim();
             }
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
             return result.isSuccess3();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
         }
         return false;
@@ -1110,7 +1110,7 @@ public final class ADBUtils {
      * adb shell am broadcast -a android.intent.action.BOOT_COMPLETED
      * 向所有组件广播 BOOT_COMPLETED
      */
-    public static boolean sendBroadcastToAll(String broadcast){
+    public static boolean sendBroadcastToAll(String broadcast) {
         if (isSpace(broadcast)) return false;
         try {
             // am broadcast [options] <INTENT>
@@ -1118,7 +1118,7 @@ public final class ADBUtils {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, broadcast), true);
             return result.isSuccess3();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendBroadcastAll");
         }
         return false;
@@ -1133,7 +1133,7 @@ public final class ADBUtils {
      * adb shell am broadcast -a android.intent.action.BOOT_COMPLETED -n org.mazhuang.boottimemeasure/.BootCompletedReceiver
      * 只向 org.mazhuang.boottimemeasure/.BootCompletedReceiver 广播 BOOT_COMPLETED
      */
-    public static boolean sendBroadcast(String packageAndBroadcast, String broadcast){
+    public static boolean sendBroadcast(String packageAndBroadcast, String broadcast) {
         if (isSpace(packageAndBroadcast)) return false;
         if (isSpace(broadcast)) return false;
         try {
@@ -1142,7 +1142,7 @@ public final class ADBUtils {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, broadcast, packageAndBroadcast), true);
             return result.isSuccess3();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendBroadcast");
         }
         return false;
@@ -1155,14 +1155,14 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static boolean kill(String packageName){
+    public static boolean kill(String packageName) {
         if (isSpace(packageName)) return false;
         try {
             String cmd = "am force-stop %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "kill");
         }
         return false;
@@ -1174,14 +1174,14 @@ public final class ADBUtils {
      * @param level HIDDEN、RUNNING_MODERATE、BACKGROUND、 RUNNING_LOW、MODERATE、RUNNING_CRITICAL、COMPLETE
      * @return
      */
-    public static boolean sendTrimMemory(int pid, String level){
+    public static boolean sendTrimMemory(int pid, String level) {
         if (isSpace(level)) return false;
         try {
             String cmd = "am send-trim-memory %s %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, pid, level), true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendTrimMemory");
         }
         return false;
@@ -1195,20 +1195,20 @@ public final class ADBUtils {
 //     * @param local 电脑上的目录
 //     * @return
 //     */
-//    public static boolean pull(String remote, String local){
+//    public static boolean pull(String remote, String local) {
 //        if (isSpace(remote)) return false;
 //
 //        try {
 //            // adb pull <设备里的文件路径> [电脑上的目录]
 //            String cmd = "adb pull %s";
 //            // 判断是否存到默认地址
-//            if (!isSpace(local)){
+//            if (!isSpace(local)) {
 //                cmd += " " + local;
 //            }
 //            // 执行 shell
 //            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, remote), true);
 //            return result.isSuccess2();
-//        } catch (Exception e){
+//        } catch (Exception e) {
 //            LogPrintUtils.eTag(TAG, e, "pull");
 //        }
 //        return false;
@@ -1220,7 +1220,7 @@ public final class ADBUtils {
 //     * @param remote 设备里的目录
 //     * @return
 //     */
-//    public static boolean push(String local, String remote){
+//    public static boolean push(String local, String remote) {
 //        if (isSpace(local)) return false;
 //        if (isSpace(remote)) return false;
 //
@@ -1230,7 +1230,7 @@ public final class ADBUtils {
 //            // 执行 shell
 //            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, local, remote), true);
 //            return result.isSuccess2();
-//        } catch (Exception e){
+//        } catch (Exception e) {
 //            LogPrintUtils.eTag(TAG, e, "push");
 //        }
 //        return false;
@@ -1248,7 +1248,7 @@ public final class ADBUtils {
      * @param y
      * @return
      */
-    public static boolean tap(float x, float y){
+    public static boolean tap(float x, float y) {
         try {
             // input [touchscreen|touchpad|touchnavigation] tap <x> <y>
             // input [屏幕、触摸板、导航键] tap
@@ -1256,7 +1256,7 @@ public final class ADBUtils {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y), true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "tap");
         }
         return false;
@@ -1270,7 +1270,7 @@ public final class ADBUtils {
      * @param y
      * @return
      */
-    public static boolean swipeClick(float x, float y){
+    public static boolean swipeClick(float x, float y) {
         return swipe(x, y, x, y, 100l);
     }
 
@@ -1281,7 +1281,7 @@ public final class ADBUtils {
      * @param time 按压时间
      * @return
      */
-    public static boolean swipeClick(float x, float y, long time){
+    public static boolean swipeClick(float x, float y, long time) {
         return swipe(x, y, x, y, time);
     }
 
@@ -1294,14 +1294,14 @@ public final class ADBUtils {
      * @param time 滑动时间(毫秒)
      * @return
      */
-    public static boolean swipe(float x, float y, float tX, float tY, long time){
+    public static boolean swipe(float x, float y, float tX, float tY, long time) {
         try {
             // input [touchscreen|touchpad|touchnavigation] swipe <x1> <y1> <x2> <y2> [duration(ms)]
             String cmd = "input touchscreen swipe %s %s %s %s %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y, (int) tX, (int) tY, time), true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "swipe");
         }
         return false;
@@ -1314,7 +1314,7 @@ public final class ADBUtils {
      * @param txt
      * @return
      */
-    public static boolean text(String txt){
+    public static boolean text(String txt) {
         if (isSpace(txt)) return false;
         try {
             // input text <string>
@@ -1322,7 +1322,7 @@ public final class ADBUtils {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, txt), true); // false 可以执行
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "text");
         }
         return false;
@@ -1335,14 +1335,14 @@ public final class ADBUtils {
      * @param keyCode  KeyEvent.xxx => KeyEvent.KEYCODE_BACK(返回键)
      * @return
      */
-    public static boolean keyevent(int keyCode){
+    public static boolean keyevent(int keyCode) {
         try {
             // input keyevent <key code number or name>
             String cmd = "input keyevent %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, keyCode), true); // false 可以执行
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "keyevent");
         }
         return false;
@@ -1355,7 +1355,7 @@ public final class ADBUtils {
      * @param path /sdcard/xxx/x.png
      * @return
      */
-    public static boolean screencap(String path){
+    public static boolean screencap(String path) {
         return screencap(path, 0);
     }
 
@@ -1365,14 +1365,14 @@ public final class ADBUtils {
      * @param displayId -d display-id	指定截图的显示屏编号（有多显示屏的情况下）默认0
      * @return
      */
-    public static boolean screencap(String path, int displayId){
+    public static boolean screencap(String path, int displayId) {
         if (isSpace(path)) return false;
         try {
             String cmd = "screencap -p -d %s %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, Math.max(displayId, 0), path), true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "screencap");
         }
         return false;
@@ -1383,7 +1383,7 @@ public final class ADBUtils {
      * @param path
      * @return
      */
-    public static boolean screenrecord(String path){
+    public static boolean screenrecord(String path) {
         return screenrecord(path, null, -1, -1);
     }
 
@@ -1393,7 +1393,7 @@ public final class ADBUtils {
      * @param time
      * @return
      */
-    public static boolean screenrecord(String path, int time){
+    public static boolean screenrecord(String path, int time) {
         return screenrecord(path, null, -1, time);
     }
 
@@ -1404,7 +1404,7 @@ public final class ADBUtils {
      * @param time
      * @return
      */
-    public static boolean screenrecord(String path, String size, int time){
+    public static boolean screenrecord(String path, String size, int time) {
         return screenrecord(path, size, -1, time);
     }
 
@@ -1416,25 +1416,25 @@ public final class ADBUtils {
      * @param time 录制时长，单位秒。(默认/最长 180秒)
      * @return
      */
-    public static boolean screenrecord(String path, String size, int bitRate, int time){
+    public static boolean screenrecord(String path, String size, int bitRate, int time) {
         if (isSpace(path)) return false;
         try {
             StringBuffer buffer = new StringBuffer();
             buffer.append("screenrecord");
-            if (!isSpace(size)){
+            if (!isSpace(size)) {
                 buffer.append(" --size " + size);
             }
-            if (bitRate > 0){
+            if (bitRate > 0) {
                 buffer.append(" --bit-rate " + bitRate);
             }
-            if (time > 0){
+            if (time > 0) {
                 buffer.append(" --time-limit " + time);
             }
             buffer.append(" " + path);
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(buffer.toString(), true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "screenrecord");
         }
         return false;
@@ -1444,15 +1444,15 @@ public final class ADBUtils {
      * 查看连接过的 WiFi 密码
      * @return
      */
-    public static String wifiConf(){
+    public static String wifiConf() {
         try {
             String cmd = "cat /data/misc/wifi/*.conf";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-            if (result.isSuccess3()){
+            if (result.isSuccess3()) {
                 return result.successMsg;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "wifiConf");
         }
         return null;
@@ -1463,7 +1463,7 @@ public final class ADBUtils {
      * @param open
      * @return
      */
-    public static boolean wifiSwitch(boolean open){
+    public static boolean wifiSwitch(boolean open) {
         String cmd = "svc wifi %s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, open ? "enable" : "disable"), true);
@@ -1476,14 +1476,14 @@ public final class ADBUtils {
      *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒。
      * @return
      */
-    public static boolean setSystemTime(String time){
+    public static boolean setSystemTime(String time) {
         if (isSpace(time)) return false;
         try {
             String cmd = "date -s %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, time), true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSystemTime");
         }
         return false;
@@ -1495,14 +1495,14 @@ public final class ADBUtils {
      *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒。
      * @return
      */
-    public static boolean setSystemTime2(String time){
+    public static boolean setSystemTime2(String time) {
         if (isSpace(time)) return false;
         try {
             String cmd = "date %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, time), true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSystemTime2");
         }
         return false;
@@ -1513,14 +1513,14 @@ public final class ADBUtils {
      * @param time 时间戳转换 MMddHHmmyyyy.ss
      * @return
      */
-    public static boolean setSystemTime2(long time){
+    public static boolean setSystemTime2(long time) {
         if (time < 0) return false;
         try {
             String cmd = "date %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, new SimpleDateFormat("MMddHHmmyyyy.ss").format(time)), true);
             return result.isSuccess2();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSystemTime2");
         }
         return false;
@@ -1539,7 +1539,7 @@ public final class ADBUtils {
             intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
             DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shutdown");
         }
         return false;
@@ -1558,7 +1558,7 @@ public final class ADBUtils {
             intent.putExtra("window", 0);
             DevUtils.getContext().sendBroadcast(intent);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
         return false;
@@ -1609,7 +1609,7 @@ public final class ADBUtils {
      * @param number 循环次数
      * @return
      */
-    public static void sendEventSlide(float x, float y, float tX, float tY, int number){
+    public static void sendEventSlide(float x, float y, float tX, float tY, int number) {
         List<String> lists = new ArrayList<>();
         // = 开头 =
         lists.add("sendevent /dev/input/event1 3 57 109");
@@ -1628,11 +1628,11 @@ public final class ADBUtils {
         float diffX = isLeftToRight ? (tX - x) : (x - tX);
         float diffY = isTopToBottom ? (tY - y) : (y - tY);
 
-        if (!isLeftToRight){
+        if (!isLeftToRight) {
             diffX = -diffX;
         }
 
-        if (!isTopToBottom){
+        if (!isTopToBottom) {
             diffY = -diffY;
         }
 
@@ -1644,8 +1644,8 @@ public final class ADBUtils {
         int oldY = (int) y;
 
         // 循环处理
-        for (int i = 0; i <= number; i++){
-            if (averageX != 0f){
+        for (int i = 0; i <= number; i++) {
+            if (averageX != 0f) {
                 // 进行判断处理
                 int calcX = (int) (x + averageX * i);
                 if (oldX != calcX) {
@@ -1654,7 +1654,7 @@ public final class ADBUtils {
                 }
             }
 
-            if (averageY != 0f){
+            if (averageY != 0f) {
                 // 进行判断处理
                 int calcY = (int) (y + averageY * i);
                 if (oldY != calcY) {
@@ -1681,9 +1681,9 @@ public final class ADBUtils {
      * 获取 SDK 版本
      * @return
      */
-    public static String getSDKVersion(){
+    public static String getSDKVersion() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.build.version.sdk", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1693,9 +1693,9 @@ public final class ADBUtils {
      * 获取 Android 系统版本
      * @return
      */
-    public static String getAndroidVersion(){
+    public static String getAndroidVersion() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.build.version.release", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1708,7 +1708,7 @@ public final class ADBUtils {
     public static String getModel() {
         // android.os.Build 内部有信息 android.os.Build.MODEL
         ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.product.model", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1720,7 +1720,7 @@ public final class ADBUtils {
      */
     public static String getBrand() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.product.brand", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1732,7 +1732,7 @@ public final class ADBUtils {
      */
     public static String getDeviceName() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.product.name", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1744,7 +1744,7 @@ public final class ADBUtils {
      */
     public static String getCpuAbiList() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("cat /system/build.prop | grep ro.product.cpu.abi", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1754,9 +1754,9 @@ public final class ADBUtils {
      * 每个应用程序的内存上限
      * @return
      */
-    public static String getAppHeapsize(){
+    public static String getAppHeapsize() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("getprop dalvik.vm.heapsize", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1766,9 +1766,9 @@ public final class ADBUtils {
      * 获取电池状况
      * @return
      */
-    public static String getBattery(){
+    public static String getBattery() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys battery", true);
-        if (result.isSuccess3()){ // scale 代表最大电量，level 代表当前电量
+        if (result.isSuccess3()) { // scale 代表最大电量，level 代表当前电量
             return result.successMsg;
         }
         return null;
@@ -1778,9 +1778,9 @@ public final class ADBUtils {
      * 获取屏幕密度
      * @return
      */
-    public static String getDensity(){
+    public static String getDensity() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("getprop ro.sf.lcd_density", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1790,9 +1790,9 @@ public final class ADBUtils {
      * 获取屏幕分辨率
      * @return
      */
-    public static String getScreenSize(){
+    public static String getScreenSize() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("wm size", true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             // 正常返回 Physical size: 1080x1920
             // 如果使用命令修改过，那输出可能是：
             // Physical size: 1080x1920
@@ -1807,9 +1807,9 @@ public final class ADBUtils {
      * 获取显示屏参数
      * @return
      */
-    public static String getDisplays(){
+    public static String getDisplays() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys window displays", true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1819,9 +1819,9 @@ public final class ADBUtils {
      * 获取 Android id
      * @return
      */
-    public static String getAndroidId(){
+    public static String getAndroidId() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings get secure android_id", true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1831,10 +1831,10 @@ public final class ADBUtils {
      * 获取 IMEI 码
      * @return
      */
-    public static String getIMEI(){
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.LOLLIPOP){
+    public static String getIMEI() {
+        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.LOLLIPOP) {
             ShellUtils.CommandResult result = ShellUtils.execCmd("service call iphonesubinfo 1", true);
-            if (result.isSuccess3()){
+            if (result.isSuccess3()) {
                 try {
                     int index = 0;
                     StringBuffer buffer = new StringBuffer();
@@ -1856,19 +1856,19 @@ public final class ADBUtils {
                     buffer.append(subStr.split(SPACE_STR)[0]);
                     // 返回对应的数据
                     return buffer.toString();
-                } catch (Exception e){
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "getIMEI");
                 }
             }
         } else {
             // 在 Android 4.4 及以下版本可通过如下命令获取 IMEI：
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys iphonesubinfo", true);
-            if (result.isSuccess3()){ // 返回值中的 Device ID 就是 IMEI。
+            if (result.isSuccess3()) { // 返回值中的 Device ID 就是 IMEI。
                 try {
                     String[] splitArys = result.successMsg.split(NEW_LINE_STR);
-                    for (String str : splitArys){
-                        if (!TextUtils.isEmpty(str)){
-                            if (str.toLowerCase().indexOf("device") != -1){
+                    for (String str : splitArys) {
+                        if (!TextUtils.isEmpty(str)) {
+                            if (str.toLowerCase().indexOf("device") != -1) {
                                 // 进行拆分
                                 String[] arys = str.split(SPACE_STR);
                                 return arys[arys.length - 1];
@@ -1887,19 +1887,19 @@ public final class ADBUtils {
      * 获取 ip 地址
      * @return
      */
-    public static String getIPAddress(){
+    public static String getIPAddress() {
         boolean isRoot = false;
         ShellUtils.CommandResult result = ShellUtils.execCmd("ifconfig | grep Mask", isRoot);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         } else { // 如果设备连着 WiFi，可以使用如下命令来查看局域网 IP：
             result = ShellUtils.execCmd("ifconfig wlan0", isRoot);
-            if (result.isSuccess3()){
+            if (result.isSuccess3()) {
                 return result.successMsg;
             } else {
                 // 可以看到网络连接名称、启用状态、IP 地址和 Mac 地址等信息。
                 result = ShellUtils.execCmd("netcfg", isRoot);
-                if (result.isSuccess3()){
+                if (result.isSuccess3()) {
                     return result.successMsg;
                 }
             }
@@ -1911,9 +1911,9 @@ public final class ADBUtils {
      * 获取 Mac 地址
      * @return
      */
-    public static String getMac(){
+    public static String getMac() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("cat /sys/class/net/wlan0/address", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1923,9 +1923,9 @@ public final class ADBUtils {
      * 获取 CPU 信息
      * @return
      */
-    public static String getCPU(){
+    public static String getCPU() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("cat /proc/cpuinfo", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1935,9 +1935,9 @@ public final class ADBUtils {
      * 获取内存信息
      * @return
      */
-    public static String getMeminfo(){
+    public static String getMeminfo() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("cat /proc/meminfo", false);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -1951,7 +1951,7 @@ public final class ADBUtils {
      * @param height
      * @return
      */
-    public static boolean setScreenSize(int width, int height){
+    public static boolean setScreenSize(int width, int height) {
         String cmd = "wm size %sx%s";
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, width, height), true);
@@ -1973,7 +1973,7 @@ public final class ADBUtils {
      * @param density
      * @return
      */
-    public static boolean setDensity(int density){
+    public static boolean setDensity(int density) {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("wm density " + density, true);
         return result.isSuccess2();
@@ -1983,7 +1983,7 @@ public final class ADBUtils {
      * 恢复原屏幕密度
      * @return
      */
-    public static boolean resetDensity(){
+    public static boolean resetDensity() {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("wm density reset", true);
         return result.isSuccess2();
@@ -1997,7 +1997,7 @@ public final class ADBUtils {
      * @param bottom
      * @return
      */
-    public static boolean setOverscan(int left, int top, int right, int bottom){
+    public static boolean setOverscan(int left, int top, int right, int bottom) {
         String cmd = "wm overscan %s,%s,%s,%s";
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, left, top, right, bottom), true);
@@ -2008,7 +2008,7 @@ public final class ADBUtils {
      * 恢复原显示区域
      * @return
      */
-    public static boolean resetOverscan(){
+    public static boolean resetOverscan() {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("wm overscan reset", true);
         return result.isSuccess2();
@@ -2018,13 +2018,13 @@ public final class ADBUtils {
      * 获取亮度是否为自动获取(自动调节亮度)
      * @return 1 开启、0 未开启、-1 未知
      */
-    public static int getScreenBrightnessMode(){
+    public static int getScreenBrightnessMode() {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings get system screen_brightness_mode", true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             try {
                 return Integer.parseInt(result.successMsg);
-            } catch (Exception e){
+            } catch (Exception e) {
             }
         }
         return -1;
@@ -2035,7 +2035,7 @@ public final class ADBUtils {
      * @param isAuto
      * @return
      */
-    public static boolean setScreenBrightnessMode(boolean isAuto){
+    public static boolean setScreenBrightnessMode(boolean isAuto) {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings put system screen_brightness_mode " + (isAuto ? 1 : 0), true);
         return result.isSuccess3();
@@ -2045,15 +2045,15 @@ public final class ADBUtils {
      * 获取当前亮度值
      * @return
      */
-    public static String getScreenBrightness(){
+    public static String getScreenBrightness() {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings get system screen_brightness", true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             String suc = result.successMsg;
-            if (suc.startsWith("\"")){
+            if (suc.startsWith("\"")) {
                 suc = suc.substring(1, suc.length());
             }
-            if (suc.endsWith("\"")){
+            if (suc.endsWith("\"")) {
                 suc = suc.substring(0, suc.length() - 1);
             }
             return suc;
@@ -2066,10 +2066,10 @@ public final class ADBUtils {
      * @param brightness
      * @return
      */
-    public static boolean setScreenBrightness(int brightness){
-        if (brightness < 0){
+    public static boolean setScreenBrightness(int brightness) {
+        if (brightness < 0) {
             return false;
-        } else if (brightness > 255){
+        } else if (brightness > 255) {
             return false;
         }
         // 执行 shell cmd
@@ -2081,10 +2081,10 @@ public final class ADBUtils {
      * 获取自动锁屏休眠时间 (单位毫秒)
      * @return
      */
-    public static String getScreenOffTimeout(){
+    public static String getScreenOffTimeout() {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings get system screen_off_timeout", true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             return result.successMsg;
         }
         return null;
@@ -2096,8 +2096,8 @@ public final class ADBUtils {
      * @return
      * tips: 设置永不休眠 Integer.MAX_VALUE
      */
-    public static boolean setScreenOffTimeout(long time){
-        if (time <= 0){
+    public static boolean setScreenOffTimeout(long time) {
+        if (time <= 0) {
             return false;
         }
         // 执行 shell cmd
@@ -2109,13 +2109,13 @@ public final class ADBUtils {
      * 获取日期时间选项中通过网络获取时间的状态，
      * @return 1 允许、0 不允许、-1 未知
      */
-    public static int getGlobalAutoTime(){
+    public static int getGlobalAutoTime() {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings get global auto_time", true);
-        if (result.isSuccess3()){
+        if (result.isSuccess3()) {
             try {
                 return Integer.parseInt(result.successMsg);
-            } catch (Exception e){
+            } catch (Exception e) {
             }
         }
         return -1;
@@ -2125,7 +2125,7 @@ public final class ADBUtils {
      * 修改日期时间选项中通过网络获取时间的状态, 设置是否开启
      * @return
      */
-    public static boolean setGlobalAutoTime(boolean isOpen){
+    public static boolean setGlobalAutoTime(boolean isOpen) {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings put global auto_time " + (isOpen ? 1 : 0), true);
         return result.isSuccess3();
@@ -2135,7 +2135,7 @@ public final class ADBUtils {
      * 关闭 USB 调试模式
      * @return
      */
-    public static boolean disableADB(){
+    public static boolean disableADB() {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings put global adb_enabled 0", true);
         return result.isSuccess2();
@@ -2146,7 +2146,7 @@ public final class ADBUtils {
      * 不需要设备获得 Root 权限。
      * @return
      */
-    public static int putHiddenApi (){
+    public static int putHiddenApi () {
         String[] cmds = new String[2];
         cmds[0] = "settings put global hidden_api_policy_pre_p_apps 1";
         cmds[1] = "settings put global hidden_api_policy_p_apps 1";
@@ -2160,7 +2160,7 @@ public final class ADBUtils {
      * 不需要设备获得 Root 权限。
      * @return
      */
-    public static int deleteHiddenApi (){
+    public static int deleteHiddenApi () {
         String[] cmds = new String[2];
         cmds[0] = "settings delete global hidden_api_policy_pre_p_apps";
         cmds[1] = "settings delete global hidden_api_policy_p_apps";
@@ -2175,7 +2175,7 @@ public final class ADBUtils {
      * @param accessibilityServiceName 无障碍服务名
      * @return
      */
-    public static boolean openAccessibility(String packageName, String accessibilityServiceName){
+    public static boolean openAccessibility(String packageName, String accessibilityServiceName) {
         if (isSpace(packageName)) return false;
         if (isSpace(accessibilityServiceName)) return false;
 
@@ -2195,7 +2195,7 @@ public final class ADBUtils {
      * @param accessibilityServiceName 无障碍服务名
      * @return
      */
-    public static boolean closeAccessibility(String packageName, String accessibilityServiceName){
+    public static boolean closeAccessibility(String packageName, String accessibilityServiceName) {
         if (isSpace(packageName)) return false;
         if (isSpace(accessibilityServiceName)) return false;
 
@@ -2217,7 +2217,7 @@ public final class ADBUtils {
      * @param file 文件路径
      * @return 是否存在文件
      */
-    private static boolean isFileExists(File file){
+    private static boolean isFileExists(File file) {
         return file != null && file.exists();
     }
 
@@ -2226,7 +2226,7 @@ public final class ADBUtils {
      * @param filePath
      * @return
      */
-    private static File getFileByPath(String filePath){
+    private static File getFileByPath(String filePath) {
         return filePath != null ? new File(filePath) : null;
     }
 

@@ -10,7 +10,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class CameraUtils {
 
-    private CameraUtils(){
+    private CameraUtils() {
     }
 
     // 日志Tag
@@ -22,7 +22,7 @@ public final class CameraUtils {
      * 判断是否支持反转摄像头(是否存在前置摄像头)
      * @return
      */
-    public static boolean isSupportReverse(){
+    public static boolean isSupportReverse() {
         try {
             // 默认是不支持
             int isSupportReverse = 0;
@@ -62,7 +62,7 @@ public final class CameraUtils {
                     return true;
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "checkCameraFacing");
         }
         return false;
@@ -73,7 +73,7 @@ public final class CameraUtils {
      * @param facing
      * @return
      */
-    public static boolean isFrontCamera(int facing){
+    public static boolean isFrontCamera(int facing) {
         return facing == Camera.CameraInfo.CAMERA_FACING_FRONT;
     }
 
@@ -82,7 +82,7 @@ public final class CameraUtils {
      * @param facing
      * @return
      */
-    public static boolean isBackCamera(int facing){
+    public static boolean isBackCamera(int facing) {
         return facing == Camera.CameraInfo.CAMERA_FACING_BACK;
     }
 
@@ -91,7 +91,7 @@ public final class CameraUtils {
      * @param isFrontCamera 是否前置摄像头
      * @return
      */
-    public static int isUseCameraFacing(boolean isFrontCamera){
+    public static int isUseCameraFacing(boolean isFrontCamera) {
         // 默认使用后置摄像头
         int cameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK;
         try {
@@ -102,7 +102,7 @@ public final class CameraUtils {
             // 判断是否支持后置
             cFacingArys[1] = checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_BACK);
             // 进行判断想要使用的是前置，还是后置
-            if (isFrontCamera && cFacingArys[0]){ // 使用前置, 必须也支持前置
+            if (isFrontCamera && cFacingArys[0]) { // 使用前置, 必须也支持前置
                 // 表示使用前置摄像头
                 cameraFacing = Camera.CameraInfo.CAMERA_FACING_FRONT;
             } else {
@@ -119,49 +119,49 @@ public final class CameraUtils {
 
     /**
      * 释放摄像头资源
-     * @param mCamera 摄像头对象
+     * @param camera 摄像头对象
      */
-    public static void freeCameraResource(android.hardware.Camera mCamera) {
+    public static void freeCameraResource(android.hardware.Camera camera) {
         try {
-            if (mCamera != null) {
-                mCamera.setPreviewCallback(null);
-                mCamera.stopPreview();
-                mCamera.lock();
-                mCamera.release();
+            if (camera != null) {
+                camera.setPreviewCallback(null);
+                camera.stopPreview();
+                camera.lock();
+                camera.release();
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "freeCameraResource");
         } finally {
-            mCamera = null;
+            camera = null;
         }
     }
 
     /**
      * 初始化摄像头
-     * @param mCamera
+     * @param camera
      * @param isFrontCamera 是否前置摄像头 = true = 前置(屏幕面), false = 后置(手机背面) = 正常默认使用背面
      * @return 使用的摄像头
      */
-    public static Camera initCamera(Camera mCamera, boolean isFrontCamera) {
+    public static Camera initCamera(Camera camera, boolean isFrontCamera) {
         // 如果之前存在摄像头数据, 则释放资源
-        if (mCamera != null) {
-            freeCameraResource(mCamera);
+        if (camera != null) {
+            freeCameraResource(camera);
         }
         try {
             // 进行判断想要使用的是前置，还是后置
-            if (isFrontCamera && checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT)){ // 使用前置, 必须也支持前置
+            if (isFrontCamera && checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT)) { // 使用前置, 必须也支持前置
                 // 初始化前置摄像头
-                mCamera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
+                camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
             } else {
                 // 初始化后置摄像头
-                mCamera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
+                camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "initCamera");
             // 释放资源
-            freeCameraResource(mCamera);
+            freeCameraResource(camera);
         }
-        return mCamera;
+        return camera;
     }
 
     /**
@@ -169,7 +169,7 @@ public final class CameraUtils {
      * @param cameraId {@link Camera.CameraInfo } CAMERA_FACING_FRONT(前置), CAMERA_FACING_BACK(后置)
      * @return
      */
-    public static Camera open(int cameraId){
+    public static Camera open(int cameraId) {
         // 判断支持的摄像头数量
         int numCameras = Camera.getNumberOfCameras();
         if (numCameras == 0) {

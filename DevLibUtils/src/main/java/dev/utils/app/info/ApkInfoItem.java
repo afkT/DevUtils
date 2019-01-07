@@ -76,7 +76,7 @@ public final class ApkInfoItem {
     protected static ApkInfoItem obtain(PackageInfo pInfo) {
         try {
             return new ApkInfoItem(pInfo);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "obtain");
         }
         return null;
@@ -86,7 +86,7 @@ public final class ApkInfoItem {
      * 初始化 AppInfoItem 对象
      * @param pInfo
      */
-    private ApkInfoItem(PackageInfo pInfo){
+    private ApkInfoItem(PackageInfo pInfo) {
         // 获取 Context
         Context context = DevUtils.getContext();
         // 格式化日期
@@ -104,7 +104,7 @@ public final class ApkInfoItem {
         // App SHA256
         appSHA256 = SignaturesUtils.signatureSHA256(signatures);
         // 属于7.0以上才有的方法
-        if (AppCommonUtils.isN()){
+        if (AppCommonUtils.isN()) {
             // App 最低支持版本
             minSdkVersion = pInfo.applicationInfo.minSdkVersion;
         }
@@ -179,7 +179,7 @@ public final class ApkInfoItem {
             listTemps.add(KeyValueBean.get(R.string.dev_str_dercode, certSerialnumber));
             // 证书 DER 编码
             listTemps.add(KeyValueBean.get(R.string.dev_str_serialnumber, certDercode));
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "ApkInfoItem");
             isError = true;
         }

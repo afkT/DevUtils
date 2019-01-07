@@ -31,7 +31,7 @@ public final class DevThreadManager {
         String key = "n_" + nThreads;
         // 如果不为null, 则直接返回
         DevThreadPool devThreadPool = mapThreads.get(key);
-        if (devThreadPool != null){
+        if (devThreadPool != null) {
             return devThreadPool;
         }
         devThreadPool = new DevThreadPool(nThreads);
@@ -47,16 +47,16 @@ public final class DevThreadManager {
     public static synchronized DevThreadPool getInstance(String key) {
         // 如果不为null, 则直接返回
         DevThreadPool devThreadPool = mapThreads.get(key);
-        if (devThreadPool != null){
+        if (devThreadPool != null) {
             return devThreadPool;
         }
         Object obj = mapConfig.get(key);
-        if (obj != null){
+        if (obj != null) {
             try {
                 // 判断是否属于线程池类型
-                if (obj instanceof DevThreadPool.DevThreadPoolType){
+                if (obj instanceof DevThreadPool.DevThreadPoolType) {
                     devThreadPool = new DevThreadPool((DevThreadPool.DevThreadPoolType) obj);
-                } else if (obj instanceof Integer){
+                } else if (obj instanceof Integer) {
                     devThreadPool = new DevThreadPool((Integer) obj);
                 } else { // 其他类型, 统一转换 Integer
                     devThreadPool = new DevThreadPool(Integer.parseInt((String) obj));
@@ -65,7 +65,7 @@ public final class DevThreadManager {
                     mapThreads.put(key, devThreadPool);
                     return devThreadPool;
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 return sDevThreadPool;
             }
         }
@@ -78,8 +78,8 @@ public final class DevThreadManager {
      * 初始化配置信息
      * @param mapConfig
      */
-    public static void initConfig(Map<String, Object> mapConfig){
-        if (mapConfig != null){
+    public static void initConfig(Map<String, Object> mapConfig) {
+        if (mapConfig != null) {
             mapConfig.putAll(mapConfig);
         }
     }
@@ -89,7 +89,7 @@ public final class DevThreadManager {
      * @param key
      * @param val
      */
-    public static void putConfig(String key, Object val){
+    public static void putConfig(String key, Object val) {
         mapConfig.put(key, val);
     }
 
@@ -97,7 +97,7 @@ public final class DevThreadManager {
      * 移除配置信息
      * @param key
      */
-    public static void removeConfig(String key){
+    public static void removeConfig(String key) {
         mapConfig.remove(key);
     }
 }

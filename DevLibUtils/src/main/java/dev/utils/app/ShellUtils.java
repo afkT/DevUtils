@@ -164,7 +164,7 @@ public final class ShellUtils {
          * 判断是否执行成功
          * @return
          */
-        public boolean isSuccess(){
+        public boolean isSuccess() {
             return result == SUCCESS;
         }
 
@@ -172,8 +172,8 @@ public final class ShellUtils {
          * 判断是否执行成功(判断 errorMsg)
          * @return
          */
-        public boolean isSuccess2(){
-            if (result == SUCCESS && (errorMsg == null || errorMsg.length() == 0)){
+        public boolean isSuccess2() {
+            if (result == SUCCESS && (errorMsg == null || errorMsg.length() == 0)) {
                 return true;
             }
             return false;
@@ -183,8 +183,8 @@ public final class ShellUtils {
          * 判断是否执行成功(判断 successMsg)
          * @return
          */
-        public boolean isSuccess3(){
-            if (result == SUCCESS && successMsg != null && successMsg.length() != 0){
+        public boolean isSuccess3() {
+            if (result == SUCCESS && successMsg != null && successMsg.length() != 0) {
                 return true;
             }
             return false;
@@ -195,9 +195,9 @@ public final class ShellUtils {
          * @param contains
          * @return
          */
-        public boolean isSuccess4(String contains){
-            if (result == SUCCESS && successMsg != null && successMsg.length() != 0){
-                if (contains != null && contains.length() != 0 && successMsg.toLowerCase().contains(contains)){
+        public boolean isSuccess4(String contains) {
+            if (result == SUCCESS && successMsg != null && successMsg.length() != 0) {
+                if (contains != null && contains.length() != 0 && successMsg.toLowerCase().contains(contains)) {
                     return true;
                 }
             }

@@ -28,7 +28,7 @@ import dev.utils.LogPrintUtils;
  */
 final class Utils {
 
-	private Utils(){
+	private Utils() {
 	}
 
 	// 日志TAG
@@ -114,9 +114,9 @@ final class Utils {
 			// 遍历设备信息
 			while (mapIter.hasNext()) {
 				// 获取对应的key-value
-				Map.Entry<String, String> rnEntry = (Map.Entry<String, String>) mapIter.next();
-				String rnKey = (String) rnEntry.getKey(); // key
-				String rnValue = (String) rnEntry.getValue(); // value
+				Map.Entry<String, String> rnEntry =  mapIter.next();
+				String rnKey = rnEntry.getKey(); // key
+				String rnValue = rnEntry.getValue(); // value
 				// 保存设备信息
 				sBuilder.append(rnKey);
 				sBuilder.append(" = ");
@@ -375,7 +375,7 @@ final class Utils {
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveLog(String log, String fPath, String fName, String... eHint){
+	public static boolean saveLog(String log, String fPath, String fName, String... eHint) {
 		return saveLog(log, null, null, fPath, fName, eHint);
 	}
 
@@ -389,7 +389,7 @@ final class Utils {
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveLog(String log, String head, String bottom, String fPath, String fName, String... eHint){
+	public static boolean saveLog(String log, String head, String bottom, String fPath, String fName, String... eHint) {
 		// 处理可变参数(错误提示)
 		eHint = handlerVariable(2, eHint);
 		// 日志拼接

@@ -60,7 +60,7 @@ class LoggerUse {
     /**
      * 日志配置相关
      */
-    private void logConfig(){
+    private void logConfig() {
         // == 在BaseApplication 中调用 ==
         // 初始化日志配置
         LogConfig lConfig = new LogConfig();
@@ -128,7 +128,7 @@ class TimerUse {
     /**
      * 定时器使用方法
      */
-    private void timerUse(){
+    private void timerUse() {
 
 //        /** 创建定时器 => 立即执行,无限循环,通知默认what */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long period) {
@@ -174,7 +174,7 @@ class TimerUse {
 //        }
 
         // 初始化定时器任务
-        absTimer = TimerManager.createTimer(new Handler(){
+        absTimer = TimerManager.createTimer(new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -182,7 +182,7 @@ class TimerUse {
                 // 获取触发次数
                 int number = absTimer.getTriggerNumber();
                 // 触发次数
-                if (number == 1){
+                if (number == 1) {
                     DevLogger.dTag(TAG, "第一次触发, 0.5秒延迟");
                 } else {
                     DevLogger.dTag(TAG, "每隔2秒触发一次, 触发次数: " + number);
@@ -193,18 +193,18 @@ class TimerUse {
         absTimer.startTimer();
 
 
-//        Handler handler = new Handler(){
+//        Handler handler = new Handler() {
 //            @Override
 //            public void handleMessage(Message msg) {
 //                super.handleMessage(msg);
 //
-//                switch (msg.what){
+//                switch (msg.what) {
 //                    case NOTIFY:
 //                        // 获取触发次数
 //                        DevLogger.dTag(TAG, "已经触发次数：" + absTimer.getTriggerNumber());
 //                        DevLogger.dTag(TAG, "触发上限次数：" + absTimer.getTriggerLimit());
 //                        // 判断是否触发结束
-//                        if (absTimer.isTriggerEnd()){
+//                        if (absTimer.isTriggerEnd()) {
 //                            DevLogger.dTag(TAG, "触发结束");
 //                        }
 //                        break;
@@ -263,7 +263,7 @@ class MediaUse {
     /**
      * 多媒体使用方法
      */
-    private void mediaUse(){
+    private void mediaUse() {
         // 默认事件监听
         DevMediaManager.getInstance().setMeidaListener(new DevMediaManager.MediaListener() {
             @Override
@@ -299,7 +299,7 @@ class MediaUse {
         DevMediaManager.getInstance().playPrepareAssets("a.mp3");
         DevMediaManager.getInstance().playPrepare(SDCardUtils.getSDCardPath() + "/a.mp3");
         DevMediaManager.getInstance().playPrepare("http://xxx.mp3");
-        DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet(){
+        DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet() {
 
             @Override
             public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
@@ -314,7 +314,7 @@ class MediaUse {
         DevVideoPlayerControl control = new DevVideoPlayerControl(surfaceView);
         control.startPlayer(SDCardUtils.getSDCardPath() + "/video_3.mp4");
         control.startPlayer("http://xxx.mp4");
-        control.startPlayer(new DevMediaManager.MediaSet(){
+        control.startPlayer(new DevMediaManager.MediaSet() {
             @Override
             public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
                 mediaPlayer.setDataSource("xxx");
@@ -339,7 +339,7 @@ class ThreadUse {
     /**
      * 线程使用方法
      */
-    private void threadUse(){
+    private void threadUse() {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -385,7 +385,7 @@ class WifiHotUse {
     /**
      * Wifi热点使用方法
      */
-    private void wifiHotUse(){
+    private void wifiHotUse() {
 
 //        // 需要权限
 //        <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -415,7 +415,7 @@ class WifiHotUse {
 
         // 如果应用开启了热点, 然后后台清空内存, 对应的热点会关闭, 应用开启的热点是系统随机的，不影响系统设置中的热点配置信息
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             wifiHotUtils.setOnWifiAPListener(new WifiHotUtils.onWifiAPListener() {
                 @Override
                 public void onStarted(WifiConfiguration wifiConfig) {
@@ -482,7 +482,7 @@ class FileRecordUse {
     /**
      * AnalysisRecordUtils 工具类使用方法
      */
-    private void analysisRecord(){
+    private void analysisRecord() {
 
         // 默认存储到 android/data/包名/cache文件/ , 可以自己特殊设置
 //        AnalysisRecordUtils.setLogStoragePath(SDCardUtils.getSDCardPath());
@@ -536,7 +536,7 @@ class FileRecordUse {
     /**
      * DevLoggerUtils、FileRecordUtils 工具类
      */
-    private void logRecord(){
+    private void logRecord() {
         // = 异常日志保存 =
 
         try {
@@ -587,7 +587,7 @@ class CacheUse {
     /**
      * 缓存使用方法
      */
-    private void cacheUse(){
+    private void cacheUse() {
         final Context mContext = DevUtils.getContext();
 
 //        // 保存数据
@@ -615,7 +615,7 @@ class CacheUse {
                     CacheVo ctva = (CacheVo) DevCache.get(mContext).getAsObject("ctva");
                     // 判断是否过期
                     DevLogger.dTag(TAG, "是否过期: " + (ctva == null));
-                } catch (Exception e){
+                } catch (Exception e) {
                 }
             }
         }).start();
@@ -657,7 +657,7 @@ class CacheUse {
  */
 class ShapeUse {
 
-    private void shapeUse(){
+    private void shapeUse() {
 
         Button vid_btn1 = null;
 //        // 默认就设置背景色
@@ -702,7 +702,7 @@ class ShapeUse {
  */
 class ShareUse {
 
-    private void shareUse(){
+    private void shareUse() {
         // 具体实现方法 基于 PreferenceImpl 实现
 
         // 存在可调用的方法 IPreference
@@ -762,9 +762,9 @@ class TextCalcUse{
     protected void textCalcUse() {
         LinearLayout vid_linear = null;
         // 打印信息
-        for (int i = 0, len = vid_linear.getChildCount(); i < len; i++){
+        for (int i = 0, len = vid_linear.getChildCount(); i < len; i++) {
             View view = vid_linear.getChildAt(i);
-            if (view != null && view instanceof TextView){
+            if (view != null && view instanceof TextView) {
                 printInfo((TextView) view);
             }
         }
@@ -785,7 +785,7 @@ class TextCalcUse{
      * 打印信息
      * @param textView
      */
-    private void printInfo(TextView textView){
+    private void printInfo(TextView textView) {
         StringBuilder builder = new StringBuilder();
         builder.append("\n内容：" + textView.getText().toString());
         builder.append("\n高度：" + TextViewUtils.getTextHeight(textView));

@@ -53,7 +53,7 @@ public final class CameraSizeAssist {
      * @param previewSize
      * @return {@link Camera.Parameters}
      */
-    public Camera.Parameters setPreviewSize(Camera.Size previewSize){
+    public Camera.Parameters setPreviewSize(Camera.Size previewSize) {
         return setPreviewSize(null, previewSize);
     }
 
@@ -63,15 +63,15 @@ public final class CameraSizeAssist {
      * @param previewSize
      * @return {@link Camera.Parameters}
      */
-    public Camera.Parameters setPreviewSize(Camera.Parameters parameters, Camera.Size previewSize){
-        if (mCamera != null && previewSize != null){
+    public Camera.Parameters setPreviewSize(Camera.Parameters parameters, Camera.Size previewSize) {
+        if (mCamera != null && previewSize != null) {
             try {
-                if (parameters == null){
+                if (parameters == null) {
                     parameters = mCamera.getParameters();
                 }
                 // 设置预览大小
                 parameters.setPreviewSize(previewSize.width, previewSize.height);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setPreviewSize");
             }
         }
@@ -84,7 +84,7 @@ public final class CameraSizeAssist {
      * 根据手机支持的预览分辨率计算，设置预览尺寸
      * @return Camera 预览分辨率
      */
-    public Camera.Size getPreviewSize(){
+    public Camera.Size getPreviewSize() {
         return getPreviewSize(null, -1d);
     }
 
@@ -113,14 +113,14 @@ public final class CameraSizeAssist {
      * @return Camera 预览分辨率
      */
     public Camera.Size getPreviewSize(Point point, double distortion) {
-        if (mCamera == null){
+        if (mCamera == null) {
             LogPrintUtils.dTag(TAG, "camera is null");
             return null;
         }
         try {
             // 计算大小并返回
             return calcPreviewSize(point, distortion);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPreviewSize");
         }
         return null;
@@ -135,7 +135,7 @@ public final class CameraSizeAssist {
      * @param pictureSize
      * @return {@link Camera.Parameters}
      */
-    public Camera.Parameters setPictureSize(Camera.Size pictureSize){
+    public Camera.Parameters setPictureSize(Camera.Size pictureSize) {
         return setPictureSize(null, pictureSize);
     }
 
@@ -145,10 +145,10 @@ public final class CameraSizeAssist {
      * @param pictureSize
      * @return {@link Camera.Parameters}
      */
-    public Camera.Parameters setPictureSize(Camera.Parameters parameters, Camera.Size pictureSize){
-        if (mCamera != null && pictureSize != null){
+    public Camera.Parameters setPictureSize(Camera.Parameters parameters, Camera.Size pictureSize) {
+        if (mCamera != null && pictureSize != null) {
             try {
-                if (parameters == null){
+                if (parameters == null) {
                     parameters = mCamera.getParameters();
                 }
                 // 设置预览大小
@@ -157,7 +157,7 @@ public final class CameraSizeAssist {
 //                parameters.setPictureFormat(PixelFormat.JPEG);
 //                // 照片质量
 //                parameters.set("jpeg-quality", 70);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setPictureSize");
             }
         }
@@ -170,7 +170,7 @@ public final class CameraSizeAssist {
      * 根据手机支持的拍照分辨率计算
      * @return Camera 拍照分辨率
      */
-    public Camera.Size getPictureSize(){
+    public Camera.Size getPictureSize() {
         return getPictureSize(false, null, -1d);
     }
 
@@ -179,7 +179,7 @@ public final class CameraSizeAssist {
      * @param max
      * @return Camera 拍照分辨率
      */
-    public Camera.Size getPictureSize(boolean max){
+    public Camera.Size getPictureSize(boolean max) {
         return getPictureSize(max, null, -1d);
     }
 
@@ -219,14 +219,14 @@ public final class CameraSizeAssist {
      * @return Camera 拍照分辨率
      */
     public Camera.Size getPictureSize(boolean max, Point point, double distortion) {
-        if (mCamera == null){
+        if (mCamera == null) {
             LogPrintUtils.dTag(TAG, "camera is null");
             return null;
         }
         try {
             // 计算大小并返回
             return calcPictureSize(max, point, distortion);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPictureSize");
         }
         return null;
@@ -240,7 +240,7 @@ public final class CameraSizeAssist {
      * 根据手机支持的视频录制分辨率计算
      * @return Camera 视频分辨率
      */
-    public Camera.Size getVideoSize(){
+    public Camera.Size getVideoSize() {
         return getVideoSize(false, null, -1d, false);
     }
 
@@ -249,7 +249,7 @@ public final class CameraSizeAssist {
      * @param max
      * @return Camera 视频分辨率
      */
-    public Camera.Size getVideoSize(boolean max){
+    public Camera.Size getVideoSize(boolean max) {
         return getVideoSize(max, null, -1d, false);
     }
 
@@ -290,14 +290,14 @@ public final class CameraSizeAssist {
      * @return Camera 视频分辨率
      */
     public Camera.Size getVideoSize(boolean max, Point point, double distortion, boolean minAccord) {
-        if (mCamera == null){
+        if (mCamera == null) {
             LogPrintUtils.dTag(TAG, "camera is null");
             return null;
         }
         try {
             // 计算大小并返回
             return calcVideoSize(max, point, distortion, minAccord);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoSize");
         }
         return null;
@@ -315,7 +315,7 @@ public final class CameraSizeAssist {
      * @return Camera (预览、拍照、视频) 分辨率
      */
     private Camera.Size calcSize(List<Camera.Size> lists, Point point) {
-        if (lists == null){
+        if (lists == null) {
             return null;
         }
         // 判断是否竖屏
@@ -344,33 +344,33 @@ public final class CameraSizeAssist {
             // 遍历尺寸大小
             for (Camera.Size size : lists) {
                 // 判断横竖屏
-                if (isPortrait){ // 属于竖屏 => 高度 > 宽度
+                if (isPortrait) { // 属于竖屏 => 高度 > 宽度
                     // 因为是竖屏, 所以判断需要倒着过来
-                    if (sWidth == size.height && sHeight == size.width){
+                    if (sWidth == size.height && sHeight == size.width) {
                         // 保存符合比例的大小
                         mSize = size;
                         break;
                     }
                     // 计算合适的比例
-                    if (size.width >= sHeight){
+                    if (size.width >= sHeight) {
                         mSize = size;
                     }
                 } else { // 属于横屏 => 宽度 > 高度
                     // 因为是横屏, 所以判断需要正常
-                    if (sWidth == size.width && sHeight == size.height){
+                    if (sWidth == size.width && sHeight == size.height) {
                         // 保存符合比例的大小
                         mSize = size;
                         break;
                     }
                     // 计算合适的比例
-                    if (size.height >= sWidth){
+                    if (size.height >= sWidth) {
                         mSize = size;
                     }
                 }
             }
             // 获取最合适的比例
             LogPrintUtils.dTag(TAG, "返回 calcSize -> 宽度: " + mSize.width + ", 高度: " + mSize.height + ", 是否竖屏: " + isPortrait);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "异常 calcSize - 是否竖屏: " + isPortrait);
         }
         return mSize;
@@ -389,11 +389,11 @@ public final class CameraSizeAssist {
      */
     private Camera.Size calcPreviewSize(Point point, double distortion) {
         // 判断是否为null
-        if (point == null){
+        if (point == null) {
             point = ScreenUtils.getScreenWidthHeightToPoint();
         }
         // 如果误差为负数, 则使用默认值
-        if (distortion < 0){
+        if (distortion < 0) {
             distortion = MAX_ASPECT_DISTORTION;
         }
         // 获取 Camera 参数
@@ -401,7 +401,7 @@ public final class CameraSizeAssist {
         // 获取手机支持的分辨率集合,并以宽度为基准降序排序
         List<Camera.Size> listPreviewSizes = params.getSupportedPreviewSizes();
         // 防止数据为null
-        if (listPreviewSizes == null){
+        if (listPreviewSizes == null) {
             // 获取默认预览大小
             Camera.Size defaultSize = params.getPreviewSize();
             return defaultSize;
@@ -425,11 +425,11 @@ public final class CameraSizeAssist {
         });
 
         // ==== 打印信息 ====
-        if (LogPrintUtils.isPrintLog()){
+        if (LogPrintUtils.isPrintLog()) {
             StringBuilder builder = new StringBuilder();
             builder.append("预览支持尺寸: \r\n");
             // 打印信息
-            for (Camera.Size previewSize : listPreviewSizes){
+            for (Camera.Size previewSize : listPreviewSizes) {
                 // 例: 1080x1920
                 builder.append(previewSize.width).append("x").append(previewSize.height).append("\r\n");
             }
@@ -442,7 +442,7 @@ public final class CameraSizeAssist {
         // 判断是否竖屏 point.x = > 宽, point.y => 高
         boolean isPortrait = point.y > point.x;
         // 如果是竖屏, 则修改
-        if (isPortrait){
+        if (isPortrait) {
             int tempY = point.y;
             int tempX = point.x;
             // 进行转换
@@ -516,11 +516,11 @@ public final class CameraSizeAssist {
      */
     private Camera.Size calcPictureSize(boolean max, Point point, double distortion) {
         // 判断是否为null
-        if (point == null){
+        if (point == null) {
             point = ScreenUtils.getScreenWidthHeightToPoint();
         }
         // 如果误差为负数, 则使用默认值
-        if (distortion < 0){
+        if (distortion < 0) {
             distortion = MAX_ASPECT_DISTORTION;
         }
         // 获取 Camera 参数
@@ -528,7 +528,7 @@ public final class CameraSizeAssist {
         // 获取手机支持的分辨率集合,并以宽度为基准降序排序
         List<Camera.Size> listPictureSizes = params.getSupportedPictureSizes();
         // 防止数据为null
-        if (listPictureSizes == null){
+        if (listPictureSizes == null) {
             // 获取默认拍照大小
             Camera.Size defaultSize = params.getPictureSize();
             return defaultSize;
@@ -567,7 +567,7 @@ public final class CameraSizeAssist {
         // ==
 
         // 判断是否拿最大支持的尺寸
-        if (max){
+        if (max) {
             if (!listPictureSizes.isEmpty()) {
                 // 获取最大的尺寸
                 Camera.Size largestPicture = listPictureSizes.get(0);
@@ -582,7 +582,7 @@ public final class CameraSizeAssist {
         // 判断是否竖屏 point.x = > 宽, point.y => 高
         boolean isPortrait = point.y > point.x;
         // 如果是竖屏, 则修改
-        if (isPortrait){
+        if (isPortrait) {
             int tempY = point.y;
             int tempX = point.x;
             // 进行转换
@@ -632,13 +632,13 @@ public final class CameraSizeAssist {
             }
 
             // 保存最大相符的尺寸
-            if (maxAccordSize == null){
+            if (maxAccordSize == null) {
                 maxAccordSize = pictureSize;
             }
         }
 
         // 如果存在最相符的则返回
-        if (maxAccordSize != null){
+        if (maxAccordSize != null) {
             return maxAccordSize;
         }
 
@@ -670,11 +670,11 @@ public final class CameraSizeAssist {
      */
     private Camera.Size calcVideoSize(boolean max, Point point, double distortion, boolean minAccord) {
         // 判断是否为null
-        if (point == null){
+        if (point == null) {
             point = ScreenUtils.getScreenWidthHeightToPoint();
         }
         // 如果误差为负数, 则使用默认值
-        if (distortion < 0){
+        if (distortion < 0) {
             distortion = MAX_ASPECT_DISTORTION;
         }
         // 获取 Camera 参数
@@ -682,7 +682,7 @@ public final class CameraSizeAssist {
         // 获取手机支持的分辨率集合,并以宽度为基准降序排序
         List<Camera.Size> listVideoSizes = params.getSupportedVideoSizes();
         // 防止数据为null
-        if (listVideoSizes == null){
+        if (listVideoSizes == null) {
             // 获取默认拍照大小
             Camera.Size defaultSize = params.getPreferredPreviewSizeForVideo();
             return defaultSize;
@@ -721,7 +721,7 @@ public final class CameraSizeAssist {
         // ==
 
         // 判断是否拿最大支持的尺寸
-        if (max){
+        if (max) {
             if (!listVideoSizes.isEmpty()) {
                 // 获取最大的尺寸
                 Camera.Size largestVideo = listVideoSizes.get(0);
@@ -736,7 +736,7 @@ public final class CameraSizeAssist {
         // 判断是否竖屏 point.x = > 宽, point.y => 高
         boolean isPortrait = point.y > point.x;
         // 如果是竖屏, 则修改
-        if (isPortrait){
+        if (isPortrait) {
             int tempY = point.y;
             int tempX = point.x;
             // 进行转换
@@ -788,19 +788,19 @@ public final class CameraSizeAssist {
             }
 
             // 保存最大相符的尺寸
-            if (maxAccordSize == null){
+            if (maxAccordSize == null) {
                 maxAccordSize = videoSize;
             }
             // 保存最小符合的
             minAccordSize = videoSize;
         }
 
-        if (minAccord && minAccordSize != null){
+        if (minAccord && minAccordSize != null) {
             return minAccordSize;
         }
 
         // 如果存在最相符的则返回
-        if (maxAccordSize != null){
+        if (maxAccordSize != null) {
             return maxAccordSize;
         }
 
@@ -824,7 +824,7 @@ public final class CameraSizeAssist {
 //     * @return Camera 视频分辨率
 //     */
 //    public Camera.Size getVideoSize(Point point, Point... designated) {
-//        if (mCamera == null){
+//        if (mCamera == null) {
 //            // 打印支持的尺寸
 //            LogPrintUtils.dTag(TAG, "camera is null");
 //            return null;
@@ -849,10 +849,10 @@ public final class CameraSizeAssist {
 //            // 打印准备计算的信息
 //            LogPrintUtils.dTag(TAG, "getVideoSize - sWidth: " + sWidth + ", sHeight: " + sHeight + ", isPortrait: " + isPortrait + ", isDesignated(是否存在指定尺寸): " + isDesignated);
 //            // 打印信息
-//            if (isDesignated){
-//                for (int i = 0, len = designated.length; i < len; i++){
+//            if (isDesignated) {
+//                for (int i = 0, len = designated.length; i < len; i++) {
 //                    Point appoint = designated[i];
-//                    if (appoint != null){
+//                    if (appoint != null) {
 //                        LogPrintUtils.dTag(TAG, "appoint.x: " + appoint.x + ", appoint.y: " + appoint.y);
 //                    }
 //                }
@@ -884,7 +884,7 @@ public final class CameraSizeAssist {
 //            ratio = Float.parseFloat(decimalFormat.format(ratio));
 //            // 遍历预览大小
 //            for (Camera.Size size : listVideoSizes) {
-//                if (isBreak){
+//                if (isBreak) {
 //                    break;
 //                }
 //                // 打印支持的尺寸
@@ -892,25 +892,25 @@ public final class CameraSizeAssist {
 //                // 判断横竖屏
 //                if (isPortrait) { // 属于竖屏 => 高度 > 宽度
 //                    // 因为是竖屏, 所以判断需要倒着过来
-//                    if (sWidth == size.height && sHeight == size.width){
+//                    if (sWidth == size.height && sHeight == size.width) {
 //                        // 保存符合比例的大小
 //                        mVideoSize = size;
 //                    }
 //                    // 处理宽大于高的, 因为是使用竖屏, 参数判断都反着处理
-//                    if (size.width > size.height){
+//                    if (size.width > size.height) {
 //                        // 获取比例
 //                        float ratioCalc = ((float) size.width / (float) size.height) - 1;
 //                        // 转换保留两位小数点
 //                        ratioCalc = Float.parseFloat(decimalFormat.format(ratioCalc));
 //                        // 判断符合规则的
-//                        if (ratioCalc == ratio){
+//                        if (ratioCalc == ratio) {
 //                            // 保存尺寸
 //                            fixedSize = size;
 //                            // 如果存在才处理
-//                            if (isDesignated){
-//                                for (int i = 0, len = designated.length; i < len; i++){
+//                            if (isDesignated) {
+//                                for (int i = 0, len = designated.length; i < len; i++) {
 //                                    Point appoint = designated[i];
-//                                    if (appoint != null){
+//                                    if (appoint != null) {
 //                                        // 判断是否支持固定的大小
 //                                        if (size.width == appoint.y && size.height == appoint.x) {
 //                                            isBreak = true;
@@ -921,16 +921,16 @@ public final class CameraSizeAssist {
 //                            }
 //                        } else {
 //                            // 最小支持到640
-//                            if (size.width < 640){
+//                            if (size.width < 640) {
 //                                break;
 //                            }
 //                            // 保存尺寸
 //                            fixedSize = size;
 //                            // 如果存在才处理
-//                            if (isDesignated){
-//                                for (int i = 0, len = designated.length; i < len; i++){
+//                            if (isDesignated) {
+//                                for (int i = 0, len = designated.length; i < len; i++) {
 //                                    Point appoint = designated[i];
-//                                    if (appoint != null){
+//                                    if (appoint != null) {
 //                                        // 判断是否支持固定的大小
 //                                        if (size.width == appoint.y && size.height == appoint.x) {
 //                                            isBreak = true;
@@ -943,25 +943,25 @@ public final class CameraSizeAssist {
 //                    }
 //                } else { // 属于横屏 => 宽度 > 高度
 //                    // 因为是横屏, 所以判断需要正常
-//                    if (sWidth == size.width && sHeight == size.height){
+//                    if (sWidth == size.width && sHeight == size.height) {
 //                        // 保存符合比例的大小
 //                        mVideoSize = size;
 //                    }
 //                    // 处理高大于宽的, 因为是使用横屏, 参数判断需要正常
-//                    if (size.height > size.width){
+//                    if (size.height > size.width) {
 //                        // 获取比例
 //                        float ratioCalc = ((float) size.height / (float) size.width) - 1;
 //                        // 转换保留两位小数点
 //                        ratioCalc = Float.parseFloat(decimalFormat.format(ratioCalc));
 //                        // 判断符合规则的
-//                        if (ratioCalc == ratio){
+//                        if (ratioCalc == ratio) {
 //                            // 保存尺寸
 //                            fixedSize = size;
 //                            // 如果存在才处理
-//                            if (isDesignated){
-//                                for (int i = 0, len = designated.length; i < len; i++){
+//                            if (isDesignated) {
+//                                for (int i = 0, len = designated.length; i < len; i++) {
 //                                    Point appoint = designated[i];
-//                                    if (appoint != null){
+//                                    if (appoint != null) {
 //                                        // 判断是否支持固定的大小
 //                                        if (size.width == appoint.y && size.height == appoint.x) {
 ////                                            isBreak = true;
@@ -972,16 +972,16 @@ public final class CameraSizeAssist {
 //                            }
 //                        } else {
 //                            // 最小支持到 640
-//                            if (size.height < 640){
+//                            if (size.height < 640) {
 //                                break;
 //                            }
 //                            // 保存尺寸
 //                            fixedSize = size;
 //                            // 如果存在才处理
-//                            if (isDesignated){
-//                                for (int i = 0, len = designated.length; i < len; i++){
+//                            if (isDesignated) {
+//                                for (int i = 0, len = designated.length; i < len; i++) {
 //                                    Point appoint = designated[i];
-//                                    if (appoint != null){
+//                                    if (appoint != null) {
 //                                        // 判断是否支持固定的大小
 //                                        if (size.width == appoint.y && size.height == appoint.x) {
 ////                                            isBreak = true;

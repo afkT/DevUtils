@@ -103,12 +103,12 @@ public final class PermissionUtils {
      * 构造函数
      * @param permissions
      */
-    private PermissionUtils(final String... permissions){
+    private PermissionUtils(final String... permissions) {
         mPermissions.clear();
         // 防止数据为null
-        if (permissions != null && permissions.length != 0){
+        if (permissions != null && permissions.length != 0) {
             // 遍历全部需要申请的权限
-            for (String permission : permissions){
+            for (String permission : permissions) {
                 mPermissions.add(permission);
             }
         }
@@ -151,7 +151,7 @@ public final class PermissionUtils {
      * @param permission
      * @return
      */
-    public static boolean shouldShowRequestPermissionRationale(Activity activity, final String permission){
+    public static boolean shouldShowRequestPermissionRationale(Activity activity, final String permission) {
         return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
     }
 
@@ -162,7 +162,7 @@ public final class PermissionUtils {
      * @param permissions
      * @return
      */
-    public static PermissionUtils permission(final String... permissions){
+    public static PermissionUtils permission(final String... permissions) {
         return new PermissionUtils(permissions);
     }
 
@@ -170,8 +170,8 @@ public final class PermissionUtils {
      * 设置回调方法
      * @param callBack
      */
-    public PermissionUtils callBack(PermissionCallBack callBack){
-        if (isRequest){
+    public PermissionUtils callBack(PermissionCallBack callBack) {
+        if (isRequest) {
             return this;
         }
         this.mCallBack = callBack;
@@ -182,8 +182,8 @@ public final class PermissionUtils {
      * 权限判断处理
      * @return -1 已经请求过, 0 = 不处理, 1 = 需要请求
      */
-    private int checkPermissions(){
-        if (isRequest){
+    private int checkPermissions() {
+        if (isRequest) {
             return -1; // 已经申请过
         }
         isRequest = true;
@@ -194,11 +194,11 @@ public final class PermissionUtils {
             // 处理请求回调
             requestCallback();
         } else {
-            for (String permission : mPermissions){
+            for (String permission : mPermissions) {
                 // 首先判断是否存在
-                if (mAllPermissions.contains(permission)){
+                if (mAllPermissions.contains(permission)) {
                     // 判断是否通过请求
-                    if (isGranted(DevUtils.getContext(), permission)){
+                    if (isGranted(DevUtils.getContext(), permission)) {
                         mPermissionsGranted.add(permission); // 权限允许通过
                     } else {
                         mPermissionsRequest.add(permission); // 准备请求权限
@@ -209,7 +209,7 @@ public final class PermissionUtils {
                 }
             }
             // 判断是否存在等待请求的权限
-            if (mPermissionsRequest.isEmpty()){
+            if (mPermissionsRequest.isEmpty()) {
                 // 处理请求回调
                 requestCallback();
             } else { // 表示需要申请
@@ -227,8 +227,8 @@ public final class PermissionUtils {
      * 无需调用以下代码判断
      * boolean isGranted = PermissionUtils.isGranted(Manifest.permission.xx);
      */
-    public void request(){
-        if (checkPermissions() == 1){
+    public void request() {
+        if (checkPermissions() == 1) {
             // 如果 SDK 版本大于 23 才请求
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                 sInstance = this;
@@ -242,7 +242,7 @@ public final class PermissionUtils {
      * 请求权限
      * @param activity {@link Fragment#getActivity()}
      */
-    public void request(Activity activity){
+    public void request(Activity activity) {
         request(activity, P_REQUEST_CODE);
     }
 
@@ -251,8 +251,8 @@ public final class PermissionUtils {
      * @param activity {@link Fragment#getActivity()}
      * @param requestCode
      */
-    public void request(Activity activity, int requestCode){
-        if (checkPermissions() == 1 && activity != null){
+    public void request(Activity activity, int requestCode) {
+        if (checkPermissions() == 1 && activity != null) {
             // 如果 SDK 版本大于 23 才请求
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                 sInstance = this;
@@ -329,11 +329,11 @@ public final class PermissionUtils {
 
     /** 内部请求回调, 统一处理方法 */
     private void requestCallback() {
-        if (mCallBack != null){
+        if (mCallBack != null) {
             // 判断是否允许全部权限
             boolean isGrantedAll = (mPermissions.size() == mPermissionsGranted.size());
             // 允许则触发回调
-            if (isGrantedAll){
+            if (isGrantedAll) {
                 new Handler(mLooper).post(new Runnable() {
                     @Override
                     public void run() {
@@ -369,7 +369,7 @@ public final class PermissionUtils {
     private void getPermissionsStatus(final Activity activity) {
         for (String permission : mPermissionsRequest) {
             // 判断是否通过请求
-            if (isGranted(activity, permission)){
+            if (isGranted(activity, permission)) {
                 mPermissionsGranted.add(permission);
             } else {
                 // 未授权
@@ -388,8 +388,8 @@ public final class PermissionUtils {
      * 请求权限回调 - 需要在 onRequestPermissionsResult 回调里面调用
      * @param activity
      */
-    public static void onRequestPermissionsResult(Activity activity){
-        if (activity != null && sInstance != null){
+    public static void onRequestPermissionsResult(Activity activity) {
+        if (activity != null && sInstance != null) {
             // 触发回调
             sInstance.onRequestPermissionsResultCommon(activity);
         }

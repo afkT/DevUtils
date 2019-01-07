@@ -21,7 +21,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class CPUUtils {
 
-    private CPUUtils(){
+    private CPUUtils() {
     }
 
     // 日志TAG
@@ -123,10 +123,10 @@ public final class CPUUtils {
             LogPrintUtils.eTag(TAG, e, "getMaxCpuFreq");
             result = "unknown";
         } finally {
-            if (in != null){
+            if (in != null) {
                 try {
                     in.close();
-                } catch (IOException e){
+                } catch (IOException e) {
                 }
             }
         }
@@ -156,10 +156,10 @@ public final class CPUUtils {
             LogPrintUtils.eTag(TAG, e, "getMinCpuFreq");
             result = "unknown";
         } finally {
-            if (in != null){
+            if (in != null) {
                 try {
                     in.close();
-                } catch (IOException e){
+                } catch (IOException e) {
                 }
             }
         }
@@ -263,10 +263,10 @@ public final class CPUUtils {
         } catch (IOException e) {
             LogPrintUtils.eTag(TAG, e, "getCMDOutputString");
         } finally {
-            if (in != null){
+            if (in != null) {
                 try {
                     in.close();
-                } catch (IOException e){
+                } catch (IOException e) {
                 }
             }
         }

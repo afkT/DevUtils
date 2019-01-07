@@ -17,7 +17,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class ManifestUtils {
 
-    private ManifestUtils(){
+    private ManifestUtils() {
     }
 
     // 日志TAG

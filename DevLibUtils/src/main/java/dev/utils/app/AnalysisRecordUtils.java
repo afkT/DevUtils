@@ -63,7 +63,7 @@ public final class AnalysisRecordUtils {
         // 初始化 App 信息
         getAppInfo();
         // 如果为null, 才设置
-        if (TextUtils.isEmpty(logStoragePath)){
+        if (TextUtils.isEmpty(logStoragePath)) {
             // 获取根路径
             logStoragePath = FileInfo.getDiskCacheDir(sContext);
         }
@@ -79,11 +79,11 @@ public final class AnalysisRecordUtils {
      */
     public static String record(FileInfo fileInfo, String... args) {
         // 如果不处理, 则直接跳过
-        if (!isHandler){
+        if (!isHandler) {
             return "record not handler";
         }
         if (fileInfo != null) {
-            if (!fileInfo.isHandler()){
+            if (!fileInfo.isHandler()) {
                 return "file record not handler";
             }
             if (args != null && args.length != 0) {
@@ -169,15 +169,15 @@ public final class AnalysisRecordUtils {
      */
     private static String saveLogRecord(FileInfo fileInfo, String... args) {
         // 如果不处理, 则直接跳过
-        if (!isHandler){
+        if (!isHandler) {
             return "record not handler";
         }
         // 文件信息为null, 则不处理
-        if (fileInfo == null){
+        if (fileInfo == null) {
             return "info is null";
         }
         // 如果文件地址为null, 则不处理
-        if (TextUtils.isEmpty(fileInfo.getFileName())){
+        if (TextUtils.isEmpty(fileInfo.getFileName())) {
             // 文件名为null
             return "fileName is null";
         }
@@ -262,7 +262,7 @@ public final class AnalysisRecordUtils {
         sBuffer.append(" => ");
         // 循环追加内容
         for (int i = 0, c = args.length; i < c; i++) {
-            if (isSpace){ // 判断是否追加空格
+            if (isSpace) { // 判断是否追加空格
                 sBuffer.append(SPACE_STR);
             }
             // 追加保存内容
@@ -443,7 +443,7 @@ public final class AnalysisRecordUtils {
          * @return
          */
         public String getStoragePath() {
-            if (TextUtils.isEmpty(storagePath)){
+            if (TextUtils.isEmpty(storagePath)) {
                 return storagePath = getLogStoragePath();
             }
             return storagePath;
@@ -477,8 +477,8 @@ public final class AnalysisRecordUtils {
          * 获取日志文件夹名
          * @return
          */
-        public String getFolderName(){
-            if (TextUtils.isEmpty(folderName)){
+        public String getFolderName() {
+            if (TextUtils.isEmpty(folderName)) {
                 return folderName = getLogFolderName();
             }
             return folderName;
@@ -599,14 +599,14 @@ public final class AnalysisRecordUtils {
                     // 小时格式
                     String hh_Foramt = getDateNow("HH");
                     // 判断属于小时格式
-                    if (iTime == HH){
+                    if (iTime == HH) {
                         // /folder/HH/HH_小时/  => /LogSpace/HH/HH_15/
                         return folder + "HH/HH_" + hh_Foramt + File.separator;
                     } else {
                         // 分钟格式
                         String mm_Foramt = getDateNow("mm");
                         // 判断是否属于分钟
-                        if (iTime == MM){
+                        if (iTime == MM) {
                             // /folder/HH/HH_小时/MM_分钟/  => /LogSpace/HH/HH_15/MM/MM_55/
                             return folder + "HH/HH_" + hh_Foramt + "/MM/MM_" + mm_Foramt + File.separator;
                         } else { // 属于秒

@@ -16,7 +16,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class AppCommonUtils {
 
-    private AppCommonUtils(){
+    private AppCommonUtils() {
     }
 
     // 日志 TAG
@@ -27,7 +27,7 @@ public final class AppCommonUtils {
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
-    public static String getUUID(){
+    public static String getUUID() {
         return PhoneUtils.getUUID();
     }
 
@@ -35,7 +35,7 @@ public final class AppCommonUtils {
      * 获取随机数 唯一id
      * @return
      */
-    public static String getRandomUUID(){
+    public static String getRandomUUID() {
         // 获取随机数
         String random1 = (900000 + new Random().nextInt(10000)) + "";
         // 获取随机数
@@ -73,7 +73,7 @@ public final class AppCommonUtils {
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getFormatRes");
-            if (errorMsg && e != null){
+            if (errorMsg && e != null) {
                 return e.getMessage();
             }
         }
@@ -182,7 +182,7 @@ public final class AppCommonUtils {
      * 是否在6.0版本及以上
      * @return 是否在6.0版本及以上
      */
-    public static boolean isM(){
+    public static boolean isM() {
         return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.M;
     }
 
@@ -190,7 +190,7 @@ public final class AppCommonUtils {
      * 是否在7.0版本及以上
      * @return 是否在7.0版本及以上
      */
-    public static boolean isN(){
+    public static boolean isN() {
         return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N;
     }
 
@@ -198,7 +198,7 @@ public final class AppCommonUtils {
      * 是否在7.1.1版本及以上
      * @return 是否在7.1.1版本及以上
      */
-    public static boolean isN_MR1(){
+    public static boolean isN_MR1() {
         return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N_MR1;
     }
 
@@ -206,7 +206,7 @@ public final class AppCommonUtils {
      * 是否在8.0版本及以上
      * @return 是否在8.0版本及以上
      */
-    public static boolean isO(){
+    public static boolean isO() {
         return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O;
     }
 
@@ -215,9 +215,9 @@ public final class AppCommonUtils {
      * @param sdkVersion
      * @return
      */
-    public static String convertSDKVersion(int sdkVersion){
+    public static String convertSDKVersion(int sdkVersion) {
         // https://www.cnblogs.com/maogefff/p/7819076.html
-        switch (sdkVersion){
+        switch (sdkVersion) {
             case 1:
                 return "Android 1.0";
             case 2:

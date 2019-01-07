@@ -12,7 +12,7 @@ import dev.utils.app.share.SharedUtils;
  */
 class ShareUse {
 
-    private void shareUse(){
+    private void shareUse() {
         // 具体实现方法 基于 PreferenceImpl 实现
 
         // 存在可调用的方法 IPreference

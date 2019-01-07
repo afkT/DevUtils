@@ -132,7 +132,7 @@ public final class EncodeUtils {
     public static String base64DecodeToString(final byte[] input) {
         try {
             return new String(base64Decode(input));
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "base64DecodeToString");
         }
         return null;

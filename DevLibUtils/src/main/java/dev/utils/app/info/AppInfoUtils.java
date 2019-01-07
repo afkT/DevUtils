@@ -19,7 +19,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class AppInfoUtils {
 
-    private AppInfoUtils(){
+    private AppInfoUtils() {
     }
 
     // 日志Tag
@@ -30,7 +30,7 @@ public final class AppInfoUtils {
      * @param file apk路径
      * @return
      */
-    public static PackageInfo getPackageInfoToFile(File file){
+    public static PackageInfo getPackageInfoToFile(File file) {
         if (!isFileExists(file)) return null;
         return getPackageInfoToPath(file.getAbsolutePath());
     }
@@ -40,7 +40,7 @@ public final class AppInfoUtils {
      * @param apkUri apk路径
      * @return
      */
-    public static PackageInfo getPackageInfoToPath(String apkUri){
+    public static PackageInfo getPackageInfoToPath(String apkUri) {
         try {
             PackageManager pManager = DevUtils.getContext().getPackageManager();
             PackageInfo pInfo = pManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
@@ -50,7 +50,7 @@ public final class AppInfoUtils {
             appInfo.sourceDir = apkUri;
             appInfo.publicSourceDir = apkUri;
             return pInfo;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPackageInfoToPath");
         }
         return null;
@@ -60,7 +60,7 @@ public final class AppInfoUtils {
      * 获取当前应用 PackageInfo
      * @return
      */
-    public static PackageInfo getPackageInfo(){
+    public static PackageInfo getPackageInfo() {
         return getPackageInfo(DevUtils.getContext().getPackageName());
     }
 
@@ -69,7 +69,7 @@ public final class AppInfoUtils {
      * @param packageName 包名
      * @return
      */
-    public static PackageInfo getPackageInfo(String packageName){
+    public static PackageInfo getPackageInfo(String packageName) {
         try {
             // https://blog.csdn.net/sljjyy/article/details/17370665
             PackageManager pManager = DevUtils.getContext().getPackageManager();
@@ -77,7 +77,7 @@ public final class AppInfoUtils {
             PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES); // 64
             // 返回app信息
             return pInfo;
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPackageInfo");
         }
         return null;
@@ -91,7 +91,7 @@ public final class AppInfoUtils {
      * 通过 Apk 路径 获取 AppInfoBean
      * @param file apk路径
      */
-    public static AppInfoBean getAppInfoBeanToFile(File file){
+    public static AppInfoBean getAppInfoBeanToFile(File file) {
         return AppInfoBean.obtain(getPackageInfoToFile(file));
     }
 
@@ -99,14 +99,14 @@ public final class AppInfoUtils {
      * 通过 Apk 路径 获取 AppInfoBean
      * @param apkUri apk路径
      */
-    public static AppInfoBean getAppInfoBeanToPath(String apkUri){
+    public static AppInfoBean getAppInfoBeanToPath(String apkUri) {
         return AppInfoBean.obtain(getPackageInfoToPath(apkUri));
     }
 
     /**
      * 获取当前应用 AppInfoBean
      */
-    public static AppInfoBean getAppInfoBean(){
+    public static AppInfoBean getAppInfoBean() {
         return AppInfoBean.obtain(getPackageInfo());
     }
 
@@ -114,7 +114,7 @@ public final class AppInfoUtils {
      * 通过包名 获取 AppInfoBean
      * @param packageName 包名
      */
-    public static AppInfoBean getAppInfoBean(String packageName){
+    public static AppInfoBean getAppInfoBean(String packageName) {
         return AppInfoBean.obtain(getPackageInfo(packageName));
     }
 
@@ -127,7 +127,7 @@ public final class AppInfoUtils {
      * @param file
      * @return
      */
-    public static ApkInfoItem getApkInfoItem(File file){
+    public static ApkInfoItem getApkInfoItem(File file) {
         if (!isFileExists(file)) return null;
         return getApkInfoItem(file.getAbsolutePath());
     }
@@ -137,10 +137,10 @@ public final class AppInfoUtils {
      * @param apkUri
      * @return
      */
-    public static ApkInfoItem getApkInfoItem(String apkUri){
+    public static ApkInfoItem getApkInfoItem(String apkUri) {
         try {
             return ApkInfoItem.obtain(getPackageInfoToPath(apkUri));
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApkInfoItem");
             return null;
         }
@@ -152,10 +152,10 @@ public final class AppInfoUtils {
      * 获取 App 详细信息
      * @return
      */
-    public static AppInfoItem getAppInfoItem(){
+    public static AppInfoItem getAppInfoItem() {
         try {
             return AppInfoItem.obtain(getPackageInfo());
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppInfoItem");
             return null;
         }
@@ -166,10 +166,10 @@ public final class AppInfoUtils {
      * @param packageName
      * @return
      */
-    public static AppInfoItem getAppInfoItem(String packageName){
+    public static AppInfoItem getAppInfoItem(String packageName) {
         try {
             return AppInfoItem.obtain(getPackageInfo(packageName));
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppInfoItem");
             return null;
         }
@@ -200,7 +200,7 @@ public final class AppInfoUtils {
             // 获取手机内所有应用
             List<PackageInfo> packlist = pManager.getInstalledPackages(0);
             // 判断是否属于添加全部
-            if (appType == AppInfoBean.AppType.ALL){
+            if (appType == AppInfoBean.AppType.ALL) {
                 // 遍历 App 列表
                 for (int i = 0, len = packlist.size(); i < len; i++) {
                     PackageInfo pInfo = packlist.get(i);
@@ -214,7 +214,7 @@ public final class AppInfoUtils {
                     // 获取 App 类型
                     AppInfoBean.AppType cAppType = AppInfoBean.getAppType(pInfo);
                     // 判断类型
-                    if (appType == cAppType){
+                    if (appType == cAppType) {
                         // 添加符合条件的 App 应用信息
                         listApps.add(new AppInfoBean(pInfo, pManager));
                     }
@@ -241,7 +241,7 @@ public final class AppInfoUtils {
      * 获取 Apk 注册的权限
      * @return
      */
-    public static String[] getApkPermission(){
+    public static String[] getApkPermission() {
         return getApkPermission(DevUtils.getContext().getPackageName());
     }
 
@@ -250,7 +250,7 @@ public final class AppInfoUtils {
      * @param packageName
      * @return
      */
-    public static String [] getApkPermission(String packageName){
+    public static String [] getApkPermission(String packageName) {
         try {
             PackageManager packageManager = DevUtils.getContext().getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
@@ -266,7 +266,7 @@ public final class AppInfoUtils {
      * @param packageName
      * https://www.cnblogs.com/leaven/p/5485864.html
      */
-    public static void printApkPermission(String packageName){
+    public static void printApkPermission(String packageName) {
         try {
             PackageManager packageManager = DevUtils.getContext().getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
@@ -304,7 +304,7 @@ public final class AppInfoUtils {
      * @param file 文件路径
      * @return 是否存在文件
      */
-    private static boolean isFileExists(final File file){
+    private static boolean isFileExists(final File file) {
         return file != null && file.exists();
     }
 }

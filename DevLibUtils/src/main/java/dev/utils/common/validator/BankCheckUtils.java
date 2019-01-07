@@ -18,7 +18,7 @@ package dev.utils.common.validator;
  */
 public final class BankCheckUtils {
 
-    private BankCheckUtils(){
+    private BankCheckUtils() {
     }
 
     /*

@@ -9,7 +9,7 @@ import dev.utils.common.HexUtils;
  */
 public final class CipherUtils {
 
-    private CipherUtils(){
+    private CipherUtils() {
     }
 
     // 保存加密: 如SP
@@ -21,7 +21,7 @@ public final class CipherUtils {
      * @param obj
      * @return
      */
-    public static String encrypt(Object obj){
+    public static String encrypt(Object obj) {
         return encrypt(obj, null);
     }
 
@@ -31,7 +31,7 @@ public final class CipherUtils {
      * @param cipher
      * @return
      */
-    public static String encrypt(Object obj, Cipher cipher){
+    public static String encrypt(Object obj, Cipher cipher) {
         if (obj == null) return null;
         byte[] bytes = ByteUtils.objectToByte(obj);
         if (cipher != null) bytes = cipher.encrypt(bytes);
@@ -45,7 +45,7 @@ public final class CipherUtils {
      * @param hex
      * @return
      */
-    public static Object decrypt (String hex){
+    public static Object decrypt (String hex) {
         return decrypt(hex, null);
     }
 
@@ -55,7 +55,7 @@ public final class CipherUtils {
      * @param cipher
      * @return
      */
-    public static Object decrypt (String hex, Cipher cipher){
+    public static Object decrypt (String hex, Cipher cipher) {
         if (hex == null) return null;
         byte[] bytes = HexUtils.decodeHex(hex.toCharArray());
         if (cipher != null) bytes = cipher.decrypt(bytes);

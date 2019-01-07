@@ -6,6 +6,6 @@ package dev.utils.app.share;
  */
 public final class SPUtils extends IPreferenceHolder {
 
-    private SPUtils(){
+    private SPUtils() {
     }
 }

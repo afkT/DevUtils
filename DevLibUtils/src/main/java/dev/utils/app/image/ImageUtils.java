@@ -1469,7 +1469,7 @@ public final class ImageUtils {
      * @param filePath
      * @return
      */
-    private static File getFileByPath(final String filePath){
+    private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;
     }
 

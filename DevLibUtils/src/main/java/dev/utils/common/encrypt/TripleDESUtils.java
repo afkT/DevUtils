@@ -23,13 +23,13 @@ public final class TripleDESUtils {
      * 生成密钥
      * @return
      */
-    public static byte[] initKey(){
+    public static byte[] initKey() {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("DESede");
             keyGen.init(168);  // 112 168
             SecretKey secretKey = keyGen.generateKey();
             return secretKey.getEncoded();
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "initKey");
         }
         return null;
@@ -41,14 +41,14 @@ public final class TripleDESUtils {
      * @param key
      * @return
      */
-    public static byte[] encrypt(byte[] data, byte[] key){
+    public static byte[] encrypt(byte[] data, byte[] key) {
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DESede");
             Cipher cipher = Cipher.getInstance("DESede/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             byte[] cipherBytes = cipher.doFinal(data);
             return cipherBytes;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "encrypt");
         }
         return null;
@@ -60,14 +60,14 @@ public final class TripleDESUtils {
      * @param key
      * @return
      */
-    public static byte[] decrypt(byte[] data, byte[] key){
+    public static byte[] decrypt(byte[] data, byte[] key) {
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DESede");
             Cipher cipher = Cipher.getInstance("DESede/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             byte[] plainBytes = cipher.doFinal(data);
             return plainBytes;
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "decrypt");
         }
         return null;

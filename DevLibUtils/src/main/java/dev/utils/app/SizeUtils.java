@@ -40,7 +40,7 @@ public final class SizeUtils {
 	 * @param dpValue
 	 * @return
 	 */
-	public static float dipConvertPxf(float dpValue){
+	public static float dipConvertPxf(float dpValue) {
 		try {
 			float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
 			return (dpValue * scale + 0.5f);
@@ -291,7 +291,7 @@ public final class SizeUtils {
 			}
 			view.measure(widthSpec, heightSpec);
 			return new int[]{ view.getMeasuredWidth(), view.getMeasuredHeight() };
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "measureView");
 			return new int[] { 0, 0 };
 		}

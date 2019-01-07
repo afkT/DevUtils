@@ -60,7 +60,7 @@ public final class AccessibilityUtils {
      * 检查是否开启无障碍功能
      * @return
      */
-    public static boolean checkAccessibility(){
+    public static boolean checkAccessibility() {
         return checkAccessibility(DevUtils.getContext().getPackageName());
     }
 
@@ -110,7 +110,7 @@ public final class AccessibilityUtils {
      * 打印 AccessibilityEvent 信息日志
      * @param event
      */
-    public static void printAccessibilityEvent(AccessibilityEvent event){
+    public static void printAccessibilityEvent(AccessibilityEvent event) {
         printAccessibilityEvent(event, TAG);
     }
 
@@ -119,8 +119,8 @@ public final class AccessibilityUtils {
      * @param event
      * @param tag
      */
-    public static void printAccessibilityEvent(AccessibilityEvent event, String tag){
-        if (!LogPrintUtils.isPrintLog()){
+    public static void printAccessibilityEvent(AccessibilityEvent event, String tag) {
+        if (!LogPrintUtils.isPrintLog()) {
             return;
         }
         LogPrintUtils.dTag(tag,"-------------------------------------------------------------");
@@ -272,8 +272,8 @@ public final class AccessibilityUtils {
      * @param nodeInfo
      */
     public static boolean performClick(AccessibilityNodeInfo nodeInfo) {
-        if (nodeInfo != null){
-            if (nodeInfo.isClickable()){
+        if (nodeInfo != null) {
+            if (nodeInfo.isClickable()) {
                 return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_CLICK);
             }
         }
@@ -304,9 +304,9 @@ public final class AccessibilityUtils {
             } else {
                 AccessibilityNodeInfo parent = nodeInfo.getParent();
                 while (parent != null) {
-                    if (performClick(parent)){
+                    if (performClick(parent)) {
                         // 如果
-                        if (!clickAll){
+                        if (!clickAll) {
                             return;
                         }
                     }
@@ -325,8 +325,8 @@ public final class AccessibilityUtils {
      * @param nodeInfo
      */
     public static boolean performLongClick(AccessibilityNodeInfo nodeInfo) {
-        if (nodeInfo != null){
-            if (nodeInfo.isClickable()){
+        if (nodeInfo != null) {
+            if (nodeInfo.isClickable()) {
                 return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_LONG_CLICK);
             }
         }
@@ -357,9 +357,9 @@ public final class AccessibilityUtils {
             } else {
                 AccessibilityNodeInfo parent = nodeInfo.getParent();
                 while (parent != null) {
-                    if (performLongClick(parent)){
+                    if (performLongClick(parent)) {
                         // 如果
-                        if (!clickAll){
+                        if (!clickAll) {
                             return;
                         }
                     }
@@ -378,7 +378,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionBack(){
+    public static boolean preformActionBack() {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_BACK);
     }
 
@@ -388,7 +388,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionBack(AccessibilityService service){
+    public static boolean preformActionBack(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_BACK);
     }
 
@@ -397,7 +397,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionHome(){
+    public static boolean preformActionHome() {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_HOME);
     }
 
@@ -407,7 +407,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionHome(AccessibilityService service){
+    public static boolean preformActionHome(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_HOME);
     }
 
@@ -416,7 +416,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionPowerDialog(){
+    public static boolean preformActionPowerDialog() {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
     }
 
@@ -426,7 +426,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionPowerDialog(AccessibilityService service){
+    public static boolean preformActionPowerDialog(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
     }
 
@@ -435,7 +435,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionLockScreen(){
+    public static boolean preformActionLockScreen() {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
     }
 
@@ -445,7 +445,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionLockScreen(AccessibilityService service){
+    public static boolean preformActionLockScreen(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
     }
 
@@ -454,7 +454,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionTakeScreenshot(){
+    public static boolean preformActionTakeScreenshot() {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
     }
 
@@ -464,7 +464,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionTakeScreenshot(AccessibilityService service){
+    public static boolean preformActionTakeScreenshot(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
     }
 
@@ -473,7 +473,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionNotifications(){
+    public static boolean preformActionNotifications() {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
     }
 
@@ -483,7 +483,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionNotifications(AccessibilityService service){
+    public static boolean preformActionNotifications(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
     }
 
@@ -492,7 +492,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionRecents(){
+    public static boolean preformActionRecents() {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_RECENTS);
     }
 
@@ -502,7 +502,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionRecents(AccessibilityService service){
+    public static boolean preformActionRecents(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_RECENTS);
     }
 
@@ -511,7 +511,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionQuickSettings(){
+    public static boolean preformActionQuickSettings() {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
     }
 
@@ -521,7 +521,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionQuickSettings(AccessibilityService service){
+    public static boolean preformActionQuickSettings(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
     }
 
@@ -530,7 +530,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionSplitScreen(){
+    public static boolean preformActionSplitScreen() {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
     }
 
@@ -540,7 +540,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionSplitScreen(AccessibilityService service){
+    public static boolean preformActionSplitScreen(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
     }
 
@@ -552,7 +552,7 @@ public final class AccessibilityUtils {
      * @param nodeInfo
      */
     public static boolean preformAction(AccessibilityNodeInfo nodeInfo, int action) {
-        if (nodeInfo != null){
+        if (nodeInfo != null) {
             return nodeInfo.performAction(action);
         }
         return false;
@@ -566,7 +566,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean performGlobalAction(AccessibilityService service, int action) {
-        if (service != null){
+        if (service != null) {
             return service.performGlobalAction(action);
         }
         return false;
