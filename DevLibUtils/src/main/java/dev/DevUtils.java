@@ -61,6 +61,13 @@ public final class DevUtils {
         initContext(context);
         // 初始化全局 Application
         initApplication(context);
+        // 注册 Activity 生命周期监听
+        registerActivityLifecycleCallbacks(sApplication);
+        // 保存当前线程信息
+        sUiThread = Thread.currentThread();
+        // 初始化全局Handler - 主线程
+        sHandler = new Handler(Looper.getMainLooper());
+        // == 初始化工具类相关 ==
         // 初始化Shared 工具类
         SharedUtils.init(context);
         // 初始化缓存类
@@ -73,12 +80,6 @@ public final class DevUtils {
         AnalysisRecordUtils.init(context);
         // 初始化 DevLogger 配置
         DevLoggerUtils.init(context);
-        // 保存当前线程信息
-        sUiThread = Thread.currentThread();
-        // 初始化全局Handler - 主线程
-        sHandler = new Handler(Looper.getMainLooper());
-        // 注册 Activity 生命周期监听
-        registerActivityLifecycleCallbacks(sApplication);
     }
 
     /**
@@ -355,6 +356,10 @@ public final class DevUtils {
          @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
              setTopActivity(activity);
+
+             if (DevUtils.absActivityLifecycle != null){
+                 DevUtils.absActivityLifecycle.onActivityCreated(activity, savedInstanceState);
+             }
         }
 
         @Override
@@ -367,6 +372,10 @@ public final class DevUtils {
             } else {
                 ++mForegroundCount;
             }
+
+            if (DevUtils.absActivityLifecycle != null){
+                DevUtils.absActivityLifecycle.onActivityStarted(activity);
+            }
         }
 
         @Override
@@ -377,10 +386,17 @@ public final class DevUtils {
                 mIsBackground = false;
                 postStatus(true);
             }
+
+            if (DevUtils.absActivityLifecycle != null){
+                DevUtils.absActivityLifecycle.onActivityResumed(activity);
+            }
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
+            if (DevUtils.absActivityLifecycle != null){
+                DevUtils.absActivityLifecycle.onActivityPaused(activity);
+            }
         }
 
         @Override
@@ -395,11 +411,17 @@ public final class DevUtils {
                     postStatus(false);
                 }
             }
+
+            if (DevUtils.absActivityLifecycle != null){
+                DevUtils.absActivityLifecycle.onActivityStopped(activity);
+            }
         }
 
         @Override
         public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
+            if (DevUtils.absActivityLifecycle != null){
+                DevUtils.absActivityLifecycle.onActivitySaveInstanceState(activity, outState);
+            }
         }
 
         @Override
@@ -407,6 +429,10 @@ public final class DevUtils {
             mActivityList.remove(activity);
             // 通知 Activity 销毁
             consumeOnActivityDestroyedListener(activity);
+
+            if (DevUtils.absActivityLifecycle != null){
+                DevUtils.absActivityLifecycle.onActivityDestroyed(activity);
+            }
         }
 
         // == 内部处理判断方法 ==
@@ -785,4 +811,52 @@ public final class DevUtils {
             return false;
         }
     };
+
+    // =
+
+    // ActivityLifecycleCallbacks 抽象类
+    private static AbsActivityLifecycle absActivityLifecycle;
+
+    /**
+     * 设置 ActivityLifecycle 监听回调
+     * @param absActivityLifecycle
+     */
+    public static void setAbsActivityLifecycle(AbsActivityLifecycle absActivityLifecycle) {
+        DevUtils.absActivityLifecycle = absActivityLifecycle;
+    }
+
+    /**
+     * detail:  ActivityLifecycleCallbacks 抽象类
+     * Created by Ttt
+     */
+    public static abstract class AbsActivityLifecycle implements Application.ActivityLifecycleCallbacks {
+
+        @Override
+        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        }
+
+        @Override
+        public void onActivityStarted(Activity activity) {
+        }
+
+        @Override
+        public void onActivityResumed(Activity activity) {
+        }
+
+        @Override
+        public void onActivityPaused(Activity activity) {
+        }
+
+        @Override
+        public void onActivityStopped(Activity activity) {
+        }
+
+        @Override
+        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+        }
+
+        @Override
+        public void onActivityDestroyed(Activity activity) {
+        }
+    }
 }

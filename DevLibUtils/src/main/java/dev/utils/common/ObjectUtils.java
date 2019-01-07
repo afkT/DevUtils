@@ -91,11 +91,22 @@ public final class ObjectUtils {
 
     /**
      * 获取对象哈希值
-     * @param o 对象
+     * @param object 对象
      * @return 哈希值
      */
-    public static int hashCode(Object o) {
-        return o != null ? o.hashCode() : 0;
+    public static int hashCode(Object object) {
+        return object != null ? object.hashCode() : 0;
+    }
+
+    /**
+     * 获取一个对象的独一无二的标记
+     * @param object
+     * @return
+     */
+    public static String getObjectTag(Object object) {
+        if (object == null) return null;
+        // 对象所在的包名 + 对象的内存地址
+        return object.getClass().getName() + Integer.toHexString(object.hashCode());
     }
 
     /**
