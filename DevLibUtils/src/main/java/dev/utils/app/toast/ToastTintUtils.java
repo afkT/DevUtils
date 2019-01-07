@@ -50,11 +50,15 @@ public final class ToastTintUtils {
     // Null 值
     private static String mNullText = "text is null";
     // == 部分配置 ==
+    // 判断是否使用配置
+    private static boolean mUseConfig = true;
     // Toast 的重心、X、Y 轴偏移
     private static int mGravity, mX, mY;
     // 水平边距、垂直边距
     private static float mHorizontalMargin, mVerticalMargin;
     // == 样式相关 ==
+    // 默认样式
+    private static ToastTintUtils.Style defaultStyle = new DefaultStyle();
     // Normal 样式
     private static ToastTintUtils.Style normalStyle = new NormalStyle();
     // Info 样式
@@ -80,6 +84,7 @@ public final class ToastTintUtils {
      */
     public static void reset(){
         mIsHandler = true;
+        mUseConfig = true;
         mNullText = "text is null";
         mGravity = mX = mY = 0;
         mHorizontalMargin = mVerticalMargin = 0.0f;
@@ -99,6 +104,14 @@ public final class ToastTintUtils {
      */
     public static void setNullText(String mNullText) {
         ToastTintUtils.mNullText = mNullText;
+    }
+
+    /**
+     * 判断是否使用配置
+     * @param mUseConfig
+     */
+    public static void setUseConfig(boolean mUseConfig) {
+        ToastTintUtils.mUseConfig = mUseConfig;
     }
 
     /**
@@ -124,6 +137,14 @@ public final class ToastTintUtils {
     }
 
     // =
+
+    /**
+     * 获取默认样式
+     * @return
+     */
+    public static Style getDefaultStyle() {
+        return defaultStyle;
+    }
 
     /**
      * 获取 Normal 样式
@@ -685,11 +706,14 @@ public final class ToastTintUtils {
                 mToast = new Toast(context);
                 mToast.setView(view);
                 mToast.setDuration(duration);
-                // 设置属性配置
-                if (mGravity != 0) {
-                    mToast.setGravity(mGravity, mX, mY);
+                // 判断是否使用配置
+                if (mUseConfig) {
+                    // 设置属性配置
+                    if (mGravity != 0) {
+                        mToast.setGravity(mGravity, mX, mY);
+                    }
+                    mToast.setMargin(mHorizontalMargin, mVerticalMargin);
                 }
-                mToast.setMargin(mHorizontalMargin, mVerticalMargin);
                 // 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
                 reflectToastHandler(mToast);
             } catch (Exception e){
@@ -703,11 +727,14 @@ public final class ToastTintUtils {
                 toast = new Toast(context);
                 toast.setView(view);
                 toast.setDuration(duration);
-                // 设置属性配置
-                if (mGravity != 0) {
-                    toast.setGravity(mGravity, mX, mY);
+                // 判断是否使用配置
+                if (mUseConfig) {
+                    // 设置属性配置
+                    if (mGravity != 0) {
+                        toast.setGravity(mGravity, mX, mY);
+                    }
+                    toast.setMargin(mHorizontalMargin, mVerticalMargin);
                 }
-                toast.setMargin(mHorizontalMargin, mVerticalMargin);
                 // 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
                 reflectToastHandler(toast);
             } catch (Exception e){
