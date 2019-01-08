@@ -27,6 +27,7 @@ import dev.utils.app.HandlerUtils;
 import dev.utils.app.cache.DevCache;
 import dev.utils.app.logger.DevLoggerUtils;
 import dev.utils.app.share.SharedUtils;
+import dev.utils.app.toast.toaster.DevToast;
 
 /**
  * detail: 开发工具类
@@ -80,6 +81,8 @@ public final class DevUtils {
         AnalysisRecordUtils.init(context);
         // 初始化 DevLogger 配置
         DevLoggerUtils.init(context);
+        // 初始化 Toast
+        DevToast.init(sApplication);
     }
 
     /**
