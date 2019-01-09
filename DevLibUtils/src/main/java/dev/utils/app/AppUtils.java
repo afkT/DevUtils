@@ -751,7 +751,10 @@ public final class AppUtils {
 		return false;
 	}
 
-	/** 跳转到 专门的 App 设置详情页面 */
+	/**
+	 * 跳转到 专门的 App 设置详情页面
+	 * @return
+	 */
 	public static boolean launchAppDetailsSettings() {
 		return launchAppDetailsSettings(DevUtils.getContext().getPackageName());
 	}

@@ -33,7 +33,7 @@ public final class DateUtils {
 	public static final String HHmmss2 = "HHmmss";
 	public static final String hhmmMMDDyyyy = "hh:mm M月d日 yyyy";
 	public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
-	// --
+
 	/** 一分钟 60秒 */
 	public static final int MINUTE_S = 60;
 	/** 一小时 60 * 60秒 */
@@ -485,12 +485,12 @@ public final class DateUtils {
 	}
 	
 	/**
-	 * 获取月份 - 对应天数
+	 * 根据年份、月份，获取对应的天数 (完整天数, 无判断是否属于未来日期)
 	 * @param year 年数
 	 * @param month 月份
 	 * @return
 	 */
-	public static int getMonthDayNumber(int year, int month) {
+	public static int getMonthDayNumberAll(int year, int month) {
 		int number = 31;
 		// 判断返回的标识数字
 		switch(month) {
@@ -518,6 +518,39 @@ public final class DateUtils {
 				break;
 		}
 		return number;
+	}
+
+	/**
+	 * 根据年份，获取对应的月份
+	 * @param year
+	 * @return
+	 * tips: 内部判断是否相同一年, 不能超过限制未来的月份
+	 */
+	public static int getYearMonthNumber(int year) {
+		// 如: 当前 2019-01, 传入 2019 则返回 1
+		// 传入 2018, 返回 12, 不会返回未来的月份
+		if (year == getYear()){
+			return getMonth();
+		}
+		return 12;
+	}
+
+	/**
+	 * 根据年份、月份，获取对应的天数
+	 * @param year
+	 * @param month
+	 * @return
+	 * tips: 内部判断是否相同一年、月份, 不能超过限制未来的天数
+	 */
+	public static int getMonthDayNumber(int year, int month) {
+		// 判断年份, 相同则判断月份
+		if (year == getYear()){
+			// 判断月份, 先同则返回天数
+			if (getYearMonthNumber(year) == month) {
+				return getDay();
+			}
+		}
+		return getMonthDayNumberAll(year, month);
 	}
     
     // =======================================================

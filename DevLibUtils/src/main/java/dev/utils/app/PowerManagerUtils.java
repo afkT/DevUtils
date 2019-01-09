@@ -36,8 +36,11 @@ public final class PowerManagerUtils {
     private PowerManagerUtils() {
         // 获取系统服务
         powerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
-        // 电源管理锁
-        wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.FULL_WAKE_LOCK, "PowerManagerUtils");
+        try {
+            // 电源管理锁
+            wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.FULL_WAKE_LOCK, "PowerManagerUtils");
+        } catch (Exception e){
+        }
     }
 
     /**
@@ -131,14 +134,18 @@ public final class PowerManagerUtils {
      * run: {@link Activity#onResume()}
      */
     public static PowerManager.WakeLock setWakeLockToBright() {
-        // onResume()
-        PowerManager.WakeLock mWakeLock = PowerManagerUtils.getInstance().getPowerManager().newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "setWakeLockToBright");
-        mWakeLock.acquire(); // 常量, 持有不黑屏
+        try {
+            // onResume()
+            PowerManager.WakeLock mWakeLock = PowerManagerUtils.getInstance().getPowerManager().newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "setWakeLockToBright");
+            mWakeLock.acquire(); // 常量, 持有不黑屏
 
 //        // onPause()
 //        if (mWakeLock != null) {
 //            mWakeLock.release(); // 释放资源, 到休眠时间自动黑屏
 //        }
-        return mWakeLock;
+            return mWakeLock;
+        } catch (Exception e){
+        }
+        return null;
     }
 }

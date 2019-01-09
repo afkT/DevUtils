@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.widget.PopupWindow;
 
+import dev.utils.LogPrintUtils;
+
 /**
  * detail: Dialog 操作相关工具类
  * Created by Ttt
@@ -16,6 +18,9 @@ public final class DialogUtils {
 
     private DialogUtils() {
     }
+
+    // 日志 TAG
+    private static final String TAG = DialogUtils.class.getSimpleName();
 
     // ======== Dialog 相关 ========
 
@@ -151,51 +156,56 @@ public final class DialogUtils {
      * @return
      */
     public static AlertDialog createAlertDialog(Context context, String title, String content, String leftBtn, String rightBtn, final DialogListener dialogListener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(title);
-        builder.setMessage(content);
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle(title);
+            builder.setMessage(content);
 
-        if (leftBtn != null) {
-            if (dialogListener == null) {
-                builder.setNegativeButton(leftBtn, null);
-            } else {
-                builder.setNegativeButton(leftBtn, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (dialogListener != null) {
-                            dialogListener.onLeftButton(dialog);
+            if (leftBtn != null) {
+                if (dialogListener == null) {
+                    builder.setNegativeButton(leftBtn, null);
+                } else {
+                    builder.setNegativeButton(leftBtn, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (dialogListener != null) {
+                                dialogListener.onLeftButton(dialog);
+                            }
                         }
-                    }
-                });
-            }
-        }
-
-        if (rightBtn != null) {
-            if (dialogListener == null) {
-                builder.setPositiveButton(rightBtn, null);
-            } else {
-                builder.setPositiveButton(rightBtn, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (dialogListener != null) {
-                            dialogListener.onRightButton(dialog);
-                        }
-                    }
-                });
-            }
-        }
-
-        if (dialogListener != null) {
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (dialogListener != null) {
-                        dialogListener.onDismiss(dialog);
-                    }
+                    });
                 }
-            });
+            }
+
+            if (rightBtn != null) {
+                if (dialogListener == null) {
+                    builder.setPositiveButton(rightBtn, null);
+                } else {
+                    builder.setPositiveButton(rightBtn, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (dialogListener != null) {
+                                dialogListener.onRightButton(dialog);
+                            }
+                        }
+                    });
+                }
+            }
+
+            if (dialogListener != null) {
+                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        if (dialogListener != null) {
+                            dialogListener.onDismiss(dialog);
+                        }
+                    }
+                });
+            }
+            return builder.create();
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "createAlertDialog");
         }
-        return builder.create();
+        return null;
     }
 
     // =
@@ -232,9 +242,14 @@ public final class DialogUtils {
      * @return
      */
     public static ProgressDialog createProgressDialog(Context context, String title, String content, boolean isCancel, DialogInterface.OnCancelListener cancelListener) {
-        ProgressDialog progressDialog = android.app.ProgressDialog.show(context, title, content, isCancel);
-        progressDialog.setOnCancelListener(cancelListener);
-        return progressDialog;
+        try {
+            ProgressDialog progressDialog = ProgressDialog.show(context, title, content, isCancel);
+            progressDialog.setOnCancelListener(cancelListener);
+            return progressDialog;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createProgressDialog");
+        }
+        return null;
     }
 
     // =
