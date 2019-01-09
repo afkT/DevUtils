@@ -16,6 +16,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
+import dev.utils.JCLogUtils;
+
 /**
  * detail: 压缩相关工具类
  * Created by Ttt
@@ -25,6 +27,8 @@ public final class ZipUtils {
     private ZipUtils() {
     }
 
+    // 日志 TAG
+    private static final String TAG = ZipUtils.class.getSimpleName();
     // 缓存大小
     private static final int BUFFER_LEN = 8192;
 
@@ -245,20 +249,28 @@ public final class ZipUtils {
     public static List<File> unzipFileByKeyword(final File zipFile, final File destDir, final String keyword) throws IOException {
         if (zipFile == null || destDir == null) return null;
         List<File> files = new ArrayList<>();
-        ZipFile zf = new ZipFile(zipFile);
-        Enumeration<?> entries = zf.entries();
+        ZipFile zip = new ZipFile(zipFile);
+        Enumeration<?> entries = zip.entries();
         if (isSpace(keyword)) {
             while (entries.hasMoreElements()) {
                 ZipEntry entry = ((ZipEntry) entries.nextElement());
                 String entryName = entry.getName();
-                if (!unzipChildFile(destDir, files, zf, entry, entryName)) return files;
+                if (entryName.contains("../")) {
+                    JCLogUtils.dTag(TAG, ("entryName: " + entryName + " is dangerous!"));
+                    continue;
+                }
+                if (!unzipChildFile(destDir, files, zip, entry, entryName)) return files;
             }
         } else {
             while (entries.hasMoreElements()) {
                 ZipEntry entry = ((ZipEntry) entries.nextElement());
                 String entryName = entry.getName();
+                if (entryName.contains("../")) {
+                    JCLogUtils.dTag(TAG, ("entryName: " + entryName + " is dangerous!"));
+                    continue;
+                }
                 if (entryName.contains(keyword)) {
-                    if (!unzipChildFile(destDir, files, zf, entry, entryName)) return files;
+                    if (!unzipChildFile(destDir, files, zip, entry, entryName)) return files;
                 }
             }
         }
@@ -276,8 +288,7 @@ public final class ZipUtils {
      * @throws IOException
      */
     private static boolean unzipChildFile(final File destDir, final List<File> files, final ZipFile zf, final ZipEntry entry, final String entryName) throws IOException {
-        String filePath = destDir + File.separator + entryName;
-        File file = new File(filePath);
+        File file = new File(destDir, entryName);
         files.add(file);
         if (entry.isDirectory()) {
             if (!createOrExistsDir(file)) return false;
@@ -321,7 +332,14 @@ public final class ZipUtils {
         List<String> paths = new ArrayList<>();
         Enumeration<?> entries = new ZipFile(zipFile).entries();
         while (entries.hasMoreElements()) {
-            paths.add(((ZipEntry) entries.nextElement()).getName());
+            String entryName = ((ZipEntry) entries.nextElement()).getName();
+            if (entryName.contains("../")) {
+                JCLogUtils.dTag(TAG, ("entryName: " + entryName + " is dangerous!"));
+                // =
+                paths.add(entryName);
+            } else {
+                paths.add(entryName);
+            }
         }
         return paths;
     }
