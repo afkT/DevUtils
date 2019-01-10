@@ -271,7 +271,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     /**
      * 判断是否显示
      * @param view
-     * @return
+     * @return true: 接着执行, false: 过滤不处理
      */
     @Override
     public boolean filter(View view) {
@@ -284,7 +284,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     /**
      * 判断是否显示
      * @param content
-     * @return
+     * @return true: 接着执行, false: 过滤不处理
      */
     @Override
     public boolean filter(String content) {
@@ -297,7 +297,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     /**
      * 获取 Toast 显示的文案
      * @param content
-     * @return
+     * @return 处理后的内容
      */
     @Override
     public String handlerContent(String content) {
@@ -379,9 +379,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @return
      */
     private Toast newToastText(IToast.Style style, String text) {
-        if (style == null){
-            return null;
-        }
+        if (style == null) return null;
         // 设置为null, 便于提示排查
         if (TextUtils.isEmpty(text)) {
             text = mNullText;
@@ -478,9 +476,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param duration
      */
     private void priShowToastView(final View view, final int duration) {
-        if (view == null) {
-            return; // 防止显示的View 为null
-        }
+        if (view == null) return;
         // 获取样式
         final IToast.Style style = getThreadToastStyle();
         // =

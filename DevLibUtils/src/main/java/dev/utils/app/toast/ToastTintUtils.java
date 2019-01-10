@@ -41,6 +41,8 @@ public final class ToastTintUtils {
 
     // 日志 TAG
     private static final String TAG = ToastTintUtils.class.getSimpleName();
+    // Toast 判断过滤
+    private static ToastTintUtils.Filter sToastFilter = null;
     // 内部持有单个Toast
     private static Toast mToast = null;
     // 判断是否使用 Handler
@@ -88,6 +90,14 @@ public final class ToastTintUtils {
         mNullText = "text is null";
         mGravity = mX = mY = 0;
         mHorizontalMargin = mVerticalMargin = 0.0f;
+    }
+
+    /**
+     * 设置 Toast 过滤器
+     * @param toastFilter
+     */
+    public static void setToastFilter(ToastTintUtils.Filter toastFilter) {
+        ToastTintUtils.sToastFilter = toastFilter;
     }
 
     /**
@@ -283,339 +293,339 @@ public final class ToastTintUtils {
     // === normal ===
 
     /** normal 样式 Toast */
-    public static void normal(CharSequence text) {
+    public static void normal(String text) {
         custom(true, null, normalStyle, text, Toast.LENGTH_SHORT, null);
     }
 
     /** normal 样式 Toast */
-    public static void normal(CharSequence text, int duration) {
+    public static void normal(String text, int duration) {
         custom(true, null, normalStyle, text, duration, null);
     }
 
     /** normal 样式 Toast */
-    public static void normal(CharSequence text, Drawable icon) {
+    public static void normal(String text, Drawable icon) {
         custom(true, null, normalStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** normal 样式 Toast */
-    public static void normal(CharSequence text, int duration, Drawable icon) {
+    public static void normal(String text, int duration, Drawable icon) {
         custom(true, null, normalStyle, text, duration, icon);
     }
 
     // =
 
     /** normal 样式 Toast */
-    public static void normal(boolean isSingle, CharSequence text) {
+    public static void normal(boolean isSingle, String text) {
         custom(isSingle, null, normalStyle, text, Toast.LENGTH_SHORT, null);
     }
 
     /** normal 样式 Toast */
-    public static void normal(boolean isSingle, CharSequence text, int duration) {
+    public static void normal(boolean isSingle, String text, int duration) {
         custom(isSingle, null, normalStyle, text, duration, null);
     }
 
     /** normal 样式 Toast */
-    public static void normal(boolean isSingle, CharSequence text, Drawable icon) {
+    public static void normal(boolean isSingle, String text, Drawable icon) {
         custom(isSingle, null, normalStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** normal 样式 Toast */
-    public static void normal(boolean isSingle, CharSequence text, int duration, Drawable icon) {
+    public static void normal(boolean isSingle, String text, int duration, Drawable icon) {
         custom(isSingle, null, normalStyle, text, duration, icon);
     }
 
 //    // =
 //
-//    public static void normal(Context context, CharSequence text) {
+//    public static void normal(Context context, String text) {
 //        custom(true, context, normalStyle, text, Toast.LENGTH_SHORT, null);
 //    }
 //
-//    public static void normal(Context context, CharSequence text, int duration) {
+//    public static void normal(Context context, String text, int duration) {
 //        custom(true, context, normalStyle, text, duration, null);
 //    }
 //
-//    public static void normal(Context context, CharSequence text, Drawable icon) {
+//    public static void normal(Context context, String text, Drawable icon) {
 //        custom(true, context, normalStyle, text, Toast.LENGTH_SHORT, icon);
 //    }
 //
-//    public static void normal(Context context, CharSequence text, int duration, Drawable icon) {
+//    public static void normal(Context context, String text, int duration, Drawable icon) {
 //        custom(true, context, normalStyle, text, duration, icon);
 //    }
 //
 //    // =
 //
-//    public static void normal(boolean isSingle, Context context, CharSequence text) {
+//    public static void normal(boolean isSingle, Context context, String text) {
 //        custom(isSingle, context, normalStyle, text, Toast.LENGTH_SHORT, null);
 //    }
 //
-//    public static void normal(boolean isSingle, Context context, CharSequence text, int duration) {
+//    public static void normal(boolean isSingle, Context context, String text, int duration) {
 //        custom(isSingle, context, normalStyle, text, duration, null);
 //    }
 //
-//    public static void normal(boolean isSingle, Context context, CharSequence text, Drawable icon) {
+//    public static void normal(boolean isSingle, Context context, String text, Drawable icon) {
 //        custom(isSingle, context, normalStyle, text, Toast.LENGTH_SHORT, icon);
 //    }
 //
-//    public static void normal(boolean isSingle, Context context, CharSequence text, int duration, Drawable icon) {
+//    public static void normal(boolean isSingle, Context context, String text, int duration, Drawable icon) {
 //        custom(isSingle, context, normalStyle, text, Toast.LENGTH_SHORT, icon);
 //    }
 
     // === info ===
 
     /** info 样式 Toast */
-    public static void info(CharSequence text) {
+    public static void info(String text) {
         custom(true, null, infoStyle, text, Toast.LENGTH_SHORT, getInfoDrawable());
     }
 
     /** info 样式 Toast */
-    public static void info(CharSequence text, int duration) {
+    public static void info(String text, int duration) {
         custom(true, null, infoStyle, text, duration, getInfoDrawable());
     }
 
     /** info 样式 Toast */
-    public static void info(CharSequence text, Drawable icon) {
+    public static void info(String text, Drawable icon) {
         custom(true, null, infoStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** info 样式 Toast */
-    public static void info(CharSequence text, int duration, Drawable icon) {
+    public static void info(String text, int duration, Drawable icon) {
         custom(true, null, infoStyle, text, duration, icon);
     }
 
     // =
 
     /** info 样式 Toast */
-    public static void info(boolean isSingle, CharSequence text) {
+    public static void info(boolean isSingle, String text) {
         custom(isSingle, null, infoStyle, text, Toast.LENGTH_SHORT, getInfoDrawable());
     }
 
     /** info 样式 Toast */
-    public static void info(boolean isSingle, CharSequence text, int duration) {
+    public static void info(boolean isSingle, String text, int duration) {
         custom(isSingle, null, infoStyle, text, duration, getInfoDrawable());
     }
 
     /** info 样式 Toast */
-    public static void info(boolean isSingle, CharSequence text, Drawable icon) {
+    public static void info(boolean isSingle, String text, Drawable icon) {
         custom(isSingle, null, infoStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** info 样式 Toast */
-    public static void info(boolean isSingle, CharSequence text, int duration, Drawable icon) {
+    public static void info(boolean isSingle, String text, int duration, Drawable icon) {
         custom(isSingle, null, infoStyle, text, duration, icon);
     }
 
     // === warning ===
 
     /** warning 样式 Toast */
-    public static void warning(CharSequence text) {
+    public static void warning(String text) {
         custom(true, null, warningStyle, text, Toast.LENGTH_SHORT, getWarningDrawable());
     }
 
     /** warning 样式 Toast */
-    public static void warning(CharSequence text, int duration) {
+    public static void warning(String text, int duration) {
         custom(true, null, warningStyle, text, duration, getWarningDrawable());
     }
 
     /** warning 样式 Toast */
-    public static void warning(CharSequence text, Drawable icon) {
+    public static void warning(String text, Drawable icon) {
         custom(true, null, warningStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** warning 样式 Toast */
-    public static void warning(CharSequence text, int duration, Drawable icon) {
+    public static void warning(String text, int duration, Drawable icon) {
         custom(true, null, warningStyle, text, duration, icon);
     }
 
     // =
 
     /** warning 样式 Toast */
-    public static void warning(boolean isSingle, CharSequence text) {
+    public static void warning(boolean isSingle, String text) {
         custom(isSingle, null, warningStyle, text, Toast.LENGTH_SHORT, getWarningDrawable());
     }
 
     /** warning 样式 Toast */
-    public static void warning(boolean isSingle, CharSequence text, int duration) {
+    public static void warning(boolean isSingle, String text, int duration) {
         custom(isSingle, null, warningStyle, text, duration, getWarningDrawable());
     }
 
     /** warning 样式 Toast */
-    public static void warning(boolean isSingle, CharSequence text, Drawable icon) {
+    public static void warning(boolean isSingle, String text, Drawable icon) {
         custom(isSingle, null, warningStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** warning 样式 Toast */
-    public static void warning(boolean isSingle, CharSequence text, int duration, Drawable icon) {
+    public static void warning(boolean isSingle, String text, int duration, Drawable icon) {
         custom(isSingle, null, warningStyle, text, duration, icon);
     }
 
     // === error ===
 
     /** error 样式 Toast */
-    public static void error(CharSequence text) {
+    public static void error(String text) {
         custom(true, null, errorStyle, text, Toast.LENGTH_SHORT, getErrorDrawable());
     }
 
     /** error 样式 Toast */
-    public static void error(CharSequence text, int duration) {
+    public static void error(String text, int duration) {
         custom(true, null, errorStyle, text, duration, getErrorDrawable());
     }
 
     /** error 样式 Toast */
-    public static void error(CharSequence text, Drawable icon) {
+    public static void error(String text, Drawable icon) {
         custom(true, null, errorStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** error 样式 Toast */
-    public static void error(CharSequence text, int duration, Drawable icon) {
+    public static void error(String text, int duration, Drawable icon) {
         custom(true, null, errorStyle, text, duration, icon);
     }
 
     // =
 
     /** error 样式 Toast */
-    public static void error(boolean isSingle, CharSequence text) {
+    public static void error(boolean isSingle, String text) {
         custom(isSingle, null, errorStyle, text, Toast.LENGTH_SHORT, getErrorDrawable());
     }
 
     /** error 样式 Toast */
-    public static void error(boolean isSingle, CharSequence text, int duration) {
+    public static void error(boolean isSingle, String text, int duration) {
         custom(isSingle, null, errorStyle, text, duration, getErrorDrawable());
     }
 
     /** error 样式 Toast */
-    public static void error(boolean isSingle, CharSequence text, Drawable icon) {
+    public static void error(boolean isSingle, String text, Drawable icon) {
         custom(isSingle, null, errorStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** error 样式 Toast */
-    public static void error(boolean isSingle, CharSequence text, int duration, Drawable icon) {
+    public static void error(boolean isSingle, String text, int duration, Drawable icon) {
         custom(isSingle, null, errorStyle, text, duration, icon);
     }
 
     // === success ===
 
     /** success 样式 Toast */
-    public static void success(CharSequence text) {
+    public static void success(String text) {
         custom(true, null, successStyle, text, Toast.LENGTH_SHORT, getSuccessDrawable());
     }
 
     /** success 样式 Toast */
-    public static void success(CharSequence text, int duration) {
+    public static void success(String text, int duration) {
         custom(true, null, successStyle, text, duration, getSuccessDrawable());
     }
 
     /** success 样式 Toast */
-    public static void success(CharSequence text, Drawable icon) {
+    public static void success(String text, Drawable icon) {
         custom(true, null, successStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** success 样式 Toast */
-    public static void success(CharSequence text, int duration, Drawable icon) {
+    public static void success(String text, int duration, Drawable icon) {
         custom(true, null, successStyle, text, duration, icon);
     }
 
     // =
 
     /** success 样式 Toast */
-    public static void success(boolean isSingle, CharSequence text) {
+    public static void success(boolean isSingle, String text) {
         custom(isSingle, null, successStyle, text, Toast.LENGTH_SHORT, getSuccessDrawable());
     }
 
     /** success 样式 Toast */
-    public static void success(boolean isSingle, CharSequence text, int duration) {
+    public static void success(boolean isSingle, String text, int duration) {
         custom(isSingle, null, successStyle, text, duration, getSuccessDrawable());
     }
 
     /** success 样式 Toast */
-    public static void success(boolean isSingle, CharSequence text, Drawable icon) {
+    public static void success(boolean isSingle, String text, Drawable icon) {
         custom(isSingle, null, successStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** success 样式 Toast */
-    public static void success(boolean isSingle, CharSequence text, int duration, Drawable icon) {
+    public static void success(boolean isSingle, String text, int duration, Drawable icon) {
         custom(isSingle, null, successStyle, text, duration, icon);
     }
 
     // === custom ===
 
     /** custom Toast */
-    public static void custom(ToastTintUtils.Style style, CharSequence text) {
+    public static void custom(ToastTintUtils.Style style, String text) {
         custom(true, null, style, text, Toast.LENGTH_SHORT, null);
     }
 
     /** custom Toast */
-    public static void custom(ToastTintUtils.Style style, CharSequence text, int duration) {
+    public static void custom(ToastTintUtils.Style style, String text, int duration) {
         custom(true, null, style, text, duration, null);
     }
 
     /** custom Toast */
-    public static void custom(ToastTintUtils.Style style, CharSequence text, Drawable icon) {
+    public static void custom(ToastTintUtils.Style style, String text, Drawable icon) {
         custom(true, null, style, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** custom Toast */
-    public static void custom(ToastTintUtils.Style style, CharSequence text, int duration, Drawable icon) {
+    public static void custom(ToastTintUtils.Style style, String text, int duration, Drawable icon) {
         custom(true, null, style, text, duration, icon);
     }
 
     // =
 
     /** custom Toast */
-    public static void custom(boolean isSingle, ToastTintUtils.Style style, CharSequence text) {
+    public static void custom(boolean isSingle, ToastTintUtils.Style style, String text) {
         custom(isSingle, null, style, text, Toast.LENGTH_SHORT, null);
     }
 
     /** custom Toast */
-    public static void custom(boolean isSingle, ToastTintUtils.Style style, CharSequence text, int duration) {
+    public static void custom(boolean isSingle, ToastTintUtils.Style style, String text, int duration) {
         custom(isSingle, null, style, text, duration, null);
     }
 
     /** custom Toast */
-    public static void custom(boolean isSingle, ToastTintUtils.Style style, CharSequence text, Drawable icon) {
+    public static void custom(boolean isSingle, ToastTintUtils.Style style, String text, Drawable icon) {
         custom(isSingle, null, style, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** custom Toast */
-    public static void custom(boolean isSingle, ToastTintUtils.Style style, CharSequence text, int duration, Drawable icon) {
+    public static void custom(boolean isSingle, ToastTintUtils.Style style, String text, int duration, Drawable icon) {
         custom(isSingle, null, style, text, duration, icon);
     }
 
     // =
 
     /** custom Toast */
-    public static void custom(Context context, ToastTintUtils.Style style, CharSequence text) {
+    public static void custom(Context context, ToastTintUtils.Style style, String text) {
         custom(true, context, style, text, Toast.LENGTH_SHORT, null);
     }
 
     /** custom Toast */
-    public static void custom(Context context, ToastTintUtils.Style style, CharSequence text, int duration) {
+    public static void custom(Context context, ToastTintUtils.Style style, String text, int duration) {
         custom(true, context, style, text, duration, null);
     }
 
     /** custom Toast */
-    public static void custom(Context context, ToastTintUtils.Style style, CharSequence text, Drawable icon) {
+    public static void custom(Context context, ToastTintUtils.Style style, String text, Drawable icon) {
         custom(true, context, style, text, Toast.LENGTH_SHORT, icon);
     }
 
     /** custom Toast */
-    public static void custom(Context context, ToastTintUtils.Style style, CharSequence text, int duration, Drawable icon) {
+    public static void custom(Context context, ToastTintUtils.Style style, String text, int duration, Drawable icon) {
         custom(true, context, style, text, duration, icon);
     }
 
     // =
 
     /** custom Toast */
-    public static void custom(boolean isSingle, Context context, ToastTintUtils.Style style, CharSequence text) {
+    public static void custom(boolean isSingle, Context context, ToastTintUtils.Style style, String text) {
         custom(isSingle, context, style, text, Toast.LENGTH_SHORT, null);
     }
 
     /** custom Toast */
-    public static void custom(boolean isSingle, Context context, ToastTintUtils.Style style, CharSequence text, int duration) {
+    public static void custom(boolean isSingle, Context context, ToastTintUtils.Style style, String text, int duration) {
         custom(isSingle, context, style, text, duration, null);
     }
 
     /** custom Toast */
-    public static void custom(boolean isSingle, Context context, ToastTintUtils.Style style, CharSequence text, Drawable icon) {
+    public static void custom(boolean isSingle, Context context, ToastTintUtils.Style style, String text, Drawable icon) {
         custom(isSingle, context, style, text, Toast.LENGTH_SHORT, icon);
     }
 
@@ -628,7 +638,7 @@ public final class ToastTintUtils {
      * @param duration 显示时长
      * @param icon 图标
      */
-    public static void custom(boolean isSingle, Context context, ToastTintUtils.Style style, CharSequence text, int duration, Drawable icon) {
+    public static void custom(boolean isSingle, Context context, ToastTintUtils.Style style, String text, int duration, Drawable icon) {
         // 获取View
         View view = inflaterView(context, style, text, icon);
         // 显示Toast
@@ -647,9 +657,7 @@ public final class ToastTintUtils {
      * @param duration
      */
     private static void showToastView(final boolean isSingle, final Context context, final View view, final int duration) {
-        if (view == null) {
-            return; // 防止显示的View 为null
-        }
+        if (view == null) return;
         if (mIsHandler) {
             sHandler.post(new Runnable() {
                 @Override
@@ -752,7 +760,7 @@ public final class ToastTintUtils {
      * @param icon
      * @return
      */
-    private static View inflaterView(Context context, ToastTintUtils.Style style, CharSequence text, Drawable icon) {
+    private static View inflaterView(Context context, ToastTintUtils.Style style, String text, Drawable icon) {
         if (context == null) {
             context = DevUtils.getContext();
         }
@@ -760,6 +768,12 @@ public final class ToastTintUtils {
         if (style == null) {
             return null;
         }
+        // 判断是否过滤
+        if (!sPriToastFilter.filter(text)){
+            return null;
+        }
+        // 处理内容
+        text = sPriToastFilter.handlerContent(text);
         // 设置为null, 便于提示排查
         if (TextUtils.isEmpty(text)) {
             text = mNullText;
@@ -1212,4 +1226,62 @@ public final class ToastTintUtils {
             return true;
         }
     }
+
+
+    // == 其他接口 ==
+
+    /**
+     * detail: Toast 过滤器
+     * Created by Ttt
+     */
+    public interface Filter {
+
+        /**
+         * 判断是否显示
+         * @param content
+         * @return true: 接着执行, false: 过滤不处理
+         */
+        boolean filter(String content);
+
+        /**
+         * 获取 Toast 显示的文案
+         * @param content
+         * @return 处理后的内容
+         */
+        String handlerContent(String content);
+    }
+
+    // === ToastTintUtils.Filter 实现方法 ===
+
+    /**
+     * 内部 Toast Filter 实现对象
+     */
+    private final static ToastTintUtils.Filter sPriToastFilter = new ToastTintUtils.Filter() {
+
+        /**
+         * 判断是否显示
+         * @param content
+         * @return true: 接着执行, false: 过滤不处理
+         */
+        @Override
+        public boolean filter(String content) {
+            if (sToastFilter != null) {
+                return sToastFilter.filter(content);
+            }
+            return true;
+        }
+
+        /**
+         * 获取 Toast 显示的文案
+         * @param content
+         * @return 处理后的内容
+         */
+        @Override
+        public String handlerContent(String content) {
+            if (sToastFilter != null) {
+                return sToastFilter.handlerContent(content);
+            }
+            return content;
+        }
+    };
 }

@@ -29,6 +29,8 @@ public final class ToastUtils {
 
 	// 日志TAG
 	private static final String TAG = ToastUtils.class.getSimpleName();
+	// Toast 判断过滤
+	private static ToastUtils.Filter sToastFilter = null;
 	// 内部持有单个Toast
 	private static Toast mToast = null;
 	// 判断是否使用 Handler
@@ -54,6 +56,14 @@ public final class ToastUtils {
 		mNullText = "text is null";
 		mGravity = mX = mY = 0;
 		mHorizontalMargin = mVerticalMargin = 0.0f;
+	}
+
+	/**
+	 * 设置 Toast 过滤器
+	 * @param toastFilter
+	 */
+	public static void setToastFilter(ToastUtils.Filter toastFilter) {
+		ToastUtils.sToastFilter = toastFilter;
 	}
 
 	/**
@@ -421,6 +431,12 @@ public final class ToastUtils {
 		if (context == null) {
 			context = DevUtils.getContext();
 		}
+        // 判断是否过滤
+        if (!sPriToastFilter.filter(text)){
+            return null;
+        }
+        // 处理内容
+        text = sPriToastFilter.handlerContent(text);
 		// 设置为null, 便于提示排查
 		if (TextUtils.isEmpty(text)) {
 			text = mNullText;
@@ -523,9 +539,7 @@ public final class ToastUtils {
 	 * @param duration
 	 */
 	public static void showToastView(final boolean isSingle, final Context context, final View view, final int duration) {
-		if (view == null) {
-			return; // 防止显示的View 为null
-		}
+		if (view == null) return;
 		if (mIsHandler) {
 			sHandler.post(new Runnable() {
 				@Override
@@ -564,6 +578,10 @@ public final class ToastUtils {
 		if (context == null) {
 			context = DevUtils.getContext();
 		}
+        // 判断是否过滤
+        if (!sPriToastFilter.filter(view)){
+            return null;
+        }
 		// 防止 Context 为null
 		if (context == null) {
 			return null;
@@ -637,7 +655,7 @@ public final class ToastUtils {
 			context = DevUtils.getContext();
 		}
 		if (context != null) {
-			String text;
+			String text = null;
 			try {
 				// 获取字符串并且进行格式化
 				if (objs != null && objs.length != 0) {
@@ -647,7 +665,6 @@ public final class ToastUtils {
 				}
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "handlerToastRes");
-				text = e.getMessage();
 			}
 			priShowToastText(isSingle, context, text, duration);
 		}
@@ -736,4 +753,81 @@ public final class ToastUtils {
 			}
 		}
 	}
+
+	// == 其他接口 ==
+
+	/**
+	 * detail: Toast 过滤器
+	 * Created by Ttt
+	 */
+	public interface Filter {
+
+		/**
+		 * 判断是否显示
+		 * @param view
+		 * @return true: 接着执行, false: 过滤不处理
+		 */
+		boolean filter(View view);
+
+		/**
+		 * 判断是否显示
+		 * @param content
+		 * @return true: 接着执行, false: 过滤不处理
+		 */
+		boolean filter(String content);
+
+		/**
+		 * 获取 Toast 显示的文案
+		 * @param content
+		 * @return 处理后的内容
+		 */
+		String handlerContent(String content);
+	}
+
+	// === ToastUtils.Filter 实现方法 ===
+
+	/**
+	 * 内部 Toast Filter 实现对象
+	 */
+	private final static ToastUtils.Filter sPriToastFilter = new Filter() {
+
+		/**
+		 * 判断是否显示
+		 * @param view
+		 * @return true: 接着执行, false: 过滤不处理
+		 */
+		@Override
+		public boolean filter(View view) {
+			if (sToastFilter != null) {
+				return sToastFilter.filter(view);
+			}
+			return (view != null);
+		}
+
+		/**
+		 * 判断是否显示
+		 * @param content
+		 * @return true: 接着执行, false: 过滤不处理
+		 */
+		@Override
+		public boolean filter(String content) {
+			if (sToastFilter != null) {
+				return sToastFilter.filter(content);
+			}
+			return true;
+		}
+
+		/**
+		 * 获取 Toast 显示的文案
+		 * @param content
+		 * @return 处理后的内容
+		 */
+		@Override
+		public String handlerContent(String content) {
+			if (sToastFilter != null) {
+				return sToastFilter.handlerContent(content);
+			}
+			return content;
+		}
+	};
 }
