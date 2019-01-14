@@ -1110,7 +1110,8 @@ public final class ToastTintUtils {
          */
         @Override
         public Typeface getTypeface() {
-            return Typeface.create("sans-serif-condensed", Typeface.NORMAL);
+            // return Typeface.create("sans-serif-condensed", Typeface.NORMAL);
+            return null;
         }
 
         /**

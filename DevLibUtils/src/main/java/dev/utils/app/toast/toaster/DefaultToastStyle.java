@@ -136,7 +136,8 @@ public class DefaultToastStyle implements IToast.Style {
      */
     @Override
     public Typeface getTypeface() {
-        return Typeface.create("sans-serif-condensed", Typeface.NORMAL);
+        // return Typeface.create("sans-serif-condensed", Typeface.NORMAL);
+        return null;
     }
 
     /**

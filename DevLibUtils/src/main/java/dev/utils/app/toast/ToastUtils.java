@@ -190,7 +190,7 @@ public final class ToastUtils {
 	 * @param resId
 	 * @param objs
 	 */
-	public static void showLong(int resId, Object...objs) {
+	public static void showLong(int resId, Object... objs) {
 		showLong(null, resId, objs);
 	}
 
@@ -200,7 +200,7 @@ public final class ToastUtils {
 	 * @param resId
 	 * @param objs
 	 */
-	public static void showLong(Context context, int resId, Object...objs) {
+	public static void showLong(Context context, int resId, Object... objs) {
 		handlerToastRes(true, context, resId, Toast.LENGTH_LONG, objs);
 	}
 
@@ -324,7 +324,7 @@ public final class ToastUtils {
 	 * @param resId
 	 * @param objs
 	 */
-	public static void showLongNew(int resId, Object...objs) {
+	public static void showLongNew(int resId, Object... objs) {
 		showLongNew(null, resId, objs);
 	}
 
@@ -334,7 +334,7 @@ public final class ToastUtils {
 	 * @param resId
 	 * @param objs
 	 */
-	public static void showLongNew(Context context, int resId, Object...objs) {
+	public static void showLongNew(Context context, int resId, Object... objs) {
 		handlerToastRes(false, context, resId, Toast.LENGTH_LONG, objs);
 	}
 
