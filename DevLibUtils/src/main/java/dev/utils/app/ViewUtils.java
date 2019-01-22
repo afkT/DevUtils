@@ -402,23 +402,27 @@ public final class ViewUtils {
     }
 
     /**
-     * 测量 view
+     * 测量 View
      * @param view
      */
     public static void measureView(View view) {
-        ViewGroup.LayoutParams p = view.getLayoutParams();
-        if (p == null) {
-            p = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        try {
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (layoutParams == null) {
+                layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            }
+            int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
+            int lpHeight = layoutParams.height;
+            int heightSpec;
+            if (lpHeight > 0) {
+                heightSpec = View.MeasureSpec.makeMeasureSpec(lpHeight, View.MeasureSpec.EXACTLY);
+            } else {
+                heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            }
+            view.measure(widthSpec, heightSpec);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "measureView");
         }
-        int childWidthSpec = ViewGroup.getChildMeasureSpec(0, 0, p.width);
-        int lpHeight = p.height;
-        int childHeightSpec;
-        if (lpHeight > 0) {
-            childHeightSpec = View.MeasureSpec.makeMeasureSpec(lpHeight, View.MeasureSpec.EXACTLY);
-        } else {
-            childHeightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        }
-        view.measure(childWidthSpec, childHeightSpec);
     }
 
     /**
