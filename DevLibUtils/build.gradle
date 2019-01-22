@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-def dev_utils_version = "1.2.8";
+def dev_utils_version = "1.2.9";
 
 android {
     compileSdkVersion 28
@@ -42,6 +42,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
 }
 
 // == 打包, 包含注释 ==
