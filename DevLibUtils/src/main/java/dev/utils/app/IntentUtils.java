@@ -76,8 +76,8 @@ public final class IntentUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             data = Uri.fromFile(file);
         } else {
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             data = FileProvider.getUriForFile(DevUtils.getContext(), authority, file);
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
         intent.setDataAndType(data, type);
         return getIntent(intent, isNewTask);

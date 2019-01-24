@@ -275,7 +275,7 @@ public final class DeviceUtils {
      * 需添加权限 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
      * @return
      */
-    @SuppressLint({"HardwareIds", "MissingPermission"})
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     private static String getMacAddressByWifiInfo() {
         try {
             @SuppressLint("WifiManagerLeak")

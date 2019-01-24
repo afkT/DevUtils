@@ -667,7 +667,7 @@ public final class AnalysisRecordUtils {
             File file = new File(storagePath, fPath);
             // 防止不存在目录文件，自动创建
             createFolder(file);
-            // 返回头像地址
+            // 返回缓存地址
             return file.getAbsolutePath();
         }
 

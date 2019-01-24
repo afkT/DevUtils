@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -34,6 +35,8 @@ import java.util.UUID;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+
+import static android.Manifest.permission.READ_PHONE_STATE;
 
 /**
  * detail: 手机相关工具类
@@ -157,6 +160,24 @@ public final class PhoneUtils {
     }
 
     /**
+     * 获取 MEID 移动设备识别码
+     * @param slotId
+     * @return
+     */
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
+    public static String getMEID(int slotId) {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return telephonyManager.getMeid(slotId);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMEID");
+        }
+        return null;
+    }
+
+    /**
      * 获取 IMEI 码
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return IMEI 码
@@ -169,15 +190,58 @@ public final class PhoneUtils {
      * 3. 之后的6位数(SNR)是”串号”，一般代表生产顺序号
      * 4. 最后1位数(SP)通常是”0″，为检验码，目前暂备用
      */
-    @SuppressLint({"HardwareIds", "MissingPermission"})
+    @SuppressLint({"HardwareIds"})
+    @RequiresPermission(READ_PHONE_STATE)
     public static String getIMEI() {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-            return telephonyManager != null ? telephonyManager.getDeviceId() : null;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return telephonyManager.getImei();
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                try {
+                    Class clazz = telephonyManager.getClass();
+                    Method getImeiMethod = clazz.getDeclaredMethod("getImei");
+                    getImeiMethod.setAccessible(true);
+                    String imei = (String) getImeiMethod.invoke(telephonyManager);
+                    if (imei != null) return imei;
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getIMEI");
+                }
+            }
+            return telephonyManager.getDeviceId();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIMEI");
         }
         return null;
+    }
+
+    /**
+     * 获取 IMEI 码
+     * @param slotId
+     * @return IMEI 码
+     */
+    @SuppressLint({"HardwareIds"})
+    @RequiresPermission(READ_PHONE_STATE)
+    public static String getIMEI(int slotId) {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return telephonyManager.getImei(slotId);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                try {
+                    Class clazz = telephonyManager.getClass();
+                    Method getImeiMethod = clazz.getDeclaredMethod("getImei");
+                    getImeiMethod.setAccessible(true);
+                    String imei = (String) getImeiMethod.invoke(telephonyManager, slotId);
+                    if (imei != null) return imei;
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getIMEI");
+                }
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getIMEI");
+        }
+        return getIMEI();
     }
 
     /**
@@ -197,7 +261,8 @@ public final class PhoneUtils {
      * 中国电信：46003
      * 举例，一个典型的IMSI号码为460030912121001
      */
-    @SuppressLint({"HardwareIds", "MissingPermission"})
+    @SuppressLint({"HardwareIds"})
+    @RequiresPermission(READ_PHONE_STATE)
     public static String getIMSI() {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
@@ -304,7 +369,8 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return
      */
-    @SuppressLint({"HardwareIds", "MissingPermission"})
+    @SuppressLint({"HardwareIds"})
+    @RequiresPermission(READ_PHONE_STATE)
     public static String getDeviceId() {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
@@ -323,10 +389,7 @@ public final class PhoneUtils {
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getSerialNumber() {
         try {
-            if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.P) {
-                return Build.getSerial();
-            }
-            return android.os.Build.SERIAL;
+            return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O ? Build.getSerial() : Build.SERIAL;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSerialNumber");
         }
@@ -382,7 +445,8 @@ public final class PhoneUtils {
      * SubscriberId(IMSI) = 460030419724900<br>
      * VoiceMailNumber = *86<br>
      */
-    @SuppressLint({"HardwareIds", "MissingPermission"})
+    @SuppressLint({"HardwareIds"})
+    @RequiresPermission(READ_PHONE_STATE)
     public static String getPhoneStatus() {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
@@ -413,27 +477,47 @@ public final class PhoneUtils {
     /**
      * 跳至拨号界面
      * @param phoneNumber 电话号码
+     * @return
      */
-    public static void dial(final String phoneNumber) {
-        DevUtils.getContext().startActivity(IntentUtils.getDialIntent(phoneNumber, true));
+    public static boolean dial(final String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+        if (isIntentAvailable(intent)) {
+            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            return true;
+        }
+        return false;
     }
 
     /**
      * 拨打电话
      * <uses-permission android:name="android.permission.CALL_PHONE" />
      * @param phoneNumber 电话号码
+     * @return
      */
-    public static void call(final String phoneNumber) {
-        DevUtils.getContext().startActivity(IntentUtils.getCallIntent(phoneNumber, true));
+    public static boolean call(final String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+        if (isIntentAvailable(intent)) {
+            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            return true;
+        }
+        return false;
     }
 
     /**
      * 跳至发送短信界面
      * @param phoneNumber 接收号码
      * @param content 短信内容
+     * @return
      */
-    public static void sendSms(final String phoneNumber, final String content) {
-        DevUtils.getContext().startActivity(IntentUtils.getSendSmsIntent(phoneNumber, content, true));
+    public static boolean sendSms(final String phoneNumber, final String content) {
+        Uri uri = Uri.parse("smsto:" + phoneNumber);
+        Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+        if (isIntentAvailable(intent)) {
+            intent.putExtra("sms_body", content);
+            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -444,7 +528,7 @@ public final class PhoneUtils {
      */
     public static void sendSmsSilent(final String phoneNumber, final String content) {
         if (TextUtils.isEmpty(content)) return;
-        PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent(), 0);
+        PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent("send"), 0);
         SmsManager smsManager = SmsManager.getDefault();
         if (content.length() >= 70) {
             List<String> ms = smsManager.divideMessage(content);
@@ -556,12 +640,15 @@ public final class PhoneUtils {
 
     /**
      * 打开手机联系人界面点击联系人后便获取该号码
+     * @param activity
      */
-    public static void getContactNum() {
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.PICK");
-        intent.setType("vnd.android.cursor.dir/phone_v2");
-        ((Activity) DevUtils.getContext()).startActivityForResult(intent, 0);
+    public static void getContactNum(Activity activity) {
+        if (activity != null && !activity.isFinishing()){
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.PICK");
+            intent.setType("vnd.android.cursor.dir/phone_v2");
+            activity.startActivityForResult(intent, 0);
+        }
 
 //        @Override
 //        protected void onActivityResult (int requestCode, int resultCode, Intent data) {
@@ -840,5 +927,14 @@ public final class PhoneUtils {
             LogPrintUtils.eTag(TAG, e, "getSpreadtrumTeleInfo");
         }
         return teleInfo;
+    }
+
+    /**
+     * 判断 Intent 是否可用
+     * @param intent
+     * @return
+     */
+    private static boolean isIntentAvailable(final Intent intent) {
+        return DevUtils.getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
     }
 }

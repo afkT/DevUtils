@@ -24,6 +24,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.app.AnalysisRecordUtils;
 import dev.utils.app.FileRecordUtils;
 import dev.utils.app.HandlerUtils;
+import dev.utils.app.KeyBoardUtils;
 import dev.utils.app.cache.DevCache;
 import dev.utils.app.logger.DevLoggerUtils;
 import dev.utils.app.share.SharedUtils;
@@ -432,6 +433,8 @@ public final class DevUtils {
             mActivityList.remove(activity);
             // 通知 Activity 销毁
             consumeOnActivityDestroyedListener(activity);
+            // 修复软键盘内存泄漏 在 Activity.onDestroy() 中使用
+            KeyBoardUtils.fixSoftInputLeaks(activity);
 
             if (DevUtils.absActivityLifecycle != null){
                 DevUtils.absActivityLifecycle.onActivityDestroyed(activity);

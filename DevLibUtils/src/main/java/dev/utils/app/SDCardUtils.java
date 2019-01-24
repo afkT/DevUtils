@@ -322,7 +322,7 @@ public final class SDCardUtils {
 		String cachePath = new File(getDiskCacheDir(), fPath).getAbsolutePath();
 		// 防止不存在目录文件，自动创建
 		FileUtils.createFolder(cachePath);
-		// 返回头像地址
+		// 返回缓存地址
 		return cachePath;
 	}
 }

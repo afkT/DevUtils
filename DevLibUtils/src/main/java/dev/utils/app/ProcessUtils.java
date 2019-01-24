@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
@@ -10,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresPermission;
 import android.text.TextUtils;
 
 import java.io.BufferedReader;
@@ -23,6 +23,8 @@ import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+
+import static android.Manifest.permission.KILL_BACKGROUND_PROCESSES;
 
 /**
  * detail: 进程相关工具类
@@ -211,9 +213,9 @@ public final class ProcessUtils {
 
     /**
      * 获取后台服务进程
-     * <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
      * @return 后台服务进程
      */
+    @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static Set<String> getAllBackgroundProcesses() {
         if (DevUtils.getContext() == null) {
             return Collections.emptySet();
@@ -232,10 +234,9 @@ public final class ProcessUtils {
 
     /**
      * 杀死所有的后台服务进程
-     * <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
      * @return 被暂时杀死的服务集合
      */
-    @SuppressLint("MissingPermission")
+    @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static Set<String> killAllBackgroundProcesses() {
         if (DevUtils.getContext() == null) {
             return null;
@@ -261,11 +262,10 @@ public final class ProcessUtils {
 
     /**
      * 杀死后台服务进程
-     * <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
      * @param packageName
      * @return true : 杀死成功, false : 杀死失败
      */
-    @SuppressLint("MissingPermission")
+    @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static boolean killBackgroundProcesses(@NonNull final String packageName) {
         ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
         if (activityManager == null) return false;

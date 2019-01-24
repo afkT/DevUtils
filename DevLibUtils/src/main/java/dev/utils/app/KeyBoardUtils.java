@@ -525,7 +525,7 @@ public final class KeyBoardUtils {
 		if (context == null) return;
 		try {
 			InputMethodManager imm = (InputMethodManager) DevUtils.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-			String[] strArr = new String[]{"mCurRootView", "mServedView", "mNextServedView"};
+			String[] strArr = new String[]{"mCurRootView", "mServedView", "mNextServedView", "mLastSrvView"};
 			for (int i = 0; i < 3; i++) {
 				try {
 					Field declaredField = imm.getClass().getDeclaredField(strArr[i]);

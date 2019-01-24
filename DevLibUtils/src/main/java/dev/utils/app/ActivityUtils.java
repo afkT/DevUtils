@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -31,6 +32,28 @@ public final class ActivityUtils {
 
     // 日志TAG
     private static final String TAG = ActivityUtils.class.getSimpleName();
+
+    /**
+     * 返回 View context 所属的 Activity
+     * @param view
+     * @return
+     */
+    public static Activity getActivityByView(@NonNull final View view) {
+        if (view != null) {
+            try {
+                Context context = view.getContext();
+                while (context instanceof ContextWrapper) {
+                    if (context instanceof Activity) {
+                        return (Activity) context;
+                    }
+                    context = ((ContextWrapper) context).getBaseContext();
+                }
+            } catch (Exception e) {
+                LogPrintUtils.e(TAG, e, "getActivityByView");
+            }
+        }
+        return null;
+    }
 
     /**
      * 判断是否存在指定的Activity
