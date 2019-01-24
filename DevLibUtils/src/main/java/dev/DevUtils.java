@@ -247,11 +247,19 @@ public final class DevUtils {
     // == 工具类版本 ==
 
     /**
-     * 获取工具类版本
+     * 获取工具类版本 - VERSION_NAME
      * @return
      */
     public static String getUtilsVersion() {
         return BuildConfig.VERSION_NAME;
+    }
+
+    /**
+     * 获取工具类版本 - VERSION_CODE
+     * @return
+     */
+    public static int getUtilsVersionCode() {
+        return BuildConfig.VERSION_CODE;
     }
 
     // =======================
