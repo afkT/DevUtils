@@ -64,7 +64,7 @@ public class BaseApplication extends Application{
         logConfig.logLevel = LogLevel.DEBUG;
         logConfig.tag = LOG_TAG;
         DevLogger.init(logConfig);
-        // 打开 lib 内部日志
+        // 打开 lib 内部日志 -  线上环境, 不调用方法就行
         DevUtils.openLog();
         DevUtils.openDebug();
     }
