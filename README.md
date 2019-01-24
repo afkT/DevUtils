@@ -34,7 +34,7 @@ dependencies {
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/README.md)
 
-- [Use and Config](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/USE_CONFIG.md)
+- [Use and Config](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/USE_CONFIG.md)
 
 
 ## Use
