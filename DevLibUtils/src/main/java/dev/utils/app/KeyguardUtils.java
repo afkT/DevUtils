@@ -94,6 +94,7 @@ public final class KeyguardUtils {
     /**
      * 屏蔽系统的屏保
      * 利用 disableKeyguard 解锁, 解锁并不是真正的解锁, 只是把锁屏的界面隐藏掉而已
+     * <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
     public void disableKeyguard() {
@@ -102,6 +103,7 @@ public final class KeyguardUtils {
 
     /**
      * 使能显示锁屏界面，如果你之前调用了disableKeyguard()方法取消锁屏界面，那么会马上显示锁屏界面。
+     * <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
     public void reenableKeyguard() {
@@ -110,6 +112,7 @@ public final class KeyguardUtils {
 
     /**
      * 释放资源
+     * <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
     public void release() {

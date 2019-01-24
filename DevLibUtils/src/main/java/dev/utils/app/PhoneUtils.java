@@ -36,7 +36,13 @@ import java.util.UUID;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
+import static android.Manifest.permission.CALL_PHONE;
+import static android.Manifest.permission.READ_CONTACTS;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_STATE;
+import static android.Manifest.permission.READ_SMS;
+import static android.Manifest.permission.SEND_SMS;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 /**
  * detail: 手机相关工具类
@@ -144,6 +150,7 @@ public final class PhoneUtils {
 
     /**
      * 获取 MEID 移动设备识别码
+     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
@@ -161,6 +168,7 @@ public final class PhoneUtils {
 
     /**
      * 获取 MEID 移动设备识别码
+     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @param slotId
      * @return
      */
@@ -217,6 +225,7 @@ public final class PhoneUtils {
 
     /**
      * 获取 IMEI 码
+     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @param slotId
      * @return IMEI 码
      */
@@ -384,6 +393,7 @@ public final class PhoneUtils {
 
     /**
      * 返回设备序列化
+     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
@@ -413,6 +423,7 @@ public final class PhoneUtils {
 
     /**
      * 获取设备唯一id
+     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
@@ -494,6 +505,7 @@ public final class PhoneUtils {
      * @param phoneNumber 电话号码
      * @return
      */
+    @RequiresPermission(CALL_PHONE)
     public static boolean call(final String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
         if (isIntentAvailable(intent)) {
@@ -526,6 +538,7 @@ public final class PhoneUtils {
      * @param phoneNumber 接收号码
      * @param content 短信内容
      */
+    @RequiresPermission(SEND_SMS)
     public static void sendSmsSilent(final String phoneNumber, final String content) {
         if (TextUtils.isEmpty(content)) return;
         PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent("send"), 0);
@@ -544,8 +557,9 @@ public final class PhoneUtils {
      * 获取手机联系人
      * <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
      * <uses-permission android:name="android.permission.READ_CONTACTS" />
-     * return
+     * @return
      */
+    @RequiresPermission(allOf = { READ_EXTERNAL_STORAGE, READ_CONTACTS})
     public static List<Map<String, String>> getAllContactInfo() {
         List<Map<String, String>> list = new ArrayList<>();
         // 1.获取内容解析者
@@ -674,6 +688,7 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
      * <uses-permission android:name="android.permission.READ_SMS" />
      */
+    @RequiresPermission(allOf = {WRITE_EXTERNAL_STORAGE, READ_SMS})
     public static void getAllSMS() {
         // 1.获取短信
         // 1.1获取内容解析者
@@ -820,6 +835,7 @@ public final class PhoneUtils {
 
     /**
      * 获取 MTK 神机的双卡 IMSI、IMSI 信息
+     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
@@ -897,6 +913,7 @@ public final class PhoneUtils {
 
     /**
      * 获取 展讯 神机的双卡 IMSI、IMSI 信息
+     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)

@@ -25,6 +25,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 import static android.Manifest.permission.KILL_BACKGROUND_PROCESSES;
+import static android.Manifest.permission.PACKAGE_USAGE_STATS;
 
 /**
  * detail: 进程相关工具类
@@ -165,6 +166,7 @@ public final class ProcessUtils {
      * <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
      * @return 前台应用包名
      */
+    @RequiresPermission(PACKAGE_USAGE_STATS)
     public static String getForegroundProcessName() {
         if (DevUtils.getContext() == null) {
             return null;
@@ -213,6 +215,7 @@ public final class ProcessUtils {
 
     /**
      * 获取后台服务进程
+     * <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
      * @return 后台服务进程
      */
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
@@ -234,6 +237,7 @@ public final class ProcessUtils {
 
     /**
      * 杀死所有的后台服务进程
+     * <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
      * @return 被暂时杀死的服务集合
      */
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
@@ -262,6 +266,7 @@ public final class ProcessUtils {
 
     /**
      * 杀死后台服务进程
+     * <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
      * @param packageName
      * @return true : 杀死成功, false : 杀死失败
      */

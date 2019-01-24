@@ -359,6 +359,7 @@ public final class WifiUtils {
 
 	/**
 	 * 判断是否连接上Wifi(非连接中)
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	 * @return 返回ssid
 	 */
 	@RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)

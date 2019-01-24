@@ -47,7 +47,7 @@ public final class LocationUtils {
      * @param listener
      * @param time 间隔时间
      * @param distance 间隔距离
-     * @return {@code Location}
+     * @return
      */
     @SuppressLint("MissingPermission")
     public static Location getLocation(LocationListener listener, long time, float distance) {
@@ -111,11 +111,11 @@ public final class LocationUtils {
 
     /**
      * 注册 - 使用完记得调用{@link #unregister()}
-     * 需添加权限 {@code <uses-permission android:name="android.permission.INTERNET" />}
-     * 需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />}
-     * 需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />}
-     * 如果{@code minDistance}为0，则通过{@code minTime}来定时更新；
-     * {@code minDistance}不为0，则以{@code minDistance}为准；
+     * <uses-permission android:name="android.permission.INTERNET" />
+     * <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+     * <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+     * 如果 minDistance 为 0，则通过 minTime 来定时更新；
+     * minDistance 不为 0，则以 minDistance 为准；
      * 两者都为0，则随时刷新。
      * @param minTime 位置信息更新周期(单位：毫秒)
      * @param minDistance 位置变化最小距离：当位置距离变化超过此值时，将更新位置信息(单位：米)

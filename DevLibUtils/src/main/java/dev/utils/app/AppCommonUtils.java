@@ -24,6 +24,7 @@ public final class AppCommonUtils {
 
     /**
      * 获取设备唯一id
+     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)

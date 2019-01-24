@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -21,6 +22,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
@@ -503,7 +505,7 @@ public final class AppUtils {
 
 	/**
 	 * 静默安装 App
-	 * <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+     * <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
 	 * @param file
 	 * @param params
 	 * @param isRooted
@@ -711,10 +713,11 @@ public final class AppUtils {
 
 	/**
 	 * 判断 App 是否在前台
-	 * <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" /> => 属于系统权限
+     * <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 	 * @param packageName
 	 * @return
 	 */
+	@RequiresPermission(Manifest.permission.PACKAGE_USAGE_STATS)
 	public static boolean isAppForeground(@NonNull final String packageName) {
 		return !isSpace(packageName) && packageName.equals(ProcessUtils.getForegroundProcessName());
 	}

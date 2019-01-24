@@ -28,6 +28,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 import static android.Manifest.permission.ACCESS_WIFI_STATE;
+import static android.Manifest.permission.MODIFY_PHONE_STATE;
 
 /**
  * detail: 网络管理工具类
@@ -74,12 +75,11 @@ public final class NetWorkUtils {
     
     /**
      * 设置移动网络开关(无判断是否已开启移动网络) - 实际无效果, 非系统应用无权限
+     * <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
      * @param isOpen 是否打开移动网络
      * @return 是否执行正常
-	 * hint:
-	 * 需系统应用、添加权限
-	 * <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
      */
+	@RequiresPermission(MODIFY_PHONE_STATE)
     public static boolean setMobileDataEnabled(boolean isOpen) {
     	try {
 			// 属于5.0以下的使用
@@ -106,6 +106,7 @@ public final class NetWorkUtils {
 	
 	/**
 	 * 判断是否连接了网络
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
 	public static boolean isConnect() {
@@ -130,6 +131,7 @@ public final class NetWorkUtils {
 	
 	/**
 	 * 获取连接的网络类型
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	 * @return -1 = 等于未知 , 1 = Wifi, 2 = 移动网络
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -159,6 +161,7 @@ public final class NetWorkUtils {
 
 	/**
 	 * 判断是否连接Wifi(连接上、连接中)
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	 * @return
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -168,6 +171,7 @@ public final class NetWorkUtils {
 
 	/**
 	 * 判断是否连接移动网络(连接上、连接中)
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	 * @return
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -189,6 +193,7 @@ public final class NetWorkUtils {
 
 	/**
 	 * 判断网络是否可用
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	 * @return true: 可用 false: 不可用
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -199,7 +204,8 @@ public final class NetWorkUtils {
 
 	/**
 	 * 获取活动网络信息
-	 * @return NetworkInfo
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	 * @return
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
 	private static NetworkInfo getActiveNetworkInfo() {
@@ -217,6 +223,7 @@ public final class NetWorkUtils {
 
 	/**
 	 * 判断是否4G网络
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	 * @return
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -241,6 +248,7 @@ public final class NetWorkUtils {
 
 	/**
 	 * 判断wifi数据是否可用
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	 * @return
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -266,8 +274,8 @@ public final class NetWorkUtils {
 
 	/**
 	 * 获取当前网络类型
-	 * @return DevUtils.getContext()
-	 * @return 网络类型
+	 * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	 * @return
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
 	public static NetworkType getNetworkType() {
@@ -428,6 +436,7 @@ public final class NetWorkUtils {
 
 	/**
 	 * 根据 WiFi 获取网络 IP 地址
+	 * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	 * @return
 	 */
 	@RequiresPermission(ACCESS_WIFI_STATE)
@@ -444,6 +453,7 @@ public final class NetWorkUtils {
 
 	/**
 	 * 根据 WiFi 获取网关 IP 地址
+	 * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	 * @return
 	 */
 	@RequiresPermission(ACCESS_WIFI_STATE)
@@ -460,6 +470,7 @@ public final class NetWorkUtils {
 
 	/**
 	 * 根据 WiFi 获取子网掩码 IP 地址
+	 * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	 * @return
 	 */
 	@RequiresPermission(ACCESS_WIFI_STATE)
@@ -476,6 +487,7 @@ public final class NetWorkUtils {
 
 	/**
 	 * 根据 WiFi 获取服务端 IP 地址
+	 * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	 * @return
 	 */
 	@RequiresPermission(ACCESS_WIFI_STATE)

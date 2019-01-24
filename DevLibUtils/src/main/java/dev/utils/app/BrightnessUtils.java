@@ -7,11 +7,14 @@ import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresPermission;
 import android.view.Window;
 import android.view.WindowManager;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+
+import static android.Manifest.permission.WRITE_SETTINGS;
 
 /**
  * detail: 亮度相关工具类
@@ -45,6 +48,7 @@ public final class BrightnessUtils {
      * @param enabled true : 打开, false : 关闭
      * @return true : 成功, false : 失败
      */
+    @RequiresPermission(WRITE_SETTINGS)
     public static boolean setAutoBrightnessEnabled(final boolean enabled) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.System.canWrite(DevUtils.getContext())) {
             try {
@@ -84,6 +88,7 @@ public final class BrightnessUtils {
      * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
      * @param brightness 亮度值
      */
+    @RequiresPermission(WRITE_SETTINGS)
     public static boolean setBrightness(@IntRange(from = 0, to = 255) final int brightness) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.System.canWrite(DevUtils.getContext())) {
             try {

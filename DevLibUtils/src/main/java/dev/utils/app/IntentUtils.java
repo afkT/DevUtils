@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.annotation.RequiresPermission;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
@@ -362,6 +364,7 @@ public final class IntentUtils {
      * @param phoneNumber 电话号码
      * @return 拨打电话意图
      */
+    @RequiresPermission(Manifest.permission.CALL_PHONE)
     public static Intent getCallIntent(final String phoneNumber) {
         return getCallIntent(phoneNumber, false);
     }
@@ -373,8 +376,9 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 拨打电话意图
      */
+    @RequiresPermission(Manifest.permission.CALL_PHONE)
     public static Intent getCallIntent(final String phoneNumber, final boolean isNewTask) {
-        Intent intent = new Intent("android.intent.action.CALL", Uri.parse("tel:" + phoneNumber));
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
         return getIntent(intent, isNewTask);
     }
 
@@ -437,9 +441,10 @@ public final class IntentUtils {
 //        // 跳转到 无线和网络 设置页面(可以设置移动网络,sim卡1，2的移动网络)
 //        Intent intent =  new Intent(Settings.ACTION_AIRPLANE_MODE_SETTINGS);
 //        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
-
-        Intent intent = new Intent(Settings.ACTION_SETTINGS);
-        activity.startActivity(intent);
+        if (activity != null) {
+            Intent intent = new Intent(Settings.ACTION_SETTINGS);
+            activity.startActivity(intent);
+        }
     }
 
     /**

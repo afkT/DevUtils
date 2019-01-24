@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.annotation.RequiresPermission;
 import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.View;
@@ -589,9 +591,11 @@ public final class ScreenUtils {
 	}
 
 	/**
-	 * 设置进入休眠时长 - 需添加权限 <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+	 * 设置进入休眠时长
+     * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 	 * @param duration 时长
 	 */
+	@RequiresPermission(Manifest.permission.WRITE_SETTINGS)
 	public static void setSleepDuration(final int duration) {
 		try {
 			Settings.System.putInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);

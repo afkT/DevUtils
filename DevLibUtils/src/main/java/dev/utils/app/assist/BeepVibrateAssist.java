@@ -148,6 +148,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 进行播放声音, 并且震动
+     * <uses-permission android:name="android.permission.VIBRATE"/>
      */
     @RequiresPermission(android.Manifest.permission.VIBRATE)
     public synchronized void playBeepSoundAndVibrate() {

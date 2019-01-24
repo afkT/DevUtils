@@ -384,22 +384,6 @@ public final class ActivityManager {
     }
 
     /**
-     * 退出应用程序, 并重启
-     * <uses-permission android:name="android.permission.RESTART_PACKAGES" />
-     */
-    public void appExitRestart() {
-        try {
-            finishAllActivity();
-            // --
-            android.app.ActivityManager activityMgr = (android.app.ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-            activityMgr.restartPackage(DevUtils.getContext().getPackageName());
-            System.exit(0);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "appExit");
-        }
-    }
-
-    /**
      * 退出应用程序
      */
     public void appExit() {

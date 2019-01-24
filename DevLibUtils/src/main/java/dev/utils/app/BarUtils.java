@@ -563,7 +563,7 @@ public final class BarUtils {
     /**
      * 设置通知栏是否显示
      * <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
-     * @param isVisible True to set notification bar visible, false otherwise.
+     * @param isVisible
      */
     @RequiresPermission(EXPAND_STATUS_BAR)
     public static void setNotificationBarVisibility(final boolean isVisible) {

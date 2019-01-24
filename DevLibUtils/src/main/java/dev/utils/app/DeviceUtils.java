@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
+import android.support.annotation.RequiresPermission;
 import android.text.TextUtils;
 
 import java.io.BufferedReader;
@@ -28,6 +29,9 @@ import java.util.Map;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+
+import static android.Manifest.permission.ACCESS_WIFI_STATE;
+import static android.Manifest.permission.INTERNET;
 
 /**
  * detail: 设备相关工具类
@@ -243,11 +247,11 @@ public final class DeviceUtils {
 
     /**
      * 获取设备 MAC 地址
-     * hint:
-     * 需添加权限 <uses-permission android:name="android.permission.INTERNET" />
-     * 需添加权限 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+     * <uses-permission android:name="android.permission.INTERNET" />
+     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
      * @return
      */
+    @RequiresPermission(allOf = {INTERNET, ACCESS_WIFI_STATE})
     public static String getMacAddress() {
         String macAddress = getMacAddressByWifiInfo();
         if (!CUSTOM_MAC.equals(macAddress)) {
@@ -271,11 +275,11 @@ public final class DeviceUtils {
 
     /**
      * 获取设备 MAC 地址
-     * hint:
-     * 需添加权限 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
      * @return
      */
-    @SuppressLint({"MissingPermission", "HardwareIds"})
+    @SuppressLint({"HardwareIds"})
+    @RequiresPermission(ACCESS_WIFI_STATE)
     private static String getMacAddressByWifiInfo() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -292,10 +296,10 @@ public final class DeviceUtils {
 
     /**
      * 获取设备 MAC 地址
-     * hint:
-     * 需添加权限 <uses-permission android:name="android.permission.INTERNET" />
+     * <uses-permission android:name="android.permission.INTERNET" />
      * @return
      */
+    @RequiresPermission(INTERNET)
     private static String getMacAddressByNetworkInterface() {
         try {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
