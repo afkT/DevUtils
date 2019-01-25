@@ -24,7 +24,7 @@ public final class DevCommonUtils {
     public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
     /**
-     * 计算百分比值
+     * 计算百分比值 (最大 100%)
      * @param value
      * @param max
      * @return
@@ -37,7 +37,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 计算百分比值
+     * 计算百分比值 (最大 100%)
      * @param value
      * @param max
      * @return
@@ -48,6 +48,54 @@ public final class DevCommonUtils {
         if (value >= max) return 1.0f;
         return (float) value / (float) max;
     }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value
+     * @param max
+     * @return
+     */
+    public static float percent2(float value, float max){
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        return value / max;
+    }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value
+     * @param max
+     * @return
+     */
+    public static float percent2(int value, int max){
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        return (float) value / (float) max;
+    }
+
+    /**
+     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     * @param value
+     * @param max
+     * @param min
+     * @return
+     */
+    public static int clamp(int value, int max, int min) {
+        return value > max ? max : value < min ? min : value;
+    }
+
+    /**
+     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     * @param value
+     * @param max
+     * @param min
+     * @return
+     */
+    public static float clamp(float value, float max, float min) {
+        return value > max ? max : value < min ? min : value;
+    }
+
+    // =
 
     /**
      * 获取格式化字符串
