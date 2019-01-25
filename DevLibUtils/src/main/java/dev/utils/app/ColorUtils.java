@@ -14,13 +14,13 @@ import dev.utils.LogPrintUtils;
  * detail: 颜色工具类 包括常用的色值
  * Created by Ttt
  */
-public final class ColorsUtils {
+public final class ColorUtils {
 
-    private ColorsUtils() {
+    private ColorUtils() {
     }
 
     // 日志TAG
-    private static final String TAG = ColorsUtils.class.getSimpleName();
+    private static final String TAG = ColorUtils.class.getSimpleName();
 
     /**
      * 0-255 十进值转换成十六进制，如255 就是 ff
