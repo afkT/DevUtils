@@ -2,6 +2,7 @@ package dev.utils.app;
 
 import android.graphics.Color;
 import android.support.v4.graphics.ColorUtils;
+import android.util.Half;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -71,19 +72,69 @@ public final class ColorsUtils {
     /** 低光 */
     public static final int LOWLIGHT = 0x33000000;
 
+//    /**
+//     * 根据颜色资源Id，获取颜色
+//     * @param colorId
+//     * @return
+//     */
+//    public static int getResourcesColor(int colorId) {
+//        try {
+//            return DevUtils.getContext().getResources().getColor(colorId);
+//        } catch (Exception e) {
+//            LogPrintUtils.eTag(TAG, e, "getResourcesColor");
+//        }
+//        return -1;
+//    }
+
+    // =
+
     /**
-     * 根据颜色资源Id，获取颜色
-     * @param colorId
+     * 计算百分比值
+     * @param value
+     * @param max
      * @return
      */
-    public static int getResourcesColor(int colorId) {
-        try {
-            return DevUtils.getContext().getResources().getColor(colorId);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getResourcesColor");
-        }
-        return -1;
+    public static float percent(float value, float max){
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        if (value >= max) return 1.0f;
+        return value / max;
     }
+
+    /**
+     * 计算百分比值
+     * @param value
+     * @param max
+     * @return
+     */
+    public static float percent(int value, int max){
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        if (value >= max) return 1.0f;
+        return (float) value / (float) max;
+    }
+
+    // =
+
+    /**
+     * 返回一个颜色中的透明度值(返回10进制)
+     * @param color
+     * @return
+     */
+    public static int alpha(int color) {
+        return color >>> 24;
+    }
+
+    /**
+     * 返回一个颜色中的透明度百分比值
+     * @param color
+     * @return
+     */
+    public static float alphaPercent(int color){
+        return percent(alpha(color), 255);
+    }
+
+    // =
 
     /**
      * 返回一个颜色中红色的色值(返回10进制)
@@ -95,6 +146,17 @@ public final class ColorsUtils {
     }
 
     /**
+     * 返回一个颜色中红色的百分比值
+     * @param color
+     * @return
+     */
+    public static float redPercent(int color){
+        return percent(red(color), 255);
+    }
+
+    // =
+
+    /**
      * 返回一个颜色中绿色的色值(返回10进制)
      * @param color
      * @return
@@ -104,6 +166,17 @@ public final class ColorsUtils {
     }
 
     /**
+     * 返回一个颜色中绿色的百分比值
+     * @param color
+     * @return
+     */
+    public static float greenPercent(int color){
+        return percent(green(color), 255);
+    }
+
+    // =
+
+    /**
      * 返回一个颜色中蓝色的色值(返回10进制)
      * @param color
      * @return
@@ -111,6 +184,17 @@ public final class ColorsUtils {
     public static int blue(int color) {
         return color & 0xFF;
     }
+
+    /**
+     * 返回一个颜色中蓝色的百分比值
+     * @param color
+     * @return
+     */
+    public static float bluePercent(int color){
+        return percent(blue(color), 255);
+    }
+
+    // =
 
     /**
      * 根据对应的 red、green、blue 生成一个颜色值
@@ -123,6 +207,21 @@ public final class ColorsUtils {
     }
 
     /**
+     * 根据对应的 red、green、blue 生成一个颜色值
+     * @param red [0-255]
+     * @param green [0-255]
+     * @param blue [0-255]
+     */
+    public static int rgb(float red, float green, float blue) {
+        return 0xff000000 |
+                ((int) (red   * 255.0f + 0.5f) << 16) |
+                ((int) (green * 255.0f + 0.5f) <<  8) |
+                (int) (blue  * 255.0f + 0.5f);
+    }
+
+    // =
+
+    /**
      * 根据对应的 alpha, red、green、blue 生成一个颜色值 (含透明度)
      * @param alpha [0-255]
      * @param red [0-255]
@@ -132,4 +231,20 @@ public final class ColorsUtils {
     public static int argb(int alpha, int red, int green, int blue) {
         return (alpha << 24) | (red << 16) | (green << 8) | blue;
     }
+
+    /**
+     * 根据对应的 alpha, red、green、blue 生成一个颜色值 (含透明度)
+     * @param alpha [0-255]
+     * @param red [0-255]
+     * @param green [0-255]
+     * @param blue [0-255]
+     */
+    public static int argb(float alpha, float red, float green, float blue) {
+        return ((int) (alpha * 255.0f + 0.5f) << 24) |
+                ((int) (red   * 255.0f + 0.5f) << 16) |
+                ((int) (green * 255.0f + 0.5f) <<  8) |
+                (int) (blue  * 255.0f + 0.5f);
+    }
+
+
 }

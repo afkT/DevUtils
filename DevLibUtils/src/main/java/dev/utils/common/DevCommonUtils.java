@@ -24,6 +24,32 @@ public final class DevCommonUtils {
     public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
     /**
+     * 计算百分比值
+     * @param value
+     * @param max
+     * @return
+     */
+    public static float percent(float value, float max){
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        if (value >= max) return 1.0f;
+        return value / max;
+    }
+
+    /**
+     * 计算百分比值
+     * @param value
+     * @param max
+     * @return
+     */
+    public static float percent(int value, int max){
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        if (value >= max) return 1.0f;
+        return (float) value / (float) max;
+    }
+
+    /**
      * 获取格式化字符串
      * @param format
      * @param args
