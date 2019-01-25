@@ -26,7 +26,7 @@ public final class DevToast {
     /**
      * 重置默认参数
      */
-    public static void reset(){
+    public static void reset() {
         toast.reset();
     }
 

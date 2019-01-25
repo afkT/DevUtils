@@ -1157,7 +1157,7 @@ public final class SnackbarUtils {
     /**
      * 清空坐标相关信息
      */
-    private void clearLocations(){
+    private void clearLocations() {
         // 重置处理
         mViewHeight = 0;
         mViewGravity = -1;

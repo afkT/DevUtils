@@ -8,9 +8,9 @@ package dev.utils.common.encrypt;
  * 也可用于记事本等场景
  * 参考链接：http://www.cnblogs.com/whoislcj/p/5944917.html
  */
-public final class XorUtil {
+public final class XorUtils {
 
-    private XorUtil() {
+    private XorUtils() {
     }
 
     /**
