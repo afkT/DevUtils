@@ -14,6 +14,7 @@ import java.io.Writer;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -86,9 +87,25 @@ public final class FileRecordUtils {
         // 遍历字段
         for (Field field : fields) {
             try {
-                // 取消java的权限控制检查
+                // 取消 java 的权限控制检查
                 field.setAccessible(true);
-                // 获取类型对应字段的数据,并保存
+
+                // 转换 当前设备支持的ABI - CPU指令集
+                if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
+                    try {
+                        Object object = field.get(null);
+                        // 判断是否数组
+                        if (object instanceof String[]) {
+                            if (object != null){
+                                // 获取类型对应字段的数据，并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
+                                dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
+                            }
+                            continue;
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                // 获取类型对应字段的数据, 并保存
                 dInfoMaps.put(field.getName(), field.get(null).toString());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getDeviceInfo");

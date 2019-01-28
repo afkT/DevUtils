@@ -88,46 +88,33 @@ public final class DeviceUtils {
      * @param dInfoMaps 传入设备信息传出HashMap
      */
     public static void getDeviceInfo(Map<String, String> dInfoMaps) {
-        // 获取设备信息类的所有申明的字段,即包括public、private和proteced， 但是不包括父类的申明字段。
+        // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段。
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
         for (Field field : fields) {
             try {
-                // 取消java的权限控制检查
+                // 取消 java 的权限控制检查
                 field.setAccessible(true);
-                // 获取类型对应字段的数据，并保存
+
+                // 转换 当前设备支持的ABI - CPU指令集
+                if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
+                    try {
+                        Object object = field.get(null);
+                        // 判断是否数组
+                        if (object instanceof String[]) {
+                            if (object != null){
+                                // 获取类型对应字段的数据，并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
+                                dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
+                            }
+                            continue;
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                // 获取类型对应字段的数据, 并保存
                 dInfoMaps.put(field.getName(), field.get(null).toString());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
-            }
-        }
-    }
-
-    /**
-     * 获取设备信息
-     * @param dInfoMaps 传入设备信息传出HashMap
-     */
-    public static void getDeviceInfo2(Map<String, String> dInfoMaps) {
-        // 获取设备信息类的所有申明的字段,即包括public、private和proteced， 但是不包括父类的申明字段。
-        Field[] fields = Build.class.getDeclaredFields();
-        // 遍历字段
-        for (Field field : fields) {
-            try {
-                // 取消java的权限控制检查
-                field.setAccessible(true);
-                if (field.getName().toLowerCase().equals("SUPPORTED_ABIS".toLowerCase())) {
-                    Object object = field.get(null);
-                    // 判断是否数组
-                    if (object instanceof String[]) {
-                        // 获取类型对应字段的数据，并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
-                        dInfoMaps.put(field.getName().toLowerCase(), Arrays.toString((String[]) object));
-                        continue;
-                    }
-                }
-                // 获取类型对应字段的数据，并保存
-                dInfoMaps.put(field.getName().toLowerCase(), field.get(null).toString());
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getDeviceInfo2");
             }
         }
     }
