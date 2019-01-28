@@ -22,6 +22,7 @@ public class BaseApplication extends Application{
         LogConfig logConfig = new LogConfig();
         logConfig.logLevel = LogLevel.DEBUG;
         logConfig.tag = LOG_TAG;
+        logConfig.isSortLog = true; // 美化日志, 边框包围
         DevLogger.init(logConfig);
         // 打开 lib 内部日志 - 线上环境, 不调用方法就行
         DevUtils.openLog();
@@ -36,7 +37,7 @@ public class BaseApplication extends Application{
 
 ## 日志配置 - [DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLogger.java)
 
-> [LoggerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/use/logger/LoggerUse.java) 介绍了配置参数及使用
+> [LoggerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/logger/LoggerUse.java) 介绍了配置参数及使用
 
 ```java
 /**
