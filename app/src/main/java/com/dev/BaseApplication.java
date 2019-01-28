@@ -27,6 +27,7 @@ public class BaseApplication extends Application{
         LogConfig logConfig = new LogConfig();
         logConfig.logLevel = LogLevel.DEBUG;
         logConfig.tag = LOG_TAG;
+        logConfig.isSortLog = true; // 美化日志, 边框包围
         DevLogger.init(logConfig);
         // 打开 lib 内部日志 - 线上环境, 不调用方法就行
         DevUtils.openLog();

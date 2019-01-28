@@ -1,4 +1,4 @@
-package com.dev.use.logger;
+package com.dev.utils.logger;
 
 /**
  * detail: 测试数据
@@ -105,7 +105,6 @@ class TestData {
             "        \"height\": 500" +
             "    }" +
             "}}    ";
-
 
     public static final String XML_DATA = "<root><a>a</a><b>b</b><c>c</c><d>d</d></root>";
 }

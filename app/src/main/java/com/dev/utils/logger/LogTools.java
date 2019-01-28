@@ -1,7 +1,9 @@
-package com.dev.use.logger;
+package com.dev.utils.logger;
 
 /**
- * 日志工具类
+ * detail: 日志工具类
+ * Created by Ttt
+ * hint:
  * 这个类的主要作用是把方法封装好,然后实现传入实体类，或者几个参数,返回处理后的String
  * 不用在代码中，拼接String，然后打印日志，这样代码维护起来方便，也快捷，都是1-2句代码实现具体功能调用
  */
@@ -22,7 +24,7 @@ class LogTools {
 				sBuilder.append("\n分享的图片路径：" + sMsgVo.sImagePath);
 				sBuilder.append("\n标题网络链接：" + sMsgVo.sTitleUrl);
 			} else {
-				sBuilder.append("sMsgVo 为null");
+				sBuilder.append("sMsgVo 为 null");
 			}
 		} catch (Exception e) {
 		}
@@ -43,7 +45,7 @@ class LogTools {
 				sBuilder.append("\n用户密码：" + uInfoVo.uPwd);
 				sBuilder.append("\n用户年龄：" + uInfoVo.uAge);
 			} else {
-				sBuilder.append("uInfoVo 为null");
+				sBuilder.append("uInfoVo 为 null");
 			}
 		} catch (Exception e) {
 		}

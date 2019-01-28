@@ -1,4 +1,4 @@
-package com.dev.use.logger;
+package com.dev.utils.logger;
 
 import android.util.Log;
 
@@ -16,7 +16,7 @@ import dev.utils.common.QuickCommonUtils;
  * detail: 日志使用方法
  * Created by Ttt
  */
-class LoggerUse {
+public class LoggerUse {
 
     private LoggerUse() {
     }
@@ -24,7 +24,7 @@ class LoggerUse {
     /** 日志Tag */
     private static final String LOG_TAG = LoggerUse.class.getSimpleName();
     /** 日志文件夹路径 */
-    public static final String LOG_SD_PATH = Config.SDP_PATH + File.separator + "Logger" + File.separator;
+    private static final String LOG_SD_PATH = Config.SDP_PATH + File.separator + "Logger" + File.separator;
 
     // ================
     // ===== 配置 =====
@@ -46,15 +46,15 @@ class LoggerUse {
         // 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
         lConfig.isDisplayThreadInfo = false;
         // 是否排序日志(格式化后)
-        lConfig.isSortLog = false;
+        lConfig.isSortLog = false; // 是否美化日志, == 边框包围
         // 日志级别
         lConfig.logLevel = LogLevel.DEBUG;
         // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
         lConfig.tag = "BaseLog";
         // 进行初始化配置 => 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
         DevLogger.init(lConfig);
-//        // 进行初始化配置 - 必须调用 => 在DevUtils.init() 内部调用了
-//        DevLoggerUtils.init(mContext);
+//        // 进行初始化配置 => 在DevUtils.init() 内部调用了
+//        DevLoggerUtils.init(mContext); // 日志操作工具类, 快捷获取 LogConfig、以及保存日志到文件中等
     }
 
     // === 使用 ===
@@ -64,7 +64,7 @@ class LoggerUse {
      */
     public static void loggerUse() {
         // 测试打印Log所用时间
-        textTime();
+        testTime();
 
         // try, catch 保存异常日志
         exLog();
@@ -79,11 +79,11 @@ class LoggerUse {
     /**
      * 测试打印Log所用时间
      */
-    private static void textTime() {
+    private static void testTime() {
         // 拼接字符串
         StringBuffer sBuffer = new StringBuffer();
         // 日志Tag
-        final String tag = "CALCTIME";
+        final String tag = "CALC_TIME";
         // --
         // 遍历次数
         int count = 1000;
@@ -129,7 +129,7 @@ class LoggerUse {
     }
 
     /**
-     * 打印异常日志
+     * 打印、保存异常日志
      */
     private static void exLog() {
         // =================== 保存异常日志  ====================
@@ -166,13 +166,13 @@ class LoggerUse {
         // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
         String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
         // 保存日志
-        DevLoggerUtils.saveLog("保存日志", LOG_SD_PATH, fName, eHint);
+        DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fName, eHint);
 
         // === 保存日志, 包含头部信息、底部信息 ===
         // 保存文件名
         fName = System.currentTimeMillis() + ".log";
         // 保存日志
-        DevLoggerUtils.saveLog("保存日志", "头部", "底部", LOG_SD_PATH, fName, eHint);
+        DevLoggerUtils.saveLog("保存自定义信息日志", "头部", "底部", LOG_SD_PATH, fName, eHint);
     }
 
     /**
