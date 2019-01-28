@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
@@ -42,6 +43,34 @@ public final class BitmapUtils {
 
 	// 日志Tag
 	private static final String TAG = BitmapUtils.class.getSimpleName();
+
+	/**
+	 * 将10进制颜色（Int）转换为Drawable对象
+	 * @param color
+	 * @return
+	 */
+	public static Drawable intToDrawable(int color) {
+		try {
+			return new ColorDrawable(color);
+		} catch (Exception e){
+			LogPrintUtils.eTag(TAG, e, "intToDrawable");
+		}
+		return null;
+	}
+
+	/**
+	 * 将16进制颜色（String）转化为Drawable对象
+	 * @param color
+	 * @return
+	 */
+	public static Drawable stringToDrawable(String color) {
+		try {
+			return new ColorDrawable(Color.parseColor(color));
+		} catch (Exception e){
+			LogPrintUtils.eTag(TAG, e, "stringToDrawable");
+		}
+		return null;
+	}
 
     /**
      * 图片着色

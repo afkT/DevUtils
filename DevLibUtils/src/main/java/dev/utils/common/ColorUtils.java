@@ -1,14 +1,9 @@
-package dev.utils.app;
+package dev.utils.common;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.FloatRange;
-import android.support.annotation.IntRange;
+import java.util.HashMap;
+import java.util.Locale;
 
-import dev.DevUtils;
-import dev.utils.LogPrintUtils;
+import dev.utils.JCLogUtils;
 
 /**
  * detail: 颜色工具类 包括常用的色值
@@ -54,40 +49,44 @@ public final class ColorUtils {
     public static final int BLUE_TRANSLUCENT = 0x800000ff;
     /** 灰色 */
     public static final int GRAY = 0xff969696;
-    /** 灰色 - 深的 */
-    public static final int GRAY_DARK = 0xffa9a9a9;
+    /** 灰色 - 半透明 */
+    public static final int GRAY_TRANSLUCENT = 0x80969696;
+    /** 天蓝 */
+    public static final int SKYBLUE = 0xff87ceeb;
     /** 橙色 */
     public static final int ORANGE = 0xffffa500;
     /** 金色 */
     public static final int GOLD = 0xffffd700;
     /** 粉色 */
     public static final int PINK = 0xffffc0cb;
+    /** 紫红色 */
+    public static final int FUCHSIA = 0xffff00ff;
+    /** 灰白色 */
+    public static final int GRAYWHITE = 0xfff2f2f2;
     /** 紫色 */
     public static final int PURPLE = 0xff800080;
-    /** 黄色 */
-    public static final int YELLOW = 0xffffff00;
     /** 青色 */
     public static final int CYAN = 0xff00ffff;
+    /** 黄色 */
+    public static final int YELLOW = 0xffffff00;
+    /** 巧克力色 */
+    public static final int CHOCOLATE = 0xffd2691e;
     /** 番茄色 */
     public static final int TOMATO = 0xffff6347;
+    /** 橙红色 */
+    public static final int ORANGERED = 0xffff4500;
+    /** 银白色 */
+    public static final int SILVER = 0xffc0c0c0;
+    /** 深灰色 */
+    public static final int DKGRAY = 0xFF444444;
+    /** 亮灰色 */
+    public static final int LTGRAY = 0xFFCCCCCC;
+    /** 洋红色 */
+    public static final int MAGENTA = 0xFFFF00FF;
     /** 高光 */
     public static final int HIGHLIGHT = 0x33ffffff;
     /** 低光 */
     public static final int LOWLIGHT = 0x33000000;
-
-    /**
-     * 根据颜色资源Id，获取颜色
-     * @param colorId
-     * @return
-     */
-    public static int getColor(int colorId) {
-        try {
-            return DevUtils.getContext().getResources().getColor(colorId);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getResourcesColor");
-        }
-        return -1;
-    }
 
     // =
 
@@ -311,7 +310,7 @@ public final class ColorUtils {
      * @param alpha [0-255]
      * @return
      */
-    public static int setAlpha(@ColorInt final int color, @IntRange(from = 0x0, to = 0xFF) int alpha) {
+    public static int setAlpha(int color, int alpha) {
         return (color & 0x00ffffff) | (alpha << 24);
     }
 
@@ -321,7 +320,7 @@ public final class ColorUtils {
      * @param alpha [0-255]
      * @return
      */
-    public static int setAlpha(@ColorInt int color, @FloatRange(from = 0, to = 1) float alpha) {
+    public static int setAlpha(int color, float alpha) {
         return (color & 0x00ffffff) | ((int) (alpha * 255.0f + 0.5f) << 24);
     }
 
@@ -331,7 +330,7 @@ public final class ColorUtils {
      * @param red [0-255]
      * @return
      */
-    public static int setRed(@ColorInt int color, @IntRange(from = 0x0, to = 0xFF) int red) {
+    public static int setRed(int color, int red) {
         return (color & 0xff00ffff) | (red << 16);
     }
 
@@ -341,7 +340,7 @@ public final class ColorUtils {
      * @param red [0-255]
      * @return
      */
-    public static int setRed(@ColorInt int color, @FloatRange(from = 0, to = 1) float red) {
+    public static int setRed(int color, float red) {
         return (color & 0xff00ffff) | ((int) (red * 255.0f + 0.5f) << 16);
     }
 
@@ -351,7 +350,7 @@ public final class ColorUtils {
      * @param green [0-255]
      * @return
      */
-    public static int setGreen(@ColorInt int color, @IntRange(from = 0x0, to = 0xFF) int green) {
+    public static int setGreen(int color, int green) {
         return (color & 0xffff00ff) | (green << 8);
     }
 
@@ -361,7 +360,7 @@ public final class ColorUtils {
      * @param green [0-255]
      * @return
      */
-    public static int setGreen(@ColorInt int color, @FloatRange(from = 0, to = 1) float green) {
+    public static int setGreen(int color, float green) {
         return (color & 0xffff00ff) | ((int) (green * 255.0f + 0.5f) << 8);
     }
 
@@ -371,7 +370,7 @@ public final class ColorUtils {
      * @param blue [0-255]
      * @return
      */
-    public static int setBlue(@ColorInt int color, @IntRange(from = 0x0, to = 0xFF) int blue) {
+    public static int setBlue(int color, int blue) {
         return (color & 0xffffff00) | blue;
     }
 
@@ -385,6 +384,33 @@ public final class ColorUtils {
         return (color & 0xffffff00) | (int) (blue * 255.0f + 0.5f);
     }
 
+    // ==
+
+    /**
+     * 解析颜色字符串, 返回对应的颜色值
+     * @param colorString
+     * @return
+     */
+    private static int priParseColor(String colorString) {
+        if (colorString.charAt(0) == '#') {
+            // Use a long to avoid rollovers on #ffXXXXXX
+            long color = Long.parseLong(colorString.substring(1), 16);
+            if (colorString.length() == 7) {
+                // Set the alpha value
+                color |= 0x00000000ff000000;
+            } else if (colorString.length() != 9) {
+                throw new IllegalArgumentException("Unknown color");
+            }
+            return (int)color;
+        } else {
+            Integer color = sColorNameMap.get(colorString.toLowerCase(Locale.ROOT));
+            if (color != null) {
+                return color;
+            }
+        }
+        throw new IllegalArgumentException("Unknown color");
+    }
+
     /**
      * 解析颜色字符串, 返回对应的颜色值
      * 支持的格式:
@@ -395,9 +421,9 @@ public final class ColorUtils {
      */
     public static int parseColor(String colorString) {
         try {
-            return Color.parseColor(colorString);
+            return priParseColor(colorString);
         } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "parseColor");
+            JCLogUtils.eTag(TAG, e, "parseColor");
         }
         return -1;
     }
@@ -407,13 +433,13 @@ public final class ColorUtils {
      * @param colorInt
      * @return
      */
-    public static String int2RgbString(@ColorInt int colorInt) {
+    public static String int2RgbString(int colorInt) {
         colorInt = colorInt & 0x00ffffff;
-        String color = Integer.toHexString(colorInt);
-        while (color.length() < 6) {
-            color = "0" + color;
+        String colorStr = Integer.toHexString(colorInt);
+        while (colorStr.length() < 6) {
+            colorStr = "0" + colorStr;
         }
-        return "#" + color;
+        return "#" + colorStr;
     }
 
     /**
@@ -421,15 +447,15 @@ public final class ColorUtils {
      * @param colorInt
      * @return
      */
-    public static String int2ArgbString(@ColorInt final int colorInt) {
-        String color = Integer.toHexString(colorInt);
-        while (color.length() < 6) {
-            color = "0" + color;
+    public static String int2ArgbString(int colorInt) {
+        String colorString = Integer.toHexString(colorInt);
+        while (colorString.length() < 6) {
+            colorString = "0" + colorString;
         }
-        while (color.length() < 8) {
-            color = "f" + color;
+        while (colorString.length() < 8) {
+            colorString = "f" + colorString;
         }
-        return "#" + color;
+        return "#" + colorString;
     }
 
     // =
@@ -447,7 +473,7 @@ public final class ColorUtils {
      * @param supportAlpha
      * @return
      */
-    public static int getRandomColor(final boolean supportAlpha) {
+    public static int getRandomColor(boolean supportAlpha) {
         int high = supportAlpha ? (int) (Math.random() * 0x100) << 24 : 0xFF000000;
         return high | (int) (Math.random() * 0x1000000);
     }
@@ -466,34 +492,6 @@ public final class ColorUtils {
             }
         }
         return false;
-    }
-
-    /**
-     * 将10进制颜色（Int）转换为Drawable对象
-     * @param color
-     * @return
-     */
-    public static Drawable intToDrawable(int color) {
-        try {
-            return new ColorDrawable(color);
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "intToDrawable");
-        }
-        return null;
-    }
-
-    /**
-     * 将16进制颜色（String）转化为Drawable对象
-     * @param color
-     * @return
-     */
-    public static Drawable stringToDrawable(String color) {
-        try {
-            return new ColorDrawable(parseColor(color));
-        } catch (Exception e){
-            LogPrintUtils.eTag(TAG, e, "stringToDrawable");
-        }
-        return null;
     }
 
     // =
@@ -616,5 +614,45 @@ public final class ColorUtils {
         // 进行设置
         color = setAlpha(color, clamp(alpha, 255, 0));
         return color;
+    }
+
+    // =
+
+    private static final HashMap<String, Integer> sColorNameMap;
+    static {
+        sColorNameMap = new HashMap<>();
+        sColorNameMap.put("transparent", TRANSPARENT);
+        sColorNameMap.put("white", WHITE);
+        sColorNameMap.put("black", BLACK);
+        sColorNameMap.put("red", RED);
+        sColorNameMap.put("green", GREEN);
+        sColorNameMap.put("blue", BLUE);
+        sColorNameMap.put("gray", GRAY);
+        sColorNameMap.put("grey", GRAY);
+        sColorNameMap.put("skyblue", SKYBLUE);
+        sColorNameMap.put("orange", ORANGE);
+        sColorNameMap.put("gold", GOLD);
+        sColorNameMap.put("pink", PINK);
+        sColorNameMap.put("fuchsia", FUCHSIA);
+        sColorNameMap.put("graywhite", GRAYWHITE);
+        sColorNameMap.put("purple", PURPLE);
+        sColorNameMap.put("cyan", CYAN);
+        sColorNameMap.put("yellow", YELLOW);
+        sColorNameMap.put("chocolate", CHOCOLATE);
+        sColorNameMap.put("tomato", TOMATO);
+        sColorNameMap.put("orangered", ORANGERED);
+        sColorNameMap.put("silver", SILVER);
+        sColorNameMap.put("darkgray", DKGRAY);
+        sColorNameMap.put("lightgray", LTGRAY);
+        sColorNameMap.put("lightgrey", LTGRAY);
+        sColorNameMap.put("magenta", MAGENTA);
+        sColorNameMap.put("highlight", HIGHLIGHT);
+        sColorNameMap.put("lowlight", LOWLIGHT);
+        sColorNameMap.put("aqua", 0xFF00FFFF);
+        sColorNameMap.put("lime", 0xFF00FF00);
+        sColorNameMap.put("maroon", 0xFF800000);
+        sColorNameMap.put("navy", 0xFF000080);
+        sColorNameMap.put("olive", 0xFF808000);
+        sColorNameMap.put("teal", 0xFF008080);
     }
 }
