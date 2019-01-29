@@ -18,6 +18,8 @@
 
 * 支持存储日志信息到文件中(含手机设备信息、应用版本信息), 并且可追加顶部、底部信息等
 
+* 美化日志, 与系统日志打印格式区分, 清晰快捷找到关键日志
+
 
 #### 全局配置
 
@@ -34,7 +36,7 @@ lConfig.isOutputMethodAll = false;
 // 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
 lConfig.isDisplayThreadInfo = false;
 // 是否排序日志(格式化后)
-lConfig.isSortLog = false; // 是否美化日志, == 边框包围
+lConfig.isSortLog = false; // 是否美化日志, 边框包围
 // 日志级别
 lConfig.logLevel = LogLevel.DEBUG;
 // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
@@ -43,4 +45,68 @@ lConfig.tag = "BaseLog";
 DevLogger.init(lConfig);
 // 进行初始化配置 => 在DevUtils.init() 内部调用了
 // DevLoggerUtils.init(mContext); // 日志操作工具类, 快捷获取 LogConfig、以及保存日志到文件中等
+```
+
+
+#### 配置事项
+```java
+// 发布的时候, 默认不需要打印日志则修改为
+LogConfig lConfig = new LogConfig();
+lConfig.logLevel = LogLevel.NONE; // 全部不打印
+DevLogger.init(lConfig); // 该方法设置全局默认日志配置
+
+// 还有一种情况，部分日志发布的时候不打印，但是有部分异常信息需要打印, 则单独使用配置
+DevLoggerUtils.getReleaseLogConfig(TAG) => 使用封装好的线上配置都行
+DevLoggerUtils.getReleaseLogConfig(TAG, LogLevel) => 使用封装好的线上配置都行
+DevLogger.init(DevLoggerUtils.getReleaseLogConfig(TAG));
+
+// DevLoggerUtils 内部包含 常用日志配置快捷获取方法、以及日志存储方法等
+```
+
+
+#### 打印日志
+```java
+// 无 Tag 快捷打印 (使用全局 LogConfig.tag)
+DevLogger.v("测试数据 - v");
+DevLogger.d("测试数据 - d");
+DevLogger.i("测试数据 - i");
+DevLogger.w("测试数据 - w");
+DevLogger.e("错误 - e");
+DevLogger.wtf("测试数据 - wtf");
+
+// 使用 自定义 Tag 打印日志
+DevLogger.vTag(tag, "测试数据 - v");
+DevLogger.dTag(tag, "测试数据 - d");
+DevLogger.iTag(tag, "测试数据 - i");
+DevLogger.wTag(tag, "测试数据 - w");
+DevLogger.eTag(tag, "错误 - e");
+DevLogger.wtfTag(tag, "测试数据 - wtf");
+
+// 打印 JSON、XML 格式字符串数据
+// JSON对象
+DevLogger.json(TestData.SMALL_SON_WITH_NO_LINE_BREAK);
+DevLogger.jsonTag(tag, TestData.SMALL_SON_WITH_NO_LINE_BREAK);
+// XML数据
+DevLogger.xml(TestData.XML_DATA);
+DevLogger.xmlTag(tag, TestData.XML_DATA);
+```
+
+#### 打印日志(自定义配置)
+```java
+// 初始化日志配置
+LogConfig lConfig = new LogConfig();
+// 是否排序日志(格式化后)
+lConfig.isSortLog = true;
+// 日志级别
+lConfig.logLevel = LogLevel.DEBUG;
+// 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
+lConfig.tag = "SAD";
+// 打印日志信息
+DevLogger.other(lConfig).e("new Config - e");
+DevLogger.other(lConfig).e(new Exception("报错"), "new Config - e");
+DevLogger.other(lConfig).eTag(tag, "new Config - e");
+DevLogger.other(lConfig).eTag(tag, new Exception("报错"), "new Config - e");
+
+// 有 Tag 优先使用自定义 Tag, 无 Tag 才使用 LogConfig.tag 
+DevLogger.other(lConfig).eTag(tag, "new Config - e");
 ```

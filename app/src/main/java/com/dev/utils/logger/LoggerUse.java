@@ -46,7 +46,7 @@ public class LoggerUse {
         // 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
         lConfig.isDisplayThreadInfo = false;
         // 是否排序日志(格式化后)
-        lConfig.isSortLog = false; // 是否美化日志, == 边框包围
+        lConfig.isSortLog = false; // 是否美化日志, 边框包围
         // 日志级别
         lConfig.logLevel = LogLevel.DEBUG;
         // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
