@@ -383,19 +383,14 @@ final class LoggerPrinter implements IPrinter {
 		LogLevel lLevel = lConfig.logLevel;
 		// --
 		switch(lLevel) {
-			/** 全部不打印 */
-			case NONE:
+			case NONE: // 全部不打印
 				break;
-			/** 调试级别 v,d - 全部打印*/
-			case DEBUG:
+			case DEBUG: // 调试级别 v,d - 全部打印
 				isPrint = true;
 				break;
-			/** 正常级别  i */
-			case INFO:
-				/** 警告级别  w */
-			case WARN:
-				/** 异常级别  e,wtf */
-			case ERROR:
+			case INFO: // 正常级别  i
+			case WARN: // 警告级别  w
+			case ERROR: // 异常级别  e,wtf
 				isPrint = checkLogLevel(lLevel, logType);
 				break;
 			default:
@@ -412,20 +407,17 @@ final class LoggerPrinter implements IPrinter {
 	 */
 	private boolean checkLogLevel(LogLevel lLevel, int logType) {
 		switch(lLevel) {
-			/** 正常级别  i */
-			case INFO:
+			case INFO: // 正常级别 i
 				if(logType != Log.VERBOSE && logType != Log.DEBUG) {
 					return true;
 				}
 				break;
-			/** 警告级别  w */
-			case WARN:
+			case WARN: // 警告级别 w
 				if(logType != Log.VERBOSE && logType != Log.DEBUG && logType != Log.INFO) {
 					return true;
 				}
 				break;
-			/** 异常级别  e,wtf */
-			case ERROR:
+			case ERROR: // 异常级别 e,wtf
 				if(logType == Log.ERROR || logType == Log.ASSERT) {
 					return true;
 				}
