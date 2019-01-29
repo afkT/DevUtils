@@ -40,7 +40,7 @@ dependencies {
 ## Use
 
 > 只需要在 Application 中调用 DevUtils.init() 进行初始化就行 <p>
-> DevUtils.openLog() 是打开内部工具类 日志输出 [DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLogger.java), 发布版本则不调用此句
+> DevUtils.openLog() 是打开内部工具类 日志输出 [DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/DevLogger.md), 发布版本则不调用此句
 
 ```java
 /**
