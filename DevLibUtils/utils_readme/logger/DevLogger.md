@@ -82,6 +82,11 @@ DevLogger.wTag(tag, "测试数据 - w");
 DevLogger.eTag(tag, "错误 - e");
 DevLogger.wtfTag(tag, "测试数据 - wtf");
 
+// 占位符(其他类型，一样)
+DevLogger.d("%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
+// --
+DevLogger.dTag(tag, "%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
+
 // 打印 JSON、XML 格式字符串数据
 // JSON对象
 DevLogger.json(TestData.SMALL_SON_WITH_NO_LINE_BREAK);
@@ -90,6 +95,7 @@ DevLogger.jsonTag(tag, TestData.SMALL_SON_WITH_NO_LINE_BREAK);
 DevLogger.xml(TestData.XML_DATA);
 DevLogger.xmlTag(tag, TestData.XML_DATA);
 ```
+
 
 #### 打印日志(自定义配置)
 ```java
@@ -109,4 +115,45 @@ DevLogger.other(lConfig).eTag(tag, new Exception("报错"), "new Config - e");
 
 // 有 Tag 优先使用自定义 Tag, 无 Tag 才使用 LogConfig.tag 
 DevLogger.other(lConfig).eTag(tag, "new Config - e");
+```
+
+
+#### 存储日志文件
+```java
+// 存储错误日志信息
+try {
+    String s = null;
+    s.indexOf("c");
+} catch (NullPointerException e) {
+    // 打印格式化后的日志信息
+    DevLogger.other(DevLoggerUtils.getSortLogConfig("LogPro")).e(e, "s = null");
+    // 保存的路径
+    String fName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
+    // 保存日志信息
+    DevLoggerUtils.saveErrorLog(e, fName, true);
+    // --
+    // 保存自定义头部、底部信息
+    DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
+    // --
+    // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
+    String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
+    // 保存的路径
+    fName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
+    // 保存日志信息
+    DevLoggerUtils.saveErrorLog(e, fName, true, eHint);
+}
+
+// 存储日志信息
+// 保存文件名
+String fName = System.currentTimeMillis() + ".log";
+// 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
+String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
+// 保存日志
+DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fName, eHint);
+
+// === 保存日志, 包含头部信息、底部信息 ===
+// 保存文件名
+fName = System.currentTimeMillis() + ".log";
+// 保存日志
+DevLoggerUtils.saveLog("保存自定义信息日志", "头部", "底部", LOG_SD_PATH, fName, eHint);
 ```
