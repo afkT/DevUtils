@@ -20,6 +20,32 @@
 
 * 日志内部工具类（[Utils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/Utils.java)）：内部快捷操作工具类(获取应用信息、设备信息、存储文件等)
 
+#### API 文档
+
+* **日志操作类(对外公开直接调用) ->** [DevLogger.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLogger.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| other | 使用单次其他日志配置 |
+| getLogConfig | 获取日志配置信息 |
+| init | 初始化日志配置信息(可以不调用,使用了 App 默认配置) |
+| d | 打印 Log.DEBUG |
+| e | 打印 Log.ERROR |
+| w | 打印 Log.WARN |
+| i | 打印 Log.INFO |
+| v | 打印 Log.VERBOSE |
+| wtf | 打印 Log.ASSERT |
+| json | 格式化Json格式数据,并打印 |
+| xml | 格式化XML格式数据,并打印 |
+| dTag | 打印 Log.DEBUG |
+| eTag | 打印 Log.ERROR |
+| wTag | 打印 Log.WARN |
+| iTag | 打印 Log.INFO |
+| vTag | 打印 Log.VERBOSE |
+| wtfTag | 打印 Log.ASSERT |
+| jsonTag | 格式化Json格式数据,并打印 |
+| xmlTag | 格式化XML格式数据,并打印 |
+
 #### 框架亮点
 
 * 支持全局日志统一配置, 以及部分日志个性化配置
