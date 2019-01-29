@@ -1,5 +1,7 @@
 # DevLogger 日志工具类
 
+#### 使用演示类 [LoggerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/logger/LoggerUse.java)
+
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/DevLibUtils/src/main/java/dev/utils/app/logger)
 
 * 日志操作类（[DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLogger.java)）：日志操作类(对外公开直接调用)，直接调用日志输入类方法。
