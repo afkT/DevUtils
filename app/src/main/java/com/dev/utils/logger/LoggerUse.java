@@ -213,7 +213,7 @@ public class LoggerUse {
         DevLogger.d("测试数据 - d");
         DevLogger.i("测试数据 - i");
         DevLogger.w("测试数据 - w");
-        DevLogger.e("异常 - e");
+        DevLogger.e("错误 - e");
         DevLogger.wtf("测试数据 - wtf");
         // --
         DevLogger.vTag(tag, "测试数据 - v");
@@ -238,7 +238,7 @@ public class LoggerUse {
         DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).d("测试数据 - d");
         DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).i("测试数据 - i");
         DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).w("测试数据 - w");
-        DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).e("异常 - e");
+        DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).e("错误 - e");
         DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).wtf(tag, "测试数据 - wtf");
         // --
         DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag, LogLevel.DEBUG)).json(TestData.SMALL_SON_WITH_NO_LINE_BREAK);

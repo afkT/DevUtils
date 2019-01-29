@@ -1,6 +1,6 @@
 # DevLogger 日志工具类
 
-#### 使用演示类 [LoggerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/logger/LoggerUse.java)
+#### 使用演示类 [LoggerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/logger/LoggerUse.java) 介绍了配置参数及使用
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/DevLibUtils/src/main/java/dev/utils/app/logger)
 
@@ -91,7 +91,7 @@ DevLogger.v("测试数据 - v");
 DevLogger.d("测试数据 - d");
 DevLogger.i("测试数据 - i");
 DevLogger.w("测试数据 - w");
-DevLogger.e("异常 - e");
+DevLogger.e("错误 - e");
 DevLogger.wtf("测试数据 - wtf");
 
 // 使用 自定义 Tag 打印日志
@@ -99,7 +99,7 @@ DevLogger.vTag(tag, "测试数据 - v");
 DevLogger.dTag(tag, "测试数据 - d");
 DevLogger.iTag(tag, "测试数据 - i");
 DevLogger.wTag(tag, "测试数据 - w");
-DevLogger.eTag(tag, "异常 - e");
+DevLogger.eTag(tag, "错误 - e");
 DevLogger.wtfTag(tag, "测试数据 - wtf");
 
 // 占位符(其他类型，一样)
