@@ -71,7 +71,7 @@ DevLogger.v("测试数据 - v");
 DevLogger.d("测试数据 - d");
 DevLogger.i("测试数据 - i");
 DevLogger.w("测试数据 - w");
-DevLogger.e("错误 - e");
+DevLogger.e("异常 - e");
 DevLogger.wtf("测试数据 - wtf");
 
 // 使用 自定义 Tag 打印日志
@@ -79,7 +79,7 @@ DevLogger.vTag(tag, "测试数据 - v");
 DevLogger.dTag(tag, "测试数据 - d");
 DevLogger.iTag(tag, "测试数据 - i");
 DevLogger.wTag(tag, "测试数据 - w");
-DevLogger.eTag(tag, "错误 - e");
+DevLogger.eTag(tag, "异常 - e");
 DevLogger.wtfTag(tag, "测试数据 - wtf");
 
 // 占位符(其他类型，一样)
@@ -120,7 +120,10 @@ DevLogger.other(lConfig).eTag(tag, "new Config - e");
 
 #### 存储日志文件
 ```java
-// 存储错误日志信息
+// ================
+// 存储异常日志信息
+// ================
+
 try {
     String s = null;
     s.indexOf("c");
@@ -143,7 +146,10 @@ try {
     DevLoggerUtils.saveErrorLog(e, fName, true, eHint);
 }
 
+// ============
 // 存储日志信息
+// ============
+
 // 保存文件名
 String fName = System.currentTimeMillis() + ".log";
 // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
