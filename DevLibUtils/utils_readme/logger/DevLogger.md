@@ -215,20 +215,20 @@ DevLoggerUtils.saveLog("保存自定义信息日志", "头部", "底部", LOG_SD
 
 ***XML、JSON 格式化打印***
 
-![](log_xml_json.png)
+![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_xml_json.png)
 
 ***打印堆栈信息***
 
-![](log_default.png)
+![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_default.png)
 
 ***打印异常信息***
 
-![](log_error.png)
+![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_error.png)
 
 ***正常打印***
 
-![](log_other.png)
+![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_other.png)
 
 ***保存日志文件***
 
-![](log_file_error.png)
+![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_file_error.png)
