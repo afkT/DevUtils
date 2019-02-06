@@ -47,7 +47,7 @@ dependencies {
  * detail: 全局Application
  * Created by Ttt
  */
-public class BaseApplication extends Application{
+public class BaseApplication extends Application {
 
     // 日志TAG
     private final String LOG_TAG = BaseApplication.class.getSimpleName();
