@@ -41,83 +41,9 @@ public class BaseApplication extends Application{
 
 ## [TimerManager 定时器工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/timer/TimerManager.md)
 
+## [DevMediaManager 多媒体工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/media/DevMediaManager.md)
+
 # == 使用相关 ==
-
-## 多媒体工具类 使用 - [DevMediaManager](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/player/DevMediaManager.java)
-
-> [MediaUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/use/media/MediaUse.java) 介绍了配置参数及使用
-
-```java
-/**
- * detail: 多媒体使用方法
- * Created by Ttt
- */
-class MediaUse {
-
-    /**
-     * 多媒体使用方法
-     */
-    private void mediaUse() {
-        // 默认事件监听
-        DevMediaManager.getInstance().setMeidaListener(new DevMediaManager.MediaListener() {
-            @Override
-            public void onPrepared() {
-                DevMediaManager.getInstance().getMediaPlayer().start();
-            }
-
-            @Override
-            public void onCompletion() {
-            }
-
-            @Override
-            public void onBufferingUpdate(int percent) {
-            }
-
-            @Override
-            public void onSeekComplete() {
-            }
-
-            @Override
-            public void onError(int what, int extra) {
-            }
-
-            @Override
-            public void onVideoSizeChanged(int width, int height) {
-            }
-        });
-
-        // =======
-
-        // 播放音频
-        DevMediaManager.getInstance().playPrepareRaw(R.raw.dev_beep);
-        DevMediaManager.getInstance().playPrepareAssets("a.mp3");
-        DevMediaManager.getInstance().playPrepare(SDCardUtils.getSDCardPath() + "/a.mp3");
-        DevMediaManager.getInstance().playPrepare("http://xxx.mp3");
-        DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet() {
-
-            @Override
-            public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
-                mediaPlayer.setDataSource("xxx");
-            }
-        }); // 自由设置信息
-
-        // =======
-
-        SurfaceView surfaceView = null;
-        // 播放视频
-        DevVideoPlayerControl control = new DevVideoPlayerControl(surfaceView);
-        control.startPlayer(SDCardUtils.getSDCardPath() + "/video_3.mp4");
-        control.startPlayer("http://xxx.mp4");
-        control.startPlayer(new DevMediaManager.MediaSet() {
-            @Override
-            public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
-                mediaPlayer.setDataSource("xxx");
-            }
-        }); // 自由设置信息
-    }
-}
-```
-
 
 ## 线程工具类 使用 - [DevThreadManager](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/common/thread/DevThreadManager.java)
 
