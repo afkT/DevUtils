@@ -16,7 +16,7 @@ import dev.utils.app.player.DevVideoPlayerControl;
  */
 public final class MediaUse {
 
-    private MediaUse(){
+    private MediaUse() {
     }
 
     /** 日志Tag */

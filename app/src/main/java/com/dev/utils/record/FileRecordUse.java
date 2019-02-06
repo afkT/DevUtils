@@ -17,7 +17,7 @@ import dev.utils.app.logger.DevLoggerUtils;
  */
 public final class FileRecordUse {
 
-    private FileRecordUse(){
+    private FileRecordUse() {
     }
 
     // 日志TAG

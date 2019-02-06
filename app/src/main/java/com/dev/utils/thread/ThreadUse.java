@@ -9,7 +9,7 @@ import dev.utils.common.thread.DevThreadPool;
  */
 public final class ThreadUse {
 
-    private ThreadUse(){
+    private ThreadUse() {
     }
 
     /**

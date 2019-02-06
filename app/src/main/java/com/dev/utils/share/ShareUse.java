@@ -10,7 +10,10 @@ import dev.utils.app.share.SharedUtils;
  * detail: SharedPreferences 使用方法
  * Created by Ttt
  */
-class ShareUse {
+public final class ShareUse {
+
+    private ShareUse() {
+    }
 
     private void shareUse() {
         // 具体实现方法 基于 PreferenceImpl 实现

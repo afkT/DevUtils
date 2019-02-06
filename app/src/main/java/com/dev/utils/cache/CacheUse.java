@@ -17,7 +17,7 @@ import dev.utils.app.logger.DevLogger;
  */
 public final class CacheUse {
 
-    private CacheUse(){
+    private CacheUse() {
     }
 
     // 日志TAG

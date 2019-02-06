@@ -1,4 +1,4 @@
-package com.dev.use.text;
+package com.dev.utils.text;
 
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,7 +12,10 @@ import dev.utils.app.logger.DevLogger;
  * detail: 计算字体宽度、高度
  * Created by Ttt
  */
-class TextCalcUse{
+public final class TextCalcUse{
+
+    private TextCalcUse() {
+    }
 
     // 日志TAG
     private static final String TAG = TextCalcUse.class.getSimpleName();

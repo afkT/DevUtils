@@ -12,7 +12,7 @@ import dev.utils.app.logger.DevLogger;
  */
 public final class TimerUse {
 
-    private TimerUse(){
+    private TimerUse() {
     }
 
     /** 日志Tag */

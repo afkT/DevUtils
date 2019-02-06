@@ -1,4 +1,4 @@
-package com.dev.use.wifi;
+package com.dev.utils.wifi;
 
 import android.net.wifi.WifiConfiguration;
 import android.os.Build;
@@ -7,23 +7,26 @@ import dev.DevUtils;
 import dev.utils.app.wifi.WifiHotUtils;
 
 /**
- * detail: Wifi热点使用方法
+ * detail: Wifi 热点使用方法
  * Created by Ttt
  */
-class WifiHotUse {
+public final class WifiHotUse {
+
+    private WifiHotUse() {
+    }
 
     /**
      * Wifi热点使用方法
      */
     private void wifiHotUse() {
 
-//        // 需要权限
-//        <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-//        <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-//        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-//        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-//        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-//        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+        // 需要权限
+        // <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+        // <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+        // <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        // <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        // <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+        // <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
         final WifiHotUtils wifiHotUtils = new WifiHotUtils(DevUtils.getContext());
 
@@ -64,7 +67,5 @@ class WifiHotUse {
                 }
             });
         }
-
-        // 还有其他方法, 具体看 WifiHotUtils 类
     }
 }
