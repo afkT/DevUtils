@@ -35,6 +35,8 @@ public class BaseApplication extends Application{
 
 ## [DevLogger 日志工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/DevLogger.md)
 
+## [DevToast Toast 工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/toast/DevToast.md)
+
 # == 使用相关 ==
 
 ## 定时器工具类 使用 - [TimerManager](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/assist/manager/TimerManager.java)

@@ -16,7 +16,7 @@ import dev.utils.common.QuickCommonUtils;
  * detail: 日志使用方法
  * Created by Ttt
  */
-public class LoggerUse {
+public final class LoggerUse {
 
     private LoggerUse() {
     }
