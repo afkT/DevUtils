@@ -1,4 +1,4 @@
-package com.dev.use.share;
+package com.dev.utils.share;
 
 import android.content.Context;
 
@@ -25,6 +25,14 @@ class ShareUse {
         SharedUtils.put("aa", "aa");
         SharedUtils.put("ac", 123);
 
+        // == SPUtils ==
+
+        // 想要自定义 模式，名字等
+        SPUtils.getPreference(DevUtils.getContext()).put("aa", 1);
+        SPUtils.getPreference(DevUtils.getContext(), "xxx").put("aa", 1);
+        SPUtils.getPreference(DevUtils.getContext(), "xxxxx", Context.MODE_PRIVATE).put("aa", 1);
+
+
 //        // 默认值如下
 //        switch (type) {
 //            case INTEGER:
@@ -42,10 +50,5 @@ class ShareUse {
 //            default: // 默认取出String类型的数据
 //                return null;
 //        }
-
-        // 想要自定义 模式，名字等
-        SPUtils.getPreference(DevUtils.getContext()).put("aa", 1);
-        SPUtils.getPreference(DevUtils.getContext(), "xxx").put("aa", 1);
-        SPUtils.getPreference(DevUtils.getContext(), "xxxxx", Context.MODE_PRIVATE).put("aa", 1);
     }
 }
