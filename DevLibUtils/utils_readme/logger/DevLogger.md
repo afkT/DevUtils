@@ -209,7 +209,7 @@ DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fName, eHint)
 // 保存文件名
 fName = System.currentTimeMillis() + ".log";
 // 保存日志
-DevLoggerUtils.saveLog("保存自定义信息日志", "头部", "底部", LOG_SD_PATH, fName, eHint);
+DevLoggerUtils.saveLogHeadBottom("保存自定义信息日志", "头部", "底部", LOG_SD_PATH, fName, eHint);
 ```
 
 

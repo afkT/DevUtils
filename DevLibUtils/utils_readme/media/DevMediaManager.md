@@ -1,4 +1,4 @@
-# 多媒体工具类文档
+# 多媒体工具类
 
 #### 使用演示类 [MediaUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/media/MediaUse.java) 介绍了配置参数及使用
 
@@ -6,7 +6,7 @@
 
 * 多媒体管理类（[DevMediaManager](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/player/DevMediaManager.java)）：MediaPlayer 统一管理类, 全局使用一个 MediaPlayer
 
-* 视频播放控制类（[DevVideoPlayerControl ](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/player/DevVideoPlayerControl.java)）：视频播放控制器, 快捷播放视频工具类
+* 视频播放控制类（[DevVideoPlayerControl](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/player/DevVideoPlayerControl.java)）：视频播放控制器, 快捷播放视频工具类
 
 
 #### 框架亮点
@@ -21,6 +21,8 @@
 
 
 ## API 文档
+
+* **MediaPlayer 统一管理类 ->** [DevMediaManager.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/player/DevMediaManager.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -56,6 +58,35 @@
 | getPlayPercent | 获取播放进度百分比 |
 | isLooping | 是否循环播放 - 默认不循环 |
 | setMediaConfig | 设置播放配置 uri等 |
+
+
+* **视频播放控制器 ->** [DevVideoPlayerControl.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/player/DevVideoPlayerControl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| surfaceChanged | surface 改变通知 |
+| surfaceCreated | surface 创建 |
+| surfaceDestroyed | surface 销毁 |
+| onPrepared | 准备完成回调 |
+| onCompletion | 播放完成/结束 |
+| onBufferingUpdate | 缓存进度 |
+| onSeekComplete | 滑动进度加载成功 |
+| onError | 异常回调 |
+| onVideoSizeChanged | 视频大小改变通知 |
+| setMediaListener | 设置播放监听事件 |
+| pausePlayer | 暂停播放 |
+| stopPlayer | 停止播放 |
+| startPlayer | 开始播放 |
+| getSurfaceview | 获取显示的SurfaceView |
+| isPlaying | 是否播放中 |
+| isAutoPlay | 判断是否自动播放 |
+| setAutoPlay | 设置自动播放 |
+| getPlayUri | 获取当前播放的地址 |
+| getVideoWidth | 获取视频宽度 |
+| getVideoHeight | 获取视频高度 |
+| getCurrentPosition | 获取当前播放时间 |
+| getDuration | 获取资源总时间 |
+| getPlayPercent | 获取播放进度百分比 |
 
 
 #### 使用方法

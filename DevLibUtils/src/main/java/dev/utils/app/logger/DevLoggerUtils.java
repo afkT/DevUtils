@@ -200,11 +200,11 @@ public final class DevLoggerUtils {
 	 * @return
 	 */
 	public static boolean saveLog(String log, String fPath, String fName, String... eHint) {
-		return saveLog(log, null, null, fPath, fName, eHint);
+		return saveLogHeadBottom(log, null, null, fPath, fName, eHint);
 	}
 
 	/**
-	 * 保存 App 日志
+	 * 保存 App 日志 - 包含头部、底部信息
 	 * @param log 日志信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容
@@ -213,7 +213,7 @@ public final class DevLoggerUtils {
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveLog(String log, String head, String bottom, String fPath, String fName, String... eHint) {
+	public static boolean saveLogHeadBottom(String log, String head, String bottom, String fPath, String fName, String... eHint) {
 		if(TextUtils.isEmpty(fPath)) {
 			return false;
 		} else if (TextUtils.isEmpty(fName)) {
