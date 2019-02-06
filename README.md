@@ -1,7 +1,7 @@
 
 [![Cocoapods](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Cocoapods](https://img.shields.io/badge/DevUtils-1.3.7-brightgreen.svg)](https://github.com/afkT/DevUtils)
+[![Cocoapods](https://img.shields.io/badge/DevUtils-1.3.8-brightgreen.svg)](https://github.com/afkT/DevUtils)
 [![](https://jitpack.io/v/afkT/DevUtils.svg)](https://jitpack.io/#afkT/DevUtils)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Cocoapods](https://img.shields.io/badge/utils-100+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/README.md)
@@ -26,7 +26,7 @@ Step 2. Add the dependency
 ```
 dependencies {
 	// 因为内含 res 文件, 使用 aar 方式调用
-	implementation 'com.github.afkT:DevUtils:1.3.7@aar'
+	implementation 'com.github.afkT:DevUtils:1.3.8@aar'
 }
 ```
 
@@ -63,7 +63,7 @@ public class BaseApplication extends Application {
         LogConfig logConfig = new LogConfig();
         logConfig.logLevel = LogLevel.DEBUG;
         logConfig.tag = LOG_TAG;
-        logConfig.isSortLog = true; // 美化日志, 边框包围
+        logConfig.sortLog = true; // 美化日志, 边框包围
         DevLogger.init(logConfig);
         // 打开 lib 内部日志 - 线上环境, 不调用方法就行
         DevUtils.openLog();

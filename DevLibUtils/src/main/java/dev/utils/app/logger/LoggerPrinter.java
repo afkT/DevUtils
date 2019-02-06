@@ -510,7 +510,7 @@ final class LoggerPrinter implements IPrinter {
 			}
 		}
 		// 判断是否显示排序后的日志(如果不排序,则显示默认)
-		if(!lConfig.isSortLog) {
+		if(!lConfig.sortLog) {
 			fLogPrinter(logType, tag, createMessage(msg, args));
 			return;
 		}
@@ -575,7 +575,7 @@ final class LoggerPrinter implements IPrinter {
 	private void logHeaderContent(LogConfig lConfig, int logType, String tag, int methodCount, int methodOffset) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		// 判断是否显示日志线程信息
-		if (lConfig.isDisplayThreadInfo) {
+		if (lConfig.displayThreadInfo) {
 			// 打印线程信息(线程名)
 			fLogPrinter(logType, tag, LogConstants.HORIZONTAL_DOUBLE_LINE + " Thread: " + Thread.currentThread().getName());
 			// 进行换行
@@ -596,7 +596,7 @@ final class LoggerPrinter implements IPrinter {
 			methodCount = traceCount - stackOffset - 1;
 		}
 		// 判断是否显示全部方法
-		if(lConfig.isOutputMethodAll) {
+		if(lConfig.outputMethodAll) {
 			// 设置方法总数
 			methodCount = traceCount;
 			// 设置方法偏移索引为0

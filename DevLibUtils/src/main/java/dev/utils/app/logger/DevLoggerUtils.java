@@ -100,11 +100,11 @@ public final class DevLoggerUtils {
 	 * @param offset 方法偏移索引(从第几个方法开始打印,默认推荐0)
 	 * @param all 是否打印全部方法
 	 * @param tInfo 是否显示线程信息
-	 * @param isSortLog 是否排序日志(美化)
+	 * @param sortLog 是否排序日志(美化)
 	 * @param lLevel 日志级别(分四种) - LogLevel
 	 * @return
 	 */
-	public static LogConfig getLogConfig(String tag, int count, int offset, boolean all, boolean tInfo, boolean isSortLog, LogLevel lLevel) {
+	public static LogConfig getLogConfig(String tag, int count, int offset, boolean all, boolean tInfo, boolean sortLog, LogLevel lLevel) {
 		// 生成默认配置信息
 		LogConfig logConfig = new LogConfig();
 		// 堆栈方法总数(显示经过的方法)
@@ -112,11 +112,11 @@ public final class DevLoggerUtils {
 		// 堆栈方法索引偏移(0 = 最新经过调用的方法信息,偏移则往上推,如 1 = 倒数第二条经过调用的方法信息)
 		logConfig.methodOffset = offset;
 		// 是否输出全部方法(在特殊情况下,如想要打印全部经过的方法,但是不知道经过的总数)
-		logConfig.isOutputMethodAll = all;
+		logConfig.outputMethodAll = all;
 		// 显示日志线程信息(特殊情况,显示经过的线程信息,具体情况如上)
-		logConfig.isDisplayThreadInfo = tInfo;
+		logConfig.displayThreadInfo = tInfo;
 		// 是否排序日志(格式化)
-		logConfig.isSortLog = isSortLog;
+		logConfig.sortLog = sortLog;
 		// 日志级别
 		logConfig.logLevel = lLevel;
 		// 设置Tag(特殊情况使用,不使用全部的Tag时,如单独输出在某个Tag下)

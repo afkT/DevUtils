@@ -80,11 +80,11 @@ lConfig.methodCount = 3;
 // 堆栈方法索引偏移(0 = 最新经过调用的方法信息,偏移则往上推,如 1 = 倒数第二条经过调用的方法信息)
 lConfig.methodOffset = 0;
 // 是否输出全部方法(在特殊情况下，如想要打印全部经过的方法，但是不知道经过的总数)
-lConfig.isOutputMethodAll = false;
+lConfig.outputMethodAll = false;
 // 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
-lConfig.isDisplayThreadInfo = false;
+lConfig.displayThreadInfo = false;
 // 是否排序日志(格式化后)
-lConfig.isSortLog = false; // 是否美化日志, 边框包围
+lConfig.sortLog = false; // 是否美化日志, 边框包围
 // 日志级别
 lConfig.logLevel = LogLevel.DEBUG;
 // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
@@ -150,7 +150,7 @@ DevLogger.xmlTag(tag, TestData.XML_DATA);
 // 初始化日志配置
 LogConfig lConfig = new LogConfig();
 // 是否排序日志(格式化后)
-lConfig.isSortLog = true;
+lConfig.sortLog = true;
 // 日志级别
 lConfig.logLevel = LogLevel.DEBUG;
 // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
