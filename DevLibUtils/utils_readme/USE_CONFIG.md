@@ -45,53 +45,9 @@ public class BaseApplication extends Application{
 
 ## [FileRecordUtils、AnalysisRecordUtils、DevLoggerUtils 日志、异常文件记录保存工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/record/FileRecord.md)
 
+## [DevThreadManager - 线程工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/thread/DevThreadManager.md)
+
 # == 使用相关 ==
-
-## 线程工具类 使用 - [DevThreadManager](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/common/thread/DevThreadManager.java)
-
-> [ThreadUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/use/thread/ThreadUse.java) 介绍了配置参数及使用
-
-```java
-/**
- * detail: 线程使用方法
- * Created by Ttt
- */
-class ThreadUse {
-
-    /**
-     * 线程使用方法
-     */
-    private void threadUse() {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        };
-
-        // == 优先判断 10个线程数, 的线程池是否存在, 不存在则创建, 存在则复用 ==
-        DevThreadManager.getInstance(10).execute(runnable);
-
-        // 与上面 传入 int 是完全不同的线程池
-        DevThreadManager.getInstance("10").execute(runnable);
-
-        // 可以先增加配置
-        DevThreadManager.putConfig("QPQP", new DevThreadPool(DevThreadPool.DevThreadPoolType.CALC_CPU));
-        // 使用配置的信息
-        DevThreadManager.getInstance("QPQP").execute(runnable);
-
-
-        DevThreadManager.putConfig("QQQQQQ", 10);
-        // 使用配置的信息
-        DevThreadManager.getInstance("QQQQQQ").execute(runnable);
-
-
-        // 另外一个线程管理工具类, 单独使用简化版 DevThreadPool
-        ThreadManager.getInstance().addTask(runnable);
-    }
-}
-```
-
 
 ## Wifi热点工具类 使用 - [WifiHotUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/wifi/WifiHotUtils.java)
 

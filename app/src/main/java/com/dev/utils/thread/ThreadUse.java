@@ -1,6 +1,5 @@
-package com.dev.use.thread;
+package com.dev.utils.thread;
 
-import dev.utils.app.assist.manager.ThreadManager;
 import dev.utils.common.thread.DevThreadManager;
 import dev.utils.common.thread.DevThreadPool;
 
@@ -8,7 +7,10 @@ import dev.utils.common.thread.DevThreadPool;
  * detail: 线程使用方法
  * Created by Ttt
  */
-class ThreadUse {
+public final class ThreadUse {
+
+    private ThreadUse(){
+    }
 
     /**
      * 线程使用方法
@@ -36,9 +38,5 @@ class ThreadUse {
         DevThreadManager.putConfig("QQQQQQ", 10);
         // 使用配置的信息
         DevThreadManager.getInstance("QQQQQQ").execute(runnable);
-
-
-        // 另外一个线程管理工具类, 单独使用简化版 DevThreadPool
-        ThreadManager.getInstance().addTask(runnable);
     }
 }
