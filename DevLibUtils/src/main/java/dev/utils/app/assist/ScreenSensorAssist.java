@@ -44,9 +44,9 @@ public final class ScreenSensorAssist {
 	public static final int CHANGE_ORIENTATION_WHAT = 9919;
 	// ========= 变量  =============
 	/** 是否允许切屏 */
-	private boolean isAllowChange = false;
+	private boolean allowChange = false;
 	/** 是否是竖屏 */
-	private boolean isPortrait = true;
+	private boolean portrait = true;
 	/** 回调操作 */
 	private Handler handler;
 	/** 角度处理Handler */
@@ -62,8 +62,8 @@ public final class ScreenSensorAssist {
                 if (rotation > 45 && rotation < 135) { // 横屏 - 屏幕对着别人
 					LogPrintUtils.dTag(TAG, "切换成横屏 - 屏幕对着自己");
 					// -
-					if (isPortrait) {
-						isPortrait = false;
+					if (portrait) {
+						portrait = false;
 						if(handler != null) {
 							Message vMsg = new Message();
 							vMsg.what = CHANGE_ORIENTATION_WHAT;
@@ -74,8 +74,8 @@ public final class ScreenSensorAssist {
                 } else if (rotation > 135 && rotation < 225) { // 竖屏 - 屏幕对着别人
 					LogPrintUtils.dTag(TAG,"切换成竖屏 - 屏幕对着别人");
 					// -
-					if (!isPortrait) {
-						isPortrait = true;
+					if (!portrait) {
+						portrait = true;
 						if(handler != null) {
 							Message vMsg = new Message();
 							vMsg.what = CHANGE_ORIENTATION_WHAT;
@@ -86,8 +86,8 @@ public final class ScreenSensorAssist {
                 } else if (rotation > 225 && rotation < 315) { // 横屏 - 屏幕对着自己
 					LogPrintUtils.dTag(TAG, "切换成横屏 - 屏幕对着自己");
 					// -
-                    if (isPortrait) {
-                        isPortrait = false;
+                    if (portrait) {
+                        portrait = false;
                         if(handler != null) {
                         	Message vMsg = new Message();
                         	vMsg.what = CHANGE_ORIENTATION_WHAT;
@@ -98,8 +98,8 @@ public final class ScreenSensorAssist {
                 } else if ((rotation > 315 && rotation < 360) || (rotation > 0 && rotation < 45)) { // 竖屏 - 屏幕对着自己
 					LogPrintUtils.dTag(TAG,"切换成竖屏 - 屏幕对着自己");
 					// -
-                    if (!isPortrait) {
-                        isPortrait = true;
+                    if (!portrait) {
+                        portrait = true;
                         if(handler != null) {
                         	Message vMsg = new Message();
                         	vMsg.what = CHANGE_ORIENTATION_WHAT;
@@ -139,7 +139,7 @@ public final class ScreenSensorAssist {
 	 * @param context
 	 */
     public void start(Context context, Handler handler) {
-    	isAllowChange = true;
+    	allowChange = true;
     	try {
     		LogPrintUtils.dTag(TAG, "start orientation listener.");
         	// 初始化操作
@@ -153,7 +153,7 @@ public final class ScreenSensorAssist {
     
     /** 停止监听 */
     public void stop() {
-    	isAllowChange = false;
+    	allowChange = false;
 		LogPrintUtils.dTag(TAG, "stop orientation listener.");
         try {
             sMamager.unregisterListener(sListener);
@@ -171,7 +171,7 @@ public final class ScreenSensorAssist {
 	 * @return true: 是竖屏, false: 非竖屏
 	 */
 	public boolean isPortrait() {
-        return this.isPortrait;
+        return this.portrait;
     }
 
 	/**
@@ -179,7 +179,7 @@ public final class ScreenSensorAssist {
 	 * @return true: 允许, false: 不允许
 	 */
 	public boolean isAllowChange() {
-    	return this.isAllowChange;
+    	return this.allowChange;
     }
     
 	// ===
@@ -245,12 +245,12 @@ public final class ScreenSensorAssist {
                 }
             }
             if (orientation > 225 && orientation < 315) {// 检测到当前实际是横屏
-                if (!isPortrait) {
+                if (!portrait) {
                     sMamager.registerListener(sListener, sensor, SensorManager.SENSOR_DELAY_UI);
                     sManagerChange.unregisterListener(slistenerChange);
                 }
             } else if ((orientation > 315 && orientation < 360) || (orientation > 0 && orientation < 45)) {// 检测到当前实际是竖屏
-                if (isPortrait) {
+                if (portrait) {
                     sMamager.registerListener(sListener, sensor, SensorManager.SENSOR_DELAY_UI);
                     sManagerChange.unregisterListener(slistenerChange);
                 }

@@ -126,7 +126,7 @@ public final class FileBreadthFirstSearchUtils {
         @Override
         public void OnEndListener(FileItem rootFileItem, long startTime, long endTime) {
             // 表示非搜索中
-            isRuning = false;
+            running = false;
             // 触发回调
             if (iSearchHandler != null) {
                 iSearchHandler.OnEndListener(rootFileItem, startTime, endTime);
@@ -158,7 +158,7 @@ public final class FileBreadthFirstSearchUtils {
      * @return
      */
     public synchronized FileBreadthFirstSearchUtils setQueueSameTimeNumber(int queueSameTimeNumber) {
-        if (isRuning) {
+        if (running) {
             return this;
         }
         this.queueSameTimeNumber = queueSameTimeNumber;
@@ -169,15 +169,15 @@ public final class FileBreadthFirstSearchUtils {
      * 是否搜索中
      * @return
      */
-    public boolean isRuning() {
-        return isRuning;
+    public boolean isRunning() {
+        return running;
     }
 
     /**
      * 停止搜索
      */
     public void stop() {
-        isStop = true;
+        stop = true;
     }
 
     /**
@@ -185,7 +185,7 @@ public final class FileBreadthFirstSearchUtils {
      * @return
      */
     public boolean isStop() {
-        return isStop;
+        return stop;
     }
 
     /**
@@ -225,9 +225,9 @@ public final class FileBreadthFirstSearchUtils {
     // 根目录对象
     private FileItem rootFileItem;
     // 判断是否运行中
-    private boolean isRuning = false;
+    private boolean running = false;
     // 是否停止搜索
-    private boolean isStop = false;
+    private boolean stop = false;
     // 开始搜索时间
     private long startTime = 0l;
     // 结束搜索时间
@@ -246,12 +246,12 @@ public final class FileBreadthFirstSearchUtils {
      * @param path 根目录地址
      */
     public synchronized void query(String path) {
-        if (isRuning) {
+        if (running) {
            return;
         }
         // 表示运行中
-        isRuning = true;
-        isStop = false;
+        running = true;
+        stop = false;
         // 设置开始搜索时间
         startTime = System.currentTimeMillis();
         try {
@@ -300,7 +300,7 @@ public final class FileBreadthFirstSearchUtils {
      */
     private void queryFile(File file, FileItem fileItem) {
         try {
-            if (isStop) {
+            if (stop) {
                 return;
             }
             if (file != null && file.exists()) {
@@ -317,21 +317,21 @@ public final class FileBreadthFirstSearchUtils {
                         for (File f : files) {
                             // 属于文件夹
                             if (f.isDirectory()) {
-                                if (isStop) {
+                                if (stop) {
                                     return;
                                 }
                                 FileItem subFileItem = fileItem.put(f);
                                 // 添加任务
                                 taskQueue.offer(new FileQueue(f, subFileItem));
                             } else { // 属于文件
-                                if (!isStop && inside.isAddToList(f)) {
+                                if (!stop && inside.isAddToList(f)) {
                                     // 属于文件则直接保存
                                     fileItem.put(f);
                                 }
                             }
                         }
                     } else { // 属于文件
-                        if (!isStop && inside.isAddToList(file)) {
+                        if (!stop && inside.isAddToList(file)) {
                             // 属于文件则直接保存
                             fileItem.put(file);
                         }
@@ -353,7 +353,7 @@ public final class FileBreadthFirstSearchUtils {
         boolean isEmpty = taskQueue.isEmpty();
         // 循环则不处理
         while (!isEmpty) {
-            if (isStop) {
+            if (stop) {
                 break;
             }
             // 获取线程活动数量
@@ -378,7 +378,7 @@ public final class FileBreadthFirstSearchUtils {
             // 判断是否存在队列数据
             isEmpty = (taskQueue.isEmpty() && threadCount == 0);
             if (isEmpty) { // 如果不存在, 防止搜索过快, 延迟再次判断
-                if (isStop) {
+                if (stop) {
                     break;
                 }
                 try {

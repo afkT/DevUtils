@@ -61,7 +61,7 @@ public final class PermissionUtils {
     /** 全部权限 */
     private static final Set<String> mAllPermissions = new HashSet<>(1);
     // 判断是否请求过
-    private boolean isRequest = false;
+    private boolean request = false;
     /** 申请的权限 */
     private List<String> mPermissions = new ArrayList<>();
     /** 准备请求的权限 */
@@ -171,7 +171,7 @@ public final class PermissionUtils {
      * @param callBack
      */
     public PermissionUtils callBack(PermissionCallBack callBack) {
-        if (isRequest) {
+        if (request) {
             return this;
         }
         this.mCallBack = callBack;
@@ -183,10 +183,10 @@ public final class PermissionUtils {
      * @return -1 已经请求过, 0 = 不处理, 1 = 需要请求
      */
     private int checkPermissions() {
-        if (isRequest) {
+        if (request) {
             return -1; // 已经申请过
         }
-        isRequest = true;
+        request = true;
         // 如果 SDK 版本小于 23 则直接通过
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // 表示全部权限都通过

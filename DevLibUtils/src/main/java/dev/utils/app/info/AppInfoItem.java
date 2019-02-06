@@ -50,7 +50,7 @@ public final class AppInfoItem {
     @Keep // 证书有效期
     private Date notAfter;
     @Keep // 证书是否过期 true = 过期,false = 未过期
-    private boolean isEffective;
+    private boolean effective;
     @Keep // 证书发布方
     private String certPrincipal;
     @Keep // 证书版本号
@@ -123,17 +123,17 @@ public final class AppInfoItem {
         sbEffective.append(" " + context.getString(R.string.dev_str_to) + " ");
         sbEffective.append(notAfter);
         // 保存有效期转换信息
-        String effective = sbEffective.toString();
+        String effectiveStr = sbEffective.toString();
         // 证书是否过期 true = 过期,false = 未过期
-        isEffective = false;
+        effective = false;
         try {
             cert.checkValidity();
             // CertificateExpiredException - 如果证书已过期。
             // CertificateNotYetValidException - 如果证书不再有效。
         } catch (CertificateExpiredException ce) {
-            isEffective = true;
+            effective = true;
         } catch (CertificateNotYetValidException ce) {
-            isEffective = true;
+            effective = true;
         }
         // 证书发布方
         certPrincipal = cert.getIssuerX500Principal().toString();
@@ -177,9 +177,9 @@ public final class AppInfoItem {
         // Apk 大小
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_apk_length, apkLength));
         // 证书有效期
-        listKeyValues.add(KeyValueBean.get(R.string.dev_str_effective, effective));
+        listKeyValues.add(KeyValueBean.get(R.string.dev_str_effective, effectiveStr));
         // 判断是否过期
-        listKeyValues.add(KeyValueBean.get(R.string.dev_str_iseffective, isEffective ? context.getString(R.string.dev_str_overdue) : context.getString(R.string.dev_str_notoverdue)));
+        listKeyValues.add(KeyValueBean.get(R.string.dev_str_iseffective, effective ? context.getString(R.string.dev_str_overdue) : context.getString(R.string.dev_str_notoverdue)));
         // 证书发布方
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_principal, certPrincipal));
         // 证书版本号
@@ -287,7 +287,7 @@ public final class AppInfoItem {
      * @return
      */
     public boolean isEffective() {
-        return isEffective;
+        return effective;
     }
 
     /**

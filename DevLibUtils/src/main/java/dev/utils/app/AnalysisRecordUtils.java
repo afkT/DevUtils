@@ -44,9 +44,9 @@ public final class AnalysisRecordUtils {
     // 日志存储路径
     private static String logStoragePath;
     // 是否处理保存
-    private static boolean isHandler = true;
+    private static boolean handler = true;
     // 判断是否加空格
-    private static boolean isAppendSpace = true;
+    private static boolean appendSpace = true;
     // 正则 - 空格
     private static final String SPACE_STR = "\\s";
 
@@ -80,7 +80,7 @@ public final class AnalysisRecordUtils {
      */
     public static String record(FileInfo fileInfo, String... args) {
         // 如果不处理, 则直接跳过
-        if (!isHandler) {
+        if (!handler) {
             return "record not handler";
         }
         if (fileInfo != null) {
@@ -102,15 +102,15 @@ public final class AnalysisRecordUtils {
      * @return
      */
     public static boolean isHandler() {
-        return isHandler;
+        return handler;
     }
 
     /**
      * 设置是否处理日志记录
-     * @param isHandler
+     * @param handler
      */
-    public static void setHandler(boolean isHandler) {
-        AnalysisRecordUtils.isHandler = isHandler;
+    public static void setHandler(boolean handler) {
+        AnalysisRecordUtils.handler = handler;
     }
 
     /**
@@ -118,15 +118,15 @@ public final class AnalysisRecordUtils {
      * @return
      */
     public static boolean isAppendSpace() {
-        return isAppendSpace;
+        return appendSpace;
     }
 
     /**
      * 设置是否追加空格
-     * @param isAppendSpace
+     * @param appendSpace
      */
-    public static void setAppendSpace(boolean isAppendSpace) {
-        AnalysisRecordUtils.isAppendSpace = isAppendSpace;
+    public static void setAppendSpace(boolean appendSpace) {
+        AnalysisRecordUtils.appendSpace = appendSpace;
     }
 
     /**
@@ -170,7 +170,7 @@ public final class AnalysisRecordUtils {
      */
     private static String saveLogRecord(FileInfo fileInfo, String... args) {
         // 如果不处理, 则直接跳过
-        if (!isHandler) {
+        if (!handler) {
             return "record not handler";
         }
         // 文件信息为null, 则不处理
@@ -251,7 +251,7 @@ public final class AnalysisRecordUtils {
      */
     private static String splitLog(String... args) {
         // 判断是否追加空格
-        boolean isSpace = isAppendSpace;
+        boolean isSpace = appendSpace;
         // =
         StringBuffer sBuffer = new StringBuffer();
         // 增加换行
@@ -441,17 +441,17 @@ public final class AnalysisRecordUtils {
         private @TIME int fileIntervalTime = DEFAULT;
 
         // 是否处理日志记录
-        private boolean isHandler = true;
+        private boolean handler = true;
 
         // = 构造函数 =
 
-        private FileInfo(String storagePath, String folderName, String fileName, String fileFunction, @TIME int fileIntervalTime, boolean isHandler) {
+        private FileInfo(String storagePath, String folderName, String fileName, String fileFunction, @TIME int fileIntervalTime, boolean handler) {
             this.storagePath = storagePath;
             this.folderName = folderName;
             this.fileName = fileName;
             this.fileFunction = fileFunction;
             this.fileIntervalTime = fileIntervalTime;
-            this.isHandler = isHandler;
+            this.handler = handler;
         }
 
         // = get/set 方法 =
@@ -644,7 +644,7 @@ public final class AnalysisRecordUtils {
          * @return
          */
         public boolean isHandler() {
-            return isHandler;
+            return handler;
         }
 
         /**
@@ -653,7 +653,7 @@ public final class AnalysisRecordUtils {
          * @return
          */
         public FileInfo setHandler(boolean handler) {
-            this.isHandler = handler;
+            this.handler = handler;
             return this;
         }
 

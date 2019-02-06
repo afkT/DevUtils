@@ -49,7 +49,7 @@ public final class TimerManager {
 			// 开始删除无用资源
 			Iterator<AbsTimer> iterator = lists.iterator();
 			while (iterator.hasNext()) {
-				if (iterator.next().isMarkSweep) { // 需要回收,则进行回收
+				if (iterator.next().markSweep) { // 需要回收,则进行回收
 					iterator.remove();
 				}
 			}
@@ -264,7 +264,7 @@ public final class TimerManager {
 		/** 默认通知的what */
 		public static final int TIMER_NOTIFY_WHAT = 50000;
 		/** 状态标识 - 是否标记清除 */
-		private boolean isMarkSweep = true;
+		private boolean markSweep = true;
 		/** int 标记 */
 		private int markId = -1;
 		/** String 标记 */
@@ -313,7 +313,7 @@ public final class TimerManager {
 		/** 运行定时器 */
 		public void startTimer() { // 如果外部通过了createTimer或者直接new AbsTimer 初始化了对象，没有调用startTimer,都不会保存到 listAbsTimers 并不影响对定时器的控制
 			//  标记状态 - 不需要回收
-			this.isMarkSweep = false;
+			this.markSweep = false;
 			synchronized (listAbsTimers) {
 				// 不存在才进行添加
 				if (!listAbsTimers.contains(this)) {
@@ -325,7 +325,7 @@ public final class TimerManager {
 		/** 关闭定时器 */
 		public void closeTimer() {
 			//  标记状态 - 需要回收
-			this.isMarkSweep = true;
+			this.markSweep = true;
 		}
 
 		/** 判断是否运行中 */
@@ -406,7 +406,7 @@ public final class TimerManager {
 		/** 触发次数 */
 		private int triggerNumber = 0;
 		/** 定时器是否运行中 */
-		private boolean isRunTimer = false;
+		private boolean running = false;
 
 		public TimerTask (Handler handler, int what, long delay, long period, int triggerLimit) {
 			this.handler = handler;
@@ -421,7 +421,7 @@ public final class TimerManager {
 			// 先关闭旧的定时器
 			close();
 			// 表示运行定时器中
-			isRunTimer = true;
+			running = true;
 			// 每次重置触发次数
 			triggerNumber = 0;
 			// 开启定时器
@@ -431,7 +431,7 @@ public final class TimerManager {
 				@Override
 				public void run() {
 					// 表示运行定时器中
-					isRunTimer = true;
+					running = true;
 					// 累积触发次数
 					triggerNumber++;
 					// 进行通知
@@ -452,7 +452,7 @@ public final class TimerManager {
 				timer.schedule(timerTask, delay, period);
 			} catch (Exception e) {
 				// 表示非运行定时器中
-				isRunTimer = false;
+				running = false;
 				// 关闭任务,进行标记需要回收
 				closeTimer(); // 启动失败,则进行标记,标记需要回收
 			}
@@ -461,7 +461,7 @@ public final class TimerManager {
 		/** 关闭定时器任务 */
 		private void close() {
 			// 表示非运行定时器中
-			isRunTimer = false;
+			running = false;
 			// 取消定时器任务
 			try {
 				if (timer != null) {
@@ -495,7 +495,7 @@ public final class TimerManager {
 
 		@Override
 		public boolean isRunTimer() {
-			return isRunTimer;
+			return running;
 		}
 
 		@Override

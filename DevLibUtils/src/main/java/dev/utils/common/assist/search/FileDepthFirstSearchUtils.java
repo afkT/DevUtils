@@ -90,7 +90,7 @@ public final class FileDepthFirstSearchUtils {
         @Override
         public void OnEndListener(List<FileItem> lists, long startTime, long endTime) {
             // 表示非搜索中
-            isRuning = false;
+            running = false;
             // 触发回调
             if (iSearchHandler != null) {
                 iSearchHandler.OnEndListener(lists, startTime, endTime);
@@ -112,15 +112,15 @@ public final class FileDepthFirstSearchUtils {
      * 是否搜索中
      * @return
      */
-    public boolean isRuning() {
-        return isRuning;
+    public boolean isRunning() {
+        return running;
     }
 
     /**
      * 停止搜索
      */
     public void stop() {
-        isStop = true;
+        stop = true;
     }
 
     /**
@@ -128,7 +128,7 @@ public final class FileDepthFirstSearchUtils {
      * @return
      */
     public boolean isStop() {
-        return isStop;
+        return stop;
     }
 
     /**
@@ -150,9 +150,9 @@ public final class FileDepthFirstSearchUtils {
     // ==
 
     // 判断是否运行中
-    private boolean isRuning = false;
+    private boolean running = false;
     // 是否停止搜索
-    private boolean isStop = false;
+    private boolean stop = false;
     // 开始搜索时间
     private long startTime = 0l;
     // 结束搜索时间
@@ -164,12 +164,12 @@ public final class FileDepthFirstSearchUtils {
      * @param isRelation 是否关联到 Child List
      */
     public synchronized void query(String path, final boolean isRelation) {
-        if (isRuning) {
+        if (running) {
             return;
         }
         // 表示运行中
-        isRuning = true;
-        isStop = false;
+        running = true;
+        stop = false;
         // 设置开始搜索时间
         startTime = System.currentTimeMillis();
         try {
@@ -221,7 +221,7 @@ public final class FileDepthFirstSearchUtils {
      */
     private void queryFile(File file, List<FileItem> lists, boolean isRelation) {
         try {
-            if (isStop) {
+            if (stop) {
                 return;
             }
             if (file != null && file.exists()) {

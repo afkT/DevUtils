@@ -310,7 +310,7 @@ public final class EditTextUtils {
         // 标记id - 一定程度上唯一
         private final int markId;
         // 判断是否操作中 - 操作状态 -> 如果是否使用搜索数据等
-        private boolean isOperate = false;
+        private boolean operate = false;
         // 标记状态, 特殊需求处理
         private int operateState = -1;
 
@@ -332,7 +332,7 @@ public final class EditTextUtils {
          * @return
          */
         public final boolean isOperate() {
-            return isOperate;
+            return operate;
         }
 
         /**
@@ -340,7 +340,7 @@ public final class EditTextUtils {
          * @param operate
          */
         public final void setOperate(boolean operate) {
-            isOperate = operate;
+            this.operate = operate;
         }
 
         /**
