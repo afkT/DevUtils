@@ -1,11 +1,13 @@
-package com.dev.use.cache;
+package com.dev.utils.cache;
 
 import android.content.Context;
 
+import java.io.File;
 import java.io.Serializable;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.SDCardUtils;
 import dev.utils.app.cache.DevCache;
 import dev.utils.app.logger.DevLogger;
 
@@ -13,7 +15,10 @@ import dev.utils.app.logger.DevLogger;
  * detail: 缓存使用方法
  * Created by Ttt
  */
-class CacheUse {
+public final class CacheUse {
+
+    private CacheUse(){
+    }
 
     // 日志TAG
     private static final String TAG = CacheUse.class.getSimpleName();
@@ -24,8 +29,6 @@ class CacheUse {
     private void cacheUse() {
         final Context mContext = DevUtils.getContext();
 
-//        // 保存数据
-//        DevCache.get(DevUtils.getContext()).put();
         // 初始化
         CacheVo cacheVo = new CacheVo("测试持久化");
         // 打印信息
@@ -38,6 +41,10 @@ class CacheUse {
         DevLogger.dTag(TAG, "保存后: " + ctv.toString());
         // 设置保存有效时间 -> 5秒
         DevCache.get(mContext).put("ctva", new CacheVo("测试有效时间"), 1);
+
+        // 保存到指定文件夹下
+        DevCache.get(new File(SDCardUtils.getSDCardPath(), "Cache")).put("key", "保存数据");
+
         // 延迟后
         new Thread(new Runnable() {
             @Override
@@ -55,6 +62,9 @@ class CacheUse {
         }).start();
     }
 
+    /**
+     * 缓存实体类
+     */
     static class CacheVo implements Serializable {
 
         String name;
