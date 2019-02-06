@@ -58,7 +58,7 @@
 | cancel | 取消当前显示的 Toast |
 
 
-#### 全局配置
+#### 配置相关
 
 ```java
 // 初始化 Toast - DevUtils 内部已经调用

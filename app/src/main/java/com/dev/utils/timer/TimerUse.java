@@ -1,4 +1,4 @@
-package com.dev.use.timer;
+package com.dev.utils.timer;
 
 import android.os.Handler;
 import android.os.Message;
@@ -10,7 +10,10 @@ import dev.utils.app.logger.DevLogger;
  * detail: 定时器使用方法
  * Created by Ttt
  */
-class TimerUse {
+public final class TimerUse {
+
+    private TimerUse(){
+    }
 
     /** 日志Tag */
     private static final String TAG = TimerUse.class.getSimpleName();

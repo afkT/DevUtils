@@ -59,7 +59,7 @@
 | custom | custom Toast |
 
 
-#### 全局配置
+#### 配置相关
 
 ```java
 // 获取默认样式
