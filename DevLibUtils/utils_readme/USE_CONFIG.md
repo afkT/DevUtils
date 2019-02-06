@@ -51,6 +51,8 @@ public class BaseApplication extends Application{
 
 ## [SharedUtils - SharedPreferences工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/share/SharedUtils.md)
 
+## [ShapeUtils - Shape工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/shape/ShapeUtils.md)
+
 # == 使用相关 ==
 
 ## Wifi热点工具类 使用 - [WifiHotUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/wifi/WifiHotUtils.java)
@@ -118,51 +120,6 @@ class WifiHotUse {
         }
 
         // 还有其他方法, 具体看 WifiHotUtils 类
-    }
-}
-```
-
-
-## ShapeUtils 工具类 使用 - [ShapeUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ShapeUtils.java)
-
-> [ShapeUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/use/shape/ShapeUse.java) 介绍了配置参数及使用
-
-```java
-/**
- * detail: ShapeUtils 使用方法
- * Created by Ttt
- */
-class ShapeUse {
-
-    private void shapeUse() {
-
-        Button vid_btn1 = null;
-//        // 默认就设置背景色
-//        ShapeUtils.Builder builder = new ShapeUtils.Builder();
-//        builder.setRadiusLeft(10f).setColor(R.color.black);
-//        vid_btn1.setBackground(builder.build().getDrawable());
-        // 设置点击效果
-        GradientDrawable drawable1 = ShapeUtils.newBuilder(10f, R.color.black).setStroke(5, R.color.green).build().getDrawable();
-        GradientDrawable drawable2 = ShapeUtils.newBuilder(10f, R.color.sky_blue).setStroke(5, R.color.grey).build().getDrawable();
-        vid_btn1.setBackground(StateListUtils.newSelector(drawable2, drawable1)); // 设置点击 View 背景变色, 不用写 shape xml 文件
-        vid_btn1.setTextColor(StateListUtils.createColorStateList(R.color.red, R.color.white)); // 设置点击字体变色
-
-        // 设置渐变
-        View vid_view1 = null;
-//        int[] colors = new int[]{ Color.RED, Color.BLUE, Color.GREEN };
-
-        int[] colors = new int[3];
-        colors[0] = ContextCompat.getColor(DevUtils.getContext(), R.color.black);
-        colors[1] = ContextCompat.getColor(DevUtils.getContext(), R.color.sky_blue);
-        colors[2] = ContextCompat.getColor(DevUtils.getContext(), R.color.orange);
-
-        // ShapeUtils.newBuilderToGradient(GradientDrawable.Orientation.BR_TL, colors).build().setDrawable(vid_view1);
-
-        GradientDrawable drawable = ShapeUtils.newBuilderToGradient(GradientDrawable.Orientation.BR_TL, colors).build().getDrawable();
-//        drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT); // 线性渐变，这是默认设置
-//        drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT); // 放射性渐变，以开始色为中心。
-        drawable.setGradientType(GradientDrawable.SWEEP_GRADIENT); // 扫描线式的渐变。
-        vid_view1.setBackground(drawable);
     }
 }
 ```

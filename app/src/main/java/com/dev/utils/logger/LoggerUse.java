@@ -2,7 +2,7 @@ package com.dev.utils.logger;
 
 import android.util.Log;
 
-import com.dev.use.Config;
+import com.dev.utils.Config;
 
 import java.io.File;
 
