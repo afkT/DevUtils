@@ -1027,7 +1027,7 @@ public final class AppUtils {
 	}
 
 	/**
-	 * 启动本地应用打开PDF
+	 * 启动本地应用打开Word
 	 * @param filePath 文件路径
 	 */
 	public static boolean openWordFile(String filePath) {
