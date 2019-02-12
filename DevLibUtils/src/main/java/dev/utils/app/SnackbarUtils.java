@@ -547,202 +547,388 @@ public final class SnackbarUtils {
             }
         }
 
+        // =============
         // == get/set ==
+        // =============
 
+        // == RootView ==
+
+        /**
+         * 获取 RootView 的重心
+         * @return
+         */
         @Override
         public int getRootGravity() {
             return rootGravity;
         }
 
+        /**
+         * 设置 RootView 的重心
+         * @param rootGravity
+         * @return
+         */
         public StyleBuilder setRootGravity(int rootGravity) {
             this.rootGravity = rootGravity;
             return this;
         }
 
+        /**
+         * 获取 RootView 背景圆角大小
+         * @return
+         */
         @Override
         public float getRootCornerRadius() {
             return rootCornerRadius;
         }
 
+        /**
+         * 设置 RootView 背景圆角大小
+         * @return
+         */
         public StyleBuilder setRootCornerRadius(float rootCornerRadius) {
             this.rootCornerRadius = rootCornerRadius;
             return this;
         }
 
+        /**
+         * 获取 RootView 背景着色颜色
+         * @return
+         */
         @Override
         public int getRootBackgroundTintColor() {
             return rootBackgroundTintColor;
         }
 
+        /**
+         * 设置 RootView 背景着色颜色
+         * @param rootBackgroundTintColor
+         * @return
+         */
         public StyleBuilder setRootBackgroundTintColor(int rootBackgroundTintColor) {
             this.rootBackgroundTintColor = rootBackgroundTintColor;
             return this;
         }
 
+        /**
+         * 获取 RootView 背景图片
+         * @return
+         */
         @Override
         public Drawable getRootBackground() {
             return rootBackground;
         }
 
+        /**
+         * 设置 RootView 背景图片
+         * @param rootBackground
+         * @return
+         */
         public StyleBuilder setRootBackground(Drawable rootBackground) {
             this.rootBackground = rootBackground;
             return this;
         }
 
+        /**
+         * 获取 RootView margin 边距 - new int[] { left, top, right, bottom }
+         * @return
+         */
         @Override
         public int[] getRootMargin() {
             return rootMargin;
         }
 
+        /**
+         * 设置 RootView margin 边距
+         * @param rootMargin
+         * @return
+         */
         public StyleBuilder setRootMargin(int[] rootMargin) {
             this.rootMargin = rootMargin;
             return this;
         }
 
+        /**
+         * 获取 RootView 透明度
+         * @return
+         */
         @Override
         public float getRootAlpha() {
             return rootAlpha;
         }
 
+        /**
+         * 设置 RootView 透明度
+         * @param rootAlpha
+         */
         public void setRootAlpha(float rootAlpha) {
             this.rootAlpha = rootAlpha;
         }
 
+        // == snackbar_text TextView 相关 ==
+
+        /**
+         * 获取 TextView 的重心
+         * @return
+         */
         @Override
         public int getTextGravity() {
             return textGravity;
         }
 
+        /**
+         * 设置 TextView 的重心
+         * @param textGravity
+         * @return
+         */
         public StyleBuilder setTextGravity(int textGravity) {
             this.textGravity = textGravity;
             return this;
         }
 
+        /**
+         * 获取 TextView 文本颜色
+         * @return
+         */
         @Override
         public int getTextColor() {
             return textColor;
         }
 
+        /**
+         * 设置 TextView 文本颜色
+         * @param textColor
+         * @return
+         */
         public StyleBuilder setTextColor(int textColor) {
             this.textColor = textColor;
             return this;
         }
 
+        /**
+         * 获取 TextView 字体大小
+         * @return
+         */
         @Override
         public float getTextSize() {
             return textSize;
         }
 
+        /**
+         * 设置 TextView 字体大小
+         * @param textSize
+         * @return
+         */
         public StyleBuilder setTextSize(float textSize) {
             this.textSize = textSize;
             return this;
         }
 
+        /**
+         * 获取 TextView 最大行数
+         * @return
+         */
         @Override
         public int getTextMaxLines() {
             return textMaxLines;
         }
 
+        /**
+         * 设置 TextView 最大行数
+         * @param textMaxLines
+         * @return
+         */
         public StyleBuilder setTextMaxLines(int textMaxLines) {
             this.textMaxLines = textMaxLines;
             return this;
         }
 
+        /**
+         * 获取 TextView Ellipsize 效果
+         * @return
+         */
         @Override
         public TextUtils.TruncateAt getTextEllipsize() {
             return textEllipsize;
         }
 
+        /**
+         * 设置 TextView Ellipsize 效果
+         * @param textEllipsize
+         * @return
+         */
         public StyleBuilder setTextEllipsize(TextUtils.TruncateAt textEllipsize) {
             this.textEllipsize = textEllipsize;
             return this;
         }
 
+        /**
+         * 获取 TextView 字体样式
+         * @return
+         */
         @Override
         public Typeface getTextTypeface() {
             return textTypeface;
         }
 
+        /**
+         * 设置 TextView 字体样式
+         * @param textTypeface
+         * @return
+         */
         public StyleBuilder setTextTypeface(Typeface textTypeface) {
             this.textTypeface = textTypeface;
             return this;
         }
 
+        /**
+         * 获取 TextView padding 边距 - new int[] { left, top, right, bottom }
+         * @return
+         */
         @Override
         public int[] getTextPadding() {
             return textPadding;
         }
 
+        /**
+         * 设置 TextView padding 边距 - new int[] { left, top, right, bottom }
+         * @param textPadding
+         * @return
+         */
         public StyleBuilder setTextPadding(int[] textPadding) {
             this.textPadding = textPadding;
             return this;
         }
 
+        // == snackbar_action Button 相关 ==
+
+        /**
+         * 获取 Action Button 的重心
+         * @return
+         */
         @Override
         public int getActionGravity() {
             return actionGravity;
         }
 
+        /**
+         * 设置 Action Button 的重心
+         * @param actionGravity
+         * @return
+         */
         public StyleBuilder setActionGravity(int actionGravity) {
             this.actionGravity = actionGravity;
             return this;
         }
 
+        /**
+         * 获取 Action Button 文本颜色
+         * @return
+         */
         @Override
         public int getActionColor() {
             return actionColor;
         }
 
+        /**
+         * 设置 Action Button 文本颜色
+         * @param actionColor
+         * @return
+         */
         public StyleBuilder setActionColor(int actionColor) {
             this.actionColor = actionColor;
             return this;
         }
 
+        /**
+         * 获取 Action Button 字体大小
+         * @return
+         */
         @Override
         public float getActionSize() {
             return actionSize;
         }
 
+        /**
+         * 设置 Action Button 字体大小
+         * @param actionSize
+         * @return
+         */
         public StyleBuilder setActionSize(float actionSize) {
             this.actionSize = actionSize;
             return this;
         }
 
+        /**
+         * 获取 Action Button padding 边距 - new int[] { left, top, right, bottom }
+         * @return
+         */
         @Override
         public int[] getActionPadding() {
             return actionPadding;
         }
 
+        /**
+         * 设置 Action Button padding 边距 - new int[] { left, top, right, bottom }
+         * @param actionPadding
+         * @return
+         */
         public StyleBuilder setActionPadding(int[] actionPadding) {
             this.actionPadding = actionPadding;
             return this;
         }
 
+        /**
+         * 获取 Action Button 背景圆角大小
+         * @return
+         */
         @Override
         public float getActionCornerRadius() {
             return actionCornerRadius;
         }
 
+        /**
+         * 设置 Action Button 背景圆角大小
+         * @param actionCornerRadius
+         * @return
+         */
         public StyleBuilder setActionCornerRadius(float actionCornerRadius) {
             this.actionCornerRadius = actionCornerRadius;
             return this;
         }
 
+        /**
+         * 获取 Action Button 背景着色颜色
+         * @return
+         */
         @Override
         public int getActionBackgroundTintColor() {
             return actionBackgroundTintColor;
         }
 
+        /**
+         * 设置 Action Button 背景着色颜色
+         * @param actionBackgroundTintColor
+         * @return
+         */
         public StyleBuilder setActionBackgroundTintColor(int actionBackgroundTintColor) {
             this.actionBackgroundTintColor = actionBackgroundTintColor;
             return this;
         }
 
+        /**
+         * 获取 Action Button 背景图片
+         * @return
+         */
         @Override
         public Drawable getActionBackground() {
             return actionBackground;
         }
 
+        /**
+         * 设置 Action Button 背景图片
+         * @param actionBackground
+         * @return
+         */
         public StyleBuilder setActionBackground(Drawable actionBackground) {
             this.actionBackground = actionBackground;
             return this;

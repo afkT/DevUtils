@@ -265,7 +265,7 @@ final class ToastFactory {
                     // 获取包名
                     String packageName = context.getPackageName();
 
-                    // =========
+                    // ===
 
                     WindowManager.LayoutParams params = new WindowManager.LayoutParams();
                     // 设置参数

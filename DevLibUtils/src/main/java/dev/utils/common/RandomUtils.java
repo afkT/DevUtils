@@ -40,10 +40,21 @@ public final class RandomUtils {
 
 	// =
 
+	/**
+	 * 获取伪随机 boolean 值
+	 * @param random
+	 * @return
+	 */
 	public static boolean nextBoolean(Random random) {
 		return random.nextBoolean();
 	}
 
+	/**
+	 * 获取伪随机 byte[]
+	 * @param random
+	 * @param buf
+	 * @return
+	 */
 	public static byte[] nextBytes(Random random, byte[] buf) {
 		try {
 			random.nextBytes(buf);
@@ -52,60 +63,129 @@ public final class RandomUtils {
 		return buf;
 	}
 
+	/**
+	 * 获取伪随机 double 值
+	 * @param random
+	 * @return
+	 */
 	public static double nextDouble(Random random) {
 		return random.nextDouble();
 	}
 
+	/**
+	 * 获取伪随机高斯分布值
+	 * @param random
+	 * @return
+	 */
 	public static double nextGaussian(Random random) {
 		return random.nextGaussian();
 	}
 
+	/**
+	 * 获取伪随机 float 值
+	 * @param random
+	 * @return
+	 */
 	public static float nextFloat(Random random) {
 		return random.nextFloat();
 	}
 
+	/**
+	 * 获取伪随机 int 值
+	 * @param random
+	 * @return
+	 */
 	public static int nextInt(Random random) {
 		return random.nextInt();
 	}
 
+	/**
+	 * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
+	 * @param random
+	 * @param n
+	 * @return
+	 */
 	public static int nextInt(Random random, int n) {
 		return random.nextInt(n);
 	}
 
+	/**
+	 * 获取伪随机 long 值
+	 * @param random
+	 * @return
+	 */
 	public static long nextLong(Random random) {
 		return random.nextLong();
 	}
 
-	// == ----------------------------------------- ==
+	// ===
 
+	/**
+	 * 获取伪随机 boolean 值
+	 * @return
+	 */
 	public static boolean nextBoolean() {
 		return new Random().nextBoolean();
 	}
 
+	/**
+	 * 获取伪随机 byte[]
+	 * @param buf
+	 * @return
+	 */
 	public static byte[] nextBytes(byte[] buf) {
-		return nextBytes(new Random(), buf);
+		try {
+			new Random().nextBytes(buf);
+		} catch (Exception e) {
+		}
+		return buf;
 	}
 
+	/**
+	 * 获取伪随机 double 值
+	 * @return
+	 */
 	public static double nextDouble() {
 		return new Random().nextDouble();
 	}
 
+	/**
+	 * 获取伪随机高斯分布值
+	 * @return
+	 */
 	public static double nextGaussian() {
 		return new Random().nextGaussian();
 	}
 
+	/**
+	 * 获取伪随机 float 值
+	 * @return
+	 */
 	public static float nextFloat() {
 		return new Random().nextFloat();
 	}
 
+	/**
+	 * 获取伪随机 int 值
+	 * @return
+	 */
 	public static int nextInt() {
 		return new Random().nextInt();
 	}
 
+	/**
+	 * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
+	 * @param n
+	 * @return
+	 */
 	public static int nextInt(int n) {
 		return new Random().nextInt(n);
 	}
 
+	/**
+	 * 获取伪随机 long 值
+	 * @return
+	 */
 	public static long nextLong() {
 		return new Random().nextLong();
 	}
