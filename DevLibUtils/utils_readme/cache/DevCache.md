@@ -1,4 +1,4 @@
-# 线程工具类
+# Cache 工具类
 
 #### 使用演示类 [CacheUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/cache/CacheUse.java) 介绍了配置参数及使用
 
