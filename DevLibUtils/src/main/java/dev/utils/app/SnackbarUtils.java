@@ -43,7 +43,10 @@ public final class SnackbarUtils {
 
     private SnackbarUtils(View view) {
         if (view != null) {
-            sSnackbarReference = new WeakReference<>(Snackbar.make(view, "", Snackbar.LENGTH_SHORT));
+            try {
+                sSnackbarReference = new WeakReference<>(Snackbar.make(view, "", Snackbar.LENGTH_SHORT));
+            } catch (Exception e) {
+            }
         }
     }
 

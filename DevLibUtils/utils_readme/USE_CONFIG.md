@@ -39,19 +39,21 @@ public class BaseApplication extends Application {
 
 ## [ToastTintUtils Toast美化工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/toast/ToastTintUtils.md)
 
-## [TimerManager 定时器工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/timer/TimerManager.md)
-
-## [DevMediaManager 多媒体工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/media/DevMediaManager.md)
+## [SnackbarUtils Snackbar工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/snackbar/SnackbarUtils.md)
 
 ## [FileRecordUtils、AnalysisRecordUtils、DevLoggerUtils 日志、异常文件记录保存工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/record/FileRecord.md)
-
-## [DevThreadManager - 线程工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/thread/DevThreadManager.md)
-
-## [DevCache - 缓存工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/cache/DevCache.md)
 
 ## [SharedUtils - SharedPreferences工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/share/SharedUtils.md)
 
 ## [ShapeUtils - Shape工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/shape/ShapeUtils.md)
+
+## [DevCache - 缓存工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/cache/DevCache.md)
+
+## [TimerManager 定时器工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/timer/TimerManager.md)
+
+## [DevThreadManager - 线程工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/thread/DevThreadManager.md)
+
+## [DevMediaManager 多媒体工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/media/DevMediaManager.md)
 
 ## [WifiHotUtils - Wifi热点工具类文档](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/wifi/WifiHotUtils.md)
 
