@@ -1,5 +1,9 @@
 package dev.utils.app;
 
+import android.graphics.Rect;
+import android.view.TouchDelegate;
+import android.view.View;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -182,5 +186,71 @@ public final class ClickUtils {
      */
     public static void removeConfig(String key) {
         mapConfig.remove(key);
+    }
+
+    // =
+
+    /**
+     * 移除点击记录
+     * @param key
+     */
+    public static void removeRecord(String key){
+        mapRecords.remove(key);
+    }
+
+    /**
+     * 清空点击记录
+     * @param key
+     */
+    public static void clearRecord(String key){
+        mapRecords.clear();
+    }
+
+    /**
+     * 增加控件的触摸范围，最大范围只能是父布局所包含的的区域
+     * @param view
+     * @param range
+     */
+    public static void addTouchArea(final View view, final int range) {
+        addTouchArea(view, range, range, range, range);
+    }
+
+    /**
+     * 增加控件的触摸范围，最大范围只能是父布局所包含的的区域
+     * @param view
+     * @param top
+     * @param bottom
+     * @param left
+     * @param right
+     */
+    public static void addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
+        if (view != null){
+            try {
+                final View parent = (View) view.getParent();
+                parent.post(new Runnable() {
+                    public void run() {
+                        try {
+                            Rect bounds = new Rect();
+                            view.getHitRect(bounds);
+
+                            // 设置范围
+                            bounds.top -= top;
+                            bounds.bottom += bottom;
+                            bounds.left -= left;
+                            bounds.right += right;
+
+                            TouchDelegate touchDelegate = new TouchDelegate(bounds, view);
+                            if (View.class.isInstance(view.getParent())) {
+                                ((View) view.getParent()).setTouchDelegate(touchDelegate);
+                            }
+                        } catch (Exception e) {
+                            LogPrintUtils.eTag(TAG, e,"addTouchArea - runnable");
+                        }
+                    }
+                });
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e,"addTouchArea");
+            }
+        }
     }
 }
