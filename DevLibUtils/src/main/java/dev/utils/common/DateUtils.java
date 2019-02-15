@@ -687,6 +687,25 @@ public final class DateUtils {
 		return sb.toString();
 	}
 
+	/**
+	 * 转换时间为数组
+	 * @param millis
+	 * @return int[5] { 天, 小时, 分钟, 秒, 毫秒}
+	 */
+	public static int[] millis2TimeArys(long millis) {
+		if (millis <= 0) return null;
+		int[] timeArys = new int[5];
+		int[] unitLen = { 86400000, 3600000, 60000, 1000, 1 };
+		for (int i = 0; i < 5; i++) {
+			if (millis >= unitLen[i]) {
+				long mode = millis / unitLen[i];
+				millis -= mode * unitLen[i];
+				timeArys[i] = (int) mode;
+			}
+		}
+		return timeArys;
+	}
+
 	// == 判断是否在区间范围 ==
 
 	/**
