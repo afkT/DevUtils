@@ -28,6 +28,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import java.io.File;
@@ -89,18 +90,18 @@ public final class AppUtils {
 	 * @return
 	 */
 	public static View getView(@LayoutRes int resource) {
-		return getView(DevUtils.getContext(), resource);
+		return getView(resource, null);
 	}
 
 	/**
 	 * 获取View
-	 * @param context
 	 * @param resource
+	 * @param root
 	 * @return
 	 */
-	public static View getView(Context context, @LayoutRes int resource) {
+	public static View getView(@LayoutRes int resource, ViewGroup root) {
 		try {
-			return ((LayoutInflater) DevUtils.getContext(context).getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, null);
+			return ((LayoutInflater) DevUtils.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, root);
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getView");
 		}

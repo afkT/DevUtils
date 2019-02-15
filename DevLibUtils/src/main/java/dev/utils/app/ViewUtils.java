@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Build;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.RequiresApi;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -41,6 +44,32 @@ public final class ViewUtils {
         }
         return null;
     }
+
+    /**
+     * 获取 View
+     * @param resource
+     * @return
+     */
+    public static View getView(@LayoutRes int resource) {
+        return getView(resource, null);
+    }
+
+    /**
+     * 获取View
+     * @param resource
+     * @param root
+     * @return
+     */
+    public static View getView(@LayoutRes int resource, ViewGroup root) {
+        try {
+            return ((LayoutInflater) DevUtils.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, root);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getView");
+        }
+        return null;
+    }
+
+    // =
 
     /**
      * 判断View 是否为null
