@@ -318,7 +318,7 @@ public final class AnalysisRecordUtils {
                         Object object = field.get(null);
                         // 判断是否数组
                         if (object instanceof String[]) {
-                            if (object != null){
+                            if (object != null) {
                                 // 获取类型对应字段的数据，并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
                                 dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
                             }

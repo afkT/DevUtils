@@ -168,7 +168,7 @@ SnackbarUtils.with(view).setAction(clickListener, "撤销");
 // = 设置 事件相关 =
 
 // 设置 Snackbar 展示完成 及 隐藏完成 的监听
-SnackbarUtils.with(view).setCallback(new Snackbar.Callback(){
+SnackbarUtils.with(view).setCallback(new Snackbar.Callback() {
     @Override
     public void onShown(Snackbar sb) {
         super.onShown(sb);
@@ -235,7 +235,7 @@ SnackbarUtils.with(view)
             }
         }, "撤销")
         .bellow(targetView, 0)
-        .setCallback(new Snackbar.Callback(){
+        .setCallback(new Snackbar.Callback() {
             @Override
             public void onDismissed(Snackbar transientBottomBar, int event) {
             }

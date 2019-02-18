@@ -39,7 +39,7 @@ public final class PowerManagerUtils {
         try {
             // 电源管理锁
             wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.FULL_WAKE_LOCK, "PowerManagerUtils");
-        } catch (Exception e){
+        } catch (Exception e) {
         }
     }
 
@@ -144,7 +144,7 @@ public final class PowerManagerUtils {
 //            mWakeLock.release(); // 释放资源, 到休眠时间自动黑屏
 //        }
             return mWakeLock;
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         return null;
     }

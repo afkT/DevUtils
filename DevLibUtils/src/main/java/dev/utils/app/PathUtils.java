@@ -350,7 +350,7 @@ public final class PathUtils {
      * @param file
      * @return
      */
-    private static String getAbsolutePath(File file){
+    private static String getAbsolutePath(File file) {
         if (file == null) return null;
         return file.getAbsolutePath();
     }

@@ -50,7 +50,7 @@ public final class DevToast {
      * 设置 Toast 文案长度转换 显示时间
      * @param textLengthConvertDuration
      */
-    public static void setTextLength(int textLengthConvertDuration){
+    public static void setTextLength(int textLengthConvertDuration) {
         toast.setTextLength(textLengthConvertDuration);
     }
 

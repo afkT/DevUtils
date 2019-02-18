@@ -432,7 +432,7 @@ public final class ToastUtils {
 			context = DevUtils.getContext();
 		}
         // 判断是否过滤
-        if (!sPriToastFilter.filter(text)){
+        if (!sPriToastFilter.filter(text)) {
             return null;
         }
         // 处理内容
@@ -579,7 +579,7 @@ public final class ToastUtils {
 			context = DevUtils.getContext();
 		}
         // 判断是否过滤
-        if (!sPriToastFilter.filter(view)){
+        if (!sPriToastFilter.filter(view)) {
             return null;
         }
 		// 防止 Context 为null

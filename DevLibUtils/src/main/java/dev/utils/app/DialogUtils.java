@@ -202,7 +202,7 @@ public final class DialogUtils {
                 });
             }
             return builder.create();
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "createAlertDialog");
         }
         return null;

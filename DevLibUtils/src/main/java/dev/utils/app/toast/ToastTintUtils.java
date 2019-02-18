@@ -769,7 +769,7 @@ public final class ToastTintUtils {
             return null;
         }
         // 判断是否过滤
-        if (!sPriToastFilter.filter(text)){
+        if (!sPriToastFilter.filter(text)) {
             return null;
         }
         // 处理内容

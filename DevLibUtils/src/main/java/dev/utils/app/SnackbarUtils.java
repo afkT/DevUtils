@@ -369,14 +369,14 @@ public final class SnackbarUtils {
      * @param text
      * @param duration
      */
-    private void priShow(String text, int duration){
+    private void priShow(String text, int duration) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
             if (!snackbar.isShownOrQueued()) {
                 // 防止内容为null
                 if (!TextUtils.isEmpty(text)) {
                     setSnackbarStyle(snackbar);
-                    if (snackbar != null){
+                    if (snackbar != null) {
                         // 设置坐标位置
                         setSnackbarLocation(snackbar);
                         // 显示 SnackBar
@@ -1360,11 +1360,11 @@ public final class SnackbarUtils {
      * @param appendTopMargin 追加边距(如: 状态栏高度) {@link ScreenUtils#getStatusBarHeight}
      * @return
      */
-    public SnackbarUtils above(View targetView, int appendTopMargin){
+    public SnackbarUtils above(View targetView, int appendTopMargin) {
         // 清空重置处理
         clearLocations();
         // 防止为 null
-        if (targetView != null){
+        if (targetView != null) {
             mViewHeight = targetView.getHeight();
             mViewGravity = Gravity.TOP;
             mViewLocations = new int[2];
@@ -1380,11 +1380,11 @@ public final class SnackbarUtils {
      * @param appendTopMargin 追加边距(如: 状态栏高度) {@link ScreenUtils#getStatusBarHeight}
      * @return
      */
-    public SnackbarUtils bellow(View targetView, int appendTopMargin){
+    public SnackbarUtils bellow(View targetView, int appendTopMargin) {
         // 清空重置处理
         clearLocations();
         // 防止为 null
-        if (targetView != null){
+        if (targetView != null) {
             mViewHeight = targetView.getHeight();
             mViewGravity = Gravity.BOTTOM;
             mViewLocations = new int[2];
@@ -1398,7 +1398,7 @@ public final class SnackbarUtils {
      * 设置 Snackbar 显示的坐标位置
      * @param snackbar
      */
-    private void setSnackbarLocation(Snackbar snackbar){
+    private void setSnackbarLocation(Snackbar snackbar) {
         // 获取显示的View
         View rootView = snackbar.getView();
         if (rootView != null) {
@@ -1408,7 +1408,7 @@ public final class SnackbarUtils {
                 // View (坐标)边距
                 int[] margin = new int[4];
                 // 判断 Style 是否为null
-                if (mStyleBuilder != null){
+                if (mStyleBuilder != null) {
                     // 默认边距
                     int[] rootMargin = mStyleBuilder.getRootMargin();
                     if (rootMargin != null && rootMargin.length == 4) {
@@ -1426,9 +1426,9 @@ public final class SnackbarUtils {
                     // 获取测量高度(不一定准确)
                     int measuredHeight = getMeasuredHeight(rootView);
                     // 判断方向, 在指定坐标上方, 判断是否够空间
-                    if (mViewGravity == Gravity.TOP){
+                    if (mViewGravity == Gravity.TOP) {
                         // 判断是否超出可显示高度
-                        if (mViewTop - mShadowMargin - mAppendTopMargin >= measuredHeight){
+                        if (mViewTop - mShadowMargin - mAppendTopMargin >= measuredHeight) {
                             // 思路: 没有超出高度, 则正常显示在指定View 上方
                             // 改为布局居下(相反方向), 然后设置 bottomMargin 为 屏幕高度 - view mWindowTop + 阴影大小
                             // 这样的思路，主要是只用知道 view 的 Y 轴位置, 然后用屏幕高度减去 y 得到的就是需要向下的边距, 不需要计算 Snackbar View 高度
@@ -1466,7 +1466,7 @@ public final class SnackbarUtils {
                         }
                     } else { // 在指定坐标下方
                         // 判断是否超出可显示高度
-                        if (screenHeight - (mViewTop + mShadowMargin + mAppendTopMargin + mViewHeight) >= measuredHeight){
+                        if (screenHeight - (mViewTop + mShadowMargin + mAppendTopMargin + mViewHeight) >= measuredHeight) {
                             // 思路: 没有超出高度, 则正常显示在指定View 下方
                             // 并且改为布局居上, 然后设置 topMargin 为 view mWindowTop - (阴影大小 + 追加边距(状态栏高度))
                             // 这样的思路，主要是不居下，不用知道 Snackbar view 高度, 导致向下边距计算错误，转换思路从上处理
@@ -1484,7 +1484,7 @@ public final class SnackbarUtils {
                             }
                         } else { // 超出可视范围
                             // 判断是否自动计算处理
-                            if (mAutoCalc){
+                            if (mAutoCalc) {
                                 // 思路如上: 超出高度后, 则直接设置居下, 计算边距则 用屏幕高度 - view mWindowTop + 阴影边距
                                 // 计算处理的值则是 view mWindowTop 距离底部的边距, 刚好设置 bottomMargin, 实现思路转换处理
                                 try {

@@ -529,7 +529,7 @@ public final class DateUtils {
 	public static int getYearMonthNumber(int year) {
 		// 如: 当前 2019-01, 传入 2019 则返回 1
 		// 传入 2018, 返回 12, 不会返回未来的月份
-		if (year == getYear()){
+		if (year == getYear()) {
 			return getMonth();
 		}
 		return 12;
@@ -544,7 +544,7 @@ public final class DateUtils {
 	 */
 	public static int getMonthDayNumber(int year, int month) {
 		// 判断年份, 相同则判断月份
-		if (year == getYear()){
+		if (year == getYear()) {
 			// 判断月份, 先同则返回天数
 			if (getYearMonthNumber(year) == month) {
 				return getDay();

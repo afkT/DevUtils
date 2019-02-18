@@ -22,7 +22,7 @@ import dev.utils.app.SnackbarUtils;
  */
 public final class SnackbarUse {
 
-    private SnackbarUse(){
+    private SnackbarUse() {
     }
 
     // 日志TAG
@@ -38,7 +38,7 @@ public final class SnackbarUse {
     View targetView;
     TextView newTextView;
 
-    public void snackbarUse(){
+    public void snackbarUse() {
 
         // ===================================================
         // == 只能通过以下四种方式 获取 SnackbarUtils 对象 ==
@@ -129,7 +129,7 @@ public final class SnackbarUse {
         // = 设置 事件相关 =
 
         // 设置 Snackbar 展示完成 及 隐藏完成 的监听
-        SnackbarUtils.with(view).setCallback(new Snackbar.Callback(){
+        SnackbarUtils.with(view).setCallback(new Snackbar.Callback() {
             @Override
             public void onShown(Snackbar sb) {
                 super.onShown(sb);
@@ -196,7 +196,7 @@ public final class SnackbarUse {
                     }
                 }, "撤销")
                 .bellow(targetView, 0)
-                .setCallback(new Snackbar.Callback(){
+                .setCallback(new Snackbar.Callback() {
                     @Override
                     public void onDismissed(Snackbar transientBottomBar, int event) {
                     }

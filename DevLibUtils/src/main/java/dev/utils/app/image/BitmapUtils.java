@@ -52,7 +52,7 @@ public final class BitmapUtils {
 	public static Drawable intToDrawable(int color) {
 		try {
 			return new ColorDrawable(color);
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "intToDrawable");
 		}
 		return null;
@@ -66,7 +66,7 @@ public final class BitmapUtils {
 	public static Drawable stringToDrawable(String color) {
 		try {
 			return new ColorDrawable(Color.parseColor(color));
-		} catch (Exception e){
+		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "stringToDrawable");
 		}
 		return null;

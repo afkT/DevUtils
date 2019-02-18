@@ -64,7 +64,7 @@ public final class MediaUse {
         DevMediaManager.getInstance().setMeidaListener(new DevMediaManager.MediaListener() {
             @Override
             public void onPrepared() {
-                if (DevMediaManager.getInstance().isNotNullMediaPlayer()){
+                if (DevMediaManager.getInstance().isNotNullMediaPlayer()) {
                     // 播放操作
                     DevMediaManager.getInstance().getMediaPlayer().start();
                 }

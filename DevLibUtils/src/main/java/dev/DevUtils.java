@@ -369,7 +369,7 @@ public final class DevUtils {
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
              setTopActivity(activity);
 
-             if (DevUtils.absActivityLifecycle != null){
+             if (DevUtils.absActivityLifecycle != null) {
                  DevUtils.absActivityLifecycle.onActivityCreated(activity, savedInstanceState);
              }
         }
@@ -385,7 +385,7 @@ public final class DevUtils {
                 ++mForegroundCount;
             }
 
-            if (DevUtils.absActivityLifecycle != null){
+            if (DevUtils.absActivityLifecycle != null) {
                 DevUtils.absActivityLifecycle.onActivityStarted(activity);
             }
         }
@@ -399,14 +399,14 @@ public final class DevUtils {
                 postStatus(true);
             }
 
-            if (DevUtils.absActivityLifecycle != null){
+            if (DevUtils.absActivityLifecycle != null) {
                 DevUtils.absActivityLifecycle.onActivityResumed(activity);
             }
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
-            if (DevUtils.absActivityLifecycle != null){
+            if (DevUtils.absActivityLifecycle != null) {
                 DevUtils.absActivityLifecycle.onActivityPaused(activity);
             }
         }
@@ -424,14 +424,14 @@ public final class DevUtils {
                 }
             }
 
-            if (DevUtils.absActivityLifecycle != null){
+            if (DevUtils.absActivityLifecycle != null) {
                 DevUtils.absActivityLifecycle.onActivityStopped(activity);
             }
         }
 
         @Override
         public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-            if (DevUtils.absActivityLifecycle != null){
+            if (DevUtils.absActivityLifecycle != null) {
                 DevUtils.absActivityLifecycle.onActivitySaveInstanceState(activity, outState);
             }
         }
@@ -444,7 +444,7 @@ public final class DevUtils {
             // 修复软键盘内存泄漏 在 Activity.onDestroy() 中使用
             KeyBoardUtils.fixSoftInputLeaks(activity);
 
-            if (DevUtils.absActivityLifecycle != null){
+            if (DevUtils.absActivityLifecycle != null) {
                 DevUtils.absActivityLifecycle.onActivityDestroyed(activity);
             }
         }

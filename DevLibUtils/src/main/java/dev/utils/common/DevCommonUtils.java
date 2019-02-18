@@ -29,7 +29,7 @@ public final class DevCommonUtils {
      * @param max
      * @return
      */
-    public static float percent(float value, float max){
+    public static float percent(float value, float max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -42,7 +42,7 @@ public final class DevCommonUtils {
      * @param max
      * @return
      */
-    public static float percent(int value, int max){
+    public static float percent(int value, int max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -55,7 +55,7 @@ public final class DevCommonUtils {
      * @param max
      * @return
      */
-    public static float percent2(float value, float max){
+    public static float percent2(float value, float max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         return value / max;
@@ -67,7 +67,7 @@ public final class DevCommonUtils {
      * @param max
      * @return
      */
-    public static float percent2(int value, int max){
+    public static float percent2(int value, int max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         return (float) value / (float) max;

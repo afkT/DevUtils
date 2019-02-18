@@ -96,7 +96,7 @@ public final class ColorUtils {
      * @param max
      * @return
      */
-    public static float percent(float value, float max){
+    public static float percent(float value, float max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -109,7 +109,7 @@ public final class ColorUtils {
      * @param max
      * @return
      */
-    public static float percent(int value, int max){
+    public static float percent(int value, int max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -154,7 +154,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static float alphaPercent(int color){
+    public static float alphaPercent(int color) {
         return percent(alpha(color), 255);
     }
 
@@ -174,7 +174,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static float redPercent(int color){
+    public static float redPercent(int color) {
         return percent(red(color), 255);
     }
 
@@ -194,7 +194,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static float greenPercent(int color){
+    public static float greenPercent(int color) {
         return percent(green(color), 255);
     }
 
@@ -214,7 +214,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static float bluePercent(int color){
+    public static float bluePercent(int color) {
         return percent(blue(color), 255);
     }
 
@@ -277,7 +277,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static boolean isRGB(int color){
+    public static boolean isRGB(int color) {
         int red = red(color);
         int green = green(color);
         int blue = blue(color);
@@ -291,7 +291,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static boolean isARGB(int color){
+    public static boolean isARGB(int color) {
         int alpha = alpha(color);
         int red = red(color);
         int green = green(color);
@@ -422,7 +422,7 @@ public final class ColorUtils {
     public static int parseColor(String colorString) {
         try {
             return priParseColor(colorString);
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "parseColor");
         }
         return -1;
@@ -502,7 +502,7 @@ public final class ColorUtils {
      * @param darkValue
      * @return
      */
-    public static int setDark(String colorStr, int darkValue){
+    public static int setDark(String colorStr, int darkValue) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setDark(color, darkValue);
@@ -514,7 +514,7 @@ public final class ColorUtils {
      * @param darkValue
      * @return
      */
-    public static int setDark(int color, int darkValue){
+    public static int setDark(int color, int darkValue) {
         int red = red(color);
         int green = green(color);
         int blue = blue(color);
@@ -535,7 +535,7 @@ public final class ColorUtils {
      * @param lightValue
      * @return
      */
-    public static int setLight(String colorStr, int lightValue){
+    public static int setLight(String colorStr, int lightValue) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setLight(color, lightValue);
@@ -547,7 +547,7 @@ public final class ColorUtils {
      * @param lightValue
      * @return
      */
-    public static int setLight(int color, int lightValue){
+    public static int setLight(int color, int lightValue) {
         int red = red(color);
         int green = green(color);
         int blue = blue(color);
@@ -568,7 +568,7 @@ public final class ColorUtils {
      * @param darkValue
      * @return
      */
-    public static int setAlphaDark(String colorStr, int darkValue){
+    public static int setAlphaDark(String colorStr, int darkValue) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setAlphaDark(color, darkValue);
@@ -580,7 +580,7 @@ public final class ColorUtils {
      * @param darkValue
      * @return
      */
-    public static int setAlphaDark(int color, int darkValue){
+    public static int setAlphaDark(int color, int darkValue) {
         int alpha = alpha(color);
         // 透明度加深
         alpha += darkValue;
@@ -595,7 +595,7 @@ public final class ColorUtils {
      * @param lightValue
      * @return
      */
-    public static int setAlphaLight(String colorStr, int lightValue){
+    public static int setAlphaLight(String colorStr, int lightValue) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setAlphaLight(color, lightValue);
@@ -607,7 +607,7 @@ public final class ColorUtils {
      * @param lightValue
      * @return
      */
-    public static int setAlphaLight(int color, int lightValue){
+    public static int setAlphaLight(int color, int lightValue) {
         int alpha = alpha(color);
         // 透明度变浅
         alpha -= lightValue;

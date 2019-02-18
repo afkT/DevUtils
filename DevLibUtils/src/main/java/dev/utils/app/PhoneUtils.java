@@ -657,7 +657,7 @@ public final class PhoneUtils {
      * @param activity
      */
     public static void getContactNum(Activity activity) {
-        if (activity != null && !activity.isFinishing()){
+        if (activity != null && !activity.isFinishing()) {
             Intent intent = new Intent();
             intent.setAction("android.intent.action.PICK");
             intent.setType("vnd.android.cursor.dir/phone_v2");

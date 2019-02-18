@@ -194,7 +194,7 @@ public final class ClickUtils {
      * 移除点击记录
      * @param key
      */
-    public static void removeRecord(String key){
+    public static void removeRecord(String key) {
         mapRecords.remove(key);
     }
 
@@ -202,7 +202,7 @@ public final class ClickUtils {
      * 清空点击记录
      * @param key
      */
-    public static void clearRecord(String key){
+    public static void clearRecord(String key) {
         mapRecords.clear();
     }
 
@@ -224,7 +224,7 @@ public final class ClickUtils {
      * @param right
      */
     public static void addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
-        if (view != null){
+        if (view != null) {
             try {
                 final View parent = (View) view.getParent();
                 parent.post(new Runnable() {

@@ -96,7 +96,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 //            try {
 //                // 解除注册 Activity 生命周期监听
 //                application.unregisterActivityLifecycleCallbacks(this);
-//            } catch (Exception e){
+//            } catch (Exception e) {
 //            }
 //            // 注册 Activity 生命周期监听
 //            application.registerActivityLifecycleCallbacks(this);
@@ -176,7 +176,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         if (sConfigToast != null && view != null) {
             sConfigToast.setView(view);
             // 如果是 null, 则抛出异常
-            if (sConfigToast.isEmptyMessageView()){
+            if (sConfigToast.isEmptyMessageView()) {
                 // 如果设置的布局没有包含一个 TextView 则抛出异常，必须要包含一个 TextView 作为 Message View
                 throw new IllegalArgumentException("The layout must contain a TextView");
             }
@@ -195,7 +195,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             } catch (Exception e) {
             }
             // 如果是 null, 则抛出异常
-            if (sConfigToast.isEmptyMessageView()){
+            if (sConfigToast.isEmptyMessageView()) {
                 // 如果设置的布局没有包含一个 TextView 则抛出异常，必须要包含一个 TextView 作为 Message View
                 throw new IllegalArgumentException("The layout must contain a TextView");
             }
@@ -258,10 +258,10 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     @Override
     public void cancel() {
-        if (mToast != null){
+        if (mToast != null) {
             try {
                 mToast.cancel();
-            } catch (Exception e){
+            } catch (Exception e) {
             }
         }
     }
@@ -395,7 +395,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
                 mToast = null;
             }
             // 如果不存在 TextView, 直接跳过
-            if (sConfigToast.isEmptyMessageView()){
+            if (sConfigToast.isEmptyMessageView()) {
                 return null;
             }
             View view = sConfigToast.getView();
@@ -429,7 +429,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
                 toastTextView.setZ(style.getZ());
             }
             // 设置边距
-            if (style.getPadding() != null && style.getPadding().length == 4){
+            if (style.getPadding() != null && style.getPadding().length == 4) {
                 int[] padding = style.getPadding();
                 toastTextView.setPadding(padding[0], padding[1], padding[2], padding[3]);
             }
@@ -514,7 +514,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @return
      */
     private Toast newToastView(IToast.Style style, View view, int duration) {
-        if (style == null){
+        if (style == null) {
             return null;
         } else if (view == null) { // 防止显示的View 为null
             return null;
@@ -583,8 +583,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 //        // =
 //        // 不能放在 onStop 或者 onDestroyed 方法中，因为此时新的 Activity 已经创建完成，必须在这个新的 Activity 未创建之前关闭这个 WindowManager
 //        // 调用取消显示会直接新的 Activity 的 onCreate 调用显示 Toast 可能显示不出来的问题（立马显示然后立马消失的效果）
-////        if (mToast != null){
-////            if (mToast instanceof ToastFactory.NotificationToast){
+////        if (mToast != null) {
+////            if (mToast instanceof ToastFactory.NotificationToast) {
 ////                mToast.cancel();
 ////            }
 ////        }
