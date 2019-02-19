@@ -212,6 +212,22 @@ public final class AppCommonUtils {
     }
 
     /**
+     * 是否在8.1版本及以上
+     * @return 是否在8.1版本及以上
+     */
+    public static boolean isO_MR1() {
+        return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O_MR1;
+    }
+
+    /**
+     * 是否在9.0版本及以上
+     * @return 是否在9.0版本及以上
+     */
+    public static boolean isP() {
+        return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.P;
+    }
+
+    /**
      * 转换SDK版本 (convertSDKVersion(14) => Android 4.0.0-2)
      * @param sdkVersion
      * @return
@@ -271,6 +287,10 @@ public final class AppCommonUtils {
                 return "Android 7.1.1";
             case 26:
                 return "Android 8.0";
+            case 27:
+                return "Android 8.1";
+            case 28:
+                return "Android 9.0";
         }
         return "unknown";
     }
