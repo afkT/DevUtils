@@ -150,6 +150,40 @@ public final class ActivityManager {
     }
 
     /**
+     * 检测是否包含指定的 Activity
+     * @param cls
+     * @return
+     */
+    public boolean existActivitys(Class<?>... cls) {
+        if (cls != null && cls.length != 0) {
+            synchronized (activityStacks) {
+                // 保存新的任务,防止出现同步问题
+                Stack<Activity> aStacks = new Stack<>();
+                aStacks.addAll(activityStacks);
+                try {
+                    // 进行遍历判断
+                    Iterator<Activity> iterator = aStacks.iterator();
+                    while (iterator.hasNext()) {
+                        Activity activity = iterator.next();
+                        if (activity != null && !activity.isFinishing()) {
+                            for (int i = 0, c = cls.length; i < c; i++) {
+                                if (cls[i] != null && activity.getClass().getName().equals(cls[i].getName())) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                } finally {
+                    // 移除,并且清空内存
+                    aStacks.clear();
+                    aStacks = null;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * 结束指定的 Activity
      * @param activity
      */
@@ -382,6 +416,8 @@ public final class ActivityManager {
             aStacks = null;
         }
     }
+
+    // =
 
     /**
      * 退出应用程序
