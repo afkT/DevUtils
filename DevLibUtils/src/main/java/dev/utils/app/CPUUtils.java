@@ -52,8 +52,7 @@ public final class CPUUtils {
                     //查找到序列号所在行
                     if (str.indexOf("Serial") > -1) {
                         //提取序列号
-                        strCPU = str.substring(str.indexOf(":") + 1,
-                                str.length());
+                        strCPU = str.substring(str.indexOf(":") + 1);
                         //去空格
                         cpuSerialNum = strCPU.trim();
                         break;

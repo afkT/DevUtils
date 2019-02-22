@@ -644,23 +644,23 @@ public final class DevCommonUtils {
 
     /**
      * 判断多个字符串,只要有一个符合条件,则通过
-     * @param content
+     * @param str
      * @param args
      * @return
      */
-    public static boolean isOrEquals(String content, String... args) {
-        return isOrEquals(false, content, args);
+    public static boolean isOrEquals(String str, String... args) {
+        return isOrEquals(false, str, args);
     }
 
     /**
      * 判断多个字符串,只要有一个符合条件,则通过
      * @param isIgnore 是否忽略大小写
-     * @param content
+     * @param str
      * @param args
      * @return
      */
-    public static boolean isOrEquals(boolean isIgnore, String content, String... args) {
-        if (content != null && args != null && args.length != 0) {
+    public static boolean isOrEquals(boolean isIgnore, String str, String... args) {
+        if (str != null && args != null && args.length != 0) {
             // 获取数据长度
             int len = args.length;
             // 如果最多只有一个数据判断,则直接跳过
@@ -676,11 +676,11 @@ public final class DevCommonUtils {
                     continue;
                 } else {
                     if (isIgnore) {
-                        if (val.equalsIgnoreCase(content)) {
+                        if (val.equalsIgnoreCase(str)) {
                             return true;
                         }
                     } else {
-                        if (val.equals(content)) {
+                        if (val.equals(str)) {
                             return true;
                         }
                     }
@@ -692,29 +692,29 @@ public final class DevCommonUtils {
 
     /**
      * 判断一堆值中，是否存在符合该条件的(包含)
-     * @param content
+     * @param str
      * @param args
      * @return
      */
-    public static boolean isContains(String content, String... args) {
-        return isContains(false, content, args);
+    public static boolean isContains(String str, String... args) {
+        return isContains(false, str, args);
     }
 
     /**
      * 判断一堆值中，是否存在符合该条件的(包含)
      * @param isIgnore
-     * @param content
+     * @param str
      * @param args
      * @return
      */
-    public static boolean isContains(boolean isIgnore, String content, String... args) {
-        if (content != null && args != null && args.length != 0) {
+    public static boolean isContains(boolean isIgnore, String str, String... args) {
+        if (str != null && args != null && args.length != 0) {
             // 判断是否需要忽略大小写
             if (isIgnore) {
-                content = content.toLowerCase();
+                str = str.toLowerCase();
             }
             // 获取内容长度
-            int cLength = content.length();
+            int cLength = str.length();
             // 遍历判断
             for (int i = 0, len = args.length; i < len; i++) {
                 // 获取参数
@@ -725,19 +725,19 @@ public final class DevCommonUtils {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
                         // 判断是否包含
-                        if (valIgnore.indexOf(content) != -1) {
+                        if (valIgnore.indexOf(str) != -1) {
                             return true;
                         }
                     } else {
                         // 判断是否包含
-                        if (val.indexOf(content) != -1) {
+                        if (val.indexOf(str) != -1) {
                             return true;
                         }
                     }
                 } else {
                     // 下面这一串可以不要,因为判断字符串是否包含
                     // 已经处理了值不为null,并且需要判断的值长度不能为0,下面则不需要加上
-                    if (content.equals(val)) {
+                    if (str.equals(val)) {
                         return true;
                     }
                 }
@@ -748,26 +748,26 @@ public final class DevCommonUtils {
 
     /**
      * 判断内容, 是否属于特定字符串数组开头 - 对比大小写
-     * @param content
+     * @param str
      * @param args
      * @return
      */
-    public static boolean isStartsWith(String content, String... args) {
-        return isStartsWith(false, content, args);
+    public static boolean isStartsWith(String str, String... args) {
+        return isStartsWith(false, str, args);
     }
 
     /**
      * 判断内容, 是否属于特定字符串数组开头
      * @param isIgnore 是否忽略大小写
-     * @param content
+     * @param str
      * @param args
      * @return
      */
-    public static boolean isStartsWith(boolean isIgnore, String content, String... args) {
-        if (!isEmpty(content) && args != null && args.length != 0) {
+    public static boolean isStartsWith(boolean isIgnore, String str, String... args) {
+        if (!isEmpty(str) && args != null && args.length != 0) {
             // 判断是否需要忽略大小写
             if (isIgnore) {
-                content = content.toLowerCase();
+                str = str.toLowerCase();
             }
             // 获取数据长度
             int len = args.length;
@@ -781,12 +781,12 @@ public final class DevCommonUtils {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
                         // 判断是否属于 val 开头
-                        if (content.startsWith(valIgnore)) {
+                        if (str.startsWith(valIgnore)) {
                             return true;
                         }
                     } else {
                         // 判断是否属于 val 开头
-                        if (content.startsWith(val)) {
+                        if (str.startsWith(val)) {
                             return true;
                         }
                     }
@@ -798,26 +798,26 @@ public final class DevCommonUtils {
 
     /**
      * 判断内容, 是否属于特定字符串数组结尾 - 对比大小写
-     * @param content
+     * @param str
      * @param args
      * @return
      */
-    public static boolean isEndsWith(String content, String... args) {
-        return isEndsWith(false, content, args);
+    public static boolean isEndsWith(String str, String... args) {
+        return isEndsWith(false, str, args);
     }
 
     /**
      * 判断内容, 是否属于特定字符串数组结尾
      * @param isIgnore 是否忽略大小写
-     * @param content
+     * @param str
      * @param args
      * @return
      */
-    public static boolean isEndsWith(boolean isIgnore, String content, String... args) {
-        if (!isEmpty(content) && args != null && args.length != 0) {
+    public static boolean isEndsWith(boolean isIgnore, String str, String... args) {
+        if (!isEmpty(str) && args != null && args.length != 0) {
             // 判断是否需要忽略大小写
             if (isIgnore) {
-                content = content.toLowerCase();
+                str = str.toLowerCase();
             }
             // 获取数据长度
             int len = args.length;
@@ -831,12 +831,12 @@ public final class DevCommonUtils {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
                         // 判断是否属于 val 结尾
-                        if (content.endsWith(valIgnore)) {
+                        if (str.endsWith(valIgnore)) {
                             return true;
                         }
                     } else {
                         // 判断是否属于 val 结尾
-                        if (content.endsWith(val)) {
+                        if (str.endsWith(val)) {
                             return true;
                         }
                     }
@@ -968,20 +968,20 @@ public final class DevCommonUtils {
     /**
      * 裁减超出的内容, 并且追加符号(如 ...)
      * @param maxLength 允许最大的长度
-     * @param content
+     * @param str
      * @param symbol
      * @return
      */
-    public static String subEllipsize(int maxLength, String content, String symbol) {
+    public static String subEllipsize(int maxLength, String str, String symbol) {
         if (maxLength >= 1) {
             // 获取内容长度
-            int contentLength = length(content);
+            int strLength = length(str);
             // 防止为不存在数据
-            if (contentLength != 0) {
-                if (maxLength >= contentLength) {
-                    return content;
+            if (strLength != 0) {
+                if (maxLength >= strLength) {
+                    return str;
                 }
-                return content.substring(0, maxLength) + toCheckValue(symbol);
+                return str.substring(0, maxLength) + toCheckValue(symbol);
             }
         }
         return "";
@@ -991,23 +991,23 @@ public final class DevCommonUtils {
      * 裁剪符号处理
      * @param start 开始位置
      * @param symbolNumber 转换数量
-     * @param content
+     * @param str
      * @param symbol
      * @return
      */
-    public static String subSymbolHide(int start, int symbolNumber, String content, String symbol) {
-        if (!isEmpty(content)) {
+    public static String subSymbolHide(int start, int symbolNumber, String str, String symbol) {
+        if (!isEmpty(str)) {
             if (start <= 0 || symbolNumber <= 0) {
-                return content;
+                return str;
             }
             // 获取数据长度
-            int length = content.length();
+            int length = str.length();
             // 如果数据小于 start 位则直接返回
             if (length <= start) {
-                return content;
+                return str;
             } else { // 大于 start 位
                 StringBuffer stringBuffer = new StringBuffer();
-                stringBuffer.append(content.substring(0, start));
+                stringBuffer.append(str.substring(0, start));
                 int len = length - start - symbolNumber;
                 // 如果超出总长度, 则进行控制
                 if (len <= 0) { // 表示后面的全部转换
@@ -1019,7 +1019,7 @@ public final class DevCommonUtils {
                 for (int i = 0; i < len; i++) {
                     stringBuffer.append(symbol);
                 }
-                stringBuffer.append(content.substring(start + len, length));
+                stringBuffer.append(str.substring(start + len, length));
                 return stringBuffer.toString();
             }
         }
@@ -1029,23 +1029,23 @@ public final class DevCommonUtils {
     /**
      * 转换符号处理
      * @param start 开始位置
-     * @param content
+     * @param str
      * @param symbol
      * @return
      */
-    public static String converSymbolHide(int start, String content, String symbol) {
-        if (!isEmpty(content)) {
+    public static String converSymbolHide(int start, String str, String symbol) {
+        if (!isEmpty(str)) {
             if (start <= 0) {
-                return content;
+                return str;
             }
             // 获取数据长度
-            int length = content.length();
+            int length = str.length();
             // 如果数据小于 start 位则直接返回
             if (length <= start) {
-                return content;
+                return str;
             } else { // 大于 start 位
                 StringBuffer stringBuffer = new StringBuffer();
-                stringBuffer.append(content.substring(0, start));
+                stringBuffer.append(str.substring(0, start));
                 int len = length - start;
                 // 进行平分
                 len /= 2;
@@ -1053,7 +1053,7 @@ public final class DevCommonUtils {
                 for (int i = 0; i < len; i++) {
                     stringBuffer.append(symbol);
                 }
-                stringBuffer.append(content.substring(start + len, length));
+                stringBuffer.append(str.substring(start + len, length));
                 return stringBuffer.toString();
             }
         }
@@ -1066,18 +1066,18 @@ public final class DevCommonUtils {
      * 替换(删除 - 替换成"") 字符串中符合 特定标记字符的 startsWith - endsWith
      * * 如 _____a_a_a_a________  传入 _ 等于 ____a_a_a_a____
      * @param str
-     * @param key 需要判断的标记
+     * @param suffix
      * @return
      */
-    public static String toReplaceSEWith(String str, String key) {
-        return toReplaceSEWith(str, key, "");
+    public static String toReplaceSEWith(String str, String suffix) {
+        return toReplaceSEWith(str, suffix, "");
     }
 
     /**
      * 替换字符串中符合 特定标记字符的 startsWith - endsWith
      * 如 _____a_a_a_a________  传入 _ , c 等于 c____a_a_a_a____c
      * @param str
-     * @param key 需要判断的标记
+     * @param key
      * @param value 需要替换的内容
      * @return
      */
@@ -1118,20 +1118,20 @@ public final class DevCommonUtils {
      * 如 _____a_a_a_a________  传入 _ 等于 a_a_a_a
      * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf) ,while
      * @param str
-     * @param key 需要判断的标记
+     * @param suffix
      * @return
      */
-    public static String toClearSEWiths(String str, String key) {
-        if (!(!isEmpty(str) && !isEmpty(key))) {
+    public static String toClearSEWiths(String str, String suffix) {
+        if (!(!isEmpty(str) && !isEmpty(suffix))) {
             return str;
         }
         try {
             // 获取编辑内容长度
-            int kLength = key.length();
+            int kLength = suffix.length();
             // 保存新的Buffer中,减少内存开销
             StringBuffer sBuffer = new StringBuffer(str);
             // 进行循环判断 - 属于最前面的,才进行处理
-            while (sBuffer.indexOf(key) == 0) {
+            while (sBuffer.indexOf(suffix) == 0) {
                 sBuffer.delete(0, kLength);
             }
             // 获取尾部的位置
@@ -1139,7 +1139,7 @@ public final class DevCommonUtils {
             // 数据长度
             int bufLength = -1;
             // 进行循环判断 - 属于最后面的,才进行处理
-            while ((lastIndexOf = sBuffer.lastIndexOf(key)) == ((bufLength = sBuffer.length()) - kLength)) {
+            while ((lastIndexOf = sBuffer.lastIndexOf(suffix)) == ((bufLength = sBuffer.length()) - kLength)) {
                 sBuffer.delete(lastIndexOf, bufLength);
             }
             return sBuffer.toString();
@@ -1151,48 +1151,48 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪字符串
-     * @param content 需要裁剪的字符串
+     * @param str 需要裁剪的字符串
      * @param endIndex 结束裁剪的位置
      * @return
      */
-    public static String substring(String content, int endIndex) {
-        return substring(content, 0, endIndex, true);
+    public static String substring(String str, int endIndex) {
+        return substring(str, 0, endIndex, true);
     }
 
     /**
      * 裁剪字符串
-     * @param content 需要裁剪的字符串
+     * @param str 需要裁剪的字符串
      * @param endIndex 结束裁剪的位置
      * @param isReturn 开始位置超过限制是否返回内容
      * @return
      */
-    public static String substring(String content, int endIndex, boolean isReturn) {
-        return substring(content, 0, endIndex, isReturn);
+    public static String substring(String str, int endIndex, boolean isReturn) {
+        return substring(str, 0, endIndex, isReturn);
     }
 
     /**
      * 裁剪字符串
-     * @param content 需要裁剪的字符串
+     * @param str 需要裁剪的字符串
      * @param beginIndex 开始裁剪的位置
      * @param endIndex 结束裁剪的位置
      * @param isReturn 开始位置超过限制是否返回内容
      * @return
      */
-    public static String substring(String content, int beginIndex, int endIndex, boolean isReturn) {
-        if (!isEmpty(content) && beginIndex >= 0 && endIndex >= 0 && endIndex >= beginIndex) {
+    public static String substring(String str, int beginIndex, int endIndex, boolean isReturn) {
+        if (!isEmpty(str) && beginIndex >= 0 && endIndex >= 0 && endIndex >= beginIndex) {
             // 获取数据长度
-            int len = length(content);
+            int len = length(str);
             // 防止超过限制
             if (beginIndex > len) {
-                return isReturn ? content : "";
+                return isReturn ? str : "";
             }
             // 防止超过限制
             if (endIndex >= len) {
                 endIndex = len;
             }
-            return content.substring(beginIndex, endIndex);
+            return str.substring(beginIndex, endIndex);
         }
-        return isReturn ? content : "";
+        return isReturn ? str : "";
     }
 
     // ==
@@ -1200,25 +1200,25 @@ public final class DevCommonUtils {
     /**
      * 替换开头字符串
      * @param str 内容
-     * @param key 需要判断的kye
+     * @param prefix
      * @return
      */
-    public static String toReplaceStartsWith(String str, String key) {
-        return toReplaceStartsWith(str, key, "");
+    public static String toReplaceStartsWith(String str, String prefix) {
+        return toReplaceStartsWith(str, prefix, "");
     }
 
     /**
      * 替换开头字符串
      * @param str 内容
-     * @param key 需要判断的kye
-     * @param value 需要替换的内容
+     * @param suffix
+     * @param startAppend 开头追加的内容
      * @return
      */
-    public static String toReplaceStartsWith(String str, String key, String value) {
-        if (!isEmpty(str) && !isEmpty(key)) {
+    public static String toReplaceStartsWith(String str, String suffix, String startAppend) {
+        if (!isEmpty(str) && !isEmpty(suffix)) {
             try {
-                if (str.startsWith(key)) {
-                    return value + str.substring(key.length(), str.length());
+                if (str.startsWith(suffix)) {
+                    return toCheckValue(startAppend) + str.substring(suffix.length());
                 }
             } catch (Exception e) {
             }
@@ -1231,20 +1231,20 @@ public final class DevCommonUtils {
      * 如 _____a_a_a_a________  传入 _ 等于 a_a_a_a_____
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf) ,while
      * @param str
-     * @param key 需要判断的标记
+     * @param suffix
      * @return
      */
-    public static String toClearStartsWith(String str, String key) {
-        if (!(!isEmpty(str) && !isEmpty(key))) {
+    public static String toClearStartsWith(String str, String suffix) {
+        if (!(!isEmpty(str) && !isEmpty(suffix))) {
             return str;
         }
         try {
             // 获取编辑内容长度
-            int kLength = key.length();
+            int kLength = suffix.length();
             // 保存新的Buffer中,减少内存开销
             StringBuffer sBuffer = new StringBuffer(str);
             // 进行循环判断 - 属于最前面的,才进行处理
-            while (sBuffer.indexOf(key) == 0) {
+            while (sBuffer.indexOf(suffix) == 0) {
                 sBuffer.delete(0, kLength);
             }
             return sBuffer.toString();
@@ -1258,31 +1258,31 @@ public final class DevCommonUtils {
 
     /**
      * 替换结尾字符串
-     * @param content 内容
-     * @param key 需要判断的kye
+     * @param str 内容
+     * @param suffix
      * @return
      */
-    public static String toReplaceEndsWith(String content, String key) {
-        return toReplaceEndsWith(content, key, "");
+    public static String toReplaceEndsWith(String str, String suffix) {
+        return toReplaceEndsWith(str, suffix, "");
     }
 
     /**
      * 替换结尾字符串
-     * @param content 内容
-     * @param key 需要判断的kye
+     * @param str 内容
+     * @param suffix
      * @param value 需要替换的内容
      * @return
      */
-    public static String toReplaceEndsWith(String content, String key, String value) {
-        if (!isEmpty(content) && !isEmpty(key)) {
+    public static String toReplaceEndsWith(String str, String suffix, String value) {
+        if (!isEmpty(str) && !isEmpty(suffix)) {
             try {
-                if (content.endsWith(key)) {
-                    return content.substring(0, content.length() - key.length()) + value;
+                if (str.endsWith(suffix)) {
+                    return str.substring(0, str.length() - suffix.length()) + value;
                 }
             } catch (Exception e) {
             }
         }
-        return content;
+        return str;
     }
 
     /**
@@ -1290,22 +1290,22 @@ public final class DevCommonUtils {
      * 如 _____a_a_a_a________  传入 _ 等于 _____a_a_a_a
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf) ,while
      * @param str
-     * @param key 需要判断的标记
+     * @param suffix
      * @return
      */
-    public static String toClearEndsWith(String str, String key) {
-        if (!(!isEmpty(str) && !isEmpty(key))) {
+    public static String toClearEndsWith(String str, String suffix) {
+        if (!(!isEmpty(str) && !isEmpty(suffix))) {
             return str;
         }
         try {
             // 获取编辑内容长度
-            int kLength = key.length();
+            int kLength = suffix.length();
             // 保存新的Buffer中,减少内存开销
             StringBuffer sBuffer = new StringBuffer(str);
             // 获取最后一位位置
             int sLength = 0;
             // 进行循环判断 - 属于最前面的,才进行处理
-            while (sBuffer.lastIndexOf(key) == ((sLength = sBuffer.length()) - kLength)) {
+            while (sBuffer.lastIndexOf(suffix) == ((sLength = sBuffer.length()) - kLength)) {
                 sBuffer.delete(sLength - kLength, sLength);
             }
             return sBuffer.toString();
@@ -1319,24 +1319,24 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串
-     * @param content 内容
+     * @param str 内容
      * @param
      * @return
      */
-    public static String replaceStrs(String content, String[] spArys, String[] reArys) {
+    public static String replaceStrs(String str, String[] suffixArys, String[] replaceArys) {
         // 防止数据为null
-        if (content != null && spArys != null && reArys != null) {
-            String cStr = content;
+        if (str != null && suffixArys != null && replaceArys != null) {
+            String cStr = str;
             // 替换的特殊字符串长度
-            int spCount = spArys.length;
+            int spCount = suffixArys.length;
             // 替换的内容长度
-            int reCount = reArys.length;
+            int reCount = replaceArys.length;
             // 相同才进行处理
             if (spCount == reCount) {
                 // 遍历进行判断
                 for (int i = 0; i < spCount; i++) {
                     // 进行替换字符串
-                    cStr = replaceStr(cStr, spArys[i], reArys[i]);
+                    cStr = replaceStr(cStr, suffixArys[i], replaceArys[i]);
                 }
                 // 最终不为null,则进行返回
                 return cStr;
@@ -1347,35 +1347,35 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串
-     * @param content 需要替换的内容
-     * @param spStr 特殊的字符串
-     * @param reStr 替换的内容
+     * @param str 需要替换的内容
+     * @param suffix 特殊的字符串
+     * @param replace 替换的内容
      * @return
      */
-    public static String replaceStr(String content, String spStr, String reStr) {
+    public static String replaceStr(String str, String suffix, String replace) {
         // 如果替换的内容或者判断的字符串为null,则直接跳过
-        if (!isEmpty(content) && !isEmpty(spStr) && reStr != null) {
+        if (!isEmpty(str) && !isEmpty(suffix) && replace != null) {
             try {
-                return content.replaceAll(spStr, reStr);
+                return str.replaceAll(suffix, replace);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "replaceStr");
             }
         }
-        return content;
+        return str;
     }
 
     /**
      * 替换字符串
-     * @param content 需要替换的内容
-     * @param spStr 特殊的字符串
-     * @param reStr 替换的内容
+     * @param str 需要替换的内容
+     * @param suffix 特殊的字符串
+     * @param replace 替换的内容
      * @return 如果异常则直接返回null
      */
-    public static String replaceStrToNull(String content, String spStr, String reStr) {
+    public static String replaceStrToNull(String str, String suffix, String replace) {
         // 如果替换的内容或者判断的字符串为null,则直接跳过
-        if (!isEmpty(content) && !isEmpty(spStr) && reStr != null) {
+        if (!isEmpty(str) && !isEmpty(suffix) && replace != null) {
             try {
-                return content.replaceAll(spStr, reStr);
+                return str.replaceAll(suffix, replace);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "replaceStrToNull");
             }

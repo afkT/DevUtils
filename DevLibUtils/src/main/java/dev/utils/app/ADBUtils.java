@@ -460,7 +460,7 @@ public final class ADBUtils {
             if (start != -1) {
                 try {
                     // 进行裁减字符串
-                    String subData = result.successMsg.substring(start + mainStr.length(), result.successMsg.length());
+                    String subData = result.successMsg.substring(start + mainStr.length());
                     // 进行拆分
                     String[] arys = subData.split(NEW_LINE_STR);
                     for (String str : arys) {
@@ -1845,13 +1845,13 @@ public final class ADBUtils {
                     // 从指定索引开始
                     index = subStr.indexOf("'", buffer.toString().length() + 1);
                     // 再次裁减
-                    subStr = subStr.substring(index + 1, subStr.length());
+                    subStr = subStr.substring(index + 1);
                     // 添加数据
                     buffer.append(subStr.substring(0, subStr.indexOf("'")));
                     // 从指定索引开始
                     index = subStr.indexOf("'", buffer.toString().length() + 1);
                     // 再次裁减
-                    subStr = subStr.substring(index + 1, subStr.length());
+                    subStr = subStr.substring(index + 1);
                     // 最后进行添加
                     buffer.append(subStr.split(SPACE_STR)[0]);
                     // 返回对应的数据
@@ -2051,7 +2051,7 @@ public final class ADBUtils {
         if (result.isSuccess3()) {
             String suc = result.successMsg;
             if (suc.startsWith("\"")) {
-                suc = suc.substring(1, suc.length());
+                suc = suc.substring(1);
             }
             if (suc.endsWith("\"")) {
                 suc = suc.substring(0, suc.length() - 1);

@@ -338,7 +338,7 @@ public final class BigDecimalUtils {
         // 是负整数
         if (is_positive_integer) {
             // 去掉 - 号
-            s = new BigDecimal(s.toString().substring(1, s.toString().length()));
+            s = new BigDecimal(s.toString().substring(1));
         }
         str = s.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
         StringBuffer sb = new StringBuffer();
@@ -393,7 +393,7 @@ public final class BigDecimalUtils {
         // 是负整数
         if (is_positive_integer) {
             // 去掉 - 号
-            s = new BigDecimal(s.toString().substring(1, s.toString().length()));
+            s = new BigDecimal(s.toString().substring(1));
         }
         str = s.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
         StringBuffer sb = new StringBuffer();

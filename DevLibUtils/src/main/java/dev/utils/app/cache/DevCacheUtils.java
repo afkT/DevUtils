@@ -47,7 +47,7 @@ final class DevCacheUtils {
             String saveTimeStr = strs[0];
             // 判断是否0开头,是的话裁剪
             while (saveTimeStr.startsWith("0")) {
-                saveTimeStr = saveTimeStr.substring(1, saveTimeStr.length());
+                saveTimeStr = saveTimeStr.substring(1);
             }
             // 转换时间
             long saveTime = Long.valueOf(saveTimeStr); // 保存时间
@@ -115,7 +115,7 @@ final class DevCacheUtils {
      */
     public static String clearDateInfo(String strInfo) {
         if (strInfo != null && hasDateInfo(strInfo.getBytes())) {
-            strInfo = strInfo.substring(strInfo.indexOf(mSeparator) + 1, strInfo.length());
+            strInfo = strInfo.substring(strInfo.indexOf(mSeparator) + 1);
         }
         return strInfo;
     }

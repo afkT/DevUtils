@@ -1558,7 +1558,7 @@ public final class FileUtils {
                             // 属于最前才进行处理
                             if (filePath.indexOf(dealSource) == 0) {
                                 // 获取处理后的地址
-                                dealSource = filePath.substring(dealSource.length(), filePath.length());
+                                dealSource = filePath.substring(dealSource.length());
                                 // 获取需要复制保存的地址
                                 String savePath = new File(destFolderPath, dealSource).getAbsolutePath();
                                 // 进行复制文件
