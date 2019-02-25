@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 事件工具类 => AppReflectUtils(可以删除)
+ * detail: 事件工具类
  * Created by Ttt
  */
 public final class ListenerUtils {

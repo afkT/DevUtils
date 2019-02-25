@@ -22,6 +22,7 @@ public final class DateUtils {
 	public static final String yyyy = "yyyy";
 	public static final String yyyyMMdd = "yyyy-MM-dd";
 	public static final String yyyyMMdd2 = "yyyyMMdd";
+	public static final String yyyyMMdd3 = "yyyy年MM月dd日";
 	public static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
 	public static final String yyyyMMddHHmmss_2 = "yyyy年M月d日 HH:mm:ss";
 	public static final String MMdd = "MM-dd";
@@ -397,6 +398,8 @@ public final class DateUtils {
 	 */
 	public static String convertTime(int time, boolean append) {
 		if (append) {
+			// 防止出现负数
+			time = Math.max(0, time);
 			return time >= 10 ? time + "" : "0" + time;
 		}
 		return time + "";
