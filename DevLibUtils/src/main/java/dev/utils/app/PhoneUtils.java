@@ -705,8 +705,7 @@ public final class PhoneUtils {
                 new String[]{"address", "date", "type", "body"},
                 null,
                 null,
-                null
-        );
+                null);
         // 设置最大进度
         int count = cursor.getCount();//获取短信的个数
         // 2.备份短信
@@ -780,7 +779,7 @@ public final class PhoneUtils {
          * @return
          */
         public String printInfo() {
-            return "TeleInfo{" +
+            return "TeleInfo {" +
                     "imsi_1='" + imsi_1 + '\'' +
                     ", imsi_2='" + imsi_2 + '\'' +
                     ", imei_1='" + imei_1 + '\'' +

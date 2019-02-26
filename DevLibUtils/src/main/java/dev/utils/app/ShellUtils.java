@@ -140,8 +140,7 @@ public final class ShellUtils {
         return new CommandResult(
                 result,
                 successMsg == null ? null : successMsg.toString(),
-                errorMsg == null ? null : errorMsg.toString()
-        );
+                errorMsg == null ? null : errorMsg.toString());
     }
 
     /** 返回的命令结果 */
