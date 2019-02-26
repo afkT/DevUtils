@@ -516,7 +516,7 @@ public final class ViewUtils {
         ListAdapter listAdapter = listView.getAdapter();
         // 防止为null
         if (listAdapter == null) {
-            return 0 ;
+            return 0;
         }
         // 获取总体高度
         int totalHeight = 0;
@@ -566,7 +566,7 @@ public final class ViewUtils {
         ListAdapter listAdapter = gridView.getAdapter();
         // 防止为null
         if (listAdapter == null) {
-            return 0 ;
+            return 0;
         }
         // 最高高度
         int singleMax = 0;

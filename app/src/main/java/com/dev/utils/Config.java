@@ -31,7 +31,7 @@ public final class Config {
     // SDCard Pro 文件统一前缀 SDP_xxx
 
     /** 统一文件夹 */
-    public static final String SDP_PATH =  BASE_SDCARD_PATH + File.separator + BASE_NAME + File.separator;
+    public static final String SDP_PATH = BASE_SDCARD_PATH + File.separator + BASE_NAME + File.separator;
 
     /** 临时存储 */
     public static final String SDP_TEMP_PATH = SDP_PATH + "Temp" + File.separator;

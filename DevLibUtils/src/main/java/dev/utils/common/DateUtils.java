@@ -591,7 +591,7 @@ public final class DateUtils {
 				} else if (time >= MINUTE_S && time < HOUR_S) { // 小于1小时
 					dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
 					dMinute = (time - dSecond) / MINUTE_S;
-					return "00:" +  ((dMinute >=10)?dMinute:("0" + dMinute)) + ":" + ((dSecond >=10)?dSecond:("0" + dSecond));
+					return "00:" + ((dMinute >=10)?dMinute:("0" + dMinute)) + ":" + ((dSecond >=10)?dSecond:("0" + dSecond));
 				} else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
 					rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
 					dHour = (time - rMinute) / HOUR_S; // 获取小时

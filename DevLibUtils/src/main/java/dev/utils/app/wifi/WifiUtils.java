@@ -430,7 +430,7 @@ public final class WifiUtils {
 			return null;
 		}
 		// 遍历判断是否存在
-		for(int i = 0, len = listWifiConfigs.size();i < len ;i++) {
+		for (int i = 0, len = listWifiConfigs.size();i < len;i++) {
 			WifiConfiguration wConfig = listWifiConfigs.get(i);
 			if (wConfig != null) {
 				if (wConfig.SSID.equals("\"" + ssid + "\"")) {
@@ -453,7 +453,7 @@ public final class WifiUtils {
 			return null;
 		}
 		// 遍历判断是否存在
-		for(int i = 0, len = listWifiConfigs.size();i < len ;i++) {
+		for (int i = 0, len = listWifiConfigs.size();i < len;i++) {
 			WifiConfiguration wConfig = listWifiConfigs.get(i);
 			if (wConfig != null) {
 				if (wConfig.networkId == networkId) {
@@ -479,7 +479,7 @@ public final class WifiUtils {
 			// 防止为null
 			if (listWifiConfigs != null) {
 				// 遍历判断是否存在
-				for(int i = 0, len = listWifiConfigs.size();i < len ;i++) {
+				for (int i = 0, len = listWifiConfigs.size();i < len;i++) {
 					WifiConfiguration wConfig = listWifiConfigs.get(i);
 					if (wConfig != null) {
 						if (wConfig.SSID.equals("\"" + ssid + "\"")) {

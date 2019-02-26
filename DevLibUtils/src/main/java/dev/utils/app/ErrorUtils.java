@@ -120,7 +120,7 @@ public final class ErrorUtils {
                 printWriter.append(ex.toString());
                 printWriter.append(NEW_LINE_STR);
                 // 遍历错误栈信息,并且进行换行,缩进
-                for(StackTraceElement st : stElement) {
+                for (StackTraceElement st : stElement) {
                     printWriter.append("\tat ");
                     printWriter.append(st.toString());
                     printWriter.append(NEW_LINE_STR);

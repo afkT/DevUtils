@@ -109,7 +109,7 @@ public class WifiHotUtils {
     public void stratWifiAp(WifiConfiguration wifiConfig) {
         this.apWifiConfig = wifiConfig;
         // 大于 8.0
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // 关闭热点
             if (mReservation != null) {
                 mReservation.close();
@@ -158,7 +158,7 @@ public class WifiHotUtils {
                     }
                 }
             }, null);
-        } else if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N_MR1) { // android 7.1 系统以上不支持自动开启热点,需要手动开启热点
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) { // android 7.1 系统以上不支持自动开启热点,需要手动开启热点
             // 先设置wifi热点信息, 这样跳转前保存热点信息, 开启热点则是对应设置的信息
             boolean setResult = setWifiApConfiguration(wifiConfig);
             // 打印日志
@@ -186,7 +186,7 @@ public class WifiHotUtils {
      */
     public void closeWifiAp() {
         // 大于 8.0
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // 关闭热点
             if (mReservation != null) {
                 mReservation.close();
@@ -489,7 +489,7 @@ public class WifiHotUtils {
      */
     public String getApWifiSSID() {
         // 大于 8.0
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return apWifiSSID;
         } else {
             if (apWifiConfig != null) {
@@ -505,7 +505,7 @@ public class WifiHotUtils {
      */
     public String getApWifiPwd() {
         // 大于 8.0
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return apWifiPwd;
         } else {
             if (apWifiConfig != null) {

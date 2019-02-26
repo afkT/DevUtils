@@ -473,7 +473,7 @@ public final class RandomUtils {
 		} else if (streamSize < 0) {
 			return null;
 		}
-//		if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //			IntStream intStream = new Random().ints(streamSize, randomNumberOrigin, randomNumberBound);
 //			return intStream.toArray();
 //		} else {
@@ -498,7 +498,7 @@ public final class RandomUtils {
 		} else if (streamSize < 0) {
 			return null;
 		}
-//		if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //			LongStream longStream = new Random().longs(streamSize, randomNumberOrigin, randomNumberBound);
 //			return longStream.toArray();
 //		} else {
@@ -523,7 +523,7 @@ public final class RandomUtils {
 		} else if (streamSize < 0) {
 			return null;
 		}
-//		if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //			DoubleStream doubleStream = new Random().doubles(streamSize, randomNumberOrigin, randomNumberBound);
 //			return doubleStream.toArray();
 //		} else {

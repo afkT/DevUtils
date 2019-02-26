@@ -788,7 +788,7 @@ public final class ToastTintUtils {
                 final View toastLayout = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(dev.utils.R.layout.dev_toast_layout, null);
                 // 初始化View
                 final ImageView toastIcon = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_igview);
-                final TextView toastTextView =  toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_tv);
+                final TextView toastTextView = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_tv);
 
                 // ===================
                 // == TextView 相关 ==

@@ -623,7 +623,7 @@ public final class ADBUtils {
      */
     public static String getActivityCurrent() {
         String cmd = "dumpsys activity activities | grep mFocusedActivity";
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             cmd = "dumpsys activity activities | grep mResumedActivity";
         }
         // 执行 shell
@@ -1832,7 +1832,7 @@ public final class ADBUtils {
      * @return
      */
     public static String getIMEI() {
-        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ShellUtils.CommandResult result = ShellUtils.execCmd("service call iphonesubinfo 1", true);
             if (result.isSuccess3()) {
                 try {

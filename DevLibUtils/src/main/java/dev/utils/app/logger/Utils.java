@@ -131,7 +131,7 @@ final class Utils {
 			// 遍历设备信息
 			while (mapIter.hasNext()) {
 				// 获取对应的key-value
-				Map.Entry<String, String> rnEntry =  mapIter.next();
+				Map.Entry<String, String> rnEntry = mapIter.next();
 				String rnKey = rnEntry.getKey(); // key
 				String rnValue = rnEntry.getValue(); // value
 				// 保存设备信息
@@ -262,7 +262,7 @@ final class Utils {
 				printWriter.append(ex.toString());
 				printWriter.append(NEW_LINE_STR);
 				// 遍历错误栈信息,并且进行换行,缩进
-				for(StackTraceElement st : stElement) {
+				for (StackTraceElement st : stElement) {
 					printWriter.append("\tat ");
 					printWriter.append(st.toString());
 					printWriter.append(NEW_LINE_STR);
@@ -470,7 +470,7 @@ final class Utils {
 				int vLength = vArrays.length;
 				// 如果长度超出预留长度
 				if (vLength >= length) {
-					for(int i = 0;i < length;i++) {
+					for (int i = 0;i < length;i++) {
 						if (vArrays[i] == null) {
 							hArrays[i] = "";
 						} else {
@@ -480,7 +480,7 @@ final class Utils {
 					// 但可变参数长度,超过预留长度时,已经处理完毕,不需要再次处理,节省遍历资源
 					isUnifiedHandler = false;
 				} else {
-					for(int i = 0;i < vLength;i++) {
+					for (int i = 0;i < vLength;i++) {
 						if (vArrays[i] == null) {
 							hArrays[i] = "";
 						} else {
@@ -491,7 +491,7 @@ final class Utils {
 			}
 			if (isUnifiedHandler) {
 				// 统一处理,如果数据未null,则设置为“”,防止拼接出现   "null"
-				for(int i = 0;i < length;i++) {
+				for (int i = 0;i < length;i++) {
 					if (hArrays[i] == null) {
 						hArrays[i] = "";
 					}

@@ -280,7 +280,7 @@ public final class AppInfoUtils {
                 PermissionInfo permissionInfo = packageManager.getPermissionInfo(usesPermissionName, 0);
 
                 // 获取该权限属于哪个权限组,如:网络通信
-                PermissionGroupInfo permissionGroupInfo  =  packageManager.getPermissionGroupInfo(permissionInfo.group, 0);
+                PermissionGroupInfo permissionGroupInfo = packageManager.getPermissionGroupInfo(permissionInfo.group, 0);
                 LogPrintUtils.dTag(TAG, "permissionGroup = " + permissionGroupInfo.loadLabel(packageManager).toString());
 
                 // 获取该权限的标签信息,比如:完全的网络访问权限

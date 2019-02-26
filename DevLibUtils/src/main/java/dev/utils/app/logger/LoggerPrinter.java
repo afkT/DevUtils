@@ -582,7 +582,7 @@ final class LoggerPrinter implements IPrinter {
 			logDivider(logType, tag);
 		} else {
 			// 不打印线程信息,都设置为0
-			methodCount = methodOffset =  0;
+			methodCount = methodOffset = 0;
 			return;
 		}
 		// 手动进行偏移

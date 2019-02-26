@@ -313,9 +313,9 @@ public final class ReflectUtils {
      * @return 父类中的属性对象
      */
     public static Field getDeclaredFieldBase(Object object, String fieldName, boolean isSuper) {
-        Field field = null ;
+        Field field = null;
         Class<?> clazz = object.getClass();
-        for(; clazz != Object.class ; clazz = clazz.getSuperclass()) {
+        for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
             try {
                 field = clazz.getDeclaredField(fieldName);
                 if (!isSuper) {

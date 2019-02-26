@@ -353,7 +353,7 @@ public final class AnalysisRecordUtils {
             while (mapIter.hasNext()) {
                 // 获取对应的key-value
                 Map.Entry<String, String> rnEntry = mapIter.next();
-                String rnKey =  rnEntry.getKey(); // key
+                String rnKey = rnEntry.getKey(); // key
                 String rnValue = rnEntry.getValue(); // value
                 // 保存设备信息
                 sBuffer.append(rnKey);

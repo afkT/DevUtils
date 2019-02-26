@@ -51,7 +51,7 @@ public class WifiVo implements Parcelable {
 				// 保存ssid
 				wifiVo.wSSID = WifiUtils.formatSSID(sResult.SSID, false);
 				// 保存加密类型
-				wifiVo.wType =  WifiUtils.getWifiType(sResult.capabilities);
+				wifiVo.wType = WifiUtils.getWifiType(sResult.capabilities);
 				// 保存wifi信号等级
 				wifiVo.wLevel = sResult.level;
 				return wifiVo;
@@ -71,7 +71,7 @@ public class WifiVo implements Parcelable {
 		// 清空旧数据
 		listWifiVos.clear();
 		// 遍历wifi列表数据
-		for(int i = 0, len = listScanResults.size();i < len;i++) {
+		for (int i = 0, len = listScanResults.size();i < len;i++) {
 			// 如果出现异常，或者失败，则无视当前的索引wifi信息
 			try {
 				// 获取当前索引的wifi信息

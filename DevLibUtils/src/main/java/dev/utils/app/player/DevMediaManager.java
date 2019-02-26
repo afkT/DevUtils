@@ -203,7 +203,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 				@Override
 				public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
 					// 获取资源文件
-					AssetFileDescriptor file = DevUtils.getContext().getResources().getAssets().openNonAssetFd("assets"  + tempPlayUri);
+					AssetFileDescriptor file = DevUtils.getContext().getResources().getAssets().openNonAssetFd("assets" + tempPlayUri);
 					try {
 						// 设置播放路径
 						mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());

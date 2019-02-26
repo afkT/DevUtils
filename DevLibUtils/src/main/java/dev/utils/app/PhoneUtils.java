@@ -399,7 +399,7 @@ public final class PhoneUtils {
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getSerialNumber() {
         try {
-            return Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O ? Build.getSerial() : Build.SERIAL;
+            return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? Build.getSerial() : Build.SERIAL;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSerialNumber");
         }
