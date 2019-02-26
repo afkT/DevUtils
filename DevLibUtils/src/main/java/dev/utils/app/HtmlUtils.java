@@ -29,7 +29,7 @@ public final class HtmlUtils {
      * @return 最后放在 Html.fromHtml();内
      */
     public static String addHtmlColor(String content, String color) {
-        return "<font color=\""+ color +"\">" + content + "</font>";
+        return "<font color=\"" + color + "\">" + content + "</font>";
     }
 
     /**
@@ -39,7 +39,7 @@ public final class HtmlUtils {
      * @return 最后放在 Html.fromHtml();内
      */
     public static String addHtmlColor(String content, String fString, String color) {
-        return String.format(content, ("<font color=\"" + color + "\">"+ fString +"</font>"));
+        return String.format(content, ("<font color=\"" + color + "\">" + fString + "</font>"));
     }
 
     /**
@@ -61,7 +61,7 @@ public final class HtmlUtils {
      * @return 最后放在 Html.fromHtml();内
      */
     public static String addHtmlColorAndBlod(String content, String color) {
-        return "<b><font color=\""+ color +"\">" + content + "</font></b>";
+        return "<b><font color=\"" + color + "\">" + content + "</font></b>";
     }
 
     /**

@@ -382,7 +382,7 @@ final class LoggerPrinter implements IPrinter {
 		// 日志级别
 		LogLevel lLevel = lConfig.logLevel;
 		// --
-		switch(lLevel) {
+		switch (lLevel) {
 			case NONE: // 全部不打印
 				break;
 			case DEBUG: // 调试级别 v,d - 全部打印
@@ -406,7 +406,7 @@ final class LoggerPrinter implements IPrinter {
 	 * @return
 	 */
 	private boolean checkLogLevel(LogLevel lLevel, int logType) {
-		switch(lLevel) {
+		switch (lLevel) {
 			case INFO: // 正常级别 i
 				if (logType != Log.VERBOSE && logType != Log.DEBUG) {
 					return true;

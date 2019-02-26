@@ -303,7 +303,7 @@ public class WifiHotUtils {
         boolean isOpen = false;
         // 获取当前Wifi热点状态
         int wifiApState = getWifiApState();
-        switch(wifiApState) {
+        switch (wifiApState) {
             case WIFI_AP_STATE_DISABLING: // Wifi热点正在关闭
                 break;
             case WIFI_AP_STATE_DISABLED: // Wifi热点已关闭
@@ -329,7 +329,7 @@ public class WifiHotUtils {
         boolean isOpen = true;
         // 获取当前Wifi热点状态
         int wifiApState = getWifiApState();
-        switch(wifiApState) {
+        switch (wifiApState) {
             case WIFI_AP_STATE_DISABLING: // Wifi热点正在关闭
                 isExecute = false;
                 break;

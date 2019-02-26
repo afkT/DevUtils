@@ -340,7 +340,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 	public static boolean isIgnoreWhat(int eWhat) {
 		// 是否忽略
 		boolean isIgnore = false;
-		switch(eWhat) {
+		switch (eWhat) {
 			case -38:
 			case 1:
 			case 100:

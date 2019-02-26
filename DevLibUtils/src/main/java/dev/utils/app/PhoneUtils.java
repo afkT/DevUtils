@@ -476,7 +476,7 @@ public final class PhoneUtils {
             stringBuffer.append("SimOperatorName = " + telephonyManager.getSimOperatorName() + "\n");
             stringBuffer.append("SimSerialNumber = " + telephonyManager.getSimSerialNumber() + "\n");
             stringBuffer.append("SimState = " + telephonyManager.getSimState() + "\n");
-            stringBuffer.append("SubscriberId(IMSI) = " + telephonyManager.getSubscriberId() + "(" + getIMSIIDName(telephonyManager.getSubscriberId()) + ")"+ "\n");
+            stringBuffer.append("SubscriberId(IMSI) = " + telephonyManager.getSubscriberId() + "(" + getIMSIIDName(telephonyManager.getSubscriberId()) + ")\n");
             stringBuffer.append("VoiceMailNumber = " + telephonyManager.getVoiceMailNumber() + "\n");
             return stringBuffer.toString();
         } catch (Exception e) {

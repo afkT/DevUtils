@@ -157,20 +157,20 @@ public final class HttpURLConnectionUtils {
             if (bout != null) {
                 try {
                     bout.close();
-                } catch(Exception ignore) {
+                } catch (Exception ignore) {
                 }
             }
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                } catch(Exception ignore) {
+                } catch (Exception ignore) {
                 }
             }
             if (connection != null) {
                 try {
                     // 关闭底层连接Socket
                     connection.disconnect();
-                } catch(Exception ignore) {
+                } catch (Exception ignore) {
                 }
             }
         }
@@ -254,7 +254,7 @@ public final class HttpURLConnectionUtils {
                 try {
                     // 关闭底层连接Socket
                     connection.disconnect();
-                } catch(Exception ignore) {
+                } catch (Exception ignore) {
                 }
             }
         }

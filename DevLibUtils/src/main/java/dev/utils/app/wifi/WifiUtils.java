@@ -316,7 +316,7 @@ public final class WifiUtils {
 	 * @param type
 	 */
 	public static String getWifiType(int type) {
-		switch(type) {
+		switch (type) {
 			case WPA:
 				return "2";
 			case WEP:
@@ -333,7 +333,7 @@ public final class WifiUtils {
 	 * @return
 	 */
 	public static String getWifiTypeStr(int type) {
-		switch(type) {
+		switch (type) {
 			case WPA:
 				return "WPA";
 			case WEP:
@@ -655,7 +655,7 @@ public final class WifiUtils {
 			} else {
 				wifiConfig.SSID = ssid;
 			}
-			switch(wType) {
+			switch (wType) {
 				case WifiUtils.NOPWD: // 不存在密码
 					wifiConfig.hiddenSSID = true;
 					wifiConfig.allowedKeyManagement.set(KeyMgmt.NONE);

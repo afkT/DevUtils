@@ -166,7 +166,7 @@ public final class NetWorkUtils {
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
 	public static boolean isConnWifi() {
-		return  (getConnectType() == 1);
+		return (getConnectType() == 1);
 	}
 
 	/**
@@ -176,7 +176,7 @@ public final class NetWorkUtils {
 	 */
 	@RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
 	public static boolean isConnMobileData() {
-		return  (getConnectType() == 2);
+		return (getConnectType() == 2);
 	}
 
 	// ===

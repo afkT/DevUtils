@@ -74,7 +74,7 @@ public final class StringUtils {
 	public static String toClearSpaceTrim(String str) {
 		if (isEmpty(str)) return str;
 		// 如果前面或者后面都是 空格开头,就一直进行处理
-		while(str.startsWith(" ") || str.endsWith(" ")) {
+		while (str.startsWith(" ") || str.endsWith(" ")) {
 			str = str.trim();
 		}
 		return str;

@@ -496,7 +496,7 @@ public final class DateUtils {
 	public static int getMonthDayNumberAll(int year, int month) {
 		int number = 31;
 		// 判断返回的标识数字
-		switch(month) {
+		switch (month) {
 			case 1:
 			case 3:
 			case 5:
