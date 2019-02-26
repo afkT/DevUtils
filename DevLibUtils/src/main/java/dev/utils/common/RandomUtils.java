@@ -253,7 +253,7 @@ public final class RandomUtils {
 	 * @return
 	 */
 	public static String getRandom(char[] chars, int length) {
-		if(length > 0 && chars != null && chars.length != 0) {
+		if (length > 0 && chars != null && chars.length != 0) {
 			StringBuilder str = new StringBuilder(length);
 			Random random = new Random();
 			for (int i = 0; i < length; i++) {
@@ -311,7 +311,7 @@ public final class RandomUtils {
 	 */
 	public static boolean shuffle(Object[] objArray, int shuffleCount) {
 		int length;
-		if(shuffleCount > 0 && objArray != null && (length = objArray.length) >= shuffleCount) {
+		if (shuffleCount > 0 && objArray != null && (length = objArray.length) >= shuffleCount) {
 			for (int i = 1; i <= shuffleCount; i++) {
 				int random = getRandom(0, length - i);
 				Object temp = objArray[length - i];
@@ -343,7 +343,7 @@ public final class RandomUtils {
 	 */
 	public static int[] shuffle(int[] intArray, int shuffleCount) {
 		int length;
-		if(shuffleCount > 0 && intArray != null && (length = intArray.length) >= shuffleCount) {
+		if (shuffleCount > 0 && intArray != null && (length = intArray.length) >= shuffleCount) {
 			int[] out = new int[shuffleCount];
 			for (int i = 1; i <= shuffleCount; i++) {
 				int random = getRandom(0, length - i);

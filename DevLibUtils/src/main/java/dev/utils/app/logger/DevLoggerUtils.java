@@ -148,7 +148,7 @@ public final class DevLoggerUtils {
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 */
 	public static boolean saveErrorLog(Throwable ex, String head, String bottom, String fPath, boolean isNewLines, String... eHint) {
-		if(TextUtils.isEmpty(fPath)) {
+		if (TextUtils.isEmpty(fPath)) {
 			return false;
 		}
 		try {
@@ -156,7 +156,7 @@ public final class DevLoggerUtils {
 			// 获取文件名
 			String fName = file.getName();
 			// 判断是否这个文件名结尾
-			if(fPath.endsWith(fName)) {
+			if (fPath.endsWith(fName)) {
 				// 重新裁剪
 				fPath = fPath.substring(0, fPath.length() - fName.length());
 				// 进行保存
@@ -183,7 +183,7 @@ public final class DevLoggerUtils {
 	 * @return
 	 */
 	public static boolean saveErrorLog(Throwable ex, String head, String bottom, String fPath, String fName, boolean isNewLines, String... eHint) {
-		if(TextUtils.isEmpty(fPath)) {
+		if (TextUtils.isEmpty(fPath)) {
 			return false;
 		} else if (TextUtils.isEmpty(fName)) {
 			return false;
@@ -214,7 +214,7 @@ public final class DevLoggerUtils {
 	 * @return
 	 */
 	public static boolean saveLogHeadBottom(String log, String head, String bottom, String fPath, String fName, String... eHint) {
-		if(TextUtils.isEmpty(fPath)) {
+		if (TextUtils.isEmpty(fPath)) {
 			return false;
 		} else if (TextUtils.isEmpty(fName)) {
 			return false;

@@ -1194,7 +1194,7 @@ public final class ImageUtils {
      */
     public static String getImageType(final byte[] bytes) {
         if (isJPEG(bytes)) return "JPEG";
-        if (isGIF(bytes)) return "GIF";
+        if (isGif (bytes)) return "GIF";
         if (isPNG(bytes)) return "PNG";
         if (isBMP(bytes)) return "BMP";
         return null;
@@ -1214,7 +1214,7 @@ public final class ImageUtils {
      * @param b
      * @return
      */
-    private static boolean isGIF(final byte[] b) {
+    private static boolean isGif (final byte[] b) {
         return b.length >= 6 && b[0] == 'G' && b[1] == 'I' && b[2] == 'F' && b[3] == '8' && (b[4] == '7' || b[4] == '9') && b[5] == 'a';
     }
 

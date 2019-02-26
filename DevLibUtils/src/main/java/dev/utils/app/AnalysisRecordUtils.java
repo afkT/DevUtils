@@ -794,7 +794,7 @@ public final class AnalysisRecordUtils {
         try {
             File file = new File(fPath);
             // 当这个文件夹不存在的时候则创建文件夹
-            if(!file.exists()) {
+            if (!file.exists()) {
                 // 允许创建多级目录
                 file.mkdirs();
                 // 这个无法创建多级目录

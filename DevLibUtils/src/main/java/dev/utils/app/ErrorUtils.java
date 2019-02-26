@@ -72,7 +72,7 @@ public final class ErrorUtils {
     public static String getThrowableMsg(String eHint, Throwable ex) {
         PrintWriter printWriter = null;
         try {
-            if(ex != null) {
+            if (ex != null) {
                 // 初始化Writer,PrintWriter打印流
                 Writer writer = new StringWriter();
                 printWriter = new PrintWriter(writer);
@@ -85,7 +85,7 @@ public final class ErrorUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getThrowableMsg");
         } finally {
-            if(printWriter != null) {
+            if (printWriter != null) {
                 printWriter.close();
             }
         }
@@ -110,7 +110,7 @@ public final class ErrorUtils {
     public static String getThrowableNewLinesMsg(String eHint, Throwable ex) {
         PrintWriter printWriter = null;
         try {
-            if(ex != null) {
+            if (ex != null) {
                 // 初始化Writer,PrintWriter打印流
                 Writer writer = new StringWriter();
                 printWriter = new PrintWriter(writer);
@@ -131,7 +131,7 @@ public final class ErrorUtils {
             }
         } catch (Exception e) {
         } finally {
-            if(printWriter != null) {
+            if (printWriter != null) {
                 try {
                     printWriter.close();
                 } catch (Exception e) {

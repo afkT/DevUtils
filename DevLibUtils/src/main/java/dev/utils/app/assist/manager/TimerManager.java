@@ -435,13 +435,13 @@ public final class TimerManager {
 					// 累积触发次数
 					triggerNumber++;
 					// 进行通知
-					if(handler != null) {
+					if (handler != null) {
 						// 从Message池中返回一个新的Message实例 - 通知what, arg1 = 触发次数, arg2 = 触发上限, obj = notifyObj
 						Message msg = handler.obtainMessage(notifyWhat, triggerNumber, triggerLimit, notifyObj);
 						handler.sendMessage(msg);
 					}
 					// 如果大于触发次数,则关闭
-					if(triggerLimit >= 0 && triggerNumber >= triggerLimit) {
+					if (triggerLimit >= 0 && triggerNumber >= triggerLimit) {
 						// 关闭任务,进行标记需要回收
 						closeTimer();
 					}

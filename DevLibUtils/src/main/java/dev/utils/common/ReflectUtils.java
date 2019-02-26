@@ -314,7 +314,7 @@ public final class ReflectUtils {
      */
     public static Field getDeclaredFieldBase(Object object, String fieldName, boolean isSuper) {
         Field field = null ;
-        Class<?> clazz = object.getClass() ;
+        Class<?> clazz = object.getClass();
         for(; clazz != Object.class ; clazz = clazz.getSuperclass()) {
             try {
                 field = clazz.getDeclaredField(fieldName);

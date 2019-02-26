@@ -106,9 +106,9 @@ public final class HtmlUtils {
      */
     public static String keywordReplaceAll(String source, String keyword, String replacement) {
         try {
-            if(source != null && source.trim().length() != 0) {
+            if (source != null && source.trim().length() != 0) {
                 if (keyword != null && keyword.trim().length() != 0) {
-                    if(replacement != null && replacement.trim().length() != 0) {
+                    if (replacement != null && replacement.trim().length() != 0) {
                         return source.replaceAll(keyword , replacement);
                     }
                 }

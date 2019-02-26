@@ -120,7 +120,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public IToast.Operate style(IToast.Style toastStyle) {
-        if(toastStyle != null) {
+        if (toastStyle != null) {
             LOCAL_TOAST_STYLES.set(toastStyle);
         }
         return this;
@@ -141,7 +141,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public IToast.Style getToastStyle() {
-        if(sToastStyle == null) {
+        if (sToastStyle == null) {
             sToastStyle = sDefaultStyle;
         }
         return sToastStyle;
@@ -318,7 +318,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         // 获取当前线程的线程的 Toast 样式
         IToast.Style toastStyle = LOCAL_TOAST_STYLES.get();
         // 如果等于null,则返回默认配置信息
-        if(toastStyle == null) {
+        if (toastStyle == null) {
             return getToastStyle();
         } else {
             LOCAL_TOAST_STYLES.remove();

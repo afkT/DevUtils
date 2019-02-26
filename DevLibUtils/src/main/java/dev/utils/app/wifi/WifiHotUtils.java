@@ -344,7 +344,7 @@ public class WifiHotUtils {
                 break;
         }
         // 如果属于开启，则进行关闭
-        if(isOpen && isExecute) {
+        if (isOpen && isExecute) {
             closeWifiAp();
         }
         return isOpen;
@@ -363,7 +363,7 @@ public class WifiHotUtils {
                 if (splitted != null && splitted.length >= 4) {
                     String ipAdr = splitted[0]; // Ip地址
                     // 防止地址为null,并且需要以.拆分 存在4个长度  255.255.255.255
-                    if(ipAdr != null && ipAdr.split("\\.").length >= 3) {
+                    if (ipAdr != null && ipAdr.split("\\.").length >= 3) {
                         return true;
                     }
                 }
@@ -403,7 +403,7 @@ public class WifiHotUtils {
                 if (splitted != null && splitted.length >= 4) {
                     String ipAdr = splitted[0]; // Ip地址
                     // 防止地址为null,并且需要以.拆分 存在4个长度  255.255.255.255
-                    if(ipAdr != null && ipAdr.split("\\.").length >= 3) {
+                    if (ipAdr != null && ipAdr.split("\\.").length >= 3) {
                         return ipAdr;
                     }
                 }
@@ -424,7 +424,7 @@ public class WifiHotUtils {
         // 网关掩码
         String hsMask = df;
         // 获取网关掩码
-        if(ipAdr != null) {
+        if (ipAdr != null) {
             try {
                 int length = ipAdr.lastIndexOf(".");
                 // 进行裁剪

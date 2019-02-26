@@ -211,7 +211,7 @@ public final class WifiUtils {
 	 */
 	public static String formatSSID(String ssid) {
 		// 自动去掉SSID
-		if(ssid != null && ssid.startsWith("\"") && ssid.endsWith("\"")) {
+		if (ssid != null && ssid.startsWith("\"") && ssid.endsWith("\"")) {
 			try {
 				// 裁剪连接的ssid,并返回
 				return ssid.substring(1, ssid.length() - 1);
@@ -229,7 +229,7 @@ public final class WifiUtils {
 	 * @return
 	 */
 	public static String formatSSID(String ssid, boolean isHandler) {
-		if(isHandler) {
+		if (isHandler) {
 			return "\"" + ssid + "\"";
 		} else {
 			return formatSSID(ssid);
@@ -349,7 +349,7 @@ public final class WifiUtils {
 	 * @return
 	 */
 	public static boolean isConnNull(String ssid) {
-		if(ssid == null) {
+		if (ssid == null) {
 			return true;
 		} else if (ssid.indexOf("unknown") != -1) { // <unknown ssid>
 			return true;
@@ -369,7 +369,7 @@ public final class WifiUtils {
 			ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 			// 连接状态
 			NetworkInfo.State nState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
-			if((nState == NetworkInfo.State.CONNECTED)) {
+			if ((nState == NetworkInfo.State.CONNECTED)) {
 				// 获取连接的ssid
 				return getSSID();
 			}
@@ -426,13 +426,13 @@ public final class WifiUtils {
 		// 获取wifi 连接过的配置信息
 		List<WifiConfiguration> listWifiConfigs = getConfiguration();
 		// 防止为null
-		if(listWifiConfigs == null) {
+		if (listWifiConfigs == null) {
 			return null;
 		}
 		// 遍历判断是否存在
 		for(int i = 0, len = listWifiConfigs.size();i < len ;i++) {
 			WifiConfiguration wConfig = listWifiConfigs.get(i);
-			if(wConfig != null) {
+			if (wConfig != null) {
 				if (wConfig.SSID.equals("\"" + ssid + "\"")) {
 					return wConfig;
 				}
@@ -449,13 +449,13 @@ public final class WifiUtils {
 		// 获取wifi 连接过的配置信息
 		List<WifiConfiguration> listWifiConfigs = getConfiguration();
 		// 防止为null
-		if(listWifiConfigs == null) {
+		if (listWifiConfigs == null) {
 			return null;
 		}
 		// 遍历判断是否存在
 		for(int i = 0, len = listWifiConfigs.size();i < len ;i++) {
 			WifiConfiguration wConfig = listWifiConfigs.get(i);
-			if(wConfig != null) {
+			if (wConfig != null) {
 				if (wConfig.networkId == networkId) {
 					return wConfig;
 				}
@@ -477,11 +477,11 @@ public final class WifiUtils {
 			// 获取wifi 连接过的配置信息
 			List<WifiConfiguration> listWifiConfigs = mWifiManager.getConfiguredNetworks();
 			// 防止为null
-			if(listWifiConfigs != null) {
+			if (listWifiConfigs != null) {
 				// 遍历判断是否存在
 				for(int i = 0, len = listWifiConfigs.size();i < len ;i++) {
 					WifiConfiguration wConfig = listWifiConfigs.get(i);
-					if(wConfig != null) {
+					if (wConfig != null) {
 						if (wConfig.SSID.equals("\"" + ssid + "\"")) {
 							// 删除操作
 							mWifiManager.removeNetwork(wConfig.networkId);
@@ -532,11 +532,11 @@ public final class WifiUtils {
 			// 正常的Wifi连接配置
 			WifiConfiguration connWifiConfig = null;
 			// 如果需要通过静态ip方式连接,则进行设置
-			if(isStatic && !TextUtils.isEmpty(ip)) {
+			if (isStatic && !TextUtils.isEmpty(ip)) {
 				// 创建Wifi静态IP连接配置
 				WifiConfiguration staticWifiConfig = setStaticWifiConfig(createWifiConfig(ssid, pwd, wType, true), ip);
 				// 如果静态ip方式,配置失败,则初始化正常连接的Wifi配置
-				if(staticWifiConfig == null) {
+				if (staticWifiConfig == null) {
 					// 创建正常的配置信息
 					connWifiConfig = createWifiConfig(ssid, pwd, wType, true);
 					// --
@@ -556,7 +556,7 @@ public final class WifiUtils {
 			// 判断当前准备连接的wifi，是否存在配置文件
 			WifiConfiguration preWifiConfig = this.isExsits(ssid);
 			// --
-			if(preWifiConfig != null) {
+			if (preWifiConfig != null) {
 				// 存在则删除
 				boolean isRemove = mWifiManager.removeNetwork(preWifiConfig.networkId);
 				// 打印结果
@@ -567,7 +567,7 @@ public final class WifiUtils {
 			// --
 			// 连接网络
 			int _nId = mWifiManager.addNetwork(connWifiConfig);
-			if(_nId != -1) {
+			if (_nId != -1) {
 				try {
 					// 获取当前连接的Wifi对象
 					WifiInfo wifiInfo = getWifiInfo();
@@ -585,7 +585,7 @@ public final class WifiUtils {
 				// 开始连接
 				boolean isResult = mWifiManager.enableNetwork(_nId, true);
 				// --
-				if(!isResult) {
+				if (!isResult) {
 					isResult = mWifiManager.enableNetwork(_nId, true);
 				}
 				// 打印结果
@@ -595,7 +595,7 @@ public final class WifiUtils {
 				connWifiConfig.SSID = formatSSID(connWifiConfig.SSID, false);
 				// 连接网络
 				_nId = mWifiManager.addNetwork(connWifiConfig);
-				if(_nId !=-1) {
+				if (_nId !=-1) {
 					try {
 						// 获取当前连接的Wifi对象
 						WifiInfo wifiInfo = getWifiInfo();
@@ -613,7 +613,7 @@ public final class WifiUtils {
 					// 开始连接
 					boolean isResult = mWifiManager.enableNetwork(_nId, true);
 					// --
-					if(!isResult) {
+					if (!isResult) {
 						isResult = mWifiManager.enableNetwork(_nId, true);
 					}
 					// 打印结果
@@ -712,7 +712,7 @@ public final class WifiUtils {
 	 */
 	public boolean removeWifiConfig(WifiConfiguration wcg) {
 		// 如果等于null则直接返回
-		if(wcg == null)
+		if (wcg == null)
 			return false;
 		try {
 			// 删除配置
@@ -751,7 +751,7 @@ public final class WifiUtils {
 	private WifiConfiguration setStaticWifiConfig(WifiConfiguration wifiConfig, String ip) {
 		String gateway = null;
 		String dns = null;
-		if(ip != null) {
+		if (ip != null) {
 			try {
 				InetAddress intetAddress = InetAddress.getByName(ip);
 				int intIp = inetAddressToInt(intetAddress);
@@ -777,12 +777,12 @@ public final class WifiUtils {
 	 */
 	private WifiConfiguration setStaticWifiConfig(WifiConfiguration wifiConfig, String ip, String gateway, String dns, int networkPrefixLength) {
 		try {
-			if(ip == null || gateway == null) {
+			if (ip == null || gateway == null) {
 				return null;
 			}
 			// 设置Inet地址
 			InetAddress intetAddress = InetAddress.getByName(ip);
-			if(Build.VERSION.SDK_INT <= 20) { // 旧的版本，5.0之前
+			if (Build.VERSION.SDK_INT <= 20) { // 旧的版本，5.0之前
 				// 设置IP分配方式，静态ip
 				setEnumField(wifiConfig, "STATIC", "ipAssignment");
 				// 设置不用代理
@@ -791,7 +791,7 @@ public final class WifiUtils {
 				setIpAddress(intetAddress, networkPrefixLength, wifiConfig);
 				// 设置网关
 				setGateway(InetAddress.getByName(gateway), wifiConfig);
-				if(dns != null) { // 判断是否需要设置域名
+				if (dns != null) { // 判断是否需要设置域名
 					// 设置DNS
 					setDNS(InetAddress.getByName(dns), wifiConfig);
 				}
@@ -887,7 +887,7 @@ public final class WifiUtils {
 		// 从WifiConfig -> mIpConfiguration 获取staticIpConfiguration
 		// 获取 staticIpConfiguration 变量
 		Object staticIpConfigClass = getField(obj, "staticIpConfiguration");
-		if(staticIpConfigClass == null) {
+		if (staticIpConfigClass == null) {
 			// 创建静态ip配置类
 			staticIpConfigClass = Class.forName("android.net.StaticIpConfiguration").newInstance();
 		}
@@ -899,7 +899,7 @@ public final class WifiUtils {
 		setValueField(staticIpConfigClass, linkAddress, "ipAddress");
 		// 设置网关 gateway
 		setValueField(staticIpConfigClass, InetAddress.getByName(gateway), "gateway");
-		if(dns != null) { // 判断是否需要设置域名
+		if (dns != null) { // 判断是否需要设置域名
 			// 设置DNS
 			List<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(staticIpConfigClass, "dnsServers");
 			mDnses.clear(); // or add a new dns address , here I just want to replace DNS1

@@ -17,7 +17,7 @@ class LogTools {
 	public static String getShareMsgVoData(TestData.ShareMsgVo sMsgVo) {
 		StringBuilder sBuilder = new StringBuilder();
 		try {
-			if(sMsgVo != null) {
+			if (sMsgVo != null) {
 				sBuilder.append("打印分享信息实体类数据");
 				sBuilder.append("\n分享标题：" + sMsgVo.sTitle);
 				sBuilder.append("\n分享文本：" + sMsgVo.sText);
@@ -39,7 +39,7 @@ class LogTools {
 	public static String getUserInfoVoData(TestData.UserInfoVo uInfoVo) {
 		StringBuilder sBuilder = new StringBuilder();
 		try {
-			if(uInfoVo != null) {
+			if (uInfoVo != null) {
 				sBuilder.append("打印用户信息实体类数据");
 				sBuilder.append("\n用户名：" + uInfoVo.uName);
 				sBuilder.append("\n用户密码：" + uInfoVo.uPwd);

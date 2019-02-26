@@ -423,7 +423,7 @@ public final class BitmapUtils {
 			LogPrintUtils.eTag(TAG, e, "saveBitmapToSDCard");
 			return false;
 		} finally {
-			if(fos != null) {
+			if (fos != null) {
 				try {
 					fos.close();
 				} catch (IOException e) {

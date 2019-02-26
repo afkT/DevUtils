@@ -277,7 +277,7 @@ public final class ResourceUtils {
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "readBytesFromAssets");
 			} finally {
-				if(iStream != null) {
+				if (iStream != null) {
 					try {
 						iStream.close();
 					} catch (Exception e) {
@@ -321,7 +321,7 @@ public final class ResourceUtils {
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "readBytesFromRaw");
 			} finally {
-				if(iStream != null) {
+				if (iStream != null) {
 					try {
 						iStream.close();
 					} catch (Exception e) {

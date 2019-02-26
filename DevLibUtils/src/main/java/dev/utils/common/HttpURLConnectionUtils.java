@@ -106,7 +106,7 @@ public final class HttpURLConnectionUtils {
                 }
             }
             // 判断是否需要写入数据
-            if(params != null && params.length() != 0) {
+            if (params != null && params.length() != 0) {
                 // 允许写入
                 connection.setDoInput(true);
                 // 设置是否向connection输出，如果是post请求，参数要放在http正文内，因此需要设为true

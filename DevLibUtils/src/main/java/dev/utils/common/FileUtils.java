@@ -1214,11 +1214,11 @@ public final class FileUtils {
 	 * @param content 追加内容
 	 */
 	public static void appendFile(final String filePath, final String content) {
-		if(filePath == null || content == null) {
+		if (filePath == null || content == null) {
 			return;
 		}
 		File file = new File(filePath);
-		if(!file.exists()) { // 如果文件不存在,则跳过
+		if (!file.exists()) { // 如果文件不存在,则跳过
 			return;
 		}
 		FileWriter writer = null;

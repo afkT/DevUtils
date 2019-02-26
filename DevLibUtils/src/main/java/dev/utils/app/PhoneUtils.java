@@ -65,7 +65,7 @@ public final class PhoneUtils {
             // 获取电话管理类
             TelephonyManager tpManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             // 是否准备完毕
-            if(tpManager != null && tpManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
+            if (tpManager != null && tpManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
                 return true;
             }
         } catch (Exception e) {

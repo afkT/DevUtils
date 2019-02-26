@@ -272,7 +272,7 @@ public final class ValidatorUtils {
         try {
             String chinese = "[\u0391-\uFFE5]";
             int length;
-            if(data != null && (length = data.length()) != 0) {
+            if (data != null && (length = data.length()) != 0) {
                 char[] dChar = data.toCharArray();
                 for (int i = 0; i < length; i++) {
                     boolean flag = String.valueOf(dChar[i]).matches(chinese);

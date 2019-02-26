@@ -64,7 +64,7 @@ public final class ScreenSensorAssist {
 					// -
 					if (portrait) {
 						portrait = false;
-						if(handler != null) {
+						if (handler != null) {
 							Message vMsg = new Message();
 							vMsg.what = CHANGE_ORIENTATION_WHAT;
 							vMsg.arg1 = 1;
@@ -76,7 +76,7 @@ public final class ScreenSensorAssist {
 					// -
 					if (!portrait) {
 						portrait = true;
-						if(handler != null) {
+						if (handler != null) {
 							Message vMsg = new Message();
 							vMsg.what = CHANGE_ORIENTATION_WHAT;
 							vMsg.arg1 = 2;
@@ -88,7 +88,7 @@ public final class ScreenSensorAssist {
 					// -
                     if (portrait) {
                         portrait = false;
-                        if(handler != null) {
+                        if (handler != null) {
                         	Message vMsg = new Message();
                         	vMsg.what = CHANGE_ORIENTATION_WHAT;
                         	vMsg.arg1 = 1;
@@ -100,7 +100,7 @@ public final class ScreenSensorAssist {
 					// -
                     if (!portrait) {
                         portrait = true;
-                        if(handler != null) {
+                        if (handler != null) {
                         	Message vMsg = new Message();
                         	vMsg.what = CHANGE_ORIENTATION_WHAT;
                         	vMsg.arg1 = 2;

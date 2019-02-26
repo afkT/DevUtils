@@ -143,7 +143,7 @@ public final class ImageBmpUtils {
 	 */
 	private static byte[] getBmpBytes(Bitmap bitmap) {
 		try {
-			if(bitmap != null) {
+			if (bitmap != null) {
 				int w = bitmap.getWidth(), h = bitmap.getHeight();
 				int[] pixels = new int[w * h];
 				bitmap.getPixels(pixels, 0, w, 0, 0, w, h);
@@ -188,13 +188,13 @@ public final class ImageBmpUtils {
 			LogPrintUtils.eTag(TAG, e, "saveBmpImg");
 		} finally { // 最终关闭写入流
 			try {
-				if(fos != null) {
+				if (fos != null) {
 					fos.flush();
 				}
 			} catch (Exception e) {
 			}
 			try {
-				if(fos != null) {
+				if (fos != null) {
 					fos.close();
 				}
 			} catch (Exception e) {

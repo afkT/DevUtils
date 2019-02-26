@@ -100,8 +100,8 @@ public final class JCLogUtils {
     private static String createMessage(String message, Object... args) {
         String result = null;
         try {
-            if(message != null) {
-                if(args == null) {
+            if (message != null) {
+                if (args == null) {
                     // 动态参数为null
                     result = "params is null";
                 } else {
@@ -129,8 +129,8 @@ public final class JCLogUtils {
     private static String splitErrorMessage(Throwable throwable, String message, Object... args) {
         String result = null;
         try {
-            if(throwable != null) {
-                if(message != null) {
+            if (throwable != null) {
+                if (message != null) {
                     result = createMessage(message, args) + " : " + throwable.toString();
                 } else {
                     result = throwable.toString();
@@ -185,25 +185,25 @@ public final class JCLogUtils {
     }
 
     public static void eTag(String tag, String message, Object... args) {
-        if(JUDGE_PRINT_LOG) {
+        if (JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, createMessage(message, args));
         }
     }
 
     public static void eTag(String tag, Throwable throwable) {
-        if(JUDGE_PRINT_LOG) {
+        if (JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, splitErrorMessage(throwable, null));
         }
     }
 
     public static void eTag(String tag, Throwable throwable, String message, Object... args) {
-        if(JUDGE_PRINT_LOG) {
+        if (JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, splitErrorMessage(throwable, message, args));
         }
     }
 
     public static void iTag(String tag, String message, Object... args) {
-        if(JUDGE_PRINT_LOG) {
+        if (JUDGE_PRINT_LOG) {
             printLog(INFO, tag, createMessage(message, args));
         }
     }

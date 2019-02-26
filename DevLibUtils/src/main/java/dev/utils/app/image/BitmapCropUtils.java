@@ -35,7 +35,7 @@ public final class BitmapCropUtils {
      * @param hScale 高度比例
      */
     public static void cropBitmap(String fPath, Bitmap bitmap, float wScale, float hScale) {
-        if(TextUtils.isEmpty(fPath)) {
+        if (TextUtils.isEmpty(fPath)) {
             return; // 防止保存路径为null
         } else if (bitmap == null) {
             return; // 防止图片为null
@@ -77,7 +77,7 @@ public final class BitmapCropUtils {
         } finally {
             // -- 清空资源 --
             try {
-                if(cBitmap != null && !cBitmap.isRecycled()) {
+                if (cBitmap != null && !cBitmap.isRecycled()) {
                     cBitmap.recycle();
                 }
             } catch (Exception e) {

@@ -481,7 +481,7 @@ public final class DateUtils {
 	 */
     public static boolean isLeapYear(int year) {
 		// 判断是否闰年
-		if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
 			return true;
 		}
 		return false;
@@ -507,7 +507,7 @@ public final class DateUtils {
 				number = 31;
 				break;
 			case 2:
-				if(isLeapYear(year)) {
+				if (isLeapYear(year)) {
 					number = 29;
 				} else {
 					number = 28;
@@ -575,7 +575,7 @@ public final class DateUtils {
 	 */
 	public static String secToTimeRetain(int time, boolean isHandlerMDay) {
 		try {
-			if(time <= 0) {
+			if (time <= 0) {
 				return "00:00:00";
 			} else {
 				// 取模
@@ -586,13 +586,13 @@ public final class DateUtils {
 				int dMinute = 0;
 				int dHour = 0;
 				// 转换时间格式
-				if(time < MINUTE_S) { // 小于1分钟
+				if (time < MINUTE_S) { // 小于1分钟
 					return "00:00:" + ((time >=10)?time:("0" + time));
-				} else if(time >= MINUTE_S && time < HOUR_S) { // 小于1小时
+				} else if (time >= MINUTE_S && time < HOUR_S) { // 小于1小时
 					dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
 					dMinute = (time - dSecond) / MINUTE_S;
 					return "00:" +  ((dMinute >=10)?dMinute:("0" + dMinute)) + ":" + ((dSecond >=10)?dSecond:("0" + dSecond));
-				} else if(time >= HOUR_S && time < DAY_S) { // 小于等于一天
+				} else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
 					rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
 					dHour = (time - rMinute) / HOUR_S; // 获取小时
 					dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
@@ -601,7 +601,7 @@ public final class DateUtils {
 					return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute:("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond:"0" + rSecond);
 				} else { // 多余的时间，直接格式化
 					// 大于一天的情况
-					if(isHandlerMDay) {
+					if (isHandlerMDay) {
 						rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
 						dHour = (time - rMinute) / HOUR_S; // 获取小时
 						dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
@@ -623,7 +623,7 @@ public final class DateUtils {
 	 */
 	public static int[] convertTimeArys(int time) {
 		try {
-			if(time <= 0) {
+			if (time <= 0) {
 				return new int[] { 0, 0, 0 };
 			} else {
 				// 取模
@@ -634,13 +634,13 @@ public final class DateUtils {
 				int dMinute = 0;
 				int dHour = 0;
 				// 转换时间格式
-				if(time < MINUTE_S) { // 小于1分钟
+				if (time < MINUTE_S) { // 小于1分钟
 					return new int[]{ 0, 0, time };
-				} else if(time >= MINUTE_S && time < HOUR_S) { // 小于1小时
+				} else if (time >= MINUTE_S && time < HOUR_S) { // 小于1小时
 					dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
 					dMinute = (time - dSecond) / MINUTE_S;
 					return new int[]{ 0, dMinute, dSecond };
-				} else if(time >= HOUR_S && time < DAY_S) { // 小于等于一天
+				} else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
 					rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
 					dHour = (time - rMinute) / HOUR_S; // 获取小时
 					dSecond = (time - dHour * HOUR_S); // 获取多出的秒数

@@ -36,7 +36,7 @@ final class LoggerPrinter implements IPrinter {
 	 */
 	@Override
 	public IPrinter other(LogConfig lConfig) {
-		if(lConfig != null) {
+		if (lConfig != null) {
 			LOCAL_LOG_CONFIGS.set(lConfig);
 		}
 		return this;
@@ -58,7 +58,7 @@ final class LoggerPrinter implements IPrinter {
 	@Override
 	public LogConfig init() {
 		// 判断日志配置信息是否等于null
-		if(LOG_CONFIG == null) {
+		if (LOG_CONFIG == null) {
 			// 生成默认配置信息
 			LOG_CONFIG = new LogConfig();
 		}
@@ -136,7 +136,7 @@ final class LoggerPrinter implements IPrinter {
 		// 获取当前线程日志配置信息
 		LogConfig lConfig = getThreadLogConfig();
 		// 判断是否打印日志(日志级别)
-		if(!isPrintLog(lConfig, Log.DEBUG)) {
+		if (!isPrintLog(lConfig, Log.DEBUG)) {
 			return;
 		}
 		// 日志Tag
@@ -186,7 +186,7 @@ final class LoggerPrinter implements IPrinter {
 		// 获取当前线程日志配置信息
 		LogConfig lConfig = getThreadLogConfig();
 		// 判断是否打印日志(日志级别)
-		if(!isPrintLog(lConfig, Log.DEBUG)) {
+		if (!isPrintLog(lConfig, Log.DEBUG)) {
 			return;
 		}
 		// 日志Tag
@@ -284,7 +284,7 @@ final class LoggerPrinter implements IPrinter {
 		// 获取当前线程日志配置信息
 		LogConfig lConfig = getThreadLogConfig();
 		// 判断是否打印日志(日志级别)
-		if(!isPrintLog(lConfig, Log.DEBUG)) {
+		if (!isPrintLog(lConfig, Log.DEBUG)) {
 			return;
 		}
 		// 判断传入JSON格式信息是否为null
@@ -331,7 +331,7 @@ final class LoggerPrinter implements IPrinter {
 		// 获取当前线程日志配置信息
 		LogConfig lConfig = getThreadLogConfig();
 		// 判断是否打印日志(日志级别)
-		if(!isPrintLog(lConfig, Log.DEBUG)) {
+		if (!isPrintLog(lConfig, Log.DEBUG)) {
 			return;
 		}
 		// 判断传入XML格式信息是否为null
@@ -408,17 +408,17 @@ final class LoggerPrinter implements IPrinter {
 	private boolean checkLogLevel(LogLevel lLevel, int logType) {
 		switch(lLevel) {
 			case INFO: // 正常级别 i
-				if(logType != Log.VERBOSE && logType != Log.DEBUG) {
+				if (logType != Log.VERBOSE && logType != Log.DEBUG) {
 					return true;
 				}
 				break;
 			case WARN: // 警告级别 w
-				if(logType != Log.VERBOSE && logType != Log.DEBUG && logType != Log.INFO) {
+				if (logType != Log.VERBOSE && logType != Log.DEBUG && logType != Log.INFO) {
 					return true;
 				}
 				break;
 			case ERROR: // 异常级别 e,wtf
-				if(logType == Log.ERROR || logType == Log.ASSERT) {
+				if (logType == Log.ERROR || logType == Log.ASSERT) {
 					return true;
 				}
 				break;
@@ -491,26 +491,26 @@ final class LoggerPrinter implements IPrinter {
 	 * @param args 占位符替换
 	 */
 	private synchronized void logHandle(LogConfig lConfig, String tag, int logType, String msg, Object... args) {
-		if(lConfig == null) { // 如果配置为null,才进行获取
+		if (lConfig == null) { // 如果配置为null,才进行获取
 			// 获取当前线程日志配置信息
 			lConfig = getThreadLogConfig();
 		}
 		// 判断是否打印日志(日志级别)
-		if(!isPrintLog(lConfig, logType)) {
+		if (!isPrintLog(lConfig, logType)) {
 			return;
 		}
 		// 防止TAG为null
-		if(TextUtils.isEmpty(tag)) {
+		if (TextUtils.isEmpty(tag)) {
 			// 获取配置的TAG
 			tag = lConfig.tag;
 			// 防止配置的TAG也为null
-			if(TextUtils.isEmpty(tag)) {
+			if (TextUtils.isEmpty(tag)) {
 				// 使用默认的TAG
 				tag = LogConstants.DEFAULT_LOG_TAG;
 			}
 		}
 		// 判断是否显示排序后的日志(如果不排序,则显示默认)
-		if(!lConfig.sortLog) {
+		if (!lConfig.sortLog) {
 			fLogPrinter(logType, tag, createMessage(msg, args));
 			return;
 		}
@@ -520,11 +520,11 @@ final class LoggerPrinter implements IPrinter {
 		// 获取方法偏移索引
 		int methodOffset = lConfig.methodOffset;
 		// 如果出现小于0的设置,则设置默认值处理
-		if(methodOffset < 0) {
+		if (methodOffset < 0) {
 			methodOffset = LogConstants.DEFAULT_LOG_METHOD_OFFSET;
 		}
 		// 如果出现小于0的设置,则设置默认值处理
-		if(methodCount < 0) {
+		if (methodCount < 0) {
 			methodCount = LogConstants.DEFAULT_LOG_METHOD_COUNT;
 		}
 		// 获取打印的日志信息
@@ -596,7 +596,7 @@ final class LoggerPrinter implements IPrinter {
 			methodCount = traceCount - stackOffset - 1;
 		}
 		// 判断是否显示全部方法
-		if(lConfig.outputMethodAll) {
+		if (lConfig.outputMethodAll) {
 			// 设置方法总数
 			methodCount = traceCount;
 			// 设置方法偏移索引为0
@@ -716,7 +716,7 @@ final class LoggerPrinter implements IPrinter {
 		// 获取当前线程的日志配置信息
 		LogConfig lConfig = LOCAL_LOG_CONFIGS.get();
 		// 如果等于null,则返回默认配置信息
-		if(lConfig == null) {
+		if (lConfig == null) {
 			return init();
 		} else {
 			LOCAL_LOG_CONFIGS.remove();

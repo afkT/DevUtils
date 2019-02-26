@@ -121,7 +121,7 @@ final class Utils {
 	private static String handlerDeviceInfo(String eHint) {
 		try {
 			// 如果不为null,则直接返回之前的信息
-			if(!TextUtils.isEmpty(DEVICE_INFO_STR)) {
+			if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
 				return DEVICE_INFO_STR;
 			}
 			// 初始化StringBuilder,拼接字符串
@@ -181,7 +181,7 @@ final class Utils {
 		try {
 			File file = new File(fPath);
 			// 当这个文件夹不存在的时候则创建文件夹
-			if(!file.exists()) {
+			if (!file.exists()) {
 				// 允许创建多级目录
 				file.mkdirs();
 			}
@@ -223,7 +223,7 @@ final class Utils {
 	private static String getThrowableMsg(String eHint, Throwable ex) {
 		PrintWriter printWriter = null;
 		try {
-			if(ex != null) {
+			if (ex != null) {
 				// 初始化Writer,PrintWriter打印流
 				Writer writer = new StringWriter();
 				printWriter = new PrintWriter(writer);
@@ -236,7 +236,7 @@ final class Utils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getThrowableMsg");
 		} finally {
-			if(printWriter != null) {
+			if (printWriter != null) {
 				printWriter.close();
 			}
 		}
@@ -252,7 +252,7 @@ final class Utils {
 	private static String getThrowableNewLinesMsg(String eHint, Throwable ex) {
 		PrintWriter printWriter = null;
 		try {
-			if(ex != null) {
+			if (ex != null) {
 				// 初始化Writer,PrintWriter打印流
 				Writer writer = new StringWriter();
 				printWriter = new PrintWriter(writer);
@@ -274,7 +274,7 @@ final class Utils {
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getThrowableNewLinesMsg");
 		} finally {
-			if(printWriter != null) {
+			if (printWriter != null) {
 				printWriter.close();
 			}
 		}
@@ -341,7 +341,7 @@ final class Utils {
 		// 设备信息
 		String dInfo = handlerDeviceInfo(eHint[0]);
 		// 如果存在顶部内容,则进行添加
-		if(!TextUtils.isEmpty(head)) {
+		if (!TextUtils.isEmpty(head)) {
 			sBuilder.append(head);
 			sBuilder.append(NEW_LINE_STR_X2);
 			sBuilder.append("============================");
@@ -366,7 +366,7 @@ final class Utils {
 		// 错误信息
 		String eMsg = null;
 		// 是否换行
-		if(isNewLines) {
+		if (isNewLines) {
 			eMsg = getThrowableNewLinesMsg(eHint[1], ex);
 		} else {
 			eMsg = getThrowableMsg(eHint[1], ex);
@@ -374,7 +374,7 @@ final class Utils {
 		// 保存异常信息
 		sBuilder.append(eMsg);
 		// 如果存在顶部内容,则进行添加
-		if(!TextUtils.isEmpty(bottom)) {
+		if (!TextUtils.isEmpty(bottom)) {
 			sBuilder.append(NEW_LINE_STR);
 			sBuilder.append("============================");
 			sBuilder.append(NEW_LINE_STR_X2);
@@ -416,7 +416,7 @@ final class Utils {
 		// 设备信息
 		String dInfo = handlerDeviceInfo(eHint[0]);
 		// 如果存在顶部内容,则进行添加
-		if(!TextUtils.isEmpty(head)) {
+		if (!TextUtils.isEmpty(head)) {
 			sBuilder.append(head);
 			sBuilder.append(NEW_LINE_STR_X2);
 			sBuilder.append("============================");
@@ -441,7 +441,7 @@ final class Utils {
 		// 保存日志信息
 		sBuilder.append(log);
 		// 如果存在顶部内容,则进行添加
-		if(!TextUtils.isEmpty(bottom)) {
+		if (!TextUtils.isEmpty(bottom)) {
 			sBuilder.append(NEW_LINE_STR);
 			sBuilder.append("============================");
 			sBuilder.append(NEW_LINE_STR_X2);
@@ -465,13 +465,13 @@ final class Utils {
 		// 是否统一处理
 		boolean isUnifiedHandler = true;
 		try {
-			if(vArrays != null) {
+			if (vArrays != null) {
 				// 获取可变参数数组长度
 				int vLength = vArrays.length;
 				// 如果长度超出预留长度
-				if(vLength >= length) {
+				if (vLength >= length) {
 					for(int i = 0;i < length;i++) {
-						if(vArrays[i] == null) {
+						if (vArrays[i] == null) {
 							hArrays[i] = "";
 						} else {
 							hArrays[i] = vArrays[i];
@@ -481,7 +481,7 @@ final class Utils {
 					isUnifiedHandler = false;
 				} else {
 					for(int i = 0;i < vLength;i++) {
-						if(vArrays[i] == null) {
+						if (vArrays[i] == null) {
 							hArrays[i] = "";
 						} else {
 							hArrays[i] = vArrays[i];
@@ -489,10 +489,10 @@ final class Utils {
 					}
 				}
 			}
-			if(isUnifiedHandler) {
+			if (isUnifiedHandler) {
 				// 统一处理,如果数据未null,则设置为“”,防止拼接出现   "null"
 				for(int i = 0;i < length;i++) {
-					if(hArrays[i] == null) {
+					if (hArrays[i] == null) {
 						hArrays[i] = "";
 					}
 				}

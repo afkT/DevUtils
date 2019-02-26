@@ -43,7 +43,7 @@ public class WifiVo implements Parcelable {
 		if (sResult != null) {
 			try {
 				// 防止wifi名长度为0
-				if(sResult.SSID.length() == 0) {
+				if (sResult.SSID.length() == 0) {
 					return null;
 				}
 				// 初始化wifi信息实体类
@@ -77,7 +77,7 @@ public class WifiVo implements Parcelable {
 				// 获取当前索引的wifi信息
 				ScanResult sResult = listScanResults.get(i);
 				// 防止wifi名长度为0
-				if(sResult.SSID.length() == 0) {
+				if (sResult.SSID.length() == 0) {
 					continue;
 				}
 				// 保存wifi信息

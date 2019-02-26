@@ -57,13 +57,13 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 */
 	private void resetOperate() {
 		// 移除旧的回调
-		if(mSurfaceHolder != null) {
+		if (mSurfaceHolder != null) {
 			mSurfaceHolder.removeCallback(this);
 		}
 		// 设置Holder
 		mSurfaceHolder = mSurfaceview.getHolder();
 		// 移除旧的回调
-		if(mSurfaceHolder != null) {
+		if (mSurfaceHolder != null) {
 			mSurfaceHolder.removeCallback(this);
 		}
 		// 添加回调
@@ -272,11 +272,11 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * @return
 	 */
 	public boolean isPlaying(String uri) {
-		if(!TextUtils.isEmpty(uri)) { // 需要播放的地址,必须不等于null
+		if (!TextUtils.isEmpty(uri)) { // 需要播放的地址,必须不等于null
 			// 获取之前播放路径
 			String playUri = DevMediaManager.getInstance().getPlayUri();
 			// 如果不等于null,并且播放地址相同
-			if(playUri != null && playUri.equals(uri)) {
+			if (playUri != null && playUri.equals(uri)) {
 				try {
 					return DevMediaManager.getInstance().isPlaying();
 				} catch (Exception e) {
