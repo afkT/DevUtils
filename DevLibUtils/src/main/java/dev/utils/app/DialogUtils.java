@@ -4,8 +4,12 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.support.annotation.ArrayRes;
+import android.support.annotation.StyleRes;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
 import android.widget.PopupWindow;
 
 import dev.utils.LogPrintUtils;
@@ -192,6 +196,7 @@ public final class DialogUtils {
             }
 
             if (dialogListener != null) {
+                // 设置 Dialog 关闭监听
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
@@ -306,5 +311,913 @@ public final class DialogUtils {
             }
         }
         return popupWindow;
+    }
+
+    // ======================
+    // === 单选列表Dialog ===
+    // ======================
+
+    /**
+     * detail: Dialog 单选事件
+     * Created by Ttt
+     */
+    public static abstract class SingleChoiceListener {
+
+        /**
+         * 单选选中触发
+         * @param dialog
+         * @param which 选中索引
+         */
+        public void onSingleChoiceItems(DialogInterface dialog, int which) {
+        }
+
+        /**
+         * 确认选择触发
+         * @param dialog
+         */
+        public void onPositiveButton(DialogInterface dialog) {
+        }
+
+        /**
+         * 取消选择触发
+         * @param dialog
+         */
+        public void onCancel(DialogInterface dialog) {
+        }
+
+        /**
+         * 关闭通知
+         * @param dialog
+         */
+        public void onDismiss(DialogInterface dialog) {
+        }
+    }
+
+    // =
+
+    /**
+     * 创建单选列表样式 Dialog
+     * @param context
+     * @param itemsId R.arrays 数据源
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @return
+     */
+    public static AlertDialog createSingleChoiceListDialog(Context context, @ArrayRes int itemsId, String title, Drawable icon,
+                                                       String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+        return createSingleChoiceListDialog(context, itemsId, title, icon, null, positiveBtnText, singleChoiceListener, 0);
+    }
+
+    /**
+     * 创建单选列表样式 Dialog
+     * @param context
+     * @param itemsId R.arrays 数据源
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @return
+     */
+    public static AlertDialog createSingleChoiceListDialog(Context context, @ArrayRes int itemsId, String title, Drawable icon,
+                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+        return createSingleChoiceListDialog(context, itemsId, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
+    }
+
+    /**
+     * 创建单选列表样式 Dialog
+     * @param itemsId R.arrays 数据源
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @param themeResId 样式
+     * @return
+     */
+    public static AlertDialog createSingleChoiceListDialog(Context context, @ArrayRes int itemsId, String title, Drawable icon,
+                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener, @StyleRes int themeResId) {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
+            if (!isEmpty(title)) {
+                builder.setTitle(title);
+            }
+            if (icon != null) {
+                builder.setIcon(icon);
+            }
+            builder.setItems(itemsId, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onSingleChoiceItems(dialog, which);
+                    }
+                }
+            });
+
+            // 判断是否存在确认按钮文案
+            if (!isEmpty(positiveBtnText)) {
+                // 设置确认选择按钮
+                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (singleChoiceListener != null) {
+                            singleChoiceListener.onPositiveButton(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 判断是否存在取消按钮文案
+            if (!isEmpty(negativeBtnText)) {
+                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (singleChoiceListener != null) {
+                            singleChoiceListener.onCancel(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 设置 Dialog 关闭监听
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onDismiss(dialog);
+                    }
+                }
+            });
+            return builder.create();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createSingleChoiceListDialog");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 创建单选列表样式 Dialog
+     * @param context
+     * @param items 单选文案数组
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @return
+     */
+    public static AlertDialog createSingleChoiceListDialog(Context context, CharSequence[] items, String title, Drawable icon,
+                                                       String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+        return createSingleChoiceListDialog(context, items, title, icon, null, positiveBtnText, singleChoiceListener, 0);
+    }
+
+    /**
+     * 创建单选列表样式 Dialog
+     * @param context
+     * @param items 单选文案数组
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @return
+     */
+    public static AlertDialog createSingleChoiceListDialog(Context context, CharSequence[] items, String title, Drawable icon,
+                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+        return createSingleChoiceListDialog(context, items, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
+    }
+
+    /**
+     * 创建单选列表样式 Dialog
+     * @param context
+     * @param items 单选文案数组
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @param themeResId 样式
+     * @return
+     */
+    public static AlertDialog createSingleChoiceListDialog(Context context, CharSequence[] items, String title, Drawable icon,
+                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener, @StyleRes int themeResId) {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
+            if (!isEmpty(title)) {
+                builder.setTitle(title);
+            }
+            if (icon != null) {
+                builder.setIcon(icon);
+            }
+            builder.setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onSingleChoiceItems(dialog, which);
+                    }
+                }
+            });
+
+            // 判断是否存在确认按钮文案
+            if (!isEmpty(positiveBtnText)) {
+                // 设置确认选择按钮
+                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (singleChoiceListener != null) {
+                            singleChoiceListener.onPositiveButton(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 判断是否存在取消按钮文案
+            if (!isEmpty(negativeBtnText)) {
+                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (singleChoiceListener != null) {
+                            singleChoiceListener.onCancel(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 设置 Dialog 关闭监听
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onDismiss(dialog);
+                    }
+                }
+            });
+            return builder.create();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createSingleChoiceListDialog");
+        }
+        return null;
+    }
+
+    // ==================
+    // === 单选Dialog ===
+    // ==================
+
+    /**
+     * 创建单选样式 Dialog
+     * @param context
+     * @param itemsId R.arrays 数据源
+     * @param checkedItem 默认选中索引
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @return
+     */
+    public static AlertDialog createSingleChoiceDialog(Context context, @ArrayRes int itemsId, int checkedItem, String title, Drawable icon,
+                                                       String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+        return createSingleChoiceDialog(context, itemsId, checkedItem, title, icon, null, positiveBtnText, singleChoiceListener, 0);
+    }
+
+    /**
+     * 创建单选样式 Dialog
+     * @param context
+     * @param itemsId R.arrays 数据源
+     * @param checkedItem 默认选中索引
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @return
+     */
+    public static AlertDialog createSingleChoiceDialog(Context context, @ArrayRes int itemsId, int checkedItem, String title, Drawable icon,
+                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+        return createSingleChoiceDialog(context, itemsId, checkedItem, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
+    }
+
+    /**
+     * 创建单选样式 Dialog
+     * @param itemsId R.arrays 数据源
+     * @param checkedItem 默认选中索引
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @param themeResId 样式
+     * @return
+     */
+    public static AlertDialog createSingleChoiceDialog(Context context, @ArrayRes int itemsId, int checkedItem, String title, Drawable icon,
+                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener, @StyleRes int themeResId) {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
+            if (!isEmpty(title)) {
+                builder.setTitle(title);
+            }
+            if (icon != null) {
+                builder.setIcon(icon);
+            }
+            builder.setSingleChoiceItems(itemsId, checkedItem, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onSingleChoiceItems(dialog, which);
+                    }
+                }
+            });
+
+            // 判断是否存在确认按钮文案
+            if (!isEmpty(positiveBtnText)) {
+                // 设置确认选择按钮
+                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (singleChoiceListener != null) {
+                            singleChoiceListener.onPositiveButton(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 判断是否存在取消按钮文案
+            if (!isEmpty(negativeBtnText)) {
+                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (singleChoiceListener != null) {
+                            singleChoiceListener.onCancel(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 设置 Dialog 关闭监听
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onDismiss(dialog);
+                    }
+                }
+            });
+            return builder.create();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createSingleChoiceDialog");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 创建单选样式 Dialog
+     * @param context
+     * @param items 单选文案数组
+     * @param checkedItem 默认选中索引
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @return
+     */
+    public static AlertDialog createSingleChoiceDialog(Context context, CharSequence[] items, int checkedItem, String title, Drawable icon,
+                                                       String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+        return createSingleChoiceDialog(context, items, checkedItem, title, icon, null, positiveBtnText, singleChoiceListener, 0);
+    }
+
+    /**
+     * 创建单选样式 Dialog
+     * @param context
+     * @param items 单选文案数组
+     * @param checkedItem 默认选中索引
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @return
+     */
+    public static AlertDialog createSingleChoiceDialog(Context context, CharSequence[] items, int checkedItem, String title, Drawable icon,
+                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+        return createSingleChoiceDialog(context, items, checkedItem, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
+    }
+
+    /**
+     * 创建单选样式 Dialog
+     * @param context
+     * @param items 单选文案数组
+     * @param checkedItem 默认选中索引
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param singleChoiceListener 单选事件
+     * @param themeResId 样式
+     * @return
+     */
+    public static AlertDialog createSingleChoiceDialog(Context context, CharSequence[] items, int checkedItem, String title, Drawable icon,
+                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener, @StyleRes int themeResId) {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
+            if (!isEmpty(title)) {
+                builder.setTitle(title);
+            }
+            if (icon != null) {
+                builder.setIcon(icon);
+            }
+            builder.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onSingleChoiceItems(dialog, which);
+                    }
+                }
+            });
+
+            // 判断是否存在确认按钮文案
+            if (!isEmpty(positiveBtnText)) {
+                // 设置确认选择按钮
+                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (singleChoiceListener != null) {
+                            singleChoiceListener.onPositiveButton(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 判断是否存在取消按钮文案
+            if (!isEmpty(negativeBtnText)) {
+                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (singleChoiceListener != null) {
+                            singleChoiceListener.onCancel(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 设置 Dialog 关闭监听
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onDismiss(dialog);
+                    }
+                }
+            });
+            return builder.create();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createSingleChoiceDialog");
+        }
+        return null;
+    }
+
+    // ==================
+    // === 多选Dialog ===
+    // ==================
+
+    /**
+     * detail: Dialog 多选事件
+     * Created by Ttt
+     */
+    public static abstract class MultiChoiceListener {
+
+        /**
+         * 多选选中触发
+         * @param dialog
+         * @param which 操作索引
+         * @param isChecked 是否选中
+         */
+        public void onMultiChoiceItems(DialogInterface dialog, int which, boolean isChecked) {
+        }
+
+        /**
+         * 确认选择触发
+         * @param dialog
+         * @param checkedItems 选中的数据
+         */
+        public void onPositiveButton(DialogInterface dialog, boolean[] checkedItems) {
+        }
+
+        /**
+         * 取消选择触发
+         * @param dialog
+         */
+        public void onCancel(DialogInterface dialog) {
+        }
+
+        /**
+         * 关闭通知
+         * @param dialog
+         */
+        public void onDismiss(DialogInterface dialog) {
+        }
+    }
+
+    // =
+
+    /**
+     * 创建多选样式 Dialog
+     * @param context
+     * @param itemsId R.arrays 数据源
+     * @param checkedItems 选中状态
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param positiveBtnText 确认按钮文案
+     * @param multiChoiceListener 多选事件
+     * @return
+     */
+    public static AlertDialog createMultiChoiceDialog(Context context, @ArrayRes int itemsId, boolean[] checkedItems, String title, Drawable icon,
+                                                      String positiveBtnText, final MultiChoiceListener multiChoiceListener) {
+        return createMultiChoiceDialog(context, itemsId, checkedItems, title, icon, null, positiveBtnText, multiChoiceListener, 0);
+    }
+
+    /**
+     * 创建多选样式 Dialog
+     * @param context
+     * @param itemsId R.arrays 数据源
+     * @param checkedItems 选中状态
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param multiChoiceListener 多选事件
+     * @return
+     */
+    public static AlertDialog createMultiChoiceDialog(Context context, @ArrayRes int itemsId, boolean[] checkedItems, String title, Drawable icon,
+                                                      String negativeBtnText, String positiveBtnText, final MultiChoiceListener multiChoiceListener) {
+        return createMultiChoiceDialog(context, itemsId, checkedItems, title, icon, negativeBtnText, positiveBtnText, multiChoiceListener, 0);
+    }
+
+    /**
+     * 创建多选样式 Dialog
+     * @param context
+     * @param itemsId R.arrays 数据源
+     * @param checkedItems 选中状态
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param multiChoiceListener 多选事件
+     * @param themeResId 样式
+     * @return
+     */
+    public static AlertDialog createMultiChoiceDialog(Context context, @ArrayRes int itemsId, final boolean[] checkedItems, String title, Drawable icon,
+                                                      String negativeBtnText, String positiveBtnText, final MultiChoiceListener multiChoiceListener, @StyleRes int themeResId) {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
+            if (!isEmpty(title)) {
+                builder.setTitle(title);
+            }
+            if (icon != null) {
+                builder.setIcon(icon);
+            }
+            builder.setMultiChoiceItems(itemsId, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                    if (multiChoiceListener != null) {
+                        multiChoiceListener.onMultiChoiceItems(dialog, which, isChecked);
+                    }
+                }
+            });
+
+            // 判断是否存在确认按钮文案
+            if (!isEmpty(positiveBtnText)) {
+                // 设置确认选择按钮
+                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (multiChoiceListener != null) {
+                            multiChoiceListener.onPositiveButton(dialog, checkedItems);
+                        }
+                    }
+                });
+            }
+
+            // 判断是否存在取消按钮文案
+            if (!isEmpty(negativeBtnText)) {
+                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (multiChoiceListener != null) {
+                            multiChoiceListener.onCancel(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 设置 Dialog 关闭监听
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (multiChoiceListener != null) {
+                        multiChoiceListener.onDismiss(dialog);
+                    }
+                }
+            });
+            return builder.create();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createMultiChoiceDialog");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 创建多选样式 Dialog
+     * @param context
+     * @param items 多选文案数组
+     * @param checkedItems 选中状态
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param positiveBtnText 确认按钮文案
+     * @param multiChoiceListener 多选事件
+     * @return
+     */
+    public static AlertDialog createMultiChoiceDialog(Context context, CharSequence[] items, boolean[] checkedItems, String title, Drawable icon,
+                                                      String positiveBtnText, final MultiChoiceListener multiChoiceListener) {
+        return createMultiChoiceDialog(context, items, checkedItems, title, icon, null, positiveBtnText, multiChoiceListener, 0);
+    }
+
+    /**
+     * 创建多选样式 Dialog
+     * @param context
+     * @param items 多选文案数组
+     * @param checkedItems 选中状态
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param multiChoiceListener 多选事件
+     * @return
+     */
+    public static AlertDialog createMultiChoiceDialog(Context context, CharSequence[] items, boolean[] checkedItems, String title, Drawable icon,
+                                                      String negativeBtnText, String positiveBtnText, final MultiChoiceListener multiChoiceListener) {
+        return createMultiChoiceDialog(context, items, checkedItems, title, icon, negativeBtnText, positiveBtnText, multiChoiceListener, 0);
+    }
+
+    /**
+     * 创建多选样式 Dialog
+     * @param context
+     * @param items 多选文案数组
+     * @param checkedItems 选中状态
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param multiChoiceListener 多选事件
+     * @param themeResId 样式
+     * @return
+     */
+    public static AlertDialog createMultiChoiceDialog(Context context, CharSequence[] items, final boolean[] checkedItems, String title, Drawable icon,
+                                                      String negativeBtnText, String positiveBtnText, final MultiChoiceListener multiChoiceListener, @StyleRes int themeResId) {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
+            if (!isEmpty(title)) {
+                builder.setTitle(title);
+            }
+            if (icon != null) {
+                builder.setIcon(icon);
+            }
+            builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                    if (multiChoiceListener != null) {
+                        multiChoiceListener.onMultiChoiceItems(dialog, which, isChecked);
+                    }
+                }
+            });
+
+            // 判断是否存在确认按钮文案
+            if (!isEmpty(positiveBtnText)) {
+                // 设置确认选择按钮
+                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (multiChoiceListener != null) {
+                            multiChoiceListener.onPositiveButton(dialog, checkedItems);
+                        }
+                    }
+                });
+            }
+
+            // 判断是否存在取消按钮文案
+            if (!isEmpty(negativeBtnText)) {
+                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (multiChoiceListener != null) {
+                            multiChoiceListener.onCancel(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 设置 Dialog 关闭监听
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (multiChoiceListener != null) {
+                        multiChoiceListener.onDismiss(dialog);
+                    }
+                }
+            });
+            return builder.create();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createMultiChoiceDialog");
+        }
+        return null;
+    }
+
+    // =======================
+    // === 设置View Dialog ===
+    // =======================
+
+    /**
+     * detail: 自定义 View Dialog 事件
+     * Created by Ttt
+     */
+    public static abstract class ViewDialogListener {
+
+        /**
+         * 确认触发
+         * @param dialog
+         */
+        public void onPositiveButton(DialogInterface dialog) {
+        }
+
+        /**
+         * 取消触发
+         * @param dialog
+         */
+        public void onCancel(DialogInterface dialog) {
+        }
+
+        /**
+         * 关闭通知
+         * @param dialog
+         */
+        public void onDismiss(DialogInterface dialog) {
+        }
+    }
+
+    // =
+
+    /**
+     * 创建自定义 View 样式 Dialog
+     * @param context
+     * @param view
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param positiveBtnText 确认按钮文案
+     * @param viewDialogListener
+     * @return
+     */
+    public static AlertDialog createViewDialog(Context context, View view, String title, Drawable icon, String positiveBtnText, final ViewDialogListener viewDialogListener) {
+        return createViewDialog(context, view, title, icon, null, positiveBtnText, viewDialogListener, 0);
+    }
+
+    /**
+     * 创建自定义 View 样式 Dialog
+     * @param context
+     * @param view
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param viewDialogListener
+     * @return
+     */
+    public static AlertDialog createViewDialog(Context context, View view, String title, Drawable icon,
+                                               String negativeBtnText, String positiveBtnText, final ViewDialogListener viewDialogListener) {
+        return createViewDialog(context, view, title, icon, negativeBtnText, positiveBtnText, viewDialogListener, 0);
+    }
+
+    /**
+     * 创建自定义 View 样式 Dialog
+     * @param context
+     * @param view
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param positiveBtnText 确认按钮文案
+     * @param viewDialogListener
+     * @param themeResId 样式
+     * @return
+     */
+    public static AlertDialog createViewDialog(Context context, View view, String title, Drawable icon, String positiveBtnText, final ViewDialogListener viewDialogListener, @StyleRes int themeResId) {
+        return createViewDialog(context, view, title, icon, null, positiveBtnText, viewDialogListener, themeResId);
+    }
+
+    /**
+     * 创建自定义 View 样式 Dialog
+     * @param context
+     * @param view
+     * @param title 标题
+     * @param icon 图标(标题左侧)
+     * @param negativeBtnText 取消按钮文案
+     * @param positiveBtnText 确认按钮文案
+     * @param viewDialogListener
+     * @param themeResId 样式
+     * @return
+     */
+    public static AlertDialog createViewDialog(Context context, View view, String title, Drawable icon,
+                                               String negativeBtnText, String positiveBtnText, final ViewDialogListener viewDialogListener, @StyleRes int themeResId) {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
+            if (!isEmpty(title)) {
+                builder.setTitle(title);
+            }
+            if (icon != null) {
+                builder.setIcon(icon);
+            }
+            if (view != null) {
+                builder.setView(view);
+            }
+            // 判断是否存在确认按钮文案
+            if (!isEmpty(positiveBtnText)) {
+                // 设置确认选择按钮
+                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (viewDialogListener != null) {
+                            viewDialogListener.onPositiveButton(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 判断是否存在取消按钮文案
+            if (!isEmpty(negativeBtnText)) {
+                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // 触发回调
+                        if (viewDialogListener != null) {
+                            viewDialogListener.onCancel(dialog);
+                        }
+                    }
+                });
+            }
+
+            // 设置 Dialog 关闭监听
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (viewDialogListener != null) {
+                        viewDialogListener.onDismiss(dialog);
+                    }
+                }
+            });
+            return builder.create();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createViewDialog");
+        }
+        return null;
+    }
+
+    // ==
+
+    /**
+     * 判断是否为null
+     * @param str
+     * @return
+     */
+    private static boolean isEmpty(String str) {
+        return (str == null || str.length() == 0);
     }
 }
