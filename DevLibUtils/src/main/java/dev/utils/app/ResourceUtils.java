@@ -90,6 +90,20 @@ public final class ResourceUtils {
 	}
 
 	/**
+	 * 获取 Dimen 资源
+	 * @param id
+	 * @return
+	 */
+	public static float getDimension(int id){
+		try {
+			return DevUtils.getContext().getResources().getDimension(id);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getDimension");
+		}
+		return 0f;
+	}
+
+	/**
 	 * 根据资源名获取资源id
 	 * @param name 资源名
 	 * @param type 资源类型

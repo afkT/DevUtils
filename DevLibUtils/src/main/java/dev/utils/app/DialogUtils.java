@@ -29,7 +29,19 @@ public final class DialogUtils {
     // ======== Dialog 相关 ========
 
     /**
-     * 关闭Dialog
+     * 显示 Dialog
+     * @param dialog
+     * @return
+     */
+    public static Dialog showDialog(Dialog dialog){
+        if (dialog != null && !dialog.isShowing()){
+            dialog.show();
+        }
+        return dialog;
+    }
+
+    /**
+     * 关闭 Dialog
      * @param dialog
      */
     public static void closeDialog(Dialog dialog) {
@@ -39,7 +51,7 @@ public final class DialogUtils {
     }
 
     /**
-     * 关闭多个Dialog
+     * 关闭多个 Dialog
      * @param dialogs
      */
     public static void closeDialogs(Dialog... dialogs) {
@@ -56,7 +68,7 @@ public final class DialogUtils {
     }
 
     /**
-     * 关闭PopupWindow
+     * 关闭 PopupWindow
      * @param popupWindow
      */
     public static void closePopupWindow(PopupWindow popupWindow) {
@@ -66,7 +78,7 @@ public final class DialogUtils {
     }
 
     /**
-     * 关闭多个PopupWindow
+     * 关闭多个 PopupWindow
      * @param popupWindows
      */
     public static void closePopupWindows(PopupWindow... popupWindows) {
@@ -248,10 +260,13 @@ public final class DialogUtils {
      */
     public static ProgressDialog createProgressDialog(Context context, String title, String content, boolean isCancel, DialogInterface.OnCancelListener cancelListener) {
         try {
-            ProgressDialog progressDialog = ProgressDialog.show(context, title, content);
-            progressDialog.setCancelable(isCancel);
-            progressDialog.setOnCancelListener(cancelListener);
-            return progressDialog;
+            ProgressDialog dialog = new ProgressDialog(context);
+            dialog.setTitle(title);
+            dialog.setMessage(content);
+            dialog.setIndeterminate(false);
+            dialog.setCancelable(isCancel);
+            dialog.setOnCancelListener(cancelListener);
+            return dialog;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "createProgressDialog");
         }
