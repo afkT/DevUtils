@@ -248,7 +248,8 @@ public final class DialogUtils {
      */
     public static ProgressDialog createProgressDialog(Context context, String title, String content, boolean isCancel, DialogInterface.OnCancelListener cancelListener) {
         try {
-            ProgressDialog progressDialog = ProgressDialog.show(context, title, content, isCancel);
+            ProgressDialog progressDialog = ProgressDialog.show(context, title, content);
+            progressDialog.setCancelable(isCancel);
             progressDialog.setOnCancelListener(cancelListener);
             return progressDialog;
         } catch (Exception e) {
