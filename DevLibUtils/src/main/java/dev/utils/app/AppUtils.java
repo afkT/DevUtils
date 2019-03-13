@@ -34,7 +34,6 @@ import android.view.WindowManager;
 import java.io.File;
 import java.security.MessageDigest;
 import java.util.List;
-import java.util.Locale;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -382,29 +381,6 @@ public final class AppUtils {
 			return -1;
 		}
 	}
-
-	// =
-
- 	/**
- 	 * 对内设置指定语言 (App 多语言,单独改变 App 语言)
- 	 * @param locale
- 	 */
- 	public static void setLanguage(Locale locale) {
- 		try {
- 			// 获取res资源对象
- 			Resources resources = DevUtils.getContext().getResources();
- 			// 获取设置对象
- 			Configuration config = resources.getConfiguration();
- 			// 获取屏幕参数：主要是分辨率，像素等。
- 			DisplayMetrics dm = resources.getDisplayMetrics();
- 			// 语言
- 			config.locale = locale;
- 			// 更新语言
- 			resources.updateConfiguration(config, dm);
- 		} catch (Exception e) {
-			LogPrintUtils.eTag(TAG, e, "setLanguage");
- 		}
- 	}
 
  	// =
 

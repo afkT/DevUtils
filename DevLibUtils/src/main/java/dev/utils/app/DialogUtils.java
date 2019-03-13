@@ -33,8 +33,8 @@ public final class DialogUtils {
      * @param dialog
      * @return
      */
-    public static Dialog showDialog(Dialog dialog){
-        if (dialog != null && !dialog.isShowing()){
+    public static Dialog showDialog(Dialog dialog) {
+        if (dialog != null && !dialog.isShowing()) {
             dialog.show();
         }
         return dialog;

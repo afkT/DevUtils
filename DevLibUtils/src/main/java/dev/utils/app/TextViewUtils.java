@@ -270,6 +270,144 @@ public final class TextViewUtils {
         }
     }
 
+    /**
+     * 设置字体
+     * @param textView
+     * @param tf
+     */
+    public static void setTypeface(TextView textView, Typeface tf) {
+        if (textView != null && tf != null) {
+            textView.setTypeface(tf);
+        }
+    }
+
+    /**
+     * 设置字体
+     * @param textView
+     * @param tf
+     * @param style
+     */
+    public static void setTypeface(TextView textView, Typeface tf, int style) {
+        if (textView != null && tf != null) {
+            textView.setTypeface(tf, style);
+        }
+    }
+
+    /**
+     * 设置字体
+     * @param view
+     * @param tf
+     */
+    public static void setTypeface(View view, Typeface tf) {
+        if (view != null && tf != null) {
+            if (view instanceof TextView) {
+                ((TextView) view).setTypeface(tf);
+            }
+        }
+    }
+
+    /**
+     * 设置字体
+     * @param view
+     * @param tf
+     * @param style
+     */
+    public static void setTypeface(View view, Typeface tf, int style) {
+        if (view != null && tf != null) {
+            if (view instanceof TextView) {
+                ((TextView) view).setTypeface(tf, style);
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * 设置下划线
+     * @param textView
+     */
+    public static void setUnderlineText(TextView textView) {
+        if (textView != null) {
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        }
+    }
+
+    /**
+     * 设置下划线
+     * @param view
+     */
+    public static void setUnderlineText(View view) {
+        if (view != null && view instanceof TextView) {
+            TextView textView = (TextView) view;
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        }
+    }
+
+    /**
+     * 设置下划线并加清晰
+     * @param textView
+     */
+    public static void setUnderlineTextToAntiAlias(TextView textView) {
+        if (textView != null) {
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        }
+    }
+
+    /**
+     * 设置下划线并加清晰
+     * @param view
+     */
+    public static void setUnderlineTextToAntiAlias(View view) {
+        if (view != null && view instanceof TextView) {
+            TextView textView = (TextView) view;
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置中划线
+     * @param textView
+     */
+    public static void setStrikeThruText(TextView textView) {
+        if (textView != null) {
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+    }
+
+    /**
+     * 设置中划线
+     * @param view
+     */
+    public static void setStrikeThruText(View view) {
+        if (view != null && view instanceof TextView) {
+            TextView textView = (TextView) view;
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+    }
+
+    /**
+     * 设置中划线并加清晰
+     * @param textView
+     */
+    public static void setStrikeThruTextToAntiAlias(TextView textView) {
+        if (textView != null) {
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        }
+    }
+
+    /**
+     * 设置中划线并加清晰
+     * @param view
+     */
+    public static void setStrikeThruTextToAntiAlias(View view) {
+        if (view != null && view instanceof TextView) {
+            TextView textView = (TextView) view;
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        }
+    }
+
     // =
 
     /**
@@ -417,18 +555,6 @@ public final class TextViewUtils {
     public static void setHtmlText(TextView textView, String content) {
         if (textView != null && content != null) {
             textView.setText(Html.fromHtml(content));
-        }
-    }
-
-    /**
-     * 给TextView设置下划线
-     * @param textView
-     */
-    public static void setTVUnderLine(TextView textView) {
-        if (textView != null) {
-            Paint paint = textView.getPaint();
-            paint.setFlags(Paint.UNDERLINE_TEXT_FLAG);
-            paint.setAntiAlias(true);
         }
     }
 

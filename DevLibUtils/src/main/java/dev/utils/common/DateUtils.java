@@ -189,6 +189,26 @@ public final class DateUtils {
 		return 0l;
 	}
 
+	/**
+	 * 转换时间为指定字符串
+	 * @param time 需要转换的时间
+	 * @param timeFormat time的时间格式
+	 * @param format 把time转换成需要的格式
+	 * @return
+	 */
+	public static String parseToString(String time, String timeFormat, String format) {
+		if (time != null && timeFormat != null && format != null) {
+			try {
+				Date date = parseDate(time, timeFormat);
+				// 把时间转为所需格式字符串
+				return formatDate(date, format);
+			} catch (Exception e) {
+				JCLogUtils.eTag(TAG, e, "parseToString");
+			}
+		}
+		return null;
+	}
+
 	// ==
 
 	/**

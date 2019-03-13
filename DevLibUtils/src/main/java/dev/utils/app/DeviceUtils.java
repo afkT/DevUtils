@@ -24,7 +24,6 @@ import java.net.NetworkInterface;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
 
 import dev.DevUtils;
@@ -73,15 +72,6 @@ public final class DeviceUtils {
 
     /** 换行字符串 */
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
-
-    /**
-     * 获取当前操作系统的语言
-     * @return String 系统语言
-     */
-    public static String getSysLanguage() {
-        String language = Locale.getDefault().getLanguage();
-        return language;
-    }
 
     /**
      * 获取设备信息

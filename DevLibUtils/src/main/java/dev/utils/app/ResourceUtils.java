@@ -94,7 +94,7 @@ public final class ResourceUtils {
 	 * @param id
 	 * @return
 	 */
-	public static float getDimension(int id){
+	public static float getDimension(int id) {
 		try {
 			return DevUtils.getContext().getResources().getDimension(id);
 		} catch (Exception e) {
