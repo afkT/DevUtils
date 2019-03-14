@@ -2,8 +2,10 @@ package dev.utils.common;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import dev.utils.JCLogUtils;
 
@@ -575,6 +577,180 @@ public final class DateUtils {
 		}
 		return getMonthDayNumberAll(year, month);
 	}
+
+	// =
+
+	/**
+	 * 生成 HH 按时间排序数组
+	 * @return
+	 */
+	public static String[] getArrayToHH() {
+		List<String> lists = getListToHH();
+		return lists.toArray(new String[lists.size()]);
+	}
+
+	/**
+	 * 生成 HH 按时间排序集合
+	 * @return
+	 */
+	public static List<String> getListToHH() {
+		List<String> lists = new ArrayList<>();
+		for (int i = 0; i < 24; i++) {
+			lists.add(DateUtils.convertTime(i, true));
+		}
+		return lists;
+	}
+
+	/**
+	 * 生成 MM 按时间排序数组
+	 * @return
+	 */
+	public static String[] getArrayToMM() {
+		List<String> lists = getListToMM();
+		return lists.toArray(new String[lists.size()]);
+	}
+
+	/**
+	 * 生成 MM 按时间排序集合
+	 * @return
+	 */
+	public static List<String> getListToMM() {
+		List<String> lists = new ArrayList<>();
+		for (int i = 0; i < 60; i++) {
+			lists.add(DateUtils.convertTime(i, true));
+		}
+		return lists;
+	}
+
+	/**
+	 * 生成 HH:mm 按间隔时间排序数组
+	 * @param type
+	 * @return
+	 * type
+	 * 0 = 00:00 - 23:00  => 每小时间隔
+	 * 1 = 00:00 - 23:45  => 每15分钟间隔
+	 * 2 = 00:00 - 23:30  => 每30分钟间隔
+	 */
+	public static String[] getArrayToHHMM(int type) {
+		List<String> lists = getListToHHMM(type);
+		return lists.toArray(new String[lists.size()]);
+	}
+
+	/**
+	 * 生成 HH:mm 按间隔时间排序集合
+	 * @param type
+	 * @return
+	 * type：
+	 * 0 = 00:00 - 23:00  => 每小时间隔
+	 * 1 = 00:00 - 23:45  => 每15分钟间隔
+	 * 2 = 00:00 - 23:30  => 每30分钟间隔
+	 */
+	public static List<String> getListToHHMM(int type) {
+		List<String> lists = new ArrayList<>();
+		switch (type) {
+			case 0:
+				for (int i = 0; i < 24; i++) {
+					lists.add(DateUtils.convertTime(i, true) + ":00");
+				}
+				break;
+			case 1:
+				for (int i = 0; i < 96; i++) { // 00 15 30 45 = 4 => 24 * 4
+					if (i % 2 == 0) { // 判断是否偶数 00、30
+						// 小时数
+						String hour = DateUtils.convertTime(i / 4, true);
+						// 分钟数
+						String minute = i % 4 == 0 ? "00" : "30";
+						// 累加时间
+						lists.add(hour + ":" + minute);
+					} else { // 15、45
+						// 小时数
+						String hour = DateUtils.convertTime(i / 4, true);
+						// 分钟数
+						String minute = (i - 1) % 4 == 0 ? "15" : "45";
+						// 累加时间
+						lists.add(hour + ":" + minute);
+					}
+				}
+				break;
+			case 2:
+				for (int i = 0; i < 48; i++) { // 00 30 = 2 => 24 * 2
+					// 小时处理
+					int hour = i / 2;
+					// 属于偶数
+					if (i % 2 == 0) {
+						lists.add(DateUtils.convertTime(hour, true) + ":00");
+					} else {
+						lists.add(DateUtils.convertTime(hour, true) + ":30");
+					}
+				}
+				break;
+		}
+		return lists;
+	}
+
+	/**
+	 * 获取 HH:mm 按间隔时间排序的集合中, 指定时间所在索引
+	 * @param time HH:mm格式
+	 * @param type
+	 * @return
+	 * type：
+	 * 0 = 00:00 - 23:00  => 每小时间隔
+	 * 1 = 00:00 - 23:45  => 每15分钟间隔
+	 * 2 = 00:00 - 23:30  => 每30分钟间隔
+	 */
+	public static int getListToHHMMPosition(String time, int type) {
+		if (time != null && time.length() != 0) {
+			// 进行拆分
+			String[] timeSplit = time.split(":");
+			if (timeSplit != null && timeSplit.length == 2) {
+				// 转换小时
+				int hour = toInt(timeSplit[0], -1);
+				// 判断是否小于 0
+				if (hour < 0) {
+					return -1;
+				} else if (hour > 24) {
+					return -1;
+				}
+
+				// 判断格式, 进行格式处理
+				switch (type) {
+					case 0:
+						return hour;
+					case 1:
+					case 2:
+						// 转换分钟
+						int minute = toInt(timeSplit[1], -1);
+						// 判断是否小于 0
+						if (minute < 0) {
+							return -1;
+						} else if (minute > 59) {
+							return -1;
+						}
+						// 判断间隔
+						if (type == 1) {
+							if (minute >= 0 && minute < 15) {
+								return hour * 4;
+							} else if (minute >= 15 && minute < 30) {
+								return hour * 4 + 1;
+							} else if (minute >= 30 && minute < 45) {
+								return hour * 4 + 2;
+							} else if (minute >= 30 && minute < 60) {
+								return hour * 4 + 3;
+							}
+						} else if (type == 2) { // 30 分钟一个间隔
+							// 大于等于30, 表示属于基数
+							if (minute >= 30) { // 属于奇数(30), 需要加 1
+								return hour * 2 + 1;
+							} else {
+								return hour * 2;
+							}
+						}
+						break;
+				}
+			}
+		}
+		return -1;
+	}
     
     // =======================================================
 
@@ -922,5 +1098,22 @@ public final class DateUtils {
 			JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
 		}
 		return -1;
+	}
+
+	// ==
+
+	/**
+	 * 字符串 转 int
+	 * @param str
+	 * @param dfValue
+	 * @return
+	 */
+	private static int toInt(String str, int dfValue) {
+		try {
+			return Integer.parseInt(str);
+		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "toInt");
+		}
+		return dfValue;
 	}
 }

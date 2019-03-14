@@ -323,12 +323,46 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 清空 flags
+     * @param textView
+     */
+    public static void clearFlags(TextView textView) {
+        if (textView != null) {
+            textView.setPaintFlags(0);
+        }
+    }
+
+    /**
+     * 清空 flags
+     * @param view
+     */
+    public static void clearFlags(View view) {
+        if (view != null) {
+            if (view instanceof TextView) {
+                ((TextView) view).setPaintFlags(0);
+            }
+        }
+    }
+
+    /**
      * 设置下划线
      * @param textView
      */
     public static void setUnderlineText(TextView textView) {
+        setUnderlineText(textView, true);
+    }
+
+    /**
+     * 设置下划线并加清晰
+     * @param textView
+     * @param isAntiAlias
+     */
+    public static void setUnderlineText(TextView textView, boolean isAntiAlias) {
         if (textView != null) {
             textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            if (isAntiAlias) {
+                textView.setPaintFlags(textView.getPaintFlags() | Paint.ANTI_ALIAS_FLAG);
+            }
         }
     }
 
@@ -337,30 +371,21 @@ public final class TextViewUtils {
      * @param view
      */
     public static void setUnderlineText(View view) {
-        if (view != null && view instanceof TextView) {
-            TextView textView = (TextView) view;
-            textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        }
-    }
-
-    /**
-     * 设置下划线并加清晰
-     * @param textView
-     */
-    public static void setUnderlineTextToAntiAlias(TextView textView) {
-        if (textView != null) {
-            textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-        }
+        setUnderlineText(view, true);
     }
 
     /**
      * 设置下划线并加清晰
      * @param view
+     * @param isAntiAlias
      */
-    public static void setUnderlineTextToAntiAlias(View view) {
+    public static void setUnderlineText(View view, boolean isAntiAlias) {
         if (view != null && view instanceof TextView) {
             TextView textView = (TextView) view;
-            textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            if (isAntiAlias) {
+                textView.setPaintFlags(textView.getPaintFlags() | Paint.ANTI_ALIAS_FLAG);
+            }
         }
     }
 
@@ -371,8 +396,19 @@ public final class TextViewUtils {
      * @param textView
      */
     public static void setStrikeThruText(TextView textView) {
+        setStrikeThruText(textView, true);
+    }
+
+    /**
+     * 设置中划线并加清晰
+     * @param textView
+     */
+    public static void setStrikeThruText(TextView textView, boolean isAntiAlias) {
         if (textView != null) {
             textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            if (isAntiAlias) {
+                textView.setPaintFlags(textView.getPaintFlags() | Paint.ANTI_ALIAS_FLAG);
+            }
         }
     }
 
@@ -381,30 +417,20 @@ public final class TextViewUtils {
      * @param view
      */
     public static void setStrikeThruText(View view) {
-        if (view != null && view instanceof TextView) {
-            TextView textView = (TextView) view;
-            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }
-    }
-
-    /**
-     * 设置中划线并加清晰
-     * @param textView
-     */
-    public static void setStrikeThruTextToAntiAlias(TextView textView) {
-        if (textView != null) {
-            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-        }
+        setStrikeThruText(view, true);
     }
 
     /**
      * 设置中划线并加清晰
      * @param view
      */
-    public static void setStrikeThruTextToAntiAlias(View view) {
+    public static void setStrikeThruText(View view, boolean isAntiAlias) {
         if (view != null && view instanceof TextView) {
             TextView textView = (TextView) view;
-            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            if (isAntiAlias) {
+                textView.setPaintFlags(textView.getPaintFlags() | Paint.ANTI_ALIAS_FLAG);
+            }
         }
     }
 
