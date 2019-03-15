@@ -34,6 +34,7 @@ public final class JSONObjectUtils {
      * 转换为 JSON 格式字符串
      * @param obj
      * @return
+     * @TODO 不支持 实体类 转 JSON字符串
      */
     public static String toJson(Object obj) {
         return toJson(obj, -1);
@@ -44,6 +45,7 @@ public final class JSONObjectUtils {
      * @param obj
      * @param jsonIndent
      * @return
+     * @TODO 不支持 实体类 转 JSON字符串
      */
     public static String toJson(Object obj, int jsonIndent) {
         if (obj == null) return null;
@@ -109,7 +111,7 @@ public final class JSONObjectUtils {
     // ======================
 
     /**
-     * Object 转换 JSONObject 对象
+     * Object 转换 JSON 对象
      * @param obj
      * @param type JSONObject.class || JSONArray.class || JSONTokener.class
      * @return
