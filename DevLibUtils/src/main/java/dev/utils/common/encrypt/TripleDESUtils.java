@@ -26,7 +26,7 @@ public final class TripleDESUtils {
     public static byte[] initKey() {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("DESede");
-            keyGen.init(168);  // 112 168
+            keyGen.init(168); // 112 168
             SecretKey secretKey = keyGen.generateKey();
             return secretKey.getEncoded();
         } catch (Exception e) {

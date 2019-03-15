@@ -26,7 +26,7 @@ public final class AESUtils {
     public static byte[] initKey() {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-            keyGen.init(256);  //192 256
+            keyGen.init(256); //192 256
             SecretKey secretKey = keyGen.generateKey();
             return secretKey.getEncoded();
         } catch (Exception e) {

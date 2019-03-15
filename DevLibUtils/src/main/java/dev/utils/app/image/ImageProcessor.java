@@ -110,11 +110,11 @@ public class ImageProcessor {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
         Paint paint = new Paint();
-        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());  // 创建一个同原图一样大小的矩形，用于把原图绘制到这个矩形上
-        RectF rectF = new RectF(rect);  // 创建一个精度更高的矩形，用于画出圆角效果
+        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()); // 创建一个同原图一样大小的矩形，用于把原图绘制到这个矩形上
+        RectF rectF = new RectF(rect); // 创建一个精度更高的矩形，用于画出圆角效果
         paint.setAntiAlias(true);
         canvas.drawARGB(0, 0, 0, 0); // 涂上黑色全透明的底色
-        paint.setColor(0xff424242);  // 设置画笔的颜色为不透明的灰色
+        paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
         canvas.drawRoundRect(rectF, pixels, pixels, paint); // 用给给定的画笔把给定的矩形以给定的圆角的度数画到画布
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint); // 用画笔paint将原图bitmap根据新的矩形重新绘制
