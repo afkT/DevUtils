@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
 
 import dev.utils.JCLogUtils;
 
@@ -77,6 +80,57 @@ public final class CloneUtils {
                 try {
                     ois.close();
                 } catch (IOException e) {
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * 进行克隆
+     * @param map 存储集合
+     * @param datas 需要克隆的数据源
+     * @param <K>
+     * @param <V>
+     */
+    public static <K, V> void deepClone(Map<K, V> map, Map<K, V> datas) {
+        if (map != null && datas != null && datas.size() > 0) {
+            Iterator<Map.Entry<K, V>> iterator = datas.entrySet().iterator();
+            while (iterator.hasNext()) {
+                try {
+                    Map.Entry<K, V> entry = iterator.next();
+                    // 获取 key
+                    K key = entry.getKey();
+                    // 克隆对象
+                    V cloneObj = (V) bytes2Object(serializable2Bytes((Serializable) entry.getValue()));
+                    if (cloneObj != null) {
+                        // 保存到集合
+                        map.put(key, cloneObj);
+                    }
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    /**
+     * 进行克隆
+     * @param collection 存储集合
+     * @param datas 需要克隆的数据源
+     * @param <T>
+     */
+    public static <T> void deepClone(Collection<T> collection, Collection<T> datas) {
+        if (collection != null && datas != null && datas.size() > 0) {
+            Iterator<T> iterator = datas.iterator();
+            while (iterator.hasNext()) {
+                try {
+                    // 克隆对象
+                    T cloneObj = (T) bytes2Object(serializable2Bytes((Serializable) iterator.next()));
+                    if (cloneObj != null) {
+                        collection.add(cloneObj);
+                    }
+                } catch (Exception e) {
                 }
             }
         }
