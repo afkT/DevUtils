@@ -17,10 +17,8 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: Shape 工具类
  * Created by Ttt
- * https://blog.csdn.net/tanghongchang123/article/details/80283686
+ * https://www.cnblogs.com/popfisher/p/6238119.html
  * https://www.cnblogs.com/popfisher/p/5606690.html
- * https://www.cnblogs.com/dongdong230/p/4183079.html
- * https://www.cnblogs.com/zhongle/archive/2012/08/28/2659902.html
  * https://www.2cto.com/kf/201601/456024.html
  */
 public final class ShapeUtils {

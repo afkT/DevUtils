@@ -263,8 +263,10 @@ public final class ViewUtils {
         return (isVisibility == View.VISIBLE);
     }
 
+    // =
+
     /**
-     * 切换View 显示的状态
+     * 切换 View 显示的状态
      * @param view
      * @param views
      */
@@ -276,25 +278,50 @@ public final class ViewUtils {
     }
 
     /**
-     * 切换View 显示的状态
+     * 切换 View 显示的状态
      * @param viewArys
      * @param views
      */
     public static void toggleVisibilitys(View[] viewArys, View... views) {
-        toggleVisibilitys(viewArys, View.GONE, views);
+        toggleVisibilitys(View.GONE, viewArys, views);
     }
 
     /**
-     * 切换View 显示的状态
+     * 切换 View 显示的状态
      * @param viewArys
      * @param status
      * @param views
      */
-    public static void toggleVisibilitys(View[] viewArys, int status, View... views) {
+    public static void toggleVisibilitys(int status, View[] viewArys, View... views) {
         // 默认前面显示
         setVisibilitys(View.VISIBLE, viewArys);
-        // 更具状态处理
+        // 根据状态处理
         setVisibilitys(status, views);
+    }
+
+    // ==
+
+    /**
+     * 反转 View 显示的状态
+     * @param isVisibility
+     * @param viewArys
+     * @param views
+     */
+    public static void reverseVisibilitys(boolean isVisibility, View[] viewArys, View... views) {
+        // 默认处理第一个数组
+        setVisibilitys(isVisibility, viewArys);
+        // 根据状态处理
+        setVisibilitys(!isVisibility, views);
+    }
+
+    /**
+     * 反转 View 显示的状态
+     * @param status
+     * @param viewArys
+     * @param views
+     */
+    public static void reverseVisibilitys(int status, View[] viewArys, View... views) {
+        reverseVisibilitys(status == View.VISIBLE, viewArys, views);
     }
 
     // ==
