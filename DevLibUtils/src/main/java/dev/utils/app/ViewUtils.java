@@ -303,6 +303,16 @@ public final class ViewUtils {
 
     /**
      * 反转 View 显示的状态
+     * @param status
+     * @param viewArys
+     * @param views
+     */
+    public static void reverseVisibilitys(int status, View[] viewArys, View... views) {
+        reverseVisibilitys(status == View.VISIBLE, viewArys, views);
+    }
+
+    /**
+     * 反转 View 显示的状态
      * @param isVisibility
      * @param viewArys
      * @param views
@@ -317,11 +327,24 @@ public final class ViewUtils {
     /**
      * 反转 View 显示的状态
      * @param status
-     * @param viewArys
+     * @param view
      * @param views
      */
-    public static void reverseVisibilitys(int status, View[] viewArys, View... views) {
-        reverseVisibilitys(status == View.VISIBLE, viewArys, views);
+    public static void reverseVisibilitys(int status, View view, View... views) {
+        reverseVisibilitys(status == View.VISIBLE, view, views);
+    }
+
+    /**
+     * 反转 View 显示的状态
+     * @param isVisibility
+     * @param view
+     * @param views
+     */
+    public static void reverseVisibilitys(boolean isVisibility, View view, View... views) {
+        // 默认处理第一个 View
+        setVisibilitys(isVisibility, view);
+        // 根据状态处理
+        setVisibilitys(!isVisibility, views);
     }
 
     // ==

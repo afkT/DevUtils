@@ -24,9 +24,9 @@ public final class ValidatorUtils {
     private static final String REGEX_SPECIAL = "^[\\u4E00-\\u9FA5A-Za-z0-9]+$";
 
     /** 正则表达式：验证微信号  ^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$ */
-    private static final String REGEX_WX = "^[a-zA-Z\\\\d_]{5,19}$";
+    private static final String REGEX_WX = "^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$";
 
-    /** 正则表达式：验证真实姓名       |[\w·•])$  ^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$ */
+    /** 正则表达式：验证真实姓名  ^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$ */
     private static final String REGEX_REALNAME = "^[\\u4e00-\\u9fa5]+(•[\\u4e00-\\u9fa5]*)*$|^[\\u4e00-\\u9fa5]+(·[\\u4e00-\\u9fa5]*)*$";
 
     /** 正则表达式：验证昵称 */
@@ -64,8 +64,13 @@ public final class ValidatorUtils {
      * @param input
      * @return
      */
-    private static boolean match(String regex, String input) {
-        return Pattern.matches(regex, input);
+    public static boolean match(String regex, String input) {
+        try {
+            return Pattern.matches(regex, input);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "match");
+        }
+        return false;
     }
 
     // ======

@@ -348,18 +348,28 @@ public final class IDCardUtils {
      * @return 是否符合
      */
     public static boolean validateTWCard(String idCard) {
-        String start = idCard.substring(0, 1);
-        String mid = idCard.substring(1, 9);
-        String end = idCard.substring(9, 10);
-        Integer iStart = twFirstCode.get(start);
-        Integer sum = iStart / 10 + (iStart % 10) * 9;
-        char[] chars = mid.toCharArray();
-        Integer iflag = 8;
-        for (char c : chars) {
-            sum = sum + Integer.valueOf(c + "") * iflag;
-            iflag--;
+        // 台湾身份证 10 位
+        if (idCard == null || idCard.length() != 10) {
+            return false;
         }
-        return (sum % 10 == 0 ? 0 : 10 - sum % 10) == Integer.valueOf(end);
+        try {
+            // 第一位英文 不同县市
+            String start = idCard.substring(0, 1);
+            String mid = idCard.substring(1, 9);
+            String end = idCard.substring(9, 10);
+            Integer iStart = twFirstCode.get(start);
+            Integer sum = iStart / 10 + (iStart % 10) * 9;
+            char[] chars = mid.toCharArray();
+            Integer iflag = 8;
+            for (char c : chars) {
+                sum = sum + Integer.valueOf(c + "") * iflag;
+                iflag--;
+            }
+            return (sum % 10 == 0 ? 0 : 10 - sum % 10) == Integer.valueOf(end);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "validateTWCard");
+        }
+        return false;
     }
 
     /**
