@@ -384,7 +384,7 @@ public final class AnalysisRecordUtils {
             StringBuffer sBuffer = new StringBuffer();
             // -
             PackageManager pm = sContext.getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(sContext.getPackageName(), PackageManager.GET_ACTIVITIES);
+            PackageInfo pi = pm.getPackageInfo(sContext.getPackageName(), PackageManager.GET_SIGNATURES);
             if (pi != null) {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";

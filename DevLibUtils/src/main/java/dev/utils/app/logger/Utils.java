@@ -65,7 +65,7 @@ final class Utils {
 		String[] aVersion = null;
 		try {
 			PackageManager pm = context.getPackageManager();
-			PackageInfo pi = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_ACTIVITIES);
+			PackageInfo pi = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
 			if (pi != null) {
 				String versionName = pi.versionName == null ? "null" : pi.versionName;
 				String versionCode = pi.versionCode + "";

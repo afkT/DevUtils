@@ -222,7 +222,7 @@ public final class ManifestUtils {
     public static String[] getAppVersion() {
         try {
             PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_ACTIVITIES);
+            PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
             if (pi != null) {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
@@ -242,7 +242,7 @@ public final class ManifestUtils {
     public static int getAppVersionCode() {
         try {
             PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_ACTIVITIES);
+            PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
             if (pi != null) {
                 return pi.versionCode;
             }
@@ -259,7 +259,7 @@ public final class ManifestUtils {
     public static String getAppVersionName() {
         try {
             PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_ACTIVITIES);
+            PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
             if (pi != null) {
                 return pi.versionName;
             }
@@ -280,7 +280,7 @@ public final class ManifestUtils {
         if (isSpace(packageName)) return -1;
         try {
             PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(packageName, 0);
+            PackageInfo pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return pi == null ? -1 : pi.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
@@ -298,7 +298,7 @@ public final class ManifestUtils {
         if (isSpace(packageName)) return null;
         try {
             PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(packageName, 0);
+            PackageInfo pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return pi == null ? null : pi.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName");

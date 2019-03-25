@@ -59,12 +59,13 @@ public final class FileRecordUtils {
 
     /**
      * 获取 App 版本信息
+     * @return 0 = versionName , 1 = versionCode
      */
     private static String[] getAppVersion() {
         String[] aVersion = null;
         try {
             PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_ACTIVITIES);
+            PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
             if (pi != null) {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
@@ -293,9 +294,12 @@ public final class FileRecordUtils {
         if (TextUtils.isEmpty(APP_VERSION_CODE) || TextUtils.isEmpty(APP_VERSION_NAME)) {
             // 获取 App 版本信息
             String[] aVersion = getAppVersion();
-            // 保存 App 版本信息
-            APP_VERSION_NAME = aVersion[0];
-            APP_VERSION_CODE = aVersion[1];
+            // 防止为 null
+            if (aVersion != null && aVersion.length == 2) {
+                // 保存 App 版本信息
+                APP_VERSION_NAME = aVersion[0];
+                APP_VERSION_CODE = aVersion[1];
+            }
         }
         // 判断是否存在设备信息
         if (DEVICE_INFO_MAPS.size() == 0) {

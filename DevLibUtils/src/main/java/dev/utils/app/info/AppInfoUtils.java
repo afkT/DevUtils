@@ -74,7 +74,7 @@ public final class AppInfoUtils {
             // https://blog.csdn.net/sljjyy/article/details/17370665
             PackageManager pManager = DevUtils.getContext().getPackageManager();
             // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
-            PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES); // 64
+            PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             // 返回app信息
             return pInfo;
         } catch (Exception e) {

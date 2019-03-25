@@ -350,7 +350,7 @@ public final class AppUtils {
 	public static String getAppVersionName(final String packageName) {
 		if (isSpace(packageName)) return null;
 		try {
-			PackageInfo pi = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, 0);
+			PackageInfo pi = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
 			return pi == null ? null : pi.versionName;
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getAppVersionName");
@@ -374,7 +374,7 @@ public final class AppUtils {
 	public static int getAppVersionCode(final String packageName) {
 		if (isSpace(packageName)) return -1;
 		try {
-			PackageInfo pi = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, 0);
+			PackageInfo pi = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
 			return pi == null ? -1 : pi.versionCode;
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
