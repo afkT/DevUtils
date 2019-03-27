@@ -2,17 +2,22 @@ package dev.utils.common.validator;
 
 import java.util.regex.Pattern;
 
+import dev.utils.JCLogUtils;
+
 /**
  * detail: 检验联系(手机号,座机)工具类
  * Created by Ttt
+ * ==============
  * http://blog.csdn.net/linbilin_/article/details/49796617
- * // --
  * http://www.cnblogs.com/zengxiangzhan/p/phone.html
  */
 public final class ValiToPhoneUtils {
 
     private ValiToPhoneUtils() {
     }
+
+    // 日志 TAG
+    private static final String TAG = ValiToPhoneUtils.class.getSimpleName();
 
     // ==== 内部方法 =====
 
@@ -31,8 +36,13 @@ public final class ValiToPhoneUtils {
      * @param input
      * @return
      */
-    private static boolean match(String regex, String input) {
-        return Pattern.matches(regex, input);
+    public static boolean match(String regex, String input) {
+        try {
+            return Pattern.matches(regex, input);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "match");
+        }
+        return false;
     }
 
     // ==
@@ -125,27 +135,27 @@ public final class ValiToPhoneUtils {
 
     // == 手机号判断 ==
 
-    /** 简单手机号码校验 => 校验手机号码的长度和1开头 (是否11位)*/
-    private static final String CHAIN_PHONE_FORMAT_CHECK = "^(?:\\+86)?1\\d{10}$";
+    // 简单手机号码校验 => 校验手机号码的长度和1开头 (是否11位)
+    public static final String CHAIN_PHONE_FORMAT_CHECK = "^(?:\\+86)?1\\d{10}$";
 
     // 中国手机号正则
-    private static final String CHINA_PHONE_PATTERN;
+    public static final String CHINA_PHONE_PATTERN;
 
-    /** 中国电信号码正则 */
-    private static final String CHINA_TELECOM_PATTERN;
+    // 中国电信号码正则
+    public static final String CHINA_TELECOM_PATTERN;
 
-    /** 中国联通号码正则 */
-    private static final String CHINA_UNICOM_PATTERN;
+    // 中国联通号码正则
+    public static final String CHINA_UNICOM_PATTERN;
 
-    /** 中国移动号码正则 */
-    private static final String CHINA_MOBILE_PATTERN;
+    // 中国移动号码正则
+    public static final String CHINA_MOBILE_PATTERN;
 
-    /* 香港手机号码正则 => 香港手机号码8位数，5|6|8|9开头+7位任意数*/
-    private static final String HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
+    // 香港手机号码正则 => 香港手机号码8位数，5|6|8|9开头+7位任意数
+    public static final String HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
 
     // == 座机判断 ==
 
-    /** 座机电话格式验证 **/
+    // 座机电话格式验证
     private static final String PHONE_CALL_PATTERN = "^(?:\\(\\d{3,4}\\)|\\d{3,4}-)?\\d{7,8}(?:-\\d{1,4})?$";
 
     static {

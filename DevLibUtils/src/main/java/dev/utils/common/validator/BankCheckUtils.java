@@ -5,7 +5,7 @@ package dev.utils.common.validator;
  * Created by AbrahamCaiJin
  * Update to Ttt
      当你输入信用卡号码的时候，有没有担心输错了而造成损失呢？其实可以不必这么担心，
-     因为并不是一个随便的信用卡号码都是合法的，它必须通过Luhn算法来验证通过。
+     因为并不是一个随便的信用卡号码都是合法的，它必须通过 Luhn 算法来验证通过。
      该校验的过程：
      1、从卡号最后一位数字开始，逆向将奇数位(1、3、5等等)相加。
      2、从卡号最后一位数字开始，逆向将偶数位数字，先乘以2(如果乘积为两位数，则将其减去9)，再求和。
@@ -22,14 +22,15 @@ public final class BankCheckUtils {
     }
 
     /*
- * 银行卡是由”发卡行标识代码 + 自定义 + 校验码 “等部分组成的 BIN号 银联标准卡与以往发行的银行卡最直接的区别就是其卡号前6位数字的不同。
- * 银行卡卡号的前6位是用来表示发卡银行或机构的，称为“发卡行识别码”(Bank Identification Number，缩写为“BIN”)。
- * 银联标准卡是由国内各家商业银行
- * (含邮储、信用社)共同发行、符合银联业务规范和技术标准、卡正面右下角带有“银联”标识(目前，新发行的银联标准卡一定带有国际化的银联新标识
- * ，新发的非银联标准卡使用旧的联网通用银联标识)、 卡号前6位为622126至622925之一的银行卡，是中国银行卡产业共有的民族品牌。
- */
-    // BIN号
-    private static final String[] BANKBIN = { "621098", "622150", "622151",
+     * 银行卡是由”发卡行标识代码 + 自定义 + 校验码 “等部分组成的 BIN号 银联标准卡与以往发行的银行卡最直接的区别就是其卡号前6位数字的不同。
+     * 银行卡卡号的前6位是用来表示发卡银行或机构的，称为“发卡行识别码”(Bank Identification Number，缩写为“BIN”)。
+     * 银联标准卡是由国内各家商业银行 (含邮储、信用社)共同发行、符合银联业务规范和技术标准、卡正面右下角带有“银联”标识，
+     * (目前新发行的银联标准卡一定带有国际化的银联新标识 ，新发的非银联标准卡使用旧的联网通用银联标识)、 卡号前6位为622126至622925之一的银行卡，
+     * 是中国银行卡产业共有的民族品牌。
+     */
+
+    // BIN 号
+    public static final String[] BANKBIN = { "621098", "622150", "622151",
         "622181", "622188", "955100", "621095", "620062", "621285",
         "621798", "621799", "621797", "620529", "622199", "621096",
         "621622", "623219", "621674", "623218", "621599", "370246",
@@ -263,8 +264,8 @@ public final class BankCheckUtils {
         "621053", "621230", "621229", "622218", "628267", "621392",
         "621481", "621310", "621396", "623251", "628351" };
 
-    // "发卡行.卡种名称",
-    private static final String[] BANKNAME = { "邮储银行·绿卡通", "邮储银行·绿卡银联标准卡",
+    // 发卡行·卡种名称
+    public static final String[] BANKNAME = { "邮储银行·绿卡通", "邮储银行·绿卡银联标准卡",
         "邮储银行·绿卡银联标准卡", "邮储银行·绿卡专用卡", "邮储银行·绿卡银联标准卡", "邮储银行·绿卡(银联卡)",
         "邮储银行·绿卡VIP卡", "邮储银行·银联标准卡", "邮储银行·中职学生资助卡", "邮政储蓄银行·IC绿卡通VIP卡",
         "邮政储蓄银行·IC绿卡通", "邮政储蓄银行·IC联名卡", "邮政储蓄银行·IC预付费卡", "邮储银行·绿卡银联标准卡",
@@ -659,12 +660,11 @@ public final class BankCheckUtils {
      * @return
      */
     public static boolean checkBankCard(String cardId) {
-        char bit = getBankCardCheckCode(cardId
-            .substring(0, cardId.length() - 1));
+        char bit = getBankCardCheckCode(cardId.substring(0, cardId.length() - 1));
         if (bit == 'N') {
             return false;
         }
-        boolean isBankCard = cardId.charAt(cardId.length() - 1) == bit;
+        boolean isBankCard = (cardId.charAt(cardId.length() - 1) == bit);
         return isBankCard;
     }
 
@@ -674,42 +674,53 @@ public final class BankCheckUtils {
      * @return
      */
     public static char getBankCardCheckCode(String nonCheckCodeCardId) {
-        if (nonCheckCodeCardId == null
-            || nonCheckCodeCardId.trim().length() == 0
-            || !nonCheckCodeCardId.matches("\\d+")) {
-            // 如果传的不是数据返回N
+        try {
+            if (nonCheckCodeCardId == null
+                || nonCheckCodeCardId.trim().length() == 0
+                || !nonCheckCodeCardId.matches("\\d+")) {
+                // 如果传的不是数据返回N
+                return 'N';
+            }
+            char[] chs = nonCheckCodeCardId.trim().toCharArray();
+            int luhmSum = 0;
+            for (int i = chs.length - 1, j = 0; i >= 0; i--, j++) {
+                int k = chs[i] - '0';
+                if (j % 2 == 0) {
+                    k *= 2;
+                    k = k / 10 + k % 10;
+                }
+                luhmSum += k;
+            }
+            return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
+        } catch (Exception e) {
             return 'N';
         }
-        char[] chs = nonCheckCodeCardId.trim().toCharArray();
-        int luhmSum = 0;
-        for (int i = chs.length - 1, j = 0; i >= 0; i--, j++) {
-            int k = chs[i] - '0';
-            if (j % 2 == 0) {
-                k *= 2;
-                k = k / 10 + k % 10;
-            }
-            luhmSum += k;
-        }
-        return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
     }
 
     /**
      * 通过银行卡 的前六位确定 判断银行开户行及卡种
-     * @param cardbin
+     * @param cardBin
      * @return
      */
-    public static String getNameOfBank(String cardbin) {
-        // 通过银行卡的前6位确定
-        cardbin = cardbin.substring(0, 6);
-        int index = -1;
-        for (int i = 0; i < BANKBIN.length; i++) {
-            if (cardbin.equals(BANKBIN[i])) {
-                index = i;
-            }
-        }
-        if (index == -1) {
+    public static String getNameOfBank(String cardBin) {
+        if (cardBin == null || cardBin.trim().length() < 6) {
             return "";
         }
-        return BANKNAME[index];
+        try {
+            // 通过银行卡的前6位确定
+            cardBin = cardBin.substring(0, 6);
+            int index = -1;
+            for (int i = 0, len = BANKBIN.length; i < len; i++) {
+                if (cardBin.equals(BANKBIN[i])) {
+                    index = i;
+                }
+            }
+            if (index == -1) {
+                return "";
+            }
+            return BANKNAME[index];
+        } catch (Exception e) {
+            return "";
+        }
     }
 }
