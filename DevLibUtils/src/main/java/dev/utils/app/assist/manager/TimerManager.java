@@ -32,7 +32,7 @@ public final class TimerManager {
 	private TimerManager() {
 	}
 
-	// 日志TAG
+	// 日志 TAG
 	private static final String TAG = TimerManager.class.getSimpleName();
 
 	/** 内部保存定时器对象,防止忘记关闭等其他情况,以及便于控制处理 */

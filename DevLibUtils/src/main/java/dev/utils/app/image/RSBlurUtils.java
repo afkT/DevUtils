@@ -23,7 +23,7 @@ public final class RSBlurUtils {
     private RSBlurUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = RSBlurUtils.class.getSimpleName();
 
     /**

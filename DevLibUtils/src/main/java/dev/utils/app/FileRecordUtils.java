@@ -32,7 +32,7 @@ public final class FileRecordUtils {
     private FileRecordUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = FileRecordUtils.class.getSimpleName();
 
     // ===================  配置信息  =======================

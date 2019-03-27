@@ -36,7 +36,7 @@ public final class ScreenUtils {
 	private ScreenUtils() {
 	}
 
-	// 日志TAG
+	// 日志 TAG
 	private static final String TAG = ScreenUtils.class.getSimpleName();
 
 	/**

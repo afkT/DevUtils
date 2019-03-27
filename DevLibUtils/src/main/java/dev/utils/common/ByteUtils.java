@@ -19,7 +19,7 @@ public final class ByteUtils {
     private ByteUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ByteUtils.class.getSimpleName();
 
     // 按位补运算符 例子：

@@ -18,7 +18,7 @@ public final class EncodeUtils {
     private EncodeUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = EncodeUtils.class.getSimpleName();
 
     /**

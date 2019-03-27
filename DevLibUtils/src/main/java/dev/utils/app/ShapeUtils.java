@@ -23,7 +23,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class ShapeUtils {
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ShapeUtils.class.getSimpleName();
 
     private final GradientDrawable drawable;
@@ -373,7 +373,7 @@ public final class ShapeUtils {
          * @param colors
          */
         public Builder(@ColorInt int[] colors) {
-            this(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors));
+            this (new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors));
         }
 
         /**
@@ -382,7 +382,7 @@ public final class ShapeUtils {
          * @param colors
          */
         public Builder(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
-            this(new GradientDrawable(orientation, colors));
+            this (new GradientDrawable(orientation, colors));
         }
     }
 

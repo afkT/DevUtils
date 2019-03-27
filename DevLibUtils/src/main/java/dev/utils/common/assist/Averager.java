@@ -57,5 +57,4 @@ public class Averager {
     public String print() {
         return "printList(" + size() + "): " + mNumLists;
     }
-
 }

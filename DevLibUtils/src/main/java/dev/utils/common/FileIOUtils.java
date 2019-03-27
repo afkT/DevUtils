@@ -30,7 +30,7 @@ public final class FileIOUtils {
     private FileIOUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = FileIOUtils.class.getSimpleName();
     // 换行符
     private static final String LINE_SEP = System.getProperty("line.separator");

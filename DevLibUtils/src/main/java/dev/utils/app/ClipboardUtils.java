@@ -18,7 +18,7 @@ public final class ClipboardUtils {
     private ClipboardUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ClipboardUtils.class.getSimpleName();
 
     /**

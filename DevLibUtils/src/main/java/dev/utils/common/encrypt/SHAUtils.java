@@ -15,14 +15,14 @@ public final class SHAUtils {
     private SHAUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = SHAUtils.class.getSimpleName();
-    /** 小写 */
-    private static final char HEX_DIGITS[]={'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+    // 小写
+    private static final char HEX_DIGITS[] = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' };
 
     /**
      * 加密内容 SHA1
-     * @param str 加密内容
+     * @param str
      * @return
      */
     public static String sha1(String str) {
@@ -31,7 +31,7 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA224
-     * @param str 加密内容
+     * @param str
      * @return
      */
     public static String sha224(String str) {
@@ -40,7 +40,7 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA256
-     * @param str 加密内容
+     * @param str
      * @return
      */
     public static String sha256(String str) {
@@ -49,7 +49,7 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA384
-     * @param str 加密内容
+     * @param str
      * @return
      */
     public static String sha384(String str) {
@@ -58,22 +58,42 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA512
-     * @param str 加密内容
+     * @param str
      * @return
      */
     public static String sha512(String str) {
         return shaHex(str, "SHA-512");
     }
 
+    // =
+
+    /**
+     * 获取文件 sha1 值
+     * @param path 文件地址
+     * @return
+     */
+    public static String getFileSHA1(String path) {
+        return getFileSHA(path, "SHA-1");
+    }
+
+    /**
+     * 获取文件 sha256 值
+     * @param path 文件地址
+     * @return
+     */
+    public static String getFileSHA256(String path) {
+        return getFileSHA(path, "SHA-256");
+    }
+
     // =======
 
     /**
      * 加密内容 SHA
-     * @param str 加密内容
+     * @param str
      * @param sha 加密算法
      * @return
      */
-    private static final String shaHex(String str, String sha) {
+    public static final String shaHex(String str, String sha) {
         try {
             byte[] btInput = str.getBytes();
             // 获取 SHA-1 摘要算法的 MessageDigest 对象
@@ -90,13 +110,14 @@ public final class SHAUtils {
     }
 
     /**
-     * 获取文件 Sha 值
-     * @param fPath 文件地址
+     * 获取文件 SHA 值
+     * @param path
+     * @param sha 加密算法
      * @return
      */
-    private static final String getFileSHA(String fPath, String sha) {
+    public static final String getFileSHA(String path, String sha) {
         try {
-            InputStream fis = new FileInputStream(fPath);
+            InputStream fis = new FileInputStream(path);
             byte[] buffer = new byte[1024];
             MessageDigest md5 = MessageDigest.getInstance(sha);
             int numRead = 0;
@@ -114,35 +135,17 @@ public final class SHAUtils {
     // =======
 
     /**
-     * 进行转换
-     * @param byteData
+     * 进行十六进制转换
+     * @param data
      * @param hexDigits
      * @return
      */
-    private static String toHexString(byte[] byteData, char[] hexDigits) {
-        StringBuilder sBuilder = new StringBuilder(byteData.length * 2);
-        for (int i = 0, len = byteData.length; i < len; i++) {
-            sBuilder.append(hexDigits[(byteData[i] & 0xf0) >>> 4]);
-            sBuilder.append(hexDigits[byteData[i] & 0x0f]);
+    private static String toHexString(byte[] data, char[] hexDigits) {
+        StringBuilder sBuilder = new StringBuilder(data.length * 2);
+        for (int i = 0, len = data.length; i < len; i++) {
+            sBuilder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+            sBuilder.append(hexDigits[data[i] & 0x0f]);
         }
         return sBuilder.toString();
-    }
-
-    /**
-     * 获取文件 Sha1 值
-     * @param fPath 文件地址
-     * @return
-     */
-    public static String getFileSHA1(String fPath) {
-        return getFileSHA(fPath, "SHA-1");
-    }
-
-    /**
-     * 获取文件 Sha256 值
-     * @param fPath 文件地址
-     * @return
-     */
-    public static String getFileSHA256(String fPath) {
-        return getFileSHA(fPath, "SHA-256");
     }
 }

@@ -16,7 +16,7 @@ import dev.utils.common.FileUtils;
  */
 public class AppInfoBean {
 
-    // 日志Tag
+    // 日志 TAG
     private static final String TAG = AppInfoBean.class.getSimpleName();
     @Keep // App 包名
     private String appPackName;
@@ -58,7 +58,7 @@ public class AppInfoBean {
      * @param pInfo
      */
     protected AppInfoBean(PackageInfo pInfo) {
-        this(pInfo, DevUtils.getContext().getPackageManager());
+        this (pInfo, DevUtils.getContext().getPackageManager());
     }
 
     /**

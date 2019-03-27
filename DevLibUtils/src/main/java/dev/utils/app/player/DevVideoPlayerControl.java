@@ -15,7 +15,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 		DevMediaManager.MediaListener {
 
 	// ========= 外部回调  =========
-	/** 日志Tag */
+	// 日志 TAG
 	private final String TAG = DevVideoPlayerControl.class.getSimpleName();
 	// 播放设置
 	private DevMediaManager.MediaSet mMediaSet;
@@ -32,7 +32,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 	 * @param surfaceview
 	 */
 	public DevVideoPlayerControl(SurfaceView surfaceview) {
-		this(surfaceview, false);
+		this (surfaceview, false);
 	}
 
 	/**

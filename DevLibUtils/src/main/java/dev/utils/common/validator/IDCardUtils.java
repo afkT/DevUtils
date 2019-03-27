@@ -19,7 +19,7 @@ public final class IDCardUtils {
     private IDCardUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = IDCardUtils.class.getSimpleName();
     // 加权因子
     private static final int power[] = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };

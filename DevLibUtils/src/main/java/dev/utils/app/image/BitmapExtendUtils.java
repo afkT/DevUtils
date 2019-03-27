@@ -39,7 +39,7 @@ public final class BitmapExtendUtils {
     private BitmapExtendUtils() {
     }
 
-    // 日志Tag
+    // 日志 TAG
     private static final String TAG = BitmapExtendUtils.class.getSimpleName();
 
     /**

@@ -21,7 +21,7 @@ public final class LoggerUse {
     private LoggerUse() {
     }
 
-    /** 日志Tag */
+    // 日志 TAG
     private static final String LOG_TAG = LoggerUse.class.getSimpleName();
     /** 日志文件夹路径 */
     private static final String LOG_SD_PATH = Config.SDP_PATH + File.separator + "Logger" + File.separator;
@@ -82,7 +82,7 @@ public final class LoggerUse {
     private static void testTime() {
         // 拼接字符串
         StringBuffer sBuffer = new StringBuffer();
-        // 日志Tag
+        // 日志 TAG
         final String tag = "CALC_TIME";
         // --
         // 遍历次数
@@ -199,7 +199,7 @@ public final class LoggerUse {
         DevLogger.d(LogTools.getScatteredData(uInfoVo.uName, sMsgVo.sTitle, uInfoVo.uAge));
 
         // =================== 打印测试数据  ====================
-        // 日志TAG
+        // 日志 TAG
         final String tag = LOG_TAG;
         // ====== 使用 BaseApplication 默认配置  ======
         // JSON数组

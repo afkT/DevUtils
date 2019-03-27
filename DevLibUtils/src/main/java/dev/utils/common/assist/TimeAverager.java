@@ -6,20 +6,20 @@ package dev.utils.common.assist;
  */
 public class TimeAverager {
 
-    /** 计时器 */
+    // 计时器
     private TimeCounter timeCounter = new TimeCounter();
-    /** 均值器 */
+    // 均值器
     private Averager averager = new Averager();
 
     /**
-     * 一个计时开始
+     * 开始计时
      */
     public long start() {
         return timeCounter.start();
     }
 
     /**
-     * 一个计时结束
+     * 结束计时
      */
     public long end() {
         long time = timeCounter.duration();
@@ -28,7 +28,7 @@ public class TimeAverager {
     }
 
     /**
-     * 一个计时结束,并且启动下次计时。
+     * 结束计时, 并重新启动新的计时
      */
     public long endAndRestart() {
         long time = timeCounter.durationRestart();

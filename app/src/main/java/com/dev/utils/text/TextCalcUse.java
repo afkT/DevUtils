@@ -17,7 +17,7 @@ public final class TextCalcUse {
     private TextCalcUse() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = TextCalcUse.class.getSimpleName();
 
     /**

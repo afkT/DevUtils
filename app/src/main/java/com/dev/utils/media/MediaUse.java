@@ -19,7 +19,7 @@ public final class MediaUse {
     private MediaUse() {
     }
 
-    /** 日志Tag */
+    // 日志 TAG
     private static final String TAG = MediaUse.class.getSimpleName();
 
     /**

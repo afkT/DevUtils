@@ -20,7 +20,7 @@ public final class ManifestUtils {
     private ManifestUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ManifestUtils.class.getSimpleName();
 
     /**

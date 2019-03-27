@@ -1,7 +1,7 @@
 package dev.utils.common.encrypt;
 
 /**
- * detail: 异或加密工具类
+ * detail: 异或 加密工具类
  * Created by Ttt
  * 位运算可以实现很多高级，高效的运算。
  * 可用于 IM 二进制数据包加密，第一能够实现加密，第二采用异或加密算法不会改变二进制数据的长度这对二进制数据包封包起到不小的好处
@@ -14,58 +14,59 @@ public final class XorUtils {
     }
 
     /**
-     * 固定 key 的方式加密
-     * 这种方式加密解密 算法一样
+     * 加密 (固定 key 方式) - 这种方式 加/解密 方法共用
      * 加密：byte[] bytes = encryptAsFix("123".getBytes());
      * 解密：String str = new String(encryptAsFix(bytes));
-     * @param bytes 待加密数据
+     * @param data 待加密数据
      * @return 加密后的数据
      */
-    public static byte[] encryptAsFix(byte[] bytes) {
-        if (bytes == null) {
+    public static byte[] encryptAsFix(byte[] data) {
+        if (data == null) {
             return null;
         }
-        int len = bytes.length;
+        int len = data.length;
         int key = 0x12;
         for (int i = 0; i < len; i++) {
-            bytes[i] ^= key;
+            data[i] ^= key;
         }
-        return bytes;
+        return data;
+    }
+
+    // =
+
+    /**
+     * 加密 (非固定 key 方式)
+     * @param data 待加密数据
+     * @return 加密后的数据
+     */
+    public static byte[] encrypt(byte[] data) {
+        if (data == null) {
+            return null;
+        }
+        int len = data.length;
+        int key = 0x12;
+        for (int i = 0; i < len; i++) {
+            data[i] = (byte) (data[i] ^ key);
+            key = data[i];
+        }
+        return data;
     }
 
     /**
-     * 非固定 key 的方式加密
-     * @param bytes 待加密数据
-     * @return 加密后的数据
-     */
-    public static byte[] encrypt(byte[] bytes) {
-        if (bytes == null) {
-            return null;
-        }
-        int len = bytes.length;
-        int key = 0x12;
-        for (int i = 0; i < len; i++) {
-            bytes[i] = (byte) (bytes[i] ^ key);
-            key = bytes[i];
-        }
-        return bytes;
-    }
-
-    /**
-     * 解密
-     * @param bytes 待解密数据
+     * 解密 (非固定 key 方式)
+     * @param data 待解密数据
      * @return 解密后的数据
      */
-    public static byte[] decrypt(byte[] bytes) {
-        if (bytes == null) {
+    public static byte[] decrypt(byte[] data) {
+        if (data == null) {
             return null;
         }
-        int len = bytes.length;
+        int len = data.length;
         int key = 0x12;
         for (int i = len - 1; i > 0; i--) {
-            bytes[i] = (byte) (bytes[i] ^ bytes[i - 1]);
+            data[i] = (byte) (data[i] ^ data[i - 1]);
         }
-        bytes[0] = (byte) (bytes[0] ^ key);
-        return bytes;
+        data[0] = (byte) (data[0] ^ key);
+        return data;
     }
 }

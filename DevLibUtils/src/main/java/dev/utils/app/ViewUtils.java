@@ -30,7 +30,7 @@ public final class ViewUtils {
     private ViewUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ViewUtils.class.getSimpleName();
 
     /**

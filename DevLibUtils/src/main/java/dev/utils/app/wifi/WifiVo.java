@@ -15,7 +15,7 @@ import dev.utils.LogPrintUtils;
  */
 public class WifiVo implements Parcelable {
 
-	// 日志TAG
+	// 日志 TAG
 	private static final String TAG = WifiVo.class.getSimpleName();
 	/** wifi SSID */
 	@Keep

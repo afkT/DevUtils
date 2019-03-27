@@ -21,7 +21,7 @@ public final class FlashlightUtils {
     private FlashlightUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private final String TAG = FlashlightUtils.class.getSimpleName();
 
     /**

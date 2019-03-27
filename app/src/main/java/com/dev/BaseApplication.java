@@ -13,7 +13,7 @@ import dev.utils.app.logger.LogLevel;
  */
 public class BaseApplication extends Application {
 
-    // 日志TAG
+    // 日志 TAG
     private final String LOG_TAG = BaseApplication.class.getSimpleName();
 
     @Override

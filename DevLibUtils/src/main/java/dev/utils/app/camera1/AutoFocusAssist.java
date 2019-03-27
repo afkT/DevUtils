@@ -49,7 +49,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // == 构造函数 ==
 
     public AutoFocusAssist(Camera camera) {
-        this(camera, 2000L);
+        this (camera, 2000L);
     }
 
     public AutoFocusAssist(Camera camera, long interval) {

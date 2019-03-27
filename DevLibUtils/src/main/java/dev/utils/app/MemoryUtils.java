@@ -21,7 +21,7 @@ public final class MemoryUtils {
     private MemoryUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = MemoryUtils.class.getSimpleName();
 
     /**

@@ -19,7 +19,7 @@ import dev.utils.LogPrintUtils;
  */
 public final class BeepVibrateAssist implements Closeable {
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = BeepVibrateAssist.class.getSimpleName();
     // Context
     private final Context mContext;

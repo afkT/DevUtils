@@ -35,7 +35,7 @@ public final class FileUtils {
     private FileUtils() {
     }
 
-	// 日志TAG
+	// 日志 TAG
 	private static final String TAG = FileUtils.class.getSimpleName();
 	/** 换行字符串 */
 	public static final String NEW_LINE_STR = System.getProperty("line.separator");

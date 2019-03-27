@@ -12,12 +12,8 @@ public final class CipherUtils {
     private CipherUtils() {
     }
 
-    // 保存加密: 如SP
-    // 保存到SP,可以通过 SP.put(key, CipherUtils.encrypt(obj, cipher));
-    // 获取 Object obj = CipherUtils.decrypt(SP.get(key), cipher);
-
     /**
-     * 加密工具类
+     * 加密方法
      * @param obj
      * @return
      */
@@ -26,7 +22,7 @@ public final class CipherUtils {
     }
 
     /**
-     * 加密工具类
+     * 加密方法
      * @param obj
      * @param cipher
      * @return
@@ -38,14 +34,14 @@ public final class CipherUtils {
         return HexUtils.encodeHexStr(bytes);
     }
 
-    // -
+    // =
 
     /**
      * 解密方法
      * @param hex
      * @return
      */
-    public static Object decrypt (String hex) {
+    public static Object decrypt(String hex) {
         return decrypt(hex, null);
     }
 
@@ -55,24 +51,10 @@ public final class CipherUtils {
      * @param cipher
      * @return
      */
-    public static Object decrypt (String hex, Cipher cipher) {
+    public static Object decrypt(String hex, Cipher cipher) {
         if (hex == null) return null;
         byte[] bytes = HexUtils.decodeHex(hex.toCharArray());
         if (cipher != null) bytes = cipher.decrypt(bytes);
-        Object obj = ByteUtils.byteToObject(bytes);
-        return obj;
+        return ByteUtils.byteToObject(bytes);
     }
-
-
-//    private static Cipher cipher = new Cipher() {
-//        @Override
-//        public byte[] decrypt(byte[] res) {
-//            return res;
-//        }
-//
-//        @Override
-//        public byte[] encrypt(byte[] res) {
-//            return res;
-//        }
-//    };
 }

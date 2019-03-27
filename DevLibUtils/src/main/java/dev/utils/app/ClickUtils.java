@@ -18,7 +18,7 @@ public final class ClickUtils {
     private ClickUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ClickUtils.class.getSimpleName();
 
     // 上一次点击的标识id = viewId 等

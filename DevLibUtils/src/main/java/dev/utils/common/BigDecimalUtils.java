@@ -13,7 +13,7 @@ public final class BigDecimalUtils {
     private BigDecimalUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = BigDecimalUtils.class.getSimpleName();
 
     /** 默认保留位数 */

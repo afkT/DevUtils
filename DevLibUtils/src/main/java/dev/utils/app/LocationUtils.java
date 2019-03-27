@@ -30,7 +30,7 @@ public final class LocationUtils {
     private LocationUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = LocationUtils.class.getSimpleName();
     /** 时间常量 = 2分钟 */
     private static final int MINUTES_TWO = 1000 * 60 * 2;

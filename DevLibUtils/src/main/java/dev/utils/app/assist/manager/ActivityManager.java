@@ -11,16 +11,15 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 应用程序Activity管理类：用于Activity管理和应用程序
+ * detail: 应用程序 Activity 管理类：用于 Activity 管理和应用程序
  * Created by Ttt
  */
 public final class ActivityManager {
 
-    /** 禁止构造对象,保证只有一个实例 */
     private ActivityManager() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ActivityManager.class.getSimpleName();
 
     /** ActivityManager 实例 */

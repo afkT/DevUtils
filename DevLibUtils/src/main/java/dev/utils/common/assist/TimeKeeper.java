@@ -3,7 +3,7 @@ package dev.utils.common.assist;
 import android.os.SystemClock;
 
 /**
- * detail: 时间堵塞保留
+ * detail: 堵塞时间记录
  * Created by Ttt
  */
 public class TimeKeeper {
@@ -66,7 +66,8 @@ public class TimeKeeper {
     }
 
     /**
-     * 结束通知回调
+     * detail: 结束通知回调
+     * Created by Ttt
      */
     public interface OnEndCallback {
 

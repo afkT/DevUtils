@@ -25,7 +25,7 @@ public final class SnackbarUse {
     private SnackbarUse() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = SnackbarUse.class.getSimpleName();
 
     View view;

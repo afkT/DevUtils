@@ -8,15 +8,17 @@ import javax.crypto.spec.SecretKeySpec;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 3DES对称加密(Triple DES、DESede，进行了三重DES加密的算法，对称加密算法)
+ * detail: 3DES 对称加密
  * Created by Ttt
+ * ==============
+ * Triple DES、DESede，进行了三重DES加密的算法，对称加密算法
  */
 public final class TripleDESUtils {
 
     private TripleDESUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = TripleDESUtils.class.getSimpleName();
 
     /**

@@ -26,7 +26,7 @@ import javax.crypto.spec.SecretKeySpec;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 加/解密工具类
+ * detail: 加/解密 通用工具类
  * Created by Blankj
  * Update to Ttt
  */
@@ -35,7 +35,7 @@ public final class EncryptUtils {
     private EncryptUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = EncryptUtils.class.getSimpleName();
 
     /**
@@ -342,6 +342,8 @@ public final class EncryptUtils {
         }
     }
 
+    // =
+
     /**
      * HmacMD5 加密
      * @param data
@@ -547,6 +549,8 @@ public final class EncryptUtils {
             return null;
         }
     }
+
+    // =
 
     /**
      * DES 加密
@@ -798,6 +802,8 @@ public final class EncryptUtils {
             return null;
         }
     }
+
+    // =
 
     /**
      * RSA 加密

@@ -5,24 +5,23 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * detail: 线程池管理 - 开发类
+ * detail: 线程池管理类
  * Created by Ttt
  */
 public final class DevThreadManager {
 
-    /** 禁止构造对象 */
     private DevThreadManager() {
     }
 
-    /** 默认通用线程池 = 通过CPU自动处理 */
+    // 默认通用线程池 = 通过 CPU 自动处理
     private static final DevThreadPool sDevThreadPool = new DevThreadPool(DevThreadPool.DevThreadPoolType.CALC_CPU);
-    /** 线程池数据 */
+    // 线程池数据
     private static final LinkedHashMap<String, DevThreadPool> mapThreads = new LinkedHashMap<>();
-    /** 配置数据 */
+    // 配置数据
     private static final Map<String, Object> mapConfig = new HashMap<>();
 
     /**
-     * 获取 DevThreadManager 实例 ,单例模式
+     * 获取 DevThreadManager 实例
      * @param nThreads
      * @return
      */
@@ -40,7 +39,7 @@ public final class DevThreadManager {
     }
 
     /**
-     * 获取 DevThreadManager 实例 ,单例模式
+     * 获取 DevThreadManager 实例
      * @param key
      * @return
      */

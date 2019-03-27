@@ -7,10 +7,13 @@ import java.util.List;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 文件深度优先搜索算法 (搜索某个目录下的全部文件)
+ * detail: 文件深度优先搜索算法 (递归搜索某个目录下的全部文件)
  * Created by Ttt
  */
 public final class FileDepthFirstSearchUtils {
+
+    // 日志 TAG
+    private static final String TAG = FileDepthFirstSearchUtils.class.getSimpleName();
 
     // = 构造函数 =
 
@@ -22,7 +25,8 @@ public final class FileDepthFirstSearchUtils {
     }
 
     /**
-     * 文件信息 Item
+     * detail: 文件信息 Item
+     * Created by Ttt
      */
     public final class FileItem {
 
@@ -38,7 +42,8 @@ public final class FileDepthFirstSearchUtils {
     }
 
     /**
-     * 搜索处理接口
+     * detail: 搜索处理接口
+     * Created by Ttt
      */
     public interface ISearchHandler {
 
@@ -90,7 +95,7 @@ public final class FileDepthFirstSearchUtils {
         @Override
         public void OnEndListener(List<FileItem> lists, long startTime, long endTime) {
             // 表示非搜索中
-            running = false;
+            mIsRunning = false;
             // 触发回调
             if (iSearchHandler != null) {
                 iSearchHandler.OnEndListener(lists, startTime, endTime);
@@ -113,14 +118,14 @@ public final class FileDepthFirstSearchUtils {
      * @return
      */
     public boolean isRunning() {
-        return running;
+        return mIsRunning;
     }
 
     /**
      * 停止搜索
      */
     public void stop() {
-        stop = true;
+        mIsStop = true;
     }
 
     /**
@@ -128,7 +133,7 @@ public final class FileDepthFirstSearchUtils {
      * @return
      */
     public boolean isStop() {
-        return stop;
+        return mIsStop;
     }
 
     /**
@@ -150,26 +155,26 @@ public final class FileDepthFirstSearchUtils {
     // ==
 
     // 判断是否运行中
-    private boolean running = false;
+    private boolean mIsRunning = false;
     // 是否停止搜索
-    private boolean stop = false;
+    private boolean mIsStop = false;
     // 开始搜索时间
     private long startTime = 0l;
     // 结束搜索时间
     private long endTime = 0l;
 
     /**
-     * 查询
+     * 搜索目录
      * @param path 根目录地址
      * @param isRelation 是否关联到 Child List
      */
     public synchronized void query(String path, final boolean isRelation) {
-        if (running) {
+        if (mIsRunning) {
             return;
         }
         // 表示运行中
-        running = true;
-        stop = false;
+        mIsRunning = true;
+        mIsStop = false;
         // 设置开始搜索时间
         startTime = System.currentTimeMillis();
         try {
@@ -207,6 +212,7 @@ public final class FileDepthFirstSearchUtils {
                 }
             }
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "query");
             // 触发结束回调
             endTime = System.currentTimeMillis();
             inside.OnEndListener(null, startTime, endTime);
@@ -214,14 +220,14 @@ public final class FileDepthFirstSearchUtils {
     }
 
     /**
-     * 查询文件
+     * 搜索文件
      * @param file
      * @param lists 保存数据源
      * @param isRelation 是否关联到 Child List
      */
     private void queryFile(File file, List<FileItem> lists, boolean isRelation) {
         try {
-            if (stop) {
+            if (mIsStop) {
                 return;
             }
             if (file != null && file.exists()) {
@@ -266,7 +272,7 @@ public final class FileDepthFirstSearchUtils {
                 }
             }
         } catch (Exception e) {
-            JCLogUtils.eTag(FileDepthFirstSearchUtils.class.getSimpleName(), e, "queryFile");
+            JCLogUtils.eTag(TAG, e, "queryFile");
         }
     }
 }

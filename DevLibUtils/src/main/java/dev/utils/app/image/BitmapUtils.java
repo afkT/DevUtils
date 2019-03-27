@@ -41,7 +41,7 @@ public final class BitmapUtils {
 	private BitmapUtils() {
 	}
 
-	// 日志Tag
+	// 日志 TAG
 	private static final String TAG = BitmapUtils.class.getSimpleName();
 
 	/**

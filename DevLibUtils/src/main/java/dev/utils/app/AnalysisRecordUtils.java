@@ -35,7 +35,7 @@ public final class AnalysisRecordUtils {
     private AnalysisRecordUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = AnalysisRecordUtils.class.getSimpleName();
     // Context
     private static Context sContext;

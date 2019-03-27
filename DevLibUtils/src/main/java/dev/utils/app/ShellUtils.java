@@ -16,7 +16,7 @@ public final class ShellUtils {
     private ShellUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ShellUtils.class.getSimpleName();
     // 操作成功
     public static final int SUCCESS = 0;

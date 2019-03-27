@@ -14,7 +14,7 @@ public final class ValidatorUtils {
     private ValidatorUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ValidatorUtils.class.getSimpleName();
 
     /** 正则表达式：验证数字 */

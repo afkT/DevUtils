@@ -13,7 +13,7 @@ public final class CameraUtils {
     private CameraUtils() {
     }
 
-    // 日志Tag
+    // 日志 TAG
     private static final String TAG = CameraUtils.class.getSimpleName();
 
     // == 摄像头快速处理 ==

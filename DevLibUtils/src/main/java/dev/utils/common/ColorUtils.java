@@ -14,7 +14,7 @@ public final class ColorUtils {
     private ColorUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ColorUtils.class.getSimpleName();
 
     /**

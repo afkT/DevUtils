@@ -30,7 +30,7 @@ public final class ActivityUtils {
     private ActivityUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ActivityUtils.class.getSimpleName();
 
     /**

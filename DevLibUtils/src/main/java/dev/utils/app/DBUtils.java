@@ -17,7 +17,7 @@ public final class DBUtils {
     private DBUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = DBUtils.class.getSimpleName();
 
     /**

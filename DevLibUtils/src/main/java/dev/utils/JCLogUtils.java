@@ -24,19 +24,19 @@ public final class JCLogUtils {
 
     // 普通信息模式
     public static final int INFO = 0;
-    // DEBUG模式
+    // DEBUG 模式
     public static final int DEBUG = 1;
-    // ERROR模式
+    // ERROR 模式
     public static final int ERROR = 2;
 
     // =
 
-    /** JSON格式内容缩进 */
+    // JSON格式内容缩进
     private static final int JSON_INDENT = 4;
-    /** 是否打印日志 上线 = false，开发、debug = true*/
+    // 是否打印日志 上线 = false，开发、debug = true
     private static boolean JUDGE_PRINT_LOG = false;
-    /** 默认DEFAULT_TAG */
-    private static final String DEFAULT_DEFAULT_TAG = JCLogUtils.class.getSimpleName();
+    // 默认DEFAULT_TAG
+    private static final String DEFAULT_TAG = JCLogUtils.class.getSimpleName();
 
     /**
      * 判断是否打印日志
@@ -149,11 +149,11 @@ public final class JCLogUtils {
     // ========= 使用默认TAG =========
 
     public static void d(String message, Object... args) {
-        dTag(DEFAULT_DEFAULT_TAG, message, args);
+        dTag(DEFAULT_TAG, message, args);
     }
 
     public static void e(Throwable throwable) {
-        eTag(DEFAULT_DEFAULT_TAG, throwable);
+        eTag(DEFAULT_TAG, throwable);
     }
 
     public static void e(String message, Object... args) {
@@ -161,19 +161,19 @@ public final class JCLogUtils {
     }
 
     public static void e(Throwable throwable, String message, Object... args) {
-        eTag(DEFAULT_DEFAULT_TAG, throwable, message, args);
+        eTag(DEFAULT_TAG, throwable, message, args);
     }
 
     public static void i(String message, Object... args) {
-        iTag(DEFAULT_DEFAULT_TAG, message, args);
+        iTag(DEFAULT_TAG, message, args);
     }
 
     public static void json(String json) {
-        jsonTag(DEFAULT_DEFAULT_TAG, json);
+        jsonTag(DEFAULT_TAG, json);
     }
 
     public static void xml(String xml) {
-        xmlTag(DEFAULT_DEFAULT_TAG, xml);
+        xmlTag(DEFAULT_TAG, xml);
     }
 
     // -- 日志打印方法 --

@@ -21,7 +21,7 @@ import dev.utils.app.ScreenUtils;
  */
 public final class CameraSizeAssist {
 
-    // 日志TAG
+    // 日志 TAG
     private final String TAG = CameraSizeAssist.class.getSimpleName();
     // 摄像头 Camera
     private Camera mCamera;

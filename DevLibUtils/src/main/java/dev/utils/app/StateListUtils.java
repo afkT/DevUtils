@@ -23,7 +23,7 @@ public final class StateListUtils {
     private StateListUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = StateListUtils.class.getSimpleName();
 
 //    android:state_active	是否处于激活状态

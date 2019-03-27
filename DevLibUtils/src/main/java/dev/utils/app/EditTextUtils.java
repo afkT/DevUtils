@@ -22,7 +22,7 @@ public final class EditTextUtils {
     private EditTextUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = EditTextUtils.class.getSimpleName();
 
     // https://blog.csdn.net/zhoujn90/article/details/44983905

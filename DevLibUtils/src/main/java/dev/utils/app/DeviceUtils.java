@@ -41,7 +41,7 @@ public final class DeviceUtils {
     private DeviceUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = DeviceUtils.class.getSimpleName();
 
 //    // http://blog.csdn.net/zhangcanyan/article/details/52817866

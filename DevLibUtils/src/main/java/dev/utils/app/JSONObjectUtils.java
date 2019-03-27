@@ -21,7 +21,7 @@ public final class JSONObjectUtils {
     private JSONObjectUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = JSONObjectUtils.class.getSimpleName();
     /** JSON 格式内容 默认缩进 */
     public static final int JSON_INDENT = 4;

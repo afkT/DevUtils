@@ -16,7 +16,7 @@ public final class VibrationUtils {
     private VibrationUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = VibrationUtils.class.getSimpleName();
 
     /**

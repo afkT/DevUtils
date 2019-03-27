@@ -139,7 +139,7 @@ final class LoggerPrinter implements IPrinter {
 		if (!isPrintLog(lConfig, Log.DEBUG)) {
 			return;
 		}
-		// 日志Tag
+		// 日志 TAG
 		String tag = lConfig.tag;
 		// 判断传入JSON格式信息是否为null
 		if (TextUtils.isEmpty(json)) {
@@ -189,7 +189,7 @@ final class LoggerPrinter implements IPrinter {
 		if (!isPrintLog(lConfig, Log.DEBUG)) {
 			return;
 		}
-		// 日志Tag
+		// 日志 TAG
 		String tag = lConfig.tag;
 		// 判断传入XML格式信息是否为null
 		if (TextUtils.isEmpty(xml)) {

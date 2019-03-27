@@ -29,7 +29,7 @@ public final class ReflectUtils {
     private final Object object;
 
     private ReflectUtils(final Class<?> type) {
-        this(type, type);
+        this (type, type);
     }
 
     private ReflectUtils(final Class<?> type, Object object) {

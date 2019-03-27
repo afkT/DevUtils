@@ -11,7 +11,7 @@ public final class HexUtils {
     private HexUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = HexUtils.class.getSimpleName();
 
     /** 用于建立十六进制字符的输出的小写字符数组 */

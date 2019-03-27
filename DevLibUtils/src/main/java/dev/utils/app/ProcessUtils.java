@@ -36,7 +36,7 @@ public final class ProcessUtils {
     private ProcessUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ProcessUtils.class.getSimpleName();
 
     /**

@@ -20,7 +20,7 @@ public final class CacheUse {
     private CacheUse() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = CacheUse.class.getSimpleName();
 
     /**

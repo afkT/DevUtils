@@ -13,7 +13,7 @@ public final class QuickCommonUtils {
     private QuickCommonUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = QuickCommonUtils.class.getSimpleName();
 
     /**

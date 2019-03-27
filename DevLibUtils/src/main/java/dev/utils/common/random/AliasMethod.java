@@ -48,7 +48,7 @@ public final class AliasMethod {
      * @param probabilities The list of probabilities.
      */
     public AliasMethod(List<Double> probabilities) {
-        this(probabilities, new Random());
+        this (probabilities, new Random());
     }
 
     /**

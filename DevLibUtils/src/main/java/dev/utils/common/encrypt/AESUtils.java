@@ -8,15 +8,17 @@ import javax.crypto.spec.SecretKeySpec;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: AES对称加密(Advanced Encryption Standard，高级数据加密标准，AES算法可以有效抵制针对DES的攻击算法，对称加密算法)
+ * detail: AES 对称加密
  * Created by Ttt
+ * =============
+ * Advanced Encryption Standard，高级数据加密标准，AES算法可以有效抵制针对 DES 的攻击算法，对称加密算法
  */
 public final class AESUtils {
 
     private AESUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = AESUtils.class.getSimpleName();
 
     /**
@@ -26,7 +28,7 @@ public final class AESUtils {
     public static byte[] initKey() {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-            keyGen.init(256); //192 256
+            keyGen.init(256); // 192 256
             SecretKey secretKey = keyGen.generateKey();
             return secretKey.getEncoded();
         } catch (Exception e) {

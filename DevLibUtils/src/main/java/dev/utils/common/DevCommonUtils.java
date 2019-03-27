@@ -16,7 +16,7 @@ public final class DevCommonUtils {
     private DevCommonUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = DevCommonUtils.class.getSimpleName();
     /** 换行字符串 */
     public static final String NEW_LINE_STR = System.getProperty("line.separator");

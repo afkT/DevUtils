@@ -28,7 +28,7 @@ public final class ResourceUtils {
 	private ResourceUtils() {
 	}
 
-	// 日志TAG
+	// 日志 TAG
 	private static final String TAG = ResourceUtils.class.getSimpleName();
 
 	public static final String LAYTOUT = "layout";

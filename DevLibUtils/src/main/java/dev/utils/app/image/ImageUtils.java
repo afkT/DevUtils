@@ -55,7 +55,7 @@ public final class ImageUtils {
     private ImageUtils() {
     }
 
-    // 日志Tag
+    // 日志 TAG
     private static final String TAG = ImageUtils.class.getSimpleName();
 
     /**

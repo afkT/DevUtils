@@ -18,7 +18,7 @@ import static android.hardware.Camera.Parameters.FLASH_MODE_TORCH;
  */
 public final class CameraAssist {
 
-    // 日志TAG
+    // 日志 TAG
     private final String TAG = CameraAssist.class.getSimpleName();
     // 摄像头 Camera
     private Camera mCamera;

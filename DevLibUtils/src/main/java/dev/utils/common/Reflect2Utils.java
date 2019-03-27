@@ -16,7 +16,7 @@ public final class Reflect2Utils {
     private Reflect2Utils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = Reflect2Utils.class.getSimpleName();
 
     /**

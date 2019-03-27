@@ -9,17 +9,19 @@ import dev.utils.JCLogUtils;
 /**
  * detail: CRC 工具类
  * Created by Ttt
+ * ==============
+ * Cyclic Redundancy Check, CRC 循环冗余校验 是一种根据网络数据包或电脑文件等数据产生简短固定位数校验码的一种散列函数
  */
 public final class CRCUtils {
 
     private CRCUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = CRCUtils.class.getSimpleName();
 
     /**
-     * 获取 CRC32 值(返回Long,一定几率上唯一)
+     * 获取 CRC32 值
      * @param str
      * @return
      */
@@ -35,7 +37,7 @@ public final class CRCUtils {
     }
 
     /**
-     * 获取 CRC32 值(做了处理,返回String)
+     * 获取 CRC32 值
      * @param str
      * @return
      */
@@ -51,15 +53,15 @@ public final class CRCUtils {
     }
 
     /**
-     * 获取文件CRC32 值
+     * 获取文件 CRC32 值
      * @return
      */
-    public static String getFileCrc32(String fPath) {
+    public static String getFileCrc32(String path) {
         try {
-            InputStream fis = new FileInputStream(fPath);
+            InputStream fis = new FileInputStream(path);
             byte[] buffer = new byte[1024];
             CRC32 crc32 = new CRC32();
-            int numRead = 0;
+            int numRead;
             while ((numRead = fis.read(buffer)) > 0) {
                 crc32.update(buffer, 0, numRead);
             }

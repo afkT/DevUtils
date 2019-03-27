@@ -22,7 +22,7 @@ public final class AppInfoUtils {
     private AppInfoUtils() {
     }
 
-    // 日志Tag
+    // 日志 TAG
     private static final String TAG = AppInfoUtils.class.getSimpleName();
 
     /**

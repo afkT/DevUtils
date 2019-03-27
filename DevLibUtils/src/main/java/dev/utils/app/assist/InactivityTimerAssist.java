@@ -28,7 +28,7 @@ public final class InactivityTimerAssist {
     // == 构造函数 ==
 
     public InactivityTimerAssist(Activity activity) {
-        this(activity, 5 * 60 * 1000L);
+        this (activity, 5 * 60 * 1000L);
     }
 
     public InactivityTimerAssist(Activity activity, long inactivityTime) {

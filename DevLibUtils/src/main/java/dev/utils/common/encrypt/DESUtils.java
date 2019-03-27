@@ -11,22 +11,23 @@ import javax.crypto.spec.SecretKeySpec;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: DES对称加密(Data Encryption Standard，数据加密标准，对称加密算法)
+ * detail: DES 对称加密
  * Created by Ttt
+ * ==============
+ * Data Encryption Standard，数据加密标准，对称加密算法
  */
 public final class DESUtils {
 
     private DESUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = DESUtils.class.getSimpleName();
 
     /**
-     * 返回可逆算法DES的密钥
+     * 返回可逆算法 DES 的密钥
      * @param key 前8字节将被用来生成密钥。
      * @return 生成的密钥
-     * @throws Exception
      */
     public static Key getDESKey(byte[] key) {
         try {

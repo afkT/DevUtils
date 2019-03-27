@@ -16,7 +16,7 @@ public final class HttpParamsUtils {
     private HttpParamsUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = HttpParamsUtils.class.getSimpleName();
 
     /**

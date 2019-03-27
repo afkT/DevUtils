@@ -1,7 +1,7 @@
 package dev.utils.common.encrypt;
 
 /**
- * detail: 解码,编码
+ * detail: 字符串 编/解码 工具类
  * Created by Ttt
  */
 public final class EscapeUtils {
@@ -69,34 +69,34 @@ public final class EscapeUtils {
 		if (str == null) {
 			return null;
 		}
-		StringBuffer sbuf = new StringBuffer();
+		StringBuffer buffer = new StringBuffer();
 		for (int i = 0, len = str.length(); i < len; i++) {
 			int ch = str.charAt(i);
 			if ('A' <= ch && ch <= 'Z') {
-				sbuf.append((char) ch);
+				buffer.append((char) ch);
 			} else if ('a' <= ch && ch <= 'z') {
-				sbuf.append((char) ch);
+				buffer.append((char) ch);
 			} else if ('0' <= ch && ch <= '9') {
-				sbuf.append((char) ch);
+				buffer.append((char) ch);
 			} else if (ch == '-' || ch == '_' || ch == '.' || ch == '!'
 					|| ch == '~' || ch == '*' || ch == '\'' || ch == '('
 					|| ch == ')') {
-				sbuf.append((char) ch);
+				buffer.append((char) ch);
 			} else if (ch <= 0x007F) {
-				sbuf.append('%');
-				sbuf.append(hex[ch]);
+				buffer.append('%');
+				buffer.append(hex[ch]);
 			} else {
-				sbuf.append('%');
-				sbuf.append('u');
-				sbuf.append(hex[(ch >>> 8)]);
-				sbuf.append(hex[(0x00FF & ch)]);
+				buffer.append('%');
+				buffer.append('u');
+				buffer.append(hex[(ch >>> 8)]);
+				buffer.append(hex[(0x00FF & ch)]);
 			}
 		}
-		return sbuf.toString();
+		return buffer.toString();
 	}
 
 	/**
-	 * 解码 说明：本方法保证 不论参数s是否经过escape()编码，均能获取正确的“解码”结果
+	 * 解码 - 本方法不论参数 str 是否经过 escape() 编码，均能获取正确的“解码”结果
 	 * @param str
 	 * @return
 	 */
@@ -104,21 +104,21 @@ public final class EscapeUtils {
 		if (str == null) {
 			return null;
 		}
-		StringBuffer sbuf = new StringBuffer();
+		StringBuffer buffer = new StringBuffer();
 		int i = 0;
 		int len = str.length();
 		while (i < len) {
 			int ch = str.charAt(i);
 			if ('A' <= ch && ch <= 'Z') {
-				sbuf.append((char) ch);
+				buffer.append((char) ch);
 			} else if ('a' <= ch && ch <= 'z') {
-				sbuf.append((char) ch);
+				buffer.append((char) ch);
 			} else if ('0' <= ch && ch <= '9') {
-				sbuf.append((char) ch);
+				buffer.append((char) ch);
 			} else if (ch == '-' || ch == '_' || ch == '.' || ch == '!'
 					|| ch == '~' || ch == '*' || ch == '\'' || ch == '('
 					|| ch == ')') {
-				sbuf.append((char) ch);
+				buffer.append((char) ch);
 			} else if (ch == '%') {
 				int cint = 0;
 				if ('u' != str.charAt(i + 1)) {
@@ -132,22 +132,21 @@ public final class EscapeUtils {
 					cint = (cint << 4) | val[str.charAt(i + 5)];
 					i += 5;
 				}
-				sbuf.append((char) cint);
+				buffer.append((char) cint);
 			} else {
-				sbuf.append((char) ch);
+				buffer.append((char) ch);
 			}
 			i++;
 		}
-		return sbuf.toString();
+		return buffer.toString();
 	}
 
 //	public static void main(String[] args) {
-//		// 需要编码的数据
-//		String stest = "需要编码的数据";
-//		System.out.println(stest);
+//		String test = "需要编码的数据";
+//		System.out.println(test);
 //		// 编码
-//		System.out.println(escape(stest));
+//		System.out.println(escape(test));
 //		// 解码
-//		System.out.println(unescape(escape(stest)));
+//		System.out.println(unescape(escape(test)));
 //	}
 }

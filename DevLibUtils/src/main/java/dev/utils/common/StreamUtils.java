@@ -16,7 +16,7 @@ public final class StreamUtils {
     private StreamUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = StreamUtils.class.getSimpleName();
 
     /**

@@ -24,7 +24,7 @@ public final class ContentResolverUtils {
     private ContentResolverUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ContentResolverUtils.class.getSimpleName();
 
     // MediaStore.MediaColumns.MIME_TYPE, isVideo ? "video/3gp" : "image/jpeg"

@@ -6,10 +6,15 @@ package dev.utils.common.assist;
  */
 public class TimeCounter {
 
+    // 开始时间
     private long start;
 
     public TimeCounter() {
-        start();
+        this (true);
+    }
+
+    public TimeCounter(boolean isStart) {
+        if (isStart) start();
     }
 
     /**
@@ -26,9 +31,9 @@ public class TimeCounter {
      */
     public long durationRestart() {
         long now = System.currentTimeMillis();
-        long d = now - start;
+        long diff = now - start;
         start = now;
-        return d;
+        return diff;
     }
 
     /**

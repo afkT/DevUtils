@@ -39,7 +39,7 @@ public final class NetWorkUtils {
 	private NetWorkUtils() {
 	}
 
-	// 日志TAG
+	// 日志 TAG
 	private static final String TAG = NetWorkUtils.class.getSimpleName();
     
     /**

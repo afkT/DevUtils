@@ -26,7 +26,7 @@ public final class SignaturesUtils {
     private SignaturesUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = SignaturesUtils.class.getSimpleName();
 
     // 如需要小写则把ABCDEF改成小写

@@ -19,7 +19,7 @@ import dev.utils.LogPrintUtils;
  */
 public class AsyncExecutor {
 
-    // 日志TAG
+    // 日志 TAG
     private final String TAG = AsyncExecutor.class.getSimpleName();
     // 线程池
     private ExecutorService threadPool;
@@ -27,7 +27,7 @@ public class AsyncExecutor {
     private Handler handler = new Handler(Looper.getMainLooper());
 
     public AsyncExecutor() {
-        this(null);
+        this (null);
     }
 
     public AsyncExecutor(ExecutorService pool) {

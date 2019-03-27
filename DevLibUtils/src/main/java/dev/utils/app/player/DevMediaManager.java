@@ -22,7 +22,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         OnCompletionListener, OnPreparedListener, OnVideoSizeChangedListener,
         OnErrorListener, OnSeekCompleteListener {
 
-	/** 日志TAG */
+	// 日志 TAG
 	private String TAG = DevMediaManager.class.getSimpleName();
 	/** MediaPlayer对象 */
 	private MediaPlayer mMediaPlayer;

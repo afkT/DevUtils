@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * detail: 线程池 - 开发类
+ * detail: 线程池 - 构建类
  * Created by Ttt
  */
 public final class DevThreadPool {
@@ -31,15 +31,15 @@ public final class DevThreadPool {
 //                              long keepAliveTime,
 //                              TimeUnit unit,
 //                              BlockingQueue<Runnable> workQueue) {
-//        this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+//        this (corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
 //                Executors.defaultThreadFactory(), defaultHandler);
 //    }
 
     // ======
 
-    /** 线程池对象 */
+    // 线程池对象
     private final ExecutorService threadPool;
-    /** 定时任务线程池 */
+    // 定时任务线程池
     private ScheduledExecutorService scheduleExec;
 
     /**
@@ -94,6 +94,10 @@ public final class DevThreadPool {
         }
     }
 
+    /**
+     * detail: 线程池初始化枚举类型
+     * Created by Ttt
+     */
     public enum DevThreadPoolType {
 
         // http://blog.csdn.net/a369414641/article/details/48342253
@@ -128,7 +132,7 @@ public final class DevThreadPool {
      * 获取线程数
      * @return
      */
-    private final int getThreads() {
+    public final int getThreads() {
         // 使用计算过后的
         return getCaclThreads();
     }
@@ -137,7 +141,7 @@ public final class DevThreadPool {
      * 获取线程数
      * @return
      */
-    private final int getCaclThreads() {
+    public final int getCaclThreads() {
         // 获取CPU核心数
         int cNumber = Runtime.getRuntime().availableProcessors();
         // 如果小于等于5,则返回5
@@ -183,15 +187,15 @@ public final class DevThreadPool {
     /**
      * 通过反射,调用某个类的方法
      * @param method
-     * @param _class
+     * @param clazz
      */
-    public void execute(final Method method, final Object _class) {
+    public void execute(final Method method, final Object clazz) {
         if (threadPool != null) {
             threadPool.execute(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        method.invoke(_class);
+                        method.invoke(clazz);
                     } catch (Exception ignore) {
                     }
                 }
@@ -201,7 +205,8 @@ public final class DevThreadPool {
 
     // ==
 
-    /** shutdown 会等待所有提交的任务执行完成，不管是正在执行还是保存在任务队列中的已提交任务
+    /**
+     * shutdown 会等待所有提交的任务执行完成，不管是正在执行还是保存在任务队列中的已提交任务
      * 待以前提交的任务执行完毕后关闭线程池
      * 启动一次顺序关闭，执行以前提交的任务，但不接受新任务。
      * 如果已经关闭，则调用没有作用。
@@ -213,7 +218,7 @@ public final class DevThreadPool {
     }
 
     /**
-     * shutdownNow会尝试中断正在执行的任务(其主要是中断一些指定方法如sleep方法)，并且停止执行等待队列中提交的任务。
+     * shutdownNow 会尝试中断正在执行的任务(其主要是中断一些指定方法如sleep方法)，并且停止执行等待队列中提交的任务。
      * 试图停止所有正在执行的活动任务
      * 试图停止所有正在执行的活动任务，暂停处理正在等待的任务，并返回等待执行的任务列表。
      * 无法保证能够停止正在处理的活动执行任务，但是会尽力尝试。
@@ -240,7 +245,7 @@ public final class DevThreadPool {
     /**
      * 若关闭后所有任务都已完成,则返回true.
      * 注意除非首先调用shutdown或shutdownNow, 否则isTerminated 永不为true.
-     * // --
+     * ==
      * isTerminated当调用shutdown()方法后，并且所有提交的任务完成后返回为true
      * @return
      */

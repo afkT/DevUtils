@@ -18,7 +18,7 @@ public final class CleanUtils {
     private CleanUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = CleanUtils.class.getSimpleName();
 
     /**

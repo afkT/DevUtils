@@ -33,7 +33,7 @@ public final class AccessibilityUtils {
     private AccessibilityUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = AccessibilityUtils.class.getSimpleName();
     // AccessibilityService 对象
     private static AccessibilityService service = null;

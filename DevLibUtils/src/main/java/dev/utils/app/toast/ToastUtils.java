@@ -27,7 +27,7 @@ public final class ToastUtils {
 	private ToastUtils() {
 	}
 
-	// 日志TAG
+	// 日志 TAG
 	private static final String TAG = ToastUtils.class.getSimpleName();
 	// Toast 判断过滤
 	private static ToastUtils.Filter sToastFilter = null;

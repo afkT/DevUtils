@@ -1,16 +1,16 @@
 package dev.utils.common.cipher;
 
 /**
- * detail: 解密/解码接口
+ * detail: 解密/解码 接口
  * Created by Ttt
  */
 public interface Decrypt {
 
     /**
-     * 解密/解码方法
-     * @param res
+     * 解密/解码 方法
+     * @param data
      * @return
      */
-    byte[] decrypt(byte[] res);
+    byte[] decrypt(byte[] data);
 
 }

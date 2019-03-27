@@ -22,7 +22,7 @@ public final class OSUtils {
     private OSUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = OSUtils.class.getSimpleName();
 
     /** ROM 类型 */

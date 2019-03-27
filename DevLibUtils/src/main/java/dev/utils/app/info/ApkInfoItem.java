@@ -29,7 +29,7 @@ import dev.utils.common.FileUtils;
  */
 public final class ApkInfoItem {
 
-    // 日志Tag
+    // 日志 TAG
     private static final String TAG = ApkInfoItem.class.getSimpleName();
     @Keep// App 基本信息实体类
     private AppInfoBean appInfoBean;

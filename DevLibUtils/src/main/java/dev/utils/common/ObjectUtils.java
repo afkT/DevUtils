@@ -15,7 +15,7 @@ public final class ObjectUtils {
     private ObjectUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ObjectUtils.class.getSimpleName();
 
     /**

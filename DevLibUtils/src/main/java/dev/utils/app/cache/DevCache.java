@@ -53,7 +53,7 @@ public final class DevCache {
 //    public static final int SAVE_FAIL = 5;
     // ===
 
-    // 日志Tag
+    // 日志 TAG
     private static final String TAG = DevCache.class.getSimpleName();
     // 缓存文件名
     private static final String DF_FILE_NAME = DevCache.class.getSimpleName();

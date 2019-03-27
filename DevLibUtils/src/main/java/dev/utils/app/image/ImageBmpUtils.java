@@ -16,7 +16,7 @@ public final class ImageBmpUtils {
 	private ImageBmpUtils() {
 	}
 
-	// 日志Tag
+	// 日志 TAG
 	private static final String TAG = ImageBmpUtils.class.getSimpleName();
 
 	// ===================== 转换BMP图片  =======================

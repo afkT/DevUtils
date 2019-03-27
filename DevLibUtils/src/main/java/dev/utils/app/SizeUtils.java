@@ -17,7 +17,7 @@ public final class SizeUtils {
 	private SizeUtils() {
 	}
 
-	// 日志TAG
+	// 日志 TAG
 	private static final String TAG = SizeUtils.class.getSimpleName();
 
 	/**

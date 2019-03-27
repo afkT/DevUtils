@@ -24,7 +24,7 @@ public final class CPUUtils {
     private CPUUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = CPUUtils.class.getSimpleName();
 
     /**

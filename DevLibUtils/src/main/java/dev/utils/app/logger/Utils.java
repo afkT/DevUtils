@@ -32,7 +32,7 @@ final class Utils {
 	private Utils() {
 	}
 
-	// 日志TAG
+	// 日志 TAG
 	private static final String TAG = Utils.class.getSimpleName();
 
 	// ===================  配置信息  =======================

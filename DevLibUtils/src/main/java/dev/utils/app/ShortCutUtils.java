@@ -22,7 +22,7 @@ public final class ShortCutUtils {
     private ShortCutUtils() {
     }
 
-    // 日志TAG
+    // 日志 TAG
     private static final String TAG = ShortCutUtils.class.getSimpleName();
 
     /**

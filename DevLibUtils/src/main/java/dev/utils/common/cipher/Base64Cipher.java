@@ -3,7 +3,7 @@ package dev.utils.common.cipher;
 import dev.utils.common.assist.Base64;
 
 /**
- * detail: Baes64 编解码, 进行加密
+ * detail: Baes64 编/解码 并进行 加/解密
  * Created by Ttt
  */
 public class Base64Cipher implements Cipher {
@@ -20,28 +20,32 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 解码
-     * @param res
+     * @param data
      * @return
      */
     @Override
-    public byte[] decrypt(byte[] res) {
-        res = Base64.decode(res, Base64.DEFAULT);
+    public byte[] decrypt(byte[] data) {
+        // 先解码
+        data = Base64.decode(data, Base64.DEFAULT);
+        // 再解密
         if (cipher != null) {
-            res = cipher.decrypt(res);
+            data = cipher.decrypt(data);
         }
-        return res;
+        return data;
     }
 
     /**
      * 编码
-     * @param res
+     * @param data
      * @return
      */
     @Override
-    public byte[] encrypt(byte[] res) {
+    public byte[] encrypt(byte[] data) {
+        // 先加密
         if (cipher != null) {
-            res = cipher.encrypt(res);
+            data = cipher.encrypt(data);
         }
-        return Base64.encode(res, Base64.DEFAULT);
+        // 再编码
+        return Base64.encode(data, Base64.DEFAULT);
     }
 }

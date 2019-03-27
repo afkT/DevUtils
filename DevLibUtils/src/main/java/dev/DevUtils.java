@@ -36,22 +36,18 @@ import dev.utils.app.toast.toaster.DevToast;
  */
 public final class DevUtils {
 
-    /** 禁止构造对象,保证只有一个实例 */
     private DevUtils() {
     }
 
-    // ---
-    /** 日志 TAG */
+    // 日志 TAG
     private static final String TAG = DevUtils.class.getSimpleName();
-    /** 全局 Application 对象 */
+    // 全局 Application 对象
     private static Application sApplication;
-    /** 全局 Context - getApplicationContext() */
+    // 全局 Context - getApplicationContext()
     private static Context sContext;
-    /** 获取当前线程,主要判断是否属于主线程 */
-    private static Thread sUiThread;
-    /** 全局 Handler,便于子线程快捷操作等 */
+    // 全局 Handler,便于子线程快捷操作等
     private static Handler sHandler;
-    /** 是否内部debug模式 */
+    // 是否内部 Debug 模式
     private static boolean debug = false;
 
     /**
@@ -65,15 +61,13 @@ public final class DevUtils {
         initApplication(context);
         // 注册 Activity 生命周期监听
         registerActivityLifecycleCallbacks(sApplication);
-        // 保存当前线程信息
-        sUiThread = Thread.currentThread();
         // 初始化全局Handler - 主线程
         sHandler = new Handler(Looper.getMainLooper());
         // == 初始化工具类相关 ==
-        // 初始化Shared 工具类
-        SharedUtils.init(context);
         // 初始化缓存类
         DevCache.get(context);
+        // 初始化Shared 工具类
+        SharedUtils.init(context);
         // 初始化Handler工具类
         HandlerUtils.init(context);
         // 初始化记录文件配置
@@ -133,7 +127,7 @@ public final class DevUtils {
     }
 
     /**
-     * 获取 Context(判断null,视情况返回全局 Context)
+     * 获取 Context (判断null,视情况返回全局 Context)
      * @param context
      */
     public static Context getContext(Context context) {
@@ -187,26 +181,24 @@ public final class DevUtils {
     // =
 
     /**
-     * 获取Handler
+     * 获取 Handler
      * @return
      */
     public static Handler getHandler() {
         if (sHandler == null) {
-            // 初始化全局Handler - 主线程
-            sHandler = new Handler(Looper.getMainLooper()); //Looper.myLooper();
+            // 初始化全局 Handler - 主线程
+            sHandler = new Handler(Looper.getMainLooper()); // Looper.myLooper();
         }
         return sHandler;
     }
 
     /**
-     * 执行UI 线程任务 =>  Activity 的 runOnUiThread(Runnable)
-     * @param action 若当前非UI线程则切换到UI线程执行
+     * 执行 UI 线程任务
+     * @param action
      */
     public static void runOnUiThread(Runnable action) {
-        if (Thread.currentThread() != sUiThread) {
+        if (action != null) {
             sHandler.post(action);
-        } else {
-            action.run();
         }
     }
 
@@ -216,7 +208,9 @@ public final class DevUtils {
      * @param delayMillis
      */
     public static void runOnUiThread(Runnable action, long delayMillis) {
-        sHandler.postDelayed(action, delayMillis);
+        if (action != null) {
+            sHandler.postDelayed(action, delayMillis);
+        }
     }
 
     /**
@@ -266,7 +260,7 @@ public final class DevUtils {
     // ==== Activity 监听 ====
     // =======================
 
-    /** ActivityLifecycleCallbacks 实现类, 监听 Activity */
+    // ActivityLifecycleCallbacks 实现类, 监听 Activity
     private static final ActivityLifecycleImpl ACTIVITY_LIFECYCLE = new ActivityLifecycleImpl();
     // Activity 过滤判断接口
     private static ActivityLifecycleFilter activityLifecycleFilter;
@@ -350,11 +344,11 @@ public final class DevUtils {
     private static class ActivityLifecycleImpl implements Application.ActivityLifecycleCallbacks, ActivityLifecycleGet, ActivityLifecycleNotify {
 
         // 保存未销毁的 Activity
-        final LinkedList<Activity> mActivityList = new LinkedList<>();
+        private final LinkedList<Activity> mActivityList = new LinkedList<>();
         // App 状态改变事件
-        final Map<Object, OnAppStatusChangedListener> mStatusListenerMap = new ConcurrentHashMap<>();
+        private final Map<Object, OnAppStatusChangedListener> mStatusListenerMap = new ConcurrentHashMap<>();
         // Activity 销毁事件
-        final Map<Activity, Set<OnActivityDestroyedListener>> mDestroyedListenerMap = new ConcurrentHashMap<>();
+        private final Map<Activity, Set<OnActivityDestroyedListener>> mDestroyedListenerMap = new ConcurrentHashMap<>();
 
         // 前台 Activity 总数
         private int mForegroundCount = 0;
@@ -380,9 +374,9 @@ public final class DevUtils {
                 setTopActivity(activity);
             }
             if (mConfigCount < 0) {
-                ++mConfigCount;
+                ++ mConfigCount;
             } else {
-                ++mForegroundCount;
+                ++ mForegroundCount;
             }
 
             if (DevUtils.absActivityLifecycle != null) {
@@ -415,9 +409,9 @@ public final class DevUtils {
         public void onActivityStopped(Activity activity) {
             // 检测当前的 Activity 是否因为 Configuration 的改变被销毁了
             if (activity.isChangingConfigurations()) {
-                --mConfigCount;
+                -- mConfigCount;
             } else {
-                --mForegroundCount;
+                -- mForegroundCount;
                 if (mForegroundCount <= 0) {
                     mIsBackground = true;
                     postStatus(false);
