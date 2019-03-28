@@ -41,7 +41,7 @@ public final class KeyBoardUtils {
 	 * android:windowSoftInputMode="adjustUnspecified|stateHidden"
 	 */
 
-	// == ----------------------------------------- ==
+	// =
 
 	/**
 	 * 设置延迟时间
@@ -364,12 +364,11 @@ public final class KeyBoardUtils {
 		}
 	}
 	
-	// == ----------------------------------------- ==
+	// =
 
 	// 下面暂时无法使用，缺少判断键盘是否显示，否则和自动切换无区别
 	// InputMethodManager.isActive()   (无法获取)
 	// Activity.getWindow().getAttributes().softInputMode  (有些版本可以，不适用)
-	// ==----==
 
 	/**
 	 * 自动切换键盘状态，如果键盘显示了则隐藏，隐藏着显示

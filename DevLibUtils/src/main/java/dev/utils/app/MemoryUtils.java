@@ -128,7 +128,7 @@ public final class MemoryUtils {
     }
 
     // 内存信息文件地址
-    private static final String MEM_INFO_PATH = "/proc/meminfo";
+    public static final String MEM_INFO_PATH = "/proc/meminfo";
     // 获取内存总大小
     public static final String MEMTOTAL = "MemTotal";
     // 获取可用内存

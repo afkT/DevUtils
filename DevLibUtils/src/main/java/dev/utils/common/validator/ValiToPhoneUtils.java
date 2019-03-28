@@ -156,7 +156,7 @@ public final class ValiToPhoneUtils {
     // == 座机判断 ==
 
     // 座机电话格式验证
-    private static final String PHONE_CALL_PATTERN = "^(?:\\(\\d{3,4}\\)|\\d{3,4}-)?\\d{7,8}(?:-\\d{1,4})?$";
+    public static final String PHONE_CALL_PATTERN = "^(?:\\(\\d{3,4}\\)|\\d{3,4}-)?\\d{7,8}(?:-\\d{1,4})?$";
 
     static {
         // ====== 中国电信 ======

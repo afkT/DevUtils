@@ -269,7 +269,7 @@ public final class WifiUtils {
 	 * @param key
 	 * @return
 	 */
-	private static boolean isHex(String key) {
+	public static boolean isHex(String key) {
 		for (int i = key.length() - 1;i >= 0;i--) {
 			char c = key.charAt(i);
 			if (!(c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f')) {
@@ -383,13 +383,13 @@ public final class WifiUtils {
 	// ================= Wifi配置操作 =================
 
 	/** 默认没有密码 */
-	private static final int SECURITY_NONE = 0;
+	public static final int SECURITY_NONE = 0;
 	/** WEP加密方式 */
-	private static final int SECURITY_WEP = 1;
+	public static final int SECURITY_WEP = 1;
 	/** PSK加密方式 */
-	private static final int SECURITY_PSK = 2;
+	public static final int SECURITY_PSK = 2;
 	/** EAP加密方式 */
-	private static final int SECURITY_EAP = 3;
+	public static final int SECURITY_EAP = 3;
 
 	/**
 	 * 获取Wifi配置,加密类型

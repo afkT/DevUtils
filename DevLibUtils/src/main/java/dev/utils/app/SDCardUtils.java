@@ -31,7 +31,7 @@ public final class SDCardUtils {
 	// 日志 TAG
 	private static final String TAG = SDCardUtils.class.getSimpleName();
     
-	// == ----------------------------------------- ==
+	// =
     
 	/**
 	 * 判断SDCard是否正常挂载

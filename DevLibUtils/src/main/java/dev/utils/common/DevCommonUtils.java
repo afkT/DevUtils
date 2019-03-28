@@ -167,7 +167,7 @@ public final class DevCommonUtils {
      * @param number 空格数量
      * @return
      */
-    private static String getSpace(int number) {
+    public static String getSpace(int number) {
         StringBuffer buffer = new StringBuffer();
         // 循环空格
         for (int i = 0; i < number; i++) {
@@ -181,7 +181,7 @@ public final class DevCommonUtils {
      * @param number tab 键数量
      * @return
      */
-    private static String getTab(int number) {
+    public static String getTab(int number) {
         StringBuffer buffer = new StringBuffer();
         // 循环空格
         for (int i = 0; i < number; i++) {

@@ -40,10 +40,10 @@ public final class ScreenUtils {
 	private static final String TAG = ScreenUtils.class.getSimpleName();
 
 	/**
-	 * 通过 Context 获取 DisplayMetrics (获取关于显示的通用信息，如显示大小，分辨率和字体)
+	 * 获取 DisplayMetrics
 	 * @return
 	 */
-	private static DisplayMetrics getDisplayMetrics() {
+	public static DisplayMetrics getDisplayMetrics() {
 		try {
 			WindowManager wManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
 			if (wManager != null) {
@@ -57,7 +57,7 @@ public final class ScreenUtils {
 		return null;
 	}
     
-	// == ----------------------------------------- ==
+	// =
     
 //	/**
 //	 * 通过 Context 获取屏幕宽度
@@ -556,7 +556,7 @@ public final class ScreenUtils {
 		return false;
 	}
 
-	// == ----------------------------------------- ==
+	// =
 
 	/**
 	 * 获取状态栏的高度(无关 android:theme 获取状态栏高度)

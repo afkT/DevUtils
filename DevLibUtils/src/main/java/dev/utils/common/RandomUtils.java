@@ -190,7 +190,7 @@ public final class RandomUtils {
 		return new Random().nextLong();
 	}
 
-	// == ----------------------------------------- ==
+	// =
 
 	/**
 	 * 获取数字自定义长度的随机数

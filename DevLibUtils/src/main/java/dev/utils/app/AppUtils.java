@@ -18,8 +18,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
@@ -63,24 +61,6 @@ public final class AppUtils {
 		return null;
 	}
 
-//	/**
-//	 * 获取 DisplayMetrics
-//	 * @return
-//	 */
-//	public static DisplayMetrics getDisplayMetrics() {
-//		try {
-//			WindowManager wManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-//			if (wManager != null) {
-//				DisplayMetrics dMetrics = new DisplayMetrics();
-//				wManager.getDefaultDisplay().getMetrics(dMetrics);
-//				return dMetrics;
-//			}
-//		} catch (Exception e) {
-//			LogPrintUtils.eTag(TAG, e, "getDisplayMetrics");
-//		}
-//		return null;
-//	}
-
 	// == 快捷获取方法 ==
 
 	/**
@@ -120,6 +100,8 @@ public final class AppUtils {
 		return null;
 	}
 
+	// =
+
 	/**
 	 * 获取 String
 	 * @return
@@ -147,6 +129,50 @@ public final class AppUtils {
 	}
 
 	/**
+	 * 获取 Color
+	 * @param colorId 颜色id
+	 * @return 颜色
+	 */
+	public static int getColor(int colorId) {
+		try {
+			return DevUtils.getContext().getResources().getColor(colorId);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getColor");
+		}
+		return -1;
+	}
+
+	/**
+	 * 获取 Drawable
+	 * @param drawableId Drawable的id
+	 * @return Drawable
+	 */
+	public static Drawable getDrawable(int drawableId) {
+		try {
+			return DevUtils.getContext().getResources().getDrawable(drawableId);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getDrawable");
+		}
+		return null;
+	}
+
+	/**
+	 * 获取 Dimen 资源
+	 * @param id
+	 * @return
+	 */
+	public static float getDimension(int id) {
+		try {
+			return DevUtils.getContext().getResources().getDimension(id);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getDimension");
+		}
+		return 0f;
+	}
+
+	// =
+
+	/**
 	 * 获取 Resources.Theme
 	 * @return
 	 */
@@ -172,31 +198,7 @@ public final class AppUtils {
 		return null;
 	}
 
-	/**
-	 * 获取 Drawable
-	 * @return
-	 */
-	public static Drawable getDrawable(@DrawableRes int id) {
-		try {
-			return ContextCompat.getDrawable(DevUtils.getContext(), id);
-		} catch (Exception e) {
-			LogPrintUtils.eTag(TAG, e, "getDrawable");
-		}
-		return null;
-	}
-
-	/**
-	 * 获取 Color
-	 * @return
-	 */
-	public static int getColor(@ColorRes int id) {
-		try {
-			return ContextCompat.getColor(DevUtils.getContext(), id);
-		} catch (Exception e) {
-			LogPrintUtils.eTag(TAG, e, "getColor");
-		}
-		return -1;
-	}
+	// =
 
 	/**
 	 * 获取 ColorStateList
@@ -868,7 +870,7 @@ public final class AppUtils {
     }
 
     /**
-     * 获取应用签名的的 MD5 值
+     * 获取应用签名 MD5 值
      * @return
      */
     public static String getAppSignatureMD5() {
@@ -876,7 +878,7 @@ public final class AppUtils {
     }
 
     /**
-     * 获取应用签名的的 MD5 值
+     * 获取应用签名 MD5 值
      * @param packageName
      * @return
      */
@@ -884,6 +886,12 @@ public final class AppUtils {
         return getAppSignatureHash(packageName, "MD5");
     }
 
+	/**
+	 * 获取应用签名 Hash 值
+	 * @param packageName
+	 * @param algorithm
+	 * @return
+	 */
     private static String getAppSignatureHash(final String packageName, final String algorithm) {
         if (isSpace(packageName)) return "";
         Signature[] signature = getAppSignature(packageName);

@@ -19,8 +19,6 @@ public final class ErrorUtils {
     private static final String TAG = ErrorUtils.class.getSimpleName();
     /** 换行字符串 */
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
-//    /** 换行字符串 - 两行 */
-//    private static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
     /**
      * 获取错误信息

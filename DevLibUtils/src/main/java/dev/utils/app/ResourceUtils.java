@@ -1,7 +1,11 @@
 package dev.utils.app;
 
+import android.content.res.AssetManager;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.StringRes;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import java.io.BufferedReader;
@@ -48,6 +52,60 @@ public final class ResourceUtils {
 	public static final String ATTR = "attr";
 
 	/**
+	 * 获取 Resources
+	 * @return
+	 */
+	public static Resources getResources() {
+		try {
+			return DevUtils.getContext().getResources();
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getResources");
+		}
+		return null;
+	}
+
+    /**
+     * 获取 Resources.Theme
+     * @return
+     */
+    public static Resources.Theme getTheme() {
+        try {
+            return DevUtils.getContext().getTheme();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getTheme");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 AssetManager
+     * @return
+     */
+    public static AssetManager getAssets() {
+        try {
+            return DevUtils.getContext().getAssets();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAssets");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 ColorStateList
+     * @return
+     */
+    public static ColorStateList getColorStateList(int id) {
+        try {
+            return ContextCompat.getColorStateList(DevUtils.getContext(), id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getColorStateList");
+        }
+        return null;
+    }
+
+    // =
+
+	/**
 	 * 获取字符串
 	 * @param strId 字符串id
 	 * @return 字符串
@@ -59,6 +117,19 @@ public final class ResourceUtils {
 			LogPrintUtils.eTag(TAG, e, "getString");
 		}
 		return "";
+	}
+
+	/**
+	 * 获取 String
+	 * @return
+	 */
+	public static String getString(@StringRes int id, Object... formatArgs) {
+		try {
+			return DevUtils.getContext().getResources().getString(id, formatArgs);
+		} catch (Exception e) {
+			LogPrintUtils.eTag(TAG, e, "getString");
+		}
+		return null;
 	}
 
 	/**
@@ -103,6 +174,8 @@ public final class ResourceUtils {
 		return 0f;
 	}
 
+	// =
+
 	/**
 	 * 根据资源名获取资源id
 	 * @param name 资源名
@@ -119,28 +192,6 @@ public final class ResourceUtils {
 		}
 		return 0;
 	}
-
-	/**
-	 * 获取 drawable id
-	 * @param imageName
-	 * @return
-	 */
-	public static int getDrawableId2(String imageName) {
-		Class mipmap = R.drawable.class;
-		try {
-			Field field = mipmap.getField(imageName);
-			int resId = field.getInt(imageName);
-			return resId;
-		} catch (NoSuchFieldException e) { // 如果没有在"drawable"下找到imageName,将会返回0
-			LogPrintUtils.eTag(TAG, e, "getDrawableId2");
-			return 0;
-		} catch (Exception e) {
-			LogPrintUtils.eTag(TAG, e, "getDrawableId2");
-			return 0;
-		}
-	}
-
-	// ==
 
 	/**
 	 * 获取 layout 布局文件 id
@@ -183,6 +234,26 @@ public final class ResourceUtils {
 		}
 		return 0;
 	}
+
+    /**
+     * 获取 drawable id
+     * @param imageName
+     * @return
+     */
+    public static int getDrawableId2(String imageName) {
+        Class mipmap = R.drawable.class;
+        try {
+            Field field = mipmap.getField(imageName);
+            int resId = field.getInt(imageName);
+            return resId;
+        } catch (NoSuchFieldException e) { // 如果没有在"drawable"下找到imageName,将会返回0
+            LogPrintUtils.eTag(TAG, e, "getDrawableId2");
+            return 0;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getDrawableId2");
+            return 0;
+        }
+    }
 
 	/**
 	 * 获取 mipmap id
@@ -227,7 +298,6 @@ public final class ResourceUtils {
 		return 0;
 	}
 
-
 	/**
 	 * 获取 anim id
 	 * @param resName anim xml 文件名称
@@ -270,7 +340,7 @@ public final class ResourceUtils {
 		return 0;
 	}
 
-	// == ----------------------------------------- ==
+	// =
 
 	/**
 	 * 获取 Assets 资源文件数据

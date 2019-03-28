@@ -30,7 +30,7 @@ public final class ZipUtils {
     // 日志 TAG
     private static final String TAG = ZipUtils.class.getSimpleName();
     // 缓存大小
-    private static final int BUFFER_LEN = 8192;
+    public static final int BUFFER_LEN = 8192;
 
     /**
      * 批量压缩文件

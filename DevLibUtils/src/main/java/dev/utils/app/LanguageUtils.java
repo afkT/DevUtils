@@ -120,7 +120,7 @@ public class LanguageUtils {
     public static final String TRADITIONAL_CHINESE = "zhTW";
     // 台湾
     public static final String TAIWAN_CHINESE = TRADITIONAL_CHINESE;
-
+    // 支持的语言字典
     private static Map<String, Locale> mSupportLanguages = new HashMap<>(11);
 
     static {
