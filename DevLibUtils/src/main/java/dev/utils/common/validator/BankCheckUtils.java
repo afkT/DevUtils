@@ -660,6 +660,9 @@ public final class BankCheckUtils {
      * @return
      */
     public static boolean checkBankCard(String cardId) {
+        if (cardId == null || cardId.trim().length() == 0) {
+            return false;
+        }
         char bit = getBankCardCheckCode(cardId.substring(0, cardId.length() - 1));
         if (bit == 'N') {
             return false;

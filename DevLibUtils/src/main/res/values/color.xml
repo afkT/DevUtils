@@ -4,6 +4,7 @@
     <!-- 常见颜色 -->
     <!-- 透明 -->
     <color name="transparent">#00000000</color>
+
     <!-- 黑色 -->
     <color name="black">#000000</color>
     <!-- 黑色 透明度10-90 -->
@@ -16,10 +17,33 @@
     <color name="black_tran70">#B2000000</color>
     <color name="black_tran80">#CC000000</color>
     <color name="black_tran90">#E5000000</color>
+
     <!-- 白色 -->
     <color name="white">#FFFFFF</color>
+    <!-- 白色 透明度10-90 -->
+    <color name="white_tran10">#19FFFFFF</color>
+    <color name="white_tran20">#33FFFFFF</color>
+    <color name="white_tran30">#4CFFFFFF</color>
+    <color name="white_tran40">#66FFFFFF</color>
+    <color name="white_tran50">#7FFFFFFF</color>
+    <color name="white_tran60">#99FFFFFF</color>
+    <color name="white_tran70">#B2FFFFFF</color>
+    <color name="white_tran80">#CCFFFFFF</color>
+    <color name="white_tran90">#E5FFFFFF</color>
+
     <!-- 灰色 -->
     <color name="grey">#808080</color>
+    <!-- 灰色 透明度10-90 -->
+    <color name="grey_tran10">#19808080</color>
+    <color name="grey_tran20">#33808080</color>
+    <color name="grey_tran30">#4C808080</color>
+    <color name="grey_tran40">#66808080</color>
+    <color name="grey_tran50">#7808080F</color>
+    <color name="grey_tran60">#99808080</color>
+    <color name="grey_tran70">#B2808080</color>
+    <color name="grey_tran80">#CC808080</color>
+    <color name="grey_tran90">#E5808080</color>
+
     <!-- 红色 -->
     <color name="red">#FF0000</color>
     <!-- 蓝色 -->

@@ -29,17 +29,16 @@ public final class ByteUtils {
     // ~1 => -2    结果是正常的
 
     /**
-     * (01)、位移加密、解密，调同一个方法
-     * @param bytes
+     * 位移 加/解密 （共用同一个方法）
+     * @param data
      */
-    public static void byteJiaMi(byte[] bytes) {
-        if (bytes == null) {
-            return;
-        }
-        for (int w = 0; w < bytes.length; w++) {
-            int a = bytes[w];
+    public static void byteJiaMi(byte[] data) {
+        if (data == null) return;
+
+        for (int i = 0, len = data.length; i < len; i++) {
+            int a = data[i];
             a = ~a; // 按位补运算符 => 翻转操作数的每一位，即0变成1，1变成0,再通过反转后的二进制初始化回16进制
-            bytes[w] = (byte) a;
+            data[i] = (byte) a;
         }
     }
 
@@ -49,14 +48,11 @@ public final class ByteUtils {
      * @return
      */
     public static byte[] hexStrToByteArray(String str) {
-        if (str == null) {
-            return null;
-        }
-        if (str.length() == 0) {
+        if (str == null || str.length() == 0) {
             return new byte[0];
         }
         byte[] byteArray = new byte[str.length() / 2];
-        for (int i = 0; i < byteArray.length; i++) {
+        for (int i = 0, len = byteArray.length; i < len; i++) {
             String subStr = str.substring(2 * i, 2 * i + 2);
             byteArray[i] = ((byte) Integer.parseInt(subStr, 16));
         }
@@ -64,79 +60,98 @@ public final class ByteUtils {
     }
 
     /**
-     * (02)、从bytes上截取一段
-     * @param bytes  母体
-     * @param off    起始
+     * 从 byte[] 上截取一段
+     * @param data
+     * @param off 起始
      * @param length 个数
      * @return byte[]
      */
-    public static byte[] cutOut(byte[] bytes, int off, int length) {
-        byte[] bytess = new byte[length];
-        System.arraycopy(bytes, off, bytess, 0, length);
-        return bytess;
+    public static byte[] cutOut(byte[] data, int off, int length) {
+        try {
+            byte[] bytes = new byte[length];
+            System.arraycopy(data, off, bytes, 0, length);
+            return bytes;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "cutOut");
+        }
+        return null;
     }
 
     /**
-     * 将字节转换为二进制字符串
-     * @param bytes 字节数组
+     * 将 字节转换 为 二进制字符串
+     * @param data 字节数组
      * @return 二进制字符串
      */
-    public static String byteToBit(byte... bytes) {
-        StringBuffer sb = new StringBuffer();
-        int z, len;
-        String str;
-        for (int w = 0; w < bytes.length; w++) {
-            z = bytes[w];
-            z |= 256;
-            str = Integer.toBinaryString(z);
-            len = str.length();
-            sb.append(str.substring(len - 8, len));
+    public static String byteToBit(byte... data) {
+        try {
+            StringBuffer buffer = new StringBuffer();
+            int z, strLength;
+            String str;
+            for (int i = 0, len = data.length; i < len; i++) {
+                z = data[i];
+                z |= 256;
+                str = Integer.toBinaryString(z);
+                strLength = str.length();
+                buffer.append(str.substring(strLength - 8, strLength));
+            }
+            return buffer.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "byteToBit");
         }
-        return sb.toString();
+        return null;
     }
 
     /**
-     * 二进制字符串, 转换成byte数组
+     * 二进制字符串, 转换成 byte[]
      * 例: "011000010111001101100100" 传入 bits2Bytes, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 bytes2Bits 使用
-     * @param bits The bits.
+     * @param str The bits.
      * @return bytes
      */
-    public static byte[] bits2Bytes(String bits) {
-        int lenMod = bits.length() % 8;
-        int byteLen = bits.length() / 8;
-        // add "0" until length to 8 times
-        if (lenMod != 0) {
-            for (int i = lenMod; i < 8; i++) {
-                bits = "0" + bits;
+    public static byte[] bitToByte(String str) {
+        if (str == null) return null;
+        try {
+            int lenMod = str.length() % 8;
+            int byteLen = str.length() / 8;
+            // add "0" until length to 8 times
+            if (lenMod != 0) {
+                for (int i = lenMod; i < 8; i++) {
+                    str = "0" + str;
+                }
+                byteLen++;
             }
-            byteLen++;
-        }
-        byte[] bytes = new byte[byteLen];
-        for (int i = 0; i < byteLen; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                bytes[i] <<= 1;
-                bytes[i] |= bits.charAt(i * 8 + j) - '0';
+            byte[] bytes = new byte[byteLen];
+            for (int i = 0; i < byteLen; ++i) {
+                for (int j = 0; j < 8; ++j) {
+                    bytes[i] <<= 1;
+                    bytes[i] |= str.charAt(i * 8 + j) - '0';
+                }
             }
+            return bytes;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "bitToByte");
         }
-        return bytes;
+        return null;
     }
 
     /**
-     * 字节数组转换成16进制字符串
-     * @param raw
+     * 字节数组转换成 16进制字符串
+     * @param data
      * @return
      */
-    public static String getHex(byte[] raw) {
+    public static String getHex(byte[] data) {
+        if (data == null) return null;
+
         String HEXES = "0123456789ABCDEF";
-        if (raw == null) {
-            return null;
+        try {
+            final StringBuilder builder = new StringBuilder(2 * data.length);
+            for (final byte b : data) {
+                builder.append(HEXES.charAt((b & 0xF0) >> 4)).append(HEXES.charAt((b & 0x0F)));
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getHex");
         }
-        final StringBuilder hex = new StringBuilder(2 * raw.length);
-        for (final byte b : raw) {
-            hex.append(HEXES.charAt((b & 0xF0) >> 4))
-                    .append(HEXES.charAt((b & 0x0F)));
-        }
-        return hex.toString();
+        return null;
     }
 
     /**
@@ -168,18 +183,23 @@ public final class ByteUtils {
     }
 
     /**
-     * 从一个byte[]数组中截取一部分
-     * @param src
+     * 从一个 byte[] 中截取一部分
+     * @param data
      * @param begin
      * @param count
      * @return
      */
-    public static byte[] subBytes(byte[] src, int begin, int count) {
-        byte[] bs = new byte[count];
-        for (int i = begin; i < begin + count; i++) {
-            bs[i - begin] = src[i];
+    public static byte[] subBytes(byte[] data, int begin, int count) {
+        try {
+            byte[] bytes = new byte[count];
+            for (int i = begin, len = begin + count; i < len; i++) {
+                bytes[i - begin] = data[i];
+            }
+            return bytes;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subBytes");
         }
-        return bs;
+        return null;
     }
 
 

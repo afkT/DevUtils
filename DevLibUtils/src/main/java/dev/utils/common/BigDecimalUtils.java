@@ -50,26 +50,53 @@ public final class BigDecimalUtils {
         return new BigDecimal(0);
     }
 
+    // =
+
     /**
      * 提供精确的加法运算
      * @param v1 被加数
      * @param v2 加数
-     * @param scale 保留scale 位小数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的和
+     */
+    public static double add(double v1, double v2, int scale) {
+        try {
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+            if (scale <= 0) {
+                return b1.add(b2).intValue();
+            } else {
+                return b1.add(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "add");
+        }
+        return 0;
+    }
+
+    /**
+     * 提供精确的加法运算
+     * @param v1 被加数
+     * @param v2 加数
+     * @param scale 保留 scale 位小数
      * @return 两个参数的和
      */
     public static String add(String v1, String v2, int scale) {
-        if (scale < 0) {
-            return "0";
-        }
         try {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
-            return b1.add(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            if (scale <= 0) {
+                return b1.add(b2).intValue() + "";
+            } else {
+                return b1.add(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "add");
         }
         return "0";
     }
+
+    // =
 
     /**
      * 提供精确的减法运算
@@ -100,26 +127,53 @@ public final class BigDecimalUtils {
         return new BigDecimal(0);
     }
 
+    // =
+
     /**
      * 提供精确的减法运算
      * @param v1 被减数
      * @param v2 减数
-     * @param scale 保留scale 位小数
+     * @param scale 保留 scale 位小数
      * @return 两个参数的差
      */
-    public static String substract(String v1, String v2, int scale) {
-        if (scale < 0) {
-            return "0";
-        }
+    public static String substract(double v1, double v2, int scale) {
         try {
-            BigDecimal b1 = new BigDecimal(v1);
-            BigDecimal b2 = new BigDecimal(v2);
-            return b1.subtract(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+            if (scale <= 0) {
+                return b1.subtract(b2).intValue() + "";
+            } else {
+                return b1.subtract(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "substract");
         }
         return "0";
     }
+
+    /**
+     * 提供精确的减法运算
+     * @param v1 被减数
+     * @param v2 减数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的差
+     */
+    public static String substract(String v1, String v2, int scale) {
+        try {
+            BigDecimal b1 = new BigDecimal(v1);
+            BigDecimal b2 = new BigDecimal(v2);
+            if (scale <= 0) {
+                return b1.subtract(b2).intValue() + "";
+            } else {
+                return b1.subtract(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "substract");
+        }
+        return "0";
+    }
+
+    // =
 
     /**
      * 提供精确的乘法运算
@@ -128,47 +182,82 @@ public final class BigDecimalUtils {
      * @return 两个参数的积
      */
     public static double multiply(double v1, double v2) {
-        BigDecimal b1 = new BigDecimal(Double.toString(v1));
-        BigDecimal b2 = new BigDecimal(Double.toString(v2));
-        return b1.multiply(b2).doubleValue();
+        try {
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+            return b1.multiply(b2).doubleValue();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "multiply");
+        }
+        return 0d;
     }
 
     /**
      * 提供精确的乘法运算
      * @param v1 被乘数
      * @param v2 乘数
-     * @param scale 保留scale 位小数
      * @return 两个参数的积
      */
-    public static double multiply(double v1, double v2, int scale) {
-        if (scale < 0) {
-            return 0d;
-        }
-        BigDecimal b1 = new BigDecimal(Double.toString(v1));
-        BigDecimal b2 = new BigDecimal(Double.toString(v2));
-        return round(b1.multiply(b2).doubleValue(), scale);
-    }
-
-    /**
-     * 提供精确的乘法运算
-     * @param v1 被乘数
-     * @param v2 乘数
-     * @param scale 保留scale 位小数
-     * @return 两个参数的积
-     */
-    public static String multiply(String v1, String v2, int scale) {
-        if (scale < 0) {
-            return "0";
-        }
+    public static double multiply(String v1, String v2) {
         try {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
-            return b1.multiply(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            return b1.multiply(b2).doubleValue();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "multiply");
+        }
+        return 0d;
+    }
+
+    // =
+
+    /**
+     * 提供精确的乘法运算
+     * @param v1 被乘数
+     * @param v2 乘数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的积
+     */
+    public static double multiply(double v1, double v2, int scale) {
+        try {
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+            if (scale <= 0) {
+                return b1.multiply(b2).intValue();
+            } else {
+                return b1.multiply(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "multiply");
+        }
+        return 0d;
+    }
+
+    // =
+
+    /**
+     * 提供精确的乘法运算
+     * @param v1 被乘数
+     * @param v2 乘数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的积
+     */
+    public static String multiply(String v1, String v2, int scale) {
+        try {
+            BigDecimal b1 = new BigDecimal(v1);
+            BigDecimal b2 = new BigDecimal(v2);
+            if (scale <= 0) {
+                return b1.multiply(b2).intValue() + "";
+            } else {
+                return b1.multiply(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "multiply");
         }
         return "0";
     }
+
+    // =
 
     /**
      * 提供(相对)精确的除法运算,当发生除不尽的情况时,
@@ -181,7 +270,6 @@ public final class BigDecimalUtils {
         return divide(v1, v2, DEF_DIV_SCALE);
     }
 
-
     /**
      * 提供(相对)精确的除法运算.
      * 当发生除不尽的情况时,由scale参数指 定精度,以后的数字四舍五入.
@@ -191,12 +279,18 @@ public final class BigDecimalUtils {
      * @return 两个参数的商
      */
     public static double divide(double v1, double v2, int scale) {
-        if (scale < 0) {
-            return 0d;
+        try {
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+            if (scale <= 0) {
+                return b1.divide(b2).intValue();
+            } else {
+                return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "divide");
         }
-        BigDecimal b1 = new BigDecimal(Double.toString(v1));
-        BigDecimal b2 = new BigDecimal(Double.toString(v2));
-        return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return 0d;
     }
 
     /**
@@ -208,18 +302,21 @@ public final class BigDecimalUtils {
      * @return 两个参数的商
      */
     public static String divide(String v1, String v2, int scale) {
-        if (scale < 0) {
-            return "0";
-        }
         try {
             BigDecimal b1 = new BigDecimal(v1);
-            BigDecimal b2 = new BigDecimal(v1);
-            return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).toString();
+            BigDecimal b2 = new BigDecimal(v2);
+            if (scale <= 0) {
+                return b1.divide(b2).intValue() + "";
+            } else {
+                return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).toString();
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "divide");
         }
         return "0";
     }
+
+    // =
 
     /**
      * 提供精确的小数位四舍五入处理
@@ -228,12 +325,13 @@ public final class BigDecimalUtils {
      * @return 四舍五入后的结果
      */
     public static double round(double v, int scale) {
-        if (scale < 0) {
-            return 0d;
-        }
         BigDecimal b = new BigDecimal(Double.toString(v));
         BigDecimal one = new BigDecimal("1");
-        return b.divide(one, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+        if (scale <= 0) {
+            return b.divide(one).intValue();
+        } else {
+            return b.divide(one, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+        }
     }
 
     /**
@@ -243,35 +341,47 @@ public final class BigDecimalUtils {
      * @return 四舍五入后的结果
      */
     public static String round(String v, int scale) {
-        if (scale < 0) {
-            return "0";
-        }
         try {
             BigDecimal b = new BigDecimal(v);
-            return b.setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            if (scale <= 0) {
+                return b.intValue() + "";
+            } else {
+                return b.setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "round");
         }
         return "0";
     }
 
+    // =
+
     /**
      * 提供精确的小数位获取
      * @param v 需要处理的数字
      * @param scale 小数点后保留几位
+     * @param roundingMode 取小数点模式
      * @return 最后的结果
      */
-    public static double round(double v, int scale, int round) {
-        if (scale < 0) {
-            return 0d;
-        }
+    public static double round(double v, int scale, int roundingMode) {
         // https://www.cnblogs.com/liqforstudy/p/5652517.html
         // 向下取
         // round = BigDecimal.ROUND_DOWN;
-        BigDecimal b = new BigDecimal(Double.toString(v));
-        BigDecimal one = new BigDecimal("1");
-        return b.divide(one, scale, round).doubleValue();
+        try {
+            BigDecimal b = new BigDecimal(Double.toString(v));
+            BigDecimal one = new BigDecimal("1");
+            if (scale <= 0) {
+                return b.divide(one).intValue();
+            } else {
+                return b.divide(one, scale, roundingMode).doubleValue();
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "round");
+        }
+        return 0d;
     }
+
+    // =
 
     /**
      * 取余数
@@ -281,13 +391,14 @@ public final class BigDecimalUtils {
      * @return 余数
      */
     public static String remainder(String v1, String v2, int scale) {
-        if (scale < 0) {
-            return "0";
-        }
         try {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
-            return b1.remainder(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            if (scale <= 0) {
+                return b1.remainder(b2).intValue() + "";
+            } else {
+                return b1.remainder(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "remainder");
         }
@@ -295,18 +406,19 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 取余数 BigDecimal
+     * 取余数
      * @param v1 被除数
      * @param v2 除数
      * @param scale 小数点后保留几位
      * @return 余数
      */
     public static BigDecimal remainder(BigDecimal v1, BigDecimal v2, int scale) {
-        if (scale < 0) {
-            return new BigDecimal(0);
-        }
         try {
-            return v1.remainder(v2).setScale(scale, BigDecimal.ROUND_HALF_UP);
+            if (scale <= 0) {
+                return v1.remainder(v2);
+            } else {
+                return v1.remainder(v2).setScale(scale, BigDecimal.ROUND_HALF_UP);
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "remainder");
         }
