@@ -48,11 +48,11 @@ public final class ServiceUtils {
 
     /**
      * 判断服务是否运行
-     * @param cls The service class.
+     * @param clazz The service class.
      * @return true : 是, false : 否
      */
-    public static boolean isServiceRunning(final Class<?> cls) {
-        return isServiceRunning(cls.getName());
+    public static boolean isServiceRunning(final Class<?> clazz) {
+        return isServiceRunning(clazz.getName());
     }
 
     /**
@@ -90,11 +90,11 @@ public final class ServiceUtils {
 
     /**
      * 启动服务
-     * @param cls 服务类
+     * @param clazz 服务类
      */
-    public static void startService(final Class<?> cls) {
+    public static void startService(final Class<?> clazz) {
         try {
-            Intent intent = new Intent(DevUtils.getContext(), cls);
+            Intent intent = new Intent(DevUtils.getContext(), clazz);
             DevUtils.getContext().startService(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
@@ -117,12 +117,12 @@ public final class ServiceUtils {
 
     /**
      * 停止服务
-     * @param cls 服务类
+     * @param clazz 服务类
      * @return true : 停止成功, false : 停止失败
      */
-    public static boolean stopService(final Class<?> cls) {
+    public static boolean stopService(final Class<?> clazz) {
         try {
-            Intent intent = new Intent(DevUtils.getContext(), cls);
+            Intent intent = new Intent(DevUtils.getContext(), clazz);
             return DevUtils.getContext().stopService(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
@@ -153,7 +153,7 @@ public final class ServiceUtils {
 
     /**
      * 绑定服务
-     * @param cls 服务类
+     * @param clazz 服务类
      * @param conn 服务连接对象
      * @param flags 绑定选项
      * ====
@@ -164,9 +164,9 @@ public final class ServiceUtils {
      * {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
      * {@link Context#BIND_WAIVE_PRIORITY}
      */
-    public static void bindService(final Class<?> cls, final ServiceConnection conn, final int flags) {
+    public static void bindService(final Class<?> clazz, final ServiceConnection conn, final int flags) {
         try {
-            Intent intent = new Intent(DevUtils.getContext(), cls);
+            Intent intent = new Intent(DevUtils.getContext(), clazz);
             DevUtils.getContext().bindService(intent, conn, flags);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bindService");

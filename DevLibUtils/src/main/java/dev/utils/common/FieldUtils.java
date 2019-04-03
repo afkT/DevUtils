@@ -28,9 +28,9 @@ public final class FieldUtils {
      * @return
      */
     public static boolean isSerializable(Field f) {
-        Class<?>[] cls = f.getType().getInterfaces();
-        for (Class<?> c : cls) {
-            if (Serializable.class == c) {
+        Class<?>[] clazzs = f.getType().getInterfaces();
+        for (Class<?> clazz : clazzs) {
+            if (Serializable.class == clazz) {
                 return true;
             }
         }

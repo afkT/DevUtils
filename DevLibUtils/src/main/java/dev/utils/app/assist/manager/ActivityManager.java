@@ -150,11 +150,11 @@ public final class ActivityManager {
 
     /**
      * 检测是否包含指定的 Activity
-     * @param cls
+     * @param clazzs
      * @return
      */
-    public boolean existActivitys(Class<?>... cls) {
-        if (cls != null && cls.length != 0) {
+    public boolean existActivitys(Class<?>... clazzs) {
+        if (clazzs != null && clazzs.length != 0) {
             synchronized (activityStacks) {
                 // 保存新的任务,防止出现同步问题
                 Stack<Activity> aStacks = new Stack<>();
@@ -165,8 +165,8 @@ public final class ActivityManager {
                     while (iterator.hasNext()) {
                         Activity activity = iterator.next();
                         if (activity != null && !activity.isFinishing()) {
-                            for (int i = 0, c = cls.length; i < c; i++) {
-                                if (cls[i] != null && activity.getClass().getName().equals(cls[i].getName())) {
+                            for (int i = 0, c = clazzs.length; i < c; i++) {
+                                if (clazzs[i] != null && activity.getClass().getName().equals(clazzs[i].getName())) {
                                     return true;
                                 }
                             }
@@ -210,9 +210,9 @@ public final class ActivityManager {
 
     /**
      * 结束指定类名的 Activity
-     * @param cls Activity.class
+     * @param clazzs Activity.class
      */
-    public void finishActivity(Class<?> cls) {
+    public void finishActivity(Class<?> clazzs) {
         synchronized (activityStacks) {
             // 保存新的任务,防止出现同步问题
             Stack<Activity> aStacks = new Stack<>();
@@ -225,7 +225,7 @@ public final class ActivityManager {
                 Activity activity = iterator.next();
                 // 判断是否想要关闭的Activity
                 if (activity != null) {
-                    if (activity.getClass() == cls) {
+                    if (activity.getClass() == clazzs) {
                         // 如果页面没有finish 则进行finish
                         if (!activity.isFinishing()) {
                             activity.finish();
@@ -248,10 +248,10 @@ public final class ActivityManager {
 
     /**
      * 结束指定类名的 Activity
-     * @param clss Activity.class, x.class
+     * @param clazzs Activity.class, x.class
      */
-    public void finishActivity(Class<?>... clss) {
-        if (clss != null && clss.length != 0) {
+    public void finishActivity(Class<?>... clazzs) {
+        if (clazzs != null && clazzs.length != 0) {
             synchronized (activityStacks) {
                 // 保存新的任务,防止出现同步问题
                 Stack<Activity> aStacks = new Stack<>();
@@ -269,9 +269,9 @@ public final class ActivityManager {
                         // 默认不需要销毁
                         isRemove = false;
                         // 循环判断
-                        for (int i = 0, len = clss.length; i < len; i++) {
+                        for (int i = 0, len = clazzs.length; i < len; i++) {
                             // 判断是否相同
-                            if (activity.getClass() == clss[i]) {
+                            if (activity.getClass() == clazzs[i]) {
                                 isRemove = true;
                                 break;
                             }
@@ -301,9 +301,9 @@ public final class ActivityManager {
 
     /**
      * 结束全部Activity 除忽略的页面外
-     * @param cls
+     * @param clazzs
      */
-    public void finishAllActivityToIgnore(Class<?> cls) {
+    public void finishAllActivityToIgnore(Class<?> clazzs) {
         synchronized (activityStacks) {
             // 保存新的任务,防止出现同步问题
             Stack<Activity> aStacks = new Stack<>();
@@ -316,7 +316,7 @@ public final class ActivityManager {
                 Activity activity = iterator.next();
                 // 判断是否想要关闭的Activity
                 if (activity != null) {
-                    if (!(activity.getClass() == cls)) {
+                    if (!(activity.getClass() == clazzs)) {
                         // 如果页面没有finish 则进行finish
                         if (!activity.isFinishing()) {
                             activity.finish();
@@ -339,10 +339,10 @@ public final class ActivityManager {
 
     /**
      * 结束全部Activity 除忽略的页面外
-     * @param clss
+     * @param clazzs
      */
-    public void finishAllActivityToIgnore(Class<?>... clss) {
-        if (clss != null && clss.length != 0) {
+    public void finishAllActivityToIgnore(Class<?>... clazzs) {
+        if (clazzs != null && clazzs.length != 0) {
             synchronized (activityStacks) {
                 // 保存新的任务,防止出现同步问题
                 Stack<Activity> aStacks = new Stack<>();
@@ -360,9 +360,9 @@ public final class ActivityManager {
                         // 默认需要销毁
                         isRemove = true;
                         // 循环判断
-                        for (int i = 0, len = clss.length; i < len; i++) {
+                        for (int i = 0, len = clazzs.length; i < len; i++) {
                             // 判断是否相同
-                            if (activity.getClass() == clss[i]) {
+                            if (activity.getClass() == clazzs[i]) {
                                 isRemove = false;
                                 break;
                             }

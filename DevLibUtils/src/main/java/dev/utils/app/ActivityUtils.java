@@ -125,11 +125,11 @@ public final class ActivityUtils {
 
     /**
      * 返回 Activity 对应的图标
-     * @param clz
+     * @param clazz
      * @return
      */
-    public static Drawable getActivityIcon(final Class<?> clz) {
-        return getActivityIcon(new ComponentName(DevUtils.getContext(), clz));
+    public static Drawable getActivityIcon(final Class<?> clazz) {
+        return getActivityIcon(new ComponentName(DevUtils.getContext(), clazz));
     }
 
     /**
@@ -148,11 +148,11 @@ public final class ActivityUtils {
 
     /**
      * 返回 Activity 对应的Logo
-     * @param clz
+     * @param clazz
      * @return
      */
-    public static Drawable getActivityLogo(final Class<?> clz) {
-        return getActivityLogo(new ComponentName(DevUtils.getContext(), clz));
+    public static Drawable getActivityLogo(final Class<?> clazz) {
+        return getActivityLogo(new ComponentName(DevUtils.getContext(), clazz));
     }
 
     /**

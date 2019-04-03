@@ -150,11 +150,11 @@ public final class Reflect2Utils {
     /**
      * 是不是某个类的实例
      * @param obj 实例
-     * @param cls 类
+     * @param clazz 类
      * @return 如果 obj 是此类的实例，则返回 true
      */
-    public static boolean isInstance(Object obj, Class cls) {
-        return cls.isInstance(obj);
+    public static boolean isInstance(Object obj, Class clazz) {
+        return clazz.isInstance(obj);
     }
 
     /**

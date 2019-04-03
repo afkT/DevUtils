@@ -39,8 +39,8 @@ public final class PollingUtils {
      * 开启轮询服务
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startPollingService(Context context, int mills, Class<?> cls, String action) {
-        Intent intent = new Intent(context, cls);
+    public static void startPollingService(Context context, int mills, Class<?> clazz, String action) {
+        Intent intent = new Intent(context, clazz);
         intent.setAction(action);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         startPolling(context, mills, pendingIntent);
@@ -50,8 +50,8 @@ public final class PollingUtils {
      * 停止轮询服务
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopPollingService(Context context, Class<?> cls, String action) {
-        Intent intent = new Intent(context, cls);
+    public static void stopPollingService(Context context, Class<?> clazz, String action) {
+        Intent intent = new Intent(context, clazz);
         intent.setAction(action);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         stopPolling(context, pendingIntent);

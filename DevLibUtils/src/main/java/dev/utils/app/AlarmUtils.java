@@ -63,13 +63,13 @@ public final class AlarmUtils {
      * 开启轮询服务
      * @param context
      * @param triggerAtMillis
-     * @param cls
+     * @param clazz
      * @param action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmService(Context context, long triggerAtMillis, Class<?> cls, String action) {
+    public static void startAlarmService(Context context, long triggerAtMillis, Class<?> clazz, String action) {
         try {
-            Intent intent = new Intent(context, cls);
+            Intent intent = new Intent(context, clazz);
             intent.setAction(action);
             PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             startAlarmIntent(context, triggerAtMillis, pendingIntent);
@@ -81,13 +81,13 @@ public final class AlarmUtils {
     /**
      * 停止轮询服务
      * @param context
-     * @param cls
+     * @param clazz
      * @param action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmService(Context context, Class<?> cls, String action) {
+    public static void stopAlarmService(Context context, Class<?> clazz, String action) {
         try {
-            Intent intent = new Intent(context, cls);
+            Intent intent = new Intent(context, clazz);
             intent.setAction(action);
             PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             stopAlarmIntent(context, pendingIntent);
