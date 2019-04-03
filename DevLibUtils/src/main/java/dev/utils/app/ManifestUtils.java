@@ -53,12 +53,12 @@ public final class ManifestUtils {
 
     /**
      * 获取 Activity Meta Data
-     * @param cla
+     * @param clazz
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInActivity(Class<?> cla, String metaKey) {
-        return getMetaDataInActivity(DevUtils.getContext().getPackageName(), cla.getCanonicalName(), metaKey);
+    public static String getMetaDataInActivity(Class<?> clazz, String metaKey) {
+        return getMetaDataInActivity(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
     }
 
     /**
@@ -94,12 +94,12 @@ public final class ManifestUtils {
 
     /**
      * 获取 Service Meta Data
-     * @param cla
+     * @param clazz
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInService(Class<?> cla, String metaKey) {
-        return getMetaDataInService(DevUtils.getContext().getPackageName(), cla.getCanonicalName(), metaKey);
+    public static String getMetaDataInService(Class<?> clazz, String metaKey) {
+        return getMetaDataInService(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
     }
 
     /**
@@ -135,12 +135,12 @@ public final class ManifestUtils {
 
     /**
      * 获取 Receiver Meta Data
-     * @param cla
+     * @param clazz
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInReceiver(Class<?> cla, String metaKey) {
-        return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), cla.getCanonicalName(), metaKey);
+    public static String getMetaDataInReceiver(Class<?> clazz, String metaKey) {
+        return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
     }
 
     /**
@@ -176,12 +176,12 @@ public final class ManifestUtils {
 
     /**
      * 获取 ContentProvider Meta Data
-     * @param cla
+     * @param clazz
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInProvider(Class<?> cla, String metaKey) {
-        return getMetaDataInProvider(DevUtils.getContext().getPackageName(), cla.getCanonicalName(), metaKey);
+    public static String getMetaDataInProvider(Class<?> clazz, String metaKey) {
+        return getMetaDataInProvider(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
     }
 
     /**

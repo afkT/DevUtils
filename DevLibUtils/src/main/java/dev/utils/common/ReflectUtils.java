@@ -269,13 +269,13 @@ public final class ReflectUtils {
 
     /**
      * 设置枚举值
-     * @param clas 类型
+     * @param clazz 类型
      * @param name
      * @param val
      */
-    public ReflectUtils setEnumVal(Class<?> clas, String name, String val) {
+    public ReflectUtils setEnumVal(Class<?> clazz, String name, String val) {
         try {
-            return field(name, Enum.valueOf((Class<Enum>) clas, val));
+            return field(name, Enum.valueOf((Class<Enum>) clazz, val));
         } catch (Exception e) {
         }
         return this;

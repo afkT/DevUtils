@@ -25,21 +25,21 @@ public final class ClassUtils {
      * @return
      */
     public static boolean isBaseDataType(Class<?> clazz) {
-        return clazz.isPrimitive() || clazz.equals(String.class) || clazz.equals(Boolean.class)
+        return clazz != null && (clazz.isPrimitive() || clazz.equals(String.class) || clazz.equals(Boolean.class)
                 || clazz.equals(Integer.class) || clazz.equals(Long.class) || clazz.equals(Float.class)
                 || clazz.equals(Double.class) || clazz.equals(Byte.class) || clazz.equals(Character.class)
                 || clazz.equals(Short.class) || clazz.equals(Date.class) || clazz.equals(byte[].class)
-                || clazz.equals(Byte[].class);
+                || clazz.equals(Byte[].class));
     }
 
     /**
      * 根据类获取对象：不再必须一个无参构造
-     * @param claxx
+     * @param clazz
      * @return
      */
-    public static <T> T newInstance(Class<T> claxx) {
+    public static <T> T newInstance(Class<T> clazz) {
         try {
-            Constructor<?>[] cons = claxx.getDeclaredConstructors();
+            Constructor<?>[] cons = clazz.getDeclaredConstructors();
             for (Constructor<?> c : cons) {
                 Class[] cls = c.getParameterTypes();
                 if (cls.length == 0) {
@@ -66,7 +66,7 @@ public final class ClassUtils {
      * @return
      */
     public static Object getDefaultPrimiticeValue(Class clazz) {
-        if (clazz.isPrimitive()) {
+        if (clazz != null && clazz.isPrimitive()) {
             return clazz == boolean.class ? false : 0;
         }
         return null;
@@ -74,20 +74,19 @@ public final class ClassUtils {
 
     /**
      * 判断是否集合类型
-     * @param claxx
+     * @param clazz
      * @return
      */
-    public static boolean isCollection(Class claxx) {
-        return Collection.class.isAssignableFrom(claxx);
+    public static boolean isCollection(Class clazz) {
+        return (clazz != null && Collection.class.isAssignableFrom(clazz));
     }
 
     /**
      * 是否数组类型
-     * @param claxx
+     * @param clazz
      * @return
      */
-    public static boolean isArray(Class claxx) {
-        return claxx.isArray();
+    public static boolean isArray(Class clazz) {
+        return (clazz != null && clazz.isArray());
     }
-
 }

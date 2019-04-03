@@ -80,43 +80,43 @@ public final class ConverUtils {
                 if (obj instanceof String) {
                     return (String) obj;
                 } else {
-                    Class<?> cla = obj.getClass();
+                    Class<?> clazz = obj.getClass();
                     // 判断是否数组类型
-                    if (cla.isArray()) {
+                    if (clazz.isArray()) {
                         // == 基本数据类型 ==
-                        if (cla.isAssignableFrom(int[].class)) {
+                        if (clazz.isAssignableFrom(int[].class)) {
                             return Arrays.toString((int[]) obj);
-                        } else if (cla.isAssignableFrom(boolean[].class)) {
+                        } else if (clazz.isAssignableFrom(boolean[].class)) {
                             return Arrays.toString((boolean[]) obj);
-                        } else if (cla.isAssignableFrom(long[].class)) {
+                        } else if (clazz.isAssignableFrom(long[].class)) {
                             return Arrays.toString((long[]) obj);
-                        } else if (cla.isAssignableFrom(double[].class)) {
+                        } else if (clazz.isAssignableFrom(double[].class)) {
                             return Arrays.toString((double[]) obj);
-                        } else if (cla.isAssignableFrom(float[].class)) {
+                        } else if (clazz.isAssignableFrom(float[].class)) {
                             return Arrays.toString((float[]) obj);
-                        } else if (cla.isAssignableFrom(byte[].class)) {
+                        } else if (clazz.isAssignableFrom(byte[].class)) {
                             return Arrays.toString((byte[]) obj);
-                        } else if (cla.isAssignableFrom(char[].class)) {
+                        } else if (clazz.isAssignableFrom(char[].class)) {
                             return Arrays.toString((char[]) obj);
-                        } else if (cla.isAssignableFrom(short[].class)) {
+                        } else if (clazz.isAssignableFrom(short[].class)) {
                             return Arrays.toString((short[]) obj);
                         }
                         // == 基本类型封装 ==
-                        if (cla.isAssignableFrom(Integer[].class)) {
+                        if (clazz.isAssignableFrom(Integer[].class)) {
                             return Arrays.toString((Integer[]) obj);
-                        } else if (cla.isAssignableFrom(Boolean[].class)) {
+                        } else if (clazz.isAssignableFrom(Boolean[].class)) {
                             return Arrays.toString((Boolean[]) obj);
-                        } else if (cla.isAssignableFrom(Long[].class)) {
+                        } else if (clazz.isAssignableFrom(Long[].class)) {
                             return Arrays.toString((Long[]) obj);
-                        } else if (cla.isAssignableFrom(Double[].class)) {
+                        } else if (clazz.isAssignableFrom(Double[].class)) {
                             return Arrays.toString((Double[]) obj);
-                        } else if (cla.isAssignableFrom(Float[].class)) {
+                        } else if (clazz.isAssignableFrom(Float[].class)) {
                             return Arrays.toString((Float[]) obj);
-                        } else if (cla.isAssignableFrom(Byte[].class)) {
+                        } else if (clazz.isAssignableFrom(Byte[].class)) {
                             return Arrays.toString((Byte[]) obj);
-                        } else if (cla.isAssignableFrom(Character[].class)) {
+                        } else if (clazz.isAssignableFrom(Character[].class)) {
                             return Arrays.toString((Character[]) obj);
-                        } else if (cla.isAssignableFrom(Short[].class)) {
+                        } else if (clazz.isAssignableFrom(Short[].class)) {
                             return Arrays.toString((Short[]) obj);
                         }
                     }

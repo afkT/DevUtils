@@ -79,16 +79,16 @@ public final class ByteUtils {
 
     /**
      * 将 字节转换 为 二进制字符串
-     * @param data 字节数组
+     * @param datas 字节数组
      * @return 二进制字符串
      */
-    public static String byteToBit(byte... data) {
+    public static String byteToBit(byte... datas) {
         try {
             StringBuffer buffer = new StringBuffer();
             int z, strLength;
             String str;
-            for (int i = 0, len = data.length; i < len; i++) {
-                z = data[i];
+            for (int i = 0, len = datas.length; i < len; i++) {
+                z = datas[i];
                 z |= 256;
                 str = Integer.toBinaryString(z);
                 strLength = str.length();

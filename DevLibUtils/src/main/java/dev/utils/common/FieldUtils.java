@@ -113,21 +113,21 @@ public final class FieldUtils {
 
     /**
      * 获取全部Field，包括父类
-     * @param claxx
+     * @param clazz
      * @return
      */
-    public static List<Field> getAllDeclaredFields(Class<?> claxx) {
+    public static List<Field> getAllDeclaredFields(Class<?> clazz) {
         // find all field.
         LinkedList<Field> fieldList = new LinkedList<>();
-        while (claxx != null && claxx != Object.class) {
-            Field[] fs = claxx.getDeclaredFields();
+        while (clazz != null && clazz != Object.class) {
+            Field[] fs = clazz.getDeclaredFields();
             for (int i = 0; i < fs.length; i++) {
                 Field f = fs[i];
                 if (!isInvalid(f)) {
                     fieldList.addLast(f);
                 }
             }
-            claxx = claxx.getSuperclass();
+            clazz = clazz.getSuperclass();
         }
         return fieldList;
     }

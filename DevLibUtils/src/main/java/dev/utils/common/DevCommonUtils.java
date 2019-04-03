@@ -245,23 +245,23 @@ public final class DevCommonUtils {
             // 判断是否属于基本类型数组
             if (obj.getClass().isArray()) {
                 try {
-                    Class<?> cla = obj.getClass();
+                    Class<?> clazz = obj.getClass();
                     // == 基本数据类型 ==
-                    if (cla.isAssignableFrom(int[].class)) {
+                    if (clazz.isAssignableFrom(int[].class)) {
                         return (((int[]) obj).length == 0);
-                    } else if (cla.isAssignableFrom(boolean[].class)) {
+                    } else if (clazz.isAssignableFrom(boolean[].class)) {
                         return (((boolean[]) obj).length == 0);
-                    } else if (cla.isAssignableFrom(long[].class)) {
+                    } else if (clazz.isAssignableFrom(long[].class)) {
                         return (((long[]) obj).length == 0);
-                    } else if (cla.isAssignableFrom(double[].class)) {
+                    } else if (clazz.isAssignableFrom(double[].class)) {
                         return (((double[]) obj).length == 0);
-                    } else if (cla.isAssignableFrom(float[].class)) {
+                    } else if (clazz.isAssignableFrom(float[].class)) {
                         return (((float[]) obj).length == 0);
-                    } else if (cla.isAssignableFrom(byte[].class)) {
+                    } else if (clazz.isAssignableFrom(byte[].class)) {
                         return (((byte[]) obj).length == 0);
-                    } else if (cla.isAssignableFrom(char[].class)) {
+                    } else if (clazz.isAssignableFrom(char[].class)) {
                         return (((char[]) obj).length == 0);
-                    } else if (cla.isAssignableFrom(short[].class)) {
+                    } else if (clazz.isAssignableFrom(short[].class)) {
                         return (((short[]) obj).length == 0);
                     }
                 } catch (Exception e) {
