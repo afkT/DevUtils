@@ -633,7 +633,7 @@ public final class DevCache {
      * @param value 保存的drawable数据
      */
     public void put(String key, Drawable value) {
-        put(key, DevCacheUtils.drawable2Bitmap(value));
+        put(key, DevCacheUtils.drawableToBitmap(value));
     }
 
     /**
@@ -643,7 +643,7 @@ public final class DevCache {
      * @param saveTime 保存的时间，单位：秒
      */
     public void put(String key, Drawable value, int saveTime) {
-        put(key, DevCacheUtils.drawable2Bitmap(value), saveTime);
+        put(key, DevCacheUtils.drawableToBitmap(value), saveTime);
     }
 
     /**

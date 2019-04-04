@@ -24,7 +24,7 @@ public final class StreamUtils {
      * @param is The input stream.
      * @return output stream
      */
-    public static ByteArrayOutputStream input2OutputStream(final InputStream is) {
+    public static ByteArrayOutputStream inputToOutputStream(final InputStream is) {
         if (is == null) return null;
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -35,7 +35,7 @@ public final class StreamUtils {
             }
             return os;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "input2OutputStream");
+            JCLogUtils.eTag(TAG, e, "inputToOutputStream");
             return null;
         } finally {
             CloseUtils.closeIO(is);
@@ -47,7 +47,7 @@ public final class StreamUtils {
      * @param out The output stream.
      * @return input stream
      */
-    public static ByteArrayInputStream output2InputStream(final OutputStream out) {
+    public static ByteArrayInputStream outputToInputStream(final OutputStream out) {
         if (out == null) return null;
         return new ByteArrayInputStream(((ByteArrayOutputStream) out).toByteArray());
     }
@@ -57,9 +57,9 @@ public final class StreamUtils {
      * @param is The input stream.
      * @return bytes
      */
-    public static byte[] inputStream2Bytes(final InputStream is) {
+    public static byte[] inputStreamToBytes(final InputStream is) {
         if (is == null) return null;
-        return input2OutputStream(is).toByteArray();
+        return inputToOutputStream(is).toByteArray();
     }
 
     /**
@@ -67,7 +67,7 @@ public final class StreamUtils {
      * @param bytes The bytes.
      * @return input stream
      */
-    public static InputStream bytes2InputStream(final byte[] bytes) {
+    public static InputStream bytesToInputStream(final byte[] bytes) {
         if (bytes == null || bytes.length <= 0) return null;
         return new ByteArrayInputStream(bytes);
     }
@@ -77,7 +77,7 @@ public final class StreamUtils {
      * @param out The output stream.
      * @return bytes
      */
-    public static byte[] outputStream2Bytes(final OutputStream out) {
+    public static byte[] outputStreamToBytes(final OutputStream out) {
         if (out == null) return null;
         return ((ByteArrayOutputStream) out).toByteArray();
     }
@@ -87,7 +87,7 @@ public final class StreamUtils {
      * @param bytes The bytes.
      * @return output stream
      */
-    public static OutputStream bytes2OutputStream(final byte[] bytes) {
+    public static OutputStream bytesToOutputStream(final byte[] bytes) {
         if (bytes == null || bytes.length <= 0) return null;
         ByteArrayOutputStream os = null;
         try {
@@ -95,7 +95,7 @@ public final class StreamUtils {
             os.write(bytes);
             return os;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "bytes2OutputStream");
+            JCLogUtils.eTag(TAG, e, "bytesToOutputStream");
             return null;
         } finally {
             CloseUtils.closeIO(os);
@@ -108,12 +108,12 @@ public final class StreamUtils {
      * @param charsetName The name of charset.
      * @return string
      */
-    public static String inputStream2String(final InputStream is, final String charsetName) {
+    public static String inputStreamToString(final InputStream is, final String charsetName) {
         if (is == null || isSpace(charsetName)) return null;
         try {
-            return new String(inputStream2Bytes(is), charsetName);
+            return new String(inputStreamToBytes(is), charsetName);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "inputStream2String");
+            JCLogUtils.eTag(TAG, e, "inputStreamToString");
             return null;
         }
     }
@@ -124,12 +124,12 @@ public final class StreamUtils {
      * @param charsetName The name of charset.
      * @return input stream
      */
-    public static InputStream string2InputStream(final String string, final String charsetName) {
+    public static InputStream stringToInputStream(final String string, final String charsetName) {
         if (string == null || isSpace(charsetName)) return null;
         try {
             return new ByteArrayInputStream(string.getBytes(charsetName));
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "string2InputStream");
+            JCLogUtils.eTag(TAG, e, "stringToInputStream");
             return null;
         }
     }
@@ -140,12 +140,12 @@ public final class StreamUtils {
      * @param charsetName The name of charset.
      * @return string
      */
-    public static String outputStream2String(final OutputStream out, final String charsetName) {
+    public static String outputStreamToString(final OutputStream out, final String charsetName) {
         if (out == null || isSpace(charsetName)) return null;
         try {
-            return new String(outputStream2Bytes(out), charsetName);
+            return new String(outputStreamToBytes(out), charsetName);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "outputStream2String");
+            JCLogUtils.eTag(TAG, e, "outputStreamToString");
             return null;
         }
     }
@@ -156,12 +156,12 @@ public final class StreamUtils {
      * @param charsetName The name of charset.
      * @return output stream
      */
-    public static OutputStream string2OutputStream(final String string, final String charsetName) {
+    public static OutputStream stringToOutputStream(final String string, final String charsetName) {
         if (string == null || isSpace(charsetName)) return null;
         try {
-            return bytes2OutputStream(string.getBytes(charsetName));
+            return bytesToOutputStream(string.getBytes(charsetName));
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "string2OutputStream");
+            JCLogUtils.eTag(TAG, e, "stringToOutputStream");
             return null;
         }
     }

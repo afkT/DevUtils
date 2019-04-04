@@ -102,7 +102,7 @@ public final class EncodeUtils {
      * @param input The input.
      * @return Base64-encode string
      */
-    public static String base64Encode2String(final byte[] input) {
+    public static String base64EncodeToString(final byte[] input) {
         return Base64.encodeToString(input, Base64.NO_WRAP);
     }
 

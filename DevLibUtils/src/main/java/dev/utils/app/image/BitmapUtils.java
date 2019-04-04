@@ -261,7 +261,7 @@ public final class BitmapUtils {
 	 * @return
 	 */
 	public static byte[] drawableToByte2(Drawable drawable) {
-		return drawable == null ? null : bitmapToByte(drawable2Bitmap(drawable));
+		return drawable == null ? null : bitmapToByte(drawableToBitmap2(drawable));
 	}
 
 	/**
@@ -271,7 +271,7 @@ public final class BitmapUtils {
 	 * @return
 	 */
 	public static byte[] drawableToByte2(Drawable drawable, Bitmap.CompressFormat format) {
-		return drawable == null ? null : bitmapToByte(drawable2Bitmap(drawable), format);
+		return drawable == null ? null : bitmapToByte(drawableToBitmap2(drawable), format);
 	}
 
 	// ==
@@ -286,12 +286,12 @@ public final class BitmapUtils {
 	}
 
 	/**
-	 * Drawable 转换成 Bitmap
-	 * @param drawable
+	 * byte数组转换成Drawable
+	 * @param bytes
 	 * @return
 	 */
-	public static Bitmap drawableToBitmap(Drawable drawable) {
-		return drawable == null ? null : ((BitmapDrawable) drawable).getBitmap();
+	public static Drawable byteToDrawable(byte[] bytes) {
+		return bitmapToDrawable(byteToBitmap(bytes));
 	}
 
 	/**
@@ -303,13 +303,15 @@ public final class BitmapUtils {
 		return bitmap == null ? null : new BitmapDrawable(AppUtils.getResources(), bitmap);
 	}
 
+	// =
+
 	/**
-	 * byte数组转换成Drawable
-	 * @param bytes
+	 * Drawable 转换成 Bitmap
+	 * @param drawable
 	 * @return
 	 */
-	public static Drawable byteToDrawable(byte[] bytes) {
-		return bitmapToDrawable(byteToBitmap(bytes));
+	public static Bitmap drawableToBitmap(Drawable drawable) {
+		return drawable == null ? null : ((BitmapDrawable) drawable).getBitmap();
 	}
 
 	/**
@@ -317,7 +319,7 @@ public final class BitmapUtils {
 	 * @param drawable The drawable.
 	 * @return bitmap
 	 */
-	public static Bitmap drawable2Bitmap(final Drawable drawable) {
+	public static Bitmap drawableToBitmap2(final Drawable drawable) {
 		if (drawable instanceof BitmapDrawable) {
 			BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
 			if (bitmapDrawable.getBitmap() != null) {
@@ -343,7 +345,7 @@ public final class BitmapUtils {
 	 * @param drawable The drawable.
 	 * @return bitmap
 	 */
-	public static Bitmap drawable3Bitmap(final Drawable drawable) {
+	public static Bitmap drawableToBitmap3(final Drawable drawable) {
 		if (drawable == null) {
 			return null;
 		}

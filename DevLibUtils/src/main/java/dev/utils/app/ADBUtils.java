@@ -1584,7 +1584,7 @@ public final class ADBUtils {
      * 重启引导到 recovery (需要 root 权限)
      * @return
      */
-    public static boolean reboot2Recovery() {
+    public static boolean rebootToRecovery() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("reboot recovery", true);
         return result.isSuccess2();
     }
@@ -1593,7 +1593,7 @@ public final class ADBUtils {
      * 重启引导到 bootloader (需要 root 权限)
      * @return
      */
-    public static boolean reboot2Bootloader() {
+    public static boolean rebootToBootloader() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("reboot bootloader", true);
         return result.isSuccess2();
     }

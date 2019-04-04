@@ -336,8 +336,8 @@ public final class FileIOUtils {
      * @param filePath The path of file.
      * @return the lines in file
      */
-    public static List<String> readFile2List(final String filePath) {
-        return readFile2List(getFileByPath(filePath), null);
+    public static List<String> readFileToList(final String filePath) {
+        return readFileToList(getFileByPath(filePath), null);
     }
 
     /**
@@ -346,8 +346,8 @@ public final class FileIOUtils {
      * @param charsetName The name of charset.
      * @return the lines in file
      */
-    public static List<String> readFile2List(final String filePath, final String charsetName) {
-        return readFile2List(getFileByPath(filePath), charsetName);
+    public static List<String> readFileToList(final String filePath, final String charsetName) {
+        return readFileToList(getFileByPath(filePath), charsetName);
     }
 
     /**
@@ -355,8 +355,8 @@ public final class FileIOUtils {
      * @param file The file.
      * @return the lines in file
      */
-    public static List<String> readFile2List(final File file) {
-        return readFile2List(file, 0, 0x7FFFFFFF, null);
+    public static List<String> readFileToList(final File file) {
+        return readFileToList(file, 0, 0x7FFFFFFF, null);
     }
 
     /**
@@ -365,8 +365,8 @@ public final class FileIOUtils {
      * @param charsetName The name of charset.
      * @return the lines in file
      */
-    public static List<String> readFile2List(final File file, final String charsetName) {
-        return readFile2List(file, 0, 0x7FFFFFFF, charsetName);
+    public static List<String> readFileToList(final File file, final String charsetName) {
+        return readFileToList(file, 0, 0x7FFFFFFF, charsetName);
     }
 
     /**
@@ -376,8 +376,8 @@ public final class FileIOUtils {
      * @param end The line's index of end.
      * @return the lines in file
      */
-    public static List<String> readFile2List(final String filePath, final int st, final int end) {
-        return readFile2List(getFileByPath(filePath), st, end, null);
+    public static List<String> readFileToList(final String filePath, final int st, final int end) {
+        return readFileToList(getFileByPath(filePath), st, end, null);
     }
 
     /**
@@ -388,8 +388,8 @@ public final class FileIOUtils {
      * @param charsetName The name of charset.
      * @return the lines in file
      */
-    public static List<String> readFile2List(final String filePath, final int st, final int end, final String charsetName) {
-        return readFile2List(getFileByPath(filePath), st, end, charsetName);
+    public static List<String> readFileToList(final String filePath, final int st, final int end, final String charsetName) {
+        return readFileToList(getFileByPath(filePath), st, end, charsetName);
     }
 
     /**
@@ -399,8 +399,8 @@ public final class FileIOUtils {
      * @param end  The line's index of end.
      * @return the lines in file
      */
-    public static List<String> readFile2List(final File file, final int st, final int end) {
-        return readFile2List(file, st, end, null);
+    public static List<String> readFileToList(final File file, final int st, final int end) {
+        return readFileToList(file, st, end, null);
     }
 
     /**
@@ -411,7 +411,7 @@ public final class FileIOUtils {
      * @param charsetName The name of charset.
      * @return the lines in file
      */
-    public static List<String> readFile2List(final File file, final int st, final int end, final String charsetName) {
+    public static List<String> readFileToList(final File file, final int st, final int end, final String charsetName) {
         if (!isFileExists(file)) return null;
         if (st > end) return null;
         BufferedReader reader = null;
@@ -431,7 +431,7 @@ public final class FileIOUtils {
             }
             return list;
         } catch (IOException e) {
-            JCLogUtils.eTag(TAG, e, "readFile2List");
+            JCLogUtils.eTag(TAG, e, "readFileToList");
             return null;
         } finally {
             CloseUtils.closeIO(reader);
@@ -443,8 +443,8 @@ public final class FileIOUtils {
      * @param filePath The path of file.
      * @return the string in file
      */
-    public static String readFile2String(final String filePath) {
-        return readFile2String(getFileByPath(filePath), null);
+    public static String readFileToString(final String filePath) {
+        return readFileToString(getFileByPath(filePath), null);
     }
 
     /**
@@ -453,8 +453,8 @@ public final class FileIOUtils {
      * @param charsetName The name of charset.
      * @return the string in file
      */
-    public static String readFile2String(final String filePath, final String charsetName) {
-        return readFile2String(getFileByPath(filePath), charsetName);
+    public static String readFileToString(final String filePath, final String charsetName) {
+        return readFileToString(getFileByPath(filePath), charsetName);
     }
 
     /**
@@ -462,8 +462,8 @@ public final class FileIOUtils {
      * @param file The file.
      * @return the string in file
      */
-    public static String readFile2String(final File file) {
-        return readFile2String(file, null);
+    public static String readFileToString(final File file) {
+        return readFileToString(file, null);
     }
 
     /**
@@ -472,7 +472,7 @@ public final class FileIOUtils {
      * @param charsetName The name of charset.
      * @return the string in file
      */
-    public static String readFile2String(final File file, final String charsetName) {
+    public static String readFileToString(final File file, final String charsetName) {
         if (!isFileExists(file)) return null;
         BufferedReader reader = null;
         try {
@@ -491,7 +491,7 @@ public final class FileIOUtils {
             }
             return sb.toString();
         } catch (IOException e) {
-            JCLogUtils.eTag(TAG, e, "readFile2String");
+            JCLogUtils.eTag(TAG, e, "readFileToString");
             return null;
         } finally {
             CloseUtils.closeIO(reader);
@@ -503,8 +503,8 @@ public final class FileIOUtils {
      * @param filePath The path of file.
      * @return the bytes in file
      */
-    public static byte[] readFile2BytesByStream(final String filePath) {
-        return readFile2BytesByStream(getFileByPath(filePath));
+    public static byte[] readFileToBytesByStream(final String filePath) {
+        return readFileToBytesByStream(getFileByPath(filePath));
     }
 
     /**
@@ -512,7 +512,7 @@ public final class FileIOUtils {
      * @param file The file.
      * @return the bytes in file
      */
-    public static byte[] readFile2BytesByStream(final File file) {
+    public static byte[] readFileToBytesByStream(final File file) {
         if (!isFileExists(file)) return null;
         FileInputStream fis = null;
         ByteArrayOutputStream os = null;
@@ -526,7 +526,7 @@ public final class FileIOUtils {
             }
             return os.toByteArray();
         } catch (IOException e) {
-            JCLogUtils.eTag(TAG, e, "readFile2BytesByStream");
+            JCLogUtils.eTag(TAG, e, "readFileToBytesByStream");
             return null;
         } finally {
             CloseUtils.closeIO(fis, os);
@@ -538,8 +538,8 @@ public final class FileIOUtils {
      * @param filePath The path of file.
      * @return the bytes in file
      */
-    public static byte[] readFile2BytesByChannel(final String filePath) {
-        return readFile2BytesByChannel(getFileByPath(filePath));
+    public static byte[] readFileToBytesByChannel(final String filePath) {
+        return readFileToBytesByChannel(getFileByPath(filePath));
     }
 
     /**
@@ -547,7 +547,7 @@ public final class FileIOUtils {
      * @param file The file.
      * @return the bytes in file
      */
-    public static byte[] readFile2BytesByChannel(final File file) {
+    public static byte[] readFileToBytesByChannel(final File file) {
         if (!isFileExists(file)) return null;
         FileChannel fc = null;
         try {
@@ -558,7 +558,7 @@ public final class FileIOUtils {
             }
             return byteBuffer.array();
         } catch (IOException e) {
-            JCLogUtils.eTag(TAG, e, "readFile2BytesByChannel");
+            JCLogUtils.eTag(TAG, e, "readFileToBytesByChannel");
             return null;
         } finally {
             CloseUtils.closeIO(fc);
@@ -570,8 +570,8 @@ public final class FileIOUtils {
      * @param filePath The path of file.
      * @return the bytes in file
      */
-    public static byte[] readFile2BytesByMap(final String filePath) {
-        return readFile2BytesByMap(getFileByPath(filePath));
+    public static byte[] readFileToBytesByMap(final String filePath) {
+        return readFileToBytesByMap(getFileByPath(filePath));
     }
 
     /**
@@ -579,7 +579,7 @@ public final class FileIOUtils {
      * @param file The file.
      * @return the bytes in file
      */
-    public static byte[] readFile2BytesByMap(final File file) {
+    public static byte[] readFileToBytesByMap(final File file) {
         if (!isFileExists(file)) return null;
         FileChannel fc = null;
         try {
@@ -590,7 +590,7 @@ public final class FileIOUtils {
             mbb.get(result, 0, size);
             return result;
         } catch (IOException e) {
-            JCLogUtils.eTag(TAG, e, "readFile2BytesByMap");
+            JCLogUtils.eTag(TAG, e, "readFileToBytesByMap");
             return null;
         } finally {
             CloseUtils.closeIO(fc);

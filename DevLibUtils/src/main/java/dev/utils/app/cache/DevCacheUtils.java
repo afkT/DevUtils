@@ -227,7 +227,7 @@ final class DevCacheUtils {
      * @param drawable
      * @return
      */
-    public static Bitmap drawable2Bitmap(Drawable drawable) {
+    public static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable == null) {
             return null;
         }
@@ -246,7 +246,7 @@ final class DevCacheUtils {
             drawable.draw(canvas);
             return bitmap;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "drawable2Bitmap");
+            LogPrintUtils.eTag(TAG, e, "drawableToBitmap");
         }
         return null;
     }
