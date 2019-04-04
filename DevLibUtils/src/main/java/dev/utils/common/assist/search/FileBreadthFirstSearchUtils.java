@@ -251,7 +251,7 @@ public final class FileBreadthFirstSearchUtils {
      * 搜索目录
      * @param path 根目录地址
      */
-    public synchronized void query(String path) {
+    public synchronized void query(final String path) {
         if (mIsRunning) {
            return;
         }

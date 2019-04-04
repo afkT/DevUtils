@@ -11,7 +11,7 @@ import dev.utils.JCLogUtils;
  */
 public final class ColorUtils {
 
-    private ColorUtils(){
+    private ColorUtils() {
     }
 
     // 日志 TAG
@@ -93,12 +93,12 @@ public final class ColorUtils {
      * @param alpha 0-255
      * @return
      */
-    public static String toHexAlpha(int alpha){
+    public static String toHexAlpha(int alpha) {
         try {
             if (alpha >= 0 && alpha <= 255) {
                 return Integer.toHexString(alpha);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toHexAlpha");
         }
         return null;

@@ -424,7 +424,7 @@ public final class DateUtils {
 	 * @param time
 	 * @return
 	 */
-	public static String convertTime(int time){
+	public static String convertTime(int time) {
 		return convertTime(time, true);
 	}
 
@@ -886,7 +886,7 @@ public final class DateUtils {
 	 * precision = 5，return 天, 小时, 分钟, 秒, 毫秒
 	 * @return fit time span
 	 */
-	public static String millis2FitTimeSpan(long millis, int precision) {
+	public static String millisFitTimeSpan(long millis, int precision) {
 		if (millis <= 0 || precision <= 0) return null;
 		StringBuilder sb = new StringBuilder();
 		String[] units = {"天", "小时", "分钟", "秒", "毫秒"};
@@ -907,7 +907,7 @@ public final class DateUtils {
 	 * @param millis
 	 * @return int[5] { 天, 小时, 分钟, 秒, 毫秒}
 	 */
-	public static int[] millis2TimeArys(long millis) {
+	public static int[] millisToTimeArys(long millis) {
 		if (millis <= 0) return null;
 		int[] timeArys = new int[5];
 		int[] unitLen = { 86400000, 3600000, 60000, 1000, 1 };
@@ -1121,15 +1121,15 @@ public final class DateUtils {
 	/**
 	 * 字符串 转 int
 	 * @param str
-	 * @param dfValue
+	 * @param defaultValue
 	 * @return
 	 */
-	private static int toInt(String str, int dfValue) {
+	private static int toInt(String str, int defaultValue) {
 		try {
 			return Integer.parseInt(str);
 		} catch (Exception e) {
 			JCLogUtils.eTag(TAG, e, "toInt");
 		}
-		return dfValue;
+		return defaultValue;
 	}
 }

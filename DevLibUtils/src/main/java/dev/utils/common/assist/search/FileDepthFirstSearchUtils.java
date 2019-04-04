@@ -168,7 +168,7 @@ public final class FileDepthFirstSearchUtils {
      * @param path 根目录地址
      * @param isRelation 是否关联到 Child List
      */
-    public synchronized void query(String path, final boolean isRelation) {
+    public synchronized void query(final String path, final boolean isRelation) {
         if (mIsRunning) {
             return;
         }

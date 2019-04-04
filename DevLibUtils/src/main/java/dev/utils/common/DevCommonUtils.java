@@ -8,7 +8,7 @@ import java.util.Set;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 开发常用方法 - 工具类
+ * detail: 开发常用方法工具类
  * Created by Ttt
  */
 public final class DevCommonUtils {
@@ -18,9 +18,9 @@ public final class DevCommonUtils {
 
     // 日志 TAG
     private static final String TAG = DevCommonUtils.class.getSimpleName();
-    /** 换行字符串 */
+    // 换行字符串
     public static final String NEW_LINE_STR = System.getProperty("line.separator");
-    /** 换行字符串 - 两行 */
+    // 换行字符串 - 两行
     public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
     /**
@@ -133,14 +133,14 @@ public final class DevCommonUtils {
 
     /**
      * 判断是否网络资源
-     * @param resPath 资源地址
+     * @param str 资源地址字符串
      * @return
      */
-    public static boolean isHttpRes(String resPath) {
-        if (!isEmpty(resPath)) {
+    public static boolean isHttpRes(String str) {
+        if (!isEmpty(str)) {
             // 属于第一位开始, 才是属于网络资源
-            if (resPath.toLowerCase().startsWith("http:") ||
-                    resPath.toLowerCase().startsWith("https:")) {
+            if (str.toLowerCase().startsWith("http:") ||
+                    str.toLowerCase().startsWith("https:")) {
                 return true;
             }
         }
@@ -163,29 +163,46 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 获取空格
+     * 追加空格
      * @param number 空格数量
      * @return
      */
-    public static String getSpace(int number) {
+    public static String appendSpace(int number) {
         StringBuffer buffer = new StringBuffer();
-        // 循环空格
-        for (int i = 0; i < number; i++) {
-            buffer.append(" ");
+        if (number > 0) {
+            for (int i = 0; i < number; i++) {
+                buffer.append(" ");
+            }
         }
         return buffer.toString();
     }
 
     /**
-     * 获取 Tab
+     * 追加 Tab
      * @param number tab 键数量
      * @return
      */
-    public static String getTab(int number) {
+    public static String appendTab(int number) {
         StringBuffer buffer = new StringBuffer();
-        // 循环空格
-        for (int i = 0; i < number; i++) {
-            buffer.append("\t");
+        if (number > 0) {
+            for (int i = 0; i < number; i++) {
+                buffer.append("\t");
+            }
+        }
+        return buffer.toString();
+    }
+
+    /**
+     * 追加 换行
+     * @param number tab 键数量
+     * @return
+     */
+    public static String appendLine(int number) {
+        StringBuffer buffer = new StringBuffer();
+        if (number > 0) {
+            for (int i = 0; i < number; i++) {
+                buffer.append(NEW_LINE_STR);
+            }
         }
         return buffer.toString();
     }
@@ -237,32 +254,32 @@ public final class DevCommonUtils {
 
     /**
      * 判断是否为null to Object
-     * @param obj
+     * @param object
      * @return
      */
-    public static boolean isEmpty(Object obj) {
-        if (obj != null) {
+    public static boolean isEmpty(Object object) {
+        if (object != null) {
             // 判断是否属于基本类型数组
-            if (obj.getClass().isArray()) {
+            if (object.getClass().isArray()) {
                 try {
-                    Class<?> clazz = obj.getClass();
+                    Class<?> clazz = object.getClass();
                     // == 基本数据类型 ==
                     if (clazz.isAssignableFrom(int[].class)) {
-                        return (((int[]) obj).length == 0);
+                        return (((int[]) object).length == 0);
                     } else if (clazz.isAssignableFrom(boolean[].class)) {
-                        return (((boolean[]) obj).length == 0);
+                        return (((boolean[]) object).length == 0);
                     } else if (clazz.isAssignableFrom(long[].class)) {
-                        return (((long[]) obj).length == 0);
+                        return (((long[]) object).length == 0);
                     } else if (clazz.isAssignableFrom(double[].class)) {
-                        return (((double[]) obj).length == 0);
+                        return (((double[]) object).length == 0);
                     } else if (clazz.isAssignableFrom(float[].class)) {
-                        return (((float[]) obj).length == 0);
+                        return (((float[]) object).length == 0);
                     } else if (clazz.isAssignableFrom(byte[].class)) {
-                        return (((byte[]) obj).length == 0);
+                        return (((byte[]) object).length == 0);
                     } else if (clazz.isAssignableFrom(char[].class)) {
-                        return (((char[]) obj).length == 0);
+                        return (((char[]) object).length == 0);
                     } else if (clazz.isAssignableFrom(short[].class)) {
-                        return (((short[]) obj).length == 0);
+                        return (((short[]) object).length == 0);
                     }
                 } catch (Exception e) {
                 }
@@ -274,12 +291,12 @@ public final class DevCommonUtils {
 
     /**
      * 判断是否为null to 数组
-     * @param objs
+     * @param objects
      * @return
      */
-    public static boolean isEmpty(Object[] objs) {
-        if (objs != null) {
-            return (objs.length == 0);
+    public static boolean isEmpty(Object[] objects) {
+        if (objects != null) {
+            return (objects.length == 0);
         }
         return true;
     }
@@ -359,11 +376,11 @@ public final class DevCommonUtils {
 
     /**
      * 获取数组长度
-     * @param objs
+     * @param objects
      * @return
      */
-    public static int length(Object[] objs) {
-        return length(objs, 0);
+    public static int length(Object[] objects) {
+        return length(objects, 0);
     }
 
     /**
@@ -407,79 +424,79 @@ public final class DevCommonUtils {
     /**
      * 获取字符串长度
      * @param str
-     * @param dfLength
+     * @param defaultLength
      * @return
      */
-    public static int length(String str, int dfLength) {
+    public static int length(String str, int defaultLength) {
         if (str != null) {
             return str.length();
         }
-        return dfLength;
+        return defaultLength;
     }
 
     /**
      * 获取数组长度
-     * @param objs
-     * @param dfLength
+     * @param objects
+     * @param defaultLength
      * @return
      */
-    public static int length(Object[] objs, int dfLength) {
-        if (objs != null) {
-            return objs.length;
+    public static int length(Object[] objects, int defaultLength) {
+        if (objects != null) {
+            return objects.length;
         }
-        return dfLength;
+        return defaultLength;
     }
 
     /**
      * 获取长度 to List
      * @param list
-     * @param dfLength
+     * @param defaultLength
      * @return
      */
-    public static int length(List list, int dfLength) {
+    public static int length(List list, int defaultLength) {
         if (list != null) {
             return list.size();
         }
-        return dfLength;
+        return defaultLength;
     }
 
     /**
      * 获取长度 to Map
      * @param map
-     * @param dfLength
+     * @param defaultLength
      * @return
      */
-    public static int length(Map map, int dfLength) {
+    public static int length(Map map, int defaultLength) {
         if (map != null) {
             return map.size();
         }
-        return dfLength;
+        return defaultLength;
     }
 
     /**
      * 获取长度 to Set
      * @param set
-     * @param dfLength
+     * @param defaultLength
      * @return
      */
-    public static int length(Set set, int dfLength) {
+    public static int length(Set set, int defaultLength) {
         if (set != null) {
             return set.size();
         }
-        return dfLength;
+        return defaultLength;
     }
 
     /**
      * 获取长度 to Queue
      * @param queue
-     * @param dfLength
+     * @param defaultLength
      * @return
      */
-    public static int length(Queue queue, int dfLength) {
+    public static int length(Queue queue, int defaultLength) {
         if (queue != null) {
             return queue.size();
         }
-        return dfLength;
+        return defaultLength;
     }
 
     // ==
@@ -496,14 +513,14 @@ public final class DevCommonUtils {
     /**
      * 获取可变数组长度
      * @param args
-     * @param dfLength
+     * @param defaultLength
      * @return
      */
-    public static int lengthObjsDf(int dfLength, Object... args) {
+    public static int lengthObjsDf(int defaultLength, Object... args) {
         if (args != null) {
             return args.length;
         }
-        return dfLength;
+        return defaultLength;
     }
 
     // ===
@@ -520,12 +537,12 @@ public final class DevCommonUtils {
 
     /**
      * 获取数组长度 是否等于 期望长度
-     * @param objs
+     * @param objects
      * @param length
      * @return
      */
-    public static boolean isLength(Object[] objs, int length) {
-        return objs != null && objs.length == length;
+    public static boolean isLength(Object[] objects, int length) {
+        return objects != null && objects.length == length;
     }
 
     /**
@@ -889,25 +906,25 @@ public final class DevCommonUtils {
 
     /**
      * 检查字符串,如果为null,返回 默认字符串
-     * @param dfStr
+     * @param defaultStr
      * @param str
      * @return
      */
-    public static String toCheckValue(String dfStr, String str) {
-        return isEmpty(str) ? dfStr : str;
+    public static String toCheckValue(String defaultStr, String str) {
+        return isEmpty(str) ? defaultStr : str;
     }
 
     /**
      * 单独检查两个值,减少循环，不直接调用toCheckValues
-     * @param dfStr
+     * @param defaultStr
      * @param value1
      * @param value2
      * @return
      */
-    public static String toCheckValue(String dfStr, String value1, String value2) {
+    public static String toCheckValue(String defaultStr, String value1, String value2) {
         if (isEmpty(value1)) {
             if (isEmpty(value2)) {
-                return dfStr;
+                return defaultStr;
             } else {
                 return value2;
             }
@@ -918,17 +935,17 @@ public final class DevCommonUtils {
 
     /**
      * 检查多个值,并返回第一个非null and "" 的字符串,如果都不符合条件，则返回默认值
-     * @param dfStr
+     * @param defaultStr
      * @param params
      * @return
      */
-    public static String toCheckValues(String dfStr, String... params) {
+    public static String toCheckValues(String defaultStr, String... params) {
         if (params != null && params.length != 0) {
             for (int i = 0, len = params.length; i < len; i++) {
                 String param = params[i];
                 if (isEmpty(param)) {
                     if (i == len - 1) {
-                        return dfStr; // 属于最后一个,则返回默认值
+                        return defaultStr; // 属于最后一个,则返回默认值
                     } else {
                         continue; // 不属于最后一个则跳过
                     }
@@ -937,23 +954,23 @@ public final class DevCommonUtils {
                 }
             }
         }
-        return dfStr;
+        return defaultStr;
     }
 
     /**
      * 检查多个值,并返回第一个非null and "" and 全部不是属于空格 的字符串,如果都不符合条件，则返回默认值
-     * @param dfStr
+     * @param defaultStr
      * @param params
      * @return
      */
-    public static String toCheckValuesSpace(String dfStr, String... params) {
+    public static String toCheckValuesSpace(String defaultStr, String... params) {
         if (params != null && params.length != 0) {
             for (int i = 0, len = params.length; i < len; i++) {
                 // 处理后,进行返回 => 删除前后空格
                 String param = toClearSpaceTrim(params[i]);
                 if (isEmpty(param)) {
                     if (i == len - 1) {
-                        return dfStr; // 属于最后一个,则返回默认值
+                        return defaultStr; // 属于最后一个,则返回默认值
                     } else {
                         continue; // 不属于最后一个则跳过
                     }
@@ -962,7 +979,7 @@ public final class DevCommonUtils {
                 }
             }
         }
-        return dfStr;
+        return defaultStr;
     }
 
     /**
