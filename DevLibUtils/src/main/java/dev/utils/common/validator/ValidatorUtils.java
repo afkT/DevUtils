@@ -100,6 +100,18 @@ public final class ValidatorUtils {
     }
 
     /**
+     * 判断字符串是不是包含数字
+     * @param str
+     * @return
+     */
+    public static boolean isContainNumber(String str) {
+        if (!isEmpty(str)) {
+            return match(".*\\d+.*", str);
+        }
+        return false;
+    }
+
+    /**
      * 判断字符串是不是只含字母和数字
      * @param str
      * @return
