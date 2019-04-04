@@ -6,87 +6,103 @@ import java.util.Locale;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 颜色工具类 包括常用的色值
+ * detail: 颜色工具类(包括常用的色值)
  * Created by Ttt
  */
 public final class ColorUtils {
 
-    private ColorUtils() {
+    private ColorUtils(){
     }
 
     // 日志 TAG
     private static final String TAG = ColorUtils.class.getSimpleName();
 
+    // 透明
+    public static final int TRANSPARENT = 0x00000000;
+    // 白色
+    public static final int WHITE = 0xffffffff;
+    // 白色 - 半透明
+    public static final int WHITE_TRANSLUCENT = 0x80ffffff;
+    // 黑色
+    public static final int BLACK = 0xff000000;
+    // 黑色 - 半透明
+    public static final int BLACK_TRANSLUCENT = 0x80000000;
+    // 红色
+    public static final int RED = 0xffff0000;
+    // 红色 - 半透明
+    public static final int RED_TRANSLUCENT = 0x80ff0000;
+    // 绿色
+    public static final int GREEN = 0xff00ff00;
+    // 绿色 - 半透明
+    public static final int GREEN_TRANSLUCENT = 0x8000ff00;
+    // 蓝色
+    public static final int BLUE = 0xff0000ff;
+    // 蓝色 - 半透明
+    public static final int BLUE_TRANSLUCENT = 0x800000ff;
+    // 灰色
+    public static final int GRAY = 0xff969696;
+    // 灰色 - 半透明
+    public static final int GRAY_TRANSLUCENT = 0x80969696;
+    // 天蓝
+    public static final int SKYBLUE = 0xff87ceeb;
+    // 橙色
+    public static final int ORANGE = 0xffffa500;
+    // 金色
+    public static final int GOLD = 0xffffd700;
+    // 粉色
+    public static final int PINK = 0xffffc0cb;
+    // 紫红色
+    public static final int FUCHSIA = 0xffff00ff;
+    // 灰白色
+    public static final int GRAYWHITE = 0xfff2f2f2;
+    // 紫色
+    public static final int PURPLE = 0xff800080;
+    // 青色
+    public static final int CYAN = 0xff00ffff;
+    // 黄色
+    public static final int YELLOW = 0xffffff00;
+    // 巧克力色
+    public static final int CHOCOLATE = 0xffd2691e;
+    // 番茄色
+    public static final int TOMATO = 0xffff6347;
+    // 橙红色
+    public static final int ORANGERED = 0xffff4500;
+    // 银白色
+    public static final int SILVER = 0xffc0c0c0;
+    // 深灰色
+    public static final int DKGRAY = 0xFF444444;
+    // 亮灰色
+    public static final int LTGRAY = 0xFFCCCCCC;
+    // 洋红色
+    public static final int MAGENTA = 0xFFFF00FF;
+    // 高光
+    public static final int HIGHLIGHT = 0x33ffffff;
+    // 低光
+    public static final int LOWLIGHT = 0x33000000;
+
     /**
-     * 0-255 十进值转换成十六进制，如255 就是 ff
+     * 0-255 十进值转换成十六进制，如 255 就是 ff
      * 255 * 0.x = 十进制 -> 十六进制
      * ============
      * 透明度0-100
      * 00、19、33、4C、66、7F、99、B2、CC、E5、FF
      */
 
-    /** 透明 */
-    public static final int TRANSPARENT = 0x00000000;
-    /** 白色 */
-    public static final int WHITE = 0xffffffff;
-    /** 白色 - 半透明 */
-    public static final int WHITE_TRANSLUCENT = 0x80ffffff;
-    /** 黑色 */
-    public static final int BLACK = 0xff000000;
-    /** 黑色 - 半透明 */
-    public static final int BLACK_TRANSLUCENT = 0x80000000;
-    /** 红色 */
-    public static final int RED = 0xffff0000;
-    /** 红色 - 半透明 */
-    public static final int RED_TRANSLUCENT = 0x80ff0000;
-    /** 绿色 */
-    public static final int GREEN = 0xff00ff00;
-    /** 绿色 - 半透明 */
-    public static final int GREEN_TRANSLUCENT = 0x8000ff00;
-    /** 蓝色 */
-    public static final int BLUE = 0xff0000ff;
-    /** 蓝色 - 半透明 */
-    public static final int BLUE_TRANSLUCENT = 0x800000ff;
-    /** 灰色 */
-    public static final int GRAY = 0xff969696;
-    /** 灰色 - 半透明 */
-    public static final int GRAY_TRANSLUCENT = 0x80969696;
-    /** 天蓝 */
-    public static final int SKYBLUE = 0xff87ceeb;
-    /** 橙色 */
-    public static final int ORANGE = 0xffffa500;
-    /** 金色 */
-    public static final int GOLD = 0xffffd700;
-    /** 粉色 */
-    public static final int PINK = 0xffffc0cb;
-    /** 紫红色 */
-    public static final int FUCHSIA = 0xffff00ff;
-    /** 灰白色 */
-    public static final int GRAYWHITE = 0xfff2f2f2;
-    /** 紫色 */
-    public static final int PURPLE = 0xff800080;
-    /** 青色 */
-    public static final int CYAN = 0xff00ffff;
-    /** 黄色 */
-    public static final int YELLOW = 0xffffff00;
-    /** 巧克力色 */
-    public static final int CHOCOLATE = 0xffd2691e;
-    /** 番茄色 */
-    public static final int TOMATO = 0xffff6347;
-    /** 橙红色 */
-    public static final int ORANGERED = 0xffff4500;
-    /** 银白色 */
-    public static final int SILVER = 0xffc0c0c0;
-    /** 深灰色 */
-    public static final int DKGRAY = 0xFF444444;
-    /** 亮灰色 */
-    public static final int LTGRAY = 0xFFCCCCCC;
-    /** 洋红色 */
-    public static final int MAGENTA = 0xFFFF00FF;
-    /** 高光 */
-    public static final int HIGHLIGHT = 0x33ffffff;
-    /** 低光 */
-    public static final int LOWLIGHT = 0x33000000;
+    /**
+     * 获取十六进制透明度字符串
+     * @param alpha 0-255
+     * @return
+     */
+    public static String toHexAlpha(int alpha){
+        try {
+            if (alpha >= 0 && alpha <= 255) {
+                return Integer.toHexString(alpha);
+            }
+        } catch (Exception e){
+            JCLogUtils.eTag(TAG, e, "toHexAlpha");
+        }
+        return null;
+    }
 
     // =
 
@@ -388,22 +404,22 @@ public final class ColorUtils {
 
     /**
      * 解析颜色字符串, 返回对应的颜色值
-     * @param colorString
+     * @param colorStr
      * @return
      */
-    private static int priParseColor(String colorString) {
-        if (colorString.charAt(0) == '#') {
+    private static int priParseColor(String colorStr) {
+        if (colorStr.charAt(0) == '#') {
             // Use a long to avoid rollovers on #ffXXXXXX
-            long color = Long.parseLong(colorString.substring(1), 16);
-            if (colorString.length() == 7) {
+            long color = Long.parseLong(colorStr.substring(1), 16);
+            if (colorStr.length() == 7) {
                 // Set the alpha value
                 color |= 0x00000000ff000000;
-            } else if (colorString.length() != 9) {
+            } else if (colorStr.length() != 9) {
                 throw new IllegalArgumentException("Unknown color");
             }
             return (int)color;
         } else {
-            Integer color = sColorNameMap.get(colorString.toLowerCase(Locale.ROOT));
+            Integer color = sColorNameMap.get(colorStr.toLowerCase(Locale.ROOT));
             if (color != null) {
                 return color;
             }
@@ -416,12 +432,11 @@ public final class ColorUtils {
      * 支持的格式:
      * #RRGGBB
      * #AARRGGBB
-     * 'red', 'blue', 'green', 'black', 'white', 'gray', 'cyan', 'magenta',
-     * 'yellow', 'lightgray', 'darkgray'
+     * 'red', 'blue', 'green', 'black', 'white', 'gray', 'cyan', 'magenta', 'yellow', 'lightgray', 'darkgray'
      */
-    public static int parseColor(String colorString) {
+    public static int parseColor(String colorStr) {
         try {
-            return priParseColor(colorString);
+            return priParseColor(colorStr);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "parseColor");
         }
@@ -433,7 +448,7 @@ public final class ColorUtils {
      * @param colorInt
      * @return
      */
-    public static String int2RgbString(int colorInt) {
+    public static String intToRgbString(int colorInt) {
         colorInt = colorInt & 0x00ffffff;
         String colorStr = Integer.toHexString(colorInt);
         while (colorStr.length() < 6) {
@@ -447,7 +462,7 @@ public final class ColorUtils {
      * @param colorInt
      * @return
      */
-    public static String int2ArgbString(int colorInt) {
+    public static String intToArgbString(int colorInt) {
         String colorString = Integer.toHexString(colorInt);
         while (colorString.length() < 6) {
             colorString = "0" + colorString;
@@ -480,13 +495,13 @@ public final class ColorUtils {
 
     /**
      * 判断是否为ARGB格式的十六进制颜色，例如：FF990587
-     * @param str
+     * @param colorStr
      * @return
      */
-    public static boolean judgeColorString(String str) {
-        if (str.length() == 8) {
-            for (int i = 0; i < str.length(); i++) {
-                char cc = str.charAt(i);
+    public static boolean judgeColorString(String colorStr) {
+        if (colorStr != null && colorStr.length() == 8) {
+            for (int i = 0; i < colorStr.length(); i++) {
+                char cc = colorStr.charAt(i);
                 return !(cc != '0' && cc != '1' && cc != '2' && cc != '3' && cc != '4' && cc != '5' && cc != '6' && cc != '7' && cc != '8' && cc != '9' && cc != 'A' && cc != 'B' && cc != 'C' &&
                         cc != 'D' && cc != 'E' && cc != 'F' && cc != 'a' && cc != 'b' && cc != 'c' && cc != 'd' && cc != 'e' && cc != 'f');
             }
@@ -618,7 +633,9 @@ public final class ColorUtils {
 
     // =
 
+    // 颜色字典集合
     private static final HashMap<String, Integer> sColorNameMap;
+
     static {
         sColorNameMap = new HashMap<>();
         sColorNameMap.put("transparent", TRANSPARENT);

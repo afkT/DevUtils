@@ -20,7 +20,11 @@ public final class DateUtils {
     
 	// 日志 TAG
 	private static final String TAG = DateUtils.class.getSimpleName();
-	/** 日期格式类型 */
+
+	// ==================
+	// == 日期格式类型 ==
+	// ==================
+
 	public static final String yyyy = "yyyy";
 	public static final String yyyyMMdd = "yyyy-MM-dd";
 	public static final String yyyyMMdd2 = "yyyyMMdd";
@@ -37,26 +41,26 @@ public final class DateUtils {
 	public static final String hhmmMMDDyyyy = "hh:mm M月d日 yyyy";
 	public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
 
-	/** 一分钟 60秒 */
+	// 一分钟 60秒
 	public static final int MINUTE_S = 60;
-	/** 一小时 60 * 60秒 */
+	// 一小时 60 * 60秒
 	public static final int HOUR_S = 3600;
-	/** 一天 24 * 60 * 60*/
+	// 一天 24 * 60 * 60*/
 	public static final int DAY_S = 86400;
 
-	/** 秒与毫秒的倍数 */
+	// 秒与毫秒的倍数
 	public static final long SEC = 1000;
-	/** 分与毫秒的倍数 */
+	// 分与毫秒的倍数
 	public static final long MIN = SEC * 60;
-	/** 时与毫秒的倍数 */
+	// 时与毫秒的倍数
 	public static final long HOUR = MIN * 60;
-	/** 天与毫秒的倍数 */
+	// 天与毫秒的倍数
 	public static final long DAY = HOUR * 24;
-	/** 周与毫秒的倍数 */
+	// 周与毫秒的倍数
 	public static final long WEEK = DAY * 7;
-	/** 月与毫秒的倍数 */
+	// 月与毫秒的倍数
 	public static final long MONTH = DAY * 30;
-	/** 年与毫秒的倍数 */
+	// 年与毫秒的倍数
 	public static final long YEAR = DAY * 365;
 
 	/**
@@ -81,6 +85,7 @@ public final class DateUtils {
 			DateFormat df = new SimpleDateFormat(format);
 			return df.format(cld.getTime());
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "getDateNow");
 		}
 		return null;
 	}
@@ -97,6 +102,7 @@ public final class DateUtils {
 		try {
 			return new SimpleDateFormat(format).format(time);
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "formatTime");
 		}
 		return null;
 	}
@@ -111,6 +117,7 @@ public final class DateUtils {
 		try {
 			return new SimpleDateFormat(format).format(date);
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "formatDate");
 		}
 		return null;
 	}
@@ -251,13 +258,13 @@ public final class DateUtils {
 
 	/**
 	 * 获取时间差
-	 * @param timeVal1
-	 * @param timeVal2
+	 * @param timeStr1
+	 * @param timeStr2
 	 * @return
 	 */
-	public static long getTimeDiff(String timeVal1, String timeVal2) {
-		long time1 = parseLong(timeVal1);
-		long time2 = parseLong(timeVal2);
+	public static long getTimeDiff(String timeStr1, String timeStr2) {
+		long time1 = parseLong(timeStr1);
+		long time2 = parseLong(timeStr2);
 		if (time1 > 1l && time2 > 1l) {
 			return time1 - time2;
 		}
@@ -266,28 +273,20 @@ public final class DateUtils {
 
 	/**
 	 * 获取时间差
-	 * @param timeVal1
+	 * @param timeStr1
 	 * @param timeFormat1
-	 * @param timeVal2
+	 * @param timeStr2
 	 * @param timeFormat2
 	 * @return
 	 */
-	public static long getTimeDiff(String timeVal1, String timeFormat1, String timeVal2, String timeFormat2) {
-		long time1 = parseLong(timeVal1, timeFormat1);
-		long time2 = parseLong(timeVal2, timeFormat2);
+	public static long getTimeDiff(String timeStr1, String timeFormat1, String timeStr2, String timeFormat2) {
+		long time1 = parseLong(timeStr1, timeFormat1);
+		long time2 = parseLong(timeStr2, timeFormat2);
 		if (time1 > 1l && time2 > 1l) {
 			return time1 - time2;
 		}
 		return -2l;
 	}
-
-//	System.out.println("现在时间: " + getDateNow());
-//	String startTimeStr = "2017-11-27 14:45:00";
-//	System.out.println("开始时间: " + startTimeStr);
-//	long startTimeL = DateUtils.parseLong(startTimeStr);
-//	System.out.println("转换long: " + startTimeL);
-//	long timeDiff = startTimeL - System.currentTimeMillis();
-//	System.out.println("时间差: " + timeDiff);
 
 	// ======= 获取时间 =======
 
@@ -302,6 +301,7 @@ public final class DateUtils {
 			cld.setTime(date);
 			return cld.get(Calendar.YEAR);
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "getYear");
 		}
 		return -1;
 	}
@@ -317,6 +317,7 @@ public final class DateUtils {
 			cld.setTime(date);
 			return cld.get(Calendar.MONTH) + 1;
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "getMonth");
 		}
 		return -1;
 	}
@@ -332,6 +333,7 @@ public final class DateUtils {
 			c.setTime(date);
 			return c.get(Calendar.DAY_OF_MONTH);
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "getDay");
 		}
 		return -1;
 	}
@@ -348,6 +350,7 @@ public final class DateUtils {
 			int week = c.get(Calendar.DAY_OF_WEEK);
 			return week;
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "getWeek");
 		}
 		return -1;
 	}
@@ -363,6 +366,7 @@ public final class DateUtils {
 			c.setTime(date);
 			return c.get(Calendar.HOUR_OF_DAY);
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "get24Hour");
 		}
 		return -1;
 	}
@@ -378,6 +382,7 @@ public final class DateUtils {
 			c.setTime(date);
 			return c.get(Calendar.HOUR);
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "get12Hour");
 		}
 		return -1;
 	}
@@ -393,6 +398,7 @@ public final class DateUtils {
 			c.setTime(date);
 			return c.get(Calendar.MINUTE);
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "getMinute");
 		}
 		return -1;
 	}
@@ -408,8 +414,18 @@ public final class DateUtils {
 			c.setTime(date);
 			return c.get(Calendar.SECOND);
 		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "getSecond");
 		}
 		return -1;
+	}
+
+	/**
+	 * 转换时间处理, 小于10, 则自动补充 0x
+	 * @param time
+	 * @return
+	 */
+	public static String convertTime(int time){
+		return convertTime(time, true);
 	}
 
 	/**

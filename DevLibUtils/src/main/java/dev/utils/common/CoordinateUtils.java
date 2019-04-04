@@ -128,6 +128,12 @@ public final class CoordinateUtils {
         return gcj02ToBd09(gcj[0], gcj[1]);
     }
 
+    /**
+     * 转换经度
+     * @param lng
+     * @param lat
+     * @return
+     */
     private static double transformLat(double lng, double lat) {
         double ret = -100.0 + 2.0 * lng + 3.0 * lat + 0.2 * lat * lat + 0.1 * lng * lat + 0.2 * Math.sqrt(Math.abs(lng));
         ret += (20.0 * Math.sin(6.0 * lng * PI) + 20.0 * Math.sin(2.0 * lng * PI)) * 2.0 / 3.0;
@@ -136,6 +142,12 @@ public final class CoordinateUtils {
         return ret;
     }
 
+    /**
+     * 转换纬度
+     * @param lng
+     * @param lat
+     * @return
+     */
     private static double transformLng(double lng, double lat) {
         double ret = 300.0 + lng + 2.0 * lat + 0.1 * lng * lng + 0.1 * lng * lat + 0.1 * Math.sqrt(Math.abs(lng));
         ret += (20.0 * Math.sin(6.0 * lng * PI) + 20.0 * Math.sin(2.0 * lng * PI)) * 2.0 / 3.0;
@@ -144,6 +156,12 @@ public final class CoordinateUtils {
         return ret;
     }
 
+    /**
+     * 判断是否中国境外
+     * @param lng
+     * @param lat
+     * @return
+     */
     private static boolean outOfChina(double lng, double lat) {
         return lng < 72.004 || lng > 137.8347 || lat < 0.8293 || lat > 55.8271;
     }

@@ -95,7 +95,7 @@ public final class ClassUtils {
     // =
 
     /**
-     * 获取父类 泛型类型
+     * 获取父类泛型类型
      * @param object
      * @return
      */
@@ -104,7 +104,7 @@ public final class ClassUtils {
     }
 
     /**
-     * 获取父类 泛型类型
+     * 获取父类泛型类型
      * @param object
      * @param pos 泛型参数位置
      * @return
@@ -119,7 +119,7 @@ public final class ClassUtils {
     // =
 
     /**
-     * 获取父类 泛型类型
+     * 获取父类泛型类型
      * @param clazz
      * @return
      */
@@ -128,7 +128,7 @@ public final class ClassUtils {
     }
 
     /**
-     * 获取父类 泛型类型
+     * 获取父类泛型类型
      * @param clazz
      * @param pos 泛型参数位置
      * @return

@@ -13,7 +13,7 @@ import java.util.Map;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 克隆相关工具类
+ * detail: 克隆工具类
  * Created by Ttt
  */
 public final class CloneUtils {
@@ -32,7 +32,7 @@ public final class CloneUtils {
      */
     public static <T> T deepClone(final Serializable data) {
         if (data == null) return null;
-        return (T) bytes2Object(serializable2Bytes(data));
+        return (T) bytesToObject(serializableToBytes(data));
     }
 
     /**
@@ -40,7 +40,7 @@ public final class CloneUtils {
      * @param serializable
      * @return
      */
-    private static byte[] serializable2Bytes(final Serializable serializable) {
+    public static byte[] serializableToBytes(final Serializable serializable) {
         if (serializable == null) return null;
         ByteArrayOutputStream baos;
         ObjectOutputStream oos = null;
@@ -66,7 +66,7 @@ public final class CloneUtils {
      * @param bytes
      * @return
      */
-    private static Object bytes2Object(final byte[] bytes) {
+    public static Object bytesToObject(final byte[] bytes) {
         if (bytes == null) return null;
         ObjectInputStream ois = null;
         try {
@@ -94,7 +94,7 @@ public final class CloneUtils {
      * @param <K>
      * @param <V>
      */
-    public static <K, V> void deepClone(Map<K, V> map, Map<K, V> datas) {
+    public static <K, V> void deepClone(final Map<K, V> map, final Map<K, V> datas) {
         if (map != null && datas != null && datas.size() > 0) {
             Iterator<Map.Entry<K, V>> iterator = datas.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -103,12 +103,13 @@ public final class CloneUtils {
                     // 获取 key
                     K key = entry.getKey();
                     // 克隆对象
-                    V cloneObj = (V) bytes2Object(serializable2Bytes((Serializable) entry.getValue()));
+                    V cloneObj = (V) bytesToObject(serializableToBytes((Serializable) entry.getValue()));
                     if (cloneObj != null) {
                         // 保存到集合
                         map.put(key, cloneObj);
                     }
                 } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "deepClone");
                 }
             }
         }
@@ -120,17 +121,18 @@ public final class CloneUtils {
      * @param datas 需要克隆的数据源
      * @param <T>
      */
-    public static <T> void deepClone(Collection<T> collection, Collection<T> datas) {
+    public static <T> void deepClone(final Collection<T> collection, final Collection<T> datas) {
         if (collection != null && datas != null && datas.size() > 0) {
             Iterator<T> iterator = datas.iterator();
             while (iterator.hasNext()) {
                 try {
                     // 克隆对象
-                    T cloneObj = (T) bytes2Object(serializable2Bytes((Serializable) iterator.next()));
+                    T cloneObj = (T) bytesToObject(serializableToBytes((Serializable) iterator.next()));
                     if (cloneObj != null) {
                         collection.add(cloneObj);
                     }
                 } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "deepClone");
                 }
             }
         }

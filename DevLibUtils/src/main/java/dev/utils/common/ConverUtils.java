@@ -16,141 +16,145 @@ public final class ConverUtils {
     // 日志 TAG
     private static final String TAG = ConverUtils.class.getSimpleName();
 
-    // byte是字节数据类型、有符号型的、占1个字节、大小范围为-128——127
-    // char是字符数据类型、无符号型的、占2个字节(unicode码)、大小范围为0-65535
+    // byte 是字节数据类型、有符号型的、占1个字节、大小范围为-128——127
+    // char 是字符数据类型、无符号型的、占2个字节(unicode码)、大小范围为0-65535
 
     // byte[] (-128) - 127
     // 当大于127时则开始缩进  127 = 127, 128 = -128 , 129 = -127
 
     /**
      * char 数组 转 String
-     * @param chars
-     * @param dfStr
+     * @param data
+     * @param defaultStr
      * @return
      */
-    public static String toString(char[] chars, String dfStr) {
-        if (chars != null) {
+    public static String toString(char[] data, String defaultStr) {
+        if (data != null) {
             try {
-                return new String(chars);
+                return new String(data);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toString");
             }
         }
-        return dfStr;
+        return defaultStr;
     }
 
     /**
      * byte 数组 转 String
-     * @param bytes
-     * @param dfStr
+     * @param data
+     * @param defaultStr
      * @return
      */
-    public static String toString(byte[] bytes, String dfStr) {
-        if (bytes != null) {
+    public static String toString(byte[] data, String defaultStr) {
+        if (data != null) {
             try {
-                return new String(bytes);
+                return new String(data);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toString");
             }
         }
-        return dfStr;
+        return defaultStr;
     }
 
     /**
      * char 转 String
-     * @param val
+     * @param data
      * @return
-     * --
+     * ==
      * 97 - 122 = a-z, 48-57 = 0-9
      * toString((char) 97); = a
      */
-    public static String toString(char val) {
-        return Character.toString(val);
+    public static String toString(char data) {
+        try {
+            return Character.toString(data);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toString");
+        }
+        return null;
     }
 
     /**
      * Object 转 String
-     * @param obj
+     * @param object
      * @return
      */
-    public static String toString(Object obj, String dfStr) {
-        if (obj != null) {
-            // return (obj instanceof String ? (String) obj : obj.toString());
+    public static String toString(Object object, String defaultStr) {
+        if (object != null) {
             try {
-                if (obj instanceof String) {
-                    return (String) obj;
+                if (object instanceof String) {
+                    return (String) object;
                 } else {
-                    Class<?> clazz = obj.getClass();
+                    Class<?> clazz = object.getClass();
                     // 判断是否数组类型
                     if (clazz.isArray()) {
                         // == 基本数据类型 ==
                         if (clazz.isAssignableFrom(int[].class)) {
-                            return Arrays.toString((int[]) obj);
+                            return Arrays.toString((int[]) object);
                         } else if (clazz.isAssignableFrom(boolean[].class)) {
-                            return Arrays.toString((boolean[]) obj);
+                            return Arrays.toString((boolean[]) object);
                         } else if (clazz.isAssignableFrom(long[].class)) {
-                            return Arrays.toString((long[]) obj);
+                            return Arrays.toString((long[]) object);
                         } else if (clazz.isAssignableFrom(double[].class)) {
-                            return Arrays.toString((double[]) obj);
+                            return Arrays.toString((double[]) object);
                         } else if (clazz.isAssignableFrom(float[].class)) {
-                            return Arrays.toString((float[]) obj);
+                            return Arrays.toString((float[]) object);
                         } else if (clazz.isAssignableFrom(byte[].class)) {
-                            return Arrays.toString((byte[]) obj);
+                            return Arrays.toString((byte[]) object);
                         } else if (clazz.isAssignableFrom(char[].class)) {
-                            return Arrays.toString((char[]) obj);
+                            return Arrays.toString((char[]) object);
                         } else if (clazz.isAssignableFrom(short[].class)) {
-                            return Arrays.toString((short[]) obj);
+                            return Arrays.toString((short[]) object);
                         }
                         // == 基本类型封装 ==
                         if (clazz.isAssignableFrom(Integer[].class)) {
-                            return Arrays.toString((Integer[]) obj);
+                            return Arrays.toString((Integer[]) object);
                         } else if (clazz.isAssignableFrom(Boolean[].class)) {
-                            return Arrays.toString((Boolean[]) obj);
+                            return Arrays.toString((Boolean[]) object);
                         } else if (clazz.isAssignableFrom(Long[].class)) {
-                            return Arrays.toString((Long[]) obj);
+                            return Arrays.toString((Long[]) object);
                         } else if (clazz.isAssignableFrom(Double[].class)) {
-                            return Arrays.toString((Double[]) obj);
+                            return Arrays.toString((Double[]) object);
                         } else if (clazz.isAssignableFrom(Float[].class)) {
-                            return Arrays.toString((Float[]) obj);
+                            return Arrays.toString((Float[]) object);
                         } else if (clazz.isAssignableFrom(Byte[].class)) {
-                            return Arrays.toString((Byte[]) obj);
+                            return Arrays.toString((Byte[]) object);
                         } else if (clazz.isAssignableFrom(Character[].class)) {
-                            return Arrays.toString((Character[]) obj);
+                            return Arrays.toString((Character[]) object);
                         } else if (clazz.isAssignableFrom(Short[].class)) {
-                            return Arrays.toString((Short[]) obj);
+                            return Arrays.toString((Short[]) object);
                         }
                     }
-                    return obj.toString();
+                    return object.toString();
                 }
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toString");
             }
         }
-        return dfStr;
+        return defaultStr;
     }
 
     /**
      * 字符串 转 int
      * @param str
-     * @param dfValue
+     * @param defaultValue
      * @return
      */
-    public static int toInt(String str, int dfValue) {
+    public static int toInt(String str, int defaultValue) {
         try {
             return Integer.parseInt(str);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toInt");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     /**
      * 字符串 转 boolean
      * @param str
-     * @param dfValue
+     * @param defaultValue
      * @return
      */
-    public static boolean toBoolean(String str, boolean dfValue) {
+    public static boolean toBoolean(String str, boolean defaultValue) {
         try {
             // 判断是否0
             if (str.equalsIgnoreCase("true") || str.equalsIgnoreCase("1")) {
@@ -161,171 +165,171 @@ public final class ConverUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toBoolean");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     /**
      * 字符串 转 float
      * @param str
-     * @param dfValue
+     * @param defaultValue
      * @return
      */
-    public static float toFloat(String str, float dfValue) {
+    public static float toFloat(String str, float defaultValue) {
         try {
             return Float.parseFloat(str);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toFloat");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     /**
      * 字符串 转 double
      * @param str
-     * @param dfValue
+     * @param defaultValue
      * @return
      */
-    public static double toDouble(String str, double dfValue) {
+    public static double toDouble(String str, double defaultValue) {
         try {
             return Double.parseDouble(str);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toDouble");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     /**
      * 字符串 转 long
      * @param str
-     * @param dfValue
+     * @param defaultValue
      * @return
      */
-    public static long toLong(String str, long dfValue) {
+    public static long toLong(String str, long defaultValue) {
         try {
             return Long.parseLong(str);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toLong");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     // == 转换对象 ==
 
     /**
      * 基本类型对象 转 int
-     * @param val
-     * @param dfValue
+     * @param value
+     * @param defaultValue
      * @return
      */
-    public static int toInt(Integer val, int dfValue) {
+    public static int toInt(Integer value, int defaultValue) {
         try {
-            return val;
+            return value;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toInt");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     /**
      * 基本类型对象 转 boolean
-     * @param val
+     * @param value
      * @return
      */
-    public static boolean toBoolean(Boolean val) {
-        return (val != null && val);
+    public static boolean toBoolean(Boolean value) {
+        return (value != null && value);
     }
 
     /**
      * 基本类型对象 转 float
-     * @param val
-     * @param dfValue
+     * @param value
+     * @param defaultValue
      * @return
      */
-    public static float toFloat(Float val, float dfValue) {
+    public static float toFloat(Float value, float defaultValue) {
         try {
-            return val;
+            return value;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toFloat");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     /**
      * 基本类型对象 转 double
-     * @param val
-     * @param dfValue
+     * @param value
+     * @param defaultValue
      * @return
      */
-    public static double toDouble(Double val, double dfValue) {
+    public static double toDouble(Double value, double defaultValue) {
         try {
-            return val;
+            return value;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toDouble");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     /**
      * 基本类型对象 转 long
-     * @param val
-     * @param dfValue
+     * @param value
+     * @param defaultValue
      * @return
      */
-    public static long toLong(Long val, long dfValue) {
+    public static long toLong(Long value, long defaultValue) {
         try {
-            return val;
+            return value;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toLong");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     // == 平常其他 ==
 
     /**
      * char 转换 int
-     * @param val
+     * @param value
      * @return
      */
-    public static int toInt(char val) {
-        return (int) val;
+    public static int toInt(char value) {
+        return (int) value;
     }
 
     /**
-     * 字符串 获取 char(默认第一位)
+     * 字符串 获取 char (默认第一位)
      * @param str
-     * @param dfValue
+     * @param defaultValue
      * @return
      */
-    public static char toChar(String str, char dfValue) {
-        return toChar(str, 0, dfValue);
+    public static char toChar(String str, char defaultValue) {
+        return toChar(str, 0, defaultValue);
     }
 
     /**
      * 字符串 获取 char
      * @param str
      * @param pos
-     * @param dfValue
+     * @param defaultValue
      * @return
      */
-    public static char toChar(String str, int pos, char dfValue) {
+    public static char toChar(String str, int pos, char defaultValue) {
         try {
             return str.charAt(pos);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toChar");
         }
-        return dfValue;
+        return defaultValue;
     }
 
     /**
      * char 转换 unicode 编码
-     * @param val
+     * @param value
      * @return
      * --
      * toCharInt('a') = 97
      */
-    public static int toCharInt(char val) {
-        return (int) val;
+    public static int toCharInt(char value) {
+        return (int) value;
     }
 
     /**
@@ -370,54 +374,79 @@ public final class ConverUtils {
 
     /**
      * 一个 int 参数的字符串表示形式在基数为16的无符号 int
-     * @param val
+     * @param value
      * @return
      * --
      * 例如 -> 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
      */
-    public static String toHexString(int val) {
-        return Integer.toHexString(val);
+    public static String toHexString(int value) {
+        try {
+            return Integer.toHexString(value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
+        }
+        return null;
     }
 
     /**
      * 一个 long 参数的字符串表示形式在基数为16的无符号 long
-     * @param val
+     * @param value
      * @return
      */
-    public static String toHexString(long val) {
-        return Long.toHexString(val);
+    public static String toHexString(long value) {
+        try {
+            return Long.toHexString(value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
+        }
+        return null;
     }
 
     /**
      * 一个 double 参数的字符串表示形式在基数为16的无符号 double
-     * @param val
+     * @param value
      * @return
      */
-    public static String toHexString(double val) {
-        return Double.toHexString(val);
+    public static String toHexString(double value) {
+        try {
+            return Double.toHexString(value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
+        }
+        return null;
     }
 
     /**
      * 一个 float 参数的字符串表示形式在基数为16的无符号 float
-     * @param val
+     * @param value
      * @return
      */
-    public static String toHexString(float val) {
-        return Float.toHexString(val);
+    public static String toHexString(float value) {
+        try {
+            return Float.toHexString(value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
+        }
+        return null;
     }
 
     // --
 
     /**
      * 字符串转换对应的进制
-     * @param s
+     * @param str
      * @param radix
      * @return
-     * --
+     * ==
      * 如: parseInt("1f603", 16) = 128515
      */
-    public static int parseInt(String s, int radix) {
-        return Integer.parseInt(s, radix);
+    public static int parseInt(String str, int radix) {
+        try {
+            return Integer.parseInt(str, radix);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "parseInt");
+        }
+        return -1;
     }
 
     // ==
@@ -431,26 +460,25 @@ public final class ConverUtils {
     // ======================================================================
 
     // 小写
-    public static final char HEX_DIGITS[]={'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+    public static final char HEX_DIGITS[] = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' };
     // 大写
-    public static final char HEX_DIGITS_UPPER[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+    public static final char HEX_DIGITS_UPPER[] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 
     /**
      * 进行转换 十六进制字符
-     * @param bData
+     * @param data
      * @param hexDigits
      * @return
      */
-    public static String toHexString(byte[] bData, char[] hexDigits) {
-        if (bData == null || hexDigits == null) {
-            return null;
+    public static String toHexString(byte[] data, char[] hexDigits) {
+        if (data == null || hexDigits == null) return null;
+        if (data.length <= 0 || hexDigits.length <= 0) return null;
+        StringBuilder builder = new StringBuilder(data.length * 2);
+        for (int i = 0, len = data.length; i < len; i++) {
+            builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+            builder.append(hexDigits[data[i] & 0x0f]);
         }
-        StringBuilder sBuilder = new StringBuilder(bData.length * 2);
-        for (int i = 0, len = bData.length; i < len; i++) {
-            sBuilder.append(hexDigits[(bData[i] & 0xf0) >>> 4]);
-            sBuilder.append(hexDigits[bData[i] & 0x0f]);
-        }
-        return sBuilder.toString();
+        return builder.toString();
     }
 
     /**
@@ -458,22 +486,32 @@ public final class ConverUtils {
      * @param hexString
      * @return
      */
-    public static byte[] hexString2Bytes(String hexString) {
-        if (isSpace(hexString)) return null;
-        int len = hexString.length();
-        if (len % 2 != 0) {
-            hexString = "0" + hexString;
-            len = len + 1;
+    public static byte[] hexStringToBytes(String hexString) {
+        try {
+            if (isSpace(hexString)) return null;
+            int len = hexString.length();
+            if (len % 2 != 0) {
+                hexString = "0" + hexString;
+                len = len + 1;
+            }
+            char[] hexBytes = hexString.toUpperCase().toCharArray();
+            byte[] ret = new byte[len >> 1];
+            for (int i = 0; i < len; i += 2) {
+                ret[i >> 1] = (byte) (hexToInt(hexBytes[i]) << 4 | hexToInt(hexBytes[i + 1]));
+            }
+            return ret;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "hexStringToBytes");
         }
-        char[] hexBytes = hexString.toUpperCase().toCharArray();
-        byte[] ret = new byte[len >> 1];
-        for (int i = 0; i < len; i += 2) {
-            ret[i >> 1] = (byte) (hex2Int(hexBytes[i]) << 4 | hex2Int(hexBytes[i + 1]));
-        }
-        return ret;
+        return null;
     }
 
-    private static int hex2Int(final char hexChar) {
+    /**
+     * 十六进制 char 转换 int
+     * @param hexChar
+     * @return
+     */
+    public static int hexToInt(final char hexChar) {
         if (hexChar >= '0' && hexChar <= '9') {
             return hexChar - '0';
         } else if (hexChar >= 'A' && hexChar <= 'F') {
@@ -488,17 +526,18 @@ public final class ConverUtils {
     /**
      * 把 bytes 数据, 转换成二进制数据
      * 例: "asd".getBytes() 传入 bytes2Bits 返回 011000010111001101100100 二进制的字符串数据
-     * @param bytes The bytes.
+     * @param data The bytes.
      * @return bits
      */
-    public static String bytes2Bits(final byte[] bytes) {
-        StringBuilder sb = new StringBuilder();
-        for (byte aByte : bytes) {
+    public static String bytesToBits(final byte[] data) {
+        if (data == null || data.length <= 0) return null;
+        StringBuilder builder = new StringBuilder();
+        for (byte value : data) {
             for (int j = 7; j >= 0; --j) {
-                sb.append(((aByte >> j) & 0x01) == 0 ? '0' : '1');
+                builder.append(((value >> j) & 0x01) == 0 ? '0' : '1');
             }
         }
-        return sb.toString();
+        return builder.toString();
     }
 
     /**
@@ -507,7 +546,8 @@ public final class ConverUtils {
      * @param bits The bits.
      * @return bytes
      */
-    public static byte[] bits2Bytes(String bits) {
+    public static byte[] bitsToBytes(String bits) {
+        if (bits == null || bits.length() <= 0) return null;
         int lenMod = bits.length() % 8;
         int byteLen = bits.length() / 8;
         // add "0" until length to 8 times
@@ -529,48 +569,48 @@ public final class ConverUtils {
 
     /**
      * byte 数组 转换 char 数组, 并且进行补码
-     * @param bytes The bytes.
+     * @param data The bytes.
      * @return chars
      */
-    public static char[] bytes2Chars(final byte[] bytes) {
-        if (bytes == null) return null;
-        int len = bytes.length;
+    public static char[] bytesToChars(final byte[] data) {
+        if (data == null) return null;
+        int len = data.length;
         if (len <= 0) return null;
         char[] chars = new char[len];
         for (int i = 0; i < len; i++) {
-            chars[i] = (char) (bytes[i] & 0xff);
+            chars[i] = (char) (data[i] & 0xff);
         }
         return chars;
     }
 
     /**
      * char 数组 转换 byte 数组
-     * @param chars The chars.
+     * @param data The chars.
      * @return bytes
      */
-    public static byte[] chars2Bytes(final char[] chars) {
-        if (chars == null || chars.length <= 0) return null;
-        int len = chars.length;
+    public static byte[] charsToBytes(final char[] data) {
+        if (data == null || data.length <= 0) return null;
+        int len = data.length;
         byte[] bytes = new byte[len];
         for (int i = 0; i < len; i++) {
-            bytes[i] = (byte) (chars[i]);
+            bytes[i] = (byte) (data[i]);
         }
         return bytes;
     }
 
     /**
      * byte 数组转换16进制字符串
-     * @param bytes
+     * @param data
      * @return
      */
-    private static String bytes2HexString(final byte[] bytes) {
-        if (bytes == null) return null;
-        int len = bytes.length;
+    public static String bytesToHexString(final byte[] data) {
+        if (data == null) return null;
+        int len = data.length;
         if (len <= 0) return null;
         char[] ret = new char[len << 1];
         for (int i = 0, j = 0; i < len; i++) {
-            ret[j++] = HEX_DIGITS[bytes[i] >>> 4 & 0x0f];
-            ret[j++] = HEX_DIGITS[bytes[i] & 0x0f];
+            ret[j++] = HEX_DIGITS[data[i] >>> 4 & 0x0f];
+            ret[j++] = HEX_DIGITS[data[i] & 0x0f];
         }
         return new String(ret);
     }
