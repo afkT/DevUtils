@@ -1,7 +1,5 @@
 package dev.utils.common.encrypt;
 
-import android.util.Base64;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,6 +22,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.assist.Base64;
 
 /**
  * detail: 加/解密 通用工具类

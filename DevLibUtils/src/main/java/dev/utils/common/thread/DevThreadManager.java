@@ -25,7 +25,7 @@ public final class DevThreadManager {
      * @param nThreads
      * @return
      */
-    public static synchronized DevThreadPool getInstance(int nThreads) {
+    public static synchronized DevThreadPool getInstance(final int nThreads) {
         // 初始化key
         String key = "n_" + nThreads;
         // 如果不为null, 则直接返回
@@ -43,7 +43,7 @@ public final class DevThreadManager {
      * @param key
      * @return
      */
-    public static synchronized DevThreadPool getInstance(String key) {
+    public static synchronized DevThreadPool getInstance(final String key) {
         // 如果不为null, 则直接返回
         DevThreadPool devThreadPool = mapThreads.get(key);
         if (devThreadPool != null) {
@@ -77,7 +77,7 @@ public final class DevThreadManager {
      * 初始化配置信息
      * @param mapConfig
      */
-    public static void initConfig(Map<String, Object> mapConfig) {
+    public static void initConfig(final Map<String, Object> mapConfig) {
         if (mapConfig != null) {
             mapConfig.putAll(mapConfig);
         }
@@ -88,7 +88,7 @@ public final class DevThreadManager {
      * @param key
      * @param val
      */
-    public static void putConfig(String key, Object val) {
+    public static void putConfig(final String key, final Object val) {
         mapConfig.put(key, val);
     }
 
@@ -96,7 +96,7 @@ public final class DevThreadManager {
      * 移除配置信息
      * @param key
      */
-    public static void removeConfig(String key) {
+    public static void removeConfig(final String key) {
         mapConfig.remove(key);
     }
 }

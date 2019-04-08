@@ -162,7 +162,7 @@ public final class DevThreadPool {
      * 加入到线程池任务队列
      * @param runnable
      */
-    public void execute(Runnable runnable) {
+    public void execute(final Runnable runnable) {
         if (threadPool != null) {
             threadPool.execute(runnable);
         }
@@ -182,7 +182,6 @@ public final class DevThreadPool {
             }
         }
     }
-
 
     /**
      * 通过反射,调用某个类的方法

@@ -26,7 +26,7 @@ public final class ValiToPhoneUtils {
      * @param str
      * @return
      */
-    public static boolean isEmpty(String str) {
+    public static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
     }
 
@@ -36,7 +36,7 @@ public final class ValiToPhoneUtils {
      * @param input
      * @return
      */
-    public static boolean match(String regex, String input) {
+    public static boolean match(final String regex, final String input) {
         try {
             return Pattern.matches(regex, input);
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneCheck(String phone) {
+    public static boolean isPhoneCheck(final String phone) {
         if (!isEmpty(phone)) {
             return match(CHAIN_PHONE_FORMAT_CHECK, phone);
         }
@@ -64,7 +64,7 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhone(String phone) {
+    public static boolean isPhone(final String phone) {
         if (!isEmpty(phone)) {
             return match(CHINA_PHONE_PATTERN, phone);
         }
@@ -76,7 +76,7 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneToChinaTelecom(String phone) {
+    public static boolean isPhoneToChinaTelecom(final String phone) {
         if (!isEmpty(phone)) {
             return match(CHINA_TELECOM_PATTERN, phone);
         }
@@ -88,7 +88,7 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneToChinaUnicom(String phone) {
+    public static boolean isPhoneToChinaUnicom(final String phone) {
         if (!isEmpty(phone)) {
             return match(CHINA_UNICOM_PATTERN, phone);
         }
@@ -100,7 +100,7 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneToChinaMobile(String phone) {
+    public static boolean isPhoneToChinaMobile(final String phone) {
         if (!isEmpty(phone)) {
             return match(CHINA_MOBILE_PATTERN, phone);
         }
@@ -112,7 +112,7 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneToHkMobile(String phone) {
+    public static boolean isPhoneToHkMobile(final String phone) {
         if (!isEmpty(phone)) {
             return match(HK_PHONE_PATTERN, phone);
         }
@@ -124,7 +124,7 @@ public final class ValiToPhoneUtils {
      * @param phone
      * @return
      */
-    public static boolean isPhoneCallNum(String phone) {
+    public static boolean isPhoneCallNum(final String phone) {
         if (!isEmpty(phone)) {
             return match(PHONE_CALL_PATTERN, phone);
         }
