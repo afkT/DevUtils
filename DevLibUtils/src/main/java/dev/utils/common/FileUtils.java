@@ -986,20 +986,23 @@ public final class FileUtils {
 
 	/**
 	 * 进行转换
-	 * @param bData
+	 * @param data
 	 * @param hexDigits
 	 * @return
 	 */
-	private static String toHexString(final byte[] bData, final char[] hexDigits) {
-		if (bData == null || hexDigits == null) {
-			return null;
+	private static String toHexString(final byte[] data, final char[] hexDigits) {
+		if (data == null || hexDigits == null) return null;
+		try {
+			StringBuilder builder = new StringBuilder(data.length * 2);
+			for (int i = 0, len = data.length; i < len; i++) {
+				builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+				builder.append(hexDigits[data[i] & 0x0f]);
+			}
+			return builder.toString();
+		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "toHexString");
 		}
-		StringBuilder sBuilder = new StringBuilder(bData.length * 2);
-		for (int i = 0, len = bData.length; i < len; i++) {
-			sBuilder.append(hexDigits[(bData[i] & 0xf0) >>> 4]);
-			sBuilder.append(hexDigits[bData[i] & 0x0f]);
-		}
-		return sBuilder.toString();
+		return null;
 	}
 
 	// ==============

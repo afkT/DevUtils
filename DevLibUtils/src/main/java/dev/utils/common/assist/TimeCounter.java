@@ -10,7 +10,7 @@ public class TimeCounter {
     private long start;
 
     public TimeCounter() {
-        this (true);
+        this(true);
     }
 
     public TimeCounter(boolean isStart) {

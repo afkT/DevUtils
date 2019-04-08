@@ -25,6 +25,7 @@ public class Base64Cipher implements Cipher {
      */
     @Override
     public byte[] decrypt(byte[] data) {
+        if (data == null) return null;
         // 先解码
         data = Base64.decode(data, Base64.DEFAULT);
         // 再解密
@@ -41,6 +42,7 @@ public class Base64Cipher implements Cipher {
      */
     @Override
     public byte[] encrypt(byte[] data) {
+        if (data == null) return null;
         // 先加密
         if (cipher != null) {
             data = cipher.encrypt(data);

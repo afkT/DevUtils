@@ -171,6 +171,10 @@ public final class FileDepthFirstSearchUtils {
     public synchronized void query(final String path, final boolean isRelation) {
         if (mIsRunning) {
             return;
+        } else if (path == null) {
+            // 触发结束回调
+            inside.OnEndListener(null, -1, -1);
+            return;
         }
         // 表示运行中
         mIsRunning = true;

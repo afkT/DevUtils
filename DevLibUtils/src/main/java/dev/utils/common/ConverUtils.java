@@ -472,13 +472,17 @@ public final class ConverUtils {
      */
     public static String toHexString(byte[] data, char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
-        if (data.length <= 0 || hexDigits.length <= 0) return null;
-        StringBuilder builder = new StringBuilder(data.length * 2);
-        for (int i = 0, len = data.length; i < len; i++) {
-            builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-            builder.append(hexDigits[data[i] & 0x0f]);
+        try {
+            StringBuilder builder = new StringBuilder(data.length * 2);
+            for (int i = 0, len = data.length; i < len; i++) {
+                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+                builder.append(hexDigits[data[i] & 0x0f]);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
         }
-        return builder.toString();
+        return null;
     }
 
     /**

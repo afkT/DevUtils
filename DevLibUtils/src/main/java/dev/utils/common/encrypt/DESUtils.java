@@ -29,7 +29,8 @@ public final class DESUtils {
      * @param key 前8字节将被用来生成密钥。
      * @return 生成的密钥
      */
-    public static Key getDESKey(byte[] key) {
+    public static Key getDESKey(final byte[] key) {
+        if (key == null) return null;
         try {
             DESKeySpec des = new DESKeySpec(key);
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
@@ -46,9 +47,9 @@ public final class DESUtils {
      * @param data
      * @param key
      * @return
-     * @throws Exception
      */
-    public static byte[] encrypt(byte[] data, byte[] key) {
+    public static byte[] encrypt(final byte[] data, final byte[] key) {
+        if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DES");
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
@@ -66,9 +67,9 @@ public final class DESUtils {
      * @param data
      * @param key
      * @return
-     * @throws Exception
      */
-    public static byte[] decrypt(byte[] data, byte[] key) {
+    public static byte[] decrypt(final byte[] data, final byte[] key) {
+        if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DES");
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");

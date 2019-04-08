@@ -53,14 +53,18 @@ public class TimeKeeper {
      * @param endCallback
      * @return
      */
-    public TimeKeeper waitForEnd(OnEndCallback endCallback) {
+    public TimeKeeper waitForEnd(final OnEndCallback endCallback) {
         long costMillis = SystemClock.elapsedRealtime() - startMillis;
         long leftMillis = keepTimeMillis - costMillis;
         if (leftMillis > 0) {
             SystemClock.sleep(leftMillis);
-            endCallback.onEnd(costMillis, leftMillis);
+            if (endCallback != null) {
+                endCallback.onEnd(costMillis, leftMillis);
+            }
         } else {
-            endCallback.onEnd(costMillis, leftMillis);
+            if (endCallback != null) {
+                endCallback.onEnd(costMillis, leftMillis);
+            }
         }
         return this;
     }

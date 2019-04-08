@@ -17,19 +17,19 @@ public final class CipherUtils {
      * @param obj
      * @return
      */
-    public static String encrypt(Object obj) {
+    public static String encrypt(final Object obj) {
         return encrypt(obj, null);
     }
 
     /**
      * 加密方法
-     * @param obj
+     * @param object
      * @param cipher
      * @return
      */
-    public static String encrypt(Object obj, Cipher cipher) {
-        if (obj == null) return null;
-        byte[] bytes = ByteUtils.objectToByte(obj);
+    public static String encrypt(final Object object, final Cipher cipher) {
+        if (object == null) return null;
+        byte[] bytes = ByteUtils.objectToByte(object);
         if (cipher != null) bytes = cipher.encrypt(bytes);
         return HexUtils.encodeHexStr(bytes);
     }
@@ -41,7 +41,7 @@ public final class CipherUtils {
      * @param hex
      * @return
      */
-    public static Object decrypt(String hex) {
+    public static Object decrypt(final String hex) {
         return decrypt(hex, null);
     }
 
@@ -51,7 +51,7 @@ public final class CipherUtils {
      * @param cipher
      * @return
      */
-    public static Object decrypt(String hex, Cipher cipher) {
+    public static Object decrypt(final String hex, final Cipher cipher) {
         if (hex == null) return null;
         byte[] bytes = HexUtils.decodeHex(hex.toCharArray());
         if (cipher != null) bytes = cipher.decrypt(bytes);

@@ -20,10 +20,8 @@ public final class XorUtils {
      * @param data 待加密数据
      * @return 加密后的数据
      */
-    public static byte[] encryptAsFix(byte[] data) {
-        if (data == null) {
-            return null;
-        }
+    public static byte[] encryptAsFix(final byte[] data) {
+        if (data == null) return null;
         int len = data.length;
         int key = 0x12;
         for (int i = 0; i < len; i++) {
@@ -39,10 +37,8 @@ public final class XorUtils {
      * @param data 待加密数据
      * @return 加密后的数据
      */
-    public static byte[] encrypt(byte[] data) {
-        if (data == null) {
-            return null;
-        }
+    public static byte[] encrypt(final byte[] data) {
+        if (data == null) return null;
         int len = data.length;
         int key = 0x12;
         for (int i = 0; i < len; i++) {
@@ -57,10 +53,8 @@ public final class XorUtils {
      * @param data 待解密数据
      * @return 解密后的数据
      */
-    public static byte[] decrypt(byte[] data) {
-        if (data == null) {
-            return null;
-        }
+    public static byte[] decrypt(final byte[] data) {
+        if (data == null) return null;
         int len = data.length;
         int key = 0x12;
         for (int i = len - 1; i > 0; i--) {

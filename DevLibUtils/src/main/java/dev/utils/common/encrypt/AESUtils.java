@@ -43,7 +43,8 @@ public final class AESUtils {
      * @param key
      * @return
      */
-    public static byte[] encrypt(byte[] data, byte[] key) {
+    public static byte[] encrypt(final byte[] data, final byte[] key) {
+        if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "AES");
             Cipher cipher = Cipher.getInstance("AES");
@@ -62,7 +63,8 @@ public final class AESUtils {
      * @param key
      * @return
      */
-    public static byte[] decrypt(byte[] data, byte[] key) {
+    public static byte[] decrypt(final byte[] data, final byte[] key) {
+        if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "AES");
             Cipher cipher = Cipher.getInstance("AES");

@@ -291,7 +291,7 @@ public final class StringUtils {
 	 * @param data 要转换的字节数组
 	 * @return 转换后的结果
 	 */
-	public static final String byteArrayToHexString(byte[] data) {
+	public static String byteArrayToHexString(byte[] data) {
 		if (data == null) return null;
 		StringBuilder sBuilder = new StringBuilder(data.length * 2);
 		for (byte b : data) {
@@ -453,7 +453,7 @@ public final class StringUtils {
 	 * @param str 下划线命名格式
 	 * @return 驼峰命名格式
 	 */
-	public static final String underScoreCaseToCamelCase(String str) {
+	public static String underScoreCaseToCamelCase(String str) {
 		if (isEmpty(str)) return str;
 		if (!str.contains("_")) return str;
 		StringBuilder sb = new StringBuilder();
@@ -481,7 +481,7 @@ public final class StringUtils {
 	 * @param str 驼峰命名格式
 	 * @return 下划线命名格式
 	 */
-	public static final String camelCaseToUnderScoreCase(String str) {
+	public static String camelCaseToUnderScoreCase(String str) {
 		if (isEmpty(str)) return str;
 		StringBuilder sb = new StringBuilder();
 		char[] chars = str.toCharArray();
