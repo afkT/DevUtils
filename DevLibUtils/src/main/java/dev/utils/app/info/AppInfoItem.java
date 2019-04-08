@@ -114,16 +114,16 @@ public final class AppInfoItem {
         // 证书有效期
         notAfter = cert.getNotAfter();
         // 设置有效期
-        StringBuilder sbEffective = new StringBuilder();
-        sbEffective.append(dFormat.format(notBefore));
-        sbEffective.append(" " + context.getString(R.string.dev_str_to) + " "); // 至
-        sbEffective.append(dFormat.format(notAfter));
-        sbEffective.append("\n\n");
-        sbEffective.append(notBefore);
-        sbEffective.append(" " + context.getString(R.string.dev_str_to) + " ");
-        sbEffective.append(notAfter);
+        StringBuilder builder = new StringBuilder();
+        builder.append(dFormat.format(notBefore));
+        builder.append(" " + context.getString(R.string.dev_str_to) + " "); // 至
+        builder.append(dFormat.format(notAfter));
+        builder.append("\n\n");
+        builder.append(notBefore);
+        builder.append(" " + context.getString(R.string.dev_str_to) + " ");
+        builder.append(notAfter);
         // 保存有效期转换信息
-        String effectiveStr = sbEffective.toString();
+        String effectiveStr = builder.toString();
         // 证书是否过期 true = 过期,false = 未过期
         effective = false;
         try {

@@ -158,13 +158,13 @@ public final class MD5Utils {
 //        if (str == null) return null;
 //		try {
 //			byte[] hash = MessageDigest.getInstance("MD5").digest(str.getBytes("UTF-8"));
-//			StringBuilder hex = new StringBuilder(hash.length * 2);
+//			StringBuilder builder = new StringBuilder(hash.length * 2);
 //			for (byte b : hash) {
 //				if ((b & 0xFF) < 0x10)
-//					hex.append("0");
-//				hex.append(Integer.toHexString(b & 0xFF));
+//					builder.append("0");
+//				builder.append(Integer.toHexString(b & 0xFF));
 //			}
-//			return hex.toString();
+//			return builder.toString();
 //		} catch (Exception e) {
 //			JCLogUtils.eTag(TAG, e, "md5");
 //		}

@@ -887,7 +887,7 @@ public final class DateUtils {
         long millisTime = millis;
         int precisionFormat = precision;
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         String[] units = {"天", "小时", "分钟", "秒", "毫秒"};
         int[] unitLen = {86400000, 3600000, 60000, 1000, 1};
         precisionFormat = Math.min(precisionFormat, 5);
@@ -895,10 +895,10 @@ public final class DateUtils {
             if (millisTime >= unitLen[i]) {
                 long mode = millisTime / unitLen[i];
                 millisTime -= mode * unitLen[i];
-                sb.append(mode).append(units[i]);
+                builder.append(mode).append(units[i]);
             }
         }
-        return sb.toString();
+        return builder.toString();
     }
 
     /**

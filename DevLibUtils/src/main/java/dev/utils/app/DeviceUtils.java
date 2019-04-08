@@ -117,7 +117,7 @@ public final class DeviceUtils {
     public static String handlerDeviceInfo(Map<String, String> dInfoMaps, String eHint) {
         try {
             // 初始化StringBuilder，拼接字符串
-            StringBuilder sBuilder = new StringBuilder();
+            StringBuilder builder = new StringBuilder();
             // 获取设备信息
             Iterator<Map.Entry<String, String>> mapIter = dInfoMaps.entrySet().iterator();
             // 遍历设备信息
@@ -127,12 +127,12 @@ public final class DeviceUtils {
                 String rnKey = rnEntry.getKey(); // key
                 String rnValue = rnEntry.getValue(); // value
                 // 保存设备信息
-                sBuilder.append(rnKey);
-                sBuilder.append(" = ");
-                sBuilder.append(rnValue);
-                sBuilder.append(NEW_LINE_STR);
+                builder.append(rnKey);
+                builder.append(" = ");
+                builder.append(rnValue);
+                builder.append(NEW_LINE_STR);
             }
-            return sBuilder.toString();
+            return builder.toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "handlerDeviceInfo");
         }
@@ -285,11 +285,11 @@ public final class DeviceUtils {
                 if (ni == null || !ni.getName().equalsIgnoreCase("wlan0")) continue;
                 byte[] macBytes = ni.getHardwareAddress();
                 if (macBytes != null && macBytes.length > 0) {
-                    StringBuilder sb = new StringBuilder();
+                    StringBuilder builder = new StringBuilder();
                     for (byte b : macBytes) {
-                        sb.append(String.format("%02x:", b));
+                        builder.append(String.format("%02x:", b));
                     }
-                    return sb.substring(0, sb.length() - 1);
+                    return builder.substring(0, builder.length() - 1);
                 }
             }
         } catch (Exception e) {
@@ -306,11 +306,11 @@ public final class DeviceUtils {
                 if (ni != null) {
                     byte[] macBytes = ni.getHardwareAddress();
                     if (macBytes != null && macBytes.length > 0) {
-                        StringBuilder sb = new StringBuilder();
+                        StringBuilder builder = new StringBuilder();
                         for (byte b : macBytes) {
-                            sb.append(String.format("%02x:", b));
+                            builder.append(String.format("%02x:", b));
                         }
-                        return sb.substring(0, sb.length() - 1);
+                        return builder.substring(0, builder.length() - 1);
                     }
                 }
             }

@@ -41,16 +41,16 @@ public final class SignaturesUtils {
 
     /**
      * 进行转换
-     * @param bData
+     * @param data
      * @return
      */
-    public static String toHexString(byte[] bData) {
-        StringBuilder sb = new StringBuilder(bData.length * 2);
-        for (int i = 0, len = bData.length; i < len; i++) {
-            sb.append(HEX_DIGITS[(bData[i] & 0xf0) >>> 4]);
-            sb.append(HEX_DIGITS[bData[i] & 0x0f]);
+    public static String toHexString(byte[] data) {
+        StringBuilder builder = new StringBuilder(data.length * 2);
+        for (int i = 0, len = data.length; i < len; i++) {
+            builder.append(HEX_DIGITS[(data[i] & 0xf0) >>> 4]);
+            builder.append(HEX_DIGITS[data[i] & 0x0f]);
         }
-        return sb.toString();
+        return builder.toString();
     }
 
     /**

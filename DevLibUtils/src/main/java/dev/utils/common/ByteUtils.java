@@ -149,7 +149,7 @@ public final class ByteUtils {
         if (data == null) return null;
         String HEXES = "0123456789ABCDEF";
         try {
-            final StringBuilder builder = new StringBuilder(2 * data.length);
+            StringBuilder builder = new StringBuilder(2 * data.length);
             for (final byte b : data) {
                 builder.append(HEXES.charAt((b & 0xF0) >> 4)).append(HEXES.charAt((b & 0x0F)));
             }

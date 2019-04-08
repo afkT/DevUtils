@@ -21,10 +21,12 @@ public final class Reflect2Utils {
 
     /**
      * 获取某个对象的公共属性
-     * @param owner, fieldName
+     * @param owner
+     * @param fieldName
      * @return 该属性对象
      */
-    public static Object getProperty(Object owner, String fieldName) {
+    public static Object getProperty(final Object owner, final String fieldName) {
+        if (owner == null || fieldName == null) return null;
         try {
             Class ownerClass = owner.getClass();
             Field field = ownerClass.getField(fieldName);
@@ -42,7 +44,8 @@ public final class Reflect2Utils {
      * @param fieldName 属性名
      * @return 该属性对象
      */
-    public static Object getStaticProperty(String className, String fieldName) {
+    public static Object getStaticProperty(final String className, final String fieldName) {
+        if (className == null || fieldName == null) return null;
         try {
             Class ownerClass = Class.forName(className);
             Field field = ownerClass.getField(fieldName);
@@ -56,22 +59,23 @@ public final class Reflect2Utils {
 
     /**
      * 执行某对象方法
-     * @param owner 对象
+     * @param owner      对象
      * @param methodName 方法名
      * @return 方法返回值
      */
-    public static Object invokeMethod(Object owner, String methodName) {
+    public static Object invokeMethod(final Object owner, final String methodName) {
         return invokeMethod(owner, methodName, new Object[0]);
     }
 
     /**
      * 执行某对象方法
-     * @param owner 对象
+     * @param owner      对象
      * @param methodName 方法名
-     * @param args 参数
+     * @param args       参数
      * @return 方法返回值
      */
-    public static Object invokeMethod(Object owner, String methodName, Object[] args) {
+    public static Object invokeMethod(final Object owner, final String methodName, final Object[] args) {
+        if (owner == null || methodName == null) return null;
         try {
             Class ownerClass = owner.getClass();
             Class[] argsClass = new Class[args.length];
@@ -88,22 +92,23 @@ public final class Reflect2Utils {
 
     /**
      * 执行某类的静态方法
-     * @param className 类名
+     * @param className  类名
      * @param methodName 方法名
      * @return 执行方法返回的结果
      */
-    public static Object invokeStaticMethod(String className, String methodName) {
+    public static Object invokeStaticMethod(final String className, final String methodName) {
         return invokeStaticMethod(className, methodName, new Object[0]);
     }
 
     /**
      * 执行某类的静态方法
-     * @param className 类名
+     * @param className  类名
      * @param methodName 方法名
-     * @param args 参数数组
+     * @param args       参数数组
      * @return 执行方法返回的结果
      */
-    public static Object invokeStaticMethod(String className, String methodName, Object[] args) {
+    public static Object invokeStaticMethod(final String className, final String methodName, final Object[] args) {
+        if (className == null || methodName == null) return null;
         try {
             Class ownerClass = Class.forName(className);
             Class[] argsClass = new Class[args.length];
@@ -125,19 +130,21 @@ public final class Reflect2Utils {
     /**
      * 新建实例
      * @param className 类名
-     * @param args 构造函数的参数 如果无构造参数，args 填写为 null
+     * @param args      构造函数的参数 如果无构造参数，args 填写为 null
+     * @param argsType
      * @return 新建的实例
      */
-    public static Object newInstance(String className, Object[] args, Class[] argsType) {
+    public static Object newInstance(final String className, final Object[] args, final Class[] argsType) {
+        if (className == null) return null;
         try {
             Class newoneClass = Class.forName(className);
             if (args == null) {
                 return newoneClass.newInstance();
             } else {
-    //            Class[] argsClass = new Class[args.length];
-    //            for (int i = 0, j = args.length; i < j; i++) {
-    //                argsClass[i] = args[i].getClass();
-    //            }
+//                Class[] argsClass = new Class[args.length];
+//                for (int i = 0, j = args.length; i < j; i++) {
+//                    argsClass[i] = args[i].getClass();
+//                }
                 Constructor cons = newoneClass.getConstructor(argsType);
                 return cons.newInstance(args);
             }
@@ -149,12 +156,13 @@ public final class Reflect2Utils {
 
     /**
      * 是不是某个类的实例
-     * @param obj 实例
-     * @param clazz 类
+     * @param object 实例
+     * @param clazz
      * @return 如果 obj 是此类的实例，则返回 true
      */
-    public static boolean isInstance(Object obj, Class clazz) {
-        return clazz.isInstance(obj);
+    public static boolean isInstance(final Object object, final Class clazz) {
+        if (object == null || clazz == null) return false;
+        return clazz.isInstance(object);
     }
 
     /**
@@ -163,7 +171,8 @@ public final class Reflect2Utils {
      * @param index 索引
      * @return 返回指定数组对象中索引组件的值
      */
-    public static Object getByArray(Object array, int index) {
+    public static Object getByArray(final Object array, final int index) {
+        if (array == null || index < 0) return null;
         return Array.get(array, index);
     }
 
@@ -172,24 +181,24 @@ public final class Reflect2Utils {
     /**
      * 通过反射获取全部字段
      * 如: (ListView) getDeclaredField(对象, "私有属性")
-     * @param obj
+     * @param object
      * @param name
      * @return
      */
-    public static Object getDeclaredField(Object obj, String name) throws Exception {
-        Field f = obj.getClass().getDeclaredField(name);
-        f.setAccessible(true);
-        Object out = f.get(obj);
-        return out;
+    public static Object getDeclaredField(final Object object, final String name) throws Exception {
+        Field field = object.getClass().getDeclaredField(name);
+        field.setAccessible(true);
+        return field.get(object);
     }
 
     /**
      * 获取父类中的变量对象
-     * @param object : 子类对象
-     * @param fieldName : 父类中的属性名
+     * @param object    子类对象
+     * @param fieldName 父类中的属性名
      * @return 父类中的变量对象
      */
-    public static Object getDeclaredFieldParentObj(Object object, String fieldName) {
+    public static Object getDeclaredFieldParentObj(final Object object, final String fieldName) {
+        if (object == null || fieldName == null) return null;
         try {
             Field field = getDeclaredFieldParent(object, fieldName);
             field.setAccessible(true);
@@ -202,11 +211,12 @@ public final class Reflect2Utils {
 
     /**
      * 循环向上转型, 获取对象的 DeclaredField
-     * @param object : 子类对象
-     * @param fieldName : 父类中的属性名
+     * @param object    子类对象
+     * @param fieldName 父类中的属性名
      * @return 父类中的变量对象
      */
-    public static Field getDeclaredFieldParent(Object object, String fieldName) {
+    public static Field getDeclaredFieldParent(final Object object, final String fieldName) {
+        if (object == null || fieldName == null) return null;
         Field field = null;
         Class<?> clazz = object.getClass();
         for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
@@ -224,10 +234,11 @@ public final class Reflect2Utils {
     /**
      * 设置反射的方法
      * @param object
-     * @param name 方法名
-     * @param args 方法需要的参数
+     * @param name   方法名
+     * @param args   方法需要的参数
      */
-    public static boolean setFieldMethod(Object object, final String name, final Object... args) {
+    public static boolean setFieldMethod(final Object object, final String name, final Object... args) {
+        if (object == null || name == null) return false;
         try {
             Method method = object.getClass().getDeclaredMethod(name);
             method.setAccessible(true);
@@ -246,15 +257,16 @@ public final class Reflect2Utils {
 
     /**
      * 设置反射的字段
-     * @param obj
-     * @param name  字段名
-     * @param value 字段值
+     * @param object
+     * @param name   字段名
+     * @param value  字段值
      */
-    public static boolean setFieldValue(Object obj, String name, Object value) {
+    public static boolean setFieldValue(final Object object, final String name, final Object value) {
+        if (object == null || name == null) return false;
         try {
-            Field field = obj.getClass().getDeclaredField(name);
+            Field field = object.getClass().getDeclaredField(name);
             field.setAccessible(true);
-            field.set(obj, value);
+            field.set(object, value);
             return true;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "setFieldValue");

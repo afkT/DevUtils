@@ -117,12 +117,12 @@ public final class ClickUtils {
 
     /**
      * 判断两次点击的间隔(根据默认Tag判断) 小于指定间隔时间, 则认为是多次无效点击
-     * @param obj
+     * @param object
      * @return
      */
-    public static boolean isFastDoubleClick(Object obj) {
+    public static boolean isFastDoubleClick(Object object) {
         // 获取TAG
-        String tag = ((obj != null) ? ("obj_" + obj.hashCode()) : "obj_null");
+        String tag = ((object != null) ? ("obj_" + object.hashCode()) : "obj_null");
         // 获取配置时间
         Long config_time = mapConfig.get(tag);
         // 如果等于null, 则传入默认时间
@@ -134,13 +134,13 @@ public final class ClickUtils {
 
     /**
      * 判断两次点击的间隔 小于间隔时间(diff), 则认为是多次无效点击
-     * @param obj
+     * @param object
      * @param diff
      * @return
      */
-    public static boolean isFastDoubleClick(Object obj, long diff) {
+    public static boolean isFastDoubleClick(Object object, long diff) {
         // 获取TAG
-        String tag = ((obj != null) ? ("obj_" + obj.hashCode()) : "obj_null");
+        String tag = ((object != null) ? ("obj_" + object.hashCode()) : "obj_null");
         // 获取上次点击的时间
         Long lastTime = mapRecords.get(tag);
         if (lastTime == null) {
@@ -150,10 +150,10 @@ public final class ClickUtils {
         long dTime = cTime - lastTime;
         // 判断时间是否超过
         if (lastTime > 0 && dTime < diff) {
-            LogPrintUtils.dTag(TAG, "isFastDoubleClick 无效点击 => obj: " + obj + ", diff: " + diff);
+            LogPrintUtils.dTag(TAG, "isFastDoubleClick 无效点击 => obj: " + object + ", diff: " + diff);
             return true;
         }
-        LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 => obj: " + obj + ", diff: " + diff);
+        LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 => obj: " + object + ", diff: " + diff);
         // 保存上次点击时间
         mapRecords.put(tag, cTime);
         return false;

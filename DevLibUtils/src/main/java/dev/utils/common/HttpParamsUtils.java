@@ -95,18 +95,18 @@ public final class HttpParamsUtils {
         if (mapParams != null) {
             int index = 0;
             // --
-            StringBuilder sBuilder = new StringBuilder();
+            StringBuilder builder = new StringBuilder();
             Iterator<Map.Entry<String, String>> iterator = mapParams.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, String> entry = iterator.next();
                 // --
-                if (index > 0) sBuilder.append('&');
-                sBuilder.append(entry.getKey());
-                sBuilder.append('=');
-                sBuilder.append(urlEncode ? urlEncode(entry.getValue()) : entry.getValue());
+                if (index > 0) builder.append('&');
+                builder.append(entry.getKey());
+                builder.append('=');
+                builder.append(urlEncode ? urlEncode(entry.getValue()) : entry.getValue());
                 index++;
             }
-            return sBuilder.toString();
+            return builder.toString();
         }
         return null;
     }
@@ -132,24 +132,24 @@ public final class HttpParamsUtils {
         if (mapParams != null) {
             int index = 0;
             // --
-            StringBuilder sBuilder = new StringBuilder();
+            StringBuilder builder = new StringBuilder();
             Iterator<Map.Entry<String, Object>> iterator = mapParams.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, Object> entry = iterator.next();
                 // --
-                if (index > 0) sBuilder.append('&');
-                sBuilder.append(entry.getKey());
-                sBuilder.append('=');
+                if (index > 0) builder.append('&');
+                builder.append(entry.getKey());
+                builder.append('=');
                 if (urlEncode) {
                     if (entry.getValue() instanceof String) {
-                        sBuilder.append(urlEncode((String) entry.getValue()));
+                        builder.append(urlEncode((String) entry.getValue()));
                     }
                 } else {
-                    sBuilder.append(entry.getValue());
+                    builder.append(entry.getValue());
                 }
                 index++;
             }
-            return sBuilder.toString();
+            return builder.toString();
         }
         return null;
     }
@@ -173,17 +173,16 @@ public final class HttpParamsUtils {
      */
     public static String printMapParams(final Map<String, String> mapParams, final boolean urlEncode) {
         if (mapParams != null) {
-            StringBuilder sBuilder = new StringBuilder();
-            // --
+            StringBuilder builder = new StringBuilder();
             Iterator<Map.Entry<String, String>> iterator = mapParams.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, String> entry = iterator.next();
-                sBuilder.append(entry.getKey());
-                sBuilder.append(" => ");
-                sBuilder.append(urlEncode ? urlEncode(entry.getValue()) : entry.getValue());
-                sBuilder.append(NEW_LINE_STR);
+                builder.append(entry.getKey());
+                builder.append(" => ");
+                builder.append(urlEncode ? urlEncode(entry.getValue()) : entry.getValue());
+                builder.append(NEW_LINE_STR);
             }
-            return sBuilder.toString();
+            return builder.toString();
         }
         return null;
     }

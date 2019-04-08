@@ -14,11 +14,11 @@ public final class CipherUtils {
 
     /**
      * 加密方法
-     * @param obj
+     * @param object
      * @return
      */
-    public static String encrypt(final Object obj) {
-        return encrypt(obj, null);
+    public static String encrypt(final Object object) {
+        return encrypt(object, null);
     }
 
     /**

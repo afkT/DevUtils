@@ -812,11 +812,11 @@ public final class WifiUtils {
 	}
 
 	private int inetAddressToInt(InetAddress inetAddr) throws Exception {
-		byte[] addr = inetAddr.getAddress();
-		if (addr.length != 4) {
+		byte[] data = inetAddr.getAddress();
+		if (data.length != 4) {
 			throw new IllegalArgumentException("Not an IPv4 address");
 		}
-		return ((addr[3] & 0xff) << 24) | ((addr[2] & 0xff) << 16) | ((addr[1] & 0xff) << 8) | (addr[0] & 0xff);
+		return ((data[3] & 0xff) << 24) | ((data[2] & 0xff) << 16) | ((data[1] & 0xff) << 8) | (data[0] & 0xff);
 	}
 
 	/**
@@ -880,13 +880,13 @@ public final class WifiUtils {
 	 * @param gateway 网关
 	 * @param dns dns
 	 * @param prefixLength 网络前缀长度
-	 * @param obj Wifi配置信息
+	 * @param object Wifi配置信息
 	 * @throws Exception
 	 */
-	private void setStaticIpConfig(String ip, String gateway, String dns, int prefixLength, Object obj) throws Exception {
+	private void setStaticIpConfig(String ip, String gateway, String dns, int prefixLength, Object object) throws Exception {
 		// 从WifiConfig -> mIpConfiguration 获取staticIpConfiguration
 		// 获取 staticIpConfiguration 变量
-		Object staticIpConfigClass = getField(obj, "staticIpConfiguration");
+		Object staticIpConfigClass = getField(object, "staticIpConfiguration");
 		if (staticIpConfigClass == null) {
 			// 创建静态ip配置类
 			staticIpConfigClass = Class.forName("android.net.StaticIpConfiguration").newInstance();
@@ -906,57 +906,55 @@ public final class WifiUtils {
 			mDnses.add(InetAddress.getByName(dns));
 		}
 		// 设置赋值 staticIpConfiguration 属性
-		setValueField(obj, staticIpConfigClass, "staticIpConfiguration");
+		setValueField(object, staticIpConfigClass, "staticIpConfiguration");
 	}
 
 	/**
 	 * 通过反射获取public字段
-	 * @param obj
+	 * @param object
 	 * @param name
 	 * @return
 	 * @throws Exception
 	 */
-	private Object getField(Object obj, String name) throws Exception {
-		Field f = obj.getClass().getField(name);
-		Object out = f.get(obj);
-		return out;
+	private Object getField(Object object, String name) throws Exception {
+		Field field = object.getClass().getField(name);
+		return field.get(object);
 	}
 
 	/**
 	 * 通过反射获取全部字段
-	 * @param obj
+	 * @param object
 	 * @param name
 	 * @return
 	 * @throws Exception
 	 */
-	private Object getDeclaredField(Object obj, String name) throws Exception {
-		Field f = obj.getClass().getDeclaredField(name);
-		f.setAccessible(true);
-		Object out = f.get(obj);
-		return out;
+	private Object getDeclaredField(Object object, String name) throws Exception {
+		Field field = object.getClass().getDeclaredField(name);
+		field.setAccessible(true);
+		return field.get(object);
 	}
 
 	/**
 	 * 通过反射枚举类，进行设置
-	 * @param obj 设置对象
+	 * @param object 设置对象
 	 * @param value 设置参数值
 	 * @param name 变量名
 	 * @throws Exception 抛出异常
 	 */
-	private void setEnumField(Object obj, String value, String name) throws Exception {
-		Field f = obj.getClass().getField(name);
-		f.set(obj, Enum.valueOf((Class<Enum>) f.getType(), value));
+	private void setEnumField(Object object, String value, String name) throws Exception {
+		Field field = object.getClass().getField(name);
+		field.set(object, Enum.valueOf((Class<Enum>) field.getType(), value));
 	}
 
 	/**
 	 * 通过反射，进行设置
-	 * @param obj 设置对象
+	 * @param object 设置对象
 	 * @param val 设置参数值
 	 * @param name 变量名
 	 * @throws Exception 抛出异常
 	 */
-	private void setValueField(Object obj, Object val, String name) throws Exception {
-		Field f = obj.getClass().getField(name);
-		f.set(obj, val);
+	private void setValueField(Object object, Object val, String name) throws Exception {
+		Field field = object.getClass().getField(name);
+		field.set(object, val);
 	}
 }

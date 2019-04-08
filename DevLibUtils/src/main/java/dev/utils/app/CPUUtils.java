@@ -250,15 +250,15 @@ public final class CPUUtils {
             ProcessBuilder cmd = new ProcessBuilder(args);
             Process process = cmd.start();
             in = process.getInputStream();
-            StringBuilder sb = new StringBuilder();
+            StringBuilder builder = new StringBuilder();
             byte[] re = new byte[64];
             int len;
             while ((len = in.read(re)) != -1) {
-                sb.append(new String(re, 0, len));
+                builder.append(new String(re, 0, len));
             }
             in.close();
             process.destroy();
-            return sb.toString();
+            return builder.toString();
         } catch (IOException e) {
             LogPrintUtils.eTag(TAG, e, "getCMDOutputString");
         } finally {

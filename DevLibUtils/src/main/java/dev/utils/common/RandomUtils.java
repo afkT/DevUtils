@@ -259,12 +259,12 @@ public final class RandomUtils {
      */
     public static String getRandom(final char[] chars, final int length) {
         if (length > 0 && chars != null && chars.length != 0) {
-            StringBuilder str = new StringBuilder(length);
+            StringBuilder builder = new StringBuilder(length);
             Random random = new Random();
             for (int i = 0; i < length; i++) {
-                str.append(chars[random.nextInt(chars.length)]);
+                builder.append(chars[random.nextInt(chars.length)]);
             }
-            return str.toString();
+            return builder.toString();
         }
         return null;
     }

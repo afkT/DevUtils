@@ -392,7 +392,7 @@ public final class ScreenUtils {
 	 * @return
 	 */
 	public static String getScreenInfo() {
-		StringBuilder sBuilder = new StringBuilder();
+		StringBuilder builder = new StringBuilder();
 		// 获取屏幕信息
 		DisplayMetrics dMetrics = getDisplayMetrics();
 		if (dMetrics != null) {
@@ -410,25 +410,25 @@ public final class ScreenUtils {
 				float heightDpi = heightPixels / density;
 				float widthDpi = widthPixels / density;
 				// -
-				sBuilder.append("\nheightPixels: " + heightPixels + "px");
-				sBuilder.append("\nwidthPixels: " + widthPixels + "px");
+				builder.append("\nheightPixels: " + heightPixels + "px");
+				builder.append("\nwidthPixels: " + widthPixels + "px");
 
-				sBuilder.append("\nxdpi: " + xdpi + "dip");
-				sBuilder.append("\nydpi: " + ydpi + "dpi");
-				sBuilder.append("\ndensityDpi: " + densityDpi + "dpi");
+				builder.append("\nxdpi: " + xdpi + "dip");
+				builder.append("\nydpi: " + ydpi + "dpi");
+				builder.append("\ndensityDpi: " + densityDpi + "dpi");
 
-				sBuilder.append("\ndensity: " + density);
-				sBuilder.append("\nscaledDensity: " + scaledDensity);
+				builder.append("\ndensity: " + density);
+				builder.append("\nscaledDensity: " + scaledDensity);
 
-				sBuilder.append("\nheightDpi: " + heightDpi + "dpi");
-				sBuilder.append("\nwidthDpi: " + widthDpi + "dpi");
+				builder.append("\nheightDpi: " + heightDpi + "dpi");
+				builder.append("\nwidthDpi: " + widthDpi + "dpi");
 
-				return sBuilder.toString();
+				return builder.toString();
 			} catch (Exception e) {
 				LogPrintUtils.eTag(TAG, e, "getScreenInfo");
 			}
 		}
-		return sBuilder.toString();
+		return builder.toString();
 	}
 
 	// ==

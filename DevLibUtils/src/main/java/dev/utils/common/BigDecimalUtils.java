@@ -450,26 +450,26 @@ public final class BigDecimalUtils {
                 bigDecimal = new BigDecimal(bigDecimal.toString().substring(1));
             }
             str = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            StringBuffer sb = new StringBuffer();
+            StringBuffer buffer = new StringBuffer();
             String[] strs = str.split("\\.");
             int j = 1;
             for (int i = 0; i < strs[0].length(); i++) {
                 char a = strs[0].charAt(strs[0].length() - i - 1);
-                sb.append(a);
+                buffer.append(a);
                 if (j % 3 == 0 && i != strs[0].length() - 1) {
-                    sb.append(",");
+                    buffer.append(",");
                 }
                 j++;
             }
-            String str1 = sb.toString();
-            StringBuffer sb1 = new StringBuffer();
+            String str1 = buffer.toString();
+            StringBuffer buffer1 = new StringBuffer();
             for (int i = 0; i < str1.length(); i++) {
                 char a = str1.charAt(str1.length() - 1 - i);
-                sb1.append(a);
+                buffer1.append(a);
             }
-            sb1.append(".");
-            sb1.append(strs[1]);
-            retVal = sb1.toString();
+            buffer1.append(".");
+            buffer1.append(strs[1]);
+            retVal = buffer1.toString();
 
             if (is_positive_integer) {
                 retVal = "-" + retVal;
@@ -506,26 +506,26 @@ public final class BigDecimalUtils {
                 bigDecimal = new BigDecimal(bigDecimal.toString().substring(1));
             }
             str = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            StringBuffer sb = new StringBuffer();
+            StringBuffer buffer = new StringBuffer();
             String[] strs = str.split("\\.");
             int j = 1;
             for (int i = 0; i < strs[0].length(); i++) {
                 char a = strs[0].charAt(strs[0].length() - i - 1);
-                sb.append(a);
+                buffer.append(a);
                 if (j % 3 == 0 && i != strs[0].length() - 1) {
-                    sb.append("");
+                    buffer.append("");
                 }
                 j++;
             }
-            String str1 = sb.toString();
-            StringBuffer sb1 = new StringBuffer();
+            String str1 = buffer.toString();
+            StringBuffer buffer1 = new StringBuffer();
             for (int i = 0; i < str1.length(); i++) {
                 char a = str1.charAt(str1.length() - 1 - i);
-                sb1.append(a);
+                buffer1.append(a);
             }
-            sb1.append(".");
-            sb1.append(strs[1]);
-            retVal = sb1.toString();
+            buffer1.append(".");
+            buffer1.append(strs[1]);
+            retVal = buffer1.toString();
 
             if (is_positive_integer) {
                 retVal = "-" + retVal;

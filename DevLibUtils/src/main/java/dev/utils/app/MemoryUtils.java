@@ -69,14 +69,14 @@ public final class MemoryUtils {
         try {
             FileReader fileReader = new FileReader(MEM_INFO_PATH);
             BufferedReader bufferedReader = new BufferedReader(fileReader, 4 * 1024);
-            StringBuffer stringBuffer = new StringBuffer();
+            StringBuffer buffer = new StringBuffer();
             String str;
             while ((str = bufferedReader.readLine()) != null) {
                 // 追加保存内容
-                stringBuffer.append(str);
+                buffer.append(str);
             }
             bufferedReader.close();
-            return stringBuffer.toString();
+            return buffer.toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printMemInfo");
         }
@@ -102,14 +102,14 @@ public final class MemoryUtils {
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo printMemoryInfo() {
         ActivityManager.MemoryInfo mi = getMemoryInfo();
-        StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("_______  Memory :   ");
+        StringBuilder builder = new StringBuilder();
+        builder.append("_______  Memory :   ");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            sBuilder.append("\ntotalMem :").append(mi.totalMem);
+            builder.append("\ntotalMem :").append(mi.totalMem);
         }
-        sBuilder.append("\navailMem :").append(mi.availMem);
-        sBuilder.append("\nlowMemory :").append(mi.lowMemory);
-        sBuilder.append("\nthreshold :").append(mi.threshold);
+        builder.append("\navailMem :").append(mi.availMem);
+        builder.append("\nlowMemory :").append(mi.lowMemory);
+        builder.append("\nthreshold :").append(mi.threshold);
         return mi;
     }
 

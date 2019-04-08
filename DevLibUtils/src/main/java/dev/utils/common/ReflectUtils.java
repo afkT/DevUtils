@@ -254,14 +254,13 @@ public final class ReflectUtils {
      * Object obj = 对象;
      * getObject(getDeclaredFieldBase(obj, "父类中变量名"), obj);
      * @param field
-     * @param obj
+     * @param object
      * @return
      */
-    public static Object getObject(Field field, Object obj) {
+    public static Object getObject(Field field, Object object) {
         try {
             field.setAccessible(true);
-            Object out = field.get(obj);
-            return out;
+            return field.get(object);
         } catch (Exception e) {
         }
         return null;
@@ -283,16 +282,15 @@ public final class ReflectUtils {
 
     /**
      * 通过反射获取全部字段
-     * @param obj
+     * @param object
      * @param name
      * @return
      * @throws Exception
      */
-    public static Object getDeclaredField(Object obj, String name) throws Exception {
-        Field f = obj.getClass().getDeclaredField(name);
-        f.setAccessible(true);
-        Object out = f.get(obj);
-        return out;
+    public static Object getDeclaredField(Object object, String name) throws Exception {
+        Field field = object.getClass().getDeclaredField(name);
+        field.setAccessible(true);
+        return field.get(object);
     }
 
     /**
@@ -365,14 +363,14 @@ public final class ReflectUtils {
         }
     }
 
-    private ReflectUtils method(final Method method, final Object obj, final Object... args) {
+    private ReflectUtils method(final Method method, final Object object, final Object... args) {
         try {
             accessible(method);
             if (method.getReturnType() == void.class) {
-                method.invoke(obj, args);
-                return reflect(obj);
+                method.invoke(object, args);
+                return reflect(object);
             } else {
-                return reflect(method.invoke(obj, args));
+                return reflect(method.invoke(object, args));
             }
         } catch (Exception e) {
             throw new ReflectException(e);
@@ -588,12 +586,12 @@ public final class ReflectUtils {
 
     /**
      * 判断反射的两个对象是否一样
-     * @param obj
+     * @param object
      * @return
      */
     @Override
-    public boolean equals(Object obj) {
-        return obj instanceof ReflectUtils && object.equals(((ReflectUtils) obj).get());
+    public boolean equals(Object object) {
+        return object instanceof ReflectUtils && this.object.equals(((ReflectUtils) object).get());
     }
 
     /**

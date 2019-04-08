@@ -973,17 +973,17 @@ public final class AppUtils {
 
 	/**
 	 * 数据加密转换16进制
-	 * @param bytes
+	 * @param data
 	 * @return
 	 */
-	private static String bytes2HexString(final byte[] bytes) {
-		if (bytes == null) return null;
-		int len = bytes.length;
+	private static String bytes2HexString(final byte[] data) {
+		if (data == null) return null;
+		int len = data.length;
 		if (len <= 0) return null;
 		char[] ret = new char[len << 1];
 		for (int i = 0, j = 0; i < len; i++) {
-			ret[j++] = HEX_DIGITS[bytes[i] >>> 4 & 0x0f];
-			ret[j++] = HEX_DIGITS[bytes[i] & 0x0f];
+			ret[j++] = HEX_DIGITS[data[i] >>> 4 & 0x0f];
+			ret[j++] = HEX_DIGITS[data[i] & 0x0f];
 		}
 		return new String(ret);
 	}

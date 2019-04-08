@@ -32,28 +32,28 @@ public final class JSONObjectUtils {
 
     /**
      * 转换为 JSON 格式字符串
-     * @param obj
+     * @param object
      * @return
      * @TODO 不支持 实体类 转 JSON字符串
      */
-    public static String toJson(Object obj) {
-        return toJson(obj, -1);
+    public static String toJson(Object object) {
+        return toJson(object, -1);
     }
 
     /**
      * 转换为 JSON 格式字符串
-     * @param obj
+     * @param object
      * @param jsonIndent
      * @return
      * @TODO 不支持 实体类 转 JSON字符串
      */
-    public static String toJson(Object obj, int jsonIndent) {
-        if (obj == null) return null;
+    public static String toJson(Object object, int jsonIndent) {
+        if (object == null) return null;
         // 判断是否格式化
         boolean format = jsonIndent >= 1;
         try {
-            if (obj instanceof String) {
-                String json = (String) obj;
+            if (object instanceof String) {
+                String json = (String) object;
                 if (json.startsWith("{")) {
                     JSONObject jsonObject = new JSONObject(json);
                     return format ? jsonObject.toString(jsonIndent) : jsonObject.toString();
@@ -61,32 +61,32 @@ public final class JSONObjectUtils {
                     JSONArray jsonArray = new JSONArray(json);
                     return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
                 }
-            } else if (obj instanceof JSONObject) {
-                JSONObject jsonObject = (JSONObject) obj;
+            } else if (object instanceof JSONObject) {
+                JSONObject jsonObject = (JSONObject) object;
                 return format ? jsonObject.toString(jsonIndent) : jsonObject.toString();
-            } else if (obj instanceof JSONArray) {
-                JSONArray jsonArray = (JSONArray) obj;
+            } else if (object instanceof JSONArray) {
+                JSONArray jsonArray = (JSONArray) object;
                 return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
-            } else if (obj instanceof Map) {
-                JSONObject jsonObject = new JSONObject((Map) obj);
+            } else if (object instanceof Map) {
+                JSONObject jsonObject = new JSONObject((Map) object);
                 return format ? jsonObject.toString(jsonIndent) : jsonObject.toString();
-            } else if (obj instanceof Collection) {
-                JSONArray jsonArray = new JSONArray((Collection) obj);
+            } else if (object instanceof Collection) {
+                JSONArray jsonArray = new JSONArray((Collection) object);
                 return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
-            } else if (obj.getClass().isArray()) {
+            } else if (object.getClass().isArray()) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                    JSONArray jsonArray = new JSONArray(obj);
+                    JSONArray jsonArray = new JSONArray(object);
                     return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
                 } else {
                     JSONArray jsonArray = new JSONArray();
-                    final int length = Array.getLength(obj);
+                    final int length = Array.getLength(object);
                     for (int i = 0; i < length; ++i) {
-                        jsonArray.put(wrap(Array.get(obj, i)));
+                        jsonArray.put(wrap(Array.get(object, i)));
                     }
                     return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
                 }
-            } else if (obj instanceof JSONTokener) {
-                JSONTokener jsonTokener = (JSONTokener) obj;
+            } else if (object instanceof JSONTokener) {
+                JSONTokener jsonTokener = (JSONTokener) object;
                 // 获取 value 对象
                 Object tokenerObj = jsonTokener.nextValue();
                 // 判断是什么格式
@@ -99,7 +99,7 @@ public final class JSONObjectUtils {
                 }
             }
             // 抛出不支持的类型
-            throw new Exception("Value " + obj + " of className" + obj.getClass().getName());
+            throw new Exception("Value " + object + " of className" + object.getClass().getName());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "toJson");
         }
@@ -112,7 +112,7 @@ public final class JSONObjectUtils {
 
     /**
      * Object 转换 JSON 对象
-     * @param obj
+     * @param object
      * @param type JSONObject.class || JSONArray.class || JSONTokener.class
      * @return
      * use:
@@ -120,47 +120,47 @@ public final class JSONObjectUtils {
      * fromJson(xx, JSONArray.class);
      * fromJson(xx, JSONTokener.class);
      */
-    public static <T> T fromJson(Object obj, final Class<T> type) {
-        if (obj == null || type == null) return null;
+    public static <T> T fromJson(Object object, final Class<T> type) {
+        if (object == null || type == null) return null;
         try {
             if (type.equals(JSONObject.class)) {
-                if (obj instanceof JSONObject) {
-                    return (T) obj;
-                } else if (obj instanceof String) {
-                    return (T) new JSONObject((String) obj);
-                } else if (obj instanceof JSONTokener) {
-                    return (T) new JSONObject((JSONTokener) obj);
-                } else if (obj instanceof Map) {
-                    return (T) new JSONObject((Map) obj);
+                if (object instanceof JSONObject) {
+                    return (T) object;
+                } else if (object instanceof String) {
+                    return (T) new JSONObject((String) object);
+                } else if (object instanceof JSONTokener) {
+                    return (T) new JSONObject((JSONTokener) object);
+                } else if (object instanceof Map) {
+                    return (T) new JSONObject((Map) object);
                 }
             } else if (type.equals(JSONArray.class)) {
-                if (obj instanceof JSONArray) {
-                    return (T) obj;
-                } else if (obj instanceof String) {
-                    return (T) new JSONArray((String) obj);
-                } else if (obj instanceof JSONTokener) {
-                    return (T) new JSONArray((JSONTokener) obj);
-                } else if (obj instanceof Collection) {
-                    return (T) new JSONArray((Collection) obj);
-                } else if (obj.getClass().isArray()) {
+                if (object instanceof JSONArray) {
+                    return (T) object;
+                } else if (object instanceof String) {
+                    return (T) new JSONArray((String) object);
+                } else if (object instanceof JSONTokener) {
+                    return (T) new JSONArray((JSONTokener) object);
+                } else if (object instanceof Collection) {
+                    return (T) new JSONArray((Collection) object);
+                } else if (object.getClass().isArray()) {
                     if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                        return (T) new JSONArray(obj);
+                        return (T) new JSONArray(object);
                     } else {
                         JSONArray jsonArray = new JSONArray();
-                        final int length = Array.getLength(obj);
+                        final int length = Array.getLength(object);
                         for (int i = 0; i < length; ++i) {
-                            jsonArray.put(wrap(Array.get(obj, i)));
+                            jsonArray.put(wrap(Array.get(object, i)));
                         }
                         return (T) jsonArray;
                     }
                 }
             } else if (type.equals(JSONTokener.class)) {
-                if (obj instanceof String) {
-                    return (T) new JSONTokener((String) obj);
+                if (object instanceof String) {
+                    return (T) new JSONTokener((String) object);
                 }
             }
             // 抛出不支持的类型
-            throw new Exception("Value " + obj + " of className" + obj.getClass().getName()
+            throw new Exception("Value " + object + " of className" + object.getClass().getName()
                     + " converted Type " + type.getCanonicalName());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "fromJson");
@@ -174,48 +174,48 @@ public final class JSONObjectUtils {
 
     /**
      * 包装转换 Object - {@link JSONObject#wrap(Object)}
-     * @param obj
+     * @param object
      * @return
      */
-    public static Object wrap(Object obj) {
-        if (obj == null) {
+    public static Object wrap(Object object) {
+        if (object == null) {
             return null;
         }
-        if (obj instanceof JSONArray || obj instanceof JSONObject) {
-            return obj;
+        if (object instanceof JSONArray || object instanceof JSONObject) {
+            return object;
         }
         try {
-            if (obj instanceof Collection) {
-                return new JSONArray((Collection) obj);
-            } else if (obj.getClass().isArray()) {
+            if (object instanceof Collection) {
+                return new JSONArray((Collection) object);
+            } else if (object.getClass().isArray()) {
                 // 版本兼容
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                    return new JSONArray(obj);
+                    return new JSONArray(object);
                 } else {
                     JSONArray jsonArray = new JSONArray();
-                    final int length = Array.getLength(obj);
+                    final int length = Array.getLength(object);
                     for (int i = 0; i < length; ++i) {
-                        jsonArray.put(wrap(Array.get(obj, i)));
+                        jsonArray.put(wrap(Array.get(object, i)));
                     }
                     return jsonArray;
                 }
             }
-            if (obj instanceof Map) {
-                return new JSONObject((Map) obj);
+            if (object instanceof Map) {
+                return new JSONObject((Map) object);
             }
-            if (obj instanceof Boolean ||
-                    obj instanceof Byte ||
-                    obj instanceof Character ||
-                    obj instanceof Double ||
-                    obj instanceof Float ||
-                    obj instanceof Integer ||
-                    obj instanceof Long ||
-                    obj instanceof Short ||
-                    obj instanceof String) {
-                return obj;
+            if (object instanceof Boolean ||
+                    object instanceof Byte ||
+                    object instanceof Character ||
+                    object instanceof Double ||
+                    object instanceof Float ||
+                    object instanceof Integer ||
+                    object instanceof Long ||
+                    object instanceof Short ||
+                    object instanceof String) {
+                return object;
             }
-            if (obj.getClass().getPackage().getName().startsWith("java.")) {
-                return obj.toString();
+            if (object.getClass().getPackage().getName().startsWith("java.")) {
+                return object.toString();
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "wrap");
@@ -231,47 +231,47 @@ public final class JSONObjectUtils {
     public static String stringJSONEscape(String str) {
         if (str == null)
             return "";
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
             switch (ch) {
                 case '"':
-                    sb.append("\\\"");
+                    builder.append("\\\"");
                     break;
                 case '\\':
-                    sb.append("\\\\");
+                    builder.append("\\\\");
                     break;
                 case '\b':
-                    sb.append("\\b");
+                    builder.append("\\b");
                     break;
                 case '\f':
-                    sb.append("\\f");
+                    builder.append("\\f");
                     break;
                 case '\n':
-                    sb.append("\\n");
+                    builder.append("\\n");
                     break;
                 case '\r':
-                    sb.append("\\r");
+                    builder.append("\\r");
                     break;
                 case '\t':
-                    sb.append("\\t");
+                    builder.append("\\t");
                     break;
                 case '/':
-                    sb.append("\\/");
+                    builder.append("\\/");
                     break;
                 default:
                     if (ch >= '\u0000' && ch <= '\u001F') {
                         String ss = Integer.toHexString(ch);
-                        sb.append("\\u");
+                        builder.append("\\u");
                         for (int k = 0; k < 4 - ss.length(); k++) {
-                            sb.append('0');
+                            builder.append('0');
                         }
-                        sb.append(ss.toUpperCase());
+                        builder.append(ss.toUpperCase());
                     } else {
-                        sb.append(ch);
+                        builder.append(ch);
                     }
             }
         }
-        return sb.toString();
+        return builder.toString();
     }
 }

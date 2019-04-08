@@ -1327,14 +1327,14 @@ public final class FileUtils {
 			try {
 				InputStreamReader isR = new InputStreamReader(iStream);
 				BufferedReader br = new BufferedReader(isR);
-				StringBuilder sBuilder = new StringBuilder();
+				StringBuilder builder = new StringBuilder();
 				String line;
 				while ((line = br.readLine()) != null) {
-					sBuilder.append(line);
+					builder.append(line);
 				}
 				isR.close();
 				br.close();
-				return sBuilder.toString();
+				return builder.toString();
 			} catch (Exception e) {
 				JCLogUtils.eTag(TAG, e, "readFile");
 			}
@@ -1358,14 +1358,14 @@ public final class FileUtils {
 					new InputStreamReader(iStream);
 				}
 				BufferedReader br = new BufferedReader(isR);
-				StringBuilder sBuilder = new StringBuilder();
+				StringBuilder builder = new StringBuilder();
 				String line;
 				while ((line = br.readLine()) != null) {
-					sBuilder.append(line);
+					builder.append(line);
 				}
 				isR.close();
 				br.close();
-				return sBuilder.toString();
+				return builder.toString();
 			} catch (Exception e) {
 				JCLogUtils.eTag(TAG, e, "readFile");
 			}

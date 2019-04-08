@@ -1052,8 +1052,8 @@ public final class DevCommonUtils {
             if (length <= start) {
                 return str;
             } else { // 大于 start 位
-                StringBuffer stringBuffer = new StringBuffer();
-                stringBuffer.append(str.substring(0, start));
+                StringBuffer buffer = new StringBuffer();
+                buffer.append(str.substring(0, start));
                 int len = length - start - symbolNumber;
                 // 如果超出总长度, 则进行控制
                 if (len <= 0) { // 表示后面的全部转换
@@ -1063,10 +1063,10 @@ public final class DevCommonUtils {
                 }
                 // 进行遍历保存
                 for (int i = 0; i < len; i++) {
-                    stringBuffer.append(symbol);
+                    buffer.append(symbol);
                 }
-                stringBuffer.append(str.substring(start + len, length));
-                return stringBuffer.toString();
+                buffer.append(str.substring(start + len, length));
+                return buffer.toString();
             }
         }
         return "";
@@ -1090,17 +1090,17 @@ public final class DevCommonUtils {
             if (length <= start) {
                 return str;
             } else { // 大于 start 位
-                StringBuffer stringBuffer = new StringBuffer();
-                stringBuffer.append(str.substring(0, start));
+                StringBuffer buffer = new StringBuffer();
+                buffer.append(str.substring(0, start));
                 int len = length - start;
                 // 进行平分
                 len /= 2;
                 // 进行遍历保存
                 for (int i = 0; i < len; i++) {
-                    stringBuffer.append(symbol);
+                    buffer.append(symbol);
                 }
-                stringBuffer.append(str.substring(start + len, length));
-                return stringBuffer.toString();
+                buffer.append(str.substring(start + len, length));
+                return buffer.toString();
             }
         }
         return "";
@@ -1133,24 +1133,24 @@ public final class DevCommonUtils {
             // 获取编辑内容长度
             int kLength = key.length();
             // 保存新的Buffer中,减少内存开销
-            StringBuffer sBuffer = new StringBuffer(str);
+            StringBuffer buffer = new StringBuffer(str);
             // 判断是否在最头部
-            if (sBuffer.indexOf(key) == 0) {
-                sBuffer.delete(0, kLength);
+            if (buffer.indexOf(key) == 0) {
+                buffer.delete(0, kLength);
                 // 追加内容
-                sBuffer.insert(0, value);
+                buffer.insert(0, value);
             }
             // 获取尾部的位置
             int lastIndexOf = -1;
             // 数据长度
             int bufLength = -1;
             // 判断是否在最尾部
-            if ((lastIndexOf = sBuffer.lastIndexOf(key)) == ((bufLength = sBuffer.length()) - kLength)) {
-                sBuffer.delete(lastIndexOf, bufLength);
+            if ((lastIndexOf = buffer.lastIndexOf(key)) == ((bufLength = buffer.length()) - kLength)) {
+                buffer.delete(lastIndexOf, bufLength);
                 // 追加内容
-                sBuffer.insert(lastIndexOf, value);
+                buffer.insert(lastIndexOf, value);
             }
-            return sBuffer.toString();
+            return buffer.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toReplaceSEWith");
         }
@@ -1171,20 +1171,20 @@ public final class DevCommonUtils {
             // 获取编辑内容长度
             int kLength = suffix.length();
             // 保存新的Buffer中,减少内存开销
-            StringBuffer sBuffer = new StringBuffer(str);
+            StringBuffer buffer = new StringBuffer(str);
             // 进行循环判断 - 属于最前面的,才进行处理
-            while (sBuffer.indexOf(suffix) == 0) {
-                sBuffer.delete(0, kLength);
+            while (buffer.indexOf(suffix) == 0) {
+                buffer.delete(0, kLength);
             }
             // 获取尾部的位置
             int lastIndexOf = -1;
             // 数据长度
             int bufLength = -1;
             // 进行循环判断 - 属于最后面的,才进行处理
-            while ((lastIndexOf = sBuffer.lastIndexOf(suffix)) == ((bufLength = sBuffer.length()) - kLength)) {
-                sBuffer.delete(lastIndexOf, bufLength);
+            while ((lastIndexOf = buffer.lastIndexOf(suffix)) == ((bufLength = buffer.length()) - kLength)) {
+                buffer.delete(lastIndexOf, bufLength);
             }
-            return sBuffer.toString();
+            return buffer.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toClearSEWiths");
         }
@@ -1280,12 +1280,12 @@ public final class DevCommonUtils {
             // 获取编辑内容长度
             int kLength = suffix.length();
             // 保存新的Buffer中,减少内存开销
-            StringBuffer sBuffer = new StringBuffer(str);
+            StringBuffer buffer = new StringBuffer(str);
             // 进行循环判断 - 属于最前面的,才进行处理
-            while (sBuffer.indexOf(suffix) == 0) {
-                sBuffer.delete(0, kLength);
+            while (buffer.indexOf(suffix) == 0) {
+                buffer.delete(0, kLength);
             }
-            return sBuffer.toString();
+            return buffer.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toClearStartsWith");
         }
@@ -1338,14 +1338,14 @@ public final class DevCommonUtils {
             // 获取编辑内容长度
             int kLength = suffix.length();
             // 保存新的Buffer中,减少内存开销
-            StringBuffer sBuffer = new StringBuffer(str);
+            StringBuffer buffer = new StringBuffer(str);
             // 获取最后一位位置
             int sLength = 0;
             // 进行循环判断 - 属于最前面的,才进行处理
-            while (sBuffer.lastIndexOf(suffix) == ((sLength = sBuffer.length()) - kLength)) {
-                sBuffer.delete(sLength - kLength, sLength);
+            while (buffer.lastIndexOf(suffix) == ((sLength = buffer.length()) - kLength)) {
+                buffer.delete(sLength - kLength, sLength);
             }
-            return sBuffer.toString();
+            return buffer.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toClearEndsWith");
         }

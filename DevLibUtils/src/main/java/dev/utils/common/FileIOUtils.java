@@ -33,7 +33,7 @@ public final class FileIOUtils {
     // 日志 TAG
     private static final String TAG = FileIOUtils.class.getSimpleName();
     // 换行符
-    private static final String LINE_SEP = System.getProperty("line.separator");
+    public static final String NEW_LINE_STR = System.getProperty("line.separator");
     // 缓存大小
     private static int sBufferSize = 8192;
 
@@ -476,7 +476,7 @@ public final class FileIOUtils {
         if (!isFileExists(file)) return null;
         BufferedReader reader = null;
         try {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder builder = new StringBuilder();
             if (isSpace(charsetName)) {
                 reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
@@ -484,12 +484,12 @@ public final class FileIOUtils {
             }
             String line;
             if ((line = reader.readLine()) != null) {
-                sb.append(line);
+                builder.append(line);
                 while ((line = reader.readLine()) != null) {
-                    sb.append(LINE_SEP).append(line);
+                    builder.append(NEW_LINE_STR).append(line);
                 }
             }
-            return sb.toString();
+            return builder.toString();
         } catch (IOException e) {
             JCLogUtils.eTag(TAG, e, "readFileToString");
             return null;

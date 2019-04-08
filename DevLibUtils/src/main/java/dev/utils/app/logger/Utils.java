@@ -125,7 +125,7 @@ final class Utils {
 				return DEVICE_INFO_STR;
 			}
 			// 初始化StringBuilder,拼接字符串
-			StringBuilder sBuilder = new StringBuilder();
+			StringBuilder builder = new StringBuilder();
 			// 获取设备信息
 			Iterator<Map.Entry<String, String>> mapIter = DEVICE_INFO_MAPS.entrySet().iterator();
 			// 遍历设备信息
@@ -135,13 +135,13 @@ final class Utils {
 				String rnKey = rnEntry.getKey(); // key
 				String rnValue = rnEntry.getValue(); // value
 				// 保存设备信息
-				sBuilder.append(rnKey);
-				sBuilder.append(" = ");
-				sBuilder.append(rnValue);
-				sBuilder.append(NEW_LINE_STR);
+				builder.append(rnKey);
+				builder.append(" = ");
+				builder.append(rnValue);
+				builder.append(NEW_LINE_STR);
 			}
 			// 保存设备信息
-			DEVICE_INFO_STR = sBuilder.toString();
+			DEVICE_INFO_STR = builder.toString();
 			// 返回设备信息
 			return DEVICE_INFO_STR;
 		} catch (Exception e) {
@@ -335,33 +335,33 @@ final class Utils {
 		// 处理可变参数(错误提示)
 		eHint = handlerVariable(2, eHint);
 		// 日志拼接
-		StringBuilder sBuilder = new StringBuilder();
+		StringBuilder builder = new StringBuilder();
 		// 防止文件夹不存在
 		createFile(fPath);
 		// 设备信息
 		String dInfo = handlerDeviceInfo(eHint[0]);
 		// 如果存在顶部内容,则进行添加
 		if (!TextUtils.isEmpty(head)) {
-			sBuilder.append(head);
-			sBuilder.append(NEW_LINE_STR_X2);
-			sBuilder.append("============================");
-			sBuilder.append(NEW_LINE_STR_X2);
+			builder.append(head);
+			builder.append(NEW_LINE_STR_X2);
+			builder.append("============================");
+			builder.append(NEW_LINE_STR_X2);
 		}
 		// ============
 		// 保存 App 信息
-		sBuilder.append("date: " + getDateNow());
-		sBuilder.append(NEW_LINE_STR);
-		sBuilder.append("versionName: " + APP_VERSION_NAME);
-		sBuilder.append(NEW_LINE_STR);
-		sBuilder.append("versionCode: " + APP_VERSION_CODE);
-		sBuilder.append(NEW_LINE_STR_X2);
-		sBuilder.append("============================");
+		builder.append("date: " + getDateNow());
+		builder.append(NEW_LINE_STR);
+		builder.append("versionName: " + APP_VERSION_NAME);
+		builder.append(NEW_LINE_STR);
+		builder.append("versionCode: " + APP_VERSION_CODE);
+		builder.append(NEW_LINE_STR_X2);
+		builder.append("============================");
 		// 保存设备信息
-		sBuilder.append(NEW_LINE_STR_X2);
-		sBuilder.append(dInfo);
-		sBuilder.append(NEW_LINE_STR);
-		sBuilder.append("============================");
-		sBuilder.append(NEW_LINE_STR_X2);
+		builder.append(NEW_LINE_STR_X2);
+		builder.append(dInfo);
+		builder.append(NEW_LINE_STR);
+		builder.append("============================");
+		builder.append(NEW_LINE_STR_X2);
 		// ============
 		// 错误信息
 		String eMsg = null;
@@ -372,16 +372,16 @@ final class Utils {
 			eMsg = getThrowableMsg(eHint[1], ex);
 		}
 		// 保存异常信息
-		sBuilder.append(eMsg);
+		builder.append(eMsg);
 		// 如果存在顶部内容,则进行添加
 		if (!TextUtils.isEmpty(bottom)) {
-			sBuilder.append(NEW_LINE_STR);
-			sBuilder.append("============================");
-			sBuilder.append(NEW_LINE_STR_X2);
-			sBuilder.append(bottom);
+			builder.append(NEW_LINE_STR);
+			builder.append("============================");
+			builder.append(NEW_LINE_STR_X2);
+			builder.append(bottom);
 		}
 		// 保存日志到文件
-		return saveFile(sBuilder.toString(), fPath + File.separator + fName);
+		return saveFile(builder.toString(), fPath + File.separator + fName);
 	}
 
 	/**
@@ -410,45 +410,45 @@ final class Utils {
 		// 处理可变参数(错误提示)
 		eHint = handlerVariable(2, eHint);
 		// 日志拼接
-		StringBuilder sBuilder = new StringBuilder();
+		StringBuilder builder = new StringBuilder();
 		// 防止文件夹不存在
 		createFile(fPath);
 		// 设备信息
 		String dInfo = handlerDeviceInfo(eHint[0]);
 		// 如果存在顶部内容,则进行添加
 		if (!TextUtils.isEmpty(head)) {
-			sBuilder.append(head);
-			sBuilder.append(NEW_LINE_STR_X2);
-			sBuilder.append("============================");
-			sBuilder.append(NEW_LINE_STR_X2);
+			builder.append(head);
+			builder.append(NEW_LINE_STR_X2);
+			builder.append("============================");
+			builder.append(NEW_LINE_STR_X2);
 		}
 		// ============
 		// 保存 App 信息
-		sBuilder.append("date: " + getDateNow());
-		sBuilder.append(NEW_LINE_STR);
-		sBuilder.append("versionName: " + APP_VERSION_NAME);
-		sBuilder.append(NEW_LINE_STR);
-		sBuilder.append("versionCode: " + APP_VERSION_CODE);
-		sBuilder.append(NEW_LINE_STR_X2);
-		sBuilder.append("============================");
+		builder.append("date: " + getDateNow());
+		builder.append(NEW_LINE_STR);
+		builder.append("versionName: " + APP_VERSION_NAME);
+		builder.append(NEW_LINE_STR);
+		builder.append("versionCode: " + APP_VERSION_CODE);
+		builder.append(NEW_LINE_STR_X2);
+		builder.append("============================");
 		// 保存设备信息
-		sBuilder.append(NEW_LINE_STR_X2);
-		sBuilder.append(dInfo);
-		sBuilder.append(NEW_LINE_STR);
-		sBuilder.append("============================");
-		sBuilder.append(NEW_LINE_STR_X2);
+		builder.append(NEW_LINE_STR_X2);
+		builder.append(dInfo);
+		builder.append(NEW_LINE_STR);
+		builder.append("============================");
+		builder.append(NEW_LINE_STR_X2);
 		// ============
 		// 保存日志信息
-		sBuilder.append(log);
+		builder.append(log);
 		// 如果存在顶部内容,则进行添加
 		if (!TextUtils.isEmpty(bottom)) {
-			sBuilder.append(NEW_LINE_STR);
-			sBuilder.append("============================");
-			sBuilder.append(NEW_LINE_STR_X2);
-			sBuilder.append(bottom);
+			builder.append(NEW_LINE_STR);
+			builder.append("============================");
+			builder.append(NEW_LINE_STR_X2);
+			builder.append(bottom);
 		}
 		// 保存日志到文件
-		return saveFile(sBuilder.toString(), fPath + File.separator + fName);
+		return saveFile(builder.toString(), fPath + File.separator + fName);
 	}
 
 	// ==

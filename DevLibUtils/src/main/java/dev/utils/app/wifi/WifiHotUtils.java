@@ -462,16 +462,16 @@ public class WifiHotUtils {
      * @return
      */
     private String intToString(int data) {
-        StringBuffer sb = new StringBuffer();
+        StringBuffer buffer = new StringBuffer();
         int b = (data >> 0) & 0xff;
-        sb.append(b + ".");
+        buffer.append(b + ".");
         b = (data >> 8) & 0xff;
-        sb.append(b + ".");
+        buffer.append(b + ".");
         b = (data >> 16) & 0xff;
-        sb.append(b + ".");
+        buffer.append(b + ".");
         b = (data >> 24) & 0xff;
-        sb.append(b);
-        return sb.toString();
+        buffer.append(b);
+        return buffer.toString();
     }
 
     // == Android 8.0相关 ==

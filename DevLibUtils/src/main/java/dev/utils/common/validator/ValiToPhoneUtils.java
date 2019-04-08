@@ -160,58 +160,58 @@ public final class ValiToPhoneUtils {
         // ====== 中国电信 ======
         // 电信：133、153、180、181、189 、177(4G)、149、173、174、199
         // 进行拼接字符串,便于理解,后期修改
-        StringBuffer sBuffer = new StringBuffer();
-        sBuffer.append("^13[3]{1}\\d{8}$"); // 13开头
-        sBuffer.append("|"); // 或
-        sBuffer.append("^14[9]{1}\\d{8}$"); // 14开头
-        sBuffer.append("|");
-        sBuffer.append("^15[3]{1}\\d{8}$"); // 15开头
-        sBuffer.append("|");
-        sBuffer.append("^17[3,4,7]{1}\\d{8}$"); // 17开头
-        sBuffer.append("|");
-        sBuffer.append("^18[0,1,9]{1}\\d{8}$"); // 18开头
-        sBuffer.append("|");
-        sBuffer.append("^19[9]{1}\\d{8}$"); // 19开头
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("^13[3]{1}\\d{8}$"); // 13开头
+        buffer.append("|"); // 或
+        buffer.append("^14[9]{1}\\d{8}$"); // 14开头
+        buffer.append("|");
+        buffer.append("^15[3]{1}\\d{8}$"); // 15开头
+        buffer.append("|");
+        buffer.append("^17[3,4,7]{1}\\d{8}$"); // 17开头
+        buffer.append("|");
+        buffer.append("^18[0,1,9]{1}\\d{8}$"); // 18开头
+        buffer.append("|");
+        buffer.append("^19[9]{1}\\d{8}$"); // 19开头
         // 手机正则
-        CHINA_TELECOM_PATTERN = sBuffer.toString();
+        CHINA_TELECOM_PATTERN = buffer.toString();
         // =======================
 
         // ====== 中国联通 ======
         // 联通：130、131、132、155、156、185、186、176(4G)、145(上网卡)、146、166、171、175
         // 进行拼接字符串,便于理解,后期修改
-        sBuffer = new StringBuffer();
-        sBuffer.append("^13[0,1,2]{1}\\d{8}$"); // 13开头
-        sBuffer.append("|"); // 或
-        sBuffer.append("^14[5,6]{1}\\d{8}$"); // 14开头
-        sBuffer.append("|");
-        sBuffer.append("^15[5,6]{1}\\d{8}$"); // 15开头
-        sBuffer.append("|");
-        sBuffer.append("^16[6]{1}\\d{8}$"); // 16开头
-        sBuffer.append("|");
-        sBuffer.append("^17[1,5,6]{1}\\d{8}$"); // 17开头
-        sBuffer.append("|");
-        sBuffer.append("^18[5,6]{1}\\d{8}$"); // 18开头
+        buffer = new StringBuffer();
+        buffer.append("^13[0,1,2]{1}\\d{8}$"); // 13开头
+        buffer.append("|"); // 或
+        buffer.append("^14[5,6]{1}\\d{8}$"); // 14开头
+        buffer.append("|");
+        buffer.append("^15[5,6]{1}\\d{8}$"); // 15开头
+        buffer.append("|");
+        buffer.append("^16[6]{1}\\d{8}$"); // 16开头
+        buffer.append("|");
+        buffer.append("^17[1,5,6]{1}\\d{8}$"); // 17开头
+        buffer.append("|");
+        buffer.append("^18[5,6]{1}\\d{8}$"); // 18开头
         // 手机正则
-        CHINA_UNICOM_PATTERN = sBuffer.toString();
+        CHINA_UNICOM_PATTERN = buffer.toString();
         // =======================
 
         // ====== 中国移动 ======
         // 移动：134、135、136、137、138、139、150、151、152、157、158、159、182、183、184、187、188、178(4G)、147(上网卡)、148、172、198
         // 进行拼接字符串,便于理解,后期修改
-        sBuffer = new StringBuffer();
-        sBuffer.append("^13[4,5,6,7,8,9]{1}\\d{8}$"); // 13开头
-        sBuffer.append("|"); // 或
-        sBuffer.append("^14[7,8]{1}\\d{8}$"); // 14开头
-        sBuffer.append("|");
-        sBuffer.append("^15[0,1,2,7,8,9]{1}\\d{8}$"); // 15开头
-        sBuffer.append("|");
-        sBuffer.append("^17[2,8]{1}\\d{8}$"); // 17开头
-        sBuffer.append("|");
-        sBuffer.append("^18[2,3,4,7,8]{1}\\d{8}$"); // 18开头
-        sBuffer.append("|");
-        sBuffer.append("^19[8]{1}\\d{8}$"); // 19开头
+        buffer = new StringBuffer();
+        buffer.append("^13[4,5,6,7,8,9]{1}\\d{8}$"); // 13开头
+        buffer.append("|"); // 或
+        buffer.append("^14[7,8]{1}\\d{8}$"); // 14开头
+        buffer.append("|");
+        buffer.append("^15[0,1,2,7,8,9]{1}\\d{8}$"); // 15开头
+        buffer.append("|");
+        buffer.append("^17[2,8]{1}\\d{8}$"); // 17开头
+        buffer.append("|");
+        buffer.append("^18[2,3,4,7,8]{1}\\d{8}$"); // 18开头
+        buffer.append("|");
+        buffer.append("^19[8]{1}\\d{8}$"); // 19开头
         // 手机正则
-        CHINA_MOBILE_PATTERN = sBuffer.toString();
+        CHINA_MOBILE_PATTERN = buffer.toString();
         // =======================
 
         /**

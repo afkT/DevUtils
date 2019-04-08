@@ -402,17 +402,17 @@ public final class DevCache {
     /**
      * 保存 byte 数据到缓存中
      * @param key 保存的key
-     * @param value 保存的数据
+     * @param data 保存的数据
      */
-    public void put(String key, byte[] value) {
-        if (key == null || value == null) {
+    public void put(String key, byte[] data) {
+        if (key == null || data == null) {
             return;
         }
         File file = mCache.newFile(key);
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(file);
-            out.write(value);
+            out.write(data);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put byte[]");
         } finally {
@@ -457,11 +457,11 @@ public final class DevCache {
     /**
      * 保存 byte 数据到缓存中
      * @param key 保存的key
-     * @param value 保存的数据
+     * @param data 保存的数据
      * @param saveTime 保存的时间，单位：秒
      */
-    public void put(String key, byte[] value, int saveTime) {
-        put(key, DevCacheUtils.newByteArrayWithDateInfo(saveTime, value));
+    public void put(String key, byte[] data, int saveTime) {
+        put(key, DevCacheUtils.newByteArrayWithDateInfo(saveTime, data));
     }
 
     /**
@@ -616,11 +616,11 @@ public final class DevCache {
      * @return bitmap 数据
      */
     public Bitmap getAsBitmap(String key) {
-        byte[] bytes = getAsBinary(key);
-        if (bytes == null) {
+        byte[] data = getAsBinary(key);
+        if (data == null) {
             return null;
         }
-        return DevCacheUtils.bytes2Bimap(bytes);
+        return DevCacheUtils.bytes2Bimap(data);
     }
 
     // =====================================
@@ -652,11 +652,11 @@ public final class DevCache {
      * @return Drawable 数据
      */
     public Drawable getAsDrawable(String key) {
-        byte[] bytes = getAsBinary(key);
-        if (bytes == null) {
+        byte[] data = getAsBinary(key);
+        if (data == null) {
             return null;
         }
-        return DevCacheUtils.bitmap2Drawable(DevCacheUtils.bytes2Bimap(bytes));
+        return DevCacheUtils.bitmap2Drawable(DevCacheUtils.bytes2Bimap(data));
     }
 
     /**

@@ -65,24 +65,24 @@ final class PreferenceImpl implements IPreference {
      * 保存数据
      * @param editor
      * @param key
-     * @param obj
+     * @param object
      */
     @SuppressWarnings("unchecked")
-    private void put(SharedPreferences.Editor editor, String key, Object obj) {
+    private void put(SharedPreferences.Editor editor, String key, Object object) {
         // key 不为null时再存入，否则不存储
         if (key != null) {
-            if (obj instanceof Integer) {
-                editor.putInt(key, (Integer) obj);
-            } else if (obj instanceof Long) {
-                editor.putLong(key, (Long) obj);
-            } else if (obj instanceof Boolean) {
-                editor.putBoolean(key, (Boolean) obj);
-            } else if (obj instanceof Float) {
-                editor.putFloat(key, (Float) obj);
-            } else if (obj instanceof Set) {
-                editor.putStringSet(key, (Set<String>) obj);
-            } else if (obj instanceof String) {
-                editor.putString(key, String.valueOf(obj));
+            if (object instanceof Integer) {
+                editor.putInt(key, (Integer) object);
+            } else if (object instanceof Long) {
+                editor.putLong(key, (Long) object);
+            } else if (object instanceof Boolean) {
+                editor.putBoolean(key, (Boolean) object);
+            } else if (object instanceof Float) {
+                editor.putFloat(key, (Float) object);
+            } else if (object instanceof Set) {
+                editor.putStringSet(key, (Set<String>) object);
+            } else if (object instanceof String) {
+                editor.putString(key, String.valueOf(object));
             }
         }
     }

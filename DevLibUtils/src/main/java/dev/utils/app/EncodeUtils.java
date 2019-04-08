@@ -144,19 +144,19 @@ public final class EncodeUtils {
      * @return html-encode string
      */
     public static String htmlEncode(final CharSequence input) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         char c;
         for (int i = 0, len = input.length(); i < len; i++) {
             c = input.charAt(i);
             switch (c) {
                 case '<':
-                    sb.append("&lt;"); //$NON-NLS-1$
+                    builder.append("&lt;"); //$NON-NLS-1$
                     break;
                 case '>':
-                    sb.append("&gt;"); //$NON-NLS-1$
+                    builder.append("&gt;"); //$NON-NLS-1$
                     break;
                 case '&':
-                    sb.append("&amp;"); //$NON-NLS-1$
+                    builder.append("&amp;"); //$NON-NLS-1$
                     break;
                 case '\'':
                     //http://www.w3.org/TR/xhtml1
@@ -164,16 +164,16 @@ public final class EncodeUtils {
                     // introduced in XML 1.0 but does not appear in HTML. Authors should
                     // therefore use &#39; instead of &apos; to work as expected in HTML 4
                     // user agents.
-                    sb.append("&#39;"); //$NON-NLS-1$
+                    builder.append("&#39;"); //$NON-NLS-1$
                     break;
                 case '"':
-                    sb.append("&quot;"); //$NON-NLS-1$
+                    builder.append("&quot;"); //$NON-NLS-1$
                     break;
                 default:
-                    sb.append(c);
+                    builder.append(c);
             }
         }
-        return sb.toString();
+        return builder.toString();
     }
 
     /**
@@ -196,12 +196,12 @@ public final class EncodeUtils {
      * @return
      */
     public static String binEncode(final String input) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (char i : input.toCharArray()) {
-            stringBuilder.append(Integer.toBinaryString(i));
-            stringBuilder.append(' ');
+            builder.append(Integer.toBinaryString(i));
+            builder.append(' ');
         }
-        return stringBuilder.toString();
+        return builder.toString();
     }
 
     /**
@@ -211,10 +211,10 @@ public final class EncodeUtils {
      */
     public static String binDecode(final String input) {
         String[] splitted = input.split(" ");
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (String i : splitted) {
-            sb.append(((char) Integer.parseInt(i.replace(" ", ""), 2)));
+            builder.append(((char) Integer.parseInt(i.replace(" ", ""), 2)));
         }
-        return sb.toString();
+        return builder.toString();
     }
 }
