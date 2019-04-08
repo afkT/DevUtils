@@ -28,7 +28,7 @@ public final class ConverUtils {
      * @param defaultStr
      * @return
      */
-    public static String toString(char[] data, String defaultStr) {
+    public static String toString(final char[] data, final String defaultStr) {
         if (data != null) {
             try {
                 return new String(data);
@@ -45,7 +45,7 @@ public final class ConverUtils {
      * @param defaultStr
      * @return
      */
-    public static String toString(byte[] data, String defaultStr) {
+    public static String toString(final byte[] data, final String defaultStr) {
         if (data != null) {
             try {
                 return new String(data);
@@ -60,11 +60,10 @@ public final class ConverUtils {
      * char 转 String
      * @param data
      * @return
-     * ==
      * 97 - 122 = a-z, 48-57 = 0-9
      * toString((char) 97); = a
      */
-    public static String toString(char data) {
+    public static String toString(final char data) {
         try {
             return Character.toString(data);
         } catch (Exception e) {
@@ -78,7 +77,7 @@ public final class ConverUtils {
      * @param object
      * @return
      */
-    public static String toString(Object object, String defaultStr) {
+    public static String toString(final Object object, final String defaultStr) {
         if (object != null) {
             try {
                 if (object instanceof String) {
@@ -139,7 +138,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static int toInt(String str, int defaultValue) {
+    public static int toInt(final String str, final int defaultValue) {
+        if (str == null) return defaultValue;
         try {
             return Integer.parseInt(str);
         } catch (Exception e) {
@@ -154,7 +154,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static boolean toBoolean(String str, boolean defaultValue) {
+    public static boolean toBoolean(final String str, final boolean defaultValue) {
+        if (str == null) return defaultValue;
         try {
             // 判断是否0
             if (str.equalsIgnoreCase("true") || str.equalsIgnoreCase("1")) {
@@ -174,7 +175,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static float toFloat(String str, float defaultValue) {
+    public static float toFloat(final String str, final float defaultValue) {
+        if (str == null) return defaultValue;
         try {
             return Float.parseFloat(str);
         } catch (Exception e) {
@@ -189,7 +191,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static double toDouble(String str, double defaultValue) {
+    public static double toDouble(final String str, final double defaultValue) {
+        if (str == null) return defaultValue;
         try {
             return Double.parseDouble(str);
         } catch (Exception e) {
@@ -204,7 +207,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static long toLong(String str, long defaultValue) {
+    public static long toLong(final String str, final long defaultValue) {
+        if (str == null) return defaultValue;
         try {
             return Long.parseLong(str);
         } catch (Exception e) {
@@ -221,7 +225,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static int toInt(Integer value, int defaultValue) {
+    public static int toInt(final Integer value, final int defaultValue) {
+        if (value == null) return defaultValue;
         try {
             return value;
         } catch (Exception e) {
@@ -235,7 +240,7 @@ public final class ConverUtils {
      * @param value
      * @return
      */
-    public static boolean toBoolean(Boolean value) {
+    public static boolean toBoolean(final Boolean value) {
         return (value != null && value);
     }
 
@@ -245,7 +250,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static float toFloat(Float value, float defaultValue) {
+    public static float toFloat(final Float value, final float defaultValue) {
+        if (value == null) return defaultValue;
         try {
             return value;
         } catch (Exception e) {
@@ -260,7 +266,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static double toDouble(Double value, double defaultValue) {
+    public static double toDouble(final Double value, final double defaultValue) {
+        if (value == null) return defaultValue;
         try {
             return value;
         } catch (Exception e) {
@@ -275,7 +282,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static long toLong(Long value, long defaultValue) {
+    public static long toLong(final Long value, final long defaultValue) {
+        if (value == null) return defaultValue;
         try {
             return value;
         } catch (Exception e) {
@@ -291,7 +299,7 @@ public final class ConverUtils {
      * @param value
      * @return
      */
-    public static int toInt(char value) {
+    public static int toInt(final char value) {
         return (int) value;
     }
 
@@ -301,7 +309,7 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static char toChar(String str, char defaultValue) {
+    public static char toChar(final String str, final char defaultValue) {
         return toChar(str, 0, defaultValue);
     }
 
@@ -312,7 +320,8 @@ public final class ConverUtils {
      * @param defaultValue
      * @return
      */
-    public static char toChar(String str, int pos, char defaultValue) {
+    public static char toChar(final String str, final int pos, final char defaultValue) {
+        if (str == null || pos < 0) return defaultValue;
         try {
             return str.charAt(pos);
         } catch (Exception e) {
@@ -325,44 +334,44 @@ public final class ConverUtils {
      * char 转换 unicode 编码
      * @param value
      * @return
-     * --
      * toCharInt('a') = 97
      */
-    public static int toCharInt(char value) {
+    public static int toCharInt(final char value) {
         return (int) value;
     }
 
     /**
-     * 字符串 获取 char数组
+     * 字符串 获取 char[]
      * @param str
      * @return
      */
-    public static char[] toCharArys(String str) {
+    public static char[] toChars(final String str) {
+        if (str == null) return null;
         try {
             return str.toCharArray();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toCharArys");
+            JCLogUtils.eTag(TAG, e, "toChars");
         }
         return null;
     }
 
     /**
-     * 字符串 获取 byte数组
+     * 字符串 获取 byte[]
      * @param str
      * @return
      */
-    public static byte[] toByteArys(String str) {
+    public static byte[] toBytes(final String str) {
         if (str != null) {
             try {
                 return str.getBytes();
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toByteArys");
+                JCLogUtils.eTag(TAG, e, "toBytes");
             }
         }
         return null;
     }
 
-    // ======================================================================
+    // ==============================
 //    Binary(二进制) toBinaryString
 //    Oct(八进制)
 //    Dec(十进制)
@@ -376,10 +385,9 @@ public final class ConverUtils {
      * 一个 int 参数的字符串表示形式在基数为16的无符号 int
      * @param value
      * @return
-     * --
      * 例如 -> 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
      */
-    public static String toHexString(int value) {
+    public static String toHexString(final int value) {
         try {
             return Integer.toHexString(value);
         } catch (Exception e) {
@@ -393,7 +401,7 @@ public final class ConverUtils {
      * @param value
      * @return
      */
-    public static String toHexString(long value) {
+    public static String toHexString(final long value) {
         try {
             return Long.toHexString(value);
         } catch (Exception e) {
@@ -407,7 +415,7 @@ public final class ConverUtils {
      * @param value
      * @return
      */
-    public static String toHexString(double value) {
+    public static String toHexString(final double value) {
         try {
             return Double.toHexString(value);
         } catch (Exception e) {
@@ -421,7 +429,7 @@ public final class ConverUtils {
      * @param value
      * @return
      */
-    public static String toHexString(float value) {
+    public static String toHexString(final float value) {
         try {
             return Float.toHexString(value);
         } catch (Exception e) {
@@ -437,10 +445,10 @@ public final class ConverUtils {
      * @param str
      * @param radix
      * @return
-     * ==
      * 如: parseInt("1f603", 16) = 128515
      */
-    public static int parseInt(String str, int radix) {
+    public static int parseInt(final String str, final int radix) {
+        if (str == null) return -1;
         try {
             return Integer.parseInt(str, radix);
         } catch (Exception e) {
@@ -460,17 +468,17 @@ public final class ConverUtils {
     // ======================================================================
 
     // 小写
-    public static final char HEX_DIGITS[] = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' };
+    public static final char HEX_DIGITS [] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
     // 大写
-    public static final char HEX_DIGITS_UPPER[] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+    public static final char HEX_DIGITS_UPPER [] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
     /**
-     * 进行转换 十六进制字符
+     * 进行十六进制转换
      * @param data
      * @param hexDigits
      * @return
      */
-    public static String toHexString(byte[] data, char[] hexDigits) {
+    public static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
         try {
             StringBuilder builder = new StringBuilder(data.length * 2);
@@ -487,12 +495,13 @@ public final class ConverUtils {
 
     /**
      * 十六进制字符串 转换byte数组
-     * @param hexString
+     * @param hex
      * @return
      */
-    public static byte[] hexStringToBytes(String hexString) {
+    public static byte[] hexStringToBytes(final String hex) {
         try {
-            if (isSpace(hexString)) return null;
+            if (isSpace(hex)) return null;
+            String hexString = hex;
             int len = hexString.length();
             if (len % 2 != 0) {
                 hexString = "0" + hexString;
@@ -528,47 +537,68 @@ public final class ConverUtils {
     // ==
 
     /**
-     * 把 bytes 数据, 转换成二进制数据
-     * 例: "asd".getBytes() 传入 bytes2Bits 返回 011000010111001101100100 二进制的字符串数据
-     * @param data The bytes.
-     * @return bits
+     * 将 字节转换 为 二进制字符串
+     * @param datas 字节数组
+     * @return 二进制字符串
      */
-    public static String bytesToBits(final byte[] data) {
-        if (data == null || data.length <= 0) return null;
+    public static String bytesToBits(final byte... datas) {
+        if (datas == null || datas.length <= 0) return null;
         StringBuilder builder = new StringBuilder();
-        for (byte value : data) {
+        for (byte value : datas) {
             for (int j = 7; j >= 0; --j) {
                 builder.append(((value >> j) & 0x01) == 0 ? '0' : '1');
             }
         }
         return builder.toString();
+//        try {
+//            StringBuffer buffer = new StringBuffer();
+//            int z, strLength;
+//            String str;
+//            for (int i = 0, len = datas.length; i < len; i++) {
+//                z = datas[i];
+//                z |= 256;
+//                str = Integer.toBinaryString(z);
+//                strLength = str.length();
+//                buffer.append(str.substring(strLength - 8, strLength));
+//            }
+//            return buffer.toString();
+//        } catch (Exception e) {
+//            JCLogUtils.eTag(TAG, e, "bytesToBits");
+//        }
+//        return null;
     }
 
     /**
-     * 二进制字符串, 转换成byte数组
-     * 例: "011000010111001101100100" 传入 bits2Bytes, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 bytes2Bits 使用
-     * @param bits The bits.
+     * 二进制字符串, 转换成 byte[]
+     * 例: "011000010111001101100100" 传入 bitsToBytes, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 bytesToBits 使用
+     * @param str The bits.
      * @return bytes
      */
-    public static byte[] bitsToBytes(String bits) {
-        if (bits == null || bits.length() <= 0) return null;
-        int lenMod = bits.length() % 8;
-        int byteLen = bits.length() / 8;
-        // add "0" until length to 8 times
-        if (lenMod != 0) {
-            for (int i = lenMod; i < 8; i++) {
-                bits = "0" + bits;
+    public static byte[] bitsToBytes(final String str) {
+        if (str == null) return null;
+        try {
+            String data = str;
+            int lenMod = data.length() % 8;
+            int byteLen = data.length() / 8;
+            // add "0" until length to 8 times
+            if (lenMod != 0) {
+                for (int i = lenMod; i < 8; i++) {
+                    data = "0" + data;
+                }
+                byteLen++;
             }
-            byteLen++;
-        }
-        byte[] bytes = new byte[byteLen];
-        for (int i = 0; i < byteLen; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                bytes[i] <<= 1;
-                bytes[i] |= bits.charAt(i * 8 + j) - '0';
+            byte[] bytes = new byte[byteLen];
+            for (int i = 0; i < byteLen; ++i) {
+                for (int j = 0; j < 8; ++j) {
+                    bytes[i] <<= 1;
+                    bytes[i] |= data.charAt(i * 8 + j) - '0';
+                }
             }
+            return bytes;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "bitsToBytes");
         }
-        return bytes;
+        return null;
     }
 
     /**
@@ -593,8 +623,9 @@ public final class ConverUtils {
      * @return bytes
      */
     public static byte[] charsToBytes(final char[] data) {
-        if (data == null || data.length <= 0) return null;
+        if (data == null) return null;
         int len = data.length;
+        if (len <= 0) return null;
         byte[] bytes = new byte[len];
         for (int i = 0; i < len; i++) {
             bytes[i] = (byte) (data[i]);

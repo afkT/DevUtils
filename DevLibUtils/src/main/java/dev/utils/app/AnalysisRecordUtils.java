@@ -659,7 +659,7 @@ public final class AnalysisRecordUtils {
 
         /**
          * 获取当前日期的字符串
-         * @param format 日期格式，譬如：HH, mm, ss
+         * @param format 日期格式，如：HH, mm, ss
          * @return 字符串
          */
         private String getDateNow(String format) {

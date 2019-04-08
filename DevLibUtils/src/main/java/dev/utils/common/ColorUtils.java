@@ -93,7 +93,7 @@ public final class ColorUtils {
      * @param alpha 0-255
      * @return
      */
-    public static String toHexAlpha(int alpha) {
+    public static String toHexAlpha(final int alpha) {
         try {
             if (alpha >= 0 && alpha <= 255) {
                 return Integer.toHexString(alpha);
@@ -112,7 +112,7 @@ public final class ColorUtils {
      * @param max
      * @return
      */
-    public static float percent(float value, float max) {
+    public static float percent(final float value, final float max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -125,7 +125,7 @@ public final class ColorUtils {
      * @param max
      * @return
      */
-    public static float percent(int value, int max) {
+    public static float percent(final int value, final int max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -139,7 +139,7 @@ public final class ColorUtils {
      * @param min
      * @return
      */
-    public static int clamp(int value, int max, int min) {
+    public static int clamp(final int value, final int max, final int min) {
         return value > max ? max : value < min ? min : value;
     }
 
@@ -150,7 +150,7 @@ public final class ColorUtils {
      * @param min
      * @return
      */
-    public static float clamp(float value, float max, float min) {
+    public static float clamp(final float value, final float max, final float min) {
         return value > max ? max : value < min ? min : value;
     }
 
@@ -161,7 +161,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static int alpha(int color) {
+    public static int alpha(final int color) {
         return color >>> 24;
     }
 
@@ -170,7 +170,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static float alphaPercent(int color) {
+    public static float alphaPercent(final int color) {
         return percent(alpha(color), 255);
     }
 
@@ -181,7 +181,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static int red(int color) {
+    public static int red(final int color) {
         return (color >> 16) & 0xFF;
     }
 
@@ -190,7 +190,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static float redPercent(int color) {
+    public static float redPercent(final int color) {
         return percent(red(color), 255);
     }
 
@@ -201,7 +201,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static int green(int color) {
+    public static int green(final int color) {
         return (color >> 8) & 0xFF;
     }
 
@@ -210,7 +210,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static float greenPercent(int color) {
+    public static float greenPercent(final int color) {
         return percent(green(color), 255);
     }
 
@@ -221,7 +221,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static int blue(int color) {
+    public static int blue(final int color) {
         return color & 0xFF;
     }
 
@@ -230,7 +230,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static float bluePercent(int color) {
+    public static float bluePercent(final int color) {
         return percent(blue(color), 255);
     }
 
@@ -242,7 +242,7 @@ public final class ColorUtils {
      * @param green [0-255]
      * @param blue [0-255]
      */
-    public static int rgb(int red, int green, int blue) {
+    public static int rgb(final int red, final int green, final int blue) {
         return 0xff000000 | (red << 16) | (green << 8) | blue;
     }
 
@@ -252,11 +252,11 @@ public final class ColorUtils {
      * @param green [0-255]
      * @param blue [0-255]
      */
-    public static int rgb(float red, float green, float blue) {
+    public static int rgb(final float red, final float green, final float blue) {
         return 0xff000000 |
-                ((int) (red   * 255.0f + 0.5f) << 16) |
-                ((int) (green * 255.0f + 0.5f) <<  8) |
-                (int) (blue  * 255.0f + 0.5f);
+                ((int) (red * 255.0f + 0.5f) << 16) |
+                ((int) (green * 255.0f + 0.5f) << 8) |
+                (int) (blue * 255.0f + 0.5f);
     }
 
     // =
@@ -268,7 +268,7 @@ public final class ColorUtils {
      * @param green [0-255]
      * @param blue [0-255]
      */
-    public static int argb(int alpha, int red, int green, int blue) {
+    public static int argb(final int alpha, final int red, final int green, final int blue) {
         return (alpha << 24) | (red << 16) | (green << 8) | blue;
     }
 
@@ -279,11 +279,11 @@ public final class ColorUtils {
      * @param green [0-255]
      * @param blue [0-255]
      */
-    public static int argb(float alpha, float red, float green, float blue) {
+    public static int argb(final float alpha, final float red, final float green, final float blue) {
         return ((int) (alpha * 255.0f + 0.5f) << 24) |
-                ((int) (red   * 255.0f + 0.5f) << 16) |
-                ((int) (green * 255.0f + 0.5f) <<  8) |
-                (int) (blue  * 255.0f + 0.5f);
+                ((int) (red * 255.0f + 0.5f) << 16) |
+                ((int) (green * 255.0f + 0.5f) << 8) |
+                (int) (blue * 255.0f + 0.5f);
     }
 
     // =
@@ -293,7 +293,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static boolean isRGB(int color) {
+    public static boolean isRGB(final int color) {
         int red = red(color);
         int green = green(color);
         int blue = blue(color);
@@ -307,7 +307,7 @@ public final class ColorUtils {
      * @param color
      * @return
      */
-    public static boolean isARGB(int color) {
+    public static boolean isARGB(final int color) {
         int alpha = alpha(color);
         int red = red(color);
         int green = green(color);
@@ -326,7 +326,7 @@ public final class ColorUtils {
      * @param alpha [0-255]
      * @return
      */
-    public static int setAlpha(int color, int alpha) {
+    public static int setAlpha(final int color, final int alpha) {
         return (color & 0x00ffffff) | (alpha << 24);
     }
 
@@ -336,7 +336,7 @@ public final class ColorUtils {
      * @param alpha [0-255]
      * @return
      */
-    public static int setAlpha(int color, float alpha) {
+    public static int setAlpha(final int color, final float alpha) {
         return (color & 0x00ffffff) | ((int) (alpha * 255.0f + 0.5f) << 24);
     }
 
@@ -346,7 +346,7 @@ public final class ColorUtils {
      * @param red [0-255]
      * @return
      */
-    public static int setRed(int color, int red) {
+    public static int setRed(final int color, final int red) {
         return (color & 0xff00ffff) | (red << 16);
     }
 
@@ -356,7 +356,7 @@ public final class ColorUtils {
      * @param red [0-255]
      * @return
      */
-    public static int setRed(int color, float red) {
+    public static int setRed(final int color, final float red) {
         return (color & 0xff00ffff) | ((int) (red * 255.0f + 0.5f) << 16);
     }
 
@@ -366,7 +366,7 @@ public final class ColorUtils {
      * @param green [0-255]
      * @return
      */
-    public static int setGreen(int color, int green) {
+    public static int setGreen(final int color, final int green) {
         return (color & 0xffff00ff) | (green << 8);
     }
 
@@ -376,7 +376,7 @@ public final class ColorUtils {
      * @param green [0-255]
      * @return
      */
-    public static int setGreen(int color, float green) {
+    public static int setGreen(final int color, final float green) {
         return (color & 0xffff00ff) | ((int) (green * 255.0f + 0.5f) << 8);
     }
 
@@ -386,7 +386,7 @@ public final class ColorUtils {
      * @param blue [0-255]
      * @return
      */
-    public static int setBlue(int color, int blue) {
+    public static int setBlue(final int color, final int blue) {
         return (color & 0xffffff00) | blue;
     }
 
@@ -396,7 +396,7 @@ public final class ColorUtils {
      * @param blue [0-255]
      * @return
      */
-    public static int setBlue(int color, float blue) {
+    public static int setBlue(final int color, final float blue) {
         return (color & 0xffffff00) | (int) (blue * 255.0f + 0.5f);
     }
 
@@ -407,7 +407,7 @@ public final class ColorUtils {
      * @param colorStr
      * @return
      */
-    private static int priParseColor(String colorStr) {
+    private static int priParseColor(final String colorStr) {
         if (colorStr.charAt(0) == '#') {
             // Use a long to avoid rollovers on #ffXXXXXX
             long color = Long.parseLong(colorStr.substring(1), 16);
@@ -417,7 +417,7 @@ public final class ColorUtils {
             } else if (colorStr.length() != 9) {
                 throw new IllegalArgumentException("Unknown color");
             }
-            return (int)color;
+            return (int) color;
         } else {
             Integer color = sColorNameMap.get(colorStr.toLowerCase(Locale.ROOT));
             if (color != null) {
@@ -434,7 +434,7 @@ public final class ColorUtils {
      * #AARRGGBB
      * 'red', 'blue', 'green', 'black', 'white', 'gray', 'cyan', 'magenta', 'yellow', 'lightgray', 'darkgray'
      */
-    public static int parseColor(String colorStr) {
+    public static int parseColor(final String colorStr) {
         try {
             return priParseColor(colorStr);
         } catch (Exception e) {
@@ -448,9 +448,10 @@ public final class ColorUtils {
      * @param colorInt
      * @return
      */
-    public static String intToRgbString(int colorInt) {
-        colorInt = colorInt & 0x00ffffff;
-        String colorStr = Integer.toHexString(colorInt);
+    public static String intToRgbString(final int colorInt) {
+        int color = colorInt;
+        color = color & 0x00ffffff;
+        String colorStr = Integer.toHexString(color);
         while (colorStr.length() < 6) {
             colorStr = "0" + colorStr;
         }
@@ -462,7 +463,7 @@ public final class ColorUtils {
      * @param colorInt
      * @return
      */
-    public static String intToArgbString(int colorInt) {
+    public static String intToArgbString(final int colorInt) {
         String colorString = Integer.toHexString(colorInt);
         while (colorString.length() < 6) {
             colorString = "0" + colorString;
@@ -488,7 +489,7 @@ public final class ColorUtils {
      * @param supportAlpha
      * @return
      */
-    public static int getRandomColor(boolean supportAlpha) {
+    public static int getRandomColor(final boolean supportAlpha) {
         int high = supportAlpha ? (int) (Math.random() * 0x100) << 24 : 0xFF000000;
         return high | (int) (Math.random() * 0x1000000);
     }
@@ -498,7 +499,7 @@ public final class ColorUtils {
      * @param colorStr
      * @return
      */
-    public static boolean judgeColorString(String colorStr) {
+    public static boolean judgeColorString(final String colorStr) {
         if (colorStr != null && colorStr.length() == 8) {
             for (int i = 0; i < colorStr.length(); i++) {
                 char cc = colorStr.charAt(i);
@@ -517,7 +518,7 @@ public final class ColorUtils {
      * @param darkValue
      * @return
      */
-    public static int setDark(String colorStr, int darkValue) {
+    public static int setDark(final String colorStr, final int darkValue) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setDark(color, darkValue);
@@ -529,7 +530,7 @@ public final class ColorUtils {
      * @param darkValue
      * @return
      */
-    public static int setDark(int color, int darkValue) {
+    public static int setDark(final int color, final int darkValue) {
         int red = red(color);
         int green = green(color);
         int blue = blue(color);
@@ -537,11 +538,13 @@ public final class ColorUtils {
         red -= darkValue;
         green -= darkValue;
         blue -= darkValue;
+        // 颜色值
+        int colorTemp = color;
         // 进行设置
-        color = setRed(color, clamp(red, 255, 0));
-        color = setGreen(color, clamp(green, 255, 0));
-        color = setBlue(color, clamp(blue, 255, 0));
-        return color;
+        colorTemp = setRed(colorTemp, clamp(red, 255, 0));
+        colorTemp = setGreen(colorTemp, clamp(green, 255, 0));
+        colorTemp = setBlue(colorTemp, clamp(blue, 255, 0));
+        return colorTemp;
     }
 
     /**
@@ -550,7 +553,7 @@ public final class ColorUtils {
      * @param lightValue
      * @return
      */
-    public static int setLight(String colorStr, int lightValue) {
+    public static int setLight(final String colorStr, final int lightValue) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setLight(color, lightValue);
@@ -562,7 +565,7 @@ public final class ColorUtils {
      * @param lightValue
      * @return
      */
-    public static int setLight(int color, int lightValue) {
+    public static int setLight(final int color, final int lightValue) {
         int red = red(color);
         int green = green(color);
         int blue = blue(color);
@@ -570,11 +573,13 @@ public final class ColorUtils {
         red += lightValue;
         green += lightValue;
         blue += lightValue;
+        // 颜色值
+        int colorTemp = color;
         // 进行设置
-        color = setRed(color, clamp(red, 255, 0));
-        color = setGreen(color, clamp(green, 255, 0));
-        color = setBlue(color, clamp(blue, 255, 0));
-        return color;
+        colorTemp = setRed(colorTemp, clamp(red, 255, 0));
+        colorTemp = setGreen(colorTemp, clamp(green, 255, 0));
+        colorTemp = setBlue(colorTemp, clamp(blue, 255, 0));
+        return colorTemp;
     }
 
     /**
@@ -583,7 +588,7 @@ public final class ColorUtils {
      * @param darkValue
      * @return
      */
-    public static int setAlphaDark(String colorStr, int darkValue) {
+    public static int setAlphaDark(final String colorStr, final int darkValue) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setAlphaDark(color, darkValue);
@@ -595,13 +600,12 @@ public final class ColorUtils {
      * @param darkValue
      * @return
      */
-    public static int setAlphaDark(int color, int darkValue) {
+    public static int setAlphaDark(final int color, final int darkValue) {
         int alpha = alpha(color);
         // 透明度加深
         alpha += darkValue;
         // 进行设置
-        color = setAlpha(color, clamp(alpha, 255, 0));
-        return color;
+        return setAlpha(color, clamp(alpha, 255, 0));
     }
 
     /**
@@ -610,7 +614,7 @@ public final class ColorUtils {
      * @param lightValue
      * @return
      */
-    public static int setAlphaLight(String colorStr, int lightValue) {
+    public static int setAlphaLight(final String colorStr, final int lightValue) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setAlphaLight(color, lightValue);
@@ -622,13 +626,12 @@ public final class ColorUtils {
      * @param lightValue
      * @return
      */
-    public static int setAlphaLight(int color, int lightValue) {
+    public static int setAlphaLight(final int color, final int lightValue) {
         int alpha = alpha(color);
         // 透明度变浅
         alpha -= lightValue;
         // 进行设置
-        color = setAlpha(color, clamp(alpha, 255, 0));
-        return color;
+        return setAlpha(color, clamp(alpha, 255, 0));
     }
 
     // =

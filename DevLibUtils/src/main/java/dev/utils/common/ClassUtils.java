@@ -26,7 +26,7 @@ public final class ClassUtils {
      * @param clazz
      * @return
      */
-    public static boolean isBaseDataType(Class<?> clazz) {
+    public static boolean isBaseDataType(final Class<?> clazz) {
         return clazz != null && (clazz.isPrimitive() || clazz.equals(String.class) || clazz.equals(Boolean.class)
                 || clazz.equals(Integer.class) || clazz.equals(Long.class) || clazz.equals(Float.class)
                 || clazz.equals(Double.class) || clazz.equals(Byte.class) || clazz.equals(Character.class)
@@ -39,7 +39,8 @@ public final class ClassUtils {
      * @param clazz
      * @return
      */
-    public static <T> T newInstance(Class<T> clazz) {
+    public static <T> T newInstance(final Class<T> clazz) {
+        if (clazz == null) return null;
         try {
             Constructor<?>[] cons = clazz.getDeclaredConstructors();
             for (Constructor<?> c : cons) {
@@ -67,7 +68,7 @@ public final class ClassUtils {
      * @param clazz
      * @return
      */
-    public static Object getDefaultPrimiticeValue(Class clazz) {
+    public static Object getDefaultPrimiticeValue(final Class clazz) {
         if (clazz != null && clazz.isPrimitive()) {
             return clazz == boolean.class ? false : 0;
         }
@@ -79,7 +80,7 @@ public final class ClassUtils {
      * @param clazz
      * @return
      */
-    public static boolean isCollection(Class clazz) {
+    public static boolean isCollection(final Class clazz) {
         return (clazz != null && Collection.class.isAssignableFrom(clazz));
     }
 
@@ -88,7 +89,7 @@ public final class ClassUtils {
      * @param clazz
      * @return
      */
-    public static boolean isArray(Class clazz) {
+    public static boolean isArray(final Class clazz) {
         return (clazz != null && clazz.isArray());
     }
 
@@ -99,7 +100,7 @@ public final class ClassUtils {
      * @param object
      * @return
      */
-    public static Class<?> getGenericSuperclass(Object object) {
+    public static Class<?> getGenericSuperclass(final Object object) {
         return getGenericSuperclass(object, 0);
     }
 
@@ -109,7 +110,7 @@ public final class ClassUtils {
      * @param pos 泛型参数位置
      * @return
      */
-    public static Class<?> getGenericSuperclass(Object object, int pos) {
+    public static Class<?> getGenericSuperclass(final Object object, final int pos) {
         if (object != null) {
             return getGenericSuperclass(object.getClass(), pos);
         }
@@ -123,7 +124,7 @@ public final class ClassUtils {
      * @param clazz
      * @return
      */
-    public static Class<?> getGenericSuperclass(Class clazz) {
+    public static Class<?> getGenericSuperclass(final Class clazz) {
         return getGenericSuperclass(clazz, 0);
     }
 
@@ -133,7 +134,7 @@ public final class ClassUtils {
      * @param pos 泛型参数位置
      * @return
      */
-    public static Class<?> getGenericSuperclass(Class clazz, int pos) {
+    public static Class<?> getGenericSuperclass(final Class clazz, final int pos) {
         if (clazz != null && pos >= 0) {
             try {
                 return (Class<?>) ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[pos];
@@ -152,7 +153,7 @@ public final class ClassUtils {
      * @param interfaceClazz 接口 Class
      * @return
      */
-    public static Class<?> getGenericInterfaces(Object object, Class interfaceClazz) {
+    public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz) {
         return getGenericInterfaces(object, interfaceClazz, 0);
     }
 
@@ -164,7 +165,7 @@ public final class ClassUtils {
      * @param pos 泛型参数位置
      * @return
      */
-    public static Class<?> getGenericInterfaces(Object object, Class interfaceClazz, int pos) {
+    public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz, final int pos) {
         if (object != null) {
             return getGenericInterfaces(object.getClass(), interfaceClazz, pos);
         }
@@ -179,7 +180,7 @@ public final class ClassUtils {
      * @param interfaceClazz 接口 Class
      * @return
      */
-    public static Class<?> getGenericInterfaces(Class clazz, Class interfaceClazz) {
+    public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz) {
         return getGenericInterfaces(clazz, interfaceClazz, 0);
     }
 
@@ -190,7 +191,7 @@ public final class ClassUtils {
      * @param pos 泛型参数位置
      * @return
      */
-    public static Class<?> getGenericInterfaces(Class clazz, Class interfaceClazz, int pos) {
+    public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz, final int pos) {
         if (clazz != null && interfaceClazz != null && pos >= 0) {
             try {
                 // 获取接口类名

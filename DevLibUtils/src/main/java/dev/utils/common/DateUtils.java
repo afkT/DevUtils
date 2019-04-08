@@ -1,6 +1,5 @@
 package dev.utils.common;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,493 +14,492 @@ import dev.utils.JCLogUtils;
  */
 public final class DateUtils {
 
-	private DateUtils() {
-	}
-    
-	// 日志 TAG
-	private static final String TAG = DateUtils.class.getSimpleName();
+    private DateUtils() {
+    }
 
-	// ==================
-	// == 日期格式类型 ==
-	// ==================
+    // 日志 TAG
+    private static final String TAG = DateUtils.class.getSimpleName();
 
-	public static final String yyyy = "yyyy";
-	public static final String yyyyMMdd = "yyyy-MM-dd";
-	public static final String yyyyMMdd2 = "yyyyMMdd";
-	public static final String yyyyMMdd3 = "yyyy年MM月dd日";
-	public static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
-	public static final String yyyyMMddHHmmss_2 = "yyyy年M月d日 HH:mm:ss";
-	public static final String MMdd = "MM-dd";
-	public static final String MMdd2 = "MM月dd日";
-	public static final String MMdd3 = "MMdd";
-	public static final String HHmm = "HH:mm";
-	public static final String HHmm2 = "HHmm";
-	public static final String HHmmss = "HH:mm:ss";
-	public static final String HHmmss2 = "HHmmss";
-	public static final String hhmmMMDDyyyy = "hh:mm M月d日 yyyy";
-	public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
+    // ==================
+    // == 日期格式类型 ==
+    // ==================
 
-	// 一分钟 60秒
-	public static final int MINUTE_S = 60;
-	// 一小时 60 * 60秒
-	public static final int HOUR_S = 3600;
-	// 一天 24 * 60 * 60*/
-	public static final int DAY_S = 86400;
+    public static final String yyyy = "yyyy";
+    public static final String yyyyMMdd = "yyyy-MM-dd";
+    public static final String yyyyMMdd2 = "yyyyMMdd";
+    public static final String yyyyMMdd3 = "yyyy年MM月dd日";
+    public static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
+    public static final String yyyyMMddHHmmss_2 = "yyyy年M月d日 HH:mm:ss";
+    public static final String MMdd = "MM-dd";
+    public static final String MMdd2 = "MM月dd日";
+    public static final String MMdd3 = "MMdd";
+    public static final String HHmm = "HH:mm";
+    public static final String HHmm2 = "HHmm";
+    public static final String HHmmss = "HH:mm:ss";
+    public static final String HHmmss2 = "HHmmss";
+    public static final String hhmmMMDDyyyy = "hh:mm M月d日 yyyy";
+    public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
 
-	// 秒与毫秒的倍数
-	public static final long SEC = 1000;
-	// 分与毫秒的倍数
-	public static final long MIN = SEC * 60;
-	// 时与毫秒的倍数
-	public static final long HOUR = MIN * 60;
-	// 天与毫秒的倍数
-	public static final long DAY = HOUR * 24;
-	// 周与毫秒的倍数
-	public static final long WEEK = DAY * 7;
-	// 月与毫秒的倍数
-	public static final long MONTH = DAY * 30;
-	// 年与毫秒的倍数
-	public static final long YEAR = DAY * 365;
+    // 一分钟 60秒
+    public static final int MINUTE_S = 60;
+    // 一小时 60 * 60秒
+    public static final int HOUR_S = 3600;
+    // 一天 24 * 60 * 60*/
+    public static final int DAY_S = 86400;
 
-	/**
-	 * 获取当前日期的字符串 - "yyyy-MM-dd HH:mm:ss"
-	 * @return 字符串
-	 */
-	public static String getDateNow() {
-		return getDateNow(yyyyMMddHHmmss);
-	}
+    // 秒与毫秒的倍数
+    public static final long SEC = 1000;
+    // 分与毫秒的倍数
+    public static final long MIN = SEC * 60;
+    // 时与毫秒的倍数
+    public static final long HOUR = MIN * 60;
+    // 天与毫秒的倍数
+    public static final long DAY = HOUR * 24;
+    // 周与毫秒的倍数
+    public static final long WEEK = DAY * 7;
+    // 月与毫秒的倍数
+    public static final long MONTH = DAY * 30;
+    // 年与毫秒的倍数
+    public static final long YEAR = DAY * 365;
 
-	/**
-	 * 获取当前日期的字符串
-	 * @param format 日期格式，譬如："yyyy-MM-dd HH:mm:ss"
-	 * @return 字符串
-	 */
-	public static String getDateNow(String format) {
-		try {
-			if ((format == null) || (format != null && format.equals("")))
-				format = yyyyMMddHHmmss;
+    /**
+     * 获取当前日期的字符串 - yyyy-MM-dd HH:mm:ss
+     * @return 字符串
+     */
+    public static String getDateNow() {
+        return getDateNow(yyyyMMddHHmmss);
+    }
 
-			Calendar cld = Calendar.getInstance();
-			DateFormat df = new SimpleDateFormat(format);
-			return df.format(cld.getTime());
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "getDateNow");
-		}
-		return null;
-	}
+    /**
+     * 获取当前日期的字符串
+     * @param format 日期格式，如：yyyy-MM-dd HH:mm:ss
+     * @return 字符串
+     */
+    public static String getDateNow(final String format) {
+        if (format == null) return null;
+        try {
+            return new SimpleDateFormat(format).format(Calendar.getInstance().getTime());
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getDateNow");
+        }
+        return null;
+    }
 
-	// ==
+    // ==
 
-	/**
-	 * 将时间戳转换日期字符串
-	 * @param time 时间戳
-	 * @param format 日期格式
-	 * @return 按照需求格式的日期字符串
-	 */
-	public static String formatTime(long time, String format) {
-		try {
-			return new SimpleDateFormat(format).format(time);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "formatTime");
-		}
-		return null;
-	}
-	
-	/**
-	 * 将Date类型转换日期字符串
-	 * @param date 日期
-	 * @param format 日期格式
-	 * @return 按照需求格式的日期字符串
-	 */
-	public static String formatDate(Date date, String format) {
-		try {
-			return new SimpleDateFormat(format).format(date);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "formatDate");
-		}
-		return null;
-	}
+    /**
+     * 将时间戳转换日期字符串
+     * @param time 时间戳
+     * @param format 日期格式
+     * @return 按照需求格式的日期字符串
+     */
+    public static String formatTime(final long time, final String format) {
+        if (format == null) return null;
+        try {
+            return new SimpleDateFormat(format).format(time);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "formatTime");
+        }
+        return null;
+    }
 
-	// ===
+    /**
+     * 将 Date 转换日期字符串
+     * @param date 日期
+     * @param format 日期格式
+     * @return 按照需求格式的日期字符串
+     */
+    public static String formatDate(final Date date, final String format) {
+        if (date == null || format == null) return null;
+        try {
+            return new SimpleDateFormat(format).format(date);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "formatDate");
+        }
+        return null;
+    }
 
-	/**
-	 * 将时间戳转换成Date类型
-	 * @param time
-	 * @return
-	 */
-	public static Date parseDate(long time) {
-		try {
-			return new Date(time);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "parseDate");
-		}
-		return null;
-	}
+    // ===
 
-	/**
-	 * 将日期字符串转换为Date类型 - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
-	 * @param time
-	 * @return
-	 */
-	public static Date parseDate(String time) {
-		return parseDate(time, yyyyMMddHHmmss);
-	}
+    /**
+     * 将时间戳转换成 Date
+     * @param time
+     * @return
+     */
+    public static Date parseDate(final long time) {
+        try {
+            return new Date(time);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "parseDate");
+        }
+        return null;
+    }
 
-	/**
-	 * 将日期字符串转换为Date类型
-	 * @param time
-	 * @param format
-	 * @return
-	 */
-	public static Date parseDate(String time, String format) {
-		try {
-			if ((format == null) || (format != null && format.equals("")))
-				format = yyyyMMddHHmmss;
+    /**
+     * 将日期字符串转换为 Date - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
+     * @param time
+     * @return
+     */
+    public static Date parseDate(final String time) {
+        return parseDate(time, yyyyMMddHHmmss);
+    }
 
-			return new SimpleDateFormat(format).parse(time);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "parseDate");
-		}
-		return null;
-	}
+    /**
+     * 将日期字符串转换为 Date
+     * @param time
+     * @param format
+     * @return
+     */
+    public static Date parseDate(final String time, final String format) {
+        if (time == null || format == null) return null;
+        try {
+            return new SimpleDateFormat(format).parse(time);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "parseDate");
+        }
+        return null;
+    }
 
-	// ==
+    // ==
 
-	/**
-	 * 解析时间字符串转换为long毫秒 - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
-	 * @param time
-	 * @return
-	 */
-	public static long parseLong(String time) {
-		return parseLong(time, yyyyMMddHHmmss);
-	}
-	
-	/**
-	 * 解析时间字符串转换为long毫秒
-	 * @param time 时间
-	 * @param format 时间的格式
-	 * @return
-	 */
-	public static long parseLong(String time, String format) {
-		try {
-			if ((format == null) || (format != null && format.equals("")))
-				format = yyyyMMddHHmmss;
+    /**
+     * 解析时间字符串转换为long毫秒 - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
+     * @param time
+     * @return
+     */
+    public static long parseLong(final String time) {
+        return parseLong(time, yyyyMMddHHmmss);
+    }
 
-			SimpleDateFormat sdf = new SimpleDateFormat(format);
-			// 按规定的时间格式,进行格式化时间，并且获取long时间毫秒
-			long millionSeconds = sdf.parse(time).getTime();
-			// 返回毫秒时间
-			return millionSeconds;
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "parseLong");
-		}
-		return 0l;
-	}
+    /**
+     * 解析时间字符串转换为long毫秒
+     * @param time 时间
+     * @param format 时间的格式
+     * @return
+     */
+    public static long parseLong(final String time, final String format) {
+        if (time == null || format == null) return 0l;
+        try {
+            // 按规定的时间格式,进行格式化时间，并且获取long时间毫秒，返回毫秒时间
+            return new SimpleDateFormat(format).parse(time).getTime();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "parseLong");
+        }
+        return 0l;
+    }
 
-	/**
-	 * 转换时间为指定字符串
-	 * @param time 需要转换的时间
-	 * @param timeFormat time的时间格式
-	 * @param format 把time转换成需要的格式
-	 * @return
-	 */
-	public static String parseToString(String time, String timeFormat, String format) {
-		if (time != null && timeFormat != null && format != null) {
-			try {
-				Date date = parseDate(time, timeFormat);
-				// 把时间转为所需格式字符串
-				return formatDate(date, format);
-			} catch (Exception e) {
-				JCLogUtils.eTag(TAG, e, "parseToString");
-			}
-		}
-		return null;
-	}
+    /**
+     * 转换时间为指定字符串
+     * @param time 需要转换的时间
+     * @param timeFormat time的时间格式
+     * @param format 把time转换成需要的格式
+     * @return
+     */
+    public static String parseToString(final String time, final String timeFormat, final String format) {
+        if (time != null && timeFormat != null && format != null) {
+            try {
+                Date date = parseDate(time, timeFormat);
+                // 把时间转为所需格式字符串
+                return formatDate(date, format);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "parseToString");
+            }
+        }
+        return null;
+    }
 
-	// ==
+    // ==
 
-	/**
-	 * 获取时间差 - 分钟
-	 * @param time(毫秒)
-	 * @return
-	 */
-	public static int getTimeDiffMinute(long time) {
-		return (int) (time / 60000); // 60 * 1000
-	}
+    /**
+     * 获取时间差 - 分钟
+     * @param time 毫秒
+     * @return
+     */
+    public static int getTimeDiffMinute(final long time) {
+        return (int) (time / 60000); // 60 * 1000
+    }
 
-	/**
-	 * 获取时间差 - 小时
-	 * @param time(毫秒)
-	 * @return
-	 */
-	public static int getTimeDiffHour(long time) {
-		return (int) (time / 3600000); // 60 * 1000 * 60
-	}
+    /**
+     * 获取时间差 - 小时
+     * @param time 毫秒
+     * @return
+     */
+    public static int getTimeDiffHour(final long time) {
+        return (int) (time / 3600000); // 60 * 1000 * 60
+    }
 
-	/**
-	 * 获取时间差 - 天
-	 * @param time(毫秒)
-	 * @return
-	 */
-	public static int getTimeDiffDay(long time) {
-		return (int) (time / 86400000); // 60 * 1000 * 60 * 24
-	}
+    /**
+     * 获取时间差 - 天
+     * @param time 毫秒
+     * @return
+     */
+    public static int getTimeDiffDay(final long time) {
+        return (int) (time / 86400000); // 60 * 1000 * 60 * 24
+    }
 
-	/**
-	 * 获取时间差 - (传入时间 - 当前时间)
-	 * @param time
-	 * @return
-	 */
-	public static long getTimeDiff(long time) {
-		return time - System.currentTimeMillis();
-	}
+    /**
+     * 获取时间差 - (传入时间 - 当前时间)
+     * @param time
+     * @return
+     */
+    public static long getTimeDiff(final long time) {
+        return time - System.currentTimeMillis();
+    }
 
-	/**
-	 * 获取时间差
-	 * @param timeStr1
-	 * @param timeStr2
-	 * @return
-	 */
-	public static long getTimeDiff(String timeStr1, String timeStr2) {
-		long time1 = parseLong(timeStr1);
-		long time2 = parseLong(timeStr2);
-		if (time1 > 1l && time2 > 1l) {
-			return time1 - time2;
-		}
-		return -2l;
-	}
+    /**
+     * 获取时间差
+     * @param timeStr1
+     * @param timeStr2
+     * @return
+     */
+    public static long getTimeDiff(final String timeStr1, final String timeStr2) {
+        long time1 = parseLong(timeStr1);
+        long time2 = parseLong(timeStr2);
+        if (time1 > 1l && time2 > 1l) {
+            return time1 - time2;
+        }
+        return -2l;
+    }
 
-	/**
-	 * 获取时间差
-	 * @param timeStr1
-	 * @param timeFormat1
-	 * @param timeStr2
-	 * @param timeFormat2
-	 * @return
-	 */
-	public static long getTimeDiff(String timeStr1, String timeFormat1, String timeStr2, String timeFormat2) {
-		long time1 = parseLong(timeStr1, timeFormat1);
-		long time2 = parseLong(timeStr2, timeFormat2);
-		if (time1 > 1l && time2 > 1l) {
-			return time1 - time2;
-		}
-		return -2l;
-	}
+    /**
+     * 获取时间差
+     * @param timeStr1
+     * @param timeFormat1
+     * @param timeStr2
+     * @param timeFormat2
+     * @return
+     */
+    public static long getTimeDiff(final String timeStr1, final String timeFormat1, final String timeStr2, final String timeFormat2) {
+        long time1 = parseLong(timeStr1, timeFormat1);
+        long time2 = parseLong(timeStr2, timeFormat2);
+        if (time1 > 1l && time2 > 1l) {
+            return time1 - time2;
+        }
+        return -2l;
+    }
 
-	// ======= 获取时间 =======
+    // ======= 获取时间 =======
 
-	/**
-	 * 获取年
-	 * @param date Date对象
-	 * @return 年
-	 */
-	public static int getYear(Date date) {
-		try {
-			Calendar cld = Calendar.getInstance();
-			cld.setTime(date);
-			return cld.get(Calendar.YEAR);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "getYear");
-		}
-		return -1;
-	}
+    /**
+     * 获取年
+     * @param date Date对象
+     * @return 年
+     */
+    public static int getYear(final Date date) {
+        if (date == null) return -1;
+        try {
+            Calendar cld = Calendar.getInstance();
+            cld.setTime(date);
+            return cld.get(Calendar.YEAR);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getYear");
+        }
+        return -1;
+    }
 
-	/**
-	 * 获取月 (0 - 11) + 1
-	 * @param date Date对象
-	 * @return 月
-	 */
-	public static int getMonth(Date date) {
-		try {
-			Calendar cld = Calendar.getInstance();
-			cld.setTime(date);
-			return cld.get(Calendar.MONTH) + 1;
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "getMonth");
-		}
-		return -1;
-	}
+    /**
+     * 获取月 (0 - 11) + 1
+     * @param date Date对象
+     * @return 月
+     */
+    public static int getMonth(final Date date) {
+        if (date == null) return -1;
+        try {
+            Calendar cld = Calendar.getInstance();
+            cld.setTime(date);
+            return cld.get(Calendar.MONTH) + 1;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMonth");
+        }
+        return -1;
+    }
 
-	/**
-	 * 获取日
-	 * @param date Date对象
-	 * @return 日
-	 */
-	public static int getDay(Date date) {
-		try {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			return c.get(Calendar.DAY_OF_MONTH);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "getDay");
-		}
-		return -1;
-	}
+    /**
+     * 获取日
+     * @param date Date对象
+     * @return 日
+     */
+    public static int getDay(final Date date) {
+        if (date == null) return -1;
+        try {
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            return c.get(Calendar.DAY_OF_MONTH);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getDay");
+        }
+        return -1;
+    }
 
-	/**
-	 * 获取日期是星期几
-	 * @param date Date对象
-	 * @return 日
-	 */
-	public static int getWeek(Date date) {
-		try {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			int week = c.get(Calendar.DAY_OF_WEEK);
-			return week;
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "getWeek");
-		}
-		return -1;
-	}
+    /**
+     * 获取日期是星期几
+     * @param date Date对象
+     * @return 日
+     */
+    public static int getWeek(final Date date) {
+        if (date == null) return -1;
+        try {
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            int week = c.get(Calendar.DAY_OF_WEEK);
+            return week;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getWeek");
+        }
+        return -1;
+    }
 
-	/**
-	 * 获取时 - 24
-	 * @param date Date对象
-	 * @return 时
-	 */
-	public static int get24Hour(Date date) {
-		try {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			return c.get(Calendar.HOUR_OF_DAY);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "get24Hour");
-		}
-		return -1;
-	}
+    /**
+     * 获取时 - 24
+     * @param date Date对象
+     * @return 时
+     */
+    public static int get24Hour(final Date date) {
+        if (date == null) return -1;
+        try {
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            return c.get(Calendar.HOUR_OF_DAY);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "get24Hour");
+        }
+        return -1;
+    }
 
-	/**
-	 * 获取时 - 12
-	 * @param date Date对象
-	 * @return 时
-	 */
-	public static int get12Hour(Date date) {
-		try {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			return c.get(Calendar.HOUR);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "get12Hour");
-		}
-		return -1;
-	}
+    /**
+     * 获取时 - 12
+     * @param date Date对象
+     * @return 时
+     */
+    public static int get12Hour(final Date date) {
+        if (date == null) return -1;
+        try {
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            return c.get(Calendar.HOUR);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "get12Hour");
+        }
+        return -1;
+    }
 
-	/**
-	 * 获取分
-	 * @param date Date对象
-	 * @return 分
-	 */
-	public static int getMinute(Date date) {
-		try {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			return c.get(Calendar.MINUTE);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "getMinute");
-		}
-		return -1;
-	}
+    /**
+     * 获取分
+     * @param date Date对象
+     * @return 分
+     */
+    public static int getMinute(final Date date) {
+        if (date == null) return -1;
+        try {
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            return c.get(Calendar.MINUTE);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMinute");
+        }
+        return -1;
+    }
 
-	/**
-	 * 获取秒
-	 * @param date Date对象
-	 * @return 秒
-	 */
-	public static int getSecond(Date date) {
-		try {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			return c.get(Calendar.SECOND);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "getSecond");
-		}
-		return -1;
-	}
+    /**
+     * 获取秒
+     * @param date Date对象
+     * @return 秒
+     */
+    public static int getSecond(final Date date) {
+        if (date == null) return -1;
+        try {
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            return c.get(Calendar.SECOND);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getSecond");
+        }
+        return -1;
+    }
 
-	/**
-	 * 转换时间处理, 小于10, 则自动补充 0x
-	 * @param time
-	 * @return
-	 */
-	public static String convertTime(int time) {
-		return convertTime(time, true);
-	}
+    /**
+     * 转换时间处理, 小于10, 则自动补充 0x
+     * @param time
+     * @return
+     */
+    public static String convertTime(int time) {
+        return convertTime(time, true);
+    }
 
-	/**
-	 * 转换时间处理, 小于10, 则自动补充 0x
-	 * @param time
-	 * @param append
-	 * @return
-	 */
-	public static String convertTime(int time, boolean append) {
-		if (append) {
-			// 防止出现负数
-			time = Math.max(0, time);
-			return time >= 10 ? time + "" : "0" + time;
-		}
-		return time + "";
-	}
+    /**
+     * 转换时间处理, 小于10, 则自动补充 0x
+     * @param time
+     * @param append
+     * @return
+     */
+    public static String convertTime(int time, boolean append) {
+        if (append) {
+            // 防止出现负数
+            time = Math.max(0, time);
+            return time >= 10 ? time + "" : "0" + time;
+        }
+        return time + "";
+    }
 
-	// ==
-	
-	/**
-	 * 获取年
-	 * @return
-	 */
-	public static int getYear() {
+    // ==
+
+    /**
+     * 获取年
+     * @return
+     */
+    public static int getYear() {
         return Calendar.getInstance().get(Calendar.YEAR);
     }
- 
-	/**
-	 * 获取月 (0 - 11) + 1
-	 * @return
-	 */
+
+    /**
+     * 获取月 (0 - 11) + 1
+     * @return
+     */
     public static int getMonth() {
         int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
         return month;
     }
- 
+
     /**
      * 获取日
-	 * @return
+     * @return
      */
     public static int getDay() {
         return Calendar.getInstance().get(Calendar.DATE);
     }
 
-	/**
-	 * 获取星期数
-	 * @return
-	 */
-	public static int getWeek() {
-    	return Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-	}
- 
+    /**
+     * 获取星期数
+     * @return
+     */
+    public static int getWeek() {
+        return Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+    }
+
     /**
      * 获取时 - 24
-	 * @return
+     * @return
      */
     public static int get24Hour() {
         return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
     }
 
-	/**
-	 * 获取时 - 12
-	 * @return
-	 */
-	public static int get12Hour() {
-		return Calendar.getInstance().get(Calendar.HOUR);
-	}
- 
+    /**
+     * 获取时 - 12
+     * @return
+     */
+    public static int get12Hour() {
+        return Calendar.getInstance().get(Calendar.HOUR);
+    }
+
     /**
      * 获取分
-	 * @return
+     * @return
      */
     public static int getMinute() {
         return Calendar.getInstance().get(Calendar.MINUTE);
     }
- 
+
     /**
      * 获取秒
      * @return
@@ -511,625 +509,627 @@ public final class DateUtils {
     }
 
     // ==
-    
+
     /**
-	 * 判断是否闰年
-	 * @param year 年数
-	 * @return
-	 */
-    public static boolean isLeapYear(int year) {
-		// 判断是否闰年
-		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-			return true;
-		}
-		return false;
-	}
-	
-	/**
-	 * 根据年份、月份，获取对应的天数 (完整天数, 无判断是否属于未来日期)
-	 * @param year 年数
-	 * @param month 月份
-	 * @return
-	 */
-	public static int getMonthDayNumberAll(int year, int month) {
-		int number = 31;
-		// 判断返回的标识数字
-		switch (month) {
-			case 1:
-			case 3:
-			case 5:
-			case 7:
-			case 8:
-			case 10:
-			case 12:
-				number = 31;
-				break;
-			case 2:
-				if (isLeapYear(year)) {
-					number = 29;
-				} else {
-					number = 28;
-				}
-				break;
-			case 4:
-			case 6:
-			case 9:
-			case 11:
-				number = 30;
-				break;
-		}
-		return number;
-	}
+     * 判断是否闰年
+     * @param year 年数
+     * @return
+     */
+    public static boolean isLeapYear(final int year) {
+        // 判断是否闰年
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+            return true;
+        }
+        return false;
+    }
 
-	/**
-	 * 根据年份，获取对应的月份
-	 * @param year
-	 * @return
-	 * tips: 内部判断是否相同一年, 不能超过限制未来的月份
-	 */
-	public static int getYearMonthNumber(int year) {
-		// 如: 当前 2019-01, 传入 2019 则返回 1
-		// 传入 2018, 返回 12, 不会返回未来的月份
-		if (year == getYear()) {
-			return getMonth();
-		}
-		return 12;
-	}
+    /**
+     * 根据年份、月份，获取对应的天数 (完整天数, 无判断是否属于未来日期)
+     * @param year 年数
+     * @param month 月份
+     * @return
+     */
+    public static int getMonthDayNumberAll(final int year, final int month) {
+        int number = 31;
+        // 判断返回的标识数字
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                number = 31;
+                break;
+            case 2:
+                if (isLeapYear(year)) {
+                    number = 29;
+                } else {
+                    number = 28;
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                number = 30;
+                break;
+        }
+        return number;
+    }
 
-	/**
-	 * 根据年份、月份，获取对应的天数
-	 * @param year
-	 * @param month
-	 * @return
-	 * tips: 内部判断是否相同一年、月份, 不能超过限制未来的天数
-	 */
-	public static int getMonthDayNumber(int year, int month) {
-		// 判断年份, 相同则判断月份
-		if (year == getYear()) {
-			// 判断月份, 先同则返回天数
-			if (getYearMonthNumber(year) == month) {
-				return getDay();
-			}
-		}
-		return getMonthDayNumberAll(year, month);
-	}
+    /**
+     * 根据年份，获取对应的月份
+     * @param year
+     * @return 内部判断是否相同一年, 不能超过限制未来的月份
+     */
+    public static int getYearMonthNumber(final int year) {
+        // 如: 当前 2019-01, 传入 2019 则返回 1
+        // 传入 2018, 返回 12, 不会返回未来的月份
+        if (year == getYear()) {
+            return getMonth();
+        }
+        return 12;
+    }
 
-	// =
+    /**
+     * 根据年份、月份，获取对应的天数
+     * @param year
+     * @param month
+     * @return 内部判断是否相同一年、月份, 不能超过限制未来的天数
+     */
+    public static int getMonthDayNumber(final int year, final int month) {
+        // 判断年份, 相同则判断月份
+        if (year == getYear()) {
+            // 判断月份, 先同则返回天数
+            if (getYearMonthNumber(year) == month) {
+                return getDay();
+            }
+        }
+        return getMonthDayNumberAll(year, month);
+    }
 
-	/**
-	 * 生成 HH 按时间排序数组
-	 * @return
-	 */
-	public static String[] getArrayToHH() {
-		List<String> lists = getListToHH();
-		return lists.toArray(new String[lists.size()]);
-	}
+    // =
 
-	/**
-	 * 生成 HH 按时间排序集合
-	 * @return
-	 */
-	public static List<String> getListToHH() {
-		List<String> lists = new ArrayList<>();
-		for (int i = 0; i < 24; i++) {
-			lists.add(DateUtils.convertTime(i, true));
-		}
-		return lists;
-	}
+    /**
+     * 生成 HH 按时间排序数组
+     * @return
+     */
+    public static String[] getArrayToHH() {
+        List<String> lists = getListToHH();
+        return lists.toArray(new String[lists.size()]);
+    }
 
-	/**
-	 * 生成 MM 按时间排序数组
-	 * @return
-	 */
-	public static String[] getArrayToMM() {
-		List<String> lists = getListToMM();
-		return lists.toArray(new String[lists.size()]);
-	}
+    /**
+     * 生成 HH 按时间排序集合
+     * @return
+     */
+    public static List<String> getListToHH() {
+        List<String> lists = new ArrayList<>();
+        for (int i = 0; i < 24; i++) {
+            lists.add(DateUtils.convertTime(i, true));
+        }
+        return lists;
+    }
 
-	/**
-	 * 生成 MM 按时间排序集合
-	 * @return
-	 */
-	public static List<String> getListToMM() {
-		List<String> lists = new ArrayList<>();
-		for (int i = 0; i < 60; i++) {
-			lists.add(DateUtils.convertTime(i, true));
-		}
-		return lists;
-	}
+    /**
+     * 生成 MM 按时间排序数组
+     * @return
+     */
+    public static String[] getArrayToMM() {
+        List<String> lists = getListToMM();
+        return lists.toArray(new String[lists.size()]);
+    }
 
-	/**
-	 * 生成 HH:mm 按间隔时间排序数组
-	 * @param type
-	 * @return
-	 * type
-	 * 0 = 00:00 - 23:00  => 每小时间隔
-	 * 1 = 00:00 - 23:45  => 每15分钟间隔
-	 * 2 = 00:00 - 23:30  => 每30分钟间隔
-	 */
-	public static String[] getArrayToHHMM(int type) {
-		List<String> lists = getListToHHMM(type);
-		return lists.toArray(new String[lists.size()]);
-	}
+    /**
+     * 生成 MM 按时间排序集合
+     * @return
+     */
+    public static List<String> getListToMM() {
+        List<String> lists = new ArrayList<>();
+        for (int i = 0; i < 60; i++) {
+            lists.add(DateUtils.convertTime(i, true));
+        }
+        return lists;
+    }
 
-	/**
-	 * 生成 HH:mm 按间隔时间排序集合
-	 * @param type
-	 * @return
-	 * type：
-	 * 0 = 00:00 - 23:00  => 每小时间隔
-	 * 1 = 00:00 - 23:45  => 每15分钟间隔
-	 * 2 = 00:00 - 23:30  => 每30分钟间隔
-	 */
-	public static List<String> getListToHHMM(int type) {
-		List<String> lists = new ArrayList<>();
-		switch (type) {
-			case 0:
-				for (int i = 0; i < 24; i++) {
-					lists.add(DateUtils.convertTime(i, true) + ":00");
-				}
-				break;
-			case 1:
-				for (int i = 0; i < 96; i++) { // 00 15 30 45 = 4 => 24 * 4
-					if (i % 2 == 0) { // 判断是否偶数 00、30
-						// 小时数
-						String hour = DateUtils.convertTime(i / 4, true);
-						// 分钟数
-						String minute = i % 4 == 0 ? "00" : "30";
-						// 累加时间
-						lists.add(hour + ":" + minute);
-					} else { // 15、45
-						// 小时数
-						String hour = DateUtils.convertTime(i / 4, true);
-						// 分钟数
-						String minute = (i - 1) % 4 == 0 ? "15" : "45";
-						// 累加时间
-						lists.add(hour + ":" + minute);
-					}
-				}
-				break;
-			case 2:
-				for (int i = 0; i < 48; i++) { // 00 30 = 2 => 24 * 2
-					// 小时处理
-					int hour = i / 2;
-					// 属于偶数
-					if (i % 2 == 0) {
-						lists.add(DateUtils.convertTime(hour, true) + ":00");
-					} else {
-						lists.add(DateUtils.convertTime(hour, true) + ":30");
-					}
-				}
-				break;
-		}
-		return lists;
-	}
+    /**
+     * 生成 HH:mm 按间隔时间排序数组
+     * @param type
+     * @return
+     * ==
+     * type：
+     * 0 = 00:00 - 23:00  => 每小时间隔
+     * 1 = 00:00 - 23:45  => 每15分钟间隔
+     * 2 = 00:00 - 23:30  => 每30分钟间隔
+     */
+    public static String[] getArrayToHHMM(final int type) {
+        List<String> lists = getListToHHMM(type);
+        return lists.toArray(new String[lists.size()]);
+    }
 
-	/**
-	 * 获取 HH:mm 按间隔时间排序的集合中, 指定时间所在索引
-	 * @param time HH:mm格式
-	 * @param type
-	 * @return
-	 * type：
-	 * 0 = 00:00 - 23:00  => 每小时间隔
-	 * 1 = 00:00 - 23:45  => 每15分钟间隔
-	 * 2 = 00:00 - 23:30  => 每30分钟间隔
-	 */
-	public static int getListToHHMMPosition(String time, int type) {
-		if (time != null && time.length() != 0) {
-			// 进行拆分
-			String[] timeSplit = time.split(":");
-			if (timeSplit != null && timeSplit.length == 2) {
-				// 转换小时
-				int hour = toInt(timeSplit[0], -1);
-				// 判断是否小于 0
-				if (hour < 0) {
-					return -1;
-				} else if (hour > 24) {
-					return -1;
-				}
+    /**
+     * 生成 HH:mm 按间隔时间排序集合
+     * @param type
+     * @return
+     * ==
+     * type：
+     * 0 = 00:00 - 23:00  => 每小时间隔
+     * 1 = 00:00 - 23:45  => 每15分钟间隔
+     * 2 = 00:00 - 23:30  => 每30分钟间隔
+     */
+    public static List<String> getListToHHMM(final int type) {
+        List<String> lists = new ArrayList<>();
+        switch (type) {
+            case 0:
+                for (int i = 0; i < 24; i++) {
+                    lists.add(DateUtils.convertTime(i, true) + ":00");
+                }
+                break;
+            case 1:
+                for (int i = 0; i < 96; i++) { // 00 15 30 45 = 4 => 24 * 4
+                    if (i % 2 == 0) { // 判断是否偶数 00、30
+                        // 小时数
+                        String hour = DateUtils.convertTime(i / 4, true);
+                        // 分钟数
+                        String minute = i % 4 == 0 ? "00" : "30";
+                        // 累加时间
+                        lists.add(hour + ":" + minute);
+                    } else { // 15、45
+                        // 小时数
+                        String hour = DateUtils.convertTime(i / 4, true);
+                        // 分钟数
+                        String minute = (i - 1) % 4 == 0 ? "15" : "45";
+                        // 累加时间
+                        lists.add(hour + ":" + minute);
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 0; i < 48; i++) { // 00 30 = 2 => 24 * 2
+                    // 小时处理
+                    int hour = i / 2;
+                    // 属于偶数
+                    if (i % 2 == 0) {
+                        lists.add(DateUtils.convertTime(hour, true) + ":00");
+                    } else {
+                        lists.add(DateUtils.convertTime(hour, true) + ":30");
+                    }
+                }
+                break;
+        }
+        return lists;
+    }
 
-				// 判断格式, 进行格式处理
-				switch (type) {
-					case 0:
-						return hour;
-					case 1:
-					case 2:
-						// 转换分钟
-						int minute = toInt(timeSplit[1], -1);
-						// 判断是否小于 0
-						if (minute < 0) {
-							return -1;
-						} else if (minute > 59) {
-							return -1;
-						}
-						// 判断间隔
-						if (type == 1) {
-							if (minute >= 0 && minute < 15) {
-								return hour * 4;
-							} else if (minute >= 15 && minute < 30) {
-								return hour * 4 + 1;
-							} else if (minute >= 30 && minute < 45) {
-								return hour * 4 + 2;
-							} else if (minute >= 30 && minute < 60) {
-								return hour * 4 + 3;
-							}
-						} else if (type == 2) { // 30 分钟一个间隔
-							// 大于等于30, 表示属于基数
-							if (minute >= 30) { // 属于奇数(30), 需要加 1
-								return hour * 2 + 1;
-							} else {
-								return hour * 2;
-							}
-						}
-						break;
-				}
-			}
-		}
-		return -1;
-	}
-    
-    // =======================================================
+    /**
+     * 获取 HH:mm 按间隔时间排序的集合中, 指定时间所在索引
+     * @param time HH:mm格式
+     * @param type
+     * @return
+     * ==
+     * type：
+     * 0 = 00:00 - 23:00  => 每小时间隔
+     * 1 = 00:00 - 23:45  => 每15分钟间隔
+     * 2 = 00:00 - 23:30  => 每30分钟间隔
+     */
+    public static int getListToHHMMPosition(final String time, final int type) {
+        if (time != null && time.length() != 0) {
+            // 进行拆分
+            String[] timeSplit = time.split(":");
+            if (timeSplit != null && timeSplit.length == 2) {
+                // 转换小时
+                int hour = toInt(timeSplit[0], -1);
+                // 判断是否小于 0
+                if (hour < 0) {
+                    return -1;
+                } else if (hour > 24) {
+                    return -1;
+                }
 
-	/**
-	 * 传入时间，获取时间(00:00:00 格式) - 不处理大于一天
-	 * @param time 时间(秒为单位)
-	 * @return
-	 */
-	public static String secToTimeRetain(int time) {
-		return secToTimeRetain(time, false);
-	}
-	
-	/**
-	 * 传入时间，获取时间(00:00:00 格式)
-	 * @param time 时间(秒为单位)
-	 * @param isHandlerMDay 是否处理大于一天的时间
-	 * @return
-	 */
-	public static String secToTimeRetain(int time, boolean isHandlerMDay) {
-		try {
-			if (time <= 0) {
-				return "00:00:00";
-			} else {
-				// 取模
-				int rSecond = 0;
-				int rMinute = 0;
-				// 差数
-				int dSecond = 0;
-				int dMinute = 0;
-				int dHour = 0;
-				// 转换时间格式
-				if (time < MINUTE_S) { // 小于1分钟
-					return "00:00:" + ((time >=10)?time:("0" + time));
-				} else if (time >= MINUTE_S && time < HOUR_S) { // 小于1小时
-					dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
-					dMinute = (time - dSecond) / MINUTE_S;
-					return "00:" + ((dMinute >=10)?dMinute:("0" + dMinute)) + ":" + ((dSecond >=10)?dSecond:("0" + dSecond));
-				} else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
-					rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
-					dHour = (time - rMinute) / HOUR_S; // 获取小时
-					dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
-					dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-					rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
-					return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute:("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond:"0" + rSecond);
-				} else { // 多余的时间，直接格式化
-					// 大于一天的情况
-					if (isHandlerMDay) {
-						rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
-						dHour = (time - rMinute) / HOUR_S; // 获取小时
-						dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
-						dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-						rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
-						return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute:("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond:"0" + rSecond);
-					}
-				}
-			}
-		} catch (Exception e) {
-		}
-		return null;
-	}
+                // 判断格式, 进行格式处理
+                switch (type) {
+                    case 0:
+                        return hour;
+                    case 1:
+                    case 2:
+                        // 转换分钟
+                        int minute = toInt(timeSplit[1], -1);
+                        // 判断是否小于 0
+                        if (minute < 0) {
+                            return -1;
+                        } else if (minute > 59) {
+                            return -1;
+                        }
+                        // 判断间隔
+                        if (type == 1) {
+                            if (minute >= 0 && minute < 15) {
+                                return hour * 4;
+                            } else if (minute >= 15 && minute < 30) {
+                                return hour * 4 + 1;
+                            } else if (minute >= 30 && minute < 45) {
+                                return hour * 4 + 2;
+                            } else if (minute >= 30 && minute < 60) {
+                                return hour * 4 + 3;
+                            }
+                        } else if (type == 2) { // 30 分钟一个间隔
+                            // 大于等于30, 表示属于基数
+                            if (minute >= 30) { // 属于奇数(30), 需要加 1
+                                return hour * 2 + 1;
+                            } else {
+                                return hour * 2;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        return -1;
+    }
 
-	/**
-	 * 传入时间,时间参数(小时、分钟、秒)
-	 * @param time 时间(秒为单位)
-	 * @return
-	 */
-	public static int[] convertTimeArys(int time) {
-		try {
-			if (time <= 0) {
-				return new int[] { 0, 0, 0 };
-			} else {
-				// 取模
-				int rSecond = 0;
-				int rMinute = 0;
-				// 差数
-				int dSecond = 0;
-				int dMinute = 0;
-				int dHour = 0;
-				// 转换时间格式
-				if (time < MINUTE_S) { // 小于1分钟
-					return new int[]{ 0, 0, time };
-				} else if (time >= MINUTE_S && time < HOUR_S) { // 小于1小时
-					dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
-					dMinute = (time - dSecond) / MINUTE_S;
-					return new int[]{ 0, dMinute, dSecond };
-				} else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
-					rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
-					dHour = (time - rMinute) / HOUR_S; // 获取小时
-					dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
-					dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-					rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
-					return new int[]{ dHour, dMinute, rSecond };
-				} else { // 多余的时间，直接格式化
-					// 大于一天的情况
-					rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
-					dHour = (time - rMinute) / HOUR_S; // 获取小时
-					dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
-					dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-					rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
-					return new int[]{ dHour, dMinute, rSecond };
-				}
-			}
-		} catch (Exception e) {
-		}
-		return null;
-	}
+    // ==
 
-	/**
-	 * 转换时间
-	 * @param millis
-	 * @param precision
-	 * precision = 0, return null
-	 * precision = 1, return 天
-	 * precision = 2, return 天, 小时
-	 * precision = 3, return 天, 小时, 分钟
-	 * precision = 4, return 天, 小时, 分钟, 秒
-	 * precision = 5，return 天, 小时, 分钟, 秒, 毫秒
-	 * @return fit time span
-	 */
-	public static String millisToFitTimeSpan(long millis, int precision) {
-		if (millis <= 0 || precision <= 0) return null;
-		StringBuilder sb = new StringBuilder();
-		String[] units = {"天", "小时", "分钟", "秒", "毫秒"};
-		int[] unitLen = {86400000, 3600000, 60000, 1000, 1};
-		precision = Math.min(precision, 5);
-		for (int i = 0; i < precision; i++) {
-			if (millis >= unitLen[i]) {
-				long mode = millis / unitLen[i];
-				millis -= mode * unitLen[i];
-				sb.append(mode).append(units[i]);
-			}
-		}
-		return sb.toString();
-	}
+    /**
+     * 传入时间，获取时间(00:00:00 格式) - 不处理大于一天
+     * @param time 时间(秒为单位)
+     * @return
+     */
+    public static String secToTimeRetain(final int time) {
+        return secToTimeRetain(time, false);
+    }
 
-	/**
-	 * 转换时间为数组
-	 * @param millis
-	 * @return int[5] { 天, 小时, 分钟, 秒, 毫秒}
-	 */
-	public static int[] millisToTimeArys(long millis) {
-		if (millis <= 0) return null;
-		int[] timeArys = new int[5];
-		int[] unitLen = { 86400000, 3600000, 60000, 1000, 1 };
-		for (int i = 0; i < 5; i++) {
-			if (millis >= unitLen[i]) {
-				long mode = millis / unitLen[i];
-				millis -= mode * unitLen[i];
-				timeArys[i] = (int) mode;
-			}
-		}
-		return timeArys;
-	}
+    /**
+     * 传入时间，获取时间(00:00:00 格式)
+     * @param time 时间(秒为单位)
+     * @param isHandlerMDay 是否处理大于一天的时间
+     * @return
+     */
+    public static String secToTimeRetain(final int time, final boolean isHandlerMDay) {
+        try {
+            if (time <= 0) {
+                return "00:00:00";
+            } else {
+                // 取模
+                int rSecond = 0;
+                int rMinute = 0;
+                // 差数
+                int dSecond = 0;
+                int dMinute = 0;
+                int dHour = 0;
+                // 转换时间格式
+                if (time < MINUTE_S) { // 小于1分钟
+                    return "00:00:" + ((time >= 10) ? time : ("0" + time));
+                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于1小时
+                    dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
+                    dMinute = (time - dSecond) / MINUTE_S;
+                    return "00:" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((dSecond >= 10) ? dSecond : ("0" + dSecond));
+                } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
+                    rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
+                    dHour = (time - rMinute) / HOUR_S; // 获取小时
+                    dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
+                    dMinute = dSecond / MINUTE_S; // 获取多出的分钟
+                    rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
+                    return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
+                } else { // 多余的时间，直接格式化
+                    // 大于一天的情况
+                    if (isHandlerMDay) {
+                        rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
+                        dHour = (time - rMinute) / HOUR_S; // 获取小时
+                        dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
+                        dMinute = dSecond / MINUTE_S; // 获取多出的分钟
+                        rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
+                        return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
-	// == 判断是否在区间范围 ==
+    /**
+     * 传入时间,时间参数(小时、分钟、秒)
+     * @param time 时间(秒为单位)
+     * @return
+     */
+    public static int[] convertTimeArys(final int time) {
+        try {
+            if (time <= 0) {
+                return new int[]{0, 0, 0};
+            } else {
+                // 取模
+                int rSecond = 0;
+                int rMinute = 0;
+                // 差数
+                int dSecond = 0;
+                int dMinute = 0;
+                int dHour = 0;
+                // 转换时间格式
+                if (time < MINUTE_S) { // 小于1分钟
+                    return new int[]{0, 0, time};
+                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于1小时
+                    dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
+                    dMinute = (time - dSecond) / MINUTE_S;
+                    return new int[]{0, dMinute, dSecond};
+                } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
+                    rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
+                    dHour = (time - rMinute) / HOUR_S; // 获取小时
+                    dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
+                    dMinute = dSecond / MINUTE_S; // 获取多出的分钟
+                    rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
+                    return new int[]{dHour, dMinute, rSecond};
+                } else { // 多余的时间，直接格式化
+                    // 大于一天的情况
+                    rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
+                    dHour = (time - rMinute) / HOUR_S; // 获取小时
+                    dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
+                    dMinute = dSecond / MINUTE_S; // 获取多出的分钟
+                    rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
+                    return new int[]{dHour, dMinute, rSecond};
+                }
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
-	/**
-	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @return
-	 */
-	public static boolean isInTimeHHmm(String startTime, String endTime) {
-		return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmm), startTime, endTime, HHmm);
-	}
+    /**
+     * 转换时间
+     * @param millis
+     * @param precision precision = 0, return null
+     *                  precision = 1, return 天
+     *                  precision = 2, return 天, 小时
+     *                  precision = 3, return 天, 小时, 分钟
+     *                  precision = 4, return 天, 小时, 分钟, 秒
+     *                  precision = 5，return 天, 小时, 分钟, 秒, 毫秒
+     * @return fit time span
+     */
+    public static String millisToFitTimeSpan(final long millis, final int precision) {
+        if (millis <= 0 || precision <= 0) return null;
 
-	/**
-	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-	 * @param nowTime 当前时间
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @return
-	 */
-	public static boolean isInTimeHHmm(String nowTime, String startTime, String endTime) {
-		return isInTime(nowTime, startTime, endTime, HHmm);
-	}
+        long millisTime = millis;
+        int precisionFormat = precision;
 
-	/**
-	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @return
-	 */
-	public static boolean isInTimeHHmmss(String startTime, String endTime) {
-		return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmmss), startTime, endTime, HHmmss);
-	}
+        StringBuilder sb = new StringBuilder();
+        String[] units = {"天", "小时", "分钟", "秒", "毫秒"};
+        int[] unitLen = {86400000, 3600000, 60000, 1000, 1};
+        precisionFormat = Math.min(precisionFormat, 5);
+        for (int i = 0; i < precisionFormat; i++) {
+            if (millisTime >= unitLen[i]) {
+                long mode = millisTime / unitLen[i];
+                millisTime -= mode * unitLen[i];
+                sb.append(mode).append(units[i]);
+            }
+        }
+        return sb.toString();
+    }
 
-	/**
-	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-	 * @param nowTime 当前时间
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @return
-	 */
-	public static boolean isInTimeHHmmss(String nowTime, String startTime, String endTime) {
-		return isInTime(nowTime, startTime, endTime, HHmmss);
-	}
+    /**
+     * 转换时间为数组
+     * @param millis
+     * @return int[5] { 天, 小时, 分钟, 秒, 毫秒}
+     */
+    public static int[] millisToTimeArys(final long millis) {
+        if (millis <= 0) return null;
+        int[] timeArys = new int[5];
+        int[] unitLen = {86400000, 3600000, 60000, 1000, 1};
+        long millisTime = millis;
+        for (int i = 0; i < 5; i++) {
+            if (millisTime >= unitLen[i]) {
+                long mode = millisTime / unitLen[i];
+                millisTime -= mode * unitLen[i];
+                timeArys[i] = (int) mode;
+            }
+        }
+        return timeArys;
+    }
 
-	/**
-	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-	 * @param nowTime 当前时间
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @param format 时间格式
-	 * @return
-	 */
-	public static boolean isInTime(String nowTime, String startTime, String endTime, String format) {
-		if (nowTime == null || startTime == null || endTime == null || format == null) {
-			return false;
-		}
-		try {
-			// 格式化日期
-			SimpleDateFormat sdf = new SimpleDateFormat(format);
-			// 当前时间转换
-			long now = sdf.parse(nowTime).getTime();
-			// 开始时间转换
-			long start = sdf.parse(startTime).getTime();
-			// 结束时间转换
-			long end = sdf.parse(endTime).getTime();
-			// 判断结束时间是否小于开始时间
-			if (end < start) { // 结束属于第二天区域
-				if (now >= start || now <= end) {
-					return true;
-				}
-			} else {
-				if (now >= start && now <= end) {
-					return true;
-				}
-			}
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "isInTime");
-		}
-		return false;
-	}
+    // == 判断是否在区间范围 ==
 
-	/**
-	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-	 * @param nowTime 当前时间
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @return
-	 */
-	public static boolean isInTime(long nowTime, long startTime, long endTime) {
-		return isInDate(new Date(nowTime), new Date(startTime), new Date(endTime));
-	}
+    /**
+     * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return
+     */
+    public static boolean isInTimeHHmm(final String startTime, final String endTime) {
+        return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmm), startTime, endTime, HHmm);
+    }
 
-	/**
-	 * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-	 * @param nowTime 当前时间
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @return
-	 */
-	public static boolean isInDate(Date nowTime, Date startTime, Date endTime) {
-		if (nowTime == null || startTime == null || endTime == null) {
-			return false;
-		} else if (nowTime.getTime() == startTime.getTime() || nowTime.getTime() == endTime.getTime()) {
-			return true;
-		}
-		// 当前时间
-		Calendar now = Calendar.getInstance();
-		now.setTime(nowTime);
-		// 开始时间
-		Calendar begin = Calendar.getInstance();
-		begin.setTime(startTime);
-		// 结束时间
-		Calendar end = Calendar.getInstance();
-		end.setTime(endTime);
-		// 判断是否在 begin 之后的时间, 并且在 end 之前的时间
-		if (now.after(begin) && now.before(end)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    /**
+     * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+     * @param nowTime 当前时间
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return
+     */
+    public static boolean isInTimeHHmm(final String nowTime, final String startTime, final String endTime) {
+        return isInTime(nowTime, startTime, endTime, HHmm);
+    }
 
-	/**
-	 * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
-	 * @param endTime 结束时间 HH:mm
-	 * @return
-	 */
-	public static long getEndTimeDiffHHmm(String endTime) {
-		return getEndTimeDiff(System.currentTimeMillis(), endTime, HHmm);
-	}
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return
+     */
+    public static boolean isInTimeHHmmss(final String startTime, final String endTime) {
+        return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmmss), startTime, endTime, HHmmss);
+    }
 
-	/**
-	 * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间 HH:mm
-	 * @return
-	 */
-	public static long getEndTimeDiffHHmm(long startTime, String endTime) {
-		return getEndTimeDiff(startTime, endTime, HHmm);
-	}
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * @param nowTime 当前时间
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return
+     */
+    public static boolean isInTimeHHmmss(final String nowTime, final String startTime, final String endTime) {
+        return isInTime(nowTime, startTime, endTime, HHmmss);
+    }
 
-	/**
-	 * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
-	 * @param endTime 结束时间
-	 * @param format 格式 如: HH:mm
-	 * @return
-	 */
-	public static long getEndTimeDiff(String endTime, String format) {
-		return getEndTimeDiff(System.currentTimeMillis(), endTime, format);
-	}
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * @param nowTime 当前时间
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @param format 时间格式
+     * @return
+     */
+    public static boolean isInTime(final String nowTime, final String startTime, final String endTime, final String format) {
+        if (nowTime == null || startTime == null || endTime == null || format == null) return false;
+        try {
+            // 格式化日期
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
+            // 当前时间转换
+            long now = sdf.parse(nowTime).getTime();
+            // 开始时间转换
+            long start = sdf.parse(startTime).getTime();
+            // 结束时间转换
+            long end = sdf.parse(endTime).getTime();
+            // 判断结束时间是否小于开始时间
+            if (end < start) { // 结束属于第二天区域
+                if (now >= start || now <= end) {
+                    return true;
+                }
+            } else {
+                if (now >= start && now <= end) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "isInTime");
+        }
+        return false;
+    }
 
-	/**
-	 * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @param format 格式 如: HH:mm
-	 * @return
-	 * tips:
-	 * 如当前时间 2018-12-07 15:27:23, 判断距离 14:39:20(endTime) 有多久
-	 * 如果过了这个时间段, 则返回 2018-12-08 14:39:20 (明天的这个时间段时间)
-	 * 如果没有过这个时间段(如: 17:39:20) 则返回当天时间段 2018-12-07 17:39:20 (2018-12-07 + endTime)
-	 */
-	public static long getEndTimeDiff(long startTime, String endTime, String format) {
-		if (startTime < 1 || endTime == null || format == null) {
-			return -1;
-		}
-		try {
-			// 判断格式是否加了秒
-			boolean isSecond = format.endsWith(":ss");
-			// 获取开始时间
-			String start = DateUtils.formatTime(startTime, format);
-			// 转换时间
-			int startNumber = Integer.parseInt(start.replace(":", ""));
-			// 获取结束时间转换
-			int endNumber = Integer.parseInt(endTime.replace(":", ""));
-			// 时间处理
-			Calendar cld = Calendar.getInstance();
-			cld.setTime(new Date(startTime)); // 设置当前时间
-			// 如果当前时间大于结束时间, 表示非第二天
-			if (startNumber > endNumber) {
-				// 时间累加一天
-				cld.add(Calendar.DATE,1); // 当前日期加一天
-			}
-			// 获取天数时间
-			String yyyyMMdd = DateUtils.formatDate(cld.getTime(), DateUtils.yyyyMMdd);
-			// 累加时间
-			String yyyyMMddHHmmss = yyyyMMdd + " " + endTime + (isSecond ? "" : ":00");
-			// 返回转换后的时间
-			return DateUtils.parseLong(yyyyMMddHHmmss, DateUtils.yyyyMMddHHmmss);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
-		}
-		return -1;
-	}
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * @param nowTime 当前时间
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return
+     */
+    public static boolean isInTime(final long nowTime, final long startTime, final long endTime) {
+        return isInDate(new Date(nowTime), new Date(startTime), new Date(endTime));
+    }
 
-	// ==
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * @param nowTime 当前时间
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return
+     */
+    public static boolean isInDate(final Date nowTime, final Date startTime, final Date endTime) {
+        if (nowTime == null || startTime == null || endTime == null) {
+            return false;
+        } else if (nowTime.getTime() == startTime.getTime() || nowTime.getTime() == endTime.getTime()) {
+            return true;
+        }
+        // 当前时间
+        Calendar now = Calendar.getInstance();
+        now.setTime(nowTime);
+        // 开始时间
+        Calendar begin = Calendar.getInstance();
+        begin.setTime(startTime);
+        // 结束时间
+        Calendar end = Calendar.getInstance();
+        end.setTime(endTime);
+        // 判断是否在 begin 之后的时间, 并且在 end 之前的时间
+        if (now.after(begin) && now.before(end)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	/**
-	 * 字符串 转 int
-	 * @param str
-	 * @param defaultValue
-	 * @return
-	 */
-	private static int toInt(String str, int defaultValue) {
-		try {
-			return Integer.parseInt(str);
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "toInt");
-		}
-		return defaultValue;
-	}
+    /**
+     * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
+     * @param endTime 结束时间 HH:mm
+     * @return
+     */
+    public static long getEndTimeDiffHHmm(final String endTime) {
+        return getEndTimeDiff(System.currentTimeMillis(), endTime, HHmm);
+    }
+
+    /**
+     * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
+     * @param startTime 开始时间
+     * @param endTime 结束时间 HH:mm
+     * @return
+     */
+    public static long getEndTimeDiffHHmm(final long startTime, final String endTime) {
+        return getEndTimeDiff(startTime, endTime, HHmm);
+    }
+
+    /**
+     * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
+     * @param endTime 结束时间
+     * @param format 格式 如: HH:mm
+     * @return
+     */
+    public static long getEndTimeDiff(final String endTime, final String format) {
+        return getEndTimeDiff(System.currentTimeMillis(), endTime, format);
+    }
+
+    /**
+     * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @param format 格式 如: HH:mm
+     * @return
+     * tips:
+     * 如当前时间 2018-12-07 15:27:23, 判断距离 14:39:20(endTime) 有多久
+     * 如果过了这个时间段, 则返回 2018-12-08 14:39:20 (明天的这个时间段时间)
+     * 如果没有过这个时间段(如: 17:39:20) 则返回当天时间段 2018-12-07 17:39:20 (2018-12-07 + endTime)
+     */
+    public static long getEndTimeDiff(final long startTime, final String endTime, final String format) {
+        if (startTime < 1 || endTime == null || format == null) return -1;
+        try {
+            // 判断格式是否加了秒
+            boolean isSecond = format.endsWith(":ss");
+            // 获取开始时间
+            String start = DateUtils.formatTime(startTime, format);
+            // 转换时间
+            int startNumber = Integer.parseInt(start.replace(":", ""));
+            // 获取结束时间转换
+            int endNumber = Integer.parseInt(endTime.replace(":", ""));
+            // 时间处理
+            Calendar cld = Calendar.getInstance();
+            cld.setTime(new Date(startTime)); // 设置当前时间
+            // 如果当前时间大于结束时间, 表示非第二天
+            if (startNumber > endNumber) {
+                // 时间累加一天
+                cld.add(Calendar.DATE, 1); // 当前日期加一天
+            }
+            // 获取天数时间
+            String yyyyMMdd = DateUtils.formatDate(cld.getTime(), DateUtils.yyyyMMdd);
+            // 累加时间
+            String yyyyMMddHHmmss = yyyyMMdd + " " + endTime + (isSecond ? "" : ":00");
+            // 返回转换后的时间
+            return DateUtils.parseLong(yyyyMMddHHmmss, DateUtils.yyyyMMddHHmmss);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
+        }
+        return -1;
+    }
+
+    // ==
+
+    /**
+     * 字符串 转 int
+     * @param str
+     * @param defaultValue
+     * @return
+     */
+    private static int toInt(final String str, final int defaultValue) {
+        if (str == null) return defaultValue;
+        try {
+            return Integer.parseInt(str);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toInt");
+        }
+        return defaultValue;
+    }
 }

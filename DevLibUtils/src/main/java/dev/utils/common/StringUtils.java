@@ -325,7 +325,7 @@ public final class StringUtils {
 	 * @param str 16进制表示的字符串
 	 * @return byte[] 字节数组
 	 */
-	public static byte[] hexStringToByteArray(String str) {
+	public static byte[] hexStringToBytes(String str) {
 		if (isEmpty(str)) return null;
 		int len = str.length();
 		byte[] d = new byte[len / 2];

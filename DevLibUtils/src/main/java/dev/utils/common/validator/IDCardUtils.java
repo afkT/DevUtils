@@ -22,11 +22,11 @@ public final class IDCardUtils {
     // 日志 TAG
     private static final String TAG = IDCardUtils.class.getSimpleName();
     // 加权因子
-    private static final int power[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+    public static final int POWER [] = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
     // 身份证最少位数
-    private static final int CHINA_ID_MIN_LENGTH = 15;
+    public static final int CHINA_ID_MIN_LENGTH = 15;
     // 身份证最大位数
-    private static final int CHINA_ID_MAX_LENGTH = 18;
+    public static final int CHINA_ID_MAX_LENGTH = 18;
     // 省份编码
     private static Map<String, String> cityCodes = new HashMap<>();
     // 台湾身份首字母对应数字
@@ -115,14 +115,14 @@ public final class IDCardUtils {
      */
     public static int getPowerSum(final int[] data) {
         if (data == null || data.length == 0) return 0;
-        int powerLength = power.length;
+        int powerLength = POWER.length;
         int dataLength = data.length;
         int sum = 0;
         if (powerLength == dataLength) {
             for (int i = 0; i < dataLength; i++) {
                 for (int j = 0; j < powerLength; j++) {
                     if (i == j) {
-                        sum = sum + data[i] * power[j];
+                        sum = sum + data[i] * POWER[j];
                     }
                 }
             }
@@ -131,7 +131,7 @@ public final class IDCardUtils {
     }
 
     /**
-     * 将 power 和值与 11 取模获取余数进行校验码判断
+     * 将 POWER 和值与 11 取模获取余数进行校验码判断
      * @param sum
      * @return 校验位
      */
