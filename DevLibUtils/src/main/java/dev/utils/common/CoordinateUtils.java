@@ -14,11 +14,11 @@ import static java.lang.Math.PI;
  * ===================
  * 1. WGS84 坐标系：即地球坐标系，国际上通用的坐标系。设备一般包含GPS芯片或者北斗芯片获取的经纬度为WGS84地理坐标系, 谷歌地图采用的是WGS84地理坐标系（中国范围除外）
  * GPS设备得到的经纬度就是在WGS84坐标系下的经纬度。通常通过底层接口得到的定位信息都是WGS84坐标系。
- *
+ * <p>
  * 2. GCJ02 坐标系：即火星坐标系，是由中国国家测绘局制订的地理信息系统的坐标系统。由WGS84坐标系经加密后的坐标系。
  * 国家规定，中国大陆所有公开地理数据都需要至少用GCJ-02进行加密，也就是说我们从国内公司的产品中得到的数据，一定是经过了加密的。
  * 绝大部分国内互联网地图提供商都是使用GCJ-02坐标系，包括高德地图，谷歌地图中国区等。
- *
+ * <p>
  * 3. BD09 坐标系：即百度坐标系，其在GCJ-02上多增加了一次变换，用来保护用户隐私。从百度产品中得到的坐标都是BD-09坐标系。
  */
 public final class CoordinateUtils {
@@ -67,7 +67,7 @@ public final class CoordinateUtils {
      * @return WGS84 坐标：[经度，纬度]
      */
     public static double[] gcj02ToWGS84(final double lng, final double lat) {
-        if (outOfChina(lng, lat)) return new double[]{ lng, lat };
+        if (outOfChina(lng, lat)) return new double[]{lng, lat};
         double dlat = transformLat(lng - 105.0, lat - 35.0);
         double dlng = transformLng(lng - 105.0, lat - 35.0);
         double radlat = lat / 180.0 * PI;
@@ -88,7 +88,7 @@ public final class CoordinateUtils {
      * @return GCJ02 坐标：[经度，纬度]
      */
     public static double[] wgs84ToGcj02(final double lng, final double lat) {
-        if (outOfChina(lng, lat)) return new double[]{ lng, lat };
+        if (outOfChina(lng, lat)) return new double[]{lng, lat};
         double dlat = transformLat(lng - 105.0, lat - 35.0);
         double dlng = transformLng(lng - 105.0, lat - 35.0);
         double radlat = lat / 180.0 * PI;

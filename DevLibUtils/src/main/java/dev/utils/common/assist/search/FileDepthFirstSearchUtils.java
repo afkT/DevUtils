@@ -165,7 +165,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 搜索目录
-     * @param path 根目录地址
+     * @param path       根目录地址
      * @param isRelation 是否关联到 Child List
      */
     public synchronized void query(final String path, final boolean isRelation) {
@@ -226,7 +226,7 @@ public final class FileDepthFirstSearchUtils {
     /**
      * 搜索文件
      * @param file
-     * @param lists 保存数据源
+     * @param lists      保存数据源
      * @param isRelation 是否关联到 Child List
      */
     private void queryFile(File file, List<FileItem> lists, boolean isRelation) {

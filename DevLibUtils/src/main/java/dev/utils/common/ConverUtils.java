@@ -333,8 +333,7 @@ public final class ConverUtils {
     /**
      * char 转换 unicode 编码
      * @param value
-     * @return
-     * toCharInt('a') = 97
+     * @return toCharInt(' a ') = 97
      */
     public static int toCharInt(final char value) {
         return (int) value;
@@ -384,8 +383,7 @@ public final class ConverUtils {
     /**
      * 一个 int 参数的字符串表示形式在基数为16的无符号 int
      * @param value
-     * @return
-     * 例如 -> 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
+     * @return 例如 -> 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
      */
     public static String toHexString(final int value) {
         try {
@@ -444,8 +442,7 @@ public final class ConverUtils {
      * 字符串转换对应的进制
      * @param str
      * @param radix
-     * @return
-     * 如: parseInt("1f603", 16) = 128515
+     * @return 如: parseInt("1f603", 16) = 128515
      */
     public static int parseInt(final String str, final int radix) {
         if (str == null) return -1;
@@ -468,9 +465,9 @@ public final class ConverUtils {
     // ======================================================================
 
     // 小写
-    public static final char HEX_DIGITS [] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     // 大写
-    public static final char HEX_DIGITS_UPPER [] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+    public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
      * 进行十六进制转换

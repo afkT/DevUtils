@@ -89,7 +89,7 @@ public final class CloneUtils {
 
     /**
      * 进行克隆
-     * @param map 存储集合
+     * @param map   存储集合
      * @param datas 需要克隆的数据源
      * @param <K>
      * @param <V>
@@ -118,7 +118,7 @@ public final class CloneUtils {
     /**
      * 进行克隆
      * @param collection 存储集合
-     * @param datas 需要克隆的数据源
+     * @param datas      需要克隆的数据源
      * @param <T>
      */
     public static <T> void deepClone(final Collection<T> collection, final Collection<T> datas) {

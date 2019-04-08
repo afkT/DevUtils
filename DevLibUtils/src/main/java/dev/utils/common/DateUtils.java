@@ -89,7 +89,7 @@ public final class DateUtils {
 
     /**
      * 将时间戳转换日期字符串
-     * @param time 时间戳
+     * @param time   时间戳
      * @param format 日期格式
      * @return 按照需求格式的日期字符串
      */
@@ -105,7 +105,7 @@ public final class DateUtils {
 
     /**
      * 将 Date 转换日期字符串
-     * @param date 日期
+     * @param date   日期
      * @param format 日期格式
      * @return 按照需求格式的日期字符串
      */
@@ -173,7 +173,7 @@ public final class DateUtils {
 
     /**
      * 解析时间字符串转换为long毫秒
-     * @param time 时间
+     * @param time   时间
      * @param format 时间的格式
      * @return
      */
@@ -190,9 +190,9 @@ public final class DateUtils {
 
     /**
      * 转换时间为指定字符串
-     * @param time 需要转换的时间
+     * @param time       需要转换的时间
      * @param timeFormat time的时间格式
-     * @param format 把time转换成需要的格式
+     * @param format     把time转换成需要的格式
      * @return
      */
     public static String parseToString(final String time, final String timeFormat, final String format) {
@@ -525,7 +525,7 @@ public final class DateUtils {
 
     /**
      * 根据年份、月份，获取对应的天数 (完整天数, 无判断是否属于未来日期)
-     * @param year 年数
+     * @param year  年数
      * @param month 月份
      * @return
      */
@@ -638,7 +638,6 @@ public final class DateUtils {
      * 生成 HH:mm 按间隔时间排序数组
      * @param type
      * @return
-     * ==
      * type：
      * 0 = 00:00 - 23:00  => 每小时间隔
      * 1 = 00:00 - 23:45  => 每15分钟间隔
@@ -653,7 +652,6 @@ public final class DateUtils {
      * 生成 HH:mm 按间隔时间排序集合
      * @param type
      * @return
-     * ==
      * type：
      * 0 = 00:00 - 23:00  => 每小时间隔
      * 1 = 00:00 - 23:45  => 每15分钟间隔
@@ -707,7 +705,6 @@ public final class DateUtils {
      * @param time HH:mm格式
      * @param type
      * @return
-     * ==
      * type：
      * 0 = 00:00 - 23:00  => 每小时间隔
      * 1 = 00:00 - 23:45  => 每15分钟间隔
@@ -780,7 +777,7 @@ public final class DateUtils {
 
     /**
      * 传入时间，获取时间(00:00:00 格式)
-     * @param time 时间(秒为单位)
+     * @param time          时间(秒为单位)
      * @param isHandlerMDay 是否处理大于一天的时间
      * @return
      */
@@ -929,7 +926,7 @@ public final class DateUtils {
     /**
      * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
      * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return
      */
     public static boolean isInTimeHHmm(final String startTime, final String endTime) {
@@ -938,9 +935,9 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-     * @param nowTime 当前时间
+     * @param nowTime   当前时间
      * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return
      */
     public static boolean isInTimeHHmm(final String nowTime, final String startTime, final String endTime) {
@@ -950,7 +947,7 @@ public final class DateUtils {
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
      * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return
      */
     public static boolean isInTimeHHmmss(final String startTime, final String endTime) {
@@ -959,9 +956,9 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
-     * @param nowTime 当前时间
+     * @param nowTime   当前时间
      * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return
      */
     public static boolean isInTimeHHmmss(final String nowTime, final String startTime, final String endTime) {
@@ -970,10 +967,10 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
-     * @param nowTime 当前时间
+     * @param nowTime   当前时间
      * @param startTime 开始时间
-     * @param endTime 结束时间
-     * @param format 时间格式
+     * @param endTime   结束时间
+     * @param format    时间格式
      * @return
      */
     public static boolean isInTime(final String nowTime, final String startTime, final String endTime, final String format) {
@@ -1005,9 +1002,9 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
-     * @param nowTime 当前时间
+     * @param nowTime   当前时间
      * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return
      */
     public static boolean isInTime(final long nowTime, final long startTime, final long endTime) {
@@ -1016,9 +1013,9 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
-     * @param nowTime 当前时间
+     * @param nowTime   当前时间
      * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return
      */
     public static boolean isInDate(final Date nowTime, final Date startTime, final Date endTime) {
@@ -1056,7 +1053,7 @@ public final class DateUtils {
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
      * @param startTime 开始时间
-     * @param endTime 结束时间 HH:mm
+     * @param endTime   结束时间 HH:mm
      * @return
      */
     public static long getEndTimeDiffHHmm(final long startTime, final String endTime) {
@@ -1066,7 +1063,7 @@ public final class DateUtils {
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
      * @param endTime 结束时间
-     * @param format 格式 如: HH:mm
+     * @param format  格式 如: HH:mm
      * @return
      */
     public static long getEndTimeDiff(final String endTime, final String format) {
@@ -1076,8 +1073,8 @@ public final class DateUtils {
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
      * @param startTime 开始时间
-     * @param endTime 结束时间
-     * @param format 格式 如: HH:mm
+     * @param endTime   结束时间
+     * @param format    格式 如: HH:mm
      * @return
      * tips:
      * 如当前时间 2018-12-07 15:27:23, 判断距离 14:39:20(endTime) 有多久

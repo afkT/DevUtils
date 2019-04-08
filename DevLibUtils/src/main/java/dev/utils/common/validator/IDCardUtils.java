@@ -22,7 +22,7 @@ public final class IDCardUtils {
     // 日志 TAG
     private static final String TAG = IDCardUtils.class.getSimpleName();
     // 加权因子
-    public static final int POWER [] = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
+    public static final int POWER[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
     // 身份证最少位数
     public static final int CHINA_ID_MIN_LENGTH = 15;
     // 身份证最大位数

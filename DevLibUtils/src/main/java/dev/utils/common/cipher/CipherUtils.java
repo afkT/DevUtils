@@ -29,7 +29,7 @@ public final class CipherUtils {
      */
     public static String encrypt(final Object object, final Cipher cipher) {
         if (object == null) return null;
-        byte[] bytes = ByteUtils.objectToByte(object);
+        byte[] bytes = ByteUtils.objectToBytes(object);
         if (cipher != null) bytes = cipher.encrypt(bytes);
         return HexUtils.encodeHexStr(bytes);
     }
@@ -55,6 +55,6 @@ public final class CipherUtils {
         if (hex == null) return null;
         byte[] bytes = HexUtils.decodeHex(hex.toCharArray());
         if (cipher != null) bytes = cipher.decrypt(bytes);
-        return ByteUtils.byteToObject(bytes);
+        return ByteUtils.bytesToObject(bytes);
     }
 }

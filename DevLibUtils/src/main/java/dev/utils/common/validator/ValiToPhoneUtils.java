@@ -19,8 +19,6 @@ public final class ValiToPhoneUtils {
     // 日志 TAG
     private static final String TAG = ValiToPhoneUtils.class.getSimpleName();
 
-    // ==== 内部方法 =====
-
     /**
      * 判断是否为null
      * @param str

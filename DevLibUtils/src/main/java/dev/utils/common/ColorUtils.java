@@ -238,9 +238,9 @@ public final class ColorUtils {
 
     /**
      * 根据对应的 red、green、blue 生成一个颜色值
-     * @param red [0-255]
+     * @param red   [0-255]
      * @param green [0-255]
-     * @param blue [0-255]
+     * @param blue  [0-255]
      */
     public static int rgb(final int red, final int green, final int blue) {
         return 0xff000000 | (red << 16) | (green << 8) | blue;
@@ -248,9 +248,9 @@ public final class ColorUtils {
 
     /**
      * 根据对应的 red、green、blue 生成一个颜色值
-     * @param red [0-255]
+     * @param red   [0-255]
      * @param green [0-255]
-     * @param blue [0-255]
+     * @param blue  [0-255]
      */
     public static int rgb(final float red, final float green, final float blue) {
         return 0xff000000 |
@@ -264,9 +264,9 @@ public final class ColorUtils {
     /**
      * 根据对应的 alpha, red、green、blue 生成一个颜色值 (含透明度)
      * @param alpha [0-255]
-     * @param red [0-255]
+     * @param red   [0-255]
      * @param green [0-255]
-     * @param blue [0-255]
+     * @param blue  [0-255]
      */
     public static int argb(final int alpha, final int red, final int green, final int blue) {
         return (alpha << 24) | (red << 16) | (green << 8) | blue;
@@ -275,9 +275,9 @@ public final class ColorUtils {
     /**
      * 根据对应的 alpha, red、green、blue 生成一个颜色值 (含透明度)
      * @param alpha [0-255]
-     * @param red [0-255]
+     * @param red   [0-255]
      * @param green [0-255]
-     * @param blue [0-255]
+     * @param blue  [0-255]
      */
     public static int argb(final float alpha, final float red, final float green, final float blue) {
         return ((int) (alpha * 255.0f + 0.5f) << 24) |
@@ -343,7 +343,7 @@ public final class ColorUtils {
     /**
      * 改变颜色值中的红色色值
      * @param color
-     * @param red [0-255]
+     * @param red   [0-255]
      * @return
      */
     public static int setRed(final int color, final int red) {
@@ -353,7 +353,7 @@ public final class ColorUtils {
     /**
      * 改变颜色值中的红色色值
      * @param color
-     * @param red [0-255]
+     * @param red   [0-255]
      * @return
      */
     public static int setRed(final int color, final float red) {
@@ -383,7 +383,7 @@ public final class ColorUtils {
     /**
      * 改变颜色值中的蓝色色值
      * @param color
-     * @param blue [0-255]
+     * @param blue  [0-255]
      * @return
      */
     public static int setBlue(final int color, final int blue) {
@@ -393,7 +393,7 @@ public final class ColorUtils {
     /**
      * 改变颜色值中的蓝色色值
      * @param color
-     * @param blue [0-255]
+     * @param blue  [0-255]
      * @return
      */
     public static int setBlue(final int color, final float blue) {

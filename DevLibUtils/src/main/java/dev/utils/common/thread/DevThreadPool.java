@@ -259,7 +259,7 @@ public final class DevThreadPool {
      * 请求关闭、发生超时或者当前线程中断
      * 无论哪一个首先发生之后，都将导致阻塞，直到所有任务完成执行。
      * @param timeout 最长等待时间
-     * @param unit 时间单位
+     * @param unit    时间单位
      * @return true : 请求成功, false : 请求超时
      * @throws InterruptedException 终端异常
      */
@@ -271,7 +271,7 @@ public final class DevThreadPool {
      * 提交一个Callable任务用于执行
      * 如果想立即阻塞任务的等待，则可以使用{@code result = threadPool.submit(aCallable).get();}形式的构造。
      * @param task 任务
-     * @param <T> 泛型
+     * @param <T>  泛型
      * @return 表示任务等待完成的Future, 该Future的{@code get}方法在成功完成时将会返回该任务的结果。
      */
     public <T> Future<T> submit(final Callable<T> task) {
@@ -280,9 +280,9 @@ public final class DevThreadPool {
 
     /**
      * 提交一个Runnable任务用于执行
-     * @param task 任务
+     * @param task   任务
      * @param result 返回的结果
-     * @param <T> 泛型
+     * @param <T>    泛型
      * @return 表示任务等待完成的Future, 该Future的{@code get}方法在成功完成时将会返回该任务的结果。
      */
     public <T> Future<T> submit(final Runnable task, final T result) {
@@ -305,7 +305,7 @@ public final class DevThreadPool {
      * 注意，可以正常地或通过抛出异常来终止已完成任务。
      * 如果正在进行此操作时修改了给定的 collection，则此方法的结果是不确定的。
      * @param tasks 任务集合
-     * @param <T> 泛型
+     * @param <T>   泛型
      * @return 表示任务的 Future 列表，列表顺序与给定任务列表的迭代器所生成的顺序相同，每个任务都已完成。
      * @throws InterruptedException 如果等待时发生中断，在这种情况下取消尚未完成的任务。
      */
@@ -320,10 +320,10 @@ public final class DevThreadPool {
      * 一旦返回后，即取消尚未完成的任务。
      * 注意，可以正常地或通过抛出异常来终止已完成任务。
      * 如果此操作正在进行时修改了给定的 collection，则此方法的结果是不确定的。
-     * @param tasks 任务集合
+     * @param tasks   任务集合
      * @param timeout 最长等待时间
-     * @param unit 时间单位
-     * @param <T> 泛型
+     * @param unit    时间单位
+     * @param <T>     泛型
      * @return 表示任务的 Future 列表，列表顺序与给定任务列表的迭代器所生成的顺序相同。
      * 如果操作未超时，则已完成所有任务。如果确实超时了，则某些任务尚未完成。
      * @throws InterruptedException 如果等待时发生中断，在这种情况下取消尚未完成的任务
@@ -338,7 +338,7 @@ public final class DevThreadPool {
      * 一旦正常或异常返回后，则取消尚未完成的任务。
      * 如果此操作正在进行时修改了给定的collection，则此方法的结果是不确定的。
      * @param tasks 任务集合
-     * @param <T> 泛型
+     * @param <T>   泛型
      * @return 某个任务返回的结果
      * @throws InterruptedException 如果等待时发生中断
      * @throws ExecutionException   如果没有任务成功完成
@@ -352,14 +352,14 @@ public final class DevThreadPool {
      * 如果在给定的超时期满前某个任务已成功完成(也就是未抛出异常)，则返回其结果。
      * 一旦正常或异常返回后，则取消尚未完成的任务。
      * 如果此操作正在进行时修改了给定的collection，则此方法的结果是不确定的。
-     * @param tasks 任务集合
+     * @param tasks   任务集合
      * @param timeout 最长等待时间
-     * @param unit 时间单位
-     * @param <T> 泛型
+     * @param unit    时间单位
+     * @param <T>     泛型
      * @return 某个任务返回的结果
      * @throws InterruptedException 如果等待时发生中断
-     * @throws ExecutionException 如果没有任务成功完成
-     * @throws TimeoutException 如果在所有任务成功完成之前给定的超时期满
+     * @throws ExecutionException   如果没有任务成功完成
+     * @throws TimeoutException     如果在所有任务成功完成之前给定的超时期满
      */
     public <T> T invokeAny(final Collection<? extends Callable<T>> tasks, final long timeout, final TimeUnit unit)
             throws InterruptedException, ExecutionException, TimeoutException {
@@ -371,8 +371,8 @@ public final class DevThreadPool {
     /**
      * 延迟执行Runnable命令
      * @param command 命令
-     * @param delay 延迟时间
-     * @param unit 单位
+     * @param delay   延迟时间
+     * @param unit    单位
      * @return 表示挂起任务完成的ScheduledFuture，并且其{@code get()}方法在完成后将返回{@code null}
      */
     public ScheduledFuture<?> schedule(final Runnable command, final long delay, final TimeUnit unit) {
@@ -382,9 +382,9 @@ public final class DevThreadPool {
     /**
      * 延迟执行Callable命令
      * @param callable 命令
-     * @param delay 延迟时间
-     * @param unit 时间单位
-     * @param <V> 泛型
+     * @param delay    延迟时间
+     * @param unit     时间单位
+     * @param <V>      泛型
      * @return 可用于提取结果或取消的ScheduledFuture
      */
     public <V> ScheduledFuture<V> schedule(final Callable<V> callable, final long delay, final TimeUnit unit) {
@@ -393,10 +393,10 @@ public final class DevThreadPool {
 
     /**
      * 延迟并循环执行命令
-     * @param command 命令
+     * @param command      命令
      * @param initialDelay 首次执行的延迟时间
-     * @param period 连续执行之间的周期
-     * @param unit 时间单位
+     * @param period       连续执行之间的周期
+     * @param unit         时间单位
      * @return 表示挂起任务完成的ScheduledFuture，并且其{@code get()}方法在取消后将抛出异常
      */
     public ScheduledFuture<?> scheduleWithFixedRate(final Runnable command, final long initialDelay, final long period, final TimeUnit unit) {
@@ -405,10 +405,10 @@ public final class DevThreadPool {
 
     /**
      * 延迟并以固定休息时间循环执行命令
-     * @param command 命令
+     * @param command      命令
      * @param initialDelay 首次执行的延迟时间
-     * @param delay 每一次执行终止和下一次执行开始之间的延迟
-     * @param unit 时间单位
+     * @param delay        每一次执行终止和下一次执行开始之间的延迟
+     * @param unit         时间单位
      * @return 表示挂起任务完成的ScheduledFuture，并且其{@code get()}方法在取消后将抛出异常
      */
     public ScheduledFuture<?> scheduleWithFixedDelay(final Runnable command, final long initialDelay, final long delay, final TimeUnit unit) {

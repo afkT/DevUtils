@@ -24,11 +24,12 @@ public final class FieldUtils {
 
     /**
      * 判断是否序列化
-     * @param f
+     * @param field
      * @return
      */
-    public static boolean isSerializable(Field f) {
-        Class<?>[] clazzs = f.getType().getInterfaces();
+    public static boolean isSerializable(final Field field) {
+        if (field == null) return false;
+        Class<?>[] clazzs = field.getType().getInterfaces();
         for (Class<?> clazz : clazzs) {
             if (Serializable.class == clazz) {
                 return true;
@@ -39,15 +40,17 @@ public final class FieldUtils {
 
     /**
      * 设置域的值
-     * @param f
-     * @param obj
+     * @param field
+     * @param object
+     * @param value
      * @return
      */
-    public static Object set(Field f, Object obj, Object value) {
+    public static Object set(final Field field, final Object object, final Object value) {
+        if (field == null || object == null) return null;
         try {
-            f.setAccessible(true);
-            f.set(obj, value);
-            return f.get(obj);
+            field.setAccessible(true);
+            field.set(object, value);
+            return field.get(object);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "set");
         }
@@ -56,59 +59,97 @@ public final class FieldUtils {
 
     /**
      * 获取域的值
-     * @param f
-     * @param obj
+     * @param field
+     * @param object
      * @return
      */
-    public static Object get(Field f, Object obj) {
+    public static Object get(final Field field, final Object object) {
+        if (field == null || object == null) return null;
         try {
-            f.setAccessible(true);
-            return f.get(obj);
+            field.setAccessible(true);
+            return field.get(object);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "get");
         }
         return null;
     }
 
+    // =
+
     /**
-     * 是否 long 类型
+     * 是否 long/Long 类型
      * @param field
      * @return
      */
-    public static boolean isLong(Field field) {
-        return field.getType() == long.class || field.getType() == Long.class;
+    public static boolean isLong(final Field field) {
+        return field != null && (field.getType() == long.class || field.getType() == Long.class);
     }
 
     /**
-     * 是否 Integer 类型
+     * 是否 float/Float 类型
      * @param field
      * @return
      */
-    public static boolean isInteger(Field field) {
-        return field.getType() == int.class || field.getType() == Integer.class;
+    public static boolean isFloat(final Field field) {
+        return field != null && (field.getType() == float.class || field.getType() == Float.class);
     }
 
     /**
-     * 获取域的泛型类型，如果不带泛型返回null
-     * @param f
+     * 是否 double/Double 类型
+     * @param field
      * @return
      */
-    public static Class<?> getGenericType(Field f) {
-        Type type = f.getGenericType();
+    public static boolean isDouble(final Field field) {
+        return field != null && (field.getType() == double.class || field.getType() == Double.class);
+    }
+
+    /**
+     * 是否 int/Integer 类型
+     * @param field
+     * @return
+     */
+    public static boolean isInteger(final Field field) {
+        return field != null && (field.getType() == int.class || field.getType() == Integer.class);
+    }
+
+    /**
+     * 是否 String 类型
+     * @param field
+     * @return
+     */
+    public static boolean isString(final Field field) {
+        return field != null && (field.getType() == String.class);
+    }
+
+    // =
+
+    /**
+     * 获取域的泛型类型，如果不带泛型返回 null
+     * @param field
+     * @return
+     */
+    public static Class<?> getGenericType(final Field field) {
+        if (field == null) return null;
+        Type type = field.getGenericType();
         if (type instanceof ParameterizedType) {
             type = ((ParameterizedType) type).getActualTypeArguments()[0];
-            if (type instanceof Class<?>) return (Class<?>) type;
-        } else if (type instanceof Class<?>) return (Class<?>) type;
+            if (type instanceof Class<?>) {
+                return (Class<?>) type;
+            }
+        } else if (type instanceof Class<?>) {
+            return (Class<?>) type;
+        }
         return null;
     }
 
     /**
      * 获取数组的类型
-     * @param f
+     * @param field
      * @return
      */
-    public static Class<?> getComponentType(Field f) {
-        return f.getType().getComponentType();
+    public static Class<?> getComponentType(final Field field) {
+        if (field == null || field.getType() == null) return null;
+        return field.getType().getComponentType();
     }
 
     /**
@@ -116,28 +157,30 @@ public final class FieldUtils {
      * @param clazz
      * @return
      */
-    public static List<Field> getAllDeclaredFields(Class<?> clazz) {
+    public static List<Field> getAllDeclaredFields(final Class<?> clazz) {
+        if (clazz == null) return null;
+        Class<?> clazzTemp = clazz;
         // find all field.
         LinkedList<Field> fieldList = new LinkedList<>();
-        while (clazz != null && clazz != Object.class) {
-            Field[] fs = clazz.getDeclaredFields();
+        while (clazzTemp != null && clazzTemp != Object.class) {
+            Field[] fs = clazzTemp.getDeclaredFields();
             for (int i = 0; i < fs.length; i++) {
                 Field f = fs[i];
                 if (!isInvalid(f)) {
                     fieldList.addLast(f);
                 }
             }
-            clazz = clazz.getSuperclass();
+            clazzTemp = clazzTemp.getSuperclass();
         }
         return fieldList;
     }
 
     /**
      * 是静态常量或者内部结构属性
-     * @param f
+     * @param field
      * @return
      */
-    public static boolean isInvalid(Field f) {
-        return (Modifier.isStatic(f.getModifiers()) && Modifier.isFinal(f.getModifiers())) || f.isSynthetic();
+    public static boolean isInvalid(final Field field) {
+        return field != null && ((Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) || field.isSynthetic());
     }
 }

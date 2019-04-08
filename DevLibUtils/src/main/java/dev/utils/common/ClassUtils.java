@@ -107,7 +107,7 @@ public final class ClassUtils {
     /**
      * 获取父类泛型类型
      * @param object
-     * @param pos 泛型参数位置
+     * @param pos    泛型参数位置
      * @return
      */
     public static Class<?> getGenericSuperclass(final Object object, final int pos) {
@@ -131,7 +131,7 @@ public final class ClassUtils {
     /**
      * 获取父类泛型类型
      * @param clazz
-     * @param pos 泛型参数位置
+     * @param pos   泛型参数位置
      * @return
      */
     public static Class<?> getGenericSuperclass(final Class clazz, final int pos) {
@@ -162,7 +162,7 @@ public final class ClassUtils {
      * 获取接口泛型类型
      * @param object
      * @param interfaceClazz 接口 Class
-     * @param pos 泛型参数位置
+     * @param pos            泛型参数位置
      * @return
      */
     public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz, final int pos) {
@@ -188,7 +188,7 @@ public final class ClassUtils {
      * 获取接口泛型类型
      * @param clazz
      * @param interfaceClazz 接口 Class
-     * @param pos 泛型参数位置
+     * @param pos            泛型参数位置
      * @return
      */
     public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz, final int pos) {

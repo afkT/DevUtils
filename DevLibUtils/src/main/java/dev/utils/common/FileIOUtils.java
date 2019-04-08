@@ -38,7 +38,7 @@ public final class FileIOUtils {
     private static int sBufferSize = 8192;
 
     /**
-     * Set the buffer's size. - Default size equals 8192 bytes.
+     * 设置缓冲区的大小, 默认大小等于 8192 字节
      * @param bufferSize The buffer's size.
      */
     public static void setBufferSize(final int bufferSize) {
@@ -46,9 +46,9 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from input stream.
+     * 通过输入流写入文件
      * @param filePath The path of file.
-     * @param is The input stream.
+     * @param is       The input stream.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromIS(final String filePath, final InputStream is) {
@@ -56,10 +56,10 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from input stream.
+     * 通过输入流写入文件
      * @param filePath The path of file.
-     * @param is The input stream.
-     * @param append True to append, false otherwise.
+     * @param is       The input stream.
+     * @param append   True to append, false otherwise.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromIS(final String filePath, final InputStream is, final boolean append) {
@@ -67,9 +67,9 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from input stream.
+     * 通过输入流写入文件
      * @param file The file.
-     * @param is The input stream.
+     * @param is   The input stream.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromIS(final File file, final InputStream is) {
@@ -77,9 +77,9 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from input stream.
-     * @param file The file.
-     * @param is The input stream.
+     * 通过输入流写入文件
+     * @param file   The file.
+     * @param is     The input stream.
      * @param append True to append, false otherwise.
      * @return true : success, false : fail
      */
@@ -103,9 +103,9 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by stream.
+     * 通过字节流写入文件
      * @param filePath The path of file.
-     * @param bytes The bytes.
+     * @param bytes    The bytes.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes) {
@@ -113,10 +113,10 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by stream.
+     * 通过字节流写入文件
      * @param filePath The path of file.
-     * @param bytes The bytes.
-     * @param append True to append, false otherwise.
+     * @param bytes    The bytes.
+     * @param append   True to append, false otherwise.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes, final boolean append) {
@@ -124,8 +124,8 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by stream.
-     * @param file The file.
+     * 通过字节流写入文件
+     * @param file  The file.
      * @param bytes The bytes.
      * @return true : success, false : fail
      */
@@ -134,9 +134,9 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by stream.
-     * @param file The file.
-     * @param bytes The bytes.
+     * 通过字节流写入文件
+     * @param file   The file.
+     * @param bytes  The bytes.
      * @param append True to append, false otherwise.
      * @return true : success, false : fail
      */
@@ -156,10 +156,10 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by channel.
+     * 通过 FileChannel 把字节流写入文件
      * @param filePath The path of file.
-     * @param bytes The bytes.
-     * @param isForce 是否写入文件
+     * @param bytes    The bytes.
+     * @param isForce  是否写入文件
      * @return true : success, false : fail
      */
     public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean isForce) {
@@ -167,11 +167,11 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by channel.
+     * 通过 FileChannel 把字节流写入文件
      * @param filePath The path of file.
-     * @param bytes The bytes.
-     * @param append True to append, false otherwise.
-     * @param isForce True to force write file, false otherwise.
+     * @param bytes    The bytes.
+     * @param append   True to append, false otherwise.
+     * @param isForce  True to force write file, false otherwise.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
@@ -179,9 +179,9 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by channel.
-     * @param file The file.
-     * @param bytes The bytes.
+     * 通过 FileChannel 把字节流写入文件
+     * @param file    The file.
+     * @param bytes   The bytes.
      * @param isForce True to force write file, false otherwise.
      * @return true : success, false : fail
      */
@@ -190,10 +190,10 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by channel.
-     * @param file The file.
-     * @param bytes The bytes.
-     * @param append True to append, false otherwise.
+     * 通过 FileChannel 把字节流写入文件
+     * @param file    The file.
+     * @param bytes   The bytes.
+     * @param append  True to append, false otherwise.
      * @param isForce True to force write file, false otherwise.
      * @return true : success, false : fail
      */
@@ -215,10 +215,10 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by map.
+     * 通过 MappedByteBuffer 把字节流写入文件
      * @param filePath The path of file.
-     * @param bytes The bytes.
-     * @param isForce True to force write file, false otherwise.
+     * @param bytes    The bytes.
+     * @param isForce  True to force write file, false otherwise.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromBytesByMap(final String filePath, final byte[] bytes, final boolean isForce) {
@@ -226,11 +226,11 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by map.
+     * 通过 MappedByteBuffer 把字节流写入文件
      * @param filePath The path of file.
-     * @param bytes The bytes.
-     * @param append True to append, false otherwise.
-     * @param isForce True to force write file, false otherwise.
+     * @param bytes    The bytes.
+     * @param append   True to append, false otherwise.
+     * @param isForce  True to force write file, false otherwise.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromBytesByMap(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
@@ -238,9 +238,9 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by map.
-     * @param file The file.
-     * @param bytes The bytes.
+     * 通过 MappedByteBuffer 把字节流写入文件
+     * @param file    The file.
+     * @param bytes   The bytes.
      * @param isForce True to force write file, false otherwise.
      * @return true : success, false : fail
      */
@@ -249,10 +249,10 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from bytes by map.
-     * @param file The file.
-     * @param bytes The bytes.
-     * @param append True to append, false otherwise.
+     * 通过 MappedByteBuffer 把字节流写入文件
+     * @param file    The file.
+     * @param bytes   The bytes.
+     * @param append  True to append, false otherwise.
      * @param isForce True to force write file, false otherwise.
      * @return true : success, false : fail
      */
@@ -274,9 +274,9 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from string.
+     * 通过字符串写入文件
      * @param filePath The path of file.
-     * @param content The string of content.
+     * @param content  The string of content.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromString(final String filePath, final String content) {
@@ -284,10 +284,10 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from string.
+     * 通过字符串写入文件
      * @param filePath The path of file.
-     * @param content The string of content.
-     * @param append True to append, false otherwise.
+     * @param content  The string of content.
+     * @param append   True to append, false otherwise.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromString(final String filePath, final String content, final boolean append) {
@@ -295,8 +295,8 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from string.
-     * @param file The file.
+     * 通过字符串写入文件
+     * @param file    The file.
      * @param content The string of content.
      * @return true : success, false : fail
      */
@@ -305,10 +305,10 @@ public final class FileIOUtils {
     }
 
     /**
-     * Write file from string.
-     * @param file The file.
+     * 通过字符串写入文件
+     * @param file    The file.
      * @param content The string of content.
-     * @param append True to append, false otherwise.
+     * @param append  True to append, false otherwise.
      * @return true : success, false : fail
      */
     public static boolean writeFileFromString(final File file, final String content, final boolean append) {
@@ -327,12 +327,12 @@ public final class FileIOUtils {
         }
     }
 
-    // =================================
-    // the divide line of write and read
-    // =================================
+    // ================
+    // == 读写分界线 ==
+    // ================
 
     /**
-     * Return the lines in file.
+     * 读取文件内容, 返回换行 List
      * @param filePath The path of file.
      * @return the lines in file
      */
@@ -341,8 +341,8 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the lines in file.
-     * @param filePath The path of file.
+     * 读取文件内容, 返回换行 List
+     * @param filePath    The path of file.
      * @param charsetName The name of charset.
      * @return the lines in file
      */
@@ -351,7 +351,7 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the lines in file.
+     * 读取文件内容, 返回换行 List
      * @param file The file.
      * @return the lines in file
      */
@@ -360,8 +360,8 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the lines in file.
-     * @param file The file.
+     * 读取文件内容, 返回换行 List
+     * @param file        The file.
      * @param charsetName The name of charset.
      * @return the lines in file
      */
@@ -370,50 +370,50 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the lines in file.
+     * 读取文件内容, 返回换行 List
      * @param filePath The path of file.
-     * @param st The line's index of start.
-     * @param end The line's index of end.
+     * @param start    The line's index of start.
+     * @param end      The line's index of end.
      * @return the lines in file
      */
-    public static List<String> readFileToList(final String filePath, final int st, final int end) {
-        return readFileToList(getFileByPath(filePath), st, end, null);
+    public static List<String> readFileToList(final String filePath, final int start, final int end) {
+        return readFileToList(getFileByPath(filePath), start, end, null);
     }
 
     /**
-     * Return the lines in file.
-     * @param filePath The path of file.
-     * @param st The line's index of start.
-     * @param end The line's index of end.
+     * 读取文件内容, 返回换行 List
+     * @param filePath    The path of file.
+     * @param start       The line's index of start.
+     * @param end         The line's index of end.
      * @param charsetName The name of charset.
      * @return the lines in file
      */
-    public static List<String> readFileToList(final String filePath, final int st, final int end, final String charsetName) {
-        return readFileToList(getFileByPath(filePath), st, end, charsetName);
+    public static List<String> readFileToList(final String filePath, final int start, final int end, final String charsetName) {
+        return readFileToList(getFileByPath(filePath), start, end, charsetName);
     }
 
     /**
-     * Return the lines in file.
-     * @param file The file.
-     * @param st The line's index of start.
-     * @param end  The line's index of end.
+     * 读取文件内容, 返回换行 List
+     * @param file  The file.
+     * @param start The line's index of start.
+     * @param end   The line's index of end.
      * @return the lines in file
      */
-    public static List<String> readFileToList(final File file, final int st, final int end) {
-        return readFileToList(file, st, end, null);
+    public static List<String> readFileToList(final File file, final int start, final int end) {
+        return readFileToList(file, start, end, null);
     }
 
     /**
-     * Return the lines in file.
-     * @param file The file.
-     * @param st The line's index of start.
-     * @param end The line's index of end.
+     * 读取文件内容, 返回换行 List
+     * @param file        The file.
+     * @param start       The line's index of start.
+     * @param end         The line's index of end.
      * @param charsetName The name of charset.
      * @return the lines in file
      */
-    public static List<String> readFileToList(final File file, final int st, final int end, final String charsetName) {
+    public static List<String> readFileToList(final File file, final int start, final int end, final String charsetName) {
         if (!isFileExists(file)) return null;
-        if (st > end) return null;
+        if (start > end) return null;
         BufferedReader reader = null;
         try {
             String line;
@@ -426,7 +426,7 @@ public final class FileIOUtils {
             }
             while ((line = reader.readLine()) != null) {
                 if (curLine > end) break;
-                if (st <= curLine && curLine <= end) list.add(line);
+                if (start <= curLine && curLine <= end) list.add(line);
                 ++curLine;
             }
             return list;
@@ -439,7 +439,7 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the string in file.
+     * 读取文件内容, 返回字符串
      * @param filePath The path of file.
      * @return the string in file
      */
@@ -448,8 +448,8 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the string in file.
-     * @param filePath The path of file.
+     * 读取文件内容, 返回字符串
+     * @param filePath    The path of file.
      * @param charsetName The name of charset.
      * @return the string in file
      */
@@ -458,7 +458,7 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the string in file.
+     * 读取文件内容, 返回字符串
      * @param file The file.
      * @return the string in file
      */
@@ -467,8 +467,8 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the string in file.
-     * @param file The file.
+     * 读取文件内容, 返回字符串
+     * @param file        The file.
      * @param charsetName The name of charset.
      * @return the string in file
      */
@@ -499,7 +499,7 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the bytes in file by stream.
+     * 读取文件内容, 返回 byte[]
      * @param filePath The path of file.
      * @return the bytes in file
      */
@@ -508,7 +508,7 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the bytes in file by stream.
+     * 读取文件内容, 返回 byte[]
      * @param file The file.
      * @return the bytes in file
      */
@@ -534,7 +534,7 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the bytes in file by channel.
+     * 通过 FileChannel, 读取文件内容, 返回 byte[]
      * @param filePath The path of file.
      * @return the bytes in file
      */
@@ -543,7 +543,7 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the bytes in file by channel.
+     * 通过 FileChannel, 读取文件内容, 返回 byte[]
      * @param file The file.
      * @return the bytes in file
      */
@@ -566,7 +566,7 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the bytes in file by map.
+     * 通过 MappedByteBuffer, 读取文件内容, 返回 byte[]
      * @param filePath The path of file.
      * @return the bytes in file
      */
@@ -575,7 +575,7 @@ public final class FileIOUtils {
     }
 
     /**
-     * Return the bytes in file by map.
+     * 通过 MappedByteBuffer, 读取文件内容, 返回 byte[]
      * @param file The file.
      * @return the bytes in file
      */

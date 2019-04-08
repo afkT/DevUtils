@@ -51,7 +51,7 @@ public class Averager {
     }
 
     /**
-     * 打印数字列
+     * 打印数字集合
      * @return
      */
     public String print() {
