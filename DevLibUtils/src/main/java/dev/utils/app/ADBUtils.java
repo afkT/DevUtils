@@ -46,7 +46,7 @@ public final class ADBUtils {
     private static final String TAG = ADBUtils.class.getSimpleName();
     // 正则 - 空格
     private static final String SPACE_STR = "\\s";
-    /** 换行字符串 */
+    // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**

@@ -70,7 +70,7 @@ public final class DeviceUtils {
 //    android.os.Build.VERSION.SDK：系统的API级别 一般使用下面大的SDK_INT 来查看
 //    android.os.Build.VERSION.SDK_INT：系统的API级别 数字表示
 
-    /** 换行字符串 */
+    // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**

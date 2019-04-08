@@ -18,6 +18,8 @@ public final class HttpParamsUtils {
 
     // 日志 TAG
     private static final String TAG = HttpParamsUtils.class.getSimpleName();
+    // 换行字符串
+    public static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 拆分参数
@@ -34,7 +36,7 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static Map<String, String> splitParams(final String params, boolean urlEncode) {
+    public static Map<String, String> splitParams(final String params, final boolean urlEncode) {
         Map<String, String> mapParams = new HashMap<>();
         if (params != null) {
             // 拆分数据
@@ -89,7 +91,7 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static String joinReqParams(final Map<String, String> mapParams, boolean urlEncode) {
+    public static String joinReqParams(final Map<String, String> mapParams, final boolean urlEncode) {
         if (mapParams != null) {
             int index = 0;
             // --
@@ -126,7 +128,7 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static String joinReqParamsObj(final Map<String, Object> mapParams, boolean urlEncode) {
+    public static String joinReqParamsObj(final Map<String, Object> mapParams, final boolean urlEncode) {
         if (mapParams != null) {
             int index = 0;
             // --
@@ -155,21 +157,21 @@ public final class HttpParamsUtils {
     // -
 
     /**
-     * toString 快捷方法, 拼接打印 String
+     * 拼接打印 Map 参数
      * @param mapParams
      * @return
      */
-    public static String toStringMap(final Map<String, String> mapParams) {
-        return toStringMap(mapParams, false);
+    public static String printMapParams(final Map<String, String> mapParams) {
+        return printMapParams(mapParams, false);
     }
 
     /**
-     * toString 快捷方法, 拼接打印 String
+     * 拼接打印 Map 参数
      * @param mapParams
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static String toStringMap(final Map<String, String> mapParams, boolean urlEncode) {
+    public static String printMapParams(final Map<String, String> mapParams, final boolean urlEncode) {
         if (mapParams != null) {
             StringBuilder sBuilder = new StringBuilder();
             // --
@@ -179,7 +181,7 @@ public final class HttpParamsUtils {
                 sBuilder.append(entry.getKey());
                 sBuilder.append(" => ");
                 sBuilder.append(urlEncode ? urlEncode(entry.getValue()) : entry.getValue());
-                sBuilder.append("\n");
+                sBuilder.append(NEW_LINE_STR);
             }
             return sBuilder.toString();
         }
@@ -200,7 +202,7 @@ public final class HttpParamsUtils {
      * @param key
      * @param value
      */
-    public static void toConvertObjToMS(Map<String, String> mapParams, String objStr, String key, String value) {
+    public static void toConvertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
         if (mapParams != null) {
             String data = null;
             try {
@@ -219,7 +221,7 @@ public final class HttpParamsUtils {
      * @param key
      * @param value
      */
-    public static void toConvertObjToMO(Map<String, Object> mapParams, String objStr, String key, Object value) {
+    public static void toConvertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
         if (mapParams != null) {
             Object data = null;
             try {
@@ -234,7 +236,7 @@ public final class HttpParamsUtils {
     // =
 
     /**
-     * url编码 - utf-8
+     * url 编码 - utf-8
      * @param input The input.
      * @return the urlencoded string
      */
@@ -244,7 +246,7 @@ public final class HttpParamsUtils {
 
     /**
      * url编码
-     * @param input The input.
+     * @param input       The input.
      * @param charsetName The name of charset.
      * @return the urlencoded string
      */

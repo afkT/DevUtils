@@ -19,6 +19,8 @@ public final class QuickCommonUtils {
 
     // 日志 TAG
     private static final String TAG = QuickCommonUtils.class.getSimpleName();
+    // 换行字符串
+    public static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 获取随机唯一数
@@ -41,15 +43,13 @@ public final class QuickCommonUtils {
      * @param uuid
      * @return
      */
-    public static int randomUUIDToHashCode(UUID uuid) {
-        if (uuid != null) {
-            return uuid.hashCode();
-        }
-        return 0;
+    public static int randomUUIDToHashCode(final UUID uuid) {
+        return  (uuid != null) ? uuid.hashCode() : 0;
     }
 
     /**
      * 获取随机数 唯一id
+     *
      * @return
      */
     public static String getRandomUUID() {
@@ -75,9 +75,11 @@ public final class QuickCommonUtils {
      * @param salts
      * @return
      */
-    public static String whileMD5(String data, int number, boolean isUppercase, String... salts) {
+    public static String whileMD5(final String data, final int number, final boolean isUppercase, final String... salts) {
         if (data != null && number >= 1) {
             int saltLen = (salts != null) ? salts.length : 0;
+            // 临时字符串
+            String dataTemp = data;
             // 判断是否大写
             if (isUppercase) {
                 // 循环加密
@@ -85,12 +87,12 @@ public final class QuickCommonUtils {
                     if (saltLen >= i) {
                         String salt = salts[i];
                         if (salt != null) {
-                            data = MD5Utils.md5Upper(data + salt);
+                            dataTemp = MD5Utils.md5Upper(dataTemp + salt);
                         } else {
-                            data = MD5Utils.md5Upper(data);
+                            dataTemp = MD5Utils.md5Upper(dataTemp);
                         }
                     } else {
-                        data = MD5Utils.md5Upper(data);
+                        dataTemp = MD5Utils.md5Upper(dataTemp);
                     }
                 }
             } else {
@@ -99,12 +101,12 @@ public final class QuickCommonUtils {
                     if (saltLen >= i) {
                         String salt = salts[i];
                         if (salt != null) {
-                            data = MD5Utils.md5(data + salt);
+                            dataTemp = MD5Utils.md5(dataTemp + salt);
                         } else {
-                            data = MD5Utils.md5(data);
+                            dataTemp = MD5Utils.md5(dataTemp);
                         }
                     } else {
-                        data = MD5Utils.md5(data);
+                        dataTemp = MD5Utils.md5(dataTemp);
                     }
                 }
             }
@@ -118,7 +120,7 @@ public final class QuickCommonUtils {
      * 转换手机号
      * @param phone
      */
-    public static String converHideMobile(String phone) {
+    public static String converHideMobile(final String phone) {
         return converHideMobile(phone, "*");
     }
 
@@ -127,33 +129,34 @@ public final class QuickCommonUtils {
      * @param phone
      * @param symbol 符号
      */
-    public static String converHideMobile(String phone, String symbol) {
+    public static String converHideMobile(final String phone, final String symbol) {
         return DevCommonUtils.converSymbolHide(3, phone, symbol);
     }
 
     /**
      * 耗时时间记录
      * @param buffer
-     * @param sTime 开始时间
-     * @param eTime 结束时间
+     * @param sTime  开始时间
+     * @param eTime  结束时间
      */
-    public static void timeRecord(StringBuffer buffer, long sTime, long eTime) {
+    public static void timeRecord(final StringBuffer buffer, final long sTime, final long eTime) {
         timeRecord(buffer, null, sTime, eTime);
     }
 
     /**
      * 耗时时间记录
      * @param buffer
-     * @param title 标题
-     * @param sTime 开始时间
-     * @param eTime 结束时间
+     * @param title  标题
+     * @param sTime  开始时间
+     * @param eTime  结束时间
      */
-    public static void timeRecord(StringBuffer buffer, String title, long sTime, long eTime) {
+    public static void timeRecord(final StringBuffer buffer, final String title, final long sTime, final long eTime) {
+        if (buffer == null) return;
         // 使用时间
         long uTime = eTime - sTime;
         // 计算时间
         if (!DevCommonUtils.isEmpty(title)) {
-            buffer.append("\n" + title);
+            buffer.append(NEW_LINE_STR + title);
         }
         // 计算时间
         buffer.append("\n开始时间：" + DateUtils.formatTime(sTime, DateUtils.yyyyMMddHHmmss));
@@ -163,60 +166,20 @@ public final class QuickCommonUtils {
     }
 
     /**
-     * 获取格式化字符串(可变参数)
-     * @param args
-     * @return
-     */
-    public static String getFormatString(Object... args) {
-        if (args != null && args.length != 0) {
-            int length = args.length;
-            StringBuffer buffer = new StringBuffer();
-            buffer.append("%s");
-            if (length > 1) {
-                for (int i = 1; i < length; i++) {
-                    buffer.append(" %s");
-                }
-            }
-            return String.format(buffer.toString(), args);
-        }
-        return "args is null";
-    }
-
-    /**
-     * 获取格式化字符串(可变参数)
-     * @param args
-     * @return
-     */
-    public static String getFormatString2(Object... args) {
-        if (args != null && args.length != 0) {
-            int length = args.length;
-            StringBuffer buffer = new StringBuffer();
-            buffer.append("【%s】");
-            if (length > 1) {
-                for (int i = 1; i < length; i++) {
-                    buffer.append(" %s");
-                }
-            }
-            return String.format(buffer.toString(), args);
-        }
-        return "args is null";
-    }
-
-    /**
      * 获取操作时间
      * @param operateTime 操作时间(毫秒)
      * @return
      */
-    public static long getOperateTime(long operateTime) {
+    public static long getOperateTime(final long operateTime) {
         return getOperateTime(operateTime, -1);
     }
 
     /**
      * 获取操作时间
      * @param operateTime 操作时间(毫秒)
-     * @param randomTime 随机范围(毫秒)
+     * @param randomTime  随机范围(毫秒)
      */
-    public static long getOperateTime(long operateTime, int randomTime) {
+    public static long getOperateTime(final long operateTime, final int randomTime) {
         int random = 0;
         // 大于2才处理
         if (randomTime >= 2) {
@@ -231,7 +194,7 @@ public final class QuickCommonUtils {
      * 堵塞操作
      * @param sleepTime
      */
-    public static void sleepOperate(long sleepTime) {
+    public static void sleepOperate(final long sleepTime) {
         sleepOperate(sleepTime, -1, false);
     }
 
@@ -240,7 +203,7 @@ public final class QuickCommonUtils {
      * @param sleepTime
      * @param randomTime
      */
-    public static void sleepOperate(long sleepTime, int randomTime) {
+    public static void sleepOperate(final long sleepTime, final int randomTime) {
         sleepOperate(sleepTime, randomTime, false);
     }
 
@@ -250,7 +213,7 @@ public final class QuickCommonUtils {
      * @param randomTime
      * @param isSystemClock
      */
-    public static void sleepOperate(long sleepTime, int randomTime, boolean isSystemClock) {
+    public static void sleepOperate(final long sleepTime, final int randomTime, final boolean isSystemClock) {
         long time = getOperateTime(sleepTime, randomTime);
         if (time != -1) {
             if (isSystemClock) {

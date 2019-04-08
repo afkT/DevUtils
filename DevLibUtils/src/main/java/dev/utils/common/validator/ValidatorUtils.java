@@ -17,6 +17,10 @@ public final class ValidatorUtils {
     // 日志 TAG
     private static final String TAG = ValidatorUtils.class.getSimpleName();
 
+
+    // 正则表达式： 空格
+    public static final String REGEX_SPACE = "\\s";
+
     // 正则表达式：验证数字
     public static final String REGEX_NUMBER = "^[0-9]*$";
 

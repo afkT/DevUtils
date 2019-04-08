@@ -49,10 +49,10 @@ final class Utils {
 	/** 用来存储设备信息 */
 	private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
 
-	/** 换行字符串 */
+	// 换行字符串
 	private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
-	/** 换行字符串 - 两行 */
+	// 换行字符串 - 两行
 	private static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
 	// ================== App、设备信息处理  ===================

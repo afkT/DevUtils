@@ -26,7 +26,7 @@ public final class StringUtils {
 	 * @param number 空格数量
 	 * @return
 	 */
-	public static String appendSpace(int number) {
+	public static String appendSpace(final int number) {
 		StringBuffer buffer = new StringBuffer();
 		if (number > 0) {
 			for (int i = 0; i < number; i++) {
@@ -41,7 +41,7 @@ public final class StringUtils {
 	 * @param number tab 键数量
 	 * @return
 	 */
-	public static String appendTab(int number) {
+	public static String appendTab(final int number) {
 		StringBuffer buffer = new StringBuffer();
 		if (number > 0) {
 			for (int i = 0; i < number; i++) {
@@ -53,10 +53,10 @@ public final class StringUtils {
 
 	/**
 	 * 追加 换行
-	 * @param number tab 键数量
+	 * @param number 换行数量
 	 * @return
 	 */
-	public static String appendLine(int number) {
+	public static String appendLine(final int number) {
 		StringBuffer buffer = new StringBuffer();
 		if (number > 0) {
 			for (int i = 0; i < number; i++) {

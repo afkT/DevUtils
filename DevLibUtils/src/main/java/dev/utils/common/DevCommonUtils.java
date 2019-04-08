@@ -29,7 +29,7 @@ public final class DevCommonUtils {
      * @param max
      * @return
      */
-    public static float percent(float value, float max) {
+    public static float percent(final float value, final float max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -42,7 +42,7 @@ public final class DevCommonUtils {
      * @param max
      * @return
      */
-    public static float percent(int value, int max) {
+    public static float percent(final int value, final int max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -55,7 +55,7 @@ public final class DevCommonUtils {
      * @param max
      * @return
      */
-    public static float percent2(float value, float max) {
+    public static float percent2(final float value, final float max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         return value / max;
@@ -67,7 +67,7 @@ public final class DevCommonUtils {
      * @param max
      * @return
      */
-    public static float percent2(int value, int max) {
+    public static float percent2(final int value, final int max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         return (float) value / (float) max;
@@ -80,7 +80,7 @@ public final class DevCommonUtils {
      * @param min
      * @return
      */
-    public static int clamp(int value, int max, int min) {
+    public static int clamp(final int value, final int max, final int min) {
         return value > max ? max : value < min ? min : value;
     }
 
@@ -91,19 +91,20 @@ public final class DevCommonUtils {
      * @param min
      * @return
      */
-    public static float clamp(float value, float max, float min) {
+    public static float clamp(final float value, final float max, final float min) {
         return value > max ? max : value < min ? min : value;
     }
 
     // =
 
     /**
-     * 获取格式化字符串
+     * 获取格式化后的字符串
      * @param format
      * @param args
      * @return
      */
-    public static String getFormatString(String format, Object... args) {
+    public static String getFormatString(final String format, final Object... args) {
+        if (format == null) return null;
         try {
             return String.format(format, args);
         } catch (Exception e) {
@@ -113,12 +114,13 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 获取格式化字符串
+     * 获取格式化后的字符串
      * @param format
      * @param args
      * @return
      */
-    public static String getFormatString2(String format, Object... args) {
+    public static String getFormatString2(final String format, final Object... args) {
+        if (format == null) return null;
         try {
             if (args != null && args.length != 0) {
                 return String.format(format, args);
@@ -132,11 +134,61 @@ public final class DevCommonUtils {
     }
 
     /**
+     * 获取自动数量格式化后的字符串(可变参数)
+     * @param args
+     * @return
+     */
+    public static String getAutoFormatString(final Object... args) {
+        if (args != null && args.length != 0) {
+            try {
+                int length = args.length;
+                StringBuffer buffer = new StringBuffer();
+                buffer.append("%s");
+                if (length > 1) {
+                    for (int i = 1; i < length; i++) {
+                        buffer.append(" %s");
+                    }
+                }
+                return String.format(buffer.toString(), args);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getAutoFormatString");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取自动数量格式化后的字符串(可变参数)
+     * @param args
+     * @return
+     */
+    public static String getAutoFormatString2(final Object... args) {
+        if (args != null && args.length != 0) {
+            try {
+                int length = args.length;
+                StringBuffer buffer = new StringBuffer();
+                buffer.append("【%s】");
+                if (length > 1) {
+                    for (int i = 1; i < length; i++) {
+                        buffer.append(" %s");
+                    }
+                }
+                return String.format(buffer.toString(), args);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getAutoFormatString2");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * 判断是否网络资源
      * @param str 资源地址字符串
      * @return
      */
-    public static boolean isHttpRes(String str) {
+    public static boolean isHttpRes(final String str) {
         if (!isEmpty(str)) {
             // 属于第一位开始, 才是属于网络资源
             if (str.toLowerCase().startsWith("http:") ||
@@ -146,6 +198,8 @@ public final class DevCommonUtils {
         }
         return false;
     }
+
+    // =
 
     /**
      * 判断字符串是否为 null 或全为空白字符
@@ -167,7 +221,7 @@ public final class DevCommonUtils {
      * @param number 空格数量
      * @return
      */
-    public static String appendSpace(int number) {
+    public static String appendSpace(final int number) {
         StringBuffer buffer = new StringBuffer();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
@@ -182,7 +236,7 @@ public final class DevCommonUtils {
      * @param number tab 键数量
      * @return
      */
-    public static String appendTab(int number) {
+    public static String appendTab(final int number) {
         StringBuffer buffer = new StringBuffer();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
@@ -194,10 +248,10 @@ public final class DevCommonUtils {
 
     /**
      * 追加 换行
-     * @param number tab 键数量
+     * @param number 换行数量
      * @return
      */
-    public static String appendLine(int number) {
+    public static String appendLine(final int number) {
         StringBuffer buffer = new StringBuffer();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
@@ -212,21 +266,30 @@ public final class DevCommonUtils {
     // ========================
 
     /**
-     * 判断是否为null
+     * 判断是否为 null
      * @param str
      * @return
      */
-    public static boolean isEmpty(String str) {
+    public static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
     }
 
     /**
-     * 判断字符串是否为 null 或全为空格
+     * 判断是否为 null
      * @param str
+     * @param isTrim
      * @return
      */
-    public static boolean isTrimEmpty(final String str) {
-        return (str == null || str.trim().length() == 0);
+    public static boolean isEmpty(final String str, final boolean isTrim) {
+        if (str == null) {
+            return true;
+        } else {
+            if (isTrim) {
+                return (str.trim().length() == 0);
+            } else {
+                return (str.length() == 0);
+            }
+        }
     }
 
     /**
@@ -234,7 +297,7 @@ public final class DevCommonUtils {
      * @param strs
      * @return
      */
-    public static boolean isEmpty(String... strs) {
+    public static boolean isEmpty(final String... strs) {
         if (strs != null && strs.length != 0) {
             for (int i = 0, len = strs.length; i < len; i++) {
                 if (isEmpty(strs[i])) {
@@ -247,17 +310,26 @@ public final class DevCommonUtils {
         return true;
     }
 
+    /**
+     * 判断是否为 null 或者为空格
+     * @param str
+     * @return
+     */
+    public static boolean isTrimEmpty(final String str) {
+        return (str == null || str.trim().length() == 0);
+    }
+
     // ====================
-    // 单独需要判断是否为null,而不需要判断长度,只需要调用length方法
+    // 单独需要判断是否为null, 而不需要判断长度,只需要调用length方法
     // length(list, -1) == -1  =>  true 表示为null, false 表示不为null,存在数据(可能返回0)
     // ====================
 
     /**
-     * 判断是否为null to Object
+     * 判断是否为 null to Object
      * @param object
      * @return
      */
-    public static boolean isEmpty(Object object) {
+    public static boolean isEmpty(final Object object) {
         if (object != null) {
             // 判断是否属于基本类型数组
             if (object.getClass().isArray()) {
@@ -294,71 +366,53 @@ public final class DevCommonUtils {
      * @param objects
      * @return
      */
-    public static boolean isEmpty(Object[] objects) {
-        if (objects != null) {
-            return (objects.length == 0);
-        }
-        return true;
+    public static boolean isEmpty(final Object[] objects) {
+        return objects == null || objects.length == 0;
     }
 
     /**
-     * 判读是否为null to List
+     * 判读是否为 null to List
      * @param list
      * @return
      */
-    public static boolean isEmpty(List list) {
-        if (list != null) {
-            return (list.size() == 0);
-        }
-        return true;
+    public static boolean isEmpty(final List list) {
+        return list == null || list.size() == 0;
     }
 
     /**
-     * 判读是否为null to Map
+     * 判读是否为 null to Map
      * @param map
      * @return
      */
-    public static boolean isEmpty(Map map) {
-        if (map != null) {
-            return (map.size() == 0);
-        }
-        return true;
+    public static boolean isEmpty(final Map map) {
+        return map == null || map.size() == 0;
     }
 
     /**
-     * 判读是否为null to Set
+     * 判读是否为 null to Set
      * @param set
      * @return
      */
-    public static boolean isEmpty(Set set) {
-        if (set != null) {
-            return (set.size() == 0);
-        }
-        return true;
+    public static boolean isEmpty(final Set set) {
+        return set == null || set.size() == 0;
     }
 
     /**
-     * 判读是否为null to Queue
+     * 判读是否为 null to Queue
      * @param queue
      * @return
      */
-    public static boolean isEmpty(Queue queue) {
-        if (queue != null) {
-            return (queue.size() == 0);
-        }
-        return true;
+    public static boolean isEmpty(final Queue queue) {
+        return queue == null || queue.size() == 0;
     }
 
     /**
-     * 判读是否为null to 可变数组
+     * 判读是否为 null to 可变数组
      * @param args
      * @return
      */
-    public static boolean isEmptyObjs(Object... args) {
-        if (args != null) {
-            return (args.length == 0);
-        }
-        return true;
+    public static boolean isEmptyObjs(final Object... args) {
+        return args == null || args.length == 0;
     }
 
     // ==================
@@ -366,11 +420,11 @@ public final class DevCommonUtils {
     // ==================
 
     /**
-     * 获取长度，如果字符串为null,则返回0
+     * 获取长度，如果字符串为null, 则返回 0
      * @param str
      * @return
      */
-    public static int length(String str) {
+    public static int length(final String str) {
         return str == null ? 0 : str.length();
     }
 
@@ -379,7 +433,7 @@ public final class DevCommonUtils {
      * @param objects
      * @return
      */
-    public static int length(Object[] objects) {
+    public static int length(final Object[] objects) {
         return length(objects, 0);
     }
 
@@ -388,7 +442,7 @@ public final class DevCommonUtils {
      * @param list
      * @return
      */
-    public static int length(List list) {
+    public static int length(final List list) {
         return length(list, 0);
     }
 
@@ -397,7 +451,7 @@ public final class DevCommonUtils {
      * @param map
      * @return
      */
-    public static int length(Map map) {
+    public static int length(final Map map) {
         return length(map, 0);
     }
 
@@ -406,7 +460,7 @@ public final class DevCommonUtils {
      * @param set
      * @return
      */
-    public static int length(Set set) {
+    public static int length(final Set set) {
         return length(set, 0);
     }
 
@@ -415,7 +469,7 @@ public final class DevCommonUtils {
      * @param queue
      * @return
      */
-    public static int length(Queue queue) {
+    public static int length(final Queue queue) {
         return length(queue, 0);
     }
 
@@ -427,11 +481,8 @@ public final class DevCommonUtils {
      * @param defaultLength
      * @return
      */
-    public static int length(String str, int defaultLength) {
-        if (str != null) {
-            return str.length();
-        }
-        return defaultLength;
+    public static int length(final String str, final int defaultLength) {
+        return str != null ? str.length() : defaultLength;
     }
 
     /**
@@ -440,11 +491,8 @@ public final class DevCommonUtils {
      * @param defaultLength
      * @return
      */
-    public static int length(Object[] objects, int defaultLength) {
-        if (objects != null) {
-            return objects.length;
-        }
-        return defaultLength;
+    public static int length(final Object[] objects, final int defaultLength) {
+        return objects != null ? objects.length : defaultLength;
     }
 
     /**
@@ -453,11 +501,8 @@ public final class DevCommonUtils {
      * @param defaultLength
      * @return
      */
-    public static int length(List list, int defaultLength) {
-        if (list != null) {
-            return list.size();
-        }
-        return defaultLength;
+    public static int length(final List list, final int defaultLength) {
+        return list != null ? list.size() : defaultLength;
     }
 
     /**
@@ -466,11 +511,8 @@ public final class DevCommonUtils {
      * @param defaultLength
      * @return
      */
-    public static int length(Map map, int defaultLength) {
-        if (map != null) {
-            return map.size();
-        }
-        return defaultLength;
+    public static int length(final Map map, final int defaultLength) {
+        return map != null ? map.size() : defaultLength;
     }
 
     /**
@@ -479,11 +521,8 @@ public final class DevCommonUtils {
      * @param defaultLength
      * @return
      */
-    public static int length(Set set, int defaultLength) {
-        if (set != null) {
-            return set.size();
-        }
-        return defaultLength;
+    public static int length(final Set set, final int defaultLength) {
+        return set != null ? set.size() : defaultLength;
     }
 
     /**
@@ -492,21 +531,18 @@ public final class DevCommonUtils {
      * @param defaultLength
      * @return
      */
-    public static int length(Queue queue, int defaultLength) {
-        if (queue != null) {
-            return queue.size();
-        }
-        return defaultLength;
+    public static int length(final Queue queue, final int defaultLength) {
+        return queue != null ? queue.size() : defaultLength;
     }
 
-    // ==
+    // =
 
     /**
      * 获取可变数组长度
      * @param args
      * @return
      */
-    public static int lengthObjs(Object... args) {
+    public static int lengthObjs(final Object... args) {
         return lengthObjsDf(0, args);
     }
 
@@ -516,52 +552,49 @@ public final class DevCommonUtils {
      * @param defaultLength
      * @return
      */
-    public static int lengthObjsDf(int defaultLength, Object... args) {
-        if (args != null) {
-            return args.length;
-        }
-        return defaultLength;
+    public static int lengthObjsDf(final int defaultLength, final Object... args) {
+        return args != null ? args.length : defaultLength;
     }
 
-    // ===
+    // =
 
     /**
-     * 字符串长度匹配
-     * @param str 源字符串
+     * 获取字符串长度 是否等于期望长度
+     * @param str    字符串
      * @param length 期望长度
      * @return
      */
-    public static boolean isLength(String str, int length) {
+    public static boolean isLength(final String str, final int length) {
         return str != null && str.length() == length;
     }
 
     /**
-     * 获取数组长度 是否等于 期望长度
+     * 获取数组长度 是否等于期望长度
      * @param objects
      * @param length
      * @return
      */
-    public static boolean isLength(Object[] objects, int length) {
+    public static boolean isLength(final Object[] objects, final int length) {
         return objects != null && objects.length == length;
     }
 
     /**
-     * 获取长度 to List 是否等于 期望长度
+     * 获取长度 to List 是否等于期望长度
      * @param list
      * @param length
      * @return
      */
-    public static boolean isLength(List list, int length) {
+    public static boolean isLength(final List list, final int length) {
         return list != null && list.size() == length;
     }
 
     /**
-     * 获取长度 to Map 是否等于 期望长度
+     * 获取长度 to Map 是否等于期望长度
      * @param map
      * @param length
      * @return
      */
-    public static boolean isLength(Map map, int length) {
+    public static boolean isLength(final Map map, final int length) {
         return map != null && map.size() == length;
     }
 
@@ -571,7 +604,7 @@ public final class DevCommonUtils {
      * @param length
      * @return
      */
-    public static boolean isLength(Set set, int length) {
+    public static boolean isLength(final Set set, final int length) {
         return set != null && set.size() == length;
     }
 
@@ -581,11 +614,11 @@ public final class DevCommonUtils {
      * @param length
      * @return
      */
-    public static boolean isLength(Queue queue, int length) {
+    public static boolean isLength(final Queue queue, final int length) {
         return queue != null && queue.size() == length;
     }
 
-    // ===
+    // =
 
     /**
      * 判断两字符串是否相等
@@ -610,26 +643,26 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断多个字符串是否相等, 只有全相等才返回true - 对比大小写
+     * 判断多个字符串是否相等, 只有全相等才返回 true - 对比大小写
      * @param args
      * @return
      */
-    public static boolean isEquals(String... args) {
+    public static boolean isEquals(final String... args) {
         return isEquals(false, args);
     }
 
     /**
-     * 判断多个字符串是否相等, 只有全相等才返回true
+     * 判断多个字符串是否相等, 只有全相等才返回 true
      * @param isIgnore 是否忽略大小写
      * @param args
      * @return
      */
-    public static boolean isEquals(boolean isIgnore, String... args) {
+    public static boolean isEquals(final boolean isIgnore, final String... args) {
         if (args != null) {
             String last = null;
             // 获取数据长度
             int len = args.length;
-            // 如果最多只有一个数据判断,则直接跳过
+            // 如果最多只有一个数据判断, 则直接跳过
             if (len <= 1) {
                 return false;
             }
@@ -665,7 +698,7 @@ public final class DevCommonUtils {
      * @param args
      * @return
      */
-    public static boolean isOrEquals(String str, String... args) {
+    public static boolean isOrEquals(final String str, final String... args) {
         return isOrEquals(false, str, args);
     }
 
@@ -676,14 +709,10 @@ public final class DevCommonUtils {
      * @param args
      * @return
      */
-    public static boolean isOrEquals(boolean isIgnore, String str, String... args) {
+    public static boolean isOrEquals(final boolean isIgnore, final String str, final String... args) {
         if (str != null && args != null && args.length != 0) {
             // 获取数据长度
             int len = args.length;
-            // 如果最多只有一个数据判断,则直接跳过
-            if (len <= 1) {
-                return false;
-            }
             // 遍历判断
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
@@ -713,7 +742,7 @@ public final class DevCommonUtils {
      * @param args
      * @return
      */
-    public static boolean isContains(String str, String... args) {
+    public static boolean isContains(final String str, final String... args) {
         return isContains(false, str, args);
     }
 
@@ -724,14 +753,15 @@ public final class DevCommonUtils {
      * @param args
      * @return
      */
-    public static boolean isContains(boolean isIgnore, String str, String... args) {
+    public static boolean isContains(final boolean isIgnore, final String str, final String... args) {
         if (str != null && args != null && args.length != 0) {
+            String strTemp = str;
             // 判断是否需要忽略大小写
             if (isIgnore) {
-                str = str.toLowerCase();
+                strTemp = strTemp.toLowerCase();
             }
             // 获取内容长度
-            int cLength = str.length();
+            int cLength = strTemp.length();
             // 遍历判断
             for (int i = 0, len = args.length; i < len; i++) {
                 // 获取参数
@@ -742,19 +772,19 @@ public final class DevCommonUtils {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
                         // 判断是否包含
-                        if (valIgnore.indexOf(str) != -1) {
+                        if (valIgnore.indexOf(strTemp) != -1) {
                             return true;
                         }
                     } else {
                         // 判断是否包含
-                        if (val.indexOf(str) != -1) {
+                        if (val.indexOf(strTemp) != -1) {
                             return true;
                         }
                     }
                 } else {
                     // 下面这一串可以不要,因为判断字符串是否包含
                     // 已经处理了值不为null,并且需要判断的值长度不能为0,下面则不需要加上
-                    if (str.equals(val)) {
+                    if (strTemp.equals(val)) {
                         return true;
                     }
                 }
@@ -764,27 +794,28 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断内容, 是否属于特定字符串数组开头 - 对比大小写
+     * 判断内容, 是否属于特定字符串开头 - 对比大小写
      * @param str
      * @param args
      * @return
      */
-    public static boolean isStartsWith(String str, String... args) {
+    public static boolean isStartsWith(final String str, final String... args) {
         return isStartsWith(false, str, args);
     }
 
     /**
-     * 判断内容, 是否属于特定字符串数组开头
+     * 判断内容, 是否属于特定字符串开头
      * @param isIgnore 是否忽略大小写
      * @param str
      * @param args
      * @return
      */
-    public static boolean isStartsWith(boolean isIgnore, String str, String... args) {
+    public static boolean isStartsWith(final boolean isIgnore, final String str, final String... args) {
         if (!isEmpty(str) && args != null && args.length != 0) {
+            String strTemp = str;
             // 判断是否需要忽略大小写
             if (isIgnore) {
-                str = str.toLowerCase();
+                strTemp = strTemp.toLowerCase();
             }
             // 获取数据长度
             int len = args.length;
@@ -798,12 +829,12 @@ public final class DevCommonUtils {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
                         // 判断是否属于 val 开头
-                        if (str.startsWith(valIgnore)) {
+                        if (strTemp.startsWith(valIgnore)) {
                             return true;
                         }
                     } else {
                         // 判断是否属于 val 开头
-                        if (str.startsWith(val)) {
+                        if (strTemp.startsWith(val)) {
                             return true;
                         }
                     }
@@ -814,27 +845,28 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断内容, 是否属于特定字符串数组结尾 - 对比大小写
+     * 判断内容, 是否属于特定字符串结尾 - 对比大小写
      * @param str
      * @param args
      * @return
      */
-    public static boolean isEndsWith(String str, String... args) {
+    public static boolean isEndsWith(final String str, final String... args) {
         return isEndsWith(false, str, args);
     }
 
     /**
-     * 判断内容, 是否属于特定字符串数组结尾
+     * 判断内容, 是否属于特定字符串结尾
      * @param isIgnore 是否忽略大小写
      * @param str
      * @param args
      * @return
      */
-    public static boolean isEndsWith(boolean isIgnore, String str, String... args) {
+    public static boolean isEndsWith(final boolean isIgnore, final String str, final String... args) {
         if (!isEmpty(str) && args != null && args.length != 0) {
+            String strTemp = str;
             // 判断是否需要忽略大小写
             if (isIgnore) {
-                str = str.toLowerCase();
+                strTemp = strTemp.toLowerCase();
             }
             // 获取数据长度
             int len = args.length;
@@ -848,12 +880,12 @@ public final class DevCommonUtils {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
                         // 判断是否属于 val 结尾
-                        if (str.endsWith(valIgnore)) {
+                        if (strTemp.endsWith(valIgnore)) {
                             return true;
                         }
                     } else {
                         // 判断是否属于 val 结尾
-                        if (str.endsWith(val)) {
+                        if (strTemp.endsWith(val)) {
                             return true;
                         }
                     }
@@ -863,17 +895,15 @@ public final class DevCommonUtils {
         return false;
     }
 
-    // --
+    // =
 
     /**
      * 清空全部空格,并返回处理后的字符串
      * @param str
      * @return
      */
-    public static String toClearSpace(String str) {
-        if (isEmpty(str)) {
-            return str;
-        }
+    public static String toClearSpace(final String str) {
+        if (isEmpty(str)) return str;
         return str.replaceAll(" ", "");
     }
 
@@ -882,25 +912,24 @@ public final class DevCommonUtils {
      * @param str
      * @return
      */
-    public static String toClearSpaceTrim(String str) {
-        if (isEmpty(str)) {
-            return str;
-        }
+    public static String toClearSpaceTrim(final String str) {
+        if (isEmpty(str)) return str;
+        String strTemp = str;
         // 如果前面或者后面都是 空格开头,就一直进行处理
-        while (str.startsWith(" ") || str.endsWith(" ")) {
-            str = str.trim();
+        while (strTemp.startsWith(" ") || strTemp.endsWith(" ")) {
+            strTemp = strTemp.trim();
         }
-        return str;
+        return strTemp;
     }
 
-    // ==
+    // =
 
     /**
      * 检查字符串,如果为null,返回 ""
      * @param str
      * @return
      */
-    public static String toCheckValue(String str) {
+    public static String toCheckValue(final String str) {
         return toCheckValue("", str);
     }
 
@@ -910,7 +939,7 @@ public final class DevCommonUtils {
      * @param str
      * @return
      */
-    public static String toCheckValue(String defaultStr, String str) {
+    public static String toCheckValue(final String defaultStr, final String str) {
         return isEmpty(str) ? defaultStr : str;
     }
 
@@ -921,7 +950,7 @@ public final class DevCommonUtils {
      * @param value2
      * @return
      */
-    public static String toCheckValue(String defaultStr, String value1, String value2) {
+    public static String toCheckValue(final String defaultStr, final String value1, final String value2) {
         if (isEmpty(value1)) {
             if (isEmpty(value2)) {
                 return defaultStr;
@@ -934,12 +963,12 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 检查多个值,并返回第一个非null and "" 的字符串,如果都不符合条件，则返回默认值
+     * 检查多个值, 并返回第一个非null and "" 的字符串,如果都不符合条件，则返回默认值
      * @param defaultStr
      * @param params
      * @return
      */
-    public static String toCheckValues(String defaultStr, String... params) {
+    public static String toCheckValues(final String defaultStr, final String... params) {
         if (params != null && params.length != 0) {
             for (int i = 0, len = params.length; i < len; i++) {
                 String param = params[i];
@@ -963,10 +992,10 @@ public final class DevCommonUtils {
      * @param params
      * @return
      */
-    public static String toCheckValuesSpace(String defaultStr, String... params) {
+    public static String toCheckValuesSpace(final String defaultStr, final String... params) {
         if (params != null && params.length != 0) {
             for (int i = 0, len = params.length; i < len; i++) {
-                // 处理后,进行返回 => 删除前后空格
+                // 处理后, 进行返回 => 删除前后空格
                 String param = toClearSpaceTrim(params[i]);
                 if (isEmpty(param)) {
                     if (i == len - 1) {
@@ -989,7 +1018,7 @@ public final class DevCommonUtils {
      * @param symbol
      * @return
      */
-    public static String subEllipsize(int maxLength, String str, String symbol) {
+    public static String subEllipsize(final int maxLength, final String str, final String symbol) {
         if (maxLength >= 1) {
             // 获取内容长度
             int strLength = length(str);
@@ -1006,13 +1035,13 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪符号处理
-     * @param start 开始位置
+     * @param start        开始位置
      * @param symbolNumber 转换数量
      * @param str
      * @param symbol
      * @return
      */
-    public static String subSymbolHide(int start, int symbolNumber, String str, String symbol) {
+    public static String subSymbolHide(final int start, final int symbolNumber, final String str, final String symbol) {
         if (!isEmpty(str)) {
             if (start <= 0 || symbolNumber <= 0) {
                 return str;
@@ -1045,12 +1074,12 @@ public final class DevCommonUtils {
 
     /**
      * 转换符号处理
-     * @param start 开始位置
+     * @param start  开始位置
      * @param str
      * @param symbol
      * @return
      */
-    public static String converSymbolHide(int start, String str, String symbol) {
+    public static String converSymbolHide(final int start, final String str, final String symbol) {
         if (!isEmpty(str)) {
             if (start <= 0) {
                 return str;
@@ -1077,7 +1106,7 @@ public final class DevCommonUtils {
         return "";
     }
 
-    // == 替换截取操作 ==
+    // = 替换截取操作 =
 
     /**
      * 替换(删除 - 替换成"") 字符串中符合 特定标记字符的 startsWith - endsWith
@@ -1086,7 +1115,7 @@ public final class DevCommonUtils {
      * @param suffix
      * @return
      */
-    public static String toReplaceSEWith(String str, String suffix) {
+    public static String toReplaceSEWith(final String str, final String suffix) {
         return toReplaceSEWith(str, suffix, "");
     }
 
@@ -1098,11 +1127,9 @@ public final class DevCommonUtils {
      * @param value 需要替换的内容
      * @return
      */
-    public static String toReplaceSEWith(String str, String key, String value) {
-        if (!(!isEmpty(str) && !isEmpty(key) && !isEmpty(value) && !key.equals(value))) {
-            return str;
-        }
+    public static String toReplaceSEWith(final String str, final String key, final String value) {
         try {
+            if (isEmpty(str) || isEmpty(key) || isEmpty(value) || key.equals(value)) return str;
             // 获取编辑内容长度
             int kLength = key.length();
             // 保存新的Buffer中,减少内存开销
@@ -1138,10 +1165,8 @@ public final class DevCommonUtils {
      * @param suffix
      * @return
      */
-    public static String toClearSEWiths(String str, String suffix) {
-        if (!(!isEmpty(str) && !isEmpty(suffix))) {
-            return str;
-        }
+    public static String toClearSEWiths(final String str, final String suffix) {
+        if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
             int kLength = suffix.length();
@@ -1168,34 +1193,34 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪字符串
-     * @param str 需要裁剪的字符串
+     * @param str      需要裁剪的字符串
      * @param endIndex 结束裁剪的位置
      * @return
      */
-    public static String substring(String str, int endIndex) {
+    public static String substring(final String str, final int endIndex) {
         return substring(str, 0, endIndex, true);
     }
 
     /**
      * 裁剪字符串
-     * @param str 需要裁剪的字符串
+     * @param str      需要裁剪的字符串
      * @param endIndex 结束裁剪的位置
      * @param isReturn 开始位置超过限制是否返回内容
      * @return
      */
-    public static String substring(String str, int endIndex, boolean isReturn) {
+    public static String substring(final String str, final int endIndex, final boolean isReturn) {
         return substring(str, 0, endIndex, isReturn);
     }
 
     /**
      * 裁剪字符串
-     * @param str 需要裁剪的字符串
+     * @param str        需要裁剪的字符串
      * @param beginIndex 开始裁剪的位置
-     * @param endIndex 结束裁剪的位置
-     * @param isReturn 开始位置超过限制是否返回内容
+     * @param endIndex   结束裁剪的位置
+     * @param isReturn   开始位置超过限制是否返回内容
      * @return
      */
-    public static String substring(String str, int beginIndex, int endIndex, boolean isReturn) {
+    public static String substring(final String str, final int beginIndex, final int endIndex, final boolean isReturn) {
         if (!isEmpty(str) && beginIndex >= 0 && endIndex >= 0 && endIndex >= beginIndex) {
             // 获取数据长度
             int len = length(str);
@@ -1204,40 +1229,38 @@ public final class DevCommonUtils {
                 return isReturn ? str : "";
             }
             // 防止超过限制
-            if (endIndex >= len) {
-                endIndex = len;
-            }
-            return str.substring(beginIndex, endIndex);
+            return str.substring(beginIndex, (endIndex >= len) ? len : endIndex);
         }
         return isReturn ? str : "";
     }
 
-    // ==
+    // =
 
     /**
      * 替换开头字符串
-     * @param str 内容
+     * @param str    内容
      * @param prefix
      * @return
      */
-    public static String toReplaceStartsWith(String str, String prefix) {
+    public static String toReplaceStartsWith(final String str, final String prefix) {
         return toReplaceStartsWith(str, prefix, "");
     }
 
     /**
      * 替换开头字符串
-     * @param str 内容
+     * @param str         内容
      * @param suffix
      * @param startAppend 开头追加的内容
      * @return
      */
-    public static String toReplaceStartsWith(String str, String suffix, String startAppend) {
+    public static String toReplaceStartsWith(final String str, final String suffix, final String startAppend) {
         if (!isEmpty(str) && !isEmpty(suffix)) {
             try {
                 if (str.startsWith(suffix)) {
                     return toCheckValue(startAppend) + str.substring(suffix.length());
                 }
             } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "toReplaceStartsWith");
             }
         }
         return str;
@@ -1251,10 +1274,8 @@ public final class DevCommonUtils {
      * @param suffix
      * @return
      */
-    public static String toClearStartsWith(String str, String suffix) {
-        if (!(!isEmpty(str) && !isEmpty(suffix))) {
-            return str;
-        }
+    public static String toClearStartsWith(final String str, final String suffix) {
+        if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
             int kLength = suffix.length();
@@ -1271,32 +1292,33 @@ public final class DevCommonUtils {
         return str;
     }
 
-    // ==
+    // =
 
     /**
      * 替换结尾字符串
-     * @param str 内容
+     * @param str    内容
      * @param suffix
      * @return
      */
-    public static String toReplaceEndsWith(String str, String suffix) {
+    public static String toReplaceEndsWith(final String str, final String suffix) {
         return toReplaceEndsWith(str, suffix, "");
     }
 
     /**
      * 替换结尾字符串
-     * @param str 内容
+     * @param str    内容
      * @param suffix
-     * @param value 需要替换的内容
+     * @param value  需要替换的内容
      * @return
      */
-    public static String toReplaceEndsWith(String str, String suffix, String value) {
+    public static String toReplaceEndsWith(final String str, final String suffix, final String value) {
         if (!isEmpty(str) && !isEmpty(suffix)) {
             try {
                 if (str.endsWith(suffix)) {
                     return str.substring(0, str.length() - suffix.length()) + value;
                 }
             } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "toReplaceEndsWith");
             }
         }
         return str;
@@ -1310,10 +1332,8 @@ public final class DevCommonUtils {
      * @param suffix
      * @return
      */
-    public static String toClearEndsWith(String str, String suffix) {
-        if (!(!isEmpty(str) && !isEmpty(suffix))) {
-            return str;
-        }
+    public static String toClearEndsWith(final String str, final String suffix) {
+        if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
             int kLength = suffix.length();
@@ -1332,15 +1352,16 @@ public final class DevCommonUtils {
         return str;
     }
 
-    // ===
+    // =
 
     /**
      * 替换字符串
      * @param str 内容
-     * @param
+     * @param suffixArys
+     * @param replaceArys
      * @return
      */
-    public static String replaceStrs(String str, String[] suffixArys, String[] replaceArys) {
+    public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
         // 防止数据为null
         if (str != null && suffixArys != null && replaceArys != null) {
             String cStr = str;
@@ -1364,14 +1385,14 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串
-     * @param str 需要替换的内容
-     * @param suffix 特殊的字符串
+     * @param str     需要替换的内容
+     * @param suffix  特殊的字符串
      * @param replace 替换的内容
      * @return
      */
-    public static String replaceStr(String str, String suffix, String replace) {
+    public static String replaceStr(final String str, final String suffix, final String replace) {
         // 如果替换的内容或者判断的字符串为null,则直接跳过
-        if (!isEmpty(str) && !isEmpty(suffix) && replace != null) {
+        if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
             } catch (Exception e) {
@@ -1383,14 +1404,14 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串
-     * @param str 需要替换的内容
-     * @param suffix 特殊的字符串
+     * @param str     需要替换的内容
+     * @param suffix  特殊的字符串
      * @param replace 替换的内容
      * @return 如果异常则直接返回null
      */
-    public static String replaceStrToNull(String str, String suffix, String replace) {
+    public static String replaceStrToNull(final String str, final String suffix, final String replace) {
         // 如果替换的内容或者判断的字符串为null,则直接跳过
-        if (!isEmpty(str) && !isEmpty(suffix) && replace != null) {
+        if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
             } catch (Exception e) {

@@ -24,7 +24,10 @@ public final class HttpURLConnectionUtils {
     // 请求超时时间
     private static final int TIMEOUT_IN_MILLIONS = 5000;
 
-    // 请求回调
+    /**
+     * detail: 请求回调
+     * Created by Ttt
+     */
     public interface CallBack {
 
         /**
@@ -181,7 +184,8 @@ public final class HttpURLConnectionUtils {
     public static final String BAIDU_URL = "https://www.baidu.com";
 
     /**
-     * 时间回调
+     * detail: 时间回调
+     * Created by Ttt
      */
     public interface TimeCallBack {
 
@@ -202,7 +206,7 @@ public final class HttpURLConnectionUtils {
      * 获取网络时间 - 默认使用百度链接
      * @param timeCallBack
      */
-    public static void getNetTime(TimeCallBack timeCallBack) {
+    public static void getNetTime(final TimeCallBack timeCallBack) {
         getNetTime(BAIDU_URL, timeCallBack);
     }
 
@@ -225,7 +229,7 @@ public final class HttpURLConnectionUtils {
      * @param urlStr
      * @param timeCallBack
      */
-    private static void reqNetTime(String urlStr, TimeCallBack timeCallBack) {
+    private static void reqNetTime(final String urlStr, final TimeCallBack timeCallBack) {
         // 获取连接对象
         HttpURLConnection connection = null;
         try {
