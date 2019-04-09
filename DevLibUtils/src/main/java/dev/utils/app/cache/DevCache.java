@@ -597,7 +597,7 @@ public final class DevCache {
      * @param value 保存的bitmap数据
      */
     public void put(String key, Bitmap value) {
-        put(key, DevCacheUtils.bitmap2Bytes(value));
+        put(key, DevCacheUtils.bitmapToBytes(value));
     }
 
     /**
@@ -607,7 +607,7 @@ public final class DevCache {
      * @param saveTime 保存的时间，单位：秒
      */
     public void put(String key, Bitmap value, int saveTime) {
-        put(key, DevCacheUtils.bitmap2Bytes(value), saveTime);
+        put(key, DevCacheUtils.bitmapToBytes(value), saveTime);
     }
 
     /**
@@ -620,7 +620,7 @@ public final class DevCache {
         if (data == null) {
             return null;
         }
-        return DevCacheUtils.bytes2Bimap(data);
+        return DevCacheUtils.bytesToBitmap(data);
     }
 
     // =====================================
@@ -656,7 +656,7 @@ public final class DevCache {
         if (data == null) {
             return null;
         }
-        return DevCacheUtils.bitmap2Drawable(DevCacheUtils.bytes2Bimap(data));
+        return DevCacheUtils.bitmapToDrawable(DevCacheUtils.bytesToBitmap(data));
     }
 
     /**

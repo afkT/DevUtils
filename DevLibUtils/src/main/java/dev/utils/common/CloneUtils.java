@@ -49,7 +49,7 @@ public final class CloneUtils {
             oos.writeObject(serializable);
             return baos.toByteArray();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "serializable2Bytes");
+            JCLogUtils.eTag(TAG, e, "serializableToBytes");
             return null;
         } finally {
             if (oos != null) {
@@ -73,7 +73,7 @@ public final class CloneUtils {
             ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
             return ois.readObject();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "bytes2Object");
+            JCLogUtils.eTag(TAG, e, "bytesToObject");
             return null;
         } finally {
             if (ois != null) {

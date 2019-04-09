@@ -19,8 +19,9 @@ import java.util.Map;
  * detail: 反射相关工具类
  * Created by Ttt
  * ==
- * 有两个方法:getMethod,getDeclaredMethod。看了下说明大概的意思就是getMethod只能调用public声明的方法，而getDeclaredMethod基本可以调用任何类型声明的方法
- * 反射多用getDeclaredMethod，尽量少用getMethod。
+ * 有两个方法: getMethod, getDeclaredMethod
+ * getMethod 只能调用 public 声明的方法，而 getDeclaredMethod 基本可以调用任何类型声明的方法
+ * 反射多用 getDeclaredMethod，尽量少用getMethod
  */
 public final class ReflectUtils {
 
@@ -29,10 +30,10 @@ public final class ReflectUtils {
     private final Object object;
 
     private ReflectUtils(final Class<?> type) {
-        this (type, type);
+        this(type, type);
     }
 
-    private ReflectUtils(final Class<?> type, Object object) {
+    private ReflectUtils(final Class<?> type, final Object object) {
         this.type = type;
         this.object = object;
     }
@@ -82,7 +83,14 @@ public final class ReflectUtils {
         return new ReflectUtils(object == null ? Object.class : object.getClass(), object);
     }
 
-    private static Class<?> forName(String className) {
+    // =
+
+    /**
+     * 获取 Class
+     * @param className
+     * @return
+     */
+    private static Class<?> forName(final String className) {
         try {
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
@@ -90,7 +98,13 @@ public final class ReflectUtils {
         }
     }
 
-    private static Class<?> forName(String name, ClassLoader classLoader) {
+    /**
+     * 获取 Class
+     * @param name
+     * @param classLoader
+     * @return
+     */
+    private static Class<?> forName(final String name, final ClassLoader classLoader) {
         try {
             return Class.forName(name, true, classLoader);
         } catch (ClassNotFoundException e) {
@@ -115,7 +129,7 @@ public final class ReflectUtils {
      * @param args 实例化需要的参数
      * @return {@link ReflectUtils}
      */
-    public ReflectUtils newInstance(Object... args) {
+    public ReflectUtils newInstance(final Object... args) {
         Class<?>[] types = getArgsType(args);
         try {
             Constructor<?> constructor = type().getDeclaredConstructor(types);
@@ -136,6 +150,11 @@ public final class ReflectUtils {
         }
     }
 
+    /**
+     * 获取参数类型
+     * @param args
+     * @return
+     */
     private Class<?>[] getArgsType(final Object... args) {
         if (args == null) return new Class[0];
         Class<?>[] result = new Class[args.length];
@@ -146,7 +165,11 @@ public final class ReflectUtils {
         return result;
     }
 
-    private void sortConstructors(List<Constructor<?>> list) {
+    /**
+     * 进行排序
+     * @param list
+     */
+    private void sortConstructors(final List<Constructor<?>> list) {
         Collections.sort(list, new Comparator<Constructor<?>>() {
             @Override
             public int compare(Constructor<?> o1, Constructor<?> o2) {
@@ -167,6 +190,12 @@ public final class ReflectUtils {
         });
     }
 
+    /**
+     * 获取实例对象
+     * @param constructor
+     * @param args
+     * @return
+     */
     private ReflectUtils newInstance(final Constructor<?> constructor, final Object... args) {
         try {
             return new ReflectUtils(constructor.getDeclaringClass(), accessible(constructor).newInstance(args));
@@ -199,7 +228,7 @@ public final class ReflectUtils {
      * @param value 字段值
      * @return {@link ReflectUtils}
      */
-    public ReflectUtils field(String name, Object value) {
+    public ReflectUtils field(final String name, final Object value) {
         try {
             Field field = getField(name);
             field.set(object, unwrap(value));
@@ -209,7 +238,13 @@ public final class ReflectUtils {
         }
     }
 
-    private Field getField(String name) throws IllegalAccessException {
+    /**
+     * 获取 Field 对象
+     * @param name
+     * @return
+     * @throws IllegalAccessException
+     */
+    private Field getField(final String name) throws IllegalAccessException {
         Field field = getAccessibleField(name);
         if ((field.getModifiers() & Modifier.FINAL) == Modifier.FINAL) {
             try {
@@ -223,7 +258,12 @@ public final class ReflectUtils {
         return field;
     }
 
-    private Field getAccessibleField(String name) {
+    /**
+     * 获取可访问字段, 返回 Field 对象
+     * @param name
+     * @return
+     */
+    private Field getAccessibleField(final String name) {
         Class<?> type = type();
         try {
             return accessible(type.getField(name));
@@ -239,7 +279,12 @@ public final class ReflectUtils {
         }
     }
 
-    private Object unwrap(Object object) {
+    /**
+     * 获取对象
+     * @param object
+     * @return
+     */
+    private Object unwrap(final Object object) {
         if (object instanceof ReflectUtils) {
             return ((ReflectUtils) object).get();
         }
@@ -257,7 +302,7 @@ public final class ReflectUtils {
      * @param object
      * @return
      */
-    public static Object getObject(Field field, Object object) {
+    public static Object getObject(final Field field, final Object object) {
         try {
             field.setAccessible(true);
             return field.get(object);
@@ -272,7 +317,7 @@ public final class ReflectUtils {
      * @param name
      * @param val
      */
-    public ReflectUtils setEnumVal(Class<?> clazz, String name, String val) {
+    public ReflectUtils setEnumVal(final Class<?> clazz, final String name, final String val) {
         try {
             return field(name, Enum.valueOf((Class<Enum>) clazz, val));
         } catch (Exception e) {
@@ -287,7 +332,7 @@ public final class ReflectUtils {
      * @return
      * @throws Exception
      */
-    public static Object getDeclaredField(Object object, String name) throws Exception {
+    public static Object getDeclaredField(final Object object, final String name) throws Exception {
         Field field = object.getClass().getDeclaredField(name);
         field.setAccessible(true);
         return field.get(object);
@@ -299,18 +344,18 @@ public final class ReflectUtils {
      * @param fieldName
      * @return
      */
-    public static Field getDeclaredFieldBase(Object object, String fieldName) {
+    public static Field getDeclaredFieldBase(final Object object, final String fieldName) {
         return getDeclaredFieldBase(object, fieldName, false);
     }
 
     /**
      * 循环向上转型, 获取对象的 DeclaredField
-     * @param object : 子类对象
+     * @param object    : 子类对象
      * @param fieldName : 父类中的属性名
-     * @param isSuper 是否一直跟到最后, 如果父类还有父类，并且有相同变量名, 则设置isSuper = true，一直会跟到最后的变量
+     * @param isSuper   是否一直跟到最后, 如果父类还有父类，并且有相同变量名, 则设置isSuper = true，一直会跟到最后的变量
      * @return 父类中的属性对象
      */
-    public static Field getDeclaredFieldBase(Object object, String fieldName, boolean isSuper) {
+    public static Field getDeclaredFieldBase(final Object object, final String fieldName, final boolean isSuper) {
         Field field = null;
         Class<?> clazz = object.getClass();
         for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
@@ -363,6 +408,13 @@ public final class ReflectUtils {
         }
     }
 
+    /**
+     * 设置反射的方法处理
+     * @param method
+     * @param object
+     * @param args
+     * @return
+     */
     private ReflectUtils method(final Method method, final Object object, final Object... args) {
         try {
             accessible(method);
@@ -377,6 +429,13 @@ public final class ReflectUtils {
         }
     }
 
+    /**
+     * 获取准确参数的方法
+     * @param name
+     * @param types
+     * @return
+     * @throws NoSuchMethodException
+     */
     private Method exactMethod(final String name, final Class<?>[] types) throws NoSuchMethodException {
         Class<?> type = type();
         try {
@@ -393,6 +452,13 @@ public final class ReflectUtils {
         }
     }
 
+    /**
+     * 获取相似参数的方法
+     * @param name
+     * @param types
+     * @return
+     * @throws NoSuchMethodException
+     */
     private Method similarMethod(final String name, final Class<?>[] types) throws NoSuchMethodException {
         Class<?> type = type();
         List<Method> methods = new ArrayList<>();
@@ -421,6 +487,10 @@ public final class ReflectUtils {
         throw new NoSuchMethodException("No similar method " + name + " with params " + Arrays.toString(types) + " could be found on type " + type() + ".");
     }
 
+    /**
+     * 进行方法排序
+     * @param methods
+     */
     private void sortMethods(final List<Method> methods) {
         Collections.sort(methods, new Comparator<Method>() {
             @Override
@@ -460,7 +530,7 @@ public final class ReflectUtils {
         }
     }
 
-    private <T extends AccessibleObject> T accessible(T accessible) {
+    private <T extends AccessibleObject> T accessible(final T accessible) {
         if (accessible == null) return null;
         if (accessible instanceof Member) {
             Member member = (Member) accessible;
@@ -508,7 +578,7 @@ public final class ReflectUtils {
                 }
             }
         };
-        return (P) Proxy.newProxyInstance(proxyType.getClassLoader(), new Class[]{ proxyType }, handler);
+        return (P) Proxy.newProxyInstance(proxyType.getClassLoader(), new Class[]{proxyType}, handler);
     }
 
     /**
@@ -516,7 +586,7 @@ public final class ReflectUtils {
      * @param string
      * @return
      */
-    private static String property(String string) {
+    private static String property(final String string) {
         int length = string.length();
 
         if (length == 0) {
@@ -590,7 +660,7 @@ public final class ReflectUtils {
      * @return
      */
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         return object instanceof ReflectUtils && this.object.equals(((ReflectUtils) object).get());
     }
 
@@ -605,11 +675,15 @@ public final class ReflectUtils {
 
     // ==
 
-    /** 内部标记 null */
+    /**
+     * 内部标记 null
+     */
     private static class NULL {
     }
 
-    /** 定义反射异常类 */
+    /**
+     * 定义反射异常类
+     */
     public static class ReflectException extends RuntimeException {
 
         private static final long serialVersionUID = 858774075258496016L;

@@ -192,7 +192,7 @@ final class DevCacheUtils {
      * @param bm
      * @return
      */
-    public static byte[] bitmap2Bytes(Bitmap bm) {
+    public static byte[] bitmapToBytes(Bitmap bm) {
         if (bm == null) {
             return null;
         }
@@ -201,7 +201,7 @@ final class DevCacheUtils {
             bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
             return baos.toByteArray();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "bitmap2Bytes");
+            LogPrintUtils.eTag(TAG, e, "bitmapToBytes");
         }
         return null;
     }
@@ -211,12 +211,12 @@ final class DevCacheUtils {
      * @param bytes
      * @return
      */
-    public static Bitmap bytes2Bimap(byte[] bytes) {
+    public static Bitmap bytesToBitmap(byte[] bytes) {
         if (bytes != null && bytes.length != 0) {
             try {
                 return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "bytes2Bimap");
+                LogPrintUtils.eTag(TAG, e, "bytesToBitmap");
             }
         }
         return null;
@@ -257,7 +257,7 @@ final class DevCacheUtils {
      * @return
      */
     @SuppressWarnings("deprecation")
-    public static Drawable bitmap2Drawable(Bitmap bm) {
+    public static Drawable bitmapToDrawable(Bitmap bm) {
         if (bm == null) {
             return null;
         }
@@ -266,7 +266,7 @@ final class DevCacheUtils {
             bd.setTargetDensity(bm.getDensity());
             return new BitmapDrawable(bm);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "bitmap2Drawable");
+            LogPrintUtils.eTag(TAG, e, "bitmapToDrawable");
         }
         return null;
     }
