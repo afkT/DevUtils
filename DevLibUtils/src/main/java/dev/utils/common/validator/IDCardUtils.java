@@ -114,9 +114,10 @@ public final class IDCardUtils {
      * @return 身份证编码
      */
     public static int getPowerSum(final int[] data) {
-        if (data == null || data.length == 0) return 0;
-        int powerLength = POWER.length;
+        if (data == null) return 0;
         int dataLength = data.length;
+        if (dataLength == 0) return 0;
+        int powerLength = POWER.length;
         int sum = 0;
         if (powerLength == dataLength) {
             for (int i = 0; i < dataLength; i++) {
@@ -128,79 +129,6 @@ public final class IDCardUtils {
             }
         }
         return sum;
-    }
-
-    /**
-     * 将 POWER 和值与 11 取模获取余数进行校验码判断
-     * @param sum
-     * @return 校验位
-     */
-    public static String getCheckCode18(final int sum) {
-        String sCode = "";
-        switch (sum % 11) {
-            case 10:
-                sCode = "2";
-                break;
-            case 9:
-                sCode = "3";
-                break;
-            case 8:
-                sCode = "4";
-                break;
-            case 7:
-                sCode = "5";
-                break;
-            case 6:
-                sCode = "6";
-                break;
-            case 5:
-                sCode = "7";
-                break;
-            case 4:
-                sCode = "8";
-                break;
-            case 3:
-                sCode = "9";
-                break;
-            case 2:
-                sCode = "x";
-                break;
-            case 1:
-                sCode = "0";
-                break;
-            case 0:
-                sCode = "1";
-                break;
-        }
-        return sCode;
-    }
-
-    /**
-     * 将字符数组转换成数字数组
-     * @param data 字符数组
-     * @return 数字数组
-     */
-    public static int[] converCharToInt(final char[] data) {
-        if (data == null || data.length == 0) return null;
-        int len = data.length;
-        int[] arrays = new int[len];
-        try {
-            for (int i = 0; i < len; i++) {
-                arrays[i] = Integer.parseInt(String.valueOf(data[i]));
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "converCharToInt");
-        }
-        return arrays;
-    }
-
-    /**
-     * 数字验证
-     * @param str 待验证的字符串
-     * @return 是否是数字
-     */
-    private static boolean isNum(final String str) {
-        return !isEmpty(str) && str.matches("^[0-9]*$");
     }
 
     /**
@@ -259,40 +187,6 @@ public final class IDCardUtils {
             return true;
         }
         return false;
-    }
-
-    /**
-     * 验证小于当前日期 是否有效
-     * @param iYear  待验证日期(年)
-     * @param iMonth 待验证日期(月 1-12)
-     * @param iDate  待验证日期(日)
-     * @return 是否有效
-     */
-    private static boolean validateDateSmllerThenNow(final int iYear, final int iMonth, final int iDate) {
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        int datePerMonth;
-        int MIN = 1930;
-        if (iYear < MIN || iYear >= year) {
-            return false;
-        }
-        if (iMonth < 1 || iMonth > 12) {
-            return false;
-        }
-        switch (iMonth) {
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                datePerMonth = 30;
-                break;
-            case 2:
-                boolean dm = ((iYear % 4 == 0 && iYear % 100 != 0) || (iYear % 400 == 0)) && (iYear > MIN && iYear < year);
-                datePerMonth = dm ? 29 : 28;
-                break;
-            default:
-                datePerMonth = 31;
-        }
-        return (iDate >= 1) && (iDate <= datePerMonth);
     }
 
     /**
@@ -405,6 +299,7 @@ public final class IDCardUtils {
     public static String[] validateIdCard10(final String idCard) {
         if (isEmpty(idCard)) return null;
         String[] info = new String[3];
+        info[0] = "N"; // 默认未知地区
         info[1] = "N"; // 默认未知性别
         info[2] = "false"; // 默认非法
         // =
@@ -586,6 +481,115 @@ public final class IDCardUtils {
         }
         sProvince = cityCodes.get(sProvinNum);
         return sProvince;
+    }
+
+    // =
+
+    /**
+     * 将 POWER 和值与 11 取模获取余数进行校验码判断
+     * @param sum
+     * @return 校验位
+     */
+    private static String getCheckCode18(final int sum) {
+        String sCode = "";
+        switch (sum % 11) {
+            case 10:
+                sCode = "2";
+                break;
+            case 9:
+                sCode = "3";
+                break;
+            case 8:
+                sCode = "4";
+                break;
+            case 7:
+                sCode = "5";
+                break;
+            case 6:
+                sCode = "6";
+                break;
+            case 5:
+                sCode = "7";
+                break;
+            case 4:
+                sCode = "8";
+                break;
+            case 3:
+                sCode = "9";
+                break;
+            case 2:
+                sCode = "x";
+                break;
+            case 1:
+                sCode = "0";
+                break;
+            case 0:
+                sCode = "1";
+                break;
+        }
+        return sCode;
+    }
+
+    /**
+     * 将字符数组转换成数字数组
+     * @param data 字符数组
+     * @return 数字数组
+     */
+    private static int[] converCharToInt(final char[] data) {
+        if (data == null || data.length == 0) return null;
+        int len = data.length;
+        int[] arrays = new int[len];
+        try {
+            for (int i = 0; i < len; i++) {
+                arrays[i] = Integer.parseInt(String.valueOf(data[i]));
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "converCharToInt");
+        }
+        return arrays;
+    }
+
+    /**
+     * 数字验证
+     * @param str 待验证的字符串
+     * @return 是否是数字
+     */
+    private static boolean isNum(final String str) {
+        return !isEmpty(str) && str.matches("^[0-9]*$");
+    }
+
+    /**
+     * 验证小于当前日期 是否有效
+     * @param iYear  待验证日期(年)
+     * @param iMonth 待验证日期(月 1-12)
+     * @param iDate  待验证日期(日)
+     * @return 是否有效
+     */
+    private static boolean validateDateSmllerThenNow(final int iYear, final int iMonth, final int iDate) {
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int datePerMonth;
+        int MIN = 1930;
+        if (iYear < MIN || iYear >= year) {
+            return false;
+        }
+        if (iMonth < 1 || iMonth > 12) {
+            return false;
+        }
+        switch (iMonth) {
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                datePerMonth = 30;
+                break;
+            case 2:
+                boolean dm = ((iYear % 4 == 0 && iYear % 100 != 0) || (iYear % 400 == 0)) && (iYear > MIN && iYear < year);
+                datePerMonth = dm ? 29 : 28;
+                break;
+            default:
+                datePerMonth = 31;
+        }
+        return (iDate >= 1) && (iDate <= datePerMonth);
     }
 
     // =

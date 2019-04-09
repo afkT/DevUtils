@@ -14,7 +14,7 @@ public class Base64Cipher implements Cipher {
     public Base64Cipher() {
     }
 
-    public Base64Cipher(Cipher cipher) {
+    public Base64Cipher(final Cipher cipher) {
         this.cipher = cipher;
     }
 

@@ -60,8 +60,6 @@ public final class ValidatorUtils {
     // 正则表达式：验证IP地址
     public static final String REGEX_IP_ADDR = "(2[5][0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})";
 
-    // ==== 内部方法 =====
-
     /**
      * 判断是否为null
      * @param str
@@ -86,7 +84,7 @@ public final class ValidatorUtils {
         return false;
     }
 
-    // ======
+    // =
 
     /**
      * 检验数字

@@ -127,21 +127,21 @@ public final class MD5Utils {
 
     /**
      * 获取文件 MD5 值 - 小写
-     * @param path 文件地址
+     * @param filePath 文件地址
      * @return
      */
-    public static String getFileMD5(final String path) {
-        if (path == null) return null;
+    public static String getFileMD5(final String filePath) {
+        if (filePath == null) return null;
         try {
-            InputStream fis = new FileInputStream(path);
+            InputStream fis = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
-            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            MessageDigest mdInst = MessageDigest.getInstance("MD5");
             int numRead;
             while ((numRead = fis.read(buffer)) > 0) {
-                md5.update(buffer, 0, numRead);
+                mdInst.update(buffer, 0, numRead);
             }
             fis.close();
-            return toHexString(md5.digest(), HEX_DIGITS);
+            return toHexString(mdInst.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5");
         }
@@ -152,7 +152,7 @@ public final class MD5Utils {
 
 //	/**
 //	 * 加密内容 - 32 位 MD5 - 小写
-//	 * @param str 源字符串
+//	 * @param str
 //	 * @return
 //	 */
 //	public static String md5_2(final String str) {
@@ -174,7 +174,7 @@ public final class MD5Utils {
 //
 //	/**
 //	 * 加密内容 - 32 位 MD5 - 大写
-//	 * @param str 源字符串
+//	 * @param str
 //	 * @return
 //	 */
 //	public static String md5Upper_2(final String str) {

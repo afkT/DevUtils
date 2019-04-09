@@ -24,7 +24,7 @@ public final class FileBreadthFirstSearchUtils {
     public FileBreadthFirstSearchUtils() {
     }
 
-    public FileBreadthFirstSearchUtils(ISearchHandler iSearchHandler) {
+    public FileBreadthFirstSearchUtils(final ISearchHandler iSearchHandler) {
         this.iSearchHandler = iSearchHandler;
     }
 
@@ -34,7 +34,7 @@ public final class FileBreadthFirstSearchUtils {
      */
     public final class FileItem {
 
-        public FileItem(File file) {
+        public FileItem(final File file) {
             this.file = file;
         }
 
@@ -48,7 +48,7 @@ public final class FileBreadthFirstSearchUtils {
          * 保存子文件信息
          * @param file
          */
-        private synchronized FileItem put(File file) {
+        private synchronized FileItem put(final File file) {
             if (mapChilds == null) {
                 mapChilds = new HashMap<>();
             }
@@ -112,7 +112,7 @@ public final class FileBreadthFirstSearchUtils {
     private ISearchHandler iSearchHandler;
 
     // 内部实现接口
-    private ISearchHandler inside = new ISearchHandler() {
+    private ISearchHandler insideHandler = new ISearchHandler() {
         @Override
         public boolean isHandlerFile(File file) {
             if (iSearchHandler != null) {
@@ -145,7 +145,7 @@ public final class FileBreadthFirstSearchUtils {
      * @param iSearchHandler
      * @return
      */
-    public FileBreadthFirstSearchUtils setSearchHandler(ISearchHandler iSearchHandler) {
+    public FileBreadthFirstSearchUtils setSearchHandler(final ISearchHandler iSearchHandler) {
         this.iSearchHandler = iSearchHandler;
         return this;
     }
@@ -163,7 +163,7 @@ public final class FileBreadthFirstSearchUtils {
      * @param queueSameTimeNumber
      * @return
      */
-    public synchronized FileBreadthFirstSearchUtils setQueueSameTimeNumber(int queueSameTimeNumber) {
+    public synchronized FileBreadthFirstSearchUtils setQueueSameTimeNumber(final int queueSameTimeNumber) {
         if (mIsRunning) {
             return this;
         }
@@ -222,7 +222,7 @@ public final class FileBreadthFirstSearchUtils {
      * 设置延迟校验时间
      * @param delayTime
      */
-    public void setDelayTime(long delayTime) {
+    public void setDelayTime(final long delayTime) {
         this.delayTime = delayTime;
     }
 
@@ -254,9 +254,9 @@ public final class FileBreadthFirstSearchUtils {
     public synchronized void query(final String path) {
         if (mIsRunning) {
             return;
-        } else if (path == null) {
+        } else if (path == null || path.trim().length() == 0) {
             // 触发结束回调
-            inside.OnEndListener(null, -1, -1);
+            insideHandler.OnEndListener(null, -1, -1);
             return;
         }
         // 表示运行中
@@ -274,7 +274,7 @@ public final class FileBreadthFirstSearchUtils {
                 if (file.isFile()) {
                     // 触发结束回调
                     endTime = System.currentTimeMillis();
-                    inside.OnEndListener(rootFileItem, startTime, endTime);
+                    insideHandler.OnEndListener(rootFileItem, startTime, endTime);
                     return;
                 }
                 // 获取文件夹全部子文件
@@ -293,14 +293,14 @@ public final class FileBreadthFirstSearchUtils {
                 } else {
                     // 触发结束回调
                     endTime = System.currentTimeMillis();
-                    inside.OnEndListener(rootFileItem, startTime, endTime);
+                    insideHandler.OnEndListener(rootFileItem, startTime, endTime);
                 }
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "query");
             // 触发结束回调
             endTime = System.currentTimeMillis();
-            inside.OnEndListener(rootFileItem, startTime, endTime);
+            insideHandler.OnEndListener(rootFileItem, startTime, endTime);
         }
     }
 
@@ -309,14 +309,14 @@ public final class FileBreadthFirstSearchUtils {
      * @param file
      * @param fileItem 所在文件夹对象(上一级目录)
      */
-    private void queryFile(File file, FileItem fileItem) {
+    private void queryFile(final File file, final FileItem fileItem) {
         try {
             if (mIsStop) {
                 return;
             }
             if (file != null && file.exists()) {
                 // 判断是否处理
-                if (inside.isHandlerFile(file)) {
+                if (insideHandler.isHandlerFile(file)) {
                     // 如果属于文件夹
                     if (file.isDirectory()) {
                         // 获取文件夹全部子文件
@@ -335,14 +335,14 @@ public final class FileBreadthFirstSearchUtils {
                                 // 添加任务
                                 taskQueue.offer(new FileQueue(f, subFileItem));
                             } else { // 属于文件
-                                if (!mIsStop && inside.isAddToList(f)) {
+                                if (!mIsStop && insideHandler.isAddToList(f)) {
                                     // 属于文件则直接保存
                                     fileItem.put(f);
                                 }
                             }
                         }
                     } else { // 属于文件
-                        if (!mIsStop && inside.isAddToList(file)) {
+                        if (!mIsStop && insideHandler.isAddToList(file)) {
                             // 属于文件则直接保存
                             fileItem.put(file);
                         }
@@ -399,8 +399,8 @@ public final class FileBreadthFirstSearchUtils {
                 isEmpty = (taskQueue.isEmpty() && threadCount == 0);
             }
         }
-        // 进行通知
+        // 触发结束回调
         endTime = System.currentTimeMillis();
-        inside.OnEndListener(rootFileItem, startTime, endTime);
+        insideHandler.OnEndListener(rootFileItem, startTime, endTime);
     }
 }

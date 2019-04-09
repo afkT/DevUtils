@@ -56,12 +56,13 @@ public final class CRCUtils {
 
     /**
      * 获取文件 CRC32 值
+     * @param filePath
      * @return
      */
-    public static String getFileCrc32(final String path) {
-        if (path == null) return null;
+    public static String getFileCrc32(final String filePath) {
+        if (filePath == null) return null;
         try {
-            InputStream fis = new FileInputStream(path);
+            InputStream fis = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
             CRC32 crc32 = new CRC32();
             int numRead;

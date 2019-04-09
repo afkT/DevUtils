@@ -23,6 +23,7 @@ public final class XorUtils {
     public static byte[] encryptAsFix(final byte[] data) {
         if (data == null) return null;
         int len = data.length;
+        if (len <= 0) return null;
         int key = 0x12;
         for (int i = 0; i < len; i++) {
             data[i] ^= key;
@@ -40,6 +41,7 @@ public final class XorUtils {
     public static byte[] encrypt(final byte[] data) {
         if (data == null) return null;
         int len = data.length;
+        if (len <= 0) return null;
         int key = 0x12;
         for (int i = 0; i < len; i++) {
             data[i] = (byte) (data[i] ^ key);
@@ -56,6 +58,7 @@ public final class XorUtils {
     public static byte[] decrypt(final byte[] data) {
         if (data == null) return null;
         int len = data.length;
+        if (len <= 0) return null;
         int key = 0x12;
         for (int i = len - 1; i > 0; i--) {
             data[i] = (byte) (data[i] ^ data[i - 1]);

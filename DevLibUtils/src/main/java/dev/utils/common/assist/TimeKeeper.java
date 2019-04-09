@@ -1,72 +1,50 @@
 package dev.utils.common.assist;
 
-import android.os.SystemClock;
-
 /**
- * detail: 堵塞时间记录
+ * detail: 堵塞时间处理
  * Created by Ttt
  */
 public class TimeKeeper {
 
-    // 预计堵塞时间
-    private long keepTimeMillis;
-    // 开始计时时间
-    private long startMillis;
-
     /**
-     * 构造函数
-     * @param keepTimeMillis
-     */
-    public TimeKeeper(long keepTimeMillis) {
-        this.keepTimeMillis = keepTimeMillis;
-    }
-
-    /**
-     * 获取预计堵塞时间
-     * @return
-     */
-    public long getKeepTimeMillis() {
-        return keepTimeMillis;
-    }
-
-    /**
-     * 设置预计堵塞时间
-     * @param keepTimeMillis
-     * @return
-     */
-    public TimeKeeper setKeepTimeMillis(long keepTimeMillis) {
-        this.keepTimeMillis = keepTimeMillis;
-        return this;
-    }
-
-    /**
-     * 开始计时
-     * @return
-     */
-    public TimeKeeper startNow() {
-        startMillis = SystemClock.elapsedRealtime();
-        return this;
-    }
-
-    /**
-     * 设置等待一段时间后, 通知方法
+     * 设置等待一段时间后, 通知方法 (异步)
+     * @param keepTimeMillis 堵塞时间
      * @param endCallback
      * @return
      */
-    public TimeKeeper waitForEnd(final OnEndCallback endCallback) {
-        long costMillis = SystemClock.elapsedRealtime() - startMillis;
-        long leftMillis = keepTimeMillis - costMillis;
-        if (leftMillis > 0) {
-            SystemClock.sleep(leftMillis);
-            if (endCallback != null) {
-                endCallback.onEnd(costMillis, leftMillis);
+    public void waitForEndAsyn(final long keepTimeMillis, final OnEndCallback endCallback) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                waitForEnd(keepTimeMillis, endCallback);
             }
-        } else {
-            if (endCallback != null) {
-                endCallback.onEnd(costMillis, leftMillis);
+        }).start();
+    }
+
+    /**
+     * 设置等待一段时间后, 通知方法 (同步)
+     * @param keepTimeMillis 堵塞时间
+     * @param endCallback
+     * @return
+     */
+    public void waitForEnd(final long keepTimeMillis, final OnEndCallback endCallback) {
+        if (keepTimeMillis >= 0l) {
+            // 开始堵塞时间
+            long startTime = System.currentTimeMillis();
+            try {
+                // 进行堵塞
+                Thread.sleep(keepTimeMillis);
+                // 触发回调
+                if (endCallback != null) {
+                    endCallback.onEnd(startTime, keepTimeMillis, System.currentTimeMillis(), false);
+                }
+            } catch (Exception e) {
+                // 触发回调
+                if (endCallback != null) {
+                    endCallback.onEnd(startTime, keepTimeMillis, System.currentTimeMillis(), true);
+                }
             }
         }
-        return this;
     }
 
     /**
@@ -77,9 +55,11 @@ public class TimeKeeper {
 
         /**
          * 结束触发通知方法
-         * @param costTime 使用 -> 花费时间
-         * @param leftTime 堵塞时间
+         * @param startTimeMillis 开始堵塞时间
+         * @param keepTimeMillis  堵塞时间
+         * @param endTimeMillis   结束时间
+         * @param isError         是否异常
          */
-        void onEnd(long costTime, long leftTime);
+        void onEnd(long startTimeMillis, long keepTimeMillis, long endTimeMillis, boolean isError);
     }
 }

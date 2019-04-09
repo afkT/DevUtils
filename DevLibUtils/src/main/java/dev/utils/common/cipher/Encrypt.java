@@ -12,5 +12,4 @@ public interface Encrypt {
      * @return
      */
     byte[] encrypt(byte[] data);
-
 }

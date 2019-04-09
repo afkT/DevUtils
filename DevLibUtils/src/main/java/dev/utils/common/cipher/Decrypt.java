@@ -12,5 +12,4 @@ public interface Decrypt {
      * @return
      */
     byte[] decrypt(byte[] data);
-
 }

@@ -18,9 +18,7 @@ public final class SHAUtils {
     // 日志 TAG
     private static final String TAG = SHAUtils.class.getSimpleName();
     // 用于建立十六进制字符的输出的小写字符数组
-    public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    // 用于建立十六进制字符的输出的大写字符数组
-    public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    private static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * 加密内容 SHA1
@@ -71,36 +69,36 @@ public final class SHAUtils {
 
     /**
      * 获取文件 sha1 值
-     * @param path 文件地址
+     * @param filePath 文件地址
      * @return
      */
-    public static String getFileSHA1(final String path) {
-        return getFileSHA(path, "SHA-1");
+    public static String getFileSHA1(final String filePath) {
+        return getFileSHA(filePath, "SHA-1");
     }
 
     /**
      * 获取文件 sha256 值
-     * @param path 文件地址
+     * @param filePath 文件地址
      * @return
      */
-    public static String getFileSHA256(final String path) {
-        return getFileSHA(path, "SHA-256");
+    public static String getFileSHA256(final String filePath) {
+        return getFileSHA(filePath, "SHA-256");
     }
 
-    // =======
+    // =
 
     /**
      * 加密内容 SHA
      * @param str
-     * @param sha 加密算法
+     * @param algorithm 加密算法
      * @return
      */
-    public static String shaHex(final String str, final String sha) {
-        if (str == null || sha == null) return null;
+    public static String shaHex(final String str, final String algorithm) {
+        if (str == null || algorithm == null) return null;
         try {
             byte[] btInput = str.getBytes();
             // 获取 SHA-1 摘要算法的 MessageDigest 对象
-            MessageDigest mdInst = MessageDigest.getInstance(sha);
+            MessageDigest mdInst = MessageDigest.getInstance(algorithm);
             // 使用指定的字节更新摘要
             mdInst.update(btInput);
             // 获取密文
@@ -114,16 +112,16 @@ public final class SHAUtils {
 
     /**
      * 获取文件 SHA 值
-     * @param path
-     * @param sha  加密算法
+     * @param filePath
+     * @param algorithm 加密算法
      * @return
      */
-    public static String getFileSHA(final String path, final String sha) {
-        if (path == null || sha == null) return null;
+    public static String getFileSHA(final String filePath, final String algorithm) {
+        if (filePath == null || algorithm == null) return null;
         try {
-            InputStream fis = new FileInputStream(path);
+            InputStream fis = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
-            MessageDigest md5 = MessageDigest.getInstance(sha);
+            MessageDigest md5 = MessageDigest.getInstance(algorithm);
             int numRead = 0;
             while ((numRead = fis.read(buffer)) > 0) {
                 md5.update(buffer, 0, numRead);
@@ -136,7 +134,7 @@ public final class SHAUtils {
         return null;
     }
 
-    // =======
+    // =
 
     /**
      * 进行十六进制转换

@@ -127,9 +127,9 @@ public final class EncryptUtils {
      * @param filePath
      * @return
      */
-    public static String encryptMD5File2String(final String filePath) {
+    public static String encryptMD5FileToString(final String filePath) {
         File file = isSpace(filePath) ? null : new File(filePath);
-        return encryptMD5File2String(file);
+        return encryptMD5FileToString(file);
     }
 
     /**
@@ -147,7 +147,7 @@ public final class EncryptUtils {
      * @param file
      * @return
      */
-    public static String encryptMD5File2String(final File file) {
+    public static String encryptMD5FileToString(final File file) {
         return toHexString(encryptMD5File(file));
     }
 
@@ -559,7 +559,7 @@ public final class EncryptUtils {
      * @param iv
      * @return
      */
-    public static byte[] encryptDES2Base64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
+    public static byte[] encryptDESToBase64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return base64Encode(encryptDES(data, key, transformation, iv));
     }
 
@@ -571,7 +571,7 @@ public final class EncryptUtils {
      * @param iv
      * @return
      */
-    public static String encryptDES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
+    public static String encryptDESToHexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return toHexString(encryptDES(data, key, transformation, iv));
     }
 
@@ -608,7 +608,7 @@ public final class EncryptUtils {
      * @return
      */
     public static byte[] decryptHexStringDES(final String data, final byte[] key, final String transformation, final byte[] iv) {
-        return decryptDES(hexString2Bytes(data), key, transformation, iv);
+        return decryptDES(hexStringToBytes(data), key, transformation, iv);
     }
 
     /**
@@ -631,7 +631,7 @@ public final class EncryptUtils {
      * @param iv
      * @return
      */
-    public static byte[] encrypt3DES2Base64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
+    public static byte[] encrypt3DESToBase64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return base64Encode(encrypt3DES(data, key, transformation, iv));
     }
 
@@ -643,7 +643,7 @@ public final class EncryptUtils {
      * @param iv
      * @return
      */
-    public static String encrypt3DES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
+    public static String encrypt3DESToHexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return toHexString(encrypt3DES(data, key, transformation, iv));
     }
 
@@ -680,7 +680,7 @@ public final class EncryptUtils {
      * @return
      */
     public static byte[] decryptHexString3DES(final String data, final byte[] key, final String transformation, final byte[] iv) {
-        return decrypt3DES(hexString2Bytes(data), key, transformation, iv);
+        return decrypt3DES(hexStringToBytes(data), key, transformation, iv);
     }
 
     /**
@@ -703,7 +703,7 @@ public final class EncryptUtils {
      * @param iv
      * @return
      */
-    public static byte[] encryptAES2Base64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
+    public static byte[] encryptAESToBase64(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return base64Encode(encryptAES(data, key, transformation, iv));
     }
 
@@ -715,7 +715,7 @@ public final class EncryptUtils {
      * @param iv
      * @return
      */
-    public static String encryptAES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
+    public static String encryptAESToHexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return toHexString(encryptAES(data, key, transformation, iv));
     }
 
@@ -752,7 +752,7 @@ public final class EncryptUtils {
      * @return
      */
     public static byte[] decryptHexStringAES(final String data, final byte[] key, final String transformation, final byte[] iv) {
-        return decryptAES(hexString2Bytes(data), key, transformation, iv);
+        return decryptAES(hexStringToBytes(data), key, transformation, iv);
     }
 
     /**
@@ -812,7 +812,7 @@ public final class EncryptUtils {
      * @param transformation
      * @return
      */
-    public static byte[] encryptRSA2Base64(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
+    public static byte[] encryptRSAToBase64(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
         return base64Encode(encryptRSA(data, key, isPublicKey, transformation));
     }
 
@@ -824,7 +824,7 @@ public final class EncryptUtils {
      * @param transformation
      * @return
      */
-    public static String encryptRSA2HexString(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
+    public static String encryptRSAToHexString(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
         return toHexString(encryptRSA(data, key, isPublicKey, transformation));
     }
 
@@ -861,7 +861,7 @@ public final class EncryptUtils {
      * @return
      */
     public static byte[] decryptHexStringRSA(final String data, final byte[] key, final boolean isPublicKey, final String transformation) {
-        return decryptRSA(hexString2Bytes(data), key, isPublicKey, transformation);
+        return decryptRSA(hexStringToBytes(data), key, isPublicKey, transformation);
     }
 
     /**
@@ -980,7 +980,7 @@ public final class EncryptUtils {
      * @param hexString
      * @return
      */
-    private static byte[] hexString2Bytes(String hexString) {
+    private static byte[] hexStringToBytes(String hexString) {
         if (isSpace(hexString)) return null;
         int len = hexString.length();
         if (len % 2 != 0) {
@@ -990,12 +990,12 @@ public final class EncryptUtils {
         char[] hexBytes = hexString.toUpperCase().toCharArray();
         byte[] ret = new byte[len >> 1];
         for (int i = 0; i < len; i += 2) {
-            ret[i >> 1] = (byte) (hex2Int(hexBytes[i]) << 4 | hex2Int(hexBytes[i + 1]));
+            ret[i >> 1] = (byte) (hexToInt(hexBytes[i]) << 4 | hexToInt(hexBytes[i + 1]));
         }
         return ret;
     }
 
-    private static int hex2Int(final char hexChar) {
+    private static int hexToInt(final char hexChar) {
         if (hexChar >= '0' && hexChar <= '9') {
             return hexChar - '0';
         } else if (hexChar >= 'A' && hexChar <= 'F') {
