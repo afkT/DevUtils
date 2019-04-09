@@ -15,7 +15,6 @@ public final class BigDecimalUtils {
 
     // 日志 TAG
     private static final String TAG = BigDecimalUtils.class.getSimpleName();
-
     // 默认保留位数
     private static final int DEF_DIV_SCALE = 10;
 
@@ -88,7 +87,7 @@ public final class BigDecimalUtils {
             if (scale <= 0) {
                 return b1.add(b2).intValue() + "";
             } else {
-                return b1.add(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+                return b1.add(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toPlainString();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "add");
@@ -143,7 +142,7 @@ public final class BigDecimalUtils {
             if (scale <= 0) {
                 return b1.subtract(b2).intValue() + "";
             } else {
-                return b1.subtract(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+                return b1.subtract(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toPlainString();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "substract");
@@ -165,7 +164,7 @@ public final class BigDecimalUtils {
             if (scale <= 0) {
                 return b1.subtract(b2).intValue() + "";
             } else {
-                return b1.subtract(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+                return b1.subtract(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toPlainString();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "substract");
@@ -249,7 +248,7 @@ public final class BigDecimalUtils {
             if (scale <= 0) {
                 return b1.multiply(b2).intValue() + "";
             } else {
-                return b1.multiply(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+                return b1.multiply(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toPlainString();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "multiply");
@@ -308,7 +307,7 @@ public final class BigDecimalUtils {
             if (scale <= 0) {
                 return b1.divide(b2).intValue() + "";
             } else {
-                return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).toString();
+                return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).toPlainString();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "divide");
@@ -346,7 +345,7 @@ public final class BigDecimalUtils {
             if (scale <= 0) {
                 return b.intValue() + "";
             } else {
-                return b.setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+                return b.setScale(scale, BigDecimal.ROUND_HALF_UP).toPlainString();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "round");
@@ -397,7 +396,7 @@ public final class BigDecimalUtils {
             if (scale <= 0) {
                 return b1.remainder(b2).intValue() + "";
             } else {
-                return b1.remainder(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+                return b1.remainder(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).toPlainString();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "remainder");
@@ -425,6 +424,80 @@ public final class BigDecimalUtils {
         return null;
     }
 
+    // =
+
+    /**
+     * 比较大小
+     * @param v1 输入的数值
+     * @param v2 被比较的数字
+     * @return true：v1 >= v2，false v1 < v2
+     */
+    public static Boolean compare(final String v1, final String v2) {
+        try {
+            return new BigDecimal(v1).compareTo(new BigDecimal(v2)) != -1;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "compare");
+        }
+        return true;
+    }
+
+    /**
+     * 比较大小
+     * @param v1 输入的数值
+     * @param v2 被比较的数字
+     * @return true：v1 >= v2，false v1 < v2
+     */
+    public static Boolean compare(final BigDecimal v1, final BigDecimal v2) {
+        try {
+            return v1.compareTo(v2) != -1;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "compare");
+        }
+        return false;
+    }
+
+    /**
+     * 比较大小
+     * @param v1 输入的数值
+     * @param v2 被比较的数字
+     * @return true：v1 >= v2，false v1 < v2
+     */
+    public static Boolean compare(final String v1, final double v2) {
+        try {
+            return new BigDecimal(v1).compareTo(new BigDecimal(Double.toString(v2))) != -1;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "compare");
+        }
+        return true;
+    }
+
+//    // =
+//
+//    /**
+//     * 金额分割，四舍五入金额
+//     * @param value       金额/数值
+//     * @param scale       小数点后保留几位
+//     * @param mode        处理模式
+//     * @param splitNumber 拆分位数
+//     * @param splitSymbol 拆分符号
+//     * @return
+//     */
+//    public static String formatMoney(final BigDecimal value, final int scale, final int mode, final int splitNumber, final int splitSymbol) {
+//        if (value == null) return null;
+//        try {
+//            // 如果等于 0, 直接返回
+//            if (value.doubleValue() == 0){
+//                return value.setScale(scale, mode).toPlainString();
+//            }
+//            // 获取原始值字符串
+//            value.toPlainString();
+//
+//        } catch (Exception e){
+//            JCLogUtils.eTag(TAG, e, "formatMoney");
+//        }
+//        return null;
+//    }
+
     /**
      * 金额分割，四舍五入金额
      * @param value
@@ -449,7 +522,7 @@ public final class BigDecimalUtils {
                 // 去掉 - 号
                 bigDecimal = new BigDecimal(bigDecimal.toString().substring(1));
             }
-            str = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+            str = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString();
             StringBuffer buffer = new StringBuffer();
             String[] strs = str.split("\\.");
             int j = 1;
@@ -479,78 +552,6 @@ public final class BigDecimalUtils {
             JCLogUtils.eTag(TAG, e, "formatMoney");
         }
         return null;
-    }
-
-    /**
-     * 四舍五入金额
-     * @param value
-     * @return
-     */
-    public static String formatMoney1(final BigDecimal value) {
-        if (null == value) return "0.00";
-        try {
-            if (0 == value.doubleValue()) return "0.00";
-            String retVal = "";
-            String str = "";
-            boolean is_positive_integer;
-            // 判断是否正整数
-            if (value.toString().indexOf("-") != -1) {
-                is_positive_integer = true;
-            } else {
-                is_positive_integer = false;
-            }
-            BigDecimal bigDecimal = value;
-            // 是负整数
-            if (is_positive_integer) {
-                // 去掉 - 号
-                bigDecimal = new BigDecimal(bigDecimal.toString().substring(1));
-            }
-            str = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            StringBuffer buffer = new StringBuffer();
-            String[] strs = str.split("\\.");
-            int j = 1;
-            for (int i = 0; i < strs[0].length(); i++) {
-                char a = strs[0].charAt(strs[0].length() - i - 1);
-                buffer.append(a);
-                if (j % 3 == 0 && i != strs[0].length() - 1) {
-                    buffer.append("");
-                }
-                j++;
-            }
-            String str1 = buffer.toString();
-            StringBuffer buffer1 = new StringBuffer();
-            for (int i = 0; i < str1.length(); i++) {
-                char a = str1.charAt(str1.length() - 1 - i);
-                buffer1.append(a);
-            }
-            buffer1.append(".");
-            buffer1.append(strs[1]);
-            retVal = buffer1.toString();
-
-            if (is_positive_integer) {
-                retVal = "-" + retVal;
-            }
-            return retVal;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "formatMoney1");
-        }
-        return null;
-    }
-
-    /**
-     * 比较大小
-     * @param amount  输入的数值
-     * @param compare 被比较的数字
-     * @return true 大于被比较的数
-     */
-    public static Boolean compareBigDecimal(final String amount, final double compare) {
-        try {
-            BigDecimal bigDecimal = new BigDecimal(amount);
-            if (bigDecimal.compareTo(BigDecimal.valueOf(compare)) == -1) return false;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "compareBigDecimal");
-        }
-        return true;
     }
 
     /**
