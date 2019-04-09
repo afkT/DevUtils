@@ -1267,9 +1267,9 @@ public final class FileUtils {
                 // 防止文件没创建
                 createFolder(filePath);
                 // 保存路径
-                File sFile = new File(filePath, fileName);
+                File file = new File(filePath, fileName);
                 // 保存内容到一个文件
-                FileOutputStream fos = new FileOutputStream(sFile);
+                FileOutputStream fos = new FileOutputStream(file);
                 Writer out;
                 if (coding != null) {
                     out = new OutputStreamWriter(fos, coding);

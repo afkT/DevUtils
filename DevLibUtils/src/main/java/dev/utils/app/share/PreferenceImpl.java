@@ -41,20 +41,20 @@ final class PreferenceImpl implements IPreference {
     /**
      * 初始化
      * @param context
-     * @param fName
+     * @param fileName
      */
-    public PreferenceImpl(Context context, String fName) {
-        preferences = context.getSharedPreferences(fName, Context.MODE_PRIVATE);
+    public PreferenceImpl(Context context, String fileName) {
+        preferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
     }
 
     /**
      * 初始化
      * @param context
-     * @param fName
+     * @param fileName
      * @param mode
      */
-    public PreferenceImpl(Context context, String fName, int mode) {
-        preferences = context.getSharedPreferences(fName, mode);
+    public PreferenceImpl(Context context, String fileName, int mode) {
+        preferences = context.getSharedPreferences(fileName, mode);
     }
 
     // ==============

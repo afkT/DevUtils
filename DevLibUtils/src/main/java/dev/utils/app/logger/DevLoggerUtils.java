@@ -130,12 +130,12 @@ public final class DevLoggerUtils {
 	/**
 	 * 保存 App 错误日志
 	 * @param ex 错误信息
-	 * @param fPath 保存路径 + 文件名(含后缀)
+	 * @param filePath 保存路径 + 文件名(含后缀)
 	 * @param isNewLines 是否换行
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 */
-	public static boolean saveErrorLog(Throwable ex, String fPath, boolean isNewLines, String... eHint) {
-		return saveErrorLog(ex,null, null, fPath, isNewLines, eHint);
+	public static boolean saveErrorLog(Throwable ex, String filePath, boolean isNewLines, String... eHint) {
+		return saveErrorLog(ex,null, null, filePath, isNewLines, eHint);
 	}
 	
 	/**
@@ -143,27 +143,27 @@ public final class DevLoggerUtils {
 	 * @param ex 错误信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容
-	 * @param fPath 保存路径 + 文件名(含后缀)
+	 * @param filePath 保存路径 + 文件名(含后缀)
 	 * @param isNewLines 是否换行
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 */
-	public static boolean saveErrorLog(Throwable ex, String head, String bottom, String fPath, boolean isNewLines, String... eHint) {
-		if (TextUtils.isEmpty(fPath)) {
+	public static boolean saveErrorLog(Throwable ex, String head, String bottom, String filePath, boolean isNewLines, String... eHint) {
+		if (TextUtils.isEmpty(filePath)) {
 			return false;
 		}
 		try {
-			File file = new File(fPath);
+			File file = new File(filePath);
 			// 获取文件名
-			String fName = file.getName();
+			String fileName = file.getName();
 			// 判断是否这个文件名结尾
-			if (fPath.endsWith(fName)) {
+			if (filePath.endsWith(fileName)) {
 				// 重新裁剪
-				fPath = fPath.substring(0, fPath.length() - fName.length());
+				filePath = filePath.substring(0, filePath.length() - fileName.length());
 				// 进行保存
-				return saveErrorLog(ex, head, bottom, fPath, fName, isNewLines, eHint);
+				return saveErrorLog(ex, head, bottom, filePath, fileName, isNewLines, eHint);
 			} else {
 				// 进行保存
-				return saveErrorLog(ex, head, bottom, fPath, fPath, isNewLines, eHint);
+				return saveErrorLog(ex, head, bottom, filePath, filePath, isNewLines, eHint);
 			}
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "saveErrorLog");
@@ -176,31 +176,31 @@ public final class DevLoggerUtils {
 	 * @param ex 错误信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容
-	 * @param fPath 保存路径
-	 * @param fName 文件名(含后缀)
+	 * @param filePath 保存路径
+	 * @param fileName 文件名(含后缀)
 	 * @param isNewLines 是否换行
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveErrorLog(Throwable ex, String head, String bottom, String fPath, String fName, boolean isNewLines, String... eHint) {
-		if (TextUtils.isEmpty(fPath)) {
+	public static boolean saveErrorLog(Throwable ex, String head, String bottom, String filePath, String fileName, boolean isNewLines, String... eHint) {
+		if (TextUtils.isEmpty(filePath)) {
 			return false;
-		} else if (TextUtils.isEmpty(fName)) {
+		} else if (TextUtils.isEmpty(fileName)) {
 			return false;
 		}
-		return Utils.saveErrorLog(ex, head, bottom, fPath, fName, isNewLines, eHint);
+		return Utils.saveErrorLog(ex, head, bottom, filePath, fileName, isNewLines, eHint);
 	}
 
 	/**
 	 * 保存 App 日志
 	 * @param log 日志信息
-	 * @param fPath 保存路径
-	 * @param fName 文件名(含后缀)
+	 * @param filePath 保存路径
+	 * @param fileName 文件名(含后缀)
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveLog(String log, String fPath, String fName, String... eHint) {
-		return saveLogHeadBottom(log, null, null, fPath, fName, eHint);
+	public static boolean saveLog(String log, String filePath, String fileName, String... eHint) {
+		return saveLogHeadBottom(log, null, null, filePath, fileName, eHint);
 	}
 
 	/**
@@ -208,17 +208,17 @@ public final class DevLoggerUtils {
 	 * @param log 日志信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容
-	 * @param fPath 保存路径
-	 * @param fName 文件名(含后缀)
+	 * @param filePath 保存路径
+	 * @param fileName 文件名(含后缀)
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveLogHeadBottom(String log, String head, String bottom, String fPath, String fName, String... eHint) {
-		if (TextUtils.isEmpty(fPath)) {
+	public static boolean saveLogHeadBottom(String log, String head, String bottom, String filePath, String fileName, String... eHint) {
+		if (TextUtils.isEmpty(filePath)) {
 			return false;
-		} else if (TextUtils.isEmpty(fName)) {
+		} else if (TextUtils.isEmpty(fileName)) {
 			return false;
 		}
-		return Utils.saveLog(log, head, bottom, fPath, fName, eHint);
+		return Utils.saveLog(log, head, bottom, filePath, fileName, eHint);
 	}
 }

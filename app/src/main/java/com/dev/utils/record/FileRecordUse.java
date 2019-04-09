@@ -112,9 +112,9 @@ public final class FileRecordUse {
             // ==  DevLoggerUtils 使用方法 ==
 
             // 保存的路径
-            String fName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
+            String fileName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
             // 保存日志信息
-            DevLoggerUtils.saveErrorLog(e, fName, true);
+            DevLoggerUtils.saveErrorLog(e, fileName, true);
             // --
             // 保存自定义头部、底部信息
             DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
@@ -122,9 +122,9 @@ public final class FileRecordUse {
             // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
             String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
             // 保存的路径
-            fName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
+            fileName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
             // 保存日志信息
-            DevLoggerUtils.saveErrorLog(e, fName, true, eHint);
+            DevLoggerUtils.saveErrorLog(e, fileName, true, eHint);
 
             // 保存日志信息
             DevLoggerUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log");

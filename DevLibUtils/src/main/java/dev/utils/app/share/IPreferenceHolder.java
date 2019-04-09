@@ -33,29 +33,29 @@ class IPreferenceHolder {
     /**
      * 初始化
      * @param context
-     * @param fName
+     * @param fileName
      */
-    public static IPreference getPreference(Context context, String fName) {
+    public static IPreference getPreference(Context context, String fileName) {
         // 判断是否为存在对应的持有类
-        IPreference ipref = hashMap.get(fName);
+        IPreference ipref = hashMap.get(fileName);
         // 判断是否为存在
         if (ipref != null) {
             return ipref;
         }
         // 初始化并保存
-        ipref = new PreferenceImpl(context, fName);
-        hashMap.put(fName, ipref);
+        ipref = new PreferenceImpl(context, fileName);
+        hashMap.put(fileName, ipref);
         return ipref;
     }
 
     /**
      * 初始化
      * @param context
-     * @param fName
+     * @param fileName
      * @param mode
      */
-    public static IPreference getPreference(Context context, String fName, int mode) {
-        String key = fName + "_" + mode;
+    public static IPreference getPreference(Context context, String fileName, int mode) {
+        String key = fileName + "_" + mode;
         // 判断是否为存在对应的持有类
         IPreference ipref = hashMap.get(key);
         // 判断是否为存在
@@ -63,7 +63,7 @@ class IPreferenceHolder {
             return ipref;
         }
         // 初始化并保存
-        ipref = new PreferenceImpl(context, fName, mode);
+        ipref = new PreferenceImpl(context, fileName, mode);
         hashMap.put(key, ipref);
         return ipref;
     }

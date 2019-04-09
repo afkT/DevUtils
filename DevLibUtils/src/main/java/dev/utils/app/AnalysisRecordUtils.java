@@ -183,16 +183,16 @@ public final class AnalysisRecordUtils {
             return "fileName is null";
         }
         // 获取文件名
-        String fName = fileInfo.getFileName();
+        String fileName = fileInfo.getFileName();
         // 获取文件提示
-        String fHint = fileInfo.getFileFunction();
+        String fileHint = fileInfo.getFileFunction();
         try {
             // 获取处理的日志
             String logContent = splitLog(args);
             // 日志保存路径
             String logPath = fileInfo.getLogPath();
             // 获取日志地址
-            String logFile = logPath + File.separator + fName;
+            String logFile = logPath + File.separator + fileName;
             // 返回地址
             File file = new File(logFile);
             // 判断是否存在
@@ -227,12 +227,12 @@ public final class AnalysisRecordUtils {
                 buffer.append(NEW_LINE_STR);
                 buffer.append("===========================");
                 buffer.append(NEW_LINE_STR);
-                buffer.append(fHint);
+                buffer.append(fileHint);
                 buffer.append(NEW_LINE_STR);
                 buffer.append("===========================");
                 buffer.append(NEW_LINE_STR);
                 // 创建文件夹,并且进行处理
-                saveFile(buffer.toString(), logPath, fName);
+                saveFile(buffer.toString(), logPath, fileName);
                 // 追加内容
                 appendFile(logFile, logContent);
             }
@@ -677,12 +677,12 @@ public final class AnalysisRecordUtils {
         /**
          * 获取保存地址
          * @param storagePath 存储路径
-         * @param fPath 文件地址
+         * @param filePath 文件地址
          * @return
          */
-        private String getSavePath(String storagePath, String fPath) {
+        private String getSavePath(String storagePath, String filePath) {
             // 获取保存地址
-            File file = new File(storagePath, fPath);
+            File file = new File(storagePath, filePath);
             // 防止不存在目录文件，自动创建
             createFolder(file);
             // 返回缓存地址
@@ -734,14 +734,14 @@ public final class AnalysisRecordUtils {
 
     /**
      * 追加文件：使用FileWriter
-     * @param fPath 文件地址
+     * @param filePath 文件地址
      * @param text  追加内容
      */
-    private static void appendFile(String fPath, String text) {
-        if (fPath == null || text == null) {
+    private static void appendFile(String filePath, String text) {
+        if (filePath == null || text == null) {
             return;
         }
-        File file = new File(fPath);
+        File file = new File(filePath);
         if (!file.exists()) { // 如果文件不存在,则跳过
             return;
         }
@@ -765,18 +765,18 @@ public final class AnalysisRecordUtils {
     /**
      * 保存文件
      * @param txt   保存内容
-     * @param fPath 保存路径
-     * @param fName 文件名.后缀
+     * @param filePath 保存路径
+     * @param fileName 文件名.后缀
      * @return 是否保存成功
      */
-    private static boolean saveFile(String txt, String fPath, String fName) {
+    private static boolean saveFile(String txt, String filePath, String fileName) {
         try {
             // 防止文件没创建
-            createFile(fPath);
+            createFile(filePath);
             // 保存路径
-            File sFile = new File(fPath, fName);
+            File file = new File(filePath, fileName);
             // 保存内容到一个文件
-            FileOutputStream fos = new FileOutputStream(sFile);
+            FileOutputStream fos = new FileOutputStream(file);
             fos.write(txt.getBytes());
             fos.close();
             return true;
@@ -788,11 +788,11 @@ public final class AnalysisRecordUtils {
 
     /**
      * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
-     * @param fPath 文件夹路径
+     * @param filePath 文件夹路径
      */
-    private static File createFile(String fPath) {
+    private static File createFile(String filePath) {
         try {
-            File file = new File(fPath);
+            File file = new File(filePath);
             // 当这个文件夹不存在的时候则创建文件夹
             if (!file.exists()) {
                 // 允许创建多级目录

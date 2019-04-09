@@ -175,11 +175,11 @@ final class Utils {
 
 	/**
 	 * 判断某个文件夹是否创建,未创建则创建(不能加入文件名)
-	 * @param fPath 文件夹路径
+	 * @param filePath 文件夹路径
 	 */
-	private static File createFile(String fPath) {
+	private static File createFile(String filePath) {
 		try {
-			File file = new File(fPath);
+			File file = new File(filePath);
 			// 当这个文件夹不存在的时候则创建文件夹
 			if (!file.exists()) {
 				// 允许创建多级目录
@@ -310,14 +310,14 @@ final class Utils {
 	/**
 	 * 保存 App 错误日志
 	 * @param ex 错误信息
-	 * @param fPath 保存路径
-	 * @param fName 文件名(含后缀)
+	 * @param filePath 保存路径
+	 * @param fileName 文件名(含后缀)
 	 * @param isNewLines 是否换行
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveErrorLog(Throwable ex, String fPath, String fName, boolean isNewLines, String... eHint) {
-		return saveErrorLog(ex, null, null, fPath, fName, isNewLines, eHint);
+	public static boolean saveErrorLog(Throwable ex, String filePath, String fileName, boolean isNewLines, String... eHint) {
+		return saveErrorLog(ex, null, null, filePath, fileName, isNewLines, eHint);
 	}
 
 	/**
@@ -325,19 +325,19 @@ final class Utils {
 	 * @param ex 错误信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容
-	 * @param fPath 保存路径
-	 * @param fName 文件名(含后缀)
+	 * @param filePath 保存路径
+	 * @param fileName 文件名(含后缀)
 	 * @param isNewLines 是否换行
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveErrorLog(Throwable ex, String head, String bottom, String fPath, String fName, boolean isNewLines, String... eHint) {
+	public static boolean saveErrorLog(Throwable ex, String head, String bottom, String filePath, String fileName, boolean isNewLines, String... eHint) {
 		// 处理可变参数(错误提示)
 		eHint = handlerVariable(2, eHint);
 		// 日志拼接
 		StringBuilder builder = new StringBuilder();
 		// 防止文件夹不存在
-		createFile(fPath);
+		createFile(filePath);
 		// 设备信息
 		String dInfo = handlerDeviceInfo(eHint[0]);
 		// 如果存在顶部内容,则进行添加
@@ -381,19 +381,19 @@ final class Utils {
 			builder.append(bottom);
 		}
 		// 保存日志到文件
-		return saveFile(builder.toString(), fPath + File.separator + fName);
+		return saveFile(builder.toString(), filePath + File.separator + fileName);
 	}
 
 	/**
 	 * 保存 App 日志
 	 * @param log 日志信息
-	 * @param fPath 保存路径
-	 * @param fName 文件名(含后缀)
+	 * @param filePath 保存路径
+	 * @param fileName 文件名(含后缀)
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveLog(String log, String fPath, String fName, String... eHint) {
-		return saveLog(log, null, null, fPath, fName, eHint);
+	public static boolean saveLog(String log, String filePath, String fileName, String... eHint) {
+		return saveLog(log, null, null, filePath, fileName, eHint);
 	}
 
 	/**
@@ -401,18 +401,18 @@ final class Utils {
 	 * @param log 日志信息
 	 * @param head 顶部标题
 	 * @param bottom 底部内容
-	 * @param fPath 保存路径
-	 * @param fName 文件名(含后缀)
+	 * @param filePath 保存路径
+	 * @param fileName 文件名(含后缀)
 	 * @param eHint 错误提示(无设备信息、失败信息获取失败)
 	 * @return
 	 */
-	public static boolean saveLog(String log, String head, String bottom, String fPath, String fName, String... eHint) {
+	public static boolean saveLog(String log, String head, String bottom, String filePath, String fileName, String... eHint) {
 		// 处理可变参数(错误提示)
 		eHint = handlerVariable(2, eHint);
 		// 日志拼接
 		StringBuilder builder = new StringBuilder();
 		// 防止文件夹不存在
-		createFile(fPath);
+		createFile(filePath);
 		// 设备信息
 		String dInfo = handlerDeviceInfo(eHint[0]);
 		// 如果存在顶部内容,则进行添加
@@ -448,7 +448,7 @@ final class Utils {
 			builder.append(bottom);
 		}
 		// 保存日志到文件
-		return saveFile(builder.toString(), fPath + File.separator + fName);
+		return saveFile(builder.toString(), filePath + File.separator + fileName);
 	}
 
 	// ==

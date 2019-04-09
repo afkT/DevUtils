@@ -158,12 +158,12 @@ public final class BitmapUtils {
 
 	/**
 	 * 获取本地SDCard 图片
-	 * @param fPath 图片地址
+	 * @param filePath 图片地址
 	 * @return
 	 */
-	public static Bitmap getSDCardBitmapStream(String fPath) {
+	public static Bitmap getSDCardBitmapStream(String filePath) {
 		try {
-			FileInputStream fis = new FileInputStream(new File(fPath));//文件输入流
+			FileInputStream fis = new FileInputStream(new File(filePath));//文件输入流
 			Bitmap bmp = BitmapFactory.decodeStream(fis);
 			return bmp;
 		} catch (Exception e) {
@@ -174,12 +174,12 @@ public final class BitmapUtils {
 
 	/**
 	 * 获取本地SDCard 图片
-	 * @param fPath 图片地址
+	 * @param filePath 图片地址
 	 * @return
 	 */
-	public static Bitmap getSDCardBitmapFile(String fPath) {
+	public static Bitmap getSDCardBitmapFile(String filePath) {
 		try {
-			Bitmap bmp = BitmapFactory.decodeFile(fPath);
+			Bitmap bmp = BitmapFactory.decodeFile(filePath);
 			return bmp;
 		} catch (Exception e) {
 			LogPrintUtils.eTag(TAG, e, "getSDCardBitmapFile");

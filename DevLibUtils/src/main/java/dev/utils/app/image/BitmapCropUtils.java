@@ -20,22 +20,22 @@ public final class BitmapCropUtils {
     // =============== 裁剪图片,裁剪中间部分，防止全图压缩 ===============
     /**
      * 裁剪图片(默认比例16:9)
-     * @param fPath 保存路径
+     * @param filePath 保存路径
      * @param bitmap 图片
      */
-    public static void cropBitmap(String fPath, Bitmap bitmap) {
-        cropBitmap(fPath, bitmap, 16.0f, 9.0f);
+    public static void cropBitmap(String filePath, Bitmap bitmap) {
+        cropBitmap(filePath, bitmap, 16.0f, 9.0f);
     }
 
     /**
      * 裁剪图片
-     * @param fPath 保存路径
+     * @param filePath 保存路径
      * @param bitmap 图片
-     * @param wScale 宽度比例
-     * @param hScale 高度比例
+     * @param widthScale 宽度比例
+     * @param heightScale 高度比例
      */
-    public static void cropBitmap(String fPath, Bitmap bitmap, float wScale, float hScale) {
-        if (TextUtils.isEmpty(fPath)) {
+    public static void cropBitmap(String filePath, Bitmap bitmap, float widthScale, float heightScale) {
+        if (TextUtils.isEmpty(filePath)) {
             return; // 防止保存路径为null
         } else if (bitmap == null) {
             return; // 防止图片为null
@@ -48,7 +48,7 @@ public final class BitmapCropUtils {
             // 获取图片高度
             int iHeight = bitmap.getHeight();
             // 获取需要裁剪的高度
-            int rHeight = (int) ((iWidth * hScale) / wScale);
+            int rHeight = (int) ((iWidth * heightScale) / widthScale);
             // 判断需要裁剪的高度与偏移差距
             int dHeight = iHeight - rHeight;
             // --
@@ -60,7 +60,7 @@ public final class BitmapCropUtils {
                 cBitmap = Bitmap.createBitmap(bitmap, 0, offsetY, iWidth, rHeight, null, false);
             } else { // 以宽度做偏移
                 // 获取需要裁剪的宽度
-                int rWidth = (int) ((iHeight * wScale) / hScale);
+                int rWidth = (int) ((iHeight * widthScale) / heightScale);
                 // 判断需要裁剪的宽度与偏移差距
                 int dWidth = iWidth - rWidth;
                 // 计算偏移的X轴
@@ -70,7 +70,7 @@ public final class BitmapCropUtils {
             }
             if (cBitmap != null) {
                 // 保存图片
-                BitmapUtils.saveBitmapToSDCardPNG(cBitmap, fPath, 85);
+                BitmapUtils.saveBitmapToSDCardPNG(cBitmap, filePath, 85);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cropBitmap");

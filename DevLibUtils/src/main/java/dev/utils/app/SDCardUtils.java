@@ -305,21 +305,21 @@ public final class SDCardUtils {
 
 	/**
 	 * 获取缓存资源地址
-	 * @param fPath 文件地址
+	 * @param filePath 文件地址
 	 * @return
 	 */
-	public static File getCacheFile(String fPath) {
-		return new File(getCachePath(fPath));
+	public static File getCacheFile(String filePath) {
+		return new File(getCachePath(filePath));
 	}
 
 	/**
 	 * 获取缓存资源地址
-	 * @param fPath 文件地址
+	 * @param filePath 文件地址
 	 * @return
 	 */
-	public static String getCachePath(String fPath) {
+	public static String getCachePath(String filePath) {
 		// 获取缓存地址
-		String cachePath = new File(getDiskCacheDir(), fPath).getAbsolutePath();
+		String cachePath = new File(getDiskCacheDir(), filePath).getAbsolutePath();
 		// 防止不存在目录文件，自动创建
 		FileUtils.createFolder(cachePath);
 		// 返回缓存地址

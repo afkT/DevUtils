@@ -129,8 +129,8 @@ public final class CleanUtils {
         cleanInternalSp();
         cleanInternalFiles();
         try {
-            for (String fPath : filePaths) {
-                cleanCustomDir(fPath);
+            for (String path : filePaths) {
+                cleanCustomDir(path);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanApplicationData");

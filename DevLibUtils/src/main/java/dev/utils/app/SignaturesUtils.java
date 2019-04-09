@@ -15,7 +15,6 @@ import java.util.jar.JarFile;
 
 import javax.security.auth.x500.X500Principal;
 
-import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -247,7 +246,7 @@ public final class SignaturesUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toHexString");
+            LogPrintUtils.eTag(TAG, e, "toHexString");
         }
         return null;
     }
