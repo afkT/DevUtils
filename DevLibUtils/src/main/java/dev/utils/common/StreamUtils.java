@@ -20,7 +20,7 @@ public final class StreamUtils {
     private static final String TAG = StreamUtils.class.getSimpleName();
 
     /**
-     * Input stream to output stream.
+     * 输入流转输出流
      * @param is The input stream.
      * @return output stream
      */
@@ -43,47 +43,67 @@ public final class StreamUtils {
     }
 
     /**
-     * Output stream to input stream.
+     * 输出流转输入流
      * @param out The output stream.
      * @return input stream
      */
     public static ByteArrayInputStream outputToInputStream(final OutputStream out) {
         if (out == null) return null;
-        return new ByteArrayInputStream(((ByteArrayOutputStream) out).toByteArray());
+        try {
+            return new ByteArrayInputStream(((ByteArrayOutputStream) out).toByteArray());
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "outputToInputStream");
+            return null;
+        }
     }
 
     /**
-     * Input stream to bytes.
+     * 输入流转 byte[]
      * @param is The input stream.
      * @return bytes
      */
     public static byte[] inputStreamToBytes(final InputStream is) {
         if (is == null) return null;
-        return inputToOutputStream(is).toByteArray();
+        try {
+            return inputToOutputStream(is).toByteArray();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "inputStreamToBytes");
+            return null;
+        }
     }
 
     /**
-     * Bytes to input stream.
+     * byte[] 转输出流
      * @param bytes The bytes.
      * @return input stream
      */
     public static InputStream bytesToInputStream(final byte[] bytes) {
         if (bytes == null || bytes.length <= 0) return null;
-        return new ByteArrayInputStream(bytes);
+        try {
+            return new ByteArrayInputStream(bytes);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "bytesToInputStream");
+            return null;
+        }
     }
 
     /**
-     * Output stream to bytes.
+     * 输出流转 byte[]
      * @param out The output stream.
      * @return bytes
      */
     public static byte[] outputStreamToBytes(final OutputStream out) {
         if (out == null) return null;
-        return ((ByteArrayOutputStream) out).toByteArray();
+        try {
+            return ((ByteArrayOutputStream) out).toByteArray();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "outputStreamToBytes");
+            return null;
+        }
     }
 
     /**
-     * Bytes to output stream.
+     * byte[] 转 输出流
      * @param bytes The bytes.
      * @return output stream
      */
@@ -103,8 +123,8 @@ public final class StreamUtils {
     }
 
     /**
-     * Input stream to string.
-     * @param is The input stream.
+     * 输入流转 string
+     * @param is          The input stream.
      * @param charsetName The name of charset.
      * @return string
      */
@@ -119,8 +139,8 @@ public final class StreamUtils {
     }
 
     /**
-     * String to input stream.
-     * @param string The string.
+     * String 转换输入流
+     * @param string      The string.
      * @param charsetName The name of charset.
      * @return input stream
      */
@@ -135,8 +155,8 @@ public final class StreamUtils {
     }
 
     /**
-     * Output stream to string.
-     * @param out The output stream.
+     * 输出流转 string
+     * @param out         The output stream.
      * @param charsetName The name of charset.
      * @return string
      */
@@ -151,8 +171,8 @@ public final class StreamUtils {
     }
 
     /**
-     * String to output stream.
-     * @param string The string.
+     * string 转 输出流
+     * @param string      The string.
      * @param charsetName The name of charset.
      * @return output stream
      */

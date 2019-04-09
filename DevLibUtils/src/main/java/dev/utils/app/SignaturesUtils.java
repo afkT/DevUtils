@@ -15,6 +15,7 @@ import java.util.jar.JarFile;
 
 import javax.security.auth.x500.X500Principal;
 
+import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -28,10 +29,10 @@ public final class SignaturesUtils {
 
     // 日志 TAG
     private static final String TAG = SignaturesUtils.class.getSimpleName();
-
-    // 如需要小写则把ABCDEF改成小写
-    public static final char HEX_DIGITS[] = { '0', '1', '2', '3', '4', '5',
-            '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+    // 用于建立十六进制字符的输出的小写字符数组
+    public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    // 用于建立十六进制字符的输出的大写字符数组
+    public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
      * 检测应用程序是否是用"CN=Android Debug,O=Android,C=US"的debug信息来签名的
@@ -45,12 +46,7 @@ public final class SignaturesUtils {
      * @return
      */
     public static String toHexString(byte[] data) {
-        StringBuilder builder = new StringBuilder(data.length * 2);
-        for (int i = 0, len = data.length; i < len; i++) {
-            builder.append(HEX_DIGITS[(data[i] & 0xf0) >>> 4]);
-            builder.append(HEX_DIGITS[data[i] & 0x0f]);
-        }
-        return builder.toString();
+        return toHexString(data, HEX_DIGITS);
     }
 
     /**
@@ -230,6 +226,28 @@ public final class SignaturesUtils {
             return je != null ? je.getCertificates() : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "loadCertificates");
+        }
+        return null;
+    }
+
+    /**
+     * 进行十六进制转换
+     * @param data
+     * @param hexDigits
+     * @return
+     */
+    private static String toHexString(final byte[] data, final char[] hexDigits) {
+        if (data == null || hexDigits == null) return null;
+        try {
+            int len = data.length;
+            StringBuilder builder = new StringBuilder(len);
+            for (int i = 0; i < len; i++) {
+                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+                builder.append(hexDigits[data[i] & 0x0f]);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
         }
         return null;
     }

@@ -464,9 +464,9 @@ public final class ConverUtils {
 
     // ======================================================================
 
-    // 小写
+    // 用于建立十六进制字符的输出的小写字符数组
     public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    // 大写
+    // 用于建立十六进制字符的输出的大写字符数组
     public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
@@ -478,8 +478,9 @@ public final class ConverUtils {
     public static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
         try {
-            StringBuilder builder = new StringBuilder(data.length * 2);
-            for (int i = 0, len = data.length; i < len; i++) {
+            int len = data.length;
+            StringBuilder builder = new StringBuilder(len);
+            for (int i = 0; i < len; i++) {
                 builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
                 builder.append(hexDigits[data[i] & 0x0f]);
             }
@@ -630,22 +631,7 @@ public final class ConverUtils {
         return bytes;
     }
 
-    /**
-     * byte 数组转换16进制字符串
-     * @param data
-     * @return
-     */
-    public static String bytesToHexString(final byte[] data) {
-        if (data == null) return null;
-        int len = data.length;
-        if (len <= 0) return null;
-        char[] ret = new char[len << 1];
-        for (int i = 0, j = 0; i < len; i++) {
-            ret[j++] = HEX_DIGITS[data[i] >>> 4 & 0x0f];
-            ret[j++] = HEX_DIGITS[data[i] & 0x0f];
-        }
-        return new String(ret);
-    }
+    // =
 
     /**
      * 判断字符串是否为 null 或全为空白字符

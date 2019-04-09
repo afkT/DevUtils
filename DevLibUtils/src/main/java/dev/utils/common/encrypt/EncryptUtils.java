@@ -53,7 +53,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptMD2ToString(final byte[] data) {
-        return bytes2HexString(encryptMD2(data));
+        return toHexString(encryptMD2(data));
     }
 
     /**
@@ -83,9 +83,9 @@ public final class EncryptUtils {
      */
     public static String encryptMD5ToString(final String data, final String salt) {
         if (data == null && salt == null) return "";
-        if (salt == null) return bytes2HexString(encryptMD5(data.getBytes()));
-        if (data == null) return bytes2HexString(encryptMD5(salt.getBytes()));
-        return bytes2HexString(encryptMD5((data + salt).getBytes()));
+        if (salt == null) return toHexString(encryptMD5(data.getBytes()));
+        if (data == null) return toHexString(encryptMD5(salt.getBytes()));
+        return toHexString(encryptMD5((data + salt).getBytes()));
     }
 
     /**
@@ -94,7 +94,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptMD5ToString(final byte[] data) {
-        return bytes2HexString(encryptMD5(data));
+        return toHexString(encryptMD5(data));
     }
 
     /**
@@ -105,12 +105,12 @@ public final class EncryptUtils {
      */
     public static String encryptMD5ToString(final byte[] data, final byte[] salt) {
         if (data == null && salt == null) return "";
-        if (salt == null) return bytes2HexString(encryptMD5(data));
-        if (data == null) return bytes2HexString(encryptMD5(salt));
+        if (salt == null) return toHexString(encryptMD5(data));
+        if (data == null) return toHexString(encryptMD5(salt));
         byte[] dataSalt = new byte[data.length + salt.length];
         System.arraycopy(data, 0, dataSalt, 0, data.length);
         System.arraycopy(salt, 0, dataSalt, data.length, salt.length);
-        return bytes2HexString(encryptMD5(dataSalt));
+        return toHexString(encryptMD5(dataSalt));
     }
 
     /**
@@ -148,7 +148,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptMD5File2String(final File file) {
-        return bytes2HexString(encryptMD5File(file));
+        return toHexString(encryptMD5File(file));
     }
 
     /**
@@ -199,7 +199,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptSHA1ToString(final byte[] data) {
-        return bytes2HexString(encryptSHA1(data));
+        return toHexString(encryptSHA1(data));
     }
 
     /**
@@ -227,7 +227,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptSHA224ToString(final byte[] data) {
-        return bytes2HexString(encryptSHA224(data));
+        return toHexString(encryptSHA224(data));
     }
 
     /**
@@ -255,7 +255,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptSHA256ToString(final byte[] data) {
-        return bytes2HexString(encryptSHA256(data));
+        return toHexString(encryptSHA256(data));
     }
 
     /**
@@ -283,7 +283,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptSHA384ToString(final byte[] data) {
-        return bytes2HexString(encryptSHA384(data));
+        return toHexString(encryptSHA384(data));
     }
 
     /**
@@ -311,7 +311,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptSHA512ToString(final byte[] data) {
-        return bytes2HexString(encryptSHA512(data));
+        return toHexString(encryptSHA512(data));
     }
 
     /**
@@ -361,7 +361,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptHmacMD5ToString(final byte[] data, final byte[] key) {
-        return bytes2HexString(encryptHmacMD5(data, key));
+        return toHexString(encryptHmacMD5(data, key));
     }
 
     /**
@@ -392,7 +392,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptHmacSHA1ToString(final byte[] data, final byte[] key) {
-        return bytes2HexString(encryptHmacSHA1(data, key));
+        return toHexString(encryptHmacSHA1(data, key));
     }
 
     /**
@@ -423,7 +423,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptHmacSHA224ToString(final byte[] data, final byte[] key) {
-        return bytes2HexString(encryptHmacSHA224(data, key));
+        return toHexString(encryptHmacSHA224(data, key));
     }
 
     /**
@@ -454,7 +454,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptHmacSHA256ToString(final byte[] data, final byte[] key) {
-        return bytes2HexString(encryptHmacSHA256(data, key));
+        return toHexString(encryptHmacSHA256(data, key));
     }
 
     /**
@@ -485,7 +485,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptHmacSHA384ToString(final byte[] data, final byte[] key) {
-        return bytes2HexString(encryptHmacSHA384(data, key));
+        return toHexString(encryptHmacSHA384(data, key));
     }
 
     /**
@@ -516,7 +516,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptHmacSHA512ToString(final byte[] data, final byte[] key) {
-        return bytes2HexString(encryptHmacSHA512(data, key));
+        return toHexString(encryptHmacSHA512(data, key));
     }
 
     /**
@@ -572,7 +572,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptDES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
-        return bytes2HexString(encryptDES(data, key, transformation, iv));
+        return toHexString(encryptDES(data, key, transformation, iv));
     }
 
     /**
@@ -644,7 +644,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encrypt3DES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
-        return bytes2HexString(encrypt3DES(data, key, transformation, iv));
+        return toHexString(encrypt3DES(data, key, transformation, iv));
     }
 
     /**
@@ -716,7 +716,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptAES2HexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
-        return bytes2HexString(encryptAES(data, key, transformation, iv));
+        return toHexString(encryptAES(data, key, transformation, iv));
     }
 
     /**
@@ -825,7 +825,7 @@ public final class EncryptUtils {
      * @return
      */
     public static String encryptRSA2HexString(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
-        return bytes2HexString(encryptRSA(data, key, isPublicKey, transformation));
+        return toHexString(encryptRSA(data, key, isPublicKey, transformation));
     }
 
     /**
@@ -939,24 +939,40 @@ public final class EncryptUtils {
         return ret;
     }
 
-    // Hash 加密转换
-    private static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    // 用于建立十六进制字符的输出的小写字符数组
+    public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    // 用于建立十六进制字符的输出的大写字符数组
+    public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
-     * 数据加密转换16进制
-     * @param bytes
+     * 进行十六进制转换
+     * @param data
      * @return
      */
-    private static String bytes2HexString(final byte[] bytes) {
-        if (bytes == null) return null;
-        int len = bytes.length;
-        if (len <= 0) return null;
-        char[] ret = new char[len << 1];
-        for (int i = 0, j = 0; i < len; i++) {
-            ret[j++] = HEX_DIGITS[bytes[i] >>> 4 & 0x0f];
-            ret[j++] = HEX_DIGITS[bytes[i] & 0x0f];
+    private static String toHexString(final byte[] data) {
+        return toHexString(data, HEX_DIGITS);
+    }
+
+    /**
+     * 进行十六进制转换
+     * @param data
+     * @param hexDigits
+     * @return
+     */
+    private static String toHexString(final byte[] data, final char[] hexDigits) {
+        if (data == null || hexDigits == null) return null;
+        try {
+            int len = data.length;
+            StringBuilder builder = new StringBuilder(len);
+            for (int i = 0; i < len; i++) {
+                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+                builder.append(hexDigits[data[i] & 0x0f]);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
         }
-        return new String(ret);
+        return null;
     }
 
     /**

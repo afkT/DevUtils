@@ -334,8 +334,9 @@ public final class StringUtils {
     public static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
         try {
-            StringBuilder builder = new StringBuilder(data.length * 2);
-            for (int i = 0, len = data.length; i < len; i++) {
+            int len = data.length;
+            StringBuilder builder = new StringBuilder(len);
+            for (int i = 0; i < len; i++) {
                 builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
                 builder.append(hexDigits[data[i] & 0x0f]);
             }

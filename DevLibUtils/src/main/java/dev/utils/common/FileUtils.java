@@ -979,31 +979,32 @@ public final class FileUtils {
 		return null;
 	}
 
-	// 小写
-	private static final char HEX_DIGITS[]={'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
-//	// 大写
-//	private static final char HEX_DIGITS_UPPER[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+	// 用于建立十六进制字符的输出的小写字符数组
+	public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+	// 用于建立十六进制字符的输出的大写字符数组
+	public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-	/**
-	 * 进行转换
-	 * @param data
-	 * @param hexDigits
-	 * @return
-	 */
-	private static String toHexString(final byte[] data, final char[] hexDigits) {
-		if (data == null || hexDigits == null) return null;
-		try {
-			StringBuilder builder = new StringBuilder(data.length * 2);
-			for (int i = 0, len = data.length; i < len; i++) {
+    /**
+     * 进行十六进制转换
+     * @param data
+     * @param hexDigits
+     * @return
+     */
+    private static String toHexString(final byte[] data, final char[] hexDigits) {
+        if (data == null || hexDigits == null) return null;
+        try {
+			int len = data.length;
+			StringBuilder builder = new StringBuilder(len);
+			for (int i = 0; i < len; i++) {
 				builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
 				builder.append(hexDigits[data[i] & 0x0f]);
 			}
 			return builder.toString();
-		} catch (Exception e) {
-			JCLogUtils.eTag(TAG, e, "toHexString");
-		}
-		return null;
-	}
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
+        }
+        return null;
+    }
 
 	// ==============
 	// == 文件操作 ==

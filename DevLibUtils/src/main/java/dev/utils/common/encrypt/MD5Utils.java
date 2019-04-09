@@ -17,9 +17,9 @@ public final class MD5Utils {
 
     // 日志 TAG
     private static final String TAG = MD5Utils.class.getSimpleName();
-    // 小写
+    // 用于建立十六进制字符的输出的小写字符数组
     public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    // 大写
+    // 用于建立十六进制字符的输出的大写字符数组
     public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
@@ -112,8 +112,9 @@ public final class MD5Utils {
     public static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
         try {
-            StringBuilder builder = new StringBuilder(data.length * 2);
-            for (int i = 0, len = data.length; i < len; i++) {
+            int len = data.length;
+            StringBuilder builder = new StringBuilder(len);
+            for (int i = 0; i < len; i++) {
                 builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
                 builder.append(hexDigits[data[i] & 0x0f]);
             }

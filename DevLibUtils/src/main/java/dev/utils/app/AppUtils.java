@@ -34,6 +34,7 @@ import java.security.MessageDigest;
 import java.util.List;
 
 import dev.DevUtils;
+import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -896,7 +897,7 @@ public final class AppUtils {
         if (isSpace(packageName)) return "";
         Signature[] signature = getAppSignature(packageName);
         if (signature == null || signature.length <= 0) return "";
-        return bytes2HexString(hashTemplate(signature[0].toByteArray(), algorithm)).replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
+        return toHexString(hashTemplate(signature[0].toByteArray(), algorithm), HEX_DIGITS).replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
     }
 
 	// ==
@@ -950,8 +951,10 @@ public final class AppUtils {
 		return false;
 	}
 
-	// 十六进制大写转换
-	private static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+	// 用于建立十六进制字符的输出的小写字符数组
+	public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+	// 用于建立十六进制字符的输出的大写字符数组
+	public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
      * hash 加密模版方法
@@ -972,20 +975,25 @@ public final class AppUtils {
     }
 
 	/**
-	 * 数据加密转换16进制
+	 * 进行十六进制转换
 	 * @param data
+	 * @param hexDigits
 	 * @return
 	 */
-	private static String bytes2HexString(final byte[] data) {
-		if (data == null) return null;
-		int len = data.length;
-		if (len <= 0) return null;
-		char[] ret = new char[len << 1];
-		for (int i = 0, j = 0; i < len; i++) {
-			ret[j++] = HEX_DIGITS[data[i] >>> 4 & 0x0f];
-			ret[j++] = HEX_DIGITS[data[i] & 0x0f];
+	private static String toHexString(final byte[] data, final char[] hexDigits) {
+		if (data == null || hexDigits == null) return null;
+		try {
+			int len = data.length;
+			StringBuilder builder = new StringBuilder(len);
+			for (int i = 0; i < len; i++) {
+				builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+				builder.append(hexDigits[data[i] & 0x0f]);
+			}
+			return builder.toString();
+		} catch (Exception e) {
+			JCLogUtils.eTag(TAG, e, "toHexString");
 		}
-		return new String(ret);
+		return null;
 	}
 
 	// == 其他功能 ==

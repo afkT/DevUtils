@@ -21,6 +21,10 @@ public final class ByteUtils {
 
     // 日志 TAG
     private static final String TAG = ByteUtils.class.getSimpleName();
+    // 用于建立十六进制字符的输出的小写字符数组
+    public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    // 用于建立十六进制字符的输出的大写字符数组
+    public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     // 按位补运算符 例子：
     // ByteUtils.byteToBit(new byte[] { 1 }) = 00000001 (二进制字符串)
@@ -141,21 +145,32 @@ public final class ByteUtils {
     }
 
     /**
-     * 字节数组转换成 16进制字符串
+     * 进行十六进制转换
      * @param data
      * @return
      */
-    public static String getHex(final byte[] data) {
-        if (data == null) return null;
-        String HEXES = "0123456789ABCDEF";
+    public static String toHexString(final byte[] data) {
+        return toHexString(data, HEX_DIGITS_UPPER);
+    }
+
+    /**
+     * 进行十六进制转换
+     * @param data
+     * @param hexDigits
+     * @return
+     */
+    public static String toHexString(final byte[] data, final char[] hexDigits) {
+        if (data == null || hexDigits == null) return null;
         try {
-            StringBuilder builder = new StringBuilder(2 * data.length);
-            for (final byte b : data) {
-                builder.append(HEXES.charAt((b & 0xF0) >> 4)).append(HEXES.charAt((b & 0x0F)));
+            int len = data.length;
+            StringBuilder builder = new StringBuilder(len);
+            for (int i = 0; i < len; i++) {
+                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+                builder.append(hexDigits[data[i] & 0x0f]);
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getHex");
+            JCLogUtils.eTag(TAG, e, "toHexString");
         }
         return null;
     }
