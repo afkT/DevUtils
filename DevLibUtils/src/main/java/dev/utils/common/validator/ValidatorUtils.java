@@ -1,6 +1,5 @@
 package dev.utils.common.validator;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dev.utils.JCLogUtils;
@@ -16,7 +15,6 @@ public final class ValidatorUtils {
 
     // 日志 TAG
     private static final String TAG = ValidatorUtils.class.getSimpleName();
-
 
     // 正则表达式： 空格
     public static final String REGEX_SPACE = "\\s";
@@ -59,6 +57,9 @@ public final class ValidatorUtils {
 
     // 正则表达式：验证IP地址
     public static final String REGEX_IP_ADDR = "(2[5][0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})";
+
+//    // 正则表达式：验证IP地址
+//    public static final String REGEX_IP_ADDR2 = "\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\b";
 
     /**
      * 判断是否为null
@@ -242,21 +243,7 @@ public final class ValidatorUtils {
         return false;
     }
 
-    /**
-     * IP地址校验
-     * @param str 待校验是否是IP地址的字符串
-     * @return
-     */
-    public static boolean isIP(final String str) {
-        if (!isEmpty(str)) {
-            Pattern pattern = Pattern.compile("\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\b");
-            Matcher matcher = pattern.matcher(str);
-            return matcher.matches();
-        }
-        return false;
-    }
-
-    // =======
+    // =
 
 //     // http://blog.csdn.net/myfuturein/article/details/6885216
 //    [\\u0391-\\uFFE5]匹配双字节字符(汉字+符号)
@@ -266,6 +253,8 @@ public final class ValidatorUtils {
     public static final String REGEX_CHINESE = "^[\u4e00-\u9fa5]+$";
     // 正则表达式：验证汉字(含双角符号)
     public static final String REGEX_CHINESE_ALL = "^[\u0391-\uFFE5]+$";
+    // 正则表达式：验证汉字(含双角符号)
+    public static final String REGEX_CHINESE_ALL2 = "[\u0391-\uFFE5]";
 
     /**
      * 校验汉字(无符号,纯汉字)
@@ -299,12 +288,11 @@ public final class ValidatorUtils {
     public static boolean isContainChinese(final String str) {
         if (!isEmpty(str)) {
             try {
-                String chinese = "[\u0391-\uFFE5]";
                 int length;
                 if (str != null && (length = str.length()) != 0) {
                     char[] dChar = str.toCharArray();
                     for (int i = 0; i < length; i++) {
-                        boolean flag = String.valueOf(dChar[i]).matches(chinese);
+                        boolean flag = String.valueOf(dChar[i]).matches(REGEX_CHINESE_ALL2);
                         if (flag) {
                             return true;
                         }

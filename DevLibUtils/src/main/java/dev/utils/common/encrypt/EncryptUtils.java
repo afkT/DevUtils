@@ -330,7 +330,7 @@ public final class EncryptUtils {
      * @return
      */
     private static byte[] hashTemplate(final byte[] data, final String algorithm) {
-        if (data == null || data.length <= 0) return null;
+        if (data == null || data.length == 0) return null;
         try {
             MessageDigest md = MessageDigest.getInstance(algorithm);
             md.update(data);

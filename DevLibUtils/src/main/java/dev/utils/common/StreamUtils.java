@@ -78,7 +78,7 @@ public final class StreamUtils {
      * @return input stream
      */
     public static InputStream bytesToInputStream(final byte[] bytes) {
-        if (bytes == null || bytes.length <= 0) return null;
+        if (bytes == null || bytes.length == 0) return null;
         try {
             return new ByteArrayInputStream(bytes);
         } catch (Exception e) {
@@ -108,7 +108,7 @@ public final class StreamUtils {
      * @return output stream
      */
     public static OutputStream bytesToOutputStream(final byte[] bytes) {
-        if (bytes == null || bytes.length <= 0) return null;
+        if (bytes == null || bytes.length == 0) return null;
         ByteArrayOutputStream os = null;
         try {
             os = new ByteArrayOutputStream();

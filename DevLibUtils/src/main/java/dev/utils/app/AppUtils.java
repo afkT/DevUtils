@@ -895,7 +895,7 @@ public final class AppUtils {
     private static String getAppSignatureHash(final String packageName, final String algorithm) {
         if (isSpace(packageName)) return "";
         Signature[] signature = getAppSignature(packageName);
-        if (signature == null || signature.length <= 0) return "";
+        if (signature == null || signature.length == 0) return "";
         return toHexString(hashTemplate(signature[0].toByteArray(), algorithm), HEX_DIGITS).replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
     }
 
@@ -962,7 +962,7 @@ public final class AppUtils {
      * @return
      */
     private static byte[] hashTemplate(final byte[] data, final String algorithm) {
-        if (data == null || data.length <= 0) return null;
+        if (data == null || data.length == 0) return null;
         try {
             MessageDigest md = MessageDigest.getInstance(algorithm);
             md.update(data);

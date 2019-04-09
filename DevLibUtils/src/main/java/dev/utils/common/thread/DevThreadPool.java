@@ -35,8 +35,6 @@ public final class DevThreadPool {
 //                Executors.defaultThreadFactory(), defaultHandler);
 //    }
 
-    // =
-
     // 线程池对象
     private final ExecutorService threadPool;
     // 定时任务线程池
@@ -62,6 +60,8 @@ public final class DevThreadPool {
      */
     public DevThreadPool(final ExecutorService threadPool) {
         this.threadPool = threadPool;
+        // 初始化定时器任务
+        this.scheduleExec = Executors.newScheduledThreadPool(getThreads());
     }
 
     /**
@@ -73,7 +73,6 @@ public final class DevThreadPool {
         this.scheduleExec = Executors.newScheduledThreadPool(getThreads());
         // =
         if (devThreadPoolType != null) {
-            // =
             switch (devThreadPoolType) {
                 case SINGLE:
                     threadPool = Executors.newSingleThreadExecutor();
@@ -138,24 +137,24 @@ public final class DevThreadPool {
      */
     public final int getThreads() {
         // 使用计算过后的
-        return getCaclThreads();
+        return getCalcThreads();
     }
 
     /**
      * 获取线程数
      * @return
      */
-    public final int getCaclThreads() {
+    public final int getCalcThreads() {
         // 获取CPU核心数
-        int cNumber = Runtime.getRuntime().availableProcessors();
+        int cpuNumber = Runtime.getRuntime().availableProcessors();
         // 如果小于等于5,则返回5
-        if (cNumber <= 5) {
+        if (cpuNumber <= 5) {
             return 5;
         } else { // 大于5的情况
-            if (cNumber * 2 + 1 >= 10) { // 防止线程数量过大,当大于10 的时候,返回 10
+            if (cpuNumber * 2 + 1 >= 10) { // 防止线程数量过大,当大于10 的时候,返回 10
                 return 10;
             } else { // 不大于10的时候,默认返回 支持的数量 * 2 + 1
-                return cNumber * 2 + 1;
+                return cpuNumber * 2 + 1;
             }
         }
     }
@@ -392,7 +391,7 @@ public final class DevThreadPool {
         return null;
     }
 
-    // ==
+    // =
 
     /**
      * 延迟执行Runnable命令

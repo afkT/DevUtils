@@ -540,7 +540,7 @@ public final class ConverUtils {
      * @return 二进制字符串
      */
     public static String bytesToBits(final byte... datas) {
-        if (datas == null || datas.length <= 0) return null;
+        if (datas == null || datas.length == 0) return null;
         StringBuilder builder = new StringBuilder();
         for (byte value : datas) {
             for (int j = 7; j >= 0; --j) {

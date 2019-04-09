@@ -22,6 +22,79 @@ public final class BankCheckUtils {
     private BankCheckUtils() {
     }
 
+    /**
+     * 校验银行卡卡号 是否合法
+     * @param cardId
+     * @return
+     */
+    public static boolean checkBankCard(final String cardId) {
+        if (cardId == null || cardId.trim().length() == 0) return false;
+        try {
+            char bit = getBankCardCheckCode(cardId.substring(0, cardId.length() - 1));
+            if (bit == 'N') return false;
+            return (cardId.charAt(cardId.length() - 1) == bit);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * 从不含校验位的银行卡卡号采用 Luhm 校验算法获取校验位
+     * @param nonCheckCodeCardId
+     * @return
+     */
+    public static char getBankCardCheckCode(final String nonCheckCodeCardId) {
+        try {
+            if (nonCheckCodeCardId == null
+                    || nonCheckCodeCardId.trim().length() == 0
+                    || !nonCheckCodeCardId.matches("\\d+")) {
+                // 如果传的不是数据返回N
+                return 'N';
+            }
+            char[] chs = nonCheckCodeCardId.trim().toCharArray();
+            int luhmSum = 0;
+            int len = chs.length;
+            for (int i = len - 1, j = 0; i >= 0; i--, j++) {
+                int k = chs[i] - '0';
+                if (j % 2 == 0) {
+                    k *= 2;
+                    k = k / 10 + k % 10;
+                }
+                luhmSum += k;
+            }
+            return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
+        } catch (Exception e) {
+            return 'N';
+        }
+    }
+
+    /**
+     * 通过银行卡 的前六位确定 判断银行开户行及卡种
+     * @param cardBin
+     * @return
+     */
+    public static String getNameOfBank(final String cardBin) {
+        if (cardBin == null || cardBin.trim().length() < 6) return "";
+        try {
+            // 通过银行卡的前6位确定
+            String cardBin6 = cardBin.trim().substring(0, 6);
+            int index = -1;
+            for (int i = 0, len = BANKBIN.length; i < len; i++) {
+                if (cardBin6.equals(BANKBIN[i])) {
+                    index = i;
+                }
+            }
+            if (index == -1) {
+                return "";
+            }
+            return BANKNAME[index];
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    // =
+
     /*
      * 银行卡是由”发卡行标识代码 + 自定义 + 校验码 “等部分组成的 BIN号 银联标准卡与以往发行的银行卡最直接的区别就是其卡号前6位数字的不同。
      * 银行卡卡号的前6位是用来表示发卡银行或机构的，称为“发卡行识别码”(Bank Identification Number，缩写为“BIN”)。
@@ -654,71 +727,4 @@ public final class BankCheckUtils {
             "重庆农村商业银行·银联标准贷记卡", "重庆农村商业银行·公务卡", "南阳村镇银行·玉都卡",
             "晋中市榆次融信村镇银行·魏榆卡", "三水珠江村镇银行·珠江太阳卡", "东营莱商村镇银行·绿洲卡", "建设银行·单位结算卡",
             "玉溪市商业银行·红塔卡"};
-
-    /**
-     * 校验银行卡卡号 是否合法
-     * @param cardId
-     * @return
-     */
-    public static boolean checkBankCard(final String cardId) {
-        if (cardId == null || cardId.trim().length() == 0) return false;
-        char bit = getBankCardCheckCode(cardId.substring(0, cardId.length() - 1));
-        if (bit == 'N') return false;
-        return (cardId.charAt(cardId.length() - 1) == bit);
-    }
-
-    /**
-     * 从不含校验位的银行卡卡号采用 Luhm 校验算法获取校验位
-     * @param nonCheckCodeCardId
-     * @return
-     */
-    public static char getBankCardCheckCode(final String nonCheckCodeCardId) {
-        try {
-            if (nonCheckCodeCardId == null
-                    || nonCheckCodeCardId.trim().length() == 0
-                    || !nonCheckCodeCardId.matches("\\d+")) {
-                // 如果传的不是数据返回N
-                return 'N';
-            }
-            char[] chs = nonCheckCodeCardId.trim().toCharArray();
-            int luhmSum = 0;
-            int len = chs.length;
-            for (int i = len - 1, j = 0; i >= 0; i--, j++) {
-                int k = chs[i] - '0';
-                if (j % 2 == 0) {
-                    k *= 2;
-                    k = k / 10 + k % 10;
-                }
-                luhmSum += k;
-            }
-            return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
-        } catch (Exception e) {
-            return 'N';
-        }
-    }
-
-    /**
-     * 通过银行卡 的前六位确定 判断银行开户行及卡种
-     * @param cardBin
-     * @return
-     */
-    public static String getNameOfBank(final String cardBin) {
-        if (cardBin == null || cardBin.trim().length() < 6) return "";
-        try {
-            // 通过银行卡的前6位确定
-            String cardBin6 = cardBin.substring(0, 6);
-            int index = -1;
-            for (int i = 0, len = BANKBIN.length; i < len; i++) {
-                if (cardBin6.equals(BANKBIN[i])) {
-                    index = i;
-                }
-            }
-            if (index == -1) {
-                return "";
-            }
-            return BANKNAME[index];
-        } catch (Exception e) {
-            return "";
-        }
-    }
 }

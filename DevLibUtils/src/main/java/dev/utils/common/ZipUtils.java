@@ -173,7 +173,7 @@ public final class ZipUtils {
         if (resFile.isDirectory()) {
             File[] fileList = resFile.listFiles();
             // 如果是空文件夹那么创建它，我把'/'换为File.separator测试就不成功，eggPain
-            if (fileList == null || fileList.length <= 0) {
+            if (fileList == null || fileList.length == 0) {
                 ZipEntry entry = new ZipEntry(rootPath + '/');
                 entry.setComment(comment);
                 zos.putNextEntry(entry);

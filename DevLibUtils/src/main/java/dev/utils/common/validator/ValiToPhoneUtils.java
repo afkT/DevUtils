@@ -24,7 +24,7 @@ public final class ValiToPhoneUtils {
      * @param str
      * @return
      */
-    public static boolean isEmpty(final String str) {
+    private static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
     }
 
@@ -34,7 +34,7 @@ public final class ValiToPhoneUtils {
      * @param input
      * @return
      */
-    public static boolean match(final String regex, final String input) {
+    private static boolean match(final String regex, final String input) {
         try {
             return Pattern.matches(regex, input);
         } catch (Exception e) {
@@ -155,7 +155,9 @@ public final class ValiToPhoneUtils {
     public static final String PHONE_CALL_PATTERN = "^(?:\\(\\d{3,4}\\)|\\d{3,4}-)?\\d{7,8}(?:-\\d{1,4})?$";
 
     static {
-        // ====== 中国电信 ======
+
+        // = 中国电信 =
+
         // 电信：133、153、180、181、189 、177(4G)、149、173、174、199
         // 进行拼接字符串,便于理解,后期修改
         StringBuffer buffer = new StringBuffer();
@@ -172,9 +174,9 @@ public final class ValiToPhoneUtils {
         buffer.append("^19[9]{1}\\d{8}$"); // 19开头
         // 手机正则
         CHINA_TELECOM_PATTERN = buffer.toString();
-        // =======================
 
-        // ====== 中国联通 ======
+        // = 中国联通 =
+
         // 联通：130、131、132、155、156、185、186、176(4G)、145(上网卡)、146、166、171、175
         // 进行拼接字符串,便于理解,后期修改
         buffer = new StringBuffer();
@@ -191,9 +193,9 @@ public final class ValiToPhoneUtils {
         buffer.append("^18[5,6]{1}\\d{8}$"); // 18开头
         // 手机正则
         CHINA_UNICOM_PATTERN = buffer.toString();
-        // =======================
 
-        // ====== 中国移动 ======
+        // = 中国移动 =
+
         // 移动：134、135、136、137、138、139、150、151、152、157、158、159、182、183、184、187、188、178(4G)、147(上网卡)、148、172、198
         // 进行拼接字符串,便于理解,后期修改
         buffer = new StringBuffer();
@@ -210,7 +212,7 @@ public final class ValiToPhoneUtils {
         buffer.append("^19[8]{1}\\d{8}$"); // 19开头
         // 手机正则
         CHINA_MOBILE_PATTERN = buffer.toString();
-        // =======================
+
 
         /**
          * 验证手机号是否正确

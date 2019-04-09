@@ -10,7 +10,7 @@ import dev.utils.JCLogUtils;
 /**
  * detail: AES 对称加密
  * Created by Ttt
- * =============
+ * ==============
  * Advanced Encryption Standard，高级数据加密标准，AES算法可以有效抵制针对 DES 的攻击算法，对称加密算法
  */
 public final class AESUtils {
