@@ -7,6 +7,18 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 转换工具类(Byte、Hex等)
  * Created by Ttt
+ * ==============
+ * byte 是字节数据类型、有符号型的、占1个字节、大小范围为 [ -128 - 127]
+ * 当大于127时则开始缩进  127 = 127, 128 = -128 , 129 = -127
+ * =
+ * char 是字符数据类型、无符号型的、占2个字节(unicode码)、大小范围为 [0 - 65535]
+ * 48 - 57 = 0-9
+ * 58 - 64 = :;<=>?@
+ * 65 - 90 = A-Z
+ * 91 - 96 = [\]^_`
+ * 97 - 122 = a-z
+ * =
+ *
  */
 public final class ConvertUtils {
 
@@ -20,21 +32,34 @@ public final class ConvertUtils {
     // 用于建立十六进制字符的输出的大写字符数组
     public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-    // byte 是字节数据类型、有符号型的、占1个字节、大小范围为-128——127
-    // char 是字符数据类型、无符号型的、占2个字节(unicode码)、大小范围为0-65535
-
-    // byte[] (-128) - 127
-    // 当大于127时则开始缩进  127 = 127, 128 = -128 , 129 = -127
+    /**
+     * char[] 转 String
+     * @param data
+     * @return
+     */
+    public static String toString(final char[] data) {
+        return toString(data, null);
+    }
 
     /**
-     * char 数组 转 String
-     *
+     * byte[] 转 String
+     * @param data
+     * @return
+     */
+    public static String toString(final byte[] data) {
+        return toString(data, null);
+    }
+
+    // =
+
+    /**
+     * char[] 转 String
      * @param data
      * @param defaultStr
      * @return
      */
     public static String toString(final char[] data, final String defaultStr) {
-        if (data != null) {
+        if (length(data) == 0) {
             try {
                 return new String(data);
             } catch (Exception e) {
@@ -45,8 +70,7 @@ public final class ConvertUtils {
     }
 
     /**
-     * byte 数组 转 String
-     *
+     * byte[] 转 String
      * @param data
      * @param defaultStr
      * @return
@@ -62,12 +86,12 @@ public final class ConvertUtils {
         return defaultStr;
     }
 
+    // =
+
     /**
      * char 转 String
-     *
      * @param data
-     * @return 97 - 122 = a-z, 48-57 = 0-9
-     * toString((char) 97); = a
+     * @return
      */
     public static String toString(final char data) {
         try {
@@ -79,9 +103,34 @@ public final class ConvertUtils {
     }
 
     /**
+     * byte 转 String
+     * @param data
+     * @return
+     */
+    public static String toString(final byte data) {
+        try {
+            return Byte.toString(data);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toString");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * Object 转 String
-     *
      * @param object
+     * @return
+     */
+    public static String toString(final Object object) {
+        return toString(object, null);
+    }
+
+    /**
+     * Object 转 String
+     * @param object
+     * @param defaultStr
      * @return
      */
     public static String toString(final Object object, final String defaultStr) {
@@ -93,7 +142,7 @@ public final class ConvertUtils {
                     Class<?> clazz = object.getClass();
                     // 判断是否数组类型
                     if (clazz.isArray()) {
-                        // == 基本数据类型 ==
+                        // = 基本数据类型 =
                         if (clazz.isAssignableFrom(int[].class)) {
                             return Arrays.toString((int[]) object);
                         } else if (clazz.isAssignableFrom(boolean[].class)) {
@@ -111,7 +160,7 @@ public final class ConvertUtils {
                         } else if (clazz.isAssignableFrom(short[].class)) {
                             return Arrays.toString((short[]) object);
                         }
-                        // == 基本类型封装 ==
+                        // = 基本类型封装 =
                         if (clazz.isAssignableFrom(Integer[].class)) {
                             return Arrays.toString((Integer[]) object);
                         } else if (clazz.isAssignableFrom(Boolean[].class)) {
@@ -139,9 +188,10 @@ public final class ConvertUtils {
         return defaultStr;
     }
 
+    // =
+
     /**
      * 字符串 转 int
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -158,7 +208,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 boolean
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -180,7 +229,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 float
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -197,7 +245,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 double
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -214,7 +261,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 long
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -229,7 +275,7 @@ public final class ConvertUtils {
         return defaultValue;
     }
 
-    // == 转换对象 ==
+    // = 转换对象 =
 
     /**
      * 基本类型对象 转 int
@@ -309,7 +355,7 @@ public final class ConvertUtils {
         return defaultValue;
     }
 
-    // == 平常其他 ==
+    // = 平常其他 =
 
     /**
      * char 转换 int
@@ -606,6 +652,7 @@ public final class ConvertUtils {
 
     /**
      * byte[] 转换 char[], 并且进行补码
+     *
      * @param data
      * @return chars
      */
@@ -627,6 +674,7 @@ public final class ConvertUtils {
 
     /**
      * char[] 转换 byte[]
+     *
      * @param data
      * @return
      */
@@ -650,6 +698,7 @@ public final class ConvertUtils {
 
     /**
      * 将十六进制字节数组解码
+     *
      * @param data 十六进制byte[]
      * @return byte[]
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
@@ -660,6 +709,7 @@ public final class ConvertUtils {
 
     /**
      * 将十六进制字符串解码
+     *
      * @param str 十六进制字符串
      * @return byte[]
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
@@ -670,6 +720,7 @@ public final class ConvertUtils {
 
     /**
      * 将十六进制字符数组解码
+     *
      * @param data 十六进制 char[]
      * @return byte[]
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
@@ -696,6 +747,7 @@ public final class ConvertUtils {
 
     /**
      * 将十六进制字符转换成一个整数
+     *
      * @param ch    十六进制 char
      * @param index 十六进制字符在字符数组中的位置
      * @return 一个整数
@@ -713,6 +765,7 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换为 十六进制 char[]
+     *
      * @param str
      * @return 十六进制 char[]
      */
@@ -722,6 +775,7 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换为 十六进制 char[]
+     *
      * @param str
      * @param toLowerCase true: 小写格式, false: 大写格式
      * @return 十六进制 char[]
@@ -734,6 +788,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换为 十六进制 char[]
+     *
      * @param data byte[]
      * @return 十六进制 char[]
      */
@@ -743,6 +798,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换为 十六进制 char[]
+     *
      * @param data        byte[]
      * @param toLowerCase true: 小写格式, false: 大写格式
      * @return 十六进制 char[]
@@ -753,6 +809,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换为 十六进制 char[]
+     *
      * @param data      byte[]
      * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
      * @return 十六进制 char[]
@@ -771,6 +828,7 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换 十六进制字符串
+     *
      * @param str
      * @return
      */
@@ -780,6 +838,7 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换 十六进制字符串
+     *
      * @param str
      * @param toLowerCase true: 小写格式, false: 大写格式
      * @return
@@ -792,6 +851,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
+     *
      * @param data
      * @return
      */
@@ -801,6 +861,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
+     *
      * @param data
      * @param toLowerCase true: 小写格式, false: 大写格式
      * @return
@@ -811,6 +872,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
+     *
      * @param data
      * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
      * @return
