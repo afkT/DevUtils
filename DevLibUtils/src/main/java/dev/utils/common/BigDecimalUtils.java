@@ -471,88 +471,111 @@ public final class BigDecimalUtils {
         return true;
     }
 
-//    // =
-//
-//    /**
-//     * 金额分割，四舍五入金额
-//     * @param value       金额/数值
-//     * @param scale       小数点后保留几位
-//     * @param mode        处理模式
-//     * @param splitNumber 拆分位数
-//     * @param splitSymbol 拆分符号
-//     * @return
-//     */
-//    public static String formatMoney(final BigDecimal value, final int scale, final int mode, final int splitNumber, final int splitSymbol) {
-//        if (value == null) return null;
-//        try {
-//            // 如果等于 0, 直接返回
-//            if (value.doubleValue() == 0){
-//                return value.setScale(scale, mode).toPlainString();
-//            }
-//            // 获取原始值字符串
-//            value.toPlainString();
-//
-//        } catch (Exception e){
-//            JCLogUtils.eTag(TAG, e, "formatMoney");
-//        }
-//        return null;
-//    }
+    // =
 
     /**
      * 金额分割，四舍五入金额
-     * @param value
+     * @param value 金额/数值
      * @return
      */
     public static String formatMoney(final BigDecimal value) {
-        if (null == value) return "0.00";
-        try {
-            if (0 == value.doubleValue()) return "0.00";
-            String retVal = "";
-            String str = "";
-            boolean is_positive_integer;
-            // 判断是否正整数
-            if (value.toString().indexOf("-") != -1) {
-                is_positive_integer = true;
-            } else {
-                is_positive_integer = false;
-            }
-            BigDecimal bigDecimal = value;
-            // 是负整数
-            if (is_positive_integer) {
-                // 去掉 - 号
-                bigDecimal = new BigDecimal(bigDecimal.toString().substring(1));
-            }
-            str = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString();
-            StringBuffer buffer = new StringBuffer();
-            String[] strs = str.split("\\.");
-            int j = 1;
-            for (int i = 0; i < strs[0].length(); i++) {
-                char a = strs[0].charAt(strs[0].length() - i - 1);
-                buffer.append(a);
-                if (j % 3 == 0 && i != strs[0].length() - 1) {
-                    buffer.append(",");
-                }
-                j++;
-            }
-            String str1 = buffer.toString();
-            StringBuffer buffer1 = new StringBuffer();
-            for (int i = 0; i < str1.length(); i++) {
-                char a = str1.charAt(str1.length() - 1 - i);
-                buffer1.append(a);
-            }
-            buffer1.append(".");
-            buffer1.append(strs[1]);
-            retVal = buffer1.toString();
+        return formatMoney(value, 2, BigDecimal.ROUND_HALF_UP, 3, ",");
+    }
 
-            if (is_positive_integer) {
-                retVal = "-" + retVal;
+    /**
+     * 金额分割，四舍五入金额
+     * @param value 金额/数值
+     * @param scale 小数点后保留几位
+     * @return
+     */
+    public static String formatMoney(final BigDecimal value, final int scale) {
+        return formatMoney(value, scale, BigDecimal.ROUND_HALF_UP, 3, ",");
+    }
+
+    /**
+     * 金额分割，四舍五入金额
+     * @param value 金额/数值
+     * @param scale 小数点后保留几位
+     * @param mode  处理模式
+     * @return
+     */
+    public static String formatMoney(final BigDecimal value, final int scale, final int mode) {
+        return formatMoney(value, scale, mode, 3, ",");
+    }
+
+    /**
+     * 金额分割，四舍五入金额
+     * @param value       金额/数值
+     * @param scale       小数点后保留几位
+     * @param mode        处理模式
+     * @param splitNumber 拆分位数
+     * @return
+     */
+    public static String formatMoney(final BigDecimal value, final int scale, final int mode, final int splitNumber) {
+        return formatMoney(value, scale, mode, splitNumber, ",");
+    }
+
+    /**
+     * 金额分割，四舍五入金额
+     * @param value       金额/数值
+     * @param scale       小数点后保留几位
+     * @param mode        处理模式
+     * @param splitNumber 拆分位数
+     * @param splitSymbol 拆分符号
+     * @return
+     */
+    public static String formatMoney(final BigDecimal value, final int scale, final int mode, final int splitNumber, final String splitSymbol) {
+        if (value == null) return null;
+        try {
+            // 如果等于 0, 直接返回
+            if (value.doubleValue() == 0) {
+                return value.setScale(scale, mode).toPlainString();
             }
-            return retVal;
+            // 获取原始值字符串 - 非科学计数法
+            String valuePlain = value.toPlainString();
+            // 判断是否负数
+            boolean isNegative = valuePlain.startsWith("-");
+            // 处理后的数据
+            BigDecimal bigDecimal = new BigDecimal(isNegative ? valuePlain.substring(1) : valuePlain);
+            // 范围处理
+            valuePlain = bigDecimal.setScale(scale, mode).toPlainString();
+            // 进行拆分小数点处理
+            String values[] = valuePlain.split("\\.");
+            // 判断是否存在小数点
+            boolean isDecimal = (values.length == 2);
+
+            // 拼接符号
+            String symbol = (splitSymbol != null) ? splitSymbol : "";
+            // 防止出现负数
+            int number = Math.max(splitNumber, 0);
+            // 格式化数据 - 拼接处理
+            StringBuffer buffer = new StringBuffer();
+            // 进行处理小数点前的数值
+            for (int len = values[0].length() - 1, i = len, splitPos = 1; i >= 0; i--) {
+                // 获取数据
+                char ch = values[0].charAt(i);
+                buffer.append(ch); // 保存数据
+                // 判断是否需要追加符号
+                if (number > 0 && splitPos % number == 0 && i != 0) {
+                    buffer.append(symbol);
+                }
+                splitPos++;
+            }
+            // 倒序处理
+            buffer.reverse();
+            // 存在小数点, 则进行拼接
+            if (isDecimal) {
+                buffer.append(".").append(values[1]);
+            }
+            // 判断是否负数
+            return isNegative ? "-" + buffer.toString() : buffer.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "formatMoney");
         }
         return null;
     }
+
+    // =
 
     /**
      * 获取自己想要的数据格式
