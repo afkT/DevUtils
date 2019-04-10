@@ -1,7 +1,7 @@
 package dev.utils.common.cipher;
 
 import dev.utils.common.ByteUtils;
-import dev.utils.common.HexUtils;
+import dev.utils.common.ConvertUtils;
 
 /**
  * detail: 加密工具类
@@ -31,7 +31,7 @@ public final class CipherUtils {
         if (object == null) return null;
         byte[] bytes = ByteUtils.objectToBytes(object);
         if (cipher != null) bytes = cipher.encrypt(bytes);
-        return HexUtils.encodeHexStr(bytes);
+        return ConvertUtils.toHexString(bytes);
     }
 
     // =
@@ -53,7 +53,7 @@ public final class CipherUtils {
      */
     public static Object decrypt(final String hex, final Cipher cipher) {
         if (hex == null) return null;
-        byte[] bytes = HexUtils.decodeHex(hex.toCharArray());
+        byte[] bytes = ConvertUtils.decodeHex(hex.toCharArray());
         if (cipher != null) bytes = cipher.decrypt(bytes);
         return ByteUtils.bytesToObject(bytes);
     }

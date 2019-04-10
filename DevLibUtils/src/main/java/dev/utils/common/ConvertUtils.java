@@ -5,16 +5,20 @@ import java.util.Arrays;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 转换工具类
+ * detail: 转换工具类(Byte、Hex等)
  * Created by Ttt
  */
-public final class ConverUtils {
+public final class ConvertUtils {
 
-    private ConverUtils() {
+    private ConvertUtils() {
     }
 
     // 日志 TAG
-    private static final String TAG = ConverUtils.class.getSimpleName();
+    private static final String TAG = ConvertUtils.class.getSimpleName();
+    // 用于建立十六进制字符的输出的小写字符数组
+    public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    // 用于建立十六进制字符的输出的大写字符数组
+    public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     // byte 是字节数据类型、有符号型的、占1个字节、大小范围为-128——127
     // char 是字符数据类型、无符号型的、占2个字节(unicode码)、大小范围为0-65535
@@ -24,6 +28,7 @@ public final class ConverUtils {
 
     /**
      * char 数组 转 String
+     *
      * @param data
      * @param defaultStr
      * @return
@@ -41,6 +46,7 @@ public final class ConverUtils {
 
     /**
      * byte 数组 转 String
+     *
      * @param data
      * @param defaultStr
      * @return
@@ -58,9 +64,9 @@ public final class ConverUtils {
 
     /**
      * char 转 String
+     *
      * @param data
-     * @return
-     * 97 - 122 = a-z, 48-57 = 0-9
+     * @return 97 - 122 = a-z, 48-57 = 0-9
      * toString((char) 97); = a
      */
     public static String toString(final char data) {
@@ -74,6 +80,7 @@ public final class ConverUtils {
 
     /**
      * Object 转 String
+     *
      * @param object
      * @return
      */
@@ -134,6 +141,7 @@ public final class ConverUtils {
 
     /**
      * 字符串 转 int
+     *
      * @param str
      * @param defaultValue
      * @return
@@ -150,6 +158,7 @@ public final class ConverUtils {
 
     /**
      * 字符串 转 boolean
+     *
      * @param str
      * @param defaultValue
      * @return
@@ -171,6 +180,7 @@ public final class ConverUtils {
 
     /**
      * 字符串 转 float
+     *
      * @param str
      * @param defaultValue
      * @return
@@ -187,6 +197,7 @@ public final class ConverUtils {
 
     /**
      * 字符串 转 double
+     *
      * @param str
      * @param defaultValue
      * @return
@@ -203,6 +214,7 @@ public final class ConverUtils {
 
     /**
      * 字符串 转 long
+     *
      * @param str
      * @param defaultValue
      * @return
@@ -221,6 +233,7 @@ public final class ConverUtils {
 
     /**
      * 基本类型对象 转 int
+     *
      * @param value
      * @param defaultValue
      * @return
@@ -237,6 +250,7 @@ public final class ConverUtils {
 
     /**
      * 基本类型对象 转 boolean
+     *
      * @param value
      * @return
      */
@@ -246,6 +260,7 @@ public final class ConverUtils {
 
     /**
      * 基本类型对象 转 float
+     *
      * @param value
      * @param defaultValue
      * @return
@@ -262,6 +277,7 @@ public final class ConverUtils {
 
     /**
      * 基本类型对象 转 double
+     *
      * @param value
      * @param defaultValue
      * @return
@@ -278,6 +294,7 @@ public final class ConverUtils {
 
     /**
      * 基本类型对象 转 long
+     *
      * @param value
      * @param defaultValue
      * @return
@@ -296,6 +313,7 @@ public final class ConverUtils {
 
     /**
      * char 转换 int
+     *
      * @param value
      * @return
      */
@@ -305,6 +323,7 @@ public final class ConverUtils {
 
     /**
      * 字符串 获取 char (默认第一位)
+     *
      * @param str
      * @param defaultValue
      * @return
@@ -315,6 +334,7 @@ public final class ConverUtils {
 
     /**
      * 字符串 获取 char
+     *
      * @param str
      * @param pos
      * @param defaultValue
@@ -332,6 +352,7 @@ public final class ConverUtils {
 
     /**
      * char 转换 unicode 编码
+     *
      * @param value
      * @return toCharInt(' a ') = 97
      */
@@ -341,6 +362,7 @@ public final class ConverUtils {
 
     /**
      * 字符串 获取 char[]
+     *
      * @param str
      * @return
      */
@@ -356,6 +378,7 @@ public final class ConverUtils {
 
     /**
      * 字符串 获取 byte[]
+     *
      * @param str
      * @return
      */
@@ -382,6 +405,7 @@ public final class ConverUtils {
 
     /**
      * 一个 int 参数的字符串表示形式在基数为16的无符号 int
+     *
      * @param value
      * @return 例如 -> 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
      */
@@ -396,6 +420,7 @@ public final class ConverUtils {
 
     /**
      * 一个 long 参数的字符串表示形式在基数为16的无符号 long
+     *
      * @param value
      * @return
      */
@@ -410,6 +435,7 @@ public final class ConverUtils {
 
     /**
      * 一个 double 参数的字符串表示形式在基数为16的无符号 double
+     *
      * @param value
      * @return
      */
@@ -424,6 +450,7 @@ public final class ConverUtils {
 
     /**
      * 一个 float 参数的字符串表示形式在基数为16的无符号 float
+     *
      * @param value
      * @return
      */
@@ -440,6 +467,7 @@ public final class ConverUtils {
 
     /**
      * 字符串转换对应的进制
+     *
      * @param str
      * @param radix
      * @return 如: parseInt("1f603", 16) = 128515
@@ -464,35 +492,9 @@ public final class ConverUtils {
 
     // ======================================================================
 
-    // 用于建立十六进制字符的输出的小写字符数组
-    public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    // 用于建立十六进制字符的输出的大写字符数组
-    public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-
-    /**
-     * 进行十六进制转换
-     * @param data
-     * @param hexDigits
-     * @return
-     */
-    public static String toHexString(final byte[] data, final char[] hexDigits) {
-        if (data == null || hexDigits == null) return null;
-        try {
-            int len = data.length;
-            StringBuilder builder = new StringBuilder(len);
-            for (int i = 0; i < len; i++) {
-                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-                builder.append(hexDigits[data[i] & 0x0f]);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toHexString");
-        }
-        return null;
-    }
-
     /**
      * 十六进制字符串 转换byte数组
+     *
      * @param hex
      * @return
      */
@@ -519,6 +521,7 @@ public final class ConverUtils {
 
     /**
      * 十六进制 char 转换 int
+     *
      * @param hexChar
      * @return
      */
@@ -536,6 +539,7 @@ public final class ConverUtils {
 
     /**
      * 将 字节转换 为 二进制字符串
+     *
      * @param datas 字节数组
      * @return 二进制字符串
      */
@@ -569,6 +573,7 @@ public final class ConverUtils {
     /**
      * 二进制字符串, 转换成 byte[]
      * 例: "011000010111001101100100" 传入 bitsToBytes, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 bytesToBits 使用
+     *
      * @param str The bits.
      * @return bytes
      */
@@ -600,38 +605,251 @@ public final class ConverUtils {
     }
 
     /**
-     * byte 数组 转换 char 数组, 并且进行补码
-     * @param data The bytes.
+     * byte[] 转换 char[], 并且进行补码
+     * @param data
      * @return chars
      */
     public static char[] bytesToChars(final byte[] data) {
         if (data == null) return null;
         int len = data.length;
-        if (len <= 0) return null;
-        char[] chars = new char[len];
-        for (int i = 0; i < len; i++) {
-            chars[i] = (char) (data[i] & 0xff);
+        if (len == 0) return null;
+        try {
+            char[] chars = new char[len];
+            for (int i = 0; i < len; i++) {
+                chars[i] = (char) (data[i] & 0xff);
+            }
+            return chars;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "bytesToChars");
         }
-        return chars;
+        return null;
     }
 
     /**
-     * char 数组 转换 byte 数组
-     * @param data The chars.
-     * @return bytes
+     * char[] 转换 byte[]
+     * @param data
+     * @return
      */
     public static byte[] charsToBytes(final char[] data) {
         if (data == null) return null;
         int len = data.length;
-        if (len <= 0) return null;
-        byte[] bytes = new byte[len];
-        for (int i = 0; i < len; i++) {
-            bytes[i] = (byte) (data[i]);
+        if (len == 0) return null;
+        try {
+            byte[] bytes = new byte[len];
+            for (int i = 0; i < len; i++) {
+                bytes[i] = (byte) (data[i]);
+            }
+            return bytes;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "charsToBytes");
         }
-        return bytes;
+        return null;
+    }
+
+    // = Hex - 十六进制处理 =
+
+    /**
+     * 将十六进制字节数组解码
+     * @param data 十六进制byte[]
+     * @return byte[]
+     * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
+     */
+    public static byte[] decodeHex(final byte[] data) {
+        return decodeHex((length(data) == 0) ? null : bytesToChars(data));
+    }
+
+    /**
+     * 将十六进制字符串解码
+     * @param str 十六进制字符串
+     * @return byte[]
+     * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
+     */
+    public static byte[] decodeHex(final String str) {
+        return decodeHex(isEmpty(str) ? null : str.toCharArray());
+    }
+
+    /**
+     * 将十六进制字符数组解码
+     * @param data 十六进制 char[]
+     * @return byte[]
+     * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
+     */
+    public static byte[] decodeHex(final char[] data) {
+        if (data == null) return null;
+        try {
+            int len = data.length;
+            byte[] out = new byte[len >> 1];
+            // 16进制由两个字符组成
+            for (int i = 0, j = 0; j < len; i++) {
+                int f = toDigit(data[j], j) << 4;
+                j++;
+                f = f | toDigit(data[j], j);
+                j++;
+                out[i] = (byte) (f & 0xFF);
+            }
+            return out;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "decodeHex");
+        }
+        return null;
+    }
+
+    /**
+     * 将十六进制字符转换成一个整数
+     * @param ch    十六进制 char
+     * @param index 十六进制字符在字符数组中的位置
+     * @return 一个整数
+     * @throws RuntimeException 当ch不是一个合法的十六进制字符时，抛出运行时异常
+     */
+    private static int toDigit(final char ch, final int index) {
+        int digit = Character.digit(ch, 16);
+        if (digit == -1) {
+            throw new RuntimeException("Illegal hexadecimal character " + ch + " at index " + index);
+        }
+        return digit;
     }
 
     // =
+
+    /**
+     * 将 string 转换为 十六进制 char[]
+     * @param str
+     * @return 十六进制 char[]
+     */
+    public static char[] toHexChars(final String str) {
+        return toHexChars(str, true);
+    }
+
+    /**
+     * 将 string 转换为 十六进制 char[]
+     * @param str
+     * @param toLowerCase true: 小写格式, false: 大写格式
+     * @return 十六进制 char[]
+     */
+    public static char[] toHexChars(final String str, final boolean toLowerCase) {
+        return toHexChars(isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
+    }
+
+    // =
+
+    /**
+     * 将 byte[] 转换为 十六进制 char[]
+     * @param data byte[]
+     * @return 十六进制 char[]
+     */
+    public static char[] toHexChars(final byte[] data) {
+        return toHexChars(data, true);
+    }
+
+    /**
+     * 将 byte[] 转换为 十六进制 char[]
+     * @param data        byte[]
+     * @param toLowerCase true: 小写格式, false: 大写格式
+     * @return 十六进制 char[]
+     */
+    public static char[] toHexChars(final byte[] data, final boolean toLowerCase) {
+        return toHexChars(data, toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
+    }
+
+    /**
+     * 将 byte[] 转换为 十六进制 char[]
+     * @param data      byte[]
+     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
+     * @return 十六进制 char[]
+     */
+    private static char[] toHexChars(final byte[] data, final char[] hexDigits) {
+        if (data == null || hexDigits == null) return null;
+        try {
+            return toHexString(data, hexDigits).toCharArray();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexChars");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 将 string 转换 十六进制字符串
+     * @param str
+     * @return
+     */
+    public static String toHexString(final String str) {
+        return toHexString(str, true);
+    }
+
+    /**
+     * 将 string 转换 十六进制字符串
+     * @param str
+     * @param toLowerCase true: 小写格式, false: 大写格式
+     * @return
+     */
+    public static String toHexString(final String str, final boolean toLowerCase) {
+        return toHexString(isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
+    }
+
+    // =
+
+    /**
+     * 将 byte[] 转换 十六进制字符串
+     * @param data
+     * @return
+     */
+    public static String toHexString(final byte[] data) {
+        return toHexString(data, true);
+    }
+
+    /**
+     * 将 byte[] 转换 十六进制字符串
+     * @param data
+     * @param toLowerCase true: 小写格式, false: 大写格式
+     * @return
+     */
+    public static String toHexString(final byte[] data, final boolean toLowerCase) {
+        return toHexString(data, toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
+    }
+
+    /**
+     * 将 byte[] 转换 十六进制字符串
+     * @param data
+     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
+     * @return
+     */
+    private static String toHexString(final byte[] data, final char[] hexDigits) {
+        if (data == null || hexDigits == null) return null;
+        try {
+            int len = data.length;
+            StringBuilder builder = new StringBuilder(len);
+            for (int i = 0; i < len; i++) {
+                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+                builder.append(hexDigits[data[i] & 0x0f]);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 判断是否为 null
+     * @param str
+     * @return
+     */
+    private static boolean isEmpty(final String str) {
+        return (str == null || str.length() == 0);
+    }
+
+    /**
+     * 获取数组长度
+     * @param objects
+     * @return
+     */
+    private static int length(final Object... objects) {
+        return objects != null ? objects.length : 0;
+    }
 
     /**
      * 判断字符串是否为 null 或全为空白字符

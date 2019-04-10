@@ -326,7 +326,7 @@ public final class StringUtils {
     }
 
     /**
-     * 进行十六进制转换
+     * 将 byte[] 转换 十六进制字符串
      * @param data
      * @param hexDigits
      * @return

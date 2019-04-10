@@ -1049,8 +1049,7 @@ public final class FileUtils {
     public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
-     * 进行十六进制转换
-     *
+     * 将 byte[] 转换 十六进制字符串
      * @param data
      * @param hexDigits
      * @return
