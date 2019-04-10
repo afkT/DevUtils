@@ -33,7 +33,7 @@ public final class FileIOUtils {
     // 日志 TAG
     private static final String TAG = FileIOUtils.class.getSimpleName();
     // 换行符
-    public static final String NEW_LINE_STR = System.getProperty("line.separator");
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
     // 缓存大小
     private static int sBufferSize = 8192;
 
@@ -327,9 +327,7 @@ public final class FileIOUtils {
         }
     }
 
-    // ================
-    // == 读写分界线 ==
-    // ================
+    // = 读写分界线 =
 
     /**
      * 读取文件内容, 返回换行 List

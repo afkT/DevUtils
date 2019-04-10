@@ -20,9 +20,7 @@ public final class DateUtils {
     // 日志 TAG
     private static final String TAG = DateUtils.class.getSimpleName();
 
-    // ==================
-    // == 日期格式类型 ==
-    // ==================
+    // = 日期格式类型 =
 
     public static final String yyyy = "yyyy";
     public static final String yyyyMMdd = "yyyy-MM-dd";
@@ -85,7 +83,7 @@ public final class DateUtils {
         return null;
     }
 
-    // ==
+    // =
 
     /**
      * 将时间戳转换日期字符串
@@ -119,7 +117,7 @@ public final class DateUtils {
         return null;
     }
 
-    // ===
+    // =
 
     /**
      * 将时间戳转换成 Date
@@ -160,7 +158,7 @@ public final class DateUtils {
         return null;
     }
 
-    // ==
+    // =
 
     /**
      * 解析时间字符串转换为long毫秒 - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
@@ -208,7 +206,7 @@ public final class DateUtils {
         return null;
     }
 
-    // ==
+    // =
 
     /**
      * 获取时间差 - 分钟
@@ -278,7 +276,7 @@ public final class DateUtils {
         return -2l;
     }
 
-    // ======= 获取时间 =======
+    // = 获取时间 =
 
     /**
      * 获取年
@@ -441,7 +439,7 @@ public final class DateUtils {
         return time + "";
     }
 
-    // ==
+    // =
 
     /**
      * 获取年
@@ -508,7 +506,7 @@ public final class DateUtils {
         return Calendar.getInstance().get(Calendar.SECOND);
     }
 
-    // ==
+    // =
 
     /**
      * 判断是否闰年
@@ -764,7 +762,7 @@ public final class DateUtils {
         return -1;
     }
 
-    // ==
+    // =
 
     /**
      * 传入时间，获取时间(00:00:00 格式) - 不处理大于一天
@@ -921,7 +919,7 @@ public final class DateUtils {
         return timeArys;
     }
 
-    // == 判断是否在区间范围 ==
+    // = 判断是否在区间范围 =
 
     /**
      * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
@@ -1112,7 +1110,7 @@ public final class DateUtils {
         return -1;
     }
 
-    // ==
+    // =
 
     /**
      * 字符串 转 int

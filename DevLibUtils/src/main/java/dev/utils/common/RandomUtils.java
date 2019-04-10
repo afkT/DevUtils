@@ -291,7 +291,7 @@ public final class RandomUtils {
         return min + new Random().nextInt(max - min);
     }
 
-    // ==
+    // =
 
     // 内置洗牌算法
     // java.util.Collections.shuffle(List<?> list);
@@ -380,7 +380,7 @@ public final class RandomUtils {
         return false;
     }
 
-    // ==
+    // =
 
     /**
      * 获取指定范围 Int 值

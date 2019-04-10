@@ -19,7 +19,7 @@ public final class HttpParamsUtils {
     // 日志 TAG
     private static final String TAG = HttpParamsUtils.class.getSimpleName();
     // 换行字符串
-    public static final String NEW_LINE_STR = System.getProperty("line.separator");
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 拆分参数
@@ -187,7 +187,7 @@ public final class HttpParamsUtils {
         return null;
     }
 
-    // == 拼接成, 模拟 JavaScript 传递对象数组格式 ==
+    // = 拼接成, 模拟 JavaScript 传递对象数组格式 =
 
     // 正常数据
     // objStr[key] => sex=男&name=Ttt

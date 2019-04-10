@@ -335,7 +335,6 @@ public final class ZipUtils {
             String entryName = ((ZipEntry) entries.nextElement()).getName();
             if (entryName.contains("../")) {
                 JCLogUtils.dTag(TAG, ("entryName: " + entryName + " is dangerous!"));
-                // =
                 paths.add(entryName);
             } else {
                 paths.add(entryName);

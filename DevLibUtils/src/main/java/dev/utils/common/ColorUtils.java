@@ -16,7 +16,6 @@ public final class ColorUtils {
 
     // 日志 TAG
     private static final String TAG = ColorUtils.class.getSimpleName();
-
     // 透明
     public static final int TRANSPARENT = 0x00000000;
     // 白色
@@ -400,7 +399,7 @@ public final class ColorUtils {
         return (color & 0xffffff00) | (int) (blue * 255.0f + 0.5f);
     }
 
-    // ==
+    // =
 
     /**
      * 解析颜色字符串, 返回对应的颜色值

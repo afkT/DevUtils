@@ -261,9 +261,7 @@ public final class DevCommonUtils {
         return buffer.toString();
     }
 
-    // ========================
-    // == 判断数据是否为null ==
-    // ========================
+    // = 判断数据是否为null =
 
     /**
      * 判断是否为 null
@@ -319,10 +317,7 @@ public final class DevCommonUtils {
         return (str == null || str.trim().length() == 0);
     }
 
-    // ====================
-    // 单独需要判断是否为null, 而不需要判断长度,只需要调用length方法
-    // length(list, -1) == -1  =>  true 表示为null, false 表示不为null,存在数据(可能返回0)
-    // ====================
+    // =
 
     /**
      * 判断是否为 null to Object
@@ -335,7 +330,7 @@ public final class DevCommonUtils {
             if (object.getClass().isArray()) {
                 try {
                     Class<?> clazz = object.getClass();
-                    // == 基本数据类型 ==
+                    // = 基本数据类型 =
                     if (clazz.isAssignableFrom(int[].class)) {
                         return (((int[]) object).length == 0);
                     } else if (clazz.isAssignableFrom(boolean[].class)) {
@@ -415,9 +410,7 @@ public final class DevCommonUtils {
         return args == null || args.length == 0;
     }
 
-    // ==================
-    // == 判断数据长度 ==
-    // ==================
+    // = 判断数据长度 =
 
     /**
      * 获取长度，如果字符串为null, 则返回 0

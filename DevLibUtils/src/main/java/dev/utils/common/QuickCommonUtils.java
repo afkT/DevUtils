@@ -20,7 +20,7 @@ public final class QuickCommonUtils {
     // 日志 TAG
     private static final String TAG = QuickCommonUtils.class.getSimpleName();
     // 换行字符串
-    public static final String NEW_LINE_STR = System.getProperty("line.separator");
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 获取随机唯一数
@@ -49,7 +49,6 @@ public final class QuickCommonUtils {
 
     /**
      * 获取随机数 唯一id
-     *
      * @return
      */
     public static String getRandomUUID() {

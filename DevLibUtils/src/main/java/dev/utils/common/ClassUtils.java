@@ -21,8 +21,7 @@ public final class ClassUtils {
     private static final String TAG = ClassUtils.class.getSimpleName();
 
     /**
-     * 判断类是否是基础数据类型
-     * 目前支持11种
+     * 判断类是否是基础数据类型 - 目前支持11种
      * @param clazz
      * @return
      */

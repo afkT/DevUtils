@@ -1,7 +1,6 @@
 package dev.utils.common;
 
 import java.net.URLEncoder;
-import java.util.Locale;
 
 import dev.utils.JCLogUtils;
 
@@ -254,77 +253,11 @@ public final class StringUtils {
     // =
 
     /**
-     * byte[]  转换为 16进制的字符串
-     * @param data 要转换的字节数组
-     * @return 转换后的结果
-     */
-    public static String byteArrayToHexString(byte[] data) {
-        if (data == null) return null;
-        try {
-            StringBuilder builder = new StringBuilder(data.length * 2);
-            for (byte b : data) {
-                int v = b & 0xff;
-                if (v < 16) {
-                    builder.append('0');
-                }
-                builder.append(Integer.toHexString(v));
-            }
-            return builder.toString().toUpperCase(Locale.getDefault());
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "byteArrayToHexString");
-        }
-        return null;
-    }
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data
-     * @param hexDigits
-     * @return
-     */
-    public static String toHexString(final byte[] data, final char[] hexDigits) {
-        if (data == null || hexDigits == null) return null;
-        try {
-            int len = data.length;
-            StringBuilder builder = new StringBuilder(len);
-            for (int i = 0; i < len; i++) {
-                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-                builder.append(hexDigits[data[i] & 0x0f]);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toHexString");
-        }
-        return null;
-    }
-
-    /**
-     * 16进制表示的字符串 转换为 字节数组
-     * @param str 16进制表示的字符串
-     * @return byte[] 字节数组
-     */
-    public static byte[] hexStringToBytes(final String str) {
-        if (isEmpty(str)) return null;
-        int len = str.length();
-        try {
-            byte[] data = new byte[len / 2];
-            for (int i = 0; i < len; i += 2) {
-                // 两位一组，表示一个字节,把这样表示的16进制字符串，还原成一个进制字节
-                data[i / 2] = (byte) ((Character.digit(str.charAt(i), 16) << 4) + Character.digit(str.charAt(i + 1), 16));
-            }
-            return data;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "hexStringToBytes");
-        }
-        return null;
-    }
-
-    /**
      * 检测字符串是否全是中文
      * @param str
      * @return
      */
-    public static boolean checkCheseToString(final String str) {
+    public static boolean checkChineseToString(final String str) {
         if (isEmpty(str)) return false;
         boolean result = true;
         char[] chars = str.toCharArray();
@@ -355,7 +288,7 @@ public final class StringUtils {
         return false;
     }
 
-    // == 字符串处理方法 ==
+    // = 字符串处理方法 =
 
     /**
      * 首字母大写
