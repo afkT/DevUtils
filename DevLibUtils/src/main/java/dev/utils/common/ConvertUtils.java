@@ -1,5 +1,9 @@
 package dev.utils.common;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Arrays;
 
 import dev.utils.JCLogUtils;
@@ -22,6 +26,9 @@ import dev.utils.JCLogUtils;
  * Oct(八进制)
  * Dec(十进制)
  * Hex(十六进制) 以0x开始的数据表示16进制
+ * =
+ * 位移加密：bytesEncrypt(byte[] bytes)
+ * http://www.runoob.com/java/java-operators.html
  */
 public final class ConvertUtils {
 
@@ -578,6 +585,154 @@ public final class ConvertUtils {
 
     // =
 
+//    String data = "测试";
+//    // 转换二进制字符串
+//    String result = toBinaryString(data.getBytes());
+//    // 获取二进制数据
+//    byte[] bytes = result.getBytes();
+//    // 位移编码
+//    bytesEncrypt(bytes);
+//    // =
+//    // 位移解码
+//    bytesEncrypt(bytes);
+//    // 二进制数据解码
+//    byte[] byteResult = decodeBinary(new String(bytes));
+//    // 转换为原始数据
+//    String data1 = new String(byteResult);
+//    // 判断是否一直
+//    boolean equals = data.equals(data1);
+
+    /**
+     * 按位求补 byte[] 位移编/解码 （共用同一个方法）
+     * @param data
+     */
+    public static void bytesBitwiseAND(final byte[] data) {
+        if (data == null) return;
+        for (int i = 0, len = data.length; i < len; i++) {
+            int a = data[i];
+            a = ~a; // 按位补运算符 => 翻转操作数的每一位，即0变成1，1变成0,再通过反转后的二进制初始化回16进制
+            data[i] = (byte) a;
+        }
+    }
+
+    // =
+
+    /**
+     * 将 short 转换成字节数组
+     * @param data short
+     * @return 字节数组
+     */
+    public static byte[] valueOf(final short data) {
+        try {
+            byte[] bytes = new byte[2];
+            for (int i = 0; i < 2; i++) {
+                int offset = (bytes.length - 1 - i) * 8;
+                bytes[i] = (byte) ((data >>> offset) & 0xff);
+            }
+            return bytes;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "valueOf");
+        }
+        return null;
+    }
+
+    /**
+     * 将 int 转换成字节数组
+     * @param data int
+     * @return 字节数组
+     */
+    public static byte[] valueOf(final int data) {
+        try {
+            byte[] bytes = new byte[4];
+            for (int i = 0; i < 4; i++) {
+                int offset = (bytes.length - 1 - i) * 8;
+                bytes[i] = (byte) ((data >>> offset) & 0xFF);
+            }
+            return bytes;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "valueOf");
+        }
+        return null;
+    }
+
+    /**
+     * 从 byte[] 上截取一段
+     * @param data
+     * @param off    起始
+     * @param length 个数
+     * @return byte[]
+     */
+    public static byte[] subBytes(final byte[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            byte[] bytes = new byte[length];
+            System.arraycopy(data, off, bytes, 0, length);
+//            for (int i = off; i <= length; i++) {
+//                bytes[i - off] = data[i];
+//            }
+            return bytes;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subBytes");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * byte[] 转为 Object
+     * @param bytes
+     * @return
+     */
+    public static Object bytesToObject(final byte[] bytes) {
+        if (bytes != null) {
+            ObjectInputStream ois = null;
+            try {
+                ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
+                return ois.readObject();
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "bytesToObject");
+            } finally {
+                if (ois != null) {
+                    try {
+                        ois.close();
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Object 转为 byte[]
+     * @param object
+     * @return
+     */
+    public static byte[] objectToBytes(final Object object) {
+        if (object != null) {
+            ObjectOutputStream oos = null;
+            try {
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                oos = new ObjectOutputStream(bos);
+                oos.writeObject(object);
+                return bos.toByteArray();
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "objectToBytes");
+            } finally {
+                if (oos != null) {
+                    try {
+                        oos.close();
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    // =
+
     /**
      * byte[] 转换 char[], 并且进行补码
      * @param data
@@ -956,20 +1111,5 @@ public final class ConvertUtils {
      */
     private static int length(final Object... objects) {
         return objects != null ? objects.length : 0;
-    }
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

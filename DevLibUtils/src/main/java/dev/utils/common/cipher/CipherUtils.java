@@ -1,6 +1,5 @@
 package dev.utils.common.cipher;
 
-import dev.utils.common.ByteUtils;
 import dev.utils.common.ConvertUtils;
 
 /**
@@ -29,7 +28,7 @@ public final class CipherUtils {
      */
     public static String encrypt(final Object object, final Cipher cipher) {
         if (object == null) return null;
-        byte[] bytes = ByteUtils.objectToBytes(object);
+        byte[] bytes = ConvertUtils.objectToBytes(object);
         if (cipher != null) bytes = cipher.encrypt(bytes);
         return ConvertUtils.toHexString(bytes);
     }
@@ -55,6 +54,6 @@ public final class CipherUtils {
         if (hex == null) return null;
         byte[] bytes = ConvertUtils.decodeHex(hex.toCharArray());
         if (cipher != null) bytes = cipher.decrypt(bytes);
-        return ByteUtils.bytesToObject(bytes);
+        return ConvertUtils.bytesToObject(bytes);
     }
 }

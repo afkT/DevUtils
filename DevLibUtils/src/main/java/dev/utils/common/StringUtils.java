@@ -16,55 +16,6 @@ public final class StringUtils {
 
     // 日志 TAG
     private static final String TAG = StringUtils.class.getSimpleName();
-    // 换行字符串
-    public static final String NEW_LINE_STR = System.getProperty("line.separator");
-    // 换行字符串 - 两行
-    public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
-
-    /**
-     * 追加空格
-     * @param number 空格数量
-     * @return
-     */
-    public static String appendSpace(final int number) {
-        StringBuffer buffer = new StringBuffer();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                buffer.append(" ");
-            }
-        }
-        return buffer.toString();
-    }
-
-    /**
-     * 追加 Tab
-     * @param number tab 键数量
-     * @return
-     */
-    public static String appendTab(final int number) {
-        StringBuffer buffer = new StringBuffer();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                buffer.append("\t");
-            }
-        }
-        return buffer.toString();
-    }
-
-    /**
-     * 追加 换行
-     * @param number 换行数量
-     * @return
-     */
-    public static String appendLine(final int number) {
-        StringBuffer buffer = new StringBuffer();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                buffer.append(NEW_LINE_STR);
-            }
-        }
-        return buffer.toString();
-    }
 
     // =
 
