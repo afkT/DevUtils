@@ -54,7 +54,7 @@ public final class DevUtils {
      * 默认初始化方法 - 必须调用 - Application.onCreate 中调用
      * @param context
      */
-    public static void init(Context context) {
+    public static void init(final Context context) {
         // 设置全局 Context
         initContext(context);
         // 初始化全局 Application
@@ -63,7 +63,7 @@ public final class DevUtils {
         registerActivityLifecycleCallbacks(sApplication);
         // 初始化全局Handler - 主线程
         sHandler = new Handler(Looper.getMainLooper());
-        // == 初始化工具类相关 ==
+        // = 初始化工具类相关 =
         // 初始化缓存类
         DevCache.get(context);
         // 初始化Shared 工具类
@@ -84,7 +84,7 @@ public final class DevUtils {
      * 初始化全局 Context
      * @param context
      */
-    private static void initContext(Context context) {
+    private static void initContext(final Context context) {
         // 如果为null, 才进行判断处理
         if (DevUtils.sContext == null) {
             // 防止传进来的为null
@@ -99,7 +99,7 @@ public final class DevUtils {
      * 初始化全局 Application
      * @param context
      */
-    private static void initApplication(Context context) {
+    private static void initApplication(final Context context) {
         // 如果为null, 才进行判断处理
         if (DevUtils.sApplication == null) {
             if (context == null) {
@@ -130,7 +130,7 @@ public final class DevUtils {
      * 获取 Context (判断null,视情况返回全局 Context)
      * @param context
      */
-    public static Context getContext(Context context) {
+    public static Context getContext(final Context context) {
         // 进行判断
         if (context != null) {
             return context;
@@ -196,7 +196,7 @@ public final class DevUtils {
      * 执行 UI 线程任务
      * @param action
      */
-    public static void runOnUiThread(Runnable action) {
+    public static void runOnUiThread(final Runnable action) {
         if (action != null) {
             sHandler.post(action);
         }
@@ -207,7 +207,7 @@ public final class DevUtils {
      * @param action
      * @param delayMillis
      */
-    public static void runOnUiThread(Runnable action, long delayMillis) {
+    public static void runOnUiThread(final Runnable action, final long delayMillis) {
         if (action != null) {
             sHandler.postDelayed(action, delayMillis);
         }
@@ -238,7 +238,7 @@ public final class DevUtils {
         return debug;
     }
 
-    // == 工具类版本 ==
+    // = 工具类版本 =
 
     /**
      * 获取工具类版本 - VERSION_NAME
@@ -256,22 +256,20 @@ public final class DevUtils {
         return BuildConfig.VERSION_CODE;
     }
 
-    // =======================
-    // ==== Activity 监听 ====
-    // =======================
+    // = Activity 监听 =
 
     // ActivityLifecycleCallbacks 实现类, 监听 Activity
     private static final ActivityLifecycleImpl ACTIVITY_LIFECYCLE = new ActivityLifecycleImpl();
     // Activity 过滤判断接口
     private static ActivityLifecycleFilter activityLifecycleFilter;
-    /** 权限 Activity class name */
+    // 权限 Activity class name
     public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.PermissionUtils$PermissionActivity";
 
     /**
      * 注册绑定Activity 生命周期事件处理
      * @param application
      */
-    private static void registerActivityLifecycleCallbacks(Application application) {
+    private static void registerActivityLifecycleCallbacks(final Application application) {
         // 先移除监听
         unregisterActivityLifecycleCallbacks(application);
         // 防止为null
@@ -289,7 +287,7 @@ public final class DevUtils {
      * 解除注册 Activity 生命周期事件处理
      * @param application
      */
-    private static void unregisterActivityLifecycleCallbacks(Application application) {
+    private static void unregisterActivityLifecycleCallbacks(final Application application) {
         if (application != null) {
             try {
                 // 先移除旧的监听
@@ -300,7 +298,7 @@ public final class DevUtils {
         }
     }
 
-    // == 对外公开方法 ==
+    // = 对外公开方法 =
 
     /**
      * 获取 Activity 生命周期 相关信息获取接口类
@@ -330,11 +328,11 @@ public final class DevUtils {
      * 设置 Activity 生命周期 过滤判断接口
      * @param activityLifecycleFilter
      */
-    public static void setActivityLifecycleFilter(ActivityLifecycleFilter activityLifecycleFilter) {
+    public static void setActivityLifecycleFilter(final ActivityLifecycleFilter activityLifecycleFilter) {
         DevUtils.activityLifecycleFilter = activityLifecycleFilter;
     }
 
-    // == 接口相关 ==
+    // = 接口相关 =
 
     /**
      * detail: 对Activity的生命周期事件进行集中处理。  ActivityLifecycleCallbacks 实现方法
@@ -357,15 +355,15 @@ public final class DevUtils {
         // 是否后台 Activity
         private boolean mIsBackground = false;
 
-        // == ActivityLifecycleCallbacks ==
+        // = ActivityLifecycleCallbacks =
 
-         @Override
+        @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-             setTopActivity(activity);
+            setTopActivity(activity);
 
-             if (DevUtils.absActivityLifecycle != null) {
-                 DevUtils.absActivityLifecycle.onActivityCreated(activity, savedInstanceState);
-             }
+            if (DevUtils.absActivityLifecycle != null) {
+                DevUtils.absActivityLifecycle.onActivityCreated(activity, savedInstanceState);
+            }
         }
 
         @Override
@@ -374,9 +372,9 @@ public final class DevUtils {
                 setTopActivity(activity);
             }
             if (mConfigCount < 0) {
-                ++ mConfigCount;
+                ++mConfigCount;
             } else {
-                ++ mForegroundCount;
+                ++mForegroundCount;
             }
 
             if (DevUtils.absActivityLifecycle != null) {
@@ -409,9 +407,9 @@ public final class DevUtils {
         public void onActivityStopped(Activity activity) {
             // 检测当前的 Activity 是否因为 Configuration 的改变被销毁了
             if (activity.isChangingConfigurations()) {
-                -- mConfigCount;
+                --mConfigCount;
             } else {
-                -- mForegroundCount;
+                --mForegroundCount;
                 if (mForegroundCount <= 0) {
                     mIsBackground = true;
                     postStatus(false);
@@ -443,7 +441,7 @@ public final class DevUtils {
             }
         }
 
-        // == 内部处理判断方法 ==
+        // = 内部处理判断方法 =
 
         /**
          * 保存 Activity 栈顶
@@ -492,7 +490,7 @@ public final class DevUtils {
             return null;
         }
 
-        // == ActivityLifecycleGet 方法 ==
+        // = ActivityLifecycleGet 方法 =
 
         /**
          * 获取最顶部 (当前或最后一个显示) Activity
@@ -535,11 +533,11 @@ public final class DevUtils {
          */
         @Override
         public boolean isTopActivity(final Class clazz) {
-             if (clazz != null) {
-                 Activity activity = getTopActivity();
-                 // 判断是否类是否一致
-                 return (activity != null && activity.getClass().getCanonicalName().equals(clazz.getCanonicalName()));
-             }
+            if (clazz != null) {
+                Activity activity = getTopActivity();
+                // 判断是否类是否一致
+                return (activity != null && activity.getClass().getCanonicalName().equals(clazz.getCanonicalName()));
+            }
             return false;
         }
 
@@ -561,7 +559,7 @@ public final class DevUtils {
             return mActivityList.size();
         }
 
-        // == ActivityLifecycleNotify ==
+        // = ActivityLifecycleNotify =
 
         /**
          * 添加 App 状态改变事件监听
@@ -630,7 +628,7 @@ public final class DevUtils {
         }
 
 
-        // == 事件通知相关 ==
+        // = 事件通知相关 =
 
         /**
          * 发送状态改变通知
@@ -801,7 +799,7 @@ public final class DevUtils {
         void onActivityDestroyed(Activity activity);
     }
 
-    // == 接口实现 ==
+    // = 接口实现 =
 
     private static ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
         @Override
@@ -829,7 +827,7 @@ public final class DevUtils {
      * 设置 ActivityLifecycle 监听回调
      * @param absActivityLifecycle
      */
-    public static void setAbsActivityLifecycle(AbsActivityLifecycle absActivityLifecycle) {
+    public static void setAbsActivityLifecycle(final AbsActivityLifecycle absActivityLifecycle) {
         DevUtils.absActivityLifecycle = absActivityLifecycle;
     }
 
