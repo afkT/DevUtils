@@ -37,23 +37,23 @@ public final class CameraAssist {
     public CameraAssist() {
     }
 
-    public CameraAssist(Camera camera) {
+    public CameraAssist(final Camera camera) {
         setCamera(camera);
     }
 
-    public CameraAssist(Camera camera, long interval) {
+    public CameraAssist(final Camera camera, final long interval) {
         this.autoInterval = interval;
         setCamera(camera);
     }
 
-    // == 操作方法 ==
+    // = 操作方法 =
 
     /**
      * 打开摄像头程序
      * @param holder
      * @return 返回自身对象(摄像头辅助类)
      */
-    public synchronized CameraAssist openDriver(SurfaceHolder holder) throws IOException {
+    public synchronized CameraAssist openDriver(final SurfaceHolder holder) throws IOException {
         Camera theCamera = mCamera;
         // 设置预览 Holder
         theCamera.setPreviewDisplay(holder);
@@ -83,7 +83,7 @@ public final class CameraAssist {
         freeCameraResource();
     }
 
-    // == 预览相关 ==
+    // = 预览相关 =
 
     /**
      * 开始将Camera画面预览到手机上
@@ -142,7 +142,7 @@ public final class CameraAssist {
         }
     }
 
-    // == 摄像头相关 ==
+    // = 摄像头相关 =
 
     // 预览尺寸大小
     private Camera.Size mPreviewSize = null;
@@ -191,7 +191,7 @@ public final class CameraAssist {
      * 设置摄像头
      * @param camera
      */
-    public void setCamera(Camera camera) {
+    public void setCamera(final Camera camera) {
         this.mCamera = camera;
         // 初始化 Camera大小
         this.cameraSizeAssist = new CameraSizeAssist(mCamera);
@@ -202,7 +202,7 @@ public final class CameraAssist {
      * @param previewNotify
      * @return 返回自身对象(摄像头辅助类)
      */
-    public CameraAssist setPreviewNotify(PreviewNotify previewNotify) {
+    public CameraAssist setPreviewNotify(final PreviewNotify previewNotify) {
         this.previewNotify = previewNotify;
         return this;
     }
@@ -212,7 +212,7 @@ public final class CameraAssist {
      * @param autoFocus
      * @return 返回自身对象(摄像头辅助类)
      */
-    public CameraAssist setAutoFocus(boolean autoFocus) {
+    public CameraAssist setAutoFocus(final boolean autoFocus) {
         if (autoFocusAssist != null) {
             autoFocusAssist.setAutoFocus(autoFocus);
         }
@@ -231,13 +231,11 @@ public final class CameraAssist {
      * 设置自动对焦时间间隔
      * @param autoInterval
      */
-    public void setAutoInterval(long autoInterval) {
+    public void setAutoInterval(final long autoInterval) {
         this.autoInterval = autoInterval;
     }
 
-    // == 闪光灯相关 ==
-
-    // FlashlightUtils
+    // = FlashlightUtils - 闪光灯相关 =
 
     /**
      * 打开闪光灯

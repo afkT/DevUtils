@@ -29,7 +29,8 @@ final class DevCacheUtils {
      * @param str
      * @return true: 到期了, false: 还没有到期
      */
-    public static boolean isDue(String str) {
+    public static boolean isDue(final String str) {
+        if (str == null) return true;
         return isDue(str.getBytes());
     }
 
@@ -38,7 +39,7 @@ final class DevCacheUtils {
      * @param data
      * @return true: 到期了, false: 还没有到期
      */
-    public static boolean isDue(byte[] data) {
+    public static boolean isDue(final byte[] data) {
         // 获取时间数据信息
         String[] strs = getDateInfoFromDate(data);
         // 判断是否过期
@@ -68,7 +69,7 @@ final class DevCacheUtils {
      * @param strInfo
      * @return
      */
-    public static String newStringWithDateInfo(int second, String strInfo) {
+    public static String newStringWithDateInfo(final int second, final String strInfo) {
         return createDateInfo(second) + strInfo;
     }
 
@@ -78,7 +79,7 @@ final class DevCacheUtils {
      * @param data
      * @return
      */
-    public static byte[] newByteArrayWithDateInfo(int second, byte[] data) {
+    public static byte[] newByteArrayWithDateInfo(final int second, final byte[] data) {
         if (data != null) {
             try {
                 byte[] dataArys = createDateInfo(second).getBytes();
@@ -100,7 +101,7 @@ final class DevCacheUtils {
      * @param second
      * @return
      */
-    private static String createDateInfo(int second) {
+    private static String createDateInfo(final int second) {
         String currentTime = System.currentTimeMillis() + "";
         while (currentTime.length() < 13) {
             currentTime = "0" + currentTime;
@@ -113,9 +114,9 @@ final class DevCacheUtils {
      * @param strInfo
      * @return
      */
-    public static String clearDateInfo(String strInfo) {
+    public static String clearDateInfo(final String strInfo) {
         if (strInfo != null && hasDateInfo(strInfo.getBytes())) {
-            strInfo = strInfo.substring(strInfo.indexOf(mSeparator) + 1);
+            return strInfo.substring(strInfo.indexOf(mSeparator) + 1);
         }
         return strInfo;
     }
@@ -125,7 +126,7 @@ final class DevCacheUtils {
      * @param data
      * @return
      */
-    public static byte[] clearDateInfo(byte[] data) {
+    public static byte[] clearDateInfo(final byte[] data) {
         if (hasDateInfo(data)) {
             try {
                 return copyOfRange(data, indexOf(data, mSeparator) + 1, data.length);
@@ -141,7 +142,7 @@ final class DevCacheUtils {
      * @param data
      * @return
      */
-    private static boolean hasDateInfo(byte[] data) {
+    private static boolean hasDateInfo(final byte[] data) {
         return data != null && data.length > 15 && data[13] == '-' && indexOf(data, mSeparator) > 14;
     }
 
@@ -150,7 +151,7 @@ final class DevCacheUtils {
      * @param data
      * @return
      */
-    private static String[] getDateInfoFromDate(byte[] data) {
+    private static String[] getDateInfoFromDate(final byte[] data) {
         if (hasDateInfo(data)) {
             try {
                 // 保存时间
@@ -166,7 +167,7 @@ final class DevCacheUtils {
         return null;
     }
 
-    private static int indexOf(byte[] data, char c) {
+    private static int indexOf(final byte[] data, final char c) {
         if (data != null) {
             for (int i = 0; i < data.length; i++) {
                 if (data[i] == c) {
@@ -177,7 +178,7 @@ final class DevCacheUtils {
         return -1;
     }
 
-    private static byte[] copyOfRange(byte[] original, int from, int to) throws Exception {
+    private static byte[] copyOfRange(final byte[] original, final int from, final int to) throws Exception {
         int newLength = to - from;
         if (newLength < 0)
             throw new IllegalArgumentException(from + " > " + to);
@@ -189,16 +190,14 @@ final class DevCacheUtils {
 
     /**
      * Bitmap → byte[]
-     * @param bm
+     * @param bitmap
      * @return
      */
-    public static byte[] bitmapToBytes(Bitmap bm) {
-        if (bm == null) {
-            return null;
-        }
+    public static byte[] bitmapToBytes(final Bitmap bitmap) {
+        if (bitmap == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
             return baos.toByteArray();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bitmapToBytes");
@@ -211,7 +210,7 @@ final class DevCacheUtils {
      * @param bytes
      * @return
      */
-    public static Bitmap bytesToBitmap(byte[] bytes) {
+    public static Bitmap bytesToBitmap(final byte[] bytes) {
         if (bytes != null && bytes.length != 0) {
             try {
                 return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -227,10 +226,8 @@ final class DevCacheUtils {
      * @param drawable
      * @return
      */
-    public static Bitmap drawableToBitmap(Drawable drawable) {
-        if (drawable == null) {
-            return null;
-        }
+    public static Bitmap drawableToBitmap(final Drawable drawable) {
+        if (drawable == null) return null;
         try {
             // 取 drawable 的长宽
             int w = drawable.getIntrinsicWidth();
@@ -253,18 +250,16 @@ final class DevCacheUtils {
 
     /**
      * Bitmap → Drawable
-     * @param bm
+     * @param bitmap
      * @return
      */
     @SuppressWarnings("deprecation")
-    public static Drawable bitmapToDrawable(Bitmap bm) {
-        if (bm == null) {
-            return null;
-        }
+    public static Drawable bitmapToDrawable(final Bitmap bitmap) {
+        if (bitmap == null) return null;
         try {
-            BitmapDrawable bd = new BitmapDrawable(bm);
-            bd.setTargetDensity(bm.getDensity());
-            return new BitmapDrawable(bm);
+            BitmapDrawable drawable = new BitmapDrawable(bitmap);
+            drawable.setTargetDensity(bitmap.getDensity());
+            return new BitmapDrawable(bitmap);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bitmapToDrawable");
         }

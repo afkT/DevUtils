@@ -40,7 +40,7 @@ public final class DevCache {
     private DevCache() {
     }
 
-//    // ==== 缓存状态标记 ====
+//    // = 缓存状态标记 =
 //    // 存在数据
 //    public static final int EXIST = 1;
 //    // 不存在数据
@@ -51,7 +51,6 @@ public final class DevCache {
 //    public static final int SAVE_SUC = 4;
 //    // 保存失败
 //    public static final int SAVE_FAIL = 5;
-    // ===
 
     // 日志 TAG
     private static final String TAG = DevCache.class.getSimpleName();
@@ -64,19 +63,19 @@ public final class DevCache {
     // 缓存最大值(50mb)
     private static final int MAX_SIZE = 1000 * 1000 * 50;
     // 不限制存放数据的数量
-    private static final int MAX_COUNT = Integer.MAX_VALUE;
+    private static final int maxCount = Integer.MAX_VALUE;
     // 不同地址配置缓存对象
     private static Map<String, DevCache> mInstanceMap = new HashMap<>();
     // 缓存管理类
     private DevCacheManager mCache;
     // 缓存地址
-    private static File ctxCacheDir = null;
+    private static File contextCacheDir = null;
 
     /**
      * 内部处理防止 Context 为 null 崩溃问题
      * @return {@link Context}
      */
-    private static Context getContext(Context context) {
+    private static Context getContext(final Context context) {
         if (context != null) {
             return context;
         } else {
@@ -87,36 +86,36 @@ public final class DevCache {
 
     /**
      * 获取缓存地址
-     * @param ctx
+     * @param context
      * @return 应用缓存地址
      */
-    public static File getCacheDir(Context ctx) {
-        if (ctxCacheDir == null) {
-            ctxCacheDir = getContext(ctx).getCacheDir();
+    public static File getCacheDir(final Context context) {
+        if (contextCacheDir == null) {
+            contextCacheDir = getContext(context).getCacheDir();
         }
-        return ctxCacheDir;
+        return contextCacheDir;
     }
 
     /**
      * 默认缓存地址
-     * @param ctx
+     * @param context
      * @return {@link DevCache} 缓存工具类对象
      */
-    public static DevCache get(Context ctx) {
-        return get(ctx, DF_FILE_NAME);
+    public static DevCache get(final Context context) {
+        return get(context, DF_FILE_NAME);
     }
 
     /**
      * 获取缓存地址
-     * @param ctx
+     * @param context
      * @param cacheName
      * @return {@link DevCache} 缓存工具类对象
      */
-    public static DevCache get(Context ctx, String cacheName) {
+    public static DevCache get(final Context context, final String cacheName) {
         // 进行处理
-        File file = new File(getCacheDir(ctx), cacheName);
+        File file = new File(getCacheDir(context), cacheName);
         // 获取默认地址
-        return get(file, MAX_SIZE, MAX_COUNT);
+        return get(file, MAX_SIZE, maxCount);
     }
 
     /**
@@ -124,36 +123,35 @@ public final class DevCache {
      * @param cacheDir
      * @return {@link DevCache} 缓存工具类对象
      */
-    public static DevCache get(File cacheDir) {
-        return get(cacheDir, MAX_SIZE, MAX_COUNT);
+    public static DevCache get(final File cacheDir) {
+        return get(cacheDir, MAX_SIZE, maxCount);
     }
 
     /**
      * 自定义缓存大小
-     * @param ctx
-     * @param max_zise
-     * @param max_count
+     * @param context
+     * @param maxSize
+     * @param maxCount
      * @return {@link DevCache} 缓存工具类对象
      */
-    public static DevCache get(Context ctx, long max_zise, int max_count) {
-        File file = new File(getCacheDir(ctx), DF_FILE_NAME);
-        // -
-        return get(file, max_zise, max_count);
+    public static DevCache get(final Context context, final long maxSize, final int maxCount) {
+        File file = new File(getCacheDir(context), DF_FILE_NAME);
+        return get(file, maxSize, maxCount);
     }
 
     /**
      * 自定义缓存地址、大小等
      * @param cacheDir
-     * @param max_zise
-     * @param max_count
+     * @param maxSize
+     * @param maxCount
      * @return {@link DevCache} 缓存工具类对象
      */
-    public static DevCache get(File cacheDir, long max_zise, int max_count) {
+    public static DevCache get(final File cacheDir, final long maxSize, final int maxCount) {
         // 判断是否存在缓存信息
         DevCache manager = mInstanceMap.get(cacheDir.getAbsoluteFile() + myPid());
         if (manager == null) {
             // 初始化新的缓存信息, 并且保存
-            manager = new DevCache(cacheDir, max_zise, max_count);
+            manager = new DevCache(cacheDir, maxSize, maxCount);
             mInstanceMap.put(cacheDir.getAbsolutePath() + myPid(), manager);
         }
         return manager;
@@ -171,16 +169,16 @@ public final class DevCache {
      * 最终初始化方法
      * @param cacheDir
      * @param max_size
-     * @param max_count
+     * @param maxCount
      * @return {@link DevCache} 缓存工具类对象
      */
-    private DevCache(File cacheDir, long max_size, int max_count) {
+    private DevCache(final File cacheDir, final long max_size, final int maxCount) {
         if (cacheDir == null) {
             new Exception("cacheDir is null");
         } else if (!cacheDir.exists() && !cacheDir.mkdirs()) {
             new Exception("can't make dirs in " + cacheDir.getAbsolutePath());
         }
-        mCache = new DevCacheManager(cacheDir, max_size, max_count);
+        mCache = new DevCacheManager(cacheDir, max_size, maxCount);
     }
 
     /**
@@ -202,16 +200,14 @@ public final class DevCache {
         }
     }
 
-    // =====================================
-    // ========== String数据 读写 ==========
-    // =====================================
+    // = String数据 读写 =
 
     /**
      * 保存 String 数据到缓存中
-     * @param key 保存的key
+     * @param key   保存的key
      * @param value 保存的String数据
      */
-    public void put(String key, String value) {
+    public void put(final String key, final String value) {
         File file = mCache.newFile(key);
         if (file == null || value == null) {
             return;
@@ -236,11 +232,11 @@ public final class DevCache {
 
     /**
      * 保存 String 数据到缓存中
-     * @param key 保存的key
-     * @param value 保存的String数据
+     * @param key      保存的key
+     * @param value    保存的String数据
      * @param saveTime 保存的时间，单位：秒
      */
-    public void put(String key, String value, int saveTime) {
+    public void put(final String key, final String value, final int saveTime) {
         if (key != null && value != null) {
             put(key, DevCacheUtils.newStringWithDateInfo(saveTime, value));
         }
@@ -251,7 +247,7 @@ public final class DevCache {
      * @param key
      * @return String 数据
      */
-    public String getAsString(String key) {
+    public String getAsString(final String key) {
         File file = mCache.get(key);
         if (file == null) {
             return null;
@@ -289,16 +285,14 @@ public final class DevCache {
         }
     }
 
-    // =====================================
-    // ======= JSONObject 数据 读写 ========
-    // =====================================
+    // = JSONObject 数据 读写 =
 
     /**
      * 保存 JSONObject 数据到缓存中
-     * @param key 保存的key
+     * @param key   保存的key
      * @param value 保存的JSON数据
      */
-    public void put(String key, JSONObject value) {
+    public void put(final String key, final JSONObject value) {
         if (value != null) {
             try {
                 put(key, value.toString());
@@ -310,11 +304,11 @@ public final class DevCache {
 
     /**
      * 保存 JSONObject 数据到缓存中
-     * @param key 保存的key
-     * @param value 保存的JSONObject数据
+     * @param key      保存的key
+     * @param value    保存的JSONObject数据
      * @param saveTime 保存的时间，单位：秒
      */
-    public void put(String key, JSONObject value, int saveTime) {
+    public void put(final String key, final JSONObject value, final int saveTime) {
         if (value != null) {
             try {
                 put(key, value.toString(), saveTime);
@@ -329,7 +323,7 @@ public final class DevCache {
      * @param key
      * @return {@link JSONObject}
      */
-    public JSONObject getAsJSONObject(String key) {
+    public JSONObject getAsJSONObject(final String key) {
         String JSONString = getAsString(key);
         if (JSONString != null) {
             try {
@@ -342,16 +336,14 @@ public final class DevCache {
         return null;
     }
 
-    // =====================================
-    // ======== JSONArray 数据 读写 ========
-    // =====================================
+    // = JSONArray 数据 读写 =
 
     /**
      * 保存 JSONArray 数据到缓存中
-     * @param key 保存的key
+     * @param key   保存的key
      * @param value 保存的JSONArray数据
      */
-    public void put(String key, JSONArray value) {
+    public void put(final String key, final JSONArray value) {
         if (value != null) {
             try {
                 put(key, value.toString());
@@ -363,11 +355,11 @@ public final class DevCache {
 
     /**
      * 保存 JSONArray 数据到缓存中
-     * @param key 保存的key
-     * @param value 保存的JSONArray数据
+     * @param key      保存的key
+     * @param value    保存的JSONArray数据
      * @param saveTime 保存的时间，单位：秒
      */
-    public void put(String key, JSONArray value, int saveTime) {
+    public void put(final String key, final JSONArray value, final int saveTime) {
         if (value != null) {
             try {
                 put(key, value.toString(), saveTime);
@@ -382,7 +374,7 @@ public final class DevCache {
      * @param key
      * @return {@link JSONArray}
      */
-    public JSONArray getAsJSONArray(String key) {
+    public JSONArray getAsJSONArray(final String key) {
         String JSONString = getAsString(key);
         if (JSONString != null) {
             try {
@@ -395,16 +387,14 @@ public final class DevCache {
         return null;
     }
 
-    // =====================================
-    // ========== byte 数据 读写 ===========
-    // =====================================
+    // = byte 数据 读写 =
 
     /**
      * 保存 byte 数据到缓存中
-     * @param key 保存的key
+     * @param key  保存的key
      * @param data 保存的数据
      */
-    public void put(String key, byte[] data) {
+    public void put(final String key, final byte[] data) {
         if (key == null || data == null) {
             return;
         }
@@ -433,7 +423,7 @@ public final class DevCache {
      * @return OutputStream stream for writing data
      * @throws FileNotFoundException if the file can not be created.
      */
-    public OutputStream put(String key) throws FileNotFoundException {
+    public OutputStream put(final String key) throws FileNotFoundException {
         File file = mCache.newFile(key);
         if (file != null) {
             return new xFileOutputStream(file);
@@ -446,7 +436,7 @@ public final class DevCache {
      * @return (InputStream or null) stream previously saved in cache.
      * @throws FileNotFoundException if the file can not be opened
      */
-    public InputStream get(String key) throws FileNotFoundException {
+    public InputStream get(final String key) throws FileNotFoundException {
         File file = mCache.get(key);
         if (file != null && file.exists()) {
             return new FileInputStream(file);
@@ -456,11 +446,11 @@ public final class DevCache {
 
     /**
      * 保存 byte 数据到缓存中
-     * @param key 保存的key
-     * @param data 保存的数据
+     * @param key      保存的key
+     * @param data     保存的数据
      * @param saveTime 保存的时间，单位：秒
      */
-    public void put(String key, byte[] data, int saveTime) {
+    public void put(final String key, final byte[] data, final int saveTime) {
         put(key, DevCacheUtils.newByteArrayWithDateInfo(saveTime, data));
     }
 
@@ -469,7 +459,7 @@ public final class DevCache {
      * @param key
      * @return byte[] 数据
      */
-    public byte[] getAsBinary(String key) {
+    public byte[] getAsBinary(final String key) {
         RandomAccessFile RAFile = null;
         boolean removeFile = false;
         try {
@@ -501,26 +491,24 @@ public final class DevCache {
         }
     }
 
-    // =====================================
-    // ========== 序列化 数据 读写 =========
-    // =====================================
+    // = 序列化 数据 读写 =
 
     /**
      * 保存 Serializable 数据到缓存中
-     * @param key 保存的key
+     * @param key   保存的key
      * @param value 保存的value
      */
-    public void put(String key, Serializable value) {
+    public void put(final String key, final Serializable value) {
         put(key, value, -1);
     }
 
     /**
      * 保存 Serializable 数据到缓存中
-     * @param key 保存的key
-     * @param value 保存的value
+     * @param key      保存的key
+     * @param value    保存的value
      * @param saveTime 保存的时间，单位：秒
      */
-    public void put(String key, Serializable value, int saveTime) {
+    public void put(final String key, final Serializable value, final int saveTime) {
         ByteArrayOutputStream baos = null;
         ObjectOutputStream oos = null;
         try {
@@ -556,7 +544,7 @@ public final class DevCache {
      * @param key
      * @return Serializable 数据
      */
-    public Object getAsObject(String key) {
+    public Object getAsObject(final String key) {
         byte[] data = getAsBinary(key);
         if (data != null) {
             ByteArrayInputStream bais = null;
@@ -587,26 +575,24 @@ public final class DevCache {
         return null;
     }
 
-    // =====================================
-    // ========== bitmap 数据 读写 =========
-    // =====================================
+    // = bitmap 数据 读写 =
 
     /**
      * 保存 bitmap 到缓存中
-     * @param key 保存的key
+     * @param key   保存的key
      * @param value 保存的bitmap数据
      */
-    public void put(String key, Bitmap value) {
+    public void put(final String key, final Bitmap value) {
         put(key, DevCacheUtils.bitmapToBytes(value));
     }
 
     /**
      * 保存 bitmap 到缓存中
-     * @param key 保存的key
-     * @param value 保存的 bitmap 数据
+     * @param key      保存的key
+     * @param value    保存的 bitmap 数据
      * @param saveTime 保存的时间，单位：秒
      */
-    public void put(String key, Bitmap value, int saveTime) {
+    public void put(final String key, final Bitmap value, final int saveTime) {
         put(key, DevCacheUtils.bitmapToBytes(value), saveTime);
     }
 
@@ -615,7 +601,7 @@ public final class DevCache {
      * @param key
      * @return bitmap 数据
      */
-    public Bitmap getAsBitmap(String key) {
+    public Bitmap getAsBitmap(final String key) {
         byte[] data = getAsBinary(key);
         if (data == null) {
             return null;
@@ -623,26 +609,24 @@ public final class DevCache {
         return DevCacheUtils.bytesToBitmap(data);
     }
 
-    // =====================================
-    // ======== drawable 数据 读写 =========
-    // =====================================
+    // = drawable 数据 读写 =
 
     /**
      * 保存 drawable 到缓存中
-     * @param key 保存的key
+     * @param key   保存的key
      * @param value 保存的drawable数据
      */
-    public void put(String key, Drawable value) {
+    public void put(final String key, final Drawable value) {
         put(key, DevCacheUtils.drawableToBitmap(value));
     }
 
     /**
      * 保存 drawable 到缓存中
-     * @param key 保存的key
-     * @param value 保存的 drawable 数据
+     * @param key      保存的key
+     * @param value    保存的 drawable 数据
      * @param saveTime 保存的时间，单位：秒
      */
-    public void put(String key, Drawable value, int saveTime) {
+    public void put(final String key, final Drawable value, final int saveTime) {
         put(key, DevCacheUtils.drawableToBitmap(value), saveTime);
     }
 
@@ -651,7 +635,7 @@ public final class DevCache {
      * @param key
      * @return Drawable 数据
      */
-    public Drawable getAsDrawable(String key) {
+    public Drawable getAsDrawable(final String key) {
         byte[] data = getAsBinary(key);
         if (data == null) {
             return null;
@@ -664,7 +648,7 @@ public final class DevCache {
      * @param key
      * @return value 缓存的文件
      */
-    public File file(String key) {
+    public File file(final String key) {
         File f = mCache.newFile(key);
         if (f != null && f.exists()) {
             return f;
@@ -677,11 +661,13 @@ public final class DevCache {
      * @param key
      * @return 是否移除成功
      */
-    public boolean remove(String key) {
+    public boolean remove(final String key) {
         return mCache.remove(key);
     }
 
-    /** 清除所有数据 */
+    /**
+     * 清除所有数据
+     */
     public void clear() {
         mCache.clear();
     }

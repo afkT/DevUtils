@@ -28,7 +28,7 @@ final class DevCacheManager {
     // 文件目录
     protected File cacheDir;
 
-    protected DevCacheManager(File cacheDir, long sizeLimit, int countLimit) {
+    protected DevCacheManager(final File cacheDir, final long sizeLimit, final int countLimit) {
         this.cacheDir = cacheDir;
         this.sizeLimit = sizeLimit;
         this.countLimit = countLimit;
@@ -38,7 +38,9 @@ final class DevCacheManager {
         calculateCacheSizeAndCacheCount();
     }
 
-    /** 计算 cacheSize 和 cacheCount */
+    /**
+     * 计算 cacheSize 和 cacheCount
+     */
     private void calculateCacheSizeAndCacheCount() {
         new Thread(new Runnable() {
             @Override
@@ -64,7 +66,8 @@ final class DevCacheManager {
      * 添加文件
      * @param file
      */
-    protected void put(File file) {
+    protected void put(final File file) {
+        if (file == null) return;
         // 获取文件总数
         int curCacheCount = cacheCount.get();
         // 判断是否超过数量限制
@@ -99,7 +102,7 @@ final class DevCacheManager {
      * @param key
      * @return {@link File}
      */
-    protected File get(String key) {
+    protected File get(final String key) {
         File file = newFile(key);
         if (file != null) {
             Long currentTime = System.currentTimeMillis();
@@ -115,7 +118,7 @@ final class DevCacheManager {
      * @param key
      * @return {@link File}
      */
-    protected File newFile(String key) {
+    protected File newFile(final String key) {
         if (key != null) {
             return new File(cacheDir, key.hashCode() + "");
         }
@@ -127,7 +130,7 @@ final class DevCacheManager {
      * @param key
      * @return true: 删除成功, false: 删除失败
      */
-    protected boolean remove(String key) {
+    protected boolean remove(final String key) {
         File file = get(key);
         if (file != null) {
             return file.delete();
@@ -187,7 +190,7 @@ final class DevCacheManager {
      * @param file
      * @return 文件大小
      */
-    private long calculateSize(File file) {
+    private long calculateSize(final File file) {
         if (file != null) {
             return file.length();
         }

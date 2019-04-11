@@ -30,7 +30,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
         FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_MACRO); // 微距
     }
 
-    // == 变量 ==
+    // = 变量 =
     // 间隔获取焦点时间
     private long interval = 2000L;
     // 摄像头对象
@@ -46,13 +46,13 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // 判断是否需要自动对焦
     private boolean autoFocus = true;
 
-    // == 构造函数 ==
+    // = 构造函数 =
 
-    public AutoFocusAssist(Camera camera) {
-        this (camera, 2000L);
+    public AutoFocusAssist(final Camera camera) {
+        this(camera, 2000L);
     }
 
-    public AutoFocusAssist(Camera camera, long interval) {
+    public AutoFocusAssist(final Camera camera, final long interval) {
         this.mCamera = camera;
         this.interval = interval;
         // 防止为null
@@ -73,7 +73,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * 设置对焦模式
      * @param collection
      */
-    public static void setFocusModes(Collection<String> collection) {
+    public static void setFocusModes(final Collection<String> collection) {
         // 清空旧的
         FOCUS_MODES_CALLING_AF.clear();
         // 防止为null
@@ -94,7 +94,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * 设置是否开启自动对焦
      * @param autoFocus
      */
-    public void setAutoFocus(boolean autoFocus) {
+    public void setAutoFocus(final boolean autoFocus) {
         this.autoFocus = autoFocus;
         // 判断是否开启自动对焦
         if (autoFocus) {
@@ -106,11 +106,11 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
     /**
      * 对焦回调 {@link Camera.AutoFocusCallback} 重写方法
-     * @param success 是否对焦成功
+     * @param success   是否对焦成功
      * @param theCamera 对焦的摄像头
      */
     @Override
-    public synchronized void onAutoFocus(boolean success, Camera theCamera) {
+    public synchronized void onAutoFocus(final boolean success, final Camera theCamera) {
         // 对焦结束, 设置非对焦中
         focusing = false;
         // 再次自动对焦
@@ -162,7 +162,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
                     // 表示对焦中
                     focusing = true;
                 } catch (RuntimeException re) {
-                    LogPrintUtils.eTag(TAG, re,"start");
+                    LogPrintUtils.eTag(TAG, re, "start");
                     // Try again later to keep cycle going
                     autoFocusAgainLater();
                 }
@@ -184,7 +184,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
                 // 取消对焦
                 mCamera.cancelAutoFocus();
             } catch (RuntimeException re) {
-                LogPrintUtils.eTag(TAG, re,"stop");
+                LogPrintUtils.eTag(TAG, re, "stop");
             }
         }
     }
