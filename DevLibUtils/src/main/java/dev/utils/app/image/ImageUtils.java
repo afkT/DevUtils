@@ -70,8 +70,8 @@ public final class ImageUtils {
 
     /**
      * 获取 bitmap
-     * @param file The file.
-     * @param maxWidth 最大宽度
+     * @param file      The file.
+     * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return bitmap
      */
@@ -97,8 +97,8 @@ public final class ImageUtils {
 
     /**
      * 获取 bitmap
-     * @param filePath The path of file.
-     * @param maxWidth 最大宽度
+     * @param filePath  The path of file.
+     * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return bitmap
      */
@@ -139,8 +139,8 @@ public final class ImageUtils {
 
     /**
      * 获取 bitmap
-     * @param resId 资源 id
-     * @param maxWidth 最大宽度
+     * @param resId     资源 id
+     * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return bitmap
      */
@@ -166,8 +166,8 @@ public final class ImageUtils {
 
     /**
      * 获取 bitmap
-     * @param fd 文件描述
-     * @param maxWidth 最大宽度
+     * @param fd        文件描述
+     * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return bitmap
      */
@@ -183,7 +183,7 @@ public final class ImageUtils {
 
     /**
      * 缩放图片
-     * @param src 源图片
+     * @param src       源图片
      * @param newWidth  新宽度
      * @param newHeight 新高度
      * @return 缩放后的图片
@@ -194,10 +194,10 @@ public final class ImageUtils {
 
     /**
      * 缩放图片
-     * @param src 源图片
-     * @param newWidth 新宽度
+     * @param src       源图片
+     * @param newWidth  新宽度
      * @param newHeight 新高度
-     * @param recycle 是否回收
+     * @param recycle   是否回收
      * @return 缩放后的图片
      */
     public static Bitmap scale(final Bitmap src, final int newWidth, final int newHeight, final boolean recycle) {
@@ -209,8 +209,8 @@ public final class ImageUtils {
 
     /**
      * 缩放图片
-     * @param src 源图片
-     * @param scaleWidth 缩放宽度倍数
+     * @param src         源图片
+     * @param scaleWidth  缩放宽度倍数
      * @param scaleHeight 缩放高度倍数
      * @return 缩放后的图片
      */
@@ -220,10 +220,10 @@ public final class ImageUtils {
 
     /**
      * 缩放图片
-     * @param src 源图片
-     * @param scaleWidth 缩放宽度倍数
+     * @param src         源图片
+     * @param scaleWidth  缩放宽度倍数
      * @param scaleHeight 缩放高度倍数
-     * @param recycle 是否回收
+     * @param recycle     是否回收
      * @return 缩放后的图片
      */
     public static Bitmap scale(final Bitmap src, final float scaleWidth, final float scaleHeight, final boolean recycle) {
@@ -237,10 +237,10 @@ public final class ImageUtils {
 
     /**
      * 裁剪图片
-     * @param src 源图片
-     * @param x 开始坐标 x
-     * @param y 开始坐标 y
-     * @param width 裁剪宽度
+     * @param src    源图片
+     * @param x      开始坐标 x
+     * @param y      开始坐标 y
+     * @param width  裁剪宽度
      * @param height 裁剪高度
      * @return 裁剪后的图片
      */
@@ -250,11 +250,11 @@ public final class ImageUtils {
 
     /**
      * 裁剪图片
-     * @param src 源图片
-     * @param x 开始坐标 x
-     * @param y 开始坐标 y
-     * @param width 裁剪宽度
-     * @param height 裁剪高度
+     * @param src     源图片
+     * @param x       开始坐标 x
+     * @param y       开始坐标 y
+     * @param width   裁剪宽度
+     * @param height  裁剪高度
      * @param recycle 是否回收
      * @return 裁剪后的图片
      */
@@ -268,8 +268,8 @@ public final class ImageUtils {
     /**
      * 倾斜图片
      * @param src 源图片
-     * @param kx 倾斜因子 x
-     * @param ky 倾斜因子 y
+     * @param kx  倾斜因子 x
+     * @param ky  倾斜因子 y
      * @return 倾斜后的图片
      */
     public static Bitmap skew(final Bitmap src, final float kx, final float ky) {
@@ -278,9 +278,9 @@ public final class ImageUtils {
 
     /**
      * 倾斜图片
-     * @param src 源图片
-     * @param kx 倾斜因子 x
-     * @param ky 倾斜因子 y
+     * @param src     源图片
+     * @param kx      倾斜因子 x
+     * @param ky      倾斜因子 y
      * @param recycle 是否回收
      * @return 倾斜后的图片
      */
@@ -291,10 +291,10 @@ public final class ImageUtils {
     /**
      * 倾斜图片
      * @param src 源图片
-     * @param kx 倾斜因子 x
-     * @param ky 倾斜因子 y
-     * @param px 平移因子 x
-     * @param py 平移因子 y
+     * @param kx  倾斜因子 x
+     * @param ky  倾斜因子 y
+     * @param px  平移因子 x
+     * @param py  平移因子 y
      * @return 倾斜后的图片
      */
     public static Bitmap skew(final Bitmap src, final float kx, final float ky, final float px, final float py) {
@@ -303,11 +303,11 @@ public final class ImageUtils {
 
     /**
      * 倾斜图片
-     * @param src 源图片
-     * @param kx 倾斜因子 x
-     * @param ky 倾斜因子 y
-     * @param px 平移因子 x
-     * @param py 平移因子 y
+     * @param src     源图片
+     * @param kx      倾斜因子 x
+     * @param ky      倾斜因子 y
+     * @param px      平移因子 x
+     * @param py      平移因子 y
      * @param recycle 是否回收
      * @return 倾斜后的图片
      */
@@ -322,10 +322,10 @@ public final class ImageUtils {
 
     /**
      * 旋转图片
-     * @param src 源图片
+     * @param src     源图片
      * @param degrees 旋转角度
-     * @param px 旋转点横坐标
-     * @param py 旋转点纵坐标
+     * @param px      旋转点横坐标
+     * @param py      旋转点纵坐标
      * @return 旋转后的图片
      */
     public static Bitmap rotate(final Bitmap src, final int degrees, final float px, final float py) {
@@ -334,10 +334,10 @@ public final class ImageUtils {
 
     /**
      * 旋转图片
-     * @param src 源图片
+     * @param src     源图片
      * @param degrees 旋转角度
-     * @param px 旋转点横坐标
-     * @param py 旋转点纵坐标
+     * @param px      旋转点横坐标
+     * @param py      旋转点纵坐标
      * @param recycle 是否回收
      * @return 旋转后的图片
      */
@@ -387,7 +387,7 @@ public final class ImageUtils {
 
     /**
      * 转为圆形图片
-     * @param src 源图片
+     * @param src     源图片
      * @param recycle 是否回收
      * @return 圆形图片
      */
@@ -397,24 +397,24 @@ public final class ImageUtils {
 
     /**
      * 转为圆形图片
-     * @param src 源图片
-     * @param borderSize 边框尺寸
+     * @param src         源图片
+     * @param borderSize  边框尺寸
      * @param borderColor 边框颜色
      * @return 圆形图片
      */
-    public static Bitmap toRound(final Bitmap src, @IntRange(from = 0) int borderSize, @ColorInt int borderColor) {
+    public static Bitmap toRound(final Bitmap src, final @IntRange(from = 0) int borderSize, final @ColorInt int borderColor) {
         return toRound(src, borderSize, borderColor, false);
     }
 
     /**
      * 转为圆形图片
-     * @param src 源图片
-     * @param recycle 是否回收
-     * @param borderSize 边框尺寸
+     * @param src         源图片
+     * @param recycle     是否回收
+     * @param borderSize  边框尺寸
      * @param borderColor 边框颜色
      * @return 圆形图片
      */
-    public static Bitmap toRound(final Bitmap src, @IntRange(from = 0) int borderSize, @ColorInt int borderColor, final boolean recycle) {
+    public static Bitmap toRound(final Bitmap src, final @IntRange(from = 0) int borderSize, final @ColorInt int borderColor, final boolean recycle) {
         if (isEmptyBitmap(src)) return null;
         int width = src.getWidth();
         int height = src.getHeight();
@@ -448,7 +448,7 @@ public final class ImageUtils {
 
     /**
      * 转为圆角图片
-     * @param src 源图片
+     * @param src    源图片
      * @param radius 圆角的度数
      * @return 圆角图片
      */
@@ -458,8 +458,8 @@ public final class ImageUtils {
 
     /**
      * 转为圆角图片
-     * @param src 源图片
-     * @param radius 圆角的度数
+     * @param src     源图片
+     * @param radius  圆角的度数
      * @param recycle 是否回收
      * @return 圆角图片
      */
@@ -469,26 +469,26 @@ public final class ImageUtils {
 
     /**
      * 转为圆角图片
-     * @param src 源图片
-     * @param radius 圆角的度数
-     * @param borderSize 边框尺寸
+     * @param src         源图片
+     * @param radius      圆角的度数
+     * @param borderSize  边框尺寸
      * @param borderColor 边框颜色
      * @return 圆角图片
      */
-    public static Bitmap toRoundCorner(final Bitmap src, final float radius, @IntRange(from = 0) int borderSize, @ColorInt int borderColor) {
+    public static Bitmap toRoundCorner(final Bitmap src, final float radius, final @IntRange(from = 0) int borderSize, final @ColorInt int borderColor) {
         return toRoundCorner(src, radius, borderSize, borderColor, false);
     }
 
     /**
      * 转为圆角图片
-     * @param src 源图片
-     * @param radius 圆角的度数
-     * @param borderSize 边框尺寸
+     * @param src         源图片
+     * @param radius      圆角的度数
+     * @param borderSize  边框尺寸
      * @param borderColor 边框颜色
-     * @param recycle 是否回收
+     * @param recycle     是否回收
      * @return 圆角图片
      */
-    public static Bitmap toRoundCorner(final Bitmap src, final float radius, @IntRange(from = 0) int borderSize, @ColorInt int borderColor, final boolean recycle) {
+    public static Bitmap toRoundCorner(final Bitmap src, final float radius, final @IntRange(from = 0) int borderSize, final @ColorInt int borderColor, final boolean recycle) {
         if (isEmptyBitmap(src)) return null;
         int width = src.getWidth();
         int height = src.getHeight();
@@ -515,9 +515,9 @@ public final class ImageUtils {
 
     /**
      * 添加圆角边框
-     * @param src 源图片
-     * @param borderSize 边框尺寸
-     * @param color 边框颜色
+     * @param src          源图片
+     * @param borderSize   边框尺寸
+     * @param color        边框颜色
      * @param cornerRadius 圆角半径
      * @return 圆角边框图
      */
@@ -527,11 +527,11 @@ public final class ImageUtils {
 
     /**
      * 添加圆角边框
-     * @param src 源图片
-     * @param borderSize 边框尺寸
-     * @param color 边框颜色
+     * @param src          源图片
+     * @param borderSize   边框尺寸
+     * @param color        边框颜色
      * @param cornerRadius 圆角半径
-     * @param recycle 是否回收
+     * @param recycle      是否回收
      * @return 圆角边框图
      */
     public static Bitmap addCornerBorder(final Bitmap src, @IntRange(from = 1) final int borderSize, @ColorInt final int color, @FloatRange(from = 0) final float cornerRadius, final boolean recycle) {
@@ -540,9 +540,9 @@ public final class ImageUtils {
 
     /**
      * 添加圆形边框
-     * @param src 源图片
+     * @param src        源图片
      * @param borderSize 边框尺寸
-     * @param color 边框颜色
+     * @param color      边框颜色
      * @return 圆形边框图
      */
     public static Bitmap addCircleBorder(final Bitmap src, @IntRange(from = 1) final int borderSize, @ColorInt final int color) {
@@ -551,10 +551,10 @@ public final class ImageUtils {
 
     /**
      * 添加圆形边框
-     * @param src 源图片
+     * @param src        源图片
      * @param borderSize 边框尺寸
-     * @param color 边框颜色
-     * @param recycle 是否回收
+     * @param color      边框颜色
+     * @param recycle    是否回收
      * @return 圆形边框图
      */
     public static Bitmap addCircleBorder(final Bitmap src, @IntRange(from = 1) final int borderSize, @ColorInt final int color, final boolean recycle) {
@@ -563,12 +563,12 @@ public final class ImageUtils {
 
     /**
      * 添加边框
-     * @param src 源图片
-     * @param borderSize 边框尺寸
-     * @param color 边框颜色
-     * @param isCircle 是否画圆
+     * @param src          源图片
+     * @param borderSize   边框尺寸
+     * @param color        边框颜色
+     * @param isCircle     是否画圆
      * @param cornerRadius 圆角半径
-     * @param recycle 是否回收
+     * @param recycle      是否回收
      * @return 边框图
      */
     private static Bitmap addBorder(final Bitmap src, @IntRange(from = 1) final int borderSize, @ColorInt final int color,
@@ -587,7 +587,7 @@ public final class ImageUtils {
             canvas.drawCircle(width / 2f, height / 2f, radius, paint);
         } else {
             int halfBorderSize = borderSize >> 1;
-            RectF rectF = new RectF(halfBorderSize, halfBorderSize,width - halfBorderSize, height - halfBorderSize);
+            RectF rectF = new RectF(halfBorderSize, halfBorderSize, width - halfBorderSize, height - halfBorderSize);
             canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint);
         }
         return ret;
@@ -595,7 +595,7 @@ public final class ImageUtils {
 
     /**
      * 添加倒影
-     * @param src 源图片的
+     * @param src              源图片的
      * @param reflectionHeight 倒影高度
      * @return 带倒影图片
      */
@@ -605,9 +605,9 @@ public final class ImageUtils {
 
     /**
      * 添加倒影
-     * @param src 源图片的
+     * @param src              源图片的
      * @param reflectionHeight 倒影高度
-     * @param recycle 是否回收
+     * @param recycle          是否回收
      * @return 带倒影图片
      */
     public static Bitmap addReflection(final Bitmap src, final int reflectionHeight, final boolean recycle) {
@@ -624,7 +624,7 @@ public final class ImageUtils {
         canvas.drawBitmap(src, 0, 0, null);
         canvas.drawBitmap(reflectionBitmap, 0, srcHeight + REFLECTION_GAP, null);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        LinearGradient shader = new LinearGradient(0, srcHeight,0, ret.getHeight() + REFLECTION_GAP,0x70FFFFFF,0x00FFFFFF, Shader.TileMode.MIRROR);
+        LinearGradient shader = new LinearGradient(0, srcHeight, 0, ret.getHeight() + REFLECTION_GAP, 0x70FFFFFF, 0x00FFFFFF, Shader.TileMode.MIRROR);
         paint.setShader(shader);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         canvas.drawRect(0, srcHeight + REFLECTION_GAP, srcWidth, ret.getHeight(), paint);
@@ -635,12 +635,12 @@ public final class ImageUtils {
 
     /**
      * 添加文字水印
-     * @param src 源图片
-     * @param content 水印文本
+     * @param src      源图片
+     * @param content  水印文本
      * @param textSize 水印字体大小
-     * @param color 水印字体颜色
-     * @param x 起始坐标 x
-     * @param y 起始坐标 y
+     * @param color    水印字体颜色
+     * @param x        起始坐标 x
+     * @param y        起始坐标 y
      * @return 带有文字水印的图片
      */
     public static Bitmap addTextWatermark(final Bitmap src, final String content, final int textSize,
@@ -650,13 +650,13 @@ public final class ImageUtils {
 
     /**
      * 添加文字水印
-     * @param src 源图片
-     * @param content 水印文本
+     * @param src      源图片
+     * @param content  水印文本
      * @param textSize 水印字体大小
-     * @param color 水印字体颜色
-     * @param x 起始坐标 x
-     * @param y 起始坐标 y
-     * @param recycle 是否回收
+     * @param color    水印字体颜色
+     * @param x        起始坐标 x
+     * @param y        起始坐标 y
+     * @param recycle  是否回收
      * @return 带有文字水印的图片
      */
     public static Bitmap addTextWatermark(final Bitmap src, final String content, final float textSize,
@@ -676,11 +676,11 @@ public final class ImageUtils {
 
     /**
      * 添加图片水印
-     * @param src 源图片
+     * @param src       源图片
      * @param watermark 图片水印
-     * @param x 起始坐标 x
-     * @param y 起始坐标 y
-     * @param alpha 透明度
+     * @param x         起始坐标 x
+     * @param y         起始坐标 y
+     * @param alpha     透明度
      * @return 带有图片水印的图片
      */
     public static Bitmap addImageWatermark(final Bitmap src, final Bitmap watermark, final int x, final int y, final int alpha) {
@@ -689,12 +689,12 @@ public final class ImageUtils {
 
     /**
      * 添加图片水印
-     * @param src 源图片
+     * @param src       源图片
      * @param watermark 图片水印
-     * @param x 起始坐标 x
-     * @param y 起始坐标 y
-     * @param alpha 透明度
-     * @param recycle 是否回收
+     * @param x         起始坐标 x
+     * @param y         起始坐标 y
+     * @param alpha     透明度
+     * @param recycle   是否回收
      * @return 带有图片水印的图片
      */
     public static Bitmap addImageWatermark(final Bitmap src, final Bitmap watermark, final int x, final int y, final int alpha, final boolean recycle) {
@@ -721,7 +721,7 @@ public final class ImageUtils {
 
     /**
      * 转为 alpha 位图
-     * @param src 源图片
+     * @param src     源图片
      * @param recycle 是否回收
      * @return alpha 位图
      */
@@ -743,7 +743,7 @@ public final class ImageUtils {
 
     /**
      * 转为灰度图片
-     * @param src 源图片
+     * @param src     源图片
      * @param recycle 是否回收
      * @return 灰度图
      */
@@ -763,8 +763,8 @@ public final class ImageUtils {
 
     /**
      * 快速模糊 - 先缩小原图，对小图进行模糊，再放大回原先尺寸
-     * @param src 源图片
-     * @param scale 缩放比例(0...1)
+     * @param src    源图片
+     * @param scale  缩放比例(0...1)
      * @param radius 模糊半径
      * @return 模糊后的图片
      */
@@ -776,9 +776,9 @@ public final class ImageUtils {
 
     /**
      * 快速模糊图片 - 先缩小原图，对小图进行模糊，再放大回原先尺寸
-     * @param src 源图片
-     * @param scale 缩放比例(0...1)
-     * @param radius 模糊半径(0...25)
+     * @param src     源图片
+     * @param scale   缩放比例(0...1)
+     * @param radius  模糊半径(0...25)
      * @param recycle 是否回收
      * @return 模糊后的图片
      */
@@ -814,7 +814,7 @@ public final class ImageUtils {
 
     /**
      * renderScript 模糊图片 - API 大于 17
-     * @param src 源图片
+     * @param src    源图片
      * @param radius 模糊半径(0...25)
      * @return 模糊后的图片
      */
@@ -825,8 +825,8 @@ public final class ImageUtils {
 
     /**
      * renderScript 模糊图片 - API 大于 17
-     * @param src 源图片
-     * @param radius 模糊半径(0...25)
+     * @param src     源图片
+     * @param radius  模糊半径(0...25)
      * @param recycle 是否回收
      * @return 模糊后的图片
      */
@@ -854,7 +854,7 @@ public final class ImageUtils {
 
     /**
      * stack 模糊图片
-     * @param src 源图片
+     * @param src    源图片
      * @param radius 模糊半径
      * @return stack 模糊后的图片
      */
@@ -864,8 +864,8 @@ public final class ImageUtils {
 
     /**
      * stack 模糊图片
-     * @param src 源图片
-     * @param radius 模糊半径
+     * @param src     源图片
+     * @param radius  模糊半径
      * @param recycle 是否回收
      * @return stack 模糊后的图片
      */
@@ -1068,9 +1068,9 @@ public final class ImageUtils {
 
     /**
      * 保存图片
-     * @param src 源图片
+     * @param src      源图片
      * @param filePath The path of file.
-     * @param format 格式
+     * @param format   格式
      * @return true : 成功, false : 失败
      */
     public static boolean save(final Bitmap src, final String filePath, final CompressFormat format) {
@@ -1079,8 +1079,8 @@ public final class ImageUtils {
 
     /**
      * 保存图片
-     * @param src 源图片
-     * @param file The file.
+     * @param src    源图片
+     * @param file   The file.
      * @param format 格式
      * @return true : 成功, false : 失败
      */
@@ -1090,10 +1090,10 @@ public final class ImageUtils {
 
     /**
      * 保存图片
-     * @param src 源图片
+     * @param src      源图片
      * @param filePath The path of file.
-     * @param format 格式
-     * @param recycle 是否回收
+     * @param format   格式
+     * @param recycle  是否回收
      * @return true : 成功, false : 失败
      */
     public static boolean save(final Bitmap src, final String filePath, final CompressFormat format, final boolean recycle) {
@@ -1102,9 +1102,9 @@ public final class ImageUtils {
 
     /**
      * 保存图片
-     * @param src 源图片
-     * @param file The file.
-     * @param format 格式
+     * @param src     源图片
+     * @param file    The file.
+     * @param format  格式
      * @param recycle 是否回收
      * @return true : 成功, false : 失败
      */
@@ -1194,7 +1194,7 @@ public final class ImageUtils {
      */
     public static String getImageType(final byte[] bytes) {
         if (isJPEG(bytes)) return "JPEG";
-        if (isGif (bytes)) return "GIF";
+        if (isGif(bytes)) return "GIF";
         if (isPNG(bytes)) return "PNG";
         if (isBMP(bytes)) return "BMP";
         return null;
@@ -1214,7 +1214,7 @@ public final class ImageUtils {
      * @param b
      * @return
      */
-    private static boolean isGif (final byte[] b) {
+    private static boolean isGif(final byte[] b) {
         return b.length >= 6 && b[0] == 'G' && b[1] == 'I' && b[2] == 'F' && b[3] == '8' && (b[4] == '7' || b[4] == '9') && b[5] == 'a';
     }
 
@@ -1249,14 +1249,12 @@ public final class ImageUtils {
         return src == null || src.getWidth() == 0 || src.getHeight() == 0;
     }
 
-    // ==============
-    // 下方和压缩有关
-    // ==============
+    // = 压缩有关 =
 
     /**
      * 按缩放压缩
-     * @param src 源图片
-     * @param newWidth 新宽度
+     * @param src       源图片
+     * @param newWidth  新宽度
      * @param newHeight 新高度
      * @return 缩放压缩后的图片
      */
@@ -1266,10 +1264,10 @@ public final class ImageUtils {
 
     /**
      * 按缩放压缩
-     * @param src 源图片
-     * @param newWidth 新宽度
+     * @param src       源图片
+     * @param newWidth  新宽度
      * @param newHeight 新高度
-     * @param recycle 是否回收
+     * @param recycle   是否回收
      * @return 缩放压缩后的图片
      */
     public static Bitmap compressByScale(final Bitmap src, final int newWidth, final int newHeight, final boolean recycle) {
@@ -1278,8 +1276,8 @@ public final class ImageUtils {
 
     /**
      * 按缩放压缩
-     * @param src 源图片
-     * @param scaleWidth 缩放宽度倍数
+     * @param src         源图片
+     * @param scaleWidth  缩放宽度倍数
      * @param scaleHeight 缩放高度倍数
      * @return 缩放压缩后的图片
      */
@@ -1289,10 +1287,10 @@ public final class ImageUtils {
 
     /**
      * 按缩放压缩
-     * @param src 源图片
-     * @param scaleWidth 缩放宽度倍数
+     * @param src         源图片
+     * @param scaleWidth  缩放宽度倍数
      * @param scaleHeight 缩放高度倍数
-     * @param recycle 是否回收
+     * @param recycle     是否回收
      * @return 缩放压缩后的图片
      */
     public static Bitmap compressByScale(final Bitmap src, final float scaleWidth, final float scaleHeight, final boolean recycle) {
@@ -1301,7 +1299,7 @@ public final class ImageUtils {
 
     /**
      * 按质量压缩
-     * @param src 源图片
+     * @param src     源图片
      * @param quality 质量
      * @return 质量压缩后的图片
      */
@@ -1311,7 +1309,7 @@ public final class ImageUtils {
 
     /**
      * 按质量压缩
-     * @param src 源图片
+     * @param src     源图片
      * @param quality 质量
      * @param recycle 是否回收
      * @return 质量压缩后的图片
@@ -1327,7 +1325,7 @@ public final class ImageUtils {
 
     /**
      * 按质量压缩
-     * @param src 源图片
+     * @param src         源图片
      * @param maxByteSize 允许最大值字节数
      * @return 质量压缩压缩过的图片
      */
@@ -1337,9 +1335,9 @@ public final class ImageUtils {
 
     /**
      * 按质量压缩
-     * @param src 源图片
+     * @param src         源图片
      * @param maxByteSize 允许最大值字节数
-     * @param recycle 是否回收
+     * @param recycle     是否回收
      * @return 质量压缩压缩过的图片
      */
     public static Bitmap compressByQuality(final Bitmap src, final long maxByteSize, final boolean recycle) {
@@ -1385,7 +1383,7 @@ public final class ImageUtils {
 
     /**
      * 按采样大小压缩
-     * @param src 源图片
+     * @param src        源图片
      * @param sampleSize 采样率大小
      * @return 按采样率压缩后的图片
      */
@@ -1396,9 +1394,9 @@ public final class ImageUtils {
 
     /**
      * 按采样大小压缩
-     * @param src 源图片
+     * @param src        源图片
      * @param sampleSize 采样率大小
-     * @param recycle 是否回收
+     * @param recycle    是否回收
      * @return 按采样率压缩后的图片
      */
     public static Bitmap compressBySampleSize(final Bitmap src, final int sampleSize, final boolean recycle) {
@@ -1414,8 +1412,8 @@ public final class ImageUtils {
 
     /**
      * 按采样大小压缩
-     * @param src 源图片
-     * @param maxWidth 最大宽度
+     * @param src       源图片
+     * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return 按采样率压缩后的图片
      */
@@ -1425,10 +1423,10 @@ public final class ImageUtils {
 
     /**
      * 按采样大小压缩
-     * @param src 源图片
-     * @param maxWidth 最大宽度
+     * @param src       源图片
+     * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
-     * @param recycle 是否回收
+     * @param recycle   是否回收
      * @return 按采样率压缩后的图片
      */
     public static Bitmap compressBySampleSize(final Bitmap src, final int maxWidth, final int maxHeight, final boolean recycle) {
@@ -1447,8 +1445,8 @@ public final class ImageUtils {
 
     /**
      * 计算采样大小
-     * @param options 选项
-     * @param maxWidth 最大宽度
+     * @param options   选项
+     * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return 采样大小
      */

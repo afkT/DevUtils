@@ -31,7 +31,7 @@ public class ImageProcessor {
      * 构造方法
      * @param bitmap 需要处理的bitmap
      */
-    public ImageProcessor(Bitmap bitmap) {
+    public ImageProcessor(final Bitmap bitmap) {
         this.bitmap = bitmap;
     }
 
@@ -40,7 +40,7 @@ public class ImageProcessor {
      * @param scaling 缩放比例
      * @return 缩放后的图片
      */
-    public Bitmap scale(float scaling) {
+    public Bitmap scale(final float scaling) {
         Matrix matrix = new Matrix();
         matrix.postScale(scaling, scaling);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
@@ -51,7 +51,7 @@ public class ImageProcessor {
      * @param newWidth 新的宽度
      * @return Bitmap
      */
-    public Bitmap scaleByWidth(int newWidth) {
+    public Bitmap scaleByWidth(final int newWidth) {
         return scale((float) newWidth / bitmap.getWidth());
     }
 
@@ -60,7 +60,7 @@ public class ImageProcessor {
      * @param newHeight 新的高度
      * @return Bitmap
      */
-    public Bitmap scaleByHeight(int newHeight) {
+    public Bitmap scaleByHeight(final int newHeight) {
         return scale((float) newHeight / bitmap.getHeight());
     }
 
@@ -69,7 +69,7 @@ public class ImageProcessor {
      * @param bitmap 原图
      * @return 水平翻转后的图片
      */
-    public Bitmap reverseByHorizontal(Bitmap bitmap) {
+    public Bitmap reverseByHorizontal(final Bitmap bitmap) {
         Matrix matrix = new Matrix();
         matrix.preScale(-1, 1);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
@@ -80,7 +80,7 @@ public class ImageProcessor {
      * @param bitmap 原图
      * @return 垂直翻转后的图片
      */
-    public Bitmap reverseByVertical(Bitmap bitmap) {
+    public Bitmap reverseByVertical(final Bitmap bitmap) {
         Matrix matrix = new Matrix();
         matrix.preScale(1, -1);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
@@ -89,10 +89,10 @@ public class ImageProcessor {
     /**
      * 将给定资源ID的Drawable转换成Bitmap
      * @param context
-     * @param resId Drawable资源文件的ID
+     * @param resId   Drawable资源文件的ID
      * @return 新的Bitmap
      */
-    public Bitmap drawableToBitmap(Context context, int resId) {
+    public Bitmap drawableToBitmap(final Context context, final int resId) {
         BitmapFactory.Options opt = new BitmapFactory.Options();
         opt.inPreferredConfig = Bitmap.Config.RGB_565;
         opt.inPurgeable = true;
@@ -106,7 +106,7 @@ public class ImageProcessor {
      * @param pixels 角度，度数越大圆角越大
      * @return 转换成圆角后的图片
      */
-    public Bitmap roundCorner(float pixels) {
+    public Bitmap roundCorner(final float pixels) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
         Paint paint = new Paint();
@@ -126,25 +126,25 @@ public class ImageProcessor {
      * @param reflectionSpacing 原图与倒影之间的间距
      * @return 加上倒影后的图片
      */
-    public Bitmap reflection(int reflectionSpacing, int reflectionHeight) {
+    public Bitmap reflection(final int reflectionSpacing, final int reflectionHeight) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
 
-		/* 获取倒影图片，并创建一张宽度与原图相同，但高度等于原图的高度加上间距加上倒影的高度的图片，并创建画布。画布分为上中下三部分，上：是原图；中：是原图与倒影的间距；下：是倒影 */
+        /* 获取倒影图片，并创建一张宽度与原图相同，但高度等于原图的高度加上间距加上倒影的高度的图片，并创建画布。画布分为上中下三部分，上：是原图；中：是原图与倒影的间距；下：是倒影 */
         Bitmap reflectionImage = reverseByVertical(bitmap);//
         Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapWithReflection);
 
-		/* 将原图画到画布的上半部分，将倒影画到画布的下半部分，倒影与画布顶部的间距是原图的高度加上原图与倒影之间的间距 */
+        /* 将原图画到画布的上半部分，将倒影画到画布的下半部分，倒影与画布顶部的间距是原图的高度加上原图与倒影之间的间距 */
         canvas.drawBitmap(bitmap, 0, 0, null);
         canvas.drawBitmap(reflectionImage, 0, height + reflectionSpacing, null);
         reflectionImage.recycle();
 
-		/* 将倒影改成半透明，创建画笔，并设置画笔的渐变从半透明的白色到全透明的白色，然后再倒影上面画半透明效果 */
+        /* 将倒影改成半透明，创建画笔，并设置画笔的渐变从半透明的白色到全透明的白色，然后再倒影上面画半透明效果 */
         Paint paint = new Paint();
         paint.setShader(new LinearGradient(0, bitmap.getHeight(), 0, bitmapWithReflection.getHeight() + reflectionSpacing, 0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP));
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        canvas.drawRect(0, height+reflectionSpacing, width, bitmapWithReflection.getHeight() + reflectionSpacing, paint);
+        canvas.drawRect(0, height + reflectionSpacing, width, bitmapWithReflection.getHeight() + reflectionSpacing, paint);
 
         return bitmapWithReflection;
     }
@@ -160,11 +160,11 @@ public class ImageProcessor {
     /**
      * 旋转处理
      * @param angle 旋转角度
-     * @param px 旋转中心点在X轴的坐标
-     * @param py 旋转中心点在Y轴的坐标
+     * @param px    旋转中心点在X轴的坐标
+     * @param py    旋转中心点在Y轴的坐标
      * @return 旋转后的图片
      */
-    public Bitmap rotate(float angle, float px, float py) {
+    public Bitmap rotate(final float angle, final float px, final float py) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle, px, py);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
@@ -175,7 +175,7 @@ public class ImageProcessor {
      * @param angle 旋转角度
      * @return 旋转后的图片
      */
-    public Bitmap rotate(float angle) {
+    public Bitmap rotate(final float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
@@ -186,7 +186,7 @@ public class ImageProcessor {
      * @param saturationValue 新的饱和度值
      * @return 改变了饱和度值之后的图片
      */
-    public Bitmap saturation(int saturationValue) {
+    public Bitmap saturation(final int saturationValue) {
         //计算出符合要求的饱和度值
         float newSaturationValue = saturationValue * 1.0F / 127;
         //创建一个颜色矩阵
@@ -209,7 +209,7 @@ public class ImageProcessor {
      * @param lumValue 新的亮度值
      * @return 改变了亮度值之后的图片
      */
-    public Bitmap lum(int lumValue) {
+    public Bitmap lum(final int lumValue) {
         //计算出符合要求的亮度值
         float newlumValue = lumValue * 1.0F / 127;
         //创建一个颜色矩阵
@@ -232,7 +232,7 @@ public class ImageProcessor {
      * @param hueValue 新的色相值
      * @return 改变了色相值之后的图片
      */
-    public Bitmap hue(int hueValue) {
+    public Bitmap hue(final int hueValue) {
         //计算出符合要求的色相值
         float newHueValue = (hueValue - 127) * 1.0F / 127 * 180;
         //创建一个颜色矩阵
@@ -256,12 +256,12 @@ public class ImageProcessor {
 
     /**
      * 亮度、色相、饱和度处理
-     * @param lumValue 亮度值
-     * @param hueValue 色相值
+     * @param lumValue        亮度值
+     * @param hueValue        色相值
      * @param saturationValue 饱和度值
      * @return 亮度、色相、饱和度处理后的图片
      */
-    public Bitmap lumAndHueAndSaturation(int lumValue, int hueValue, int saturationValue) {
+    public Bitmap lumAndHueAndSaturation(final int lumValue, final int hueValue, final int saturationValue) {
         //计算出符合要求的饱和度值
         float newSaturationValue = saturationValue * 1.0F / 127;
         //计算出符合要求的亮度值
@@ -299,7 +299,7 @@ public class ImageProcessor {
      * @param bitmap 原图
      * @return 怀旧效果处理后的图片
      */
-    public Bitmap nostalgic(Bitmap bitmap) {
+    public Bitmap nostalgic(final Bitmap bitmap) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
@@ -426,7 +426,7 @@ public class ImageProcessor {
      */
     public Bitmap soften() {
         // 高斯矩阵
-        int[] gauss = new int[] { 1, 2, 1, 2, 4, 2, 1, 2, 1 };
+        int[] gauss = new int[]{1, 2, 1, 2, 4, 2, 1, 2, 1};
 
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
@@ -490,7 +490,7 @@ public class ImageProcessor {
      * @param centerY 光源在Y轴的位置
      * @return 光照效果处理后的图片
      */
-    public Bitmap sunshine(int centerX, int centerY) {
+    public Bitmap sunshine(final int centerX, final int centerY) {
         final int width = bitmap.getWidth();
         final int height = bitmap.getHeight();
         Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
@@ -601,7 +601,7 @@ public class ImageProcessor {
      */
     public Bitmap sharpen() {
         // 拉普拉斯矩阵
-        int[] laplacian = new int[] { -1, -1, -1, -1, 9, -1, -1, -1, -1 };
+        int[] laplacian = new int[]{-1, -1, -1, -1, 9, -1, -1, -1, -1};
 
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();

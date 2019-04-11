@@ -11,11 +11,9 @@ import dev.DevUtils;
  */
 public class KeyValueBean {
 
-    // 键 - 提示
-    @Keep
+    @Keep // 键 - 提示
     protected String key = "";
-    // 值 - 参数值
-    @Keep
+    @Keep // 值 - 参数值
     protected String value = "";
 
     /**
@@ -23,7 +21,7 @@ public class KeyValueBean {
      * @param key
      * @param value
      */
-    public KeyValueBean(String key, String value) {
+    public KeyValueBean(final String key, final String value) {
         this.key = key;
         this.value = value;
     }
@@ -55,7 +53,7 @@ public class KeyValueBean {
      * @param value
      * @return
      */
-    public static KeyValueBean get(@StringRes int resId, String value) {
+    public static KeyValueBean get(final @StringRes int resId, final String value) {
         return new KeyValueBean(DevUtils.getContext().getString(resId), value);
     }
 }

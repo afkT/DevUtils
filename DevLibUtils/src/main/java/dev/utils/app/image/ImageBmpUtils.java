@@ -26,7 +26,7 @@ public final class ImageBmpUtils {
      * @param size 文件总大小(字节数)
      * @return
      */
-    private static byte[] addBMPImageHeader(int size) {
+    private static byte[] addBMPImageHeader(final int size) {
         byte[] buffer = new byte[14];
         // -- 文件标识 BM --
         buffer[0] = 0x42;
@@ -55,7 +55,7 @@ public final class ImageBmpUtils {
      * @param h 高度
      * @return
      */
-    private static byte[] addBMPImageInfosHeader(int w, int h) {
+    private static byte[] addBMPImageInfosHeader(final int w, final int h) {
         byte[] buffer = new byte[40];
         // --
         buffer[0] = 0x28;
@@ -114,11 +114,11 @@ public final class ImageBmpUtils {
     /**
      * 增加位图 ARGB值
      * @param data 数据
-     * @param w 宽度
-     * @param h 高度
+     * @param w    宽度
+     * @param h    高度
      * @return
      */
-    private static byte[] addBMP_ARGB_8888(int[] data, int w, int h) {
+    private static byte[] addBMP_ARGB_8888(final int[] data, final int w, final int h) {
         if (data == null) return null;
         int len = data.length;
         if (len == 0) return null;
@@ -143,7 +143,7 @@ public final class ImageBmpUtils {
      * @param bitmap
      * @return
      */
-    private static byte[] getBmpBytes(Bitmap bitmap) {
+    private static byte[] getBmpBytes(final Bitmap bitmap) {
         try {
             if (bitmap != null) {
                 int w = bitmap.getWidth(), h = bitmap.getHeight();

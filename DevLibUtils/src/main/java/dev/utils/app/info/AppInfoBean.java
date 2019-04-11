@@ -44,7 +44,7 @@ public class AppInfoBean {
      * @param pInfo
      * @return
      */
-    protected static AppInfoBean obtain(PackageInfo pInfo) {
+    protected static AppInfoBean obtain(final PackageInfo pInfo) {
         try {
             return new AppInfoBean(pInfo);
         } catch (Exception e) {
@@ -57,8 +57,8 @@ public class AppInfoBean {
      * 初始化 App 信息实体类
      * @param pInfo
      */
-    protected AppInfoBean(PackageInfo pInfo) {
-        this (pInfo, DevUtils.getContext().getPackageManager());
+    protected AppInfoBean(final PackageInfo pInfo) {
+        this(pInfo, DevUtils.getContext().getPackageManager());
     }
 
     /**
@@ -66,7 +66,7 @@ public class AppInfoBean {
      * @param pInfo
      * @param pManager
      */
-    protected AppInfoBean(PackageInfo pInfo, PackageManager pManager) {
+    protected AppInfoBean(final PackageInfo pInfo, final PackageManager pManager) {
         // App 包名
         appPackName = pInfo.applicationInfo.packageName;
         // App 名
@@ -171,7 +171,10 @@ public class AppInfoBean {
 
     // =
 
-    /** App 类型 */
+    /**
+     * detail: 应用类型
+     * Created by Ttt
+     */
     public enum AppType {
 
         USER, // 用户 App
@@ -186,7 +189,7 @@ public class AppInfoBean {
      * @param pInfo
      * @return
      */
-    public static AppType getAppType(PackageInfo pInfo) {
+    public static AppType getAppType(final PackageInfo pInfo) {
         if (!isSystemApp(pInfo) && !isSystemUpdateApp(pInfo)) {
             return AppType.USER;
         }
@@ -198,7 +201,7 @@ public class AppInfoBean {
      * @param pInfo
      * @return
      */
-    public static boolean isSystemApp(PackageInfo pInfo) {
+    public static boolean isSystemApp(final PackageInfo pInfo) {
         return ((pInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
     }
 
@@ -207,7 +210,7 @@ public class AppInfoBean {
      * @param pInfo
      * @return
      */
-    public static boolean isSystemUpdateApp(PackageInfo pInfo) {
+    public static boolean isSystemUpdateApp(final PackageInfo pInfo) {
         return ((pInfo.applicationInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0);
     }
 }

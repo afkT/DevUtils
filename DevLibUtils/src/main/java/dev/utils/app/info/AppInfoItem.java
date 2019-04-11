@@ -71,7 +71,7 @@ public final class AppInfoItem {
      * @param pInfo
      * @return
      */
-    protected static AppInfoItem obtain(PackageInfo pInfo) {
+    protected static AppInfoItem obtain(final PackageInfo pInfo) {
         try {
             return new AppInfoItem(pInfo);
         } catch (Exception e) {
@@ -84,12 +84,12 @@ public final class AppInfoItem {
      * 初始化 AppInfoItem 对象
      * @param pInfo
      */
-    private AppInfoItem(PackageInfo pInfo) {
+    private AppInfoItem(final PackageInfo pInfo) {
         // 获取 Context
         Context context = DevUtils.getContext();
         // 格式化日期
         SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        // ===========
+        // =
         // 获取 App 信息
         appInfoBean = new AppInfoBean(pInfo);
         // App 签名MD5
@@ -151,9 +151,8 @@ public final class AppInfoItem {
         } catch (CertificateEncodingException e) {
         }
 
-        // ================
-        // === 保存集合 ===
-        // ================
+        // = 保存集合 =
+
         // App 包名
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_packname, appInfoBean.getAppPackName()));
         // App 签名MD5

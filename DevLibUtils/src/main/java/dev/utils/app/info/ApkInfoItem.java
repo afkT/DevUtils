@@ -73,7 +73,7 @@ public final class ApkInfoItem {
      * @param pInfo
      * @return
      */
-    protected static ApkInfoItem obtain(PackageInfo pInfo) {
+    protected static ApkInfoItem obtain(final PackageInfo pInfo) {
         try {
             return new ApkInfoItem(pInfo);
         } catch (Exception e) {
@@ -86,17 +86,17 @@ public final class ApkInfoItem {
      * 初始化 AppInfoItem 对象
      * @param pInfo
      */
-    private ApkInfoItem(PackageInfo pInfo) {
+    private ApkInfoItem(final PackageInfo pInfo) {
         // 获取 Context
         Context context = DevUtils.getContext();
         // 格式化日期
         SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        // ===========
+        // =
         // 获取 App 信息
         appInfoBean = new AppInfoBean(pInfo);
         // 获取签名信息
         Signature[] signatures = SignaturesUtils.getSignaturesFromApk(new File(appInfoBean.getSourceDir()));
-        // ===========
+        // =
         // App 签名MD5
         appMD5 = SignaturesUtils.signatureMD5(signatures);
         // App SHA1
@@ -184,9 +184,8 @@ public final class ApkInfoItem {
             isError = true;
         }
 
-        // ================
-        // === 保存集合 ===
-        // ================
+        // = 保存集合 =
+
         // App 包名
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_packname, appInfoBean.getAppPackName()));
         // 没报错才存储 MD5 信息
