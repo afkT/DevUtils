@@ -27,17 +27,18 @@ public class AsyncExecutor {
     private Handler handler = new Handler(Looper.getMainLooper());
 
     public AsyncExecutor() {
-        this (null);
+        this(null);
     }
 
-    public AsyncExecutor(ExecutorService pool) {
+    public AsyncExecutor(final ExecutorService pool) {
         if (threadPool != null) {
             shutdownNow();
         }
+        // 进行赋值
+        threadPool = pool;
+        // 防止为null
         if (threadPool == null) {
             threadPool = Executors.newCachedThreadPool();
-        } else {
-            threadPool = pool;
         }
     }
 
@@ -55,6 +56,7 @@ public class AsyncExecutor {
      * @return {@link FutureTask<T> }
      */
     public <T> FutureTask<T> execute(final Worker<T> worker) {
+        if (worker == null) return null;
         Callable<T> call = new Callable<T>() {
             @Override
             public T call() throws Exception {
@@ -91,10 +93,13 @@ public class AsyncExecutor {
      * @return <T>
      */
     private <T> T postResult(final Worker<T> worker, final T result) {
+        if (worker == null) return result;
         handler.post(new Runnable() {
             @Override
             public void run() {
-                worker.onPostExecute(result);
+                if (worker != null) {
+                    worker.onPostExecute(result);
+                }
             }
         });
         return result;
@@ -105,6 +110,7 @@ public class AsyncExecutor {
      * @param worker
      */
     private void postCancel(final Worker worker) {
+        if (worker == null) return;
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -119,12 +125,17 @@ public class AsyncExecutor {
      * @param <T>
      * @return {@link FutureTask<T>}
      */
-    public <T> FutureTask<T> execute(Callable<T> call) {
-        FutureTask<T> task = new FutureTask<T>(call);
+    public <T> FutureTask<T> execute(final Callable<T> call) {
+        if (call == null) return null;
+        FutureTask<T> task = new FutureTask<>(call);
         threadPool.execute(task);
         return task;
     }
 
+    /**
+     * detail: 任务
+     * Created by Ttt
+     */
     public abstract class Worker<T> {
 
         /**
@@ -137,16 +148,19 @@ public class AsyncExecutor {
          * 将子线程结果传递到UI线程
          * @param data
          */
-        protected void onPostExecute(T data) {}
+        protected void onPostExecute(T data) {
+        }
 
         /**
          * 取消任务
          */
-        protected void onCanceled() {}
+        protected void onCanceled() {
+        }
 
         /**
          * 中止任务
          */
-        protected void abort() {}
+        protected void abort() {
+        }
     }
 }

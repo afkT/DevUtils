@@ -23,7 +23,6 @@ public final class AESUtils {
 
     /**
      * 生成密钥
-     *
      * @return
      */
     public static byte[] initKey() {
@@ -40,7 +39,6 @@ public final class AESUtils {
 
     /**
      * AES 加密
-     *
      * @param data
      * @param key
      * @return
@@ -61,7 +59,6 @@ public final class AESUtils {
 
     /**
      * AES 解密
-     *
      * @param data
      * @param key
      * @return

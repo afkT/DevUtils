@@ -23,7 +23,6 @@ public final class HttpParamsUtils {
 
     /**
      * 拆分参数
-     *
      * @param params
      * @return
      */
@@ -33,7 +32,6 @@ public final class HttpParamsUtils {
 
     /**
      * 拆分参数
-     *
      * @param params
      * @param urlEncode 是否需要编码
      * @return
@@ -80,7 +78,6 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接请求参数 - value => String
-     *
      * @param mapParams
      * @return
      */
@@ -90,7 +87,6 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接请求参数 - value => String
-     *
      * @param mapParams
      * @param urlEncode 是否需要编码
      * @return
@@ -119,7 +115,6 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接请求参数 - value => Object
-     *
      * @param mapParams
      * @return
      */
@@ -129,7 +124,6 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接请求参数 - value => Object
-     *
      * @param mapParams
      * @param urlEncode 是否需要编码
      * @return
@@ -164,7 +158,6 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接打印 Map 参数
-     *
      * @param mapParams
      * @return
      */
@@ -174,7 +167,6 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接打印 Map 参数
-     *
      * @param mapParams
      * @param urlEncode 是否需要编码
      * @return
@@ -204,7 +196,6 @@ public final class HttpParamsUtils {
 
     /**
      * 进行转换对象处理(请求发送对象)
-     *
      * @param mapParams
      * @param objStr
      * @param key
@@ -224,7 +215,6 @@ public final class HttpParamsUtils {
 
     /**
      * 进行转换对象处理(请求发送对象)
-     *
      * @param mapParams
      * @param objStr
      * @param key
@@ -246,7 +236,6 @@ public final class HttpParamsUtils {
 
     /**
      * url 编码 - utf-8
-     *
      * @param input The input.
      * @return the urlencoded string
      */
@@ -256,7 +245,6 @@ public final class HttpParamsUtils {
 
     /**
      * url编码
-     *
      * @param input       The input.
      * @param charsetName The name of charset.
      * @return the urlencoded string

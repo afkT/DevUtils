@@ -18,7 +18,6 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 解码
-     *
      * @param data
      * @return
      */
@@ -36,7 +35,6 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 编码
-     *
      * @param data
      * @return
      */

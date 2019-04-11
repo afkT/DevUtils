@@ -62,7 +62,6 @@ public final class DateUtils {
 
     /**
      * 获取当前日期的字符串 - yyyy-MM-dd HH:mm:ss
-     *
      * @return 字符串
      */
     public static String getDateNow() {
@@ -71,7 +70,6 @@ public final class DateUtils {
 
     /**
      * 获取当前日期的字符串
-     *
      * @param format 日期格式，如：yyyy-MM-dd HH:mm:ss
      * @return 字符串
      */
@@ -89,7 +87,6 @@ public final class DateUtils {
 
     /**
      * 将时间戳转换日期字符串
-     *
      * @param time   时间戳
      * @param format 日期格式
      * @return 按照需求格式的日期字符串
@@ -106,7 +103,6 @@ public final class DateUtils {
 
     /**
      * 将 Date 转换日期字符串
-     *
      * @param date   日期
      * @param format 日期格式
      * @return 按照需求格式的日期字符串
@@ -125,7 +121,6 @@ public final class DateUtils {
 
     /**
      * 将时间戳转换成 Date
-     *
      * @param time
      * @return
      */
@@ -140,7 +135,6 @@ public final class DateUtils {
 
     /**
      * 将日期字符串转换为 Date - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
-     *
      * @param time
      * @return
      */
@@ -150,7 +144,6 @@ public final class DateUtils {
 
     /**
      * 将日期字符串转换为 Date
-     *
      * @param time
      * @param format
      * @return
@@ -169,7 +162,6 @@ public final class DateUtils {
 
     /**
      * 解析时间字符串转换为long毫秒 - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
-     *
      * @param time
      * @return
      */
@@ -179,7 +171,6 @@ public final class DateUtils {
 
     /**
      * 解析时间字符串转换为long毫秒
-     *
      * @param time   时间
      * @param format 时间的格式
      * @return
@@ -197,7 +188,6 @@ public final class DateUtils {
 
     /**
      * 转换时间为指定字符串
-     *
      * @param time       需要转换的时间
      * @param timeFormat time的时间格式
      * @param format     把time转换成需要的格式
@@ -220,7 +210,6 @@ public final class DateUtils {
 
     /**
      * 获取时间差 - 分钟
-     *
      * @param time 毫秒
      * @return
      */
@@ -230,7 +219,6 @@ public final class DateUtils {
 
     /**
      * 获取时间差 - 小时
-     *
      * @param time 毫秒
      * @return
      */
@@ -240,7 +228,6 @@ public final class DateUtils {
 
     /**
      * 获取时间差 - 天
-     *
      * @param time 毫秒
      * @return
      */
@@ -250,7 +237,6 @@ public final class DateUtils {
 
     /**
      * 获取时间差 - (传入时间 - 当前时间)
-     *
      * @param time
      * @return
      */
@@ -260,7 +246,6 @@ public final class DateUtils {
 
     /**
      * 获取时间差
-     *
      * @param timeStr1
      * @param timeStr2
      * @return
@@ -276,7 +261,6 @@ public final class DateUtils {
 
     /**
      * 获取时间差
-     *
      * @param timeStr1
      * @param timeFormat1
      * @param timeStr2
@@ -296,7 +280,6 @@ public final class DateUtils {
 
     /**
      * 获取年
-     *
      * @param date Date对象
      * @return 年
      */
@@ -314,7 +297,6 @@ public final class DateUtils {
 
     /**
      * 获取月 (0 - 11) + 1
-     *
      * @param date Date对象
      * @return 月
      */
@@ -332,7 +314,6 @@ public final class DateUtils {
 
     /**
      * 获取日
-     *
      * @param date Date对象
      * @return 日
      */
@@ -350,7 +331,6 @@ public final class DateUtils {
 
     /**
      * 获取日期是星期几
-     *
      * @param date Date对象
      * @return 日
      */
@@ -369,7 +349,6 @@ public final class DateUtils {
 
     /**
      * 获取时 - 24
-     *
      * @param date Date对象
      * @return 时
      */
@@ -387,7 +366,6 @@ public final class DateUtils {
 
     /**
      * 获取时 - 12
-     *
      * @param date Date对象
      * @return 时
      */
@@ -405,7 +383,6 @@ public final class DateUtils {
 
     /**
      * 获取分
-     *
      * @param date Date对象
      * @return 分
      */
@@ -423,7 +400,6 @@ public final class DateUtils {
 
     /**
      * 获取秒
-     *
      * @param date Date对象
      * @return 秒
      */
@@ -441,7 +417,6 @@ public final class DateUtils {
 
     /**
      * 转换时间处理, 小于10, 则自动补充 0x
-     *
      * @param time
      * @return
      */
@@ -451,7 +426,6 @@ public final class DateUtils {
 
     /**
      * 转换时间处理, 小于10, 则自动补充 0x
-     *
      * @param time
      * @param append
      * @return
@@ -470,7 +444,6 @@ public final class DateUtils {
 
     /**
      * 获取年
-     *
      * @return
      */
     public static int getYear() {
@@ -479,7 +452,6 @@ public final class DateUtils {
 
     /**
      * 获取月 (0 - 11) + 1
-     *
      * @return
      */
     public static int getMonth() {
@@ -489,7 +461,6 @@ public final class DateUtils {
 
     /**
      * 获取日
-     *
      * @return
      */
     public static int getDay() {
@@ -498,7 +469,6 @@ public final class DateUtils {
 
     /**
      * 获取星期数
-     *
      * @return
      */
     public static int getWeek() {
@@ -507,7 +477,6 @@ public final class DateUtils {
 
     /**
      * 获取时 - 24
-     *
      * @return
      */
     public static int get24Hour() {
@@ -516,7 +485,6 @@ public final class DateUtils {
 
     /**
      * 获取时 - 12
-     *
      * @return
      */
     public static int get12Hour() {
@@ -525,7 +493,6 @@ public final class DateUtils {
 
     /**
      * 获取分
-     *
      * @return
      */
     public static int getMinute() {
@@ -534,7 +501,6 @@ public final class DateUtils {
 
     /**
      * 获取秒
-     *
      * @return
      */
     public static int getSecond() {
@@ -545,7 +511,6 @@ public final class DateUtils {
 
     /**
      * 判断是否闰年
-     *
      * @param year 年数
      * @return
      */
@@ -559,7 +524,6 @@ public final class DateUtils {
 
     /**
      * 根据年份、月份，获取对应的天数 (完整天数, 无判断是否属于未来日期)
-     *
      * @param year  年数
      * @param month 月份
      * @return
@@ -596,7 +560,6 @@ public final class DateUtils {
 
     /**
      * 根据年份，获取对应的月份
-     *
      * @param year
      * @return 内部判断是否相同一年, 不能超过限制未来的月份
      */
@@ -611,7 +574,6 @@ public final class DateUtils {
 
     /**
      * 根据年份、月份，获取对应的天数
-     *
      * @param year
      * @param month
      * @return 内部判断是否相同一年、月份, 不能超过限制未来的天数
@@ -631,7 +593,6 @@ public final class DateUtils {
 
     /**
      * 生成 HH 按时间排序数组
-     *
      * @return
      */
     public static String[] getArrayToHH() {
@@ -641,7 +602,6 @@ public final class DateUtils {
 
     /**
      * 生成 HH 按时间排序集合
-     *
      * @return
      */
     public static List<String> getListToHH() {
@@ -654,7 +614,6 @@ public final class DateUtils {
 
     /**
      * 生成 MM 按时间排序数组
-     *
      * @return
      */
     public static String[] getArrayToMM() {
@@ -664,7 +623,6 @@ public final class DateUtils {
 
     /**
      * 生成 MM 按时间排序集合
-     *
      * @return
      */
     public static List<String> getListToMM() {
@@ -677,7 +635,6 @@ public final class DateUtils {
 
     /**
      * 生成 HH:mm 按间隔时间排序数组
-     *
      * @param type
      * @return type：
      * 0 = 00:00 - 23:00  => 每小时间隔
@@ -691,7 +648,6 @@ public final class DateUtils {
 
     /**
      * 生成 HH:mm 按间隔时间排序集合
-     *
      * @param type
      * @return type：
      * 0 = 00:00 - 23:00  => 每小时间隔
@@ -743,7 +699,6 @@ public final class DateUtils {
 
     /**
      * 获取 HH:mm 按间隔时间排序的集合中, 指定时间所在索引
-     *
      * @param time HH:mm格式
      * @param type
      * @return type：
@@ -809,7 +764,6 @@ public final class DateUtils {
 
     /**
      * 传入时间，获取时间(00:00:00 格式) - 不处理大于一天
-     *
      * @param time 时间(秒为单位)
      * @return
      */
@@ -819,7 +773,6 @@ public final class DateUtils {
 
     /**
      * 传入时间，获取时间(00:00:00 格式)
-     *
      * @param time          时间(秒为单位)
      * @param isHandlerMDay 是否处理大于一天的时间
      * @return
@@ -869,7 +822,6 @@ public final class DateUtils {
 
     /**
      * 传入时间,时间参数(小时、分钟、秒)
-     *
      * @param time 时间(秒为单位)
      * @return
      */
@@ -916,7 +868,6 @@ public final class DateUtils {
 
     /**
      * 转换时间
-     *
      * @param millis
      * @param precision precision = 0, return null
      *                  precision = 1, return 天
@@ -948,7 +899,6 @@ public final class DateUtils {
 
     /**
      * 转换时间为数组
-     *
      * @param millis
      * @return int[5] { 天, 小时, 分钟, 秒, 毫秒}
      */
@@ -971,7 +921,6 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-     *
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @return
@@ -982,7 +931,6 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
-     *
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -994,7 +942,6 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
-     *
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @return
@@ -1005,7 +952,6 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
-     *
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -1017,7 +963,6 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
-     *
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -1053,7 +998,6 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
-     *
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -1065,7 +1009,6 @@ public final class DateUtils {
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
-     *
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -1096,7 +1039,6 @@ public final class DateUtils {
 
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
-     *
      * @param endTime 结束时间 HH:mm
      * @return
      */
@@ -1106,7 +1048,6 @@ public final class DateUtils {
 
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
-     *
      * @param startTime 开始时间
      * @param endTime   结束时间 HH:mm
      * @return
@@ -1117,7 +1058,6 @@ public final class DateUtils {
 
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
-     *
      * @param endTime 结束时间
      * @param format  格式 如: HH:mm
      * @return
@@ -1128,7 +1068,6 @@ public final class DateUtils {
 
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
-     *
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @param format    格式 如: HH:mm
@@ -1172,7 +1111,6 @@ public final class DateUtils {
 
     /**
      * 字符串 转 int
-     *
      * @param str
      * @param defaultValue
      * @return

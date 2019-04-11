@@ -46,7 +46,6 @@ public final class FileUtils {
 
     /**
      * 判断是否为 null
-     *
      * @param str
      * @return
      */
@@ -56,7 +55,6 @@ public final class FileUtils {
 
     /**
      * 判断字符串是否为 null 或全为空白字符
-     *
      * @param str 待校验字符串
      * @return
      */
@@ -74,7 +72,6 @@ public final class FileUtils {
 
     /**
      * 获取文件
-     *
      * @param filePath
      * @return
      */
@@ -84,7 +81,6 @@ public final class FileUtils {
 
     /**
      * 获取文件
-     *
      * @param filePath 文件路径
      * @param fileName 文件名
      * @return
@@ -95,7 +91,6 @@ public final class FileUtils {
 
     /**
      * 获取文件
-     *
      * @param filePath
      * @return
      */
@@ -105,7 +100,6 @@ public final class FileUtils {
 
     /**
      * 获取路径, 并且进行创建目录
-     *
      * @param filePath 保存目录
      * @param fileName 文件名
      * @return
@@ -119,7 +113,6 @@ public final class FileUtils {
 
     /**
      * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
-     *
      * @param dirPath 文件夹路径 (无文件名字.后缀)
      */
     public static boolean createFolder(final String dirPath) {
@@ -128,7 +121,6 @@ public final class FileUtils {
 
     /**
      * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
-     *
      * @param file 文件夹路径 (无文件名字.后缀)
      */
     public static boolean createFolder(final File file) {
@@ -151,7 +143,6 @@ public final class FileUtils {
 
     /**
      * 创建文件夹目录 - 可以传入文件名
-     *
      * @param filePath 文件路径 + 文件名
      * @return
      */
@@ -161,7 +152,6 @@ public final class FileUtils {
 
     /**
      * 创建文件夹目录 - 可以传入文件名
-     *
      * @param file
      * @return
      */
@@ -179,7 +169,6 @@ public final class FileUtils {
 
     /**
      * 创建多个文件夹, 如果不存在则创建
-     *
      * @param filePaths
      */
     public static void createFolderByPaths(final String... filePaths) {
@@ -192,7 +181,6 @@ public final class FileUtils {
 
     /**
      * 创建多个文件夹, 如果不存在则创建
-     *
      * @param files
      */
     public static void createFolderByPaths(final File... files) {
@@ -207,7 +195,6 @@ public final class FileUtils {
 
     /**
      * 判断目录是否存在，不存在则判断是否创建成功
-     *
      * @param dirPath 目录路径
      * @return true : 存在或创建成功, false : 不存在或创建失败
      */
@@ -217,7 +204,6 @@ public final class FileUtils {
 
     /**
      * 判断目录是否存在，不存在则判断是否创建成功
-     *
      * @param file 文件
      * @return true : 存在或创建成功, false : 不存在或创建失败
      */
@@ -228,7 +214,6 @@ public final class FileUtils {
 
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
-     *
      * @param filePath 文件路径
      * @return true : 存在或创建成功, false : 不存在或创建失败
      */
@@ -238,7 +223,6 @@ public final class FileUtils {
 
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
-     *
      * @param file 文件
      * @return true : 存在或创建成功, false : 不存在或创建失败
      */
@@ -259,7 +243,6 @@ public final class FileUtils {
 
     /**
      * 判断文件是否存在，存在则在创建之前删除
-     *
      * @param filePath
      * @return true : 创建成功, false : 创建失败
      */
@@ -269,7 +252,6 @@ public final class FileUtils {
 
     /**
      * 判断文件是否存在，存在则在创建之前删除
-     *
      * @param file
      * @return true : 创建成功, false : 创建失败
      */
@@ -289,7 +271,6 @@ public final class FileUtils {
 
     /**
      * 获取文件路径
-     *
      * @param file
      * @return
      */
@@ -299,7 +280,6 @@ public final class FileUtils {
 
     /**
      * 获取文件绝对路径
-     *
      * @param file
      * @return
      */
@@ -311,7 +291,6 @@ public final class FileUtils {
 
     /**
      * 获取文件名
-     *
      * @param file
      * @return
      */
@@ -321,7 +300,6 @@ public final class FileUtils {
 
     /**
      * 获取文件名
-     *
      * @param filePath 文件路径
      * @return
      */
@@ -331,7 +309,6 @@ public final class FileUtils {
 
     /**
      * 获取文件名
-     *
      * @param filePath   文件路径
      * @param defaultStr
      * @return
@@ -342,7 +319,6 @@ public final class FileUtils {
 
     /**
      * 获取文件后缀名(无.,单独后缀)
-     *
      * @param file
      * @return
      */
@@ -352,7 +328,6 @@ public final class FileUtils {
 
     /**
      * 获取文件后缀 (无 "." 单独后缀)
-     *
      * @param filePath 文件地址、文件名都行
      * @return
      */
@@ -372,7 +347,6 @@ public final class FileUtils {
 
     /**
      * 获取文件名(无后缀)
-     *
      * @param file
      * @return
      */
@@ -382,7 +356,6 @@ public final class FileUtils {
 
     /**
      * 获取文件名(无后缀)
-     *
      * @param filePath
      * @return
      */
@@ -392,7 +365,6 @@ public final class FileUtils {
 
     /**
      * 获取文件名(无后缀)
-     *
      * @param fileName 文件名
      * @return
      */
@@ -409,7 +381,6 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的不带拓展名的文件名
-     *
      * @param file The file.
      * @return 不带拓展名的文件名
      */
@@ -420,7 +391,6 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的不带拓展名的文件名
-     *
      * @param filePath
      * @return 不带拓展名的文件名
      */
@@ -442,7 +412,6 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的文件拓展名
-     *
      * @param file The file.
      * @return 文件拓展名
      */
@@ -453,7 +422,6 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的文件拓展名
-     *
      * @param filePath
      * @return 文件拓展名
      */
@@ -469,7 +437,6 @@ public final class FileUtils {
 
     /**
      * 检查是否存在某个文件
-     *
      * @param file 文件路径
      * @return 是否存在文件
      */
@@ -479,7 +446,6 @@ public final class FileUtils {
 
     /**
      * 检查是否存在某个文件
-     *
      * @param filePath 文件路径
      * @return 是否存在文件
      */
@@ -489,7 +455,6 @@ public final class FileUtils {
 
     /**
      * 检查是否存在某个文件
-     *
      * @param filePath 文件路径
      * @param fileName 文件名
      * @return 是否存在文件
@@ -500,7 +465,6 @@ public final class FileUtils {
 
     /**
      * 判断是否文件
-     *
      * @param filePath
      * @return
      */
@@ -510,7 +474,6 @@ public final class FileUtils {
 
     /**
      * 判断是否文件
-     *
      * @param file
      * @return
      */
@@ -520,7 +483,6 @@ public final class FileUtils {
 
     /**
      * 判断是否文件夹
-     *
      * @param filePath
      * @return
      */
@@ -530,7 +492,6 @@ public final class FileUtils {
 
     /**
      * 判断是否文件夹
-     *
      * @param file
      * @return
      */
@@ -540,7 +501,6 @@ public final class FileUtils {
 
     /**
      * 判断是否隐藏文件
-     *
      * @param filePath
      * @return
      */
@@ -550,7 +510,6 @@ public final class FileUtils {
 
     /**
      * 判断是否隐藏文件
-     *
      * @param file
      * @return
      */
@@ -562,7 +521,6 @@ public final class FileUtils {
 
     /**
      * 获取文件最后修改的毫秒时间戳
-     *
      * @param filePath 文件路径
      * @return 文件最后修改的毫秒时间戳
      */
@@ -572,7 +530,6 @@ public final class FileUtils {
 
     /**
      * 获取文件最后修改的毫秒时间戳
-     *
      * @param file 文件
      * @return 文件最后修改的毫秒时间戳
      */
@@ -583,7 +540,6 @@ public final class FileUtils {
 
     /**
      * 简单获取文件编码格式
-     *
      * @param filePath 文件路径
      * @return 文件编码
      */
@@ -593,7 +549,6 @@ public final class FileUtils {
 
     /**
      * 简单获取文件编码格式
-     *
      * @param file 文件
      * @return 文件编码
      */
@@ -622,7 +577,6 @@ public final class FileUtils {
 
     /**
      * 获取文件行数
-     *
      * @param filePath
      * @return 文件行数
      */
@@ -632,7 +586,6 @@ public final class FileUtils {
 
     /**
      * 获取文件行数 => 比 readLine 要快很多
-     *
      * @param file The file.
      * @return 文件行数
      */
@@ -668,7 +621,6 @@ public final class FileUtils {
 
     /**
      * 获取文件大小
-     *
      * @param filePath
      * @return 文件大小
      */
@@ -678,7 +630,6 @@ public final class FileUtils {
 
     /**
      * 获取文件大小
-     *
      * @param file The file.
      * @return 文件大小
      */
@@ -688,7 +639,6 @@ public final class FileUtils {
 
     /**
      * 获取目录大小
-     *
      * @param dirPath 目录路径
      * @return 文件大小
      */
@@ -698,7 +648,6 @@ public final class FileUtils {
 
     /**
      * 获取目录大小
-     *
      * @param dir 目录
      * @return 文件大小
      */
@@ -708,7 +657,6 @@ public final class FileUtils {
 
     /**
      * 获取文件大小
-     *
      * @param filePath
      * @return
      */
@@ -718,7 +666,6 @@ public final class FileUtils {
 
     /**
      * 获取文件大小
-     *
      * @param file
      * @return
      */
@@ -728,7 +675,6 @@ public final class FileUtils {
 
     /**
      * 获取目录长度
-     *
      * @param dirPath 目录路径
      * @return 目录长度
      */
@@ -738,7 +684,6 @@ public final class FileUtils {
 
     /**
      * 获取目录长度
-     *
      * @param dir 目录
      * @return 目录长度
      */
@@ -760,7 +705,6 @@ public final class FileUtils {
 
     /**
      * 获取文件长度 - 网络资源
-     *
      * @param httpUri
      * @return 文件长度
      */
@@ -784,7 +728,6 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的文件名
-     *
      * @param file The file.
      * @return 文件名
      */
@@ -795,7 +738,6 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的文件名
-     *
      * @param filePath
      * @return 文件名
      */
@@ -807,7 +749,6 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的最长目录
-     *
      * @param file The file.
      * @return filePath 最长目录
      */
@@ -818,7 +759,6 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的最长目录
-     *
      * @param filePath
      * @return filePath 最长目录
      */
@@ -832,7 +772,6 @@ public final class FileUtils {
 
     /**
      * 重命名文件 - 同个目录下, 修改文件名
-     *
      * @param filePath    文件路径
      * @param newFileName 新名称
      * @return
@@ -843,7 +782,6 @@ public final class FileUtils {
 
     /**
      * 重命名文件 - 同个目录下, 修改文件名
-     *
      * @param file        文件
      * @param newFileName 新名称
      * @return
@@ -865,7 +803,6 @@ public final class FileUtils {
 
     /**
      * 传入文件路径, 返回对应的文件大小
-     *
      * @param filePath
      * @return
      */
@@ -876,7 +813,6 @@ public final class FileUtils {
 
     /**
      * 传入文件路径, 返回对应的文件大小
-     *
      * @param file
      * @return
      */
@@ -886,7 +822,6 @@ public final class FileUtils {
 
     /**
      * 传入对应的文件大小double,返回转换后文件大小
-     *
      * @param fileSize 返回String文件大小
      * @return
      */
@@ -912,7 +847,6 @@ public final class FileUtils {
 
     /**
      * 字节数转合适内存大小 保留 3 位小数 (%.位数f)
-     *
      * @param byteSize 字节数
      * @return 合适内存大小
      */
@@ -922,7 +856,6 @@ public final class FileUtils {
 
     /**
      * 字节数转合适内存大小 保留 number 位小数 (%.位数f)
-     *
      * @param number   字节数
      * @param byteSize 字节数
      * @return 合适内存大小
@@ -947,7 +880,6 @@ public final class FileUtils {
 
     /**
      * 获取文件的 MD5 校验码
-     *
      * @param filePath 文件路径
      * @return 文件的 MD5 校验码
      */
@@ -957,7 +889,6 @@ public final class FileUtils {
 
     /**
      * 获取文件的 MD5 校验码
-     *
      * @param file 文件
      * @return 文件的 MD5 校验码
      */
@@ -971,7 +902,6 @@ public final class FileUtils {
 
     /**
      * 获取文件的 MD5 校验码
-     *
      * @param filePath 文件路径
      * @return 文件的 MD5 校验码
      */
@@ -981,7 +911,6 @@ public final class FileUtils {
 
     /**
      * 获取文件的 MD5 校验码
-     *
      * @param file 文件
      * @return 文件的 MD5 校验码
      */
@@ -1010,7 +939,6 @@ public final class FileUtils {
 
     /**
      * 获取文件MD5值 - 小写
-     *
      * @param filePath 文件地址
      * @return
      */
@@ -1020,7 +948,6 @@ public final class FileUtils {
 
     /**
      * 获取文件MD5值 - 小写
-     *
      * @param file 文件地址
      * @return
      */
@@ -1046,7 +973,6 @@ public final class FileUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     *
      * @param data
      * @param hexDigits
      * @return
@@ -1071,7 +997,6 @@ public final class FileUtils {
 
     /**
      * 删除文件
-     *
      * @param filePath
      * @return
      */
@@ -1081,7 +1006,6 @@ public final class FileUtils {
 
     /**
      * 删除文件
-     *
      * @param file
      * @return
      */
@@ -1095,7 +1019,6 @@ public final class FileUtils {
 
     /**
      * 删除多个文件
-     *
      * @param filePaths
      * @return
      */
@@ -1109,7 +1032,6 @@ public final class FileUtils {
 
     /**
      * 删除多个文件
-     *
      * @param files
      * @return
      */
@@ -1125,7 +1047,6 @@ public final class FileUtils {
 
     /**
      * 删除文件夹
-     *
      * @param filePath
      * @return
      */
@@ -1135,7 +1056,6 @@ public final class FileUtils {
 
     /**
      * 删除文件夹
-     *
      * @param file
      * @return
      */
@@ -1166,7 +1086,6 @@ public final class FileUtils {
 
     /**
      * 保存文件
-     *
      * @param file
      * @param data 保存内容
      * @return 是否保存成功
@@ -1192,7 +1111,6 @@ public final class FileUtils {
 
     /**
      * 保存文件
-     *
      * @param filePath 保存路径
      * @param fileName 文件名.后缀
      * @param data     保存内容
@@ -1221,7 +1139,6 @@ public final class FileUtils {
 
     /**
      * 保存文件
-     *
      * @param filePath 保存路径
      * @param fileName 文件名.后缀
      * @param content  保存内容
@@ -1248,7 +1165,6 @@ public final class FileUtils {
 
     /**
      * 保存文件
-     *
      * @param filePath 保存路径
      * @param fileName 文件名.后缀
      * @param content  保存内容
@@ -1283,7 +1199,6 @@ public final class FileUtils {
 
     /**
      * 追加文件：使用FileWriter
-     *
      * @param filePath 文件地址
      * @param content  追加内容
      */
@@ -1313,7 +1228,6 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     *
      * @param filePath
      * @return
      */
@@ -1323,7 +1237,6 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     *
      * @param file
      * @return
      */
@@ -1345,7 +1258,6 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     *
      * @return
      */
     public static byte[] readFileBytes(final InputStream is) {
@@ -1365,7 +1277,6 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     *
      * @param filePath
      * @return
      */
@@ -1375,7 +1286,6 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     *
      * @param file
      * @return
      */
@@ -1392,7 +1302,6 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     *
      * @param is -> new FileInputStream(path)
      * @return
      */
@@ -1418,7 +1327,6 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     *
      * @param is     -> new FileInputStream(path)
      * @param encode 编码
      * @return
@@ -1452,7 +1360,6 @@ public final class FileUtils {
 
     /**
      * 复制单个文件
-     *
      * @param inputStream  文件流(被复制)
      * @param destFilePath 目标文件地址
      * @param overlay      如果目标文件存在，是否覆盖
@@ -1511,7 +1418,6 @@ public final class FileUtils {
 
     /**
      * 复制单个文件
-     *
      * @param srcFilePath  待复制的文件地址
      * @param destFilePath 目标文件地址
      * @param overlay      如果目标文件存在，是否覆盖
@@ -1578,7 +1484,6 @@ public final class FileUtils {
 
     /**
      * 复制文件夹
-     *
      * @param srcFolderPath  待复制的文件夹地址
      * @param destFolderPath 目标文件夹地址
      * @param overlay        如果目标文件存在，是否覆盖
@@ -1590,7 +1495,6 @@ public final class FileUtils {
 
     /**
      * 复制文件夹
-     *
      * @param srcFolderPath  待复制的文件夹地址
      * @param destFolderPath 目标文件夹地址
      * @param sourcePath     源文件地址
@@ -1658,7 +1562,6 @@ public final class FileUtils {
 
     /**
      * 移动(剪切)文件
-     *
      * @param srcFilePath
      * @param destFilePath
      * @param overlay
@@ -1675,7 +1578,6 @@ public final class FileUtils {
 
     /**
      * 移动(剪切)文件夹
-     *
      * @param srcFilePath
      * @param destFilePath
      * @param overlay
@@ -1694,7 +1596,6 @@ public final class FileUtils {
 
     /**
      * 复制或移动目录
-     *
      * @param srcDirPath  源目录路径
      * @param destDirPath 目标目录路径
      * @param listener    是否覆盖监听器
@@ -1707,7 +1608,6 @@ public final class FileUtils {
 
     /**
      * 复制或移动目录
-     *
      * @param srcDir   源目录
      * @param destDir  目标目录
      * @param listener 是否覆盖监听器
@@ -1749,7 +1649,6 @@ public final class FileUtils {
 
     /**
      * 复制或移动文件
-     *
      * @param srcFilePath  源文件路径
      * @param destFilePath 目标文件路径
      * @param listener     是否覆盖监听器
@@ -1762,7 +1661,6 @@ public final class FileUtils {
 
     /**
      * 复制或移动文件
-     *
      * @param srcFile  源文件
      * @param destFile 目标文件
      * @param listener 是否覆盖监听器
@@ -1796,7 +1694,6 @@ public final class FileUtils {
 
     /**
      * 复制目录
-     *
      * @param srcDirPath  源目录路径
      * @param destDirPath 目标目录路径
      * @param listener    是否覆盖监听器
@@ -1808,7 +1705,6 @@ public final class FileUtils {
 
     /**
      * 复制目录
-     *
      * @param srcDir   源目录
      * @param destDir  目标目录
      * @param listener 是否覆盖监听器
@@ -1820,7 +1716,6 @@ public final class FileUtils {
 
     /**
      * 复制文件
-     *
      * @param srcFilePath  源文件路径
      * @param destFilePath 目标文件路径
      * @param listener     是否覆盖监听器
@@ -1832,7 +1727,6 @@ public final class FileUtils {
 
     /**
      * 复制文件
-     *
      * @param srcFile  源文件
      * @param destFile 目标文件
      * @param listener 是否覆盖监听器
@@ -1844,7 +1738,6 @@ public final class FileUtils {
 
     /**
      * 移动目录
-     *
      * @param srcDirPath  源目录路径
      * @param destDirPath 目标目录路径
      * @param listener    是否覆盖监听器
@@ -1856,7 +1749,6 @@ public final class FileUtils {
 
     /**
      * 移动目录
-     *
      * @param srcDir   源目录
      * @param destDir  目标目录
      * @param listener 是否覆盖监听器
@@ -1868,7 +1760,6 @@ public final class FileUtils {
 
     /**
      * 移动文件
-     *
      * @param srcFilePath  源文件路径
      * @param destFilePath 目标文件路径
      * @param listener     是否覆盖监听器
@@ -1880,7 +1771,6 @@ public final class FileUtils {
 
     /**
      * 移动文件
-     *
      * @param srcFile  源文件
      * @param destFile 目标文件
      * @param listener 是否覆盖监听器
@@ -1892,7 +1782,6 @@ public final class FileUtils {
 
     /**
      * 删除目录
-     *
      * @param dirPath 目录路径
      * @return true : 删除成功, false :删除失败
      */
@@ -1902,7 +1791,6 @@ public final class FileUtils {
 
     /**
      * 删除目录
-     *
      * @param dir 目录
      * @return true : 删除成功, false :删除失败
      */
@@ -1927,7 +1815,6 @@ public final class FileUtils {
 
     /**
      * 删除目录下所有东西
-     *
      * @param dirPath 目录路径
      * @return true : 删除成功, false :删除失败
      */
@@ -1937,7 +1824,6 @@ public final class FileUtils {
 
     /**
      * 删除目录下所有东西
-     *
      * @param dir 目录
      * @return true : 删除成功, false :删除失败
      */
@@ -1952,7 +1838,6 @@ public final class FileUtils {
 
     /**
      * 删除目录下所有文件
-     *
      * @param dirPath 目录路径
      * @return true : 删除成功, false :删除失败
      */
@@ -1962,7 +1847,6 @@ public final class FileUtils {
 
     /**
      * 删除目录下所有文件
-     *
      * @param dir 目录
      * @return true : 删除成功, false :删除失败
      */
@@ -1977,7 +1861,6 @@ public final class FileUtils {
 
     /**
      * 删除目录下所有过滤的文件
-     *
      * @param dirPath 目录路径
      * @param filter  过滤器
      * @return true : 删除成功, false :删除失败
@@ -1988,7 +1871,6 @@ public final class FileUtils {
 
     /**
      * 删除目录下所有过滤的文件
-     *
      * @param dir    目录
      * @param filter 过滤器
      * @return true : 删除成功, false :删除失败
@@ -2016,7 +1898,6 @@ public final class FileUtils {
 
     /**
      * 获取目录下所有文件 - 不递归进子目录
-     *
      * @param dirPath 目录路径
      * @return 文件链表
      */
@@ -2026,7 +1907,6 @@ public final class FileUtils {
 
     /**
      * 获取目录下所有文件 - 不递归进子目录
-     *
      * @param dir 目录
      * @return 文件链表
      */
@@ -2036,7 +1916,6 @@ public final class FileUtils {
 
     /**
      * 获取目录下所有文件
-     *
      * @param dirPath     目录路径
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
@@ -2047,7 +1926,6 @@ public final class FileUtils {
 
     /**
      * 获取目录下所有文件
-     *
      * @param dir         目录
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
@@ -2063,7 +1941,6 @@ public final class FileUtils {
 
     /**
      * 获取目录下所有过滤的文件 - 不递归进子目录
-     *
      * @param dirPath 目录路径
      * @param filter  过滤器
      * @return 文件链表
@@ -2074,7 +1951,6 @@ public final class FileUtils {
 
     /**
      * 获取目录下所有过滤的文件 - 不递归进子目录
-     *
      * @param dir    目录
      * @param filter 过滤器
      * @return 文件链表
@@ -2085,7 +1961,6 @@ public final class FileUtils {
 
     /**
      * 获取目录下所有过滤的文件
-     *
      * @param dirPath     目录路径
      * @param filter      过滤器
      * @param isRecursive 是否递归进子目录
@@ -2097,7 +1972,6 @@ public final class FileUtils {
 
     /**
      * 获取目录下所有过滤的文件
-     *
      * @param dir         目录
      * @param filter      过滤器
      * @param isRecursive 是否递归进子目录
@@ -2128,7 +2002,6 @@ public final class FileUtils {
 
         /**
          * 是否覆盖/替换文件
-         *
          * @return
          */
         boolean onReplace();

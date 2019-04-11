@@ -32,7 +32,6 @@ public final class HttpURLConnectionUtils {
 
         /**
          * 请求响应回调
-         *
          * @param result
          * @param response 请求头响应时间
          */
@@ -40,7 +39,6 @@ public final class HttpURLConnectionUtils {
 
         /**
          * 请求失败
-         *
          * @param e
          */
         void onFail(Exception e);
@@ -48,7 +46,6 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 异步的Get请求
-     *
      * @param urlStr
      * @param callBack
      */
@@ -66,7 +63,6 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 异步的Post请求
-     *
      * @param urlStr
      * @param params
      * @param callBack
@@ -85,7 +81,6 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 发送请求
-     *
      * @param method
      * @param urlStr
      * @param headers
@@ -196,14 +191,12 @@ public final class HttpURLConnectionUtils {
 
         /**
          * 请求相应回调
-         *
          * @param time 毫秒
          */
         void onResponse(long time);
 
         /**
          * 请求失败
-         *
          * @param e
          */
         void onFail(Exception e);
@@ -211,7 +204,6 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 获取网络时间 - 默认使用百度链接
-     *
      * @param timeCallBack
      */
     public static void getNetTime(final TimeCallBack timeCallBack) {
@@ -220,7 +212,6 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 获取网络时间
-     *
      * @param urlStr
      * @param timeCallBack
      */
@@ -235,7 +226,6 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 请求网络时间(内部私有)
-     *
      * @param urlStr
      * @param timeCallBack
      */

@@ -22,7 +22,6 @@ public final class ClassUtils {
 
     /**
      * 判断类是否是基础数据类型 - 目前支持11种
-     *
      * @param clazz
      * @return
      */
@@ -36,7 +35,6 @@ public final class ClassUtils {
 
     /**
      * 根据类获取对象：不再必须一个无参构造
-     *
      * @param clazz
      * @return
      */
@@ -66,7 +64,6 @@ public final class ClassUtils {
 
     /**
      * 判断 Class 是否为原始类型(boolean、char、byte、short、int、long、float、double)
-     *
      * @param clazz
      * @return
      */
@@ -79,7 +76,6 @@ public final class ClassUtils {
 
     /**
      * 判断是否集合类型
-     *
      * @param clazz
      * @return
      */
@@ -89,7 +85,6 @@ public final class ClassUtils {
 
     /**
      * 是否数组类型
-     *
      * @param clazz
      * @return
      */
@@ -101,7 +96,6 @@ public final class ClassUtils {
 
     /**
      * 获取父类泛型类型
-     *
      * @param object
      * @return
      */
@@ -111,7 +105,6 @@ public final class ClassUtils {
 
     /**
      * 获取父类泛型类型
-     *
      * @param object
      * @param pos    泛型参数位置
      * @return
@@ -127,7 +120,6 @@ public final class ClassUtils {
 
     /**
      * 获取父类泛型类型
-     *
      * @param clazz
      * @return
      */
@@ -137,7 +129,6 @@ public final class ClassUtils {
 
     /**
      * 获取父类泛型类型
-     *
      * @param clazz
      * @param pos   泛型参数位置
      * @return
@@ -157,7 +148,6 @@ public final class ClassUtils {
 
     /**
      * 获取接口泛型类型
-     *
      * @param object
      * @param interfaceClazz 接口 Class
      * @return
@@ -169,7 +159,6 @@ public final class ClassUtils {
 
     /**
      * 获取接口泛型类型
-     *
      * @param object
      * @param interfaceClazz 接口 Class
      * @param pos            泛型参数位置
@@ -186,7 +175,6 @@ public final class ClassUtils {
 
     /**
      * 获取接口泛型类型
-     *
      * @param clazz
      * @param interfaceClazz 接口 Class
      * @return
@@ -197,7 +185,6 @@ public final class ClassUtils {
 
     /**
      * 获取接口泛型类型
-     *
      * @param clazz
      * @param interfaceClazz 接口 Class
      * @param pos            泛型参数位置

@@ -34,7 +34,7 @@ public final class BeepVibrateAssist implements Closeable {
      * 构造函数
      * @param context
      */
-    public BeepVibrateAssist(Context context) {
+    public BeepVibrateAssist(final Context context) {
         this.mContext = context;
     }
 
@@ -43,7 +43,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param context
      * @param rawId
      */
-    public BeepVibrateAssist(Context context, @RawRes int rawId) {
+    public BeepVibrateAssist(final Context context, final @RawRes int rawId) {
         this.mContext = context;
         this.mediaPlayer = buildMediaPlayer(context, rawId);
     }
@@ -51,33 +51,30 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 构造函数
      * @param context
-     * @param path 只支持本地资源
+     * @param path    只支持本地资源
      */
-    public BeepVibrateAssist(Context context, String path) {
+    public BeepVibrateAssist(final Context context, final String path) {
         this.mContext = context;
         this.mediaPlayer = buildMediaPlayer(path);
     }
 
-    // == 内部判断方法 ==
+    // = 内部判断方法 =
 
     /**
      * 检查是否允许播放声音
      * @return true: 允许, false: 不允许
      */
     private boolean shouldBeep() {
-        boolean shouldPlayBeep = true;
-        if (shouldPlayBeep) {
-            try {
-                // RINGER_MODE_NORMAL(普通)、RINGER_MODE_SILENT(静音)、RINGER_MODE_VIBRATE(震动)
-                AudioManager audioService = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-                if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-                    shouldPlayBeep = false; // 进入只有属于, 静音、震动，才不播放
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "shouldBeep");
+        try {
+            // RINGER_MODE_NORMAL(普通)、RINGER_MODE_SILENT(静音)、RINGER_MODE_VIBRATE(震动)
+            AudioManager audioService = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+            if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
+                return false; // 进入只有属于, 静音、震动，才不播放
             }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "shouldBeep");
         }
-        return shouldPlayBeep;
+        return true;
     }
 
     /**
@@ -95,7 +92,7 @@ public final class BeepVibrateAssist implements Closeable {
         }
     }
 
-    // == 对外公开方法 ==
+    // = 对外公开方法 =
 
     /**
      * 判断是否允许播放声音
@@ -118,7 +115,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param vibrate
      * @return {@link BeepVibrateAssist}
      */
-    public BeepVibrateAssist setVibrate(boolean vibrate) {
+    public BeepVibrateAssist setVibrate(final boolean vibrate) {
         setVibrate(vibrate, 200l);
         return this;
     }
@@ -129,7 +126,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param vibrateDuration 震动时间
      * @return {@link BeepVibrateAssist}
      */
-    public BeepVibrateAssist setVibrate(boolean vibrate, long vibrateDuration) {
+    public BeepVibrateAssist setVibrate(final boolean vibrate, final long vibrateDuration) {
         this.vibrate = vibrate;
         return this;
     }
@@ -139,7 +136,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @param mediaPlayer
      * @return {@link BeepVibrateAssist}
      */
-    public BeepVibrateAssist setMediaPlayer(MediaPlayer mediaPlayer) {
+    public BeepVibrateAssist setMediaPlayer(final MediaPlayer mediaPlayer) {
         this.mediaPlayer = mediaPlayer;
         // 进行更新
         update();
@@ -181,35 +178,32 @@ public final class BeepVibrateAssist implements Closeable {
         }
     }
 
-    // == 创建 MediaPlayer 处理 ==
+    // = 创建 MediaPlayer 处理 =
 
     /**
      * 创建 MediaPlayer 对象
      * @param context
-     * @param rawId 响声资源id
+     * @param rawId   响声资源id
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(Context context, @RawRes int rawId) {
+    public static MediaPlayer buildMediaPlayer(final Context context, final @RawRes int rawId) {
         return buildMediaPlayer(context, rawId, 0.1f);
     }
 
     /**
      * 创建 MediaPlayer 对象
      * @param context
-     * @param rawId 响声资源id
+     * @param rawId      响声资源id
      * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(Context context, @RawRes int rawId, float beepVolume) {
+    public static MediaPlayer buildMediaPlayer(final Context context, final @RawRes int rawId, final float beepVolume) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 LogPrintUtils.dTag(TAG, "buildMediaPlayer - onCompletion");
-//                if (mediaPlayer != null) {
-//                    mediaPlayer.seekTo(0);
-//                }
             }
         });
         mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
@@ -244,26 +238,23 @@ public final class BeepVibrateAssist implements Closeable {
      * @param path 响声资源路径(只支持本地资源)
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(String path) {
+    public static MediaPlayer buildMediaPlayer(final String path) {
         return buildMediaPlayer(path, 0.1f);
     }
 
     /**
      * 创建 MediaPlayer 对象
-     * @param path 响声资源路径(只支持本地资源)
+     * @param path       响声资源路径(只支持本地资源)
      * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(String path, float beepVolume) {
+    public static MediaPlayer buildMediaPlayer(final String path, final float beepVolume) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 LogPrintUtils.dTag(TAG, "buildMediaPlayer - onCompletion");
-//                if (mediaPlayer != null) {
-//                    mediaPlayer.seekTo(0);
-//                }
             }
         });
         mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {

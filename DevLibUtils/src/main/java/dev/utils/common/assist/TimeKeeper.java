@@ -8,7 +8,6 @@ public class TimeKeeper {
 
     /**
      * 设置等待一段时间后, 通知方法 (异步)
-     *
      * @param keepTimeMillis 堵塞时间
      * @param endCallback
      * @return
@@ -24,7 +23,6 @@ public class TimeKeeper {
 
     /**
      * 设置等待一段时间后, 通知方法 (同步)
-     *
      * @param keepTimeMillis 堵塞时间
      * @param endCallback
      * @return
@@ -57,7 +55,6 @@ public class TimeKeeper {
 
         /**
          * 结束触发通知方法
-         *
          * @param startTimeMillis 开始堵塞时间
          * @param keepTimeMillis  堵塞时间
          * @param endTimeMillis   结束时间

@@ -44,7 +44,6 @@ public final class ConvertUtils {
 
     /**
      * char[] 转 String
-     *
      * @param data
      * @return
      */
@@ -54,7 +53,6 @@ public final class ConvertUtils {
 
     /**
      * byte[] 转 String
-     *
      * @param data
      * @return
      */
@@ -64,7 +62,6 @@ public final class ConvertUtils {
 
     /**
      * char[] 转 String
-     *
      * @param data
      * @param defaultStr
      * @return
@@ -82,7 +79,6 @@ public final class ConvertUtils {
 
     /**
      * byte[] 转 String
-     *
      * @param data
      * @param defaultStr
      * @return
@@ -102,7 +98,6 @@ public final class ConvertUtils {
 
     /**
      * char 转 String
-     *
      * @param data
      * @return
      */
@@ -112,7 +107,6 @@ public final class ConvertUtils {
 
     /**
      * byte 转 String
-     *
      * @param data
      * @return
      */
@@ -122,7 +116,6 @@ public final class ConvertUtils {
 
     /**
      * char 转 String
-     *
      * @param data
      * @param defaultStr
      * @return
@@ -138,7 +131,6 @@ public final class ConvertUtils {
 
     /**
      * byte 转 String
-     *
      * @param data
      * @param defaultStr
      * @return
@@ -156,7 +148,6 @@ public final class ConvertUtils {
 
     /**
      * Object 转 String
-     *
      * @param object
      * @return
      */
@@ -166,7 +157,6 @@ public final class ConvertUtils {
 
     /**
      * Object 转 String
-     *
      * @param object
      * @param defaultStr
      * @return
@@ -230,7 +220,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 int
-     *
      * @param str
      * @return
      */
@@ -240,7 +229,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 int
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -257,7 +245,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 boolean
-     *
      * @param str
      * @return
      */
@@ -267,7 +254,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 boolean
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -289,7 +275,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 float
-     *
      * @param str
      * @return
      */
@@ -299,7 +284,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 float
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -316,7 +300,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 double
-     *
      * @param str
      * @return
      */
@@ -326,7 +309,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 double
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -343,7 +325,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 long
-     *
      * @param str
      * @return
      */
@@ -353,7 +334,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 转 long
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -372,7 +352,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 int
-     *
      * @param value
      * @return
      */
@@ -382,7 +361,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 int
-     *
      * @param value
      * @param defaultValue
      * @return
@@ -399,7 +377,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 boolean
-     *
      * @param value
      * @return
      */
@@ -409,7 +386,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 boolean
-     *
      * @param value
      * @param defaultValue
      * @return
@@ -421,7 +397,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 float
-     *
      * @param value
      * @return
      */
@@ -431,7 +406,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 float
-     *
      * @param value
      * @param defaultValue
      * @return
@@ -448,7 +422,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 double
-     *
      * @param value
      * @return
      */
@@ -458,7 +431,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 double
-     *
      * @param value
      * @param defaultValue
      * @return
@@ -475,7 +447,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 long
-     *
      * @param value
      * @return
      */
@@ -485,7 +456,6 @@ public final class ConvertUtils {
 
     /**
      * 基本类型对象 转 long
-     *
      * @param value
      * @param defaultValue
      * @return
@@ -504,7 +474,6 @@ public final class ConvertUtils {
 
     /**
      * char 转换 int
-     *
      * @param value
      * @return
      */
@@ -514,7 +483,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 获取 char (默认第一位)
-     *
      * @param str
      * @param defaultValue
      * @return
@@ -525,7 +493,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 获取 char
-     *
      * @param str
      * @param pos
      * @param defaultValue
@@ -543,7 +510,6 @@ public final class ConvertUtils {
 
     /**
      * char 转换 unicode 编码
-     *
      * @param value
      * @return
      */
@@ -553,7 +519,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 获取 char[]
-     *
      * @param str
      * @return
      */
@@ -570,7 +535,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串 获取 byte[]
-     *
      * @param str
      * @return
      */
@@ -589,7 +553,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串转换对应的进制
-     *
      * @param str
      * @param radix
      * @return 如：parseInt("1f603", 16) = 128515
@@ -606,7 +569,6 @@ public final class ConvertUtils {
 
     /**
      * 字符串转换对应的进制
-     *
      * @param str
      * @param radix
      * @return
@@ -642,7 +604,6 @@ public final class ConvertUtils {
 
     /**
      * 按位求补 byte[] 位移编/解码 （共用同一个方法）
-     *
      * @param data
      */
     public static void bytesBitwiseAND(final byte[] data) {
@@ -658,7 +619,6 @@ public final class ConvertUtils {
 
     /**
      * 将 short 转换成字节数组
-     *
      * @param data short
      * @return 字节数组
      */
@@ -678,7 +638,6 @@ public final class ConvertUtils {
 
     /**
      * 将 int 转换成字节数组
-     *
      * @param data int
      * @return 字节数组
      */
@@ -698,7 +657,6 @@ public final class ConvertUtils {
 
     /**
      * 从 byte[] 上截取一段
-     *
      * @param data
      * @param off    起始
      * @param length 个数
@@ -723,7 +681,6 @@ public final class ConvertUtils {
 
     /**
      * byte[] 转为 Object
-     *
      * @param bytes
      * @return
      */
@@ -749,7 +706,6 @@ public final class ConvertUtils {
 
     /**
      * Object 转为 byte[]
-     *
      * @param object
      * @return
      */
@@ -779,7 +735,6 @@ public final class ConvertUtils {
 
     /**
      * byte[] 转换 char[], 并且进行补码
-     *
      * @param data
      * @return chars
      */
@@ -801,7 +756,6 @@ public final class ConvertUtils {
 
     /**
      * char[] 转换 byte[]
-     *
      * @param data
      * @return
      */
@@ -825,7 +779,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 double[]
-     *
      * @param datas 数据
      * @return
      */
@@ -835,7 +788,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 double[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -846,7 +798,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 double[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -866,7 +817,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 long[]
-     *
      * @param datas 数据
      * @return
      */
@@ -876,7 +826,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 long[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -887,7 +836,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 long[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -907,7 +855,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 float[]
-     *
      * @param datas 数据
      * @return
      */
@@ -917,7 +864,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 float[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -928,7 +874,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 float[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -948,7 +893,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 string[]
-     *
      * @param datas 数据
      * @return
      */
@@ -958,7 +902,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 string[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -969,7 +912,6 @@ public final class ConvertUtils {
 
     /**
      * int[] 转换 string[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -989,7 +931,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 int[]
-     *
      * @param datas 数据
      * @return
      */
@@ -999,7 +940,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 int[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -1011,7 +951,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 int[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -1023,7 +962,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 int[]
-     *
      * @param off        开始索引
      * @param length     所需长度
      * @param errorValue 转换错误使用值
@@ -1048,7 +986,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 double[]
-     *
      * @param datas 数据
      * @return
      */
@@ -1058,7 +995,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 double[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -1070,7 +1006,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 double[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -1082,7 +1017,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 double[]
-     *
      * @param off        开始索引
      * @param length     所需长度
      * @param errorValue 转换错误使用值
@@ -1107,7 +1041,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 long[]
-     *
      * @param datas 数据
      * @return
      */
@@ -1117,7 +1050,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 long[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -1129,7 +1061,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 long[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -1141,7 +1072,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 long[]
-     *
      * @param off        开始索引
      * @param length     所需长度
      * @param errorValue 转换错误使用值
@@ -1166,7 +1096,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 float[]
-     *
      * @param datas 数据
      * @return
      */
@@ -1176,7 +1105,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 float[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -1188,7 +1116,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 float[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -1200,7 +1127,6 @@ public final class ConvertUtils {
 
     /**
      * string[] 转换 float[]
-     *
      * @param off        开始索引
      * @param length     所需长度
      * @param errorValue 转换错误使用值
@@ -1225,7 +1151,6 @@ public final class ConvertUtils {
 
     /**
      * double[] 转换 int[]
-     *
      * @param datas 数据
      * @return
      */
@@ -1235,7 +1160,6 @@ public final class ConvertUtils {
 
     /**
      * double[] 转换 int[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -1246,7 +1170,6 @@ public final class ConvertUtils {
 
     /**
      * double[] 转换 int[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -1269,7 +1192,6 @@ public final class ConvertUtils {
 
     /**
      * long[] 转换 int[]
-     *
      * @param datas 数据
      * @return
      */
@@ -1279,7 +1201,6 @@ public final class ConvertUtils {
 
     /**
      * long[] 转换 int[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -1290,7 +1211,6 @@ public final class ConvertUtils {
 
     /**
      * long[] 转换 int[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -1313,7 +1233,6 @@ public final class ConvertUtils {
 
     /**
      * float[] 转换 int[]
-     *
      * @param datas 数据
      * @return
      */
@@ -1323,7 +1242,6 @@ public final class ConvertUtils {
 
     /**
      * float[] 转换 int[]
-     *
      * @param off   开始索引
      * @param datas 数据
      * @return
@@ -1334,7 +1252,6 @@ public final class ConvertUtils {
 
     /**
      * float[] 转换 int[]
-     *
      * @param off    开始索引
      * @param length 所需长度
      * @param datas  数据
@@ -1357,7 +1274,6 @@ public final class ConvertUtils {
 
     /**
      * 将 字节转换 为 二进制字符串
-     *
      * @param datas 字节数组
      * @return 二进制字符串
      */
@@ -1379,7 +1295,6 @@ public final class ConvertUtils {
 
     /**
      * 二进制字符串 转换 byte[] 解码
-     *
      * @param str
      * @return byte[]
      * 例："011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 toBinaryString 使用
@@ -1415,7 +1330,6 @@ public final class ConvertUtils {
 
     /**
      * 将十六进制字节数组解码
-     *
      * @param data 十六进制byte[]
      * @return byte[]
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
@@ -1426,7 +1340,6 @@ public final class ConvertUtils {
 
     /**
      * 将十六进制字符串解码
-     *
      * @param str 十六进制字符串
      * @return byte[]
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
@@ -1437,7 +1350,6 @@ public final class ConvertUtils {
 
     /**
      * 将十六进制字符数组解码
-     *
      * @param data 十六进制 char[]
      * @return byte[]
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
@@ -1464,7 +1376,6 @@ public final class ConvertUtils {
 
     /**
      * 十六进制 char 转换 int
-     *
      * @param hexChar
      * @return
      */
@@ -1480,7 +1391,6 @@ public final class ConvertUtils {
 
     /**
      * 将十六进制字符转换成一个整数
-     *
      * @param ch    十六进制 char
      * @param index 十六进制字符在字符数组中的位置
      * @return 一个整数
@@ -1502,7 +1412,6 @@ public final class ConvertUtils {
 
     /**
      * int 转换十六进制
-     *
      * @param value
      * @return 如：传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
      */
@@ -1517,7 +1426,6 @@ public final class ConvertUtils {
 
     /**
      * long 转换十六进制
-     *
      * @param value
      * @return
      */
@@ -1532,7 +1440,6 @@ public final class ConvertUtils {
 
     /**
      * double 转换十六进制
-     *
      * @param value
      * @return
      */
@@ -1547,7 +1454,6 @@ public final class ConvertUtils {
 
     /**
      * float 转换十六进制
-     *
      * @param value
      * @return
      */
@@ -1564,7 +1470,6 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换为 十六进制 char[]
-     *
      * @param str
      * @return 十六进制 char[]
      */
@@ -1574,7 +1479,6 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换为 十六进制 char[]
-     *
      * @param str
      * @param toLowerCase true: 小写格式, false: 大写格式
      * @return 十六进制 char[]
@@ -1587,7 +1491,6 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换为 十六进制 char[]
-     *
      * @param data byte[]
      * @return 十六进制 char[]
      */
@@ -1597,7 +1500,6 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换为 十六进制 char[]
-     *
      * @param data        byte[]
      * @param toLowerCase true: 小写格式, false: 大写格式
      * @return 十六进制 char[]
@@ -1608,7 +1510,6 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换为 十六进制 char[]
-     *
      * @param data      byte[]
      * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
      * @return 十六进制 char[]
@@ -1627,7 +1528,6 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换 十六进制字符串
-     *
      * @param str
      * @return
      */
@@ -1637,7 +1537,6 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换 十六进制字符串
-     *
      * @param str
      * @param toLowerCase true: 小写格式, false: 大写格式
      * @return
@@ -1650,7 +1549,6 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     *
      * @param data
      * @return
      */
@@ -1660,7 +1558,6 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     *
      * @param data
      * @param toLowerCase true: 小写格式, false: 大写格式
      * @return
@@ -1671,7 +1568,6 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     *
      * @param data
      * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
      * @return
@@ -1696,7 +1592,6 @@ public final class ConvertUtils {
 
     /**
      * 判断是否为 null
-     *
      * @param str
      * @return
      */
@@ -1706,7 +1601,6 @@ public final class ConvertUtils {
 
     /**
      * 获取数组长度
-     *
      * @param objects
      * @return
      */

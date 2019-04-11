@@ -12,7 +12,8 @@ import android.os.Build;
 /**
  * detail: Activity 无操作定时辅助类
  * Created by Ttt
- * 需要注意的试, 需要在对应的生命周期内，调用对应的 onXXX 方法
+ * ==============
+ * 需要注意的是, 需要在对应的生命周期内，调用对应的 onXXX 方法
  */
 public final class InactivityTimerAssist {
 
@@ -25,13 +26,13 @@ public final class InactivityTimerAssist {
     // 检查任务
     private AsyncTask<Object, Object, Object> inactivityTask;
 
-    // == 构造函数 ==
+    // = 构造函数 =
 
-    public InactivityTimerAssist(Activity activity) {
-        this (activity, 5 * 60 * 1000L);
+    public InactivityTimerAssist(final Activity activity) {
+        this(activity, 5 * 60 * 1000L);
     }
 
-    public InactivityTimerAssist(Activity activity, long inactivityTime) {
+    public InactivityTimerAssist(final Activity activity, final long inactivityTime) {
         this.activity = activity;
         this.inactivityTime = inactivityTime;
         // 电池广播监听

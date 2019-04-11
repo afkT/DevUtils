@@ -27,7 +27,6 @@ public class TimeCounter {
 
     /**
      * 获取持续的时间并重新启动。
-     *
      * @return
      */
     public long durationRestart() {
@@ -39,7 +38,6 @@ public class TimeCounter {
 
     /**
      * 获取持续的时间
-     *
      * @return
      */
     public long duration() {
@@ -48,7 +46,6 @@ public class TimeCounter {
 
     /**
      * 获取开始时间
-     *
      * @return
      */
     public long getStartTime() {

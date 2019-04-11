@@ -42,7 +42,6 @@ public final class DevThreadPool {
 
     /**
      * 构造函数
-     *
      * @param nThreads
      */
     public DevThreadPool(int nThreads) {
@@ -57,7 +56,6 @@ public final class DevThreadPool {
 
     /**
      * 构造函数
-     *
      * @param threadPool
      */
     public DevThreadPool(final ExecutorService threadPool) {
@@ -68,7 +66,6 @@ public final class DevThreadPool {
 
     /**
      * 构造函数
-     *
      * @param devThreadPoolType
      */
     public DevThreadPool(final DevThreadPoolType devThreadPoolType) {
@@ -136,7 +133,6 @@ public final class DevThreadPool {
 
     /**
      * 获取线程数
-     *
      * @return
      */
     public final int getThreads() {
@@ -146,7 +142,6 @@ public final class DevThreadPool {
 
     /**
      * 获取线程数
-     *
      * @return
      */
     public final int getCalcThreads() {
@@ -168,7 +163,6 @@ public final class DevThreadPool {
 
     /**
      * 加入到线程池任务队列
-     *
      * @param runnable
      */
     public void execute(final Runnable runnable) {
@@ -179,7 +173,6 @@ public final class DevThreadPool {
 
     /**
      * 加入到线程池任务队列
-     *
      * @param runnables
      */
     public void execute(final List<Runnable> runnables) {
@@ -194,7 +187,6 @@ public final class DevThreadPool {
 
     /**
      * 通过反射,调用某个类的方法
-     *
      * @param method
      * @param object
      */
@@ -231,7 +223,6 @@ public final class DevThreadPool {
      * 试图停止所有正在执行的活动任务
      * 试图停止所有正在执行的活动任务，暂停处理正在等待的任务，并返回等待执行的任务列表。
      * 无法保证能够停止正在处理的活动执行任务，但是会尽力尝试。
-     *
      * @return
      */
     public List<Runnable> shutdownNow() {
@@ -243,7 +234,6 @@ public final class DevThreadPool {
 
     /**
      * 判断线程池是否已关闭 = isShutDown当调用shutdown()方法后返回为true。
-     *
      * @return
      */
     public boolean isShutdown() {
@@ -257,7 +247,6 @@ public final class DevThreadPool {
      * 若关闭后所有任务都已完成,则返回true.
      * 注意除非首先调用shutdown或shutdownNow, 否则isTerminated 永不为true.
      * isTerminated当调用shutdown()方法后，并且所有提交的任务完成后返回为true
-     *
      * @return
      */
     public boolean isTerminated() {
@@ -270,7 +259,6 @@ public final class DevThreadPool {
     /**
      * 请求关闭、发生超时或者当前线程中断
      * 无论哪一个首先发生之后，都将导致阻塞，直到所有任务完成执行。
-     *
      * @param timeout 最长等待时间
      * @param unit    时间单位
      * @return true : 请求成功, false : 请求超时
@@ -286,7 +274,6 @@ public final class DevThreadPool {
     /**
      * 提交一个Callable任务用于执行
      * 如果想立即阻塞任务的等待，则可以使用{@code result = threadPool.submit(aCallable).get();}形式的构造。
-     *
      * @param task 任务
      * @param <T>  泛型
      * @return 表示任务等待完成的Future, 该Future的{@code get}方法在成功完成时将会返回该任务的结果。
@@ -300,7 +287,6 @@ public final class DevThreadPool {
 
     /**
      * 提交一个Runnable任务用于执行
-     *
      * @param task   任务
      * @param result 返回的结果
      * @param <T>    泛型
@@ -315,7 +301,6 @@ public final class DevThreadPool {
 
     /**
      * 提交一个Runnable任务用于执行
-     *
      * @param task 任务
      * @return 表示任务等待完成的Future, 该Future的{@code get}方法在成功完成时将会返回null结果。
      */
@@ -332,7 +317,6 @@ public final class DevThreadPool {
      * 返回列表的所有元素的{@link Future#isDone}为{@code true}。
      * 注意，可以正常地或通过抛出异常来终止已完成任务。
      * 如果正在进行此操作时修改了给定的 collection，则此方法的结果是不确定的。
-     *
      * @param tasks 任务集合
      * @param <T>   泛型
      * @return 表示任务的 Future 列表，列表顺序与给定任务列表的迭代器所生成的顺序相同，每个任务都已完成。
@@ -352,7 +336,6 @@ public final class DevThreadPool {
      * 一旦返回后，即取消尚未完成的任务。
      * 注意，可以正常地或通过抛出异常来终止已完成任务。
      * 如果此操作正在进行时修改了给定的 collection，则此方法的结果是不确定的。
-     *
      * @param tasks   任务集合
      * @param timeout 最长等待时间
      * @param unit    时间单位
@@ -373,7 +356,6 @@ public final class DevThreadPool {
      * 如果某个任务已成功完成(也就是未抛出异常)，则返回其结果。
      * 一旦正常或异常返回后，则取消尚未完成的任务。
      * 如果此操作正在进行时修改了给定的collection，则此方法的结果是不确定的。
-     *
      * @param tasks 任务集合
      * @param <T>   泛型
      * @return 某个任务返回的结果
@@ -392,7 +374,6 @@ public final class DevThreadPool {
      * 如果在给定的超时期满前某个任务已成功完成(也就是未抛出异常)，则返回其结果。
      * 一旦正常或异常返回后，则取消尚未完成的任务。
      * 如果此操作正在进行时修改了给定的collection，则此方法的结果是不确定的。
-     *
      * @param tasks   任务集合
      * @param timeout 最长等待时间
      * @param unit    时间单位
@@ -414,7 +395,6 @@ public final class DevThreadPool {
 
     /**
      * 延迟执行Runnable命令
-     *
      * @param command 命令
      * @param delay   延迟时间
      * @param unit    单位
@@ -429,7 +409,6 @@ public final class DevThreadPool {
 
     /**
      * 延迟执行Callable命令
-     *
      * @param callable 命令
      * @param delay    延迟时间
      * @param unit     时间单位
@@ -445,7 +424,6 @@ public final class DevThreadPool {
 
     /**
      * 延迟并循环执行命令
-     *
      * @param command      命令
      * @param initialDelay 首次执行的延迟时间
      * @param period       连续执行之间的周期
@@ -461,7 +439,6 @@ public final class DevThreadPool {
 
     /**
      * 延迟并以固定休息时间循环执行命令
-     *
      * @param command      命令
      * @param initialDelay 首次执行的延迟时间
      * @param delay        每一次执行终止和下一次执行开始之间的延迟

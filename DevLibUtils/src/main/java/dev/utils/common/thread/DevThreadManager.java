@@ -22,7 +22,6 @@ public final class DevThreadManager {
 
     /**
      * 获取 DevThreadManager 实例
-     *
      * @param nThreads
      * @return
      */
@@ -41,7 +40,6 @@ public final class DevThreadManager {
 
     /**
      * 获取 DevThreadManager 实例
-     *
      * @param key
      * @return
      */
@@ -77,7 +75,6 @@ public final class DevThreadManager {
 
     /**
      * 初始化配置信息
-     *
      * @param mapConfig
      */
     public static void initConfig(final Map<String, Object> mapConfig) {
@@ -88,7 +85,6 @@ public final class DevThreadManager {
 
     /**
      * 添加配置信息
-     *
      * @param key
      * @param val
      */
@@ -98,7 +94,6 @@ public final class DevThreadManager {
 
     /**
      * 移除配置信息
-     *
      * @param key
      */
     public static void removeConfig(final String key) {

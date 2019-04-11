@@ -22,7 +22,6 @@ public final class CRCUtils {
 
     /**
      * 获取 CRC32 值
-     *
      * @param str
      * @return
      */
@@ -40,7 +39,6 @@ public final class CRCUtils {
 
     /**
      * 获取 CRC32 值
-     *
      * @param str
      * @return
      */
@@ -58,7 +56,6 @@ public final class CRCUtils {
 
     /**
      * 获取文件 CRC32 值
-     *
      * @param filePath
      * @return
      */

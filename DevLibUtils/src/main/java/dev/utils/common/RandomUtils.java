@@ -42,7 +42,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 boolean 值
-     *
      * @param random
      * @return
      */
@@ -52,7 +51,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 byte[]
-     *
      * @param random
      * @param data
      * @return
@@ -68,7 +66,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 double 值
-     *
      * @param random
      * @return
      */
@@ -78,7 +75,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机高斯分布值
-     *
      * @param random
      * @return
      */
@@ -88,7 +84,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 float 值
-     *
      * @param random
      * @return
      */
@@ -98,7 +93,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 int 值
-     *
      * @param random
      * @return
      */
@@ -108,7 +102,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
-     *
      * @param random
      * @param n
      * @return
@@ -120,7 +113,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 long 值
-     *
      * @param random
      * @return
      */
@@ -132,7 +124,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 boolean 值
-     *
      * @return
      */
     public static boolean nextBoolean() {
@@ -141,7 +132,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 byte[]
-     *
      * @param data
      * @return
      */
@@ -156,7 +146,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 double 值
-     *
      * @return
      */
     public static double nextDouble() {
@@ -165,7 +154,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机高斯分布值
-     *
      * @return
      */
     public static double nextGaussian() {
@@ -174,7 +162,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 float 值
-     *
      * @return
      */
     public static float nextFloat() {
@@ -183,7 +170,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 int 值
-     *
      * @return
      */
     public static int nextInt() {
@@ -192,7 +178,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
-     *
      * @param n
      * @return
      */
@@ -203,7 +188,6 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 long 值
-     *
      * @return
      */
     public static long nextLong() {
@@ -214,7 +198,6 @@ public final class RandomUtils {
 
     /**
      * 获取数字自定义长度的随机数
-     *
      * @param length 长度
      * @return 随机数字符串
      */
@@ -224,7 +207,6 @@ public final class RandomUtils {
 
     /**
      * 获取小写字母自定义长度的随机数
-     *
      * @param length 长度
      * @return 随机字符串
      */
@@ -234,7 +216,6 @@ public final class RandomUtils {
 
     /**
      * 获取大写字母自定义长度的随机数
-     *
      * @param length 长度
      * @return 随机字符串
      */
@@ -244,7 +225,6 @@ public final class RandomUtils {
 
     /**
      * 获取大小写字母自定义长度的随机数
-     *
      * @param length 长度
      * @return 随机字符串
      */
@@ -254,7 +234,6 @@ public final class RandomUtils {
 
     /**
      * 获取数字、大小写字母自定义长度的随机数
-     *
      * @param length 长度
      * @return 随机字符串
      */
@@ -264,7 +243,6 @@ public final class RandomUtils {
 
     /**
      * 获取自定义数据自定义长度的随机数
-     *
      * @param length 长度
      * @return 随机字符串
      */
@@ -275,7 +253,6 @@ public final class RandomUtils {
 
     /**
      * 获取 char[] 内的随机数
-     *
      * @param chars  随机的数据源
      * @param length 需要最终长度
      * @return
@@ -294,7 +271,6 @@ public final class RandomUtils {
 
     /**
      * 获取 0 - 最大随机数之间的随机数
-     *
      * @param max 最大随机数
      */
     public static int getRandom(final int max) {
@@ -303,7 +279,6 @@ public final class RandomUtils {
 
     /**
      * 获取两个数之间的随机数(不含最大随机数,需要 + 1)
-     *
      * @param min 最小随机数
      * @param max 最大随机数
      */
@@ -323,7 +298,6 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     *
      * @param objArray
      * @return
      */
@@ -334,7 +308,6 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     *
      * @param objArray
      * @param shuffleCount 洗牌次数
      * @return
@@ -355,7 +328,6 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     *
      * @param intArray
      * @return
      */
@@ -366,7 +338,6 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     *
      * @param intArray
      * @param shuffleCount 洗牌次数
      * @return
@@ -391,7 +362,6 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第二种)，随机置换指定的数组使用的默认源的随机性
-     *
      * @param objArray
      * @return
      */
@@ -414,7 +384,6 @@ public final class RandomUtils {
 
     /**
      * 获取指定范围 Int 值
-     *
      * @param origin 开始值
      * @param bound  范围值
      * @return
@@ -441,7 +410,6 @@ public final class RandomUtils {
 
     /**
      * 获取指定范围 long 值
-     *
      * @param origin 开始值
      * @param bound  范围值
      * @return
@@ -473,7 +441,6 @@ public final class RandomUtils {
 
     /**
      * 获取指定范围 double 值
-     *
      * @param origin 开始值
      * @param bound  范围值
      * @return
@@ -494,7 +461,6 @@ public final class RandomUtils {
 
     /**
      * 获取随机 int 数组
-     *
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
      * @param randomNumberBound  结束值(最大值范围)
@@ -520,7 +486,6 @@ public final class RandomUtils {
 
     /**
      * 获取随机 long 数组
-     *
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
      * @param randomNumberBound  结束值(最大值范围)
@@ -546,7 +511,6 @@ public final class RandomUtils {
 
     /**
      * 获取随机 double 数组
-     *
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
      * @param randomNumberBound  结束值(最大值范围)

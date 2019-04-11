@@ -34,7 +34,6 @@ public final class LogPrintUtils {
 
     /**
      * 判断是否打印日志
-     *
      * @return
      */
     public static boolean isPrintLog() {
@@ -43,7 +42,6 @@ public final class LogPrintUtils {
 
     /**
      * 设置是否打印日志
-     *
      * @param judgePrintLog
      */
     public static void setPrintLog(final boolean judgePrintLog) {
@@ -54,7 +52,6 @@ public final class LogPrintUtils {
 
     /**
      * 最终打印日志方法(全部调用此方法)
-     *
      * @param logType 打印日志类型
      * @param tag     打印Tag
      * @param msg     打印消息
@@ -87,7 +84,6 @@ public final class LogPrintUtils {
 
     /**
      * 处理信息
-     *
      * @param message 打印信息
      * @param args    占位符替换
      * @return
@@ -116,7 +112,6 @@ public final class LogPrintUtils {
 
     /**
      * 拼接错误信息
-     *
      * @param throwable 错误异常
      * @param message   需要打印的消息
      * @param args      动态参数

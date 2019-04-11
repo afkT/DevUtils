@@ -46,7 +46,6 @@ public final class FileBreadthFirstSearchUtils {
 
         /**
          * 保存子文件信息
-         *
          * @param file
          */
         private synchronized FileItem put(final File file) {
@@ -88,7 +87,6 @@ public final class FileBreadthFirstSearchUtils {
 
         /**
          * 判断是否处理该文件
-         *
          * @param file
          * @return
          */
@@ -96,7 +94,6 @@ public final class FileBreadthFirstSearchUtils {
 
         /**
          * 是否添加到集合
-         *
          * @param file
          * @return
          */
@@ -104,7 +101,6 @@ public final class FileBreadthFirstSearchUtils {
 
         /**
          * 搜索结束监听
-         *
          * @param rootFileItem
          * @param startTime
          * @param endTime
@@ -146,7 +142,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 设置搜索处理接口
-     *
      * @param iSearchHandler
      * @return
      */
@@ -157,7 +152,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 获取任务队列同时进行数量
-     *
      * @return
      */
     public int getQueueSameTimeNumber() {
@@ -166,7 +160,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 任务队列同时进行数量
-     *
      * @param queueSameTimeNumber
      * @return
      */
@@ -180,7 +173,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 是否搜索中
-     *
      * @return
      */
     public boolean isRunning() {
@@ -196,7 +188,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 是否停止搜索
-     *
      * @return
      */
     public boolean isStop() {
@@ -205,7 +196,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 获取开始搜索时间
-     *
      * @return
      */
     public long getStartTime() {
@@ -214,7 +204,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 获取结束搜索时间
-     *
      * @return
      */
     public long getEndTime() {
@@ -223,7 +212,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 获取延迟校验时间
-     *
      * @return
      */
     public long getDelayTime() {
@@ -232,7 +220,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 设置延迟校验时间
-     *
      * @param delayTime
      */
     public void setDelayTime(final long delayTime) {
@@ -262,7 +249,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 搜索目录
-     *
      * @param path 根目录地址
      */
     public synchronized void query(final String path) {
@@ -320,7 +306,6 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 搜索文件
-     *
      * @param file
      * @param fileItem 所在文件夹对象(上一级目录)
      */

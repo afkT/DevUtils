@@ -22,7 +22,6 @@ public final class QuickCommonUtils {
 
     /**
      * 获取随机唯一数
-     *
      * @return
      */
     public static UUID randomUUID() {
@@ -31,7 +30,6 @@ public final class QuickCommonUtils {
 
     /**
      * 获取随机唯一数 HashCode
-     *
      * @return
      */
     public static int randomUUIDToHashCode() {
@@ -40,7 +38,6 @@ public final class QuickCommonUtils {
 
     /**
      * 获取随机唯一数 HashCode
-     *
      * @param uuid
      * @return
      */
@@ -50,7 +47,6 @@ public final class QuickCommonUtils {
 
     /**
      * 获取随机数 唯一id
-     *
      * @return
      */
     public static String getRandomUUID() {
@@ -70,7 +66,6 @@ public final class QuickCommonUtils {
 
     /**
      * 循环 MD5 加密处理
-     *
      * @param data
      * @param number
      * @param isUppercase
@@ -120,7 +115,6 @@ public final class QuickCommonUtils {
 
     /**
      * 转换手机号
-     *
      * @param phone
      */
     public static String converHideMobile(final String phone) {
@@ -129,7 +123,6 @@ public final class QuickCommonUtils {
 
     /**
      * 转换手机号
-     *
      * @param phone
      * @param symbol 符号
      */
@@ -139,7 +132,6 @@ public final class QuickCommonUtils {
 
     /**
      * 耗时时间记录
-     *
      * @param buffer
      * @param sTime  开始时间
      * @param eTime  结束时间
@@ -150,7 +142,6 @@ public final class QuickCommonUtils {
 
     /**
      * 耗时时间记录
-     *
      * @param buffer
      * @param title  标题
      * @param sTime  开始时间
@@ -173,7 +164,6 @@ public final class QuickCommonUtils {
 
     /**
      * 获取操作时间
-     *
      * @param operateTime 操作时间(毫秒)
      * @return
      */
@@ -183,7 +173,6 @@ public final class QuickCommonUtils {
 
     /**
      * 获取操作时间
-     *
      * @param operateTime 操作时间(毫秒)
      * @param randomTime  随机范围(毫秒)
      */
@@ -200,7 +189,6 @@ public final class QuickCommonUtils {
 
     /**
      * 堵塞操作
-     *
      * @param sleepTime
      */
     public static void sleepOperate(final long sleepTime) {
@@ -209,7 +197,6 @@ public final class QuickCommonUtils {
 
     /**
      * 堵塞操作
-     *
      * @param sleepTime
      * @param randomTime
      */
