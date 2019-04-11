@@ -21,6 +21,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 判断是否为null
+     *
      * @param str
      * @return
      */
@@ -30,6 +31,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 通用匹配函数
+     *
      * @param regex
      * @param input
      * @return
@@ -47,6 +49,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 中国手机号格式验证,在输入可以调用该方法,点击发送验证码,使用 isPhone
+     *
      * @param phone
      * @return
      */
@@ -59,6 +62,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国手机号
+     *
      * @param phone
      * @return
      */
@@ -71,6 +75,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国电信手机号码
+     *
      * @param phone
      * @return
      */
@@ -83,6 +88,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国联通手机号码
+     *
      * @param phone
      * @return
      */
@@ -95,6 +101,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国移动手机号码
+     *
      * @param phone
      * @return
      */
@@ -107,6 +114,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 判断是否香港手机号
+     *
      * @param phone
      * @return
      */
@@ -119,6 +127,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 验证电话号码的格式
+     *
      * @param phone
      * @return
      */

@@ -24,6 +24,7 @@ public final class BankCheckUtils {
 
     /**
      * 校验银行卡卡号 是否合法
+     *
      * @param cardId
      * @return
      */
@@ -40,6 +41,7 @@ public final class BankCheckUtils {
 
     /**
      * 从不含校验位的银行卡卡号采用 Luhm 校验算法获取校验位
+     *
      * @param nonCheckCodeCardId
      * @return
      */
@@ -70,6 +72,7 @@ public final class BankCheckUtils {
 
     /**
      * 通过银行卡 的前六位确定 判断银行开户行及卡种
+     *
      * @param cardBin
      * @return
      */

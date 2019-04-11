@@ -10,12 +10,14 @@ public abstract class SingletonUtils<T> {
 
     /**
      * 实现实例抽象方法
+     *
      * @return
      */
     protected abstract T newInstance();
 
     /**
      * 获取实例方法
+     *
      * @return
      */
     public final T getInstance() {

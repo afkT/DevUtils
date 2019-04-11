@@ -22,6 +22,7 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA1
+     *
      * @param str
      * @return
      */
@@ -31,6 +32,7 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA224
+     *
      * @param str
      * @return
      */
@@ -40,6 +42,7 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA256
+     *
      * @param str
      * @return
      */
@@ -49,6 +52,7 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA384
+     *
      * @param str
      * @return
      */
@@ -58,6 +62,7 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA512
+     *
      * @param str
      * @return
      */
@@ -69,6 +74,7 @@ public final class SHAUtils {
 
     /**
      * 获取文件 sha1 值
+     *
      * @param filePath 文件地址
      * @return
      */
@@ -78,6 +84,7 @@ public final class SHAUtils {
 
     /**
      * 获取文件 sha256 值
+     *
      * @param filePath 文件地址
      * @return
      */
@@ -89,6 +96,7 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA
+     *
      * @param str
      * @param algorithm 加密算法
      * @return
@@ -112,6 +120,7 @@ public final class SHAUtils {
 
     /**
      * 获取文件 SHA 值
+     *
      * @param filePath
      * @param algorithm 加密算法
      * @return
@@ -138,6 +147,7 @@ public final class SHAUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
+     *
      * @param data
      * @param hexDigits
      * @return

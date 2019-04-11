@@ -39,6 +39,7 @@ public final class FileIOUtils {
 
     /**
      * 设置缓冲区的大小, 默认大小等于 8192 字节
+     *
      * @param bufferSize The buffer's size.
      */
     public static void setBufferSize(final int bufferSize) {
@@ -47,6 +48,7 @@ public final class FileIOUtils {
 
     /**
      * 通过输入流写入文件
+     *
      * @param filePath The path of file.
      * @param is       The input stream.
      * @return true : success, false : fail
@@ -57,6 +59,7 @@ public final class FileIOUtils {
 
     /**
      * 通过输入流写入文件
+     *
      * @param filePath The path of file.
      * @param is       The input stream.
      * @param append   True to append, false otherwise.
@@ -68,6 +71,7 @@ public final class FileIOUtils {
 
     /**
      * 通过输入流写入文件
+     *
      * @param file The file.
      * @param is   The input stream.
      * @return true : success, false : fail
@@ -78,6 +82,7 @@ public final class FileIOUtils {
 
     /**
      * 通过输入流写入文件
+     *
      * @param file   The file.
      * @param is     The input stream.
      * @param append True to append, false otherwise.
@@ -104,6 +109,7 @@ public final class FileIOUtils {
 
     /**
      * 通过字节流写入文件
+     *
      * @param filePath The path of file.
      * @param bytes    The bytes.
      * @return true : success, false : fail
@@ -114,6 +120,7 @@ public final class FileIOUtils {
 
     /**
      * 通过字节流写入文件
+     *
      * @param filePath The path of file.
      * @param bytes    The bytes.
      * @param append   True to append, false otherwise.
@@ -125,6 +132,7 @@ public final class FileIOUtils {
 
     /**
      * 通过字节流写入文件
+     *
      * @param file  The file.
      * @param bytes The bytes.
      * @return true : success, false : fail
@@ -135,6 +143,7 @@ public final class FileIOUtils {
 
     /**
      * 通过字节流写入文件
+     *
      * @param file   The file.
      * @param bytes  The bytes.
      * @param append True to append, false otherwise.
@@ -157,6 +166,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 FileChannel 把字节流写入文件
+     *
      * @param filePath The path of file.
      * @param bytes    The bytes.
      * @param isForce  是否写入文件
@@ -168,6 +178,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 FileChannel 把字节流写入文件
+     *
      * @param filePath The path of file.
      * @param bytes    The bytes.
      * @param append   True to append, false otherwise.
@@ -180,6 +191,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 FileChannel 把字节流写入文件
+     *
      * @param file    The file.
      * @param bytes   The bytes.
      * @param isForce True to force write file, false otherwise.
@@ -191,6 +203,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 FileChannel 把字节流写入文件
+     *
      * @param file    The file.
      * @param bytes   The bytes.
      * @param append  True to append, false otherwise.
@@ -216,6 +229,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 MappedByteBuffer 把字节流写入文件
+     *
      * @param filePath The path of file.
      * @param bytes    The bytes.
      * @param isForce  True to force write file, false otherwise.
@@ -227,6 +241,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 MappedByteBuffer 把字节流写入文件
+     *
      * @param filePath The path of file.
      * @param bytes    The bytes.
      * @param append   True to append, false otherwise.
@@ -239,6 +254,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 MappedByteBuffer 把字节流写入文件
+     *
      * @param file    The file.
      * @param bytes   The bytes.
      * @param isForce True to force write file, false otherwise.
@@ -250,6 +266,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 MappedByteBuffer 把字节流写入文件
+     *
      * @param file    The file.
      * @param bytes   The bytes.
      * @param append  True to append, false otherwise.
@@ -275,6 +292,7 @@ public final class FileIOUtils {
 
     /**
      * 通过字符串写入文件
+     *
      * @param filePath The path of file.
      * @param content  The string of content.
      * @return true : success, false : fail
@@ -285,6 +303,7 @@ public final class FileIOUtils {
 
     /**
      * 通过字符串写入文件
+     *
      * @param filePath The path of file.
      * @param content  The string of content.
      * @param append   True to append, false otherwise.
@@ -296,6 +315,7 @@ public final class FileIOUtils {
 
     /**
      * 通过字符串写入文件
+     *
      * @param file    The file.
      * @param content The string of content.
      * @return true : success, false : fail
@@ -306,6 +326,7 @@ public final class FileIOUtils {
 
     /**
      * 通过字符串写入文件
+     *
      * @param file    The file.
      * @param content The string of content.
      * @param append  True to append, false otherwise.
@@ -331,6 +352,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回换行 List
+     *
      * @param filePath The path of file.
      * @return the lines in file
      */
@@ -340,6 +362,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回换行 List
+     *
      * @param filePath    The path of file.
      * @param charsetName The name of charset.
      * @return the lines in file
@@ -350,6 +373,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回换行 List
+     *
      * @param file The file.
      * @return the lines in file
      */
@@ -359,6 +383,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回换行 List
+     *
      * @param file        The file.
      * @param charsetName The name of charset.
      * @return the lines in file
@@ -369,6 +394,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回换行 List
+     *
      * @param filePath The path of file.
      * @param start    The line's index of start.
      * @param end      The line's index of end.
@@ -380,6 +406,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回换行 List
+     *
      * @param filePath    The path of file.
      * @param start       The line's index of start.
      * @param end         The line's index of end.
@@ -392,6 +419,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回换行 List
+     *
      * @param file  The file.
      * @param start The line's index of start.
      * @param end   The line's index of end.
@@ -403,6 +431,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回换行 List
+     *
      * @param file        The file.
      * @param start       The line's index of start.
      * @param end         The line's index of end.
@@ -438,6 +467,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回字符串
+     *
      * @param filePath The path of file.
      * @return the string in file
      */
@@ -447,6 +477,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回字符串
+     *
      * @param filePath    The path of file.
      * @param charsetName The name of charset.
      * @return the string in file
@@ -457,6 +488,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回字符串
+     *
      * @param file The file.
      * @return the string in file
      */
@@ -466,6 +498,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回字符串
+     *
      * @param file        The file.
      * @param charsetName The name of charset.
      * @return the string in file
@@ -498,6 +531,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回 byte[]
+     *
      * @param filePath The path of file.
      * @return the bytes in file
      */
@@ -507,6 +541,7 @@ public final class FileIOUtils {
 
     /**
      * 读取文件内容, 返回 byte[]
+     *
      * @param file The file.
      * @return the bytes in file
      */
@@ -533,6 +568,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 FileChannel, 读取文件内容, 返回 byte[]
+     *
      * @param filePath The path of file.
      * @return the bytes in file
      */
@@ -542,6 +578,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 FileChannel, 读取文件内容, 返回 byte[]
+     *
      * @param file The file.
      * @return the bytes in file
      */
@@ -565,6 +602,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 MappedByteBuffer, 读取文件内容, 返回 byte[]
+     *
      * @param filePath The path of file.
      * @return the bytes in file
      */
@@ -574,6 +612,7 @@ public final class FileIOUtils {
 
     /**
      * 通过 MappedByteBuffer, 读取文件内容, 返回 byte[]
+     *
      * @param file The file.
      * @return the bytes in file
      */
@@ -599,6 +638,7 @@ public final class FileIOUtils {
 
     /**
      * 获取文件
+     *
      * @param filePath
      * @return
      */
@@ -608,6 +648,7 @@ public final class FileIOUtils {
 
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
+     *
      * @param filePath 文件路径
      * @return true : 存在或创建成功, false : 不存在或创建失败
      */
@@ -617,6 +658,7 @@ public final class FileIOUtils {
 
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
+     *
      * @param file 文件
      * @return true : 存在或创建成功, false : 不存在或创建失败
      */
@@ -637,6 +679,7 @@ public final class FileIOUtils {
 
     /**
      * 判断目录是否存在，不存在则判断是否创建成功
+     *
      * @param file 文件
      * @return true : 存在或创建成功, false : 不存在或创建失败
      */
@@ -647,6 +690,7 @@ public final class FileIOUtils {
 
     /**
      * 检查是否存在某个文件
+     *
      * @param file 文件路径
      * @return 是否存在文件
      */
@@ -656,6 +700,7 @@ public final class FileIOUtils {
 
     /**
      * 判断字符串是否为 null 或全为空白字符
+     *
      * @param str 待校验字符串
      * @return
      */

@@ -23,6 +23,7 @@ public final class TripleDESUtils {
 
     /**
      * 生成密钥
+     *
      * @return
      */
     public static byte[] initKey() {
@@ -39,6 +40,7 @@ public final class TripleDESUtils {
 
     /**
      * 3DES 加密
+     *
      * @param data
      * @param key
      * @return
@@ -59,6 +61,7 @@ public final class TripleDESUtils {
 
     /**
      * 3DES 解密
+     *
      * @param data
      * @param key
      * @return

@@ -24,6 +24,7 @@ public final class FieldUtils {
 
     /**
      * 判断是否序列化
+     *
      * @param field
      * @return
      */
@@ -40,6 +41,7 @@ public final class FieldUtils {
 
     /**
      * 设置域的值
+     *
      * @param field
      * @param object
      * @param value
@@ -59,6 +61,7 @@ public final class FieldUtils {
 
     /**
      * 获取域的值
+     *
      * @param field
      * @param object
      * @return
@@ -78,6 +81,7 @@ public final class FieldUtils {
 
     /**
      * 是否 long/Long 类型
+     *
      * @param field
      * @return
      */
@@ -87,6 +91,7 @@ public final class FieldUtils {
 
     /**
      * 是否 float/Float 类型
+     *
      * @param field
      * @return
      */
@@ -96,6 +101,7 @@ public final class FieldUtils {
 
     /**
      * 是否 double/Double 类型
+     *
      * @param field
      * @return
      */
@@ -105,6 +111,7 @@ public final class FieldUtils {
 
     /**
      * 是否 int/Integer 类型
+     *
      * @param field
      * @return
      */
@@ -114,6 +121,7 @@ public final class FieldUtils {
 
     /**
      * 是否 String 类型
+     *
      * @param field
      * @return
      */
@@ -125,6 +133,7 @@ public final class FieldUtils {
 
     /**
      * 获取域的泛型类型，如果不带泛型返回 null
+     *
      * @param field
      * @return
      */
@@ -144,6 +153,7 @@ public final class FieldUtils {
 
     /**
      * 获取数组的类型
+     *
      * @param field
      * @return
      */
@@ -154,6 +164,7 @@ public final class FieldUtils {
 
     /**
      * 获取全部Field，包括父类
+     *
      * @param clazz
      * @return
      */
@@ -177,6 +188,7 @@ public final class FieldUtils {
 
     /**
      * 是静态常量或者内部结构属性
+     *
      * @param field
      * @return
      */

@@ -22,7 +22,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import dev.utils.JCLogUtils;
-import dev.utils.common.assist.Base64;
+import dev.utils.common.cipher.Base64;
 
 /**
  * detail: 加/解密 通用工具类
@@ -39,6 +39,7 @@ public final class EncryptUtils {
 
     /**
      * MD2 加密
+     *
      * @param data
      * @return
      */
@@ -49,6 +50,7 @@ public final class EncryptUtils {
 
     /**
      * MD2 加密
+     *
      * @param data
      * @return
      */
@@ -58,6 +60,7 @@ public final class EncryptUtils {
 
     /**
      * MD2 加密
+     *
      * @param data
      * @return
      */
@@ -67,6 +70,7 @@ public final class EncryptUtils {
 
     /**
      * MD5 加密
+     *
      * @param data
      * @return
      */
@@ -77,6 +81,7 @@ public final class EncryptUtils {
 
     /**
      * MD5 加密
+     *
      * @param data
      * @param salt
      * @return
@@ -90,6 +95,7 @@ public final class EncryptUtils {
 
     /**
      * MD5 加密
+     *
      * @param data
      * @return
      */
@@ -99,6 +105,7 @@ public final class EncryptUtils {
 
     /**
      * MD5 加密
+     *
      * @param data
      * @param salt
      * @return
@@ -115,6 +122,7 @@ public final class EncryptUtils {
 
     /**
      * MD5 加密
+     *
      * @param data
      * @return
      */
@@ -124,6 +132,7 @@ public final class EncryptUtils {
 
     /**
      * MD5 加密文件
+     *
      * @param filePath
      * @return
      */
@@ -134,6 +143,7 @@ public final class EncryptUtils {
 
     /**
      * MD5 加密文件
+     *
      * @param filePath
      * @return
      */
@@ -144,6 +154,7 @@ public final class EncryptUtils {
 
     /**
      * MD5 加密文件
+     *
      * @param file
      * @return
      */
@@ -153,6 +164,7 @@ public final class EncryptUtils {
 
     /**
      * MD5 加密文件
+     *
      * @param file
      * @return
      */
@@ -185,6 +197,7 @@ public final class EncryptUtils {
 
     /**
      * SHA1 加密
+     *
      * @param data
      * @return
      */
@@ -195,6 +208,7 @@ public final class EncryptUtils {
 
     /**
      * SHA1 加密
+     *
      * @param data
      * @return
      */
@@ -204,6 +218,7 @@ public final class EncryptUtils {
 
     /**
      * SHA1 加密
+     *
      * @param data
      * @return
      */
@@ -213,6 +228,7 @@ public final class EncryptUtils {
 
     /**
      * SHA224 加密
+     *
      * @param data
      * @return
      */
@@ -223,6 +239,7 @@ public final class EncryptUtils {
 
     /**
      * SHA224 加密
+     *
      * @param data
      * @return
      */
@@ -232,6 +249,7 @@ public final class EncryptUtils {
 
     /**
      * SHA224 加密
+     *
      * @param data
      * @return
      */
@@ -241,6 +259,7 @@ public final class EncryptUtils {
 
     /**
      * SHA256 加密
+     *
      * @param data
      * @return
      */
@@ -251,6 +270,7 @@ public final class EncryptUtils {
 
     /**
      * SHA256 加密
+     *
      * @param data
      * @return
      */
@@ -260,6 +280,7 @@ public final class EncryptUtils {
 
     /**
      * SHA256 加密
+     *
      * @param data
      * @return
      */
@@ -269,6 +290,7 @@ public final class EncryptUtils {
 
     /**
      * SHA384 加密
+     *
      * @param data
      * @return
      */
@@ -279,6 +301,7 @@ public final class EncryptUtils {
 
     /**
      * SHA384 加密
+     *
      * @param data
      * @return
      */
@@ -288,6 +311,7 @@ public final class EncryptUtils {
 
     /**
      * SHA384 加密
+     *
      * @param data
      * @return
      */
@@ -297,6 +321,7 @@ public final class EncryptUtils {
 
     /**
      * SHA512 加密
+     *
      * @param data
      * @return
      */
@@ -307,6 +332,7 @@ public final class EncryptUtils {
 
     /**
      * SHA512 加密
+     *
      * @param data
      * @return
      */
@@ -316,6 +342,7 @@ public final class EncryptUtils {
 
     /**
      * SHA512 加密
+     *
      * @param data
      * @return
      */
@@ -325,7 +352,8 @@ public final class EncryptUtils {
 
     /**
      * hash 加密模版方法
-     * @param data 数据
+     *
+     * @param data      数据
      * @param algorithm 算法
      * @return
      */
@@ -345,6 +373,7 @@ public final class EncryptUtils {
 
     /**
      * HmacMD5 加密
+     *
      * @param data
      * @param key
      * @return
@@ -356,6 +385,7 @@ public final class EncryptUtils {
 
     /**
      * HmacMD5 加密
+     *
      * @param data
      * @param key
      * @return
@@ -366,6 +396,7 @@ public final class EncryptUtils {
 
     /**
      * HmacMD5 加密
+     *
      * @param data
      * @param key
      * @return
@@ -376,6 +407,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA1 加密
+     *
      * @param data
      * @param key
      * @return
@@ -387,6 +419,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA1 加密
+     *
      * @param data
      * @param key
      * @return
@@ -397,6 +430,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA1 加密
+     *
      * @param data
      * @param key
      * @return
@@ -407,6 +441,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA224 加密
+     *
      * @param data
      * @param key
      * @return
@@ -418,6 +453,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA224 加密
+     *
      * @param data
      * @param key
      * @return
@@ -428,6 +464,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA224 加密
+     *
      * @param data
      * @param key
      * @return
@@ -438,6 +475,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA256 加密
+     *
      * @param data
      * @param key
      * @return
@@ -449,6 +487,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA256 加密
+     *
      * @param data
      * @param key
      * @return
@@ -459,6 +498,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA256 加密
+     *
      * @param data
      * @param key
      * @return
@@ -469,6 +509,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA384 加密
+     *
      * @param data
      * @param key
      * @return
@@ -480,6 +521,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA384 加密
+     *
      * @param data
      * @param key
      * @return
@@ -490,6 +532,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA384 加密
+     *
      * @param data
      * @param key
      * @return
@@ -500,6 +543,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA512 加密
+     *
      * @param data
      * @param key
      * @return
@@ -511,6 +555,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA512 加密
+     *
      * @param data
      * @param key
      * @return
@@ -521,6 +566,7 @@ public final class EncryptUtils {
 
     /**
      * HmacSHA512 加密
+     *
      * @param data
      * @param key
      * @return
@@ -531,7 +577,8 @@ public final class EncryptUtils {
 
     /**
      * hmac 加密模版方法
-     * @param data 数据
+     *
+     * @param data      数据
      * @param key
      * @param algorithm 算法
      * @return
@@ -553,6 +600,7 @@ public final class EncryptUtils {
 
     /**
      * DES 加密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -565,6 +613,7 @@ public final class EncryptUtils {
 
     /**
      * DES 加密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -577,6 +626,7 @@ public final class EncryptUtils {
 
     /**
      * DES 加密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -589,6 +639,7 @@ public final class EncryptUtils {
 
     /**
      * DES 解密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -601,6 +652,7 @@ public final class EncryptUtils {
 
     /**
      * DES 解密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -613,6 +665,7 @@ public final class EncryptUtils {
 
     /**
      * DES 解密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -625,6 +678,7 @@ public final class EncryptUtils {
 
     /**
      * 3DES 加密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -637,6 +691,7 @@ public final class EncryptUtils {
 
     /**
      * 3DES 加密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -649,6 +704,7 @@ public final class EncryptUtils {
 
     /**
      * 3DES 加密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -661,6 +717,7 @@ public final class EncryptUtils {
 
     /**
      * 3DES 解密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -673,6 +730,7 @@ public final class EncryptUtils {
 
     /**
      * 3DES 解密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -685,6 +743,7 @@ public final class EncryptUtils {
 
     /**
      * 3DES 解密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -697,6 +756,7 @@ public final class EncryptUtils {
 
     /**
      * AES 加密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -709,6 +769,7 @@ public final class EncryptUtils {
 
     /**
      * AES 加密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -721,6 +782,7 @@ public final class EncryptUtils {
 
     /**
      * AES 加密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -733,6 +795,7 @@ public final class EncryptUtils {
 
     /**
      * AES 解密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -745,6 +808,7 @@ public final class EncryptUtils {
 
     /**
      * AES 解密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -757,6 +821,7 @@ public final class EncryptUtils {
 
     /**
      * AES 解密
+     *
      * @param data
      * @param key
      * @param transformation
@@ -769,6 +834,7 @@ public final class EncryptUtils {
 
     /**
      * 对称加密模版方法
+     *
      * @param data
      * @param key
      * @param algorithm
@@ -777,7 +843,7 @@ public final class EncryptUtils {
      * @return
      */
     private static byte[] symmetricTemplate(final byte[] data, final byte[] key, final String algorithm,
-                                        final String transformation, final byte[] iv, final boolean isEncrypt) {
+                                            final String transformation, final byte[] iv, final boolean isEncrypt) {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
         try {
             SecretKey secretKey;
@@ -806,6 +872,7 @@ public final class EncryptUtils {
 
     /**
      * RSA 加密
+     *
      * @param data
      * @param key
      * @param isPublicKey
@@ -818,6 +885,7 @@ public final class EncryptUtils {
 
     /**
      * RSA 加密
+     *
      * @param data
      * @param key
      * @param isPublicKey
@@ -830,6 +898,7 @@ public final class EncryptUtils {
 
     /**
      * RSA 加密
+     *
      * @param data
      * @param key
      * @param isPublicKey
@@ -842,6 +911,7 @@ public final class EncryptUtils {
 
     /**
      * RSA 解密
+     *
      * @param data
      * @param key
      * @param isPublicKey
@@ -854,6 +924,7 @@ public final class EncryptUtils {
 
     /**
      * RSA 解密
+     *
      * @param data
      * @param key
      * @param isPublicKey
@@ -866,6 +937,7 @@ public final class EncryptUtils {
 
     /**
      * RSA 解密
+     *
      * @param data
      * @param key
      * @param isPublicKey
@@ -878,6 +950,7 @@ public final class EncryptUtils {
 
     /**
      * RSA 加/解密模版方法
+     *
      * @param data
      * @param key
      * @param isPublicKey
@@ -946,6 +1019,7 @@ public final class EncryptUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
+     *
      * @param data
      * @return
      */
@@ -955,6 +1029,7 @@ public final class EncryptUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
+     *
      * @param data
      * @param hexDigits
      * @return
@@ -977,6 +1052,7 @@ public final class EncryptUtils {
 
     /**
      * 十六进制字符串 转换byte数组
+     *
      * @param hexString
      * @return
      */
@@ -1015,6 +1091,7 @@ public final class EncryptUtils {
 
     /**
      * 判断字符串是否为 null 或全为空白字符
+     *
      * @param str 待校验字符串
      * @return
      */

@@ -32,6 +32,7 @@ public final class CoordinateUtils {
 
     /**
      * BD09 坐标转 GCJ02 坐标
+     *
      * @param lng BD09 坐标纬度
      * @param lat BD09 坐标经度
      * @return GCJ02 坐标：[经度，纬度]
@@ -48,6 +49,7 @@ public final class CoordinateUtils {
 
     /**
      * GCJ02 坐标转 BD09 坐标
+     *
      * @param lng GCJ02 坐标经度
      * @param lat GCJ02 坐标纬度
      * @return BD09 坐标：[经度，纬度]
@@ -62,6 +64,7 @@ public final class CoordinateUtils {
 
     /**
      * GCJ02 坐标转 WGS84 坐标
+     *
      * @param lng GCJ02 坐标经度
      * @param lat GCJ02 坐标纬度
      * @return WGS84 坐标：[经度，纬度]
@@ -83,6 +86,7 @@ public final class CoordinateUtils {
 
     /**
      * WGS84 坐标转 GCJ02 坐标
+     *
      * @param lng WGS84 坐标经度
      * @param lat WGS84 坐标纬度
      * @return GCJ02 坐标：[经度，纬度]
@@ -104,6 +108,7 @@ public final class CoordinateUtils {
 
     /**
      * BD09 坐标转 WGS84 坐标
+     *
      * @param lng BD09 坐标经度
      * @param lat BD09 坐标纬度
      * @return WGS84 坐标：[经度，纬度]
@@ -115,6 +120,7 @@ public final class CoordinateUtils {
 
     /**
      * WGS84 坐标转 BD09 坐标
+     *
      * @param lng WGS84 坐标经度
      * @param lat WGS84 坐标纬度
      * @return BD09 坐标：[经度，纬度]
@@ -126,6 +132,7 @@ public final class CoordinateUtils {
 
     /**
      * 转换经度
+     *
      * @param lng
      * @param lat
      * @return
@@ -140,6 +147,7 @@ public final class CoordinateUtils {
 
     /**
      * 转换纬度
+     *
      * @param lng
      * @param lat
      * @return
@@ -154,6 +162,7 @@ public final class CoordinateUtils {
 
     /**
      * 判断是否中国境外
+     *
      * @param lng
      * @param lat
      * @return

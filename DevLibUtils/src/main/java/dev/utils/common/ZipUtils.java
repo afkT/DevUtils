@@ -34,6 +34,7 @@ public final class ZipUtils {
 
     /**
      * 批量压缩文件
+     *
      * @param resFiles    待压缩文件路径集合
      * @param zipFilePath 压缩文件路径
      * @return true : 压缩成功, false : 压缩失败
@@ -45,6 +46,7 @@ public final class ZipUtils {
 
     /**
      * 批量压缩文件
+     *
      * @param resFilePaths 待压缩文件路径集合
      * @param zipFilePath  压缩文件路径
      * @param comment      压缩文件的注释
@@ -70,6 +72,7 @@ public final class ZipUtils {
 
     /**
      * 批量压缩文件
+     *
      * @param resFiles 待压缩文件集合
      * @param zipFile  压缩文件
      * @return true : 压缩成功, false : 压缩失败
@@ -81,6 +84,7 @@ public final class ZipUtils {
 
     /**
      * 批量压缩文件
+     *
      * @param resFiles 待压缩文件集合
      * @param zipFile  压缩文件
      * @param comment  压缩文件的注释
@@ -106,6 +110,7 @@ public final class ZipUtils {
 
     /**
      * 压缩文件
+     *
      * @param resFilePath 待压缩文件路径
      * @param zipFilePath 压缩文件路径
      * @return true : 压缩成功, false : 压缩失败
@@ -117,6 +122,7 @@ public final class ZipUtils {
 
     /**
      * 压缩文件
+     *
      * @param resFilePath 待压缩文件路径
      * @param zipFilePath 压缩文件路径
      * @param comment     压缩文件的注释
@@ -129,6 +135,7 @@ public final class ZipUtils {
 
     /**
      * 压缩文件
+     *
      * @param resFile 待压缩文件
      * @param zipFile 压缩文件
      * @return true : 压缩成功, false : 压缩失败
@@ -140,6 +147,7 @@ public final class ZipUtils {
 
     /**
      * 压缩文件
+     *
      * @param resFile 待压缩文件
      * @param zipFile 压缩文件
      * @param comment 压缩文件的注释
@@ -161,6 +169,7 @@ public final class ZipUtils {
 
     /**
      * 压缩文件
+     *
      * @param resFile  待压缩文件
      * @param rootPath 相对于压缩文件的路径
      * @param zos      压缩文件输出流
@@ -206,6 +215,7 @@ public final class ZipUtils {
 
     /**
      * 解压文件
+     *
      * @param zipFilePath 待解压文件路径
      * @param destDirPath 目标目录路径
      * @return 文件链表
@@ -217,6 +227,7 @@ public final class ZipUtils {
 
     /**
      * 解压文件
+     *
      * @param zipFile 待解压文件
      * @param destDir 目标目录
      * @return 文件链表
@@ -228,6 +239,7 @@ public final class ZipUtils {
 
     /**
      * 解压带有关键字的文件
+     *
      * @param zipFilePath 待解压文件路径
      * @param destDirPath 目标目录路径
      * @param keyword     关键字
@@ -240,6 +252,7 @@ public final class ZipUtils {
 
     /**
      * 解压带有关键字的文件
+     *
      * @param zipFile 待解压文件
      * @param destDir 目标目录
      * @param keyword 关键字
@@ -279,6 +292,7 @@ public final class ZipUtils {
 
     /**
      * 解压文件
+     *
      * @param destDir
      * @param files
      * @param zf
@@ -313,6 +327,7 @@ public final class ZipUtils {
 
     /**
      * 获取压缩文件中的文件路径链表
+     *
      * @param zipFilePath 压缩文件路径
      * @return 压缩文件中的文件路径链表
      * @throws IOException IO 错误时抛出
@@ -323,6 +338,7 @@ public final class ZipUtils {
 
     /**
      * 获取压缩文件中的文件路径链表
+     *
      * @param zipFile 压缩文件
      * @return 压缩文件中的文件路径链表
      * @throws IOException IO 错误时抛出
@@ -345,6 +361,7 @@ public final class ZipUtils {
 
     /**
      * 获取压缩文件中的注释链表
+     *
      * @param zipFilePath 压缩文件路径
      * @return 压缩文件中的注释链表
      * @throws IOException IO 错误时抛出
@@ -355,6 +372,7 @@ public final class ZipUtils {
 
     /**
      * 获取压缩文件中的注释链表
+     *
      * @param zipFile 压缩文件
      * @return 压缩文件中的注释链表
      * @throws IOException IO 错误时抛出
@@ -374,6 +392,7 @@ public final class ZipUtils {
 
     /**
      * 判断目录是否存在，不存在则判断是否创建成功
+     *
      * @param file 文件
      * @return true : 存在或创建成功, false : 不存在或创建失败
      */
@@ -384,6 +403,7 @@ public final class ZipUtils {
 
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
+     *
      * @param file 文件
      * @return true : 存在或创建成功, false : 不存在或创建失败
      */
@@ -403,6 +423,7 @@ public final class ZipUtils {
 
     /**
      * 获取文件
+     *
      * @param filePath The path of file.
      * @return
      */
@@ -412,6 +433,7 @@ public final class ZipUtils {
 
     /**
      * 判断字符串是否为 null 或全为空白字符
+     *
      * @param str 待校验字符串
      * @return
      */

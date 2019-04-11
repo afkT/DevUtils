@@ -8,6 +8,7 @@ public interface Encrypt {
 
     /**
      * 加密/编码 方法
+     *
      * @param data
      * @return
      */

@@ -63,6 +63,7 @@ public final class ValidatorUtils {
 
     /**
      * 判断是否为null
+     *
      * @param str
      * @return
      */
@@ -72,6 +73,7 @@ public final class ValidatorUtils {
 
     /**
      * 通用匹配函数
+     *
      * @param regex
      * @param input
      * @return
@@ -89,6 +91,7 @@ public final class ValidatorUtils {
 
     /**
      * 检验数字
+     *
      * @param str
      * @return
      */
@@ -101,6 +104,7 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串是不是全是字母
+     *
      * @param str
      * @return
      */
@@ -113,6 +117,7 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串是不是包含数字
+     *
      * @param str
      * @return
      */
@@ -125,6 +130,7 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串是不是只含字母和数字
+     *
      * @param str
      * @return
      */
@@ -137,6 +143,7 @@ public final class ValidatorUtils {
 
     /**
      * 检验特殊符号
+     *
      * @param str
      * @return
      */
@@ -149,6 +156,7 @@ public final class ValidatorUtils {
 
     /**
      * 检验微信号
+     *
      * @param str
      * @return
      */
@@ -161,6 +169,7 @@ public final class ValidatorUtils {
 
     /**
      * 检验真实姓名
+     *
      * @param str
      * @return
      */
@@ -173,6 +182,7 @@ public final class ValidatorUtils {
 
     /**
      * 校验昵称
+     *
      * @param str
      * @return
      */
@@ -185,6 +195,7 @@ public final class ValidatorUtils {
 
     /**
      * 校验用户名
+     *
      * @param str
      * @return
      */
@@ -197,6 +208,7 @@ public final class ValidatorUtils {
 
     /**
      * 校验密码
+     *
      * @param str
      * @return
      */
@@ -209,6 +221,7 @@ public final class ValidatorUtils {
 
     /**
      * 校验邮箱
+     *
      * @param str
      * @return
      */
@@ -221,6 +234,7 @@ public final class ValidatorUtils {
 
     /**
      * 校验URL
+     *
      * @param str
      * @return
      */
@@ -233,6 +247,7 @@ public final class ValidatorUtils {
 
     /**
      * 校验IP地址
+     *
      * @param str
      * @return
      */
@@ -258,6 +273,7 @@ public final class ValidatorUtils {
 
     /**
      * 校验汉字(无符号,纯汉字)
+     *
      * @param str
      * @return
      */
@@ -270,6 +286,7 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串是不是全是中文
+     *
      * @param str
      * @return
      */
@@ -282,6 +299,7 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串中包含中文、包括中文字符标点等
+     *
      * @param str 可能包含中文的字符串
      * @return 是否包含中文
      */

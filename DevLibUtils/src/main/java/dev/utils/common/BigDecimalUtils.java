@@ -22,6 +22,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的加法运算
+     *
      * @param v1 被加数
      * @param v2 加数
      * @return 两个参数的和
@@ -34,6 +35,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的加法运算
+     *
      * @param v1 被加数
      * @param v2 加数
      * @return 两个参数的和
@@ -53,6 +55,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的加法运算
+     *
      * @param v1    被加数
      * @param v2    加数
      * @param scale 保留 scale 位小数
@@ -75,6 +78,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的加法运算
+     *
      * @param v1    被加数
      * @param v2    加数
      * @param scale 保留 scale 位小数
@@ -99,6 +103,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的减法运算
+     *
      * @param v1 被减数
      * @param v2 减数
      * @return 两个参数的差
@@ -111,6 +116,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的减法运算。
+     *
      * @param v1 被减数
      * @param v2 减数
      * @return 两个参数的差
@@ -130,6 +136,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的减法运算
+     *
      * @param v1    被减数
      * @param v2    减数
      * @param scale 保留 scale 位小数
@@ -152,6 +159,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的减法运算
+     *
      * @param v1    被减数
      * @param v2    减数
      * @param scale 保留 scale 位小数
@@ -176,6 +184,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的乘法运算
+     *
      * @param v1 被乘数
      * @param v2 乘数
      * @return 两个参数的积
@@ -193,6 +202,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的乘法运算
+     *
      * @param v1 被乘数
      * @param v2 乘数
      * @return 两个参数的积
@@ -212,6 +222,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的乘法运算
+     *
      * @param v1    被乘数
      * @param v2    乘数
      * @param scale 保留 scale 位小数
@@ -236,6 +247,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的乘法运算
+     *
      * @param v1    被乘数
      * @param v2    乘数
      * @param scale 保留 scale 位小数
@@ -261,6 +273,7 @@ public final class BigDecimalUtils {
     /**
      * 提供(相对)精确的除法运算,当发生除不尽的情况时,
      * 精确到小数点以后10位,以后的数字四舍五入.
+     *
      * @param v1 被除数
      * @param v2 除数
      * @return 两个参数的商
@@ -272,6 +285,7 @@ public final class BigDecimalUtils {
     /**
      * 提供(相对)精确的除法运算.
      * 当发生除不尽的情况时,由scale参数指 定精度,以后的数字四舍五入.
+     *
      * @param v1    被除数
      * @param v2    除数
      * @param scale 表示需要精确到小数点以后几位
@@ -295,6 +309,7 @@ public final class BigDecimalUtils {
     /**
      * 提供(相对)精确的除法运算。当发生除不尽的情况时，由scale参数指
      * 定精度，以后的数字四舍五入
+     *
      * @param v1    被除数
      * @param v2    除数
      * @param scale 表示需要精确到小数点以后几位
@@ -319,6 +334,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的小数位四舍五入处理
+     *
      * @param v     需要四舍五入的数字
      * @param scale 小数点后保留几位
      * @return 四舍五入后的结果
@@ -335,6 +351,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的小数位四舍五入处理
+     *
      * @param v     需要四舍五入的数字
      * @param scale 小数点后保留几位
      * @return 四舍五入后的结果
@@ -357,6 +374,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的小数位获取
+     *
      * @param v            需要处理的数字
      * @param scale        小数点后保留几位
      * @param roundingMode 取小数点模式
@@ -384,6 +402,7 @@ public final class BigDecimalUtils {
 
     /**
      * 取余数
+     *
      * @param v1    被除数
      * @param v2    除数
      * @param scale 小数点后保留几位
@@ -406,6 +425,7 @@ public final class BigDecimalUtils {
 
     /**
      * 取余数
+     *
      * @param v1    被除数
      * @param v2    除数
      * @param scale 小数点后保留几位
@@ -428,6 +448,7 @@ public final class BigDecimalUtils {
 
     /**
      * 比较大小
+     *
      * @param v1 输入的数值
      * @param v2 被比较的数字
      * @return true：v1 >= v2，false v1 < v2
@@ -443,6 +464,7 @@ public final class BigDecimalUtils {
 
     /**
      * 比较大小
+     *
      * @param v1 输入的数值
      * @param v2 被比较的数字
      * @return true：v1 >= v2，false v1 < v2
@@ -458,6 +480,7 @@ public final class BigDecimalUtils {
 
     /**
      * 比较大小
+     *
      * @param v1 输入的数值
      * @param v2 被比较的数字
      * @return true：v1 >= v2，false v1 < v2
@@ -475,6 +498,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割，四舍五入金额
+     *
      * @param value 金额/数值
      * @return
      */
@@ -484,6 +508,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割，四舍五入金额
+     *
      * @param value 金额/数值
      * @param scale 小数点后保留几位
      * @return
@@ -494,6 +519,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割，四舍五入金额
+     *
      * @param value 金额/数值
      * @param scale 小数点后保留几位
      * @param mode  处理模式
@@ -505,6 +531,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割，四舍五入金额
+     *
      * @param value       金额/数值
      * @param scale       小数点后保留几位
      * @param mode        处理模式
@@ -517,6 +544,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割，四舍五入金额
+     *
      * @param value       金额/数值
      * @param scale       小数点后保留几位
      * @param mode        处理模式
@@ -579,6 +607,7 @@ public final class BigDecimalUtils {
 
     /**
      * 获取自己想要的数据格式
+     *
      * @param value            需处理的数据
      * @param numOfIntPart     整数位数
      * @param numOfDecimalPart 小数位数

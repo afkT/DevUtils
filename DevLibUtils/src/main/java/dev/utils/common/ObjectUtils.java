@@ -20,6 +20,7 @@ public final class ObjectUtils {
 
     /**
      * 判断对象是否为空
+     *
      * @param object 对象
      * @return true : 为空, false : 不为空
      */
@@ -44,6 +45,7 @@ public final class ObjectUtils {
 
     /**
      * 判断对象是否非空
+     *
      * @param object 对象
      * @return true : 非空, false : 空
      */
@@ -53,6 +55,7 @@ public final class ObjectUtils {
 
     /**
      * 判断对象是否相等
+     *
      * @param o1 对象1
      * @param o2 对象2
      * @return true : 相等, false : 不相等
@@ -63,6 +66,7 @@ public final class ObjectUtils {
 
     /**
      * 检查对象非空
+     *
      * @param object  对象
      * @param message 报错
      * @param <T>     范型
@@ -75,6 +79,7 @@ public final class ObjectUtils {
 
     /**
      * 获取非空或默认对象
+     *
      * @param object        对象
      * @param defaultObject 默认值
      * @param <T>           范型
@@ -86,6 +91,7 @@ public final class ObjectUtils {
 
     /**
      * 获取对象哈希值
+     *
      * @param object 对象
      * @return 哈希值
      */
@@ -95,6 +101,7 @@ public final class ObjectUtils {
 
     /**
      * 获取一个对象的独一无二的标记
+     *
      * @param object
      * @return
      */
@@ -106,8 +113,9 @@ public final class ObjectUtils {
 
     /**
      * 获取转换对象
+     *
      * @param object 对象
-     * @param <T> 范型
+     * @param <T>    范型
      * @return 非空或默认对象
      */
     public static <T> T converObj(final Object object) {

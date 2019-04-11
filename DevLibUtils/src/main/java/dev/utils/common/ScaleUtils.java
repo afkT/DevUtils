@@ -16,7 +16,8 @@ public final class ScaleUtils {
 
     /**
      * 计算缩放比例 - 根据宽度比例转换高度
-     * @param width   需要的最终宽度
+     *
+     * @param width         需要的最终宽度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
      * @return [0] = 宽度, [1] = 高度
@@ -40,7 +41,8 @@ public final class ScaleUtils {
 
     /**
      * 计算缩放比例 - 根据高度比例转换宽度
-     * @param height  需要的最终高度
+     *
+     * @param height        需要的最终高度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
      * @return [0] = 宽度, [1] = 高度
@@ -64,6 +66,7 @@ public final class ScaleUtils {
 
     /**
      * 通过宽度,高度,根据对应的比例 -> 转换成对应的比例宽度高度 - 智能转换
+     *
      * @param width
      * @param height
      * @param widthScale
@@ -96,6 +99,7 @@ public final class ScaleUtils {
 
     /**
      * 以宽度为基准 -> 转换对应比例的高度
+     *
      * @param width
      * @param widthScale
      * @param heightScale
@@ -117,6 +121,7 @@ public final class ScaleUtils {
 
     /**
      * 以高度为基准 -> 转换对应比例的宽度
+     *
      * @param height
      * @param widthScale
      * @param heightScale

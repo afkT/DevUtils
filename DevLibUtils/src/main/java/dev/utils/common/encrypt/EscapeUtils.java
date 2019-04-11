@@ -62,6 +62,7 @@ public final class EscapeUtils {
 
     /**
      * 编码
+     *
      * @param str
      * @return
      */
@@ -95,6 +96,7 @@ public final class EscapeUtils {
 
     /**
      * 解码 - 本方法不论参数 str 是否经过 escape() 编码，均能获取正确的“解码”结果
+     *
      * @param str
      * @return
      */

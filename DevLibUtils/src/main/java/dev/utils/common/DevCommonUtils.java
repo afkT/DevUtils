@@ -25,6 +25,7 @@ public final class DevCommonUtils {
 
     /**
      * 计算百分比值 (最大 100%)
+     *
      * @param value
      * @param max
      * @return
@@ -38,6 +39,7 @@ public final class DevCommonUtils {
 
     /**
      * 计算百分比值 (最大 100%)
+     *
      * @param value
      * @param max
      * @return
@@ -51,6 +53,7 @@ public final class DevCommonUtils {
 
     /**
      * 计算百分比值 (可超出 100%)
+     *
      * @param value
      * @param max
      * @return
@@ -63,6 +66,7 @@ public final class DevCommonUtils {
 
     /**
      * 计算百分比值 (可超出 100%)
+     *
      * @param value
      * @param max
      * @return
@@ -75,6 +79,7 @@ public final class DevCommonUtils {
 
     /**
      * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     *
      * @param value
      * @param max
      * @param min
@@ -86,6 +91,7 @@ public final class DevCommonUtils {
 
     /**
      * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     *
      * @param value
      * @param max
      * @param min
@@ -99,6 +105,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取格式化后的字符串
+     *
      * @param format
      * @param args
      * @return
@@ -115,6 +122,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取格式化后的字符串
+     *
      * @param format
      * @param args
      * @return
@@ -135,6 +143,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取自动数量格式化后的字符串(可变参数)
+     *
      * @param args
      * @return
      */
@@ -159,6 +168,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取自动数量格式化后的字符串(可变参数)
+     *
      * @param args
      * @return
      */
@@ -185,6 +195,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断是否网络资源
+     *
      * @param str 资源地址字符串
      * @return
      */
@@ -203,6 +214,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断字符串是否为 null 或全为空白字符
+     *
      * @param str 待校验字符串
      * @return
      */
@@ -218,6 +230,7 @@ public final class DevCommonUtils {
 
     /**
      * 追加空格
+     *
      * @param number 空格数量
      * @return
      */
@@ -233,6 +246,7 @@ public final class DevCommonUtils {
 
     /**
      * 追加 Tab
+     *
      * @param number tab 键数量
      * @return
      */
@@ -248,6 +262,7 @@ public final class DevCommonUtils {
 
     /**
      * 追加 换行
+     *
      * @param number 换行数量
      * @return
      */
@@ -265,6 +280,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断是否为 null
+     *
      * @param str
      * @return
      */
@@ -274,6 +290,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断是否为 null
+     *
      * @param str
      * @param isTrim
      * @return
@@ -292,6 +309,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断多个字符串是否为null
+     *
      * @param strs
      * @return
      */
@@ -310,6 +328,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断是否为 null 或者为空格
+     *
      * @param str
      * @return
      */
@@ -321,6 +340,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断是否为 null to Object
+     *
      * @param object
      * @return
      */
@@ -358,6 +378,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断是否为null to 数组
+     *
      * @param objects
      * @return
      */
@@ -367,6 +388,7 @@ public final class DevCommonUtils {
 
     /**
      * 判读是否为 null to List
+     *
      * @param list
      * @return
      */
@@ -376,6 +398,7 @@ public final class DevCommonUtils {
 
     /**
      * 判读是否为 null to Map
+     *
      * @param map
      * @return
      */
@@ -385,6 +408,7 @@ public final class DevCommonUtils {
 
     /**
      * 判读是否为 null to Set
+     *
      * @param set
      * @return
      */
@@ -394,6 +418,7 @@ public final class DevCommonUtils {
 
     /**
      * 判读是否为 null to Queue
+     *
      * @param queue
      * @return
      */
@@ -403,6 +428,7 @@ public final class DevCommonUtils {
 
     /**
      * 判读是否为 null to 可变数组
+     *
      * @param args
      * @return
      */
@@ -414,6 +440,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度，如果字符串为null, 则返回 0
+     *
      * @param str
      * @return
      */
@@ -423,6 +450,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取数组长度
+     *
      * @param objects
      * @return
      */
@@ -432,6 +460,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to List
+     *
      * @param list
      * @return
      */
@@ -441,6 +470,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Map
+     *
      * @param map
      * @return
      */
@@ -450,6 +480,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Set
+     *
      * @param set
      * @return
      */
@@ -459,6 +490,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Queue
+     *
      * @param queue
      * @return
      */
@@ -470,6 +502,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取字符串长度
+     *
      * @param str
      * @param defaultLength
      * @return
@@ -480,6 +513,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取数组长度
+     *
      * @param objects
      * @param defaultLength
      * @return
@@ -490,6 +524,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to List
+     *
      * @param list
      * @param defaultLength
      * @return
@@ -500,6 +535,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Map
+     *
      * @param map
      * @param defaultLength
      * @return
@@ -510,6 +546,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Set
+     *
      * @param set
      * @param defaultLength
      * @return
@@ -520,6 +557,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Queue
+     *
      * @param queue
      * @param defaultLength
      * @return
@@ -532,6 +570,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取可变数组长度
+     *
      * @param args
      * @return
      */
@@ -541,6 +580,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取可变数组长度
+     *
      * @param args
      * @param defaultLength
      * @return
@@ -553,6 +593,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取字符串长度 是否等于期望长度
+     *
      * @param str    字符串
      * @param length 期望长度
      * @return
@@ -563,6 +604,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取数组长度 是否等于期望长度
+     *
      * @param objects
      * @param length
      * @return
@@ -573,6 +615,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to List 是否等于期望长度
+     *
      * @param list
      * @param length
      * @return
@@ -583,6 +626,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Map 是否等于期望长度
+     *
      * @param map
      * @param length
      * @return
@@ -593,6 +637,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Set 是否等于 期望长度
+     *
      * @param set
      * @param length
      * @return
@@ -603,6 +648,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Queue 是否等于 期望长度
+     *
      * @param queue
      * @param length
      * @return
@@ -615,6 +661,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断两字符串是否相等
+     *
      * @param a 待校验字符串 a
      * @param b 待校验字符串 b
      * @return true : 相等, false : 不相等
@@ -637,6 +684,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断多个字符串是否相等, 只有全相等才返回 true - 对比大小写
+     *
      * @param args
      * @return
      */
@@ -646,6 +694,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断多个字符串是否相等, 只有全相等才返回 true
+     *
      * @param isIgnore 是否忽略大小写
      * @param args
      * @return
@@ -687,6 +736,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断多个字符串,只要有一个符合条件,则通过
+     *
      * @param str
      * @param args
      * @return
@@ -697,6 +747,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断多个字符串,只要有一个符合条件,则通过
+     *
      * @param isIgnore 是否忽略大小写
      * @param str
      * @param args
@@ -731,6 +782,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断一堆值中，是否存在符合该条件的(包含)
+     *
      * @param str
      * @param args
      * @return
@@ -741,6 +793,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断一堆值中，是否存在符合该条件的(包含)
+     *
      * @param isIgnore
      * @param str
      * @param args
@@ -788,6 +841,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断内容, 是否属于特定字符串开头 - 对比大小写
+     *
      * @param str
      * @param args
      * @return
@@ -798,6 +852,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断内容, 是否属于特定字符串开头
+     *
      * @param isIgnore 是否忽略大小写
      * @param str
      * @param args
@@ -839,6 +894,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断内容, 是否属于特定字符串结尾 - 对比大小写
+     *
      * @param str
      * @param args
      * @return
@@ -849,6 +905,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断内容, 是否属于特定字符串结尾
+     *
      * @param isIgnore 是否忽略大小写
      * @param str
      * @param args
@@ -892,6 +949,7 @@ public final class DevCommonUtils {
 
     /**
      * 清空全部空格,并返回处理后的字符串
+     *
      * @param str
      * @return
      */
@@ -902,6 +960,7 @@ public final class DevCommonUtils {
 
     /**
      * 清空前后空格,并返回处理后的字符串
+     *
      * @param str
      * @return
      */
@@ -919,6 +978,7 @@ public final class DevCommonUtils {
 
     /**
      * 检查字符串,如果为null,返回 ""
+     *
      * @param str
      * @return
      */
@@ -928,6 +988,7 @@ public final class DevCommonUtils {
 
     /**
      * 检查字符串,如果为null,返回 默认字符串
+     *
      * @param defaultStr
      * @param str
      * @return
@@ -938,6 +999,7 @@ public final class DevCommonUtils {
 
     /**
      * 单独检查两个值,减少循环，不直接调用toCheckValues
+     *
      * @param defaultStr
      * @param value1
      * @param value2
@@ -957,6 +1019,7 @@ public final class DevCommonUtils {
 
     /**
      * 检查多个值, 并返回第一个非null and "" 的字符串,如果都不符合条件，则返回默认值
+     *
      * @param defaultStr
      * @param params
      * @return
@@ -981,6 +1044,7 @@ public final class DevCommonUtils {
 
     /**
      * 检查多个值,并返回第一个非null and "" and 全部不是属于空格 的字符串,如果都不符合条件，则返回默认值
+     *
      * @param defaultStr
      * @param params
      * @return
@@ -1006,6 +1070,7 @@ public final class DevCommonUtils {
 
     /**
      * 裁减超出的内容, 并且追加符号(如 ...)
+     *
      * @param maxLength 允许最大的长度
      * @param str
      * @param symbol
@@ -1028,6 +1093,7 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪符号处理
+     *
      * @param start        开始位置
      * @param symbolNumber 转换数量
      * @param str
@@ -1067,6 +1133,7 @@ public final class DevCommonUtils {
 
     /**
      * 转换符号处理
+     *
      * @param start  开始位置
      * @param str
      * @param symbol
@@ -1104,6 +1171,7 @@ public final class DevCommonUtils {
     /**
      * 替换(删除 - 替换成"") 字符串中符合 特定标记字符的 startsWith - endsWith
      * * 如 _____a_a_a_a________  传入 _ 等于 ____a_a_a_a____
+     *
      * @param str
      * @param suffix
      * @return
@@ -1115,6 +1183,7 @@ public final class DevCommonUtils {
     /**
      * 替换字符串中符合 特定标记字符的 startsWith - endsWith
      * 如 _____a_a_a_a________  传入 _ , c 等于 c____a_a_a_a____c
+     *
      * @param str
      * @param key
      * @param value 需要替换的内容
@@ -1154,6 +1223,7 @@ public final class DevCommonUtils {
      * (这个方法功能主要把字符符合标记的 头部和尾部都替换成 "")
      * 如 _____a_a_a_a________  传入 _ 等于 a_a_a_a
      * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf) ,while
+     *
      * @param str
      * @param suffix
      * @return
@@ -1186,6 +1256,7 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪字符串
+     *
      * @param str      需要裁剪的字符串
      * @param endIndex 结束裁剪的位置
      * @return
@@ -1196,6 +1267,7 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪字符串
+     *
      * @param str      需要裁剪的字符串
      * @param endIndex 结束裁剪的位置
      * @param isReturn 开始位置超过限制是否返回内容
@@ -1207,6 +1279,7 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪字符串
+     *
      * @param str        需要裁剪的字符串
      * @param beginIndex 开始裁剪的位置
      * @param endIndex   结束裁剪的位置
@@ -1231,6 +1304,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换开头字符串
+     *
      * @param str    内容
      * @param prefix
      * @return
@@ -1241,6 +1315,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换开头字符串
+     *
      * @param str         内容
      * @param suffix
      * @param startAppend 开头追加的内容
@@ -1263,6 +1338,7 @@ public final class DevCommonUtils {
      * 清空属于特定字符串开头的字段
      * 如 _____a_a_a_a________  传入 _ 等于 a_a_a_a_____
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf) ,while
+     *
      * @param str
      * @param suffix
      * @return
@@ -1289,6 +1365,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换结尾字符串
+     *
      * @param str    内容
      * @param suffix
      * @return
@@ -1299,6 +1376,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换结尾字符串
+     *
      * @param str    内容
      * @param suffix
      * @param value  需要替换的内容
@@ -1321,6 +1399,7 @@ public final class DevCommonUtils {
      * 清空属于特定字符串结尾的字段
      * 如 _____a_a_a_a________  传入 _ 等于 _____a_a_a_a
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf) ,while
+     *
      * @param str
      * @param suffix
      * @return
@@ -1349,7 +1428,8 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串
-     * @param str 内容
+     *
+     * @param str         内容
      * @param suffixArys
      * @param replaceArys
      * @return
@@ -1378,6 +1458,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串
+     *
      * @param str     需要替换的内容
      * @param suffix  特殊的字符串
      * @param replace 替换的内容
@@ -1397,6 +1478,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串
+     *
      * @param str     需要替换的内容
      * @param suffix  特殊的字符串
      * @param replace 替换的内容

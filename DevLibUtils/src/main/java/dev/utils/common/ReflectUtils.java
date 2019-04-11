@@ -42,6 +42,7 @@ public final class ReflectUtils {
 
     /**
      * 设置要反射的类
+     *
      * @param className 完整类名
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
@@ -52,6 +53,7 @@ public final class ReflectUtils {
 
     /**
      * 设置要反射的类
+     *
      * @param className   完整类名
      * @param classLoader 类加载器
      * @return {@link ReflectUtils}
@@ -63,6 +65,7 @@ public final class ReflectUtils {
 
     /**
      * 设置要反射的类
+     *
      * @param clazz 类的类型
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
@@ -73,6 +76,7 @@ public final class ReflectUtils {
 
     /**
      * 设置要反射的类
+     *
      * @param object 类对象
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
@@ -85,6 +89,7 @@ public final class ReflectUtils {
 
     /**
      * 获取 Class
+     *
      * @param className
      * @return
      */
@@ -98,6 +103,7 @@ public final class ReflectUtils {
 
     /**
      * 获取 Class
+     *
      * @param name
      * @param classLoader
      * @return
@@ -114,6 +120,7 @@ public final class ReflectUtils {
 
     /**
      * 实例化反射对象
+     *
      * @return {@link ReflectUtils}
      */
     public ReflectUtils newInstance() {
@@ -122,6 +129,7 @@ public final class ReflectUtils {
 
     /**
      * 实例化反射对象
+     *
      * @param args 实例化需要的参数
      * @return {@link ReflectUtils}
      */
@@ -148,6 +156,7 @@ public final class ReflectUtils {
 
     /**
      * 获取参数类型
+     *
      * @param args
      * @return
      */
@@ -163,6 +172,7 @@ public final class ReflectUtils {
 
     /**
      * 进行排序
+     *
      * @param list
      */
     private void sortConstructors(final List<Constructor<?>> list) {
@@ -188,6 +198,7 @@ public final class ReflectUtils {
 
     /**
      * 获取实例对象
+     *
      * @param constructor
      * @param args
      * @return
@@ -204,6 +215,7 @@ public final class ReflectUtils {
 
     /**
      * 设置反射的字段
+     *
      * @param name 字段名
      * @return {@link ReflectUtils}
      */
@@ -218,6 +230,7 @@ public final class ReflectUtils {
 
     /**
      * 设置反射的字段
+     *
      * @param name  字段名
      * @param value 字段值
      * @return {@link ReflectUtils}
@@ -234,6 +247,7 @@ public final class ReflectUtils {
 
     /**
      * 获取 Field 对象
+     *
      * @param name
      * @return
      * @throws IllegalAccessException
@@ -246,7 +260,6 @@ public final class ReflectUtils {
                 modifiersField.setAccessible(true);
                 modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
             } catch (NoSuchFieldException ignore) {
-                // runs in android will happen
             }
         }
         return field;
@@ -254,6 +267,7 @@ public final class ReflectUtils {
 
     /**
      * 获取可访问字段, 返回 Field 对象
+     *
      * @param name
      * @return
      */
@@ -275,6 +289,7 @@ public final class ReflectUtils {
 
     /**
      * 获取对象
+     *
      * @param object
      * @return
      */
@@ -292,6 +307,7 @@ public final class ReflectUtils {
      * 例: 获取父类中的变量
      * Object obj = 对象;
      * getObject(getDeclaredFieldBase(obj, "父类中变量名"), obj);
+     *
      * @param field
      * @param object
      * @return
@@ -307,6 +323,7 @@ public final class ReflectUtils {
 
     /**
      * 设置枚举值
+     *
      * @param clazz 类型
      * @param name
      * @param val
@@ -321,6 +338,7 @@ public final class ReflectUtils {
 
     /**
      * 通过反射获取全部字段
+     *
      * @param object
      * @param name
      * @return
@@ -334,6 +352,7 @@ public final class ReflectUtils {
 
     /**
      * 循环向上转型, 获取对象的 DeclaredField
+     *
      * @param object
      * @param fieldName
      * @return
@@ -344,6 +363,7 @@ public final class ReflectUtils {
 
     /**
      * 循环向上转型, 获取对象的 DeclaredField
+     *
      * @param object    : 子类对象
      * @param fieldName : 父类中的属性名
      * @param isSuper   是否一直跟到最后, 如果父类还有父类，并且有相同变量名, 则设置isSuper = true，一直会跟到最后的变量
@@ -370,6 +390,7 @@ public final class ReflectUtils {
 
     /**
      * 设置反射的方法
+     *
      * @param name 方法名
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
@@ -380,6 +401,7 @@ public final class ReflectUtils {
 
     /**
      * 设置反射的方法
+     *
      * @param name 方法名
      * @param args 方法需要的参数
      * @return {@link ReflectUtils}
@@ -402,6 +424,7 @@ public final class ReflectUtils {
 
     /**
      * 设置反射的方法处理
+     *
      * @param method
      * @param object
      * @param args
@@ -423,6 +446,7 @@ public final class ReflectUtils {
 
     /**
      * 获取准确参数的方法
+     *
      * @param name
      * @param types
      * @return
@@ -446,6 +470,7 @@ public final class ReflectUtils {
 
     /**
      * 获取相似参数的方法
+     *
      * @param name
      * @param types
      * @return
@@ -481,6 +506,7 @@ public final class ReflectUtils {
 
     /**
      * 进行方法排序
+     *
      * @param methods
      */
     private void sortMethods(final List<Method> methods) {
@@ -538,6 +564,7 @@ public final class ReflectUtils {
 
     /**
      * 根据类, 代理创建并返回对象
+     *
      * @param proxyType
      * @return 返回代理的对象
      */
@@ -573,6 +600,7 @@ public final class ReflectUtils {
 
     /**
      * 获取实体类属性名 get/set
+     *
      * @param string
      * @return
      */
@@ -592,6 +620,7 @@ public final class ReflectUtils {
 
     /**
      * 获取类型
+     *
      * @return
      */
     public Class<?> type() {
@@ -627,6 +656,7 @@ public final class ReflectUtils {
 
     /**
      * 获取反射想要获取的
+     *
      * @param <T> 返回的范型
      * @return 反射想要获取的
      */
@@ -637,6 +667,7 @@ public final class ReflectUtils {
 
     /**
      * 获取 HashCode
+     *
      * @return
      */
     @Override
@@ -646,6 +677,7 @@ public final class ReflectUtils {
 
     /**
      * 判断反射的两个对象是否一样
+     *
      * @param object
      * @return
      */
@@ -656,6 +688,7 @@ public final class ReflectUtils {
 
     /**
      * 获取反射获取的对象 toString
+     *
      * @return
      */
     @Override

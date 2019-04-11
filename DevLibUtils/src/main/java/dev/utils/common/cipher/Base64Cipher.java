@@ -1,7 +1,5 @@
 package dev.utils.common.cipher;
 
-import dev.utils.common.assist.Base64;
-
 /**
  * detail: Baes64 编/解码 并进行 加/解密
  * Created by Ttt
@@ -20,6 +18,7 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 解码
+     *
      * @param data
      * @return
      */
@@ -37,6 +36,7 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 编码
+     *
      * @param data
      * @return
      */

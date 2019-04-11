@@ -13,6 +13,7 @@ public final class CipherUtils {
 
     /**
      * 加密方法
+     *
      * @param object
      * @return
      */
@@ -22,6 +23,7 @@ public final class CipherUtils {
 
     /**
      * 加密方法
+     *
      * @param object
      * @param cipher
      * @return
@@ -37,6 +39,7 @@ public final class CipherUtils {
 
     /**
      * 解密方法
+     *
      * @param hex
      * @return
      */
@@ -46,6 +49,7 @@ public final class CipherUtils {
 
     /**
      * 解密方法
+     *
      * @param hex
      * @param cipher
      * @return

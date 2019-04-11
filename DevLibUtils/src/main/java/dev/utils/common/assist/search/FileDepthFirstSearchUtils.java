@@ -49,6 +49,7 @@ public final class FileDepthFirstSearchUtils {
 
         /**
          * 判断是否处理该文件
+         *
          * @param file
          * @return
          */
@@ -56,6 +57,7 @@ public final class FileDepthFirstSearchUtils {
 
         /**
          * 是否添加到集合
+         *
          * @param file
          * @return
          */
@@ -63,6 +65,7 @@ public final class FileDepthFirstSearchUtils {
 
         /**
          * 搜索结束监听
+         *
          * @param lists
          * @param startTime
          * @param endTime
@@ -104,6 +107,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 设置搜索处理接口
+     *
      * @param iSearchHandler
      * @return
      */
@@ -114,6 +118,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 是否搜索中
+     *
      * @return
      */
     public boolean isRunning() {
@@ -129,6 +134,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 是否停止搜索
+     *
      * @return
      */
     public boolean isStop() {
@@ -137,6 +143,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 获取开始搜索时间
+     *
      * @return
      */
     public long getStartTime() {
@@ -145,6 +152,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 获取结束搜索时间
+     *
      * @return
      */
     public long getEndTime() {
@@ -164,6 +172,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 搜索目录
+     *
      * @param path       根目录地址
      * @param isRelation 是否关联到 Child List
      */
@@ -224,6 +233,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 搜索文件
+     *
      * @param file
      * @param lists      保存数据源
      * @param isRelation 是否关联到 Child List

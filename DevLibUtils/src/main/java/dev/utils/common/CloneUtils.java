@@ -26,6 +26,7 @@ public final class CloneUtils {
 
     /**
      * 进行克隆
+     *
      * @param data
      * @param <T>
      * @return
@@ -37,6 +38,7 @@ public final class CloneUtils {
 
     /**
      * 通过序列化实体类, 获取对应的byte数组数据
+     *
      * @param serializable
      * @return
      */
@@ -63,6 +65,7 @@ public final class CloneUtils {
 
     /**
      * 通过 byte数据, 生成Object对象
+     *
      * @param bytes
      * @return
      */
@@ -89,6 +92,7 @@ public final class CloneUtils {
 
     /**
      * 进行克隆
+     *
      * @param map   存储集合
      * @param datas 需要克隆的数据源
      * @param <K>
@@ -117,6 +121,7 @@ public final class CloneUtils {
 
     /**
      * 进行克隆
+     *
      * @param collection 存储集合
      * @param datas      需要克隆的数据源
      * @param <T>

@@ -21,6 +21,7 @@ public final class Reflect2Utils {
 
     /**
      * 获取某个对象的公共属性
+     *
      * @param owner
      * @param fieldName
      * @return 该属性对象
@@ -40,6 +41,7 @@ public final class Reflect2Utils {
 
     /**
      * 获取某类的静态公共属性
+     *
      * @param className 类名
      * @param fieldName 属性名
      * @return 该属性对象
@@ -59,6 +61,7 @@ public final class Reflect2Utils {
 
     /**
      * 执行某对象方法
+     *
      * @param owner      对象
      * @param methodName 方法名
      * @return 方法返回值
@@ -69,6 +72,7 @@ public final class Reflect2Utils {
 
     /**
      * 执行某对象方法
+     *
      * @param owner      对象
      * @param methodName 方法名
      * @param args       参数
@@ -92,6 +96,7 @@ public final class Reflect2Utils {
 
     /**
      * 执行某类的静态方法
+     *
      * @param className  类名
      * @param methodName 方法名
      * @return 执行方法返回的结果
@@ -102,6 +107,7 @@ public final class Reflect2Utils {
 
     /**
      * 执行某类的静态方法
+     *
      * @param className  类名
      * @param methodName 方法名
      * @param args       参数数组
@@ -129,6 +135,7 @@ public final class Reflect2Utils {
 
     /**
      * 新建实例
+     *
      * @param className 类名
      * @param args      构造函数的参数 如果无构造参数，args 填写为 null
      * @param argsType
@@ -156,6 +163,7 @@ public final class Reflect2Utils {
 
     /**
      * 是不是某个类的实例
+     *
      * @param object 实例
      * @param clazz
      * @return 如果 obj 是此类的实例，则返回 true
@@ -167,6 +175,7 @@ public final class Reflect2Utils {
 
     /**
      * 获取数组中的某个元素
+     *
      * @param array 数组
      * @param index 索引
      * @return 返回指定数组对象中索引组件的值
@@ -181,6 +190,7 @@ public final class Reflect2Utils {
     /**
      * 通过反射获取全部字段
      * 如: (ListView) getDeclaredField(对象, "私有属性")
+     *
      * @param object
      * @param name
      * @return
@@ -193,6 +203,7 @@ public final class Reflect2Utils {
 
     /**
      * 获取父类中的变量对象
+     *
      * @param object    子类对象
      * @param fieldName 父类中的属性名
      * @return 父类中的变量对象
@@ -211,6 +222,7 @@ public final class Reflect2Utils {
 
     /**
      * 循环向上转型, 获取对象的 DeclaredField
+     *
      * @param object    子类对象
      * @param fieldName 父类中的属性名
      * @return 父类中的变量对象
@@ -233,6 +245,7 @@ public final class Reflect2Utils {
 
     /**
      * 设置反射的方法
+     *
      * @param object
      * @param name   方法名
      * @param args   方法需要的参数
@@ -257,6 +270,7 @@ public final class Reflect2Utils {
 
     /**
      * 设置反射的字段
+     *
      * @param object
      * @param name   字段名
      * @param value  字段值

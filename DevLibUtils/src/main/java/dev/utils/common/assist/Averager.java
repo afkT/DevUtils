@@ -13,6 +13,7 @@ public class Averager {
 
     /**
      * 添加一个数字
+     *
      * @param num
      */
     public synchronized void add(final Number num) {
@@ -28,6 +29,7 @@ public class Averager {
 
     /**
      * 返回参与均值计算的数字个数
+     *
      * @return
      */
     public Number size() {
@@ -36,6 +38,7 @@ public class Averager {
 
     /**
      * 获取平均数
+     *
      * @return
      */
     public Number getAverage() {
@@ -52,6 +55,7 @@ public class Averager {
 
     /**
      * 打印数字集合
+     *
      * @return
      */
     public String print() {

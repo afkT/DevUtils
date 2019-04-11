@@ -35,11 +35,14 @@ public final class JCLogUtils {
     private static final int JSON_INDENT = 4;
     // 是否打印日志 上线 = false，开发、debug = true
     private static boolean JUDGE_PRINT_LOG = false;
+    // 判断是否控制台打印信息
+    private static boolean JUDGE_CONTROL_PRINT_LOG = false;
     // 默认DEFAULT_TAG
     private static final String DEFAULT_TAG = JCLogUtils.class.getSimpleName();
 
     /**
      * 判断是否打印日志
+     *
      * @return
      */
     public static boolean isPrintLog() {
@@ -48,18 +51,29 @@ public final class JCLogUtils {
 
     /**
      * 设置是否打印日志
+     *
      * @param judgePrintLog
      */
-    public static void setPrintLog(boolean judgePrintLog) {
+    public static void setPrintLog(final boolean judgePrintLog) {
         JUDGE_PRINT_LOG = judgePrintLog;
     }
 
     /**
+     * 设置是否在控制台打印日志
+     *
+     * @param judgeControlPrintLog
+     */
+    public static void setControlPrintLog(final boolean judgeControlPrintLog) {
+        JUDGE_CONTROL_PRINT_LOG = judgeControlPrintLog;
+    }
+
+    /**
      * 判断是否为null
+     *
      * @param str
      * @return
      */
-    private static boolean isEmpty(String str) {
+    private static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
     }
 
@@ -67,11 +81,12 @@ public final class JCLogUtils {
 
     /**
      * 最终打印日志方法(全部调用此方法)
+     *
      * @param logType 打印日志类型
-     * @param tag 打印Tag
-     * @param msg 打印消息
+     * @param tag     打印Tag
+     * @param msg     打印消息
      */
-    private static void printLog(int logType, String tag, String msg) {
+    private static void printLog(final int logType, final String tag, final String msg) {
         switch (logType) {
             case INFO:
                 LogPrintUtils.iTag(tag, msg);
@@ -83,21 +98,24 @@ public final class JCLogUtils {
                 LogPrintUtils.dTag(tag, msg);
                 break;
         }
-        // 打印信息
-        if (isEmpty(tag)) {
-            System.out.println(msg);
-        } else {
-            System.out.println(tag + " : " + msg);
+        if (JUDGE_CONTROL_PRINT_LOG) {
+            // 打印信息
+            if (isEmpty(tag)) {
+                System.out.println(msg);
+            } else {
+                System.out.println(tag + " : " + msg);
+            }
         }
     }
 
     /**
      * 处理信息
+     *
      * @param message 打印信息
-     * @param args 占位符替换
+     * @param args    占位符替换
      * @return
      */
-    private static String createMessage(String message, Object... args) {
+    private static String createMessage(final String message, final Object... args) {
         String result = null;
         try {
             if (message != null) {
@@ -121,12 +139,13 @@ public final class JCLogUtils {
 
     /**
      * 拼接错误信息
+     *
      * @param throwable 错误异常
-     * @param message 需要打印的消息
-     * @param args 动态参数
+     * @param message   需要打印的消息
+     * @param args      动态参数
      * @return
      */
-    private static String splitErrorMessage(Throwable throwable, String message, Object... args) {
+    private static String splitErrorMessage(final Throwable throwable, final String message, final Object... args) {
         String result = null;
         try {
             if (throwable != null) {
@@ -144,71 +163,69 @@ public final class JCLogUtils {
         return result;
     }
 
-    // ===================  对外公开方法   =========================
+    // = 对外公开方法 - 使用默认TAG =
 
-    // ========= 使用默认TAG =========
-
-    public static void d(String message, Object... args) {
+    public static void d(final String message, final Object... args) {
         dTag(DEFAULT_TAG, message, args);
     }
 
-    public static void e(Throwable throwable) {
+    public static void e(final Throwable throwable) {
         eTag(DEFAULT_TAG, throwable);
     }
 
-    public static void e(String message, Object... args) {
+    public static void e(final String message, final Object... args) {
         e(null, message, args);
     }
 
-    public static void e(Throwable throwable, String message, Object... args) {
+    public static void e(final Throwable throwable, final String message, final Object... args) {
         eTag(DEFAULT_TAG, throwable, message, args);
     }
 
-    public static void i(String message, Object... args) {
+    public static void i(final String message, final Object... args) {
         iTag(DEFAULT_TAG, message, args);
     }
 
-    public static void json(String json) {
+    public static void json(final String json) {
         jsonTag(DEFAULT_TAG, json);
     }
 
-    public static void xml(String xml) {
+    public static void xml(final String xml) {
         xmlTag(DEFAULT_TAG, xml);
     }
 
-    // -- 日志打印方法 --
+    // = 对外公开方法 - 日志打印方法 =
 
-    public static void dTag(String tag, String message, Object... args) {
+    public static void dTag(final String tag, final String message, final Object... args) {
         if (JUDGE_PRINT_LOG) {
             printLog(DEBUG, tag, createMessage(message, args));
         }
     }
 
-    public static void eTag(String tag, String message, Object... args) {
+    public static void eTag(final String tag, final String message, final Object... args) {
         if (JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, createMessage(message, args));
         }
     }
 
-    public static void eTag(String tag, Throwable throwable) {
+    public static void eTag(final String tag, final Throwable throwable) {
         if (JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, splitErrorMessage(throwable, null));
         }
     }
 
-    public static void eTag(String tag, Throwable throwable, String message, Object... args) {
+    public static void eTag(final String tag, final Throwable throwable, final String message, final Object... args) {
         if (JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, splitErrorMessage(throwable, message, args));
         }
     }
 
-    public static void iTag(String tag, String message, Object... args) {
+    public static void iTag(final String tag, final String message, final Object... args) {
         if (JUDGE_PRINT_LOG) {
             printLog(INFO, tag, createMessage(message, args));
         }
     }
 
-    public static void jsonTag(String tag, String json) {
+    public static void jsonTag(final String tag, final String json) {
         if (JUDGE_PRINT_LOG) {
             // 判断传入JSON格式信息是否为null
             if (isEmpty(json)) {
@@ -250,7 +267,7 @@ public final class JCLogUtils {
         }
     }
 
-    public static void xmlTag(String tag, String xml) {
+    public static void xmlTag(final String tag, final String xml) {
         if (JUDGE_PRINT_LOG) {
             // 判断传入XML格式信息是否为null
             if (isEmpty(xml)) {

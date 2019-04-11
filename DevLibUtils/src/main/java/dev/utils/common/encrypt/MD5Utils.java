@@ -24,6 +24,7 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 小写
+     *
      * @param str
      * @return
      */
@@ -39,6 +40,7 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 小写
+     *
      * @param data
      * @return
      */
@@ -60,6 +62,7 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 大写
+     *
      * @param str
      * @return
      */
@@ -75,6 +78,7 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 大写
+     *
      * @param data
      * @return
      */
@@ -96,6 +100,7 @@ public final class MD5Utils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
+     *
      * @param data
      * @return
      */
@@ -105,6 +110,7 @@ public final class MD5Utils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
+     *
      * @param data
      * @param hexDigits
      * @return
@@ -127,6 +133,7 @@ public final class MD5Utils {
 
     /**
      * 获取文件 MD5 值 - 小写
+     *
      * @param filePath 文件地址
      * @return
      */

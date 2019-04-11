@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.utils.common.assist;
+package dev.utils.common.cipher;
 
 import java.io.UnsupportedEncodingException;
 

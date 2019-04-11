@@ -20,6 +20,7 @@ public final class StringUtils {
 
     /**
      * 获取长度，如果字符串为null,则返回 0
+     *
      * @param str
      * @return
      */
@@ -29,6 +30,7 @@ public final class StringUtils {
 
     /**
      * 判断是否为 null
+     *
      * @param str
      * @return
      */
@@ -38,6 +40,7 @@ public final class StringUtils {
 
     /**
      * 判断字符串是否为 null 或全为空白字符
+     *
      * @param str 待校验字符串
      * @return
      */
@@ -53,6 +56,7 @@ public final class StringUtils {
 
     /**
      * 清空全部空格,并返回处理后的字符串
+     *
      * @param str
      * @return
      */
@@ -63,6 +67,7 @@ public final class StringUtils {
 
     /**
      * 清空前后空格,并返回处理后的字符串
+     *
      * @param str
      * @return
      */
@@ -80,6 +85,7 @@ public final class StringUtils {
 
     /**
      * 字符串进行 GBK 编码
+     *
      * @param str
      * @return
      */
@@ -89,6 +95,7 @@ public final class StringUtils {
 
     /**
      * 字符串进行 GBK2312 编码
+     *
      * @param str
      * @return
      */
@@ -98,6 +105,7 @@ public final class StringUtils {
 
     /**
      * 字符串进行 UTF-8 编码
+     *
      * @param str
      * @return
      */
@@ -107,6 +115,7 @@ public final class StringUtils {
 
     /**
      * 进行字符串编码
+     *
      * @param str
      * @param enc
      * @return
@@ -125,6 +134,7 @@ public final class StringUtils {
 
     /**
      * 进行 URL 编码,默认UTF-8
+     *
      * @param str
      * @return
      */
@@ -134,6 +144,7 @@ public final class StringUtils {
 
     /**
      * 进行 URL 编码
+     *
      * @param str
      * @param enc
      * @return
@@ -153,6 +164,7 @@ public final class StringUtils {
 
     /**
      * 将字符串转移为 ASCII 码
+     *
      * @param str 字符串
      * @return 字符串 ASCII 码
      */
@@ -173,6 +185,7 @@ public final class StringUtils {
 
     /**
      * 将字符串转移为 Unicode 码
+     *
      * @param str 字符串
      * @return
      */
@@ -193,6 +206,7 @@ public final class StringUtils {
 
     /**
      * 将字符串转移为 Unicode 码
+     *
      * @param chars 字符数组
      * @return
      */
@@ -212,6 +226,7 @@ public final class StringUtils {
 
     /**
      * 转化为半角字符
+     *
      * @param str 待转字符串
      * @return 半角字符串
      */
@@ -232,6 +247,7 @@ public final class StringUtils {
 
     /**
      * 转化为全角字符 如： a => ａ A => Ａ
+     *
      * @param str 待转字符串
      * @return 全角字符串
      */
@@ -254,6 +270,7 @@ public final class StringUtils {
 
     /**
      * 检测字符串是否全是中文
+     *
      * @param str
      * @return
      */
@@ -272,6 +289,7 @@ public final class StringUtils {
 
     /**
      * 判定输入汉字
+     *
      * @param c
      * @return
      */
@@ -292,6 +310,7 @@ public final class StringUtils {
 
     /**
      * 首字母大写
+     *
      * @param str 待转字符串
      * @return 首字母大写字符串
      */
@@ -307,6 +326,7 @@ public final class StringUtils {
 
     /**
      * 首字母小写
+     *
      * @param str 待转字符串
      * @return 首字母小写字符串
      */
@@ -322,6 +342,7 @@ public final class StringUtils {
 
     /**
      * 反转字符串
+     *
      * @param str 待反转字符串
      * @return 反转字符串
      */
@@ -341,6 +362,7 @@ public final class StringUtils {
 
     /**
      * 字符串连接，将参数列表拼接为一个字符串
+     *
      * @param more 追加
      * @return 返回拼接后的字符串
      */
@@ -350,6 +372,7 @@ public final class StringUtils {
 
     /**
      * 字符串连接，将参数列表拼接为一个字符串
+     *
      * @param split
      * @param more
      * @return 回拼接后的字符串
@@ -366,6 +389,7 @@ public final class StringUtils {
 
     /**
      * 下划线命名转为驼峰命名
+     *
      * @param str 下划线命名格式
      * @return 驼峰命名格式
      */
@@ -394,6 +418,7 @@ public final class StringUtils {
 
     /**
      * 驼峰命名法转为下划线命名
+     *
      * @param str 驼峰命名格式
      * @return 下划线命名格式
      */
@@ -414,6 +439,7 @@ public final class StringUtils {
 
     /**
      * 数据库字符转义
+     *
      * @param keyWord
      * @return
      */

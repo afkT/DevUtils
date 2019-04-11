@@ -110,6 +110,7 @@ public final class IDCardUtils {
 
     /**
      * 身份证校验规则, 验证15位身份编码是否合法
+     *
      * @param idCard 身份证号码
      * @return
      */
@@ -140,6 +141,7 @@ public final class IDCardUtils {
 
     /**
      * 身份证校验规则, 验证18位身份编码是否合法
+     *
      * @param idCard 身份证号码
      * @return
      */
@@ -170,6 +172,7 @@ public final class IDCardUtils {
 
     /**
      * 将 15 位身份证号码转换为 18 位
+     *
      * @param idCard 15位身份编码
      * @return 18位身份编码
      */
@@ -208,6 +211,7 @@ public final class IDCardUtils {
 
     /**
      * 验证台湾身份证号码
+     *
      * @param idCard 身份证号码
      * @return 是否符合
      */
@@ -239,6 +243,7 @@ public final class IDCardUtils {
      * 身份证前2位为英文字符，如果只出现一个英文字符则表示第一位是空格，对应数字58 前2位英文字符A-Z分别对应数字10-35
      * 最后一位校验码为0-9的数字加上字符"A"，"A"代表10
      * 将身份证号码全部转换为数字，分别对应乘9-1相加的总和，整除11则证件号码有效
+     *
      * @param idCard 身份证号码
      * @return 验证码是否符合
      */
@@ -275,6 +280,7 @@ public final class IDCardUtils {
 
     /**
      * 判断 10 位数的身份证号, 是否合法
+     *
      * @param idCard 身份证号码
      * @return
      */
@@ -321,6 +327,7 @@ public final class IDCardUtils {
 
     /**
      * 验证身份证是否合法
+     *
      * @param idCard 身份证号码
      * @return 身份证是否合法
      */
@@ -335,6 +342,7 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取年龄
+     *
      * @param idCard 身份编号
      * @return 年龄
      */
@@ -362,6 +370,7 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日
+     *
      * @param idCard 身份编号
      * @return 生日(yyyyMMdd)
      */
@@ -385,6 +394,7 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日
+     *
      * @param idCard 身份编号
      * @return 生日(yyyyMMdd)
      */
@@ -404,6 +414,7 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日 - 年份
+     *
      * @param idCard 身份编号
      * @return 生日(yyyy)
      */
@@ -423,6 +434,7 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日 - 月份
+     *
      * @param idCard 身份编号
      * @return 生日(MM)
      */
@@ -442,6 +454,7 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取生日 - 天数
+     *
      * @param idCard 身份编号
      * @return 生日(dd)
      */
@@ -461,6 +474,7 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取性别
+     *
      * @param idCard 身份编号
      * @return 性别(M - 男 ， F - 女 ， N - 未知)
      */
@@ -488,6 +502,7 @@ public final class IDCardUtils {
 
     /**
      * 根据身份编号获取户籍省份
+     *
      * @param idCard 身份编码
      * @return 省级编码
      */
@@ -508,6 +523,7 @@ public final class IDCardUtils {
 
     /**
      * 将身份证的每位和对应位的加权因子相乘之后，再获取和值
+     *
      * @param data
      * @return 身份证编码
      */
@@ -533,6 +549,7 @@ public final class IDCardUtils {
 
     /**
      * 将 POWER 和值与 11 取模获取余数进行校验码判断
+     *
      * @param sum
      * @return 校验位
      */
@@ -578,6 +595,7 @@ public final class IDCardUtils {
 
     /**
      * 将字符数组转换成数字数组
+     *
      * @param data 字符数组
      * @return 数字数组
      */
@@ -599,6 +617,7 @@ public final class IDCardUtils {
 
     /**
      * 验证小于当前日期 是否有效
+     *
      * @param iYear  待验证日期(年)
      * @param iMonth 待验证日期(月 1-12)
      * @param iDate  待验证日期(日)
@@ -633,6 +652,7 @@ public final class IDCardUtils {
 
     /**
      * 数字验证
+     *
      * @param str 待验证的字符串
      * @return 是否是数字
      */
@@ -644,6 +664,7 @@ public final class IDCardUtils {
 
     /**
      * 判断是否为null
+     *
      * @param str
      * @return
      */
