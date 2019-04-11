@@ -3,6 +3,8 @@ package dev.utils.app.image;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 
+import java.io.File;
+
 import dev.utils.LogPrintUtils;
 
 /**
@@ -17,27 +19,30 @@ public final class BitmapCropUtils {
     // 日志 TAG
     private static final String TAG = BitmapCropUtils.class.getSimpleName();
 
-    // =============== 裁剪图片,裁剪中间部分，防止全图压缩 ===============
+    // = 裁剪图片,裁剪中间部分，防止全图压缩 =
+
     /**
      * 裁剪图片(默认比例16:9)
      * @param filePath 保存路径
-     * @param bitmap 图片
+     * @param bitmap   图片
      */
-    public static void cropBitmap(String filePath, Bitmap bitmap) {
+    public static void cropBitmap(final String filePath, final Bitmap bitmap) {
         cropBitmap(filePath, bitmap, 16.0f, 9.0f);
     }
 
     /**
      * 裁剪图片
-     * @param filePath 保存路径
-     * @param bitmap 图片
-     * @param widthScale 宽度比例
+     * @param filePath    保存路径
+     * @param bitmap      图片
+     * @param widthScale  宽度比例
      * @param heightScale 高度比例
      */
-    public static void cropBitmap(String filePath, Bitmap bitmap, float widthScale, float heightScale) {
-        if (TextUtils.isEmpty(filePath)) {
-            return; // 防止保存路径为null
-        } else if (bitmap == null) {
+    public static void cropBitmap(final String filePath, final Bitmap bitmap, final float widthScale, final float heightScale) {
+        if (TextUtils.isEmpty(filePath)) return;
+        File file = new File(filePath);
+        if (file.isDirectory() || !file.exists()) return;
+
+        if (bitmap == null) {
             return; // 防止图片为null
         }
         // 裁剪处理后的图片

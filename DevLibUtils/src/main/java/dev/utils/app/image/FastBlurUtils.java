@@ -14,15 +14,14 @@ public final class FastBlurUtils {
 
     /**
      * 对图片进行毛玻璃化
-     * @param sentBitmap 位图
-     * @param radius 虚化程度
+     * @param sentBitmap       位图
+     * @param radius           虚化程度
      * @param canReuseInBitmap 是否重用
      * @return 位图
      */
-    public static Bitmap blur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
-        if (sentBitmap == null) {
-            return null;
-        }
+    public static Bitmap blur(final Bitmap sentBitmap, final int radius, boolean canReuseInBitmap) {
+        if (sentBitmap == null) return null;
+
         Bitmap bitmap;
         // 如果修改原图
         if (canReuseInBitmap) {
@@ -230,23 +229,23 @@ public final class FastBlurUtils {
                 yi += w;
             }
         }
-
         try {
             bitmap.setPixels(pix, 0, w, 0, 0, w, h);
         } catch (Exception e) {
             return null;
         }
-        return (bitmap);
+        return bitmap;
     }
 
     /**
      * 对图片进行毛玻璃化 数值越大效果越明显
      * @param originBitmap 位图
-     * @param scaleRatio 缩放比率
-     * @param blurRadius 毛玻璃化比率，虚化程度
+     * @param scaleRatio   缩放比率
+     * @param blurRadius   毛玻璃化比率，虚化程度
      * @return 位图
      */
-    public static Bitmap blur(Bitmap originBitmap, int scaleRatio, int blurRadius) {
+    public static Bitmap blur(final Bitmap originBitmap, final int scaleRatio, final int blurRadius) {
+        if (originBitmap == null) return null;
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(originBitmap,
                 originBitmap.getWidth() / scaleRatio,
                 originBitmap.getHeight() / scaleRatio,
@@ -260,12 +259,13 @@ public final class FastBlurUtils {
     /**
      * 对图片进行 毛玻璃化，虚化 数值越大效果越明显
      * @param originBitmap 位图
-     * @param width 缩放后的期望宽度
-     * @param height 缩放后的期望高度
-     * @param blurRadius 虚化程度
+     * @param width        缩放后的期望宽度
+     * @param height       缩放后的期望高度
+     * @param blurRadius   虚化程度
      * @return 位图
      */
-    public static Bitmap blur(Bitmap originBitmap, int width, int height, int blurRadius) {
+    public static Bitmap blur(final Bitmap originBitmap, final int width, final int height, final int blurRadius) {
+        if (originBitmap == null) return null;
         Bitmap thumbnail = ThumbnailUtils.extractThumbnail(originBitmap, width, height);
         Bitmap blurBitmap = blur(thumbnail, blurRadius, true);
         thumbnail.recycle();
