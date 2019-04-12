@@ -1,6 +1,5 @@
 package dev.utils;
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -17,7 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- * detail: 日志打印工具类(简化版) - 项目内部使用
+ * detail: Android 日志打印工具类(简化版) - 项目内部使用 - 主要打印 Android 日志
  * Created by Ttt
  */
 public final class LogPrintUtils {
@@ -29,7 +28,7 @@ public final class LogPrintUtils {
     private static final int JSON_INDENT = 4;
     // 是否打印日志 上线 = false，开发、debug = true
     private static boolean JUDGE_PRINT_LOG = false;
-    // 默认DEFAULT_TAG
+    // 默认 DEFAULT_TAG
     private static final String DEFAULT_TAG = LogPrintUtils.class.getSimpleName();
 
     /**
@@ -46,6 +45,15 @@ public final class LogPrintUtils {
      */
     public static void setPrintLog(final boolean judgePrintLog) {
         JUDGE_PRINT_LOG = judgePrintLog;
+    }
+
+    /**
+     * 判断是否为null
+     * @param str
+     * @return
+     */
+    private static boolean isEmpty(final String str) {
+        return (str == null || str.length() == 0);
     }
 
     // =
@@ -89,7 +97,7 @@ public final class LogPrintUtils {
      * @return
      */
     private static String createMessage(final String message, final Object... args) {
-        String result = null;
+        String result;
         try {
             if (message != null) {
                 if (args == null) {
@@ -118,7 +126,7 @@ public final class LogPrintUtils {
      * @return
      */
     private static String splitErrorMessage(final Throwable throwable, final String message, final Object... args) {
-        String result = null;
+        String result;
         try {
             if (throwable != null) {
                 if (message != null) {
@@ -230,7 +238,7 @@ public final class LogPrintUtils {
     public static void jsonTag(final String tag, final String json) {
         if (JUDGE_PRINT_LOG) {
             // 判断传入JSON格式信息是否为null
-            if (TextUtils.isEmpty(json)) {
+            if (isEmpty(json)) {
                 printLog(Log.ERROR, tag, "Empty/Null json content");
                 return;
             }
@@ -272,7 +280,7 @@ public final class LogPrintUtils {
     public static void xmlTag(final String tag, final String xml) {
         if (JUDGE_PRINT_LOG) {
             // 判断传入XML格式信息是否为null
-            if (TextUtils.isEmpty(xml)) {
+            if (isEmpty(xml)) {
                 printLog(Log.ERROR, tag, "Empty/Null xml content");
                 return;
             }

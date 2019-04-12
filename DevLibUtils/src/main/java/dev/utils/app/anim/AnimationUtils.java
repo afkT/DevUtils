@@ -33,7 +33,7 @@ public final class AnimationUtils {
      * @return 一个旋转动画
      */
     public static RotateAnimation getRotateAnimation(final float fromDegrees, final float toDegrees, final int pivotXType, final float pivotXValue,
-                                                     final int pivotYType, final float pivotYValue, final long durationMillis, AnimationListener animationListener) {
+                                                     final int pivotYType, final float pivotYValue, final long durationMillis, final AnimationListener animationListener) {
         RotateAnimation rotateAnimation = new RotateAnimation(fromDegrees, toDegrees, pivotXType, pivotXValue, pivotYType, pivotYValue);
         rotateAnimation.setDuration(durationMillis);
         if (animationListener != null) {

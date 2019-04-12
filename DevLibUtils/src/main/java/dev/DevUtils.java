@@ -6,7 +6,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 
 import java.lang.reflect.Field;
@@ -45,13 +44,11 @@ public final class DevUtils {
     private static Application sApplication;
     // 全局 Context - getApplicationContext()
     private static Context sContext;
-    // 全局 Handler,便于子线程快捷操作等
-    private static Handler sHandler;
     // 是否内部 Debug 模式
     private static boolean debug = false;
 
     /**
-     * 默认初始化方法 - 必须调用 - Application.onCreate 中调用
+     * 初始化方法 - 必须调用 - Application.onCreate 中调用
      * @param context
      */
     public static void init(final Context context) {
@@ -61,15 +58,11 @@ public final class DevUtils {
         initApplication(context);
         // 注册 Activity 生命周期监听
         registerActivityLifecycleCallbacks(sApplication);
-        // 初始化全局Handler - 主线程
-        sHandler = new Handler(Looper.getMainLooper());
         // = 初始化工具类相关 =
         // 初始化缓存类
         DevCache.get(context);
         // 初始化Shared 工具类
         SharedUtils.init(context);
-        // 初始化Handler工具类
-        HandlerUtils.init(context);
         // 初始化记录文件配置
         FileRecordUtils.init();
         // 初始化记录工具类
@@ -161,6 +154,7 @@ public final class DevUtils {
     /**
      * 反射获取 Application
      * @return
+     * @throws NullPointerException
      */
     private static Application getApplicationByReflect() {
         try {
@@ -185,11 +179,7 @@ public final class DevUtils {
      * @return
      */
     public static Handler getHandler() {
-        if (sHandler == null) {
-            // 初始化全局 Handler - 主线程
-            sHandler = new Handler(Looper.getMainLooper()); // Looper.myLooper();
-        }
-        return sHandler;
+        return HandlerUtils.getMainHandler();
     }
 
     /**
@@ -197,24 +187,20 @@ public final class DevUtils {
      * @param action
      */
     public static void runOnUiThread(final Runnable action) {
-        if (action != null) {
-            sHandler.post(action);
-        }
+        HandlerUtils.postRunnable(action);
     }
 
     /**
-     * 执行UI 线程任务 => 延时执行
+     * 执行UI 线程任务 - 延时执行
      * @param action
      * @param delayMillis
      */
     public static void runOnUiThread(final Runnable action, final long delayMillis) {
-        if (action != null) {
-            sHandler.postDelayed(action, delayMillis);
-        }
+        HandlerUtils.postRunnable(action, delayMillis);
     }
 
     /**
-     * 打开日志
+     * 开启日志开关
      */
     public static void openLog() {
         // 专门打印 Android 日志信息
@@ -224,14 +210,14 @@ public final class DevUtils {
     }
 
     /**
-     * 标记debug模式
+     * 标记 Debug 模式
      */
     public static void openDebug() {
         DevUtils.debug = true;
     }
 
     /**
-     * 判断是否Debug模式
+     * 判断是否 Debug 模式
      * @return
      */
     public static boolean isDebug() {
@@ -262,7 +248,7 @@ public final class DevUtils {
     private static final ActivityLifecycleImpl ACTIVITY_LIFECYCLE = new ActivityLifecycleImpl();
     // Activity 过滤判断接口
     private static ActivityLifecycleFilter activityLifecycleFilter;
-    // 权限 Activity class name
+    // 权限 Activity.class name
     public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.PermissionUtils$PermissionActivity";
 
     /**
@@ -626,7 +612,6 @@ public final class DevUtils {
         public void removeAllOnActivityDestroyedListener() {
             mDestroyedListenerMap.clear();
         }
-
 
         // = 事件通知相关 =
 

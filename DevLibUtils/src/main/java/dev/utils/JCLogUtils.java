@@ -1,8 +1,5 @@
 package dev.utils;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -22,23 +19,21 @@ public final class JCLogUtils {
     private JCLogUtils() {
     }
 
-    // 普通信息模式
-    public static final int INFO = 0;
-    // DEBUG 模式
-    public static final int DEBUG = 1;
-    // ERROR 模式
-    public static final int ERROR = 2;
-
-    // =
-
-    // JSON格式内容缩进
-    private static final int JSON_INDENT = 4;
     // 是否打印日志 上线 = false，开发、debug = true
     private static boolean JUDGE_PRINT_LOG = false;
     // 判断是否控制台打印信息
     private static boolean JUDGE_CONTROL_PRINT_LOG = false;
-    // 默认DEFAULT_TAG
+    // 默认 DEFAULT_TAG
     private static final String DEFAULT_TAG = JCLogUtils.class.getSimpleName();
+
+    // = 日志类型 =
+
+    // 普通信息模式
+    private static final int INFO = 0;
+    // DEBUG 模式
+    private static final int DEBUG = 1;
+    // ERROR 模式
+    private static final int ERROR = 2;
 
     /**
      * 判断是否打印日志
@@ -110,7 +105,7 @@ public final class JCLogUtils {
      * @return
      */
     private static String createMessage(final String message, final Object... args) {
-        String result = null;
+        String result;
         try {
             if (message != null) {
                 if (args == null) {
@@ -139,7 +134,7 @@ public final class JCLogUtils {
      * @return
      */
     private static String splitErrorMessage(final Throwable throwable, final String message, final Object... args) {
-        String result = null;
+        String result;
         try {
             if (throwable != null) {
                 if (message != null) {
@@ -178,10 +173,6 @@ public final class JCLogUtils {
         iTag(DEFAULT_TAG, message, args);
     }
 
-    public static void json(final String json) {
-        jsonTag(DEFAULT_TAG, json);
-    }
-
     public static void xml(final String xml) {
         xmlTag(DEFAULT_TAG, xml);
     }
@@ -215,48 +206,6 @@ public final class JCLogUtils {
     public static void iTag(final String tag, final String message, final Object... args) {
         if (JUDGE_PRINT_LOG) {
             printLog(INFO, tag, createMessage(message, args));
-        }
-    }
-
-    public static void jsonTag(final String tag, final String json) {
-        if (JUDGE_PRINT_LOG) {
-            // 判断传入JSON格式信息是否为null
-            if (isEmpty(json)) {
-                printLog(ERROR, tag, "Empty/Null json content");
-                return;
-            }
-            try {
-                // 属于对象的JSON格式信息
-                if (json.startsWith("{")) {
-                    JSONObject jsonObject = new JSONObject(json);
-                    // 进行缩进
-                    String message = jsonObject.toString(JSON_INDENT);
-                    // 打印信息
-                    printLog(DEBUG, tag, message);
-                } else if (json.startsWith("[")) {
-                    // 属于数据的JSON格式信息
-                    JSONArray jsonArray = new JSONArray(json);
-                    // 进行缩进
-                    String message = jsonArray.toString(JSON_INDENT);
-                    // 打印信息
-                    printLog(DEBUG, tag, message);
-                }
-            } catch (Exception e) {
-                String eHint = "null";
-                if (e != null) {
-                    Throwable throwable = e.getCause();
-                    if (throwable != null) {
-                        eHint = throwable.getMessage();
-                    } else {
-                        try {
-                            eHint = e.getMessage();
-                        } catch (Exception e1) {
-                            eHint = e1.getMessage();
-                        }
-                    }
-                }
-                printLog(ERROR, tag, eHint + "\n" + json);
-            }
         }
     }
 
