@@ -677,6 +677,31 @@ public final class ConvertUtils {
         return null;
     }
 
+    /**
+     * 拼接数据
+     * @param prefix
+     * @param suffix
+     * @return
+     */
+    public static byte[] joinBytes(final byte[] prefix, final byte[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建 byte[]
+        byte[] bytes = new byte[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, bytes, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, bytes, prefixLength, suffixLength);
+        }
+        return bytes;
+    }
+
     // =
 
     /**

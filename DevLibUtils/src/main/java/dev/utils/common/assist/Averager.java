@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * detail: 用以统计平均数
+ * detail: 均值计算器 - 用以统计平均数
  * Created by Ttt
  */
 public class Averager {
@@ -13,10 +13,10 @@ public class Averager {
 
     /**
      * 添加一个数字
-     * @param num
+     * @param number
      */
-    public synchronized void add(final Number num) {
-        mNumLists.add(num);
+    public synchronized void add(final Number number) {
+        mNumLists.add(number);
     }
 
     /**

@@ -783,12 +783,12 @@ public final class DateUtils {
                 return "00:00:00";
             } else {
                 // 取模
-                int rSecond = 0;
-                int rMinute = 0;
+                int rSecond;
+                int rMinute;
                 // 差数
-                int dSecond = 0;
-                int dMinute = 0;
-                int dHour = 0;
+                int dSecond;
+                int dMinute;
+                int dHour;
                 // 转换时间格式
                 if (time < MINUTE_S) { // 小于1分钟
                     return "00:00:" + ((time >= 10) ? time : ("0" + time));
@@ -831,12 +831,12 @@ public final class DateUtils {
                 return new int[]{0, 0, 0};
             } else {
                 // 取模
-                int rSecond = 0;
-                int rMinute = 0;
+                int rSecond;
+                int rMinute;
                 // 差数
-                int dSecond = 0;
-                int dMinute = 0;
-                int dHour = 0;
+                int dSecond;
+                int dMinute;
+                int dHour;
                 // 转换时间格式
                 if (time < MINUTE_S) { // 小于1分钟
                     return new int[]{0, 0, time};

@@ -13,12 +13,14 @@ public class TimeKeeper {
      * @return
      */
     public void waitForEndAsyn(final long keepTimeMillis, final OnEndCallback endCallback) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                waitForEnd(keepTimeMillis, endCallback);
-            }
-        }).start();
+        if (keepTimeMillis > 0l) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    waitForEnd(keepTimeMillis, endCallback);
+                }
+            }).start();
+        }
     }
 
     /**
@@ -28,7 +30,7 @@ public class TimeKeeper {
      * @return
      */
     public void waitForEnd(final long keepTimeMillis, final OnEndCallback endCallback) {
-        if (keepTimeMillis >= 0l) {
+        if (keepTimeMillis > 0l) {
             // 开始堵塞时间
             long startTime = System.currentTimeMillis();
             try {

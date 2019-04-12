@@ -80,7 +80,7 @@ public final class DevThreadPool {
                     this.scheduleExec = Executors.newScheduledThreadPool(1);
                     break;
 //                case AUTO_CPU:
-//                    //threadPool = Executors.newWorkStealingPool();
+//                    threadPool = Executors.newWorkStealingPool();
 //                    break;
                 case CALC_CPU:
                     threadPool = Executors.newFixedThreadPool(getThreads());

@@ -147,39 +147,4 @@ public final class MD5Utils {
         }
         return null;
     }
-
-//    // =
-//
-//	/**
-//	 * 加密内容 - 32 位 MD5 - 小写
-//	 * @param str
-//	 * @return
-//	 */
-//	public static String md5_2(final String str) {
-//        if (str == null) return null;
-//		try {
-//			byte[] hash = MessageDigest.getInstance("MD5").digest(str.getBytes("UTF-8"));
-//			StringBuilder builder = new StringBuilder(hash.length * 2);
-//			for (byte b : hash) {
-//				if ((b & 0xFF) < 0x10)
-//					builder.append("0");
-//				builder.append(Integer.toHexString(b & 0xFF));
-//			}
-//			return builder.toString();
-//		} catch (Exception e) {
-//			JCLogUtils.eTag(TAG, e, "md5");
-//		}
-//		return null;
-//	}
-//
-//	/**
-//	 * 加密内容 - 32 位 MD5 - 大写
-//	 * @param str
-//	 * @return
-//	 */
-//	public static String md5Upper_2(final String str) {
-//        String data = md5_2(str);
-//        if (data != null) return data.toUpperCase();
-//		return null;
-//	}
 }

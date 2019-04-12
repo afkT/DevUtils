@@ -96,14 +96,13 @@ public final class SHAUtils {
     public static String shaHex(final String str, final String algorithm) {
         if (str == null || algorithm == null) return null;
         try {
-            byte[] btInput = str.getBytes();
+            byte[] bytes = str.getBytes();
             // 获取 SHA-1 摘要算法的 MessageDigest 对象
             MessageDigest mdInst = MessageDigest.getInstance(algorithm);
             // 使用指定的字节更新摘要
-            mdInst.update(btInput);
+            mdInst.update(bytes);
             // 获取密文
-            byte[] md = mdInst.digest();
-            return toHexString(md, HEX_DIGITS);
+            return toHexString(mdInst.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "shaHex");
         }
