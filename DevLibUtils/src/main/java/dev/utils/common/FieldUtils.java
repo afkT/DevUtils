@@ -29,11 +29,15 @@ public final class FieldUtils {
      */
     public static boolean isSerializable(final Field field) {
         if (field == null) return false;
-        Class<?>[] clazzs = field.getType().getInterfaces();
-        for (Class<?> clazz : clazzs) {
-            if (Serializable.class == clazz) {
-                return true;
+        try {
+            Class<?>[] clazzs = field.getType().getInterfaces();
+            for (Class<?> clazz : clazzs) {
+                if (Serializable.class == clazz) {
+                    return true;
+                }
             }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "isSerializable");
         }
         return false;
     }
@@ -130,14 +134,18 @@ public final class FieldUtils {
      */
     public static Class<?> getGenericType(final Field field) {
         if (field == null) return null;
-        Type type = field.getGenericType();
-        if (type instanceof ParameterizedType) {
-            type = ((ParameterizedType) type).getActualTypeArguments()[0];
-            if (type instanceof Class<?>) {
+        try {
+            Type type = field.getGenericType();
+            if (type instanceof ParameterizedType) {
+                type = ((ParameterizedType) type).getActualTypeArguments()[0];
+                if (type instanceof Class<?>) {
+                    return (Class<?>) type;
+                }
+            } else if (type instanceof Class<?>) {
                 return (Class<?>) type;
             }
-        } else if (type instanceof Class<?>) {
-            return (Class<?>) type;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getGenericType");
         }
         return null;
     }
@@ -153,26 +161,31 @@ public final class FieldUtils {
     }
 
     /**
-     * 获取全部Field，包括父类
+     * 获取全部 Field，包括父类
      * @param clazz
      * @return
      */
     public static List<Field> getAllDeclaredFields(final Class<?> clazz) {
         if (clazz == null) return null;
-        Class<?> clazzTemp = clazz;
-        // find all field.
-        LinkedList<Field> fieldList = new LinkedList<>();
-        while (clazzTemp != null && clazzTemp != Object.class) {
-            Field[] fs = clazzTemp.getDeclaredFields();
-            for (int i = 0; i < fs.length; i++) {
-                Field f = fs[i];
-                if (!isInvalid(f)) {
-                    fieldList.addLast(f);
+        try {
+            Class<?> clazzTemp = clazz;
+            // find all field.
+            LinkedList<Field> fieldList = new LinkedList<>();
+            while (clazzTemp != null && clazzTemp != Object.class) {
+                Field[] fs = clazzTemp.getDeclaredFields();
+                for (int i = 0; i < fs.length; i++) {
+                    Field f = fs[i];
+                    if (!isInvalid(f)) {
+                        fieldList.addLast(f);
+                    }
                 }
+                clazzTemp = clazzTemp.getSuperclass();
             }
-            clazzTemp = clazzTemp.getSuperclass();
+            return fieldList;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getAllDeclaredFields");
         }
-        return fieldList;
+        return null;
     }
 
     /**

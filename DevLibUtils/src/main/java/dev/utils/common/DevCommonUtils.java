@@ -24,166 +24,6 @@ public final class DevCommonUtils {
     public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
     /**
-     * 计算百分比值 (最大 100%)
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent(final float value, final float max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 (最大 100%)
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent(final int value, final int max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return (float) value / (float) max;
-    }
-
-    /**
-     * 计算百分比值 (可超出 100%)
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent2(final float value, final float max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 (可超出 100%)
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent2(final int value, final int max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        return (float) value / (float) max;
-    }
-
-    /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
-     * @param value
-     * @param max
-     * @param min
-     * @return
-     */
-    public static int clamp(final int value, final int max, final int min) {
-        return value > max ? max : value < min ? min : value;
-    }
-
-    /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
-     * @param value
-     * @param max
-     * @param min
-     * @return
-     */
-    public static float clamp(final float value, final float max, final float min) {
-        return value > max ? max : value < min ? min : value;
-    }
-
-    // =
-
-    /**
-     * 获取格式化后的字符串
-     * @param format
-     * @param args
-     * @return
-     */
-    public static String getFormatString(final String format, final Object... args) {
-        if (format == null) return null;
-        try {
-            return String.format(format, args);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFormatString");
-        }
-        return null;
-    }
-
-    /**
-     * 获取格式化后的字符串
-     * @param format
-     * @param args
-     * @return
-     */
-    public static String getFormatString2(final String format, final Object... args) {
-        if (format == null) return null;
-        try {
-            if (args != null && args.length != 0) {
-                return String.format(format, args);
-            } else {
-                return format;
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFormatString2");
-        }
-        return null;
-    }
-
-    /**
-     * 获取自动数量格式化后的字符串(可变参数)
-     * @param args
-     * @return
-     */
-    public static String getAutoFormatString(final Object... args) {
-        if (args != null && args.length != 0) {
-            try {
-                int length = args.length;
-                StringBuffer buffer = new StringBuffer();
-                buffer.append("%s");
-                if (length > 1) {
-                    for (int i = 1; i < length; i++) {
-                        buffer.append(" %s");
-                    }
-                }
-                return String.format(buffer.toString(), args);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "getAutoFormatString");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取自动数量格式化后的字符串(可变参数)
-     * @param args
-     * @return
-     */
-    public static String getAutoFormatString2(final Object... args) {
-        if (args != null && args.length != 0) {
-            try {
-                int length = args.length;
-                StringBuffer buffer = new StringBuffer();
-                buffer.append("【%s】");
-                if (length > 1) {
-                    for (int i = 1; i < length; i++) {
-                        buffer.append(" %s");
-                    }
-                }
-                return String.format(buffer.toString(), args);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "getAutoFormatString2");
-            }
-        }
-        return null;
-    }
-
-    // =
-
-    /**
      * 判断是否网络资源
      * @param str 资源地址字符串
      * @return
@@ -199,8 +39,6 @@ public final class DevCommonUtils {
         return false;
     }
 
-    // =
-
     /**
      * 判断字符串是否为 null 或全为空白字符
      * @param str 待校验字符串
@@ -214,51 +52,6 @@ public final class DevCommonUtils {
             }
         }
         return true;
-    }
-
-    /**
-     * 追加空格
-     * @param number 空格数量
-     * @return
-     */
-    public static String appendSpace(final int number) {
-        StringBuffer buffer = new StringBuffer();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                buffer.append(" ");
-            }
-        }
-        return buffer.toString();
-    }
-
-    /**
-     * 追加 Tab
-     * @param number tab 键数量
-     * @return
-     */
-    public static String appendTab(final int number) {
-        StringBuffer buffer = new StringBuffer();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                buffer.append("\t");
-            }
-        }
-        return buffer.toString();
-    }
-
-    /**
-     * 追加 换行
-     * @param number 换行数量
-     * @return
-     */
-    public static String appendLine(final int number) {
-        StringBuffer buffer = new StringBuffer();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                buffer.append(NEW_LINE_STR);
-            }
-        }
-        return buffer.toString();
     }
 
     // = 判断数据是否为null =
@@ -422,15 +215,6 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 获取数组长度
-     * @param objects
-     * @return
-     */
-    public static int length(final Object[] objects) {
-        return length(objects, 0);
-    }
-
-    /**
      * 获取长度 to List
      * @param list
      * @return
@@ -466,6 +250,78 @@ public final class DevCommonUtils {
         return length(queue, 0);
     }
 
+    /**
+     * 获取 Object 数组长度
+     * @param objects
+     * @return
+     */
+    public static int length(final Object[] objects) {
+        return length(objects, 0);
+    }
+
+    /**
+     * 获取 String 数组长度
+     * @param strings
+     * @return
+     */
+    public static int length(final String[] strings) {
+        return length(strings, 0);
+    }
+
+    /**
+     * 获取 byte 数组长度
+     * @param bytes
+     * @return
+     */
+    public static int length(final byte[] bytes) {
+        return length(bytes, 0);
+    }
+
+    /**
+     * 获取 char 数组长度
+     * @param chars
+     * @return
+     */
+    public static int length(final char[] chars) {
+        return length(chars, 0);
+    }
+
+    /**
+     * 获取 short 数组长度
+     * @param shorts
+     * @return
+     */
+    public static int length(final short[] shorts) {
+        return length(shorts, 0);
+    }
+
+    /**
+     * 获取 long 数组长度
+     * @param longs
+     * @return
+     */
+    public static int length(final long[] longs) {
+        return length(longs, 0);
+    }
+
+    /**
+     * 获取 float 数组长度
+     * @param floats
+     * @return
+     */
+    public static int length(final float[] floats) {
+        return length(floats, 0);
+    }
+
+    /**
+     * 获取 double 数组长度
+     * @param doubles
+     * @return
+     */
+    public static int length(final double[] doubles) {
+        return length(doubles, 0);
+    }
+
     // =
 
     /**
@@ -476,16 +332,6 @@ public final class DevCommonUtils {
      */
     public static int length(final String str, final int defaultLength) {
         return str != null ? str.length() : defaultLength;
-    }
-
-    /**
-     * 获取数组长度
-     * @param objects
-     * @param defaultLength
-     * @return
-     */
-    public static int length(final Object[] objects, final int defaultLength) {
-        return objects != null ? objects.length : defaultLength;
     }
 
     /**
@@ -528,6 +374,86 @@ public final class DevCommonUtils {
         return queue != null ? queue.size() : defaultLength;
     }
 
+    /**
+     * 获取 Object 数组长度
+     * @param objects
+     * @param defaultLength
+     * @return
+     */
+    public static int length(final Object[] objects, final int defaultLength) {
+        return objects != null ? objects.length : defaultLength;
+    }
+
+    /**
+     * 获取 String 数组长度
+     * @param strings
+     * @param defaultLength
+     * @return
+     */
+    public static int length(final String[] strings, final int defaultLength) {
+        return strings != null ? strings.length : defaultLength;
+    }
+
+    /**
+     * 获取 byte 数组长度
+     * @param bytes
+     * @param defaultLength
+     * @return
+     */
+    public static int length(final byte[] bytes, final int defaultLength) {
+        return bytes != null ? bytes.length : defaultLength;
+    }
+
+    /**
+     * 获取 char 数组长度
+     * @param chars
+     * @param defaultLength
+     * @return
+     */
+    public static int length(final char[] chars, final int defaultLength) {
+        return chars != null ? chars.length : defaultLength;
+    }
+
+    /**
+     * 获取 short 数组长度
+     * @param shorts
+     * @param defaultLength
+     * @return
+     */
+    public static int length(final short[] shorts, final int defaultLength) {
+        return shorts != null ? shorts.length : defaultLength;
+    }
+
+    /**
+     * 获取 long 数组长度
+     * @param longs
+     * @param defaultLength
+     * @return
+     */
+    public static int length(final long[] longs, final int defaultLength) {
+        return longs != null ? longs.length : defaultLength;
+    }
+
+    /**
+     * 获取 float 数组长度
+     * @param floats
+     * @param defaultLength
+     * @return
+     */
+    public static int length(final float[] floats, final int defaultLength) {
+        return floats != null ? floats.length : defaultLength;
+    }
+
+    /**
+     * 获取 double 数组长度
+     * @param doubles
+     * @param defaultLength
+     * @return
+     */
+    public static int length(final double[] doubles, final int defaultLength) {
+        return doubles != null ? doubles.length : defaultLength;
+    }
+
     // =
 
     /**
@@ -559,16 +485,6 @@ public final class DevCommonUtils {
      */
     public static boolean isLength(final String str, final int length) {
         return str != null && str.length() == length;
-    }
-
-    /**
-     * 获取数组长度 是否等于期望长度
-     * @param objects
-     * @param length
-     * @return
-     */
-    public static boolean isLength(final Object[] objects, final int length) {
-        return objects != null && objects.length == length;
     }
 
     /**
@@ -609,6 +525,86 @@ public final class DevCommonUtils {
      */
     public static boolean isLength(final Queue queue, final int length) {
         return queue != null && queue.size() == length;
+    }
+
+    /**
+     * 获取 Object 数组长度 是否等于期望长度
+     * @param objects
+     * @param length
+     * @return
+     */
+    public static boolean isLength(final Object[] objects, final int length) {
+        return objects != null && objects.length == length;
+    }
+
+    /**
+     * 获取 String 数组长度 是否等于期望长度
+     * @param strings
+     * @param length
+     * @return
+     */
+    public static boolean isLength(final String[] strings, final int length) {
+        return strings != null && strings.length == length;
+    }
+
+    /**
+     * 获取 byte 数组长度 是否等于期望长度
+     * @param bytes
+     * @param length
+     * @return
+     */
+    public static boolean isLength(final byte[] bytes, final int length) {
+        return bytes != null && bytes.length == length;
+    }
+
+    /**
+     * 获取 char 数组长度 是否等于期望长度
+     * @param chars
+     * @param length
+     * @return
+     */
+    public static boolean isLength(final char[] chars, final int length) {
+        return chars != null && chars.length == length;
+    }
+
+    /**
+     * 获取 short 数组长度 是否等于期望长度
+     * @param shorts
+     * @param length
+     * @return
+     */
+    public static boolean isLength(final short[] shorts, final int length) {
+        return shorts != null && shorts.length == length;
+    }
+
+    /**
+     * 获取 long 数组长度 是否等于期望长度
+     * @param longs
+     * @param length
+     * @return
+     */
+    public static boolean isLength(final long[] longs, final int length) {
+        return longs != null && longs.length == length;
+    }
+
+    /**
+     * 获取 float 数组长度 是否等于期望长度
+     * @param floats
+     * @param length
+     * @return
+     */
+    public static boolean isLength(final float[] floats, final int length) {
+        return floats != null && floats.length == length;
+    }
+
+    /**
+     * 获取 double 数组长度 是否等于期望长度
+     * @param doubles
+     * @param length
+     * @return
+     */
+    public static boolean isLength(final double[] doubles, final int length) {
+        return doubles != null && doubles.length == length;
     }
 
     // =
@@ -1412,5 +1408,214 @@ public final class DevCommonUtils {
             }
         }
         return null;
+    }
+
+    // = 计算相关 =
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value
+     * @param max
+     * @return
+     */
+    public static float percent(final float value, final float max) {
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        if (value >= max) return 1.0f;
+        return value / max;
+    }
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value
+     * @param max
+     * @return
+     */
+    public static float percent(final int value, final int max) {
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        if (value >= max) return 1.0f;
+        return (float) value / (float) max;
+    }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value
+     * @param max
+     * @return
+     */
+    public static float percent2(final float value, final float max) {
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        return value / max;
+    }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value
+     * @param max
+     * @return
+     */
+    public static float percent2(final int value, final int max) {
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        return (float) value / (float) max;
+    }
+
+    /**
+     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     * @param value
+     * @param max
+     * @param min
+     * @return
+     */
+    public static int clamp(final int value, final int max, final int min) {
+        return value > max ? max : value < min ? min : value;
+    }
+
+    /**
+     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     * @param value
+     * @param max
+     * @param min
+     * @return
+     */
+    public static float clamp(final float value, final float max, final float min) {
+        return value > max ? max : value < min ? min : value;
+    }
+
+    // = 数据处理 =
+
+    /**
+     * 获取格式化后的字符串
+     * @param format
+     * @param args
+     * @return
+     */
+    public static String getFormatString(final String format, final Object... args) {
+        if (format == null) return null;
+        try {
+            return String.format(format, args);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getFormatString");
+        }
+        return null;
+    }
+
+    /**
+     * 获取格式化后的字符串
+     * @param format
+     * @param args
+     * @return
+     */
+    public static String getFormatString2(final String format, final Object... args) {
+        if (format == null) return null;
+        try {
+            if (args != null && args.length != 0) {
+                return String.format(format, args);
+            } else {
+                return format;
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getFormatString2");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取自动数量格式化后的字符串(可变参数)
+     * @param args
+     * @return
+     */
+    public static String getAutoFormatString(final Object... args) {
+        if (args != null && args.length != 0) {
+            try {
+                int length = args.length;
+                StringBuffer buffer = new StringBuffer();
+                buffer.append("%s");
+                if (length > 1) {
+                    for (int i = 1; i < length; i++) {
+                        buffer.append(" %s");
+                    }
+                }
+                return String.format(buffer.toString(), args);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getAutoFormatString");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取自动数量格式化后的字符串(可变参数)
+     * @param args
+     * @return
+     */
+    public static String getAutoFormatString2(final Object... args) {
+        if (args != null && args.length != 0) {
+            try {
+                int length = args.length;
+                StringBuffer buffer = new StringBuffer();
+                buffer.append("【%s】");
+                if (length > 1) {
+                    for (int i = 1; i < length; i++) {
+                        buffer.append(" %s");
+                    }
+                }
+                return String.format(buffer.toString(), args);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getAutoFormatString2");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 追加空格
+     * @param number 空格数量
+     * @return
+     */
+    public static String appendSpace(final int number) {
+        StringBuffer buffer = new StringBuffer();
+        if (number > 0) {
+            for (int i = 0; i < number; i++) {
+                buffer.append(" ");
+            }
+        }
+        return buffer.toString();
+    }
+
+    /**
+     * 追加 Tab
+     * @param number tab 键数量
+     * @return
+     */
+    public static String appendTab(final int number) {
+        StringBuffer buffer = new StringBuffer();
+        if (number > 0) {
+            for (int i = 0; i < number; i++) {
+                buffer.append("\t");
+            }
+        }
+        return buffer.toString();
+    }
+
+    /**
+     * 追加 换行
+     * @param number 换行数量
+     * @return
+     */
+    public static String appendLine(final int number) {
+        StringBuffer buffer = new StringBuffer();
+        if (number > 0) {
+            for (int i = 0; i < number; i++) {
+                buffer.append(NEW_LINE_STR);
+            }
+        }
+        return buffer.toString();
     }
 }

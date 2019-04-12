@@ -70,7 +70,7 @@ public final class ImageUtils {
 
     /**
      * 获取 bitmap
-     * @param file      The file.
+     * @param file
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return bitmap
@@ -1080,7 +1080,7 @@ public final class ImageUtils {
     /**
      * 保存图片
      * @param src    源图片
-     * @param file   The file.
+     * @param file
      * @param format 格式
      * @return true : 成功, false : 失败
      */
@@ -1103,7 +1103,7 @@ public final class ImageUtils {
     /**
      * 保存图片
      * @param src     源图片
-     * @param file    The file.
+     * @param file
      * @param format  格式
      * @param recycle 是否回收
      * @return true : 成功, false : 失败
