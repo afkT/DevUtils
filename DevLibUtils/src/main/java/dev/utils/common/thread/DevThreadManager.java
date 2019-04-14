@@ -22,7 +22,7 @@ public final class DevThreadManager {
 
     /**
      * 获取 DevThreadManager 实例
-     * @param nThreads
+     * @param nThreads 线程数量
      * @return
      */
     public static synchronized DevThreadPool getInstance(final int nThreads) {
@@ -40,7 +40,7 @@ public final class DevThreadManager {
 
     /**
      * 获取 DevThreadManager 实例
-     * @param key
+     * @param key 线程配置 key
      * @return
      */
     public static synchronized DevThreadPool getInstance(final String key) {

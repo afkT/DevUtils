@@ -24,13 +24,13 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 小写
-     * @param str
+     * @param data
      * @return
      */
-    public static String md5(final String str) {
-        if (str == null) return null;
+    public static String md5(final String data) {
+        if (data == null) return null;
         try {
-            return md5(str.getBytes());
+            return md5(data.getBytes());
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "md5");
         }
@@ -60,13 +60,13 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 大写
-     * @param str
+     * @param data
      * @return
      */
-    public static String md5Upper(final String str) {
-        if (str == null) return null;
+    public static String md5Upper(final String data) {
+        if (data == null) return null;
         try {
-            return md5Upper(str.getBytes());
+            return md5Upper(data.getBytes());
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "md5Upper");
         }

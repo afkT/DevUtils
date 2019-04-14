@@ -1053,7 +1053,7 @@ public final class EncryptUtils {
     /**
      * 将十六进制字符串解码
      * @param str 十六进制字符串
-     * @return byte[]
+     * @return
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
      */
     private static byte[] decodeHex(final String str) {
@@ -1063,7 +1063,7 @@ public final class EncryptUtils {
     /**
      * 将十六进制字符数组解码
      * @param data 十六进制 char[]
-     * @return byte[]
+     * @return
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
      */
     private static byte[] decodeHex(final char[] data) {
@@ -1090,7 +1090,7 @@ public final class EncryptUtils {
      * 将十六进制字符转换成一个整数
      * @param ch    十六进制 char
      * @param index 十六进制字符在字符数组中的位置
-     * @return 一个整数
+     * @return
      * @throws RuntimeException 当ch不是一个合法的十六进制字符时，抛出运行时异常
      */
     private static int toDigit(final char ch, final int index) {

@@ -22,14 +22,14 @@ public final class CRCUtils {
 
     /**
      * 获取 CRC32 值
-     * @param str
+     * @param data
      * @return
      */
-    public static long getCRC32(final String str) {
-        if (str == null) return -1l;
+    public static long getCRC32(final String data) {
+        if (data == null) return -1l;
         try {
             CRC32 crc32 = new CRC32();
-            crc32.update(str.getBytes());
+            crc32.update(data.getBytes());
             return crc32.getValue();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getCRC32");
@@ -39,14 +39,14 @@ public final class CRCUtils {
 
     /**
      * 获取 CRC32 值
-     * @param str
+     * @param data
      * @return
      */
-    public static String getCRC32Str(final String str) {
-        if (str == null) return null;
+    public static String getCRC32Str(final String data) {
+        if (data == null) return null;
         try {
             CRC32 crc32 = new CRC32();
-            crc32.update(str.getBytes());
+            crc32.update(data.getBytes());
             return Long.toHexString(crc32.getValue());
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getCRC32Str");

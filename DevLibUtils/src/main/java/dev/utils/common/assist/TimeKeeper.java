@@ -38,12 +38,12 @@ public class TimeKeeper {
                 Thread.sleep(keepTimeMillis);
                 // 触发回调
                 if (endCallback != null) {
-                    endCallback.onEnd(startTime, keepTimeMillis, System.currentTimeMillis(), false);
+                    endCallback.onEnd(keepTimeMillis, startTime, System.currentTimeMillis(), false);
                 }
             } catch (Exception e) {
                 // 触发回调
                 if (endCallback != null) {
-                    endCallback.onEnd(startTime, keepTimeMillis, System.currentTimeMillis(), true);
+                    endCallback.onEnd(keepTimeMillis, startTime, System.currentTimeMillis(), true);
                 }
             }
         }
@@ -57,11 +57,11 @@ public class TimeKeeper {
 
         /**
          * 结束触发通知方法
-         * @param startTimeMillis 开始堵塞时间
          * @param keepTimeMillis  堵塞时间
+         * @param startTimeMillis 开始堵塞时间
          * @param endTimeMillis   结束时间
          * @param isError         是否异常
          */
-        void onEnd(long startTimeMillis, long keepTimeMillis, long endTimeMillis, boolean isError);
+        void onEnd(long keepTimeMillis, long startTimeMillis, long endTimeMillis, boolean isError);
     }
 }

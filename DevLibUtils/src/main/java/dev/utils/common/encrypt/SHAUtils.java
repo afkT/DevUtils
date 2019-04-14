@@ -22,47 +22,47 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA1
-     * @param str
+     * @param data
      * @return
      */
-    public static String sha1(final String str) {
-        return shaHex(str, "SHA-1");
+    public static String sha1(final String data) {
+        return shaHex(data, "SHA-1");
     }
 
     /**
      * 加密内容 SHA224
-     * @param str
+     * @param data
      * @return
      */
-    public static String sha224(final String str) {
-        return shaHex(str, "SHA-224");
+    public static String sha224(final String data) {
+        return shaHex(data, "SHA-224");
     }
 
     /**
      * 加密内容 SHA256
-     * @param str
+     * @param data
      * @return
      */
-    public static String sha256(final String str) {
-        return shaHex(str, "SHA-256");
+    public static String sha256(final String data) {
+        return shaHex(data, "SHA-256");
     }
 
     /**
      * 加密内容 SHA384
-     * @param str
+     * @param data
      * @return
      */
-    public static String sha384(final String str) {
-        return shaHex(str, "SHA-384");
+    public static String sha384(final String data) {
+        return shaHex(data, "SHA-384");
     }
 
     /**
      * 加密内容 SHA512
-     * @param str
+     * @param data
      * @return
      */
-    public static String sha512(final String str) {
-        return shaHex(str, "SHA-512");
+    public static String sha512(final String data) {
+        return shaHex(data, "SHA-512");
     }
 
     // =
@@ -89,14 +89,14 @@ public final class SHAUtils {
 
     /**
      * 加密内容 SHA
-     * @param str
-     * @param algorithm 加密算法
+     * @param data
+     * @param algorithm 算法
      * @return
      */
-    public static String shaHex(final String str, final String algorithm) {
-        if (str == null || algorithm == null) return null;
+    public static String shaHex(final String data, final String algorithm) {
+        if (data == null || algorithm == null) return null;
         try {
-            byte[] bytes = str.getBytes();
+            byte[] bytes = data.getBytes();
             // 获取 SHA-1 摘要算法的 MessageDigest 对象
             MessageDigest mdInst = MessageDigest.getInstance(algorithm);
             // 使用指定的字节更新摘要
@@ -112,7 +112,7 @@ public final class SHAUtils {
     /**
      * 获取文件 SHA 值
      * @param filePath
-     * @param algorithm 加密算法
+     * @param algorithm 算法
      * @return
      */
     public static String getFileSHA(final String filePath, final String algorithm) {

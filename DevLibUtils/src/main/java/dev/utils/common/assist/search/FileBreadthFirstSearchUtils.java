@@ -102,8 +102,8 @@ public final class FileBreadthFirstSearchUtils {
         /**
          * 搜索结束监听
          * @param rootFileItem
-         * @param startTime
-         * @param endTime
+         * @param startTime    开始扫描时间
+         * @param endTime      扫描结束时间
          */
         void OnEndListener(FileItem rootFileItem, long startTime, long endTime);
     }
@@ -220,10 +220,10 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 设置延迟校验时间
-     * @param delayTime
+     * @param delayTimeMillis
      */
-    public void setDelayTime(final long delayTime) {
-        this.delayTime = delayTime;
+    public void setDelayTime(final long delayTimeMillis) {
+        this.delayTime = delayTimeMillis;
     }
 
     // =

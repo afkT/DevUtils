@@ -64,8 +64,8 @@ public final class FileDepthFirstSearchUtils {
         /**
          * 搜索结束监听
          * @param lists
-         * @param startTime
-         * @param endTime
+         * @param startTime 开始扫描时间
+         * @param endTime   扫描结束时间
          */
         void OnEndListener(List<FileItem> lists, long startTime, long endTime);
     }

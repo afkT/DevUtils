@@ -42,7 +42,7 @@ public final class DevThreadPool {
 
     /**
      * 构造函数
-     * @param nThreads
+     * @param nThreads 线程数量
      */
     public DevThreadPool(int nThreads) {
         // 如果小于等于 0, 则默认使用 1
@@ -66,7 +66,7 @@ public final class DevThreadPool {
 
     /**
      * 构造函数
-     * @param devThreadPoolType
+     * @param devThreadPoolType 线程初始化类型
      */
     public DevThreadPool(final DevThreadPoolType devThreadPoolType) {
         // 初始化定时器任务

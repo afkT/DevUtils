@@ -62,14 +62,14 @@ public final class EscapeUtils {
 
     /**
      * 编码
-     * @param str
+     * @param data
      * @return
      */
-    public static String escape(final String str) {
-        if (str == null) return null;
+    public static String escape(final String data) {
+        if (data == null) return null;
         StringBuffer buffer = new StringBuffer();
-        for (int i = 0, len = str.length(); i < len; i++) {
-            int ch = str.charAt(i);
+        for (int i = 0, len = data.length(); i < len; i++) {
+            int ch = data.charAt(i);
             if ('A' <= ch && ch <= 'Z') {
                 buffer.append((char) ch);
             } else if ('a' <= ch && ch <= 'z') {
@@ -95,16 +95,16 @@ public final class EscapeUtils {
 
     /**
      * 解码 - 本方法不论参数 str 是否经过 escape() 编码，均能获取正确的“解码”结果
-     * @param str
+     * @param data
      * @return
      */
-    public static String unescape(final String str) {
-        if (str == null) return null;
+    public static String unescape(final String data) {
+        if (data == null) return null;
         StringBuffer buffer = new StringBuffer();
         int i = 0;
-        int len = str.length();
+        int len = data.length();
         while (i < len) {
-            int ch = str.charAt(i);
+            int ch = data.charAt(i);
             if ('A' <= ch && ch <= 'Z') {
                 buffer.append((char) ch);
             } else if ('a' <= ch && ch <= 'z') {
@@ -117,15 +117,15 @@ public final class EscapeUtils {
                 buffer.append((char) ch);
             } else if (ch == '%') {
                 int cint = 0;
-                if ('u' != str.charAt(i + 1)) {
-                    cint = (cint << 4) | val[str.charAt(i + 1)];
-                    cint = (cint << 4) | val[str.charAt(i + 2)];
+                if ('u' != data.charAt(i + 1)) {
+                    cint = (cint << 4) | val[data.charAt(i + 1)];
+                    cint = (cint << 4) | val[data.charAt(i + 2)];
                     i += 2;
                 } else {
-                    cint = (cint << 4) | val[str.charAt(i + 2)];
-                    cint = (cint << 4) | val[str.charAt(i + 3)];
-                    cint = (cint << 4) | val[str.charAt(i + 4)];
-                    cint = (cint << 4) | val[str.charAt(i + 5)];
+                    cint = (cint << 4) | val[data.charAt(i + 2)];
+                    cint = (cint << 4) | val[data.charAt(i + 3)];
+                    cint = (cint << 4) | val[data.charAt(i + 4)];
+                    cint = (cint << 4) | val[data.charAt(i + 5)];
                     i += 5;
                 }
                 buffer.append((char) cint);
