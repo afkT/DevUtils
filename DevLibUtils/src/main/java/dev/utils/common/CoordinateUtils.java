@@ -126,8 +126,8 @@ public final class CoordinateUtils {
 
     /**
      * 转换经度
-     * @param lng
-     * @param lat
+     * @param lng 经度
+     * @param lat 纬度
      * @return
      */
     private static double transformLat(final double lng, final double lat) {
@@ -140,8 +140,8 @@ public final class CoordinateUtils {
 
     /**
      * 转换纬度
-     * @param lng
-     * @param lat
+     * @param lng 经度
+     * @param lat 纬度
      * @return
      */
     private static double transformLng(final double lng, final double lat) {
@@ -154,8 +154,8 @@ public final class CoordinateUtils {
 
     /**
      * 判断是否中国境外
-     * @param lng
-     * @param lat
+     * @param lng 经度
+     * @param lat 纬度
      * @return
      */
     public static boolean outOfChina(final double lng, final double lat) {

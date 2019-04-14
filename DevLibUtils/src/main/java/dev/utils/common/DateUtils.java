@@ -62,7 +62,7 @@ public final class DateUtils {
 
     /**
      * 获取当前日期的字符串 - yyyy-MM-dd HH:mm:ss
-     * @return 字符串
+     * @return
      */
     public static String getDateNow() {
         return getDateNow(yyyyMMddHHmmss);
@@ -71,7 +71,7 @@ public final class DateUtils {
     /**
      * 获取当前日期的字符串
      * @param format 日期格式，如：yyyy-MM-dd HH:mm:ss
-     * @return 字符串
+     * @return
      */
     public static String getDateNow(final String format) {
         if (format == null) return null;
@@ -89,7 +89,7 @@ public final class DateUtils {
      * 将时间戳转换日期字符串
      * @param time   时间戳
      * @param format 日期格式
-     * @return 按照需求格式的日期字符串
+     * @return 按照指定格式的日期字符串
      */
     public static String formatTime(final long time, final String format) {
         if (format == null) return null;
@@ -105,7 +105,7 @@ public final class DateUtils {
      * 将 Date 转换日期字符串
      * @param date   日期
      * @param format 日期格式
-     * @return 按照需求格式的日期字符串
+     * @return 按照指定格式的日期字符串
      */
     public static String formatDate(final Date date, final String format) {
         if (date == null || format == null) return null;
@@ -246,32 +246,32 @@ public final class DateUtils {
 
     /**
      * 获取时间差
-     * @param timeStr1
-     * @param timeStr2
+     * @param time1
+     * @param time2
      * @return
      */
-    public static long getTimeDiff(final String timeStr1, final String timeStr2) {
-        long time1 = parseLong(timeStr1);
-        long time2 = parseLong(timeStr2);
-        if (time1 > 1l && time2 > 1l) {
-            return time1 - time2;
+    public static long getTimeDiff(final String time1, final String time2) {
+        long timeLong1 = parseLong(time1);
+        long timeLong2 = parseLong(time2);
+        if (timeLong1 > 1l && timeLong2 > 1l) {
+            return timeLong1 - timeLong2;
         }
         return -2l;
     }
 
     /**
      * 获取时间差
-     * @param timeStr1
+     * @param time1
      * @param timeFormat1
-     * @param timeStr2
+     * @param time2
      * @param timeFormat2
      * @return
      */
-    public static long getTimeDiff(final String timeStr1, final String timeFormat1, final String timeStr2, final String timeFormat2) {
-        long time1 = parseLong(timeStr1, timeFormat1);
-        long time2 = parseLong(timeStr2, timeFormat2);
-        if (time1 > 1l && time2 > 1l) {
-            return time1 - time2;
+    public static long getTimeDiff(final String time1, final String timeFormat1, final String time2, final String timeFormat2) {
+        long timeLong1 = parseLong(time1, timeFormat1);
+        long timeLong2 = parseLong(time2, timeFormat2);
+        if (timeLong1 > 1l && timeLong2 > 1l) {
+            return timeLong1 - timeLong2;
         }
         return -2l;
     }

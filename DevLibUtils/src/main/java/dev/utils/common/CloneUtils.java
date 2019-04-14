@@ -63,14 +63,14 @@ public final class CloneUtils {
 
     /**
      * 通过 byte数据, 生成Object对象
-     * @param bytes
+     * @param data
      * @return
      */
-    public static Object bytesToObject(final byte[] bytes) {
-        if (bytes == null) return null;
+    public static Object bytesToObject(final byte[] data) {
+        if (data == null) return null;
         ObjectInputStream ois = null;
         try {
-            ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
+            ois = new ObjectInputStream(new ByteArrayInputStream(data));
             return ois.readObject();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "bytesToObject");
