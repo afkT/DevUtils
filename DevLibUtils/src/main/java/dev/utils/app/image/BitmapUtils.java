@@ -177,7 +177,7 @@ public final class BitmapUtils {
 
     /**
      * 获取本地SDCard 图片
-     * @param filePath 图片地址
+     * @param filePath 文件路径
      * @return
      */
     public static Bitmap getSDCardBitmapStream(final String filePath) {
@@ -193,7 +193,7 @@ public final class BitmapUtils {
 
     /**
      * 获取本地SDCard 图片
-     * @param filePath 图片地址
+     * @param filePath 文件路径
      * @return
      */
     public static Bitmap getSDCardBitmapFile(final String filePath) {

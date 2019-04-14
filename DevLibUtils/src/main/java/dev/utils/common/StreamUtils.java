@@ -74,7 +74,7 @@ public final class StreamUtils {
 
     /**
      * byte[] 转输出流
-     * @param bytes The bytes.
+     * @param bytes
      * @return input stream
      */
     public static InputStream bytesToInputStream(final byte[] bytes) {
@@ -104,7 +104,7 @@ public final class StreamUtils {
 
     /**
      * byte[] 转 输出流
-     * @param bytes The bytes.
+     * @param bytes
      * @return output stream
      */
     public static OutputStream bytesToOutputStream(final byte[] bytes) {
@@ -125,7 +125,7 @@ public final class StreamUtils {
     /**
      * 输入流转 string
      * @param is          The input stream.
-     * @param charsetName The name of charset.
+     * @param charsetName
      * @return string
      */
     public static String inputStreamToString(final InputStream is, final String charsetName) {
@@ -141,7 +141,7 @@ public final class StreamUtils {
     /**
      * String 转换输入流
      * @param string      The string.
-     * @param charsetName The name of charset.
+     * @param charsetName
      * @return input stream
      */
     public static InputStream stringToInputStream(final String string, final String charsetName) {
@@ -157,7 +157,7 @@ public final class StreamUtils {
     /**
      * 输出流转 string
      * @param out         The output stream.
-     * @param charsetName The name of charset.
+     * @param charsetName
      * @return string
      */
     public static String outputStreamToString(final OutputStream out, final String charsetName) {
@@ -173,7 +173,7 @@ public final class StreamUtils {
     /**
      * string 转 输出流
      * @param string      The string.
-     * @param charsetName The name of charset.
+     * @param charsetName
      * @return output stream
      */
     public static OutputStream stringToOutputStream(final String string, final String charsetName) {

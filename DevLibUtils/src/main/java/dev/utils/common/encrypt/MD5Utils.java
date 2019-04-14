@@ -127,7 +127,7 @@ public final class MD5Utils {
 
     /**
      * 获取文件 MD5 值 - 小写
-     * @param filePath 文件地址
+     * @param filePath 文件路径
      * @return
      */
     public static String getFileMD5(final String filePath) {

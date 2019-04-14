@@ -56,7 +56,7 @@ public final class BitmapCropUtils {
             int rHeight = (int) ((iWidth * heightScale) / widthScale);
             // 判断需要裁剪的高度与偏移差距
             int dHeight = iHeight - rHeight;
-            // --
+            // =
             // 判断裁剪方式
             if (dHeight >= 0) { // 属于宽度 * 对应比例 >= 高度  -> 以高度做偏移
                 // 计算偏移的y轴
@@ -80,7 +80,7 @@ public final class BitmapCropUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cropBitmap");
         } finally {
-            // -- 清空资源 --
+            // = 清空资源 =
             try {
                 if (cBitmap != null && !cBitmap.isRecycled()) {
                     cBitmap.recycle();

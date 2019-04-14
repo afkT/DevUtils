@@ -328,7 +328,7 @@ public final class FileUtils {
 
     /**
      * 获取文件后缀 (无 "." 单独后缀)
-     * @param filePath 文件地址、文件名都行
+     * @param filePath 文件路径、文件名都行
      * @return
      */
     public static String getFileSuffix(final String filePath) {
@@ -381,7 +381,7 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的不带拓展名的文件名
-     * @param file The file.
+     * @param file
      * @return 不带拓展名的文件名
      */
     public static String getFileNameNoExtension(final File file) {
@@ -412,7 +412,7 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的文件拓展名
-     * @param file The file.
+     * @param file
      * @return 文件拓展名
      */
     public static String getFileExtension(final File file) {
@@ -586,7 +586,7 @@ public final class FileUtils {
 
     /**
      * 获取文件行数 => 比 readLine 要快很多
-     * @param file The file.
+     * @param file
      * @return 文件行数
      */
     public static int getFileLines(final File file) {
@@ -630,7 +630,7 @@ public final class FileUtils {
 
     /**
      * 获取文件大小
-     * @param file The file.
+     * @param file
      * @return 文件大小
      */
     public static String getFileSize(final File file) {
@@ -728,7 +728,7 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的文件名
-     * @param file The file.
+     * @param file
      * @return 文件名
      */
     public static String getFileName(final File file) {
@@ -749,7 +749,7 @@ public final class FileUtils {
 
     /**
      * 获取全路径中的最长目录
-     * @param file The file.
+     * @param file
      * @return filePath 最长目录
      */
     public static String getDirName(final File file) {
@@ -822,7 +822,7 @@ public final class FileUtils {
 
     /**
      * 传入对应的文件大小double,返回转换后文件大小
-     * @param fileSize 返回String文件大小
+     * @param fileSize
      * @return
      */
     public static String formatFileSize(final double fileSize) {
@@ -939,7 +939,7 @@ public final class FileUtils {
 
     /**
      * 获取文件MD5值 - 小写
-     * @param filePath 文件地址
+     * @param filePath 文件路径
      * @return
      */
     public static String getFileMD5ToString2(final String filePath) {
@@ -1199,7 +1199,7 @@ public final class FileUtils {
 
     /**
      * 追加文件：使用FileWriter
-     * @param filePath 文件地址
+     * @param filePath 文件路径
      * @param content  追加内容
      */
     public static void appendFile(final String filePath, final String content) {

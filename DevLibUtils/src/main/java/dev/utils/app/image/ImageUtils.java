@@ -60,7 +60,7 @@ public final class ImageUtils {
 
     /**
      * 获取 bitmap
-     * @param file The file.
+     * @param file
      * @return bitmap
      */
     public static Bitmap getBitmap(final File file) {
@@ -87,7 +87,7 @@ public final class ImageUtils {
 
     /**
      * 获取 bitmap
-     * @param filePath The path of file.
+     * @param filePath
      * @return bitmap
      */
     public static Bitmap getBitmap(final String filePath) {
@@ -97,7 +97,7 @@ public final class ImageUtils {
 
     /**
      * 获取 bitmap
-     * @param filePath  The path of file.
+     * @param filePath
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return bitmap
@@ -353,7 +353,7 @@ public final class ImageUtils {
 
     /**
      * 获取图片旋转角度 - 返回 -1 表示异常
-     * @param filePath The path of file.
+     * @param filePath
      * @return 旋转角度
      */
     public static int getRotateDegree(final String filePath) {
@@ -1069,7 +1069,7 @@ public final class ImageUtils {
     /**
      * 保存图片
      * @param src      源图片
-     * @param filePath The path of file.
+     * @param filePath
      * @param format   格式
      * @return true : 成功, false : 失败
      */
@@ -1091,7 +1091,7 @@ public final class ImageUtils {
     /**
      * 保存图片
      * @param src      源图片
-     * @param filePath The path of file.
+     * @param filePath
      * @param format   格式
      * @param recycle  是否回收
      * @return true : 成功, false : 失败
@@ -1126,7 +1126,7 @@ public final class ImageUtils {
 
     /**
      * 根据文件名判断文件是否为图片
-     * @param file The file.
+     * @param file
      * @return true : 是, false : 否
      */
     public static boolean isImage(final File file) {
@@ -1135,7 +1135,7 @@ public final class ImageUtils {
 
     /**
      * 根据文件名判断文件是否为图片
-     * @param filePath The path of file.
+     * @param filePath
      * @return true : 是, false : 否
      */
     public static boolean isImage(final String filePath) {
@@ -1145,7 +1145,7 @@ public final class ImageUtils {
 
     /**
      * 获取图片类型
-     * @param filePath The path of file.
+     * @param filePath
      * @return 图片类型
      */
     public static String getImageType(final String filePath) {
@@ -1154,7 +1154,7 @@ public final class ImageUtils {
 
     /**
      * 获取图片类型
-     * @param file The file.
+     * @param file
      * @return 图片类型
      */
     public static String getImageType(final File file) {

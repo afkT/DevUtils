@@ -69,7 +69,7 @@ public final class SHAUtils {
 
     /**
      * 获取文件 sha1 值
-     * @param filePath 文件地址
+     * @param filePath 文件路径
      * @return
      */
     public static String getFileSHA1(final String filePath) {
@@ -78,7 +78,7 @@ public final class SHAUtils {
 
     /**
      * 获取文件 sha256 值
-     * @param filePath 文件地址
+     * @param filePath 文件路径
      * @return
      */
     public static String getFileSHA256(final String filePath) {

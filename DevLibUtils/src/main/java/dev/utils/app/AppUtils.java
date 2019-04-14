@@ -388,7 +388,7 @@ public final class AppUtils {
 
 	/**
 	 * 安装 App(支持 8.0)的意图
-	 * @param filePath The path of file.
+	 * @param filePath 文件路径
 	 * @param authority 7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
 	 * @return 是否可以跳转
 	 */
@@ -398,7 +398,7 @@ public final class AppUtils {
 
 	/**
 	 * 安装 App(支持 8.0)的意图
-	 * @param file The file.
+	 * @param file
 	 * @param authority 7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
 	 * @return 是否可以跳转
 	 */

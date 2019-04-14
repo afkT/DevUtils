@@ -133,33 +133,33 @@ public final class QuickCommonUtils {
     /**
      * 耗时时间记录
      * @param buffer
-     * @param sTime  开始时间
-     * @param eTime  结束时间
+     * @param startTime 开始时间
+     * @param endTime   结束时间
      */
-    public static void timeRecord(final StringBuffer buffer, final long sTime, final long eTime) {
-        timeRecord(buffer, null, sTime, eTime);
+    public static void timeRecord(final StringBuffer buffer, final long startTime, final long endTime) {
+        timeRecord(buffer, null, startTime, endTime);
     }
 
     /**
      * 耗时时间记录
      * @param buffer
-     * @param title  标题
-     * @param sTime  开始时间
-     * @param eTime  结束时间
+     * @param title     标题
+     * @param startTime 开始时间
+     * @param endTime   结束时间
      */
-    public static void timeRecord(final StringBuffer buffer, final String title, final long sTime, final long eTime) {
+    public static void timeRecord(final StringBuffer buffer, final String title, final long startTime, final long endTime) {
         if (buffer == null) return;
         // 使用时间
-        long uTime = eTime - sTime;
+        long diffTime = endTime - startTime;
         // 计算时间
         if (!DevCommonUtils.isEmpty(title)) {
             buffer.append(NEW_LINE_STR + title);
         }
         // 计算时间
-        buffer.append("\n开始时间：" + DateUtils.formatTime(sTime, DateUtils.yyyyMMddHHmmss));
-        buffer.append("\n结束时间：" + DateUtils.formatTime(eTime, DateUtils.yyyyMMddHHmmss));
-        buffer.append("\n所用时间(毫秒)：" + uTime);
-        buffer.append("\n所用时间(秒): " + (uTime / 1000));
+        buffer.append("\n开始时间：" + DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss));
+        buffer.append("\n结束时间：" + DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
+        buffer.append("\n所用时间(毫秒)：" + diffTime);
+        buffer.append("\n所用时间(秒): " + (diffTime / 1000));
     }
 
     /**

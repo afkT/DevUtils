@@ -81,8 +81,8 @@ public final class HttpParamsUtils {
      * @param mapParams
      * @return
      */
-    public static String joinReqParams(final Map<String, String> mapParams) {
-        return joinReqParams(mapParams, false);
+    public static String joinParams(final Map<String, String> mapParams) {
+        return joinParams(mapParams, false);
     }
 
     /**
@@ -91,15 +91,15 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static String joinReqParams(final Map<String, String> mapParams, final boolean urlEncode) {
+    public static String joinParams(final Map<String, String> mapParams, final boolean urlEncode) {
         if (mapParams != null) {
             int index = 0;
-            // --
+            // =
             StringBuilder builder = new StringBuilder();
             Iterator<Map.Entry<String, String>> iterator = mapParams.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, String> entry = iterator.next();
-                // --
+                // =
                 if (index > 0) builder.append('&');
                 builder.append(entry.getKey());
                 builder.append('=');
@@ -118,8 +118,8 @@ public final class HttpParamsUtils {
      * @param mapParams
      * @return
      */
-    public static String joinReqParamsObj(final Map<String, Object> mapParams) {
-        return joinReqParamsObj(mapParams, false);
+    public static String joinParamsObj(final Map<String, Object> mapParams) {
+        return joinParamsObj(mapParams, false);
     }
 
     /**
@@ -128,15 +128,15 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要编码
      * @return
      */
-    public static String joinReqParamsObj(final Map<String, Object> mapParams, final boolean urlEncode) {
+    public static String joinParamsObj(final Map<String, Object> mapParams, final boolean urlEncode) {
         if (mapParams != null) {
             int index = 0;
-            // --
+            // =
             StringBuilder builder = new StringBuilder();
             Iterator<Map.Entry<String, Object>> iterator = mapParams.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, Object> entry = iterator.next();
-                // --
+                // =
                 if (index > 0) builder.append('&');
                 builder.append(entry.getKey());
                 builder.append('=');
@@ -236,8 +236,8 @@ public final class HttpParamsUtils {
 
     /**
      * url 编码 - utf-8
-     * @param input The input.
-     * @return the urlencoded string
+     * @param input
+     * @return
      */
     public static String urlEncode(final String input) {
         return urlEncode(input, "UTF-8");
@@ -245,9 +245,9 @@ public final class HttpParamsUtils {
 
     /**
      * url编码
-     * @param input       The input.
-     * @param charsetName The name of charset.
-     * @return the urlencoded string
+     * @param input
+     * @param charsetName
+     * @return
      */
     public static String urlEncode(final String input, final String charsetName) {
         try {

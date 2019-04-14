@@ -103,12 +103,12 @@ public final class RandomUtils {
     /**
      * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
      * @param random
-     * @param n
+     * @param number
      * @return
      */
-    public static int nextInt(final Random random, final int n) {
-        if (n <= 0) return 0;
-        return random != null ? random.nextInt(n) : new Random().nextInt(n);
+    public static int nextInt(final Random random, final int number) {
+        if (number <= 0) return 0;
+        return random != null ? random.nextInt(number) : new Random().nextInt(number);
     }
 
     /**
@@ -178,12 +178,12 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
-     * @param n
+     * @param number
      * @return
      */
-    public static int nextInt(final int n) {
-        if (n <= 0) return 0;
-        return new Random().nextInt(n);
+    public static int nextInt(final int number) {
+        if (number <= 0) return 0;
+        return new Random().nextInt(number);
     }
 
     /**
@@ -298,28 +298,28 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     * @param objArray
+     * @param objects
      * @return
      */
-    public static boolean shuffle(final Object[] objArray) {
-        if (objArray == null) return false;
-        return shuffle(objArray, getRandom(1, objArray.length));
+    public static boolean shuffle(final Object[] objects) {
+        if (objects == null) return false;
+        return shuffle(objects, getRandom(1, objects.length));
     }
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     * @param objArray
+     * @param objects
      * @param shuffleCount 洗牌次数
      * @return
      */
-    public static boolean shuffle(final Object[] objArray, final int shuffleCount) {
+    public static boolean shuffle(final Object[] objects, final int shuffleCount) {
         int length;
-        if (shuffleCount > 0 && objArray != null && (length = objArray.length) >= shuffleCount) {
+        if (shuffleCount > 0 && objects != null && (length = objects.length) >= shuffleCount) {
             for (int i = 1; i <= shuffleCount; i++) {
                 int random = getRandom(0, length - i);
-                Object temp = objArray[length - i];
-                objArray[length - i] = objArray[random];
-                objArray[random] = temp;
+                Object temp = objects[length - i];
+                objects[length - i] = objects[random];
+                objects[random] = temp;
             }
             return true;
         }
@@ -328,30 +328,30 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     * @param intArray
+     * @param ints
      * @return
      */
-    public static int[] shuffle(final int[] intArray) {
-        if (intArray == null) return null;
-        return shuffle(intArray, getRandom(1, intArray.length));
+    public static int[] shuffle(final int[] ints) {
+        if (ints == null) return null;
+        return shuffle(ints, getRandom(1, ints.length));
     }
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     * @param intArray
+     * @param ints
      * @param shuffleCount 洗牌次数
      * @return
      */
-    public static int[] shuffle(final int[] intArray, final int shuffleCount) {
+    public static int[] shuffle(final int[] ints, final int shuffleCount) {
         int length;
-        if (shuffleCount > 0 && intArray != null && (length = intArray.length) >= shuffleCount) {
+        if (shuffleCount > 0 && ints != null && (length = ints.length) >= shuffleCount) {
             int[] out = new int[shuffleCount];
             for (int i = 1; i <= shuffleCount; i++) {
                 int random = getRandom(0, length - i);
-                out[i - 1] = intArray[random];
-                int temp = intArray[length - i];
-                intArray[length - i] = intArray[random];
-                intArray[random] = temp;
+                out[i - 1] = ints[random];
+                int temp = ints[length - i];
+                ints[length - i] = ints[random];
+                ints[random] = temp;
             }
             return out;
         }
@@ -362,18 +362,18 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第二种)，随机置换指定的数组使用的默认源的随机性
-     * @param objArray
+     * @param objects
      * @return
      */
-    public static boolean shuffle2(final Object[] objArray) {
-        if (objArray == null) return false;
-        int len = objArray.length;
+    public static boolean shuffle2(final Object[] objects) {
+        if (objects == null) return false;
+        int len = objects.length;
         if (len > 0) {
             for (int i = 0; i < len - 1; i++) {
                 int idx = (int) (Math.random() * (len - i));
-                Object temp = objArray[idx];
-                objArray[idx] = objArray[len - i - 1];
-                objArray[len - i - 1] = temp;
+                Object temp = objects[idx];
+                objects[idx] = objects[len - i - 1];
+                objects[len - i - 1] = temp;
             }
             return true;
         }

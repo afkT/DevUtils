@@ -677,7 +677,7 @@ public final class AnalysisRecordUtils {
         /**
          * 获取保存地址
          * @param storagePath 存储路径
-         * @param filePath 文件地址
+         * @param filePath 文件路径
          * @return
          */
         private String getSavePath(String storagePath, String filePath) {
@@ -734,7 +734,7 @@ public final class AnalysisRecordUtils {
 
     /**
      * 追加文件：使用FileWriter
-     * @param filePath 文件地址
+     * @param filePath 文件路径
      * @param text  追加内容
      */
     private static void appendFile(String filePath, String text) {

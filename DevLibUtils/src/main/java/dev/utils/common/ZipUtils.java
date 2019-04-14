@@ -403,7 +403,7 @@ public final class ZipUtils {
 
     /**
      * 获取文件
-     * @param filePath The path of file.
+     * @param filePath 文件路径
      * @return
      */
     private static File getFileByPath(final String filePath) {

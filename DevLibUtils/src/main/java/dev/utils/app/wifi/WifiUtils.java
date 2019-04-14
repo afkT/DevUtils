@@ -527,7 +527,6 @@ public final class WifiUtils {
 		// 6.调用连接方法
 		// 7.返回连接的配置信息
 		// =============
-		// --
 		try {
 			// 正常的Wifi连接配置
 			WifiConfiguration connWifiConfig = null;
@@ -539,23 +538,23 @@ public final class WifiUtils {
 				if (staticWifiConfig == null) {
 					// 创建正常的配置信息
 					connWifiConfig = createWifiConfig(ssid, pwd, wType, true);
-					// --
+					// =
 					LogPrintUtils.dTag(TAG, "属于正常方式连接(DHCP)");
 				} else {
 					// 设置静态信息
 					connWifiConfig = staticWifiConfig;
-					// --
+					// =
 					LogPrintUtils.dTag(TAG, "属于静态IP方式连接");
 				}
 			} else {
 				// 创建正常的配置信息
 				connWifiConfig = createWifiConfig(ssid, pwd, wType, true);
-				// --
+				// =
 				LogPrintUtils.dTag(TAG, "属于正常方式连接(DHCP)");
 			}
 			// 判断当前准备连接的wifi，是否存在配置文件
 			WifiConfiguration preWifiConfig = this.isExsits(ssid);
-			// --
+			// =
 			if (preWifiConfig != null) {
 				// 存在则删除
 				boolean isRemove = mWifiManager.removeNetwork(preWifiConfig.networkId);
@@ -564,7 +563,7 @@ public final class WifiUtils {
 				// 保存配置
 				mWifiManager.saveConfiguration();
 			}
-			// --
+			// =
 			// 连接网络
 			int _nId = mWifiManager.addNetwork(connWifiConfig);
 			if (_nId != -1) {
@@ -584,7 +583,7 @@ public final class WifiUtils {
 				}
 				// 开始连接
 				boolean isResult = mWifiManager.enableNetwork(_nId, true);
-				// --
+				// =
 				if (!isResult) {
 					isResult = mWifiManager.enableNetwork(_nId, true);
 				}
@@ -612,7 +611,7 @@ public final class WifiUtils {
 					}
 					// 开始连接
 					boolean isResult = mWifiManager.enableNetwork(_nId, true);
-					// --
+					// =
 					if (!isResult) {
 						isResult = mWifiManager.enableNetwork(_nId, true);
 					}

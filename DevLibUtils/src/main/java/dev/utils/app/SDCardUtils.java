@@ -305,7 +305,7 @@ public final class SDCardUtils {
 
 	/**
 	 * 获取缓存资源地址
-	 * @param filePath 文件地址
+	 * @param filePath 文件路径
 	 * @return
 	 */
 	public static File getCacheFile(String filePath) {
@@ -314,7 +314,7 @@ public final class SDCardUtils {
 
 	/**
 	 * 获取缓存资源地址
-	 * @param filePath 文件地址
+	 * @param filePath 文件路径
 	 * @return
 	 */
 	public static String getCachePath(String filePath) {

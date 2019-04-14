@@ -23,8 +23,8 @@ public final class EncodeUtils {
 
     /**
      * url 编码 - UTF-8
-     * @param input The input.
-     * @return the urlencoded string
+     * @param input
+     * @return
      */
     public static String urlEncode(final String input) {
         return urlEncode(input, "UTF-8");
@@ -32,9 +32,9 @@ public final class EncodeUtils {
 
     /**
      * url 编码
-     * @param input The input.
-     * @param charsetName The name of charset.
-     * @return the urlencoded string
+     * @param input
+     * @param charsetName
+     * @return
      */
     public static String urlEncode(final String input, final String charsetName) {
         try {
@@ -47,7 +47,7 @@ public final class EncodeUtils {
 
     /**
      * url 解码 - UTF-8
-     * @param input The input.
+     * @param input
      * @return the string of decode urlencoded string
      */
     public static String urlDecode(final String input) {
@@ -56,8 +56,8 @@ public final class EncodeUtils {
 
     /**
      * url 解码
-     * @param input The input.
-     * @param charsetName The name of charset.
+     * @param input
+     * @param charsetName
      * @return the string of decode urlencoded string
      */
     public static String urlDecode(final String input, final String charsetName) {
@@ -81,7 +81,7 @@ public final class EncodeUtils {
 
     /**
      * base64 编码 => 去除\n 替换 + 和 - 号
-     * @param input The input.
+     * @param input
      * @return Base64-encode bytes
      */
     public static byte[] base64Encode(final String input) {
@@ -90,7 +90,7 @@ public final class EncodeUtils {
 
     /**
      * base64 编码
-     * @param input The input.
+     * @param input
      * @return Base64-encode bytes
      */
     public static byte[] base64Encode(final byte[] input) {
@@ -99,7 +99,7 @@ public final class EncodeUtils {
 
     /**
      * base64 编码
-     * @param input The input.
+     * @param input
      * @return Base64-encode string
      */
     public static String base64EncodeToString(final byte[] input) {
@@ -108,7 +108,7 @@ public final class EncodeUtils {
 
     /**
      * base64 解码
-     * @param input The input.
+     * @param input
      * @return the string of decode Base64-encode string
      */
     public static byte[] base64Decode(final String input) {
@@ -117,7 +117,7 @@ public final class EncodeUtils {
 
     /**
      * base64 解码
-     * @param input The input.
+     * @param input
      * @return the bytes of decode Base64-encode bytes
      */
     public static byte[] base64Decode(final byte[] input) {
@@ -140,7 +140,7 @@ public final class EncodeUtils {
 
     /**
      * html 编码
-     * @param input The input.
+     * @param input
      * @return html-encode string
      */
     public static String htmlEncode(final CharSequence input) {
@@ -178,7 +178,7 @@ public final class EncodeUtils {
 
     /**
      * html 解码
-     * @param input The input.
+     * @param input
      * @return the string of decode html-encode string
      */
     @SuppressWarnings("deprecation")

@@ -61,7 +61,7 @@ public final class UriUtils {
 
     /**
      * Return a content URI for a given file.
-     * @param file The file.
+     * @param file
      * @return a content URI for a given file
      */
     public static Uri getUriForFile(final File file, final String authority) {
