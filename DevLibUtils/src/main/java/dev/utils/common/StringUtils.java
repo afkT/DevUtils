@@ -272,11 +272,11 @@ public final class StringUtils {
 
     /**
      * 判定输入汉字
-     * @param c
+     * @param ch
      * @return
      */
-    public static boolean isChinese(final char c) {
-        Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
+    public static boolean isChinese(final char ch) {
+        Character.UnicodeBlock ub = Character.UnicodeBlock.of(ch);
         if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
                 || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
                 || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A

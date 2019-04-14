@@ -16,22 +16,22 @@ public final class ScaleUtils {
 
     /**
      * 计算缩放比例 - 根据宽度比例转换高度
-     * @param width         需要的最终宽度
+     * @param targetWidth   需要的最终宽度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
      * @return [0] = 宽度, [1] = 高度
      */
-    public static int[] calcScaleToWidth(final int width, final int currentWidth, final int currentHeight) {
+    public static int[] calcScaleToWidth(final int targetWidth, final int currentWidth, final int currentHeight) {
         try {
             if (currentWidth == 0) {
                 return new int[]{0, 0};
             }
             // 计算比例
-            float scale = ((float) width) / ((float) currentWidth);
+            float scale = ((float) targetWidth) / ((float) currentWidth);
             // 计算缩放后的高度
             int sHeight = (int) (scale * (float) currentHeight);
             // 返回对应的数据
-            return new int[]{width, sHeight};
+            return new int[]{targetWidth, sHeight};
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "calcScaleToWidth");
         }
@@ -40,22 +40,22 @@ public final class ScaleUtils {
 
     /**
      * 计算缩放比例 - 根据高度比例转换宽度
-     * @param height        需要的最终高度
+     * @param targetHeight  需要的最终高度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
      * @return [0] = 宽度, [1] = 高度
      */
-    public static int[] calcScaleToHeight(final int height, final int currentWidth, final int currentHeight) {
+    public static int[] calcScaleToHeight(final int targetHeight, final int currentWidth, final int currentHeight) {
         try {
             if (currentHeight == 0) {
                 return new int[]{0, 0};
             }
             // 计算比例
-            float scale = ((float) height) / ((float) currentHeight);
+            float scale = ((float) targetHeight) / ((float) currentHeight);
             // 计算缩放后的宽度
             int sWidth = (int) (scale * (float) currentWidth);
             // 返回对应的数据
-            return new int[]{sWidth, height};
+            return new int[]{sWidth, targetHeight};
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "calcScaleToHeight");
         }

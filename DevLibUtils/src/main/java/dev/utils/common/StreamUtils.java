@@ -21,8 +21,8 @@ public final class StreamUtils {
 
     /**
      * 输入流转输出流
-     * @param is The input stream.
-     * @return output stream
+     * @param is
+     * @return
      */
     public static ByteArrayOutputStream inputToOutputStream(final InputStream is) {
         if (is == null) return null;
@@ -44,8 +44,8 @@ public final class StreamUtils {
 
     /**
      * 输出流转输入流
-     * @param out The output stream.
-     * @return input stream
+     * @param out
+     * @return
      */
     public static ByteArrayInputStream outputToInputStream(final OutputStream out) {
         if (out == null) return null;
@@ -59,8 +59,8 @@ public final class StreamUtils {
 
     /**
      * 输入流转 byte[]
-     * @param is The input stream.
-     * @return bytes
+     * @param is
+     * @return
      */
     public static byte[] inputStreamToBytes(final InputStream is) {
         if (is == null) return null;
@@ -75,7 +75,7 @@ public final class StreamUtils {
     /**
      * byte[] 转输出流
      * @param bytes
-     * @return input stream
+     * @return
      */
     public static InputStream bytesToInputStream(final byte[] bytes) {
         if (bytes == null || bytes.length == 0) return null;
@@ -89,8 +89,8 @@ public final class StreamUtils {
 
     /**
      * 输出流转 byte[]
-     * @param out The output stream.
-     * @return bytes
+     * @param out
+     * @return
      */
     public static byte[] outputStreamToBytes(final OutputStream out) {
         if (out == null) return null;
@@ -105,7 +105,7 @@ public final class StreamUtils {
     /**
      * byte[] 转 输出流
      * @param bytes
-     * @return output stream
+     * @return
      */
     public static OutputStream bytesToOutputStream(final byte[] bytes) {
         if (bytes == null || bytes.length == 0) return null;
@@ -124,9 +124,9 @@ public final class StreamUtils {
 
     /**
      * 输入流转 string
-     * @param is          The input stream.
+     * @param is
      * @param charsetName
-     * @return string
+     * @return
      */
     public static String inputStreamToString(final InputStream is, final String charsetName) {
         if (is == null || isSpace(charsetName)) return null;
@@ -140,9 +140,9 @@ public final class StreamUtils {
 
     /**
      * String 转换输入流
-     * @param string      The string.
+     * @param string
      * @param charsetName
-     * @return input stream
+     * @return
      */
     public static InputStream stringToInputStream(final String string, final String charsetName) {
         if (string == null || isSpace(charsetName)) return null;
@@ -156,9 +156,9 @@ public final class StreamUtils {
 
     /**
      * 输出流转 string
-     * @param out         The output stream.
+     * @param out
      * @param charsetName
-     * @return string
+     * @return
      */
     public static String outputStreamToString(final OutputStream out, final String charsetName) {
         if (out == null || isSpace(charsetName)) return null;
@@ -172,9 +172,9 @@ public final class StreamUtils {
 
     /**
      * string 转 输出流
-     * @param string      The string.
+     * @param string
      * @param charsetName
-     * @return output stream
+     * @return
      */
     public static OutputStream stringToOutputStream(final String string, final String charsetName) {
         if (string == null || isSpace(charsetName)) return null;

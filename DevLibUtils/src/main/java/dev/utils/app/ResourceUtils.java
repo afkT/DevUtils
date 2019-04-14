@@ -210,7 +210,7 @@ public final class ResourceUtils {
 	/**
 	 * 获取 string id
 	 * @param resName string name的名称
-	 * @return string
+	 * @return
 	 */
 	public static int getStringId(String resName) {
 		try {

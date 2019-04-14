@@ -36,7 +36,7 @@ public final class CPUUtils {
 
     /**
      * 获取手机CPU序列号
-     * @return String cpu序列号(16位) 读取失败为"0000000000000000"
+     * @return cpu序列号(16位) 读取失败为"0000000000000000"
      */
     public static String getSysCPUSerialNum() {
         String str = "", strCPU = "", cpuSerialNum = "0000000000000000";

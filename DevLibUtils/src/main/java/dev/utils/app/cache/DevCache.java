@@ -245,7 +245,7 @@ public final class DevCache {
     /**
      * 读取 String 数据
      * @param key
-     * @return String 数据
+     * @return
      */
     public String getAsString(final String key) {
         File file = mCache.get(key);
