@@ -261,7 +261,9 @@ public final class AnimationUtils {
         return getAmplificationAnimation(DEFAULT_ANIMATION_DURATION, animationListener);
     }
 
+    // ================
     // = 视图移动动画 =
+    // ================
 
     /**
      * 视图移动

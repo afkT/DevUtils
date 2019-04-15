@@ -46,8 +46,10 @@ public class AsyncExecutor {
      * 立即关闭线程池任务
      */
     public synchronized void shutdownNow() {
-        if (threadPool != null && !threadPool.isShutdown()) threadPool.shutdownNow();
-        threadPool = null;
+        if (threadPool != null && !threadPool.isShutdown()) {
+            threadPool.shutdownNow();
+            threadPool = null;
+        }
     }
 
     /**

@@ -37,7 +37,9 @@ public final class TimerManager {
     // 内部保存定时器对象,防止忘记关闭等其他情况,以及便于控制处理
     private static final List<AbsTimer> listAbsTimers = new ArrayList<>();
 
+    // ============================
     // = ArrayList 对外公开的方法 =
+    // ============================
 
     /**
      * 回收资源
@@ -178,7 +180,9 @@ public final class TimerManager {
         }
     }
 
+    // ==========================================================
     // = 对外公开初始化AbsTimer方法(内部控制对 TimerTask的生成) =
+    // ==========================================================
 
     /**
      * 创建定时器 => 立即执行,无限循环,通知默认what
@@ -260,7 +264,9 @@ public final class TimerManager {
         return new TimerTask(handler, what, delay, period, triggerLimit);
     }
 
+    // =====================================
     // = 定时器抽象类,开放对定时器操作方法 =
+    // =====================================
 
     /**
      * detail: 定时器抽象类,主要对内部Timer参数进行控制,以及防止外部直接new TimerTask,照成不必要的失误
@@ -313,7 +319,9 @@ public final class TimerManager {
             return this;
         }
 
+        // ===========================
         // = 定时器任务,功能实现方法 =
+        // ===========================
 
         /**
          * 运行定时器
@@ -399,7 +407,9 @@ public final class TimerManager {
         public abstract AbsTimer setTriggerLimit(int triggerLimit);
     }
 
+    // =================================
     // = 定时器 具体实现类(不对外开放) =
+    // =================================
 
     /**
      * detail: 定时器内部封装类 - 定时器任务类
@@ -501,7 +511,9 @@ public final class TimerManager {
             }
         }
 
+        // ==================
         // = 实现抽象类方法 =
+        // ==================
 
         @Override
         public void startTimer() {

@@ -29,13 +29,13 @@ public final class CameraUtils {
             // 判断是否支持前置,支持则使用前置
             if (checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT)) {
                 isSupportReverse += 1;
-                // -
+                // =
                 LogPrintUtils.dTag(TAG, "支持前置摄像头(手机屏幕)");
             }
             // 判断是否支持后置,是则使用后置
             if (checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_BACK)) {
                 isSupportReverse += 1;
-                // -
+                // =
                 LogPrintUtils.dTag(TAG, "支持后置摄像头(手机背面)");
             }
             // 如果都支持才表示支持反转

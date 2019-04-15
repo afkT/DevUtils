@@ -7,7 +7,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.TranslateAnimation;
 
 /**
- * detail: 视图动画工具箱(AnimationUtils 基础上封装)，提供简单的控制视图的动画的工具方法
+ * detail: 视图动画工具箱 (AnimationUtils 基础上封装) ，提供简单的控制视图的动画的工具方法
  * Created by Ttt
  */
 public final class ViewAnimationUtils {
@@ -15,7 +15,9 @@ public final class ViewAnimationUtils {
     private ViewAnimationUtils() {
     }
 
+    // ======================
     // = 视图透明度渐变动画 =
+    // ======================
 
     /**
      * 将给定视图渐渐隐去 (view.setVisibility(View.INVISIBLE))
@@ -353,7 +355,9 @@ public final class ViewAnimationUtils {
         visibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, false, null);
     }
 
+    // ================
     // = 视图移动动画 =
+    // ================
 
     /**
      * 视图移动

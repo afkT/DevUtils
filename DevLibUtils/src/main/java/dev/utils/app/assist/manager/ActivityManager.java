@@ -37,18 +37,22 @@ public final class ActivityManager {
      * @return context 所属的 Activity
      */
     public static Activity getActivity(final Context context) {
-        try {
-            return (Activity) context;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getActivity");
+        if (context != null) {
+            try {
+                return (Activity) context;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getActivity");
+            }
         }
         return null;
     }
 
-    // = 页面判断处理 =
+    // =====================
+    // = Activity 判断处理 =
+    // =====================
 
     /**
-     * 判断页面是否关闭
+     * 判断 Activity 是否关闭
      * @param activity
      * @return true: 关闭, false: 未关闭
      */
@@ -60,7 +64,7 @@ public final class ActivityManager {
     }
 
     /**
-     * 判断页面是否关闭
+     * 判断 Activity 是否关闭
      * @param context
      * @return true: 关闭, false: 未关闭
      */
@@ -223,7 +227,7 @@ public final class ActivityManager {
                 // 判断是否想要关闭的Activity
                 if (activity != null) {
                     if (activity.getClass() == clazz) {
-                        // 如果页面没有finish 则进行finish
+                        // 如果 Activity 没有finish 则进行finish
                         if (!activity.isFinishing()) {
                             activity.finish();
                         }
@@ -275,7 +279,7 @@ public final class ActivityManager {
                         }
                         // 判断是否销毁
                         if (isRemove) {
-                            // 如果页面没有finish 则进行finish
+                            // 如果 Activity 没有finish 则进行finish
                             if (!activity.isFinishing()) {
                                 activity.finish();
                             }
@@ -297,7 +301,7 @@ public final class ActivityManager {
     }
 
     /**
-     * 结束全部Activity 除忽略的页面外
+     * 结束全部Activity 除忽略的 Activity 外
      * @param clazz
      */
     public void finishAllActivityToIgnore(final Class<?> clazz) {
@@ -315,7 +319,7 @@ public final class ActivityManager {
                 // 判断是否想要关闭的Activity
                 if (activity != null) {
                     if (!(activity.getClass() == clazz)) {
-                        // 如果页面没有finish 则进行finish
+                        // 如果 Activity 没有finish 则进行finish
                         if (!activity.isFinishing()) {
                             activity.finish();
                         }
@@ -336,7 +340,7 @@ public final class ActivityManager {
     }
 
     /**
-     * 结束全部Activity 除忽略的页面外
+     * 结束全部Activity 除忽略的 Activity 外
      * @param clazzs
      */
     public void finishAllActivityToIgnore(final Class<?>... clazzs) {
@@ -367,7 +371,7 @@ public final class ActivityManager {
                         }
                         // 判断是否销毁
                         if (isRemove) {
-                            // 如果页面没有finish 则进行finish
+                            // 如果 Activity 没有finish 则进行finish
                             if (!activity.isFinishing()) {
                                 activity.finish();
                             }
@@ -428,7 +432,7 @@ public final class ActivityManager {
             android.os.Process.killProcess(android.os.Process.myPid());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "appExit");
-            // -
+            // =
             System.exit(-1);
         }
     }

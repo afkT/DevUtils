@@ -19,23 +19,29 @@ public final class ScreenSensorAssist {
     // 日志 TAG
     private final String TAG = ScreenSensorAssist.class.getSimpleName();
 
+    // ======================
     // = 重力传感器监听对象 =
+    // ======================
 
     // 传感器管理对象
-    private SensorManager sMamager;
+    private SensorManager sensorManager;
     // 重力传感器
     private Sensor sensor;
     // 重力传感器监听事件
-    private OrientationSensorListener sListener;
+    private OrientationSensorListener listener;
 
-    // = 重力传感器监听对象(改变方向后,具体判断参数不同) =
+    // ================================================
+    // = 重力传感器监听对象(改变方向后, 判断参数不同) =
+    // ================================================
 
     // 传感器管理对象(切屏后)
-    private SensorManager sManagerChange;
+    private SensorManager sensorManagerChange;
     // 重力传感器监听事件(切屏后)
-    private OrientationSensorChangeListener slistenerChange;
+    private OrientationSensorChangeListener listenerChange;
 
+    // ========
     // = 常量 =
+    // ========
 
     // 坐标索引常量
     private final int _DATA_X = 0;
@@ -46,7 +52,9 @@ public final class ScreenSensorAssist {
     // 触发屏幕方向改变回调
     public static final int CHANGE_ORIENTATION_WHAT = 9919;
 
+    // =========
     // = 变量  =
+    // =========
 
     // 是否允许切屏
     private boolean allowChange = false;
@@ -62,12 +70,12 @@ public final class ScreenSensorAssist {
                 case CHANGE_ORIENTATION_WHAT:
                     // 获取角度
                     int rotation = msg.arg1;
-                    // -
+                    // =
                     LogPrintUtils.dTag(TAG, "当前角度: " + rotation);
                     // 判断角度
                     if (rotation > 45 && rotation < 135) { // 横屏 - 屏幕对着别人
                         LogPrintUtils.dTag(TAG, "切换成横屏 - 屏幕对着自己");
-                        // -
+                        // =
                         if (portrait) {
                             portrait = false;
                             if (handler != null) {
@@ -79,7 +87,7 @@ public final class ScreenSensorAssist {
                         }
                     } else if (rotation > 135 && rotation < 225) { // 竖屏 - 屏幕对着别人
                         LogPrintUtils.dTag(TAG, "切换成竖屏 - 屏幕对着别人");
-                        // -
+                        // =
                         if (!portrait) {
                             portrait = true;
                             if (handler != null) {
@@ -91,7 +99,7 @@ public final class ScreenSensorAssist {
                         }
                     } else if (rotation > 225 && rotation < 315) { // 横屏 - 屏幕对着自己
                         LogPrintUtils.dTag(TAG, "切换成横屏 - 屏幕对着自己");
-                        // -
+                        // =
                         if (portrait) {
                             portrait = false;
                             if (handler != null) {
@@ -103,7 +111,7 @@ public final class ScreenSensorAssist {
                         }
                     } else if ((rotation > 315 && rotation < 360) || (rotation > 0 && rotation < 45)) { // 竖屏 - 屏幕对着自己
                         LogPrintUtils.dTag(TAG, "切换成竖屏 - 屏幕对着自己");
-                        // -
+                        // =
                         if (!portrait) {
                             portrait = true;
                             if (handler != null) {
@@ -132,14 +140,14 @@ public final class ScreenSensorAssist {
         this.handler = handler;
 
         // 设置传感器
-        sensor = sMamager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         // 注册重力感应器,监听屏幕旋转
-        sMamager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        sListener = new OrientationSensorListener();
+        sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        listener = new OrientationSensorListener();
 
         // 根据 旋转之后/点击全屏之后 两者方向一致,激活sm.
-        sManagerChange = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        slistenerChange = new OrientationSensorChangeListener();
+        sensorManagerChange = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        listenerChange = new OrientationSensorChangeListener();
     }
 
     /**
@@ -153,7 +161,7 @@ public final class ScreenSensorAssist {
             // 初始化操作
             init(context, handler);
             // 监听重力传感器
-            sMamager.registerListener(sListener, sensor, SensorManager.SENSOR_DELAY_UI);
+            sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "start");
         }
@@ -166,12 +174,12 @@ public final class ScreenSensorAssist {
         allowChange = false;
         LogPrintUtils.dTag(TAG, "stop orientation listener.");
         try {
-            sMamager.unregisterListener(sListener);
+            sensorManager.unregisterListener(listener);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stop");
         }
         try {
-            sManagerChange.unregisterListener(slistenerChange);
+            sensorManagerChange.unregisterListener(listenerChange);
         } catch (Exception e) {
         }
     }
@@ -262,13 +270,13 @@ public final class ScreenSensorAssist {
             }
             if (orientation > 225 && orientation < 315) {// 检测到当前实际是横屏
                 if (!portrait) {
-                    sMamager.registerListener(sListener, sensor, SensorManager.SENSOR_DELAY_UI);
-                    sManagerChange.unregisterListener(slistenerChange);
+                    sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
+                    sensorManagerChange.unregisterListener(listenerChange);
                 }
             } else if ((orientation > 315 && orientation < 360) || (orientation > 0 && orientation < 45)) {// 检测到当前实际是竖屏
                 if (portrait) {
-                    sMamager.registerListener(sListener, sensor, SensorManager.SENSOR_DELAY_UI);
-                    sManagerChange.unregisterListener(slistenerChange);
+                    sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
+                    sensorManagerChange.unregisterListener(listenerChange);
                 }
             }
         }

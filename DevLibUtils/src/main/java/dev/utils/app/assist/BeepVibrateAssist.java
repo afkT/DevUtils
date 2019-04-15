@@ -32,7 +32,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 构造函数
-     * @param context
+     * @param context Activity
      */
     public BeepVibrateAssist(final Context context) {
         this.mContext = context;
@@ -40,7 +40,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 构造函数
-     * @param context
+     * @param context Activity
      * @param rawId
      */
     public BeepVibrateAssist(final Context context, final @RawRes int rawId) {
@@ -58,7 +58,9 @@ public final class BeepVibrateAssist implements Closeable {
         this.mediaPlayer = buildMediaPlayer(path);
     }
 
+    // ================
     // = 内部判断方法 =
+    // ================
 
     /**
      * 检查是否允许播放声音
@@ -92,7 +94,9 @@ public final class BeepVibrateAssist implements Closeable {
         }
     }
 
+    // ================
     // = 对外公开方法 =
+    // ================
 
     /**
      * 判断是否允许播放声音
@@ -128,6 +132,7 @@ public final class BeepVibrateAssist implements Closeable {
      */
     public BeepVibrateAssist setVibrate(final boolean vibrate, final long vibrateDuration) {
         this.vibrate = vibrate;
+        this.vibrateDuration = vibrateDuration;
         return this;
     }
 
@@ -178,7 +183,9 @@ public final class BeepVibrateAssist implements Closeable {
         }
     }
 
+    // =========================
     // = 创建 MediaPlayer 处理 =
+    // =========================
 
     /**
      * 创建 MediaPlayer 对象
