@@ -77,7 +77,7 @@ public final class FileRecordUtils {
             if (pi != null) {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
-                // --
+                // =
                 aVersion = new String[]{versionName, versionCode};
             }
         } catch (Exception e) {

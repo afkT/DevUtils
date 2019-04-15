@@ -49,7 +49,7 @@ public final class ManifestUtils {
         return null;
     }
 
-    // -
+    // =
 
     /**
      * 获取 Activity Meta Data
@@ -90,7 +90,7 @@ public final class ManifestUtils {
         return null;
     }
 
-    // -
+    // =
 
     /**
      * 获取 Service Meta Data
@@ -131,7 +131,7 @@ public final class ManifestUtils {
         return null;
     }
 
-    // -
+    // =
 
     /**
      * 获取 Receiver Meta Data
@@ -172,7 +172,7 @@ public final class ManifestUtils {
         return null;
     }
 
-    // -
+    // =
 
     /**
      * 获取 ContentProvider Meta Data

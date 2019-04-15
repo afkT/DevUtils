@@ -382,7 +382,7 @@ public final class AnalysisRecordUtils {
         }
         try {
             StringBuffer buffer = new StringBuffer();
-            // -
+            // =
             PackageManager pm = sContext.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(sContext.getPackageName(), PackageManager.GET_SIGNATURES);
             if (pi != null) {
@@ -673,7 +673,7 @@ public final class AnalysisRecordUtils {
             return null;
         }
 
-        // -
+        // =
 
         /**
          * 获取保存地址

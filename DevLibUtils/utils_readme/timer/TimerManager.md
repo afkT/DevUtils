@@ -9,10 +9,10 @@
  * 主要实现是 AbsTimer、TimerTask 这两个类,
  * AbsTimer -> 定时器抽象类,对外提供该类对象,以及内部方法,便于内部实现方法的隐藏,以及达到对定时器任务的控制处理
  * TimerTask -> 内部私有类,实现了具体的定时器操作,以及代码控制等,防止外部直接new,导致定时器混乱
- * ---
+ * =
  * 如果外部想要实现定时器,但是通过内部 ArrayList 控制,也可以通过 实现AbsTimer接口,内部的startTimer()、closeTimer() 进行了对AbsTimer的保存，标记等操作
  * 需要注意的是,实现start(close)Timer() 方法,必须保留 super.start(close)Timer(); -> 内部 ArrayList 进行了操作,而不对外开放(不需要主动调用)
- * ---
+ * =
  * startTimer() -> 主要进行添加到 ArrayList, 并且标记不需要回收
  * closeTimer() -> 不直接操作remove,防止出现ConcurrentModificationException 异常, 而是做一个标记,便于后续回收
  */

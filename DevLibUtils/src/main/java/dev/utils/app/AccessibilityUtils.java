@@ -17,6 +17,7 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 无障碍功能工具类
  * Created by Ttt
+ * ==============
  * https://www.jianshu.com/p/981e7de2c7be
  * https://www.jianshu.com/p/65afab3d1e2a
  * https://www.jianshu.com/p/f67e950d84f7
@@ -24,7 +25,7 @@ import dev.utils.LogPrintUtils;
  * https://blog.csdn.net/jw_66666/article/details/76571897
  * https://blog.csdn.net/dd864140130/article/details/51794318
  * https://nesscurie.github.io/2017/03/07/2.Android%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD%E5%A4%A7%E8%87%B4%E8%A7%A3%E6%9E%90,%E9%80%9A%E8%BF%87adb%E8%BF%90%E8%A1%8C%E7%BA%AFjava%E4%BB%A3%E7%A0%81%E6%89%93%E5%BC%80%E5%BA%94%E7%94%A8%E7%9A%84%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD/
- * ====
+ * ==============
  * AccessibilityService 在 API < 18 的时候使用 AccessibilityService
  * <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
  */
@@ -37,6 +38,8 @@ public final class AccessibilityUtils {
     private static final String TAG = AccessibilityUtils.class.getSimpleName();
     // AccessibilityService 对象
     private static AccessibilityService service = null;
+    // 换行字符串
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 获取 AccessibilityService 对象
@@ -50,7 +53,7 @@ public final class AccessibilityUtils {
      * 设置 AccessibilityService 对象
      * @param service
      */
-    public static void setService(AccessibilityService service) {
+    public static void setService(final AccessibilityService service) {
         AccessibilityUtils.service = service;
     }
 
@@ -69,7 +72,8 @@ public final class AccessibilityUtils {
      * @param packageName
      * @return
      */
-    public static boolean checkAccessibility(String packageName) {
+    public static boolean checkAccessibility(final String packageName) {
+        if (packageName == null) return false;
         // 判断辅助功能是否开启
         if (!AccessibilityUtils.isAccessibilitySettingsOn(packageName)) {
             // 引导至辅助功能设置页面
@@ -84,7 +88,9 @@ public final class AccessibilityUtils {
      * @param packageName
      * @return
      */
-    public static boolean isAccessibilitySettingsOn(String packageName) {
+    public static boolean isAccessibilitySettingsOn(final String packageName) {
+        if (packageName == null) return false;
+
         int accessibilityEnabled = 0;
         try {
             accessibilityEnabled = Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
@@ -104,13 +110,15 @@ public final class AccessibilityUtils {
         return false;
     }
 
-    // == 快捷方法 ==
+    // ============
+    // = 快捷方法 =
+    // ============
 
     /**
      * 打印 AccessibilityEvent 信息日志
      * @param event
      */
-    public static void printAccessibilityEvent(AccessibilityEvent event) {
+    public static void printAccessibilityEvent(final AccessibilityEvent event) {
         printAccessibilityEvent(event, TAG);
     }
 
@@ -119,58 +127,74 @@ public final class AccessibilityUtils {
      * @param event
      * @param tag
      */
-    public static void printAccessibilityEvent(AccessibilityEvent event, String tag) {
-        if (!LogPrintUtils.isPrintLog()) {
-            return;
-        }
-        LogPrintUtils.dTag(tag, "-------------------------------------------------------------");
+    public static void printAccessibilityEvent(final AccessibilityEvent event, final String tag) {
+        if (event == null || !LogPrintUtils.isPrintLog()) return;
+
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("=========================");
+        buffer.append(NEW_LINE_STR);
 
         int eventType = event.getEventType();//事件类型
-        LogPrintUtils.dTag(tag, "packageName:" + event.getPackageName() + "");//响应事件的包名，也就是哪个应用才响应了这个事件
-        LogPrintUtils.dTag(tag, "source:" + event.getSource() + "");//事件源信息
-        LogPrintUtils.dTag(tag, "source class:" + event.getClassName() + "");//事件源的类名，比如android.widget.TextView
-        LogPrintUtils.dTag(tag, "event type(int):" + eventType + "");
+        buffer.append("packageName:" + event.getPackageName() + "");//响应事件的包名，也就是哪个应用才响应了这个事件
+        buffer.append(NEW_LINE_STR);
+
+        buffer.append("source:" + event.getSource() + "");//事件源信息
+        buffer.append(NEW_LINE_STR);
+
+        buffer.append("source class:" + event.getClassName() + "");//事件源的类名，比如android.widget.TextView
+        buffer.append(NEW_LINE_STR);
+
+        buffer.append("event type(int):" + eventType + "");
+        buffer.append(NEW_LINE_STR);
 
         switch (eventType) {
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:// 通知栏事件
-                LogPrintUtils.dTag(tag, "event type:TYPE_NOTIFICATION_STATE_CHANGED");
+                buffer.append("event type:TYPE_NOTIFICATION_STATE_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED://窗体状态改变
-                LogPrintUtils.dTag(tag, "event type:TYPE_WINDOW_STATE_CHANGED");
+                buffer.append("event type:TYPE_WINDOW_STATE_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED://View获取到焦点
-                LogPrintUtils.dTag(tag, "event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
+                buffer.append("event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
-                LogPrintUtils.dTag(tag, "event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
+                buffer.append("event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_END:
-                LogPrintUtils.dTag(tag, "event type:TYPE_GESTURE_DETECTION_END");
+                buffer.append("event type:TYPE_GESTURE_DETECTION_END");
                 break;
             case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:
-                LogPrintUtils.dTag(tag, "event type:TYPE_WINDOW_CONTENT_CHANGED");
+                buffer.append("event type:TYPE_WINDOW_CONTENT_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_CLICKED:
-                LogPrintUtils.dTag(tag, "event type:TYPE_VIEW_CLICKED");
+                buffer.append("event type:TYPE_VIEW_CLICKED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED:
-                LogPrintUtils.dTag(tag, "event type:TYPE_VIEW_TEXT_CHANGED");
+                buffer.append("event type:TYPE_VIEW_TEXT_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_SCROLLED:
-                LogPrintUtils.dTag(tag, "event type:TYPE_VIEW_SCROLLED");
+                buffer.append("event type:TYPE_VIEW_SCROLLED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED:
-                LogPrintUtils.dTag(tag, "event type:TYPE_VIEW_TEXT_SELECTION_CHANGED");
+                buffer.append("event type:TYPE_VIEW_TEXT_SELECTION_CHANGED");
                 break;
         }
+        buffer.append(NEW_LINE_STR);
 
         for (CharSequence txt : event.getText()) {
-            LogPrintUtils.dTag(tag, "text:" + txt);//输出当前事件包含的文本信息
+            // 输出当前事件包含的文本信息
+            buffer.append("text:" + txt);
+            buffer.append(NEW_LINE_STR);
         }
-        LogPrintUtils.dTag(tag, "-------------------------------------------------------------");
+        buffer.append("=========================");
+
+        // 打印日志
+        LogPrintUtils.dTag(tag, buffer.toString());
     }
 
-    // === 其他处理 ===
+    // ============
+    // = 其他处理 =
+    // ============
 
     /**
      * 查找符合条件的节点
@@ -178,7 +202,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(String text) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final String text) {
         return findAccessibilityNodeInfosByText(service, text);
     }
 
@@ -189,7 +213,8 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(AccessibilityService service, String text) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final AccessibilityService service, final String text) {
+        if (service == null || text == null) return null;
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
         // 取得当前激活窗体的根节点
@@ -205,7 +230,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(String id) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final String id) {
         return findAccessibilityNodeInfosByViewId(service, id);
     }
 
@@ -216,7 +241,8 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(AccessibilityService service, String id) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final AccessibilityService service, final String id) {
+        if (service == null || id == null) return null;
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
         // 取得当前激活窗体的根节点
@@ -233,7 +259,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(String text, String className) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final String text, final String className) {
         return findAccessibilityNodeInfosByText(service, text, className);
     }
 
@@ -245,7 +271,8 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(AccessibilityService service, String text, String className) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final AccessibilityService service, final String text, final String className) {
+        if (service == null || text == null || className == null) return null;
         List<AccessibilityNodeInfo> lists = new ArrayList<>();
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
@@ -265,17 +292,17 @@ public final class AccessibilityUtils {
         return lists;
     }
 
+    // ========
     // = 操作 =
+    // ========
 
     /**
      * 点击指定的节点
      * @param nodeInfo
      */
-    public static boolean performClick(AccessibilityNodeInfo nodeInfo) {
-        if (nodeInfo != null) {
-            if (nodeInfo.isClickable()) {
-                return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_CLICK);
-            }
+    public static boolean performClick(final AccessibilityNodeInfo nodeInfo) {
+        if (nodeInfo != null && nodeInfo.isClickable()) {
+            return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_CLICK);
         }
         return false;
     }
@@ -286,7 +313,7 @@ public final class AccessibilityUtils {
      * @param nodeInfo
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      */
-    public static void performClick(AccessibilityNodeInfo nodeInfo, boolean clickParent) {
+    public static void performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
         performClick(nodeInfo, clickParent, false);
     }
 
@@ -297,7 +324,8 @@ public final class AccessibilityUtils {
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @param clickAll    判断是否点击全部
      */
-    public static void performClick(AccessibilityNodeInfo nodeInfo, boolean clickParent, boolean clickAll) {
+    public static void performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
+        if (nodeInfo == null) return;
         if (clickParent) {
             if (nodeInfo.isClickable()) {
                 nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -324,11 +352,9 @@ public final class AccessibilityUtils {
      * 长按指定的节点
      * @param nodeInfo
      */
-    public static boolean performLongClick(AccessibilityNodeInfo nodeInfo) {
-        if (nodeInfo != null) {
-            if (nodeInfo.isClickable()) {
-                return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_LONG_CLICK);
-            }
+    public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo) {
+        if (nodeInfo != null && nodeInfo.isClickable()) {
+            return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_LONG_CLICK);
         }
         return false;
     }
@@ -339,7 +365,7 @@ public final class AccessibilityUtils {
      * @param nodeInfo
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      */
-    public static void performLongClick(AccessibilityNodeInfo nodeInfo, boolean clickParent) {
+    public static void performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
         performLongClick(nodeInfo, clickParent, false);
     }
 
@@ -350,7 +376,8 @@ public final class AccessibilityUtils {
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @param clickAll    判断是否点击全部
      */
-    public static void performLongClick(AccessibilityNodeInfo nodeInfo, boolean clickParent, boolean clickAll) {
+    public static void performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
+        if (nodeInfo == null) return;
         if (clickParent) {
             if (nodeInfo.isClickable()) {
                 nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
@@ -388,7 +415,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionBack(AccessibilityService service) {
+    public static boolean preformActionBack(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_BACK);
     }
 
@@ -407,7 +434,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionHome(AccessibilityService service) {
+    public static boolean preformActionHome(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_HOME);
     }
 
@@ -426,7 +453,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionPowerDialog(AccessibilityService service) {
+    public static boolean preformActionPowerDialog(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
     }
 
@@ -445,7 +472,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionLockScreen(AccessibilityService service) {
+    public static boolean preformActionLockScreen(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
     }
 
@@ -464,7 +491,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionTakeScreenshot(AccessibilityService service) {
+    public static boolean preformActionTakeScreenshot(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
     }
 
@@ -483,7 +510,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionNotifications(AccessibilityService service) {
+    public static boolean preformActionNotifications(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
     }
 
@@ -502,7 +529,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionRecents(AccessibilityService service) {
+    public static boolean preformActionRecents(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_RECENTS);
     }
 
@@ -521,7 +548,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionQuickSettings(AccessibilityService service) {
+    public static boolean preformActionQuickSettings(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
     }
 
@@ -540,18 +567,19 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionSplitScreen(AccessibilityService service) {
+    public static boolean preformActionSplitScreen(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
     }
 
-
-    // == 内部封装 ==
+    // ============
+    // = 内部封装 =
+    // ============
 
     /**
      * 模拟对应 Action 操作
      * @param nodeInfo
      */
-    public static boolean preformAction(AccessibilityNodeInfo nodeInfo, int action) {
+    public static boolean preformAction(final AccessibilityNodeInfo nodeInfo, final int action) {
         if (nodeInfo != null) {
             return nodeInfo.performAction(action);
         }
@@ -565,7 +593,7 @@ public final class AccessibilityUtils {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean performGlobalAction(AccessibilityService service, int action) {
+    public static boolean performGlobalAction(final AccessibilityService service, final int action) {
         if (service != null) {
             return service.performGlobalAction(action);
         }

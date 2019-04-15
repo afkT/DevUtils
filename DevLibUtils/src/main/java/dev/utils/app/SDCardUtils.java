@@ -284,7 +284,7 @@ public final class SDCardUtils {
         return "unknown";
     }
 
-    // -
+    // =
 
     /**
      * 获取缓存地址

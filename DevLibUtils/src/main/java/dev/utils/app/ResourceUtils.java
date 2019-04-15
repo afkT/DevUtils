@@ -530,7 +530,7 @@ public final class ResourceUtils {
                 // 关闭流
                 outStream.close();
                 iStream.close();
-                // --
+                // =
                 fileOutputStream.flush();
                 fileOutputStream.close();
                 return true;
@@ -569,7 +569,7 @@ public final class ResourceUtils {
                 // 关闭流
                 outStream.close();
                 iStream.close();
-                // --
+                // =
                 fileOutputStream.flush();
                 fileOutputStream.close();
                 return true;

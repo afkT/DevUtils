@@ -84,7 +84,7 @@ public final class LoggerUse {
         StringBuffer sBuffer = new StringBuffer();
         // 日志 TAG
         final String tag = "CALC_TIME";
-        // --
+        // =
         // 遍历次数
         int count = 1000;
         // 设置开始时间
@@ -143,10 +143,10 @@ public final class LoggerUse {
             String fileName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
             // 保存日志信息
             DevLoggerUtils.saveErrorLog(e, fileName, true);
-            // --
+            // =
             // 保存自定义头部、底部信息
             DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
-            // --
+            // =
             // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
             String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
             // 保存的路径
@@ -215,7 +215,7 @@ public final class LoggerUse {
         DevLogger.w("测试数据 - w");
         DevLogger.e("错误 - e");
         DevLogger.wtf("测试数据 - wtf");
-        // --
+        // =
         DevLogger.vTag(tag, "测试数据 - v");
         DevLogger.vTag(tag, "测试数据 - d");
         try {
@@ -225,7 +225,7 @@ public final class LoggerUse {
         }
         // 占位符(其他类型，一样)
         DevLogger.d("%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
-        // --
+        // =
         DevLogger.dTag(tag, "%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
 
 
@@ -240,10 +240,10 @@ public final class LoggerUse {
         DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).w("测试数据 - w");
         DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).e("错误 - e");
         DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).wtf(tag, "测试数据 - wtf");
-        // --
+        // =
         DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag, LogLevel.DEBUG)).json(TestData.SMALL_SON_WITH_NO_LINE_BREAK);
 
-        // ----
+        // =
         // 初始化日志配置
         LogConfig lConfig = new LogConfig();
         // 堆栈方法总数(显示经过的方法)
@@ -263,7 +263,7 @@ public final class LoggerUse {
         // 打印不换行的日志信息
         DevLogger.other(lConfig).e("new Config - e");
 
-        // ----
+        // =
         // 使用方法
         LogConfig tLConfig = new LogConfig();
         // 堆栈方法总数(显示经过的方法)

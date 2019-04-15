@@ -560,7 +560,7 @@ public final class TextViewUtils {
         }
     }
 
-    // -
+    // =
 
     /**
      * 设置内容

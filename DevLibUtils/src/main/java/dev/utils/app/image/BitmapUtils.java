@@ -633,7 +633,7 @@ public final class BitmapUtils {
     public static int[] getImageViewSize(final ImageView imageView) {
         int[] imgSize = new int[]{0, 0};
         if (imageView == null) return imgSize;
-        // -
+        // =
         DisplayMetrics displayMetrics = imageView.getContext().getResources().getDisplayMetrics();
         LayoutParams lp = imageView.getLayoutParams();
         // 获取 imageView 的实际宽度
@@ -648,7 +648,7 @@ public final class BitmapUtils {
         if (width <= 0) {
             width = displayMetrics.widthPixels;
         }
-        // -
+        // =
         // 获取 imageView 的实际高度
         int height = imageView.getHeight();
         if (height <= 0) {
@@ -660,7 +660,7 @@ public final class BitmapUtils {
         if (height <= 0) {
             height = displayMetrics.heightPixels;
         }
-        // -
+        // =
         imgSize[0] = width;
         imgSize[1] = height;
         return imgSize;

@@ -109,7 +109,7 @@ public final class KeyBoardUtils {
         }
     }
 
-    // -
+    // =
 
     /**
      * 打开软键盘
@@ -262,7 +262,7 @@ public final class KeyBoardUtils {
         }
     }
 
-    // -
+    // =
 
     /**
      * 关闭软键盘

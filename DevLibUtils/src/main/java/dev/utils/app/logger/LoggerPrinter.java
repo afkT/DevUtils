@@ -489,7 +489,7 @@ final class LoggerPrinter implements IPrinter {
     }
 
     /**
-     * 日志处理方法(统一调用这个) -- 此方法是同步的,以避免混乱的日志的顺序。
+     * 日志处理方法(统一调用这个) - 此方法是同步的,以避免混乱的日志的顺序。
      * @param lConfig 配置信息
      * @param tag     日志Tag
      * @param logType 日志类型

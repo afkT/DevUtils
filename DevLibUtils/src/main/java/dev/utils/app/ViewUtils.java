@@ -209,7 +209,7 @@ public final class ViewUtils {
         return isVisibility ? View.VISIBLE : View.INVISIBLE;
     }
 
-    // --
+    // =
 
     /**
      * 设置View显示状态
@@ -235,7 +235,7 @@ public final class ViewUtils {
         return (isVisibility == View.VISIBLE);
     }
 
-    // --
+    // =
 
     /**
      * 设置View 显示的状态
@@ -363,7 +363,7 @@ public final class ViewUtils {
         return isChange;
     }
 
-    // --
+    // =
 
     /**
      * 设置View 图片资源

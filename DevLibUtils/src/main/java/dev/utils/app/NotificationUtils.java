@@ -191,7 +191,7 @@ public final class NotificationUtils {
             return baseNF;
         } else {
 //            // https://www.cnblogs.com/Arture/p/5523695.html
-//            // -- 初始化通知信息实体类 --
+//            // = 初始化通知信息实体类 =
 //            Notification notification = new Notification();
 //            // 设置图标
 //            notification.icon = icon;

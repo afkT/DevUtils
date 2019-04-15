@@ -409,7 +409,7 @@ public final class ScreenUtils {
 
                 float heightDpi = heightPixels / density;
                 float widthDpi = widthPixels / density;
-                // -
+                // =
                 builder.append("\nheightPixels: " + heightPixels + "px");
                 builder.append("\nwidthPixels: " + widthPixels + "px");
 

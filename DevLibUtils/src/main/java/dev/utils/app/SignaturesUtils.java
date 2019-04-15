@@ -169,7 +169,7 @@ public final class SignaturesUtils {
         }
     }
 
-    // --
+    // =
 
     // Android的 Apk 应用签名机制以及读取签名的方法
     // http://www.jb51.net/article/79894.htm
