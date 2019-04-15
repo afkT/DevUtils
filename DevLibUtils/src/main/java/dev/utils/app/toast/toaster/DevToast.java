@@ -64,7 +64,7 @@ public final class DevToast {
         toast.init(application);
     }
 
-    // -- 配置方法 --
+    // = 配置方法 =
 
     /**
      * 使用单次 Toast 样式配置
