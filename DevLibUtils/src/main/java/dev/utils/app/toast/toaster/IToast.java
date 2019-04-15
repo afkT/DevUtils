@@ -99,9 +99,9 @@ public final class IToast {
          */
         void setView(int layoutId);
 
-        // ========= 操作方法 =========
-
-        // = 显示文本的, 通过内容长度来控制, 显示时长 =
+        // ============
+        // = 操作方法 =
+        // ============
 
         /**
          * 显示 Toast
@@ -117,7 +117,7 @@ public final class IToast {
          */
         void show(int resId, Object... args);
 
-        // = 直接显示View的, 通过配置时间来控制 =
+        // =
 
         /**
          * 通过 View 显示 Toast
@@ -140,9 +140,9 @@ public final class IToast {
         void cancel();
     }
 
-    // ======================
-    // ====== 其他接口 ======
-    // ======================
+    // ============
+    // = 其他接口 =
+    // ============
 
     /**
      * detail: Toast 样式配置
@@ -204,7 +204,9 @@ public final class IToast {
          */
         Drawable getBackground();
 
-        // == TextView 相关 ==
+        // =================
+        // = TextView 相关 =
+        // =================
 
         /**
          * 文本颜色

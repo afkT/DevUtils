@@ -20,6 +20,7 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: Wifi 热点工具类
  * Created by Ttt
+ * ==============
  * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
  * <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
  * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -37,7 +38,7 @@ public class WifiHotUtils {
     private static final String TAG = WifiHotUtils.class.getSimpleName();
     // Context
     private Context mContext;
-    /** 定义WifiManager对象 */
+    // 定义WifiManager对象
     private WifiManager mWifiManager;
     // 热点 Wifi 配置
     private WifiConfiguration apWifiConfig;
@@ -46,28 +47,30 @@ public class WifiHotUtils {
      * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
      */
     public WifiHotUtils() {
-        this (DevUtils.getContext());
+        this(DevUtils.getContext());
     }
 
     /**
      * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
      * @param context
      */
-    public WifiHotUtils(Context context) {
+    public WifiHotUtils(final Context context) {
         this.mContext = context;
         // 初始化WifiManager对象
         mWifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
     }
 
-    // == Wifi 操作 ==
+    // =============
+    // = Wifi 操作 =
+    // =============
 
     /**
      * 创建Wifi配置信息(无其他操作，单独返回WifiConfig) => Wifi热点 (就支持 无密码/WPA2 PSK)
      * @param ssid
-     * @param pwd 密码需要大于等于8位
+     * @param pwd  密码需要大于等于8位
      * @return
      */
-    public static WifiConfiguration createWifiConfigToAp(String ssid, String pwd) {
+    public static WifiConfiguration createWifiConfigToAp(final String ssid, final String pwd) {
         try {
             // 创建一个新的网络配置
             WifiConfiguration wifiConfig = new WifiConfiguration();
@@ -106,7 +109,7 @@ public class WifiHotUtils {
      * 开启Wifi热点
      * @param wifiConfig wifi配置
      */
-    public void stratWifiAp(WifiConfiguration wifiConfig) {
+    public void stratWifiAp(final WifiConfiguration wifiConfig) {
         this.apWifiConfig = wifiConfig;
         // 大于 8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -226,16 +229,29 @@ public class WifiHotUtils {
         }
     }
 
+    // ================
     // = 手机热点功能 =
-    /** Wifi热点正在关闭 -- WifiManager.WIFI_AP_STATE_DISABLING */
+    // ================
+
+    /**
+     * Wifi热点正在关闭 -- WifiManager.WIFI_AP_STATE_DISABLING
+     */
     public static final int WIFI_AP_STATE_DISABLING = 10;
-    /** Wifi热点已关闭 -- WifiManager.WIFI_AP_STATE_DISABLED */
+    /**
+     * Wifi热点已关闭 -- WifiManager.WIFI_AP_STATE_DISABLED
+     */
     public static final int WIFI_AP_STATE_DISABLED = 11;
-    /** Wifi热点正在打开 -- WifiManager.WIFI_AP_STATE_ENABLING */
+    /**
+     * Wifi热点正在打开 -- WifiManager.WIFI_AP_STATE_ENABLING
+     */
     public static final int WIFI_AP_STATE_ENABLING = 12;
-    /** Wifi热点已打开 -- WifiManager.WIFI_AP_STATE_ENABLED */
+    /**
+     * Wifi热点已打开 -- WifiManager.WIFI_AP_STATE_ENABLED
+     */
     public static final int WIFI_AP_STATE_ENABLED = 13;
-    /** Wifi热点状态未知 -- WifiManager.WIFI_AP_STATE_FAILED */
+    /**
+     * Wifi热点状态未知 -- WifiManager.WIFI_AP_STATE_FAILED
+     */
     public static final int WIFI_AP_STATE_FAILED = 14;
 
     /**
@@ -280,7 +296,7 @@ public class WifiHotUtils {
      * @param apWifiConfig
      * @return 是否成功
      */
-    public boolean setWifiApConfiguration(WifiConfiguration apWifiConfig) {
+    public boolean setWifiApConfiguration(final WifiConfiguration apWifiConfig) {
         try {
             // 获取设置Wifi热点方法
             Method method = mWifiManager.getClass().getMethod("setWifiApConfiguration", WifiConfiguration.class);
@@ -416,19 +432,19 @@ public class WifiHotUtils {
 
     /**
      * 获取热点拼接后的ip网关掩码
-     * @param df 默认网关掩码
-     * @param ipAdr ip地址
+     * @param defaultGateway 默认网关掩码
+     * @param ipAdr          ip地址
      * @return
      */
-    public String getHotspotSplitIpMask(String df, String ipAdr) {
+    public String getHotspotSplitIpMask(final String defaultGateway, final String ipAdr) {
         // 网关掩码
-        String hsMask = df;
+        String hsMask = defaultGateway;
         // 获取网关掩码
         if (ipAdr != null) {
             try {
                 int length = ipAdr.lastIndexOf(".");
                 // 进行裁剪
-                hsMask = ipAdr.substring(0,length) + ".255";
+                hsMask = ipAdr.substring(0, length) + ".255";
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getHotspotSplitIpMask");
             }
@@ -461,7 +477,7 @@ public class WifiHotUtils {
      * @param data 需要转换的数据
      * @return
      */
-    private String intToString(int data) {
+    private String intToString(final int data) {
         StringBuffer buffer = new StringBuffer();
         int b = (data >> 0) & 0xff;
         buffer.append(b + ".");
@@ -474,7 +490,9 @@ public class WifiHotUtils {
         return buffer.toString();
     }
 
-    // == Android 8.0相关 ==
+    // ===================
+    // = Android 8.0相关 =
+    // ===================
 
     // Wifi ssid
     private String apWifiSSID;

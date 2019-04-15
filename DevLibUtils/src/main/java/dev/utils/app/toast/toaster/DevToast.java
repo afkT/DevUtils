@@ -6,11 +6,12 @@ import android.view.View;
 /**
  * detail: Toast 工具类 (支持子线程弹出 Toast, 处理无通知权限)
  * Created by Ttt
+ * ==============
  * tips:
  * 支持子线程弹出 Toast, 可通过开关配置
  * 内部解决 Android 7.1.1 崩溃问题
  * 已处理 部分ROM 如魅族、小米、三星等关闭应用通知，无法显示 Toast 问题
- * ==
+ * =
  * 缺点: 同时间只能显示一个 Toast
  */
 public final class DevToast {
@@ -18,9 +19,7 @@ public final class DevToast {
     private DevToast() {
     }
 
-    /**
-     * 包下 IToastImpl 类持有对象
-     */
+    // 包下 IToastImpl 类持有对象
     private static final IToast.Operate toast = new IToastImpl();
 
     /**
@@ -34,7 +33,7 @@ public final class DevToast {
      * 设置是否使用 Handler 显示 Toast
      * @param isHandler
      */
-    public static void setIsHandler(boolean isHandler) {
+    public static void setIsHandler(final boolean isHandler) {
         toast.setIsHandler(isHandler);
     }
 
@@ -42,7 +41,7 @@ public final class DevToast {
      * 设置 Text 为 null 的文本
      * @param nullText
      */
-    public static void setNullText(String nullText) {
+    public static void setNullText(final String nullText) {
         toast.setNullText(nullText);
     }
 
@@ -50,7 +49,7 @@ public final class DevToast {
      * 设置 Toast 文案长度转换 显示时间
      * @param textLengthConvertDuration
      */
-    public static void setTextLength(int textLengthConvertDuration) {
+    public static void setTextLength(final int textLengthConvertDuration) {
         toast.setTextLength(textLengthConvertDuration);
     }
 
@@ -60,7 +59,7 @@ public final class DevToast {
      * Application 初始化调用 (必须调用 -> 内部已经调用)
      * @param application
      */
-    public static void init(Application application) {
+    public static void init(final Application application) {
         toast.init(application);
     }
 
@@ -71,7 +70,7 @@ public final class DevToast {
      * @param toastStyle Toast 样式
      * @return
      */
-    public static IToast.Operate style(IToast.Style toastStyle) {
+    public static IToast.Operate style(final IToast.Style toastStyle) {
         return toast.style(toastStyle);
     }
 
@@ -95,7 +94,7 @@ public final class DevToast {
      * 初始化 Toast 样式配置(非单次,一直持续)
      * @param toastStyle Toast 样式配置
      */
-    public static void initStyle(IToast.Style toastStyle) {
+    public static void initStyle(final IToast.Style toastStyle) {
         toast.initStyle(toastStyle);
     }
 
@@ -103,7 +102,7 @@ public final class DevToast {
      * 初始化 Toast 过滤器
      * @param toastFilter
      */
-    public static void initToastFilter(IToast.Filter toastFilter) {
+    public static void initToastFilter(final IToast.Filter toastFilter) {
         toast.initToastFilter(toastFilter);
     }
 
@@ -111,7 +110,7 @@ public final class DevToast {
      * 设置 Toast 显示的View
      * @param view
      */
-    public static void setView(View view) {
+    public static void setView(final View view) {
         toast.setView(view);
     }
 
@@ -119,18 +118,20 @@ public final class DevToast {
      * 设置 Toast 显示的View
      * @param layoutId
      */
-    public static void setView(int layoutId) {
+    public static void setView(final int layoutId) {
         toast.setView(layoutId);
     }
 
-    // ========= 操作方法 =========
+    // ============
+    // = 操作方法 =
+    // ============
 
     /**
      * 显示 Toast
      * @param content
      * @param args
      */
-    public static void show(String content, Object... args) {
+    public static void show(final String content, final Object... args) {
         toast.show(content, args);
     }
 
@@ -139,7 +140,7 @@ public final class DevToast {
      * @param resId
      * @param args
      */
-    public static void show(int resId, Object... args) {
+    public static void show(final int resId, final Object... args) {
         toast.show(resId, args);
     }
 
@@ -147,7 +148,7 @@ public final class DevToast {
      * 通过 View 显示 Toast
      * @param view
      */
-    public static void show(View view) {
+    public static void show(final View view) {
         toast.show(view);
     }
 
@@ -156,7 +157,7 @@ public final class DevToast {
      * @param view
      * @param duration
      */
-    public static void show(View view, int duration) {
+    public static void show(final View view, final int duration) {
         toast.show(view, duration);
     }
 

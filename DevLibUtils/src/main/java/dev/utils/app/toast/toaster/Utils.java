@@ -42,7 +42,7 @@ final class Utils {
      * @param args
      * @return
      */
-    public static String getFormatString(String format, Object... args) {
+    public static String getFormatString(final String format, final Object... args) {
         try {
             if (args != null && args.length != 0) {
                 return String.format(format, args);
@@ -60,7 +60,7 @@ final class Utils {
      * @param resId
      * @param objs
      */
-    public static String getFormatRes(int resId, Object... objs) {
+    public static String getFormatRes(final int resId, final Object... objs) {
         try {
             // 获取字符串并且进行格式化
             if (objs != null && objs.length != 0) {
@@ -95,7 +95,7 @@ final class Utils {
      * @param context
      * @return
      */
-    public static boolean isNotificationEnabled(Context context) {
+    public static boolean isNotificationEnabled(final Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).areNotificationsEnabled();
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -123,7 +123,7 @@ final class Utils {
      * @param object
      * @return
      */
-    public static String getObjectTag(Object object) {
+    public static String getObjectTag(final Object object) {
         if (object == null) return null;
         // 对象所在的包名 + 对象的内存地址
         return object.getClass().getName() + Integer.toHexString(object.hashCode());
@@ -134,7 +134,7 @@ final class Utils {
      * @param activity
      * @return
      */
-    public static WindowManager getWindowManager(Activity activity) {
+    public static WindowManager getWindowManager(final Activity activity) {
         // 如果使用的 WindowManager 对象不是当前 Activity 创建的，则会抛出异常
         // android.view.WindowManager$BadTokenException: Unable to add window -- token null is not for an application
         if (activity != null) {
@@ -154,7 +154,7 @@ final class Utils {
      * @param view
      * @param drawable
      */
-    public static void setBackground(@NonNull View view, Drawable drawable) {
+    public static void setBackground(final @NonNull View view, final Drawable drawable) {
         if (view != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                 view.setBackground(drawable);
@@ -169,7 +169,7 @@ final class Utils {
      * @param id
      * @return
      */
-    public static Drawable getDrawable(Context context, @DrawableRes int id) {
+    public static Drawable getDrawable(final Context context, final @DrawableRes int id) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             return context.getDrawable(id);
         else
@@ -182,7 +182,7 @@ final class Utils {
      * @param tintColor
      * @return
      */
-    public static Drawable tintIcon(@NonNull Drawable drawable, @ColorInt int tintColor) {
+    public static Drawable tintIcon(final @NonNull Drawable drawable, final @ColorInt int tintColor) {
         if (drawable != null) {
             try {
                 drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
@@ -199,7 +199,7 @@ final class Utils {
      * @param tintColor
      * @return
      */
-    public static Drawable tint9PatchDrawableFrame(Context context, @ColorInt int tintColor) {
+    public static Drawable tint9PatchDrawableFrame(final Context context, final @ColorInt int tintColor) {
         try {
             final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, dev.utils.R.drawable.dev_toast_frame);
             return tintIcon(toastDrawable, tintColor);

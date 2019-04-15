@@ -61,7 +61,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param isHandler
      */
     @Override
-    public void setIsHandler(boolean isHandler) {
+    public void setIsHandler(final boolean isHandler) {
         this.mIsHandler = isHandler;
     }
 
@@ -70,7 +70,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param nullText
      */
     @Override
-    public void setNullText(String nullText) {
+    public void setNullText(final String nullText) {
         this.mNullText = nullText;
     }
 
@@ -79,27 +79,22 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param textLengthConvertDuration
      */
     @Override
-    public void setTextLength(int textLengthConvertDuration) {
+    public void setTextLength(final int textLengthConvertDuration) {
         this.mTextLengthConvertDuration = textLengthConvertDuration;
     }
 
-    // === Application 中初始化 ===
+    // ========================
+    // = Application 中初始化 =
+    // ========================
 
     /**
      * Application 初始化调用
      * @param application
      */
     @Override
-    public void init(Application application) {
+    public void init(final Application application) {
         if (application != null) {
             this.mApplication = application;
-//            try {
-//                // 解除注册 Activity 生命周期监听
-//                application.unregisterActivityLifecycleCallbacks(this);
-//            } catch (Exception e) {
-//            }
-//            // 注册 Activity 生命周期监听
-//            application.registerActivityLifecycleCallbacks(this);
             // 初始化默认参数
             mIsHandler = true;
             mNullText = "text is null";
@@ -111,7 +106,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         }
     }
 
-    // === 实现IToast接口,对外公开方法 ===
+    // ===============================
+    // = 实现IToast接口,对外公开方法 =
+    // ===============================
 
     /**
      * 使用单次 Toast 样式配置
@@ -119,7 +116,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @return
      */
     @Override
-    public IToast.Operate style(IToast.Style toastStyle) {
+    public IToast.Operate style(final IToast.Style toastStyle) {
         if (toastStyle != null) {
             LOCAL_TOAST_STYLES.set(toastStyle);
         }
@@ -152,7 +149,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param toastStyle Toast 样式配置
      */
     @Override
-    public void initStyle(IToast.Style toastStyle) {
+    public void initStyle(final IToast.Style toastStyle) {
         sToastStyle = toastStyle;
         // 防止样式为null
         getToastStyle();
@@ -163,7 +160,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param toastFilter
      */
     @Override
-    public void initToastFilter(IToast.Filter toastFilter) {
+    public void initToastFilter(final IToast.Filter toastFilter) {
         sToastFilter = toastFilter;
     }
 
@@ -172,7 +169,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param view
      */
     @Override
-    public void setView(View view) {
+    public void setView(final View view) {
         if (sConfigToast != null && view != null) {
             sConfigToast.setView(view);
             // 如果是 null, 则抛出异常
@@ -188,7 +185,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param layoutId
      */
     @Override
-    public void setView(int layoutId) {
+    public void setView(final int layoutId) {
         if (sConfigToast != null) {
             try {
                 setView(View.inflate(sConfigToast.getView().getContext().getApplicationContext(), layoutId, null));
@@ -202,7 +199,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         }
     }
 
-    // === 操作方法 ===
+    // ============
+    // = 操作方法 =
+    // ============
 
     /**
      * 显示 Toast
@@ -210,7 +209,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param args
      */
     @Override
-    public void show(String content, Object... args) {
+    public void show(final String content, final Object... args) {
         String text = Utils.getFormatString(content, args);
         if (filter(text)) {
             priShowToastText(handlerContent(text));
@@ -223,7 +222,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param args
      */
     @Override
-    public void show(int resId, Object... args) {
+    public void show(final int resId, final Object... args) {
         String text = Utils.getFormatRes(resId, args);
         if (filter(text)) {
             // 获取处理的内容
@@ -236,7 +235,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param view
      */
     @Override
-    public void show(View view) {
+    public void show(final View view) {
         if (filter(view)) {
             priShowToastView(view, Toast.LENGTH_SHORT);
         }
@@ -248,7 +247,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param duration
      */
     @Override
-    public void show(View view, int duration) {
+    public void show(final View view, final int duration) {
         if (filter(view)) {
             priShowToastView(view, duration);
         }
@@ -266,7 +265,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         }
     }
 
-    // === IToast.Filter 实现方法 ===
+    // ==========================
+    // = IToast.Filter 实现方法 =
+    // ==========================
 
     /**
      * 判断是否显示
@@ -307,9 +308,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         return content;
     }
 
-    // ================
-    // === 内部处理 ===
-    // ================
+    // ============
+    // = 内部处理 =
+    // ============
 
     /**
      * 返回对应线程的 Toast 样式信息
@@ -378,7 +379,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param text
      * @return
      */
-    private Toast newToastText(IToast.Style style, String text) {
+    private Toast newToastText(final IToast.Style style, String text) {
         if (style == null) return null;
         // 设置为null, 便于提示排查
         if (TextUtils.isEmpty(text)) {
@@ -513,7 +514,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param duration
      * @return
      */
-    private Toast newToastView(IToast.Style style, View view, int duration) {
+    private Toast newToastView(final IToast.Style style, final View view, final int duration) {
         if (style == null) {
             return null;
         } else if (view == null) { // 防止显示的View 为null
@@ -560,42 +561,4 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         }
         return mToast;
     }
-
-
-//  Application.ActivityLifecycleCallbacks
-//    // ================================
-//    // == 监听 Activity 生命周期处理 ==
-//    // ================================
-//
-//    @Override
-//    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {}
-//
-//    @Override
-//    public void onActivityStarted(Activity activity) {}
-//
-//    @Override
-//    public void onActivityResumed(Activity activity) {}
-//
-//    @Override
-//    public void onActivityPaused(Activity activity) {
-//        // A 跳转 B 页面的生命周期方法执行顺序
-//        // onPause(A) -> onCreate(B) -> onStart(B) -> onResume(B) -> onStop(A) -> onDestroyed(A)
-//        // =
-//        // 不能放在 onStop 或者 onDestroyed 方法中，因为此时新的 Activity 已经创建完成，必须在这个新的 Activity 未创建之前关闭这个 WindowManager
-//        // 调用取消显示会直接新的 Activity 的 onCreate 调用显示 Toast 可能显示不出来的问题（立马显示然后立马消失的效果）
-////        if (mToast != null) {
-////            if (mToast instanceof ToastFactory.NotificationToast) {
-////                mToast.cancel();
-////            }
-////        }
-//    }
-//
-//    @Override
-//    public void onActivityStopped(Activity activity) {}
-//
-//    @Override
-//    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {}
-//
-//    @Override
-//    public void onActivityDestroyed(Activity activity) {}
 }
