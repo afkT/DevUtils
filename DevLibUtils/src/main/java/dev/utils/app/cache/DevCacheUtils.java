@@ -26,12 +26,12 @@ final class DevCacheUtils {
 
     /**
      * 判断缓存的 String 数据是否到期
-     * @param str
+     * @param data
      * @return true: 到期了, false: 还没有到期
      */
-    public static boolean isDue(final String str) {
-        if (str == null) return true;
-        return isDue(str.getBytes());
+    public static boolean isDue(final String data) {
+        if (data == null) return true;
+        return isDue(data.getBytes());
     }
 
     /**
@@ -167,10 +167,10 @@ final class DevCacheUtils {
         return null;
     }
 
-    private static int indexOf(final byte[] data, final char c) {
+    private static int indexOf(final byte[] data, final char ch) {
         if (data != null) {
             for (int i = 0; i < data.length; i++) {
-                if (data[i] == c) {
+                if (data[i] == ch) {
                     return i;
                 }
             }
