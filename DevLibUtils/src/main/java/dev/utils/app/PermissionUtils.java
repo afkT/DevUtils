@@ -27,6 +27,7 @@ import dev.DevUtils;
 /**
  * detail: 权限请求工具类
  * Created by Ttt
+ * ==============
  * hint:
  * -
  * 参考:
@@ -46,7 +47,7 @@ import dev.DevUtils;
  * PermissionUtils.permission("").callBack(null).request();
  * // 第二种请求方式 - 需要在 onRequestPermissionsResult 中通知调用
  * PermissionUtils.permission("").callBack(null).request(Activity);
- * ======
+ * ==============
  * 注意事项: 需要注意在onResume 中调用
  * 不管是第一种方式, 跳自定义的Activity, 还是第二种 系统内部跳转授权页面, 都会多次触发onResume
  * https://www.aliyun.com/jiaocheng/8030.html

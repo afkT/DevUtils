@@ -12,6 +12,7 @@ import dev.DevUtils;
 /**
  * detail: 电源管理工具类
  * Created by Ttt
+ * ==============
  * <uses-permission android:name="android.permission.WAKE_LOCK"/>
  */
 public final class PowerManagerUtils {

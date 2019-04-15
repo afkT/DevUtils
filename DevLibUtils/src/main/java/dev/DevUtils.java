@@ -335,6 +335,7 @@ public final class DevUtils {
     /**
      * detail: 对Activity的生命周期事件进行集中处理。  ActivityLifecycleCallbacks 实现方法
      * Created by Ttt
+     * ==============
      * http://blog.csdn.net/tongcpp/article/details/40344871
      */
     private static class ActivityLifecycleImpl implements Application.ActivityLifecycleCallbacks, ActivityLifecycleGet, ActivityLifecycleNotify {

@@ -24,6 +24,10 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: Acitivty 工具类
  * Created by Ttt
+ * ==============
+ * 转场动画：
+ * https://www.cnblogs.com/tianzhijiexian/p/4087917.html
+ * ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
  */
 public final class ActivityUtils {
 
@@ -62,7 +66,8 @@ public final class ActivityUtils {
      * @param className   activity全路径类名
      * @return
      */
-    public static boolean isActivityExists(Context context, String packageName, String className) {
+    public static boolean isActivityExists(final Context context, final String packageName, final String className) {
+        if (context == null || packageName == null || className == null) return false;
         boolean result = true;
         try {
             Intent intent = new Intent();
@@ -85,13 +90,17 @@ public final class ActivityUtils {
     }
 
     /**
-     * 回到桌面 -> 同点击Home键效果
+     * 回到桌面 (同点击Home键效果)
      */
     public static void startHomeActivity() {
-        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory(Intent.CATEGORY_HOME);
-        homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        DevUtils.getContext().startActivity(homeIntent);
+        try {
+            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+            homeIntent.addCategory(Intent.CATEGORY_HOME);
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            DevUtils.getContext().startActivity(homeIntent);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startHomeActivity");
+        }
     }
 
     /**
@@ -99,7 +108,12 @@ public final class ActivityUtils {
      * @return
      */
     public static String getLauncherActivity() {
-        return getLauncherActivity(DevUtils.getContext().getPackageName());
+        try {
+            return getLauncherActivity(DevUtils.getContext().getPackageName());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getLauncherActivity");
+        }
+        return null;
     }
 
     /**
@@ -108,17 +122,22 @@ public final class ActivityUtils {
      * @return
      */
     public static String getLauncherActivity(@NonNull final String packageName) {
-        Intent intent = new Intent(Intent.ACTION_MAIN, null);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PackageManager pm = DevUtils.getContext().getPackageManager();
-        List<ResolveInfo> lists = pm.queryIntentActivities(intent, 0);
-        for (ResolveInfo resolveinfo : lists) {
-            if (resolveinfo != null && resolveinfo.activityInfo != null) {
-                if (resolveinfo.activityInfo.packageName.equals(packageName)) {
-                    return resolveinfo.activityInfo.name;
+        if (packageName == null) return null;
+        try {
+            Intent intent = new Intent(Intent.ACTION_MAIN, null);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            PackageManager pm = DevUtils.getContext().getPackageManager();
+            List<ResolveInfo> lists = pm.queryIntentActivities(intent, 0);
+            for (ResolveInfo resolveinfo : lists) {
+                if (resolveinfo != null && resolveinfo.activityInfo != null) {
+                    if (resolveinfo.activityInfo.packageName.equals(packageName)) {
+                        return resolveinfo.activityInfo.name;
+                    }
                 }
             }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getLauncherActivity");
         }
         return null;
     }
@@ -129,7 +148,13 @@ public final class ActivityUtils {
      * @return
      */
     public static Drawable getActivityIcon(final Class<?> clazz) {
-        return getActivityIcon(new ComponentName(DevUtils.getContext(), clazz));
+        if (clazz == null) return null;
+        try {
+            return getActivityIcon(new ComponentName(DevUtils.getContext(), clazz));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getActivityIcon");
+        }
+        return null;
     }
 
     /**
@@ -138,12 +163,13 @@ public final class ActivityUtils {
      * @return
      */
     public static Drawable getActivityIcon(final ComponentName activityName) {
+        if (activityName == null) return null;
         try {
             return DevUtils.getContext().getPackageManager().getActivityIcon(activityName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivityIcon");
-            return null;
         }
+        return null;
     }
 
     /**
@@ -152,7 +178,13 @@ public final class ActivityUtils {
      * @return
      */
     public static Drawable getActivityLogo(final Class<?> clazz) {
-        return getActivityLogo(new ComponentName(DevUtils.getContext(), clazz));
+        if (clazz == null) return null;
+        try {
+            return getActivityLogo(new ComponentName(DevUtils.getContext(), clazz));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getActivityLogo");
+        }
+        return null;
     }
 
     /**
@@ -161,12 +193,13 @@ public final class ActivityUtils {
      * @return
      */
     public static Drawable getActivityLogo(final ComponentName activityName) {
+        if (activityName == null) return null;
         try {
             return DevUtils.getContext().getPackageManager().getActivityLogo(activityName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivityLogo");
-            return null;
         }
+        return null;
     }
 
     /**
@@ -174,15 +207,14 @@ public final class ActivityUtils {
      * @param packageName
      * @return
      */
-    public static String getActivityToLauncher(String packageName) {
+    public static String getActivityToLauncher(final String packageName) {
+        if (packageName == null) return null;
         try {
             PackageManager pManager = DevUtils.getContext().getPackageManager();
             // 获取对应的PackageInfo
             PackageInfo pInfo = pManager.getPackageInfo(packageName, 0);
 
-            if (pInfo == null) {
-                return null;
-            }
+            if (pInfo == null) return null;
 
             // 创建一个类别为 CATEGORY_LAUNCHER 的该包名的 Intent
             Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
@@ -221,7 +253,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 获取系统桌面信息 -> packageName
+     * 获取系统桌面信息 - packageName
      * （注：存在多个桌面时且未指定默认桌面时，该方法返回Null,使用时需处理这个情况）
      * @return
      */
@@ -239,7 +271,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 获取系统桌面信息 -> activityName
+     * 获取系统桌面信息 - activityName
      * @return
      */
     public static String getLauncherCategoryHomeToActivityName() {
@@ -256,7 +288,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 获取系统桌面信息 -> package/activityName
+     * 获取系统桌面信息 - package/activityName
      * @return
      */
     public static String getLauncherCategoryHomeToPackageAndName() {
@@ -280,9 +312,9 @@ public final class ActivityUtils {
         return null;
     }
 
-    // == 以下方法使用介绍 ==
-    // https://www.cnblogs.com/tianzhijiexian/p/4087917.html
-    // ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
+    // ============
+    // = 转场动画 =
+    // ============
 
     /**
      * 设置跳转动画
@@ -292,7 +324,12 @@ public final class ActivityUtils {
      * @return
      */
     private static Bundle getOptionsBundle(final Context context, final int enterAnim, final int exitAnim) {
-        return ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle();
+        try {
+            return ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getOptionsBundle");
+        }
+        return null;
     }
 
     /**
@@ -302,15 +339,21 @@ public final class ActivityUtils {
      * @return
      */
     private static Bundle getOptionsBundle(final Activity activity, final View[] sharedElements) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            int len = sharedElements.length;
-            @SuppressWarnings("unchecked")
-            Pair<View, String>[] pairs = new Pair[len];
-            for (int i = 0; i < len; i++) {
-                pairs[i] = Pair.create(sharedElements[i], sharedElements[i].getTransitionName());
+        if (activity == null) return null;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                int len = sharedElements.length;
+                @SuppressWarnings("unchecked")
+                Pair<View, String>[] pairs = new Pair[len];
+                for (int i = 0; i < len; i++) {
+                    pairs[i] = Pair.create(sharedElements[i], sharedElements[i].getTransitionName());
+                }
+                return ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pairs).toBundle();
             }
-            return ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pairs).toBundle();
+            return ActivityOptionsCompat.makeSceneTransitionAnimation(activity, null, null).toBundle();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getOptionsBundle");
         }
-        return ActivityOptionsCompat.makeSceneTransitionAnimation(activity, null, null).toBundle();
+        return null;
     }
 }

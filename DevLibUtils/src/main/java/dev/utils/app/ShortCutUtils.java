@@ -13,6 +13,7 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 创建删除快捷图标工具类
  * Created by Ttt
+ * ==============
  * 需要权限:
  * com.android.launcher.permission.INSTALL_SHORTCUT
  * com.android.launcher.permission.UNINSTALL_SHORTCUT

@@ -11,6 +11,7 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 本应用数据清除管理器
  * Created by Ttt
+ * ==============
  * 主要功能有清除内/外缓存，清除数据库，清除sharedPreference，清除files和清除自定义目录
  */
 public final class CleanUtils {

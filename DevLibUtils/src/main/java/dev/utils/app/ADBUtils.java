@@ -19,9 +19,9 @@ import dev.utils.common.DevCommonUtils;
 /**
  * detail: ADB shell 工具类
  * Created by Ttt
+ * ==============
  * hint:
- * <p>
- * // Awesome Adb——一份超全超详细的 ADB 用法大全
+ * Awesome Adb——一份超全超详细的 ADB 用法大全
  * https://github.com/mzlogin/awesome-adb
  * <p>
  * // Process.waitFor()的返回值含义
