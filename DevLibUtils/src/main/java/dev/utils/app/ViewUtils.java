@@ -351,9 +351,9 @@ public final class ViewUtils {
 
     /**
      * 切换View状态
-     * @param isChange 是否改变
+     * @param isChange     是否改变
      * @param isVisibility 是否显示
-     * @param view 需要判断的View
+     * @param view         需要判断的View
      * @return
      */
     public static boolean toogleView(boolean isChange, int isVisibility, View view) {
@@ -557,9 +557,9 @@ public final class ViewUtils {
     /**
      * 计算ListView Item 高度
      * @param listView
-     * @param isSet 是否 setLayoutParams
-     * ==
-     * hint: 解决 ScrollView 嵌套 ListView 时, 会无法正确的计算ListView的大小
+     * @param isSet    是否 setLayoutParams
+     *                 ==
+     *                 hint: 解决 ScrollView 嵌套 ListView 时, 会无法正确的计算ListView的大小
      */
     public static int calcListViewItemHeight(ListView listView, boolean isSet) {
         // 获取 Adapter
@@ -606,9 +606,9 @@ public final class ViewUtils {
      * 计算GridView Item 高度
      * @param gridView
      * @param numColumns
-     * @param isSet 是否 setLayoutParams
-     * ==
-     * hint: 解决 ScrollView 嵌套 GridView 时, 会无法正确的计算ListView的大小
+     * @param isSet      是否 setLayoutParams
+     *                   ==
+     *                   hint: 解决 ScrollView 嵌套 GridView 时, 会无法正确的计算ListView的大小
      */
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     public static int calcGridViewItemHeight(GridView gridView, int numColumns, boolean isSet) {

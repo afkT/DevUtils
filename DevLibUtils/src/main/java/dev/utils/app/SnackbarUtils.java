@@ -176,7 +176,7 @@ public final class SnackbarUtils {
         if (snackbar != null) {
             try {
                 // 加载布局文件新建View
-                View addView = LayoutInflater.from(snackbar.getView().getContext()).inflate(layoutId,null);
+                View addView = LayoutInflater.from(snackbar.getView().getContext()).inflate(layoutId, null);
                 return addView(addView, index);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "addView");
@@ -196,11 +196,11 @@ public final class SnackbarUtils {
         if (snackbar != null && view != null) {
             try {
                 // 设置新建布局参数
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 // 设置新建 View 在 Snackbar 内垂直居中显示
-                params.gravity= Gravity.CENTER_VERTICAL;
+                params.gravity = Gravity.CENTER_VERTICAL;
                 view.setLayoutParams(params);
-                ((Snackbar.SnackbarLayout) snackbar.getView()).addView(view,index);
+                ((Snackbar.SnackbarLayout) snackbar.getView()).addView(view, index);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "addView");
             }
@@ -395,7 +395,7 @@ public final class SnackbarUtils {
      * @param args
      * @return
      */
-    private String getFormatString(String format, Object...  args) {
+    private String getFormatString(String format, Object... args) {
         try {
             if (args != null && args.length != 0) {
                 return String.format(format, args);
@@ -413,7 +413,7 @@ public final class SnackbarUtils {
      * @param resId
      * @param objs
      */
-    private String getFormatRes(int resId, Object...  objs) {
+    private String getFormatRes(int resId, Object... objs) {
         try {
             // 获取字符串并且进行格式化
             if (objs != null && objs.length != 0) {
@@ -1170,7 +1170,7 @@ public final class SnackbarUtils {
             // 设置 RootView 透明度
             if (style.getRootAlpha() >= 0f) {
                 float rootAlpha = style.getRootAlpha();
-                rootAlpha = rootAlpha >= 1.0f ? 1.0f :(rootAlpha <= 0.0f ? 0.0f : rootAlpha);
+                rootAlpha = rootAlpha >= 1.0f ? 1.0f : (rootAlpha <= 0.0f ? 0.0f : rootAlpha);
                 rootView.setAlpha(rootAlpha);
             }
 
@@ -1552,9 +1552,9 @@ public final class SnackbarUtils {
                 heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
             }
             view.measure(widthSpec, heightSpec);
-            return new int[]{ view.getMeasuredWidth(), view.getMeasuredHeight() };
+            return new int[]{view.getMeasuredWidth(), view.getMeasuredHeight()};
         } catch (Exception e) {
-            return new int[] { 0, 0 };
+            return new int[]{0, 0};
         }
     }
 

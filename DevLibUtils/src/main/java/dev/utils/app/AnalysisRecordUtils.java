@@ -415,9 +415,10 @@ public final class AnalysisRecordUtils {
     //用 @IntDef "包住" 常量；
     // @Retention 定义策略
     // 声明构造器
-    @IntDef({ DEFAULT, HH, MM, SS})
+    @IntDef({DEFAULT, HH, MM, SS})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface TIME {}
+    public @interface TIME {
+    }
 
     /**
      * detail: 记录文件信息实体类
@@ -677,7 +678,7 @@ public final class AnalysisRecordUtils {
         /**
          * 获取保存地址
          * @param storagePath 存储路径
-         * @param filePath 文件路径
+         * @param filePath    文件路径
          * @return
          */
         private String getSavePath(String storagePath, String filePath) {
@@ -735,7 +736,7 @@ public final class AnalysisRecordUtils {
     /**
      * 追加文件：使用FileWriter
      * @param filePath 文件路径
-     * @param text  追加内容
+     * @param text     追加内容
      */
     private static void appendFile(String filePath, String text) {
         if (filePath == null || text == null) {
@@ -764,7 +765,7 @@ public final class AnalysisRecordUtils {
 
     /**
      * 保存文件
-     * @param txt   保存内容
+     * @param txt      保存内容
      * @param filePath 保存路径
      * @param fileName 文件名.后缀
      * @return 是否保存成功

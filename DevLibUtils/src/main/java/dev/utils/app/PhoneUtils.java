@@ -518,7 +518,7 @@ public final class PhoneUtils {
     /**
      * 跳至发送短信界面
      * @param phoneNumber 接收号码
-     * @param content 短信内容
+     * @param content     短信内容
      * @return
      */
     public static boolean sendSms(final String phoneNumber, final String content) {
@@ -536,7 +536,7 @@ public final class PhoneUtils {
      * 发送短信
      * <uses-permission android:name="android.permission.SEND_SMS" />
      * @param phoneNumber 接收号码
-     * @param content 短信内容
+     * @param content     短信内容
      */
     @RequiresPermission(SEND_SMS)
     public static void sendSmsSilent(final String phoneNumber, final String content) {
@@ -559,7 +559,7 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.READ_CONTACTS" />
      * @return
      */
-    @RequiresPermission(allOf = { READ_EXTERNAL_STORAGE, READ_CONTACTS})
+    @RequiresPermission(allOf = {READ_EXTERNAL_STORAGE, READ_CONTACTS})
     public static List<Map<String, String>> getAllContactInfo() {
         List<Map<String, String>> list = new ArrayList<>();
         // 1.获取内容解析者

@@ -20,21 +20,21 @@ import dev.utils.common.DevCommonUtils;
  * detail: ADB shell 工具类
  * Created by Ttt
  * hint:
- *
+ * <p>
  * // Awesome Adb——一份超全超详细的 ADB 用法大全
  * https://github.com/mzlogin/awesome-adb
- *
+ * <p>
  * // Process.waitFor()的返回值含义
  * https://blog.csdn.net/qq_35661171/article/details/79096786
- *
+ * <p>
  * // adb shell input
  * https://blog.csdn.net/soslinken/article/details/49587497
- *
+ * <p>
  * android 上发送adb 指令，不需要加 adb shell
- *
+ * <p>
  * // https://www.imooc.com/qadetail/198264
  * grep 是 linux 下的命令, windows 用 findstr
- *
+ * <p>
  * 开启 Thread 执行, 非主线程, 否则无响应并无效
  */
 public final class ADBUtils {
@@ -55,8 +55,8 @@ public final class ADBUtils {
      */
     public static boolean isDeviceRooted() {
         String su = "su";
-        String[] locations = { "/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
-                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/" };
+        String[] locations = {"/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
+                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
         for (String location : locations) {
             if (new File(location + su).exists()) {
                 return true;
@@ -88,8 +88,7 @@ public final class ADBUtils {
     /**
      * 获取 App 列表(包名)
      * @param type
-     * @return
-     * https://blog.csdn.net/henni_719/article/details/62222439
+     * @return https://blog.csdn.net/henni_719/article/details/62222439
      */
     public static List<String> getAppList(String type) {
         // adb shell pm list packages [options]
@@ -384,7 +383,7 @@ public final class ADBUtils {
     /**
      * 卸载 App
      * @param packageName
-     * @param isKeepData -k 参数可选，表示卸载应用但保留数据和缓存目录。
+     * @param isKeepData  -k 参数可选，表示卸载应用但保留数据和缓存目录。
      * @return
      */
     public static boolean uninstallApp(String packageName, boolean isKeepData) {
@@ -876,7 +875,7 @@ public final class ADBUtils {
                         String data = lists.get(i);
                         // 判断是否该页面结尾
                         if (data.endsWith(activity)) {
-                            number ++;
+                            number++;
                         } else {
                             break;
                         }
@@ -947,9 +946,9 @@ public final class ADBUtils {
 
     /**
      * 查看正在运行的 Services
-     * @param packageName  参数不是必须的，指定 <packagename> 表示查看与某个包名相关的 Services，不指定表示查看所有 Services。
-     *                     <packagename> 不一定要给出完整的包名，比如运行 adb shell dumpsys activity services org.mazhuang，
-     *                     那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来。
+     * @param packageName 参数不是必须的，指定 <packagename> 表示查看与某个包名相关的 Services，不指定表示查看所有 Services。
+     *                    <packagename> 不一定要给出完整的包名，比如运行 adb shell dumpsys activity services org.mazhuang，
+     *                    那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来。
      * @return
      */
     public static String getServices(String packageName) {
@@ -995,7 +994,7 @@ public final class ADBUtils {
     /**
      * 跳转页面 Activity
      * @param packageAndLauncher 包名/包名.页面
-     * @param closeActivity 关闭Activity所属的App进程后再启动Activity
+     * @param closeActivity      关闭Activity所属的App进程后再启动Activity
      * @return
      */
     public static boolean startActivity(String packageAndLauncher, boolean closeActivity) {
@@ -1005,8 +1004,8 @@ public final class ADBUtils {
     /**
      * 跳转页面 Activity
      * @param packageAndLauncher 包名/.xx
-     * @param append 追加的信息, 例如传递参数等
-     * @param closeActivity 关闭Activity所属的App进程后再启动Activity
+     * @param append             追加的信息, 例如传递参数等
+     * @param closeActivity      关闭Activity所属的App进程后再启动Activity
      * @return
      */
     public static boolean startActivity(String packageAndLauncher, String append, boolean closeActivity) {
@@ -1044,7 +1043,7 @@ public final class ADBUtils {
     /**
      * 启动服务
      * @param packageAndService 包名/.xxx
-     * @param append 追加的信息, 例如传递参数等
+     * @param append            追加的信息, 例如传递参数等
      * @return
      */
     public static boolean startService(String packageAndService, String append) {
@@ -1079,7 +1078,7 @@ public final class ADBUtils {
     /**
      * 停止服务
      * @param packageAndService 包名/.xxx
-     * @param append 追加的信息, 例如传递参数等
+     * @param append            追加的信息, 例如传递参数等
      * @return
      */
     public static boolean stopService(String packageAndService, String append) {
@@ -1105,8 +1104,7 @@ public final class ADBUtils {
     /**
      * 发送广播(向所有组件发送)
      * @param broadcast
-     * @return
-     * 例:
+     * @return 例:
      * adb shell am broadcast -a android.intent.action.BOOT_COMPLETED
      * 向所有组件广播 BOOT_COMPLETED
      */
@@ -1128,8 +1126,7 @@ public final class ADBUtils {
      * 发送广播
      * @param packageAndBroadcast 包名/.xxx
      * @param broadcast
-     * @return
-     * 例:
+     * @return 例:
      * adb shell am broadcast -a android.intent.action.BOOT_COMPLETED -n org.mazhuang.boottimemeasure/.BootCompletedReceiver
      * 只向 org.mazhuang.boottimemeasure/.BootCompletedReceiver 广播 BOOT_COMPLETED
      */
@@ -1170,7 +1167,7 @@ public final class ADBUtils {
 
     /**
      * 收紧内存
-     * @param pid 进程 ID
+     * @param pid   进程 ID
      * @param level HIDDEN、RUNNING_MODERATE、BACKGROUND、 RUNNING_LOW、MODERATE、RUNNING_CRITICAL、COMPLETE
      * @return
      */
@@ -1332,7 +1329,7 @@ public final class ADBUtils {
 
     /**
      * 触发某些按键
-     * @param keyCode  KeyEvent.xxx => KeyEvent.KEYCODE_BACK(返回键)
+     * @param keyCode KeyEvent.xxx => KeyEvent.KEYCODE_BACK(返回键)
      * @return
      */
     public static boolean keyevent(int keyCode) {
@@ -1361,7 +1358,7 @@ public final class ADBUtils {
 
     /**
      * 屏幕截图
-     * @param path /sdcard/xxx/x.png
+     * @param path      /sdcard/xxx/x.png
      * @param displayId -d display-id	指定截图的显示屏编号（有多显示屏的情况下）默认0
      * @return
      */
@@ -1410,10 +1407,10 @@ public final class ADBUtils {
 
     /**
      * 录制屏幕 (以 mp4 格式保存到 /sdcard)
-     * @param path /sdcard/xxx/x.mp4
-     * @param size 视频的尺寸，比如 1280x720，默认是屏幕分辨率。
+     * @param path    /sdcard/xxx/x.mp4
+     * @param size    视频的尺寸，比如 1280x720，默认是屏幕分辨率。
      * @param bitRate 视频的比特率，默认是 4Mbps。
-     * @param time 录制时长，单位秒。(默认/最长 180秒)
+     * @param time    录制时长，单位秒。(默认/最长 180秒)
      * @return
      */
     public static boolean screenrecord(String path, String size, int bitRate, int time) {
@@ -2093,8 +2090,7 @@ public final class ADBUtils {
     /**
      * 设置自动锁屏休眠时间 (单位毫秒)
      * @param time
-     * @return
-     * tips: 设置永不休眠 Integer.MAX_VALUE
+     * @return tips: 设置永不休眠 Integer.MAX_VALUE
      */
     public static boolean setScreenOffTimeout(long time) {
         if (time <= 0) {
@@ -2146,7 +2142,7 @@ public final class ADBUtils {
      * 不需要设备获得 Root 权限。
      * @return
      */
-    public static int putHiddenApi () {
+    public static int putHiddenApi() {
         String[] cmds = new String[2];
         cmds[0] = "settings put global hidden_api_policy_pre_p_apps 1";
         cmds[1] = "settings put global hidden_api_policy_p_apps 1";
@@ -2160,7 +2156,7 @@ public final class ADBUtils {
      * 不需要设备获得 Root 权限。
      * @return
      */
-    public static int deleteHiddenApi () {
+    public static int deleteHiddenApi() {
         String[] cmds = new String[2];
         cmds[0] = "settings delete global hidden_api_policy_pre_p_apps";
         cmds[1] = "settings delete global hidden_api_policy_p_apps";
@@ -2171,7 +2167,7 @@ public final class ADBUtils {
 
     /**
      * 开启无障碍辅助功能
-     * @param packageName 包名
+     * @param packageName              包名
      * @param accessibilityServiceName 无障碍服务名
      * @return
      */
@@ -2191,7 +2187,7 @@ public final class ADBUtils {
 
     /**
      * 关闭无障碍辅助功能
-     * @param packageName 包名
+     * @param packageName              包名
      * @param accessibilityServiceName 无障碍服务名
      * @return
      */

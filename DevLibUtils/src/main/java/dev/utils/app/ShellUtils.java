@@ -26,17 +26,17 @@ public final class ShellUtils {
     /**
      * 是否是在 root 下执行命令
      * @param command 命令
-     * @param isRoot 是否需要 root 权限执行
+     * @param isRoot  是否需要 root 权限执行
      * @return CommandResult
      */
     public static CommandResult execCmd(final String command, final boolean isRoot) {
-        return execCmd(new String[]{ command }, isRoot, true);
+        return execCmd(new String[]{command}, isRoot, true);
     }
 
     /**
      * 是否是在 root 下执行命令
      * @param commands 多条命令链表
-     * @param isRoot 是否需要 root 权限执行
+     * @param isRoot   是否需要 root 权限执行
      * @return CommandResult
      */
     public static CommandResult execCmd(final List<String> commands, final boolean isRoot) {
@@ -46,7 +46,7 @@ public final class ShellUtils {
     /**
      * 是否是在 root 下执行命令
      * @param commands 多条命令数组
-     * @param isRoot 是否需要 root 权限执行
+     * @param isRoot   是否需要 root 权限执行
      * @return CommandResult
      */
     public static CommandResult execCmd(final String[] commands, final boolean isRoot) {
@@ -55,19 +55,19 @@ public final class ShellUtils {
 
     /**
      * 是否是在 root 下执行命令
-     * @param command 命令
-     * @param isRoot 是否需要 root 权限执行
+     * @param command         命令
+     * @param isRoot          是否需要 root 权限执行
      * @param isNeedResultMsg 是否需要结果消息
      * @return CommandResult
      */
     public static CommandResult execCmd(final String command, final boolean isRoot, final boolean isNeedResultMsg) {
-        return execCmd(new String[]{ command }, isRoot, isNeedResultMsg);
+        return execCmd(new String[]{command}, isRoot, isNeedResultMsg);
     }
 
     /**
      * 是否是在 root 下执行命令
-     * @param commands 命令链表
-     * @param isRoot 是否需要 root 权限执行
+     * @param commands        命令链表
+     * @param isRoot          是否需要 root 权限执行
      * @param isNeedResultMsg 是否需要结果消息
      * @return CommandResult
      */
@@ -77,8 +77,8 @@ public final class ShellUtils {
 
     /**
      * 是否是在 root 下执行命令
-     * @param commands 命令数组
-     * @param isRoot 是否需要 root 权限执行
+     * @param commands        命令数组
+     * @param isRoot          是否需要 root 权限执行
      * @param isNeedResultMsg 是否需要结果消息
      * @return CommandResult
      */
@@ -143,14 +143,22 @@ public final class ShellUtils {
                 errorMsg == null ? null : errorMsg.toString());
     }
 
-    /** 返回的命令结果 */
+    /**
+     * 返回的命令结果
+     */
     public static class CommandResult {
 
-        /** 结果码 */
+        /**
+         * 结果码
+         */
         public int result;
-        /** 成功信息 */
+        /**
+         * 成功信息
+         */
         public String successMsg;
-        /** 错误信息 */
+        /**
+         * 错误信息
+         */
         public String errorMsg;
 
         public CommandResult(final int result, final String successMsg, final String errorMsg) {

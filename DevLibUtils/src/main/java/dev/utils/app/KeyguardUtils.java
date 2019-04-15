@@ -20,7 +20,9 @@ public final class KeyguardUtils {
     // KeyguardUtils 实例
     private static KeyguardUtils INSTANCE;
 
-    /** 获取 KeyguardUtils 实例 ,单例模式 */
+    /**
+     * 获取 KeyguardUtils 实例 ,单例模式
+     */
     public static KeyguardUtils getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new KeyguardUtils();
@@ -33,7 +35,9 @@ public final class KeyguardUtils {
     // android-26 开始过时
     private KeyguardManager.KeyguardLock keyguardLock;
 
-    /** 构造函数 */
+    /**
+     * 构造函数
+     */
     private KeyguardUtils() {
         // 获取系统服务
         keyguardManager = (KeyguardManager) DevUtils.getContext().getSystemService(Context.KEYGUARD_SERVICE);
@@ -126,7 +130,7 @@ public final class KeyguardUtils {
      * 生成一个新的 KeyguardLock, 并且设置 Tag
      * @param tag
      */
-    public void newKeyguardLock (String tag) {
+    public void newKeyguardLock(String tag) {
         keyguardLock = keyguardManager.newKeyguardLock(tag);
     }
 

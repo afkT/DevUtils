@@ -55,7 +55,7 @@ public final class EditTextUtils {
         if (editText != null) {
             if (maxLength > 0) {
                 // 设置最大长度限制
-                InputFilter[] filters = { new InputFilter.LengthFilter(maxLength) };
+                InputFilter[] filters = {new InputFilter.LengthFilter(maxLength)};
                 editText.setFilters(filters);
             }
         }
@@ -144,7 +144,7 @@ public final class EditTextUtils {
      * 追加内容
      * @param editText
      * @param content
-     * @param start 开始添加的位置
+     * @param start    开始添加的位置
      * @param isSelect
      * @return
      */
@@ -222,8 +222,7 @@ public final class EditTextUtils {
      * 设置输入限制
      * @param editText
      * @param keyListener
-     * @return
-     * setKeyListener(editText, getNumberAndEnglishKeyListener());
+     * @return setKeyListener(editText, getNumberAndEnglishKeyListener ());
      */
     public static EditText setKeyListener(EditText editText, KeyListener keyListener) {
         if (editText != null) {
@@ -235,9 +234,8 @@ public final class EditTextUtils {
     /**
      * 设置输入限制
      * @param editText
-     * @param digits 只能输入的内容 -> 1234567890
-     * @return
-     * setKeyListener(editText, "1234567890");
+     * @param digits   只能输入的内容 -> 1234567890
+     * @return setKeyListener(editText, " 1234567890 ");
      */
     public static EditText setKeyListener(EditText editText, String digits) {
         if (editText != null) {

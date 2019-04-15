@@ -23,7 +23,9 @@ public final class JSONObjectUtils {
 
     // 日志 TAG
     private static final String TAG = JSONObjectUtils.class.getSimpleName();
-    /** JSON 格式内容 默认缩进 */
+    /**
+     * JSON 格式内容 默认缩进
+     */
     public static final int JSON_INDENT = 4;
 
     // ======================
@@ -113,9 +115,8 @@ public final class JSONObjectUtils {
     /**
      * Object 转换 JSON 对象
      * @param object
-     * @param type JSONObject.class || JSONArray.class || JSONTokener.class
-     * @return
-     * use:
+     * @param type   JSONObject.class || JSONArray.class || JSONTokener.class
+     * @return use:
      * fromJson(xx, JSONObject.class);
      * fromJson(xx, JSONArray.class);
      * fromJson(xx, JSONTokener.class);

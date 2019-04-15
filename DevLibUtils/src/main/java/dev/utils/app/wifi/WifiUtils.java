@@ -45,10 +45,12 @@ public final class WifiUtils {
      * 没有密码
      */
     public static final int NOPWD = 0;
+
     /**
      * wep加密方式
      */
     public static final int WEP = 1;
+
     /**
      * wpa加密方式
      */
@@ -427,14 +429,17 @@ public final class WifiUtils {
      * 默认没有密码
      */
     public static final int SECURITY_NONE = 0;
+
     /**
      * WEP加密方式
      */
     public static final int SECURITY_WEP = 1;
+
     /**
      * PSK加密方式
      */
     public static final int SECURITY_PSK = 2;
+
     /**
      * EAP加密方式
      */

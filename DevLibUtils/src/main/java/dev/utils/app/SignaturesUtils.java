@@ -144,7 +144,7 @@ public final class SignaturesUtils {
     }
 
     /**
-     *  打印签名信息
+     * 打印签名信息
      * @param signatures
      * @return
      */
@@ -183,7 +183,7 @@ public final class SignaturesUtils {
     public static Signature[] getSignaturesFromApk(File file) {
         try {
             Certificate[] certificates = getCertificateFromApk(file);
-            Signature[] signatures = new Signature[] { new Signature(certificates[0].getEncoded()) };
+            Signature[] signatures = new Signature[]{new Signature(certificates[0].getEncoded())};
             return signatures;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSignaturesFromApk");

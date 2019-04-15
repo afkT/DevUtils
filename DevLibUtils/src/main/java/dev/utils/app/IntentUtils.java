@@ -97,7 +97,7 @@ public final class IntentUtils {
     /**
      * 获取卸载 App 的意图
      * @param packageName
-     * @param isNewTask 是否开启新的任务栈
+     * @param isNewTask   是否开启新的任务栈
      * @return 卸载 App 的意图
      */
     public static Intent getUninstallAppIntent(final String packageName, final boolean isNewTask) {
@@ -139,7 +139,7 @@ public final class IntentUtils {
     /**
      * 获取 App 具体设置的意图
      * @param packageName
-     * @param isNewTask 是否开启新的任务栈
+     * @param isNewTask   是否开启新的任务栈
      * @return App 具体设置的意图
      */
     public static Intent getLaunchAppDetailsSettingsIntent(final String packageName, final boolean isNewTask) {
@@ -151,7 +151,7 @@ public final class IntentUtils {
     /**
      * 获取 到应用商店app详情界面的意图
      * @param packageName 目标 App 的包名
-     * @param marketPkg 应用商店包名 ,如果为""则由系统弹出应用商店列表供用户选择,否则调转到目标市场的应用详情界面，某些应用商店可能会失败
+     * @param marketPkg   应用商店包名 ,如果为""则由系统弹出应用商店列表供用户选择,否则调转到目标市场的应用详情界面，某些应用商店可能会失败
      */
     public static Intent getlaunchAppDetailIntent(final String packageName, final String marketPkg) {
         return getlaunchAppDetailIntent(packageName, marketPkg, false);
@@ -160,8 +160,8 @@ public final class IntentUtils {
     /**
      * 获取 到应用商店app详情界面的意图
      * @param packageName 目标App的包名
-     * @param marketPkg 应用商店包名 ,如果为""则由系统弹出应用商店列表供用户选择,否则调转到目标市场的应用详情界面，某些应用商店可能会失败
-     * @param isNewTask 是否开启新的任务栈
+     * @param marketPkg   应用商店包名 ,如果为""则由系统弹出应用商店列表供用户选择,否则调转到目标市场的应用详情界面，某些应用商店可能会失败
+     * @param isNewTask   是否开启新的任务栈
      */
     public static Intent getlaunchAppDetailIntent(final String packageName, final String marketPkg, final boolean isNewTask) {
         try {
@@ -189,7 +189,7 @@ public final class IntentUtils {
 
     /**
      * 获取分享文本的意图
-     * @param content 分享文本
+     * @param content   分享文本
      * @param isNewTask 是否开启新的任务栈
      * @return 分享文本的意图
      */
@@ -203,7 +203,7 @@ public final class IntentUtils {
 
     /**
      * 获取分享图片的意图
-     * @param content 文本
+     * @param content   文本
      * @param imagePath 图片文件路径
      * @return 分享图片的意图
      */
@@ -226,7 +226,7 @@ public final class IntentUtils {
     /**
      * 获取分享图片的意图
      * @param content 文本
-     * @param image 图片文件
+     * @param image   图片文件
      * @return 分享图片的意图
      */
     public static Intent getShareImageIntent(final String content, final File image) {
@@ -235,8 +235,8 @@ public final class IntentUtils {
 
     /**
      * 获取分享图片的意图
-     * @param content 文本
-     * @param image 图片文件
+     * @param content   文本
+     * @param image     图片文件
      * @param isNewTask 是否开启新的任务栈
      * @return 分享图片的意图
      */
@@ -248,7 +248,7 @@ public final class IntentUtils {
     /**
      * 获取分享图片的意图
      * @param content 分享文本
-     * @param uri 图片 uri
+     * @param uri     图片 uri
      * @return 分享图片的意图
      */
     public static Intent getShareImageIntent(final String content, final Uri uri) {
@@ -257,8 +257,8 @@ public final class IntentUtils {
 
     /**
      * 获取分享图片的意图
-     * @param content 分享文本
-     * @param uri 图片 uri
+     * @param content   分享文本
+     * @param uri       图片 uri
      * @param isNewTask 是否开启新的任务栈
      * @return 分享图片的意图
      */
@@ -273,7 +273,7 @@ public final class IntentUtils {
     /**
      * 获取其他应用组件的意图
      * @param packageName
-     * @param className 全类名
+     * @param className   全类名
      * @return 其他应用组件的意图
      */
     public static Intent getComponentIntent(final String packageName, final String className) {
@@ -283,8 +283,8 @@ public final class IntentUtils {
     /**
      * 获取其他应用组件的意图
      * @param packageName
-     * @param className 全类名
-     * @param isNewTask 是否开启新的任务栈
+     * @param className   全类名
+     * @param isNewTask   是否开启新的任务栈
      * @return 其他应用组件的意图
      */
     public static Intent getComponentIntent(final String packageName, final String className, final boolean isNewTask) {
@@ -294,8 +294,8 @@ public final class IntentUtils {
     /**
      * 获取其他应用组件的意图
      * @param packageName
-     * @param className 全类名
-     * @param bundle bundle
+     * @param className   全类名
+     * @param bundle      bundle
      * @return 其他应用组件的意图
      */
     public static Intent getComponentIntent(final String packageName, final String className, final Bundle bundle) {
@@ -305,9 +305,9 @@ public final class IntentUtils {
     /**
      * 获取其他应用组件的意图
      * @param packageName
-     * @param className 全类名
-     * @param bundle bundle
-     * @param isNewTask 是否开启新的任务栈
+     * @param className   全类名
+     * @param bundle      bundle
+     * @param isNewTask   是否开启新的任务栈
      * @return 其他应用组件的意图
      */
     public static Intent getComponentIntent(final String packageName, final String className, final Bundle bundle, final boolean isNewTask) {
@@ -350,7 +350,7 @@ public final class IntentUtils {
     /**
      * 获取跳至拨号界面意图
      * @param phoneNumber 电话号码
-     * @param isNewTask 是否开启新的任务栈
+     * @param isNewTask   是否开启新的任务栈
      * @return 跳至拨号界面意图
      */
     public static Intent getDialIntent(final String phoneNumber, final boolean isNewTask) {
@@ -385,7 +385,7 @@ public final class IntentUtils {
     /**
      * 获取发送短信界面的意图
      * @param phoneNumber 接收号码
-     * @param content 短信内容
+     * @param content     短信内容
      * @return 发送短信界面的意图
      */
     public static Intent getSendSmsIntent(final String phoneNumber, final String content) {
@@ -395,8 +395,8 @@ public final class IntentUtils {
     /**
      * 获取跳至发送短信界面的意图
      * @param phoneNumber 接收号码
-     * @param content 短信内容
-     * @param isNewTask 是否开启新的任务栈
+     * @param content     短信内容
+     * @param isNewTask   是否开启新的任务栈
      * @return 发送短信界面的意图
      */
     public static Intent getSendSmsIntent(final String phoneNumber, final String content, final boolean isNewTask) {
@@ -417,7 +417,7 @@ public final class IntentUtils {
 
     /**
      * 获取拍照的意图
-     * @param outUri 输出的 uri
+     * @param outUri    输出的 uri
      * @param isNewTask 是否开启新的任务栈
      * @return 拍照的意图
      */

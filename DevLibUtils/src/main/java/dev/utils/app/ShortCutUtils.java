@@ -38,7 +38,7 @@ public final class ShortCutUtils {
             ContentResolver cr = context.getContentResolver();
             String AUTHORITY = "com.android.launcher.settings";
             Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/favorites?notify=true");
-            cursor = cr.query(CONTENT_URI, new String[]{"title", "iconResource"}, "title=?", new String[]{ name }, null);
+            cursor = cr.query(CONTENT_URI, new String[]{"title", "iconResource"}, "title=?", new String[]{name}, null);
             if (cursor != null && cursor.getCount() > 0) {
                 isInstallShortcut = true;
             }

@@ -114,7 +114,7 @@ public final class BrightnessUtils {
 
     /**
      * 设置窗口亮度
-     * @param window 窗口
+     * @param window     窗口
      * @param brightness 亮度值
      */
     public static void setWindowBrightness(@NonNull final Window window, @IntRange(from = 0, to = 255) final int brightness) {

@@ -112,7 +112,7 @@ public final class DeviceUtils {
     /**
      * 处理设备信息
      * @param dInfoMaps 设备信息
-     * @param eHint 错误提示，如获取设备信息失败
+     * @param eHint     错误提示，如获取设备信息失败
      */
     public static String handlerDeviceInfo(Map<String, String> dInfoMaps, String eHint) {
         try {
@@ -178,8 +178,8 @@ public final class DeviceUtils {
      */
     public static boolean isDeviceRooted() {
         String su = "su";
-        String[] locations = { "/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
-                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/" };
+        String[] locations = {"/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
+                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
         for (String location : locations) {
             if (new File(location + su).exists()) {
                 return true;
@@ -211,15 +211,17 @@ public final class DeviceUtils {
             return Build.SUPPORTED_ABIS;
         } else {
             if (!TextUtils.isEmpty(Build.CPU_ABI2)) {
-                return new String[]{ Build.CPU_ABI, Build.CPU_ABI2 };
+                return new String[]{Build.CPU_ABI, Build.CPU_ABI2};
             }
-            return new String[]{ Build.CPU_ABI };
+            return new String[]{Build.CPU_ABI};
         }
     }
 
     // ==
 
-    /** 特殊mac地址用于判断是否获取失败 */
+    /**
+     * 特殊mac地址用于判断是否获取失败
+     */
     private static final String CUSTOM_MAC = "02:00:00:00:00:00";
 
     /**

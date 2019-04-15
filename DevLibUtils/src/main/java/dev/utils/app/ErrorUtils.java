@@ -64,7 +64,7 @@ public final class ErrorUtils {
     /**
      * 获取错误信息(无换行)
      * @param eHint 获取失败提示
-     * @param ex 错误信息
+     * @param ex    错误信息
      * @return
      */
     public static String getThrowableMsg(String eHint, Throwable ex) {
@@ -102,7 +102,7 @@ public final class ErrorUtils {
     /**
      * 获取错误信息(有换行)
      * @param eHint 获取失败提示
-     * @param ex 错误信息
+     * @param ex    错误信息
      * @return
      */
     public static String getThrowableNewLinesMsg(String eHint, Throwable ex) {

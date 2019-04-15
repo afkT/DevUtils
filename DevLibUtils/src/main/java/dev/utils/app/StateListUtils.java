@@ -64,11 +64,11 @@ public final class StateListUtils {
      */
     public static ColorStateList createColorStateList(String pressed, String normal) {
         // 颜色值
-        int[] colors = new int[]{ Color.parseColor(pressed), Color.parseColor(normal) };
+        int[] colors = new int[]{Color.parseColor(pressed), Color.parseColor(normal)};
         // 状态值
         int[][] states = new int[2][];
-        states[0] = new int[]{ android.R.attr.state_pressed }; // 选中颜色
-        states[1] = new int[]{  }; // 默认颜色
+        states[0] = new int[]{android.R.attr.state_pressed}; // 选中颜色
+        states[1] = new int[]{}; // 默认颜色
         // 生成对应的List对象
         ColorStateList colorList = new ColorStateList(states, colors);
         return colorList;
@@ -83,12 +83,12 @@ public final class StateListUtils {
      */
     public static ColorStateList createColorStateList(String selected, String pressed, String normal) {
         // 颜色值
-        int[] colors = new int[]{ Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(normal) };
+        int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(normal)};
         // 状态值
         int[][] states = new int[3][];
-        states[0] = new int[]{ android.R.attr.state_selected }; // 选中颜色
-        states[1] = new int[]{ android.R.attr.state_pressed }; // 点击颜色
-        states[2] = new int[]{  }; // 默认颜色
+        states[0] = new int[]{android.R.attr.state_selected}; // 选中颜色
+        states[1] = new int[]{android.R.attr.state_pressed}; // 点击颜色
+        states[2] = new int[]{}; // 默认颜色
         // 生成对应的List对象
         ColorStateList colorList = new ColorStateList(states, colors);
         return colorList;
@@ -105,14 +105,14 @@ public final class StateListUtils {
      */
     public static ColorStateList createColorStateList(String selected, String pressed, String focused, String checked, String normal) {
         // 颜色值
-        int[] colors = new int[]{ Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(focused), Color.parseColor(checked), Color.parseColor(normal) };
+        int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(focused), Color.parseColor(checked), Color.parseColor(normal)};
         // 状态值
         int[][] states = new int[5][];
-        states[0] = new int[]{ android.R.attr.state_selected }; // 选中颜色
-        states[1] = new int[]{ android.R.attr.state_pressed }; // 点击颜色
-        states[2] = new int[]{ android.R.attr.state_focused }; // 获取焦点
-        states[3] = new int[]{ android.R.attr.state_checked }; // 选中
-        states[4] = new int[]{  }; // 默认颜色
+        states[0] = new int[]{android.R.attr.state_selected}; // 选中颜色
+        states[1] = new int[]{android.R.attr.state_pressed}; // 点击颜色
+        states[2] = new int[]{android.R.attr.state_focused}; // 获取焦点
+        states[3] = new int[]{android.R.attr.state_checked}; // 选中
+        states[4] = new int[]{}; // 默认颜色
         // 生成对应的List对象
         ColorStateList colorList = new ColorStateList(states, colors);
         return colorList;
@@ -134,8 +134,8 @@ public final class StateListUtils {
         colors[1] = ContextCompat.getColor(context, normal);
         // 状态值
         int[][] states = new int[2][];
-        states[0] = new int[]{ android.R.attr.state_pressed }; // 选中颜色
-        states[1] = new int[]{  }; // 默认颜色
+        states[0] = new int[]{android.R.attr.state_pressed}; // 选中颜色
+        states[1] = new int[]{}; // 默认颜色
         // 生成对应的List对象
         ColorStateList colorList = new ColorStateList(states, colors);
         return colorList;
@@ -157,9 +157,9 @@ public final class StateListUtils {
         colors[2] = ContextCompat.getColor(context, normal);
         // 状态值
         int[][] states = new int[3][];
-        states[0] = new int[]{ android.R.attr.state_selected }; // 选中颜色
-        states[1] = new int[]{ android.R.attr.state_pressed }; // 点击颜色
-        states[2] = new int[]{  }; // 默认颜色
+        states[0] = new int[]{android.R.attr.state_selected}; // 选中颜色
+        states[1] = new int[]{android.R.attr.state_pressed}; // 点击颜色
+        states[2] = new int[]{}; // 默认颜色
         // 生成对应的List对象
         ColorStateList colorList = new ColorStateList(states, colors);
         return colorList;
@@ -185,11 +185,11 @@ public final class StateListUtils {
         colors[4] = ContextCompat.getColor(context, normal);
         // 状态值
         int[][] states = new int[5][];
-        states[0] = new int[]{ android.R.attr.state_selected }; // 选中颜色
-        states[1] = new int[]{ android.R.attr.state_pressed }; // 点击颜色
-        states[2] = new int[]{ android.R.attr.state_focused }; // 获取焦点
-        states[3] = new int[]{ android.R.attr.state_checked }; // 选中
-        states[4] = new int[]{  }; // 默认颜色
+        states[0] = new int[]{android.R.attr.state_selected}; // 选中颜色
+        states[1] = new int[]{android.R.attr.state_pressed}; // 点击颜色
+        states[2] = new int[]{android.R.attr.state_focused}; // 获取焦点
+        states[3] = new int[]{android.R.attr.state_checked}; // 选中
+        states[4] = new int[]{}; // 默认颜色
         // 生成对应的List对象
         ColorStateList colorList = new ColorStateList(states, colors);
         return colorList;
@@ -210,8 +210,8 @@ public final class StateListUtils {
         Drawable normalDraw = ContextCompat.getDrawable(context, normal);
         // 默认初始化
         StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[] { android.R.attr.state_pressed }, pressedDraw);
-        stateListDrawable.addState(new int[] {}, normalDraw);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDraw);
+        stateListDrawable.addState(new int[]{}, normalDraw);
         return stateListDrawable;
     }
 
@@ -230,9 +230,9 @@ public final class StateListUtils {
         Drawable normalDraw = ContextCompat.getDrawable(context, normal);
         // 默认初始化
         StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[] { android.R.attr.state_selected }, selectedDraw);
-        stateListDrawable.addState(new int[] { android.R.attr.state_pressed }, pressedDraw);
-        stateListDrawable.addState(new int[] {}, normalDraw);
+        stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selectedDraw);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDraw);
+        stateListDrawable.addState(new int[]{}, normalDraw);
         return stateListDrawable;
     }
 
@@ -255,11 +255,11 @@ public final class StateListUtils {
         Drawable normalDraw = ContextCompat.getDrawable(context, normal);
         // 默认初始化
         StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[] { android.R.attr.state_selected }, selectedDraw);
-        stateListDrawable.addState(new int[] { android.R.attr.state_pressed }, pressedDraw);
-        stateListDrawable.addState(new int[] { android.R.attr.state_focused }, focusedDraw);
-        stateListDrawable.addState(new int[] { android.R.attr.state_checked }, checkedDraw);
-        stateListDrawable.addState(new int[] {}, normalDraw);
+        stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selectedDraw);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDraw);
+        stateListDrawable.addState(new int[]{android.R.attr.state_focused}, focusedDraw);
+        stateListDrawable.addState(new int[]{android.R.attr.state_checked}, checkedDraw);
+        stateListDrawable.addState(new int[]{}, normalDraw);
         return stateListDrawable;
     }
 
@@ -274,8 +274,8 @@ public final class StateListUtils {
     public static StateListDrawable newSelector(Drawable pressed, Drawable normal) {
         // 默认初始化
         StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[] { android.R.attr.state_pressed }, pressed);
-        stateListDrawable.addState(new int[] {}, normal);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);
+        stateListDrawable.addState(new int[]{}, normal);
         return stateListDrawable;
     }
 
@@ -289,9 +289,9 @@ public final class StateListUtils {
     public static StateListDrawable newSelector(Drawable selected, Drawable pressed, Drawable normal) {
         // 默认初始化
         StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[] { android.R.attr.state_selected }, selected);
-        stateListDrawable.addState(new int[] { android.R.attr.state_pressed }, pressed);
-        stateListDrawable.addState(new int[] {}, normal);
+        stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selected);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);
+        stateListDrawable.addState(new int[]{}, normal);
         return stateListDrawable;
     }
 
@@ -307,11 +307,11 @@ public final class StateListUtils {
     public static StateListDrawable newSelector(Drawable selected, Drawable pressed, Drawable focused, Drawable checked, Drawable normal) {
         // 默认初始化
         StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[] { android.R.attr.state_selected }, selected);
-        stateListDrawable.addState(new int[] { android.R.attr.state_pressed }, pressed);
-        stateListDrawable.addState(new int[] { android.R.attr.state_focused }, focused);
-        stateListDrawable.addState(new int[] { android.R.attr.state_checked }, checked);
-        stateListDrawable.addState(new int[] {}, normal);
+        stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selected);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);
+        stateListDrawable.addState(new int[]{android.R.attr.state_focused}, focused);
+        stateListDrawable.addState(new int[]{android.R.attr.state_checked}, checked);
+        stateListDrawable.addState(new int[]{}, normal);
         return stateListDrawable;
     }
 }

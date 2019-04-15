@@ -25,7 +25,9 @@ public final class OSUtils {
     // 日志 TAG
     private static final String TAG = OSUtils.class.getSimpleName();
 
-    /** ROM 类型 */
+    /**
+     * ROM 类型
+     */
     private static final ROM ROM_TYPE = initRomType();
 
     private static final String KEY_DISPLAY_ID = "ro.build.display.id";

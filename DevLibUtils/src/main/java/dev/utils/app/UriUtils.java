@@ -29,23 +29,22 @@ public final class UriUtils {
     private static final String TAG = UriUtils.class.getSimpleName();
 
     /**
-    <provider
-        android:name="android.support.v4.content.FileProvider"
-        android:authorities="${applicationId}.fileProvider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-            <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/file_paths" />
-    </provider>
+     <provider
+     android:name="android.support.v4.content.FileProvider"
+     android:authorities="${applicationId}.fileProvider"
+     android:exported="false"
+     android:grantUriPermissions="true">
+     <meta-data
+     android:name="android.support.FILE_PROVIDER_PATHS"
+     android:resource="@xml/file_paths" />
+     </provider>
      */
 
     /**
      * 返回处理后的Uri, 单独传递名字, 自动添加包名 ${applicationId}
      * @param file
      * @param name
-     * @return
-     * getUriForFileToName(file, "fileProvider");
+     * @return getUriForFileToName(file, " fileProvider ");
      * getUriForFile(file, "包名.fileProvider");
      */
     public static Uri getUriForFileToName(final File file, String name) {

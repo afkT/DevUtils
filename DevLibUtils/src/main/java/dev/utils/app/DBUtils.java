@@ -23,7 +23,7 @@ public final class DBUtils {
     /**
      * 导出数据库
      * @param targetFile 目标文件
-     * @param dbName 数据库文件名
+     * @param dbName     数据库文件名
      * @return 是否倒出成功
      */
     public static boolean startExportDatabase(String targetFile, String dbName) {
@@ -48,7 +48,7 @@ public final class DBUtils {
 
     /**
      * 导入数据库
-     * @param srcFilePath 待复制的文件地址
+     * @param srcFilePath  待复制的文件地址
      * @param destFilePath 目标文件地址
      * @return 是否倒出成功
      */
@@ -70,7 +70,7 @@ public final class DBUtils {
 
     /**
      * 导入数据库
-     * @param inputStream 文件流(被复制)
+     * @param inputStream  文件流(被复制)
      * @param destFilePath 目标文件地址
      * @return 是否倒出成功
      */

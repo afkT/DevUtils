@@ -63,7 +63,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Activity Meta Data
-     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param name    完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
@@ -74,7 +74,7 @@ public final class ManifestUtils {
     /**
      * 获取 Activity Meta Data
      * @param packageName
-     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param name        完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
@@ -104,7 +104,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Service Meta Data
-     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param name    完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
@@ -115,7 +115,7 @@ public final class ManifestUtils {
     /**
      * 获取 Service Meta Data
      * @param packageName
-     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param name        完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
@@ -145,7 +145,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Receiver Meta Data
-     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param name    完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
@@ -156,7 +156,7 @@ public final class ManifestUtils {
     /**
      * 获取 Receiver Meta Data
      * @param packageName
-     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param name        完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
@@ -186,7 +186,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 ContentProvider Meta Data
-     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param name    完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
@@ -197,7 +197,7 @@ public final class ManifestUtils {
     /**
      * 获取 ContentProvider Meta Data
      * @param packageName
-     * @param name 完整路径名 package.name => class.getCanonicalName()
+     * @param name        完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
      */
@@ -227,7 +227,7 @@ public final class ManifestUtils {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
 
-                return new String[]{versionName,versionCode};
+                return new String[]{versionName, versionCode};
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersion");

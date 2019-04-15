@@ -23,13 +23,21 @@ public final class ClickUtils {
 
     // 上一次点击的标识id = viewId 等
     private static int lastTagId = -1;
-    /** 上次点击时间 */
+    /**
+     * 上次点击时间
+     */
     private static long lastClickTime = 0l; // 局限性是, 全局统一事件，如果上次点击后，立刻点击其他就无法点
-    /** 默认间隔时间 */
+    /**
+     * 默认间隔时间
+     */
     private static long DF_DIFF = 1000l; // 点击间隔1秒内
-    /** 配置数据 */
+    /**
+     * 配置数据
+     */
     private static final Map<String, Long> mapConfig = new HashMap<>();
-    /** 点击记录数据 */
+    /**
+     * 点击记录数据
+     */
     private static final Map<String, Long> mapRecords = new HashMap<>();
 
     // ===
@@ -244,12 +252,12 @@ public final class ClickUtils {
                                 ((View) view.getParent()).setTouchDelegate(touchDelegate);
                             }
                         } catch (Exception e) {
-                            LogPrintUtils.eTag(TAG, e,"addTouchArea - runnable");
+                            LogPrintUtils.eTag(TAG, e, "addTouchArea - runnable");
                         }
                     }
                 });
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e,"addTouchArea");
+                LogPrintUtils.eTag(TAG, e, "addTouchArea");
             }
         }
     }

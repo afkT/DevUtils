@@ -32,20 +32,28 @@ public final class LocationUtils {
 
     // 日志 TAG
     private static final String TAG = LocationUtils.class.getSimpleName();
-    /** 时间常量 = 2分钟 */
+    /**
+     * 时间常量 = 2分钟
+     */
     private static final int MINUTES_TWO = 1000 * 60 * 2;
-    /** 定位改变通知事件 */
+    /**
+     * 定位改变通知事件
+     */
     private static OnLocationChangeListener mListener;
-    /** 自定义定位事件 */
+    /**
+     * 自定义定位事件
+     */
     private static CustomLocationListener myLocationListener;
-    /** 定位管理对象 */
+    /**
+     * 定位管理对象
+     */
     private static LocationManager mLocationManager;
 
     /**
      * 获取位置, 需要先判断是否开启了定位
      * <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
      * @param listener
-     * @param time 间隔时间
+     * @param time     间隔时间
      * @param distance 间隔距离
      * @return
      */
@@ -78,7 +86,7 @@ public final class LocationUtils {
                 }
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e,"getLocation");
+            LogPrintUtils.eTag(TAG, e, "getLocation");
         }
         return location;
     }
@@ -117,9 +125,9 @@ public final class LocationUtils {
      * 如果 minDistance 为 0，则通过 minTime 来定时更新；
      * minDistance 不为 0，则以 minDistance 为准；
      * 两者都为0，则随时刷新。
-     * @param minTime 位置信息更新周期(单位：毫秒)
+     * @param minTime     位置信息更新周期(单位：毫秒)
      * @param minDistance 位置变化最小距离：当位置距离变化超过此值时，将更新位置信息(单位：米)
-     * @param listener 位置刷新的回调接口
+     * @param listener    位置刷新的回调接口
      * @return true : 初始化成功, false : 初始化失败
      */
     @SuppressLint("MissingPermission")
@@ -189,7 +197,7 @@ public final class LocationUtils {
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses.size() > 0) return addresses.get(0);
         } catch (IOException e) {
-            LogPrintUtils.eTag(TAG, e,"getAddress");
+            LogPrintUtils.eTag(TAG, e, "getAddress");
         }
         return null;
     }
@@ -229,7 +237,7 @@ public final class LocationUtils {
 
     /**
      * 是否更好的位置
-     * @param newLocation The new Location that you want to evaluate
+     * @param newLocation         The new Location that you want to evaluate
      * @param currentBestLocation The current Location fix, to which you want to compare the new one
      * @return true : 是, false : 否
      */
@@ -302,8 +310,8 @@ public final class LocationUtils {
         /**
          * provider的在可用、暂时不可用和无服务三个状态直接切换时触发此函数
          * @param provider 提供者
-         * @param status 状态
-         * @param extras provider可选包
+         * @param status   状态
+         * @param extras   provider可选包
          */
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -323,18 +331,24 @@ public final class LocationUtils {
             }
         }
 
-        /** provider被enable时触发此函数，比如GPS被打开 */
+        /**
+         * provider被enable时触发此函数，比如GPS被打开
+         */
         @Override
         public void onProviderEnabled(String provider) {
         }
 
-        /** provider被disable时触发此函数，比如GPS被关闭 */
+        /**
+         * provider被disable时触发此函数，比如GPS被关闭
+         */
         @Override
         public void onProviderDisabled(String provider) {
         }
     }
 
-    /** 定位改变事件 */
+    /**
+     * 定位改变事件
+     */
     public interface OnLocationChangeListener {
 
         /**
@@ -352,8 +366,8 @@ public final class LocationUtils {
         /**
          * provider的在可用、暂时不可用和无服务三个状态直接切换时触发此函数
          * @param provider 提供者
-         * @param status 状态
-         * @param extras provider可选包
+         * @param status   状态
+         * @param extras   provider可选包
          */
         void onStatusChanged(String provider, int status, Bundle extras);//位置状态发生改变
     }

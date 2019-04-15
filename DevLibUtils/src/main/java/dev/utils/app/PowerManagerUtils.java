@@ -19,7 +19,9 @@ public final class PowerManagerUtils {
     // PowerManagerUtils 实例
     private static PowerManagerUtils INSTANCE;
 
-    /** 获取 PowerManagerUtils 实例 ,单例模式 */
+    /**
+     * 获取 PowerManagerUtils 实例 ,单例模式
+     */
     public static PowerManagerUtils getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new PowerManagerUtils();
@@ -27,12 +29,16 @@ public final class PowerManagerUtils {
         return INSTANCE;
     }
 
-    /** 电源管理类 */
+    /**
+     * 电源管理类
+     */
     PowerManager powerManager;
     // 电源管理锁
     PowerManager.WakeLock wakeLock;
 
-    /** 构造函数 */
+    /**
+     * 构造函数
+     */
     private PowerManagerUtils() {
         // 获取系统服务
         powerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
@@ -130,8 +136,7 @@ public final class PowerManagerUtils {
 
     /**
      * 设置WakeLock 常亮
-     * @return
-     * run: {@link Activity#onResume()}
+     * @return run: {@link Activity#onResume()}
      */
     public static PowerManager.WakeLock setWakeLockToBright() {
         try {

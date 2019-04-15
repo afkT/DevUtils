@@ -133,15 +133,15 @@ public final class ServiceUtils {
     /**
      * 绑定服务
      * @param className 完整包名的服务类名
-     * @param conn 服务连接对象
-     * @param flags 绑定选项
-     * ====
-     * {@link Context#BIND_AUTO_CREATE}
-     * {@link Context#BIND_DEBUG_UNBIND}
-     * {@link Context#BIND_NOT_FOREGROUND}
-     * {@link Context#BIND_ABOVE_CLIENT}
-     * {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
-     * {@link Context#BIND_WAIVE_PRIORITY}
+     * @param conn      服务连接对象
+     * @param flags     绑定选项
+     *                  ====
+     *                  {@link Context#BIND_AUTO_CREATE}
+     *                  {@link Context#BIND_DEBUG_UNBIND}
+     *                  {@link Context#BIND_NOT_FOREGROUND}
+     *                  {@link Context#BIND_ABOVE_CLIENT}
+     *                  {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
+     *                  {@link Context#BIND_WAIVE_PRIORITY}
      */
     public static void bindService(final String className, final ServiceConnection conn, final int flags) {
         try {
@@ -154,15 +154,15 @@ public final class ServiceUtils {
     /**
      * 绑定服务
      * @param clazz 服务类
-     * @param conn 服务连接对象
+     * @param conn  服务连接对象
      * @param flags 绑定选项
-     * ====
-     * {@link Context#BIND_AUTO_CREATE}
-     * {@link Context#BIND_DEBUG_UNBIND}
-     * {@link Context#BIND_NOT_FOREGROUND}
-     * {@link Context#BIND_ABOVE_CLIENT}
-     * {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
-     * {@link Context#BIND_WAIVE_PRIORITY}
+     *              ====
+     *              {@link Context#BIND_AUTO_CREATE}
+     *              {@link Context#BIND_DEBUG_UNBIND}
+     *              {@link Context#BIND_NOT_FOREGROUND}
+     *              {@link Context#BIND_ABOVE_CLIENT}
+     *              {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
+     *              {@link Context#BIND_WAIVE_PRIORITY}
      */
     public static void bindService(final Class<?> clazz, final ServiceConnection conn, final int flags) {
         try {

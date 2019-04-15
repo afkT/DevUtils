@@ -126,8 +126,8 @@ public final class DialogUtils {
     /**
      * 创建提示 Dialog (原生样式)
      * @param context
-     * @param title dialog 标题
-     * @param content dialog 内容
+     * @param title    dialog 标题
+     * @param content  dialog 内容
      * @param rightBtn 右边按钮文案
      * @return
      */
@@ -138,9 +138,9 @@ public final class DialogUtils {
     /**
      * 创建提示 Dialog (原生样式)
      * @param context
-     * @param title dialog 标题
-     * @param content dialog 内容
-     * @param leftBtn 左边按钮文案
+     * @param title    dialog 标题
+     * @param content  dialog 内容
+     * @param leftBtn  左边按钮文案
      * @param rightBtn 右边按钮文案
      * @return
      */
@@ -151,9 +151,9 @@ public final class DialogUtils {
     /**
      * 创建提示 Dialog (原生样式)
      * @param context
-     * @param title dialog 标题
-     * @param content dialog 内容
-     * @param rightBtn 右边按钮文案
+     * @param title          dialog 标题
+     * @param content        dialog 内容
+     * @param rightBtn       右边按钮文案
      * @param dialogListener 事件通知
      * @return
      */
@@ -164,10 +164,10 @@ public final class DialogUtils {
     /**
      * 创建提示 Dialog (原生样式)
      * @param context
-     * @param title dialog 标题
-     * @param content dialog 内容
-     * @param leftBtn 左边按钮文案
-     * @param rightBtn 右边按钮文案
+     * @param title          dialog 标题
+     * @param content        dialog 内容
+     * @param leftBtn        左边按钮文案
+     * @param rightBtn       右边按钮文案
      * @param dialogListener 事件通知
      * @return
      */
@@ -230,7 +230,7 @@ public final class DialogUtils {
     /**
      * 创建加载中 Dialog (原生样式)
      * @param context
-     * @param title dialog 标题
+     * @param title   dialog 标题
      * @param content dialog 内容
      * @return
      */
@@ -241,8 +241,8 @@ public final class DialogUtils {
     /**
      * 创建加载中 Dialog (原生样式)
      * @param context
-     * @param title dialog 标题
-     * @param content dialog 内容
+     * @param title    dialog 标题
+     * @param content  dialog 内容
      * @param isCancel 是否可以返回键关闭
      * @return
      */
@@ -253,8 +253,8 @@ public final class DialogUtils {
     /**
      * 创建加载中 Dialog (原生样式)
      * @param context
-     * @param title dialog 标题
-     * @param content dialog 内容
+     * @param title    dialog 标题
+     * @param content  dialog 内容
      * @param isCancel 是否可以返回键关闭
      * @return
      */
@@ -342,7 +342,7 @@ public final class DialogUtils {
         /**
          * 单选选中触发
          * @param dialog
-         * @param which 选中索引
+         * @param which  选中索引
          */
         public void onSingleChoiceItems(DialogInterface dialog, int which) {
         }
@@ -374,47 +374,47 @@ public final class DialogUtils {
     /**
      * 创建单选列表样式 Dialog
      * @param context
-     * @param itemsId R.arrays 数据源
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param positiveBtnText 确认按钮文案
+     * @param itemsId              R.arrays 数据源
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
      * @return
      */
     public static AlertDialog createSingleChoiceListDialog(Context context, @ArrayRes int itemsId, String title, Drawable icon,
-                                                       String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+                                                           String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
         return createSingleChoiceListDialog(context, itemsId, title, icon, null, positiveBtnText, singleChoiceListener, 0);
     }
 
     /**
      * 创建单选列表样式 Dialog
      * @param context
-     * @param itemsId R.arrays 数据源
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param itemsId              R.arrays 数据源
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param negativeBtnText      取消按钮文案
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
      * @return
      */
     public static AlertDialog createSingleChoiceListDialog(Context context, @ArrayRes int itemsId, String title, Drawable icon,
-                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+                                                           String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
         return createSingleChoiceListDialog(context, itemsId, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
     }
 
     /**
      * 创建单选列表样式 Dialog
-     * @param itemsId R.arrays 数据源
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param itemsId              R.arrays 数据源
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param negativeBtnText      取消按钮文案
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
-     * @param themeResId 样式
+     * @param themeResId           样式
      * @return
      */
     public static AlertDialog createSingleChoiceListDialog(Context context, @ArrayRes int itemsId, String title, Drawable icon,
-                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener, @StyleRes int themeResId) {
+                                                           String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener, @StyleRes int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
             if (!isEmpty(title)) {
@@ -482,48 +482,48 @@ public final class DialogUtils {
     /**
      * 创建单选列表样式 Dialog
      * @param context
-     * @param items 单选文案数组
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param positiveBtnText 确认按钮文案
+     * @param items                单选文案数组
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
      * @return
      */
     public static AlertDialog createSingleChoiceListDialog(Context context, CharSequence[] items, String title, Drawable icon,
-                                                       String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+                                                           String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
         return createSingleChoiceListDialog(context, items, title, icon, null, positiveBtnText, singleChoiceListener, 0);
     }
 
     /**
      * 创建单选列表样式 Dialog
      * @param context
-     * @param items 单选文案数组
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param items                单选文案数组
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param negativeBtnText      取消按钮文案
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
      * @return
      */
     public static AlertDialog createSingleChoiceListDialog(Context context, CharSequence[] items, String title, Drawable icon,
-                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
+                                                           String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
         return createSingleChoiceListDialog(context, items, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
     }
 
     /**
      * 创建单选列表样式 Dialog
      * @param context
-     * @param items 单选文案数组
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param items                单选文案数组
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param negativeBtnText      取消按钮文案
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
-     * @param themeResId 样式
+     * @param themeResId           样式
      * @return
      */
     public static AlertDialog createSingleChoiceListDialog(Context context, CharSequence[] items, String title, Drawable icon,
-                                                       String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener, @StyleRes int themeResId) {
+                                                           String negativeBtnText, String positiveBtnText, final SingleChoiceListener singleChoiceListener, @StyleRes int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
             if (!isEmpty(title)) {
@@ -593,11 +593,11 @@ public final class DialogUtils {
     /**
      * 创建单选样式 Dialog
      * @param context
-     * @param itemsId R.arrays 数据源
-     * @param checkedItem 默认选中索引
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param positiveBtnText 确认按钮文案
+     * @param itemsId              R.arrays 数据源
+     * @param checkedItem          默认选中索引
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
      * @return
      */
@@ -609,12 +609,12 @@ public final class DialogUtils {
     /**
      * 创建单选样式 Dialog
      * @param context
-     * @param itemsId R.arrays 数据源
-     * @param checkedItem 默认选中索引
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param itemsId              R.arrays 数据源
+     * @param checkedItem          默认选中索引
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param negativeBtnText      取消按钮文案
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
      * @return
      */
@@ -625,14 +625,14 @@ public final class DialogUtils {
 
     /**
      * 创建单选样式 Dialog
-     * @param itemsId R.arrays 数据源
-     * @param checkedItem 默认选中索引
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param itemsId              R.arrays 数据源
+     * @param checkedItem          默认选中索引
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param negativeBtnText      取消按钮文案
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
-     * @param themeResId 样式
+     * @param themeResId           样式
      * @return
      */
     public static AlertDialog createSingleChoiceDialog(Context context, @ArrayRes int itemsId, int checkedItem, String title, Drawable icon,
@@ -704,11 +704,11 @@ public final class DialogUtils {
     /**
      * 创建单选样式 Dialog
      * @param context
-     * @param items 单选文案数组
-     * @param checkedItem 默认选中索引
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param positiveBtnText 确认按钮文案
+     * @param items                单选文案数组
+     * @param checkedItem          默认选中索引
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
      * @return
      */
@@ -720,12 +720,12 @@ public final class DialogUtils {
     /**
      * 创建单选样式 Dialog
      * @param context
-     * @param items 单选文案数组
-     * @param checkedItem 默认选中索引
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param items                单选文案数组
+     * @param checkedItem          默认选中索引
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param negativeBtnText      取消按钮文案
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
      * @return
      */
@@ -737,14 +737,14 @@ public final class DialogUtils {
     /**
      * 创建单选样式 Dialog
      * @param context
-     * @param items 单选文案数组
-     * @param checkedItem 默认选中索引
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param items                单选文案数组
+     * @param checkedItem          默认选中索引
+     * @param title                标题
+     * @param icon                 图标(标题左侧)
+     * @param negativeBtnText      取消按钮文案
+     * @param positiveBtnText      确认按钮文案
      * @param singleChoiceListener 单选事件
-     * @param themeResId 样式
+     * @param themeResId           样式
      * @return
      */
     public static AlertDialog createSingleChoiceDialog(Context context, CharSequence[] items, int checkedItem, String title, Drawable icon,
@@ -824,7 +824,7 @@ public final class DialogUtils {
         /**
          * 多选选中触发
          * @param dialog
-         * @param which 操作索引
+         * @param which     操作索引
          * @param isChecked 是否选中
          */
         public void onMultiChoiceItems(DialogInterface dialog, int which, boolean isChecked) {
@@ -858,11 +858,11 @@ public final class DialogUtils {
     /**
      * 创建多选样式 Dialog
      * @param context
-     * @param itemsId R.arrays 数据源
-     * @param checkedItems 选中状态
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param positiveBtnText 确认按钮文案
+     * @param itemsId             R.arrays 数据源
+     * @param checkedItems        选中状态
+     * @param title               标题
+     * @param icon                图标(标题左侧)
+     * @param positiveBtnText     确认按钮文案
      * @param multiChoiceListener 多选事件
      * @return
      */
@@ -874,12 +874,12 @@ public final class DialogUtils {
     /**
      * 创建多选样式 Dialog
      * @param context
-     * @param itemsId R.arrays 数据源
-     * @param checkedItems 选中状态
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param itemsId             R.arrays 数据源
+     * @param checkedItems        选中状态
+     * @param title               标题
+     * @param icon                图标(标题左侧)
+     * @param negativeBtnText     取消按钮文案
+     * @param positiveBtnText     确认按钮文案
      * @param multiChoiceListener 多选事件
      * @return
      */
@@ -891,14 +891,14 @@ public final class DialogUtils {
     /**
      * 创建多选样式 Dialog
      * @param context
-     * @param itemsId R.arrays 数据源
-     * @param checkedItems 选中状态
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param itemsId             R.arrays 数据源
+     * @param checkedItems        选中状态
+     * @param title               标题
+     * @param icon                图标(标题左侧)
+     * @param negativeBtnText     取消按钮文案
+     * @param positiveBtnText     确认按钮文案
      * @param multiChoiceListener 多选事件
-     * @param themeResId 样式
+     * @param themeResId          样式
      * @return
      */
     public static AlertDialog createMultiChoiceDialog(Context context, @ArrayRes int itemsId, final boolean[] checkedItems, String title, Drawable icon,
@@ -970,11 +970,11 @@ public final class DialogUtils {
     /**
      * 创建多选样式 Dialog
      * @param context
-     * @param items 多选文案数组
-     * @param checkedItems 选中状态
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param positiveBtnText 确认按钮文案
+     * @param items               多选文案数组
+     * @param checkedItems        选中状态
+     * @param title               标题
+     * @param icon                图标(标题左侧)
+     * @param positiveBtnText     确认按钮文案
      * @param multiChoiceListener 多选事件
      * @return
      */
@@ -986,12 +986,12 @@ public final class DialogUtils {
     /**
      * 创建多选样式 Dialog
      * @param context
-     * @param items 多选文案数组
-     * @param checkedItems 选中状态
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param items               多选文案数组
+     * @param checkedItems        选中状态
+     * @param title               标题
+     * @param icon                图标(标题左侧)
+     * @param negativeBtnText     取消按钮文案
+     * @param positiveBtnText     确认按钮文案
      * @param multiChoiceListener 多选事件
      * @return
      */
@@ -1003,14 +1003,14 @@ public final class DialogUtils {
     /**
      * 创建多选样式 Dialog
      * @param context
-     * @param items 多选文案数组
-     * @param checkedItems 选中状态
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param items               多选文案数组
+     * @param checkedItems        选中状态
+     * @param title               标题
+     * @param icon                图标(标题左侧)
+     * @param negativeBtnText     取消按钮文案
+     * @param positiveBtnText     确认按钮文案
      * @param multiChoiceListener 多选事件
-     * @param themeResId 样式
+     * @param themeResId          样式
      * @return
      */
     public static AlertDialog createMultiChoiceDialog(Context context, CharSequence[] items, final boolean[] checkedItems, String title, Drawable icon,
@@ -1115,9 +1115,9 @@ public final class DialogUtils {
      * 创建自定义 View 样式 Dialog
      * @param context
      * @param view
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param positiveBtnText 确认按钮文案
+     * @param title              标题
+     * @param icon               图标(标题左侧)
+     * @param positiveBtnText    确认按钮文案
      * @param viewDialogListener
      * @return
      */
@@ -1129,10 +1129,10 @@ public final class DialogUtils {
      * 创建自定义 View 样式 Dialog
      * @param context
      * @param view
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param title              标题
+     * @param icon               图标(标题左侧)
+     * @param negativeBtnText    取消按钮文案
+     * @param positiveBtnText    确认按钮文案
      * @param viewDialogListener
      * @return
      */
@@ -1145,11 +1145,11 @@ public final class DialogUtils {
      * 创建自定义 View 样式 Dialog
      * @param context
      * @param view
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param positiveBtnText 确认按钮文案
+     * @param title              标题
+     * @param icon               图标(标题左侧)
+     * @param positiveBtnText    确认按钮文案
      * @param viewDialogListener
-     * @param themeResId 样式
+     * @param themeResId         样式
      * @return
      */
     public static AlertDialog createViewDialog(Context context, View view, String title, Drawable icon, String positiveBtnText, final ViewDialogListener viewDialogListener, @StyleRes int themeResId) {
@@ -1160,12 +1160,12 @@ public final class DialogUtils {
      * 创建自定义 View 样式 Dialog
      * @param context
      * @param view
-     * @param title 标题
-     * @param icon 图标(标题左侧)
-     * @param negativeBtnText 取消按钮文案
-     * @param positiveBtnText 确认按钮文案
+     * @param title              标题
+     * @param icon               图标(标题左侧)
+     * @param negativeBtnText    取消按钮文案
+     * @param positiveBtnText    确认按钮文案
      * @param viewDialogListener
-     * @param themeResId 样式
+     * @param themeResId         样式
      * @return
      */
     public static AlertDialog createViewDialog(Context context, View view, String title, Drawable icon,

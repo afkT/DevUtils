@@ -42,10 +42,10 @@ import dev.DevUtils;
  * Grant: https://github.com/anthonycr/Grant
  * -
  * 使用方法
- *      // 第一种请求方式
- *      PermissionUtils.permission("").callBack(null).request();
- *      // 第二种请求方式 - 需要在 onRequestPermissionsResult 中通知调用
- *      PermissionUtils.permission("").callBack(null).request(Activity);
+ * // 第一种请求方式
+ * PermissionUtils.permission("").callBack(null).request();
+ * // 第二种请求方式 - 需要在 onRequestPermissionsResult 中通知调用
+ * PermissionUtils.permission("").callBack(null).request(Activity);
  * ======
  * 注意事项: 需要注意在onResume 中调用
  * 不管是第一种方式, 跳自定义的Activity, 还是第二种 系统内部跳转授权页面, 都会多次触发onResume
@@ -56,27 +56,47 @@ import dev.DevUtils;
  */
 public final class PermissionUtils {
 
-    /** Permission 请求Code */
+    /**
+     * Permission 请求Code
+     */
     public static final int P_REQUEST_CODE = 100;
-    /** 全部权限 */
+    /**
+     * 全部权限
+     */
     private static final Set<String> mAllPermissions = new HashSet<>(1);
     // 判断是否请求过
     private boolean request = false;
-    /** 申请的权限 */
+    /**
+     * 申请的权限
+     */
     private List<String> mPermissions = new ArrayList<>();
-    /** 准备请求的权限 */
+    /**
+     * 准备请求的权限
+     */
     private List<String> mPermissionsRequest = new ArrayList<>();
-    /** 申请通过的权限 */
+    /**
+     * 申请通过的权限
+     */
     private List<String> mPermissionsGranted = new ArrayList<>();
-    /** 申请未通过的权限 */
+    /**
+     * 申请未通过的权限
+     */
     private List<String> mPermissionsDenied = new ArrayList<>();
-    /** 申请未通过的权限 - 永久拒绝 */
+    /**
+     * 申请未通过的权限 - 永久拒绝
+     */
     private List<String> mPermissionsDeniedForever = new ArrayList<>();
-    /** 查询不到的权限 */
+    /**
+     * 查询不到的权限
+     */
     private List<String> mPermissionsNotFound = new ArrayList<>();
-    /** 操作回调 */
+    /**
+     * 操作回调
+     */
     private PermissionCallBack mCallBack;
-    /** 回调方法 */
+    /**
+     * 回调方法
+     */
     private Looper mLooper = Looper.getMainLooper();
 
     static {
@@ -84,7 +104,9 @@ public final class PermissionUtils {
         initializePermissionsMap();
     }
 
-    /** 初始化遍历保存全部权限 */
+    /**
+     * 初始化遍历保存全部权限
+     */
     private static synchronized void initializePermissionsMap() {
         Field[] fields = Manifest.permission.class.getFields();
         for (Field field : fields) {
@@ -248,7 +270,7 @@ public final class PermissionUtils {
 
     /**
      * 请求权限 - 需要在Activity 的 onRequestPermissionsResult 回调中 调用 PermissionUtils.onRequestPermissionsResult(this);
-     * @param activity {@link Fragment#getActivity()}
+     * @param activity    {@link Fragment#getActivity()}
      * @param requestCode
      */
     public void request(Activity activity, int requestCode) {
@@ -327,7 +349,9 @@ public final class PermissionUtils {
 
     // == 内部处理方法 ==
 
-    /** 内部请求回调, 统一处理方法 */
+    /**
+     * 内部请求回调, 统一处理方法
+     */
     private void requestCallback() {
         if (mCallBack != null) {
             // 判断是否允许全部权限

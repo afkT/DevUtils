@@ -160,7 +160,7 @@ public final class ShapeUtils {
 
             if (gradientDrawable != null) {
                 // radii 数组分别指定四个圆角的半径，每个角可以指定[X_Radius,Y_Radius]，四个圆角的顺序为左上，右上，右下，左下。如果X_Radius,Y_Radius为0表示还是直角。
-                gradientDrawable.setCornerRadii(new float[] { leftTop, leftTop, rightTop, rightTop, rightBottom, rightBottom, leftBottom, leftBottom });
+                gradientDrawable.setCornerRadii(new float[]{leftTop, leftTop, rightTop, rightTop, rightBottom, rightBottom, leftBottom, leftBottom});
             }
             return this;
         }
@@ -373,7 +373,7 @@ public final class ShapeUtils {
          * @param colors
          */
         public Builder(@ColorInt int[] colors) {
-            this (new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors));
+            this(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors));
         }
 
         /**
@@ -382,7 +382,7 @@ public final class ShapeUtils {
          * @param colors
          */
         public Builder(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
-            this (new GradientDrawable(orientation, colors));
+            this(new GradientDrawable(orientation, colors));
         }
     }
 
@@ -400,7 +400,7 @@ public final class ShapeUtils {
 
     /**
      * 创建新的 Shape Builder 对象
-     * @param left 通用左上, 左下
+     * @param left  通用左上, 左下
      * @param color
      * @return
      */

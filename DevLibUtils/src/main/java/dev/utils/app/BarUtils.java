@@ -58,7 +58,7 @@ public final class BarUtils {
 
     /**
      * 设置状态栏是否显示
-     * @param activity The activity.
+     * @param activity  The activity.
      * @param isVisible True to set status bar visible, false otherwise.
      */
     public static void setStatusBarVisibility(@NonNull final Activity activity, final boolean isVisible) {
@@ -67,7 +67,7 @@ public final class BarUtils {
 
     /**
      * 设置状态栏是否显示
-     * @param window The window.
+     * @param window    The window.
      * @param isVisible True to set status bar visible, false otherwise.
      */
     public static void setStatusBarVisibility(@NonNull final Window window, final boolean isVisible) {
@@ -96,7 +96,7 @@ public final class BarUtils {
 
     /**
      * 设置状态是否高亮模式
-     * @param activity The activity.
+     * @param activity    The activity.
      * @param isLightMode True to set status bar light mode, false otherwise.
      */
     public static void setStatusBarLightMode(@NonNull final Activity activity, final boolean isLightMode) {
@@ -105,7 +105,7 @@ public final class BarUtils {
 
     /**
      * 设置状态是否高亮模式
-     * @param window The window.
+     * @param window      The window.
      * @param isLightMode True to set status bar light mode, false otherwise.
      */
     public static void setStatusBarLightMode(@NonNull final Window window, final boolean isLightMode) {
@@ -176,7 +176,7 @@ public final class BarUtils {
     /**
      * 设置状态栏颜色
      * @param activity The activity.
-     * @param color The status bar's color.
+     * @param color    The status bar's color.
      */
     public static void setStatusBarColor(@NonNull final Activity activity, @ColorInt final int color) {
         setStatusBarColor(activity, color, DEFAULT_ALPHA, false);
@@ -274,7 +274,7 @@ public final class BarUtils {
     /**
      * 设置状态栏透明度
      * @param fakeStatusBar The fake status bar view.
-     * @param alpha The status bar's alpha.
+     * @param alpha         The status bar's alpha.
      */
     public static void setStatusBarAlpha(@NonNull final View fakeStatusBar, @IntRange(from = 0, to = 255) final int alpha) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;

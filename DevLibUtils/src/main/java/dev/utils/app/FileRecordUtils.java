@@ -37,16 +37,24 @@ public final class FileRecordUtils {
 
     // = 配置信息 =
 
-    /** App 版本(如1.0.01) 显示给用户看的 */
+    /**
+     * App 版本(如1.0.01) 显示给用户看的
+     */
     private static String APP_VERSION_NAME = "";
 
-    /** android:versionCode——整数值,代表应用程序代码的相对版本,也就是版本更新过多少次。(不显示给用户看) */
+    /**
+     * android:versionCode——整数值,代表应用程序代码的相对版本,也就是版本更新过多少次。(不显示给用户看)
+     */
     private static String APP_VERSION_CODE = "";
 
-    /** 设备信息 */
+    /**
+     * 设备信息
+     */
     private static String DEVICE_INFO_STR = null;
 
-    /** 用来存储设备信息 */
+    /**
+     * 用来存储设备信息
+     */
     private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
 
     // 换行字符串
@@ -70,7 +78,7 @@ public final class FileRecordUtils {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
                 // --
-                aVersion = new String[]{versionName,versionCode};
+                aVersion = new String[]{versionName, versionCode};
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersion");
@@ -152,7 +160,9 @@ public final class FileRecordUtils {
 
     //  时间格式化 =
 
-    /** 日期格式类型 */
+    /**
+     * 日期格式类型
+     */
     private static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
 
     /**
@@ -194,7 +204,7 @@ public final class FileRecordUtils {
 
     /**
      * 保存文件
-     * @param txt 保存内容
+     * @param txt  保存内容
      * @param fUrl 保存路径(包含文件名.后缀)
      * @return 是否保存成功
      */
@@ -217,7 +227,7 @@ public final class FileRecordUtils {
     /**
      * 获取错误信息(无换行)
      * @param eHint 获取失败提示
-     * @param ex 错误信息
+     * @param ex    错误信息
      * @return
      */
     private static String getThrowableMsg(String eHint, Throwable ex) {
@@ -246,7 +256,7 @@ public final class FileRecordUtils {
     /**
      * 获取错误信息(有换行)
      * @param eHint 获取失败提示
-     * @param ex 错误信息
+     * @param ex    错误信息
      * @return
      */
     private static String getThrowableNewLinesMsg(String eHint, Throwable ex) {
@@ -314,12 +324,12 @@ public final class FileRecordUtils {
 
     /**
      * 保存 App 错误日志
-     * @param ex 错误信息
-     * @param filePath 保存路径
-     * @param fileName 文件名(含后缀)
-     * @param isNewLines 是否换行
+     * @param ex          错误信息
+     * @param filePath    保存路径
+     * @param fileName    文件名(含后缀)
+     * @param isNewLines  是否换行
      * @param printDevice 是否打印设备信息
-     * @param eHint 错误提示(无设备信息、失败信息获取失败)
+     * @param eHint       错误提示(无设备信息、失败信息获取失败)
      * @return
      */
     public static boolean saveErrorLog(Throwable ex, String filePath, String fileName, boolean isNewLines, boolean printDevice, String... eHint) {
@@ -328,14 +338,14 @@ public final class FileRecordUtils {
 
     /**
      * 保存 App 错误日志
-     * @param ex 错误信息
-     * @param head 顶部标题
-     * @param bottom 底部内容
-     * @param filePath 保存路径
-     * @param fileName 文件名(含后缀)
-     * @param isNewLines 是否换行
+     * @param ex          错误信息
+     * @param head        顶部标题
+     * @param bottom      底部内容
+     * @param filePath    保存路径
+     * @param fileName    文件名(含后缀)
+     * @param isNewLines  是否换行
      * @param printDevice 是否打印设备信息
-     * @param eHint 错误提示(无设备信息、失败信息获取失败)
+     * @param eHint       错误提示(无设备信息、失败信息获取失败)
      * @return
      */
     public static boolean saveErrorLog(Throwable ex, String head, String bottom, String filePath, String fileName, boolean isNewLines, boolean printDevice, String... eHint) {
@@ -396,11 +406,11 @@ public final class FileRecordUtils {
 
     /**
      * 保存 App 日志
-     * @param log 日志信息
-     * @param filePath 保存路径
-     * @param fileName 文件名(含后缀)
+     * @param log         日志信息
+     * @param filePath    保存路径
+     * @param fileName    文件名(含后缀)
      * @param printDevice 是否打印设备信息
-     * @param eHint 错误提示(无设备信息、失败信息获取失败)
+     * @param eHint       错误提示(无设备信息、失败信息获取失败)
      * @return
      */
     public static boolean saveLog(String log, String filePath, String fileName, boolean printDevice, String... eHint) {
@@ -409,13 +419,13 @@ public final class FileRecordUtils {
 
     /**
      * 保存 App 日志
-     * @param log 日志信息
-     * @param head 顶部标题
-     * @param bottom 底部内容
-     * @param filePath 保存路径
-     * @param fileName 文件名(含后缀)
+     * @param log         日志信息
+     * @param head        顶部标题
+     * @param bottom      底部内容
+     * @param filePath    保存路径
+     * @param fileName    文件名(含后缀)
      * @param printDevice 是否打印设备信息
-     * @param eHint 错误提示(无设备信息、失败信息获取失败)
+     * @param eHint       错误提示(无设备信息、失败信息获取失败)
      * @return
      */
     public static boolean saveLog(String log, String head, String bottom, String filePath, String fileName, boolean printDevice, String... eHint) {
@@ -470,7 +480,7 @@ public final class FileRecordUtils {
 
     /**
      * 处理可变参数
-     * @param length 保留长度
+     * @param length  保留长度
      * @param vArrays 可变参数数组
      * @return
      */
@@ -485,7 +495,7 @@ public final class FileRecordUtils {
                 int vLength = vArrays.length;
                 // 如果长度超出预留长度
                 if (vLength >= length) {
-                    for (int i = 0;i < length;i++) {
+                    for (int i = 0; i < length; i++) {
                         if (vArrays[i] == null) {
                             hArrays[i] = "";
                         } else {
@@ -495,7 +505,7 @@ public final class FileRecordUtils {
                     // 但可变参数长度,超过预留长度时,已经处理完毕,不需要再次处理,节省遍历资源
                     isUnifiedHandler = false;
                 } else {
-                    for (int i = 0;i < vLength;i++) {
+                    for (int i = 0; i < vLength; i++) {
                         if (vArrays[i] == null) {
                             hArrays[i] = "";
                         } else {
@@ -506,7 +516,7 @@ public final class FileRecordUtils {
             }
             if (isUnifiedHandler) {
                 // 统一处理,如果数据未null,则设置为“”,防止拼接出现   "null"
-                for (int i = 0;i < length;i++) {
+                for (int i = 0; i < length; i++) {
                     if (hArrays[i] == null) {
                         hArrays[i] = "";
                     }

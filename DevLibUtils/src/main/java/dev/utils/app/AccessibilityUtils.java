@@ -123,7 +123,7 @@ public final class AccessibilityUtils {
         if (!LogPrintUtils.isPrintLog()) {
             return;
         }
-        LogPrintUtils.dTag(tag,"-------------------------------------------------------------");
+        LogPrintUtils.dTag(tag, "-------------------------------------------------------------");
 
         int eventType = event.getEventType();//事件类型
         LogPrintUtils.dTag(tag, "packageName:" + event.getPackageName() + "");//响应事件的包名，也就是哪个应用才响应了这个事件
@@ -295,7 +295,7 @@ public final class AccessibilityUtils {
      * 如果当前节点不可点击, 可以尝试往上追溯, 点击父节点, 直到该节点可以点击为止
      * @param nodeInfo
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-     * @param clickAll 判断是否点击全部
+     * @param clickAll    判断是否点击全部
      */
     public static void performClick(AccessibilityNodeInfo nodeInfo, boolean clickParent, boolean clickAll) {
         if (clickParent) {
@@ -348,7 +348,7 @@ public final class AccessibilityUtils {
      * 如果当前节点不可点击, 可以尝试往上追溯, 点击父节点, 直到该节点可以点击为止
      * @param nodeInfo
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-     * @param clickAll 判断是否点击全部
+     * @param clickAll    判断是否点击全部
      */
     public static void performLongClick(AccessibilityNodeInfo nodeInfo, boolean clickParent, boolean clickAll) {
         if (clickParent) {

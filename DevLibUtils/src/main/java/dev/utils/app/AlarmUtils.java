@@ -26,7 +26,7 @@ public final class AlarmUtils {
      * 开启定时器
      * @param context
      * @param triggerAtMillis 执行时间
-     * @param pendingIntent 响应动作
+     * @param pendingIntent   响应动作
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startAlarmIntent(Context context, long triggerAtMillis, PendingIntent pendingIntent) {

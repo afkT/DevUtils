@@ -248,7 +248,7 @@ public final class NotificationUtils {
 
         /**
          * 获取 Led 配置参数
-         * @param argb 颜色
+         * @param argb       颜色
          * @param startOffMS 开始时间
          * @param durationMS 持续时间
          * @return
