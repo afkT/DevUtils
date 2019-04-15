@@ -24,6 +24,8 @@ public final class AppInfoUtils {
 
     // 日志 TAG
     private static final String TAG = AppInfoUtils.class.getSimpleName();
+    // 换行字符串
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 通过 Apk 路径 初始化 PackageInfo
@@ -83,7 +85,9 @@ public final class AppInfoUtils {
         return null;
     }
 
+    // ================
     // = 获取基本信息 =
+    // ================
 
     /**
      * 通过 Apk 路径 获取 AppInfoBean
@@ -116,7 +120,10 @@ public final class AppInfoUtils {
         return AppInfoBean.obtain(getPackageInfo(packageName));
     }
 
+    // ================
     // = 获取详细信息 =
+    // ================
+
     /**
      * 获取 Apk 详细信息
      * @param file
@@ -213,17 +220,6 @@ public final class AppInfoUtils {
                         // 添加符合条件的 App 应用信息
                         listApps.add(new AppInfoBean(pInfo, pManager));
                     }
-//                    // 判断类型
-//                    switch (cAppType) {
-//                        case USER:
-//                            // 添加符合条件的 App 应用信息
-//                            listApps.add(new AppInfoBean(pInfo, pManager));
-//                            break;
-//                        case SYSTEM:
-//                            // 添加符合条件的 App 应用信息
-//                            listApps.add(new AppInfoBean(pInfo, pManager));
-//                            break;
-//                    }
                 }
             }
         }
@@ -262,30 +258,43 @@ public final class AppInfoUtils {
      */
     public static void printApkPermission(final String packageName) {
         try {
+            StringBuffer buffer = new StringBuffer();
+            // =
             PackageManager packageManager = DevUtils.getContext().getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             String[] usesPermissionsArray = packageInfo.requestedPermissions;
             for (int i = 0; i < usesPermissionsArray.length; i++) {
                 // 获取每个权限的名字,如:android.permission.INTERNET
                 String usesPermissionName = usesPermissionsArray[i];
-                LogPrintUtils.dTag(TAG, "usesPermissionName = " + usesPermissionName);
+                // 拼接日志
+                buffer.append("usesPermissionName = " + usesPermissionName);
+                buffer.append(NEW_LINE_STR);
+
 
                 // 通过usesPermissionName获取该权限的详细信息
                 PermissionInfo permissionInfo = packageManager.getPermissionInfo(usesPermissionName, 0);
 
                 // 获取该权限属于哪个权限组,如:网络通信
                 PermissionGroupInfo permissionGroupInfo = packageManager.getPermissionGroupInfo(permissionInfo.group, 0);
-                LogPrintUtils.dTag(TAG, "permissionGroup = " + permissionGroupInfo.loadLabel(packageManager).toString());
+                // 拼接日志
+                buffer.append("permissionGroup = " + permissionGroupInfo.loadLabel(packageManager).toString());
+                buffer.append(NEW_LINE_STR);
 
                 // 获取该权限的标签信息,比如:完全的网络访问权限
                 String permissionLabel = permissionInfo.loadLabel(packageManager).toString();
-                LogPrintUtils.dTag(TAG, "permissionLabel = " + permissionLabel);
+                // 拼接日志
+                buffer.append("permissionLabel = " + permissionLabel);
+                buffer.append(NEW_LINE_STR);
 
                 // 获取该权限的详细描述信息,比如:允许该应用创建网络套接字和使用自定义网络协议
                 // 浏览器和其他某些应用提供了向互联网发送数据的途径,因此应用无需该权限即可向互联网发送数据.
                 String permissionDescription = permissionInfo.loadDescription(packageManager).toString();
-                LogPrintUtils.dTag(TAG, "permissionDescription = " + permissionDescription);
+                // 拼接日志
+                buffer.append("permissionDescription = " + permissionDescription);
+                buffer.append(NEW_LINE_STR);
             }
+            // 打印日志
+            LogPrintUtils.dTag(TAG, buffer.toString());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printApkPermission");
         }

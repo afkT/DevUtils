@@ -227,7 +227,7 @@ public final class ApkInfoItem {
     }
 
     /**
-     * 获取 List<KeyValueBean>
+     * 获取 List 信息键对值集合
      * @return App 信息键对值集合
      */
     public List<KeyValueBean> getListKeyValues() {
