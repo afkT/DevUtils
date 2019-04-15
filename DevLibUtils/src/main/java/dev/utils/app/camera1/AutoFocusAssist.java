@@ -30,7 +30,10 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
         FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_MACRO); // 微距
     }
 
+    // ========
     // = 变量 =
+    // ========
+
     // 间隔获取焦点时间
     private long interval = 2000L;
     // 摄像头对象
@@ -46,7 +49,9 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // 判断是否需要自动对焦
     private boolean autoFocus = true;
 
+    // ============
     // = 构造函数 =
+    // ============
 
     public AutoFocusAssist(final Camera camera) {
         this(camera, 2000L);
@@ -110,14 +115,16 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * @param theCamera 对焦的摄像头
      */
     @Override
-    public synchronized void onAutoFocus(final boolean success, final Camera theCamera) {
+    public synchronized void onAutoFocus(boolean success, Camera theCamera) {
         // 对焦结束, 设置非对焦中
         focusing = false;
         // 再次自动对焦
         autoFocusAgainLater();
     }
 
+    // ============
     // = 内部方法 =
+    // ============
 
     /**
      * 再次自动对焦

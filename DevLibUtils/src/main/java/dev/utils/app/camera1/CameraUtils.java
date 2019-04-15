@@ -16,7 +16,9 @@ public final class CameraUtils {
     // 日志 TAG
     private static final String TAG = CameraUtils.class.getSimpleName();
 
+    // ==================
     // = 摄像头快速处理 =
+    // ==================
 
     /**
      * 判断是否支持反转摄像头(是否存在前置摄像头)
@@ -166,7 +168,7 @@ public final class CameraUtils {
 
     /**
      * 打开摄像头
-     * @param cameraId {@link Camera.CameraInfo } CAMERA_FACING_FRONT(前置), CAMERA_FACING_BACK(后置)
+     * @param cameraId {@link Camera.CameraInfo} CAMERA_FACING_FRONT(前置), CAMERA_FACING_BACK(后置)
      * @return
      */
     public static Camera open(int cameraId) {
@@ -175,35 +177,39 @@ public final class CameraUtils {
         if (numCameras == 0) {
             return null;
         }
-        // 判断是否指定哪个摄像头
-        boolean explicitRequest = cameraId >= 0;
-
-        // 如果没指定, 则进行判断处理
-        if (!explicitRequest) { // 默认使用 后置摄像头, 没有后置才用其他(前置)
-            int index = 0;
-            while (index < numCameras) {
-                Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
-                Camera.getCameraInfo(index, cameraInfo);
-                if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
-                    break;
+        try {
+            // 判断是否指定哪个摄像头
+            boolean explicitRequest = cameraId >= 0;
+            // 如果没指定, 则进行判断处理
+            if (!explicitRequest) { // 默认使用 后置摄像头, 没有后置才用其他(前置)
+                int index = 0;
+                while (index < numCameras) {
+                    Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+                    Camera.getCameraInfo(index, cameraInfo);
+                    if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                        break;
+                    }
+                    index++;
                 }
-                index++;
+                cameraId = index;
             }
-            cameraId = index;
-        }
 
-        Camera camera;
-        if (cameraId < numCameras) {
-            camera = Camera.open(cameraId);
-        } else {
-            if (explicitRequest) {
-                camera = null;
+            Camera camera;
+            if (cameraId < numCameras) {
+                camera = Camera.open(cameraId);
             } else {
-                // 默认使用后置
-                camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
+                if (explicitRequest) {
+                    camera = null;
+                } else {
+                    // 默认使用后置
+                    camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
+                }
             }
+            return camera;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "open - cameraId: " + cameraId);
         }
-        return camera;
+        return null;
     }
 
     /**

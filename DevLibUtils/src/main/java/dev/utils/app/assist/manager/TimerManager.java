@@ -128,6 +128,23 @@ public final class TimerManager {
     }
 
     /**
+     * 关闭所有未运行的任务
+     */
+    public static void closeNotRunTask() {
+        try {
+            for (int i = 0, size = listAbsTimers.size(); i < size; i++) {
+                AbsTimer absTimer = listAbsTimers.get(i);
+                // 判断是否运行中
+                if (!absTimer.isRunTimer()) {
+                    absTimer.closeTimer(); // 关闭定时器
+                }
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "closeNotRunTask");
+        }
+    }
+
+    /**
      * 关闭所有无限循环的任务
      */
     public static void closeInfiniteTask() {
@@ -269,8 +286,10 @@ public final class TimerManager {
     // =====================================
 
     /**
-     * detail: 定时器抽象类,主要对内部Timer参数进行控制,以及防止外部直接new TimerTask,照成不必要的失误
+     * detail: 定时器抽象类,主要对内部Timer参数进行控制,以及防止外部直接new TimerTask, 照成不必要的失误
      * Created by Ttt
+     * @TODO 推荐使用 {@link TimerManager#createTimer} 创建定时任务, 如果需要自己实现 AbsTimer, 则参考 {@link TimerManager.TimerTask} 实现
+     * @TODO {@link TimerManager.AbsTimer} 只是提供了常见的方法, 以及变量等, 便于定时任务控制, 具体实现在 {@link TimerManager.TimerTask}
      */
     public static abstract class AbsTimer {
 
@@ -414,7 +433,7 @@ public final class TimerManager {
     /**
      * detail: 定时器内部封装类 - 定时器任务类
      * Created by Ttt
-     * 便于快捷使用,并且防止外部new,从而达到对整个项目定时器的控制
+     * 便于快捷使用, 并且防止外部new, 从而达到对整个项目定时器的控制
      */
     private static final class TimerTask extends AbsTimer {
 

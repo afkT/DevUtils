@@ -28,7 +28,11 @@ public final class CameraAssist {
     private long autoInterval = 2000l;
     // 预览通知
     private PreviewNotify previewNotify;
+
+    // ==============
     // = 内部工具类 =
+    // ==============
+
     // 摄像头大小计算
     private CameraSizeAssist cameraSizeAssist;
     // 自动获取焦点辅助类
@@ -46,7 +50,9 @@ public final class CameraAssist {
         setCamera(camera);
     }
 
+    // ============
     // = 操作方法 =
+    // ============
 
     /**
      * 打开摄像头程序
@@ -57,21 +63,6 @@ public final class CameraAssist {
         Camera theCamera = mCamera;
         // 设置预览 Holder
         theCamera.setPreviewDisplay(holder);
-//        // 获取之前的摄像头配置信息
-//        Camera.Parameters parameters = theCamera.getParameters();
-//        String parametersFlattened = parameters == null ? null : parameters.flatten();
-//        try {
-//            // xxxx
-//        } catch (RuntimeException re) {
-//            if (parametersFlattened != null) {
-//                parameters = theCamera.getParameters();
-//                parameters.unflatten(parametersFlattened);
-//                try {
-//                    theCamera.setParameters(parameters);
-//                } catch (RuntimeException re2) {
-//                }
-//            }
-//        }
         return this;
     }
 
@@ -83,7 +74,9 @@ public final class CameraAssist {
         freeCameraResource();
     }
 
+    // ============
     // = 预览相关 =
+    // ============
 
     /**
      * 开始将Camera画面预览到手机上
@@ -142,7 +135,9 @@ public final class CameraAssist {
         }
     }
 
+    // ==============
     // = 摄像头相关 =
+    // ==============
 
     // 预览尺寸大小
     private Camera.Size mPreviewSize = null;
@@ -235,7 +230,9 @@ public final class CameraAssist {
         this.autoInterval = autoInterval;
     }
 
+    // ================================
     // = FlashlightUtils - 闪光灯相关 =
+    // ================================
 
     /**
      * 打开闪光灯
@@ -285,7 +282,9 @@ public final class CameraAssist {
         return DevUtils.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
     }
 
+    // ========
     // = 接口 =
+    // ========
 
     /**
      * detail: 预览通知接口
