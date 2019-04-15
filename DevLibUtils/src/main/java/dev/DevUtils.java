@@ -58,7 +58,11 @@ public final class DevUtils {
         initApplication(context);
         // 注册 Activity 生命周期监听
         registerActivityLifecycleCallbacks(sApplication);
+
+        // ====================
         // = 初始化工具类相关 =
+        // ====================
+
         // 初始化缓存类
         DevCache.get(context);
         // 初始化Shared 工具类
@@ -224,7 +228,9 @@ public final class DevUtils {
         return debug;
     }
 
+    // ==============
     // = 工具类版本 =
+    // ==============
 
     /**
      * 获取工具类版本 - VERSION_NAME
@@ -242,7 +248,9 @@ public final class DevUtils {
         return BuildConfig.VERSION_CODE;
     }
 
+    // =================
     // = Activity 监听 =
+    // =================
 
     // ActivityLifecycleCallbacks 实现类, 监听 Activity
     private static final ActivityLifecycleImpl ACTIVITY_LIFECYCLE = new ActivityLifecycleImpl();
@@ -284,7 +292,9 @@ public final class DevUtils {
         }
     }
 
+    // ================
     // = 对外公开方法 =
+    // ================
 
     /**
      * 获取 Activity 生命周期 相关信息获取接口类
@@ -318,7 +328,9 @@ public final class DevUtils {
         DevUtils.activityLifecycleFilter = activityLifecycleFilter;
     }
 
+    // ============
     // = 接口相关 =
+    // ============
 
     /**
      * detail: 对Activity的生命周期事件进行集中处理。  ActivityLifecycleCallbacks 实现方法
@@ -341,7 +353,9 @@ public final class DevUtils {
         // 是否后台 Activity
         private boolean mIsBackground = false;
 
+        // ==============================
         // = ActivityLifecycleCallbacks =
+        // ==============================
 
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -427,7 +441,9 @@ public final class DevUtils {
             }
         }
 
+        // ====================
         // = 内部处理判断方法 =
+        // ====================
 
         /**
          * 保存 Activity 栈顶
@@ -476,7 +492,9 @@ public final class DevUtils {
             return null;
         }
 
+        // =============================
         // = ActivityLifecycleGet 方法 =
+        // =============================
 
         /**
          * 获取最顶部 (当前或最后一个显示) Activity
@@ -545,7 +563,9 @@ public final class DevUtils {
             return mActivityList.size();
         }
 
+        // ===========================
         // = ActivityLifecycleNotify =
+        // ===========================
 
         /**
          * 添加 App 状态改变事件监听
@@ -613,7 +633,9 @@ public final class DevUtils {
             mDestroyedListenerMap.clear();
         }
 
+        // ================
         // = 事件通知相关 =
+        // ================
 
         /**
          * 发送状态改变通知
@@ -784,7 +806,9 @@ public final class DevUtils {
         void onActivityDestroyed(Activity activity);
     }
 
+    // ============
     // = 接口实现 =
+    // ============
 
     private static ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
         @Override

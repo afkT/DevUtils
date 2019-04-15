@@ -20,7 +20,9 @@ public final class DateUtils {
     // 日志 TAG
     private static final String TAG = DateUtils.class.getSimpleName();
 
+    // ================
     // = 日期格式类型 =
+    // ================
 
     public static final String yyyy = "yyyy";
     public static final String yyyyMMdd = "yyyy-MM-dd";
@@ -276,7 +278,9 @@ public final class DateUtils {
         return -2l;
     }
 
+    // ============
     // = 获取时间 =
+    // ============
 
     /**
      * 获取年
@@ -917,7 +921,9 @@ public final class DateUtils {
         return timeArys;
     }
 
+    // ======================
     // = 判断是否在区间范围 =
+    // ======================
 
     /**
      * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致

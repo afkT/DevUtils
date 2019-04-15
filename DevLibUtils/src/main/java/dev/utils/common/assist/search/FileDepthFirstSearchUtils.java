@@ -15,7 +15,9 @@ public final class FileDepthFirstSearchUtils {
     // 日志 TAG
     private static final String TAG = FileDepthFirstSearchUtils.class.getSimpleName();
 
+    // ============
     // = 构造函数 =
+    // ============
 
     public FileDepthFirstSearchUtils() {
     }

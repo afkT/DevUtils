@@ -348,7 +348,9 @@ public final class ConvertUtils {
         return defaultValue;
     }
 
+    // ============
     // = 转换对象 =
+    // ============
 
     /**
      * 基本类型对象 转 int
@@ -470,7 +472,9 @@ public final class ConvertUtils {
         return defaultValue;
     }
 
+    // ========
     // = 其他 =
+    // ========
 
     /**
      * char 转换 int
@@ -1295,7 +1299,9 @@ public final class ConvertUtils {
         return ints;
     }
 
+    // ===================
     // = Binary - 二进制 =
+    // ===================
 
     /**
      * 将 字节转换 为 二进制字符串
@@ -1351,7 +1357,9 @@ public final class ConvertUtils {
         return null;
     }
 
+    // ======================
     // = Hex - 十六进制处理 =
+    // ======================
 
     /**
      * 将十六进制字节数组解码

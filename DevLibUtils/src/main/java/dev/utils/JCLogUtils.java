@@ -26,7 +26,9 @@ public final class JCLogUtils {
     // 默认 DEFAULT_TAG
     private static final String DEFAULT_TAG = JCLogUtils.class.getSimpleName();
 
+    // ============
     // = 日志类型 =
+    // ============
 
     // 普通信息模式
     private static final int INFO = 0;
@@ -151,7 +153,9 @@ public final class JCLogUtils {
         return result;
     }
 
+    // ==============================
     // = 对外公开方法 - 使用默认TAG =
+    // ==============================
 
     public static void d(final String message, final Object... args) {
         dTag(DEFAULT_TAG, message, args);
@@ -177,7 +181,9 @@ public final class JCLogUtils {
         xmlTag(DEFAULT_TAG, xml);
     }
 
+    // ===============================
     // = 对外公开方法 - 日志打印方法 =
+    // ===============================
 
     public static void dTag(final String tag, final String message, final Object... args) {
         if (JUDGE_PRINT_LOG) {

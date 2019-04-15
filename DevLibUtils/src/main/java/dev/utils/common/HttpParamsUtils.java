@@ -74,7 +74,7 @@ public final class HttpParamsUtils {
         return mapParams;
     }
 
-    // -
+    // =
 
     /**
      * 拼接请求参数 - value => String
@@ -111,7 +111,7 @@ public final class HttpParamsUtils {
         return null;
     }
 
-    // -
+    // =
 
     /**
      * 拼接请求参数 - value => Object
@@ -154,7 +154,7 @@ public final class HttpParamsUtils {
         return null;
     }
 
-    // -
+    // =
 
     /**
      * 拼接打印 Map 参数
@@ -187,7 +187,9 @@ public final class HttpParamsUtils {
         return null;
     }
 
+    // ============================================
     // = 拼接成, 模拟 JavaScript 传递对象数组格式 =
+    // ============================================
 
     // 正常数据
     // objStr[key] => sex=男&name=Ttt

@@ -42,7 +42,9 @@ public final class FileUtils {
     // 换行字符串 - 两行
     public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
+    // ============
     // = 私有方法 =
+    // ============
 
     /**
      * 判断是否为 null
@@ -799,7 +801,9 @@ public final class FileUtils {
         return !newFile.exists() && file.renameTo(newFile);
     }
 
+    // ================
     // = 文件大小处理 =
+    // ================
 
     /**
      * 传入文件路径, 返回对应的文件大小
@@ -876,7 +880,9 @@ public final class FileUtils {
         }
     }
 
+    // =================
     // = 获取文件MD5值 =
+    // =================
 
     /**
      * 获取文件的 MD5 校验码
@@ -993,7 +999,9 @@ public final class FileUtils {
         return null;
     }
 
+    // ============
     // = 文件操作 =
+    // ============
 
     /**
      * 删除文件
@@ -1592,7 +1600,9 @@ public final class FileUtils {
         return false;
     }
 
+    // =============
     // = FileUtils =
+    // =============
 
     /**
      * 复制或移动目录

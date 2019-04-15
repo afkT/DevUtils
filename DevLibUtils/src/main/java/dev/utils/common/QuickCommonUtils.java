@@ -62,7 +62,7 @@ public final class QuickCommonUtils {
         return randomUUID.toString();
     }
 
-    // -
+    // =
 
     /**
      * 循环 MD5 加密处理

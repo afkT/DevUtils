@@ -19,7 +19,9 @@ public final class FileBreadthFirstSearchUtils {
     // 日志 TAG
     private static final String TAG = FileBreadthFirstSearchUtils.class.getSimpleName();
 
+    // ============
     // = 构造函数 =
+    // ============
 
     public FileBreadthFirstSearchUtils() {
     }
@@ -354,7 +356,9 @@ public final class FileBreadthFirstSearchUtils {
         }
     }
 
+    // ==============
     // = 线程池处理 =
+    // ==============
 
     /**
      * 循环队列
