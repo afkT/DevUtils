@@ -61,10 +61,11 @@ public class WifiVo implements Parcelable {
 
     /**
      * 扫描Wifi信息
-     * @param listWifiVos     处理后数据源
+     * @param listWifiVos     数据源
      * @param listScanResults 扫描返回的数据
      */
     public static void scanWifiVos(final List<WifiVo> listWifiVos, final List<ScanResult> listScanResults) {
+        if (listWifiVos == null || listScanResults == null) return;
         // 清空旧数据
         listWifiVos.clear();
         // 遍历wifi列表数据

@@ -681,7 +681,8 @@ public final class ReflectUtils {
     }
 
     /**
-     * 定义反射异常类
+     * detail: 定义反射异常类
+     * Created by Ttt
      */
     public static class ReflectException extends RuntimeException {
 

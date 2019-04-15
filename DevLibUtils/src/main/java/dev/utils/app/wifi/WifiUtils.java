@@ -41,19 +41,11 @@ public final class WifiUtils {
     // = 常量 =
     // ========
 
-    /**
-     * 没有密码
-     */
+    // 没有密码
     public static final int NOPWD = 0;
-
-    /**
-     * wep加密方式
-     */
+    // wep加密方式
     public static final int WEP = 1;
-
-    /**
-     * wpa加密方式
-     */
+    // wpa加密方式
     public static final int WPA = 2;
 
     /**
@@ -214,6 +206,7 @@ public final class WifiUtils {
      * @return
      */
     public static String getSSID(final WifiInfo wifiInfo) {
+        if (wifiInfo == null) return null;
         try {
             // 获取SSID,并进行处理
             return formatSSID(wifiInfo.getSSID(), false);
@@ -247,6 +240,7 @@ public final class WifiUtils {
      * @param ssid
      */
     public static String formatSSID(final String ssid) {
+        if (ssid == null) return null;
         // 自动去掉SSID
         if (ssid != null && ssid.startsWith("\"") && ssid.endsWith("\"")) {
             try {
@@ -266,6 +260,7 @@ public final class WifiUtils {
      * @return
      */
     public static String formatSSID(final String ssid, final boolean isHandler) {
+        if (ssid == null) return null;
         if (isHandler) {
             return "\"" + ssid + "\"";
         } else {
@@ -280,6 +275,7 @@ public final class WifiUtils {
      * @return
      */
     public String getPassword(final String pwd, final boolean isJudge) {
+        if (pwd == null) return null;
         if (isJudge && isHexWepKey(pwd)) {
             return pwd;
         } else {
@@ -293,6 +289,7 @@ public final class WifiUtils {
      * @return
      */
     public static boolean isHexWepKey(final String wepKey) {
+        if (wepKey == null) return false;
         // WEP-40, WEP-104, and some vendors using 256-bit WEP (WEP-232?)
         int len = wepKey.length();
         if (len != 10 && len != 26 && len != 58) {
@@ -307,6 +304,7 @@ public final class WifiUtils {
      * @return
      */
     public static boolean isHex(final String key) {
+        if (key == null) return false;
         for (int i = key.length() - 1; i >= 0; i--) {
             char c = key.charAt(i);
             if (!(c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f')) {
@@ -425,24 +423,13 @@ public final class WifiUtils {
     // = Wifi配置操作 =
     // ================
 
-    /**
-     * 默认没有密码
-     */
+    // 默认没有密码
     public static final int SECURITY_NONE = 0;
-
-    /**
-     * WEP加密方式
-     */
+    // WEP加密方式
     public static final int SECURITY_WEP = 1;
-
-    /**
-     * PSK加密方式
-     */
+    // PSK加密方式
     public static final int SECURITY_PSK = 2;
-
-    /**
-     * EAP加密方式
-     */
+    // EAP加密方式
     public static final int SECURITY_EAP = 3;
 
     /**
@@ -451,6 +438,7 @@ public final class WifiUtils {
      * @return
      */
     public static int getSecurity(final WifiConfiguration wifiConfig) {
+        if (wifiConfig == null) return SECURITY_NONE;
         if (wifiConfig.allowedKeyManagement.get(KeyMgmt.WPA_PSK)) {
             return SECURITY_PSK;
         }
@@ -467,6 +455,7 @@ public final class WifiUtils {
      * @return
      */
     public static boolean isExsitsPwd(final WifiConfiguration wifiConfig) {
+        if (wifiConfig == null) return false;
         int wifiSecurity = getSecurity(wifiConfig);
         // 判断是否加密
         return (wifiSecurity != SECURITY_NONE);
@@ -477,6 +466,7 @@ public final class WifiUtils {
      * @param ssid 需要判断的wifi SSID
      */
     public WifiConfiguration isExsits(final String ssid) {
+        if (ssid == null) return null;
         // 获取wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
         // 防止为null
@@ -528,6 +518,7 @@ public final class WifiUtils {
      * @return 删除结果
      */
     public static boolean delWifiConfig(final String ssid) {
+        if (ssid == null) return false;
         try {
             // 初始化WifiManager对象
             WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -811,7 +802,7 @@ public final class WifiUtils {
      */
     private WifiConfiguration setStaticWifiConfig(final WifiConfiguration wifiConfig, final String ip) {
         String gateway = null;
-        String dns = null;
+        String dns;
         if (ip != null) {
             try {
                 InetAddress intetAddress = InetAddress.getByName(ip);
