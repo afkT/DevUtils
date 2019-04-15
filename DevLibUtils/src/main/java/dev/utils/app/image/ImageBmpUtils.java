@@ -19,7 +19,7 @@ public final class ImageBmpUtils {
     // 日志 TAG
     private static final String TAG = ImageBmpUtils.class.getSimpleName();
 
-    // = 转换BMP图片  =
+    // = 转换BMP图片 =
 
     /**
      * bmp位图，头结构

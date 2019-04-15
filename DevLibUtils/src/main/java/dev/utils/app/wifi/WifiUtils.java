@@ -69,7 +69,7 @@ public final class WifiUtils {
 		return this.mWifiManager;
 	}
 
-	// =================  wifi 开关、连接状态获取     =================
+	// = Wifi 开关、连接状态获取 =
 
 	/** 判断是否打开wifi */
 	public boolean isOpenWifi() {
@@ -703,7 +703,7 @@ public final class WifiUtils {
 		return null;
 	}
 
-	// ====================  连接操作  ========================
+	// = 连接操作 =
 	/**
 	 * 移除某个Wifi配置信息
 	 * @param wcg
@@ -739,7 +739,7 @@ public final class WifiUtils {
 		}
 	}
 
-	// ==========================  设置静态ip，域名，等信息  =====================================
+	// = 设置静态ip，域名，等信息 =
 
 	/**
 	 * 设置静态Wifi信息

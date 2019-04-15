@@ -618,19 +618,19 @@ public final class AnalysisRecordUtils {
                     String hh_Foramt = getDateNow("HH");
                     // 判断属于小时格式
                     if (iTime == HH) {
-                        // /folder/HH/HH_小时/  => /LogSpace/HH/HH_15/
+                        // /folder/HH/HH_小时/ => /LogSpace/HH/HH_15/
                         return folder + "HH/HH_" + hh_Foramt + File.separator;
                     } else {
                         // 分钟格式
                         String mm_Foramt = getDateNow("mm");
                         // 判断是否属于分钟
                         if (iTime == MM) {
-                            // /folder/HH/HH_小时/MM_分钟/  => /LogSpace/HH/HH_15/MM/MM_55/
+                            // /folder/HH/HH_小时/MM_分钟/ => /LogSpace/HH/HH_15/MM/MM_55/
                             return folder + "HH/HH_" + hh_Foramt + "/MM/MM_" + mm_Foramt + File.separator;
                         } else { // 属于秒
                             // 秒格式
                             String ss_Foramt = getDateNow("ss");
-                            // /folder/HH/HH_小时/MM_分钟/  => /LogSpace/HH/HH_15/MM/MM_55/SS_12/
+                            // /folder/HH/HH_小时/MM_分钟/ => /LogSpace/HH/HH_15/MM/MM_55/SS_12/
                             return folder + "HH/HH_" + hh_Foramt + "/MM/MM_" + mm_Foramt + "/SS_" + ss_Foramt + File.separator;
                         }
                     }

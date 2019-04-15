@@ -16,14 +16,14 @@ public final class SharedUtils {
     private SharedUtils() {
     }
 
-    /** 全局 Context */
+    // 全局 Context
     private static Context mContext;
 
     /**
      * 初始化操作
      * @param context
      */
-    public static void init(Context context) {
+    public static void init(final Context context) {
         if (mContext == null && context != null) {
             // 初始化全局 Context
             mContext = context.getApplicationContext();
@@ -35,15 +35,15 @@ public final class SharedUtils {
      * @param key
      * @param value
      */
-    public static <T> void put(String key, T value) {
+    public static <T> void put(final String key, final T value) {
         SPUtils.getPreference(mContext).put(key, value);
     }
 
     /**
-     * 保存一个Map集合(只能是 Integer,Long,Boolean,Float,String,Set)
+     * 保存一个 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set)
      * @param map
      */
-    public static <T> void putAll(Map<String, T> map) {
+    public static <T> void putAll(final Map<String, T> map) {
         SPUtils.getPreference(mContext).putAll(map);
     }
 
@@ -52,25 +52,25 @@ public final class SharedUtils {
      * @param key
      * @param list
      */
-    public static void putAll(String key, List<String> list) {
+    public static void putAll(final String key, final List<String> list) {
         SPUtils.getPreference(mContext).putAll(key, list);
     }
 
     /**
-     * 保存一个List集合,并且自定义保存顺序
+     * 保存一个 List 集合, 并且自定义保存顺序
      * @param key
      * @param list
      * @param comparator
      */
-    public static void putAll(String key, List<String> list, Comparator<String> comparator) {
+    public static void putAll(final String key, final List<String> list, final Comparator<String> comparator) {
         SPUtils.getPreference(mContext).putAll(key, list, comparator);
     }
 
     /**
-     * 根据key取出一个数据
+     * 根据 key 取出一个数据
      * @param key
      */
-    public static <T> T get(String key, IPreference.DataType type) {
+    public static <T> T get(final String key, final IPreference.DataType type) {
         return SPUtils.getPreference(mContext).get(key, type);
     }
 
@@ -83,11 +83,11 @@ public final class SharedUtils {
     }
 
     /**
-     * 取出一个List集合
+     * 取出一个 List 集合
      * @param key
      * @return
      */
-    public static List<String> getAll(String key) {
+    public static List<String> getAll(final String key) {
         return SPUtils.getPreference(mContext).getAll(key);
     }
 
@@ -96,7 +96,7 @@ public final class SharedUtils {
      * @param key
      * @return
      */
-    public static void remove(String key) {
+    public static void remove(final String key) {
         SPUtils.getPreference(mContext).remove(key);
     }
 
@@ -105,7 +105,7 @@ public final class SharedUtils {
      * @param keys
      * @return
      */
-    public static void removeAll(List<String> keys) {
+    public static void removeAll(final List<String> keys) {
         SPUtils.getPreference(mContext).removeAll(keys);
     }
 
@@ -114,15 +114,15 @@ public final class SharedUtils {
      * @param keys
      * @return
      */
-    public static void removeAll(String[] keys) {
+    public static void removeAll(final String[] keys) {
         SPUtils.getPreference(mContext).removeAll(keys);
     }
 
     /**
-     * 是否存在key
+     * 是否存在 key
      * @return
      */
-    public static boolean contains(String key) {
+    public static boolean contains(final String key) {
         return SPUtils.getPreference(mContext).contains(key);
     }
 
@@ -133,58 +133,58 @@ public final class SharedUtils {
         SPUtils.getPreference(mContext).clear();
     }
 
-    // ==
+    // =
 
     /**
-     * 获取int类型的数据
+     * 获取 int 类型的数据
      * @return
      */
-    public static int getInt(String key) {
+    public static int getInt(final String key) {
         return SPUtils.getPreference(mContext).getInt(key);
     }
 
     /**
-     * 获取Float类型的数据
+     * 获取 float 类型的数据
      * @param key
      * @return
      */
-    public static float getFloat(String key) {
+    public static float getFloat(final String key) {
         return SPUtils.getPreference(mContext).getFloat(key);
     }
 
     /**
-     * 获取long类型的数据
+     * 获取 long 类型的数据
      * @param key
      * @return
      */
-    public static long getLong(String key) {
+    public static long getLong(final String key) {
         return SPUtils.getPreference(mContext).getLong(key);
     }
 
     /**
-     * 获取boolean类型的数据
+     * 获取 boolean 类型的数据
      * @param key
      * @return
      */
-    public static boolean getBoolean(String key) {
+    public static boolean getBoolean(final String key) {
         return SPUtils.getPreference(mContext).getBoolean(key);
     }
 
     /**
-     * 获取String类型的数据
+     * 获取 String 类型的数据
      * @param key
      * @return
      */
-    public static String getString(String key) {
+    public static String getString(final String key) {
         return SPUtils.getPreference(mContext).getString(key);
     }
 
     /**
-     * 获取Set类型的数据
+     * 获取 Set 类型的数据
      * @param key
      * @return
      */
-    public static Set<String> getSet(String key) {
+    public static Set<String> getSet(final String key) {
         return SPUtils.getPreference(mContext).getSet(key);
     }
 }

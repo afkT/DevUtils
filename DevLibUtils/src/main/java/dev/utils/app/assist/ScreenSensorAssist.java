@@ -52,9 +52,9 @@ public final class ScreenSensorAssist {
     // 触发屏幕方向改变回调
     public static final int CHANGE_ORIENTATION_WHAT = 9919;
 
-    // =========
-    // = 变量  =
-    // =========
+    // ========
+    // = 变量 =
+    // ========
 
     // 是否允许切屏
     private boolean allowChange = false;

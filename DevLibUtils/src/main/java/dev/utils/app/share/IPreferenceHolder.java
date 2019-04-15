@@ -10,14 +10,14 @@ import java.util.HashMap;
  */
 class IPreferenceHolder {
 
-    /** HashMap 保存持有对象 */
+    // HashMap 保存持有对象
     private static final HashMap<String, IPreference> hashMap = new HashMap<>();
 
     /**
      * 初始化
      * @param context
      */
-    public static IPreference getPreference(Context context) {
+    public static IPreference getPreference(final Context context) {
         // 判断是否为存在对应的持有类
         IPreference ipref = hashMap.get(null);
         // 判断是否为存在
@@ -35,7 +35,7 @@ class IPreferenceHolder {
      * @param context
      * @param fileName
      */
-    public static IPreference getPreference(Context context, String fileName) {
+    public static IPreference getPreference(final Context context, final String fileName) {
         // 判断是否为存在对应的持有类
         IPreference ipref = hashMap.get(fileName);
         // 判断是否为存在
@@ -54,7 +54,7 @@ class IPreferenceHolder {
      * @param fileName
      * @param mode
      */
-    public static IPreference getPreference(Context context, String fileName, int mode) {
+    public static IPreference getPreference(final Context context, final String fileName, final int mode) {
         String key = fileName + "_" + mode;
         // 判断是否为存在对应的持有类
         IPreference ipref = hashMap.get(key);

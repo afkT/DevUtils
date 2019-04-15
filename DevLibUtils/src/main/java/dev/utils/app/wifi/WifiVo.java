@@ -88,7 +88,7 @@ public class WifiVo implements Parcelable {
 		}
 	}
 
-	// ===============  Parcelable  ===============
+	// = Parcelable =
 
 	protected WifiVo(Parcel in) {
 		wSSID = in.readString();

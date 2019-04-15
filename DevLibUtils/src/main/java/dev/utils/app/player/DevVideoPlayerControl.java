@@ -14,9 +14,9 @@ import dev.utils.LogPrintUtils;
 public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         DevMediaManager.MediaListener {
 
-    // =============
-    // = 外部回调  =
-    // =============
+    // ============
+    // = 外部回调 =
+    // ============
 
     // 日志 TAG
     private final String TAG = DevVideoPlayerControl.class.getSimpleName();

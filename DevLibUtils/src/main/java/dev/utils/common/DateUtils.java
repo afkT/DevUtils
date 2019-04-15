@@ -641,9 +641,9 @@ public final class DateUtils {
      * 生成 HH:mm 按间隔时间排序数组
      * @param type
      * @return type：
-     * 0 = 00:00 - 23:00  => 每小时间隔
-     * 1 = 00:00 - 23:45  => 每15分钟间隔
-     * 2 = 00:00 - 23:30  => 每30分钟间隔
+     * 0 = 00:00 - 23:00 => 每小时间隔
+     * 1 = 00:00 - 23:45 => 每15分钟间隔
+     * 2 = 00:00 - 23:30 => 每30分钟间隔
      */
     public static String[] getArrayToHHMM(final int type) {
         List<String> lists = getListToHHMM(type);
@@ -654,9 +654,9 @@ public final class DateUtils {
      * 生成 HH:mm 按间隔时间排序集合
      * @param type
      * @return type：
-     * 0 = 00:00 - 23:00  => 每小时间隔
-     * 1 = 00:00 - 23:45  => 每15分钟间隔
-     * 2 = 00:00 - 23:30  => 每30分钟间隔
+     * 0 = 00:00 - 23:00 => 每小时间隔
+     * 1 = 00:00 - 23:45 => 每15分钟间隔
+     * 2 = 00:00 - 23:30 => 每30分钟间隔
      */
     public static List<String> getListToHHMM(final int type) {
         List<String> lists = new ArrayList<>();
@@ -706,9 +706,9 @@ public final class DateUtils {
      * @param time HH:mm格式
      * @param type
      * @return type：
-     * 0 = 00:00 - 23:00  => 每小时间隔
-     * 1 = 00:00 - 23:45  => 每15分钟间隔
-     * 2 = 00:00 - 23:30  => 每30分钟间隔
+     * 0 = 00:00 - 23:00 => 每小时间隔
+     * 1 = 00:00 - 23:45 => 每15分钟间隔
+     * 2 = 00:00 - 23:30 => 每30分钟间隔
      */
     public static int getListToHHMMPosition(final String time, final int type) {
         if (time != null && time.length() != 0) {

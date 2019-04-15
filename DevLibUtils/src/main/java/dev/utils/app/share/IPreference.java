@@ -8,16 +8,19 @@ import java.util.Set;
 /**
  * detail: SharedPreferences 操作接口
  * Created by Ttt
+ * ==============
  * http://www.jianshu.com/p/fcd75a324c35
  */
 public interface IPreference {
 
-    /** 枚举: 存储或取出的数据类型 */
+    /**
+     * 枚举: 存储或取出的数据类型
+     */
     enum DataType {
         INTEGER, LONG, BOOLEAN, FLOAT, STRING, STRING_SET
     }
 
-    // ==
+    // =
 
     /**
      * 保存一个数据
@@ -27,7 +30,7 @@ public interface IPreference {
     <T> void put(String key, T value);
 
     /**
-     * 保存一个Map集合(只能是 Integer,Long,Boolean,Float,String,Set)
+     * 保存一个 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set)
      * @param map
      */
     <T> void putAll(Map<String, T> map);
@@ -40,7 +43,7 @@ public interface IPreference {
     void putAll(String key, List<String> list);
 
     /**
-     * 保存一个List集合,并且自定义保存顺序
+     * 保存一个 List 集合, 并且自定义保存顺序
      * @param key
      * @param list
      * @param comparator
@@ -48,7 +51,7 @@ public interface IPreference {
     void putAll(String key, List<String> list, Comparator<String> comparator);
 
     /**
-     * 根据key取出一个数据
+     * 根据 key 取出一个数据
      * @param key
      */
     <T> T get(String key, DataType type);
@@ -60,7 +63,7 @@ public interface IPreference {
     Map<String, ?> getAll();
 
     /**
-     * 取出一个List集合
+     * 取出一个 List 集合
      * @param key
      * @return
      */
@@ -88,7 +91,7 @@ public interface IPreference {
     void removeAll(String[] keys);
 
     /**
-     * 是否存在key
+     * 是否存在 key
      * @return
      */
     boolean contains(String key);
@@ -98,22 +101,23 @@ public interface IPreference {
      */
     void clear();
 
-    // ==
+    // =
+
     /**
-     * 获取int类型的数据
+     * 获取 int 类型的数据
      * @return
      */
     int getInt(String key);
 
     /**
-     * 获取Float类型的数据
+     * 获取 float 类型的数据
      * @param key
      * @return
      */
     float getFloat(String key);
 
     /**
-     * 获取long类型的数据
+     * 获取 long 类型的数据
      * @param key
      * @return
      */
@@ -121,21 +125,21 @@ public interface IPreference {
 
 
     /**
-     * 获取boolean类型的数据
+     * 获取 boolean 类型的数据
      * @param key
      * @return
      */
     boolean getBoolean(String key);
 
     /**
-     * 获取String类型的数据
+     * 获取 String 类型的数据
      * @param key
      * @return
      */
     String getString(String key);
 
     /**
-     * 获取Set类型的数据
+     * 获取 Set 类型的数据
      * @param key
      * @return
      */

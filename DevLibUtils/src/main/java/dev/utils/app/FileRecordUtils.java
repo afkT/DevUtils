@@ -35,7 +35,7 @@ public final class FileRecordUtils {
     // 日志 TAG
     private static final String TAG = FileRecordUtils.class.getSimpleName();
 
-    // ===================  配置信息  =======================
+    // = 配置信息 =
 
     /** App 版本(如1.0.01) 显示给用户看的 */
     private static String APP_VERSION_NAME = "";
@@ -55,7 +55,7 @@ public final class FileRecordUtils {
     // 换行字符串 - 两行
     private static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
-    // ================== App、设备信息处理  ===================
+    // = App、设备信息处理 =
 
     /**
      * 获取 App 版本信息
@@ -150,7 +150,7 @@ public final class FileRecordUtils {
         return eHint;
     }
 
-    // ==================  时间格式化  ===================
+    //  时间格式化 =
 
     /** 日期格式类型 */
     private static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
@@ -171,7 +171,7 @@ public final class FileRecordUtils {
     }
 
 
-    // ==================  文件操作  ===================
+    //  文件操作 =
 
     /**
      * 判断某个文件夹是否创建,未创建则创建(不能加入文件名)
@@ -212,7 +212,7 @@ public final class FileRecordUtils {
     }
 
 
-    // ==================  异常信息处理  ===================
+    //  异常信息处理 =
 
     /**
      * 获取错误信息(无换行)
@@ -284,7 +284,7 @@ public final class FileRecordUtils {
         return eHint;
     }
 
-    // ==================  对外公开方法  ===================
+    //  对外公开方法 =
 
     /**
      * 初始化调用方法

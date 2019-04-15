@@ -24,19 +24,19 @@
 | :- | :- |
 | init | 初始化操作 |
 | put | 保存一个数据 |
-| putAll | 保存一个Map集合(只能是 Integer,Long,Boolean,Float,String,Set) |
-| get | 根据key取出一个数据 |
+| putAll | 保存一个 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set) |
+| get | 根据 key 取出一个数据 |
 | getAll | 取出全部数据 |
 | remove | 移除一个数据 |
 | removeAll | 移除一个集合的数据 |
-| contains | 是否存在key |
+| contains | 是否存在 key |
 | clear | 清除全部数据 |
-| getInt | 获取int类型的数据 |
-| getFloat | 获取Float类型的数据 |
-| getLong | 获取long类型的数据 |
-| getBoolean | 获取boolean类型的数据 |
-| getString | 获取String类型的数据 |
-| getSet | 获取Set类型的数据 |
+| getInt | 获取 int 类型的数据 |
+| getFloat | 获取 float 类型的数据 |
+| getLong | 获取 long 类型的数据 |
+| getBoolean | 获取 boolean 类型的数据 |
+| getString | 获取 String 类型的数据 |
+| getSet | 获取 Set 类型的数据 |
 
 #### 使用方法
 ```java

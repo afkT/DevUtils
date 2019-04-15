@@ -226,7 +226,7 @@ public class WifiHotUtils {
         }
     }
 
-    // ==========================  手机热点功能  ==========================
+    // = 手机热点功能 =
     /** Wifi热点正在关闭 -- WifiManager.WIFI_AP_STATE_DISABLING */
     public static final int WIFI_AP_STATE_DISABLING = 10;
     /** Wifi热点已关闭 -- WifiManager.WIFI_AP_STATE_DISABLED */

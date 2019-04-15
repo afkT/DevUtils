@@ -132,7 +132,7 @@ public final class LoggerUse {
      * 打印、保存异常日志
      */
     private static void exLog() {
-        // =================== 保存异常日志  ====================
+        // = 保存异常日志 =
         try {
             String s = null;
             s.indexOf("c");
@@ -160,7 +160,7 @@ public final class LoggerUse {
      * 保存日志
      */
     private static void saveLog() {
-        // =================== 保存日志  ====================
+        // = 保存日志 =
         // 保存文件名
         String fileName = System.currentTimeMillis() + ".log";
         // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
@@ -179,7 +179,7 @@ public final class LoggerUse {
      * 打印临时日志
      */
     private static void tempLog() {
-        // =================== 打印零散数据  ====================
+        // = 打印零散数据 =
         TestData.ShareMsgVo sMsgVo = new TestData.ShareMsgVo();
         sMsgVo.sTitle = "分享Blog";
         sMsgVo.sText = null;
@@ -198,10 +198,10 @@ public final class LoggerUse {
         // 打印零散数据
         DevLogger.d(LogTools.getScatteredData(uInfoVo.uName, sMsgVo.sTitle, uInfoVo.uAge));
 
-        // =================== 打印测试数据  ====================
+        // = 打印测试数据 =
         // 日志 TAG
         final String tag = LOG_TAG;
-        // ====== 使用 BaseApplication 默认配置  ======
+        // = 使用 BaseApplication 默认配置 =
         // JSON数组
         DevLogger.json("[" + TestData.JSON_WITH_NO_LINE_BREAK + "," + TestData.JSON_WITH_NO_LINE_BREAK + "]");
         // JSON对象
@@ -229,7 +229,7 @@ public final class LoggerUse {
         DevLogger.dTag(tag, "%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
 
 
-        // ====== 使用自定义临时配置  ======
+        // = 使用自定义临时配置 =
         // 自定义配置, 如下使用方式
         // DevLogger.other(lConfig).d(message);
         // DevLogger.other(lConfig).dTag(tag, message);

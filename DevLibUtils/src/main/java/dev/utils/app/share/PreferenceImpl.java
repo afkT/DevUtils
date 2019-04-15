@@ -14,27 +14,27 @@ import java.util.TreeSet;
 /**
  * detail: SharedPreferences 操作接口具体实现类
  * Created by Ttt
- * hint:
- * 1.apply没有返回值而 commit返回boolean表明修改是否提交成功
- * 2.apply是将修改数据原子提交到内存, 而后异步真正提交到硬件磁盘, 而commit是同步的提交到硬件磁盘
- * 3.apply方法不会提示任何失败的提示 apply的效率高一些，如果没有必要确认是否提交成功建议使用apply。
+ * ==============
+ * 1.apply 没有返回值而 commit 返回 boolean 表明修改是否提交成功
+ * 2.apply 是将修改数据原子提交到内存, 而后异步真正提交到硬件磁盘, 而 commit 是同步的提交到硬件磁盘
+ * 3.apply 方法不会提示任何失败的提示 apply 的效率高一些，如果没有必要确认是否提交成功建议使用 apply
  */
 final class PreferenceImpl implements IPreference {
 
-    /** 文件名 */
+    // 文件名
     private static final String NAME = "SPConfig";
-    /** 默认SharedPreferences对象 */
-    private SharedPreferences preferences = null;
+    // 默认SharedPreferences对象
+    private SharedPreferences preferences;
 
-    // ==============
-    // == 构造函数 ==
-    // ==============
+    // ============
+    // = 构造函数 =
+    // ============
 
     /**
      * 初始化
      * @param context
      */
-    public PreferenceImpl(Context context) {
+    public PreferenceImpl(final Context context) {
         preferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
     }
 
@@ -43,7 +43,7 @@ final class PreferenceImpl implements IPreference {
      * @param context
      * @param fileName
      */
-    public PreferenceImpl(Context context, String fileName) {
+    public PreferenceImpl(final Context context, final String fileName) {
         preferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
     }
 
@@ -53,13 +53,13 @@ final class PreferenceImpl implements IPreference {
      * @param fileName
      * @param mode
      */
-    public PreferenceImpl(Context context, String fileName, int mode) {
+    public PreferenceImpl(final Context context, final String fileName, final int mode) {
         preferences = context.getSharedPreferences(fileName, mode);
     }
 
-    // ==============
-    // == 内部方法 ==
-    // ==============
+    // ============
+    // = 内部方法 =
+    // ============
 
     /**
      * 保存数据
@@ -68,9 +68,9 @@ final class PreferenceImpl implements IPreference {
      * @param object
      */
     @SuppressWarnings("unchecked")
-    private void put(SharedPreferences.Editor editor, String key, Object object) {
+    private void put(final SharedPreferences.Editor editor, final String key, final Object object) {
         // key 不为null时再存入，否则不存储
-        if (key != null) {
+        if (key != null && object != null) {
             if (object instanceof Integer) {
                 editor.putInt(key, (Integer) object);
             } else if (object instanceof Long) {
@@ -93,7 +93,7 @@ final class PreferenceImpl implements IPreference {
      * @param type
      * @return
      */
-    private Object getValue(String key, DataType type) {
+    private Object getValue(final String key, final DataType type) {
         switch (type) {
             case INTEGER:
                 return preferences.getInt(key, -1);
@@ -122,20 +122,19 @@ final class PreferenceImpl implements IPreference {
         }
     }
 
-    // ==================
-    // == 接口实现方法 ==
-    // ==================
-
+    // ================
+    // = 接口实现方法 =
+    // ================
 
     @Override
-    public <T> void put(String key, T value) {
+    public <T> void put(final String key, final T value) {
         SharedPreferences.Editor edit = preferences.edit();
         put(edit, key, value);
         edit.apply();
     }
 
     @Override
-    public <T> void putAll(Map<String, T> map) {
+    public <T> void putAll(final Map<String, T> map) {
         SharedPreferences.Editor edit = preferences.edit();
         for (Map.Entry<String, T> entry : map.entrySet()) {
             String key = entry.getKey();
@@ -146,12 +145,12 @@ final class PreferenceImpl implements IPreference {
     }
 
     @Override
-    public void putAll(String key, List<String> list) {
+    public void putAll(final String key, final List<String> list) {
         putAll(key, list, new ComparatorImpl());
     }
 
     @Override
-    public void putAll(String key, List<String> list, Comparator<String> comparator) {
+    public void putAll(final String key, final List<String> list, final Comparator<String> comparator) {
         Set<String> set = new TreeSet<>(comparator);
         for (String value : list) {
             set.add(value);
@@ -160,7 +159,7 @@ final class PreferenceImpl implements IPreference {
     }
 
     @Override
-    public <T> T get(String key, DataType type) {
+    public <T> T get(final String key, final DataType type) {
         return (T) getValue(key, type);
     }
 
@@ -170,7 +169,7 @@ final class PreferenceImpl implements IPreference {
     }
 
     @Override
-    public List<String> getAll(String key) {
+    public List<String> getAll(final String key) {
         List<String> list = new ArrayList<>();
         Set<String> set = get(key, DataType.STRING_SET);
         for (String value : set) {
@@ -180,12 +179,12 @@ final class PreferenceImpl implements IPreference {
     }
 
     @Override
-    public void remove(String key) {
+    public void remove(final String key) {
         preferences.edit().remove(key).apply();
     }
 
     @Override
-    public void removeAll(List<String> keys) {
+    public void removeAll(final List<String> keys) {
         SharedPreferences.Editor edit = preferences.edit();
         for (String k : keys) {
             edit.remove(k);
@@ -194,12 +193,12 @@ final class PreferenceImpl implements IPreference {
     }
 
     @Override
-    public void removeAll(String[] keys) {
+    public void removeAll(final String[] keys) {
         removeAll(Arrays.asList(keys));
     }
 
     @Override
-    public boolean contains(String key) {
+    public boolean contains(final String key) {
         return preferences.contains(key);
     }
 
@@ -208,35 +207,35 @@ final class PreferenceImpl implements IPreference {
         preferences.edit().clear().apply();
     }
 
-    // ==
+    // =
 
     @Override
-    public int getInt(String key) {
+    public int getInt(final String key) {
         return get(key, DataType.INTEGER);
     }
 
     @Override
-    public float getFloat(String key) {
+    public float getFloat(final String key) {
         return get(key, DataType.FLOAT);
     }
 
     @Override
-    public long getLong(String key) {
+    public long getLong(final String key) {
         return get(key, DataType.LONG);
     }
 
     @Override
-    public boolean getBoolean(String key) {
+    public boolean getBoolean(final String key) {
         return get(key, DataType.BOOLEAN);
     }
 
     @Override
-    public String getString(String key) {
+    public String getString(final String key) {
         return get(key, DataType.STRING);
     }
 
     @Override
-    public Set<String> getSet(String key) {
+    public Set<String> getSet(final String key) {
         return get(key, DataType.STRING_SET);
     }
 }

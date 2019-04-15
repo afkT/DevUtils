@@ -383,7 +383,7 @@ public final class KeyBoardUtils {
 		}
 	}
 
-	// ==========  点击非EditText 则隐藏输入法  ===============
+	// = 点击非EditText 则隐藏输入法 =
 
 	/**
 	 * 某个View里面的子View的View判断
@@ -407,7 +407,7 @@ public final class KeyBoardUtils {
 		}
 	}
 
-	// ==========  输入法隐藏显示  ===============
+	// = 输入法隐藏显示 =
 
 	/**
 	 * 判断软键盘是否可见

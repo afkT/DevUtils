@@ -251,7 +251,7 @@ public final class EditTextUtils {
     }
 
 
-    // =============== 输入法Key Listener 快捷处理  ==========================
+    // = 输入法Key Listener 快捷处理 =
 
     /**
      * 限制只能输入字母和数字，默认弹出英文输入法
