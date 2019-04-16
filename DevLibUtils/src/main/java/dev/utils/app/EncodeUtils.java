@@ -41,14 +41,14 @@ public final class EncodeUtils {
             return URLEncoder.encode(input, charsetName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "urlEncode");
-            return null;
         }
+        return null;
     }
 
     /**
      * url 解码 - UTF-8
      * @param input
-     * @return the string of decode urlencoded string
+     * @return
      */
     public static String urlDecode(final String input) {
         return urlDecode(input, "UTF-8");
@@ -58,15 +58,15 @@ public final class EncodeUtils {
      * url 解码
      * @param input
      * @param charsetName
-     * @return the string of decode urlencoded string
+     * @return
      */
     public static String urlDecode(final String input, final String charsetName) {
         try {
             return URLDecoder.decode(input, charsetName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "urlDecode");
-            return null;
         }
+        return null;
     }
 
 //    CRLF 这个参数看起来比较眼熟，它就是Win风格的换行符，意思就是使用CR LF这一对作为一行的结尾而不是Unix风格的LF
@@ -85,7 +85,13 @@ public final class EncodeUtils {
      * @return Base64-encode bytes
      */
     public static byte[] base64Encode(final String input) {
-        return base64Encode(input.getBytes());
+        if (input == null) return null;
+        try {
+            return base64Encode(input.getBytes());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "base64Encode");
+        }
+        return null;
     }
 
     /**
@@ -94,34 +100,60 @@ public final class EncodeUtils {
      * @return Base64-encode bytes
      */
     public static byte[] base64Encode(final byte[] input) {
-        return Base64.encode(input, Base64.NO_WRAP);
+        if (input == null) return null;
+        try {
+            return Base64.encode(input, Base64.NO_WRAP);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "base64Encode");
+        }
+        return null;
     }
 
     /**
      * base64 编码
      * @param input
-     * @return Base64-encode string
+     * @return
      */
     public static String base64EncodeToString(final byte[] input) {
-        return Base64.encodeToString(input, Base64.NO_WRAP);
+        if (input == null) return null;
+        try {
+            return Base64.encodeToString(input, Base64.NO_WRAP);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "base64EncodeToString");
+        }
+        return null;
     }
+
+    // =
 
     /**
      * base64 解码
      * @param input
-     * @return the string of decode Base64-encode string
+     * @return
      */
     public static byte[] base64Decode(final String input) {
-        return Base64.decode(input, Base64.NO_WRAP);
+        if (input == null) return null;
+        try {
+            return Base64.decode(input, Base64.NO_WRAP);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "base64Decode");
+        }
+        return null;
     }
 
     /**
      * base64 解码
      * @param input
-     * @return the bytes of decode Base64-encode bytes
+     * @return
      */
     public static byte[] base64Decode(final byte[] input) {
-        return Base64.decode(input, Base64.NO_WRAP);
+        if (input == null) return null;
+        try {
+            return Base64.decode(input, Base64.NO_WRAP);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "base64Decode");
+        }
+        return null;
     }
 
     /**
@@ -130,6 +162,7 @@ public final class EncodeUtils {
      * @return
      */
     public static String base64DecodeToString(final byte[] input) {
+        if (input == null) return null;
         try {
             return new String(base64Decode(input));
         } catch (Exception e) {
@@ -138,17 +171,20 @@ public final class EncodeUtils {
         return null;
     }
 
+    // =
+
     /**
      * html 编码
      * @param input
-     * @return html-encode string
+     * @return
      */
     public static String htmlEncode(final CharSequence input) {
+        if (input == null) return null;
         StringBuilder builder = new StringBuilder();
-        char c;
+        char ch;
         for (int i = 0, len = input.length(); i < len; i++) {
-            c = input.charAt(i);
-            switch (c) {
+            ch = input.charAt(i);
+            switch (ch) {
                 case '<':
                     builder.append("&lt;"); //$NON-NLS-1$
                     break;
@@ -170,7 +206,7 @@ public final class EncodeUtils {
                     builder.append("&quot;"); //$NON-NLS-1$
                     break;
                 default:
-                    builder.append(c);
+                    builder.append(ch);
             }
         }
         return builder.toString();
@@ -179,42 +215,20 @@ public final class EncodeUtils {
     /**
      * html 解码
      * @param input
-     * @return the string of decode html-encode string
+     * @return
      */
     @SuppressWarnings("deprecation")
     public static CharSequence htmlDecode(final String input) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return Html.fromHtml(input, Html.FROM_HTML_MODE_LEGACY);
-        } else {
-            return Html.fromHtml(input);
+        if (input == null) return null;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                return Html.fromHtml(input, Html.FROM_HTML_MODE_LEGACY);
+            } else {
+                return Html.fromHtml(input);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "htmlDecode");
         }
-    }
-
-    /**
-     * 返回二进制编码后的字符串
-     * @param input
-     * @return
-     */
-    public static String binEncode(final String input) {
-        StringBuilder builder = new StringBuilder();
-        for (char i : input.toCharArray()) {
-            builder.append(Integer.toBinaryString(i));
-            builder.append(' ');
-        }
-        return builder.toString();
-    }
-
-    /**
-     * 返回 UTF-8 字符串的二进制数据
-     * @param input
-     * @return
-     */
-    public static String binDecode(final String input) {
-        String[] splitted = input.split(" ");
-        StringBuilder builder = new StringBuilder();
-        for (String i : splitted) {
-            builder.append(((char) Integer.parseInt(i.replace(" ", ""), 2)));
-        }
-        return builder.toString();
+        return null;
     }
 }

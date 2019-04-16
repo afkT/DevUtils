@@ -22,7 +22,7 @@ public class BaseApplication extends Application {
 
         // 初始化工具类
         DevUtils.init(this.getApplicationContext());
-        // == 初始化日志配置 ==
+        // = 初始化日志配置 =
         // 设置默认Logger配置
         LogConfig logConfig = new LogConfig();
         logConfig.logLevel = LogLevel.DEBUG;

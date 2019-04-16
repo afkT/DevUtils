@@ -24,7 +24,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: App 文件记录工具类
+ * detail: 文件记录工具类
  * Created by Ttt
  */
 public final class FileRecordUtils {
@@ -35,42 +35,33 @@ public final class FileRecordUtils {
     // 日志 TAG
     private static final String TAG = FileRecordUtils.class.getSimpleName();
 
+    // ============
     // = 配置信息 =
+    // ============
 
-    /**
-     * App 版本(如1.0.01) 显示给用户看的
-     */
+    // App 版本(如1.0.01) 显示给用户看的
     private static String APP_VERSION_NAME = "";
-
-    /**
-     * android:versionCode——整数值,代表应用程序代码的相对版本,也就是版本更新过多少次。(不显示给用户看)
-     */
+    // android:versionCode——整数值,代表应用程序代码的相对版本,也就是版本更新过多少次。(不显示给用户看)
     private static String APP_VERSION_CODE = "";
-
-    /**
-     * 设备信息
-     */
+    // 设备信息
     private static String DEVICE_INFO_STR = null;
-
-    /**
-     * 用来存储设备信息
-     */
+    // 用来存储设备信息
     private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
-
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
-
     // 换行字符串 - 两行
     private static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
+    // =====================
     // = App、设备信息处理 =
+    // =====================
 
     /**
      * 获取 App 版本信息
      * @return 0 = versionName , 1 = versionCode
      */
     private static String[] getAppVersion() {
-        String[] aVersion = null;
+        String[] versions = null;
         try {
             PackageManager pm = DevUtils.getContext().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
@@ -78,19 +69,19 @@ public final class FileRecordUtils {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
                 // =
-                aVersion = new String[]{versionName, versionCode};
+                versions = new String[]{versionName, versionCode};
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersion");
         }
-        return aVersion;
+        return versions;
     }
 
     /**
      * 获取设备信息
      * @param dInfoMaps 传入设备信息传出HashMap
      */
-    private static void getDeviceInfo(Map<String, String> dInfoMaps) {
+    private static void getDeviceInfo(final Map<String, String> dInfoMaps) {
         // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段。
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -126,7 +117,7 @@ public final class FileRecordUtils {
      * 处理设备信息
      * @param eHint 错误提示,如获取设备信息失败
      */
-    private static String handlerDeviceInfo(String eHint) {
+    private static String handlerDeviceInfo(final String eHint) {
         try {
             // 如果不为null,则直接返回之前的信息
             if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
@@ -158,11 +149,11 @@ public final class FileRecordUtils {
         return eHint;
     }
 
-    //  时间格式化 =
+    // ==============
+    // = 时间格式化 =
+    // ==============
 
-    /**
-     * 日期格式类型
-     */
+    // 日期格式类型
     private static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
 
     /**
@@ -180,14 +171,15 @@ public final class FileRecordUtils {
         return null;
     }
 
-
-    //  文件操作 =
+    // ============
+    // = 文件操作 =
+    // ============
 
     /**
      * 判断某个文件夹是否创建,未创建则创建(不能加入文件名)
      * @param filePath 文件夹路径
      */
-    private static File createFile(String filePath) {
+    private static File createFile(final String filePath) {
         try {
             File file = new File(filePath);
             // 当这个文件夹不存在的时候则创建文件夹
@@ -208,7 +200,7 @@ public final class FileRecordUtils {
      * @param fUrl 保存路径(包含文件名.后缀)
      * @return 是否保存成功
      */
-    private static boolean saveFile(String txt, String fUrl) {
+    private static boolean saveFile(final String txt, final String fUrl) {
         try {
             // 保存内容到一个文件
             FileOutputStream fos = new FileOutputStream(fUrl);
@@ -221,8 +213,9 @@ public final class FileRecordUtils {
         return true;
     }
 
-
-    //  异常信息处理 =
+    // ================
+    // = 异常信息处理 =
+    // ================
 
     /**
      * 获取错误信息(无换行)
@@ -230,7 +223,7 @@ public final class FileRecordUtils {
      * @param ex    错误信息
      * @return
      */
-    private static String getThrowableMsg(String eHint, Throwable ex) {
+    private static String getThrowableMsg(final String eHint, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
@@ -259,7 +252,7 @@ public final class FileRecordUtils {
      * @param ex    错误信息
      * @return
      */
-    private static String getThrowableNewLinesMsg(String eHint, Throwable ex) {
+    private static String getThrowableNewLinesMsg(final String eHint, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
@@ -294,7 +287,9 @@ public final class FileRecordUtils {
         return eHint;
     }
 
-    //  对外公开方法 =
+    // ================
+    // = 对外公开方法 =
+    // ================
 
     /**
      * 初始化调用方法
@@ -320,7 +315,9 @@ public final class FileRecordUtils {
         }
     }
 
-    // ========= 保存错误日志信息 ==========
+    // ====================
+    // = 保存错误日志信息 =
+    // ====================
 
     /**
      * 保存 App 错误日志
@@ -332,7 +329,8 @@ public final class FileRecordUtils {
      * @param eHint       错误提示(无设备信息、失败信息获取失败)
      * @return
      */
-    public static boolean saveErrorLog(Throwable ex, String filePath, String fileName, boolean isNewLines, boolean printDevice, String... eHint) {
+    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName, final boolean isNewLines,
+                                       final boolean printDevice, final String... eHint) {
         return saveErrorLog(ex, null, null, filePath, fileName, isNewLines, printDevice, eHint);
     }
 
@@ -348,7 +346,8 @@ public final class FileRecordUtils {
      * @param eHint       错误提示(无设备信息、失败信息获取失败)
      * @return
      */
-    public static boolean saveErrorLog(Throwable ex, String head, String bottom, String filePath, String fileName, boolean isNewLines, boolean printDevice, String... eHint) {
+    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName,
+                                       final boolean isNewLines, final boolean printDevice, String... eHint) {
         // 处理可变参数(错误提示)
         eHint = handlerVariable(2, eHint);
         // 日志拼接
@@ -364,7 +363,7 @@ public final class FileRecordUtils {
             builder.append("============================");
             builder.append(NEW_LINE_STR_X2);
         }
-        // ============
+        // =
         // 保存 App 信息
         builder.append("date: " + getDateNow());
         builder.append(NEW_LINE_STR);
@@ -382,7 +381,7 @@ public final class FileRecordUtils {
             builder.append("============================");
             builder.append(NEW_LINE_STR_X2);
         }
-        // ============
+        // =
         // 错误信息
         String eMsg = null;
         // 是否换行
@@ -413,7 +412,7 @@ public final class FileRecordUtils {
      * @param eHint       错误提示(无设备信息、失败信息获取失败)
      * @return
      */
-    public static boolean saveLog(String log, String filePath, String fileName, boolean printDevice, String... eHint) {
+    public static boolean saveLog(final String log, final String filePath, final String fileName, final boolean printDevice, final String... eHint) {
         return saveLog(log, null, null, filePath, fileName, printDevice, eHint);
     }
 
@@ -428,7 +427,7 @@ public final class FileRecordUtils {
      * @param eHint       错误提示(无设备信息、失败信息获取失败)
      * @return
      */
-    public static boolean saveLog(String log, String head, String bottom, String filePath, String fileName, boolean printDevice, String... eHint) {
+    public static boolean saveLog(final String log, final String head, final String bottom, final String filePath, final String fileName, final boolean printDevice, String... eHint) {
         // 处理可变参数(错误提示)
         eHint = handlerVariable(2, eHint);
         // 日志拼接
@@ -444,7 +443,7 @@ public final class FileRecordUtils {
             builder.append("============================");
             builder.append(NEW_LINE_STR_X2);
         }
-        // ============
+        // =
         // 保存 App 信息
         builder.append("date: " + getDateNow());
         builder.append(NEW_LINE_STR);
@@ -462,7 +461,7 @@ public final class FileRecordUtils {
             builder.append("============================");
             builder.append(NEW_LINE_STR_X2);
         }
-        // ============
+        // =
         // 保存日志信息
         builder.append(log);
         // 如果存在顶部内容,则进行添加
@@ -476,40 +475,40 @@ public final class FileRecordUtils {
         return saveFile(builder.toString(), filePath + File.separator + fileName);
     }
 
-    // ==
+    // =
 
     /**
      * 处理可变参数
      * @param length  保留长度
-     * @param vArrays 可变参数数组
+     * @param strings 可变参数数组
      * @return
      */
-    public static String[] handlerVariable(int length, String[] vArrays) {
+    public static String[] handlerVariable(final int length, final String[] strings) {
         // 处理后的数据,
         String[] hArrays = new String[length];
         // 是否统一处理
         boolean isUnifiedHandler = true;
         try {
-            if (vArrays != null) {
+            if (strings != null) {
                 // 获取可变参数数组长度
-                int vLength = vArrays.length;
+                int vLength = strings.length;
                 // 如果长度超出预留长度
                 if (vLength >= length) {
                     for (int i = 0; i < length; i++) {
-                        if (vArrays[i] == null) {
+                        if (strings[i] == null) {
                             hArrays[i] = "";
                         } else {
-                            hArrays[i] = vArrays[i];
+                            hArrays[i] = strings[i];
                         }
                     }
                     // 但可变参数长度,超过预留长度时,已经处理完毕,不需要再次处理,节省遍历资源
                     isUnifiedHandler = false;
                 } else {
                     for (int i = 0; i < vLength; i++) {
-                        if (vArrays[i] == null) {
+                        if (strings[i] == null) {
                             hArrays[i] = "";
                         } else {
-                            hArrays[i] = vArrays[i];
+                            hArrays[i] = strings[i];
                         }
                     }
                 }

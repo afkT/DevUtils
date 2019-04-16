@@ -25,7 +25,7 @@ public final class ErrorUtils {
      * @param e
      * @return
      */
-    public static String getErrorMsg(Exception e) {
+    public static String getErrorMsg(final Exception e) {
         try {
             if (e != null) {
                 return e.getMessage();
@@ -41,7 +41,7 @@ public final class ErrorUtils {
      * @param e 字符串
      * @return 异常栈
      */
-    public static String getThrowableMsg(Throwable e) {
+    public static String getThrowableMsg(final Throwable e) {
         try {
             if (e != null) {
                 StringWriter writer = new StringWriter();
@@ -59,7 +59,9 @@ public final class ErrorUtils {
         return "e(null)";
     }
 
+    // ================
     // = 异常信息处理 =
+    // ================
 
     /**
      * 获取错误信息(无换行)
@@ -67,7 +69,7 @@ public final class ErrorUtils {
      * @param ex    错误信息
      * @return
      */
-    public static String getThrowableMsg(String eHint, Throwable ex) {
+    public static String getThrowableMsg(final String eHint, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
@@ -95,7 +97,7 @@ public final class ErrorUtils {
      * @param ex 错误信息
      * @return 默认返回 ""
      */
-    public static String getThrowableNewLinesMsg(Throwable ex) {
+    public static String getThrowableNewLinesMsg(final Throwable ex) {
         return getThrowableNewLinesMsg("", ex);
     }
 
@@ -105,7 +107,7 @@ public final class ErrorUtils {
      * @param ex    错误信息
      * @return
      */
-    public static String getThrowableNewLinesMsg(String eHint, Throwable ex) {
+    public static String getThrowableNewLinesMsg(final String eHint, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {

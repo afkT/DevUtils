@@ -23,21 +23,20 @@ public final class FlashlightUtils {
 
     // 日志 TAG
     private final String TAG = FlashlightUtils.class.getSimpleName();
+    // 单例对象
+    private static final FlashlightUtils instance = new FlashlightUtils();
 
     /**
      * 获取 FlashlightUtils 实例 ,单例模式
      * @return
      */
     public static FlashlightUtils getInstance() {
-        return LazyHolder.INSTANCE;
-    }
-
-    private static final class LazyHolder {
-        private static final FlashlightUtils INSTANCE = new FlashlightUtils();
+        return instance;
     }
 
     // =
 
+    // Camera 对象
     private Camera mCamera;
 
     /**
@@ -126,7 +125,7 @@ public final class FlashlightUtils {
      * 打开闪光灯
      * @param camera
      */
-    public void setFlashlightOn(Camera camera) {
+    public void setFlashlightOn(final Camera camera) {
         if (camera != null) {
             try {
                 Camera.Parameters parameter = camera.getParameters();
@@ -142,7 +141,7 @@ public final class FlashlightUtils {
      * 关闭闪光灯
      * @param camera
      */
-    public void setFlashlightOff(Camera camera) {
+    public void setFlashlightOff(final Camera camera) {
         if (camera != null) {
             try {
                 Camera.Parameters parameter = camera.getParameters();
@@ -159,15 +158,14 @@ public final class FlashlightUtils {
      * @param camera
      * @return
      */
-    public boolean isFlashlightOn(Camera camera) {
-        if (camera == null) {
-            return false;
-        }
-        try {
-            Camera.Parameters parameters = camera.getParameters();
-            return FLASH_MODE_TORCH.equals(parameters.getFlashMode());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isFlashlightOn");
+    public boolean isFlashlightOn(final Camera camera) {
+        if (camera != null) {
+            try {
+                Camera.Parameters parameters = camera.getParameters();
+                return FLASH_MODE_TORCH.equals(parameters.getFlashMode());
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isFlashlightOn");
+            }
         }
         return false;
     }

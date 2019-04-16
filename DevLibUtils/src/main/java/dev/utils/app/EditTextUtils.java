@@ -16,6 +16,8 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: EditText 工具类
  * Created by Ttt
+ * ==============
+ * https://blog.csdn.net/zhoujn90/article/details/44983905
  */
 public final class EditTextUtils {
 
@@ -25,10 +27,20 @@ public final class EditTextUtils {
     // 日志 TAG
     private static final String TAG = EditTextUtils.class.getSimpleName();
 
-    // https://blog.csdn.net/zhoujn90/article/details/44983905
+    /**
+     * 设置是否显示光标
+     * @param editText
+     * @param visible
+     * @return
+     */
+    public static EditText setCursorVisible(final EditText editText, final boolean visible){
+        if (editText != null){
+            editText.setCursorVisible(visible);
+        }
+        return editText;
+    }
 
-    // 设置是否显示光标
-    // editText.setCursorVisible(true);
+    // =
 
     /**
      * 设置长度限制，并且设置内容
@@ -37,7 +49,7 @@ public final class EditTextUtils {
      * @param maxLength
      * @return
      */
-    public static EditText setMaxLengthAnText(EditText editText, String content, int maxLength) {
+    public static EditText setMaxLengthAnText(final EditText editText, final String content, final int maxLength) {
         if (editText != null) {
             // 设置长度限制, 并且设置内容
             setText(setMaxLength(editText, maxLength), content);
@@ -51,7 +63,7 @@ public final class EditTextUtils {
      * @param maxLength
      * @return
      */
-    public static EditText setMaxLength(EditText editText, int maxLength) {
+    public static EditText setMaxLength(final EditText editText, final int maxLength) {
         if (editText != null) {
             if (maxLength > 0) {
                 // 设置最大长度限制
@@ -67,7 +79,7 @@ public final class EditTextUtils {
      * @param editText
      * @return
      */
-    public static int getSelectionStart(EditText editText) {
+    public static int getSelectionStart(final EditText editText) {
         if (editText != null) {
             return editText.getSelectionStart();
         }
@@ -79,7 +91,7 @@ public final class EditTextUtils {
      * @param editText
      * @return
      */
-    public static String getText(EditText editText) {
+    public static String getText(final EditText editText) {
         if (editText != null) {
             return editText.getText().toString();
         }
@@ -91,7 +103,7 @@ public final class EditTextUtils {
      * @param editText
      * @return
      */
-    public static int getTextLength(EditText editText) {
+    public static int getTextLength(final EditText editText) {
         return getText(editText).length();
     }
 
@@ -102,7 +114,7 @@ public final class EditTextUtils {
      * @param editText
      * @param content
      */
-    public static EditText setText(EditText editText, String content) {
+    public static EditText setText(final EditText editText, final String content) {
         return setText(editText, content, true);
     }
 
@@ -112,7 +124,7 @@ public final class EditTextUtils {
      * @param content
      * @param isSelect 是否设置光标
      */
-    public static EditText setText(EditText editText, String content, boolean isSelect) {
+    public static EditText setText(final EditText editText, final String content, final boolean isSelect) {
         if (editText != null) {
             if (content != null) {
                 // 设置文本
@@ -133,7 +145,7 @@ public final class EditTextUtils {
      * @param isSelect
      * @return
      */
-    public static EditText insert(EditText editText, String content, boolean isSelect) {
+    public static EditText insert(final EditText editText, final String content, final boolean isSelect) {
         if (editText != null) {
             return insert(editText, content, editText.getSelectionStart(), isSelect);
         }
@@ -148,7 +160,7 @@ public final class EditTextUtils {
      * @param isSelect
      * @return
      */
-    public static EditText insert(EditText editText, String content, int start, boolean isSelect) {
+    public static EditText insert(final EditText editText, final String content, final int start, final boolean isSelect) {
         if (editText != null) {
             if (!TextUtils.isEmpty(content)) {
                 try {
@@ -168,14 +180,14 @@ public final class EditTextUtils {
         return editText;
     }
 
-    // ==
+    // =
 
     /**
      * 设置光标在第一位
      * @param editText
      * @return
      */
-    public static EditText setSelectTop(EditText editText) {
+    public static EditText setSelectTop(final EditText editText) {
         return setSelect(editText, 0);
     }
 
@@ -184,7 +196,7 @@ public final class EditTextUtils {
      * @param editText
      * @return
      */
-    public static EditText setSelectBottom(EditText editText) {
+    public static EditText setSelectBottom(final EditText editText) {
         if (editText != null) {
             // 设置光标
             editText.setSelection(editText.getText().toString().length());
@@ -198,7 +210,7 @@ public final class EditTextUtils {
      * @param select
      * @return
      */
-    public static EditText setSelect(EditText editText, int select) {
+    public static EditText setSelect(final EditText editText, final int select) {
         if (editText != null) {
             if (select >= 0) {
                 // 判断是否超过限制
@@ -224,7 +236,7 @@ public final class EditTextUtils {
      * @param keyListener
      * @return setKeyListener(editText, getNumberAndEnglishKeyListener ());
      */
-    public static EditText setKeyListener(EditText editText, KeyListener keyListener) {
+    public static EditText setKeyListener(final EditText editText, final KeyListener keyListener) {
         if (editText != null) {
             editText.setKeyListener(keyListener);
         }
@@ -237,7 +249,7 @@ public final class EditTextUtils {
      * @param digits   只能输入的内容 -> 1234567890
      * @return setKeyListener(editText, " 1234567890 ");
      */
-    public static EditText setKeyListener(EditText editText, String digits) {
+    public static EditText setKeyListener(final EditText editText, final String digits) {
         if (editText != null) {
             if (TextUtils.isEmpty(digits)) {
                 editText.setKeyListener(null);
@@ -248,8 +260,9 @@ public final class EditTextUtils {
         return editText;
     }
 
-
+    // ===============================
     // = 输入法Key Listener 快捷处理 =
+    // ===============================
 
     /**
      * 限制只能输入字母和数字，默认弹出英文输入法
@@ -293,7 +306,7 @@ public final class EditTextUtils {
         return digitsKeyListener;
     }
 
-    // ==
+    // =
 
     // https://blog.csdn.net/zhuwentao2150/article/details/51546773
 
@@ -357,7 +370,9 @@ public final class EditTextUtils {
             this.operateState = operateState;
         }
 
-        // == 回调接口 ==
+        // ============
+        // = 回调接口 =
+        // ============
 
         /**
          * 在文本变化前调用

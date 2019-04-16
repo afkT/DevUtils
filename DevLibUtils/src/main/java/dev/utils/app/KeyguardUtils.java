@@ -90,11 +90,11 @@ public final class KeyguardUtils {
      * 设置 KeyguardManager
      * @param keyguardManager
      */
-    public void setKeyguardManager(KeyguardManager keyguardManager) {
+    public void setKeyguardManager(final KeyguardManager keyguardManager) {
         this.keyguardManager = keyguardManager;
     }
 
-    // ==
+    // =
 
     /**
      * 屏蔽系统的屏保
@@ -131,7 +131,7 @@ public final class KeyguardUtils {
      * 生成一个新的 KeyguardLock, 并且设置 Tag
      * @param tag
      */
-    public void newKeyguardLock(String tag) {
+    public void newKeyguardLock(final String tag) {
         keyguardLock = keyguardManager.newKeyguardLock(tag);
     }
 
@@ -147,7 +147,7 @@ public final class KeyguardUtils {
      * 设置 KeyguardManager.KeyguardLock
      * @param keyguardLock
      */
-    public void setKeyguardLock(KeyguardManager.KeyguardLock keyguardLock) {
+    public void setKeyguardLock(final KeyguardManager.KeyguardLock keyguardLock) {
         this.keyguardLock = keyguardLock;
     }
 }

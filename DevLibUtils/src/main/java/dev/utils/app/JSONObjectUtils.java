@@ -23,14 +23,12 @@ public final class JSONObjectUtils {
 
     // 日志 TAG
     private static final String TAG = JSONObjectUtils.class.getSimpleName();
-    /**
-     * JSON 格式内容 默认缩进
-     */
-    public static final int JSON_INDENT = 4;
+    // JSON 格式内容 默认缩进
+    private static final int JSON_INDENT = 4;
 
-    // ======================
-    // == 转换 JSON 字符串 ==
-    // ======================
+    // ====================
+    // = 转换 JSON 字符串 =
+    // ====================
 
     /**
      * 转换为 JSON 格式字符串
@@ -38,7 +36,7 @@ public final class JSONObjectUtils {
      * @return
      * @TODO 不支持 实体类 转 JSON字符串
      */
-    public static String toJson(Object object) {
+    public static String toJson(final Object object) {
         return toJson(object, -1);
     }
 
@@ -49,7 +47,7 @@ public final class JSONObjectUtils {
      * @return
      * @TODO 不支持 实体类 转 JSON字符串
      */
-    public static String toJson(Object object, int jsonIndent) {
+    public static String toJson(final Object object, final int jsonIndent) {
         if (object == null) return null;
         // 判断是否格式化
         boolean format = jsonIndent >= 1;
@@ -81,7 +79,7 @@ public final class JSONObjectUtils {
                     return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
                 } else {
                     JSONArray jsonArray = new JSONArray();
-                    final int length = Array.getLength(object);
+                    int length = Array.getLength(object);
                     for (int i = 0; i < length; ++i) {
                         jsonArray.put(wrap(Array.get(object, i)));
                     }
@@ -108,20 +106,22 @@ public final class JSONObjectUtils {
         return null;
     }
 
-    // ======================
-    // === 转换 JSON 对象 ===
-    // ======================
+    // ==================
+    // = 转换 JSON 对象 =
+    // ==================
 
     /**
      * Object 转换 JSON 对象
-     * @param object
-     * @param type   JSONObject.class || JSONArray.class || JSONTokener.class
-     * @return use:
+     * ==============
      * fromJson(xx, JSONObject.class);
      * fromJson(xx, JSONArray.class);
      * fromJson(xx, JSONTokener.class);
+     * ==============
+     * @param object
+     * @param type   JSONObject.class || JSONArray.class || JSONTokener.class
+     * @return
      */
-    public static <T> T fromJson(Object object, final Class<T> type) {
+    public static <T> T fromJson(final Object object, final Class<T> type) {
         if (object == null || type == null) return null;
         try {
             if (type.equals(JSONObject.class)) {
@@ -148,7 +148,7 @@ public final class JSONObjectUtils {
                         return (T) new JSONArray(object);
                     } else {
                         JSONArray jsonArray = new JSONArray();
-                        final int length = Array.getLength(object);
+                        int length = Array.getLength(object);
                         for (int i = 0; i < length; ++i) {
                             jsonArray.put(wrap(Array.get(object, i)));
                         }
@@ -169,19 +169,17 @@ public final class JSONObjectUtils {
         return null;
     }
 
-    // ==================
-    // ==== 其他处理 ====
-    // ==================
+    // ============
+    // = 其他处理 =
+    // ============
 
     /**
      * 包装转换 Object - {@link JSONObject#wrap(Object)}
      * @param object
      * @return
      */
-    public static Object wrap(Object object) {
-        if (object == null) {
-            return null;
-        }
+    public static Object wrap(final Object object) {
+        if (object == null) return null;
         if (object instanceof JSONArray || object instanceof JSONObject) {
             return object;
         }
@@ -194,7 +192,7 @@ public final class JSONObjectUtils {
                     return new JSONArray(object);
                 } else {
                     JSONArray jsonArray = new JSONArray();
-                    final int length = Array.getLength(object);
+                    int length = Array.getLength(object);
                     for (int i = 0; i < length; ++i) {
                         jsonArray.put(wrap(Array.get(object, i)));
                     }
@@ -229,9 +227,8 @@ public final class JSONObjectUtils {
      * @param str
      * @return
      */
-    public static String stringJSONEscape(String str) {
-        if (str == null)
-            return "";
+    public static String stringJSONEscape(final String str) {
+        if (str == null) return "";
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
