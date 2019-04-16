@@ -28,20 +28,18 @@ import dev.DevUtils;
  * detail: 权限请求工具类
  * Created by Ttt
  * ==============
- * hint:
- * -
  * 参考:
  * https://github.com/anthonycr/Grant
  * compile 'com.anthonycr.grant:permissions:1.0'
- * -
+ * =
  * 权限介绍
  * https://www.cnblogs.com/mengdd/p/4892856.html
- * -
+ * =
  * 第三方库:
  * PermissionsDispatcher: https://github.com/hotchemi/PermissionsDispatcher
  * RxPermissions: https://github.com/tbruyelle/RxPermissions
  * Grant: https://github.com/anthonycr/Grant
- * -
+ * =
  * 使用方法
  * // 第一种请求方式
  * PermissionUtils.permission("").callBack(null).request();

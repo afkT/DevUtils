@@ -20,21 +20,20 @@ import dev.utils.common.DevCommonUtils;
  * detail: ADB shell 工具类
  * Created by Ttt
  * ==============
- * hint:
  * Awesome Adb——一份超全超详细的 ADB 用法大全
  * https://github.com/mzlogin/awesome-adb
- * <p>
- * // Process.waitFor()的返回值含义
+ * =
+ * Process.waitFor()的返回值含义
  * https://blog.csdn.net/qq_35661171/article/details/79096786
- * <p>
- * // adb shell input
+ * =
+ * adb shell input
  * https://blog.csdn.net/soslinken/article/details/49587497
- * <p>
+ * =
  * android 上发送adb 指令，不需要加 adb shell
- * <p>
- * // https://www.imooc.com/qadetail/198264
+ * https://www.imooc.com/qadetail/198264
+ * ==============
  * grep 是 linux 下的命令, windows 用 findstr
- * <p>
+ * ==============
  * 开启 Thread 执行, 非主线程, 否则无响应并无效
  */
 public final class ADBUtils {
@@ -81,16 +80,22 @@ public final class ADBUtils {
         return result.isSuccess2();
     }
 
-    // == 应用管理 ==
+    // ============
+    // = 应用管理 =
+    // ============
 
+    // ============
     // = 应用列表 =
+    // ============
 
     /**
      * 获取 App 列表(包名)
+     * ==============
+     * https://blog.csdn.net/henni_719/article/details/62222439
      * @param type
-     * @return https://blog.csdn.net/henni_719/article/details/62222439
+     * @return
      */
-    public static List<String> getAppList(String type) {
+    public static List<String> getAppList(final String type) {
         // adb shell pm list packages [options]
         String typeStr = isSpace(type) ? "" : " " + type;
         // 执行 shell cmd
@@ -148,12 +153,12 @@ public final class ADBUtils {
 
     /**
      * 获取包名包含字符串 xxx 的应用列表
-     * @param strFilter
+     * @param filter
      * @return
      */
-    public static List<String> getAppListToFilter(String strFilter) {
-        if (isSpace(strFilter)) return null;
-        return getAppList("| grep " + strFilter.trim());
+    public static List<String> getAppListToFilter(final String filter) {
+        if (isSpace(filter)) return null;
+        return getAppList("| grep " + filter.trim());
     }
 
     /**
@@ -161,7 +166,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static boolean isInstalledApp(String packageName) {
+    public static boolean isInstalledApp(final String packageName) {
         if (isSpace(packageName)) return false;
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packageName, false);
@@ -173,7 +178,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getAppInstallPath(String packageName) {
+    public static String getAppInstallPath(final String packageName) {
         if (isSpace(packageName)) return null;
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packageName, false);
@@ -188,7 +193,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static boolean clearAppDataCache(String packageName) {
+    public static boolean clearAppDataCache(final String packageName) {
         if (isSpace(packageName)) return false;
         // adb shell pm clear <packagename>
         String cmd = "pm clear %s";
@@ -197,7 +202,9 @@ public final class ADBUtils {
         return result.isSuccess4("success");
     }
 
+    // ============
     // = 应用信息 =
+    // ============
 
     /**
      * 查看应用详细信息
@@ -205,7 +212,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getAppMessage(String packageName) {
+    public static String getAppMessage(final String packageName) {
         if (isSpace(packageName)) return null;
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName, false);
@@ -220,7 +227,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static int getVersionCode(String packageName) {
+    public static int getVersionCode(final String packageName) {
         if (isSpace(packageName)) return 0;
         try {
             // 执行 shell
@@ -252,7 +259,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getVersionName(String packageName) {
+    public static String getVersionName(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
             // 执行 shell
@@ -279,14 +286,16 @@ public final class ADBUtils {
         return null;
     }
 
+    // =============
     // = 安装/卸载 =
+    // =============
 
     /**
      * 安装应用
      * @param filePath /sdcard/xxx/x.apk
      * @return
      */
-    public static boolean installApp(String filePath) {
+    public static boolean installApp(final String filePath) {
         return installApp("-rtsd", filePath);
     }
 
@@ -295,7 +304,7 @@ public final class ADBUtils {
      * @param filePath /sdcard/xxx/x.apk
      * @return
      */
-    public static boolean installApp(String params, String filePath) {
+    public static boolean installApp(final String params, final String filePath) {
         if (isSpace(params)) return false;
         boolean isRoot = isDeviceRooted();
 
@@ -376,7 +385,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static boolean uninstallApp(String packageName) {
+    public static boolean uninstallApp(final String packageName) {
         return uninstallApp(packageName, false);
     }
 
@@ -386,7 +395,7 @@ public final class ADBUtils {
      * @param isKeepData  -k 参数可选，表示卸载应用但保留数据和缓存目录。
      * @return
      */
-    public static boolean uninstallApp(String packageName, boolean isKeepData) {
+    public static boolean uninstallApp(final String packageName, final boolean isKeepData) {
         if (isSpace(packageName)) return false;
         boolean isRoot = isDeviceRooted();
         // adb uninstall [-k] <packagename>
@@ -409,7 +418,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static boolean uninstallAppSilent(String packageName) {
+    public static boolean uninstallAppSilent(final String packageName) {
         return uninstallAppSilent(packageName, false, isDeviceRooted());
     }
 
@@ -419,7 +428,7 @@ public final class ADBUtils {
      * @param isKeepData
      * @return
      */
-    public static boolean uninstallAppSilent(String packageName, boolean isKeepData) {
+    public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData) {
         return uninstallAppSilent(packageName, isKeepData, isDeviceRooted());
     }
 
@@ -430,16 +439,16 @@ public final class ADBUtils {
      * @param isRooted
      * @return
      */
-    public static boolean uninstallAppSilent(String packageName, boolean isKeepData, boolean isRooted) {
+    public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
         if (isSpace(packageName)) return false;
         String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
         ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
         return result.isSuccess4("success");
     }
 
-    // =============
-    // == dumpsys ==
-    // =============
+    // ===========
+    // = dumpsys =
+    // ===========
 
     /**
      * 获取对应包名应用启动 Activity
@@ -447,7 +456,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getActivityToLauncher(String packageName) {
+    public static String getActivityToLauncher(final String packageName) {
         if (isSpace(packageName)) return null;
         String cmd = "dumpsys package %s";
         // 执行 shell
@@ -491,7 +500,9 @@ public final class ADBUtils {
         return null;
     }
 
-    // == 获取当前Window ==
+    // ==================
+    // = 获取当前Window =
+    // ==================
 
     /**
      * 获取当前显示的 Window
@@ -575,7 +586,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getWindowCurrentToPackage(String packageName) {
+    public static String getWindowCurrentToPackage(final String packageName) {
         if (isSpace(packageName)) return null;
         String cmd = "dumpsys window windows | grep %s";
         // 执行 shell
@@ -614,7 +625,9 @@ public final class ADBUtils {
         return null;
     }
 
-    // == 获取当前Activity ==
+    // ====================
+    // = 获取当前Activity =
+    // ====================
 
     /**
      * 获取当前显示的 Activity
@@ -673,7 +686,7 @@ public final class ADBUtils {
      * @param append
      * @return
      */
-    public static String getActivitys(String append) {
+    public static String getActivitys(final String append) {
         String cmd = "dumpsys activity activities";
         if (!isSpace(append)) {
             cmd += " " + append.trim();
@@ -691,7 +704,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static String getActivitysToPackage(String packageName) {
+    public static String getActivitysToPackage(final String packageName) {
         if (isSpace(packageName)) {
             return null;
         }
@@ -703,7 +716,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static List<String> getActivitysToPackageLists(String packageName) {
+    public static List<String> getActivitysToPackageLists(final String packageName) {
         // 获取对应包名的 Activity 数据结果
         String result = getActivitysToPackage(packageName);
         // 防止数据为null
@@ -769,7 +782,7 @@ public final class ADBUtils {
      * @param activity
      * @return
      */
-    public static boolean isActivityTopRepeat(String packageName, String activity) {
+    public static boolean isActivityTopRepeat(final String packageName, final String activity) {
         if (TextUtils.isEmpty(packageName)) {
             return false;
         } else if (TextUtils.isEmpty(activity)) {
@@ -809,7 +822,7 @@ public final class ADBUtils {
      * @param activitys
      * @return
      */
-    public static boolean isActivityTopRepeat(String packageName, List<String> activitys) {
+    public static boolean isActivityTopRepeat(final  String packageName, final List<String> activitys) {
         if (TextUtils.isEmpty(packageName)) {
             return false;
         } else if (activitys == null || activitys.size() == 0) {
@@ -854,7 +867,7 @@ public final class ADBUtils {
      * @param activity
      * @return
      */
-    public static int getActivityTopRepeatCount(String packageName, String activity) {
+    public static int getActivityTopRepeatCount(final String packageName, final String activity) {
         if (TextUtils.isEmpty(packageName)) {
             return 0;
         } else if (TextUtils.isEmpty(activity)) {
@@ -894,7 +907,7 @@ public final class ADBUtils {
      * @param activitys
      * @return
      */
-    public static int getActivityTopRepeatCount(String packageName, List<String> activitys) {
+    public static int getActivityTopRepeatCount(final String packageName, final List<String> activitys) {
         if (TextUtils.isEmpty(packageName)) {
             return 0;
         } else if (activitys == null || activitys.size() == 0) {
@@ -934,7 +947,9 @@ public final class ADBUtils {
         return 0;
     }
 
-    // == 正在运行的 Services ==
+    // =======================
+    // = 正在运行的 Services =
+    // =======================
 
     /**
      * 查看正在运行的 Services
@@ -951,7 +966,7 @@ public final class ADBUtils {
      *                    那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来。
      * @return
      */
-    public static String getServices(String packageName) {
+    public static String getServices(final String packageName) {
         String cmd = "dumpsys activity services" + ((isSpace(packageName) ? "" : " " + packageName));
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
         if (result.isSuccess3()) {
@@ -960,9 +975,9 @@ public final class ADBUtils {
         return null;
     }
 
-    // ========
-    // == am ==
-    // ========
+    // ======
+    // = am =
+    // ======
 
     /**
      * 启动自身应用
@@ -977,7 +992,7 @@ public final class ADBUtils {
      * @param closeActivity
      * @return
      */
-    public static boolean startSelfApp(boolean closeActivity) {
+    public static boolean startSelfApp(final boolean closeActivity) {
         try {
             // 获取包名
             String packageName = AppUtils.getAppPackageName();
@@ -997,7 +1012,7 @@ public final class ADBUtils {
      * @param closeActivity      关闭Activity所属的App进程后再启动Activity
      * @return
      */
-    public static boolean startActivity(String packageAndLauncher, boolean closeActivity) {
+    public static boolean startActivity(final String packageAndLauncher, final boolean closeActivity) {
         return startActivity(packageAndLauncher, null, closeActivity);
     }
 
@@ -1008,7 +1023,7 @@ public final class ADBUtils {
      * @param closeActivity      关闭Activity所属的App进程后再启动Activity
      * @return
      */
-    public static boolean startActivity(String packageAndLauncher, String append, boolean closeActivity) {
+    public static boolean startActivity(final String packageAndLauncher, final String append, final boolean closeActivity) {
         if (isSpace(packageAndLauncher)) return false;
         try {
             // am start [options] <INTENT>
@@ -1036,7 +1051,7 @@ public final class ADBUtils {
      * @param packageAndService 包名/.xxx
      * @return
      */
-    public static boolean startService(String packageAndService) {
+    public static boolean startService(final String packageAndService) {
         return startService(packageAndService, null);
     }
 
@@ -1046,7 +1061,7 @@ public final class ADBUtils {
      * @param append            追加的信息, 例如传递参数等
      * @return
      */
-    public static boolean startService(String packageAndService, String append) {
+    public static boolean startService(final String packageAndService, final String append) {
         if (isSpace(packageAndService)) return false;
         try {
             // am startservice [options] <INTENT>
@@ -1071,7 +1086,7 @@ public final class ADBUtils {
      * @param packageAndService 包名/.xxx
      * @return
      */
-    public static boolean stopService(String packageAndService) {
+    public static boolean stopService(final String packageAndService) {
         return stopService(packageAndService, null);
     }
 
@@ -1081,7 +1096,7 @@ public final class ADBUtils {
      * @param append            追加的信息, 例如传递参数等
      * @return
      */
-    public static boolean stopService(String packageAndService, String append) {
+    public static boolean stopService(final String packageAndService, final String append) {
         if (isSpace(packageAndService)) return false;
         try {
             // am stopservice [options] <INTENT>
@@ -1108,7 +1123,7 @@ public final class ADBUtils {
      * adb shell am broadcast -a android.intent.action.BOOT_COMPLETED
      * 向所有组件广播 BOOT_COMPLETED
      */
-    public static boolean sendBroadcastToAll(String broadcast) {
+    public static boolean sendBroadcastToAll(final String broadcast) {
         if (isSpace(broadcast)) return false;
         try {
             // am broadcast [options] <INTENT>
@@ -1130,7 +1145,7 @@ public final class ADBUtils {
      * adb shell am broadcast -a android.intent.action.BOOT_COMPLETED -n org.mazhuang.boottimemeasure/.BootCompletedReceiver
      * 只向 org.mazhuang.boottimemeasure/.BootCompletedReceiver 广播 BOOT_COMPLETED
      */
-    public static boolean sendBroadcast(String packageAndBroadcast, String broadcast) {
+    public static boolean sendBroadcast(final String packageAndBroadcast, final String broadcast) {
         if (isSpace(packageAndBroadcast)) return false;
         if (isSpace(broadcast)) return false;
         try {
@@ -1152,7 +1167,7 @@ public final class ADBUtils {
      * @param packageName
      * @return
      */
-    public static boolean kill(String packageName) {
+    public static boolean kill(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
             String cmd = "am force-stop %s";
@@ -1171,7 +1186,7 @@ public final class ADBUtils {
      * @param level HIDDEN、RUNNING_MODERATE、BACKGROUND、 RUNNING_LOW、MODERATE、RUNNING_CRITICAL、COMPLETE
      * @return
      */
-    public static boolean sendTrimMemory(int pid, String level) {
+    public static boolean sendTrimMemory(final int pid, final String level) {
         if (isSpace(level)) return false;
         try {
             String cmd = "am send-trim-memory %s %s";
@@ -1184,7 +1199,9 @@ public final class ADBUtils {
         return false;
     }
 
-//    // == 文件管理 ==
+//    // ============
+//    // = 文件管理 =
+//    // ============
 //
 //    /**
 //     * 复制设备里的文件到电脑
@@ -1192,9 +1209,8 @@ public final class ADBUtils {
 //     * @param local 电脑上的目录
 //     * @return
 //     */
-//    public static boolean pull(String remote, String local) {
+//    public static boolean pull(final String remote, final String local) {
 //        if (isSpace(remote)) return false;
-//
 //        try {
 //            // adb pull <设备里的文件路径> [电脑上的目录]
 //            String cmd = "adb pull %s";
@@ -1217,10 +1233,9 @@ public final class ADBUtils {
 //     * @param remote 设备里的目录
 //     * @return
 //     */
-//    public static boolean push(String local, String remote) {
+//    public static boolean push(final String local, final String remote) {
 //        if (isSpace(local)) return false;
 //        if (isSpace(remote)) return false;
-//
 //        try {
 //            // adb push <电脑上的文件路径> <设备里的目录>
 //            String cmd = "adb push %s %s";
@@ -1233,11 +1248,13 @@ public final class ADBUtils {
 //        return false;
 //    }
 
-    // ===========
-    // == Input ==
-    // ===========
+    // =========
+    // = Input =
+    // =========
 
-    // = tap = 模拟touch屏幕的事件
+    // =============================
+    // = tap = 模拟touch屏幕的事件 =
+    // =============================
 
     /**
      * 点击某个区域
@@ -1245,7 +1262,7 @@ public final class ADBUtils {
      * @param y
      * @return
      */
-    public static boolean tap(float x, float y) {
+    public static boolean tap(final float x, final float y) {
         try {
             // input [touchscreen|touchpad|touchnavigation] tap <x> <y>
             // input [屏幕、触摸板、导航键] tap
@@ -1259,7 +1276,9 @@ public final class ADBUtils {
         return false;
     }
 
-    // = swipe = 滑动事件
+    // ====================
+    // = swipe = 滑动事件 =
+    // ====================
 
     /**
      * 按压某个区域(点击)
@@ -1267,7 +1286,7 @@ public final class ADBUtils {
      * @param y
      * @return
      */
-    public static boolean swipeClick(float x, float y) {
+    public static boolean swipeClick(final float x, final float y) {
         return swipe(x, y, x, y, 100l);
     }
 
@@ -1278,7 +1297,7 @@ public final class ADBUtils {
      * @param time 按压时间
      * @return
      */
-    public static boolean swipeClick(float x, float y, long time) {
+    public static boolean swipeClick(final float x, final float y, final long time) {
         return swipe(x, y, x, y, time);
     }
 
@@ -1291,7 +1310,7 @@ public final class ADBUtils {
      * @param time 滑动时间(毫秒)
      * @return
      */
-    public static boolean swipe(float x, float y, float tX, float tY, long time) {
+    public static boolean swipe(final float x, final float y, final float tX, final float tY, final long time) {
         try {
             // input [touchscreen|touchpad|touchnavigation] swipe <x1> <y1> <x2> <y2> [duration(ms)]
             String cmd = "input touchscreen swipe %s %s %s %s %s";
@@ -1304,14 +1323,16 @@ public final class ADBUtils {
         return false;
     }
 
-    // = text = 模拟输入
+    // ===================
+    // = text = 模拟输入 =
+    // ===================
 
     /**
      * 输入文本 - 不支持中文
      * @param txt
      * @return
      */
-    public static boolean text(String txt) {
+    public static boolean text(final String txt) {
         if (isSpace(txt)) return false;
         try {
             // input text <string>
@@ -1325,14 +1346,16 @@ public final class ADBUtils {
         return false;
     }
 
-    // = keyevent = 按键操作
+    // =======================
+    // = keyevent = 按键操作 =
+    // =======================
 
     /**
      * 触发某些按键
      * @param keyCode KeyEvent.xxx => KeyEvent.KEYCODE_BACK(返回键)
      * @return
      */
-    public static boolean keyevent(int keyCode) {
+    public static boolean keyevent(final int keyCode) {
         try {
             // input keyevent <key code number or name>
             String cmd = "input keyevent %s";
@@ -1345,14 +1368,16 @@ public final class ADBUtils {
         return false;
     }
 
-    // == 实用功能 ==
+    // ============
+    // = 实用功能 =
+    // ============
 
     /**
      * 屏幕截图
      * @param path /sdcard/xxx/x.png
      * @return
      */
-    public static boolean screencap(String path) {
+    public static boolean screencap(final String path) {
         return screencap(path, 0);
     }
 
@@ -1362,7 +1387,7 @@ public final class ADBUtils {
      * @param displayId -d display-id	指定截图的显示屏编号（有多显示屏的情况下）默认0
      * @return
      */
-    public static boolean screencap(String path, int displayId) {
+    public static boolean screencap(final String path, final int displayId) {
         if (isSpace(path)) return false;
         try {
             String cmd = "screencap -p -d %s %s";
@@ -1380,7 +1405,7 @@ public final class ADBUtils {
      * @param path
      * @return
      */
-    public static boolean screenrecord(String path) {
+    public static boolean screenrecord(final String path) {
         return screenrecord(path, null, -1, -1);
     }
 
@@ -1390,7 +1415,7 @@ public final class ADBUtils {
      * @param time
      * @return
      */
-    public static boolean screenrecord(String path, int time) {
+    public static boolean screenrecord(final String path, final int time) {
         return screenrecord(path, null, -1, time);
     }
 
@@ -1401,7 +1426,7 @@ public final class ADBUtils {
      * @param time
      * @return
      */
-    public static boolean screenrecord(String path, String size, int time) {
+    public static boolean screenrecord(final String path, final String size, final int time) {
         return screenrecord(path, size, -1, time);
     }
 
@@ -1413,7 +1438,7 @@ public final class ADBUtils {
      * @param time    录制时长，单位秒。(默认/最长 180秒)
      * @return
      */
-    public static boolean screenrecord(String path, String size, int bitRate, int time) {
+    public static boolean screenrecord(final String path, final String size, final int bitRate, final int time) {
         if (isSpace(path)) return false;
         try {
             StringBuffer buffer = new StringBuffer();
@@ -1460,7 +1485,7 @@ public final class ADBUtils {
      * @param open
      * @return
      */
-    public static boolean wifiSwitch(boolean open) {
+    public static boolean wifiSwitch(final boolean open) {
         String cmd = "svc wifi %s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, open ? "enable" : "disable"), true);
@@ -1473,7 +1498,7 @@ public final class ADBUtils {
      *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒。
      * @return
      */
-    public static boolean setSystemTime(String time) {
+    public static boolean setSystemTime(final String time) {
         if (isSpace(time)) return false;
         try {
             String cmd = "date -s %s";
@@ -1492,7 +1517,7 @@ public final class ADBUtils {
      *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒。
      * @return
      */
-    public static boolean setSystemTime2(String time) {
+    public static boolean setSystemTime2(final String time) {
         if (isSpace(time)) return false;
         try {
             String cmd = "date %s";
@@ -1510,7 +1535,7 @@ public final class ADBUtils {
      * @param time 时间戳转换 MMddHHmmyyyy.ss
      * @return
      */
-    public static boolean setSystemTime2(long time) {
+    public static boolean setSystemTime2(final long time) {
         if (time < 0) return false;
         try {
             String cmd = "date %s";
@@ -1523,7 +1548,9 @@ public final class ADBUtils {
         return false;
     }
 
+    // ================
     // = 刷机相关命令 =
+    // ================
 
     /**
      * 关机 (需要 root 权限)
@@ -1566,7 +1593,8 @@ public final class ADBUtils {
      * @param reason 传递给内核来请求特殊的引导模式，如"recovery"
      *               重启到 Fastboot 模式 bootloader
      */
-    public static void reboot(String reason) {
+    public static void reboot(final String reason) {
+        if (isSpace(reason)) return;
         try {
             PowerManager mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
             if (mPowerManager == null)
@@ -1595,7 +1623,9 @@ public final class ADBUtils {
         return result.isSuccess2();
     }
 
-    // == 滑动方法 ==
+    // ============
+    // = 滑动方法 =
+    // ============
 
     /**
      * 发送事件滑动
@@ -1606,7 +1636,7 @@ public final class ADBUtils {
      * @param number 循环次数
      * @return
      */
-    public static void sendEventSlide(float x, float y, float tX, float tY, int number) {
+    public static void sendEventSlide(final float x, final float y, final float tX, final float tY, final int number) {
         List<String> lists = new ArrayList<>();
         // = 开头 =
         lists.add("sendevent /dev/input/event1 3 57 109");
@@ -1672,7 +1702,9 @@ public final class ADBUtils {
         ShellUtils.execCmd(lists, true);
     }
 
-    // == 查看设备信息 ==
+    // ================
+    // = 查看设备信息 =
+    // ================
 
     /**
      * 获取 SDK 版本
@@ -1940,7 +1972,9 @@ public final class ADBUtils {
         return null;
     }
 
+    // ============
     // = 修改设置 =
+    // ============
 
     /**
      * 设置屏幕大小
@@ -1948,7 +1982,7 @@ public final class ADBUtils {
      * @param height
      * @return
      */
-    public static boolean setScreenSize(int width, int height) {
+    public static boolean setScreenSize(final int width, final int height) {
         String cmd = "wm size %sx%s";
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, width, height), true);
@@ -1970,7 +2004,7 @@ public final class ADBUtils {
      * @param density
      * @return
      */
-    public static boolean setDensity(int density) {
+    public static boolean setDensity(final int density) {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("wm density " + density, true);
         return result.isSuccess2();
@@ -1994,7 +2028,7 @@ public final class ADBUtils {
      * @param bottom
      * @return
      */
-    public static boolean setOverscan(int left, int top, int right, int bottom) {
+    public static boolean setOverscan(final int left, final int top, final int right, final int bottom) {
         String cmd = "wm overscan %s,%s,%s,%s";
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, left, top, right, bottom), true);
@@ -2032,7 +2066,7 @@ public final class ADBUtils {
      * @param isAuto
      * @return
      */
-    public static boolean setScreenBrightnessMode(boolean isAuto) {
+    public static boolean setScreenBrightnessMode(final boolean isAuto) {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings put system screen_brightness_mode " + (isAuto ? 1 : 0), true);
         return result.isSuccess3();
@@ -2063,7 +2097,7 @@ public final class ADBUtils {
      * @param brightness
      * @return
      */
-    public static boolean setScreenBrightness(int brightness) {
+    public static boolean setScreenBrightness(final int brightness) {
         if (brightness < 0) {
             return false;
         } else if (brightness > 255) {
@@ -2089,10 +2123,11 @@ public final class ADBUtils {
 
     /**
      * 设置自动锁屏休眠时间 (单位毫秒)
+     * 设置永不休眠 Integer.MAX_VALUE
      * @param time
-     * @return tips: 设置永不休眠 Integer.MAX_VALUE
+     * @return
      */
-    public static boolean setScreenOffTimeout(long time) {
+    public static boolean setScreenOffTimeout(final long time) {
         if (time <= 0) {
             return false;
         }
@@ -2121,7 +2156,7 @@ public final class ADBUtils {
      * 修改日期时间选项中通过网络获取时间的状态, 设置是否开启
      * @return
      */
-    public static boolean setGlobalAutoTime(boolean isOpen) {
+    public static boolean setGlobalAutoTime(final boolean isOpen) {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd("settings put global auto_time " + (isOpen ? 1 : 0), true);
         return result.isSuccess3();
@@ -2171,7 +2206,7 @@ public final class ADBUtils {
      * @param accessibilityServiceName 无障碍服务名
      * @return
      */
-    public static boolean openAccessibility(String packageName, String accessibilityServiceName) {
+    public static boolean openAccessibility(final String packageName, final String accessibilityServiceName) {
         if (isSpace(packageName)) return false;
         if (isSpace(accessibilityServiceName)) return false;
 
@@ -2191,7 +2226,7 @@ public final class ADBUtils {
      * @param accessibilityServiceName 无障碍服务名
      * @return
      */
-    public static boolean closeAccessibility(String packageName, String accessibilityServiceName) {
+    public static boolean closeAccessibility(final String packageName, final String accessibilityServiceName) {
         if (isSpace(packageName)) return false;
         if (isSpace(accessibilityServiceName)) return false;
 
@@ -2205,15 +2240,16 @@ public final class ADBUtils {
         return result.isSuccess2();
     }
 
-
-    // == 内部方法 ==
+    // ============
+    // = 内部方法 =
+    // ============
 
     /**
      * 检查是否存在某个文件
      * @param file 文件路径
      * @return 是否存在文件
      */
-    private static boolean isFileExists(File file) {
+    private static boolean isFileExists(final File file) {
         return file != null && file.exists();
     }
 
@@ -2222,7 +2258,7 @@ public final class ADBUtils {
      * @param filePath
      * @return
      */
-    private static File getFileByPath(String filePath) {
+    private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;
     }
 

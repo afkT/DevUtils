@@ -15,7 +15,6 @@ import dev.utils.LogPrintUtils;
  * detail: 定时器工具类
  * Created by Ttt
  * ==============
- * hint:
  * 主要是为了控制整个项目的定时器,防止定时器混乱,或者导致忘记关闭等情况,以及减少初始化等操作代码
  * 主要实现是 AbsTimer、TimerTask 这两个类,
  * AbsTimer -> 定时器抽象类,对外提供该类对象,以及内部方法,便于内部实现方法的隐藏,以及达到对定时器任务的控制处理

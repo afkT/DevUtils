@@ -243,7 +243,7 @@ public final class ActivityUtils {
      */
     public static ResolveInfo getLauncherCategoryHomeToResolveInfo() {
         try {
-            final Intent intent = new Intent(Intent.ACTION_MAIN);
+            Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             return DevUtils.getContext().getPackageManager().resolveActivity(intent, 0);
         } catch (Exception e) {
@@ -258,7 +258,7 @@ public final class ActivityUtils {
      * @return
      */
     public static String getLauncherCategoryHomeToPackageName() {
-        final ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
+        ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
         if (res != null && res.activityInfo != null) {
             // 有多个桌面程序存在，且未指定默认项时
             if (res.activityInfo.packageName.equals("android")) {
@@ -275,7 +275,7 @@ public final class ActivityUtils {
      * @return
      */
     public static String getLauncherCategoryHomeToActivityName() {
-        final ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
+        ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
         if (res != null && res.activityInfo != null) {
             // 有多个桌面程序存在，且未指定默认项时
             if (res.activityInfo.packageName.equals("android")) {
@@ -292,7 +292,7 @@ public final class ActivityUtils {
      * @return
      */
     public static String getLauncherCategoryHomeToPackageAndName() {
-        final ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
+        ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
         if (res != null && res.activityInfo != null) {
             // 有多个桌面程序存在，且未指定默认项时
             if (res.activityInfo.packageName.equals("android")) {

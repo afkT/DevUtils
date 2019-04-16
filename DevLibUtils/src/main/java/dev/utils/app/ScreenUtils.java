@@ -697,7 +697,8 @@ public final class ScreenUtils {
 
     /**
      * 检测是否具有底部导航栏
-     * hint: 一加手机上判断不准确
+     * ==============
+     * 一加手机上判断不准确
      * @return
      */
     public static boolean checkDeviceHasNavigationBar() {

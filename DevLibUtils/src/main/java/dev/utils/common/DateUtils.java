@@ -1074,13 +1074,15 @@ public final class DateUtils {
 
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
-     * @param startTime 开始时间
-     * @param endTime   结束时间
-     * @param format    格式 如: HH:mm
-     * @return tips:
+     * ==============
      * 如当前时间 2018-12-07 15:27:23, 判断距离 14:39:20(endTime) 有多久
      * 如果过了这个时间段, 则返回 2018-12-08 14:39:20 (明天的这个时间段时间)
      * 如果没有过这个时间段(如: 17:39:20) 则返回当天时间段 2018-12-07 17:39:20 (2018-12-07 + endTime)
+     * ==============
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @param format    格式 如: HH:mm
+     * @return
      */
     public static long getEndTimeDiff(final long startTime, final String endTime, final String format) {
         if (startTime < 1 || endTime == null || format == null) return -1;
