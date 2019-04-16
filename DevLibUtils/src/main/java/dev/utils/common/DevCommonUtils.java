@@ -1,9 +1,7 @@
 package dev.utils.common;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 
 import dev.utils.JCLogUtils;
 
@@ -161,12 +159,12 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判读是否为 null to List
-     * @param list
+     * 判读是否为 null to Collection
+     * @param collection
      * @return
      */
-    public static boolean isEmpty(final List list) {
-        return list == null || list.size() == 0;
+    public static boolean isEmpty(final Collection collection) {
+        return collection == null || collection.size() == 0;
     }
 
     /**
@@ -176,24 +174,6 @@ public final class DevCommonUtils {
      */
     public static boolean isEmpty(final Map map) {
         return map == null || map.size() == 0;
-    }
-
-    /**
-     * 判读是否为 null to Set
-     * @param set
-     * @return
-     */
-    public static boolean isEmpty(final Set set) {
-        return set == null || set.size() == 0;
-    }
-
-    /**
-     * 判读是否为 null to Queue
-     * @param queue
-     * @return
-     */
-    public static boolean isEmpty(final Queue queue) {
-        return queue == null || queue.size() == 0;
     }
 
     /**
@@ -217,12 +197,12 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 获取长度 to List
-     * @param list
+     * 获取长度 to Collection
+     * @param collection
      * @return
      */
-    public static int length(final List list) {
-        return length(list, 0);
+    public static int length(final Collection collection) {
+        return length(collection, 0);
     }
 
     /**
@@ -232,24 +212,6 @@ public final class DevCommonUtils {
      */
     public static int length(final Map map) {
         return length(map, 0);
-    }
-
-    /**
-     * 获取长度 to Set
-     * @param set
-     * @return
-     */
-    public static int length(final Set set) {
-        return length(set, 0);
-    }
-
-    /**
-     * 获取长度 to Queue
-     * @param queue
-     * @return
-     */
-    public static int length(final Queue queue) {
-        return length(queue, 0);
     }
 
     /**
@@ -337,13 +299,13 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 获取长度 to List
-     * @param list
+     * 获取长度 to Collection
+     * @param collection
      * @param defaultLength
      * @return
      */
-    public static int length(final List list, final int defaultLength) {
-        return list != null ? list.size() : defaultLength;
+    public static int length(final Collection collection, final int defaultLength) {
+        return collection != null ? collection.size() : defaultLength;
     }
 
     /**
@@ -354,26 +316,6 @@ public final class DevCommonUtils {
      */
     public static int length(final Map map, final int defaultLength) {
         return map != null ? map.size() : defaultLength;
-    }
-
-    /**
-     * 获取长度 to Set
-     * @param set
-     * @param defaultLength
-     * @return
-     */
-    public static int length(final Set set, final int defaultLength) {
-        return set != null ? set.size() : defaultLength;
-    }
-
-    /**
-     * 获取长度 to Queue
-     * @param queue
-     * @param defaultLength
-     * @return
-     */
-    public static int length(final Queue queue, final int defaultLength) {
-        return queue != null ? queue.size() : defaultLength;
     }
 
     /**
@@ -490,13 +432,13 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 获取长度 to List 是否等于期望长度
-     * @param list
+     * 获取长度 to Collection 是否等于期望长度
+     * @param collection
      * @param length
      * @return
      */
-    public static boolean isLength(final List list, final int length) {
-        return list != null && list.size() == length;
+    public static boolean isLength(final Collection collection, final int length) {
+        return collection != null && collection.size() == length;
     }
 
     /**
@@ -507,26 +449,6 @@ public final class DevCommonUtils {
      */
     public static boolean isLength(final Map map, final int length) {
         return map != null && map.size() == length;
-    }
-
-    /**
-     * 获取长度 to Set 是否等于 期望长度
-     * @param set
-     * @param length
-     * @return
-     */
-    public static boolean isLength(final Set set, final int length) {
-        return set != null && set.size() == length;
-    }
-
-    /**
-     * 获取长度 to Queue 是否等于 期望长度
-     * @param queue
-     * @param length
-     * @return
-     */
-    public static boolean isLength(final Queue queue, final int length) {
-        return queue != null && queue.size() == length;
     }
 
     /**
