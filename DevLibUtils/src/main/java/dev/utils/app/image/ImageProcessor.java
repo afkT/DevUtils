@@ -49,7 +49,7 @@ public class ImageProcessor {
     /**
      * 缩放处理
      * @param newWidth 新的宽度
-     * @return Bitmap
+     * @return
      */
     public Bitmap scaleByWidth(final int newWidth) {
         return scale((float) newWidth / bitmap.getWidth());
@@ -58,7 +58,7 @@ public class ImageProcessor {
     /**
      * 缩放处理
      * @param newHeight 新的高度
-     * @return Bitmap
+     * @return
      */
     public Bitmap scaleByHeight(final int newHeight) {
         return scale((float) newHeight / bitmap.getHeight());

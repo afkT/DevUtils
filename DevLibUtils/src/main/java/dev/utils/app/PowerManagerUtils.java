@@ -144,7 +144,8 @@ public final class PowerManagerUtils {
 
     /**
      * 设置WakeLock 常亮
-     * @return run: {@link Activity#onResume()}
+     * run: {@link Activity#onResume()}
+     * @return
      */
     public static PowerManager.WakeLock setWakeLockToBright() {
         try {

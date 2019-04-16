@@ -61,7 +61,7 @@ public final class ImageUtils {
     /**
      * 获取 bitmap
      * @param file
-     * @return bitmap
+     * @return
      */
     public static Bitmap getBitmap(final File file) {
         if (file == null) return null;
@@ -73,7 +73,7 @@ public final class ImageUtils {
      * @param file
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
-     * @return bitmap
+     * @return
      */
     public static Bitmap getBitmap(final File file, final int maxWidth, final int maxHeight) {
         if (file == null) return null;
@@ -88,7 +88,7 @@ public final class ImageUtils {
     /**
      * 获取 bitmap
      * @param filePath
-     * @return bitmap
+     * @return
      */
     public static Bitmap getBitmap(final String filePath) {
         if (isSpace(filePath)) return null;
@@ -100,7 +100,7 @@ public final class ImageUtils {
      * @param filePath
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
-     * @return bitmap
+     * @return
      */
     public static Bitmap getBitmap(final String filePath, final int maxWidth, final int maxHeight) {
         if (isSpace(filePath)) return null;
@@ -115,7 +115,7 @@ public final class ImageUtils {
     /**
      * 获取 bitmap
      * @param is 输入流
-     * @return bitmap
+     * @return
      */
     public static Bitmap getBitmap(final InputStream is) {
         if (is == null) return null;
@@ -125,7 +125,7 @@ public final class ImageUtils {
     /**
      * 获取 bitmap
      * @param resId 资源 id
-     * @return bitmap
+     * @return
      */
     public static Bitmap getBitmap(@DrawableRes final int resId) {
         Drawable drawable = ContextCompat.getDrawable(DevUtils.getContext(), resId);
@@ -142,7 +142,7 @@ public final class ImageUtils {
      * @param resId     资源 id
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
-     * @return bitmap
+     * @return
      */
     public static Bitmap getBitmap(@DrawableRes final int resId, final int maxWidth, final int maxHeight) {
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -157,7 +157,7 @@ public final class ImageUtils {
     /**
      * 获取 bitmap
      * @param fd 文件描述
-     * @return bitmap
+     * @return
      */
     public static Bitmap getBitmap(final FileDescriptor fd) {
         if (fd == null) return null;
@@ -169,7 +169,7 @@ public final class ImageUtils {
      * @param fd        文件描述
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
-     * @return bitmap
+     * @return
      */
     public static Bitmap getBitmap(final FileDescriptor fd, final int maxWidth, final int maxHeight) {
         if (fd == null) return null;

@@ -148,8 +148,8 @@ public final class DevCache {
     }
 
     /**
-     * 获取进程pid
-     * @return _android.os.Process.myPid()
+     * 获取进程pid - android.os.Process.myPid()
+     * @return
      */
     private static String myPid() {
         return "_" + android.os.Process.myPid();
@@ -600,7 +600,7 @@ public final class DevCache {
     /**
      * 读取 bitmap 数据
      * @param key
-     * @return bitmap 数据
+     * @return
      */
     public Bitmap getAsBitmap(final String key) {
         byte[] data = getAsBinary(key);
@@ -636,7 +636,7 @@ public final class DevCache {
     /**
      * 读取 Drawable 数据
      * @param key
-     * @return Drawable 数据
+     * @return
      */
     public Drawable getAsDrawable(final String key) {
         byte[] data = getAsBinary(key);

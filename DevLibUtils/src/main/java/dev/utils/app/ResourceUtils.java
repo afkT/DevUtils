@@ -184,7 +184,7 @@ public final class ResourceUtils {
     /**
      * 获取 Drawable
      * @param drawableId Drawable 的 id
-     * @return Drawable
+     * @return
      */
     public static Drawable getDrawable(final int drawableId) {
         try {
@@ -259,7 +259,7 @@ public final class ResourceUtils {
     /**
      * 获取 drawable id
      * @param resName drawable 的名称
-     * @return drawable
+     * @return
      */
     public static int getDrawableId(final String resName) {
         try {
@@ -380,7 +380,7 @@ public final class ResourceUtils {
     /**
      * 获取 Assets 资源文件数据
      * @param fileName 资源文件名，可分成，如根目录，a.txt 或者子目录 /www/a.html
-     * @return byte[] , - > new String(byte[],encode)
+     * @return
      */
     public static byte[] readBytesFromAssets(final String fileName) {
         if (DevUtils.getContext() != null && !TextUtils.isEmpty(fileName)) {
@@ -424,7 +424,7 @@ public final class ResourceUtils {
     /**
      * 从res/raw 中获取内容。
      * @param resId 资源id
-     * @return byte[] , - > new String(byte[],encode)
+     * @return
      */
     public static byte[] readBytesFromRaw(final int resId) {
         if (DevUtils.getContext() != null) {

@@ -145,7 +145,7 @@ public final class BitmapExtendUtils {
     /**
      * Stream 转换成 byte[]
      * @param is
-     * @return Byte数组
+     * @return
      */
     public static byte[] getBytesFromStream(final InputStream is) {
         if (is == null) return null;

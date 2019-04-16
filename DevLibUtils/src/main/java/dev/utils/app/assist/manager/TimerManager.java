@@ -304,7 +304,7 @@ public final class TimerManager {
 
         /**
          * 获取标记id
-         * @return markId
+         * @return
          */
         public final int getMarkId() {
             return markId;
@@ -312,7 +312,7 @@ public final class TimerManager {
 
         /**
          * 获取标记字符串
-         * @return markStr
+         * @return
          */
         public final String getMarkStr() {
             return markStr;

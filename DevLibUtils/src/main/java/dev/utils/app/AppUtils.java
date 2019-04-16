@@ -147,7 +147,7 @@ public final class AppUtils {
     /**
      * 获取 Drawable
      * @param drawableId Drawable的id
-     * @return Drawable
+     * @return
      */
     public static Drawable getDrawable(final int drawableId) {
         try {
@@ -781,7 +781,7 @@ public final class AppUtils {
     public static boolean launchAppDetails(final String packageName, final String marketPkg) {
         if (isSpace(packageName)) return false;
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getlaunchAppDetailIntent(packageName, marketPkg, true));
+            DevUtils.getContext().startActivity(IntentUtils.getLaunchAppDetailIntent(packageName, marketPkg, true));
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "launchAppDetails");

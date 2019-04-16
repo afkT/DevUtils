@@ -234,7 +234,7 @@ public final class EditTextUtils {
      * 设置输入限制
      * @param editText
      * @param keyListener
-     * @return setKeyListener(editText, getNumberAndEnglishKeyListener ());
+     * @return
      */
     public static EditText setKeyListener(final EditText editText, final KeyListener keyListener) {
         if (editText != null) {
@@ -247,7 +247,7 @@ public final class EditTextUtils {
      * 设置输入限制
      * @param editText
      * @param digits   只能输入的内容 -> 1234567890
-     * @return setKeyListener(editText, " 1234567890 ");
+     * @return
      */
     public static EditText setKeyListener(final EditText editText, final String digits) {
         if (editText != null) {

@@ -32,9 +32,9 @@ public final class ActivityManager {
     }
 
     /**
-     * 通过 Context 获取Activity
+     * 通过 Context 获取 Activity
      * @param context
-     * @return context 所属的 Activity
+     * @return
      */
     public static Activity getActivity(final Context context) {
         if (context != null) {
@@ -86,7 +86,7 @@ public final class ActivityManager {
 
     /**
      * 获取 Activity 栈
-     * @return Activity 栈
+     * @return
      */
     public Stack<Activity> getActivityStacks() {
         return activityStacks;
@@ -135,7 +135,7 @@ public final class ActivityManager {
 
     /**
      * 获取最后一个(当前)Activity
-     * @return lastElement() activity
+     * @return
      */
     public Activity currentActivity() {
         return activityStacks.lastElement();

@@ -27,7 +27,7 @@ public final class ShellUtils {
      * 是否是在 root 下执行命令
      * @param command 命令
      * @param isRoot  是否需要 root 权限执行
-     * @return CommandResult
+     * @return
      */
     public static CommandResult execCmd(final String command, final boolean isRoot) {
         return execCmd(new String[]{command}, isRoot, true);
@@ -37,7 +37,7 @@ public final class ShellUtils {
      * 是否是在 root 下执行命令
      * @param commands 多条命令链表
      * @param isRoot   是否需要 root 权限执行
-     * @return CommandResult
+     * @return
      */
     public static CommandResult execCmd(final List<String> commands, final boolean isRoot) {
         return execCmd(commands == null ? null : commands.toArray(new String[]{}), isRoot, true);
@@ -47,7 +47,7 @@ public final class ShellUtils {
      * 是否是在 root 下执行命令
      * @param commands 多条命令数组
      * @param isRoot   是否需要 root 权限执行
-     * @return CommandResult
+     * @return
      */
     public static CommandResult execCmd(final String[] commands, final boolean isRoot) {
         return execCmd(commands, isRoot, true);
@@ -58,7 +58,7 @@ public final class ShellUtils {
      * @param command         命令
      * @param isRoot          是否需要 root 权限执行
      * @param isNeedResultMsg 是否需要结果消息
-     * @return CommandResult
+     * @return
      */
     public static CommandResult execCmd(final String command, final boolean isRoot, final boolean isNeedResultMsg) {
         return execCmd(new String[]{command}, isRoot, isNeedResultMsg);
@@ -69,7 +69,7 @@ public final class ShellUtils {
      * @param commands        命令链表
      * @param isRoot          是否需要 root 权限执行
      * @param isNeedResultMsg 是否需要结果消息
-     * @return CommandResult
+     * @return
      */
     public static CommandResult execCmd(final List<String> commands, final boolean isRoot, final boolean isNeedResultMsg) {
         return execCmd(commands == null ? null : commands.toArray(new String[]{}), isRoot, isNeedResultMsg);
@@ -80,7 +80,7 @@ public final class ShellUtils {
      * @param commands        命令数组
      * @param isRoot          是否需要 root 权限执行
      * @param isNeedResultMsg 是否需要结果消息
-     * @return CommandResult
+     * @return
      */
     public static CommandResult execCmd(final String[] commands, final boolean isRoot, final boolean isNeedResultMsg) {
         int result = -1;

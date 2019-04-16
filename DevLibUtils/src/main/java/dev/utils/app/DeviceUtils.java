@@ -343,7 +343,7 @@ public final class DeviceUtils {
 
     /**
      * 获取设备 MAC 地址
-     * @return MAC 地址
+     * @return
      */
     private static String getMacAddressByFile() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("getprop wifi.interface", false);
