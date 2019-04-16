@@ -57,79 +57,6 @@ public final class ScreenUtils {
         return null;
     }
 
-    // =
-
-//	/**
-//	 * 通过 Context 获取屏幕宽度
-//	 * @return
-//	 */
-//	@SuppressWarnings("deprecation")
-//	public static int getScreenWidth() {
-//		try {
-//			// 获取屏幕信息
-//			DisplayMetrics dMetrics = getDisplayMetrics();
-//			if (dMetrics != null) {
-//				return dMetrics.widthPixels;
-//			}
-//			// 这种也可以获取，不过已经提问过时(下面这段可以注释掉)
-//			WindowManager wManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-//			if (wManager != null) {
-//				return wManager.getDefaultDisplay().getWidth();
-//			}
-//		} catch (Exception e) {
-//			LogPrintUtils.eTag(TAG, e, "getScreenWidth");
-//		}
-//		return 0;
-//	}
-//
-//	/**
-//	 * 通过 Context 获取屏幕高度
-//	 * @return
-//	 */
-//	@SuppressWarnings("deprecation")
-//	public static int getScreenHeight() {
-//		try {
-//			// 获取屏幕信息
-//			DisplayMetrics dMetrics = getDisplayMetrics();
-//			if (dMetrics != null) {
-//				return dMetrics.heightPixels;
-//			}
-//			// 这种也可以获取，不过已经提示过时(下面这段可以注释掉)
-//			WindowManager wManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-//			if (wManager != null) {
-//				return wManager.getDefaultDisplay().getHeight();
-//			}
-//		} catch (Exception e) {
-//			LogPrintUtils.eTag(TAG, e, "getScreenHeight");
-//		}
-//		return 0;
-//	}
-//
-//	/**
-//	 * 通过 Context 获取屏幕宽度高度
-//	 * @return int[] 0 = 宽度，1 = 高度
-//	 */
-//	@SuppressWarnings("deprecation")
-//	public static int[] getScreenWidthHeight() {
-//		try {
-//			// 获取屏幕信息
-//			DisplayMetrics dMetrics = getDisplayMetrics();
-//			if (dMetrics != null) {
-//				return new int[] { dMetrics.widthPixels, dMetrics.heightPixels };
-//			}
-//			// 这种也可以获取，不过已经提示过时(下面这段可以注释掉)
-//			WindowManager wManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-//			if (wManager != null) {
-//				int width = wManager.getDefaultDisplay().getWidth();
-//				int height = wManager.getDefaultDisplay().getHeight();
-//				return new int[] { width, height };
-//			}
-//		} catch (Exception e) {
-//			LogPrintUtils.eTag(TAG, e, "getScreenWidthHeight");
-//		}
-//		return null;
-//	}
-
     /**
      * 获取屏幕的宽度(单位：px)
      * @return 屏幕宽
@@ -264,7 +191,7 @@ public final class ScreenUtils {
         return "unknown";
     }
 
-    // ==
+    // =
 
     /**
      * 通过 Context 获取屏幕密度
@@ -431,7 +358,7 @@ public final class ScreenUtils {
         return builder.toString();
     }
 
-    // ==
+    // =
 
     /**
      * 设置屏幕为全屏
@@ -579,7 +506,7 @@ public final class ScreenUtils {
      * @param activity
      * @return
      */
-    public static int getStatusBarHeight(Activity activity) {
+    public static int getStatusBarHeight(final Activity activity) {
         try {
             Rect rect = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
@@ -617,10 +544,10 @@ public final class ScreenUtils {
         }
     }
 
-    // == 截图(有用) ==
-
+    // ==============
+    // = 截图(有用) =
+    // ==============
     // https://www.cnblogs.com/angel88/p/7933437.html
-
     // https://github.com/weizongwei5/AndroidScreenShot_SysApi
 
     /**
@@ -628,7 +555,7 @@ public final class ScreenUtils {
      * @param activity
      * @return
      */
-    public static Bitmap snapShotWithStatusBar(Activity activity) {
+    public static Bitmap snapShotWithStatusBar(final Activity activity) {
         try {
             View view = activity.getWindow().getDecorView();
             view.setDrawingCacheEnabled(true);
@@ -654,7 +581,7 @@ public final class ScreenUtils {
      * @param activity
      * @return
      */
-    public static Bitmap snapShotWithoutStatusBar(Activity activity) {
+    public static Bitmap snapShotWithoutStatusBar(final Activity activity) {
         View view = activity.getWindow().getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
@@ -672,7 +599,7 @@ public final class ScreenUtils {
         return bitmap;
     }
 
-    // ==
+    // =
 
     /**
      * 获取底部导航栏高度

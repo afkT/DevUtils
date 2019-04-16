@@ -29,9 +29,7 @@ public final class SignaturesUtils {
     // 日志 TAG
     private static final String TAG = SignaturesUtils.class.getSimpleName();
     // 用于建立十六进制字符的输出的小写字符数组
-    public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    // 用于建立十六进制字符的输出的大写字符数组
-    public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    private static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * 检测应用程序是否是用"CN=Android Debug,O=Android,C=US"的debug信息来签名的
@@ -44,7 +42,7 @@ public final class SignaturesUtils {
      * @param data
      * @return
      */
-    public static String toHexString(byte[] data) {
+    public static String toHexString(final byte[] data) {
         return toHexString(data, HEX_DIGITS);
     }
 
@@ -53,7 +51,7 @@ public final class SignaturesUtils {
      * @param signatures
      * @return
      */
-    public static String signatureMD5(Signature[] signatures) {
+    public static String signatureMD5(final Signature[] signatures) {
         try {
             MessageDigest digest = MessageDigest.getInstance("MD5");
             if (signatures != null) {
@@ -72,7 +70,7 @@ public final class SignaturesUtils {
      * @param signatures
      * @return
      */
-    public static String signatureSHA1(Signature[] signatures) {
+    public static String signatureSHA1(final Signature[] signatures) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-1");
             if (signatures != null) {
@@ -91,7 +89,7 @@ public final class SignaturesUtils {
      * @param signatures
      * @return
      */
-    public static String signatureSHA256(Signature[] signatures) {
+    public static String signatureSHA256(final Signature[] signatures) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             if (signatures != null) {
@@ -109,7 +107,7 @@ public final class SignaturesUtils {
      * 判断签名是debug签名还是release签名
      * @return true = 开发(debug.keystore)，false = 上线发布(非.android默认debug.keystore)
      */
-    public static boolean isDebuggable(Signature[] signatures) {
+    public static boolean isDebuggable(final Signature[] signatures) {
         // 判断是否默认key(默认是)
         boolean debuggable = true;
         try {
@@ -131,7 +129,7 @@ public final class SignaturesUtils {
     /**
      * 获取 App 证书对象
      */
-    public static X509Certificate getX509Certificate(Signature[] signatures) {
+    public static X509Certificate getX509Certificate(final Signature[] signatures) {
         try {
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
             ByteArrayInputStream stream = new ByteArrayInputStream(signatures[0].toByteArray());
@@ -148,7 +146,7 @@ public final class SignaturesUtils {
      * @param signatures
      * @return
      */
-    public static void printSignatureName(Signature[] signatures) {
+    public static void printSignatureName(final Signature[] signatures) {
         try {
             for (int i = 0, len = signatures.length; i < len; i++) {
                 CertificateFactory cf = CertificateFactory.getInstance("X.509");
@@ -180,7 +178,7 @@ public final class SignaturesUtils {
      * @return
      * @throws IOException
      */
-    public static Signature[] getSignaturesFromApk(File file) {
+    public static Signature[] getSignaturesFromApk(final File file) {
         try {
             Certificate[] certificates = getCertificateFromApk(file);
             Signature[] signatures = new Signature[]{new Signature(certificates[0].getEncoded())};
@@ -197,7 +195,7 @@ public final class SignaturesUtils {
      * @return
      * @throws IOException
      */
-    public static Certificate[] getCertificateFromApk(File file) {
+    public static Certificate[] getCertificateFromApk(final File file) {
         try {
             JarFile jarFile = new JarFile(file);
             JarEntry je = jarFile.getJarEntry("AndroidManifest.xml");
@@ -216,7 +214,7 @@ public final class SignaturesUtils {
      * @param readBuffer
      * @return
      */
-    private static Certificate[] loadCertificates(JarFile jarFile, JarEntry je, byte[] readBuffer) {
+    private static Certificate[] loadCertificates(final JarFile jarFile, final JarEntry je, final byte[] readBuffer) {
         try {
             InputStream is = jarFile.getInputStream(je);
             while (is.read(readBuffer, 0, readBuffer.length) != -1) {

@@ -144,21 +144,16 @@ public final class ShellUtils {
     }
 
     /**
-     * 返回的命令结果
+     * detail: 返回的命令结果
+     * Created by Ttt
      */
     public static class CommandResult {
 
-        /**
-         * 结果码
-         */
+        // 结果码
         public int result;
-        /**
-         * 成功信息
-         */
+        // 成功信息
         public String successMsg;
-        /**
-         * 错误信息
-         */
+        // 错误信息
         public String errorMsg;
 
         public CommandResult(final int result, final String successMsg, final String errorMsg) {
@@ -202,7 +197,7 @@ public final class ShellUtils {
          * @param contains
          * @return
          */
-        public boolean isSuccess4(String contains) {
+        public boolean isSuccess4(final String contains) {
             if (result == SUCCESS && successMsg != null && successMsg.length() != 0) {
                 if (contains != null && contains.length() != 0 && successMsg.toLowerCase().contains(contains)) {
                     return true;

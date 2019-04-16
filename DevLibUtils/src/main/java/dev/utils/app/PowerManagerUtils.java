@@ -61,7 +61,7 @@ public final class PowerManagerUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ECLAIR_MR1) {
             return false;
         } else {
-            if (powerManager == null){
+            if (powerManager == null) {
                 return false;
             }
             return powerManager.isScreenOn();

@@ -26,10 +26,10 @@ public final class ShapeUtils {
 
     // 日志 TAG
     private static final String TAG = ShapeUtils.class.getSimpleName();
-
+    // Shape Drawable
     private final GradientDrawable drawable;
 
-    private ShapeUtils(Builder builder) {
+    private ShapeUtils(final Builder builder) {
         drawable = builder.gradientDrawable;
     }
 
@@ -45,7 +45,7 @@ public final class ShapeUtils {
      * 设置 Drawable 背景
      * @param view
      */
-    public void setDrawable(View view) {
+    public void setDrawable(final View view) {
         if (view != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                 view.setBackground(drawable);
@@ -54,7 +54,7 @@ public final class ShapeUtils {
         }
     }
 
-    // ==
+    // =
 
     /**
      * detail: 构造者模式
@@ -67,7 +67,7 @@ public final class ShapeUtils {
         public Builder() {
         }
 
-        public Builder(GradientDrawable drawable) {
+        public Builder(final GradientDrawable drawable) {
             if (drawable != null) {
                 this.gradientDrawable = drawable;
             }
@@ -81,30 +81,32 @@ public final class ShapeUtils {
             return new ShapeUtils(this);
         }
 
-        // ====
-
+        // ============
         // = 设置圆角 =
+        // ============
 
         /**
          * 设置圆角
          * @param radius
          * @return
          */
-        public Builder setRadius(float radius) {
+        public Builder setRadius(final float radius) {
             if (gradientDrawable != null) {
                 gradientDrawable.setCornerRadius(radius);
             }
             return this;
         }
 
-        // == 设置左边 ==
+        // ============
+        // = 设置左边 =
+        // ============
 
         /**
          * 设置圆角
          * @param left
          * @return
          */
-        public Builder setRadiusLeft(float left) {
+        public Builder setRadiusLeft(final float left) {
             setCornerRadii(left, 0, 0, left);
             return this;
         }
@@ -115,19 +117,21 @@ public final class ShapeUtils {
          * @param leftBottom
          * @return
          */
-        public Builder setRadiusLeft(float leftTop, float leftBottom) {
+        public Builder setRadiusLeft(final float leftTop, final float leftBottom) {
             setCornerRadii(leftTop, 0, 0, leftBottom);
             return this;
         }
 
-        // == 设置右边 ==
+        // ============
+        // = 设置右边 =
+        // ============
 
         /**
          * 设置圆角
          * @param right
          * @return
          */
-        public Builder setRadiusRight(float right) {
+        public Builder setRadiusRight(final float right) {
             setCornerRadii(0, right, right, 0);
             return this;
         }
@@ -138,12 +142,14 @@ public final class ShapeUtils {
          * @param rightBottom
          * @return
          */
-        public Builder setRadiusRight(float rightTop, float rightBottom) {
+        public Builder setRadiusRight(final float rightTop, final float rightBottom) {
             setCornerRadii(0, rightTop, rightBottom, 0);
             return this;
         }
 
-        // == 圆角内部处理 ==
+        // ================
+        // = 圆角内部处理 =
+        // ================
 
         /**
          * 内部处理方法
@@ -152,7 +158,7 @@ public final class ShapeUtils {
          * @param rightBottom
          * @param leftBottom
          */
-        public Builder setCornerRadii(float leftTop, float rightTop, float rightBottom, float leftBottom) {
+        public Builder setCornerRadii(final float leftTop, final float rightTop, final float rightBottom, final float leftBottom) {
 //        <corners
 //            android:bottomLeftRadius="8dp"
 //            android:bottomRightRadius="8dp"
@@ -166,7 +172,9 @@ public final class ShapeUtils {
             return this;
         }
 
-        // == 设置背景色(填充) ==
+        // ====================
+        // = 设置背景色(填充) =
+        // ====================
 
 //    <solid android:color="#DFDFE0" />
 
@@ -175,7 +183,7 @@ public final class ShapeUtils {
          * @param color
          * @return
          */
-        public Builder setColor(String color) {
+        public Builder setColor(final String color) {
             if (gradientDrawable != null && !TextUtils.isEmpty(color)) {
                 try {
                     gradientDrawable.setColor(Color.parseColor(color));
@@ -191,7 +199,7 @@ public final class ShapeUtils {
          * @param color
          * @return
          */
-        public Builder setColor(@ColorRes int color) {
+        public Builder setColor(@ColorRes final int color) {
             if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setColor(ContextCompat.getColor(DevUtils.getContext(), color));
@@ -202,7 +210,9 @@ public final class ShapeUtils {
             return this;
         }
 
-        // == 设置边框颜色 ==
+        // ================
+        // = 设置边框颜色 =
+        // ================
 
 //        <!-- 描边
 //            android:width      整型 描边的宽度
@@ -217,7 +227,7 @@ public final class ShapeUtils {
          * @param color
          * @return
          */
-        public Builder setStroke(int width, String color) {
+        public Builder setStroke(final int width, final String color) {
             if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setStroke(width, Color.parseColor(color));
@@ -234,7 +244,7 @@ public final class ShapeUtils {
          * @param color
          * @return
          */
-        public Builder setStroke(int width, @ColorRes int color) {
+        public Builder setStroke(final int width, @ColorRes final int color) {
             if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setStroke(width, ContextCompat.getColor(DevUtils.getContext(), color));
@@ -252,7 +262,7 @@ public final class ShapeUtils {
          * @return
          */
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-        public Builder setStroke(int width, ColorStateList color) {
+        public Builder setStroke(final int width, final ColorStateList color) {
             if (gradientDrawable != null && color != null) {
                 try {
                     gradientDrawable.setStroke(width, color);
@@ -263,7 +273,9 @@ public final class ShapeUtils {
             return this;
         }
 
-        // == 设置大小 ==
+        // ============
+        // = 设置大小 =
+        // ============
 
 //        <!-- 宽度和高度
 //                android:width   整型 宽度
@@ -276,7 +288,7 @@ public final class ShapeUtils {
          * @param height
          * @return
          */
-        public Builder setSize(int width, int height) {
+        public Builder setSize(final int width, final int height) {
             if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setSize(width, height);
@@ -287,7 +299,9 @@ public final class ShapeUtils {
             return this;
         }
 
-        // == 设置边距 ==
+        // ============
+        // = 设置边距 =
+        // ============
 
 //        /**
 //         * 设置边距
@@ -310,7 +324,9 @@ public final class ShapeUtils {
 //            return this;
 //        }
 
-        // == 设置渐变 ==
+        // ============
+        // = 设置渐变 =
+        // ============
 
 //        <!-- 渐变，这个设置之后一般就不要设置solid填充色了
 //            android:startColor  颜色值 起始颜色
@@ -373,7 +389,7 @@ public final class ShapeUtils {
          * 设置渐变颜色
          * @param colors
          */
-        public Builder(@ColorInt int[] colors) {
+        public Builder(@ColorInt final int[] colors) {
             this(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors));
         }
 
@@ -382,12 +398,14 @@ public final class ShapeUtils {
          * @param orientation
          * @param colors
          */
-        public Builder(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
+        public Builder(final GradientDrawable.Orientation orientation, @ColorInt final int[] colors) {
             this(new GradientDrawable(orientation, colors));
         }
     }
 
-    // == 快捷方法 ==
+    // ============
+    // = 快捷方法 =
+    // ============
 
     /**
      * 创建新的 Shape Builder 对象
@@ -395,7 +413,7 @@ public final class ShapeUtils {
      * @param color
      * @return
      */
-    public static Builder newBuilder(float radius, @ColorRes int color) {
+    public static Builder newBuilder(final float radius, @ColorRes final int color) {
         return new Builder().setRadius(radius).setColor(color);
     }
 
@@ -405,7 +423,7 @@ public final class ShapeUtils {
      * @param color
      * @return
      */
-    public static Builder newBuilderToLeft(float left, @ColorRes int color) {
+    public static Builder newBuilderToLeft(final float left, @ColorRes final int color) {
         return new Builder().setRadiusLeft(left).setColor(color);
     }
 
@@ -415,7 +433,7 @@ public final class ShapeUtils {
      * @param color
      * @return
      */
-    public static Builder newBuilderToRight(float right, @ColorRes int color) {
+    public static Builder newBuilderToRight(final float right, @ColorRes final int color) {
         return new Builder().setRadiusRight(right).setColor(color);
     }
 
@@ -424,7 +442,7 @@ public final class ShapeUtils {
      * @param colors
      * @return
      */
-    public static Builder newBuilderToGradient(@ColorInt int[] colors) {
+    public static Builder newBuilderToGradient(@ColorInt final int[] colors) {
         return new Builder(colors);
     }
 
@@ -434,7 +452,7 @@ public final class ShapeUtils {
      * @param colors
      * @return
      */
-    public static Builder newBuilderToGradient(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
+    public static Builder newBuilderToGradient(final GradientDrawable.Orientation orientation, @ColorInt final int[] colors) {
         return new Builder(orientation, colors);
     }
 }

@@ -40,6 +40,8 @@ public final class ResourceUtils {
     // 日志 TAG
     private static final String TAG = ResourceUtils.class.getSimpleName();
 
+    // =
+
     public static final String LAYTOUT = "layout";
     public static final String DRAWABLE = "drawable";
     public static final String MIPMAP = "mipmap";
@@ -127,7 +129,7 @@ public final class ResourceUtils {
      * 获取 ColorStateList
      * @return
      */
-    public static ColorStateList getColorStateList(int id) {
+    public static ColorStateList getColorStateList(final int id) {
         try {
             return ContextCompat.getColorStateList(DevUtils.getContext(), id);
         } catch (Exception e) {
@@ -143,7 +145,7 @@ public final class ResourceUtils {
      * @param strId 字符串id
      * @return 字符串
      */
-    public static String getString(int strId) {
+    public static String getString(final int strId) {
         try {
             return DevUtils.getContext().getResources().getString(strId);
         } catch (Exception e) {
@@ -156,7 +158,7 @@ public final class ResourceUtils {
      * 获取 String
      * @return
      */
-    public static String getString(@StringRes int id, Object... formatArgs) {
+    public static String getString(@StringRes final int id, final Object... formatArgs) {
         try {
             return DevUtils.getContext().getResources().getString(id, formatArgs);
         } catch (Exception e) {
@@ -170,7 +172,7 @@ public final class ResourceUtils {
      * @param colorId 颜色id
      * @return 颜色
      */
-    public static int getColor(int colorId) {
+    public static int getColor(final int colorId) {
         try {
             return DevUtils.getContext().getResources().getColor(colorId);
         } catch (Exception e) {
@@ -184,7 +186,7 @@ public final class ResourceUtils {
      * @param drawableId Drawable 的 id
      * @return Drawable
      */
-    public static Drawable getDrawable(int drawableId) {
+    public static Drawable getDrawable(final int drawableId) {
         try {
             return DevUtils.getContext().getResources().getDrawable(drawableId);
         } catch (Exception e) {
@@ -198,7 +200,7 @@ public final class ResourceUtils {
      * @param id
      * @return
      */
-    public static float getDimension(int id) {
+    public static float getDimension(final int id) {
         try {
             return DevUtils.getContext().getResources().getDimension(id);
         } catch (Exception e) {
@@ -215,7 +217,7 @@ public final class ResourceUtils {
      * @param type 资源类型
      * @return 资源id，找不到返回0
      */
-    public static int getResourceId(String name, String type) {
+    public static int getResourceId(final String name, final String type) {
         try {
             //PackageManager pm = DevUtils.getContext().getPackageManager();
             Resources resources = DevUtils.getContext().getResources();
@@ -231,7 +233,7 @@ public final class ResourceUtils {
      * @param resName layout xml 的文件名
      * @return layout
      */
-    public static int getLayoutId(String resName) {
+    public static int getLayoutId(final String resName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, "layout", DevUtils.getContext().getPackageName());
         } catch (Exception e) {
@@ -245,7 +247,7 @@ public final class ResourceUtils {
      * @param resName string name的名称
      * @return
      */
-    public static int getStringId(String resName) {
+    public static int getStringId(final String resName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, "string", DevUtils.getContext().getPackageName());
         } catch (Exception e) {
@@ -259,7 +261,7 @@ public final class ResourceUtils {
      * @param resName drawable 的名称
      * @return drawable
      */
-    public static int getDrawableId(String resName) {
+    public static int getDrawableId(final String resName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, "drawable", DevUtils.getContext().getPackageName());
         } catch (Exception e) {
@@ -273,7 +275,7 @@ public final class ResourceUtils {
      * @param imageName
      * @return
      */
-    public static int getDrawableId2(String imageName) {
+    public static int getDrawableId2(final String imageName) {
         Class mipmap = R.drawable.class;
         try {
             Field field = mipmap.getField(imageName);
@@ -293,7 +295,7 @@ public final class ResourceUtils {
      * @param resName
      * @return
      */
-    public static int getMipmapId(String resName) {
+    public static int getMipmapId(final String resName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, "mipmap", DevUtils.getContext().getPackageName());
         } catch (Exception e) {
@@ -308,7 +310,7 @@ public final class ResourceUtils {
      * @param resName style的名称
      * @return style
      */
-    public static int getStyleId(String resName) {
+    public static int getStyleId(final String resName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, "style", DevUtils.getContext().getPackageName());
         } catch (Exception e) {
@@ -322,7 +324,7 @@ public final class ResourceUtils {
      * @param resName styleable 的名称
      * @return styleable
      */
-    public static Object getStyleableId(String resName) {
+    public static Object getStyleableId(final String resName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, "styleable", DevUtils.getContext().getPackageName());
         } catch (Exception e) {
@@ -336,7 +338,7 @@ public final class ResourceUtils {
      * @param resName anim xml 文件名称
      * @return anim
      */
-    public static int getAnimId(String resName) {
+    public static int getAnimId(final String resName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, "anim", DevUtils.getContext().getPackageName());
         } catch (Exception e) {
@@ -350,7 +352,7 @@ public final class ResourceUtils {
      * @param resName id 的名称
      * @return
      */
-    public static int getId(String resName) {
+    public static int getId(final String resName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, "id", DevUtils.getContext().getPackageName());
         } catch (Exception e) {
@@ -364,7 +366,7 @@ public final class ResourceUtils {
      * @param resName color 名称
      * @return
      */
-    public static int getColorId(String resName) {
+    public static int getColorId(final String resName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, "color", DevUtils.getContext().getPackageName());
         } catch (Exception e) {
@@ -380,7 +382,7 @@ public final class ResourceUtils {
      * @param fileName 资源文件名，可分成，如根目录，a.txt 或者子目录 /www/a.html
      * @return byte[] , - > new String(byte[],encode)
      */
-    public static byte[] readBytesFromAssets(String fileName) {
+    public static byte[] readBytesFromAssets(final String fileName) {
         if (DevUtils.getContext() != null && !TextUtils.isEmpty(fileName)) {
             InputStream iStream = null;
             try {
@@ -410,7 +412,7 @@ public final class ResourceUtils {
      * @param fileName
      * @return
      */
-    public static String readStringFromAssets(String fileName) {
+    public static String readStringFromAssets(final String fileName) {
         try {
             return new String(readBytesFromAssets(fileName), "UTF-8");
         } catch (Exception e) {
@@ -424,7 +426,7 @@ public final class ResourceUtils {
      * @param resId 资源id
      * @return byte[] , - > new String(byte[],encode)
      */
-    public static byte[] readBytesFromRaw(int resId) {
+    public static byte[] readBytesFromRaw(final int resId) {
         if (DevUtils.getContext() != null) {
             InputStream iStream = null;
             try {
@@ -454,7 +456,7 @@ public final class ResourceUtils {
      * @param resId
      * @return
      */
-    public static String readStringFromRaw(int resId) {
+    public static String readStringFromRaw(final int resId) {
         try {
             return new String(readBytesFromRaw(resId), "UTF-8");
         } catch (Exception e) {
@@ -463,14 +465,14 @@ public final class ResourceUtils {
         return null;
     }
 
-    // ==
+    // =
 
     /**
      * 获取 Assets 资源文件数据(返回List<String> 一行的全部内容属于一个索引)
      * @param fileName 资源文件名，可分成，如根目录，a.txt 或者子目录 /www/a.html
      * @return
      */
-    public static List<String> geFileToListFromAssets(String fileName) {
+    public static List<String> geFileToListFromAssets(final String fileName) {
         if (DevUtils.getContext() != null && !TextUtils.isEmpty(fileName)) {
             InputStream iStream = null;
             InputStreamReader inReader = null;
@@ -504,7 +506,7 @@ public final class ResourceUtils {
      * @param resId 资源id
      * @return
      */
-    public static List<String> geFileToListFromRaw(int resId) {
+    public static List<String> geFileToListFromRaw(final int resId) {
         if (DevUtils.getContext() != null) {
             InputStream iStream = null;
             InputStreamReader inReader = null;
@@ -533,7 +535,7 @@ public final class ResourceUtils {
         return null;
     }
 
-    // ========
+    // =
 
     /**
      * 从Assets 资源中获取内容并保存到本地
@@ -541,7 +543,7 @@ public final class ResourceUtils {
      * @param file     保存地址
      * @return 是否保存成功
      */
-    public static boolean saveAssetsFormFile(String fileName, File file) {
+    public static boolean saveAssetsFormFile(final String fileName, final File file) {
         if (DevUtils.getContext() != null) {
             try {
                 // 获取 Assets 文件
@@ -580,7 +582,7 @@ public final class ResourceUtils {
      * @param file  保存地址
      * @return 是否保存成功
      */
-    public static boolean saveRawFormFile(int resId, File file) {
+    public static boolean saveRawFormFile(final int resId, final File file) {
         if (DevUtils.getContext() != null) {
             try {
                 // 获取raw 文件

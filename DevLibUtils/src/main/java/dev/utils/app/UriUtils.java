@@ -47,7 +47,7 @@ public final class UriUtils {
      * @return getUriForFileToName(file, " fileProvider ");
      * getUriForFile(file, "包名.fileProvider");
      */
-    public static Uri getUriForFileToName(final File file, String name) {
+    public static Uri getUriForFileToName(final File file, final String name) {
         try {
             String authority = DevUtils.getContext().getPackageName() + "." + name;
             return getUriForFile(file, authority);
@@ -78,7 +78,7 @@ public final class UriUtils {
      * @param uri
      * @return
      */
-    public static String getFilePathByUri(Context context, Uri uri) {
+    public static String getFilePathByUri(final Context context, final Uri uri) {
         String path = null;
         // 以 file:// 开头的
         if (ContentResolver.SCHEME_FILE.equals(uri.getScheme())) {
@@ -141,7 +141,7 @@ public final class UriUtils {
         return null;
     }
 
-    private static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+    private static String getDataColumn(final Context context, final Uri uri, final String selection, final String[] selectionArgs) {
         Cursor cursor = null;
         final String column = "_data";
         final String[] projection = {column};
@@ -158,15 +158,15 @@ public final class UriUtils {
         return null;
     }
 
-    private static boolean isExternalStorageDocument(Uri uri) {
+    private static boolean isExternalStorageDocument(final Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
-    private static boolean isDownloadsDocument(Uri uri) {
+    private static boolean isDownloadsDocument(final Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
-    private static boolean isMediaDocument(Uri uri) {
+    private static boolean isMediaDocument(final Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 }

@@ -52,7 +52,12 @@ public final class ServiceUtils {
      * @return true : 是, false : 否
      */
     public static boolean isServiceRunning(final Class<?> clazz) {
-        return isServiceRunning(clazz.getName());
+        try {
+            return isServiceRunning(clazz.getName());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isServiceRunning");
+        }
+        return false;
     }
 
     /**
@@ -135,7 +140,6 @@ public final class ServiceUtils {
      * @param className 完整包名的服务类名
      * @param conn      服务连接对象
      * @param flags     绑定选项
-     *                  ====
      *                  {@link Context#BIND_AUTO_CREATE}
      *                  {@link Context#BIND_DEBUG_UNBIND}
      *                  {@link Context#BIND_NOT_FOREGROUND}
@@ -156,7 +160,6 @@ public final class ServiceUtils {
      * @param clazz 服务类
      * @param conn  服务连接对象
      * @param flags 绑定选项
-     *              ====
      *              {@link Context#BIND_AUTO_CREATE}
      *              {@link Context#BIND_DEBUG_UNBIND}
      *              {@link Context#BIND_NOT_FOREGROUND}

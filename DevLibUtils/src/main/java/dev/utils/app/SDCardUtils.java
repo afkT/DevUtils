@@ -38,7 +38,6 @@ public final class SDCardUtils {
      * @return
      */
     public static boolean isSDCardEnable() {
-        // android.os.Environment
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
@@ -58,7 +57,7 @@ public final class SDCardUtils {
         return Environment.getExternalStorageDirectory().getAbsolutePath();
     }
 
-    // ==
+    // =
 
     /**
      * 判断 SD 卡是否可用
@@ -117,14 +116,14 @@ public final class SDCardUtils {
         return listPaths;
     }
 
-    // ==
+    // =
 
     /**
      * 返回对应路径的空间总大小
      * @param path
      * @return
      */
-    public static long getAllBlockSize(String path) {
+    public static long getAllBlockSize(final String path) {
         try {
             // 获取路径的存储空间信息
             StatFs statFs = new StatFs(path);
@@ -145,7 +144,7 @@ public final class SDCardUtils {
      * @param path
      * @return
      */
-    public static long getAvailableBlocks(String path) {
+    public static long getAvailableBlocks(final String path) {
         try {
             // 获取路径的存储空间信息
             StatFs statFs = new StatFs(path);
@@ -167,7 +166,7 @@ public final class SDCardUtils {
      * @param path
      * @return
      */
-    public static long getAlreadyBlock(String path) {
+    public static long getAlreadyBlock(final String path) {
         try {
             // 获取路径的存储空间信息
             StatFs statFs = new StatFs(path);
@@ -189,7 +188,7 @@ public final class SDCardUtils {
      * 返回对应路径的空间大小信息
      * @return 返回数据，0 = 总空间大小，1 = 空闲控件大小 ， 2 = 已使用空间大小
      */
-    public static long[] getBlockSizeInfos(String path) {
+    public static long[] getBlockSizeInfos(final String path) {
         try {
             // 获取路径的存储空间信息
             StatFs statFs = new StatFs(path);
@@ -308,8 +307,8 @@ public final class SDCardUtils {
      * @param filePath 文件路径
      * @return
      */
-    public static File getCacheFile(String filePath) {
-        return new File(getCachePath(filePath));
+    public static File getCacheFile(final String filePath) {
+        return FileUtils.getFile(getCachePath(filePath));
     }
 
     /**
@@ -317,7 +316,8 @@ public final class SDCardUtils {
      * @param filePath 文件路径
      * @return
      */
-    public static String getCachePath(String filePath) {
+    public static String getCachePath(final String filePath) {
+        if (filePath == null) return null;
         // 获取缓存地址
         String cachePath = new File(getDiskCacheDir(), filePath).getAbsolutePath();
         // 防止不存在目录文件，自动创建

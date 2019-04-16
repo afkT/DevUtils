@@ -664,7 +664,7 @@ public final class ConvertUtils {
      * @param data
      * @param off    起始
      * @param length 个数
-     * @return byte[]
+     * @return
      */
     public static byte[] subBytes(final byte[] data, final int off, final int length) {
         if (data == null || off < 0 || length < 0) return null;
@@ -765,7 +765,7 @@ public final class ConvertUtils {
     /**
      * byte[] 转换 char[], 并且进行补码
      * @param data
-     * @return chars
+     * @return
      */
     public static char[] bytesToChars(final byte[] data) {
         if (data == null) return null;
@@ -1327,7 +1327,7 @@ public final class ConvertUtils {
     /**
      * 二进制字符串 转换 byte[] 解码
      * @param str
-     * @return byte[]
+     * @return
      * 例："011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 toBinaryString 使用
      */
     public static byte[] decodeBinary(final String str) {
@@ -1364,7 +1364,7 @@ public final class ConvertUtils {
     /**
      * 将十六进制字节数组解码
      * @param data 十六进制byte[]
-     * @return byte[]
+     * @return
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
      */
     public static byte[] decodeHex(final byte[] data) {
@@ -1374,7 +1374,7 @@ public final class ConvertUtils {
     /**
      * 将十六进制字符串解码
      * @param str 十六进制字符串
-     * @return byte[]
+     * @return
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
      */
     public static byte[] decodeHex(final String str) {
@@ -1384,7 +1384,7 @@ public final class ConvertUtils {
     /**
      * 将十六进制字符数组解码
      * @param data 十六进制 char[]
-     * @return byte[]
+     * @return
      * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
      */
     public static byte[] decodeHex(final char[] data) {

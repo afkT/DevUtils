@@ -82,7 +82,7 @@ public final class EncodeUtils {
     /**
      * base64 编码 => 去除\n 替换 + 和 - 号
      * @param input
-     * @return Base64-encode bytes
+     * @return
      */
     public static byte[] base64Encode(final String input) {
         if (input == null) return null;
@@ -97,7 +97,7 @@ public final class EncodeUtils {
     /**
      * base64 编码
      * @param input
-     * @return Base64-encode bytes
+     * @return
      */
     public static byte[] base64Encode(final byte[] input) {
         if (input == null) return null;

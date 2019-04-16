@@ -44,7 +44,7 @@ public final class StateListUtils {
      * @param id
      * @return
      */
-    public static ColorStateList getColorStateList(int id) {
+    public static ColorStateList getColorStateList(final int id) {
         try {
             return ContextCompat.getColorStateList(DevUtils.getContext(), id);
         } catch (Exception e) {
@@ -53,9 +53,13 @@ public final class StateListUtils {
         return null;
     }
 
-    // === 设置字体颜色 ===
+    // ================
+    // = 设置字体颜色 =
+    // ================
 
-    // == 字符串颜色 ==
+    // ==============
+    // = 字符串颜色 =
+    // ==============
 
     /**
      * 创建 颜色状态列表 => createColorStateList("#ffffffff", "#ff44e6ff")
@@ -63,7 +67,7 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static ColorStateList createColorStateList(String pressed, String normal) {
+    public static ColorStateList createColorStateList(final String pressed, final String normal) {
         // 颜色值
         int[] colors = new int[]{Color.parseColor(pressed), Color.parseColor(normal)};
         // 状态值
@@ -82,7 +86,7 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static ColorStateList createColorStateList(String selected, String pressed, String normal) {
+    public static ColorStateList createColorStateList(final String selected, final String pressed, final String normal) {
         // 颜色值
         int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(normal)};
         // 状态值
@@ -104,7 +108,7 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static ColorStateList createColorStateList(String selected, String pressed, String focused, String checked, String normal) {
+    public static ColorStateList createColorStateList(final String selected, final String pressed, final String focused, final String checked, final String normal) {
         // 颜色值
         int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(focused), Color.parseColor(checked), Color.parseColor(normal)};
         // 状态值
@@ -119,7 +123,9 @@ public final class StateListUtils {
         return colorList;
     }
 
-    // == int ==
+    // =======
+    // = int =
+    // =======
 
     /**
      * 创建 颜色状态列表 => createColorStateList(R.color.whilte, R.color.black)
@@ -127,7 +133,7 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static ColorStateList createColorStateList(@ColorRes int pressed, @ColorRes int normal) {
+    public static ColorStateList createColorStateList(@ColorRes final int pressed, @ColorRes final int normal) {
         Context context = DevUtils.getContext();
         // 颜色值
         int[] colors = new int[2];
@@ -149,7 +155,7 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static ColorStateList createColorStateList(@ColorRes int selected, @ColorRes int pressed, @ColorRes int normal) {
+    public static ColorStateList createColorStateList(@ColorRes final int selected, @ColorRes final int pressed, @ColorRes final int normal) {
         Context context = DevUtils.getContext();
         // 颜色值
         int[] colors = new int[3];
@@ -175,7 +181,7 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static ColorStateList createColorStateList(@ColorRes int selected, @ColorRes int pressed, @ColorRes int focused, @ColorRes int checked, @ColorRes int normal) {
+    public static ColorStateList createColorStateList(@ColorRes final int selected, @ColorRes final int pressed, @ColorRes final int focused, @ColorRes final int checked, @ColorRes final int normal) {
         Context context = DevUtils.getContext();
         // 颜色值
         int[] colors = new int[5];
@@ -196,7 +202,9 @@ public final class StateListUtils {
         return colorList;
     }
 
-    // === 设置背景切换 Drawable ===
+    // =========================
+    // = 设置背景切换 Drawable =
+    // =========================
 
     /**
      * 创建 Drawable选择切换 list => view.setBackground(Drawable)
@@ -204,9 +212,9 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static StateListDrawable newSelector(@DrawableRes int pressed, @DrawableRes int normal) {
+    public static StateListDrawable newSelector(@DrawableRes final int pressed, @DrawableRes final int normal) {
         Context context = DevUtils.getContext();
-        // == 获取 Drawable ==
+        // = 获取 Drawable =
         Drawable pressedDraw = ContextCompat.getDrawable(context, pressed);
         Drawable normalDraw = ContextCompat.getDrawable(context, normal);
         // 默认初始化
@@ -223,9 +231,9 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static StateListDrawable newSelector(@DrawableRes int selected, @DrawableRes int pressed, @DrawableRes int normal) {
+    public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed, @DrawableRes final int normal) {
         Context context = DevUtils.getContext();
-        // == 获取 Drawable ==
+        // = 获取 Drawable =
         Drawable selectedDraw = ContextCompat.getDrawable(context, selected);
         Drawable pressedDraw = ContextCompat.getDrawable(context, pressed);
         Drawable normalDraw = ContextCompat.getDrawable(context, normal);
@@ -246,9 +254,9 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static StateListDrawable newSelector(@DrawableRes int selected, @DrawableRes int pressed, @DrawableRes int focused, @DrawableRes int checked, @DrawableRes int normal) {
+    public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed, @DrawableRes final int focused, @DrawableRes final int checked, @DrawableRes final int normal) {
         Context context = DevUtils.getContext();
-        // == 获取 Drawable ==
+        // = 获取 Drawable =
         Drawable selectedDraw = ContextCompat.getDrawable(context, selected);
         Drawable pressedDraw = ContextCompat.getDrawable(context, pressed);
         Drawable focusedDraw = ContextCompat.getDrawable(context, focused);
@@ -264,7 +272,9 @@ public final class StateListUtils {
         return stateListDrawable;
     }
 
-    // === 设置背景切换 Drawable ===
+    // =========================
+    // = 设置背景切换 Drawable =
+    // =========================
 
     /**
      * 创建 Drawable选择切换 list => view.setBackground(Drawable)
@@ -272,7 +282,7 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static StateListDrawable newSelector(Drawable pressed, Drawable normal) {
+    public static StateListDrawable newSelector(final Drawable pressed, final Drawable normal) {
         // 默认初始化
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);
@@ -287,7 +297,7 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static StateListDrawable newSelector(Drawable selected, Drawable pressed, Drawable normal) {
+    public static StateListDrawable newSelector(final Drawable selected, final Drawable pressed, final Drawable normal) {
         // 默认初始化
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selected);
@@ -305,7 +315,7 @@ public final class StateListUtils {
      * @param normal
      * @return
      */
-    public static StateListDrawable newSelector(Drawable selected, Drawable pressed, Drawable focused, Drawable checked, Drawable normal) {
+    public static StateListDrawable newSelector(final Drawable selected, final Drawable pressed, final Drawable focused, final Drawable checked, final Drawable normal) {
         // 默认初始化
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selected);

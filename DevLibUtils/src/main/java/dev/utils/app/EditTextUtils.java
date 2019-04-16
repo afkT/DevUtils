@@ -33,8 +33,8 @@ public final class EditTextUtils {
      * @param visible
      * @return
      */
-    public static EditText setCursorVisible(final EditText editText, final boolean visible){
-        if (editText != null){
+    public static EditText setCursorVisible(final EditText editText, final boolean visible) {
+        if (editText != null) {
             editText.setCursorVisible(visible);
         }
         return editText;

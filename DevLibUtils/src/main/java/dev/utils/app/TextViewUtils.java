@@ -30,7 +30,7 @@ public final class TextViewUtils {
      * @param view
      * @return
      */
-    public static TextView getTextView(View view) {
+    public static TextView getTextView(final View view) {
         if (view != null) {
             try {
                 return (TextView) view;
@@ -46,7 +46,7 @@ public final class TextViewUtils {
      * @param view
      * @return
      */
-    public static TextView getTextView(View view, @IdRes int id) {
+    public static TextView getTextView(final View view, @IdRes final int id) {
         if (view != null) {
             try {
                 return view.findViewById(id);
@@ -62,7 +62,7 @@ public final class TextViewUtils {
      * @param activity
      * @return
      */
-    public static TextView getTextView(Activity activity, @IdRes int id) {
+    public static TextView getTextView(final Activity activity, @IdRes final int id) {
         if (activity != null) {
             try {
                 return activity.findViewById(id);
@@ -78,7 +78,7 @@ public final class TextViewUtils {
      * @param window
      * @return
      */
-    public static TextView getTextView(Window window, @IdRes int id) {
+    public static TextView getTextView(final Window window, @IdRes final int id) {
         if (window != null) {
             try {
                 return window.findViewById(id);
@@ -96,7 +96,7 @@ public final class TextViewUtils {
      * @param textView
      * @return
      */
-    public static String getText(TextView textView) {
+    public static String getText(final TextView textView) {
         if (textView != null) {
             return textView.getText().toString();
         }
@@ -108,7 +108,7 @@ public final class TextViewUtils {
      * @param view
      * @return
      */
-    public static String getText(View view) {
+    public static String getText(final View view) {
         if (view != null) {
             try {
                 return ((TextView) view).getText().toString();
@@ -124,7 +124,7 @@ public final class TextViewUtils {
      * @param view
      * @return
      */
-    public static String getText(View view, @IdRes int id) {
+    public static String getText(final View view, @IdRes final int id) {
         if (view != null) {
             try {
                 return ((TextView) view.findViewById(id)).getText().toString();
@@ -140,7 +140,7 @@ public final class TextViewUtils {
      * @param activity
      * @return
      */
-    public static String getText(Activity activity, @IdRes int id) {
+    public static String getText(final Activity activity, @IdRes final int id) {
         if (activity != null) {
             try {
                 return ((TextView) activity.findViewById(id)).getText().toString();
@@ -156,7 +156,7 @@ public final class TextViewUtils {
      * @param window
      * @return
      */
-    public static String getText(Window window, @IdRes int id) {
+    public static String getText(final Window window, @IdRes final int id) {
         if (window != null) {
             try {
                 return ((TextView) window.findViewById(id)).getText().toString();
@@ -175,7 +175,7 @@ public final class TextViewUtils {
      * @param isBold
      * @return
      */
-    public static void setBold(View view, boolean isBold) {
+    public static void setBold(final View view, final boolean isBold) {
         if (view != null) {
             if (view instanceof TextView) {
                 ((TextView) view).setTypeface(Typeface.defaultFromStyle(isBold ? Typeface.BOLD : Typeface.NORMAL));
@@ -190,7 +190,7 @@ public final class TextViewUtils {
      * @param isBold
      * @return
      */
-    public static void setBold(View view, Typeface typeface, boolean isBold) {
+    public static void setBold(final View view, final Typeface typeface, final boolean isBold) {
         if (view != null && typeface != null) {
             if (view instanceof TextView) {
                 ((TextView) view).setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
@@ -203,7 +203,7 @@ public final class TextViewUtils {
      * @param view
      * @param color
      */
-    public static void setTextColor(View view, @ColorInt int color) {
+    public static void setTextColor(final View view, @ColorInt final int color) {
         if (view != null) {
             if (view instanceof TextView) {
                 ((TextView) view).setTextColor(color);
@@ -216,7 +216,7 @@ public final class TextViewUtils {
      * @param textView
      * @param color
      */
-    public static void setTextColor(TextView textView, @ColorInt int color) {
+    public static void setTextColor(final TextView textView, @ColorInt final int color) {
         if (textView != null) {
             textView.setTextColor(color);
         }
@@ -228,7 +228,7 @@ public final class TextViewUtils {
      * @param id
      * @param color
      */
-    public static void setTextColor(View view, @IdRes int id, @ColorInt int color) {
+    public static void setTextColor(final View view, @IdRes final int id, @ColorInt final int color) {
         if (view != null) {
             try {
                 ((TextView) view.findViewById(id)).setTextColor(color);
@@ -244,7 +244,7 @@ public final class TextViewUtils {
      * @param id
      * @param color
      */
-    public static void setTextColor(Activity activity, @IdRes int id, @ColorInt int color) {
+    public static void setTextColor(final Activity activity, @IdRes final int id, @ColorInt final int color) {
         if (activity != null) {
             try {
                 ((TextView) activity.findViewById(id)).setTextColor(color);
@@ -260,7 +260,7 @@ public final class TextViewUtils {
      * @param id
      * @param color
      */
-    public static void setTextColor(Window window, @IdRes int id, @ColorInt int color) {
+    public static void setTextColor(final Window window, @IdRes final int id, @ColorInt final int color) {
         if (window != null) {
             try {
                 ((TextView) window.findViewById(id)).setTextColor(color);
@@ -275,7 +275,7 @@ public final class TextViewUtils {
      * @param textView
      * @param tf
      */
-    public static void setTypeface(TextView textView, Typeface tf) {
+    public static void setTypeface(final TextView textView, final Typeface tf) {
         if (textView != null && tf != null) {
             textView.setTypeface(tf);
         }
@@ -287,7 +287,7 @@ public final class TextViewUtils {
      * @param tf
      * @param style
      */
-    public static void setTypeface(TextView textView, Typeface tf, int style) {
+    public static void setTypeface(final TextView textView, final Typeface tf, final int style) {
         if (textView != null && tf != null) {
             textView.setTypeface(tf, style);
         }
@@ -298,7 +298,7 @@ public final class TextViewUtils {
      * @param view
      * @param tf
      */
-    public static void setTypeface(View view, Typeface tf) {
+    public static void setTypeface(final View view, final Typeface tf) {
         if (view != null && tf != null) {
             if (view instanceof TextView) {
                 ((TextView) view).setTypeface(tf);
@@ -312,7 +312,7 @@ public final class TextViewUtils {
      * @param tf
      * @param style
      */
-    public static void setTypeface(View view, Typeface tf, int style) {
+    public static void setTypeface(final View view, final Typeface tf, final int style) {
         if (view != null && tf != null) {
             if (view instanceof TextView) {
                 ((TextView) view).setTypeface(tf, style);
@@ -326,7 +326,7 @@ public final class TextViewUtils {
      * 清空 flags
      * @param textView
      */
-    public static void clearFlags(TextView textView) {
+    public static void clearFlags(final TextView textView) {
         if (textView != null) {
             textView.setPaintFlags(0);
         }
@@ -336,7 +336,7 @@ public final class TextViewUtils {
      * 清空 flags
      * @param view
      */
-    public static void clearFlags(View view) {
+    public static void clearFlags(final View view) {
         if (view != null) {
             if (view instanceof TextView) {
                 ((TextView) view).setPaintFlags(0);
@@ -348,7 +348,7 @@ public final class TextViewUtils {
      * 设置下划线
      * @param textView
      */
-    public static void setUnderlineText(TextView textView) {
+    public static void setUnderlineText(final TextView textView) {
         setUnderlineText(textView, true);
     }
 
@@ -357,7 +357,7 @@ public final class TextViewUtils {
      * @param textView
      * @param isAntiAlias
      */
-    public static void setUnderlineText(TextView textView, boolean isAntiAlias) {
+    public static void setUnderlineText(final TextView textView, final boolean isAntiAlias) {
         if (textView != null) {
             textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             if (isAntiAlias) {
@@ -370,7 +370,7 @@ public final class TextViewUtils {
      * 设置下划线
      * @param view
      */
-    public static void setUnderlineText(View view) {
+    public static void setUnderlineText(final View view) {
         setUnderlineText(view, true);
     }
 
@@ -379,7 +379,7 @@ public final class TextViewUtils {
      * @param view
      * @param isAntiAlias
      */
-    public static void setUnderlineText(View view, boolean isAntiAlias) {
+    public static void setUnderlineText(final View view, final boolean isAntiAlias) {
         if (view != null && view instanceof TextView) {
             TextView textView = (TextView) view;
             textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -395,7 +395,7 @@ public final class TextViewUtils {
      * 设置中划线
      * @param textView
      */
-    public static void setStrikeThruText(TextView textView) {
+    public static void setStrikeThruText(final TextView textView) {
         setStrikeThruText(textView, true);
     }
 
@@ -403,7 +403,7 @@ public final class TextViewUtils {
      * 设置中划线并加清晰
      * @param textView
      */
-    public static void setStrikeThruText(TextView textView, boolean isAntiAlias) {
+    public static void setStrikeThruText(final TextView textView, final boolean isAntiAlias) {
         if (textView != null) {
             textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             if (isAntiAlias) {
@@ -416,7 +416,7 @@ public final class TextViewUtils {
      * 设置中划线
      * @param view
      */
-    public static void setStrikeThruText(View view) {
+    public static void setStrikeThruText(final View view) {
         setStrikeThruText(view, true);
     }
 
@@ -424,7 +424,7 @@ public final class TextViewUtils {
      * 设置中划线并加清晰
      * @param view
      */
-    public static void setStrikeThruText(View view, boolean isAntiAlias) {
+    public static void setStrikeThruText(final View view, final boolean isAntiAlias) {
         if (view != null && view instanceof TextView) {
             TextView textView = (TextView) view;
             textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
@@ -441,7 +441,7 @@ public final class TextViewUtils {
      * @param view
      * @param content
      */
-    public static void setText(View view, String content) {
+    public static void setText(final View view, final String content) {
         if (view != null && content != null) {
             if (view instanceof TextView) {
                 ((TextView) view).setText(content);
@@ -455,7 +455,7 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setText(View view, @IdRes int id, String content) {
+    public static void setText(final View view, @IdRes final int id, final String content) {
         if (view != null) {
             try {
                 ((TextView) view.findViewById(id)).setText(content);
@@ -471,7 +471,7 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setText(Activity activity, @IdRes int id, String content) {
+    public static void setText(final Activity activity, @IdRes final int id, final String content) {
         if (activity != null) {
             try {
                 ((TextView) activity.findViewById(id)).setText(content);
@@ -487,7 +487,7 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setText(Window window, @IdRes int id, String content) {
+    public static void setText(final Window window, @IdRes final int id, final String content) {
         if (window != null) {
             try {
                 ((TextView) window.findViewById(id)).setText(content);
@@ -504,7 +504,7 @@ public final class TextViewUtils {
      * @param view
      * @param content
      */
-    public static void setHtmlText(View view, String content) {
+    public static void setHtmlText(final View view, final String content) {
         if (view != null && content != null) {
             if (view instanceof TextView) {
                 ((TextView) view).setText(Html.fromHtml(content));
@@ -518,7 +518,7 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setHtmlText(View view, @IdRes int id, String content) {
+    public static void setHtmlText(final View view, @IdRes final int id, final String content) {
         if (view != null) {
             try {
                 ((TextView) view.findViewById(id)).setText(Html.fromHtml(content));
@@ -534,7 +534,7 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setHtmlText(Activity activity, @IdRes int id, String content) {
+    public static void setHtmlText(final Activity activity, @IdRes final int id, final String content) {
         if (activity != null) {
             try {
                 ((TextView) activity.findViewById(id)).setText(Html.fromHtml(content));
@@ -550,7 +550,7 @@ public final class TextViewUtils {
      * @param id
      * @param content
      */
-    public static void setHtmlText(Window window, @IdRes int id, String content) {
+    public static void setHtmlText(final Window window, @IdRes final int id, final String content) {
         if (window != null) {
             try {
                 ((TextView) window.findViewById(id)).setText(Html.fromHtml(content));
@@ -567,7 +567,7 @@ public final class TextViewUtils {
      * @param textView
      * @param content
      */
-    public static void setText(TextView textView, String content) {
+    public static void setText(final TextView textView, final String content) {
         if (textView != null && content != null) {
             textView.setText(content);
         }
@@ -578,7 +578,7 @@ public final class TextViewUtils {
      * @param textView
      * @param content
      */
-    public static void setHtmlText(TextView textView, String content) {
+    public static void setHtmlText(final TextView textView, final String content) {
         if (textView != null && content != null) {
             textView.setText(Html.fromHtml(content));
         }
@@ -589,7 +589,7 @@ public final class TextViewUtils {
      * @param textView
      * @return
      */
-    public static int getTextHeight(TextView textView) {
+    public static int getTextHeight(final TextView textView) {
         if (textView != null) {
             return getTextHeight(textView.getPaint());
         }
@@ -601,7 +601,7 @@ public final class TextViewUtils {
      * @param paint
      * @return
      */
-    public static int getTextHeight(Paint paint) {
+    public static int getTextHeight(final Paint paint) {
         // https://blog.csdn.net/superbigcupid/article/details/47153139
         // 获取字体高度
         Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
@@ -616,7 +616,7 @@ public final class TextViewUtils {
      * @param textView
      * @return
      */
-    public static int getTextTopOffsetHeight(TextView textView) {
+    public static int getTextTopOffsetHeight(final TextView textView) {
         if (textView != null) {
             return getTextTopOffsetHeight(textView.getPaint());
         }
@@ -628,7 +628,7 @@ public final class TextViewUtils {
      * @param paint
      * @return
      */
-    public static int getTextTopOffsetHeight(Paint paint) {
+    public static int getTextTopOffsetHeight(final Paint paint) {
         // 获取字体高度
         Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
         // 计算字体偏差(顶部偏差)
@@ -642,7 +642,7 @@ public final class TextViewUtils {
      * @param textView
      * @return
      */
-    public static float getTextWidth(TextView textView) {
+    public static float getTextWidth(final TextView textView) {
         return getTextWidth(textView.getPaint(), textView.getText().toString());
     }
 
@@ -652,7 +652,7 @@ public final class TextViewUtils {
      * @param hintStr
      * @return
      */
-    public static float getTextWidth(Paint paint, String hintStr) {
+    public static float getTextWidth(final Paint paint, final String hintStr) {
         return paint.measureText(hintStr);
     }
 
@@ -662,7 +662,7 @@ public final class TextViewUtils {
      * @param paint
      * @return
      */
-    public static int getCenterRectY(Rect targetRect, Paint paint) {
+    public static int getCenterRectY(final Rect targetRect, final Paint paint) {
         // 将字画在矩形背景的正中位置
         // https://blog.csdn.net/superbigcupid/article/details/47153139
         // 获取字体高度
@@ -677,7 +677,7 @@ public final class TextViewUtils {
      * @param tHeight 需要的字体高度
      * @return
      */
-    public static float reckonTextSize(int tHeight) {
+    public static float reckonTextSize(final int tHeight) {
         // 创建画笔
         Paint paint = new Paint();
         // 默认字体大小
@@ -709,7 +709,7 @@ public final class TextViewUtils {
      * @param width
      * @return -1 表示没超过
      */
-    public static int calcTextWidth(TextView textView, float width) {
+    public static int calcTextWidth(final TextView textView, final float width) {
         if (textView != null) {
             return calcTextWidth(textView.getPaint(), textView.getText().toString(), width);
         }
@@ -722,7 +722,7 @@ public final class TextViewUtils {
      * @param width
      * @return -1 表示没超过
      */
-    public static int calcTextWidth(Paint paint, String text, float width) {
+    public static int calcTextWidth(final Paint paint, final String text, final float width) {
         // 先获取宽度
         float textWidth = getTextWidth(paint, text);
         // 判断是否超过

@@ -25,7 +25,7 @@ public final class SizeUtils {
      * @param dpValue
      * @return
      */
-    public static int dipConvertPx(float dpValue) {
+    public static int dipConvertPx(final float dpValue) {
         try {
             float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
             return (int) (dpValue * scale + 0.5f);
@@ -40,7 +40,7 @@ public final class SizeUtils {
      * @param dpValue
      * @return
      */
-    public static float dipConvertPxf(float dpValue) {
+    public static float dipConvertPxf(final float dpValue) {
         try {
             float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
             return (dpValue * scale + 0.5f);
@@ -57,7 +57,7 @@ public final class SizeUtils {
      * @param pxValue
      * @return
      */
-    public static int pxConvertDip(float pxValue) {
+    public static int pxConvertDip(final float pxValue) {
         try {
             float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
             return (int) (pxValue / scale + 0.5f);
@@ -72,7 +72,7 @@ public final class SizeUtils {
      * @param pxValue
      * @return
      */
-    public static float pxConvertDipf(float pxValue) {
+    public static float pxConvertDipf(final float pxValue) {
         try {
             float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
             return (pxValue / scale + 0.5f);
@@ -89,7 +89,7 @@ public final class SizeUtils {
      * @param pxValue
      * @return
      */
-    public static int pxConvertSp(float pxValue) {
+    public static int pxConvertSp(final float pxValue) {
         try {
             float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
             return (int) (pxValue / scale + 0.5f);
@@ -104,7 +104,7 @@ public final class SizeUtils {
      * @param pxValue
      * @return
      */
-    public static float pxConvertSpf(float pxValue) {
+    public static float pxConvertSpf(final float pxValue) {
         try {
             float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
             return (pxValue / scale + 0.5f);
@@ -121,7 +121,7 @@ public final class SizeUtils {
      * @param spValue
      * @return
      */
-    public static int spConvertPx(float spValue) {
+    public static int spConvertPx(final float spValue) {
         try {
             float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
             return (int) (spValue * scale + 0.5f);
@@ -136,7 +136,7 @@ public final class SizeUtils {
      * @param spValue
      * @return
      */
-    public static float spConvertPxf(float spValue) {
+    public static float spConvertPxf(final float spValue) {
         try {
             float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
             return (spValue * scale + 0.5f);
@@ -153,7 +153,7 @@ public final class SizeUtils {
      * @param dpValue
      * @return
      */
-    public static int dipConvertPx2(float dpValue) {
+    public static int dipConvertPx2(final float dpValue) {
         try {
             return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, DevUtils.getContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
@@ -167,7 +167,7 @@ public final class SizeUtils {
      * @param dpValue
      * @return
      */
-    public static float dipConvertPx2f(float dpValue) {
+    public static float dipConvertPx2f(final float dpValue) {
         try {
             return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, DevUtils.getContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
@@ -183,7 +183,7 @@ public final class SizeUtils {
      * @param spValue
      * @return
      */
-    public static int spConvertPx2(float spValue) {
+    public static int spConvertPx2(final float spValue) {
         try {
             return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, DevUtils.getContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
@@ -197,7 +197,7 @@ public final class SizeUtils {
      * @param spValue
      * @return
      */
-    public static float spConvertPx2f(float spValue) {
+    public static float spConvertPx2f(final float spValue) {
         try {
             return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, DevUtils.getContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
@@ -233,7 +233,7 @@ public final class SizeUtils {
         return 0;
     }
 
-    // ==
+    // =
 
     /**
      * 在 onCreate 中获取视图的尺寸 - 需回调 onGetSizeListener 接口，在 onGetSize 中获取 view 宽高
@@ -270,7 +270,7 @@ public final class SizeUtils {
         void onGetSize(View view);
     }
 
-    // ==
+    // =
 
     /**
      * 测量视图尺寸
@@ -295,8 +295,8 @@ public final class SizeUtils {
             return new int[]{view.getMeasuredWidth(), view.getMeasuredHeight()};
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "measureView");
-            return new int[]{0, 0};
         }
+        return new int[]{0, 0};
     }
 
     /**

@@ -876,7 +876,7 @@ public final class DateUtils {
      *                  precision = 3, return 天, 小时, 分钟
      *                  precision = 4, return 天, 小时, 分钟, 秒
      *                  precision = 5，return 天, 小时, 分钟, 秒, 毫秒
-     * @return fit time span
+     * @return
      */
     public static String millisToFitTimeSpan(final long millis, final int precision) {
         if (millis <= 0 || precision <= 0) return null;
