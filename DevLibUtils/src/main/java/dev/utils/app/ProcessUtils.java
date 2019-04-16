@@ -50,7 +50,7 @@ public final class ProcessUtils {
      * 销毁进程
      * @param pid
      */
-    public static void kill(int pid) {
+    public static void kill(final int pid) {
         //从操作系统中结束掉当前程序的进程
         android.os.Process.killProcess(pid);
     }
@@ -60,7 +60,12 @@ public final class ProcessUtils {
      * @return
      */
     public static boolean isCurProcess() {
-        return DevUtils.getContext().getPackageName().equals(getCurProcessName());
+        try {
+            return DevUtils.getContext().getPackageName().equals(getCurProcessName());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isCurProcess");
+        }
+        return false;
     }
 
     /**
@@ -69,13 +74,17 @@ public final class ProcessUtils {
      * @return 进程号
      */
     public static String getCurProcessName() {
-        int pid = android.os.Process.myPid();
-        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
-        for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
-            if (appProcess.pid == pid) {
-                return appProcess.processName;
+        try {
+            int pid = android.os.Process.myPid();
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+            for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
+                if (appProcess.pid == pid) {
+                    return appProcess.processName;
+                }
             }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getCurProcessName");
         }
         return null;
     }
@@ -85,7 +94,7 @@ public final class ProcessUtils {
      * @param pid 进程号 => android.os.Process.myPid()
      * @return 进程名
      */
-    public static String getProcessName(int pid) {
+    public static String getProcessName(final int pid) {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
@@ -112,16 +121,18 @@ public final class ProcessUtils {
      * @param packageName
      * @return
      */
-    public static int getPid(String packageName) {
-        if (TextUtils.isEmpty(packageName)) {
-            return 0;
-        }
-        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
-        for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
-            if (appProcess.processName.equals(packageName)) {
-                return appProcess.pid;
+    public static int getPid(final String packageName) {
+        if (TextUtils.isEmpty(packageName)) return 0;
+        try {
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+            for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
+                if (appProcess.processName.equals(packageName)) {
+                    return appProcess.pid;
+                }
             }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPid");
         }
         return 0;
     }
@@ -131,13 +142,17 @@ public final class ProcessUtils {
      * @param pid
      * @return
      */
-    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(int pid) {
-        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
-        for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
-            if (appProcess.pid == pid) {
-                return appProcess;
+    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final int pid) {
+        try {
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+            for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
+                if (appProcess.pid == pid) {
+                    return appProcess;
+                }
             }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getRunningAppProcessInfo");
         }
         return null;
     }
@@ -147,14 +162,18 @@ public final class ProcessUtils {
      * @param packageName
      * @return
      */
-    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(String packageName) {
+    public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return null;
-        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
-        for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
-            if (appProcess.processName.equals(packageName)) {
-                return appProcess;
+        try {
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+            for (ActivityManager.RunningAppProcessInfo appProcess : listInfos) {
+                if (appProcess.processName.equals(packageName)) {
+                    return appProcess;
+                }
             }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getRunningAppProcessInfo");
         }
         return null;
     }
@@ -168,18 +187,20 @@ public final class ProcessUtils {
      */
     @RequiresPermission(PACKAGE_USAGE_STATS)
     public static String getForegroundProcessName() {
-        if (DevUtils.getContext() == null) {
-            return null;
-        }
-        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        if (activityManager == null) return null;
-        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
-        if (listInfos != null && listInfos.size() > 0) {
-            for (ActivityManager.RunningAppProcessInfo apInfo : listInfos) {
-                if (apInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                    return apInfo.processName;
+        if (DevUtils.getContext() == null) return null;
+        try {
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            if (activityManager == null) return null;
+            List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+            if (listInfos != null && listInfos.size() > 0) {
+                for (ActivityManager.RunningAppProcessInfo apInfo : listInfos) {
+                    if (apInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                        return apInfo.processName;
+                    }
                 }
             }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getForegroundProcessName");
         }
         // SDK 大于 21 时
         if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -220,19 +241,22 @@ public final class ProcessUtils {
      */
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static Set<String> getAllBackgroundProcesses() {
-        if (DevUtils.getContext() == null) {
-            return Collections.emptySet();
-        }
-        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        if (activityManager == null) return Collections.emptySet();
-        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
-        Set<String> set = new HashSet<>();
-        if (listInfos != null) {
-            for (ActivityManager.RunningAppProcessInfo apInfo : listInfos) {
-                Collections.addAll(set, apInfo.pkgList);
+        if (DevUtils.getContext() == null) return Collections.emptySet();
+        try {
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            if (activityManager == null) return Collections.emptySet();
+            List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+            Set<String> set = new HashSet<>();
+            if (listInfos != null) {
+                for (ActivityManager.RunningAppProcessInfo apInfo : listInfos) {
+                    Collections.addAll(set, apInfo.pkgList);
+                }
             }
+            return set;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAllBackgroundProcesses");
         }
-        return set;
+        return null;
     }
 
     /**
@@ -242,26 +266,29 @@ public final class ProcessUtils {
      */
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static Set<String> killAllBackgroundProcesses() {
-        if (DevUtils.getContext() == null) {
-            return null;
-        }
-        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        if (activityManager == null) return Collections.emptySet();
-        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
-        Set<String> set = new HashSet<>();
-        for (ActivityManager.RunningAppProcessInfo apInfo : listInfos) {
-            for (String packageName : apInfo.pkgList) {
-                activityManager.killBackgroundProcesses(packageName);
-                set.add(packageName);
+        if (DevUtils.getContext() == null) return null;
+        try {
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            if (activityManager == null) return Collections.emptySet();
+            List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+            Set<String> set = new HashSet<>();
+            for (ActivityManager.RunningAppProcessInfo apInfo : listInfos) {
+                for (String packageName : apInfo.pkgList) {
+                    activityManager.killBackgroundProcesses(packageName);
+                    set.add(packageName);
+                }
             }
-        }
-        listInfos = activityManager.getRunningAppProcesses();
-        for (ActivityManager.RunningAppProcessInfo aInfo : listInfos) {
-            for (String packageName : aInfo.pkgList) {
-                set.remove(packageName);
+            listInfos = activityManager.getRunningAppProcesses();
+            for (ActivityManager.RunningAppProcessInfo aInfo : listInfos) {
+                for (String packageName : aInfo.pkgList) {
+                    set.remove(packageName);
+                }
             }
+            return set;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "killAllBackgroundProcesses");
         }
-        return set;
+        return null;
     }
 
     /**
@@ -272,22 +299,27 @@ public final class ProcessUtils {
      */
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static boolean killBackgroundProcesses(@NonNull final String packageName) {
-        ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        if (activityManager == null) return false;
-        List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
-        if (listInfos == null || listInfos.size() == 0) return true;
-        for (ActivityManager.RunningAppProcessInfo apInfo : listInfos) {
-            if (Arrays.asList(apInfo.pkgList).contains(packageName)) {
-                activityManager.killBackgroundProcesses(packageName);
+        try {
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            if (activityManager == null) return false;
+            List<ActivityManager.RunningAppProcessInfo> listInfos = activityManager.getRunningAppProcesses();
+            if (listInfos == null || listInfos.size() == 0) return true;
+            for (ActivityManager.RunningAppProcessInfo apInfo : listInfos) {
+                if (Arrays.asList(apInfo.pkgList).contains(packageName)) {
+                    activityManager.killBackgroundProcesses(packageName);
+                }
             }
-        }
-        listInfos = activityManager.getRunningAppProcesses();
-        if (listInfos == null || listInfos.size() == 0) return true;
-        for (ActivityManager.RunningAppProcessInfo aInfo : listInfos) {
-            if (Arrays.asList(aInfo.pkgList).contains(packageName)) {
-                return false;
+            listInfos = activityManager.getRunningAppProcesses();
+            if (listInfos == null || listInfos.size() == 0) return true;
+            for (ActivityManager.RunningAppProcessInfo aInfo : listInfos) {
+                if (Arrays.asList(aInfo.pkgList).contains(packageName)) {
+                    return false;
+                }
             }
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "killBackgroundProcesses");
         }
-        return true;
+        return false;
     }
 }

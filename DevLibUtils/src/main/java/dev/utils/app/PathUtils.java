@@ -75,7 +75,7 @@ public final class PathUtils {
      * @param name
      * @return /data/data/package/databases/name
      */
-    public static String getInternalAppDbPath(String name) {
+    public static String getInternalAppDbPath(final String name) {
         return getAbsolutePath(DevUtils.getContext().getDatabasePath(name));
     }
 
@@ -350,7 +350,7 @@ public final class PathUtils {
      * @param file
      * @return
      */
-    private static String getAbsolutePath(File file) {
+    private static String getAbsolutePath(final File file) {
         if (file == null) return null;
         return file.getAbsolutePath();
     }

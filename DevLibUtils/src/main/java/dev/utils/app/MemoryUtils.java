@@ -25,7 +25,7 @@ public final class MemoryUtils {
     private static final String TAG = MemoryUtils.class.getSimpleName();
 
     /**
-     * 打印内存信息
+     * 返回内存信息
      * Print memory info. such as:
      * MemTotal:        1864292 kB
      * MemFree:          779064 kB
@@ -65,7 +65,7 @@ public final class MemoryUtils {
      * VmallocUsed:      123448 kB
      * VmallocChunk:     205828 kB
      */
-    public static String printMemInfo() {
+    public static String printMemoryInfo() {
         try {
             FileReader fileReader = new FileReader(MEM_INFO_PATH);
             BufferedReader bufferedReader = new BufferedReader(fileReader, 4 * 1024);
@@ -78,9 +78,9 @@ public final class MemoryUtils {
             bufferedReader.close();
             return buffer.toString();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "printMemInfo");
+            LogPrintUtils.eTag(TAG, e, "printMemoryInfo");
         }
-        return "";
+        return null;
     }
 
     /**
@@ -89,28 +89,38 @@ public final class MemoryUtils {
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo getMemoryInfo() {
-        ActivityManager am = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-        am.getMemoryInfo(mi);
-        return mi;
+        try {
+            ActivityManager am = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+            am.getMemoryInfo(mi);
+            return mi;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMemoryInfo");
+        }
+        return null;
     }
 
     /**
-     * 打印内存信息
+     * 返回内存信息
      * @return
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static ActivityManager.MemoryInfo printMemoryInfo() {
-        ActivityManager.MemoryInfo mi = getMemoryInfo();
-        StringBuilder builder = new StringBuilder();
-        builder.append("_______  Memory :   ");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            builder.append("\ntotalMem :").append(mi.totalMem);
+    public static String printMemoryInfo2() {
+        try {
+            ActivityManager.MemoryInfo mi = getMemoryInfo();
+            StringBuilder builder = new StringBuilder();
+            builder.append("Memory :   ");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                builder.append("\ntotalMem :").append(mi.totalMem);
+            }
+            builder.append("\navailMem :").append(mi.availMem);
+            builder.append("\nlowMemory :").append(mi.lowMemory);
+            builder.append("\nthreshold :").append(mi.threshold);
+            return builder.toString();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "printMemoryInfo2");
         }
-        builder.append("\navailMem :").append(mi.availMem);
-        builder.append("\nlowMemory :").append(mi.lowMemory);
-        builder.append("\nthreshold :").append(mi.threshold);
-        return mi;
+        return null;
     }
 
     /**
@@ -119,12 +129,18 @@ public final class MemoryUtils {
      * @return
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static String getAvailMemory() {// 获取android 当前可用内存大小
-        ActivityManager am = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-        am.getMemoryInfo(mi); // mi.availMem; 当前系统的可用内存
-        // 将获取的内存大小规格化
-        return Formatter.formatFileSize(DevUtils.getContext(), mi.availMem);
+    public static String getAvailMemory() {
+        try {
+            // 获取android 当前可用内存大小
+            ActivityManager am = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+            am.getMemoryInfo(mi); // mi.availMem; 当前系统的可用内存
+            // 将获取的内存大小规格化
+            return Formatter.formatFileSize(DevUtils.getContext(), mi.availMem);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAvailMemory");
+        }
+        return null;
     }
 
     // 内存信息文件地址
@@ -156,7 +172,7 @@ public final class MemoryUtils {
      * @param type
      * @return
      */
-    public static String getMemInfoIype(String type) {
+    public static String getMemInfoIype(final String type) {
         try {
             FileReader fileReader = new FileReader(MEM_INFO_PATH);
             BufferedReader bufferedReader = new BufferedReader(fileReader, 4 * 1024);
@@ -178,5 +194,4 @@ public final class MemoryUtils {
         }
         return "unknown";
     }
-
 }

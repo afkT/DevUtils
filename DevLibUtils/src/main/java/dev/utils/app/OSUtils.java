@@ -15,8 +15,7 @@ import dev.utils.LogPrintUtils;
  * detail: 工具类: OS 系统相关
  * Created by Ttt
  * ==============
- * 简介 : 由于国内定制系统的泛滥, 不同定制系统的一些功能或实现方法会有所不同, 如果需要做到足够好的适配工作, 需要 对不同的定制系统做一些专门的适配.
- * API : 获取 ROM 类型等
+ * 由于国内定制系统的泛滥, 不同定制系统的一些功能或实现方法会有所不同, 如果需要做到足够好的适配工作, 需要 对不同的定制系统做一些专门的适配
  */
 public final class OSUtils {
 
@@ -25,11 +24,10 @@ public final class OSUtils {
 
     // 日志 TAG
     private static final String TAG = OSUtils.class.getSimpleName();
-
-    /**
-     * ROM 类型
-     */
+    // ROM 类型
     private static final ROM ROM_TYPE = initRomType();
+
+    // =
 
     private static final String KEY_DISPLAY_ID = "ro.build.display.id";
     private static final String KEY_BASE_OS_VERSION = "ro.build.version.base_os";
@@ -118,6 +116,7 @@ public final class OSUtils {
 
     /**
      * 初始化 ROM 类型
+     * @return ROM
      */
     private static ROM initRomType() {
         ROM rom = ROM.Other;

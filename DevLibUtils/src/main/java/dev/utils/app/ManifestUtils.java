@@ -28,8 +28,13 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaData(String metaKey) {
-        return getMetaData(DevUtils.getContext().getPackageName(), metaKey);
+    public static String getMetaData(final String metaKey) {
+        try {
+            return getMetaData(DevUtils.getContext().getPackageName(), metaKey);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaData");
+        }
+        return null;
     }
 
     /**
@@ -38,7 +43,7 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaData(String packageName, String metaKey) {
+    public static String getMetaData(final String packageName, final String metaKey) {
         try {
             ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             String data = appInfo.metaData.getString(metaKey);
@@ -57,8 +62,13 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInActivity(Class<?> clazz, String metaKey) {
-        return getMetaDataInActivity(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
+    public static String getMetaDataInActivity(final Class<?> clazz, final String metaKey) {
+        try {
+            return getMetaDataInActivity(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
+        }
+        return null;
     }
 
     /**
@@ -67,8 +77,13 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInActivity(String name, String metaKey) {
-        return getMetaDataInActivity(DevUtils.getContext().getPackageName(), name, metaKey);
+    public static String getMetaDataInActivity(final String name, final String metaKey) {
+        try {
+            return getMetaDataInActivity(DevUtils.getContext().getPackageName(), name, metaKey);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
+        }
+        return null;
     }
 
     /**
@@ -78,7 +93,7 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInActivity(String packageName, String name, String metaKey) {
+    public static String getMetaDataInActivity(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ActivityInfo activityInfo = DevUtils.getContext().getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
@@ -98,8 +113,13 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInService(Class<?> clazz, String metaKey) {
-        return getMetaDataInService(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
+    public static String getMetaDataInService(final Class<?> clazz, final String metaKey) {
+        try {
+            return getMetaDataInService(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
+        }
+        return null;
     }
 
     /**
@@ -108,8 +128,13 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInService(String name, String metaKey) {
-        return getMetaDataInService(DevUtils.getContext().getPackageName(), name, metaKey);
+    public static String getMetaDataInService(final String name, final String metaKey) {
+        try {
+            return getMetaDataInService(DevUtils.getContext().getPackageName(), name, metaKey);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
+        }
+        return null;
     }
 
     /**
@@ -119,7 +144,7 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInService(String packageName, String name, String metaKey) {
+    public static String getMetaDataInService(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ServiceInfo serviceInfo = DevUtils.getContext().getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
@@ -139,8 +164,13 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInReceiver(Class<?> clazz, String metaKey) {
-        return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
+    public static String getMetaDataInReceiver(final Class<?> clazz, final String metaKey) {
+        try {
+            return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
+        }
+        return null;
     }
 
     /**
@@ -149,8 +179,13 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInReceiver(String name, String metaKey) {
-        return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), name, metaKey);
+    public static String getMetaDataInReceiver(final String name, final String metaKey) {
+        try {
+            return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), name, metaKey);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
+        }
+        return null;
     }
 
     /**
@@ -160,7 +195,7 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInReceiver(String packageName, String name, String metaKey) {
+    public static String getMetaDataInReceiver(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ActivityInfo receiverInfo = DevUtils.getContext().getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
@@ -180,8 +215,13 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInProvider(Class<?> clazz, String metaKey) {
-        return getMetaDataInProvider(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
+    public static String getMetaDataInProvider(final Class<?> clazz, final String metaKey) {
+        try {
+            return getMetaDataInProvider(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
+        }
+        return null;
     }
 
     /**
@@ -190,8 +230,13 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInProvider(String name, String metaKey) {
-        return getMetaDataInProvider(DevUtils.getContext().getPackageName(), name, metaKey);
+    public static String getMetaDataInProvider(final String name, final String metaKey) {
+        try {
+            return getMetaDataInProvider(DevUtils.getContext().getPackageName(), name, metaKey);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
+        }
+        return null;
     }
 
     /**
@@ -201,7 +246,7 @@ public final class ManifestUtils {
      * @param metaKey
      * @return
      */
-    public static String getMetaDataInProvider(String packageName, String name, String metaKey) {
+    public static String getMetaDataInProvider(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ProviderInfo providerInfo = DevUtils.getContext().getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
@@ -213,7 +258,7 @@ public final class ManifestUtils {
         return null;
     }
 
-    // ==
+    // =
 
     /**
      * 获取 App 版本信息

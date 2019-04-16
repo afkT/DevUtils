@@ -173,7 +173,7 @@ public final class PhoneUtils {
      * @return
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
-    public static String getMEID(int slotId) {
+    public static String getMEID(final int slotId) {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -231,7 +231,7 @@ public final class PhoneUtils {
      */
     @SuppressLint({"HardwareIds"})
     @RequiresPermission(READ_PHONE_STATE)
-    public static String getIMEI(int slotId) {
+    public static String getIMEI(final int slotId) {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -287,7 +287,7 @@ public final class PhoneUtils {
      * @param IMSI
      * @return
      */
-    public static String getIMSIIDName(String IMSI) {
+    public static String getIMSIIDName(final String IMSI) {
         if (IMSI != null) {
             if (IMSI.startsWith("46000") || IMSI.startsWith("46002")) {
                 return "中国移动";
@@ -642,7 +642,7 @@ public final class PhoneUtils {
                 map.put("phone", phoneNumber);
                 // 保存名字
                 map.put("name", phoneName);
-                // ==
+                // =
                 list.add(map);
             }
         } catch (Exception e) {
@@ -656,7 +656,7 @@ public final class PhoneUtils {
      * 打开手机联系人界面点击联系人后便获取该号码
      * @param activity
      */
-    public static void getContactNum(Activity activity) {
+    public static void getContactNum(final Activity activity) {
         if (activity != null && !activity.isFinishing()) {
             Intent intent = new Intent();
             intent.setAction("android.intent.action.PICK");
@@ -755,9 +755,9 @@ public final class PhoneUtils {
         }
     }
 
-    // ================
-    // === 双卡模块 ===
-    // ================
+    // ============
+    // = 双卡模块 =
+    // ============
 
     // 双卡双待系统IMEI和IMSI方案
     // http://benson37.iteye.com/blog/1923946
@@ -945,12 +945,20 @@ public final class PhoneUtils {
         return teleInfo;
     }
 
+    // =
+
     /**
      * 判断 Intent 是否可用
      * @param intent
      * @return
      */
     private static boolean isIntentAvailable(final Intent intent) {
-        return DevUtils.getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
+        if (intent == null) return false;
+        try {
+            return DevUtils.getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isIntentAvailable");
+        }
+        return false;
     }
 }

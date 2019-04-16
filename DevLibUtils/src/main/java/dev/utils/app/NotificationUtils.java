@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Build;
 
 import dev.DevUtils;
+import dev.utils.LogPrintUtils;
 
 /**
  * detail: 通知栏管理类
@@ -23,6 +24,8 @@ public final class NotificationUtils {
     private NotificationUtils() {
     }
 
+    // 日志 TAG
+    private static final String TAG = NotificationUtils.class.getSimpleName();
     // 通知栏管理类
     private static NotificationManager mNotificationManager = null;
 
@@ -32,7 +35,10 @@ public final class NotificationUtils {
      */
     public static NotificationManager getNotificationManager() {
         if (mNotificationManager == null) {
-            mNotificationManager = (NotificationManager) DevUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            try {
+                mNotificationManager = (NotificationManager) DevUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            } catch (Exception e) {
+            }
         }
         return mNotificationManager;
     }
@@ -98,7 +104,9 @@ public final class NotificationUtils {
         return false;
     }
 
-    // == 封装外部调用 ==
+    // ================
+    // = 封装外部调用 =
+    // ================
 
 //    // 使用自定义View
 //    RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.xxx);
@@ -111,10 +119,15 @@ public final class NotificationUtils {
      * @param id
      * @return
      */
-    public static PendingIntent createPendingIntent(Intent intent, int id) {
-        /* 跳转Intent */
-        PendingIntent pIntent = PendingIntent.getActivity(DevUtils.getContext(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        return pIntent;
+    public static PendingIntent createPendingIntent(final Intent intent, final int id) {
+        try {
+            // 跳转Intent
+            PendingIntent pIntent = PendingIntent.getActivity(DevUtils.getContext(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            return pIntent;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createPendingIntent");
+        }
+        return null;
     }
 
     /**
@@ -124,7 +137,7 @@ public final class NotificationUtils {
      * @param msg
      * @return
      */
-    public static Notification createNotification(int icon, String title, String msg) {
+    public static Notification createNotification(final int icon, final String title, final String msg) {
         return createNotification(null, icon, title, title, msg, true, VibratePattern.obtain(0, 100, 300), LightPattern.obtain(Color.WHITE, 1000, 1000));
     }
 
@@ -137,7 +150,7 @@ public final class NotificationUtils {
      * @param lightPattern
      * @return
      */
-    public static Notification createNotification(int icon, String title, String msg, VibratePattern vibratePattern, LightPattern lightPattern) {
+    public static Notification createNotification(final int icon, final String title, final String msg, final VibratePattern vibratePattern, final LightPattern lightPattern) {
         return createNotification(null, icon, title, title, msg, true, vibratePattern, lightPattern);
     }
 
@@ -153,7 +166,8 @@ public final class NotificationUtils {
      * @param lightPattern
      * @return
      */
-    public static Notification createNotification(PendingIntent pendingIntent, int icon, String ticker, String title, String msg, boolean isAutoCancel, VibratePattern vibratePattern, LightPattern lightPattern) {
+    public static Notification createNotification(final PendingIntent pendingIntent, final int icon, final String ticker, final String title, final String msg, final boolean isAutoCancel,
+                                                  final VibratePattern vibratePattern, final LightPattern lightPattern) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             Notification.Builder builder = new Notification.Builder(DevUtils.getContext());
             // 点击通知执行intent
@@ -254,7 +268,7 @@ public final class NotificationUtils {
          * @param durationMS 持续时间
          * @return
          */
-        public static LightPattern obtain(int argb, int startOffMS, int durationMS) {
+        public static LightPattern obtain(final int argb, final int startOffMS, final int durationMS) {
             return new LightPattern(argb, startOffMS, durationMS);
         }
     }
@@ -293,7 +307,7 @@ public final class NotificationUtils {
          * @param args
          * @return
          */
-        public static VibratePattern obtain(long... args) {
+        public static VibratePattern obtain(final long... args) {
             return new VibratePattern(args);
         }
     }

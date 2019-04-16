@@ -25,7 +25,7 @@ public final class ListenerUtils {
      * @param view
      * @return
      */
-    public static View.OnTouchListener getTouchListener(View view) {
+    public static View.OnTouchListener getTouchListener(final View view) {
         return (View.OnTouchListener) getListenerInfoListener(view, "mOnTouchListener");
     }
 
@@ -34,7 +34,7 @@ public final class ListenerUtils {
      * @param view
      * @return
      */
-    public static Object getListenerInfo(View view) {
+    public static Object getListenerInfo(final View view) {
         try {
             // 获取 ListenerInfo 对象
             Field infoField = View.class.getDeclaredField("mListenerInfo");
@@ -52,7 +52,7 @@ public final class ListenerUtils {
      * @param listener
      * @return
      */
-    public static Object getListenerInfoListener(View view, String listener) {
+    public static Object getListenerInfoListener(final View view, final String listener) {
         try {
             // 获取 ListenerInfo 对象
             Object listenerInfo = getListenerInfo(view);
@@ -80,7 +80,9 @@ public final class ListenerUtils {
         if (view != null && onClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(view, viewIds[i]);
-                findView.setOnClickListener(onClickListener);
+                if (findView != null) {
+                    findView.setOnClickListener(onClickListener);
+                }
             }
         }
     }
@@ -95,7 +97,9 @@ public final class ListenerUtils {
         if (activity != null && onClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(activity, viewIds[i]);
-                findView.setOnClickListener(onClickListener);
+                if (findView != null) {
+                    findView.setOnClickListener(onClickListener);
+                }
             }
         }
     }
@@ -115,7 +119,9 @@ public final class ListenerUtils {
         }
     }
 
-    // == 初始化View操作等 ==
+    // ====================
+    // = 初始化View操作等 =
+    // ====================
 
     /**
      * 初始化View
@@ -124,8 +130,13 @@ public final class ListenerUtils {
      * @param <T>
      * @return
      */
-    private static <T extends View> T findViewById(View view, int id) {
-        return view.findViewById(id);
+    private static <T extends View> T findViewById(final View view, final int id) {
+        try {
+            return view.findViewById(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "findViewById");
+        }
+        return null;
     }
 
     /**
@@ -135,8 +146,13 @@ public final class ListenerUtils {
      * @param <T>
      * @return
      */
-    private static <T extends View> T findViewById(Window window, int id) {
-        return window.findViewById(id);
+    private static <T extends View> T findViewById(final Window window, final int id) {
+        try {
+            return window.findViewById(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "findViewById");
+        }
+        return null;
     }
 
     /**
@@ -146,7 +162,12 @@ public final class ListenerUtils {
      * @param <T>
      * @return
      */
-    private static <T extends View> T findViewById(Activity activity, int id) {
-        return activity.findViewById(id);
+    private static <T extends View> T findViewById(final Activity activity, final int id) {
+        try {
+            return activity.findViewById(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "findViewById");
+        }
+        return null;
     }
 }

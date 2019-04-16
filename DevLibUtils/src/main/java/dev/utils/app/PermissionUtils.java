@@ -55,48 +55,28 @@ import dev.DevUtils;
  */
 public final class PermissionUtils {
 
-    /**
-     * Permission 请求Code
-     */
-    public static final int P_REQUEST_CODE = 100;
-    /**
-     * 全部权限
-     */
+    // 全部权限
     private static final Set<String> mAllPermissions = new HashSet<>(1);
+    // 申请的权限
+    private List<String> mPermissions = new ArrayList<>();
+    // 准备请求的权限
+    private List<String> mPermissionsRequest = new ArrayList<>();
+    // 申请通过的权限
+    private List<String> mPermissionsGranted = new ArrayList<>();
+    // 申请未通过的权限
+    private List<String> mPermissionsDenied = new ArrayList<>();
+    // 申请未通过的权限 - 永久拒绝
+    private List<String> mPermissionsDeniedForever = new ArrayList<>();
+    // 查询不到的权限
+    private List<String> mPermissionsNotFound = new ArrayList<>();
+    // 操作回调
+    private PermissionCallBack mCallBack;
+    // 回调方法
+    private Looper mLooper = Looper.getMainLooper();
     // 判断是否请求过
     private boolean request = false;
-    /**
-     * 申请的权限
-     */
-    private List<String> mPermissions = new ArrayList<>();
-    /**
-     * 准备请求的权限
-     */
-    private List<String> mPermissionsRequest = new ArrayList<>();
-    /**
-     * 申请通过的权限
-     */
-    private List<String> mPermissionsGranted = new ArrayList<>();
-    /**
-     * 申请未通过的权限
-     */
-    private List<String> mPermissionsDenied = new ArrayList<>();
-    /**
-     * 申请未通过的权限 - 永久拒绝
-     */
-    private List<String> mPermissionsDeniedForever = new ArrayList<>();
-    /**
-     * 查询不到的权限
-     */
-    private List<String> mPermissionsNotFound = new ArrayList<>();
-    /**
-     * 操作回调
-     */
-    private PermissionCallBack mCallBack;
-    /**
-     * 回调方法
-     */
-    private Looper mLooper = Looper.getMainLooper();
+    // Permission 请求Code
+    public static final int P_REQUEST_CODE = 100;
 
     static {
         // 初始化权限数据
@@ -135,7 +115,7 @@ public final class PermissionUtils {
         }
     }
 
-    // ==
+    // =
 
     /**
      * 判断是否授予了权限
@@ -172,11 +152,13 @@ public final class PermissionUtils {
      * @param permission
      * @return
      */
-    public static boolean shouldShowRequestPermissionRationale(Activity activity, final String permission) {
+    public static boolean shouldShowRequestPermissionRationale(final Activity activity, final String permission) {
         return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
     }
 
-    // == 使用方法 ==
+    // ============
+    // = 使用方法 =
+    // ============
 
     /**
      * 申请权限初始化
@@ -191,7 +173,7 @@ public final class PermissionUtils {
      * 设置回调方法
      * @param callBack
      */
-    public PermissionUtils callBack(PermissionCallBack callBack) {
+    public PermissionUtils callBack(final PermissionCallBack callBack) {
         if (request) {
             return this;
         }
@@ -263,7 +245,7 @@ public final class PermissionUtils {
      * 请求权限
      * @param activity {@link Fragment#getActivity()}
      */
-    public void request(Activity activity) {
+    public void request(final Activity activity) {
         request(activity, P_REQUEST_CODE);
     }
 
@@ -272,7 +254,7 @@ public final class PermissionUtils {
      * @param activity    {@link Fragment#getActivity()}
      * @param requestCode
      */
-    public void request(Activity activity, int requestCode) {
+    public void request(final Activity activity, final int requestCode) {
         if (checkPermissions() == 1 && activity != null) {
             // 如果 SDK 版本大于 23 才请求
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
@@ -285,7 +267,9 @@ public final class PermissionUtils {
         }
     }
 
-    // == 请求权限回调 ==
+    // ================
+    // = 请求权限回调 =
+    // ================
 
     public interface PermissionCallBack {
         /**
@@ -301,7 +285,9 @@ public final class PermissionUtils {
         void onDenied(PermissionUtils permissionUtils);
     }
 
-    // == 内部Activity ==
+    // ================
+    // = 内部Activity =
+    // ================
 
     // 内部持有对象
     private static PermissionUtils sInstance;
@@ -346,7 +332,9 @@ public final class PermissionUtils {
         }
     }
 
-    // == 内部处理方法 ==
+    // ================
+    // = 内部处理方法 =
+    // ================
 
     /**
      * 内部请求回调, 统一处理方法
@@ -405,13 +393,15 @@ public final class PermissionUtils {
         }
     }
 
-    // == 通过传入Activity 方式 ==
+    // =========================
+    // = 通过传入Activity 方式 =
+    // =========================
 
     /**
      * 请求权限回调 - 需要在 onRequestPermissionsResult 回调里面调用
      * @param activity
      */
-    public static void onRequestPermissionsResult(Activity activity) {
+    public static void onRequestPermissionsResult(final Activity activity) {
         if (activity != null && sInstance != null) {
             // 触发回调
             sInstance.onRequestPermissionsResultCommon(activity);

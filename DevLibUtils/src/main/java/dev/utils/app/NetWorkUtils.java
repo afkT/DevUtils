@@ -80,7 +80,7 @@ public final class NetWorkUtils {
      * @return 是否执行正常
      */
     @RequiresPermission(MODIFY_PHONE_STATE)
-    public static boolean setMobileDataEnabled(boolean isOpen) {
+    public static boolean setMobileDataEnabled(final boolean isOpen) {
         try {
             // 属于5.0以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -179,7 +179,7 @@ public final class NetWorkUtils {
         return (getConnectType() == 2);
     }
 
-    // ===
+    // =
 
     /**
      * 网络连接类型
@@ -211,17 +211,15 @@ public final class NetWorkUtils {
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     private static NetworkInfo getActiveNetworkInfo() {
-        if (DevUtils.getContext() != null) {
-            try {
-                return ((ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getActiveNetworkInfo");
-            }
+        try {
+            return ((ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getActiveNetworkInfo");
         }
         return null;
     }
 
-    // ==
+    // =
 
     /**
      * 判断是否4G网络
@@ -237,9 +235,9 @@ public final class NetWorkUtils {
      * 判断wifi是否打开
      * @return
      */
+    @SuppressLint("WifiManagerLeak")
     public static boolean getWifiEnabled() {
         try {
-            @SuppressLint("WifiManagerLeak")
             WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
             return wifiManager.isWifiEnabled();
         } catch (Exception e) {
@@ -272,7 +270,7 @@ public final class NetWorkUtils {
         return null;
     }
 
-    // ==
+    // =
 
     /**
      * 获取当前网络类型
@@ -296,7 +294,7 @@ public final class NetWorkUtils {
                     break;
                 case ConnectivityManager.TYPE_MOBILE: // 属于手机网络
                     switch (networkInfo.getSubtype()) {
-                        // == 2G网络 ==
+                        // = 2G网络 =
                         case TelephonyManager.NETWORK_TYPE_GSM:
                         case TelephonyManager.NETWORK_TYPE_GPRS:
                         case TelephonyManager.NETWORK_TYPE_CDMA:
@@ -305,7 +303,7 @@ public final class NetWorkUtils {
                         case TelephonyManager.NETWORK_TYPE_IDEN:
                             netType = NetworkType.NETWORK_2G;
                             break;
-                        // == 3G网络 ==
+                        // = 3G网络 =
                         case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
                         case TelephonyManager.NETWORK_TYPE_EVDO_A:
                         case TelephonyManager.NETWORK_TYPE_UMTS:
@@ -318,7 +316,7 @@ public final class NetWorkUtils {
                         case TelephonyManager.NETWORK_TYPE_HSPAP:
                             netType = NetworkType.NETWORK_3G;
                             break;
-                        // == 4G网络 ==
+                        // = 4G网络 =
                         case TelephonyManager.NETWORK_TYPE_LTE:
                         case TelephonyManager.NETWORK_TYPE_IWLAN:
                             //case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
@@ -329,7 +327,7 @@ public final class NetWorkUtils {
                             try {
                                 // 判断子类名字
                                 String subtypeName = networkInfo.getSubtypeName();
-                                // == 3G 网络 ==
+                                // = 3G 网络 =
                                 if (subtypeName.equalsIgnoreCase("TD-SCDMA")
                                         || subtypeName.equalsIgnoreCase("WCDMA")
                                         || subtypeName.equalsIgnoreCase("CDMA2000")) {

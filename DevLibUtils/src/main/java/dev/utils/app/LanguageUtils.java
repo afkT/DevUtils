@@ -54,7 +54,7 @@ public class LanguageUtils {
      * @param locale
      * @return
      */
-    public static boolean applyLanguage(Context context, Locale locale) {
+    public static boolean applyLanguage(final Context context, final Locale locale) {
         if (context != null && locale != null) {
             try {
                 // 获取res资源对象
@@ -87,7 +87,7 @@ public class LanguageUtils {
      * @param language
      * @return
      */
-    public static boolean applyLanguage(Context context, String language) {
+    public static boolean applyLanguage(final Context context, final String language) {
         Locale locale = getSupportLanguage(language);
         if (locale != null) {
             return applyLanguage(context, locale);
@@ -96,7 +96,7 @@ public class LanguageUtils {
         }
     }
 
-    // ===
+    // =
 
     // 英语
     public static final String ENGLISH = "en";
@@ -121,7 +121,7 @@ public class LanguageUtils {
     // 台湾
     public static final String TAIWAN_CHINESE = TRADITIONAL_CHINESE;
     // 支持的语言字典
-    private static Map<String, Locale> mSupportLanguages = new HashMap<>(11);
+    private static Map<String, Locale> mSupportLanguages = new HashMap<>(20);
 
     static {
         // 英语
@@ -161,7 +161,7 @@ public class LanguageUtils {
      * @param language
      * @param locale
      */
-    public static void putSupportLanguage(String language, Locale locale) {
+    public static void putSupportLanguage(final String language, final Locale locale) {
         mSupportLanguages.put(language, locale);
     }
 
@@ -169,7 +169,7 @@ public class LanguageUtils {
      * 移除支持的语言
      * @param language
      */
-    public static void removeSupportLanguage(String language) {
+    public static void removeSupportLanguage(final String language) {
         mSupportLanguages.remove(language);
     }
 
@@ -178,7 +178,7 @@ public class LanguageUtils {
      * @param language
      * @return true:支持 false:不支持
      */
-    public static boolean isSupportLanguage(String language) {
+    public static boolean isSupportLanguage(final String language) {
         return mSupportLanguages.containsKey(language);
     }
 
@@ -188,7 +188,7 @@ public class LanguageUtils {
      * @return 支持返回支持语言，不支持返回系统首选语言
      */
     @TargetApi(Build.VERSION_CODES.N)
-    public static Locale getSupportLanguage(String language) {
+    public static Locale getSupportLanguage(final String language) {
         if (isSupportLanguage(language)) {
             return mSupportLanguages.get(language);
         }
