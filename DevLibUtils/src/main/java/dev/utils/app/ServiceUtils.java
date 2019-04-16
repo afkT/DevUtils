@@ -48,7 +48,7 @@ public final class ServiceUtils {
 
     /**
      * 判断服务是否运行
-     * @param clazz The service class.
+     * @param clazz
      * @return true : 是, false : 否
      */
     public static boolean isServiceRunning(final Class<?> clazz) {

@@ -43,6 +43,8 @@ public final class DeviceUtils {
 
     // 日志 TAG
     private static final String TAG = DeviceUtils.class.getSimpleName();
+    // 换行字符串
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
 //    // http://blog.csdn.net/zhangcanyan/article/details/52817866
 //    android.os.Build.BOARD：获取设备基板名称
@@ -70,14 +72,11 @@ public final class DeviceUtils {
 //    android.os.Build.VERSION.SDK：系统的API级别 一般使用下面大的SDK_INT 来查看
 //    android.os.Build.VERSION.SDK_INT：系统的API级别 数字表示
 
-    // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
-
     /**
      * 获取设备信息
      * @param dInfoMaps 传入设备信息传出HashMap
      */
-    public static void getDeviceInfo(Map<String, String> dInfoMaps) {
+    public static void getDeviceInfo(final Map<String, String> dInfoMaps) {
         // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段。
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -114,7 +113,7 @@ public final class DeviceUtils {
      * @param dInfoMaps 设备信息
      * @param eHint     错误提示，如获取设备信息失败
      */
-    public static String handlerDeviceInfo(Map<String, String> dInfoMaps, String eHint) {
+    public static String handlerDeviceInfo(final Map<String, String> dInfoMaps, final String eHint) {
         try {
             // 初始化StringBuilder，拼接字符串
             StringBuilder builder = new StringBuilder();
@@ -217,11 +216,9 @@ public final class DeviceUtils {
         }
     }
 
-    // ==
+    // =
 
-    /**
-     * 特殊mac地址用于判断是否获取失败
-     */
+    // 特殊mac地址用于判断是否获取失败
     private static final String CUSTOM_MAC = "02:00:00:00:00:00";
 
     /**
@@ -365,7 +362,7 @@ public final class DeviceUtils {
         return CUSTOM_MAC;
     }
 
-    // ==
+    // =
 
     /**
      * 获取设备厂商 如 Xiaomi

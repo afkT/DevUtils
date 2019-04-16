@@ -3,16 +3,13 @@ package dev.utils.common.random;
 /******************************************************************************
  * File: AliasMethod.java
  * Author: Keith Schwarz (htiek@cs.stanford.edu)
- *
  * An implementation of the alias method implemented using Vose's algorithm.
  * The alias method allows for efficient sampling of random values from a
  * discrete probability distribution (i.e. rolling a loaded die) in O(1) time
  * each after O(n) preprocessing time.
- *
  * For a complete writeup on the alias method, including the intuition and
  * important proofs, please see the article "Darts, Dice, and Coins: Smpling
  * from a Discrete Distribution" at
- *
  *                 http://www.keithschwarz.com/darts-dice-coins/
  */
 
@@ -45,11 +42,10 @@ public final class AliasMethod {
      * Given as input a list of probabilities corresponding to outcomes 0, 1,
      * ..., n - 1, this constructor creates the probability and alias tables
      * needed to efficiently sample from this distribution.
-     *
      * @param probabilities The list of probabilities.
      */
     public AliasMethod(List<Double> probabilities) {
-        this (probabilities, new Random());
+        this(probabilities, new Random());
     }
 
     /**
@@ -60,9 +56,8 @@ public final class AliasMethod {
      * ..., n - 1, along with the random number generator that should be used
      * as the underlying generator, this constructor creates the probability
      * and alias tables needed to efficiently sample from this distribution.
-     *
      * @param probabilities The list of probabilities.
-     * @param random The random number generator
+     * @param random        The random number generator
      */
     public AliasMethod(List<Double> probabilities, Random random) {
         /* Begin by doing basic structural checks on the inputs. */

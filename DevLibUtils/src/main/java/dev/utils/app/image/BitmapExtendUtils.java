@@ -127,7 +127,7 @@ public final class BitmapExtendUtils {
      * 获取一个指定大小的bitmap
      * @param data         Bitmap的byte数组
      * @param offset       image从byte数组创建的起始位置
-     * @param length       the number of bytes, 从offset处开始的长度
+     * @param length       从offset处开始的长度
      * @param targetWidth  目标宽度
      * @param targetHeight 目标高度
      */
@@ -496,9 +496,9 @@ public final class BitmapExtendUtils {
 
     /**
      * 生成水印图片 水印在右下角
-     * @param src       the bitmap object you want proecss
-     * @param watermark the water mark above the src
-     * @return return a bitmap object ,if paramter's length is 0,return null
+     * @param src
+     * @param watermark
+     * @return
      */
     public static Bitmap createWatermarkBitmap(final Bitmap src, final Bitmap watermark) {
         if (src == null || watermark == null) return null;

@@ -454,7 +454,7 @@ public final class KeyBoardUtils {
     /**
      * 注册软键盘改变监听器
      * @param activity
-     * @param listener listener
+     * @param listener
      */
     public static void registerSoftInputChangedListener(final Activity activity, final OnSoftInputChangedListener listener) {
         try {
@@ -480,7 +480,7 @@ public final class KeyBoardUtils {
     /**
      * 注册软键盘改变监听器
      * @param activity
-     * @param listener listener
+     * @param listener
      */
     public static void registerSoftInputChangedListener2(final Activity activity, final OnSoftInputChangedListener listener) {
         final View decorView = activity.getWindow().getDecorView();

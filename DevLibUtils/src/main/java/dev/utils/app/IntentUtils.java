@@ -295,7 +295,7 @@ public final class IntentUtils {
      * 获取其他应用组件的意图
      * @param packageName
      * @param className   全类名
-     * @param bundle      bundle
+     * @param bundle
      * @return 其他应用组件的意图
      */
     public static Intent getComponentIntent(final String packageName, final String className, final Bundle bundle) {
@@ -306,7 +306,7 @@ public final class IntentUtils {
      * 获取其他应用组件的意图
      * @param packageName
      * @param className   全类名
-     * @param bundle      bundle
+     * @param bundle
      * @param isNewTask   是否开启新的任务栈
      * @return 其他应用组件的意图
      */

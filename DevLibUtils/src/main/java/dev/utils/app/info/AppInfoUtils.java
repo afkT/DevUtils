@@ -254,7 +254,9 @@ public final class AppInfoUtils {
 
     /**
      * 打印 Apk 注册的权限
-     * @param packageName https://www.cnblogs.com/leaven/p/5485864.html
+     * ==============
+     * https://www.cnblogs.com/leaven/p/5485864.html
+     * @param packageName
      */
     public static void printApkPermission(final String packageName) {
         try {

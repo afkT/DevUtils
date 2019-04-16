@@ -107,7 +107,7 @@ public final class CleanUtils {
      * 清除自定义路径下的文件，使用需小心，请不要误删。而且只支持目录下的文件删除
      * @param filePath 文件路径
      */
-    public static boolean cleanCustomDir(String filePath) {
+    public static boolean cleanCustomDir(final String filePath) {
         return deleteFilesInDir(getFileByPath(filePath));
     }
 
@@ -115,7 +115,7 @@ public final class CleanUtils {
      * 清除自定义路径下的文件，使用需小心，请不要误删。而且只支持目录下的文件删除
      * @param file 文件路径
      */
-    public static boolean cleanCustomDir(File file) {
+    public static boolean cleanCustomDir(final File file) {
         return deleteFilesInDir(file);
     }
 
@@ -123,7 +123,7 @@ public final class CleanUtils {
      * 清除本应用所有的数据
      * @param filePaths 文件路径
      */
-    public static void cleanApplicationData(String... filePaths) {
+    public static void cleanApplicationData(final String... filePaths) {
         cleanInternalCache();
         cleanExternalCache();
         cleanInternalDbs();
@@ -145,7 +145,7 @@ public final class CleanUtils {
      * @param file
      * @return
      */
-    public static long getFolderSize(File file) {
+    public static long getFolderSize(final File file) {
         long size = 0;
         try {
             File[] files = file.listFiles();
@@ -168,7 +168,7 @@ public final class CleanUtils {
      * @param file
      * @return
      */
-    public static String getCacheSize(File file) {
+    public static String getCacheSize(final File file) {
         return getFormatSize(getFolderSize(file));
     }
 
@@ -177,7 +177,7 @@ public final class CleanUtils {
      * @param size
      * @return
      */
-    public static String getFormatSize(double size) {
+    public static String getFormatSize(final double size) {
         double kiloByte = size / 1024;
         if (kiloByte < 1) {
             return size + "Byte";
@@ -204,7 +204,7 @@ public final class CleanUtils {
         return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString() + "TB";
     }
 
-    // ==
+    // =
 
     /**
      * 删除目录下所有过滤的文件

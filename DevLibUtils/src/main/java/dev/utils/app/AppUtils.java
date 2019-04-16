@@ -576,8 +576,8 @@ public final class AppUtils {
 
     /**
      * 判断是否安装了应用
-     * @param action   The Intent action, such as ACTION_VIEW.
-     * @param category The desired category.
+     * @param action
+     * @param category
      * @return true : yes, false : no
      */
     public static boolean isAppInstalled(@NonNull final String action, @NonNull final String category) {

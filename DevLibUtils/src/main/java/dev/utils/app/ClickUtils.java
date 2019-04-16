@@ -20,27 +20,18 @@ public final class ClickUtils {
 
     // 日志 TAG
     private static final String TAG = ClickUtils.class.getSimpleName();
-
     // 上一次点击的标识id = viewId 等
     private static int lastTagId = -1;
-    /**
-     * 上次点击时间
-     */
+    // 上次点击时间
     private static long lastClickTime = 0l; // 局限性是, 全局统一事件，如果上次点击后，立刻点击其他就无法点
-    /**
-     * 默认间隔时间
-     */
+    // 默认间隔时间
     private static long DF_DIFF = 1000l; // 点击间隔1秒内
-    /**
-     * 配置数据
-     */
+    // 配置数据
     private static final Map<String, Long> mapConfig = new HashMap<>();
-    /**
-     * 点击记录数据
-     */
+    // 点击记录数据
     private static final Map<String, Long> mapRecords = new HashMap<>();
 
-    // ===
+    // =
 
     /**
      * 判断两次点击的间隔 小于默认间隔时间(1秒), 则认为是多次无效点击
@@ -55,7 +46,7 @@ public final class ClickUtils {
      * @param tagId
      * @return
      */
-    public static boolean isFastDoubleClick(int tagId) {
+    public static boolean isFastDoubleClick(final int tagId) {
         return isFastDoubleClick(tagId, DF_DIFF);
     }
 
@@ -65,7 +56,7 @@ public final class ClickUtils {
      * @param diff
      * @return
      */
-    public static boolean isFastDoubleClick(int tagId, long diff) {
+    public static boolean isFastDoubleClick(final int tagId, final long diff) {
         long cTime = System.currentTimeMillis();
         long dTime = cTime - lastClickTime;
         // 判断时间是否超过
@@ -79,14 +70,14 @@ public final class ClickUtils {
         return false;
     }
 
-    // ===
+    // =
 
     /**
      * 判断两次点击的间隔(根据默认Tag判断) 小于指定间隔时间, 则认为是多次无效点击
      * @param tag
      * @return
      */
-    public static boolean isFastDoubleClick(String tag) {
+    public static boolean isFastDoubleClick(final String tag) {
         // 获取配置时间
         Long config_time = mapConfig.get(tag);
         // 如果等于null, 则传入默认时间
@@ -102,7 +93,7 @@ public final class ClickUtils {
      * @param diff
      * @return
      */
-    public static boolean isFastDoubleClick(String tag, long diff) {
+    public static boolean isFastDoubleClick(final String tag, final long diff) {
         // 获取上次点击的时间
         Long lastTime = mapRecords.get(tag);
         if (lastTime == null) {
@@ -121,14 +112,14 @@ public final class ClickUtils {
         return false;
     }
 
-    // ===
+    // =
 
     /**
      * 判断两次点击的间隔(根据默认Tag判断) 小于指定间隔时间, 则认为是多次无效点击
      * @param object
      * @return
      */
-    public static boolean isFastDoubleClick(Object object) {
+    public static boolean isFastDoubleClick(final Object object) {
         // 获取TAG
         String tag = ((object != null) ? ("obj_" + object.hashCode()) : "obj_null");
         // 获取配置时间
@@ -146,7 +137,7 @@ public final class ClickUtils {
      * @param diff
      * @return
      */
-    public static boolean isFastDoubleClick(Object object, long diff) {
+    public static boolean isFastDoubleClick(final Object object, final long diff) {
         // 获取TAG
         String tag = ((object != null) ? ("obj_" + object.hashCode()) : "obj_null");
         // 获取上次点击的时间
@@ -167,13 +158,13 @@ public final class ClickUtils {
         return false;
     }
 
-    // ===
+    // =
 
     /**
      * 初始化配置信息
      * @param mapConfig
      */
-    public static void initConfig(Map<String, Object> mapConfig) {
+    public static void initConfig(final Map<String, Object> mapConfig) {
         if (mapConfig != null) {
             mapConfig.putAll(mapConfig);
         }
@@ -184,7 +175,7 @@ public final class ClickUtils {
      * @param key
      * @param val
      */
-    public static void putConfig(String key, Long val) {
+    public static void putConfig(final String key, final Long val) {
         mapConfig.put(key, val);
     }
 
@@ -192,7 +183,7 @@ public final class ClickUtils {
      * 移除配置信息
      * @param key
      */
-    public static void removeConfig(String key) {
+    public static void removeConfig(final String key) {
         mapConfig.remove(key);
     }
 
@@ -202,15 +193,14 @@ public final class ClickUtils {
      * 移除点击记录
      * @param key
      */
-    public static void removeRecord(String key) {
+    public static void removeRecord(final String key) {
         mapRecords.remove(key);
     }
 
     /**
-     * 清空点击记录
-     * @param key
+     * 清空点击记录(全部)
      */
-    public static void clearRecord(String key) {
+    public static void clearRecord() {
         mapRecords.clear();
     }
 

@@ -237,8 +237,8 @@ public final class LocationUtils {
 
     /**
      * 是否更好的位置
-     * @param newLocation         The new Location that you want to evaluate
-     * @param currentBestLocation The current Location fix, to which you want to compare the new one
+     * @param newLocation
+     * @param currentBestLocation
      * @return true : 是, false : 否
      */
     public static boolean isBetterLocation(Location newLocation, Location currentBestLocation) {

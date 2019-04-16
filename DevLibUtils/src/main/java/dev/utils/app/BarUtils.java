@@ -540,9 +540,9 @@ public final class BarUtils {
         }
     }
 
-    // ======================
-    // ===== action bar =====
-    // ======================
+    // ==============
+    // = action bar =
+    // ==============
 
     /**
      * 返回 ActionBase 高度
@@ -556,9 +556,9 @@ public final class BarUtils {
         return 0;
     }
 
-    // ========================
-    // === notification bar ===
-    // ========================
+    // ====================
+    // = notification bar =
+    // ====================
 
     /**
      * 设置通知栏是否显示
@@ -592,9 +592,9 @@ public final class BarUtils {
         }
     }
 
-    // ======================
-    // === navigation bar ===
-    // ======================
+    // ==================
+    // = navigation bar =
+    // ==================
 
     /**
      * 获取 NavigationView 高度

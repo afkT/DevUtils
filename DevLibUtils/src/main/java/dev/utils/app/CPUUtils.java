@@ -241,13 +241,13 @@ public final class CPUUtils {
 
     /**
      * 获取 CMD 指令回调数据
-     * @param args
+     * @param strings
      * @return
      */
-    public static String getCMDOutputString(String[] args) {
+    public static String getCMDOutputString(final String[] strings) {
         InputStream in = null;
         try {
-            ProcessBuilder cmd = new ProcessBuilder(args);
+            ProcessBuilder cmd = new ProcessBuilder(strings);
             Process process = cmd.start();
             in = process.getInputStream();
             StringBuilder builder = new StringBuilder();

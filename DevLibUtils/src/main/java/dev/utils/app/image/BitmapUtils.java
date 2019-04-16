@@ -357,7 +357,7 @@ public final class BitmapUtils {
 
     /**
      * Drawable 转换 Bitmap
-     * @param drawable The drawable.
+     * @param drawable
      * @return bitmap
      */
     public static Bitmap drawableToBitmap2(final Drawable drawable) {
@@ -384,7 +384,7 @@ public final class BitmapUtils {
 
     /**
      * Drawable 转换 Bitmap
-     * @param drawable The drawable.
+     * @param drawable
      * @return bitmap
      */
     public static Bitmap drawableToBitmap3(final Drawable drawable) {
@@ -479,7 +479,7 @@ public final class BitmapUtils {
 
     /**
      * 将Drawable转化为Bitmap
-     * @param drawable Drawable
+     * @param drawable
      * @return Bitmap
      */
     public static Bitmap getBitmapFromDrawable(final Drawable drawable) {
@@ -499,7 +499,7 @@ public final class BitmapUtils {
 
     /**
      * 通过View, 获取背景转换Bitmap
-     * @param view The view.
+     * @param view
      * @return bitmap
      */
     public static Bitmap bitmapToViewBackGround(final View view) {
@@ -523,7 +523,7 @@ public final class BitmapUtils {
 
     /**
      * 通过View, 获取Bitmap -> 绘制整个View
-     * @param view View
+     * @param view
      * @return Bitmap
      */
     public static Bitmap getBitmapFromView(final View view) {
@@ -542,7 +542,7 @@ public final class BitmapUtils {
 
     /**
      * 把一个View的对象转换成bitmap
-     * @param view View
+     * @param view
      * @return Bitmap
      */
     public static Bitmap getBitmapFromView2(final View view) {

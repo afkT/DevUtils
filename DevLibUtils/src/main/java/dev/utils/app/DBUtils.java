@@ -26,7 +26,7 @@ public final class DBUtils {
      * @param dbName     数据库文件名
      * @return 是否倒出成功
      */
-    public static boolean startExportDatabase(String targetFile, String dbName) {
+    public static boolean startExportDatabase(final String targetFile, final String dbName) {
         // 判断 SDCard 是否挂载
         if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             return false;
@@ -44,7 +44,7 @@ public final class DBUtils {
         return false;
     }
 
-    // ====
+    // =
 
     /**
      * 导入数据库
@@ -52,7 +52,7 @@ public final class DBUtils {
      * @param destFilePath 目标文件地址
      * @return 是否倒出成功
      */
-    public static boolean startImportDatabase(String srcFilePath, String destFilePath) {
+    public static boolean startImportDatabase(final String srcFilePath, final String destFilePath) {
         // 判断 SDCard 是否挂载
         if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             return false;
@@ -74,7 +74,7 @@ public final class DBUtils {
      * @param destFilePath 目标文件地址
      * @return 是否倒出成功
      */
-    public static boolean startImportDatabase(InputStream inputStream, String destFilePath) {
+    public static boolean startImportDatabase(final InputStream inputStream, final String destFilePath) {
         // 判断 SDCard 是否挂载
         if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             return false;
@@ -90,7 +90,7 @@ public final class DBUtils {
         return false;
     }
 
-    // ==
+    // =
 
     /**
      * 获取数据库路径

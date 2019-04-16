@@ -15,11 +15,11 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: ContentResolver 工具类
  * Created by Ttt
+ * ==============
+ * https://www.cnblogs.com/Sharley/p/7942142.html
+ * https://blog.csdn.net/lemon_blue/article/details/52353851
  */
 public final class ContentResolverUtils {
-
-    // https://blog.csdn.net/lemon_blue/article/details/52353851
-    // https://www.cnblogs.com/Sharley/p/7942142.html
 
     private ContentResolverUtils() {
     }
@@ -27,14 +27,12 @@ public final class ContentResolverUtils {
     // 日志 TAG
     private static final String TAG = ContentResolverUtils.class.getSimpleName();
 
-    // MediaStore.MediaColumns.MIME_TYPE, isVideo ? "video/3gp" : "image/jpeg"
-
     /**
      * 通知刷新本地资源
      * @param file
      * @return
      */
-    public static boolean notifyMediaStore(File file) {
+    public static boolean notifyMediaStore(final File file) {
         if (file != null) {
             try {
                 // 最后通知图库扫描更新
@@ -55,7 +53,7 @@ public final class ContentResolverUtils {
      * @param isNotify
      * @return
      */
-    public static boolean insertImageIntoMediaStore(File file, String fileName, boolean isNotify) {
+    public static boolean insertImageIntoMediaStore(final File file, final String fileName, final boolean isNotify) {
         if (file != null) {
             try {
                 // 添加到相册
@@ -75,7 +73,7 @@ public final class ContentResolverUtils {
      * @param file
      * @return
      */
-    public static boolean insertVideoIntoMediaStore(File file) {
+    public static boolean insertVideoIntoMediaStore(final File file) {
         return insertIntoMediaStore(file, -1, true, "video/3gp");
     }
 
@@ -86,7 +84,7 @@ public final class ContentResolverUtils {
      * @param isVideo
      * @param mimeType
      */
-    public static boolean insertIntoMediaStore(File file, long createTime, boolean isVideo, String mimeType) {
+    public static boolean insertIntoMediaStore(final File file, long createTime, final boolean isVideo, final String mimeType) {
         if (file != null && !TextUtils.isEmpty(mimeType)) {
             try {
                 ContentResolver mContentResolver = DevUtils.getContext().getContentResolver();

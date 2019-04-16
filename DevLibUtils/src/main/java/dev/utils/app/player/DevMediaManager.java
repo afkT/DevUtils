@@ -597,7 +597,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     // ============
 
     // 本地资源
-    private @RawRes int mPlayRawId = -1;
+    private int mPlayRawId = -1;
     // 播放路径/地址
     private String mPlayUri = null;
     // 视频宽度
