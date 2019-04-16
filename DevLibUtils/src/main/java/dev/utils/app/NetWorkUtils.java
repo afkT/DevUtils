@@ -116,7 +116,7 @@ public final class NetWorkUtils {
             if (cManager != null) {
                 // 获取网络连接管理的对象
                 NetworkInfo nInfo = cManager.getActiveNetworkInfo();
-                if (nInfo != null && nInfo.isConnected()) {
+                if (nInfo != null) {
                     // 判断当前网络是否已经连接
                     if (nInfo.getState() == State.CONNECTED) {
                         return true;
