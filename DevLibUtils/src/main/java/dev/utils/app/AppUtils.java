@@ -37,7 +37,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: App(Android 工具类)
+ * detail: App (Android) 工具类
  * Created by Ttt
  */
 public final class AppUtils {
@@ -61,14 +61,16 @@ public final class AppUtils {
         return null;
     }
 
-    // == 快捷获取方法 ==
+    // ================
+    // = 快捷获取方法 =
+    // ================
 
     /**
      * 获取 View
      * @param resource
      * @return
      */
-    public static View getView(@LayoutRes int resource) {
+    public static View getView(@LayoutRes final int resource) {
         return getView(resource, null);
     }
 
@@ -78,7 +80,7 @@ public final class AppUtils {
      * @param root
      * @return
      */
-    public static View getView(@LayoutRes int resource, ViewGroup root) {
+    public static View getView(@LayoutRes final int resource, final ViewGroup root) {
         try {
             return ((LayoutInflater) DevUtils.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, root);
         } catch (Exception e) {
@@ -106,7 +108,7 @@ public final class AppUtils {
      * 获取 String
      * @return
      */
-    public static String getString(@StringRes int id) {
+    public static String getString(@StringRes final int id) {
         try {
             return DevUtils.getContext().getResources().getString(id);
         } catch (Exception e) {
@@ -119,7 +121,7 @@ public final class AppUtils {
      * 获取 String
      * @return
      */
-    public static String getString(@StringRes int id, Object... formatArgs) {
+    public static String getString(@StringRes final int id, final Object... formatArgs) {
         try {
             return DevUtils.getContext().getResources().getString(id, formatArgs);
         } catch (Exception e) {
@@ -133,7 +135,7 @@ public final class AppUtils {
      * @param colorId 颜色id
      * @return 颜色
      */
-    public static int getColor(int colorId) {
+    public static int getColor(final int colorId) {
         try {
             return DevUtils.getContext().getResources().getColor(colorId);
         } catch (Exception e) {
@@ -147,7 +149,7 @@ public final class AppUtils {
      * @param drawableId Drawable的id
      * @return Drawable
      */
-    public static Drawable getDrawable(int drawableId) {
+    public static Drawable getDrawable(final int drawableId) {
         try {
             return DevUtils.getContext().getResources().getDrawable(drawableId);
         } catch (Exception e) {
@@ -161,7 +163,7 @@ public final class AppUtils {
      * @param id
      * @return
      */
-    public static float getDimension(int id) {
+    public static float getDimension(final int id) {
         try {
             return DevUtils.getContext().getResources().getDimension(id);
         } catch (Exception e) {
@@ -204,7 +206,7 @@ public final class AppUtils {
      * 获取 ColorStateList
      * @return
      */
-    public static ColorStateList getColorStateList(int id) {
+    public static ColorStateList getColorStateList(final int id) {
         try {
             return ContextCompat.getColorStateList(DevUtils.getContext(), id);
         } catch (Exception e) {
@@ -217,7 +219,8 @@ public final class AppUtils {
      * 获取 SystemService
      * @return
      */
-    public static <T> T getSystemService(String name) {
+    public static <T> T getSystemService(final String name) {
+        if (isSpace(name)) return null;
         try {
             return (T) DevUtils.getContext().getSystemService(name);
         } catch (Exception e) {
@@ -444,6 +447,8 @@ public final class AppUtils {
         return true;
     }
 
+    // =
+
     /**
      * 静默安装 App
      * @param filePath
@@ -498,6 +503,8 @@ public final class AppUtils {
         return result.isSuccess4("success");
     }
 
+    // =
+
     /**
      * 卸载 App
      * @param packageName
@@ -537,7 +544,7 @@ public final class AppUtils {
      * @param packageName
      * @return
      */
-    public static boolean uninstallAppSilent(String packageName) {
+    public static boolean uninstallAppSilent(final String packageName) {
         return uninstallAppSilent(packageName, false, isDeviceRooted());
     }
 
@@ -547,7 +554,7 @@ public final class AppUtils {
      * @param isKeepData
      * @return
      */
-    public static boolean uninstallAppSilent(String packageName, boolean isKeepData) {
+    public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData) {
         return uninstallAppSilent(packageName, isKeepData, isDeviceRooted());
     }
 
@@ -558,12 +565,14 @@ public final class AppUtils {
      * @param isRooted
      * @return
      */
-    public static boolean uninstallAppSilent(String packageName, boolean isKeepData, boolean isRooted) {
+    public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
         if (isSpace(packageName)) return false;
         String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
         ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
         return result.isSuccess4("success");
     }
+
+    // =
 
     /**
      * 判断是否安装了应用
@@ -599,10 +608,8 @@ public final class AppUtils {
      * @return
      */
     @SuppressWarnings("unused")
-    public static boolean isInstalledApp(String packageName) {
-        if (packageName == null || "".equals(packageName)) {
-            return false;
-        }
+    public static boolean isInstalledApp(final String packageName) {
+        if (isSpace(packageName)) return false;
         try {
             ApplicationInfo info = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
             return true;
@@ -807,7 +814,7 @@ public final class AppUtils {
         }
     }
 
-    // ==
+    // =
 
     /**
      * 获取 App 签名
@@ -899,7 +906,7 @@ public final class AppUtils {
         return toHexString(hashTemplate(signature[0].toByteArray(), algorithm), HEX_DIGITS).replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
     }
 
-    // ==
+    // =
 
     /**
      * 检查是否存在某个文件
@@ -951,9 +958,7 @@ public final class AppUtils {
     }
 
     // 用于建立十六进制字符的输出的小写字符数组
-    public static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    // 用于建立十六进制字符的输出的大写字符数组
-    public static final char HEX_DIGITS_UPPER[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    private static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * hash 加密模版方法
@@ -995,13 +1000,15 @@ public final class AppUtils {
         return null;
     }
 
-    // == 其他功能 ==
+    // ============
+    // = 其他功能 =
+    // ============
 
     /**
-     * 启动本地应用打开PDF
+     * 启动本地应用打开 PDF
      * @param filePath 文件路径
      */
-    public static boolean openPDFFile(String filePath) {
+    public static boolean openPDFFile(final String filePath) {
         try {
             File file = new File(filePath);
             if (file.exists()) {
@@ -1019,10 +1026,10 @@ public final class AppUtils {
     }
 
     /**
-     * 启动本地应用打开Word
+     * 启动本地应用打开 Word
      * @param filePath 文件路径
      */
-    public static boolean openWordFile(String filePath) {
+    public static boolean openWordFile(final String filePath) {
         try {
             File file = new File(filePath);
             if (file.exists()) {
@@ -1041,10 +1048,10 @@ public final class AppUtils {
     }
 
     /**
-     * 调用WPS打开office文档
+     * 调用 WPS 打开 office 文档
      * @param filePath 文件路径
      */
-    public static boolean openOfficeByWPS(String filePath) {
+    public static boolean openOfficeByWPS(final String filePath) {
         try {
             // 检查是否安装WPS
             String wpsPackageEng = "cn.wps.moffice_eng";// 普通版与英文版一样

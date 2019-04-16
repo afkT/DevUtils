@@ -380,6 +380,8 @@ public final class ADBUtils {
         return result.isSuccess4("success");
     }
 
+    // =
+
     /**
      * 卸载 App
      * @param packageName

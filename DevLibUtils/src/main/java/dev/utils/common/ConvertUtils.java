@@ -623,7 +623,7 @@ public final class ConvertUtils {
 
     /**
      * 将 short 转换成字节数组
-     * @param data short
+     * @param data
      * @return 字节数组
      */
     public static byte[] valueOf(final short data) {
@@ -642,7 +642,7 @@ public final class ConvertUtils {
 
     /**
      * 将 int 转换成字节数组
-     * @param data int
+     * @param data
      * @return 字节数组
      */
     public static byte[] valueOf(final int data) {
@@ -1524,7 +1524,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换为 十六进制 char[]
-     * @param data byte[]
+     * @param data
      * @return 十六进制 char[]
      */
     public static char[] toHexChars(final byte[] data) {
@@ -1533,7 +1533,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换为 十六进制 char[]
-     * @param data        byte[]
+     * @param data
      * @param toLowerCase true: 小写格式, false: 大写格式
      * @return 十六进制 char[]
      */
@@ -1543,7 +1543,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换为 十六进制 char[]
-     * @param data      byte[]
+     * @param data
      * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
      * @return 十六进制 char[]
      */

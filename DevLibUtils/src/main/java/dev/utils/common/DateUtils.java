@@ -191,8 +191,8 @@ public final class DateUtils {
     /**
      * 转换时间为指定字符串
      * @param time       需要转换的时间
-     * @param timeFormat time的时间格式
-     * @param format     把time转换成需要的格式
+     * @param timeFormat time 的 时间格式
+     * @param format     把 time 转换成需要的格式
      * @return
      */
     public static String parseToString(final String time, final String timeFormat, final String format) {
@@ -284,7 +284,7 @@ public final class DateUtils {
 
     /**
      * 获取年
-     * @param date Date对象
+     * @param date
      * @return 年
      */
     public static int getYear(final Date date) {
@@ -301,7 +301,7 @@ public final class DateUtils {
 
     /**
      * 获取月 (0 - 11) + 1
-     * @param date Date对象
+     * @param date
      * @return 月
      */
     public static int getMonth(final Date date) {
@@ -318,7 +318,7 @@ public final class DateUtils {
 
     /**
      * 获取日
-     * @param date Date对象
+     * @param date
      * @return 日
      */
     public static int getDay(final Date date) {
@@ -335,7 +335,7 @@ public final class DateUtils {
 
     /**
      * 获取日期是星期几
-     * @param date Date对象
+     * @param date
      * @return 日
      */
     public static int getWeek(final Date date) {
@@ -353,7 +353,7 @@ public final class DateUtils {
 
     /**
      * 获取时 - 24
-     * @param date Date对象
+     * @param date
      * @return 时
      */
     public static int get24Hour(final Date date) {
@@ -370,7 +370,7 @@ public final class DateUtils {
 
     /**
      * 获取时 - 12
-     * @param date Date对象
+     * @param date
      * @return 时
      */
     public static int get12Hour(final Date date) {
@@ -387,7 +387,7 @@ public final class DateUtils {
 
     /**
      * 获取分
-     * @param date Date对象
+     * @param date
      * @return 分
      */
     public static int getMinute(final Date date) {
@@ -404,7 +404,7 @@ public final class DateUtils {
 
     /**
      * 获取秒
-     * @param date Date对象
+     * @param date
      * @return 秒
      */
     public static int getSecond(final Date date) {
@@ -639,11 +639,10 @@ public final class DateUtils {
 
     /**
      * 生成 HH:mm 按间隔时间排序数组
-     * @param type
-     * @return type：
-     * 0 = 00:00 - 23:00 => 每小时间隔
-     * 1 = 00:00 - 23:45 => 每15分钟间隔
-     * 2 = 00:00 - 23:30 => 每30分钟间隔
+     * @param type 0 = 00:00 - 23:00 => 每小时间隔
+     *             1 = 00:00 - 23:45 => 每15分钟间隔
+     *             2 = 00:00 - 23:30 => 每30分钟间隔
+     * @return
      */
     public static String[] getArrayToHHMM(final int type) {
         List<String> lists = getListToHHMM(type);
@@ -652,11 +651,10 @@ public final class DateUtils {
 
     /**
      * 生成 HH:mm 按间隔时间排序集合
-     * @param type
-     * @return type：
-     * 0 = 00:00 - 23:00 => 每小时间隔
-     * 1 = 00:00 - 23:45 => 每15分钟间隔
-     * 2 = 00:00 - 23:30 => 每30分钟间隔
+     * @param type 0 = 00:00 - 23:00 => 每小时间隔
+     *             1 = 00:00 - 23:45 => 每15分钟间隔
+     *             2 = 00:00 - 23:30 => 每30分钟间隔
+     * @return
      */
     public static List<String> getListToHHMM(final int type) {
         List<String> lists = new ArrayList<>();
@@ -704,11 +702,10 @@ public final class DateUtils {
     /**
      * 获取 HH:mm 按间隔时间排序的集合中, 指定时间所在索引
      * @param time HH:mm格式
-     * @param type
-     * @return type：
-     * 0 = 00:00 - 23:00 => 每小时间隔
-     * 1 = 00:00 - 23:45 => 每15分钟间隔
-     * 2 = 00:00 - 23:30 => 每30分钟间隔
+     * @param type 0 = 00:00 - 23:00 => 每小时间隔
+     *             1 = 00:00 - 23:45 => 每15分钟间隔
+     *             2 = 00:00 - 23:30 => 每30分钟间隔
+     * @return
      */
     public static int getListToHHMMPosition(final String time, final int type) {
         if (time != null && time.length() != 0) {

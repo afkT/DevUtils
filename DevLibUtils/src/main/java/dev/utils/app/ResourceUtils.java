@@ -1,12 +1,17 @@
 package dev.utils.app;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -50,6 +55,34 @@ public final class ResourceUtils {
     public static final String COLOR = "color";
     public static final String BOOL = "bool";
     public static final String ATTR = "attr";
+
+    // ================
+    // = 快捷获取方法 =
+    // ================
+
+    /**
+     * 获取 View
+     * @param resource
+     * @return
+     */
+    public static View getView(@LayoutRes final int resource) {
+        return getView(resource, null);
+    }
+
+    /**
+     * 获取View
+     * @param resource
+     * @param root
+     * @return
+     */
+    public static View getView(@LayoutRes final int resource, final ViewGroup root) {
+        try {
+            return ((LayoutInflater) DevUtils.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, root);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getView");
+        }
+        return null;
+    }
 
     /**
      * 获取 Resources
@@ -148,7 +181,7 @@ public final class ResourceUtils {
 
     /**
      * 获取 Drawable
-     * @param drawableId Drawable的id
+     * @param drawableId Drawable 的 id
      * @return Drawable
      */
     public static Drawable getDrawable(int drawableId) {

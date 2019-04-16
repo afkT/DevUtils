@@ -63,7 +63,7 @@ public final class ActivityUtils {
      * 判断是否存在指定的Activity
      * @param context
      * @param packageName 包名
-     * @param className   activity全路径类名
+     * @param className   activity 全路径类名
      * @return
      */
     public static boolean isActivityExists(final Context context, final String packageName, final String className) {

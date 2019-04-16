@@ -175,7 +175,7 @@ public class LanguageUtils {
 
     /**
      * 是否支持此语言
-     * @param language language
+     * @param language
      * @return true:支持 false:不支持
      */
     public static boolean isSupportLanguage(String language) {

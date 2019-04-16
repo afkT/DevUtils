@@ -231,6 +231,14 @@ public final class AppCommonUtils {
 
     /**
      * 转换SDK版本 (convertSDKVersion(14) => Android 4.0.0-2)
+     * @return
+     */
+    public static String convertSDKVersion() {
+        return convertSDKVersion(Build.VERSION.SDK_INT);
+    }
+
+    /**
+     * 转换SDK版本 (convertSDKVersion(14) => Android 4.0.0-2)
      * @param sdkVersion
      * @return
      */
