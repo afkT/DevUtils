@@ -54,7 +54,7 @@ public final class AppCommonUtils {
      * @param resId
      * @param objs
      */
-    public static String getFormatRes(int resId, Object... objs) {
+    public static String getFormatRes(final int resId, final Object... objs) {
         return getFormatRes(false, resId, objs);
     }
 
@@ -64,7 +64,7 @@ public final class AppCommonUtils {
      * @param resId
      * @param objs
      */
-    public static String getFormatRes(boolean errorMsg, int resId, Object... objs) {
+    public static String getFormatRes(final boolean errorMsg, final int resId, final Object... objs) {
         try {
             // 获取字符串并且进行格式化
             if (objs != null && objs.length != 0) {
@@ -81,7 +81,9 @@ public final class AppCommonUtils {
         return null;
     }
 
-    // == 版本判断处理 ==
+    // ================
+    // = 版本判断处理 =
+    // ================
 
     /**
      * 是否在2.2版本及以上
@@ -232,7 +234,7 @@ public final class AppCommonUtils {
      * @param sdkVersion
      * @return
      */
-    public static String convertSDKVersion(int sdkVersion) {
+    public static String convertSDKVersion(final int sdkVersion) {
         // https://www.cnblogs.com/maogefff/p/7819076.html
         switch (sdkVersion) {
             case 1:

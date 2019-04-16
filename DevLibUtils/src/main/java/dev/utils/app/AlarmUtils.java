@@ -30,7 +30,7 @@ public final class AlarmUtils {
      * @param pendingIntent   响应动作
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmIntent(Context context, long triggerAtMillis, PendingIntent pendingIntent) {
+    public static void startAlarmIntent(final Context context, final long triggerAtMillis, final PendingIntent pendingIntent) {
         try {
             AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -51,7 +51,7 @@ public final class AlarmUtils {
      * @param pendingIntent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmIntent(Context context, PendingIntent pendingIntent) {
+    public static void stopAlarmIntent(final Context context, final PendingIntent pendingIntent) {
         try {
             AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             manager.cancel(pendingIntent);
@@ -68,7 +68,7 @@ public final class AlarmUtils {
      * @param action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmService(Context context, long triggerAtMillis, Class<?> clazz, String action) {
+    public static void startAlarmService(final Context context, final long triggerAtMillis, final Class<?> clazz, final String action) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
@@ -86,7 +86,7 @@ public final class AlarmUtils {
      * @param action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmService(Context context, Class<?> clazz, String action) {
+    public static void stopAlarmService(final Context context, final Class<?> clazz, final String action) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
@@ -104,7 +104,7 @@ public final class AlarmUtils {
      * @param intent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmBroadcast(Context context, long triggerAtMillis, Intent intent) {
+    public static void startAlarmBroadcast(final Context context, final long triggerAtMillis, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             startAlarmIntent(context, triggerAtMillis, pendingIntent);
@@ -119,7 +119,7 @@ public final class AlarmUtils {
      * @param intent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmBroadcast(Context context, Intent intent) {
+    public static void stopAlarmBroadcast(final Context context, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             stopAlarmIntent(context, pendingIntent);
@@ -135,7 +135,7 @@ public final class AlarmUtils {
      * @param intent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmActivity(Context context, long triggerAtMillis, Intent intent) {
+    public static void startAlarmActivity(final Context context, final long triggerAtMillis, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             startAlarmIntent(context, triggerAtMillis, pendingIntent);
@@ -150,7 +150,7 @@ public final class AlarmUtils {
      * @param intent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmActivity(Context context, Intent intent) {
+    public static void stopAlarmActivity(final Context context, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             stopAlarmIntent(context, pendingIntent);
@@ -158,5 +158,4 @@ public final class AlarmUtils {
             LogPrintUtils.eTag(TAG, e, "stopAlarmActivity");
         }
     }
-
 }

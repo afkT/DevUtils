@@ -822,7 +822,7 @@ public final class ADBUtils {
      * @param activitys
      * @return
      */
-    public static boolean isActivityTopRepeat(final  String packageName, final List<String> activitys) {
+    public static boolean isActivityTopRepeat(final String packageName, final List<String> activitys) {
         if (TextUtils.isEmpty(packageName)) {
             return false;
         } else if (activitys == null || activitys.size() == 0) {
