@@ -534,6 +534,27 @@ public final class DevCommonUtils {
     // =
 
     /**
+     * 判断两个值是否一样
+     * @param value1 第一个值
+     * @param value2 第二个值
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean equals(final T value1, final T value2) {
+        // 两个值都不为 null
+        if (value1 != null && value2 != null) {
+            try {
+                return value1.equals(value2);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "equals");
+            }
+            return false;
+        }
+        // 防止两个值都为null
+        return (value1 == null && value2 == null);
+    }
+
+    /**
      * 判断两字符串是否相等
      * @param a 待校验字符串 a
      * @param b 待校验字符串 b
