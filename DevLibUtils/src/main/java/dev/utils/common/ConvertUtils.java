@@ -1326,9 +1326,9 @@ public final class ConvertUtils {
 
     /**
      * 二进制字符串 转换 byte[] 解码
+     * 例："011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 toBinaryString 使用
      * @param str
      * @return
-     * 例："011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 toBinaryString 使用
      */
     public static byte[] decodeBinary(final String str) {
         if (str == null) return null;
