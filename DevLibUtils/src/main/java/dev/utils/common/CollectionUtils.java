@@ -22,15 +22,11 @@ public final class CollectionUtils {
     }
 
     // 日志 TAG
-    private static final String TAG = CloneUtils.class.getSimpleName();
+    private static final String TAG = CollectionUtils.class.getSimpleName();
 
     // ==============
     // = Collection =
     // ==============
-
-    // ============
-    // = 判断长度 =
-    // ============
 
     /**
      * 判断 Collection 是否为 null
@@ -50,7 +46,9 @@ public final class CollectionUtils {
         return (collection != null && collection.size() != 0);
     }
 
-    // =
+    // ============
+    // = 判断长度 =
+    // ============
 
     /**
      * 获取 Collection 长度
@@ -206,14 +204,8 @@ public final class CollectionUtils {
                 // 进行循环判断
                 for (int i = 0, len = arrays.length; i < len; i++) {
                     T t = arrays[i];
-                    if (t != null) {
-                        if (t.equals(value)) {
-                            if (temp - 1 < 0) {
-                                return arrays[i + offset];
-                            }
-                            temp--;
-                        }
-                    } else if (t == value) {
+                    // 判断值是否一样
+                    if (equals(t, value)) {
                         if (temp - 1 < 0) {
                             return arrays[i + offset];
                         }
@@ -250,14 +242,8 @@ public final class CollectionUtils {
                 // 进行循环判断
                 for (int i = 0, len = arrays.length; i < len; i++) {
                     T t = arrays[i];
-                    if (t != null) {
-                        if (t.equals(value)) {
-                            if (temp - 1 < 0) {
-                                return i + offset;
-                            }
-                            temp--;
-                        }
-                    } else if (t == value) {
+                    // 判断值是否一样
+                    if (equals(t, value)) {
                         if (temp - 1 < 0) {
                             return i + offset;
                         }
@@ -794,14 +780,10 @@ public final class CollectionUtils {
                 Iterator<T> iterator = collection.iterator();
                 while (iterator.hasNext()) {
                     T t = iterator.next();
-                    if (t != null) {
-                        if (t.equals(value)) {
-                            iterator.remove();
-                        }
-                    } else {
-                        if (t == value) {
-                            iterator.remove();
-                        }
+                    // 判断值是否一样
+                    if (equals(t, value)) {
+                        iterator.remove();
+
                     }
                 }
             } catch (Exception e) {
@@ -822,14 +804,10 @@ public final class CollectionUtils {
                 Iterator<T> iterator = collection.iterator();
                 while (iterator.hasNext()) {
                     T t = iterator.next();
-                    if (t != null) {
-                        if (!t.equals(value)) {
-                            iterator.remove();
-                        }
-                    } else {
-                        if (t != value) {
-                            iterator.remove();
-                        }
+                    // 判断值是否不一样（保留不一样的）
+                    if (!equals(t, value)) {
+                        iterator.remove();
+
                     }
                 }
             } catch (Exception e) {
