@@ -57,8 +57,18 @@ public final class ObjectUtils {
      * @param o2 对象2
      * @return true : 相等, false : 不相等
      */
-    public static boolean equals(final Object o1, final Object o2) {
-        return o1 == o2 || (o1 != null && o1.equals(o2));
+    public static <T> boolean equals(final Object o1, final Object o2) {
+        // 两个值都不为 null
+        if (o1 != null && o2 != null) {
+            try {
+                return o1.equals(o2);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "equals");
+            }
+            return false;
+        }
+        // 防止两个值都为null
+        return (o1 == null && o2 == null);
     }
 
     /**
