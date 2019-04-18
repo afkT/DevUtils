@@ -26,15 +26,15 @@ public final class LoggerUse {
     /** 日志文件夹路径 */
     private static final String LOG_SD_PATH = Config.SDP_PATH + File.separator + "Logger" + File.separator;
 
-    // ================
-    // ===== 配置 =====
-    // ================
+    // ========
+    // = 配置 =
+    // ========
 
     /**
      * 日志配置相关
      */
     private void logConfig() {
-        // == 在BaseApplication 中调用 ==
+        // = 在BaseApplication 中调用 =
         // 初始化日志配置
         LogConfig lConfig = new LogConfig();
         // 堆栈方法总数(显示经过的方法)
@@ -57,7 +57,7 @@ public final class LoggerUse {
 //        DevLoggerUtils.init(mContext); // 日志操作工具类, 快捷获取 LogConfig、以及保存日志到文件中等
     }
 
-    // === 使用 ===
+    // = 使用 =
 
     /**
      * 日志使用方法
@@ -96,7 +96,7 @@ public final class LoggerUse {
         // 拼接时间信息
         QuickCommonUtils.timeRecord(sBuffer, "正常系统Log耗时记录", sTime, System.currentTimeMillis());
 
-        // =======================================
+        // =
         // 设置开始时间
         sTime = System.currentTimeMillis();
         // 开始遍历
@@ -107,7 +107,7 @@ public final class LoggerUse {
         // 拼接时间信息
         QuickCommonUtils.timeRecord(sBuffer, "Logger耗时记录", sTime, System.currentTimeMillis());
 
-        // =======================================
+        // =
         // 初始化日志配置
         LogConfig lConfig = new LogConfig();
         // 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
@@ -168,7 +168,7 @@ public final class LoggerUse {
         // 保存日志
         DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fileName, eHint);
 
-        // === 保存日志, 包含头部信息、底部信息 ===
+        // = 保存日志, 包含头部信息、底部信息 =
         // 保存文件名
         fileName = System.currentTimeMillis() + ".log";
         // 保存日志
@@ -208,7 +208,7 @@ public final class LoggerUse {
         DevLogger.json(TestData.SMALL_SON_WITH_NO_LINE_BREAK);
         // XML数据
         DevLogger.xml(TestData.XML_DATA);
-        // =========== 其他 ===========
+        // = 其他 =
         DevLogger.v("测试数据 - v");
         DevLogger.d("测试数据 - d");
         DevLogger.i("测试数据 - i");

@@ -13,7 +13,7 @@ public final class Config {
     /** 项目日志 Tag */
     public static final String LOG_TAG = "DevUtils_Log";
 
-    // ============== 项目信息 ===============
+    // = 项目信息 =
 
     /** 项目名 */
     public static final String BASE_NAME = "DevUtils";
@@ -26,7 +26,7 @@ public final class Config {
     /** SDCard 路径 */
     public static final String BASE_SDCARD_PATH = SDCardUtils.getSDCardPath();
 
-    // ============ 本地 SDCard 数据 ============
+    // = 本地 SDCard 数据 =
 
     // SDCard Pro 文件统一前缀 SDP_xxx
 

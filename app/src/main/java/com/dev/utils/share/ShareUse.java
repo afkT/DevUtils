@@ -28,7 +28,9 @@ public final class ShareUse {
         SharedUtils.put("aa", "aa");
         SharedUtils.put("ac", 123);
 
-        // == SPUtils ==
+        // ===========
+        // = SPUtils =
+        // ===========
 
         // 想要自定义 模式，名字等
         SPUtils.getPreference(DevUtils.getContext()).put("aa", 1);

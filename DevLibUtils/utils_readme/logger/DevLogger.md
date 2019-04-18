@@ -72,7 +72,7 @@
 #### 全局配置
 
 ```java
-// == 在BaseApplication 中调用 ==
+// = 在BaseApplication 中调用 =
 // 初始化日志配置
 LogConfig lConfig = new LogConfig();
 // 堆栈方法总数(显示经过的方法)
@@ -168,9 +168,9 @@ DevLogger.other(lConfig).eTag(tag, "new Config - e");
 
 #### 存储日志文件
 ```java
-// ================
-// 存储异常日志信息
-// ================
+// ====================
+// = 存储异常日志信息 =
+// ====================
 
 try {
     String s = null;
@@ -194,9 +194,9 @@ try {
     DevLoggerUtils.saveErrorLog(e, fileName, true, eHint);
 }
 
-// ============
-// 存储日志信息
-// ============
+// ================
+// = 存储日志信息 =
+// ================
 
 // 保存文件名
 String fileName = System.currentTimeMillis() + ".log";
@@ -205,7 +205,7 @@ String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取�
 // 保存日志
 DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fileName, eHint);
 
-// === 保存日志, 包含头部信息、底部信息 ===
+// = 保存日志, 包含头部信息、底部信息 =
 // 保存文件名
 fileName = System.currentTimeMillis() + ".log";
 // 保存日志

@@ -40,9 +40,9 @@ public final class SnackbarUse {
 
     public void snackbarUse() {
 
-        // ===================================================
-        // == 只能通过以下四种方式 获取 SnackbarUtils 对象 ==
-        // ===================================================
+        // ================================================
+        // = 只能通过以下四种方式 获取 SnackbarUtils 对象 =
+        // ================================================
 
         SnackbarUtils.with(view);
 
@@ -53,9 +53,9 @@ public final class SnackbarUse {
         SnackbarUtils.with(activity);
 
 
-        // ======================
-        // ==== 获取相关方法 ====
-        // ======================
+        // ================
+        // = 获取相关方法 =
+        // ================
 
         // = 获取 View =
 
@@ -68,7 +68,7 @@ public final class SnackbarUse {
         // 获取 Snackbar Action Button(snackbar_action) - 右侧 Button
         Button actionButton = SnackbarUtils.with(view).getActionButton();
 
-        // ==
+        // =
 
         // 获取 Snackbar 对象
         Snackbar snackbar = SnackbarUtils.with(view).getSnackbar();
@@ -83,9 +83,9 @@ public final class SnackbarUse {
         SnackbarUtils.StyleBuilder styleBuilder = SnackbarUtils.with(view).getStyle();
 
 
-        // ======================
-        // ==== 设置相关方法 ====
-        // ======================
+        // ================
+        // = 设置相关方法 =
+        // ================
 
         // 设置 View 阴影边距大小
         SnackbarUtils.with(view).setShadowMargin(2);
@@ -143,9 +143,9 @@ public final class SnackbarUse {
             }
         });
 
-        // ==================
-        // ==== 操作方法 ====
-        // ==================
+        // ============
+        // = 操作方法 =
+        // ============
 
         // = 关闭 =
 
@@ -239,7 +239,9 @@ public final class SnackbarUse {
      */
     SnackbarUtils.Style style = new SnackbarUtils.Style() {
 
-        // == RootView ==
+        // ============
+        // = RootView =
+        // ============
 
         /**
          * RootView 的重心
@@ -289,7 +291,7 @@ public final class SnackbarUse {
             return 1.0f;
         }
 
-        // == snackbar_text TextView 相关 ==
+        // = snackbar_text TextView 相关 =
 
         /**
          * TextView 的重心
@@ -347,7 +349,7 @@ public final class SnackbarUse {
             return null;
         }
 
-        // == snackbar_action Button 相关 ==
+        // = snackbar_action Button 相关 =
 
         /**
          * Action Button 的重心

@@ -197,7 +197,7 @@ private static class TempStyle implements IToast.Style {
         return null;
     }
     
-    // == TextView 相关 ==
+    // = TextView 相关 =
     
     /**
      * 文本颜色

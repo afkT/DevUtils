@@ -45,7 +45,7 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
 }
 
-// == 打包, 包含注释 ==
+// = 打包, 包含注释 =
 
 // 指定编码
 tasks.withType(JavaCompile) {
@@ -82,13 +82,13 @@ artifacts {
 
 // https://www.cnblogs.com/xinaixia/p/7660173.html
 
-// ==== 项目打包 aar =====
+// = 项目打包 aar =
 
 // 将被嵌入的应用打包成 aar 包，这也是 Android Studio 的一种新特性，可以将应用所使用的资源性文件一起打包。编译即可打包生成 aar 包，而且也不用担心漏掉资源问题。
 // 直接使用aar, 内部包含 jar
 // build\outputs\aar\DevLibUtils-debug.aar, DevLibUtils-release.aar
 
-// ==== 项目打包 jar =====
+// = 项目打包 jar =
 
 // Terminal 输入 gradlew makeJar
 

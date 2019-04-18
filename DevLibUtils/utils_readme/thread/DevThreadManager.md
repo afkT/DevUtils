@@ -46,7 +46,7 @@ Runnable runnable = new Runnable() {
     }
 };
 
-// == 优先判断 10个线程数, 的线程池是否存在, 不存在则创建, 存在则复用 ==
+// = 优先判断 10个线程数, 的线程池是否存在, 不存在则创建, 存在则复用 =
 DevThreadManager.getInstance(10).execute(runnable);
 
 // 与上面 传入 int 是完全不同的线程池

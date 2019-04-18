@@ -91,7 +91,7 @@ public final class MediaUse {
             }
         });
 
-        // =======
+        // =
 
         // 播放音频
         DevMediaManager.getInstance().playPrepareRaw(R.raw.dev_beep);
@@ -105,7 +105,7 @@ public final class MediaUse {
             }
         }); // 自由设置信息
 
-        // =======
+        // =
 
         SurfaceView surfaceView = null;
         // 播放视频

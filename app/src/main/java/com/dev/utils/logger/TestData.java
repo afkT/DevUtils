@@ -17,12 +17,12 @@ class TestData {
         public String sImagePath = null; // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         public String sImageUrl = null; // 分享图片路径(QQ空间需要)
         public String sTitleUrl = null; // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
-        // ======= 不一定使用 =======
+        // = 不一定使用 =
         public String sUrl = null; // url仅在微信(包括好友和朋友圈)中使用
         public String sComment = null; // 分享的评论，仅在人人网和QQ空间使用
         public String sSite = null; // site是分享此内容的网站名称，仅在QQ空间使用
         public String sSiteUrl = null; // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-        // === 微信平台分享类型 =====
+        // = 微信平台分享类型 =
         public int weChatATShareType = 0; // 分享类型shareType(SHARE_IMAGE) ,shareType(SHARE_VIDEO) , shareType(SHARE_WEBPAGE)
         // 栈索引(用于移除顶部栈View)
         public int sTaskId = -1; // -1 表示不需要移除栈例如单图片分享,不会添加到栈,自然也不需要移除

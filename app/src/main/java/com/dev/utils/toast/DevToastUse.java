@@ -21,9 +21,9 @@ public final class DevToastUse {
     private DevToastUse() {
     }
 
-    // ================
-    // ===== 配置 =====
-    // ================
+    // ========
+    // = 配置 =
+    // ========
 
     private static View view = null;
     private static int viewId = 0;
@@ -58,7 +58,7 @@ public final class DevToastUse {
         DevToast.reset();
     }
 
-    // === 使用 ===
+    // = 使用 =
 
     /**
      * Toast 使用方法
@@ -172,7 +172,7 @@ public final class DevToastUse {
             return null;
         }
 
-        // == TextView 相关 ==
+        // = TextView 相关 =
 
         /**
          * 文本颜色

@@ -69,7 +69,7 @@ try {
     s.indexOf("c");
 } catch (NullPointerException e) {
 
-    // ==  DevLoggerUtils 使用方法 ==
+    // = DevLoggerUtils 使用方法 =
 
     // 保存的路径
     String fileName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
@@ -91,7 +91,7 @@ try {
     // 保存日志信息
     DevLoggerUtils.saveLogHeadBottom("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
 
-    // ==  FileRecordUtils 使用方法 ==
+    // = FileRecordUtils 使用方法 =
 
     FileRecordUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true, true, "xaskdjaslkd");
 
@@ -113,7 +113,7 @@ AnalysisRecordUtils.FileInfo fileInfo = AnalysisRecordUtils.FileInfo.obtain("tes
 // 存储路径、存储文件夹、文件名、记录功能提示、时间间隔、是否处理日志记录(是否保存)
 // FileInfo(String storagePath, String folderName, String fileName, String fileFunction, @AnalysisRecordUtils.TIME int fileIntervalTime, boolean handler)
 
-// == FileInfo 配置 ==
+// = FileInfo 配置 =
 
 fileInfo = AnalysisRecordUtils.FileInfo.obtain("test_log.txt", "测试记录");
 
@@ -121,7 +121,7 @@ fileInfo = AnalysisRecordUtils.FileInfo.obtain("TempRecord","test_log.txt", "测
 
 fileInfo = AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath(),"TempRecord","test_log.txt", "测试记录");
 
-// ==
+// =
 
 fileInfo = AnalysisRecordUtils.FileInfo.obtain("test_log.txt", "测试记录", AnalysisRecordUtils.HH);
 
@@ -129,7 +129,7 @@ fileInfo = AnalysisRecordUtils.FileInfo.obtain("TempRecord","test_log.txt", "测
 
 fileInfo = AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath(),"TempRecord","test_log.txt", "测试记录", AnalysisRecordUtils.SS);
 
-// =============================
+// =
 
 // 存储到 android/data/包名/LogFolderName/2018-08-23/LogFolderName/xxx/log.txt
 AnalysisRecordUtils.record(fileInfo, "日志内容");

@@ -17,9 +17,9 @@ public final class ToastTintUse {
     private ToastTintUse() {
     }
 
-    // ================
-    // ===== 配置 =====
-    // ================
+    // ========
+    // = 配置 =
+    // ========
 
     private static ToastTintUtils.Style style;
     private static Drawable iconDrawable;
@@ -86,7 +86,7 @@ public final class ToastTintUse {
         ToastTintUtils.reset();
     }
 
-    // === 使用 ===
+    // = 使用 =
 
     /**
      * Toast 使用方法

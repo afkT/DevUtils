@@ -56,7 +56,7 @@ wifiHotUtils.stratWifiAp(wifiConfiguration);
 // 关闭热点
 wifiHotUtils.closeWifiAp();
 
-// === 8.0 特殊处理 ===
+// = 8.0 特殊处理 =
 
 // 8.0 以后热点是针对应用开启, 并且必须强制使用随机生成的 WifiConfig 信息, 无法替换
 
