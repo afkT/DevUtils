@@ -472,6 +472,81 @@ public final class ConvertUtils {
         return defaultValue;
     }
 
+    /**
+     * 基本类型对象 转 short
+     * @param value
+     * @return
+     */
+    public static short toShort(final Short value) {
+        return toShort(value, (short) 0);
+    }
+
+    /**
+     * 基本类型对象 转 short
+     * @param value
+     * @param defaultValue
+     * @return
+     */
+    public static short toShort(final Short value, final short defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            return value;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toShort");
+        }
+        return defaultValue;
+    }
+
+    /**
+     * 基本类型对象 转 char
+     * @param value
+     * @return
+     */
+    public static char toChar(final Character value) {
+        return toChar(value, (char) 0);
+    }
+
+    /**
+     * 基本类型对象 转 char
+     * @param value
+     * @param defaultValue
+     * @return
+     */
+    public static char toChar(final Character value, final char defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            return value;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toChar");
+        }
+        return defaultValue;
+    }
+
+    /**
+     * 基本类型对象 转 byte
+     * @param value
+     * @return
+     */
+    public static byte toByte(final Byte value) {
+        return toByte(value, (byte) 0);
+    }
+
+    /**
+     * 基本类型对象 转 byte
+     * @param value
+     * @param defaultValue
+     * @return
+     */
+    public static byte toByte(final Byte value, final byte defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            return value;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toByte");
+        }
+        return defaultValue;
+    }
+
     // ========
     // = 其他 =
     // ========
