@@ -150,6 +150,31 @@ public final class MapUtils {
     }
 
     /**
+     * 获取 Value, 如果 Value 为 null, 则返回 defaultValue
+     * @param map          map
+     * @param key          key
+     * @param defaultValue 默认value
+     * @param <K>
+     * @param <V>
+     * @return
+     */
+    public static <K, V> V get(final Map<K, V> map, final K key, final V defaultValue) {
+        if (map != null) {
+            try {
+                V value = map.get(key);
+                if (value == null) {
+                    return defaultValue;
+                } else {
+                    return value;
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "get");
+            }
+        }
+        return null;
+    }
+
+    /**
      * 通过 value 获取 Key
      * @param map
      * @param value
