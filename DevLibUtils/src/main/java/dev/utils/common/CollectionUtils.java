@@ -140,6 +140,10 @@ public final class CollectionUtils {
      */
     public static <T> T get(final Collection<T> collection, final int pos) {
         if (collection != null) {
+            // 防止索引为负数
+            if (pos < 0) {
+                return null;
+            }
             if (collection instanceof List) {
                 try {
                     return (T) ((List) collection).get(pos);
@@ -745,6 +749,10 @@ public final class CollectionUtils {
      */
     public static <T> T remove(final List<T> list, final int pos) {
         if (list != null) {
+            // 防止索引为负数
+            if (pos < 0) {
+                return null;
+            }
             try {
                 return list.remove(pos);
             } catch (Exception e) {
