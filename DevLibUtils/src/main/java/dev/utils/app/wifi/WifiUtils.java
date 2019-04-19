@@ -3,6 +3,8 @@ package dev.utils.app.wifi;
 import android.Manifest;
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
@@ -406,11 +408,25 @@ public final class WifiUtils {
         try {
             // 连接管理
             ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-            // 连接状态
-            NetworkInfo.State nState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
-            if ((nState == NetworkInfo.State.CONNECTED)) {
-                // 获取连接的ssid
-                return getSSID();
+            // 版本兼容处理
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                // 连接状态
+                NetworkInfo.State nState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+                if ((nState == NetworkInfo.State.CONNECTED)) {
+                    // 获取连接的ssid
+                    return getSSID();
+                }
+            } else {
+                // 获取当前活跃的网络（连接的网络信息）
+                Network network = cManager.getActiveNetwork();
+                if (network != null) {
+                    NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
+                    // 判断是否连接wifi
+                    if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                        // 获取连接的ssid
+                        return getSSID();
+                    }
+                }
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isConnectAphot");
