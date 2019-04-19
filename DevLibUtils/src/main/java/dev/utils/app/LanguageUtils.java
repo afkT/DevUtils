@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -187,7 +186,6 @@ public class LanguageUtils {
      * @param language
      * @return 支持返回支持语言，不支持返回系统首选语言
      */
-    @TargetApi(Build.VERSION_CODES.N)
     public static Locale getSupportLanguage(final String language) {
         if (isSupportLanguage(language)) {
             return mSupportLanguages.get(language);

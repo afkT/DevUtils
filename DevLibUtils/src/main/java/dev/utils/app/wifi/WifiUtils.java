@@ -421,7 +421,7 @@ public final class WifiUtils {
                 Network network = cManager.getActiveNetwork();
                 if (network != null) {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
-                    // 判断是否连接wifi
+                    // 判断是否连接 wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         // 获取连接的ssid
                         return getSSID();
