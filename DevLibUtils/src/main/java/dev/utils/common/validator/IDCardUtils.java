@@ -12,7 +12,7 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 居民身份证工具类
  * @author AbrahamCaiJin
- * Update to Ttt
+ * @author Ttt (重写、规范注释、逻辑判断等)
  */
 public final class IDCardUtils {
 

@@ -15,7 +15,7 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 异步执行
  * @author MaTianyu
- * Update to Ttt
+ * @author Ttt (重写、规范注释、逻辑判断等)
  */
 public class AsyncExecutor {
 

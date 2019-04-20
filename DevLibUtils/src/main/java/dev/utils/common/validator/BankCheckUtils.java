@@ -3,7 +3,7 @@ package dev.utils.common.validator;
 /**
  * detail: 银行卡管理
  * @author AbrahamCaiJin
- * Update to Ttt
+ * @author Ttt (重写、规范注释、逻辑判断等)
  * =============
  * 当你输入信用卡号码的时候，有没有担心输错了而造成损失呢？其实可以不必这么担心，
  * 因为并不是一个随便的信用卡号码都是合法的，它必须通过 Luhn 算法来验证通过。
