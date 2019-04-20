@@ -317,7 +317,7 @@ public final class CameraSizeAssist {
      * @return Camera 预览分辨率
      */
     private Camera.Size calcPreviewSize(Point point, double distortion) {
-        // 判断是否为null
+        // 判断是否为 null
         if (point == null) {
             point = ScreenUtils.getScreenWidthHeightToPoint();
         }
@@ -441,7 +441,7 @@ public final class CameraSizeAssist {
      * @return Camera 拍照分辨率
      */
     private Camera.Size calcPictureSize(final boolean max, Point point, double distortion) {
-        // 判断是否为null
+        // 判断是否为 null
         if (point == null) {
             point = ScreenUtils.getScreenWidthHeightToPoint();
         }
@@ -592,7 +592,7 @@ public final class CameraSizeAssist {
      * @return Camera 视频分辨率
      */
     private Camera.Size calcVideoSize(final boolean max, Point point, double distortion, final boolean minAccord) {
-        // 判断是否为null
+        // 判断是否为 null
         if (point == null) {
             point = ScreenUtils.getScreenWidthHeightToPoint();
         }

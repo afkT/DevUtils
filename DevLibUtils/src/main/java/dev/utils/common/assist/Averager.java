@@ -13,7 +13,7 @@ public class Averager {
 
     /**
      * 添加一个数字
-     * @param number
+     * @param number number
      */
     public synchronized void add(final Number number) {
         mNumLists.add(number);
@@ -28,7 +28,7 @@ public class Averager {
 
     /**
      * 返回参与均值计算的数字个数
-     * @return
+     * @return 返回添加的数字数量
      */
     public Number size() {
         return mNumLists.size();
@@ -36,7 +36,7 @@ public class Averager {
 
     /**
      * 获取平均数
-     * @return
+     * @return 返回全部数字之和平均数
      */
     public Number getAverage() {
         if (mNumLists.size() == 0) {
@@ -52,7 +52,7 @@ public class Averager {
 
     /**
      * 打印数字集合
-     * @return
+     * @return 返回添加的数字信息
      */
     public String print() {
         return "printList(" + size() + "): " + mNumLists;

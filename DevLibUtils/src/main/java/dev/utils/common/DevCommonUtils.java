@@ -150,7 +150,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断是否为null to 数组
+     * 判断是否为 null to 数组
      * @param objects
      * @return
      */
@@ -700,7 +700,7 @@ public final class DevCommonUtils {
             for (int i = 0, len = args.length; i < len; i++) {
                 // 获取参数
                 String val = args[i];
-                // 判断是否为null,或者长度为0
+                // 判断是否为 null,或者长度为0
                 if (!isEmpty(val) && cLength != 0) {
                     if (isIgnore) {
                         // 转换小写
@@ -757,7 +757,7 @@ public final class DevCommonUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = args[i];
-                // 判断是否为null,或者长度为0
+                // 判断是否为 null,或者长度为0
                 if (!isEmpty(val)) {
                     if (isIgnore) {
                         // 转换小写
@@ -808,7 +808,7 @@ public final class DevCommonUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = args[i];
-                // 判断是否为null,或者长度为0
+                // 判断是否为 null,或者长度为0
                 if (!isEmpty(val)) {
                     if (isIgnore) {
                         // 转换小写

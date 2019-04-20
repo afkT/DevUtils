@@ -61,6 +61,7 @@ public final class DevCache {
 
     /**
      * 内部处理防止 Context 为 null 崩溃问题
+     * @param context Context
      * @return {@link Context}
      */
     private static Context getContext(final Context context) {
@@ -74,7 +75,7 @@ public final class DevCache {
 
     /**
      * 获取缓存地址
-     * @param context
+     * @param context Context
      * @return 应用缓存地址
      */
     public static File getCacheDir(final Context context) {
@@ -86,8 +87,8 @@ public final class DevCache {
 
     /**
      * 默认缓存地址
-     * @param context
-     * @return {@link DevCache} 缓存工具类对象
+     * @param context Context
+     * @return {@link DevCache}
      */
     public static DevCache get(final Context context) {
         return get(context, DF_FILE_NAME);
@@ -95,9 +96,9 @@ public final class DevCache {
 
     /**
      * 获取缓存地址
-     * @param context
-     * @param cacheName
-     * @return {@link DevCache} 缓存工具类对象
+     * @param context Context
+     * @param cacheName 缓存文件名
+     * @return {@link DevCache}
      */
     public static DevCache get(final Context context, final String cacheName) {
         if (cacheName == null) return null;
@@ -109,8 +110,8 @@ public final class DevCache {
 
     /**
      * 设置自定义缓存地址
-     * @param cacheDir
-     * @return {@link DevCache} 缓存工具类对象
+     * @param cacheDir 缓存文件地址
+     * @return {@link DevCache}
      */
     public static DevCache get(final File cacheDir) {
         return get(cacheDir, MAX_SIZE, maxCount);
@@ -118,10 +119,10 @@ public final class DevCache {
 
     /**
      * 自定义缓存大小
-     * @param context
-     * @param maxSize
-     * @param maxCount
-     * @return {@link DevCache} 缓存工具类对象
+     * @param context Context
+     * @param maxSize 文件最大大小
+     * @param maxCount 最大存储数量
+     * @return {@link DevCache}
      */
     public static DevCache get(final Context context, final long maxSize, final int maxCount) {
         File file = new File(getCacheDir(context), DF_FILE_NAME);
@@ -133,7 +134,7 @@ public final class DevCache {
      * @param cacheDir
      * @param maxSize
      * @param maxCount
-     * @return {@link DevCache} 缓存工具类对象
+     * @return {@link DevCache}
      */
     public static DevCache get(final File cacheDir, final long maxSize, final int maxCount) {
         if (cacheDir == null) return null;
@@ -149,7 +150,7 @@ public final class DevCache {
 
     /**
      * 获取进程pid - android.os.Process.myPid()
-     * @return
+     * @return 进程id
      */
     private static String myPid() {
         return "_" + android.os.Process.myPid();

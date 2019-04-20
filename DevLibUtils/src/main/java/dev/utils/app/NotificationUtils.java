@@ -290,7 +290,7 @@ public final class NotificationUtils {
         }
 
         /**
-         * 判断是否为null
+         * 判断是否为 null
          * @return
          */
         public boolean isEmpty() {

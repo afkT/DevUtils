@@ -1232,7 +1232,7 @@ public final class DialogUtils {
     // =
 
     /**
-     * 判断是否为null
+     * 判断是否为 null
      * @param str
      * @return
      */

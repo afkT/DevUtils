@@ -58,21 +58,21 @@ public final class FileDepthFirstSearchUtils {
 
         /**
          * 判断是否处理该文件
-         * @param file
-         * @return
+         * @param file file
+         * @return {@code true} 处理该文件, {@code false} 跳过该文件不处理
          */
         boolean isHandlerFile(File file);
 
         /**
          * 是否添加到集合
-         * @param file
-         * @return
+         * @param file file
+         * @return {@code true} 添加, {@code false} 不添加
          */
         boolean isAddToList(File file);
 
         /**
          * 搜索结束监听
-         * @param lists
+         * @param lists     根目录的子文件目录集合
          * @param startTime 开始扫描时间
          * @param endTime   扫描结束时间
          */
@@ -113,8 +113,8 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 设置搜索处理接口
-     * @param iSearchHandler
-     * @return
+     * @param iSearchHandler 搜索处理接口
+     * @return {@link FileDepthFirstSearchUtils}
      */
     public FileDepthFirstSearchUtils setSearchHandler(final ISearchHandler iSearchHandler) {
         this.iSearchHandler = iSearchHandler;
@@ -123,7 +123,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 是否搜索中
-     * @return
+     * @return {@code true} 搜索/运行中, {@code false} 非搜索/运行中
      */
     public boolean isRunning() {
         return mIsRunning;
@@ -138,23 +138,23 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 是否停止搜索
-     * @return
+     * @return {@code true} 停止运行, {@code false} 非停止运行
      */
     public boolean isStop() {
         return mIsStop;
     }
 
     /**
-     * 获取开始搜索时间
-     * @return
+     * 获取开始搜索时间(毫秒)
+     * @return 开始搜索时间(毫秒)
      */
     public long getStartTime() {
         return startTime;
     }
 
     /**
-     * 获取结束搜索时间
-     * @return
+     * 获取结束搜索时间(毫秒)
+     * @return 结束搜索时间(毫秒)
      */
     public long getEndTime() {
         return endTime;
@@ -233,7 +233,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 搜索文件
-     * @param file
+     * @param file       file
      * @param lists      保存数据源
      * @param isRelation 是否关联到 Child List
      */

@@ -33,7 +33,7 @@ public final class LogPrintUtils {
 
     /**
      * 判断是否打印日志
-     * @return
+     * @return {@code true} 打印日志, {@code false} 不打印日志
      */
     public static boolean isPrintLog() {
         return JUDGE_PRINT_LOG;
@@ -41,16 +41,16 @@ public final class LogPrintUtils {
 
     /**
      * 设置是否打印日志
-     * @param judgePrintLog
+     * @param judgePrintLog 是否允许打印日志
      */
     public static void setPrintLog(final boolean judgePrintLog) {
         JUDGE_PRINT_LOG = judgePrintLog;
     }
 
     /**
-     * 判断是否为null
-     * @param str
-     * @return
+     * 判断是否为 null
+     * @param str String
+     * @return {@code true} null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
@@ -94,7 +94,7 @@ public final class LogPrintUtils {
      * 处理信息
      * @param message 打印信息
      * @param args    占位符替换
-     * @return
+     * @return 返回处理(格式化 、 判断)后准备打印的日志信息
      */
     private static String createMessage(final String message, final Object... args) {
         String result;
@@ -123,7 +123,7 @@ public final class LogPrintUtils {
      * @param throwable 错误异常
      * @param message   需要打印的消息
      * @param args      动态参数
-     * @return
+     * @return 返回处理(格式化 、 判断)后准备打印的日志信息
      */
     private static String splitErrorMessage(final Throwable throwable, final String message, final Object... args) {
         String result;

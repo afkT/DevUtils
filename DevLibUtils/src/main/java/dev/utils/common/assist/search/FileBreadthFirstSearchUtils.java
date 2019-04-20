@@ -316,7 +316,7 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 搜索文件
-     * @param file file
+     * @param file     file
      * @param fileItem 所在文件夹对象(上一级目录)
      */
     private void queryFile(final File file, final FileItem fileItem) {
@@ -372,7 +372,7 @@ public final class FileBreadthFirstSearchUtils {
      * 循环队列
      */
     private void whileQueue() {
-        // 判断是否为null
+        // 判断是否为 null
         boolean isEmpty = taskQueue.isEmpty();
         // 循环则不处理
         while (!isEmpty) {
@@ -387,7 +387,7 @@ public final class FileBreadthFirstSearchUtils {
             }
             // 获取文件对象
             final FileQueue fileQueue = taskQueue.poll();
-            // 判断是否为null
+            // 判断是否为 null
             if (fileQueue != null) {
                 // 后台运行
                 executor.execute(new Runnable() {

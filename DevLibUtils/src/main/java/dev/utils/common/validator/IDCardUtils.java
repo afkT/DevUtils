@@ -643,7 +643,7 @@ public final class IDCardUtils {
     // =
 
     /**
-     * 判断是否为null
+     * 判断是否为 null
      * @param str
      * @return
      */

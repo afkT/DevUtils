@@ -20,7 +20,7 @@ public final class ValiToPhoneUtils {
     private static final String TAG = ValiToPhoneUtils.class.getSimpleName();
 
     /**
-     * 判断是否为null
+     * 判断是否为 null
      * @param str
      * @return
      */

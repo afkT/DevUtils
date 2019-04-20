@@ -41,7 +41,7 @@ public class AppInfoBean {
 
     /**
      * 获取 AppInfoBean
-     * @param pInfo
+     * @param pInfo PackageInfo
      * @return
      */
     protected static AppInfoBean obtain(final PackageInfo pInfo) {

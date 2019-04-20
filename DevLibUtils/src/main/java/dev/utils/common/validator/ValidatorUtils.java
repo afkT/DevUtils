@@ -62,7 +62,7 @@ public final class ValidatorUtils {
 //    public static final String REGEX_IP_ADDR2 = "\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\b";
 
     /**
-     * 判断是否为null
+     * 判断是否为 null
      * @param str
      * @return
      */

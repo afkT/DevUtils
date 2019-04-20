@@ -13,6 +13,7 @@ public class TimeAverager {
 
     /**
      * 开始计时
+     * @return 返回开始时间(毫秒)
      */
     public long start() {
         return timeCounter.start();
@@ -20,6 +21,7 @@ public class TimeAverager {
 
     /**
      * 结束计时
+     * @return 返回结束时间(毫秒)
      */
     public long end() {
         long time = timeCounter.duration();
@@ -29,6 +31,7 @@ public class TimeAverager {
 
     /**
      * 结束计时, 并重新启动新的计时
+     * @return 返回距离上次计时的时间差(毫秒)
      */
     public long endAndRestart() {
         long time = timeCounter.durationRestart();
@@ -38,6 +41,7 @@ public class TimeAverager {
 
     /**
      * 求全部计时均值
+     * @return 返回全部计时时间之和均值
      */
     public Number average() {
         return averager.getAverage();
@@ -45,9 +49,10 @@ public class TimeAverager {
 
     /**
      * 打印全部时间值
+     * @return 返回计时信息
      */
-    public void print() {
-        averager.print();
+    public String print() {
+        return averager.print();
     }
 
     /**
