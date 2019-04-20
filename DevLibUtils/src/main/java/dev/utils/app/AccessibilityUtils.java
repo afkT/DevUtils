@@ -16,7 +16,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 无障碍功能工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * https://www.jianshu.com/p/981e7de2c7be
  * https://www.jianshu.com/p/65afab3d1e2a

@@ -8,7 +8,7 @@ import dev.utils.common.encrypt.MD5Utils;
 
 /**
  * detail: 快捷通用
- * Created by Ttt
+ * @author Ttt
  */
 public final class QuickCommonUtils {
 

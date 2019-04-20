@@ -25,7 +25,7 @@ import dev.utils.common.FileUtils;
 
 /**
  * detail: Apk 信息Item
- * Created by Ttt
+ * @author Ttt
  */
 public final class ApkInfoItem {
 

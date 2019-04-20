@@ -8,7 +8,7 @@ import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: 定时器使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class TimerUse {
 

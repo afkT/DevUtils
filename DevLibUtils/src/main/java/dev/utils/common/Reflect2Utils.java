@@ -9,7 +9,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 反射相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class Reflect2Utils {
 

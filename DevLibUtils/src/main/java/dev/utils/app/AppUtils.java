@@ -38,7 +38,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: App (Android) 工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class AppUtils {
 

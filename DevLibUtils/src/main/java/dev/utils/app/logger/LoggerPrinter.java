@@ -18,7 +18,7 @@ import javax.xml.transform.stream.StreamSource;
 
 /**
  * detail: 日志输出类(处理方法)
- * Created by Ttt
+ * @author Ttt
  */
 final class LoggerPrinter implements IPrinter {
 

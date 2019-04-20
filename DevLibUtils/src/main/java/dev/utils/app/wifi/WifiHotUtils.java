@@ -19,7 +19,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Wifi 热点工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
  * <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -549,7 +549,7 @@ public class WifiHotUtils {
 
     /**
      * detail: Android Wifi监听
-     * Created by Ttt
+     * @author Ttt
      */
     public interface onWifiAPListener {
 

@@ -20,7 +20,7 @@ import java.io.InputStream;
 
 /**
  * detail: 图片处理器
- * Created by Ttt
+ * @author Ttt
  */
 public class ImageProcessor {
 

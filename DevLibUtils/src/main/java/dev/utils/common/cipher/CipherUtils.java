@@ -4,7 +4,7 @@ import dev.utils.common.ConvertUtils;
 
 /**
  * detail: 加密工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class CipherUtils {
 

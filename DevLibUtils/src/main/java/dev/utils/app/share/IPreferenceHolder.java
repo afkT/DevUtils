@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 /**
  * detail: IPreference 持有类，内部返回实现类
- * Created by Ttt
+ * @author Ttt
  */
 class IPreferenceHolder {
 

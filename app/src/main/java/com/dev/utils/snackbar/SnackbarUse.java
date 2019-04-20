@@ -18,7 +18,7 @@ import dev.utils.app.SnackbarUtils;
 
 /**
  * detail: Snackbar 使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class SnackbarUse {
 
@@ -219,7 +219,7 @@ public final class SnackbarUse {
 
     /**
      * detail: 自定义样式 - 可参照下方实现方法，进行配置
-     * Created by Ttt
+     * @author Ttt
      */
     class NightStyle extends SnackbarUtils.Style {
         @Override
@@ -235,7 +235,7 @@ public final class SnackbarUse {
 
     /**
      * detail: 样式相关
-     * Created by Ttt
+     * @author Ttt
      */
     SnackbarUtils.Style style = new SnackbarUtils.Style() {
 

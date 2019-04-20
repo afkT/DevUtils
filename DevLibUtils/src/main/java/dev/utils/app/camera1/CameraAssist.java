@@ -14,7 +14,7 @@ import static android.hardware.Camera.Parameters.FLASH_MODE_TORCH;
 
 /**
  * detail: 摄像头辅助类
- * Created by Ttt
+ * @author Ttt
  */
 public final class CameraAssist {
 
@@ -288,7 +288,7 @@ public final class CameraAssist {
 
     /**
      * detail: 预览通知接口
-     * Created by Ttt
+     * @author Ttt
      */
     public interface PreviewNotify {
 

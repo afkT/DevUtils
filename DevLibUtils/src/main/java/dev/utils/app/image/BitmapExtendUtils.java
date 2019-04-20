@@ -34,7 +34,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Bitmap工具类主要包括获取Bitmap和对Bitmap的操作
- * Created by Ttt
+ * @author Ttt
  */
 public final class BitmapExtendUtils {
 

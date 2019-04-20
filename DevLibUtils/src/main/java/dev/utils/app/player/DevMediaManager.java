@@ -16,7 +16,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: MediaPlayer 统一管理类
- * Created by Ttt
+ * @author Ttt
  */
 public final class DevMediaManager implements OnBufferingUpdateListener,
         OnCompletionListener, OnPreparedListener, OnVideoSizeChangedListener,
@@ -455,7 +455,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * detail: MediaPlayer回调接口
-     * Created by Ttt
+     * @author Ttt
      */
     public interface MediaListener {
 
@@ -505,7 +505,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * detail: 播放 设置
-     * Created by Ttt
+     * @author Ttt
      */
     public static abstract class MediaSet {
 

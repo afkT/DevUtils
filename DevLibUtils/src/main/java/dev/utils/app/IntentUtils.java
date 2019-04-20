@@ -22,7 +22,7 @@ import dev.utils.common.FileUtils;
 
 /**
  * detail: Intent(意图) 相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class IntentUtils {
 

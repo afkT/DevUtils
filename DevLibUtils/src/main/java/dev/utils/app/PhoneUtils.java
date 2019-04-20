@@ -46,7 +46,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 /**
  * detail: 手机相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class PhoneUtils {
 

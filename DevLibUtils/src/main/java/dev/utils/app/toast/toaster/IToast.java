@@ -8,7 +8,7 @@ import android.view.View;
 
 /**
  * detail: Toast 对外提供接口方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class IToast {
 
@@ -17,7 +17,7 @@ public final class IToast {
 
     /**
      * detail: Toast 对外公开操作方法
-     * Created by Ttt
+     * @author Ttt
      */
     public interface Operate {
 
@@ -146,7 +146,7 @@ public final class IToast {
 
     /**
      * detail: Toast 样式配置
-     * Created by Ttt
+     * @author Ttt
      */
     public interface Style {
 
@@ -247,7 +247,7 @@ public final class IToast {
 
     /**
      * detail: Toast 过滤器
-     * Created by Ttt
+     * @author Ttt
      */
     public interface Filter {
 

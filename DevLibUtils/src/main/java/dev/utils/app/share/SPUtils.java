@@ -2,7 +2,7 @@ package dev.utils.app.share;
 
 /**
  * detail: SharedPreferences 工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class SPUtils extends IPreferenceHolder {
 

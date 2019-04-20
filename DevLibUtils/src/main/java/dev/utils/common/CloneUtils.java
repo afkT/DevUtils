@@ -14,7 +14,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 克隆工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class CloneUtils {
 

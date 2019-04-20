@@ -9,7 +9,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 图片裁剪工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class BitmapCropUtils {
 

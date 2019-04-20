@@ -10,7 +10,7 @@ import dev.utils.app.toast.ToastTintUtils;
 
 /**
  * detail: Toast 使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class ToastTintUse {
 

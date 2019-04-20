@@ -15,7 +15,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: App 信息获取工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class AppInfoUtils {
 

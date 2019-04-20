@@ -21,7 +21,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Toast 工厂模式
- * Created by Ttt
+ * @author Ttt
  */
 final class ToastFactory {
 
@@ -33,7 +33,7 @@ final class ToastFactory {
 
     /**
      * detail: Toast 基类
-     * Created by Ttt
+     * @author Ttt
      */
     static class BaseToast extends Toast {
 
@@ -126,7 +126,7 @@ final class ToastFactory {
 
     /**
      * detail: 解决 Android 7.1 Toast 崩溃问题
-     * Created by Ttt
+     * @author Ttt
      */
     static final class SafeToast extends BaseToast {
 
@@ -151,7 +151,7 @@ final class ToastFactory {
 
         /**
          * detail: Toast 安全显示 Handler
-         * Created by Ttt
+         * @author Ttt
          */
         static final class SafeHandler extends Handler {
 
@@ -178,7 +178,7 @@ final class ToastFactory {
 
     /**
      * detail: 通知栏显示 Toast
-     * Created by Ttt
+     * @author Ttt
      */
     static final class NotificationToast extends BaseToast {
 
@@ -222,7 +222,7 @@ final class ToastFactory {
 
     /**
      * detail: Toast Window 显示辅助类
-     * Created by Ttt
+     * @author Ttt
      * ==============
      * 参考 Toast.TN 实现方式
      */

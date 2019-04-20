@@ -12,7 +12,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 域工具
- * Created by Ttt
+ * @author Ttt
  */
 public final class FieldUtils {
 

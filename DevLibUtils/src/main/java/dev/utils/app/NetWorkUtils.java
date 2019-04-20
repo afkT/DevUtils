@@ -36,7 +36,7 @@ import static android.Manifest.permission.MODIFY_PHONE_STATE;
 
 /**
  * detail: 网络管理工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * https://blog.csdn.net/Clear_ws/article/details/78204150
  */

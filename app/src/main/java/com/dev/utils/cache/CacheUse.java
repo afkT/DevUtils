@@ -13,7 +13,7 @@ import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: 缓存使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class CacheUse {
 

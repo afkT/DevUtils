@@ -30,7 +30,7 @@ import dev.utils.R;
 
 /**
  * detail: Snackbar 工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class SnackbarUtils {
 
@@ -445,7 +445,7 @@ public final class SnackbarUtils {
 
     /**
      * detail:  Snackbar 样式配置构造类
-     * Created by Ttt
+     * @author Ttt
      */
     public static final class StyleBuilder extends Style {
 
@@ -968,7 +968,7 @@ public final class SnackbarUtils {
 
     /**
      * detail: Snackbar 样式配置
-     * Created by Ttt
+     * @author Ttt
      */
     public static abstract class Style {
 

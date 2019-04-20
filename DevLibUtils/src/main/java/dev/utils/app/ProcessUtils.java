@@ -29,7 +29,7 @@ import static android.Manifest.permission.PACKAGE_USAGE_STATS;
 
 /**
  * detail: 进程相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ProcessUtils {
 

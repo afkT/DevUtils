@@ -7,7 +7,7 @@ import dev.DevUtils;
 
 /**
  * detail: 键对值 实体类
- * Created by Ttt
+ * @author Ttt
  */
 public class KeyValueBean {
 

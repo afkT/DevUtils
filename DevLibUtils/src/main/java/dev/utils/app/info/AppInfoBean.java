@@ -12,7 +12,7 @@ import dev.utils.common.FileUtils;
 
 /**
  * detail: App 信息实体类
- * Created by Ttt
+ * @author Ttt
  */
 public class AppInfoBean {
 
@@ -173,7 +173,7 @@ public class AppInfoBean {
 
     /**
      * detail: 应用类型
-     * Created by Ttt
+     * @author Ttt
      */
     public enum AppType {
 

@@ -2,7 +2,7 @@ package dev.utils.common.assist;
 
 /**
  * detail: 堵塞时间处理
- * Created by Ttt
+ * @author Ttt
  */
 public class TimeKeeper {
 
@@ -51,7 +51,7 @@ public class TimeKeeper {
 
     /**
      * detail: 结束通知回调
-     * Created by Ttt
+     * @author Ttt
      */
     public interface OnEndCallback {
 

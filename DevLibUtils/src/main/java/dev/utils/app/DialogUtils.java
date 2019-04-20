@@ -16,7 +16,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Dialog 操作相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class DialogUtils {
 
@@ -100,7 +100,7 @@ public final class DialogUtils {
 
     /**
      * detail: Dialog 事件
-     * Created by Ttt
+     * @author Ttt
      */
     public static abstract class DialogListener {
 
@@ -337,7 +337,7 @@ public final class DialogUtils {
 
     /**
      * detail: Dialog 单选事件
-     * Created by Ttt
+     * @author Ttt
      */
     public static abstract class SingleChoiceListener {
 
@@ -819,7 +819,7 @@ public final class DialogUtils {
 
     /**
      * detail: Dialog 多选事件
-     * Created by Ttt
+     * @author Ttt
      */
     public static abstract class MultiChoiceListener {
 
@@ -1085,7 +1085,7 @@ public final class DialogUtils {
 
     /**
      * detail: 自定义 View Dialog 事件
-     * Created by Ttt
+     * @author Ttt
      */
     public static abstract class ViewDialogListener {
 

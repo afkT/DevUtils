@@ -9,7 +9,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Shell 相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ShellUtils {
 
@@ -145,7 +145,7 @@ public final class ShellUtils {
 
     /**
      * detail: 返回的命令结果
-     * Created by Ttt
+     * @author Ttt
      */
     public static class CommandResult {
 

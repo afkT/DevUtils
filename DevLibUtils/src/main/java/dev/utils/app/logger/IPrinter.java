@@ -2,7 +2,7 @@ package dev.utils.app.logger;
 
 /**
  * detail: 日志接口
- * Created by Ttt
+ * @author Ttt
  */
 public interface IPrinter {
 

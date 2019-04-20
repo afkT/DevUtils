@@ -26,7 +26,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: wifi工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
  * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

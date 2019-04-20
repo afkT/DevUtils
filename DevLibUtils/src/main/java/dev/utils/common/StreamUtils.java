@@ -9,7 +9,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 流操作工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class StreamUtils {
 

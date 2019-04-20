@@ -20,7 +20,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 压缩相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ZipUtils {
 

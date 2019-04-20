@@ -2,7 +2,7 @@ package dev.utils.app.logger;
 
 /**
  * detail: 日志操作类(对外公开直接调用)
- * Created by Ttt
+ * @author Ttt
  */
 public final class DevLogger {
 

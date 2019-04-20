@@ -11,7 +11,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 编码工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class EncodeUtils {
 

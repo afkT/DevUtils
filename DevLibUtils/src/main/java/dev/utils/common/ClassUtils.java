@@ -10,7 +10,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 类工具
- * Created by Ttt
+ * @author Ttt
  */
 public final class ClassUtils {
 

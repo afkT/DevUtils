@@ -11,7 +11,7 @@ import android.os.Build;
 
 /**
  * detail: Activity 无操作定时辅助类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * 需要注意的是, 需要在对应的生命周期内，调用对应的 onXXX 方法
  */
@@ -114,7 +114,7 @@ public final class InactivityTimerAssist {
 
     /**
      * detail: 电池监听广播
-     * Created by Ttt
+     * @author Ttt
      */
     private class PowerStatusReceiver extends BroadcastReceiver {
         @Override
@@ -133,7 +133,7 @@ public final class InactivityTimerAssist {
 
     /**
      * detail: 定时检测任务
-     * Created by Ttt
+     * @author Ttt
      */
     private class InactivityAsyncTask extends AsyncTask<Object, Object, Object> {
         @Override

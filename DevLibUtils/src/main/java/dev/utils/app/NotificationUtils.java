@@ -14,7 +14,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 通知栏管理类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * https://blog.csdn.net/hss01248/article/details/55096553
  * https://www.jianshu.com/p/cf5f6c30019d
@@ -245,7 +245,7 @@ public final class NotificationUtils {
 
     /**
      * detail: 设置通知栏 Led 灯参数实体类
-     * Created by Ttt
+     * @author Ttt
      */
     public static class LightPattern {
         /**
@@ -275,7 +275,7 @@ public final class NotificationUtils {
 
     /**
      * detail: 设置通知栏 震动参数实体类
-     * Created by Ttt
+     * @author Ttt
      */
     public static class VibratePattern {
         /**

@@ -8,7 +8,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: Array 数组工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ArrayUtils {
 

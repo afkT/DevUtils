@@ -10,7 +10,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 转换工具类(Byte、Hex等)
- * Created by Ttt
+ * @author Ttt
  * ==============
  * byte 是字节数据类型、有符号型的、占1个字节、大小范围为 [ -128 - 127]
  * 当大于127时则开始缩进  127 = 127, 128 = -128 , 129 = -127

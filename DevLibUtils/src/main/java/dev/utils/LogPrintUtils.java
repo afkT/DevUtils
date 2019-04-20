@@ -17,7 +17,7 @@ import javax.xml.transform.stream.StreamSource;
 
 /**
  * detail: Android 日志打印工具类(简化版) - 项目内部使用 - 主要打印 Android 日志
- * Created by Ttt
+ * @author Ttt
  */
 public final class LogPrintUtils {
 

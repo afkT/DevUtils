@@ -8,7 +8,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: CRC 工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * Cyclic Redundancy Check, CRC 循环冗余校验 是一种根据网络数据包或电脑文件等数据产生简短固定位数校验码的一种散列函数
  */

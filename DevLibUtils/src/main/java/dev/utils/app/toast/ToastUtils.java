@@ -16,7 +16,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Simple Toast 工具类(简单的 Toast 工具类, 支持子线程弹出 Toast)
- * Created by Ttt
+ * @author Ttt
  * ==============
  * 支持子线程弹出 Toast, 可通过开关配置
  * 内部解决 Android 7.1.1 崩溃问题
@@ -736,7 +736,7 @@ public final class ToastUtils {
 
     /**
      * detail: Toast 安全显示 Handler
-     * Created by Ttt
+     * @author Ttt
      */
     private static final class SafeHandler extends Handler {
 
@@ -766,7 +766,7 @@ public final class ToastUtils {
 
     /**
      * detail: Toast 过滤器
-     * Created by Ttt
+     * @author Ttt
      */
     public interface Filter {
 

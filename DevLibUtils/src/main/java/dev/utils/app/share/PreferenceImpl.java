@@ -13,7 +13,7 @@ import java.util.TreeSet;
 
 /**
  * detail: SharedPreferences 操作接口具体实现类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * 1.apply 没有返回值而 commit 返回 boolean 表明修改是否提交成功
  * 2.apply 是将修改数据原子提交到内存, 而后异步真正提交到硬件磁盘, 而 commit 是同步的提交到硬件磁盘

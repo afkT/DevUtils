@@ -16,7 +16,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Shape 工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * https://www.cnblogs.com/popfisher/p/6238119.html
  * https://www.cnblogs.com/popfisher/p/5606690.html
@@ -58,7 +58,7 @@ public final class ShapeUtils {
 
     /**
      * detail: 构造者模式
-     * Created by Ttt
+     * @author Ttt
      */
     public static final class Builder {
 

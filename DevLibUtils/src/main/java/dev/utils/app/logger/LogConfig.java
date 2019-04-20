@@ -2,7 +2,7 @@ package dev.utils.app.logger;
 
 /**
  * detail: 日志设置类
- * Created by Ttt
+ * @author Ttt
  */
 public class LogConfig {
 

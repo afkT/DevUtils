@@ -12,7 +12,7 @@ import dev.utils.app.player.DevVideoPlayerControl;
 
 /**
  * detail: 多媒体使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class MediaUse {
 

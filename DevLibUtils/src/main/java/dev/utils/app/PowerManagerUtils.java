@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 电源管理工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * <uses-permission android:name="android.permission.WAKE_LOCK"/>
  */

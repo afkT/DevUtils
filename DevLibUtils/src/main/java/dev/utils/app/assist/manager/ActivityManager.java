@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 应用程序 Activity 管理类：用于 Activity 管理和应用程序
- * Created by Ttt
+ * @author Ttt
  */
 public final class ActivityManager {
 

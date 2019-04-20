@@ -13,7 +13,7 @@ import dev.utils.app.ScreenUtils;
 
 /**
  * detail: 摄像头 预览、输出大小 辅助类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * <uses-permission android:name="android.permission.CAMERA" /> 摄像头
  * <uses-permission android:name="android.permission.VIBRATE" /> 震动

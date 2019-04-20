@@ -31,7 +31,7 @@ import dev.utils.app.toast.toaster.DevToast;
 
 /**
  * detail: 开发工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class DevUtils {
 
@@ -334,7 +334,7 @@ public final class DevUtils {
 
     /**
      * detail: 对Activity的生命周期事件进行集中处理。  ActivityLifecycleCallbacks 实现方法
-     * Created by Ttt
+     * @author Ttt
      * ==============
      * http://blog.csdn.net/tongcpp/article/details/40344871
      */
@@ -681,7 +681,7 @@ public final class DevUtils {
 
     /**
      * detail: Activity 生命周期 相关信息获取接口
-     * Created by Ttt
+     * @author Ttt
      */
     public interface ActivityLifecycleGet {
 
@@ -720,7 +720,7 @@ public final class DevUtils {
 
     /**
      * detail: Activity 生命周期 过滤判断接口
-     * Created by Ttt
+     * @author Ttt
      */
     public interface ActivityLifecycleFilter {
 
@@ -734,7 +734,7 @@ public final class DevUtils {
 
     /**
      * detail: Activity 生命周期 通知接口
-     * Created by Ttt
+     * @author Ttt
      */
     public interface ActivityLifecycleNotify {
 
@@ -779,7 +779,7 @@ public final class DevUtils {
 
     /**
      * detail: App 状态改变事件
-     * Created by Ttt
+     * @author Ttt
      */
     public interface OnAppStatusChangedListener {
 
@@ -796,7 +796,7 @@ public final class DevUtils {
 
     /**
      * detail: Activity 销毁事件
-     * Created by Ttt
+     * @author Ttt
      */
     public interface OnActivityDestroyedListener {
 
@@ -843,7 +843,7 @@ public final class DevUtils {
 
     /**
      * detail:  ActivityLifecycleCallbacks 抽象类
-     * Created by Ttt
+     * @author Ttt
      */
     public static abstract class AbsActivityLifecycle implements Application.ActivityLifecycleCallbacks {
 

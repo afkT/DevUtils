@@ -4,7 +4,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 计算比例方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class ScaleUtils {
 

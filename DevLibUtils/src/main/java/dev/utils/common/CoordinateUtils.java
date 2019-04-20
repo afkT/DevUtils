@@ -4,7 +4,7 @@ import static java.lang.Math.PI;
 
 /**
  * detail: 坐标相关工具类 - GPS 纠偏
- * Created by Ttt
+ * @author Ttt
  * ==============
  * 地球坐标系 (WGS-84)
  * 火星坐标系 (GCJ-02)

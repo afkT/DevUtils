@@ -2,7 +2,7 @@ package dev.utils.app.logger;
 
 /**
  * detail: 日志级别
- * Created by Ttt
+ * @author Ttt
  */
 public enum LogLevel {
 

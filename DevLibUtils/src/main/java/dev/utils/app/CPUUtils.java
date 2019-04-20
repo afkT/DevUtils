@@ -17,7 +17,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 获取CPU信息工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class CPUUtils {
 

@@ -9,7 +9,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 图片Buf转换 - 转换BMP图片
- * Created by Ttt
+ * @author Ttt
  */
 public final class ImageBmpUtils {
 

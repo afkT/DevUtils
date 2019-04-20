@@ -12,7 +12,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: HttpURLConnection 网络工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class HttpURLConnectionUtils {
 
@@ -26,7 +26,7 @@ public final class HttpURLConnectionUtils {
 
     /**
      * detail: 请求回调
-     * Created by Ttt
+     * @author Ttt
      */
     public interface CallBack {
 
@@ -187,7 +187,7 @@ public final class HttpURLConnectionUtils {
 
     /**
      * detail: 时间回调
-     * Created by Ttt
+     * @author Ttt
      */
     public interface TimeCallBack {
 

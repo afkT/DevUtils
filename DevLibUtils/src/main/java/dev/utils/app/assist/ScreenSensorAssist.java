@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 屏幕传感器(监听是否横竖屏)
- * Created by Ttt
+ * @author Ttt
  */
 public final class ScreenSensorAssist {
 

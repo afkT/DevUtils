@@ -8,7 +8,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 错误信息处理工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ErrorUtils {
 

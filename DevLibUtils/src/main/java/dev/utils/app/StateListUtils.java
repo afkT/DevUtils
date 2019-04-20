@@ -14,7 +14,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 颜色状态列表 工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * https://blog.csdn.net/wuqilianga/article/details/72964884
  * https://blog.csdn.net/CrazyMo_/article/details/53456541

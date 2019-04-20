@@ -2,7 +2,7 @@ package com.dev.utils.logger;
 
 /**
  * detail: 测试数据
- * Created by Ttt
+ * @author Ttt
  */
 class TestData {
 

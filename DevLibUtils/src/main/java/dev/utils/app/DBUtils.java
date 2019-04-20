@@ -10,7 +10,7 @@ import dev.utils.common.FileUtils;
 
 /**
  * detail: 数据库工具类 (导入导出等)
- * Created by Ttt
+ * @author Ttt
  */
 public final class DBUtils {
 

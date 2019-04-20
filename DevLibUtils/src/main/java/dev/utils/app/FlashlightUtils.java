@@ -14,7 +14,7 @@ import static android.hardware.Camera.Parameters.FLASH_MODE_TORCH;
 
 /**
  * detail: 手电筒工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class FlashlightUtils {
 

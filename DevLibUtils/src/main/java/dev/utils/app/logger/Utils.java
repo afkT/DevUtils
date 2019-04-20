@@ -25,7 +25,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 内部快捷操作工具类(便于单独提取Logger,不依赖其他工具类)
- * Created by Ttt
+ * @author Ttt
  */
 final class Utils {
 

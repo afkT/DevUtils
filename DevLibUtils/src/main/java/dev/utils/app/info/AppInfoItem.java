@@ -23,7 +23,7 @@ import dev.utils.common.FileUtils;
 
 /**
  * detail: App 信息Item
- * Created by Ttt
+ * @author Ttt
  */
 public final class AppInfoItem {
 

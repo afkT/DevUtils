@@ -10,7 +10,7 @@ import android.view.animation.TranslateAnimation;
 
 /**
  * detail: 动画工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class AnimationUtils {
 

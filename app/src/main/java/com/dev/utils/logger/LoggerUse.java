@@ -14,7 +14,7 @@ import dev.utils.common.QuickCommonUtils;
 
 /**
  * detail: 日志使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class LoggerUse {
 

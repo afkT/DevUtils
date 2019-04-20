@@ -12,7 +12,7 @@ import javax.xml.transform.stream.StreamSource;
 
 /**
  * detail: Java Common 日志打印工具类(简化版) - 项目内部使用 - 主要打印非 Android 日志
- * Created by Ttt
+ * @author Ttt
  */
 public final class JCLogUtils {
 

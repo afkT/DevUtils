@@ -2,7 +2,7 @@ package dev.utils.common.validator;
 
 /**
  * detail: 银行卡管理
- * Created by AbrahamCaiJin
+ * @author AbrahamCaiJin
  * Update to Ttt
  * =============
  * 当你输入信用卡号码的时候，有没有担心输错了而造成损失呢？其实可以不必这么担心，

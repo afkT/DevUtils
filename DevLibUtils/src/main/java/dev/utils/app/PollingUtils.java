@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 轮询工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class PollingUtils {
 

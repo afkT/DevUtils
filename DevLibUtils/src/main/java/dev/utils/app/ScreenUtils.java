@@ -29,7 +29,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 屏幕相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ScreenUtils {
 

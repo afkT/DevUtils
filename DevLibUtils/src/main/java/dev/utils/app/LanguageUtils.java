@@ -15,7 +15,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 语言工具类
- * Created by Ttt
+ * @author Ttt
  */
 public class LanguageUtils {
 

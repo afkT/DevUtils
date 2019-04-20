@@ -9,7 +9,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 震动相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class VibrationUtils {
 

@@ -15,7 +15,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * detail: 线程池 - 构建类
- * Created by Ttt
+ * @author Ttt
  */
 public final class DevThreadPool {
 
@@ -99,7 +99,7 @@ public final class DevThreadPool {
 
     /**
      * detail: 线程池初始化枚举类型
-     * Created by Ttt
+     * @author Ttt
      */
     public enum DevThreadPoolType {
 

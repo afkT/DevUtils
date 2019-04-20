@@ -6,7 +6,7 @@ import dev.utils.app.SDCardUtils;
 
 /**
  * detail: 配置页面
- * Created by Ttt
+ * @author Ttt
  */
 public final class Config {
 

@@ -23,7 +23,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Acitivty 工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * 转场动画：
  * https://www.cnblogs.com/tianzhijiexian/p/4087917.html

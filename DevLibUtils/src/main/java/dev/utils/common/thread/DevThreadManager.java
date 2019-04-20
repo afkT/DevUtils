@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * detail: 线程池管理类
- * Created by Ttt
+ * @author Ttt
  */
 public final class DevThreadManager {
 

@@ -261,7 +261,7 @@ snackbarUtils1.setStyle(styleBuilder2);
 ```java
 /**
  * detail: 自定义样式 - 可参照下方实现方法，进行配置
- * Created by Ttt
+ * @author Ttt
  */
 class NightStyle extends SnackbarUtils.Style {
     @Override
@@ -280,7 +280,7 @@ class NightStyle extends SnackbarUtils.Style {
 ```java
 /**
  * detail: 样式相关
- * Created by Ttt
+ * @author Ttt
  */
 SnackbarUtils.Style style = new SnackbarUtils.Style() {
 

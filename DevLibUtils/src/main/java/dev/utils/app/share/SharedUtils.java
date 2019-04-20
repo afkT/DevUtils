@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * detail: SPUtils 工具类 - 直接单独使用
- * Created by Ttt
+ * @author Ttt
  */
 public final class SharedUtils {
 

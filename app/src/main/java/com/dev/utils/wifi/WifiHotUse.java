@@ -8,7 +8,7 @@ import dev.utils.app.wifi.WifiHotUtils;
 
 /**
  * detail: Wifi 热点使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class WifiHotUse {
 

@@ -8,7 +8,7 @@ import dev.utils.app.share.SharedUtils;
 
 /**
  * detail: SharedPreferences 使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class ShareUse {
 

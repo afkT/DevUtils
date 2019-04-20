@@ -28,7 +28,7 @@ import dev.utils.R;
 
 /**
  * detail: 自定义View着色美化 Toast 工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * 支持子线程弹出 Toast, 可通过开关配置
  * 内部解决 Android 7.1.1 崩溃问题
@@ -1043,7 +1043,7 @@ public final class ToastTintUtils {
 
     /**
      * detail: Toast 安全显示 Handler
-     * Created by Ttt
+     * @author Ttt
      */
     private static final class SafeHandler extends Handler {
 
@@ -1073,7 +1073,7 @@ public final class ToastTintUtils {
 
     /**
      * detail: Toast 自定义View 着色等相关 样式配置
-     * Created by Ttt
+     * @author Ttt
      */
     public interface Style {
 
@@ -1136,7 +1136,7 @@ public final class ToastTintUtils {
 
     /**
      * detail: 默认样式
-     * Created by Ttt
+     * @author Ttt
      */
     public static class DefaultStyle implements Style {
 
@@ -1225,7 +1225,7 @@ public final class ToastTintUtils {
 
     /**
      * detail: Normal 样式 - 灰色
-     * Created by Ttt
+     * @author Ttt
      */
     public static class NormalStyle extends DefaultStyle {
 
@@ -1248,7 +1248,7 @@ public final class ToastTintUtils {
 
     /**
      * detail: Info 样式 - 海洋蓝
-     * Created by Ttt
+     * @author Ttt
      */
     public static class InfoStyle extends DefaultStyle {
 
@@ -1271,7 +1271,7 @@ public final class ToastTintUtils {
 
     /**
      * detail: Warning 样式 - 橙色
-     * Created by Ttt
+     * @author Ttt
      */
     public static class WarningStyle extends DefaultStyle {
 
@@ -1294,7 +1294,7 @@ public final class ToastTintUtils {
 
     /**
      * detail: Error 样式 - 红色
-     * Created by Ttt
+     * @author Ttt
      */
     public static class ErrorStyle extends DefaultStyle {
 
@@ -1317,7 +1317,7 @@ public final class ToastTintUtils {
 
     /**
      * detail: Success 样式 - 绿色
-     * Created by Ttt
+     * @author Ttt
      */
     public static class SuccessStyle extends DefaultStyle {
 
@@ -1345,7 +1345,7 @@ public final class ToastTintUtils {
 
     /**
      * detail: Toast 过滤器
-     * Created by Ttt
+     * @author Ttt
      */
     public interface Filter {
 

@@ -9,7 +9,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: Http 参数工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class HttpParamsUtils {
 

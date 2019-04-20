@@ -7,7 +7,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 开发常用方法工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class DevCommonUtils {
 

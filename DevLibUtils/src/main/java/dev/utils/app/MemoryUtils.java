@@ -14,7 +14,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 获取内存信息
- * Created by Ttt
+ * @author Ttt
  */
 public final class MemoryUtils {
 

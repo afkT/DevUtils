@@ -11,7 +11,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 点击工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ClickUtils {
 

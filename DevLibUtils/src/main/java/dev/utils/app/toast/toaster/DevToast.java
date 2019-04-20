@@ -5,7 +5,7 @@ import android.view.View;
 
 /**
  * detail: Toast 工具类 (支持子线程弹出 Toast, 处理无通知权限)
- * Created by Ttt
+ * @author Ttt
  * ==============
  * 支持子线程弹出 Toast, 可通过开关配置
  * 内部解决 Android 7.1.1 崩溃问题

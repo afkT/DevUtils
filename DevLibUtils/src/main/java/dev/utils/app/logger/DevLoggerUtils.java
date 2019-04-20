@@ -9,7 +9,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 日志操作工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class DevLoggerUtils {
 

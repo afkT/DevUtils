@@ -7,7 +7,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 颜色工具类(包括常用的色值)
- * Created by Ttt
+ * @author Ttt
  */
 public final class ColorUtils {
 

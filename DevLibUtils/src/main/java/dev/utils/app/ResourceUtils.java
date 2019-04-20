@@ -30,7 +30,7 @@ import dev.utils.R;
 
 /**
  * detail: 资源文件工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ResourceUtils {
 

@@ -8,7 +8,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 文件深度优先搜索算法 (递归搜索某个目录下的全部文件)
- * Created by Ttt
+ * @author Ttt
  */
 public final class FileDepthFirstSearchUtils {
 
@@ -19,16 +19,23 @@ public final class FileDepthFirstSearchUtils {
     // = 构造函数 =
     // ============
 
+    /**
+     * 构造函数
+     */
     public FileDepthFirstSearchUtils() {
     }
 
+    /**
+     * 构造函数
+     * @param iSearchHandler 搜索处理接口
+     */
     public FileDepthFirstSearchUtils(final ISearchHandler iSearchHandler) {
         this.iSearchHandler = iSearchHandler;
     }
 
     /**
      * detail: 文件信息 Item
-     * Created by Ttt
+     * @author Ttt
      */
     public final class FileItem {
 
@@ -45,7 +52,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * detail: 搜索处理接口
-     * Created by Ttt
+     * @author Ttt
      */
     public interface ISearchHandler {
 

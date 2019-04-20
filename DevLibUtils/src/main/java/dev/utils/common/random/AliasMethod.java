@@ -21,7 +21,7 @@ import java.util.Random;
 
 /**
  * detail: 随机概率采样算法
- * Created by Keith Schwarz
+ * @author Keith Schwarz
  * ========================
  * http://www.keithschwarz.com/interesting/
  * http://www.keithschwarz.com/darts-dice-coins/

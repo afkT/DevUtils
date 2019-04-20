@@ -7,7 +7,7 @@ import android.text.TextUtils;
 
 /**
  * detail: Toast 默认样式
- * Created by Ttt
+ * @author Ttt
  */
 public class DefaultToastStyle implements IToast.Style {
 

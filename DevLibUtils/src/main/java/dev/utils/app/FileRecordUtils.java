@@ -25,7 +25,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 文件记录工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class FileRecordUtils {
 

@@ -9,7 +9,7 @@ import dev.utils.app.logger.LogLevel;
 
 /**
  * detail: 全局Application
- * Created by Ttt
+ * @author Ttt
  */
 public class BaseApplication extends Application {
 

@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * detail: 缓存管理类
- * Created by 杨福海(michael) www.yangfuhai.com
+ * @author 杨福海(michael) www.yangfuhai.com
  * Update to Ttt
  */
 final class DevCacheManager {

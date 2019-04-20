@@ -6,7 +6,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 字符串工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class StringUtils {
 

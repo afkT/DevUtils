@@ -11,7 +11,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Wifi信息实体类
- * Created by Ttt
+ * @author Ttt
  */
 public class WifiVo implements Parcelable {
 

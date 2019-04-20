@@ -6,7 +6,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 关闭(IO流)工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class CloseUtils {
 

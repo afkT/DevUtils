@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: App通用工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class AppCommonUtils {
 

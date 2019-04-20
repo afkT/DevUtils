@@ -9,7 +9,7 @@ import dev.DevUtils;
 
 /**
  * detail: 路径相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class PathUtils {
 

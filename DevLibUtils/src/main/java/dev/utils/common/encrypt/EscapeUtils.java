@@ -2,7 +2,7 @@ package dev.utils.common.encrypt;
 
 /**
  * detail: 字符串 编/解码 工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class EscapeUtils {
 

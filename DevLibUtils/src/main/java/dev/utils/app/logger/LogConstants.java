@@ -2,7 +2,7 @@ package dev.utils.app.logger;
 
 /**
  * detail: 日志常量类
- * Created by Ttt
+ * @author Ttt
  */
 final class LogConstants {
 

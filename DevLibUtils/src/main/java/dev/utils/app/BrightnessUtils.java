@@ -18,7 +18,7 @@ import static android.Manifest.permission.WRITE_SETTINGS;
 
 /**
  * detail: 亮度相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class BrightnessUtils {
 

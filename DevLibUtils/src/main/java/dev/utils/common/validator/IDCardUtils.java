@@ -11,7 +11,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 居民身份证工具类
- * Created by AbrahamCaiJin
+ * @author AbrahamCaiJin
  * Update to Ttt
  */
 public final class IDCardUtils {

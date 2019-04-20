@@ -19,7 +19,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 签名工具类(获取 App 签名信息)
- * Created by Ttt
+ * @author Ttt
  */
 public final class SignaturesUtils {
 

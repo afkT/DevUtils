@@ -10,7 +10,7 @@ import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: 计算字体宽度、高度
- * Created by Ttt
+ * @author Ttt
  */
 public final class TextCalcUse {
 

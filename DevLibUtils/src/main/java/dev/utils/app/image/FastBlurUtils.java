@@ -5,7 +5,7 @@ import android.media.ThumbnailUtils;
 
 /**
  * detail: 毛玻璃效果
- * Created by Ttt
+ * @author Ttt
  */
 public final class FastBlurUtils {
 

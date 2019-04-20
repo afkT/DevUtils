@@ -15,7 +15,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 播放“bee”的声音, 并且震动 辅助类
- * Created by Ttt
+ * @author Ttt
  */
 public final class BeepVibrateAssist implements Closeable {
 

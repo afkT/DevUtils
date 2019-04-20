@@ -2,7 +2,7 @@ package dev.utils.common.assist;
 
 /**
  * detail: 时间计时器
- * Created by Ttt
+ * @author Ttt
  */
 public class TimeCounter {
 

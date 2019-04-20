@@ -12,7 +12,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 文件广度优先搜索算法 (多线程 + 队列，搜索某个目录下的全部文件)
- * Created by Ttt
+ * @author Ttt
  */
 public final class FileBreadthFirstSearchUtils {
 
@@ -23,16 +23,23 @@ public final class FileBreadthFirstSearchUtils {
     // = 构造函数 =
     // ============
 
+    /**
+     * 构造函数
+     */
     public FileBreadthFirstSearchUtils() {
     }
 
+    /**
+     * 构造函数
+     * @param iSearchHandler 搜索处理接口
+     */
     public FileBreadthFirstSearchUtils(final ISearchHandler iSearchHandler) {
         this.iSearchHandler = iSearchHandler;
     }
 
     /**
      * detail: 文件信息 Item
-     * Created by Ttt
+     * @author Ttt
      */
     public final class FileItem {
 
@@ -48,7 +55,8 @@ public final class FileBreadthFirstSearchUtils {
 
         /**
          * 保存子文件信息
-         * @param file
+         * @param file file
+         * @return {@link FileItem}
          */
         private synchronized FileItem put(final File file) {
             if (mapChilds == null) {
@@ -65,7 +73,7 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * detail: 文件队列
-     * Created by Ttt
+     * @author Ttt
      */
     private class FileQueue {
 
@@ -83,27 +91,27 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * detail: 搜索处理接口
-     * Created by Ttt
+     * @author Ttt
      */
     public interface ISearchHandler {
 
         /**
          * 判断是否处理该文件
-         * @param file
-         * @return
+         * @param file file
+         * @return {@code true} 处理该文件, {@code false} 跳过该文件不处理
          */
         boolean isHandlerFile(File file);
 
         /**
          * 是否添加到集合
-         * @param file
-         * @return
+         * @param file file
+         * @return {@code true} 添加, {@code false} 不添加
          */
         boolean isAddToList(File file);
 
         /**
          * 搜索结束监听
-         * @param rootFileItem
+         * @param rootFileItem 根文件 {@link FileItem}
          * @param startTime    开始扫描时间
          * @param endTime      扫描结束时间
          */
@@ -144,8 +152,8 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 设置搜索处理接口
-     * @param iSearchHandler
-     * @return
+     * @param iSearchHandler 搜索处理接口
+     * @return {@link FileBreadthFirstSearchUtils}
      */
     public FileBreadthFirstSearchUtils setSearchHandler(final ISearchHandler iSearchHandler) {
         this.iSearchHandler = iSearchHandler;
@@ -154,7 +162,7 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 获取任务队列同时进行数量
-     * @return
+     * @return 队列数量
      */
     public int getQueueSameTimeNumber() {
         return queueSameTimeNumber;
@@ -162,8 +170,8 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 任务队列同时进行数量
-     * @param queueSameTimeNumber
-     * @return
+     * @param queueSameTimeNumber 同一时间线程队列数量
+     * @return {@link FileBreadthFirstSearchUtils}
      */
     public synchronized FileBreadthFirstSearchUtils setQueueSameTimeNumber(final int queueSameTimeNumber) {
         if (mIsRunning) {
@@ -175,7 +183,7 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 是否搜索中
-     * @return
+     * @return {@code true} 搜索/运行中, {@code false} 非搜索/运行中
      */
     public boolean isRunning() {
         return mIsRunning;
@@ -190,31 +198,31 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 是否停止搜索
-     * @return
+     * @return {@code true} 停止运行, {@code false} 非停止运行
      */
     public boolean isStop() {
         return mIsStop;
     }
 
     /**
-     * 获取开始搜索时间
-     * @return
+     * 获取开始搜索时间(毫秒)
+     * @return 开始搜索时间(毫秒)
      */
     public long getStartTime() {
         return startTime;
     }
 
     /**
-     * 获取结束搜索时间
-     * @return
+     * 获取结束搜索时间(毫秒)
+     * @return 结束搜索时间(毫秒)
      */
     public long getEndTime() {
         return endTime;
     }
 
     /**
-     * 获取延迟校验时间
-     * @return
+     * 获取延迟校验时间(毫秒)
+     * @return 延迟线程校验时间(毫秒)
      */
     public long getDelayTime() {
         return delayTime;
@@ -222,7 +230,7 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 设置延迟校验时间
-     * @param delayTimeMillis
+     * @param delayTimeMillis 延迟校验时间
      */
     public void setDelayTime(final long delayTimeMillis) {
         this.delayTime = delayTimeMillis;
@@ -308,7 +316,7 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 搜索文件
-     * @param file
+     * @param file file
      * @param fileItem 所在文件夹对象(上一级目录)
      */
     private void queryFile(final File file, final FileItem fileItem) {

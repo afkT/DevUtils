@@ -6,7 +6,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 摄像头相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class CameraUtils {
 

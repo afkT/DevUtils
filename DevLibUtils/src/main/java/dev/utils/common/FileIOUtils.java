@@ -23,7 +23,7 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: 文件IO流工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class FileIOUtils {
 

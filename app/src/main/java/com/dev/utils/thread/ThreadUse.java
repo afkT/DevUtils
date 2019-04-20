@@ -5,7 +5,7 @@ import dev.utils.common.thread.DevThreadPool;
 
 /**
  * detail: 线程使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class ThreadUse {
 

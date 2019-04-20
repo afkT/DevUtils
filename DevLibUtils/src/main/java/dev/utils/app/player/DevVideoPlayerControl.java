@@ -9,7 +9,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 视频播放控制器
- * Created by Ttt
+ * @author Ttt
  */
 public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         DevMediaManager.MediaListener {

@@ -34,7 +34,7 @@ import static android.Manifest.permission.INTERNET;
 
 /**
  * detail: 设备相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class DeviceUtils {
 

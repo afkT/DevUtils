@@ -14,7 +14,7 @@ import dev.utils.app.image.BitmapUtils;
 
 /**
  * detail: ShapeUtils 使用方法
- * Created by Ttt
+ * @author Ttt
  */
 class ShapeUse {
 

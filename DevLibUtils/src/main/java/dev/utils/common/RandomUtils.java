@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * detail: 随机生成工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class RandomUtils {
 

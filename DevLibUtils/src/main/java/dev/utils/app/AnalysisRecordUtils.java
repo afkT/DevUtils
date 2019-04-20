@@ -28,7 +28,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 分析记录工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class AnalysisRecordUtils {
 
@@ -431,7 +431,7 @@ public final class AnalysisRecordUtils {
 
     /**
      * detail: 记录文件信息实体类
-     * Created by Ttt
+     * @author Ttt
      */
     public static class FileInfo {
 

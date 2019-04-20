@@ -36,7 +36,7 @@ import dev.utils.app.ScreenUtils;
 
 /**
  * detail: Bitmap工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class BitmapUtils {
 

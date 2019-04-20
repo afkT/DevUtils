@@ -14,7 +14,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: ContentResolver 工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * https://www.cnblogs.com/Sharley/p/7942142.html
  * https://blog.csdn.net/lemon_blue/article/details/52353851

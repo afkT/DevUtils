@@ -24,7 +24,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Toast 内部工具类
- * Created by Ttt
+ * @author Ttt
  */
 final class Utils {
 

@@ -21,7 +21,7 @@ import dev.utils.common.FileUtils;
 
 /**
  * detail: SD卡相关辅助类
- * Created by Ttt
+ * @author Ttt
  */
 public final class SDCardUtils {
 

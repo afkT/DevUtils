@@ -23,7 +23,7 @@ import static android.content.Context.LOCATION_SERVICE;
 
 /**
  * detail: 定位相关工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class LocationUtils {
 

@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * detail: SharedPreferences 操作接口
- * Created by Ttt
+ * @author Ttt
  * ==============
  * http://www.jianshu.com/p/fcd75a324c35
  */

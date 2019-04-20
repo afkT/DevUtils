@@ -10,7 +10,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: dp，px，sp转换、View获取宽高等
- * Created by Ttt
+ * @author Ttt
  */
 public final class SizeUtils {
 

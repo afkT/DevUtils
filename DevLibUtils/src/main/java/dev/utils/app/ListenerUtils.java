@@ -10,7 +10,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 事件工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ListenerUtils {
 

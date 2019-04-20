@@ -13,7 +13,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: Android Manifest工具类
- * Created by Ttt
+ * @author Ttt
  */
 public final class ManifestUtils {
 

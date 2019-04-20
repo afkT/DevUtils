@@ -13,7 +13,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 自动获取焦点 辅助类
- * Created by Ttt
+ * @author Ttt
  */
 public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
@@ -210,7 +210,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
     /**
      * detail: 自动对焦任务
-     * Created by Ttt
+     * @author Ttt
      */
     private final class AutoFocusTask extends AsyncTask<Object, Object, Object> {
         @Override

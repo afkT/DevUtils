@@ -26,7 +26,7 @@ import dev.DevUtils;
 
 /**
  * detail: 权限请求工具类
- * Created by Ttt
+ * @author Ttt
  * ==============
  * 参考:
  * https://github.com/anthonycr/Grant

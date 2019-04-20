@@ -13,7 +13,7 @@ import dev.utils.app.logger.DevLoggerUtils;
 
 /**
  * detail: 日志、异常文件记录保存使用方法
- * Created by Ttt
+ * @author Ttt
  */
 public final class FileRecordUse {
 
