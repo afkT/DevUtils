@@ -85,7 +85,7 @@ public final class LocationUtils {
 
     /**
      * 判断Gps是否可用
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isGpsEnabled() {
         try {
@@ -99,7 +99,7 @@ public final class LocationUtils {
 
     /**
      * 判断定位是否可用
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isLocationEnabled() {
         try {
@@ -134,7 +134,7 @@ public final class LocationUtils {
      * @param minTime     位置信息更新周期(单位：毫秒)
      * @param minDistance 位置变化最小距离：当位置距离变化超过此值时，将更新位置信息(单位：米)
      * @param listener    位置刷新的回调接口
-     * @return true : 初始化成功, false : 初始化失败
+     * @return {@code true} 初始化成功, {@code false} 初始化失败
      */
     @SuppressLint("MissingPermission")
     public static boolean register(final long minTime, final long minDistance, final OnLocationChangeListener listener) {
@@ -254,7 +254,7 @@ public final class LocationUtils {
      * 是否更好的位置
      * @param newLocation
      * @param currentBestLocation
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isBetterLocation(final Location newLocation, final Location currentBestLocation) {
         if (newLocation == null || currentBestLocation == null) {
@@ -298,7 +298,7 @@ public final class LocationUtils {
      * 是否相同的提供者
      * @param provider0 提供者1
      * @param provider1 提供者2
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isSameProvider(final String provider0, final String provider1) {
         if (provider0 == null) {

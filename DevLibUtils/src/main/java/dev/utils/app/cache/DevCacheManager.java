@@ -128,7 +128,7 @@ final class DevCacheManager {
     /**
      * 删除文件
      * @param key
-     * @return true: 删除成功, false: 删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     protected boolean remove(final String key) {
         File file = get(key);

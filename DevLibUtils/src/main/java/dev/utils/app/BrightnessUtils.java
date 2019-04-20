@@ -30,7 +30,7 @@ public final class BrightnessUtils {
 
     /**
      * 判断是否开启自动调节亮度
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isAutoBrightnessEnabled() {
         try {
@@ -45,8 +45,8 @@ public final class BrightnessUtils {
     /**
      * 设置是否开启自动调节亮度
      * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-     * @param enabled true : 打开, false : 关闭
-     * @return true : 成功, false : 失败
+     * @param enabled {@code true} 打开, {@code false} 关闭
+     * @return {@code true} 成功, {@code false} 失败
      */
     @RequiresPermission(WRITE_SETTINGS)
     public static boolean setAutoBrightnessEnabled(final boolean enabled) {

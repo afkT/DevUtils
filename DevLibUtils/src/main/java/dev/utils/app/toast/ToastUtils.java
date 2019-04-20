@@ -773,14 +773,14 @@ public final class ToastUtils {
         /**
          * 判断是否显示
          * @param view
-         * @return true: 接着执行, false: 过滤不处理
+         * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         boolean filter(View view);
 
         /**
          * 判断是否显示
          * @param content
-         * @return true: 接着执行, false: 过滤不处理
+         * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         boolean filter(String content);
 
@@ -804,7 +804,7 @@ public final class ToastUtils {
         /**
          * 判断是否显示
          * @param view
-         * @return true: 接着执行, false: 过滤不处理
+         * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         @Override
         public boolean filter(View view) {
@@ -817,7 +817,7 @@ public final class ToastUtils {
         /**
          * 判断是否显示
          * @param content
-         * @return true: 接着执行, false: 过滤不处理
+         * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         @Override
         public boolean filter(String content) {

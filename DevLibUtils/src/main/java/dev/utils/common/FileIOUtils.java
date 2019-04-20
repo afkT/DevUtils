@@ -49,7 +49,7 @@ public final class FileIOUtils {
      * 通过输入流写入文件
      * @param filePath
      * @param is
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromIS(final String filePath, final InputStream is) {
         return writeFileFromIS(getFileByPath(filePath), is, false);
@@ -60,7 +60,7 @@ public final class FileIOUtils {
      * @param filePath
      * @param is
      * @param append
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromIS(final String filePath, final InputStream is, final boolean append) {
         return writeFileFromIS(getFileByPath(filePath), is, append);
@@ -70,7 +70,7 @@ public final class FileIOUtils {
      * 通过输入流写入文件
      * @param file
      * @param is
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromIS(final File file, final InputStream is) {
         return writeFileFromIS(file, is, false);
@@ -81,7 +81,7 @@ public final class FileIOUtils {
      * @param file
      * @param is
      * @param append
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromIS(final File file, final InputStream is, final boolean append) {
         if (!createOrExistsFile(file) || is == null) return false;
@@ -106,7 +106,7 @@ public final class FileIOUtils {
      * 通过字节流写入文件
      * @param filePath
      * @param bytes
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes) {
         return writeFileFromBytesByStream(getFileByPath(filePath), bytes, false);
@@ -117,7 +117,7 @@ public final class FileIOUtils {
      * @param filePath
      * @param bytes
      * @param append
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes, final boolean append) {
         return writeFileFromBytesByStream(getFileByPath(filePath), bytes, append);
@@ -127,7 +127,7 @@ public final class FileIOUtils {
      * 通过字节流写入文件
      * @param file
      * @param bytes
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByStream(final File file, final byte[] bytes) {
         return writeFileFromBytesByStream(file, bytes, false);
@@ -138,7 +138,7 @@ public final class FileIOUtils {
      * @param file
      * @param bytes
      * @param append
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByStream(final File file, final byte[] bytes, final boolean append) {
         if (bytes == null || !createOrExistsFile(file)) return false;
@@ -160,7 +160,7 @@ public final class FileIOUtils {
      * @param filePath
      * @param bytes
      * @param isForce
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean isForce) {
         return writeFileFromBytesByChannel(getFileByPath(filePath), bytes, false, isForce);
@@ -172,7 +172,7 @@ public final class FileIOUtils {
      * @param bytes
      * @param append
      * @param isForce
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
         return writeFileFromBytesByChannel(getFileByPath(filePath), bytes, append, isForce);
@@ -183,7 +183,7 @@ public final class FileIOUtils {
      * @param file
      * @param bytes
      * @param isForce
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByChannel(final File file, final byte[] bytes, final boolean isForce) {
         return writeFileFromBytesByChannel(file, bytes, false, isForce);
@@ -195,7 +195,7 @@ public final class FileIOUtils {
      * @param bytes
      * @param append
      * @param isForce
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByChannel(final File file, final byte[] bytes, final boolean append, final boolean isForce) {
         if (bytes == null) return false;
@@ -219,7 +219,7 @@ public final class FileIOUtils {
      * @param filePath
      * @param bytes
      * @param isForce
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByMap(final String filePath, final byte[] bytes, final boolean isForce) {
         return writeFileFromBytesByMap(filePath, bytes, false, isForce);
@@ -231,7 +231,7 @@ public final class FileIOUtils {
      * @param bytes
      * @param append
      * @param isForce
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByMap(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
         return writeFileFromBytesByMap(getFileByPath(filePath), bytes, append, isForce);
@@ -242,7 +242,7 @@ public final class FileIOUtils {
      * @param file
      * @param bytes
      * @param isForce
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByMap(final File file, final byte[] bytes, final boolean isForce) {
         return writeFileFromBytesByMap(file, bytes, false, isForce);
@@ -254,7 +254,7 @@ public final class FileIOUtils {
      * @param bytes
      * @param append
      * @param isForce
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByMap(final File file, final byte[] bytes, final boolean append, final boolean isForce) {
         if (bytes == null || !createOrExistsFile(file)) return false;
@@ -277,7 +277,7 @@ public final class FileIOUtils {
      * 通过字符串写入文件
      * @param filePath
      * @param content
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromString(final String filePath, final String content) {
         return writeFileFromString(getFileByPath(filePath), content, false);
@@ -288,7 +288,7 @@ public final class FileIOUtils {
      * @param filePath
      * @param content
      * @param append
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromString(final String filePath, final String content, final boolean append) {
         return writeFileFromString(getFileByPath(filePath), content, append);
@@ -298,7 +298,7 @@ public final class FileIOUtils {
      * 通过字符串写入文件
      * @param file
      * @param content
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromString(final File file, final String content) {
         return writeFileFromString(file, content, false);
@@ -309,7 +309,7 @@ public final class FileIOUtils {
      * @param file
      * @param content
      * @param append
-     * @return true : success, false : fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromString(final File file, final String content, final boolean append) {
         if (file == null || content == null) return false;
@@ -611,7 +611,7 @@ public final class FileIOUtils {
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
      * @param filePath 文件路径
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     private static boolean createOrExistsFile(final String filePath) {
         return createOrExistsFile(getFileByPath(filePath));
@@ -620,7 +620,7 @@ public final class FileIOUtils {
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
      * @param file 文件
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     private static boolean createOrExistsFile(final File file) {
         if (file == null) return false;
@@ -640,7 +640,7 @@ public final class FileIOUtils {
     /**
      * 判断目录是否存在，不存在则判断是否创建成功
      * @param file 文件
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     private static boolean createOrExistsDir(final File file) {
         // 如果存在，是目录则返回 true，是文件则返回 false，不存在则返回是否创建成功

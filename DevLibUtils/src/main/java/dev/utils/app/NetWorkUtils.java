@@ -227,7 +227,7 @@ public final class NetWorkUtils {
     /**
      * 判断网络是否可用
      * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return true: 可用 false: 不可用
+     * @return {@code true} 可用, {@code false} 不可用
      */
     @Deprecated
     @RequiresPermission(anyOf = {android.Manifest.permission.ACCESS_NETWORK_STATE, android.Manifest.permission.INTERNET})

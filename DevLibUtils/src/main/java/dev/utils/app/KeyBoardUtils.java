@@ -413,7 +413,7 @@ public final class KeyBoardUtils {
     /**
      * 判断软键盘是否可见
      * @param activity
-     * @return true : 可见, false : 不可见
+     * @return {@code true} 可见, {@code false} 不可见
      */
     public static boolean isSoftInputVisible(final Activity activity) {
         return isSoftInputVisible(activity, 200);
@@ -423,7 +423,7 @@ public final class KeyBoardUtils {
      * 判断软键盘是否可见
      * @param activity
      * @param minHeightOfSoftInput 软键盘最小高度
-     * @return true : 可见, false : 不可见
+     * @return {@code true} 可见, {@code false} 不可见
      */
     public static boolean isSoftInputVisible(final Activity activity, final int minHeightOfSoftInput) {
         return getContentViewInvisibleHeight(activity) >= minHeightOfSoftInput;

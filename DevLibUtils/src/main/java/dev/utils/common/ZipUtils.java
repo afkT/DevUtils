@@ -36,7 +36,7 @@ public final class ZipUtils {
      * 批量压缩文件
      * @param resFiles    待压缩文件路径集合
      * @param zipFilePath 压缩文件路径
-     * @return true : 压缩成功, false : 压缩失败
+     * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws IOException IO错误时抛出
      */
     public static boolean zipFiles(final Collection<String> resFiles, final String zipFilePath) throws IOException {
@@ -48,7 +48,7 @@ public final class ZipUtils {
      * @param resFilePaths 待压缩文件路径集合
      * @param zipFilePath  压缩文件路径
      * @param comment      压缩文件的注释
-     * @return true : 压缩成功, false : 压缩失败
+     * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws IOException IO错误时抛出
      */
     public static boolean zipFiles(final Collection<String> resFilePaths, final String zipFilePath, final String comment) throws IOException {
@@ -72,7 +72,7 @@ public final class ZipUtils {
      * 批量压缩文件
      * @param resFiles 待压缩文件集合
      * @param zipFile  压缩文件
-     * @return true : 压缩成功, false : 压缩失败
+     * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws IOException IO错误时抛出
      */
     public static boolean zipFiles(final Collection<File> resFiles, final File zipFile) throws IOException {
@@ -84,7 +84,7 @@ public final class ZipUtils {
      * @param resFiles 待压缩文件集合
      * @param zipFile  压缩文件
      * @param comment  压缩文件的注释
-     * @return true : 压缩成功, false : 压缩失败
+     * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws IOException IO错误时抛出
      */
     public static boolean zipFiles(final Collection<File> resFiles, final File zipFile, final String comment) throws IOException {
@@ -108,7 +108,7 @@ public final class ZipUtils {
      * 压缩文件
      * @param resFilePath 待压缩文件路径
      * @param zipFilePath 压缩文件路径
-     * @return true : 压缩成功, false : 压缩失败
+     * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws IOException IO 错误时抛出
      */
     public static boolean zipFile(final String resFilePath, final String zipFilePath) throws IOException {
@@ -120,7 +120,7 @@ public final class ZipUtils {
      * @param resFilePath 待压缩文件路径
      * @param zipFilePath 压缩文件路径
      * @param comment     压缩文件的注释
-     * @return true : 压缩成功, false : 压缩失败
+     * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws IOException IO 错误时抛出
      */
     public static boolean zipFile(final String resFilePath, final String zipFilePath, final String comment) throws IOException {
@@ -131,7 +131,7 @@ public final class ZipUtils {
      * 压缩文件
      * @param resFile 待压缩文件
      * @param zipFile 压缩文件
-     * @return true : 压缩成功, false : 压缩失败
+     * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws IOException IO 错误时抛出
      */
     public static boolean zipFile(final File resFile, final File zipFile) throws IOException {
@@ -143,7 +143,7 @@ public final class ZipUtils {
      * @param resFile 待压缩文件
      * @param zipFile 压缩文件
      * @param comment 压缩文件的注释
-     * @return true : 压缩成功, false : 压缩失败
+     * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws IOException IO 错误时抛出
      */
     public static boolean zipFile(final File resFile, final File zipFile, final String comment) throws IOException {
@@ -165,7 +165,7 @@ public final class ZipUtils {
      * @param rootPath 相对于压缩文件的路径
      * @param zos      压缩文件输出流
      * @param comment  压缩文件的注释
-     * @return true : 压缩成功, false : 压缩失败
+     * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws IOException IO 错误时抛出
      */
     private static boolean zipFile(final File resFile, String rootPath, final ZipOutputStream zos, final String comment) throws IOException {
@@ -375,7 +375,7 @@ public final class ZipUtils {
     /**
      * 判断目录是否存在，不存在则判断是否创建成功
      * @param file 文件
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     private static boolean createOrExistsDir(final File file) {
         // 如果存在，是目录则返回 true，是文件则返回 false，不存在则返回是否创建成功
@@ -385,7 +385,7 @@ public final class ZipUtils {
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
      * @param file 文件
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     private static boolean createOrExistsFile(final File file) {
         if (file == null) return false;

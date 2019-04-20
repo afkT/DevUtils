@@ -29,7 +29,7 @@ public final class ServiceUtils {
     /**
      * 判断服务是否运行
      * @param className 完整包名的服务类名
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isServiceRunning(final String className) {
         try {
@@ -49,7 +49,7 @@ public final class ServiceUtils {
     /**
      * 判断服务是否运行
      * @param clazz
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isServiceRunning(final Class<?> clazz) {
         try {
@@ -109,7 +109,7 @@ public final class ServiceUtils {
     /**
      * 停止服务
      * @param className 完整包名的服务类名
-     * @return true : 停止成功, false : 停止失败
+     * @return {@code true} 停止成功, {@code false} 停止失败
      */
     public static boolean stopService(final String className) {
         try {
@@ -123,7 +123,7 @@ public final class ServiceUtils {
     /**
      * 停止服务
      * @param clazz 服务类
-     * @return true : 停止成功, false : 停止失败
+     * @return {@code true} 停止成功, {@code false} 停止失败
      */
     public static boolean stopService(final Class<?> clazz) {
         try {

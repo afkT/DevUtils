@@ -89,7 +89,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
     /**
      * 是否允许自动对焦
-     * @return true: 自动对焦, false: 非自动对焦
+     * @return {@code true} 自动对焦, {@code false} 非自动对焦
      */
     public boolean isAutoFocus() {
         return autoFocus;

@@ -295,7 +295,7 @@ public final class ProcessUtils {
      * 杀死后台服务进程
      * <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
      * @param packageName
-     * @return true : 杀死成功, false : 杀死失败
+     * @return {@code true} 杀死成功, {@code false} 杀死失败
      */
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static boolean killBackgroundProcesses(@NonNull final String packageName) {

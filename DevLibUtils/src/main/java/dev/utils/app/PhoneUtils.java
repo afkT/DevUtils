@@ -136,7 +136,7 @@ public final class PhoneUtils {
 
     /**
      * 判断设备是否是手机
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isPhone() {
         try {
@@ -320,7 +320,7 @@ public final class PhoneUtils {
 
     /**
      * 判断 sim 卡是否准备好
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isSimCardReady() {
         try {

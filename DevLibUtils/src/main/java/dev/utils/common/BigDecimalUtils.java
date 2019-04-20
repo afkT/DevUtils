@@ -430,7 +430,7 @@ public final class BigDecimalUtils {
      * 比较大小
      * @param v1 输入的数值
      * @param v2 被比较的数字
-     * @return true：v1 >= v2，false v1 < v2
+     * @return {@code true} v1 >= v2, {@code false} v1 < v2
      */
     public static Boolean compare(final String v1, final String v2) {
         try {
@@ -445,7 +445,7 @@ public final class BigDecimalUtils {
      * 比较大小
      * @param v1 输入的数值
      * @param v2 被比较的数字
-     * @return true：v1 >= v2，false v1 < v2
+     * @return {@code true} v1 >= v2, {@code false} v1 < v2
      */
     public static Boolean compare(final BigDecimal v1, final BigDecimal v2) {
         try {
@@ -460,7 +460,7 @@ public final class BigDecimalUtils {
      * 比较大小
      * @param v1 输入的数值
      * @param v2 被比较的数字
-     * @return true：v1 >= v2，false v1 < v2
+     * @return {@code true} v1 >= v2, {@code false} v1 < v2
      */
     public static Boolean compare(final String v1, final double v2) {
         try {

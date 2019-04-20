@@ -87,7 +87,7 @@ public final class BarUtils {
     /**
      * 判断状态栏是否显示
      * @param activity The activity.
-     * @return true: yes, falose : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isStatusBarVisible(@NonNull final Activity activity) {
         int flags = activity.getWindow().getAttributes().flags;
@@ -640,7 +640,7 @@ public final class BarUtils {
     /**
      * 判断导航栏是否可见
      * @param activity The activity.
-     * @return true: yes, falose : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNavBarVisible(@NonNull final Activity activity) {
         return isNavBarVisible(activity.getWindow());
@@ -649,7 +649,7 @@ public final class BarUtils {
     /**
      * 判断导航栏是否可见
      * @param window The window.
-     * @return true: yes, falose : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNavBarVisible(@NonNull final Window window) {
         View decorView = window.getDecorView();
@@ -699,7 +699,7 @@ public final class BarUtils {
 
     /**
      * 判断是否支持导航栏
-     * @return true: yes, falose : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isSupportNavBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

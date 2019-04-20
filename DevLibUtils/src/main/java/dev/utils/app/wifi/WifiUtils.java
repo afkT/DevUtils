@@ -258,7 +258,7 @@ public final class WifiUtils {
     /**
      * 格式化，处理SSID
      * @param ssid
-     * @param isHandler true = 添加引号，false = 删除引号
+     * @param isHandler {@code true} 添加引号, {@code false} 删除引号
      * @return
      */
     public static String formatSSID(final String ssid, final boolean isHandler) {

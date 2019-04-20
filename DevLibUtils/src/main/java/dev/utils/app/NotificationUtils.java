@@ -291,7 +291,7 @@ public final class NotificationUtils {
 
         /**
          * 判断是否为 null
-         * @return
+         * @return {@code true} is null, {@code false} not null
          */
         public boolean isEmpty() {
             if (vibrates != null) {

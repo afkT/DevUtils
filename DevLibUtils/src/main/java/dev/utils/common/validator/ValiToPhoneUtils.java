@@ -22,7 +22,7 @@ public final class ValiToPhoneUtils {
     /**
      * 判断是否为 null
      * @param str
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);

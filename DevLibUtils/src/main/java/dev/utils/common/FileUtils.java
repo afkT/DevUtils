@@ -49,7 +49,7 @@ public final class FileUtils {
     /**
      * 判断是否为 null
      * @param str
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
@@ -198,7 +198,7 @@ public final class FileUtils {
     /**
      * 判断目录是否存在，不存在则判断是否创建成功
      * @param dirPath 目录路径
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     public static boolean createOrExistsDir(final String dirPath) {
         return createOrExistsDir(getFileByPath(dirPath));
@@ -207,7 +207,7 @@ public final class FileUtils {
     /**
      * 判断目录是否存在，不存在则判断是否创建成功
      * @param file 文件
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     public static boolean createOrExistsDir(final File file) {
         // 如果存在，是目录则返回 true，是文件则返回 false，不存在则返回是否创建成功
@@ -217,7 +217,7 @@ public final class FileUtils {
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
      * @param filePath 文件路径
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     public static boolean createOrExistsFile(final String filePath) {
         return createOrExistsFile(getFileByPath(filePath));
@@ -226,7 +226,7 @@ public final class FileUtils {
     /**
      * 判断文件是否存在，不存在则判断是否创建成功
      * @param file 文件
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     public static boolean createOrExistsFile(final File file) {
         if (file == null) return false;
@@ -246,7 +246,7 @@ public final class FileUtils {
     /**
      * 判断文件是否存在，存在则在创建之前删除
      * @param filePath
-     * @return true : 创建成功, false : 创建失败
+     * @return {@code true} 创建成功, {@code false} 创建失败
      */
     public static boolean createFileByDeleteOldFile(final String filePath) {
         return createFileByDeleteOldFile(getFileByPath(filePath));
@@ -255,7 +255,7 @@ public final class FileUtils {
     /**
      * 判断文件是否存在，存在则在创建之前删除
      * @param file
-     * @return true : 创建成功, false : 创建失败
+     * @return {@code true} 创建成功, {@code false} 创建失败
      */
     public static boolean createFileByDeleteOldFile(final File file) {
         if (file == null) return false;
@@ -1610,7 +1610,7 @@ public final class FileUtils {
      * @param destDirPath 目标目录路径
      * @param listener    是否覆盖监听器
      * @param isMove      是否移动
-     * @return true : 复制或移动成功, false :复制或移动失败
+     * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
     private static boolean copyOrMoveDir(final String srcDirPath, final String destDirPath, final OnReplaceListener listener, final boolean isMove) {
         return copyOrMoveDir(getFileByPath(srcDirPath), getFileByPath(destDirPath), listener, isMove);
@@ -1622,7 +1622,7 @@ public final class FileUtils {
      * @param destDir  目标目录
      * @param listener 是否覆盖监听器
      * @param isMove   是否移动
-     * @return true : 复制或移动成功, false :复制或移动失败
+     * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
     private static boolean copyOrMoveDir(final File srcDir, final File destDir, final OnReplaceListener listener, final boolean isMove) {
         if (srcDir == null || destDir == null) return false;
@@ -1663,7 +1663,7 @@ public final class FileUtils {
      * @param destFilePath 目标文件路径
      * @param listener     是否覆盖监听器
      * @param isMove       是否移动
-     * @return true : 复制或移动成功, false :复制或移动失败
+     * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
     private static boolean copyOrMoveFile(final String srcFilePath, final String destFilePath, final OnReplaceListener listener, final boolean isMove) {
         return copyOrMoveFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), listener, isMove);
@@ -1675,7 +1675,7 @@ public final class FileUtils {
      * @param destFile 目标文件
      * @param listener 是否覆盖监听器
      * @param isMove   是否移动
-     * @return true : 复制或移动成功, false :复制或移动失败
+     * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
     private static boolean copyOrMoveFile(final File srcFile, final File destFile, final OnReplaceListener listener, final boolean isMove) {
         if (srcFile == null || destFile == null) return false;
@@ -1707,7 +1707,7 @@ public final class FileUtils {
      * @param srcDirPath  源目录路径
      * @param destDirPath 目标目录路径
      * @param listener    是否覆盖监听器
-     * @return true : 复制成功, false :复制失败
+     * @return {@code true} 复制成功, {@code false} 复制失败
      */
     public static boolean copyDir(final String srcDirPath, final String destDirPath, final OnReplaceListener listener) {
         return copyDir(getFileByPath(srcDirPath), getFileByPath(destDirPath), listener);
@@ -1718,7 +1718,7 @@ public final class FileUtils {
      * @param srcDir   源目录
      * @param destDir  目标目录
      * @param listener 是否覆盖监听器
-     * @return true : 复制成功, false :复制失败
+     * @return {@code true} 复制成功, {@code false} 复制失败
      */
     public static boolean copyDir(final File srcDir, final File destDir, final OnReplaceListener listener) {
         return copyOrMoveDir(srcDir, destDir, listener, false);
@@ -1729,7 +1729,7 @@ public final class FileUtils {
      * @param srcFilePath  源文件路径
      * @param destFilePath 目标文件路径
      * @param listener     是否覆盖监听器
-     * @return true : 复制成功, false :复制失败
+     * @return {@code true} 复制成功, {@code false} 复制失败
      */
     public static boolean copyFile(final String srcFilePath, final String destFilePath, final OnReplaceListener listener) {
         return copyFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), listener);
@@ -1740,7 +1740,7 @@ public final class FileUtils {
      * @param srcFile  源文件
      * @param destFile 目标文件
      * @param listener 是否覆盖监听器
-     * @return true : 复制成功, false :复制失败
+     * @return {@code true} 复制成功, {@code false} 复制失败
      */
     public static boolean copyFile(final File srcFile, final File destFile, final OnReplaceListener listener) {
         return copyOrMoveFile(srcFile, destFile, listener, false);
@@ -1751,7 +1751,7 @@ public final class FileUtils {
      * @param srcDirPath  源目录路径
      * @param destDirPath 目标目录路径
      * @param listener    是否覆盖监听器
-     * @return true : 移动成功, false :移动失败
+     * @return {@code true} 移动成功, {@code false} 移动失败
      */
     public static boolean moveDir(final String srcDirPath, final String destDirPath, final OnReplaceListener listener) {
         return moveDir(getFileByPath(srcDirPath), getFileByPath(destDirPath), listener);
@@ -1762,7 +1762,7 @@ public final class FileUtils {
      * @param srcDir   源目录
      * @param destDir  目标目录
      * @param listener 是否覆盖监听器
-     * @return true : 移动成功, false :移动失败
+     * @return {@code true} 移动成功, {@code false} 移动失败
      */
     public static boolean moveDir(final File srcDir, final File destDir, final OnReplaceListener listener) {
         return copyOrMoveDir(srcDir, destDir, listener, true);
@@ -1773,7 +1773,7 @@ public final class FileUtils {
      * @param srcFilePath  源文件路径
      * @param destFilePath 目标文件路径
      * @param listener     是否覆盖监听器
-     * @return true : 移动成功, false :移动失败
+     * @return {@code true} 移动成功, {@code false} 移动失败
      */
     public static boolean moveFile(final String srcFilePath, final String destFilePath, final OnReplaceListener listener) {
         return moveFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), listener);
@@ -1784,7 +1784,7 @@ public final class FileUtils {
      * @param srcFile  源文件
      * @param destFile 目标文件
      * @param listener 是否覆盖监听器
-     * @return true : 移动成功, false :移动失败
+     * @return {@code true} 移动成功, {@code false} 移动失败
      */
     public static boolean moveFile(final File srcFile, final File destFile, final OnReplaceListener listener) {
         return copyOrMoveFile(srcFile, destFile, listener, true);
@@ -1793,7 +1793,7 @@ public final class FileUtils {
     /**
      * 删除目录
      * @param dirPath 目录路径
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteDir(final String dirPath) {
         return deleteDir(getFileByPath(dirPath));
@@ -1802,7 +1802,7 @@ public final class FileUtils {
     /**
      * 删除目录
      * @param dir 目录
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteDir(final File dir) {
         if (dir == null) return false;
@@ -1826,7 +1826,7 @@ public final class FileUtils {
     /**
      * 删除目录下所有东西
      * @param dirPath 目录路径
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteAllInDir(final String dirPath) {
         return deleteAllInDir(getFileByPath(dirPath));
@@ -1835,7 +1835,7 @@ public final class FileUtils {
     /**
      * 删除目录下所有东西
      * @param dir 目录
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteAllInDir(final File dir) {
         return deleteFilesInDirWithFilter(dir, new FileFilter() {
@@ -1849,7 +1849,7 @@ public final class FileUtils {
     /**
      * 删除目录下所有文件
      * @param dirPath 目录路径
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteFilesInDir(final String dirPath) {
         return deleteFilesInDir(getFileByPath(dirPath));
@@ -1858,7 +1858,7 @@ public final class FileUtils {
     /**
      * 删除目录下所有文件
      * @param dir 目录
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteFilesInDir(final File dir) {
         return deleteFilesInDirWithFilter(dir, new FileFilter() {
@@ -1873,7 +1873,7 @@ public final class FileUtils {
      * 删除目录下所有过滤的文件
      * @param dirPath 目录路径
      * @param filter  过滤器
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteFilesInDirWithFilter(final String dirPath, final FileFilter filter) {
         return deleteFilesInDirWithFilter(getFileByPath(dirPath), filter);
@@ -1883,7 +1883,7 @@ public final class FileUtils {
      * 删除目录下所有过滤的文件
      * @param dir    目录
      * @param filter 过滤器
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteFilesInDirWithFilter(final File dir, final FileFilter filter) {
         if (dir == null) return false;

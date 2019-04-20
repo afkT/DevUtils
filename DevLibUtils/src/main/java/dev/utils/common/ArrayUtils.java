@@ -25,7 +25,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否为 null
      * @param objects object 数组
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Object[] objects) {
         return objects == null || objects.length == 0;
@@ -34,7 +34,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否为 null
      * @param ints int 数组
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final int[] ints) {
         return ints == null || ints.length == 0;
@@ -43,7 +43,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否为 null
      * @param bytes byte 数组
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final byte[] bytes) {
         return bytes == null || bytes.length == 0;
@@ -52,7 +52,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否为 null
      * @param chars char 数组
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final char[] chars) {
         return chars == null || chars.length == 0;
@@ -61,7 +61,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否为 null
      * @param shorts short 数组
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final short[] shorts) {
         return shorts == null || shorts.length == 0;
@@ -70,7 +70,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否为 null
      * @param longs long 数组
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final long[] longs) {
         return longs == null || longs.length == 0;
@@ -79,7 +79,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否为 null
      * @param floats float 数组
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final float[] floats) {
         return floats == null || floats.length == 0;
@@ -88,7 +88,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否为 null
      * @param doubles double 数组
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final double[] doubles) {
         return doubles == null || doubles.length == 0;
@@ -97,7 +97,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否为 null
      * @param booleans boolean 数组
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final boolean[] booleans) {
         return booleans == null || booleans.length == 0;
@@ -108,7 +108,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否不为 null
      * @param objects object 数组
-     * @return
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final Object[] objects) {
         return objects != null && objects.length != 0;
@@ -117,7 +117,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否不为 null
      * @param ints int 数组
-     * @return
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final int[] ints) {
         return ints != null && ints.length != 0;
@@ -126,7 +126,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否不为 null
      * @param bytes byte 数组
-     * @return
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final byte[] bytes) {
         return bytes != null && bytes.length != 0;
@@ -135,7 +135,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否不为 null
      * @param chars char 数组
-     * @return
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final char[] chars) {
         return chars != null && chars.length != 0;
@@ -144,7 +144,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否不为 null
      * @param shorts short 数组
-     * @return
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final short[] shorts) {
         return shorts != null && shorts.length != 0;
@@ -153,7 +153,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否不为 null
      * @param longs long 数组
-     * @return
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final long[] longs) {
         return longs != null && longs.length != 0;
@@ -162,7 +162,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否不为 null
      * @param floats float 数组
-     * @return
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final float[] floats) {
         return floats != null && floats.length != 0;
@@ -171,7 +171,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否不为 null
      * @param doubles double 数组
-     * @return
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final double[] doubles) {
         return doubles != null && doubles.length != 0;
@@ -180,7 +180,7 @@ public final class ArrayUtils {
     /**
      * 判断数组是否不为 null
      * @param booleans boolean 数组
-     * @return
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final boolean[] booleans) {
         return booleans != null && booleans.length != 0;

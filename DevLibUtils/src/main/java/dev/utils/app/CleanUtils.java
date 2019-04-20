@@ -209,7 +209,7 @@ public final class CleanUtils {
     /**
      * 删除目录下所有过滤的文件
      * @param dir 目录
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     private static boolean deleteFilesInDir(final File dir) {
         if (dir == null) return false;
@@ -233,7 +233,7 @@ public final class CleanUtils {
     /**
      * 删除目录
      * @param dir 目录
-     * @return true : 删除成功, false :删除失败
+     * @return {@code true} 删除成功, {@code false} 删除失败
      */
     private static boolean deleteDir(final File dir) {
         if (dir == null) return false;

@@ -21,7 +21,7 @@ public final class ObjectUtils {
     /**
      * 判断对象是否为空
      * @param object 对象
-     * @return true : 为空, false : 不为空
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Object object) {
         if (object == null) {
@@ -45,7 +45,7 @@ public final class ObjectUtils {
     /**
      * 判断对象是否非空
      * @param object 对象
-     * @return true : 非空, false : 空
+     * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final Object object) {
         return !isEmpty(object);
@@ -55,7 +55,7 @@ public final class ObjectUtils {
      * 判断对象是否相等
      * @param o1 对象1
      * @param o2 对象2
-     * @return true : 相等, false : 不相等
+     * @return {@code true} 相等, {@code false} 不相等
      */
     public static <T> boolean equals(final Object o1, final Object o2) {
         // 两个值都不为 null

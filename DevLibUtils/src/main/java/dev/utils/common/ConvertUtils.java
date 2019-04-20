@@ -1588,7 +1588,7 @@ public final class ConvertUtils {
     /**
      * 将 string 转换为 十六进制 char[]
      * @param str
-     * @param toLowerCase true: 小写格式, false: 大写格式
+     * @param toLowerCase true: 小写格式, {@code false} 大写格式
      * @return 十六进制 char[]
      */
     public static char[] toHexChars(final String str, final boolean toLowerCase) {
@@ -1609,7 +1609,7 @@ public final class ConvertUtils {
     /**
      * 将 byte[] 转换为 十六进制 char[]
      * @param data
-     * @param toLowerCase true: 小写格式, false: 大写格式
+     * @param toLowerCase true: 小写格式, {@code false} 大写格式
      * @return 十六进制 char[]
      */
     public static char[] toHexChars(final byte[] data, final boolean toLowerCase) {
@@ -1646,7 +1646,7 @@ public final class ConvertUtils {
     /**
      * 将 string 转换 十六进制字符串
      * @param str
-     * @param toLowerCase true: 小写格式, false: 大写格式
+     * @param toLowerCase true: 小写格式, {@code false} 大写格式
      * @return
      */
     public static String toHexString(final String str, final boolean toLowerCase) {
@@ -1667,7 +1667,7 @@ public final class ConvertUtils {
     /**
      * 将 byte[] 转换 十六进制字符串
      * @param data
-     * @param toLowerCase true: 小写格式, false: 大写格式
+     * @param toLowerCase true: 小写格式, {@code false} 大写格式
      * @return
      */
     public static String toHexString(final byte[] data, final boolean toLowerCase) {
@@ -1701,7 +1701,7 @@ public final class ConvertUtils {
     /**
      * 判断是否为 null
      * @param str
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);

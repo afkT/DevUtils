@@ -141,7 +141,7 @@ public final class CameraUtils {
     /**
      * 初始化摄像头
      * @param camera
-     * @param isFrontCamera 是否前置摄像头 = true = 前置(屏幕面), false = 后置(手机背面) = 正常默认使用背面
+     * @param isFrontCamera {@code true} 前置(屏幕面), {@code false} 后置(手机背面)
      * @return 使用的摄像头
      */
     public static Camera initCamera(Camera camera, final boolean isFrontCamera) {

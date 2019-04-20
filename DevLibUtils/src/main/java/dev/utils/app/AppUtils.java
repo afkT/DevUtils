@@ -578,7 +578,7 @@ public final class AppUtils {
      * 判断是否安装了应用
      * @param action
      * @param category
-     * @return true : yes, false : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppInstalled(@NonNull final String action, @NonNull final String category) {
         try {
@@ -596,7 +596,7 @@ public final class AppUtils {
     /**
      * 判断是否安装了应用
      * @param packageName
-     * @return true : yes, false : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppInstalled(@NonNull final String packageName) {
         return !isSpace(packageName) && IntentUtils.getLaunchAppIntent(packageName) != null;
@@ -621,7 +621,7 @@ public final class AppUtils {
 
     /**
      * 判断是否存在 root 权限
-     * @return true : yes, false : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppRoot() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("echo root", true);
@@ -631,7 +631,7 @@ public final class AppUtils {
 
     /**
      * 判断是否 App 是否debug模式
-     * @return true : yes, false : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppDebug() {
         return isAppDebug(DevUtils.getContext().getPackageName());
@@ -640,7 +640,7 @@ public final class AppUtils {
     /**
      * 判断是否 App 是否debug模式
      * @param packageName
-     * @return true : yes, false : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppDebug(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -655,7 +655,7 @@ public final class AppUtils {
 
     /**
      * 判断 App 是否系统app
-     * @return true : yes, false : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppSystem() {
         return isAppSystem(DevUtils.getContext().getPackageName());
@@ -664,7 +664,7 @@ public final class AppUtils {
     /**
      * 判断 App 是否系统app
      * @param packageName
-     * @return true : yes, false : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppSystem(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -679,7 +679,7 @@ public final class AppUtils {
 
     /**
      * 判断 App 是否在前台
-     * @return true : yes, false : no
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppForeground() {
         try {

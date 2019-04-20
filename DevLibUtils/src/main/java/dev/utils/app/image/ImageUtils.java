@@ -1071,7 +1071,7 @@ public final class ImageUtils {
      * @param src      源图片
      * @param filePath
      * @param format   格式
-     * @return true : 成功, false : 失败
+     * @return {@code true} 成功, {@code false} 失败
      */
     public static boolean save(final Bitmap src, final String filePath, final CompressFormat format) {
         return save(src, getFileByPath(filePath), format, false);
@@ -1082,7 +1082,7 @@ public final class ImageUtils {
      * @param src    源图片
      * @param file
      * @param format 格式
-     * @return true : 成功, false : 失败
+     * @return {@code true} 成功, {@code false} 失败
      */
     public static boolean save(final Bitmap src, final File file, final CompressFormat format) {
         return save(src, file, format, false);
@@ -1094,7 +1094,7 @@ public final class ImageUtils {
      * @param filePath
      * @param format   格式
      * @param recycle  是否回收
-     * @return true : 成功, false : 失败
+     * @return {@code true} 成功, {@code false} 失败
      */
     public static boolean save(final Bitmap src, final String filePath, final CompressFormat format, final boolean recycle) {
         return save(src, getFileByPath(filePath), format, recycle);
@@ -1106,7 +1106,7 @@ public final class ImageUtils {
      * @param file
      * @param format  格式
      * @param recycle 是否回收
-     * @return true : 成功, false : 失败
+     * @return {@code true} 成功, {@code false} 失败
      */
     public static boolean save(final Bitmap src, final File file, final CompressFormat format, final boolean recycle) {
         if (isEmptyBitmap(src) || !createFileByDeleteOldFile(file)) return false;
@@ -1127,7 +1127,7 @@ public final class ImageUtils {
     /**
      * 根据文件名判断文件是否为图片
      * @param file
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isImage(final File file) {
         return file != null && isImage(file.getPath());
@@ -1136,7 +1136,7 @@ public final class ImageUtils {
     /**
      * 根据文件名判断文件是否为图片
      * @param filePath
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isImage(final String filePath) {
         String path = filePath.toUpperCase();
@@ -1243,7 +1243,7 @@ public final class ImageUtils {
     /**
      * 判断 bitmap 对象是否为空
      * @param src 源图片
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     private static boolean isEmptyBitmap(final Bitmap src) {
         return src == null || src.getWidth() == 0 || src.getHeight() == 0;
@@ -1474,7 +1474,7 @@ public final class ImageUtils {
     /**
      * 判断文件是否存在，存在则在创建之前删除
      * @param file
-     * @return true : 创建成功, false : 创建失败
+     * @return {@code true} 创建成功, {@code false} 创建失败
      */
     private static boolean createFileByDeleteOldFile(final File file) {
         if (file == null) return false;
@@ -1493,7 +1493,7 @@ public final class ImageUtils {
     /**
      * 判断目录是否存在，不存在则判断是否创建成功
      * @param file 文件
-     * @return true : 存在或创建成功, false : 不存在或创建失败
+     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     private static boolean createOrExistsDir(final File file) {
         // 如果存在，是目录则返回 true，是文件则返回 false，不存在则返回是否创建成功

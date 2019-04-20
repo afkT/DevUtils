@@ -59,7 +59,7 @@ public final class DevCommonUtils {
     /**
      * 判断是否为 null
      * @param str
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
@@ -69,7 +69,7 @@ public final class DevCommonUtils {
      * 判断是否为 null
      * @param str
      * @param isTrim
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String str, final boolean isTrim) {
         if (str == null) {
@@ -86,7 +86,7 @@ public final class DevCommonUtils {
     /**
      * 判断多个字符串是否为null
      * @param strs
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String... strs) {
         if (strs != null && strs.length != 0) {
@@ -115,7 +115,7 @@ public final class DevCommonUtils {
     /**
      * 判断是否为 null to Object
      * @param object
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Object object) {
         if (object != null) {
@@ -152,7 +152,7 @@ public final class DevCommonUtils {
     /**
      * 判断是否为 null to 数组
      * @param objects
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Object[] objects) {
         return objects == null || objects.length == 0;
@@ -161,7 +161,7 @@ public final class DevCommonUtils {
     /**
      * 判读是否为 null to Collection
      * @param collection
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Collection collection) {
         return collection == null || collection.size() == 0;
@@ -170,7 +170,7 @@ public final class DevCommonUtils {
     /**
      * 判读是否为 null to Map
      * @param map
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Map map) {
         return map == null || map.size() == 0;
@@ -558,7 +558,7 @@ public final class DevCommonUtils {
      * 判断两字符串是否相等
      * @param a 待校验字符串 a
      * @param b 待校验字符串 b
-     * @return true : 相等, false : 不相等
+     * @return {@code true} 相等, {@code false} 不相等
      */
     public static boolean equals(final CharSequence a, final CharSequence b) {
         if (a == b) return true;

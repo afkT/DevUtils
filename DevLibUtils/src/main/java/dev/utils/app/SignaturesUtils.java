@@ -105,7 +105,7 @@ public final class SignaturesUtils {
 
     /**
      * 判断签名是debug签名还是release签名
-     * @return true = 开发(debug.keystore)，false = 上线发布(非.android默认debug.keystore)
+     * @return {@code true} 开发(debug.keystore), {@code false} 上线发布(非.android默认debug.keystore)
      */
     public static boolean isDebuggable(final Signature[] signatures) {
         // 判断是否默认key(默认是)

@@ -49,7 +49,7 @@ public final class AppInfoItem {
     private Date notBefore;
     @Keep // 证书有效期
     private Date notAfter;
-    @Keep // 证书是否过期 true = 过期,false = 未过期
+    @Keep // 证书是否过期 {@code true} 过期, {@code false} 未过期
     private boolean effective;
     @Keep // 证书发布方
     private String certPrincipal;
@@ -124,7 +124,7 @@ public final class AppInfoItem {
         builder.append(notAfter);
         // 保存有效期转换信息
         String effectiveStr = builder.toString();
-        // 证书是否过期 true = 过期,false = 未过期
+        // 证书是否过期 {@code true} 过期, {@code false} 未过期
         effective = false;
         try {
             cert.checkValidity();
@@ -282,7 +282,7 @@ public final class AppInfoItem {
     }
 
     /**
-     * 获取证书是否过期 true = 过期,false = 未过期
+     * 获取证书是否过期 {@code true} 过期, {@code false} 未过期
      * @return
      */
     public boolean isEffective() {

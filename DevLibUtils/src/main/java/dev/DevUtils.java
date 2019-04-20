@@ -223,7 +223,7 @@ public final class DevUtils {
 
     /**
      * 判断是否 Debug 模式
-     * @return {@code true} debug, {@code false} not debug
+     * @return {@code true} debug模式, {@code false} 非debug模式
      */
     public static boolean isDebug() {
         return debug;

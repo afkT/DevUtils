@@ -64,7 +64,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 检查是否允许播放声音
-     * @return true: 允许, false: 不允许
+     * @return {@code true} 允许, {@code false} 不允许
      */
     private boolean shouldBeep() {
         try {
@@ -100,7 +100,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 判断是否允许播放声音
-     * @return true: 允许, false: 不允许
+     * @return {@code true} 允许, {@code false} 不允许
      */
     public boolean isPlayBeep() {
         return shouldBeep();
@@ -108,7 +108,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 获取是否允许震动
-     * @return true: 允许, false: 不允许
+     * @return {@code true} 允许, {@code false} 不允许
      */
     public boolean isVibrate() {
         return vibrate;

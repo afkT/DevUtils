@@ -74,7 +74,7 @@ public final class ViewUtils {
     /**
      * 判断View 是否为null
      * @param view
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final View view) {
         return view == null;
@@ -83,7 +83,7 @@ public final class ViewUtils {
     /**
      * 判断View 是否为null
      * @param views
-     * @return
+     * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final View... views) {
         if (views != null && views.length != 0) {

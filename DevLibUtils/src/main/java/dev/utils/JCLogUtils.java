@@ -64,7 +64,7 @@ public final class JCLogUtils {
     /**
      * 判断是否为 null
      * @param str String
-     * @return {@code true} null, {@code false} not null
+     * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);

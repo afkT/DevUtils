@@ -84,7 +84,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * 绑定事件
-     * @return true: 绑定成功, false: 绑定失败
+     * @return {@code true} 绑定成功, {@code false} 绑定失败
      */
     private boolean bindListener() {
         if (mMediaPlayer != null) {
@@ -134,7 +134,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     /**
      * 播放 Raw 资源
      * @param rawId 播放资源
-     * @return true: 执行成功, false: 执行中断(失败)
+     * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
     public boolean playPrepareRaw(final @RawRes int rawId) {
         return playPrepareRaw(rawId, false);
@@ -144,7 +144,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * 播放 Raw 资源
      * @param rawId     播放资源
      * @param isLooping 是否循环播放
-     * @return true: 执行成功, false: 执行中断(失败)
+     * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
     public boolean playPrepareRaw(final @RawRes int rawId, final boolean isLooping) {
         try {
@@ -182,7 +182,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     /**
      * 播放 Assets 资源
      * @param playUri 播放地址
-     * @return true: 执行成功, false: 执行中断(失败)
+     * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
     public boolean playPrepareAssets(final String playUri) {
         return playPrepareAssets(playUri, false);
@@ -192,7 +192,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * 播放 Assets 资源
      * @param playUri   播放地址
      * @param isLooping 是否循环播放
-     * @return true: 执行成功, false: 执行中断(失败)
+     * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
     public boolean playPrepareAssets(final String playUri, final boolean isLooping) {
         try {
@@ -238,7 +238,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     /**
      * 预加载播放 - (file-path or http/rtsp URL) http资源, 本地资源
      * @param playUri 播放地址
-     * @return true: 执行成功, false: 执行中断(失败)
+     * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
     public boolean playPrepare(final String playUri) {
         return playPrepare(playUri, false);
@@ -248,7 +248,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * 预加载播放 - (file-path or http/rtsp URL) http资源, 本地资源
      * @param playUri   播放地址
      * @param isLooping 是否循环播放
-     * @return true: 执行成功, false: 执行中断(失败)
+     * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
     public boolean playPrepare(final String playUri, final boolean isLooping) {
         try {
@@ -281,7 +281,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     /**
      * 预加载播放(最终调用方法) - 加载成功触发 onPrepared, 该方法内调用 mMediaPlayer.start();
      * @param mediaSet 播放设置
-     * @return true: 执行成功, false: 执行中断(失败)
+     * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
     public boolean playPrepare(final MediaSet mediaSet) {
         // 防止为null

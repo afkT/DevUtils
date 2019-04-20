@@ -186,7 +186,7 @@ public final class ScreenSensorAssist {
 
     /**
      * 是否竖屏
-     * @return true: 是竖屏, false: 非竖屏
+     * @return {@code true} 竖屏, {@code false} 非竖屏
      */
     public boolean isPortrait() {
         return this.portrait;
@@ -194,7 +194,7 @@ public final class ScreenSensorAssist {
 
     /**
      * 是否允许切屏
-     * @return true: 允许, false: 不允许
+     * @return {@code true} 允许, {@code false} 不允许
      */
     public boolean isAllowChange() {
         return this.allowChange;

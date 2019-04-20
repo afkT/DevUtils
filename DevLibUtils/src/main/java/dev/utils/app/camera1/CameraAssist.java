@@ -216,7 +216,7 @@ public final class CameraAssist {
 
     /**
      * 是否预览中
-     * @return true: 预览中, false: 非预览
+     * @return {@code true} 预览中, {@code false} 非预览
      */
     public boolean isPreviewing() {
         return previewing;
@@ -264,7 +264,7 @@ public final class CameraAssist {
 
     /**
      * 是否打开闪光灯
-     * @return true: 打开, false: 关闭
+     * @return {@code true} 打开, {@code false} 关闭
      */
     public boolean isFlashlightOn() {
         if (mCamera == null) {
@@ -276,7 +276,7 @@ public final class CameraAssist {
 
     /**
      * 是否支持手机闪光灯
-     * @return true: 支持, false: 不支持
+     * @return {@code true} 支持, {@code false} 不支持
      */
     public static boolean isFlashlightEnable() {
         return DevUtils.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);

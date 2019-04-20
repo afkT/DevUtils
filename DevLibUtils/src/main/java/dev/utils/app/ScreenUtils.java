@@ -407,7 +407,7 @@ public final class ScreenUtils {
 
     /**
      * 判断是否横屏
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isLandscape() {
         try {
@@ -420,7 +420,7 @@ public final class ScreenUtils {
 
     /**
      * 判断是否竖屏
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isPortrait() {
         try {
@@ -458,7 +458,7 @@ public final class ScreenUtils {
 
     /**
      * 判断是否锁屏
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isScreenLock() {
         try {
@@ -472,7 +472,7 @@ public final class ScreenUtils {
 
     /**
      * 判断是否是平板
-     * @return true : 是, false : 否
+     * @return {@code true} 是, {@code false} 否
      */
     public static boolean isTablet() {
         try {

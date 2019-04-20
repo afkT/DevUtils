@@ -261,7 +261,7 @@ public final class DevThreadPool {
      * 无论哪一个首先发生之后，都将导致阻塞，直到所有任务完成执行。
      * @param timeout 最长等待时间
      * @param unit    时间单位
-     * @return true : 请求成功, false : 请求超时
+     * @return {@code true} 请求成功, {@code false} 请求超时
      * @throws InterruptedException 终端异常
      */
     public boolean awaitTermination(final long timeout, final TimeUnit unit) throws InterruptedException {

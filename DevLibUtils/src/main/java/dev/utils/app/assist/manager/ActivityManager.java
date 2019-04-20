@@ -54,7 +54,7 @@ public final class ActivityManager {
     /**
      * 判断 Activity 是否关闭
      * @param activity
-     * @return true: 关闭, false: 未关闭
+     * @return {@code true} 关闭, {@code false} 未关闭
      */
     public static boolean isFinishing(final Activity activity) {
         if (activity != null) {
@@ -66,7 +66,7 @@ public final class ActivityManager {
     /**
      * 判断 Activity 是否关闭
      * @param context
-     * @return true: 关闭, false: 未关闭
+     * @return {@code true} 关闭, {@code false} 未关闭
      */
     public static boolean isFinishingCtx(final Context context) {
         if (context != null) {

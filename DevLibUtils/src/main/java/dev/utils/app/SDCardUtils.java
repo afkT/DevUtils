@@ -61,7 +61,7 @@ public final class SDCardUtils {
 
     /**
      * 判断 SD 卡是否可用
-     * @return true : 可用, false : 不可用
+     * @return {@code true} 可用, {@code false} 不可用
      */
     public static boolean isSDCardEnablePath() {
         return !getSDCardPaths().isEmpty();
@@ -69,7 +69,7 @@ public final class SDCardUtils {
 
     /**
      * 获取 SD 卡路径
-     * @param removable true : 外置 SD 卡, false : 内置 SD 卡
+     * @param removable true : 外置 SD 卡, {@code false} 内置 SD 卡
      * @return SD 卡路径
      */
     @SuppressWarnings("TryWithIdenticalCatches")
