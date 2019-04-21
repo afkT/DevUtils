@@ -446,7 +446,6 @@ public final class PhoneUtils {
     /**
      * 获取手机状态信息
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-     * @return
      * <pre>
      *      DeviceId(IMEI) = 99000311726612
      *      DeviceSoftwareVersion = 00
@@ -464,6 +463,7 @@ public final class PhoneUtils {
      *      SubscriberId(IMSI) = 460030419724900
      *      VoiceMailNumber = *86
      * </pre>
+     * @return
      */
     @SuppressLint({"HardwareIds"})
     @RequiresPermission(READ_PHONE_STATE)

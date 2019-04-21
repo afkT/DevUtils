@@ -68,11 +68,11 @@ public final class AppInfoUtils {
 
     /**
      * 通过包名 获取 PackageInfo
-     * @param packageName 包名
-     * @return
      * <pre>
      *      @see <a href="https://blog.csdn.net/sljjyy/article/details/17370665"/>
      * </pre>
+     * @param packageName 包名
+     * @return
      */
     public static PackageInfo getPackageInfo(final String packageName) {
         try {
@@ -256,10 +256,10 @@ public final class AppInfoUtils {
 
     /**
      * 打印 Apk 注册的权限
-     * @param packageName
-     * <pre>
-     *      @see <a href="https://www.cnblogs.com/leaven/p/5485864.html"/>
-     * </pre>
+     * @param packageName 应用包名
+     *                    <pre>
+     *                         @see <a href="https://www.cnblogs.com/leaven/p/5485864.html"/>
+     *                    </pre>
      */
     public static void printApkPermission(final String packageName) {
         try {

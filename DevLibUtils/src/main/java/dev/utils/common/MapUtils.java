@@ -339,14 +339,14 @@ public final class MapUtils {
 
     /**
      * 获取最后一条数据
+     * <pre>
+     *      @see <a href="http://bookshadow.com/weblog/2016/10/27/java-linked-hash-map-get-first-and-get-last/"/>
+     * </pre>
      * @param map          map
      * @param isReflection 是否通过反射获取
      * @param <K>
      * @param <V>
      * @return
-     * <pre>
-     *      @see <a href="http://bookshadow.com/weblog/2016/10/27/java-linked-hash-map-get-first-and-get-last/"/>
-     * </pre>
      */
     public static <K, V> Map.Entry<K, V> getLast(final LinkedHashMap<K, V> map, final boolean isReflection) {
         if (map != null) {

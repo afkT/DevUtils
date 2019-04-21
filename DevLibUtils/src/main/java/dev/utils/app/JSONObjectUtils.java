@@ -112,14 +112,14 @@ public final class JSONObjectUtils {
 
     /**
      * Object 转换 JSON 对象
-     * @param object
-     * @param type   JSONObject.class || JSONArray.class || JSONTokener.class
-     * @return
      * <pre>
      *      fromJson(xx, JSONObject.class);
      *      fromJson(xx, JSONArray.class);
      *      fromJson(xx, JSONTokener.class);
      * </pre>
+     * @param object
+     * @param type   JSONObject.class || JSONArray.class || JSONTokener.class
+     * @return
      */
     public static <T> T fromJson(final Object object, final Class<T> type) {
         if (object == null || type == null) return null;
