@@ -193,14 +193,15 @@ public final class PhoneUtils {
      * 获取 IMEI 码
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return IMEI 码
-     * ==========
-     * IMEI是International Mobile Equipment Identity (国际移动设备标识)的简称
-     * IMEI由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的
-     * 其组成为：
-     * 1. 前6位数(TAC)是”型号核准号码”，一般代表机型
-     * 2. 接着的2位数(FAC)是”最后装配号”，一般代表产地
-     * 3. 之后的6位数(SNR)是”串号”，一般代表生产顺序号
-     * 4. 最后1位数(SP)通常是”0″，为检验码，目前暂备用
+     * <pre>
+     *      IMEI是International Mobile Equipment Identity (国际移动设备标识)的简称
+     *      IMEI由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的
+     *      其组成为：
+     *      1. 前6位数(TAC)是”型号核准号码”，一般代表机型
+     *      2. 接着的2位数(FAC)是”最后装配号”，一般代表产地
+     *      3. 之后的6位数(SNR)是”串号”，一般代表生产顺序号
+     *      4. 最后1位数(SP)通常是”0″，为检验码，目前暂备用
+     * </pre>
      */
     @SuppressLint({"HardwareIds"})
     @RequiresPermission(READ_PHONE_STATE)
@@ -261,18 +262,19 @@ public final class PhoneUtils {
      * 获取 IMSI 码
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return IMSI 码
-     * =========
-     * IMSI是国际移动用户识别码的简称(International Mobile Subscriber Identity)
-     * IMSI共有15位，其结构如下：
-     * MCC+MNC+MIN
-     * MCC：Mobile Country Code，移动国家码，共3位，中国为460;
-     * MNC:Mobile NetworkCode，移动网络码，共2位
-     * 在中国，移动的代码为电00和02，联通的代码为01，电信的代码为03
-     * 合起来就是(也是Android手机中APN配置文件中的代码)：
-     * 中国移动：46000 46002
-     * 中国联通：46001
-     * 中国电信：46003
-     * 举例，一个典型的IMSI号码为460030912121001
+     * <pre>
+     *      IMSI是国际移动用户识别码的简称(International Mobile Subscriber Identity)
+     *      IMSI共有15位，其结构如下：
+     *      MCC+MNC+MIN
+     *      MCC：Mobile Country Code，移动国家码，共3位，中国为460;
+     *      MNC:Mobile NetworkCode，移动网络码，共2位
+     *      在中国，移动的代码为电00和02，联通的代码为01，电信的代码为03
+     *      合起来就是(也是Android手机中APN配置文件中的代码)：
+     *      中国移动：46000 46002
+     *      中国联通：46001
+     *      中国电信：46003
+     *      举例，一个典型的IMSI号码为460030912121001
+     * </pre>
      */
     @SuppressLint({"HardwareIds"})
     @RequiresPermission(READ_PHONE_STATE)
@@ -444,23 +446,24 @@ public final class PhoneUtils {
     /**
      * 获取手机状态信息
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-     * ==============
-     * DeviceId(IMEI) = 99000311726612<br>
-     * DeviceSoftwareVersion = 00<br>
-     * Line1Number =<br>
-     * NetworkCountryIso = cn<br>
-     * NetworkOperator = 46003<br>
-     * NetworkOperatorName = 中国电信<br>
-     * NetworkType = 6<br>
-     * PhoneType = 2<br>
-     * SimCountryIso = cn<br>
-     * SimOperator = 46003<br>
-     * SimOperatorName = 中国电信<br>
-     * SimSerialNumber = 89860315045710604022<br>
-     * SimState = 5<br>
-     * SubscriberId(IMSI) = 460030419724900<br>
-     * VoiceMailNumber = *86<br>
      * @return
+     * <pre>
+     *      DeviceId(IMEI) = 99000311726612
+     *      DeviceSoftwareVersion = 00
+     *      Line1Number =
+     *      NetworkCountryIso = cn
+     *      NetworkOperator = 46003
+     *      NetworkOperatorName = 中国电信
+     *      NetworkType = 6
+     *      PhoneType = 2
+     *      SimCountryIso = cn
+     *      SimOperator = 46003
+     *      SimOperatorName = 中国电信
+     *      SimSerialNumber = 89860315045710604022
+     *      SimState = 5
+     *      SubscriberId(IMSI) = 460030419724900
+     *      VoiceMailNumber = *86
+     * </pre>
      */
     @SuppressLint({"HardwareIds"})
     @RequiresPermission(READ_PHONE_STATE)

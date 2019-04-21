@@ -50,10 +50,10 @@ final class LogConstants {
     // ================
 
     /**
+     * Android 的最大限制为一个日志条目 4076字节,4000字节作为块的大小从默认字符集是UTF-8
+     * <p></p>
      * Android's max limit for a log entry is ~4076 bytes,
      * so 4000 bytes is used as chunk size since default charset is UTF-8
-     * =======================
-     * Android 的最大限制为一个日志条目 4076字节,4000字节作为块的大小从默认字符集是UTF-8
      */
     public static final int CHUNK_SIZE = 4000;
 

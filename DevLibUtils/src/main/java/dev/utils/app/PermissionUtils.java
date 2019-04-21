@@ -226,7 +226,7 @@ public final class PermissionUtils {
 
     /**
      * 请求权限
-     * =
+     * <p></p>
      * 内部自动调用 PermissionUtils.isGranted, 并且进行判断处理
      * 无需调用以下代码判断
      * boolean isGranted = PermissionUtils.isGranted(Manifest.permission.xx);

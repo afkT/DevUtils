@@ -475,10 +475,11 @@ public final class NetWorkUtils {
 
     /**
      * 获取移动网络连接类型
-     * ==============
-     * {@link TelephonyManager#getNetworkClass} hide 方法
      * @param networkType {@link TelephonyManager#getNetworkType}
      * @return 0 = 未知, 1 = 2G, 2 = 3G, 3 = 4G
+     * <pre>
+     *      {@link TelephonyManager#getNetworkClass} hide 方法
+     * </pre>
      */
     public static int getNetworkClass(int networkType) {
         switch (networkType) {
