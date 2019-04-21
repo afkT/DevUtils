@@ -47,6 +47,10 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * detail: 手机相关工具类
  * @author Ttt
+ * <pre>
+ *      双卡双待系统IMEI和IMSI方案
+ *      @see <a href="http://benson37.iteye.com/blog/1923946"/>
+ * </pre>
  */
 public final class PhoneUtils {
 
@@ -760,9 +764,6 @@ public final class PhoneUtils {
     // ============
     // = 双卡模块 =
     // ============
-
-    // 双卡双待系统IMEI和IMSI方案
-    // http://benson37.iteye.com/blog/1923946
 
     /**
      * 双卡双待神机IMSI、IMSI、PhoneType信息

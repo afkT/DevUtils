@@ -243,7 +243,6 @@ public final class AppCommonUtils {
      * @return
      */
     public static String convertSDKVersion(final int sdkVersion) {
-        // https://www.cnblogs.com/maogefff/p/7819076.html
         switch (sdkVersion) {
             case 1:
                 return "Android 1.0";

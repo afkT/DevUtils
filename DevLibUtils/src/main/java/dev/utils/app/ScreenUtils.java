@@ -30,6 +30,14 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 屏幕相关工具类
  * @author Ttt
+ * <pre>
+ *      计算屏幕尺寸
+ *      @see <a href="https://blog.csdn.net/lincyang/article/details/42679589"/>
+ *      <p></p>
+ *      截图
+ *      @see <a href="https://www.cnblogs.com/angel88/p/7933437.html"/>
+ *      @see <a href="https://github.com/weizongwei5/AndroidScreenShot_SysApi"/>
+ * </pre>
  */
 public final class ScreenUtils {
 
@@ -173,7 +181,6 @@ public final class ScreenUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getScreenSizeOfDevice() {
-        // https://blog.csdn.net/lincyang/article/details/42679589
         try {
             Point point = new Point();
             WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
@@ -547,8 +554,6 @@ public final class ScreenUtils {
     // ==============
     // = 截图(有用) =
     // ==============
-    // https://www.cnblogs.com/angel88/p/7933437.html
-    // https://github.com/weizongwei5/AndroidScreenShot_SysApi
 
     /**
      * 获取当前屏幕截图，包含状态栏 (顶部灰色TitleBar高度，没有设置 android:theme 的 NoTitleBar 时会显示)

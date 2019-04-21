@@ -230,7 +230,7 @@ public final class ValiToPhoneUtils {
          * 电信：133、153、180、181、189 、177(4G)、149、173、174、199
          * 卫星通信：1349
          * 虚拟运营商：170
-         * http://www.cnblogs.com/zengxiangzhan/p/phone.html
+         * @see <a href="http://www.cnblogs.com/zengxiangzhan/p/phone.html"/>
          */
         CHINA_PHONE_PATTERN = "^13[\\d]{9}$|^14[5,6,7,8,9]{1}\\d{8}$|^15[^4]{1}\\d{8}$|^16[6]{1}\\d{8}$|^17[0,1,2,3,4,5,6,7,8]{1}\\d{8}$|^18[\\d]{9}$|^19[8,9]{1}\\d{8}$";
     }

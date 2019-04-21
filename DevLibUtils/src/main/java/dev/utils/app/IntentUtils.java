@@ -23,6 +23,11 @@ import dev.utils.common.FileUtils;
 /**
  * detail: Intent(意图) 相关工具类
  * @author Ttt
+ * <pre>
+ *      7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
+ *      查看链接:
+ *      @see <a href="https://developer.android.com/reference/android/support/v4/content/FileProvider.html"/>
+ * </pre>
  */
 public final class IntentUtils {
 

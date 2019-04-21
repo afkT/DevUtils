@@ -90,10 +90,11 @@ public final class ADBUtils {
 
     /**
      * 获取 App 列表(包名)
-     * ==============
-     * https://blog.csdn.net/henni_719/article/details/62222439
      * @param type
      * @return
+     * <pre>
+     *      @see <a href="https://blog.csdn.net/henni_719/article/details/62222439"/>
+     * </pre>
      */
     public static List<String> getAppList(final String type) {
         // adb shell pm list packages [options]

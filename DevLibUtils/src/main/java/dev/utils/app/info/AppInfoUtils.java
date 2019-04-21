@@ -70,10 +70,12 @@ public final class AppInfoUtils {
      * 通过包名 获取 PackageInfo
      * @param packageName 包名
      * @return
+     * <pre>
+     *      @see <a href="https://blog.csdn.net/sljjyy/article/details/17370665"/>
+     * </pre>
      */
     public static PackageInfo getPackageInfo(final String packageName) {
         try {
-            // https://blog.csdn.net/sljjyy/article/details/17370665
             PackageManager pManager = DevUtils.getContext().getPackageManager();
             // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
             PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
@@ -254,9 +256,10 @@ public final class AppInfoUtils {
 
     /**
      * 打印 Apk 注册的权限
-     * ==============
-     * https://www.cnblogs.com/leaven/p/5485864.html
      * @param packageName
+     * <pre>
+     *      @see <a href="https://www.cnblogs.com/leaven/p/5485864.html"/>
+     * </pre>
      */
     public static void printApkPermission(final String packageName) {
         try {

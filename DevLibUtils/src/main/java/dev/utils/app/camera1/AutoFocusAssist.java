@@ -14,6 +14,10 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 自动获取焦点 辅助类
  * @author Ttt
+ * <pre>
+ *      对焦模式
+ *      @see <a href="https://blog.csdn.net/fulinwsuafcie/article/details/49558001"/>
+ * </pre>
  */
 public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
@@ -23,8 +27,6 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     public static final Collection<String> FOCUS_MODES_CALLING_AF;
 
     static {
-        // 对焦模式
-        // https://blog.csdn.net/fulinwsuafcie/article/details/49558001
         FOCUS_MODES_CALLING_AF = new ArrayList<>();
         FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_AUTO); // 自动对焦
         FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_MACRO); // 微距

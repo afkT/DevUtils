@@ -17,11 +17,10 @@ import java.io.UnsupportedEncodingException;
 /**
  * detail: Base64 工具类
  * @author Android
- * ==================
- * Utilities for encoding and decoding the Base64 representation of
- * binary data.  See RFCs <a
- * href="http://www.ietf.org/rfc/rfc2045.txt">2045</a> and <a
- * href="http://www.ietf.org/rfc/rfc3548.txt">3548</a>.
+ * <pre>
+ *      Utilities for encoding and decoding the Base64 representation of
+ *      binary data.  See RFCs <a href="http://www.ietf.org/rfc/rfc2045.txt">2045</a> and <a href="http://www.ietf.org/rfc/rfc3548.txt">3548</a>.
+ * </pre>
  */
 public final class Base64 {
     /**

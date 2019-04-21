@@ -16,6 +16,12 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: TextView 工具类
  * @author Ttt
+ * <pre>
+ *      获取字体信息 Paint.FontMetrics
+ *      @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
+ *      将字画在矩形背景的正中位置
+ *      @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
+ * </pre>
  */
 public final class TextViewUtils {
 
@@ -602,7 +608,6 @@ public final class TextViewUtils {
      * @return
      */
     public static int getTextHeight(final Paint paint) {
-        // https://blog.csdn.net/superbigcupid/article/details/47153139
         // 获取字体高度
         Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
         // 计算内容高度
@@ -663,8 +668,6 @@ public final class TextViewUtils {
      * @return
      */
     public static int getCenterRectY(final Rect targetRect, final Paint paint) {
-        // 将字画在矩形背景的正中位置
-        // https://blog.csdn.net/superbigcupid/article/details/47153139
         // 获取字体高度
         Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
         // 获取底部Y轴居中位置

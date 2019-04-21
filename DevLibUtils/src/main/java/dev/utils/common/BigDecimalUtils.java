@@ -7,6 +7,10 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 资金运算工具类
  * @author Ttt
+ * <pre>
+ *      @see <a href="https://www.cnblogs.com/liqforstudy/p/5652517.html"/>
+ *      向下取 round = BigDecimal.ROUND_DOWN;
+ * </pre>
  */
 public final class BigDecimalUtils {
 
@@ -363,9 +367,6 @@ public final class BigDecimalUtils {
      * @return 最后的结果
      */
     public static double round(final double v, final int scale, final int roundingMode) {
-        // https://www.cnblogs.com/liqforstudy/p/5652517.html
-        // 向下取
-        // round = BigDecimal.ROUND_DOWN;
         try {
             BigDecimal b = new BigDecimal(Double.toString(v));
             BigDecimal one = new BigDecimal("1");
