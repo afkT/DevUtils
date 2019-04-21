@@ -27,31 +27,32 @@ import dev.DevUtils;
 /**
  * detail: 权限请求工具类
  * @author Ttt
- * ==============
- * 参考:
- * https://github.com/anthonycr/Grant
- * compile 'com.anthonycr.grant:permissions:1.0'
- * =
- * 权限介绍
- * https://www.cnblogs.com/mengdd/p/4892856.html
- * =
- * 第三方库:
- * PermissionsDispatcher: https://github.com/hotchemi/PermissionsDispatcher
- * RxPermissions: https://github.com/tbruyelle/RxPermissions
- * Grant: https://github.com/anthonycr/Grant
- * =
- * 使用方法
- * // 第一种请求方式
- * PermissionUtils.permission("").callBack(null).request();
- * // 第二种请求方式 - 需要在 onRequestPermissionsResult 中通知调用
- * PermissionUtils.permission("").callBack(null).request(Activity);
- * ==============
- * 注意事项: 需要注意在onResume 中调用
- * 不管是第一种方式, 跳自定义的Activity, 还是第二种 系统内部跳转授权页面, 都会多次触发onResume
- * https://www.aliyun.com/jiaocheng/8030.html
- * 尽量避免在 onResume中调用
- * com.anthonycr.grant:permissions:1.0 也是会触发onResume 只是 通过 Set<String> mPendingRequests 来控制请求过的权限
- * 拒绝后在onResume 方法内再次请求, 直接触发授权成功, 如果需要清空通过调用 notifyPermissionsChange 通知改变, 否则一直调用获取权限，拒绝过后，都会认为是请求通过
+ * <pre>
+ *      参考:
+ *      @see <a href="https://github.com/anthonycr/Grant"/>
+ *      compile 'com.anthonycr.grant:permissions:1.0'
+ *      <p></p>
+ *      权限介绍
+ *      @see <a href="https://www.cnblogs.com/mengdd/p/4892856.html"/>
+ *      <p></p>
+ *      第三方库:
+ *      @see <a href="https://github.com/hotchemi/PermissionsDispatcher">PermissionsDispatcher</a>
+ *      @see <a href="https://github.com/tbruyelle/RxPermissions">RxPermissions</a>
+ *      @see <a href="https://github.com/anthonycr/Grant">Grant</a>
+ *      <p></p>
+ *      使用方法:
+ *      第一种请求方式
+ *      PermissionUtils.permission("").callBack(null).request();
+ *      第二种请求方式 - 需要在 onRequestPermissionsResult 中通知调用
+ *      PermissionUtils.permission("").callBack(null).request(Activity);
+ *      <p></p>
+ *      注意事项: 需要注意在onResume 中调用
+ *      不管是第一种方式, 跳自定义的Activity, 还是第二种 系统内部跳转授权页面, 都会多次触发onResume
+ *      https://www.aliyun.com/jiaocheng/8030.html
+ *      尽量避免在 onResume中调用
+ *      com.anthonycr.grant:permissions:1.0 也是会触发onResume 只是 通过 Set<String> mPendingRequests 来控制请求过的权限
+ *      拒绝后在onResume 方法内再次请求, 直接触发授权成功, 如果需要清空通过调用 notifyPermissionsChange 通知改变, 否则一直调用获取权限，拒绝过后，都会认为是请求通过
+ * </pre>
  */
 public final class PermissionUtils {
 

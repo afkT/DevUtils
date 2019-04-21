@@ -19,22 +19,22 @@ import dev.utils.common.DevCommonUtils;
 /**
  * detail: ADB shell 工具类
  * @author Ttt
- * ==============
- * Awesome Adb——一份超全超详细的 ADB 用法大全
- * https://github.com/mzlogin/awesome-adb
- * =
- * Process.waitFor()的返回值含义
- * https://blog.csdn.net/qq_35661171/article/details/79096786
- * =
- * adb shell input
- * https://blog.csdn.net/soslinken/article/details/49587497
- * =
- * android 上发送adb 指令，不需要加 adb shell
- * https://www.imooc.com/qadetail/198264
- * ==============
- * grep 是 linux 下的命令, windows 用 findstr
- * ==============
- * 开启 Thread 执行, 非主线程, 否则无响应并无效
+ * <pre>
+ *      Awesome Adb——一份超全超详细的 ADB 用法大全
+ *      @see <a href="https://github.com/mzlogin/awesome-adb"/>
+ *      <p></p>
+ *      Process.waitFor()的返回值含义
+ *      @see <a href="https://blog.csdn.net/qq_35661171/article/details/79096786"/>
+ *      <p></p>
+ *      adb shell input
+ *      @see <a href="https://blog.csdn.net/soslinken/article/details/49587497"/>
+ *      <p></p>
+ *      android 上发送adb 指令，不需要加 adb shell
+ *      @see <a href="https://www.imooc.com/qadetail/198264"/>
+ *      <p></p>
+ *      grep 是 linux 下的命令, windows 用 findstr
+ *      开启 Thread 执行, 非主线程, 否则无响应并无效
+ * </pre>
  */
 public final class ADBUtils {
 

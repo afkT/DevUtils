@@ -20,10 +20,11 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 软键盘相关辅助类
  * @author Ttt
- * ==============
- * 避免输入法面板遮挡 manifest.xml 中 activity 中设置
- * android:windowSoftInputMode="adjustPan"
- * android:windowSoftInputMode="adjustUnspecified|stateHidden"
+ * <pre>
+ *      避免输入法面板遮挡 manifest.xml 中 activity 中设置
+ *      android:windowSoftInputMode="adjustPan"
+ *      android:windowSoftInputMode="adjustUnspecified|stateHidden"
+ * </pre>
  */
 public final class KeyBoardUtils {
 

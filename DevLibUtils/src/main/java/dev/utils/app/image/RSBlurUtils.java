@@ -16,8 +16,9 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: Android 自己的 RenderScript 实现图片模糊
  * @author Ttt
- * ==============
- * 注：仅在 SDK >= 17 时有用
+ * <pre>
+ *      注：仅在 SDK >= 17 时有用
+ * </pre>
  */
 public final class RSBlurUtils {
 

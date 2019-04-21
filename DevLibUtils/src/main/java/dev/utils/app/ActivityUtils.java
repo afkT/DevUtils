@@ -24,10 +24,11 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: Acitivty 工具类
  * @author Ttt
- * ==============
- * 转场动画：
- * https://www.cnblogs.com/tianzhijiexian/p/4087917.html
- * ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
+ * <pre>
+ *      转场动画：
+ *      @see <a href="https://www.cnblogs.com/tianzhijiexian/p/4087917.html"/>
+ *      ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
+ * </pre>
  */
 public final class ActivityUtils {
 

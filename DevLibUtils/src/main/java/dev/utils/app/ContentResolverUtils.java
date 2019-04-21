@@ -15,9 +15,10 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: ContentResolver 工具类
  * @author Ttt
- * ==============
- * https://www.cnblogs.com/Sharley/p/7942142.html
- * https://blog.csdn.net/lemon_blue/article/details/52353851
+ * <pre>
+ *      @see <a href="https://www.cnblogs.com/Sharley/p/7942142.html"/>
+ *      @see <a href="https://blog.csdn.net/lemon_blue/article/details/52353851"/>
+ * </pre>
  */
 public final class ContentResolverUtils {
 

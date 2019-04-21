@@ -37,8 +37,9 @@ import static android.Manifest.permission.MODIFY_PHONE_STATE;
 /**
  * detail: 网络管理工具类
  * @author Ttt
- * ==============
- * https://blog.csdn.net/Clear_ws/article/details/78204150
+ * <pre>
+ *      @see <a href="https://blog.csdn.net/Clear_ws/article/details/78204150"/>
+ * </pre>
  */
 public final class NetWorkUtils {
 

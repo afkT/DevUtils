@@ -12,8 +12,9 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: AlarmManager (全局定时器/闹钟)指定时长或以周期形式执行某项操作
  * @author Ttt
- * ==============
- * https://www.cnblogs.com/zyw-205520/p/4040923.html
+ * <pre>
+ *      @see <a href="https://www.cnblogs.com/zyw-205520/p/4040923.html"/>
+ * </pre>
  */
 public final class AlarmUtils {
 

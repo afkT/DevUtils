@@ -27,10 +27,12 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: wifi工具类
  * @author Ttt
- * ==============
- * <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
- * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
- * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+ * <pre>
+ *      需要的权限:
+ *      <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+ *      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+ *      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+ * </pre>
  */
 public final class WifiUtils {
 

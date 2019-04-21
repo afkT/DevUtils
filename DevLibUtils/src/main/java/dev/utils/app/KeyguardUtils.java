@@ -12,8 +12,10 @@ import dev.DevUtils;
 /**
  * detail: 锁屏工具类 - 锁屏管理， 锁屏、禁用锁屏，判断是否锁屏
  * @author Ttt
- * ==============
- * <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+ * <pre>
+ *      需要的权限:
+ *      <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+ * </pre>
  */
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public final class KeyguardUtils {

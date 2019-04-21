@@ -96,7 +96,7 @@ public final class DevCache {
 
     /**
      * 获取缓存地址
-     * @param context Context
+     * @param context   Context
      * @param cacheName 缓存文件名
      * @return {@link DevCache}
      */
@@ -119,8 +119,8 @@ public final class DevCache {
 
     /**
      * 自定义缓存大小
-     * @param context Context
-     * @param maxSize 文件最大大小
+     * @param context  Context
+     * @param maxSize  文件最大大小
      * @param maxCount 最大存储数量
      * @return {@link DevCache}
      */

@@ -13,9 +13,8 @@ import dev.utils.JCLogUtils;
 /**
  * detail: Map 工具类
  * @author Ttt
- * ==============
- * https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ
- * http://bookshadow.com/weblog/2016/10/27/java-linked-hash-map-get-first-and-get-last/
+ * @see <a href="https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ"/>
+ * @see <a href="http://bookshadow.com/weblog/2016/10/27/java-linked-hash-map-get-first-and-get-last/"/>
  */
 public final class MapUtils {
 

@@ -8,8 +8,9 @@ import java.util.Set;
 /**
  * detail: SharedPreferences 操作接口
  * @author Ttt
- * ==============
- * http://www.jianshu.com/p/fcd75a324c35
+ * <pre>
+ *      @see <a href="http://www.jianshu.com/p/fcd75a324c35"/>
+ * </pre>
  */
 public interface IPreference {
 

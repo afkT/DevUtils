@@ -16,24 +16,26 @@ import java.util.concurrent.TimeoutException;
 /**
  * detail: 线程池 - 构建类
  * @author Ttt
+ * <pre>
+ *      @see <a href="https://www.jianshu.com/p/4d4634c92253"/>
+ *      <p></p>
+ *      // 创建线程池
+ *     1. 线程池里面管理多少个线程
+ *     2. 如果排队满了, 额外的开的线程数
+ *     3. 如果线程池没有要执行的任务 存活多久
+ *     4. 时间的单位
+ *     5. 如果 线程池里管理的线程都已经用了,剩下的任务 临时存到LinkedBlockingQueue对象中 排队
+ *     public ThreadPoolExecutor(int corePoolSize,
+ *                               int maximumPoolSize,
+ *                               long keepAliveTime,
+ *                               TimeUnit unit,
+ *                               BlockingQueue<Runnable> workQueue) {
+ *         this (corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+ *                 Executors.defaultThreadFactory(), defaultHandler);
+ *     }
+ * </pre>
  */
 public final class DevThreadPool {
-
-//    // https://www.jianshu.com/p/4d4634c92253
-//    // 创建线程池
-//    1. 线程池里面管理多少个线程
-//    2. 如果排队满了, 额外的开的线程数
-//    3. 如果线程池没有要执行的任务 存活多久
-//    4. 时间的单位
-//    5. 如果 线程池里管理的线程都已经用了,剩下的任务 临时存到LinkedBlockingQueue对象中 排队
-//    public ThreadPoolExecutor(int corePoolSize,
-//                              int maximumPoolSize,
-//                              long keepAliveTime,
-//                              TimeUnit unit,
-//                              BlockingQueue<Runnable> workQueue) {
-//        this (corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
-//                Executors.defaultThreadFactory(), defaultHandler);
-//    }
 
     // 线程池对象
     private final ExecutorService threadPool;
@@ -100,16 +102,12 @@ public final class DevThreadPool {
     /**
      * detail: 线程池初始化枚举类型
      * @author Ttt
+     * @see <a href="http://blog.csdn.net/a369414641/article/details/48342253"/>
+     * @see <a href="http://blog.csdn.net/vking_wang/article/details/9619137"/>
+     * @see <a href="http://ifeve.com/java8-concurrency-tutorial-thread-executor-examples/"/>
+     * @see <a href="http://blog.csdn.net/sadfishsc/article/details/16980213"/>
      */
     public enum DevThreadPoolType {
-
-        // http://blog.csdn.net/a369414641/article/details/48342253
-
-        // http://blog.csdn.net/vking_wang/article/details/9619137
-
-        // http://ifeve.com/java8-concurrency-tutorial-thread-executor-examples/
-
-        // http://blog.csdn.net/sadfishsc/article/details/16980213
 
         // 如果当前线程意外终止，会创建一个新线程继续执行任务，这和我们直接创建线程不同，也和newFixedThreadPool(1)不同。
         SINGLE, // newSingleThreadExecutor 获取的是一个单个的线程，这个线程会保证你的任务执行完成。

@@ -18,10 +18,11 @@ import java.util.Map;
 /**
  * detail: 反射相关工具类
  * @author Ttt
- * ==============
- * 有两个方法: getMethod, getDeclaredMethod
- * getMethod 只能调用 public 声明的方法，而 getDeclaredMethod 基本可以调用任何类型声明的方法
- * 反射多用 getDeclaredMethod，尽量少用getMethod
+ * <pre>
+ *      有两个方法: getMethod, getDeclaredMethod
+ *      getMethod 只能调用 public 声明的方法，而 getDeclaredMethod 基本可以调用任何类型声明的方法
+ *      反射多用 getDeclaredMethod，尽量少用getMethod
+ * </pre>
  */
 public final class ReflectUtils {
 

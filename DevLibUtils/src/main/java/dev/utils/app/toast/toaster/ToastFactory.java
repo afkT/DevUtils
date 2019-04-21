@@ -223,8 +223,9 @@ final class ToastFactory {
     /**
      * detail: Toast Window 显示辅助类
      * @author Ttt
-     * ==============
-     * 参考 Toast.TN 实现方式
+     * <pre>
+     *      参考 Toast.TN 实现方式
+     * </pre>
      */
     static final class ToastHelper extends Handler {
 

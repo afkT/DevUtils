@@ -13,8 +13,9 @@ import dev.utils.JCLogUtils;
 /**
  * detail: DES 对称加密
  * @author Ttt
- * ==============
- * Data Encryption Standard，数据加密标准，对称加密算法
+ * <pre>
+ *      Data Encryption Standard，数据加密标准，对称加密算法
+ * </pre>
  */
 public final class DESUtils {
 
