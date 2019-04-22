@@ -1206,7 +1206,7 @@ public final class FileUtils {
     }
 
     /**
-     * 追加文件：使用FileWriter
+     * 追加文件: 使用FileWriter
      * @param filePath 文件路径
      * @param content  追加内容
      */
@@ -1394,7 +1394,7 @@ public final class FileUtils {
             if (!destFile.getParentFile().exists()) {
                 // 目标文件所在目录不存在
                 if (!destFile.getParentFile().mkdirs()) {
-                    // 复制文件失败：创建目标文件所在目录失败
+                    // 复制文件失败: 创建目标文件所在目录失败
                     return false;
                 }
             }
@@ -1459,7 +1459,7 @@ public final class FileUtils {
             if (!destFile.getParentFile().exists()) {
                 // 目标文件所在目录不存在
                 if (!destFile.getParentFile().mkdirs()) {
-                    // 复制文件失败：创建目标文件所在目录失败
+                    // 复制文件失败: 创建目标文件所在目录失败
                     return false;
                 }
             }

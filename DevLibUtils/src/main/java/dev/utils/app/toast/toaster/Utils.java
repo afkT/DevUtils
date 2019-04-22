@@ -91,7 +91,7 @@ final class Utils {
 
     /**
      * 检查通知栏权限有没有开启
-     * 参考SupportCompat包中的： NotificationManagerCompat.from(context).areNotificationsEnabled();
+     * 参考SupportCompat包中的: NotificationManagerCompat.from(context).areNotificationsEnabled();
      * @param context
      * @return
      */

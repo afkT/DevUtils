@@ -72,7 +72,7 @@ public final class DateUtils {
 
     /**
      * 获取当前日期的字符串
-     * @param format 日期格式，如：yyyy-MM-dd HH:mm:ss
+     * @param format 日期格式，如: yyyy-MM-dd HH:mm:ss
      * @return
      */
     public static String getDateNow(final String format) {

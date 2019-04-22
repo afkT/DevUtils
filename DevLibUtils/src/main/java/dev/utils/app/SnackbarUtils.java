@@ -1546,7 +1546,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 获取屏幕的高度(单位：px)
+     * 获取屏幕的高度(单位 px)
      * @param context
      * @return 屏幕高
      */

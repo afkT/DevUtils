@@ -25,7 +25,7 @@ import dev.utils.LogPrintUtils;
  * detail: Acitivty 工具类
  * @author Ttt
  * <pre>
- *      转场动画：
+ *      转场动画:
  *      @see <a href="https://www.cnblogs.com/tianzhijiexian/p/4087917.html"/>
  *      ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
  * </pre>
@@ -228,7 +228,7 @@ public final class ActivityUtils {
             for (ResolveInfo resolveinfo : lists) {
                 if (resolveinfo != null && resolveinfo.activityInfo != null) {
                     // resolveinfo.activityInfo.packageName; => packageName
-                    // 这个就是我们要找的该 App 的 LAUNCHER 的 Activity [ 组织形式：packageName.mainActivityname ]
+                    // 这个就是我们要找的该 App 的 LAUNCHER 的 Activity [ 组织形式: packageName.mainActivityname ]
                     return resolveinfo.activityInfo.name;
                 }
             }
@@ -255,7 +255,7 @@ public final class ActivityUtils {
 
     /**
      * 获取系统桌面信息 - packageName
-     * （注：存在多个桌面时且未指定默认桌面时，该方法返回Null,使用时需处理这个情况）
+     * （注: 存在多个桌面时且未指定默认桌面时，该方法返回Null,使用时需处理这个情况）
      * @return
      */
     public static String getLauncherCategoryHomeToPackageName() {

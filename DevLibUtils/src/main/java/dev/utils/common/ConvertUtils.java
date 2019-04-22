@@ -27,7 +27,7 @@ import dev.utils.JCLogUtils;
  *      Dec(十进制)
  *      Hex(十六进制) 以0x开始的数据表示16进制
  *      <p></p>
- *      位移加密：bytesEncrypt(byte[] bytes)
+ *      位移加密: bytesEncrypt(byte[] bytes)
  *      @see <a href="http://www.runoob.com/java/java-operators.html"/>
  * </pre>
  */
@@ -635,7 +635,7 @@ public final class ConvertUtils {
      * 字符串转换对应的进制
      * @param str
      * @param radix
-     * @return 如：parseInt("1f603", 16) = 128515
+     * @return 如: parseInt("1f603", 16) = 128515
      */
     public static int parseInt(final String str, final int radix) {
         if (str == null) return -1;
@@ -1402,7 +1402,7 @@ public final class ConvertUtils {
 
     /**
      * 二进制字符串 转换 byte[] 解码
-     * 例："011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 toBinaryString 使用
+     * 例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 toBinaryString 使用
      * @param str
      * @return
      */
@@ -1522,7 +1522,7 @@ public final class ConvertUtils {
     /**
      * int 转换十六进制
      * @param value
-     * @return 如：传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
+     * @return 如: 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
      */
     public static String toHexString(final int value) {
         try {

@@ -47,7 +47,7 @@ public final class BitmapExtendUtils {
     /**
      * 图片压缩处理(使用Options的方法)
      * <pre>
-     *      说明 使用方法：
+     *      说明 使用方法:
      *      首先你要将Options的inJustDecodeBounds属性设置为true，BitmapFactory.decode一次图片 。
      *      然后将Options连同期望的宽度和高度一起传递到到本方法中。
      *      之后再使用本方法的返回值做参数调用BitmapFactory.decode创建图片。
@@ -537,7 +537,7 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 图片压缩方法：(使用compress的方法)
+     * 图片压缩方法(使用compress的方法)
      * 说明 如果bitmap本身的大小小于maxSize，则不作处理
      * @param bitmap  要压缩的图片
      * @param maxSize 压缩后的大小，单位kb
@@ -1220,7 +1220,7 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 将YUV格式的图片的源数据从横屏模式转为竖屏模式，注意：将源图片的宽高互换一下就是新图片的宽高
+     * 将YUV格式的图片的源数据从横屏模式转为竖屏模式，注: 将源图片的宽高互换一下就是新图片的宽高
      * @param sourceData YUV格式的图片的源数据
      * @param width      源图片的宽
      * @param height     源图片的高

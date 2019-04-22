@@ -8,7 +8,7 @@ package dev.utils.common.encrypt;
  *      可用于 IM 二进制数据包加密，第一能够实现加密，第二采用异或加密算法不会改变二进制数据的长度这对二进制数据包封包起到不小的好处
  *      也可用于记事本等场景
  *      <p></p>
- *      参考链接：
+ *      参考链接:
  *      @see <a href="http://www.cnblogs.com/whoislcj/p/5944917.html"/>
  * </pre>
  */
@@ -19,8 +19,8 @@ public final class XorUtils {
 
     /**
      * 加密 (固定 key 方式) - 这种方式 加/解密 方法共用
-     * 加密：byte[] bytes = encryptAsFix("123".getBytes());
-     * 解密：String str = new String(encryptAsFix(bytes));
+     * 加密: byte[] bytes = encryptAsFix("123".getBytes());
+     * 解密: String str = new String(encryptAsFix(bytes));
      * @param data 待加密数据
      * @return 加密后的数据
      */

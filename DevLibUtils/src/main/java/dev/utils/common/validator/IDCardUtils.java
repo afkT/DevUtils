@@ -188,7 +188,7 @@ public final class IDCardUtils {
             Calendar calendar = Calendar.getInstance();
             if (birthDate != null) calendar.setTime(birthDate);
             try {
-                // 获取出生年(完全表现形式,如：2010)
+                // 获取出生年(完全表现形式,如: 2010)
                 String year = String.valueOf(calendar.get(Calendar.YEAR));
                 // 保存省市区信息 + 年 + 月日 + 后续信息(顺序位、性别等)
                 idCard18 = idCard.substring(0, 6) + year + idCard.substring(8);

@@ -118,13 +118,13 @@ public final class DevThreadPool {
 
         CACHE, // 可缓存线程池
 
-//         1 newCachedThreadPool ：创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
-//         2 newFixedThreadPool：创建一个固定数目的、可重用的线程池。
-//         3 newScheduledThreadPool:创建一个定长线程池，支持定时及周期性任务执行。
-//         4 newSingleThreadExecutor：创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
-//         5 newSingleThreadScheduledExcutor：创建一个单例线程池，定期或延时执行任务。
-//         6 newWorkStealingPool:创建持有足够线程的线程池来支持给定的并行级别，并通过使用多个队列，减少竞争，它需要穿一个并行级别的参数，如果不传，则被设定为默认的CPU数量。
-//         7 ForkJoinPool：支持大任务分解成小任务的线程池，这是Java8新增线程池，通常配合ForkJoinTask接口的子类RecursiveAction或RecursiveTask使用。
+//         1 newCachedThreadPool: 创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
+//         2 newFixedThreadPool: 创建一个固定数目的、可重用的线程池。
+//         3 newScheduledThreadPool: 创建一个定长线程池，支持定时及周期性任务执行。
+//         4 newSingleThreadExecutor: 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
+//         5 newSingleThreadScheduledExcutor: 创建一个单例线程池，定期或延时执行任务。
+//         6 newWorkStealingPool: 创建持有足够线程的线程池来支持给定的并行级别，并通过使用多个队列，减少竞争，它需要穿一个并行级别的参数，如果不传，则被设定为默认的CPU数量。
+//         7 ForkJoinPool: 支持大任务分解成小任务的线程池，这是Java8新增线程池，通常配合ForkJoinTask接口的子类RecursiveAction或RecursiveTask使用。
     }
 
     // =

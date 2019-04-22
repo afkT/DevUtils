@@ -156,9 +156,9 @@ public final class QuickCommonUtils {
             buffer.append(NEW_LINE_STR + title);
         }
         // 计算时间
-        buffer.append("\n开始时间：" + DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss));
-        buffer.append("\n结束时间：" + DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
-        buffer.append("\n所用时间(毫秒)：" + diffTime);
+        buffer.append("\n开始时间: " + DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss));
+        buffer.append("\n结束时间: " + DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
+        buffer.append("\n所用时间(毫秒): " + diffTime);
         buffer.append("\n所用时间(秒): " + (diffTime / 1000));
     }
 

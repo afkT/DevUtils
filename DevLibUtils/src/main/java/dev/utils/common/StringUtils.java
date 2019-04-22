@@ -231,7 +231,7 @@ public final class StringUtils {
     }
 
     /**
-     * 转化为全角字符 如： a => ａ A => Ａ
+     * 转化为全角字符 如: a => ａ A => Ａ
      * @param str 待转字符串
      * @return 全角字符串
      */

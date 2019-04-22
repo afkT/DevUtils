@@ -643,9 +643,9 @@ public final class WifiUtils {
                     // 断开之前的连接
                     boolean isDisConnect = mWifiManager.disconnect();
                     // 打印断开连接结果
-                    LogPrintUtils.dTag(TAG, "isDisConnect : " + isDisConnect + ", isDisable : " + isDisable);
+                    LogPrintUtils.dTag(TAG, "isDisConnect : " + isDisConnect + ", isDisable: " + isDisable);
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错：" + _nId);
+                    LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + _nId);
                 }
                 // 开始连接
                 boolean isResult = mWifiManager.enableNetwork(_nId, true);
@@ -654,7 +654,7 @@ public final class WifiUtils {
                     isResult = mWifiManager.enableNetwork(_nId, true);
                 }
                 // 打印结果
-                LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result : " + isResult);
+                LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result: " + isResult);
             } else {
                 // 尝试不带引号SSID连接
                 connWifiConfig.SSID = formatSSID(connWifiConfig.SSID, false);
@@ -671,9 +671,9 @@ public final class WifiUtils {
                         // 断开之前的连接
                         boolean isDisConnect = mWifiManager.disconnect();
                         // 打印断开连接结果
-                        LogPrintUtils.dTag(TAG, "isDisConnect : " + isDisConnect + ", isDisable : " + isDisable);
+                        LogPrintUtils.dTag(TAG, "isDisConnect : " + isDisConnect + ", isDisable: " + isDisable);
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错：" + _nId);
+                        LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + _nId);
                     }
                     // 开始连接
                     boolean isResult = mWifiManager.enableNetwork(_nId, true);
@@ -682,7 +682,7 @@ public final class WifiUtils {
                         isResult = mWifiManager.enableNetwork(_nId, true);
                     }
                     // 打印结果
-                    LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result : " + isResult);
+                    LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result: " + isResult);
                 }
             }
             // 保存id

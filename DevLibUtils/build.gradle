@@ -92,7 +92,7 @@ artifacts {
 
 // Terminal 输入 gradlew makeJar
 
-// 方式 A ：点击 Android Studio 右侧(一般在这个位置)的 Gradle 面板，在项目或者该类库的目录中找到 Tasks -> other -> makeJar 命令，双击这个makeJar之后等一会就会编译好jar包。
+// 方式 A : 点击 Android Studio 右侧(一般在这个位置)的 Gradle 面板，在项目或者该类库的目录中找到 Tasks -> other -> makeJar 命令，双击这个makeJar之后等一会就会编译好jar包。
 
 // DevLibUtils.jar
 // DevLibUtils_v1.0.jar

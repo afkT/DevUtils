@@ -34,7 +34,7 @@ public final class ClassUtils {
     }
 
     /**
-     * 根据类获取对象：不再必须一个无参构造
+     * 根据类获取对象: 不再必须一个无参构造
      * @param clazz
      * @return
      */

@@ -494,7 +494,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 判断是否为ARGB格式的十六进制颜色，例如：FF990587
+     * 判断是否为ARGB格式的十六进制颜色，例如: FF990587
      * @param colorStr
      * @return
      */

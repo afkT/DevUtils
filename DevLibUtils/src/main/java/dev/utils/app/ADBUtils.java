@@ -1826,7 +1826,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd("wm size", true);
         if (result.isSuccess3()) {
             // 正常返回 Physical size: 1080x1920
-            // 如果使用命令修改过，那输出可能是：
+            // 如果使用命令修改过，那输出可能是:
             // Physical size: 1080x1920
             // Override size: 480x1024
             // 表明设备的屏幕分辨率原本是 1080px * 1920px，当前被修改为 480px * 1024px。
@@ -1893,7 +1893,7 @@ public final class ADBUtils {
                 }
             }
         } else {
-            // 在 Android 4.4 及以下版本可通过如下命令获取 IMEI：
+            // 在 Android 4.4 及以下版本可通过如下命令获取 IMEI
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys iphonesubinfo", true);
             if (result.isSuccess3()) { // 返回值中的 Device ID 就是 IMEI。
                 try {
@@ -1924,7 +1924,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd("ifconfig | grep Mask", isRoot);
         if (result.isSuccess3()) {
             return result.successMsg;
-        } else { // 如果设备连着 WiFi，可以使用如下命令来查看局域网 IP：
+        } else { // 如果设备连着 WiFi，可以使用如下命令来查看局域网 IP
             result = ShellUtils.execCmd("ifconfig wlan0", isRoot);
             if (result.isSuccess3()) {
                 return result.successMsg;
