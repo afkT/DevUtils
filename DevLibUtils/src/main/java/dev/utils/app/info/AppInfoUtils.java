@@ -256,10 +256,10 @@ public final class AppInfoUtils {
 
     /**
      * 打印 Apk 注册的权限
+     * <pre>
+     *      @see <a href="https://www.cnblogs.com/leaven/p/5485864.html"/>
+     * </pre>
      * @param packageName 应用包名
-     *                    <pre>
-     *                         @see <a href="https://www.cnblogs.com/leaven/p/5485864.html"/>
-     *                    </pre>
      */
     public static void printApkPermission(final String packageName) {
         try {

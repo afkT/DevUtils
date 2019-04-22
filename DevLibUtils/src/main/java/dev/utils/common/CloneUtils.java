@@ -62,9 +62,9 @@ public final class CloneUtils {
     }
 
     /**
-     * 通过 byte数据, 生成Object对象
-     * @param data
-     * @return
+     * 通过 byte 数据, 生成 Object 对象
+     * @param data byte[]
+     * @return {@link Object}
      */
     public static Object bytesToObject(final byte[] data) {
         if (data == null) return null;

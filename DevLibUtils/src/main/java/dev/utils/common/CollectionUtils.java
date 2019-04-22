@@ -29,7 +29,7 @@ public final class CollectionUtils {
 
     /**
      * 判断 Collection 是否为 null
-     * @param collection 集合
+     * @param collection Collection
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Collection collection) {
@@ -38,7 +38,7 @@ public final class CollectionUtils {
 
     /**
      * 判断 Collection 是否不为 null
-     * @param collection 集合
+     * @param collection Collection
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final Collection collection) {
@@ -51,7 +51,7 @@ public final class CollectionUtils {
 
     /**
      * 获取 Collection 长度
-     * @param collection 集合
+     * @param collection Collection
      * @return
      */
     public static int length(final Collection collection) {
@@ -60,8 +60,8 @@ public final class CollectionUtils {
 
     /**
      * 获取 Collection 长度
-     * @param collection    集合
-     * @param defaultLength 集合为null默认长度
+     * @param collection    Collection
+     * @param defaultLength 集合为 null 默认长度
      * @return
      */
     public static int length(final Collection collection, final int defaultLength) {
@@ -72,7 +72,7 @@ public final class CollectionUtils {
 
     /**
      * 获取长度 to Collection 是否等于期望长度
-     * @param collection 集合
+     * @param collection Collection
      * @param length     期望长度
      * @return
      */
@@ -84,7 +84,7 @@ public final class CollectionUtils {
 
     /**
      * 判断 Collection 长度是否大于指定长度
-     * @param collection 集合
+     * @param collection Collection
      * @param length     指定长度
      * @return
      */
@@ -94,7 +94,7 @@ public final class CollectionUtils {
 
     /**
      * 判断 Collection 长度是否大于等于指定长度
-     * @param collection 集合
+     * @param collection Collection
      * @param length     指定长度
      * @return
      */
@@ -106,7 +106,7 @@ public final class CollectionUtils {
 
     /**
      * 判断 Collection 长度是否小于指定长度
-     * @param collection 集合
+     * @param collection Collection
      * @param length     指定长度
      * @return
      */
@@ -116,7 +116,7 @@ public final class CollectionUtils {
 
     /**
      * 判断 Collection 长度是否小于等于指定长度
-     * @param collection 集合
+     * @param collection Collection
      * @param length     指定长度
      * @return
      */
@@ -130,7 +130,7 @@ public final class CollectionUtils {
 
     /**
      * 获取数据
-     * @param collection 集合
+     * @param collection Collection
      * @param pos        索引
      * @param <T>
      * @return
@@ -160,7 +160,7 @@ public final class CollectionUtils {
 
     /**
      * 获取第一条数据
-     * @param collection 集合
+     * @param collection Collection
      * @param <T>
      * @return
      */
@@ -170,7 +170,7 @@ public final class CollectionUtils {
 
     /**
      * 获取最后一条数据
-     * @param collection 集合
+     * @param collection Collection
      * @param <T>
      * @return
      */
@@ -182,7 +182,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置 + 偏移量的值
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
@@ -220,7 +220,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置 + 偏移量的索引
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
@@ -260,7 +260,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取索引
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param <T>
      * @return
@@ -271,7 +271,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取索引
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>
@@ -283,7 +283,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取索引
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param notNull    是否不允许值为null
      * @param <T>
@@ -295,7 +295,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取索引
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
@@ -310,7 +310,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取索引, 不允许值为null
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param <T>
      * @return
@@ -321,7 +321,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取索引, 不允许值为null
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>
@@ -335,7 +335,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的下一个值
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param <T>
      * @return
@@ -346,7 +346,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的下一个值
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>
@@ -358,7 +358,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的下一个值
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param notNull    是否不允许值为null
      * @param <T>
@@ -370,7 +370,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的下一个值
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
@@ -385,7 +385,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的下一个值, 不允许值为null
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param <T>
      * @return
@@ -396,7 +396,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的下一个值, 不允许值为null
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>
@@ -410,7 +410,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的上一个值
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param <T>
      * @return
@@ -421,7 +421,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的上一个值
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>
@@ -433,7 +433,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的上一个值
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param notNull    是否不允许值为null
      * @param <T>
@@ -445,7 +445,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的上一个值
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
@@ -460,7 +460,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的上一个值, 不允许值为null
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param <T>
      * @return
@@ -471,7 +471,7 @@ public final class CollectionUtils {
 
     /**
      * 根据指定 value 获取 value 所在位置的上一个值, 不允许值为null
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>
@@ -487,7 +487,7 @@ public final class CollectionUtils {
 
     /**
      * 添加一条数据
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param <T>
      * @return
@@ -498,7 +498,7 @@ public final class CollectionUtils {
 
     /**
      * 添加一条数据
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param notNull    是否不允许添加null数据
      * @param <T>
@@ -527,7 +527,7 @@ public final class CollectionUtils {
 
     /**
      * 添加一条数据 - value 不允许为null
-     * @param collection 集合
+     * @param collection Collection
      * @param value      值
      * @param <T>
      * @return
@@ -540,7 +540,7 @@ public final class CollectionUtils {
 
     /**
      * 添加集合数据
-     * @param collection 集合
+     * @param collection Collection
      * @param values     准备添加的值(集合)
      * @param <T>
      * @return
@@ -551,7 +551,7 @@ public final class CollectionUtils {
 
     /**
      * 添加集合数据
-     * @param collection 集合
+     * @param collection Collection
      * @param values     准备添加的值(集合)
      * @param notNull    是否不允许添加null值
      * @param <T>
@@ -583,7 +583,7 @@ public final class CollectionUtils {
 
     /**
      * 添加集合数据 - values 内的值不允许为null
-     * @param collection 集合
+     * @param collection Collection
      * @param values     准备添加的值(集合)
      * @param <T>
      * @return
@@ -709,7 +709,7 @@ public final class CollectionUtils {
 
     /**
      * 移除一条数据
-     * @param collection 集合
+     * @param collection Collection
      * @param value      准备删除的值
      * @param <T>
      * @return
@@ -749,7 +749,7 @@ public final class CollectionUtils {
 
     /**
      * 移除集合数据
-     * @param collection 集合
+     * @param collection Collection
      * @param values     准备删除的集合
      * @param <T>
      * @return
@@ -769,7 +769,7 @@ public final class CollectionUtils {
 
     /**
      * 清空集合中符合指定 value 的全部数据
-     * @param collection 集合
+     * @param collection Collection
      * @param value      准备对比移除的值
      * @param <T>
      */
@@ -793,7 +793,7 @@ public final class CollectionUtils {
 
     /**
      * 保留集合中符合指定 value 的全部数据
-     * @param collection 集合
+     * @param collection Collection
      * @param value      准备对比保留的值
      * @param <T>
      */
@@ -817,7 +817,7 @@ public final class CollectionUtils {
 
     /**
      * 清空集合全部数据
-     * @param collection 集合
+     * @param collection Collection
      * @return
      */
     public static <T> void clearAll(final Collection<T> collection) {
@@ -832,7 +832,7 @@ public final class CollectionUtils {
 
     /**
      * 清空集合中为 null 的值
-     * @param collection 集合
+     * @param collection Collection
      * @param <T>
      */
     private static <T> void clearNull(final Collection<T> collection) {
@@ -1111,7 +1111,7 @@ public final class CollectionUtils {
 
     /**
      * 转换数组 to 集合数据类型数组
-     * @param collection 集合
+     * @param collection Collection
      * @param <T>
      * @return
      */
@@ -1128,7 +1128,7 @@ public final class CollectionUtils {
 
     /**
      * 转换数组 to Object
-     * @param collection 集合
+     * @param collection Collection
      * @param <T>
      * @return
      */
@@ -1145,7 +1145,7 @@ public final class CollectionUtils {
 
     /**
      * 集合翻转处理
-     * @param collection 集合
+     * @param collection Collection
      * @param <T>
      * @return
      */
