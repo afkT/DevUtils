@@ -1054,7 +1054,6 @@ public final class EncryptUtils {
      * 将十六进制字符串解码
      * @param str 十六进制字符串
      * @return
-     * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
      */
     private static byte[] decodeHex(final String str) {
         return decodeHex(isEmpty(str) ? null : str.toCharArray());
@@ -1064,7 +1063,6 @@ public final class EncryptUtils {
      * 将十六进制字符数组解码
      * @param data 十六进制 char[]
      * @return
-     * @throws RuntimeException 如果源十六进制字符数组是一个奇怪的长度，将抛出运行时异常
      */
     private static byte[] decodeHex(final char[] data) {
         if (data == null) return null;

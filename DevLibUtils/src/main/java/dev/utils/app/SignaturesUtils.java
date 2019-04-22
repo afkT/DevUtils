@@ -4,7 +4,6 @@ import android.content.pm.Signature;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.cert.Certificate;
@@ -177,7 +176,6 @@ public final class SignaturesUtils {
      * 从 Apk 中读取签名
      * @param file
      * @return
-     * @throws IOException
      */
     public static Signature[] getSignaturesFromApk(final File file) {
         try {
@@ -194,7 +192,6 @@ public final class SignaturesUtils {
      * 从 Apk 中读取签名
      * @param file
      * @return
-     * @throws IOException
      */
     public static Certificate[] getCertificateFromApk(final File file) {
         try {

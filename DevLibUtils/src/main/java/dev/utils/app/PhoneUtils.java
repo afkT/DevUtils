@@ -308,11 +308,13 @@ public final class PhoneUtils {
 
     /**
      * 获取移动终端类型
+     * <pre>
+     *      {@link TelephonyManager#PHONE_TYPE_NONE } : 0 手机制式未知
+     *      {@link TelephonyManager#PHONE_TYPE_GSM  } : 1 手机制式为 GSM，移动和联通
+     *      {@link TelephonyManager#PHONE_TYPE_CDMA } : 2 手机制式为 CDMA，电信
+     *      {@link TelephonyManager#PHONE_TYPE_SIP  } : 3
+     * </pre>
      * @return 手机制式
-     * {@link TelephonyManager#PHONE_TYPE_NONE } : 0 手机制式未知
-     * {@link TelephonyManager#PHONE_TYPE_GSM  } : 1 手机制式为 GSM，移动和联通
-     * {@link TelephonyManager#PHONE_TYPE_CDMA } : 2 手机制式为 CDMA，电信
-     * {@link TelephonyManager#PHONE_TYPE_SIP  } : 3
      */
     public static int getPhoneType() {
         try {
