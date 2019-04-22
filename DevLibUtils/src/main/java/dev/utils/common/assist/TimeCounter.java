@@ -13,12 +13,13 @@ public class TimeCounter {
         this(true);
     }
 
-    public TimeCounter(boolean isStart) {
+    public TimeCounter(final boolean isStart) {
         if (isStart) start();
     }
 
     /**
      * 开始计时
+     * @return 开始时间(毫秒)
      */
     public long start() {
         start = System.currentTimeMillis();
@@ -27,7 +28,7 @@ public class TimeCounter {
 
     /**
      * 获取持续的时间并重新启动。
-     * @return
+     * @return 距离上次开始时间的时间差(毫秒)
      */
     public long durationRestart() {
         long now = System.currentTimeMillis();
@@ -38,7 +39,7 @@ public class TimeCounter {
 
     /**
      * 获取持续的时间
-     * @return
+     * @return 获取距离开始时间的时间差(毫秒)
      */
     public long duration() {
         return System.currentTimeMillis() - start;
@@ -46,7 +47,7 @@ public class TimeCounter {
 
     /**
      * 获取开始时间
-     * @return
+     * @return 开始时间(毫秒)
      */
     public long getStartTime() {
         return start;

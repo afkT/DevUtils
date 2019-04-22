@@ -18,8 +18,8 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 解码
-     * @param data
-     * @return
+     * @param data byte[]
+     * @return byte[]
      */
     @Override
     public byte[] decrypt(byte[] data) {
@@ -35,8 +35,8 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 编码
-     * @param data
-     * @return
+     * @param data byte[]
+     * @return byte[]
      */
     @Override
     public byte[] encrypt(byte[] data) {

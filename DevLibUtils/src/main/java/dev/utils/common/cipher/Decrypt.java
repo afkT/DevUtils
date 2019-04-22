@@ -8,8 +8,8 @@ public interface Decrypt {
 
     /**
      * 解密/解码 方法
-     * @param data
-     * @return
+     * @param data byte[]
+     * @return byte[]
      */
     byte[] decrypt(byte[] data);
 }

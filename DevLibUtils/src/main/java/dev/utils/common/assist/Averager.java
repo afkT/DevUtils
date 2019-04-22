@@ -13,7 +13,7 @@ public class Averager {
 
     /**
      * 添加一个数字
-     * @param number number
+     * @param number Number
      */
     public synchronized void add(final Number number) {
         mNumLists.add(number);

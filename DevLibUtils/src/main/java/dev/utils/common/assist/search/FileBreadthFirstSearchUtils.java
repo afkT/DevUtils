@@ -198,7 +198,7 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 是否停止搜索
-     * @return {@code true} 停止运行, {@code false} 非停止运行
+     * @return {@code true} 已停止搜索, {@code false} 搜索中
      */
     public boolean isStop() {
         return mIsStop;
