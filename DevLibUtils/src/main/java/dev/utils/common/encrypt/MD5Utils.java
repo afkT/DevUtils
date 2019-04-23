@@ -24,8 +24,8 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 小写
-     * @param data
-     * @return
+     * @param data 待加密数据
+     * @return MD5 加密后的 String
      */
     public static String md5(final String data) {
         if (data == null) return null;
@@ -39,8 +39,8 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 小写
-     * @param data
-     * @return
+     * @param data 待加密数据
+     * @return MD5 加密后的 String
      */
     public static String md5(final byte[] data) {
         if (data == null) return null;
@@ -60,8 +60,8 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 大写
-     * @param data
-     * @return
+     * @param data 待加密数据
+     * @return MD5 加密后的 String
      */
     public static String md5Upper(final String data) {
         if (data == null) return null;
@@ -75,8 +75,8 @@ public final class MD5Utils {
 
     /**
      * 加密内容 - 32 位 MD5 - 大写
-     * @param data
-     * @return
+     * @param data 待加密数据
+     * @return MD5 加密后的 String
      */
     public static String md5Upper(final byte[] data) {
         if (data == null) return null;
@@ -96,8 +96,8 @@ public final class MD5Utils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data
-     * @return
+     * @param data 待加密数据
+     * @return 十六进制 String
      */
     public static String toHexString(final byte[] data) {
         return toHexString(data, HEX_DIGITS);
@@ -105,9 +105,9 @@ public final class MD5Utils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data
-     * @param hexDigits
-     * @return
+     * @param data      待加密数据
+     * @param hexDigits {@link MD5Utils#HEX_DIGITS}， {@link MD5Utils#HEX_DIGITS_UPPER}
+     * @return 十六进制 String
      */
     public static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
@@ -128,7 +128,7 @@ public final class MD5Utils {
     /**
      * 获取文件 MD5 值 - 小写
      * @param filePath 文件路径
-     * @return
+     * @return 文件 MD5 值
      */
     public static String getFileMD5(final String filePath) {
         if (filePath == null) return null;

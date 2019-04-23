@@ -39,7 +39,7 @@ public final class StringUtils {
     /**
      * 判断字符串是否为 null 或全为空白字符
      * @param str 待校验字符串
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isSpace(final String str) {
         if (str == null) return true;

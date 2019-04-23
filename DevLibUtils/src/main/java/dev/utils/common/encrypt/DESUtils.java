@@ -27,8 +27,8 @@ public final class DESUtils {
 
     /**
      * 返回可逆算法 DES 的密钥
-     * @param key 前8字节将被用来生成密钥。
-     * @return 生成的密钥
+     * @param key 前8字节将被用来生成密钥
+     * @return 生成的密钥 {@link Key}
      */
     public static Key getDESKey(final byte[] key) {
         if (key == null) return null;
@@ -45,9 +45,9 @@ public final class DESUtils {
 
     /**
      * DES 加密
-     * @param data
-     * @param key
-     * @return
+     * @param data 待加密数据
+     * @param key  密钥
+     * @return 加密后的 byte[]
      */
     public static byte[] encrypt(final byte[] data, final byte[] key) {
         if (data == null || key == null) return null;
@@ -65,9 +65,9 @@ public final class DESUtils {
 
     /**
      * DES 解密
-     * @param data
-     * @param key
-     * @return
+     * @param data 待解密数据
+     * @param key  密钥
+     * @return 解密后的 byte[]
      */
     public static byte[] decrypt(final byte[] data, final byte[] key) {
         if (data == null || key == null) return null;

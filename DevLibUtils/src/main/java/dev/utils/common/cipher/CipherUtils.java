@@ -23,7 +23,7 @@ public final class CipherUtils {
     /**
      * 加密方法
      * @param object Object
-     * @param cipher {@link Cipher}
+     * @param cipher 加/解密中间层 {@link Cipher}
      * @return {@link String}
      */
     public static String encrypt(final Object object, final Cipher cipher) {
@@ -46,8 +46,8 @@ public final class CipherUtils {
 
     /**
      * 解密方法
-     * @param hex Hex String
-     * @param cipher {@link Cipher}
+     * @param hex    Hex String
+     * @param cipher 加/解密中间层 {@link Cipher}
      * @return Object
      */
     public static Object decrypt(final String hex, final Cipher cipher) {

@@ -49,7 +49,7 @@ public final class LogPrintUtils {
 
     /**
      * 判断是否为 null
-     * @param str String
+     * @param str 待校验字符串
      * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {

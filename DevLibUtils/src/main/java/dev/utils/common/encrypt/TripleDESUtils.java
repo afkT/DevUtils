@@ -24,7 +24,7 @@ public final class TripleDESUtils {
 
     /**
      * 生成密钥
-     * @return
+     * @return 密钥 byte[]
      */
     public static byte[] initKey() {
         try {
@@ -40,9 +40,9 @@ public final class TripleDESUtils {
 
     /**
      * 3DES 加密
-     * @param data
-     * @param key
-     * @return
+     * @param data 待加密数据
+     * @param key  密钥
+     * @return 加密后的 byte[]
      */
     public static byte[] encrypt(final byte[] data, final byte[] key) {
         if (data == null || key == null) return null;
@@ -60,9 +60,9 @@ public final class TripleDESUtils {
 
     /**
      * 3DES 解密
-     * @param data
-     * @param key
-     * @return
+     * @param data 待加密数据
+     * @param key  密钥
+     * @return 解密后的 byte[]
      */
     public static byte[] decrypt(final byte[] data, final byte[] key) {
         if (data == null || key == null) return null;

@@ -758,10 +758,10 @@ public final class ConvertUtils {
     }
 
     /**
-     * 拼接数据
-     * @param prefix
-     * @param suffix
-     * @return
+     * 拼接 byte[] 数据
+     * @param prefix 第一个byte[]
+     * @param suffix 第二个byte[]
+     * @return 返回拼接后的 byte[]
      */
     public static byte[] joinBytes(final byte[] prefix, final byte[] suffix) {
         if (prefix == null || suffix == null) return null;
@@ -1440,7 +1440,7 @@ public final class ConvertUtils {
     /**
      * 将十六进制字节数组解码
      * @param data 十六进制byte[]
-     * @return
+     * @return 十六进制转(解)码后的数据
      */
     public static byte[] decodeHex(final byte[] data) {
         return decodeHex((length(data) == 0) ? null : bytesToChars(data));
@@ -1449,7 +1449,7 @@ public final class ConvertUtils {
     /**
      * 将十六进制字符串解码
      * @param str 十六进制字符串
-     * @return
+     * @return 十六进制转(解)码后的数据
      */
     public static byte[] decodeHex(final String str) {
         return decodeHex(isEmpty(str) ? null : str.toCharArray());
@@ -1458,7 +1458,7 @@ public final class ConvertUtils {
     /**
      * 将十六进制字符数组解码
      * @param data 十六进制 char[]
-     * @return
+     * @return 十六进制转(解)码后的数据
      */
     public static byte[] decodeHex(final char[] data) {
         if (data == null) return null;

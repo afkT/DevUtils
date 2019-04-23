@@ -23,8 +23,8 @@ public final class CRCUtils {
 
     /**
      * 获取 CRC32 值
-     * @param data
-     * @return
+     * @param data String 数据
+     * @return String CRC32 值
      */
     public static long getCRC32(final String data) {
         if (data == null) return -1l;
@@ -40,27 +40,27 @@ public final class CRCUtils {
 
     /**
      * 获取 CRC32 值
-     * @param data
-     * @return
+     * @param data String 数据
+     * @return String CRC32 值
      */
-    public static String getCRC32Str(final String data) {
+    public static String getCRC32ToHexString(final String data) {
         if (data == null) return null;
         try {
             CRC32 crc32 = new CRC32();
             crc32.update(data.getBytes());
             return Long.toHexString(crc32.getValue());
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getCRC32Str");
+            JCLogUtils.eTag(TAG, e, "getCRC32ToHexString");
         }
         return null;
     }
 
     /**
      * 获取文件 CRC32 值
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 文件 CRC32 值
      */
-    public static String getFileCrc32(final String filePath) {
+    public static String getFileCRC32(final String filePath) {
         if (filePath == null) return null;
         try {
             InputStream fis = new FileInputStream(filePath);
@@ -73,7 +73,7 @@ public final class CRCUtils {
             fis.close();
             return Long.toHexString(crc32.getValue());
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFileCrc32");
+            JCLogUtils.eTag(TAG, e, "getFileCRC32");
         }
         return null;
     }
