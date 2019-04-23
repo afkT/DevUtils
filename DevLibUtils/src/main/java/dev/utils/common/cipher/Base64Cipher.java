@@ -49,6 +49,7 @@ public class Base64Cipher implements Cipher {
         if (cipher != null) {
             data = cipher.encrypt(data);
         }
+        if (data == null) return null;
         // 再编码
         return Base64.encode(data, Base64.DEFAULT);
     }
