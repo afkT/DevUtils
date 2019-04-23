@@ -127,7 +127,7 @@ public final class ListenerUtils {
      * 初始化View
      * @param view
      * @param id
-     * @param <T>
+     * @param <T>  泛型
      * @return
      */
     private static <T extends View> T findViewById(final View view, final int id) {
@@ -143,7 +143,7 @@ public final class ListenerUtils {
      * 初始化View
      * @param window
      * @param id
-     * @param <T>
+     * @param <T>    泛型
      * @return
      */
     private static <T extends View> T findViewById(final Window window, final int id) {
@@ -159,7 +159,7 @@ public final class ListenerUtils {
      * 初始化View
      * @param activity
      * @param id
-     * @param <T>
+     * @param <T>      泛型
      * @return
      */
     private static <T extends View> T findViewById(final Activity activity, final int id) {

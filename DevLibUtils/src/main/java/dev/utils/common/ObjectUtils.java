@@ -75,7 +75,7 @@ public final class ObjectUtils {
      * 检查对象非空
      * @param object  对象
      * @param message 报错
-     * @param <T>     范型
+     * @param <T>     泛型
      * @return 非空对象
      */
     public static <T> T requireNonNull(final T object, final String message) {
@@ -87,7 +87,7 @@ public final class ObjectUtils {
      * 获取非空或默认对象
      * @param object        对象
      * @param defaultObject 默认值
-     * @param <T>           范型
+     * @param <T>           泛型
      * @return 非空或默认对象
      */
     public static <T> T getOrDefault(final T object, final T defaultObject) {
@@ -117,7 +117,7 @@ public final class ObjectUtils {
     /**
      * 获取转换对象
      * @param object 对象
-     * @param <T>    范型
+     * @param <T>    泛型
      * @return 非空或默认对象
      */
     public static <T> T converObj(final Object object) {

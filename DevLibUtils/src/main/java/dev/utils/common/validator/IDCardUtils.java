@@ -111,7 +111,7 @@ public final class IDCardUtils {
     /**
      * 身份证校验规则, 验证15位身份编码是否合法
      * @param idCard 身份证号码
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean validateIdCard15(final String idCard) {
         // 属于数字, 并且长度为15位数
@@ -141,7 +141,7 @@ public final class IDCardUtils {
     /**
      * 身份证校验规则, 验证18位身份编码是否合法
      * @param idCard 身份证号码
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean validateIdCard18(final String idCard) {
         if (idCard != null && idCard.length() == CHINA_ID_MAX_LENGTH) {
@@ -209,7 +209,7 @@ public final class IDCardUtils {
     /**
      * 验证台湾身份证号码
      * @param idCard 身份证号码
-     * @return 是否符合
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean validateTWCard(final String idCard) {
         // 台湾身份证 10 位
@@ -276,7 +276,7 @@ public final class IDCardUtils {
     /**
      * 判断 10 位数的身份证号, 是否合法
      * @param idCard 身份证号码
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static String[] validateIdCard10(final String idCard) {
         if (isEmpty(idCard)) return null;
@@ -508,8 +508,8 @@ public final class IDCardUtils {
 
     /**
      * 将身份证的每位和对应位的加权因子相乘之后，再获取和值
-     * @param data
-     * @return 身份证编码
+     * @param data byte[] 数据
+     * @return 身份证编码, 加权引子
      */
     public static int getPowerSum(final int[] data) {
         if (data == null) return 0;
@@ -533,7 +533,7 @@ public final class IDCardUtils {
 
     /**
      * 将 POWER 和值与 11 取模获取余数进行校验码判断
-     * @param sum
+     * @param sum {@link IDCardUtils#getPowerSum}
      * @return 校验位
      */
     private static String getCheckCode18(final int sum) {
@@ -578,8 +578,8 @@ public final class IDCardUtils {
 
     /**
      * 将字符数组转换成数字数组
-     * @param data 字符数组
-     * @return 数字数组
+     * @param data char[]
+     * @return int[]
      */
     private static int[] converCharToInt(final char[] data) {
         if (data == null) return null;
@@ -632,9 +632,9 @@ public final class IDCardUtils {
     }
 
     /**
-     * 数字验证
+     * 判断是否数字
      * @param str 待验证的字符串
-     * @return 是否是数字
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean isNum(final String str) {
         return !isEmpty(str) && str.matches("^[0-9]*$");
@@ -644,7 +644,7 @@ public final class IDCardUtils {
 
     /**
      * 判断是否为 null
-     * @param str
+     * @param str 待验证的字符串
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String str) {

@@ -27,8 +27,8 @@ public final class BankCheckUtils {
 
     /**
      * 校验银行卡卡号 是否合法
-     * @param cardId
-     * @return
+     * @param cardId 待校验银行卡号
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean checkBankCard(final String cardId) {
         if (cardId == null || cardId.trim().length() == 0) return false;
@@ -43,8 +43,8 @@ public final class BankCheckUtils {
 
     /**
      * 从不含校验位的银行卡卡号采用 Luhm 校验算法获取校验位
-     * @param nonCheckCodeCardId
-     * @return
+     * @param nonCheckCodeCardId 待校验银行卡号
+     * @return 获取银行卡校验位
      */
     public static char getBankCardCheckCode(final String nonCheckCodeCardId) {
         try {
@@ -73,8 +73,8 @@ public final class BankCheckUtils {
 
     /**
      * 通过银行卡 的前六位确定 判断银行开户行及卡种
-     * @param cardBin
-     * @return
+     * @param cardBin 待校验银行卡号
+     * @return 获取银行开户行及卡种
      */
     public static String getNameOfBank(final String cardBin) {
         if (cardBin == null || cardBin.trim().length() < 6) return "";

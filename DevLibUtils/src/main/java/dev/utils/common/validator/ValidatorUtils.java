@@ -63,7 +63,7 @@ public final class ValidatorUtils {
 
     /**
      * 判断是否为 null
-     * @param str
+     * @param str 待验证的字符串
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String str) {
@@ -72,9 +72,9 @@ public final class ValidatorUtils {
 
     /**
      * 通用匹配函数
-     * @param regex
-     * @param input
-     * @return
+     * @param regex 正则判断
+     * @param input 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean match(final String regex, final String input) {
         try {
@@ -89,8 +89,8 @@ public final class ValidatorUtils {
 
     /**
      * 检验数字
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumber(final String str) {
         if (!isEmpty(str)) {
@@ -101,8 +101,8 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串是不是全是字母
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isLetter(final String str) {
         if (!isEmpty(str)) {
@@ -113,8 +113,8 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串是不是包含数字
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isContainNumber(final String str) {
         if (!isEmpty(str)) {
@@ -125,8 +125,8 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串是不是只含字母和数字
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumberLetter(final String str) {
         if (!isEmpty(str)) {
@@ -137,8 +137,8 @@ public final class ValidatorUtils {
 
     /**
      * 检验特殊符号
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isSpec(final String str) {
         if (!isEmpty(str)) {
@@ -149,8 +149,8 @@ public final class ValidatorUtils {
 
     /**
      * 检验微信号
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isWx(final String str) {
         if (!isEmpty(str)) {
@@ -161,8 +161,8 @@ public final class ValidatorUtils {
 
     /**
      * 检验真实姓名
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isRealName(final String str) {
         if (!isEmpty(str)) {
@@ -173,8 +173,8 @@ public final class ValidatorUtils {
 
     /**
      * 校验昵称
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNickName(final String str) {
         if (!isEmpty(str)) {
@@ -185,8 +185,8 @@ public final class ValidatorUtils {
 
     /**
      * 校验用户名
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isUserName(final String str) {
         if (!isEmpty(str)) {
@@ -197,8 +197,8 @@ public final class ValidatorUtils {
 
     /**
      * 校验密码
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isPassword(final String str) {
         if (!isEmpty(str)) {
@@ -209,8 +209,8 @@ public final class ValidatorUtils {
 
     /**
      * 校验邮箱
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmail(final String str) {
         if (!isEmpty(str)) {
@@ -221,8 +221,8 @@ public final class ValidatorUtils {
 
     /**
      * 校验URL
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isUrl(final String str) {
         if (!isEmpty(str)) {
@@ -233,8 +233,8 @@ public final class ValidatorUtils {
 
     /**
      * 校验IP地址
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isIPAddress(final String str) {
         if (!isEmpty(str)) {
@@ -258,8 +258,8 @@ public final class ValidatorUtils {
 
     /**
      * 校验汉字(无符号,纯汉字)
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isChinese(final String str) {
         if (!isEmpty(str)) {
@@ -270,8 +270,8 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串是不是全是中文
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isChineseAll(final String str) {
         if (!isEmpty(str)) {
@@ -282,8 +282,8 @@ public final class ValidatorUtils {
 
     /**
      * 判断字符串中包含中文、包括中文字符标点等
-     * @param str 可能包含中文的字符串
-     * @return 是否包含中文
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isContainChinese(final String str) {
         if (!isEmpty(str)) {

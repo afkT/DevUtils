@@ -637,7 +637,7 @@ public final class ReflectUtils {
 
     /**
      * 获取反射想要获取的
-     * @param <T> 返回的范型
+     * @param <T> 泛型
      * @return 反射想要获取的
      */
     @SuppressWarnings("unchecked")

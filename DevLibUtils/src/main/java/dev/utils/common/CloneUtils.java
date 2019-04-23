@@ -27,7 +27,7 @@ public final class CloneUtils {
     /**
      * 进行克隆
      * @param data
-     * @param <T>
+     * @param <T>  泛型
      * @return
      */
     public static <T> T deepClone(final Serializable data) {
@@ -91,8 +91,8 @@ public final class CloneUtils {
      * 进行克隆
      * @param map   存储集合
      * @param datas 需要克隆的数据源
-     * @param <K>
-     * @param <V>
+     * @param <K>   key
+     * @param <V>   value
      */
     public static <K, V> void deepClone(final Map<K, V> map, final Map<K, V> datas) {
         if (map != null && datas != null && datas.size() > 0) {
@@ -119,7 +119,7 @@ public final class CloneUtils {
      * 进行克隆
      * @param collection 存储集合
      * @param datas      需要克隆的数据源
-     * @param <T>
+     * @param <T>        泛型
      */
     public static <T> void deepClone(final Collection<T> collection, final Collection<T> datas) {
         if (collection != null && datas != null && datas.size() > 0) {

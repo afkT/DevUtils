@@ -58,7 +58,7 @@ public final class DevThreadPool {
 
     /**
      * 构造函数
-     * @param threadPool
+     * @param threadPool {@link ExecutorService}
      */
     public DevThreadPool(final ExecutorService threadPool) {
         this.threadPool = threadPool;
@@ -68,7 +68,7 @@ public final class DevThreadPool {
 
     /**
      * 构造函数
-     * @param devThreadPoolType 线程初始化类型
+     * @param devThreadPoolType 线程初始化类型 {@link DevThreadPoolType}
      */
     public DevThreadPool(final DevThreadPoolType devThreadPoolType) {
         // 初始化定时器任务
@@ -131,7 +131,7 @@ public final class DevThreadPool {
 
     /**
      * 获取线程数
-     * @return
+     * @return {@link DevThreadPool#getCalcThreads()}
      */
     public final int getThreads() {
         // 使用计算过后的
@@ -140,7 +140,7 @@ public final class DevThreadPool {
 
     /**
      * 获取线程数
-     * @return
+     * @return 自动计算 CPU 核心数
      */
     public final int getCalcThreads() {
         // 获取CPU核心数
@@ -161,7 +161,7 @@ public final class DevThreadPool {
 
     /**
      * 加入到线程池任务队列
-     * @param runnable
+     * @param runnable 线程
      */
     public void execute(final Runnable runnable) {
         if (threadPool != null && runnable != null) {
@@ -171,7 +171,7 @@ public final class DevThreadPool {
 
     /**
      * 加入到线程池任务队列
-     * @param runnables
+     * @param runnables 线程集合
      */
     public void execute(final List<Runnable> runnables) {
         if (threadPool != null && runnables != null) {
@@ -185,8 +185,8 @@ public final class DevThreadPool {
 
     /**
      * 通过反射,调用某个类的方法
-     * @param method
-     * @param object
+     * @param method 方法
+     * @param object 对象
      */
     public void execute(final Method method, final Object object) {
         if (threadPool != null && method != null && object != null) {
@@ -231,8 +231,8 @@ public final class DevThreadPool {
     }
 
     /**
-     * 判断线程池是否已关闭 = isShutDown当调用shutdown()方法后返回为true。
-     * @return
+     * 判断线程池是否已关闭 = isShutDown 当调用 shutdown() 方法后返回为 true
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isShutdown() {
         if (threadPool != null) {
@@ -242,10 +242,10 @@ public final class DevThreadPool {
     }
 
     /**
-     * 若关闭后所有任务都已完成,则返回true.
+     * 若关闭后所有任务都已完成,则返回true
      * 注意除非首先调用shutdown或shutdownNow, 否则isTerminated 永不为true.
      * isTerminated当调用shutdown()方法后，并且所有提交的任务完成后返回为true
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isTerminated() {
         if (threadPool != null) {
@@ -274,7 +274,7 @@ public final class DevThreadPool {
      * 如果想立即阻塞任务的等待，则可以使用{@code result = threadPool.submit(aCallable).get();}形式的构造。
      * @param task 任务
      * @param <T>  泛型
-     * @return 表示任务等待完成的Future, 该Future的{@code get}方法在成功完成时将会返回该任务的结果。
+     * @return 表示任务等待完成的 Future, 该 Future 的{@code get} 方法在成功完成时将会返回该任务的结果。
      */
     public <T> Future<T> submit(final Callable<T> task) {
         if (threadPool != null && task != null) {

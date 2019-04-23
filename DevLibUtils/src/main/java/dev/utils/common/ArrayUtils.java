@@ -463,7 +463,7 @@ public final class ArrayUtils {
      * 获取数组对应索引数据
      * @param array 数组
      * @param pos   索引
-     * @param <T>
+     * @param <T>   泛型
      * @return
      */
     public static <T> T get(final T[] array, final int pos) {
@@ -557,7 +557,7 @@ public final class ArrayUtils {
      * @param array        数组
      * @param pos          索引
      * @param defaultValue 默认值
-     * @param <T>
+     * @param <T>          泛型
      * @return
      */
     public static <T> T get(final T[] array, final int pos, final T defaultValue) {
@@ -756,7 +756,7 @@ public final class ArrayUtils {
     /**
      * 获取数组第一条数据
      * @param array 数组
-     * @param <T>
+     * @param <T>   泛型
      * @return
      */
     public static <T> T getFirst(final T[] array) {
@@ -840,7 +840,7 @@ public final class ArrayUtils {
     /**
      * 获取数组最后一条数据
      * @param array 数组
-     * @param <T>
+     * @param <T>   泛型
      * @return
      */
     public static <T> T getLast(final T[] array) {
@@ -930,7 +930,7 @@ public final class ArrayUtils {
      * @param number  符合条件次数(从0开始, 0 = 1)
      * @param notNull 是否不允许值为null
      * @param offset  偏移量
-     * @param <T>
+     * @param <T>     泛型
      * @return
      */
     public static <T> T get(final T[] array, final T value, final int number, final boolean notNull, final int offset) {
@@ -966,7 +966,7 @@ public final class ArrayUtils {
      * @param number  符合条件次数(从0开始, 0 = 1)
      * @param notNull 是否不允许值为null
      * @param offset  偏移量
-     * @param <T>
+     * @param <T>     泛型
      * @return
      */
     public static <T> int getPosition(final T[] array, final T value, final int number, final boolean notNull, final int offset) {
@@ -1001,7 +1001,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值
      * @param array 数组
      * @param value 值
-     * @param <T>
+     * @param <T>   泛型
      * @return
      */
     public static <T> T get(final T[] array, final T value) {
@@ -1013,7 +1013,7 @@ public final class ArrayUtils {
      * @param array  数组
      * @param value  值
      * @param number 符合条件次数(从0开始, 0 = 1)
-     * @param <T>
+     * @param <T>    泛型
      * @return
      */
     public static <T> T get(final T[] array, final T value, final int number) {
@@ -1025,7 +1025,7 @@ public final class ArrayUtils {
      * @param array   数组
      * @param value   值
      * @param notNull 是否不允许值为null
-     * @param <T>
+     * @param <T>     泛型
      * @return
      */
     public static <T> T get(final T[] array, final T value, final boolean notNull) {
@@ -1038,7 +1038,7 @@ public final class ArrayUtils {
      * @param value   值
      * @param number  符合条件次数(从0开始, 0 = 1)
      * @param notNull 是否不允许值为null
-     * @param <T>
+     * @param <T>     泛型
      * @return
      */
     public static <T> T get(final T[] array, final T value, final int number, final boolean notNull) {
@@ -1051,7 +1051,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值, 不允许值为null
      * @param array 数组
      * @param value 值
-     * @param <T>
+     * @param <T>   泛型
      * @return
      */
     public static <T> T getNotNull(final T[] array, final T value) {
@@ -1063,7 +1063,7 @@ public final class ArrayUtils {
      * @param array  数组
      * @param value  值
      * @param number 符合条件次数(从0开始, 0 = 1)
-     * @param <T>
+     * @param <T>    泛型
      * @return
      */
     public static <T> T getNotNull(final T[] array, final T value, final int number) {
@@ -1076,7 +1076,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取索引
      * @param array 数组
      * @param value 值
-     * @param <T>
+     * @param <T>   泛型
      * @return
      */
     public static <T> int getPosition(final T[] array, final T value) {
@@ -1088,7 +1088,7 @@ public final class ArrayUtils {
      * @param array  数组
      * @param value  值
      * @param number 符合条件次数(从0开始, 0 = 1)
-     * @param <T>
+     * @param <T>    泛型
      * @return
      */
     public static <T> int getPosition(final T[] array, final T value, final int number) {
@@ -1100,7 +1100,7 @@ public final class ArrayUtils {
      * @param array   数组
      * @param value   值
      * @param notNull 是否不允许值为null
-     * @param <T>
+     * @param <T>     泛型
      * @return
      */
     public static <T> int getPosition(final T[] array, final T value, final boolean notNull) {
@@ -1113,7 +1113,7 @@ public final class ArrayUtils {
      * @param value   值
      * @param number  符合条件次数(从0开始, 0 = 1)
      * @param notNull 是否不允许值为null
-     * @param <T>
+     * @param <T>     泛型
      * @return
      */
     public static <T> int getPosition(final T[] array, final T value, final int number, final boolean notNull) {
@@ -1126,7 +1126,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取索引, 不允许值为null
      * @param array 数组
      * @param value 值
-     * @param <T>
+     * @param <T>   泛型
      * @return
      */
     public static <T> int getPositionNotNull(final T[] array, final T value) {
@@ -1138,7 +1138,7 @@ public final class ArrayUtils {
      * @param array  数组
      * @param value  值
      * @param number 符合条件次数(从0开始, 0 = 1)
-     * @param <T>
+     * @param <T>    泛型
      * @return
      */
     public static <T> int getPositionNotNull(final T[] array, final T value, final int number) {
@@ -2164,7 +2164,7 @@ public final class ArrayUtils {
      * 判断两个值是否一样
      * @param value1 第一个值
      * @param value2 第二个值
-     * @param <T>
+     * @param <T>    泛型
      * @return
      */
     public static <T> boolean equals(final T value1, final T value2) {

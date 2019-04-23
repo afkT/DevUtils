@@ -124,7 +124,7 @@ public class AsyncExecutor {
     /**
      * 执行任务
      * @param call
-     * @param <T>
+     * @param <T>  泛型
      * @return {@link FutureTask<T>}
      */
     public <T> FutureTask<T> execute(final Callable<T> call) {

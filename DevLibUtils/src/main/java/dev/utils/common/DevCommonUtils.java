@@ -537,7 +537,7 @@ public final class DevCommonUtils {
      * 判断两个值是否一样
      * @param value1 第一个值
      * @param value2 第二个值
-     * @param <T>
+     * @param <T>    泛型
      * @return
      */
     public static <T> boolean equals(final T value1, final T value2) {
