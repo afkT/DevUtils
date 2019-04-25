@@ -26,9 +26,9 @@ public final class CloneUtils {
 
     /**
      * 进行克隆
-     * @param data
+     * @param data Object implements {@link Serializable}
      * @param <T>  泛型
-     * @return
+     * @return 克隆后的对象
      */
     public static <T> T deepClone(final Serializable data) {
         if (data == null) return null;
@@ -37,8 +37,8 @@ public final class CloneUtils {
 
     /**
      * 通过序列化实体类, 获取对应的byte数组数据
-     * @param serializable
-     * @return
+     * @param serializable Object implements {@link Serializable}
+     * @return 克隆后 byte[]
      */
     public static byte[] serializableToBytes(final Serializable serializable) {
         if (serializable == null) return null;

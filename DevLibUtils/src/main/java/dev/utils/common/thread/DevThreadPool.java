@@ -221,7 +221,7 @@ public final class DevThreadPool {
      * 试图停止所有正在执行的活动任务
      * 试图停止所有正在执行的活动任务，暂停处理正在等待的任务，并返回等待执行的任务列表。
      * 无法保证能够停止正在处理的活动执行任务，但是会尽力尝试。
-     * @return
+     * @return {@link List<Runnable>}
      */
     public List<Runnable> shutdownNow() {
         if (threadPool != null) {

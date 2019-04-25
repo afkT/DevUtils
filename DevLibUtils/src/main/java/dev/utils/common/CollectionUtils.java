@@ -52,7 +52,7 @@ public final class CollectionUtils {
     /**
      * 获取 Collection 长度
      * @param collection Collection
-     * @return
+     * @return 如果 Collection 为 null, 则返回默认长度, 如果不为 null, 则返回 collection.size()
      */
     public static int length(final Collection collection) {
         return length(collection, 0);
@@ -62,7 +62,7 @@ public final class CollectionUtils {
      * 获取 Collection 长度
      * @param collection    Collection
      * @param defaultLength 集合为 null 默认长度
-     * @return
+     * @return 如果 Collection 为 null, 则返回 defaultLength, 如果不为 null, 则返回 collection.size()
      */
     public static int length(final Collection collection, final int defaultLength) {
         return collection != null ? collection.size() : defaultLength;
@@ -74,7 +74,7 @@ public final class CollectionUtils {
      * 获取长度 to Collection 是否等于期望长度
      * @param collection Collection
      * @param length     期望长度
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final Collection collection, final int length) {
         return collection != null && collection.size() == length;
@@ -86,7 +86,7 @@ public final class CollectionUtils {
      * 判断 Collection 长度是否大于指定长度
      * @param collection Collection
      * @param length     指定长度
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean greaterThan(final Collection collection, final int length) {
         return collection != null && collection.size() > length;
@@ -96,7 +96,7 @@ public final class CollectionUtils {
      * 判断 Collection 长度是否大于等于指定长度
      * @param collection Collection
      * @param length     指定长度
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean greaterThanOrEqual(final Collection collection, final int length) {
         return collection != null && collection.size() >= length;
@@ -108,7 +108,7 @@ public final class CollectionUtils {
      * 判断 Collection 长度是否小于指定长度
      * @param collection Collection
      * @param length     指定长度
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean lessThan(final Collection collection, final int length) {
         return collection != null && collection.size() < length;
@@ -118,7 +118,7 @@ public final class CollectionUtils {
      * 判断 Collection 长度是否小于等于指定长度
      * @param collection Collection
      * @param length     指定长度
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean lessThanOrEqual(final Collection collection, final int length) {
         return collection != null && collection.size() <= length;
@@ -133,7 +133,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param pos        索引
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T get(final Collection<T> collection, final int pos) {
         if (collection != null) {
@@ -162,7 +162,7 @@ public final class CollectionUtils {
      * 获取第一条数据
      * @param collection Collection
      * @param <T>        泛型
-     * @return
+     * @return 返回索引为0的值
      */
     public static <T> T getFirst(final Collection<T> collection) {
         return get(collection, 0);
@@ -172,7 +172,7 @@ public final class CollectionUtils {
      * 获取最后一条数据
      * @param collection Collection
      * @param <T>        泛型
-     * @return
+     * @return 返回索引 length - 1 的值
      */
     public static <T> T getLast(final Collection<T> collection) {
         return get(collection, length(collection) - 1);
@@ -188,7 +188,7 @@ public final class CollectionUtils {
      * @param notNull    是否不允许值为null
      * @param offset     偏移量
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T get(final Collection<T> collection, final T value, final int number, final boolean notNull, final int offset) {
         if (collection != null) {
@@ -226,7 +226,7 @@ public final class CollectionUtils {
      * @param notNull    是否不允许值为null
      * @param offset     偏移量
      * @param <T>        泛型
-     * @return
+     * @return 返回对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value, final int number, final boolean notNull, final int offset) {
         if (collection != null) {
@@ -263,7 +263,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return
+     * @return 返回对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value) {
         return getPosition(collection, value, 0, false, 0);
@@ -275,7 +275,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return
+     * @return 返回对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value, final int number) {
         return getPosition(collection, value, number, false, 0);
@@ -287,7 +287,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return
+     * @return 返回对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value, final boolean notNull) {
         return getPosition(collection, value, 0, notNull, 0);
@@ -300,7 +300,7 @@ public final class CollectionUtils {
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return
+     * @return 返回对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value, final int number, final boolean notNull) {
         return getPosition(collection, value, number, notNull, 0);
@@ -313,7 +313,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return
+     * @return 返回对应的索引
      */
     public static <T> int getPositionNotNull(final Collection<T> collection, final T value) {
         return getPosition(collection, value, 0, true, 0);
@@ -325,7 +325,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return
+     * @return 返回对应的索引
      */
     public static <T> int getPositionNotNull(final Collection<T> collection, final T value, final int number) {
         return getPosition(collection, value, number, true, 0);
@@ -338,7 +338,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getNext(final Collection<T> collection, final T value) {
         return get(collection, value, 0, false, 1);
@@ -350,7 +350,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getNext(final Collection<T> collection, final T value, final int number) {
         return get(collection, value, number, false, 1);
@@ -362,7 +362,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getNext(final Collection<T> collection, final T value, final boolean notNull) {
         return get(collection, value, 0, notNull, 1);
@@ -375,7 +375,7 @@ public final class CollectionUtils {
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getNext(final Collection<T> collection, final T value, final int number, final boolean notNull) {
         return get(collection, value, number, notNull, 1);
@@ -388,7 +388,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getNextNotNull(final Collection<T> collection, final T value) {
         return get(collection, value, 0, true, 1);
@@ -400,7 +400,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getNextNotNull(final Collection<T> collection, final T value, final int number) {
         return get(collection, value, number, true, 1);
@@ -413,7 +413,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getPrevious(final Collection<T> collection, final T value) {
         return get(collection, value, 0, false, -1);
@@ -425,7 +425,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getPrevious(final Collection<T> collection, final T value, final int number) {
         return get(collection, value, number, false, -1);
@@ -437,7 +437,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getPrevious(final Collection<T> collection, final T value, final boolean notNull) {
         return get(collection, value, 0, notNull, -1);
@@ -450,7 +450,7 @@ public final class CollectionUtils {
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getPrevious(final Collection<T> collection, final T value, final int number, final boolean notNull) {
         return get(collection, value, number, notNull, -1);
@@ -463,7 +463,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getPreviousNotNull(final Collection<T> collection, final T value) {
         return get(collection, value, 0, true, -1);
@@ -475,7 +475,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return
+     * @return 返回对应索引的值
      */
     public static <T> T getPreviousNotNull(final Collection<T> collection, final T value, final int number) {
         return get(collection, value, number, true, -1);
@@ -490,7 +490,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <T> boolean add(final Collection<T> collection, final T value) {
         return add(collection, value, false);
@@ -502,7 +502,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param notNull    是否不允许添加null数据
      * @param <T>        泛型
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <T> boolean add(final Collection<T> collection, final T value, final boolean notNull) {
         if (collection != null) {
@@ -530,7 +530,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <T> boolean addNotNull(final Collection<T> collection, final T value) {
         return add(collection, value, true);
@@ -543,7 +543,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param values     准备添加的值(集合)
      * @param <T>        泛型
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <T> boolean addAll(final Collection<T> collection, final Collection<T> values) {
         return addAll(collection, values, false);
@@ -555,7 +555,7 @@ public final class CollectionUtils {
      * @param values     准备添加的值(集合)
      * @param notNull    是否不允许添加null值
      * @param <T>        泛型
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <T> boolean addAll(final Collection<T> collection, final Collection<T> values, final boolean notNull) {
         if (collection != null && values != null) {
@@ -586,7 +586,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param values     准备添加的值(集合)
      * @param <T>        泛型
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <T> boolean addAllNotNull(final Collection<T> collection, final Collection<T> values) {
         return addAll(collection, values, true);
@@ -712,7 +712,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      准备删除的值
      * @param <T>        泛型
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <T> boolean remove(final Collection<T> collection, final T value) {
         if (collection != null) {
@@ -730,7 +730,7 @@ public final class CollectionUtils {
      * @param list 集合
      * @param pos  准备删除的索引
      * @param <T>  泛型
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <T> T remove(final List<T> list, final int pos) {
         if (list != null) {
@@ -752,7 +752,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param values     准备删除的集合
      * @param <T>        泛型
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <T> boolean removeAll(final Collection<T> collection, final Collection<T> values) {
         if (collection != null && values != null) {
@@ -818,7 +818,6 @@ public final class CollectionUtils {
     /**
      * 清空集合全部数据
      * @param collection Collection
-     * @return
      */
     public static <T> void clearAll(final Collection<T> collection) {
         if (collection != null) {
@@ -848,7 +847,7 @@ public final class CollectionUtils {
      * @param collection1 第一个集合
      * @param collection2 第二个集合
      * @param <T>         泛型
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static <T> boolean isEqualCollection(final Collection<T> collection1, final Collection<T> collection2) {
         // 数据长度
@@ -897,7 +896,7 @@ public final class CollectionUtils {
      * 判断多个集合是否相同
      * @param collections 集合数组
      * @param <T>         泛型
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static <T> boolean isEqualCollections(final Collection<T>... collections) {
         if (collections != null && collections.length >= 2) {
@@ -932,7 +931,7 @@ public final class CollectionUtils {
      * @param collection1 第一个集合
      * @param collection2 第二个集合
      * @param <T>         泛型
-     * @return
+     * @return 并集集合
      */
     public static <T> Collection<T> union(final Collection<T> collection1, final Collection<T> collection2) {
         if (collection1 != null && collection2 != null) {
@@ -956,7 +955,7 @@ public final class CollectionUtils {
      * 多个集合并集处理
      * @param collections 集合数组
      * @param <T>         泛型
-     * @return
+     * @return 并集集合
      */
     public static <T> Collection<T> unions(final Collection<T>... collections) {
         if (collections != null) {
@@ -997,7 +996,7 @@ public final class CollectionUtils {
      * @param collection1 第一个集合
      * @param collection2 第二个集合
      * @param <T>         泛型
-     * @return
+     * @return 交集集合
      */
     public static <T> Collection<T> intersection(final Collection<T> collection1, final Collection<T> collection2) {
         if (collection1 != null && collection2 != null) {
@@ -1033,7 +1032,7 @@ public final class CollectionUtils {
      * @param collection1 第一个集合
      * @param collection2 第二个集合
      * @param <T>         泛型
-     * @return
+     * @return 交集集合
      */
     public static <T> Collection<T> disjunction(final Collection<T> collection1, final Collection<T> collection2) {
         try {
@@ -1062,7 +1061,7 @@ public final class CollectionUtils {
      * @param collection1 第一个集合
      * @param collection2 第二个集合
      * @param <T>         泛型
-     * @return
+     * @return 差集（扣除）集合
      */
     public static <T> Collection<T> subtract(final Collection<T> collection1, final Collection<T> collection2) {
         try {
@@ -1089,7 +1088,7 @@ public final class CollectionUtils {
      * @param value1 第一个值
      * @param value2 第二个值
      * @param <T>    泛型
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static <T> boolean equals(final T value1, final T value2) {
         // 两个值都不为 null
@@ -1113,7 +1112,7 @@ public final class CollectionUtils {
      * 转换数组 to 集合数据类型数组
      * @param collection Collection
      * @param <T>        泛型
-     * @return
+     * @return 转换后的数组
      */
     public static <T> T[] toArray(final Collection<T> collection) {
         if (collection != null) {
@@ -1130,7 +1129,7 @@ public final class CollectionUtils {
      * 转换数组 to Object
      * @param collection Collection
      * @param <T>        泛型
-     * @return
+     * @return 转换后的数组
      */
     public static <T> Object[] toArrayToObject(final Collection<T> collection) {
         if (collection != null) {
@@ -1147,7 +1146,7 @@ public final class CollectionUtils {
      * 集合翻转处理
      * @param collection Collection
      * @param <T>        泛型
-     * @return
+     * @return 翻转后的集合
      */
     public static <T> Collection<T> reverse(final Collection<T> collection) {
         try {

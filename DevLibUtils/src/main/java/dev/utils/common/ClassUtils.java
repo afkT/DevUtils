@@ -22,8 +22,8 @@ public final class ClassUtils {
 
     /**
      * 判断类是否是基础数据类型 - 目前支持11种
-     * @param clazz
-     * @return
+     * @param clazz {@link Class}
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isBaseDataType(final Class<?> clazz) {
         return clazz != null && (clazz.isPrimitive() || clazz.equals(String.class) || clazz.equals(Boolean.class)
@@ -35,8 +35,8 @@ public final class ClassUtils {
 
     /**
      * 根据类获取对象: 不再必须一个无参构造
-     * @param clazz
-     * @return
+     * @param clazz {@link Class}
+     * @return 返回初始化后的对象
      */
     public static <T> T newInstance(final Class<T> clazz) {
         if (clazz == null) return null;
@@ -64,8 +64,8 @@ public final class ClassUtils {
 
     /**
      * 判断 Class 是否为原始类型 (boolean、char、byte、short、int、long、float、double)
-     * @param clazz
-     * @return
+     * @param clazz {@link Class}
+     * @return 返回原始类型值
      */
     public static Object getDefaultPrimiticeValue(final Class clazz) {
         if (clazz != null && clazz.isPrimitive()) {
@@ -76,8 +76,8 @@ public final class ClassUtils {
 
     /**
      * 判断是否集合类型
-     * @param clazz
-     * @return
+     * @param clazz {@link Class}
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isCollection(final Class clazz) {
         return (clazz != null && Collection.class.isAssignableFrom(clazz));
@@ -85,8 +85,8 @@ public final class ClassUtils {
 
     /**
      * 是否数组类型
-     * @param clazz
-     * @return
+     * @param clazz {@link Class}
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isArray(final Class clazz) {
         return (clazz != null && clazz.isArray());
@@ -96,8 +96,8 @@ public final class ClassUtils {
 
     /**
      * 获取父类泛型类型
-     * @param object
-     * @return
+     * @param object Object
+     * @return 返回泛型类型
      */
     public static Class<?> getGenericSuperclass(final Object object) {
         return getGenericSuperclass(object, 0);
@@ -105,9 +105,9 @@ public final class ClassUtils {
 
     /**
      * 获取父类泛型类型
-     * @param object
-     * @param pos    泛型参数位置
-     * @return
+     * @param object Object
+     * @param pos    泛型参数索引
+     * @return 返回泛型类型
      */
     public static Class<?> getGenericSuperclass(final Object object, final int pos) {
         if (object != null) {
@@ -120,8 +120,8 @@ public final class ClassUtils {
 
     /**
      * 获取父类泛型类型
-     * @param clazz
-     * @return
+     * @param clazz {@link Class}
+     * @return 返回泛型类型
      */
     public static Class<?> getGenericSuperclass(final Class clazz) {
         return getGenericSuperclass(clazz, 0);
@@ -129,9 +129,9 @@ public final class ClassUtils {
 
     /**
      * 获取父类泛型类型
-     * @param clazz
-     * @param pos   泛型参数位置
-     * @return
+     * @param clazz {@link Class}
+     * @param pos   泛型参数索引
+     * @return 返回泛型类型
      */
     public static Class<?> getGenericSuperclass(final Class clazz, final int pos) {
         if (clazz != null && pos >= 0) {
@@ -148,9 +148,9 @@ public final class ClassUtils {
 
     /**
      * 获取接口泛型类型
-     * @param object
+     * @param object         Object
      * @param interfaceClazz 接口 Class
-     * @return
+     * @return 返回泛型类型
      */
     public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz) {
         return getGenericInterfaces(object, interfaceClazz, 0);
@@ -158,10 +158,10 @@ public final class ClassUtils {
 
     /**
      * 获取接口泛型类型
-     * @param object
+     * @param object         Object
      * @param interfaceClazz 接口 Class
-     * @param pos            泛型参数位置
-     * @return
+     * @param pos            泛型参数索引
+     * @return 返回泛型类型
      */
     public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz, final int pos) {
         if (object != null) {
@@ -174,9 +174,9 @@ public final class ClassUtils {
 
     /**
      * 获取接口泛型类型
-     * @param clazz
+     * @param clazz          {@link Class}
      * @param interfaceClazz 接口 Class
-     * @return
+     * @return 返回泛型类型
      */
     public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz) {
         return getGenericInterfaces(clazz, interfaceClazz, 0);
@@ -184,10 +184,10 @@ public final class ClassUtils {
 
     /**
      * 获取接口泛型类型
-     * @param clazz
+     * @param clazz          {@link Class}
      * @param interfaceClazz 接口 Class
-     * @param pos            泛型参数位置
-     * @return
+     * @param pos            泛型参数索引
+     * @return 返回泛型类型
      */
     public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz, final int pos) {
         if (clazz != null && interfaceClazz != null && pos >= 0) {
