@@ -24,7 +24,7 @@ public final class DevCommonUtils {
     /**
      * 判断是否网络资源
      * @param str 资源地址字符串
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isHttpRes(final String str) {
         if (!isEmpty(str)) {
@@ -35,21 +35,6 @@ public final class DevCommonUtils {
             }
         }
         return false;
-    }
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 
     // ======================
@@ -1355,82 +1340,6 @@ public final class DevCommonUtils {
             }
         }
         return null;
-    }
-
-    // ============
-    // = 计算相关 =
-    // ============
-
-    /**
-     * 计算百分比值 (最大 100%)
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent(final float value, final float max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 (最大 100%)
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent(final int value, final int max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return (float) value / (float) max;
-    }
-
-    /**
-     * 计算百分比值 (可超出 100%)
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent2(final float value, final float max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 (可超出 100%)
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent2(final int value, final int max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        return (float) value / (float) max;
-    }
-
-    /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
-     * @param value
-     * @param max
-     * @param min
-     * @return
-     */
-    public static int clamp(final int value, final int max, final int min) {
-        return value > max ? max : value < min ? min : value;
-    }
-
-    /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
-     * @param value
-     * @param max
-     * @param min
-     * @return
-     */
-    public static float clamp(final float value, final float max, final float min) {
-        return value > max ? max : value < min ? min : value;
     }
 
     // ============

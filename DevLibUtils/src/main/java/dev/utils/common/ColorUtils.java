@@ -90,7 +90,7 @@ public final class ColorUtils {
     /**
      * 获取十六进制透明度字符串
      * @param alpha 0-255
-     * @return
+     * @return 返回透明度（十六进制）值
      */
     public static String toHexAlpha(final int alpha) {
         try {
@@ -106,59 +106,9 @@ public final class ColorUtils {
     // =
 
     /**
-     * 计算百分比值
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent(final float value, final float max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值
-     * @param value
-     * @param max
-     * @return
-     */
-    public static float percent(final int value, final int max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return (float) value / (float) max;
-    }
-
-    /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
-     * @param value
-     * @param max
-     * @param min
-     * @return
-     */
-    public static int clamp(final int value, final int max, final int min) {
-        return value > max ? max : value < min ? min : value;
-    }
-
-    /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
-     * @param value
-     * @param max
-     * @param min
-     * @return
-     */
-    public static float clamp(final float value, final float max, final float min) {
-        return value > max ? max : value < min ? min : value;
-    }
-
-    // =
-
-    /**
      * 返回一个颜色中的透明度值(返回10进制)
-     * @param color
-     * @return
+     * @param color argb color
+     * @return 返回 alpha 值
      */
     public static int alpha(final int color) {
         return color >>> 24;
@@ -166,8 +116,8 @@ public final class ColorUtils {
 
     /**
      * 返回一个颜色中的透明度百分比值
-     * @param color
-     * @return
+     * @param color argb color
+     * @return 返回 alpha 百分比值
      */
     public static float alphaPercent(final int color) {
         return percent(alpha(color), 255);
@@ -177,8 +127,8 @@ public final class ColorUtils {
 
     /**
      * 返回一个颜色中红色的色值(返回10进制)
-     * @param color
-     * @return
+     * @param color argb/rgb color
+     * @return 返回 red 值
      */
     public static int red(final int color) {
         return (color >> 16) & 0xFF;
@@ -186,8 +136,8 @@ public final class ColorUtils {
 
     /**
      * 返回一个颜色中红色的百分比值
-     * @param color
-     * @return
+     * @param color argb/rgb color
+     * @return 返回 red 百分比值
      */
     public static float redPercent(final int color) {
         return percent(red(color), 255);
@@ -197,8 +147,8 @@ public final class ColorUtils {
 
     /**
      * 返回一个颜色中绿色的色值(返回10进制)
-     * @param color
-     * @return
+     * @param color argb/rgb color
+     * @return 返回 green 百分比值
      */
     public static int green(final int color) {
         return (color >> 8) & 0xFF;
@@ -206,8 +156,8 @@ public final class ColorUtils {
 
     /**
      * 返回一个颜色中绿色的百分比值
-     * @param color
-     * @return
+     * @param color argb/rgb color
+     * @return 返回 green 百分比值
      */
     public static float greenPercent(final int color) {
         return percent(green(color), 255);
@@ -217,8 +167,8 @@ public final class ColorUtils {
 
     /**
      * 返回一个颜色中蓝色的色值(返回10进制)
-     * @param color
-     * @return
+     * @param color argb/rgb color
+     * @return 返回 blue 百分比值
      */
     public static int blue(final int color) {
         return color & 0xFF;
@@ -226,8 +176,8 @@ public final class ColorUtils {
 
     /**
      * 返回一个颜色中蓝色的百分比值
-     * @param color
-     * @return
+     * @param color argb/rgb color
+     * @return 返回 blue 百分比值
      */
     public static float bluePercent(final int color) {
         return percent(blue(color), 255);
@@ -237,9 +187,10 @@ public final class ColorUtils {
 
     /**
      * 根据对应的 red、green、blue 生成一个颜色值
-     * @param red   [0-255]
-     * @param green [0-255]
-     * @param blue  [0-255]
+     * @param red   红色值 [0-255]
+     * @param green 绿色值 [0-255]
+     * @param blue  蓝色值 [0-255]
+     * @return 返回一个 rgb 颜色值
      */
     public static int rgb(final int red, final int green, final int blue) {
         return 0xff000000 | (red << 16) | (green << 8) | blue;
@@ -247,9 +198,10 @@ public final class ColorUtils {
 
     /**
      * 根据对应的 red、green、blue 生成一个颜色值
-     * @param red   [0-255]
-     * @param green [0-255]
-     * @param blue  [0-255]
+     * @param red   红色值 [0-255]
+     * @param green 绿色值 [0-255]
+     * @param blue  蓝色值 [0-255]
+     * @return 返回一个 rgb 颜色值
      */
     public static int rgb(final float red, final float green, final float blue) {
         return 0xff000000 |
@@ -262,10 +214,11 @@ public final class ColorUtils {
 
     /**
      * 根据对应的 alpha, red、green、blue 生成一个颜色值 (含透明度)
-     * @param alpha [0-255]
-     * @param red   [0-255]
-     * @param green [0-255]
-     * @param blue  [0-255]
+     * @param alpha 透明度 [0-255]
+     * @param red   红色值 [0-255]
+     * @param green 绿色值 [0-255]
+     * @param blue  蓝色值 [0-255]
+     * @return 返回一个 argb 颜色值
      */
     public static int argb(final int alpha, final int red, final int green, final int blue) {
         return (alpha << 24) | (red << 16) | (green << 8) | blue;
@@ -273,10 +226,11 @@ public final class ColorUtils {
 
     /**
      * 根据对应的 alpha, red、green、blue 生成一个颜色值 (含透明度)
-     * @param alpha [0-255]
-     * @param red   [0-255]
-     * @param green [0-255]
-     * @param blue  [0-255]
+     * @param alpha 透明度 [0-255]
+     * @param red   红色值 [0-255]
+     * @param green 绿色值 [0-255]
+     * @param blue  蓝色值 [0-255]
+     * @return 返回一个 argb 颜色值
      */
     public static int argb(final float alpha, final float red, final float green, final float blue) {
         return ((int) (alpha * 255.0f + 0.5f) << 24) |
@@ -289,8 +243,8 @@ public final class ColorUtils {
 
     /**
      * 判断颜色 RGB 是否有效
-     * @param color
-     * @return
+     * @param color rgb color
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isRGB(final int color) {
         int red = red(color);
@@ -303,8 +257,8 @@ public final class ColorUtils {
 
     /**
      * 判断颜色 ARGB 是否有效
-     * @param color
-     * @return
+     * @param color argb color
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isARGB(final int color) {
         int alpha = alpha(color);
@@ -321,9 +275,9 @@ public final class ColorUtils {
 
     /**
      * 设置透明度
-     * @param color
-     * @param alpha [0-255]
-     * @return
+     * @param color argb/rgb color
+     * @param alpha 透明度 [0-255]
+     * @return 返回 argb 颜色值
      */
     public static int setAlpha(final int color, final int alpha) {
         return (color & 0x00ffffff) | (alpha << 24);
@@ -331,9 +285,9 @@ public final class ColorUtils {
 
     /**
      * 设置透明度
-     * @param color
-     * @param alpha [0-255]
-     * @return
+     * @param color argb/rgb color
+     * @param alpha 透明度 [0-255]
+     * @return 返回 argb 颜色值
      */
     public static int setAlpha(final int color, final float alpha) {
         return (color & 0x00ffffff) | ((int) (alpha * 255.0f + 0.5f) << 24);
@@ -341,9 +295,9 @@ public final class ColorUtils {
 
     /**
      * 改变颜色值中的红色色值
-     * @param color
-     * @param red   [0-255]
-     * @return
+     * @param color argb/rgb color
+     * @param red   红色值 [0-255]
+     * @return 返回 argb/rgb 颜色值
      */
     public static int setRed(final int color, final int red) {
         return (color & 0xff00ffff) | (red << 16);
@@ -351,9 +305,9 @@ public final class ColorUtils {
 
     /**
      * 改变颜色值中的红色色值
-     * @param color
-     * @param red   [0-255]
-     * @return
+     * @param color argb/rgb color
+     * @param red   红色值 [0-255]
+     * @return 返回 argb/rgb 颜色值
      */
     public static int setRed(final int color, final float red) {
         return (color & 0xff00ffff) | ((int) (red * 255.0f + 0.5f) << 16);
@@ -361,9 +315,9 @@ public final class ColorUtils {
 
     /**
      * 改变颜色值中的绿色色值
-     * @param color
-     * @param green [0-255]
-     * @return
+     * @param color argb/rgb color
+     * @param green 绿色值 [0-255]
+     * @return 返回 argb/rgb 颜色值
      */
     public static int setGreen(final int color, final int green) {
         return (color & 0xffff00ff) | (green << 8);
@@ -371,9 +325,9 @@ public final class ColorUtils {
 
     /**
      * 改变颜色值中的绿色色值
-     * @param color
-     * @param green [0-255]
-     * @return
+     * @param color argb/rgb color
+     * @param green 绿色值 [0-255]
+     * @return 返回 argb/rgb 颜色值
      */
     public static int setGreen(final int color, final float green) {
         return (color & 0xffff00ff) | ((int) (green * 255.0f + 0.5f) << 8);
@@ -381,9 +335,9 @@ public final class ColorUtils {
 
     /**
      * 改变颜色值中的蓝色色值
-     * @param color
-     * @param blue  [0-255]
-     * @return
+     * @param color argb/rgb color
+     * @param blue  蓝色值 [0-255]
+     * @return 返回 argb/rgb 颜色值
      */
     public static int setBlue(final int color, final int blue) {
         return (color & 0xffffff00) | blue;
@@ -391,9 +345,9 @@ public final class ColorUtils {
 
     /**
      * 改变颜色值中的蓝色色值
-     * @param color
-     * @param blue  [0-255]
-     * @return
+     * @param color argb/rgb color
+     * @param blue  蓝色值 [0-255]
+     * @return 返回 argb/rgb 颜色值
      */
     public static int setBlue(final int color, final float blue) {
         return (color & 0xffffff00) | (int) (blue * 255.0f + 0.5f);
@@ -403,8 +357,8 @@ public final class ColorUtils {
 
     /**
      * 解析颜色字符串, 返回对应的颜色值
-     * @param colorStr
-     * @return
+     * @param colorStr argb/rgb color String
+     * @return 返回 argb/rgb 颜色值
      */
     private static int priParseColor(final String colorStr) {
         if (colorStr.charAt(0) == '#') {
@@ -428,10 +382,14 @@ public final class ColorUtils {
 
     /**
      * 解析颜色字符串, 返回对应的颜色值
-     * 支持的格式:
-     * #RRGGBB
-     * #AARRGGBB
-     * 'red', 'blue', 'green', 'black', 'white', 'gray', 'cyan', 'magenta', 'yellow', 'lightgray', 'darkgray'
+     * <pre>
+     *      支持的格式:
+     *      #RRGGBB
+     *      #AARRGGBB
+     *      'red', 'blue', 'green', 'black', 'white', 'gray', 'cyan', 'magenta', 'yellow', 'lightgray', 'darkgray'
+     * </pre>
+     * @param colorStr argb/rgb color String
+     * @return 返回 argb/rgb 颜色值
      */
     public static int parseColor(final String colorStr) {
         try {
@@ -444,8 +402,8 @@ public final class ColorUtils {
 
     /**
      * 颜色值 转换 RGB颜色 字符串
-     * @param colorInt
-     * @return
+     * @param colorInt rgb int color
+     * @return 返回 rgb color String
      */
     public static String intToRgbString(final int colorInt) {
         int color = colorInt;
@@ -459,8 +417,8 @@ public final class ColorUtils {
 
     /**
      * 颜色值 转换 ARGB颜色 字符串
-     * @param colorInt
-     * @return
+     * @param colorInt argb int color
+     * @return 返回 argb color String
      */
     public static String intToArgbString(final int colorInt) {
         String colorString = Integer.toHexString(colorInt);
@@ -477,7 +435,7 @@ public final class ColorUtils {
 
     /**
      * 获取随机颜色值
-     * @return
+     * @return 返回随即颜色值
      */
     public static int getRandomColor() {
         return getRandomColor(true);
@@ -485,8 +443,8 @@ public final class ColorUtils {
 
     /**
      * 获取随机颜色值
-     * @param supportAlpha
-     * @return
+     * @param supportAlpha 是否支持透明度
+     * @return 返回 argb/rgb 颜色值
      */
     public static int getRandomColor(final boolean supportAlpha) {
         int high = supportAlpha ? (int) (Math.random() * 0x100) << 24 : 0xFF000000;
@@ -495,8 +453,8 @@ public final class ColorUtils {
 
     /**
      * 判断是否为ARGB格式的十六进制颜色，例如: FF990587
-     * @param colorStr
-     * @return
+     * @param colorStr color String
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean judgeColorString(final String colorStr) {
         if (colorStr != null && colorStr.length() == 8) {
@@ -513,9 +471,9 @@ public final class ColorUtils {
 
     /**
      * 颜色加深(单独修改 RGB值, 不变动透明度)
-     * @param colorStr
-     * @param darkValue
-     * @return
+     * @param colorStr  color String
+     * @param darkValue 加深值
+     * @return 返回加深后的颜色值
      */
     public static int setDark(final String colorStr, final int darkValue) {
         int color = parseColor(colorStr);
@@ -525,9 +483,9 @@ public final class ColorUtils {
 
     /**
      * 颜色加深(单独修改 RGB值, 不变动透明度)
-     * @param color
-     * @param darkValue
-     * @return
+     * @param color     int color
+     * @param darkValue 加深值
+     * @return 返回加深后的颜色值
      */
     public static int setDark(final int color, final int darkValue) {
         int red = red(color);
@@ -548,9 +506,9 @@ public final class ColorUtils {
 
     /**
      * 颜色变浅, 变亮(单独修改 RGB值, 不变动透明度)
-     * @param colorStr
-     * @param lightValue
-     * @return
+     * @param colorStr   color String
+     * @param lightValue 变亮(变浅)值
+     * @return 返回变亮(变浅)后的颜色值
      */
     public static int setLight(final String colorStr, final int lightValue) {
         int color = parseColor(colorStr);
@@ -560,9 +518,9 @@ public final class ColorUtils {
 
     /**
      * 颜色变浅, 变亮(单独修改 RGB值, 不变动透明度)
-     * @param color
-     * @param lightValue
-     * @return
+     * @param color      int color
+     * @param lightValue 变亮(变浅)值
+     * @return 返回变亮(变浅)后的颜色值
      */
     public static int setLight(final int color, final int lightValue) {
         int red = red(color);
@@ -583,9 +541,9 @@ public final class ColorUtils {
 
     /**
      * 设置透明度加深
-     * @param colorStr
-     * @param darkValue
-     * @return
+     * @param colorStr  color String
+     * @param darkValue 加深值
+     * @return 返回透明度加深后的颜色值
      */
     public static int setAlphaDark(final String colorStr, final int darkValue) {
         int color = parseColor(colorStr);
@@ -595,9 +553,9 @@ public final class ColorUtils {
 
     /**
      * 设置透明度加深
-     * @param color
-     * @param darkValue
-     * @return
+     * @param color     int color
+     * @param darkValue 加深值
+     * @return 返回透明度加深后的颜色值
      */
     public static int setAlphaDark(final int color, final int darkValue) {
         int alpha = alpha(color);
@@ -609,9 +567,9 @@ public final class ColorUtils {
 
     /**
      * 设置透明度变浅
-     * @param colorStr
-     * @param lightValue
-     * @return
+     * @param colorStr   color String
+     * @param lightValue 变浅值
+     * @return 返回透明度变浅后的颜色值
      */
     public static int setAlphaLight(final String colorStr, final int lightValue) {
         int color = parseColor(colorStr);
@@ -621,9 +579,9 @@ public final class ColorUtils {
 
     /**
      * 设置透明度变浅
-     * @param color
-     * @param lightValue
-     * @return
+     * @param color      int color
+     * @param lightValue 变浅值
+     * @return 返回透明度变浅后的颜色值
      */
     public static int setAlphaLight(final int color, final int lightValue) {
         int alpha = alpha(color);
@@ -673,5 +631,31 @@ public final class ColorUtils {
         sColorNameMap.put("navy", 0xFF000080);
         sColorNameMap.put("olive", 0xFF808000);
         sColorNameMap.put("teal", 0xFF008080);
+    }
+
+    // =
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 返回百分比值
+     */
+    private static float percent(final int value, final int max) {
+        if (max <= 0) return 0.0f;
+        if (value <= 0) return 0.0f;
+        if (value >= max) return 1.0f;
+        return (float) value / (float) max;
+    }
+
+    /**
+     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     * @param value 指定值
+     * @param max   最大值
+     * @param min   最小值
+     * @return 返回介于 max、min之间的 value
+     */
+    private static int clamp(final int value, final int max, final int min) {
+        return value > max ? max : value < min ? min : value;
     }
 }

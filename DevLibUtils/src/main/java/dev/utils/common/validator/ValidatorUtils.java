@@ -22,6 +22,9 @@ public final class ValidatorUtils {
     // 正则表达式: 验证数字
     public static final String REGEX_NUMBER = "^[0-9]*$";
 
+    // 正则表达式: 验证数字或包含小数点
+    private static final String REGEX_NUMBER_OR_DECIMAL = "^[0-9]*[.]?[0-9]*$";
+
     // 正则表达式: 验证是否包含数字
     public static final String REGEX_CONTAIN_NUMBER = ".*\\d+.*";
 
@@ -95,6 +98,18 @@ public final class ValidatorUtils {
     public static boolean isNumber(final String str) {
         if (!isEmpty(str)) {
             return match(REGEX_NUMBER, str);
+        }
+        return false;
+    }
+
+    /**
+     * 检验数字或包含小数点
+     * @param str 待验证的字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNumberDecimal(final String str) {
+        if (!isEmpty(str)) {
+            return match(REGEX_NUMBER_OR_DECIMAL, str);
         }
         return false;
     }
@@ -226,7 +241,7 @@ public final class ValidatorUtils {
      */
     public static boolean isUrl(final String str) {
         if (!isEmpty(str)) {
-            return match(REGEX_URL, str);
+            return match(REGEX_URL, str.toLowerCase());
         }
         return false;
     }

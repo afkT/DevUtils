@@ -64,7 +64,7 @@ public final class DateUtils {
 
     /**
      * 获取当前日期的字符串 - yyyy-MM-dd HH:mm:ss
-     * @return
+     * @return 返回当前日期 yyyy-MM-dd HH:mm:ss 格式字符串
      */
     public static String getDateNow() {
         return getDateNow(yyyyMMddHHmmss);
@@ -73,7 +73,7 @@ public final class DateUtils {
     /**
      * 获取当前日期的字符串
      * @param format 日期格式，如: yyyy-MM-dd HH:mm:ss
-     * @return
+     * @return 返回当前日期指定格式字符串
      */
     public static String getDateNow(final String format) {
         if (format == null) return null;
@@ -91,7 +91,7 @@ public final class DateUtils {
      * 将时间戳转换日期字符串
      * @param time   时间戳
      * @param format 日期格式
-     * @return 按照指定格式的日期字符串
+     * @return 返回按照指定格式的日期字符串
      */
     public static String formatTime(final long time, final String format) {
         if (format == null) return null;
@@ -107,7 +107,7 @@ public final class DateUtils {
      * 将 Date 转换日期字符串
      * @param date   日期
      * @param format 日期格式
-     * @return 按照指定格式的日期字符串
+     * @return 返回按照指定格式的日期字符串
      */
     public static String formatDate(final Date date, final String format) {
         if (date == null || format == null) return null;
@@ -123,8 +123,8 @@ public final class DateUtils {
 
     /**
      * 将时间戳转换成 Date
-     * @param time
-     * @return
+     * @param time 时间戳
+     * @return {@link Date}
      */
     public static Date parseDate(final long time) {
         try {
@@ -137,8 +137,8 @@ public final class DateUtils {
 
     /**
      * 将日期字符串转换为 Date - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
-     * @param time
-     * @return
+     * @param time 时间
+     * @return {@link Date}
      */
     public static Date parseDate(final String time) {
         return parseDate(time, yyyyMMddHHmmss);
@@ -146,9 +146,9 @@ public final class DateUtils {
 
     /**
      * 将日期字符串转换为 Date
-     * @param time
-     * @param format
-     * @return
+     * @param time   时间
+     * @param format 日期格式
+     * @return {@link Date}
      */
     public static Date parseDate(final String time, final String format) {
         if (time == null || format == null) return null;
@@ -164,8 +164,8 @@ public final class DateUtils {
 
     /**
      * 解析时间字符串转换为long毫秒 - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
-     * @param time
-     * @return
+     * @param time 时间
+     * @return 返回毫秒时间
      */
     public static long parseLong(final String time) {
         return parseLong(time, yyyyMMddHHmmss);
@@ -175,7 +175,7 @@ public final class DateUtils {
      * 解析时间字符串转换为long毫秒
      * @param time   时间
      * @param format 时间的格式
-     * @return
+     * @return 返回毫秒时间
      */
     public static long parseLong(final String time, final String format) {
         if (time == null || format == null) return 0l;
@@ -193,7 +193,7 @@ public final class DateUtils {
      * @param time       需要转换的时间
      * @param timeFormat time 的 时间格式
      * @param format     把 time 转换成需要的格式
-     * @return
+     * @return 返回转换指定格式的时间字符串
      */
     public static String parseToString(final String time, final String timeFormat, final String format) {
         if (time != null && timeFormat != null && format != null) {
@@ -213,7 +213,7 @@ public final class DateUtils {
     /**
      * 获取时间差 - 分钟
      * @param time 毫秒
-     * @return
+     * @return 分钟
      */
     public static int getTimeDiffMinute(final long time) {
         return (int) (time / 60000); // 60 * 1000
@@ -222,7 +222,7 @@ public final class DateUtils {
     /**
      * 获取时间差 - 小时
      * @param time 毫秒
-     * @return
+     * @return 小时
      */
     public static int getTimeDiffHour(final long time) {
         return (int) (time / 3600000); // 60 * 1000 * 60
@@ -231,7 +231,7 @@ public final class DateUtils {
     /**
      * 获取时间差 - 天
      * @param time 毫秒
-     * @return
+     * @return 天
      */
     public static int getTimeDiffDay(final long time) {
         return (int) (time / 86400000); // 60 * 1000 * 60 * 24
@@ -239,8 +239,8 @@ public final class DateUtils {
 
     /**
      * 获取时间差 - (传入时间 - 当前时间)
-     * @param time
-     * @return
+     * @param time 毫秒
+     * @return 返回与当前时间的时间差(毫秒)
      */
     public static long getTimeDiff(final long time) {
         return time - System.currentTimeMillis();
@@ -248,9 +248,9 @@ public final class DateUtils {
 
     /**
      * 获取时间差
-     * @param time1
-     * @param time2
-     * @return
+     * @param time1 时间 yyyy-MM-dd HH:mm:ss 格式
+     * @param time2 对比时间 yyyy-MM-dd HH:mm:ss 格式
+     * @return 返回时间差(毫秒)
      */
     public static long getTimeDiff(final String time1, final String time2) {
         long timeLong1 = parseLong(time1);
@@ -263,11 +263,11 @@ public final class DateUtils {
 
     /**
      * 获取时间差
-     * @param time1
-     * @param timeFormat1
-     * @param time2
-     * @param timeFormat2
-     * @return
+     * @param time1       时间
+     * @param timeFormat1 时间格式
+     * @param time2       对比时间
+     * @param timeFormat2 对比时间格式
+     * @return 返回时间差(毫秒)
      */
     public static long getTimeDiff(final String time1, final String timeFormat1, final String time2, final String timeFormat2) {
         long timeLong1 = parseLong(time1, timeFormat1);
@@ -284,7 +284,7 @@ public final class DateUtils {
 
     /**
      * 获取年
-     * @param date
+     * @param date 日期
      * @return 年
      */
     public static int getYear(final Date date) {
@@ -301,7 +301,7 @@ public final class DateUtils {
 
     /**
      * 获取月 (0 - 11) + 1
-     * @param date
+     * @param date 日期
      * @return 月
      */
     public static int getMonth(final Date date) {
@@ -318,7 +318,7 @@ public final class DateUtils {
 
     /**
      * 获取日
-     * @param date
+     * @param date 日期
      * @return 日
      */
     public static int getDay(final Date date) {
@@ -335,7 +335,7 @@ public final class DateUtils {
 
     /**
      * 获取日期是星期几
-     * @param date
+     * @param date 日期
      * @return 日
      */
     public static int getWeek(final Date date) {
@@ -353,7 +353,7 @@ public final class DateUtils {
 
     /**
      * 获取时 - 24
-     * @param date
+     * @param date 日期
      * @return 时
      */
     public static int get24Hour(final Date date) {
@@ -370,7 +370,7 @@ public final class DateUtils {
 
     /**
      * 获取时 - 12
-     * @param date
+     * @param date 日期
      * @return 时
      */
     public static int get12Hour(final Date date) {
@@ -387,7 +387,7 @@ public final class DateUtils {
 
     /**
      * 获取分
-     * @param date
+     * @param date 日期
      * @return 分
      */
     public static int getMinute(final Date date) {
@@ -404,7 +404,7 @@ public final class DateUtils {
 
     /**
      * 获取秒
-     * @param date
+     * @param date 日期
      * @return 秒
      */
     public static int getSecond(final Date date) {
@@ -421,8 +421,8 @@ public final class DateUtils {
 
     /**
      * 转换时间处理, 小于10, 则自动补充 0x
-     * @param time
-     * @return
+     * @param time 待处理时间
+     * @return 返回自动补0时间字符串
      */
     public static String convertTime(int time) {
         return convertTime(time, true);
@@ -430,9 +430,9 @@ public final class DateUtils {
 
     /**
      * 转换时间处理, 小于10, 则自动补充 0x
-     * @param time
-     * @param append
-     * @return
+     * @param time   待处理时间
+     * @param append 判断是否需要自动补0
+     * @return 返回自动补0时间字符串
      */
     public static String convertTime(final int time, final boolean append) {
         if (append) {
@@ -448,7 +448,7 @@ public final class DateUtils {
 
     /**
      * 获取年
-     * @return
+     * @return 年
      */
     public static int getYear() {
         return Calendar.getInstance().get(Calendar.YEAR);
@@ -456,7 +456,7 @@ public final class DateUtils {
 
     /**
      * 获取月 (0 - 11) + 1
-     * @return
+     * @return 月
      */
     public static int getMonth() {
         int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
@@ -465,7 +465,7 @@ public final class DateUtils {
 
     /**
      * 获取日
-     * @return
+     * @return 日
      */
     public static int getDay() {
         return Calendar.getInstance().get(Calendar.DATE);
@@ -473,7 +473,7 @@ public final class DateUtils {
 
     /**
      * 获取星期数
-     * @return
+     * @return 星期
      */
     public static int getWeek() {
         return Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
@@ -481,7 +481,7 @@ public final class DateUtils {
 
     /**
      * 获取时 - 24
-     * @return
+     * @return 24小时制小时
      */
     public static int get24Hour() {
         return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -489,7 +489,7 @@ public final class DateUtils {
 
     /**
      * 获取时 - 12
-     * @return
+     * @return 12小时制小时
      */
     public static int get12Hour() {
         return Calendar.getInstance().get(Calendar.HOUR);
@@ -497,7 +497,7 @@ public final class DateUtils {
 
     /**
      * 获取分
-     * @return
+     * @return 分钟
      */
     public static int getMinute() {
         return Calendar.getInstance().get(Calendar.MINUTE);
@@ -505,7 +505,7 @@ public final class DateUtils {
 
     /**
      * 获取秒
-     * @return
+     * @return 秒数
      */
     public static int getSecond() {
         return Calendar.getInstance().get(Calendar.SECOND);
@@ -516,7 +516,7 @@ public final class DateUtils {
     /**
      * 判断是否闰年
      * @param year 年数
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isLeapYear(final int year) {
         // 判断是否闰年
@@ -530,7 +530,7 @@ public final class DateUtils {
      * 根据年份、月份，获取对应的天数 (完整天数, 无判断是否属于未来日期)
      * @param year  年数
      * @param month 月份
-     * @return
+     * @return 获取指定年份所属的月份的天数
      */
     public static int getMonthDayNumberAll(final int year, final int month) {
         int number = 31;
@@ -564,7 +564,7 @@ public final class DateUtils {
 
     /**
      * 根据年份，获取对应的月份
-     * @param year
+     * @param year 年份
      * @return 内部判断是否相同一年, 不能超过限制未来的月份
      */
     public static int getYearMonthNumber(final int year) {
@@ -578,8 +578,8 @@ public final class DateUtils {
 
     /**
      * 根据年份、月份，获取对应的天数
-     * @param year
-     * @param month
+     * @param year  年份
+     * @param month 月份
      * @return 内部判断是否相同一年、月份, 不能超过限制未来的天数
      */
     public static int getMonthDayNumber(final int year, final int month) {
@@ -597,7 +597,7 @@ public final class DateUtils {
 
     /**
      * 生成 HH 按时间排序数组
-     * @return
+     * @return 返回按小时排序的数组
      */
     public static String[] getArrayToHH() {
         List<String> lists = getListToHH();
@@ -606,7 +606,7 @@ public final class DateUtils {
 
     /**
      * 生成 HH 按时间排序集合
-     * @return
+     * @return 返回按小时排序的集合
      */
     public static List<String> getListToHH() {
         List<String> lists = new ArrayList<>();
@@ -618,7 +618,7 @@ public final class DateUtils {
 
     /**
      * 生成 MM 按时间排序数组
-     * @return
+     * @return 返回按分钟排序的数组
      */
     public static String[] getArrayToMM() {
         List<String> lists = getListToMM();
@@ -627,7 +627,7 @@ public final class DateUtils {
 
     /**
      * 生成 MM 按时间排序集合
-     * @return
+     * @return 返回按分钟排序的集合
      */
     public static List<String> getListToMM() {
         List<String> lists = new ArrayList<>();
@@ -642,7 +642,7 @@ public final class DateUtils {
      * @param type 0 = 00:00 - 23:00 => 每小时间隔
      *             1 = 00:00 - 23:45 => 每15分钟间隔
      *             2 = 00:00 - 23:30 => 每30分钟间隔
-     * @return
+     * @return 返回指定格式的数组
      */
     public static String[] getArrayToHHMM(final int type) {
         List<String> lists = getListToHHMM(type);
@@ -654,7 +654,7 @@ public final class DateUtils {
      * @param type 0 = 00:00 - 23:00 => 每小时间隔
      *             1 = 00:00 - 23:45 => 每15分钟间隔
      *             2 = 00:00 - 23:30 => 每30分钟间隔
-     * @return
+     * @return 返回指定格式的集合
      */
     public static List<String> getListToHHMM(final int type) {
         List<String> lists = new ArrayList<>();
@@ -705,7 +705,7 @@ public final class DateUtils {
      * @param type 0 = 00:00 - 23:00 => 每小时间隔
      *             1 = 00:00 - 23:45 => 每15分钟间隔
      *             2 = 00:00 - 23:30 => 每30分钟间隔
-     * @return
+     * @return 获取指定数据, 在对应格式类型内的索引
      */
     public static int getListToHHMMPosition(final String time, final int type) {
         if (time != null && time.length() != 0) {
@@ -766,7 +766,7 @@ public final class DateUtils {
     /**
      * 传入时间，获取时间(00:00:00 格式) - 不处理大于一天
      * @param time 时间(秒为单位)
-     * @return
+     * @return 转换 (00:00:00 格式) 时间字符串
      */
     public static String secToTimeRetain(final int time) {
         return secToTimeRetain(time, false);
@@ -776,7 +776,7 @@ public final class DateUtils {
      * 传入时间，获取时间(00:00:00 格式)
      * @param time          时间(秒为单位)
      * @param isHandlerMDay 是否处理大于一天的时间
-     * @return
+     * @return 转换 (00:00:00 格式) 时间字符串
      */
     public static String secToTimeRetain(final int time, final boolean isHandlerMDay) {
         try {
@@ -824,7 +824,7 @@ public final class DateUtils {
     /**
      * 传入时间,时间参数(小时、分钟、秒)
      * @param time 时间(秒为单位)
-     * @return
+     * @return 返回 int[] { 小时、分钟、秒}
      */
     public static int[] convertTimeArys(final int time) {
         try {
@@ -869,14 +869,14 @@ public final class DateUtils {
 
     /**
      * 转换时间
-     * @param millis
+     * @param millis    时间毫秒
      * @param precision precision = 0, return null
      *                  precision = 1, return 天
      *                  precision = 2, return 天, 小时
      *                  precision = 3, return 天, 小时, 分钟
      *                  precision = 4, return 天, 小时, 分钟, 秒
      *                  precision = 5，return 天, 小时, 分钟, 秒, 毫秒
-     * @return
+     * @return 返回转换指定格式的时间字符串
      */
     public static String millisToFitTimeSpan(final long millis, final int precision) {
         if (millis <= 0 || precision <= 0) return null;
@@ -900,8 +900,8 @@ public final class DateUtils {
 
     /**
      * 转换时间为数组
-     * @param millis
-     * @return int[5] { 天, 小时, 分钟, 秒, 毫秒}
+     * @param millis 时间毫秒
+     * @return 返回 int[5] { 天, 小时, 分钟, 秒, 毫秒}
      */
     public static int[] millisToTimeArys(final long millis) {
         if (millis <= 0) return null;
@@ -926,7 +926,7 @@ public final class DateUtils {
      * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
      * @param startTime 开始时间
      * @param endTime   结束时间
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTimeHHmm(final String startTime, final String endTime) {
         return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmm), startTime, endTime, HHmm);
@@ -937,7 +937,7 @@ public final class DateUtils {
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTimeHHmm(final String nowTime, final String startTime, final String endTime) {
         return isInTime(nowTime, startTime, endTime, HHmm);
@@ -947,7 +947,7 @@ public final class DateUtils {
      * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
      * @param startTime 开始时间
      * @param endTime   结束时间
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTimeHHmmss(final String startTime, final String endTime) {
         return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmmss), startTime, endTime, HHmmss);
@@ -958,7 +958,7 @@ public final class DateUtils {
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTimeHHmmss(final String nowTime, final String startTime, final String endTime) {
         return isInTime(nowTime, startTime, endTime, HHmmss);
@@ -970,7 +970,7 @@ public final class DateUtils {
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @param format    时间格式
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTime(final String nowTime, final String startTime, final String endTime, final String format) {
         if (nowTime == null || startTime == null || endTime == null || format == null) return false;
@@ -1004,7 +1004,7 @@ public final class DateUtils {
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTime(final long nowTime, final long startTime, final long endTime) {
         return isInDate(new Date(nowTime), new Date(startTime), new Date(endTime));
@@ -1015,7 +1015,7 @@ public final class DateUtils {
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isInDate(final Date nowTime, final Date startTime, final Date endTime) {
         if (nowTime == null || startTime == null || endTime == null) {
@@ -1040,10 +1040,12 @@ public final class DateUtils {
         }
     }
 
+    // =
+
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
      * @param endTime 结束时间 HH:mm
-     * @return
+     * @return 获取距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiffHHmm(final String endTime) {
         return getEndTimeDiff(System.currentTimeMillis(), endTime, HHmm);
@@ -1053,7 +1055,7 @@ public final class DateUtils {
      * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
      * @param startTime 开始时间
      * @param endTime   结束时间 HH:mm
-     * @return
+     * @return 获取距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiffHHmm(final long startTime, final String endTime) {
         return getEndTimeDiff(startTime, endTime, HHmm);
@@ -1063,7 +1065,7 @@ public final class DateUtils {
      * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
      * @param endTime 结束时间
      * @param format  格式 如: HH:mm
-     * @return
+     * @return 获取距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiff(final String endTime, final String format) {
         return getEndTimeDiff(System.currentTimeMillis(), endTime, format);
@@ -1079,7 +1081,7 @@ public final class DateUtils {
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @param format    格式 如: HH:mm
-     * @return
+     * @return 获取距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiff(final long startTime, final String endTime, final String format) {
         if (startTime < 1 || endTime == null || format == null) return -1;
@@ -1116,9 +1118,9 @@ public final class DateUtils {
 
     /**
      * 字符串 转 int
-     * @param str
-     * @param defaultValue
-     * @return
+     * @param str          String
+     * @param defaultValue 默认值
+     * @return 返回 int, 如果转换失败, 则返回 defaultValue
      */
     private static int toInt(final String str, final int defaultValue) {
         if (str == null) return defaultValue;

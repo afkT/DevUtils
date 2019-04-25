@@ -20,8 +20,8 @@ public final class StringUtils {
 
     /**
      * 获取长度，如果字符串为null,则返回 0
-     * @param str
-     * @return
+     * @param str 待验证的字符串
+     * @return 返回字符串长度
      */
     public static int length(final String str) {
         return str == null ? 0 : str.length();
@@ -29,7 +29,7 @@ public final class StringUtils {
 
     /**
      * 判断是否为 null
-     * @param str
+     * @param str 待验证的字符串
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String str) {
