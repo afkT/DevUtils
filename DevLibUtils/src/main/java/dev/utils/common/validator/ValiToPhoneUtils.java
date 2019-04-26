@@ -20,7 +20,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 判断是否为 null
-     * @param str 待验证的字符串
+     * @param str 待校验的字符串
      * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {
@@ -30,7 +30,7 @@ public final class ValiToPhoneUtils {
     /**
      * 通用匹配函数
      * @param regex 正则判断
-     * @param input 待验证的字符串
+     * @param input 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
     private static boolean match(final String regex, final String input) {
@@ -46,7 +46,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 中国手机号格式验证,在输入可以调用该方法,点击发送验证码,使用 isPhone
-     * @param phone 待验证手机号
+     * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneCheck(final String phone) {
@@ -58,7 +58,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国手机号
-     * @param phone 待验证手机号
+     * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhone(final String phone) {
@@ -70,7 +70,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国电信手机号码
-     * @param phone 待验证手机号
+     * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaTelecom(final String phone) {
@@ -82,7 +82,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国联通手机号码
-     * @param phone 待验证手机号
+     * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaUnicom(final String phone) {
@@ -94,7 +94,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国移动手机号码
-     * @param phone 待验证手机号
+     * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaMobile(final String phone) {
@@ -106,7 +106,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 判断是否香港手机号
-     * @param phone 待验证手机号
+     * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToHkMobile(final String phone) {
@@ -118,7 +118,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 验证电话号码的格式
-     * @param phone 待验证号码
+     * @param phone 待校验的号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneCallNum(final String phone) {

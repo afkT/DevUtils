@@ -172,7 +172,7 @@ public final class NumberUtils {
 
     /**
      * 检验数字
-     * @param str 待验证的字符串
+     * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumber(final String str) {
@@ -184,7 +184,7 @@ public final class NumberUtils {
 
     /**
      * 检验数字或包含小数点
-     * @param str 待验证的字符串
+     * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumberDecimal(final String str) {
@@ -198,7 +198,7 @@ public final class NumberUtils {
 
     /**
      * 判断是否为 null
-     * @param str 待验证的字符串
+     * @param str 待校验的字符串
      * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {
@@ -208,7 +208,7 @@ public final class NumberUtils {
     /**
      * 通用匹配函数
      * @param regex 正则判断
-     * @param input 待验证的字符串
+     * @param input 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
     private static boolean match(final String regex, final String input) {

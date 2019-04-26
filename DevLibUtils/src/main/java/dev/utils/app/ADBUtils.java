@@ -470,7 +470,7 @@ public final class ADBUtils {
             // 防止都为null
             if (start != -1) {
                 try {
-                    // 进行裁减字符串
+                    // 进行裁剪字符串
                     String subData = result.successMsg.substring(start + mainStr.length());
                     // 进行拆分
                     String[] arys = subData.split(NEW_LINE_STR);
@@ -563,7 +563,7 @@ public final class ADBUtils {
                                     int start = splitStr.indexOf("/");
                                     int lastIndex = splitStr.lastIndexOf("}");
                                     if (start != -1 && lastIndex != -1) {
-                                        // 获取裁减数据
+                                        // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
                                         // 防止属于 包名/.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
@@ -607,7 +607,7 @@ public final class ADBUtils {
                                     int start = splitStr.indexOf("/");
                                     int lastIndex = splitStr.lastIndexOf("}");
                                     if (start != -1 && lastIndex != -1 && splitStr.indexOf(packageName) == 0) {
-                                        // 获取裁减数据
+                                        // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
                                         // 防止属于 包名/.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
@@ -655,7 +655,7 @@ public final class ADBUtils {
                                 if (!TextUtils.isEmpty(splitStr)) {
                                     int start = splitStr.indexOf("/");
                                     if (start != -1) {
-                                        // 获取裁减数据
+                                        // 获取裁剪数据
                                         String strData = splitStr;
                                         // 防止属于 包名/.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
@@ -754,7 +754,7 @@ public final class ADBUtils {
                             for (String splitStr : splitArys) {
                                 int start = splitStr.indexOf(packageName + "/");
                                 if (start != -1) {
-                                    // 获取裁减数据
+                                    // 获取裁剪数据
                                     String strData = splitStr;
                                     // 防止属于 包名/.xx.XxxActivity
                                     if (strData.indexOf("/.") != -1) {
@@ -1876,13 +1876,13 @@ public final class ADBUtils {
                     buffer.append(subStr.substring(0, subStr.indexOf("'")));
                     // 从指定索引开始
                     index = subStr.indexOf("'", buffer.toString().length() + 1);
-                    // 再次裁减
+                    // 再次裁剪
                     subStr = subStr.substring(index + 1);
                     // 添加数据
                     buffer.append(subStr.substring(0, subStr.indexOf("'")));
                     // 从指定索引开始
                     index = subStr.indexOf("'", buffer.toString().length() + 1);
-                    // 再次裁减
+                    // 再次裁剪
                     subStr = subStr.substring(index + 1);
                     // 最后进行添加
                     buffer.append(subStr.split(SPACE_STR)[0]);

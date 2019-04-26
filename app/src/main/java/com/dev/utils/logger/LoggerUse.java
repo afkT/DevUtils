@@ -10,7 +10,7 @@ import dev.utils.app.logger.DevLogger;
 import dev.utils.app.logger.DevLoggerUtils;
 import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
-import dev.utils.common.QuickCommonUtils;
+import dev.utils.common.DevCommonUtils;
 
 /**
  * detail: 日志使用方法
@@ -94,7 +94,7 @@ public final class LoggerUse {
             Log.d(tag, "A:" + (i + 1));
         }
         // 拼接时间信息
-        QuickCommonUtils.timeRecord(sBuffer, "正常系统Log耗时记录", sTime, System.currentTimeMillis());
+        DevCommonUtils.timeRecord(sBuffer, "正常系统Log耗时记录", sTime, System.currentTimeMillis());
 
         // =
         // 设置开始时间
@@ -105,7 +105,7 @@ public final class LoggerUse {
             DevLogger.dTag(tag, "B:" + (i + 1));
         }
         // 拼接时间信息
-        QuickCommonUtils.timeRecord(sBuffer, "Logger耗时记录", sTime, System.currentTimeMillis());
+        DevCommonUtils.timeRecord(sBuffer, "Logger耗时记录", sTime, System.currentTimeMillis());
 
         // =
         // 初始化日志配置
@@ -123,7 +123,7 @@ public final class LoggerUse {
             DevLogger.other(lConfig).dTag(tag, "C:" + (i + 1));
         }
         // 拼接时间信息
-        QuickCommonUtils.timeRecord(sBuffer, "Logger耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
+        DevCommonUtils.timeRecord(sBuffer, "Logger耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
         // 打印时间
         Log.d(LOG_TAG, sBuffer.toString());
     }

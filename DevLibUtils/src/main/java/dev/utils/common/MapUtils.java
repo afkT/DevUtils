@@ -53,7 +53,7 @@ public final class MapUtils {
     /**
      * 获取 Map 长度
      * @param map Map
-     * @return {@link Map#size()}
+     * @return 如果 Map 为 null, 则返回默认长度, 如果不为 null, 则返回 map.size()
      */
     public static int length(final Map map) {
         return length(map, 0);
@@ -63,7 +63,7 @@ public final class MapUtils {
      * 获取 Map 长度
      * @param map           Map
      * @param defaultLength 集合为 null 默认长度
-     * @return {@link Map#size()}
+     * @return 如果 Map 为 null, 则返回 defaultLength, 如果不为 null, 则返回 map.size()
      */
     public static int length(final Map map, final int defaultLength) {
         return map != null ? map.size() : defaultLength;
@@ -87,7 +87,7 @@ public final class MapUtils {
      * 判断 Map 长度是否大于指定长度
      * @param map    Map
      * @param length 指定长度
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean greaterThan(final Map map, final int length) {
         return map != null && map.size() > length;
@@ -97,7 +97,7 @@ public final class MapUtils {
      * 判断 Map 长度是否大于等于指定长度
      * @param map    Map
      * @param length 指定长度
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean greaterThanOrEqual(final Map map, final int length) {
         return map != null && map.size() >= length;
@@ -109,7 +109,7 @@ public final class MapUtils {
      * 判断 Map 长度是否小于指定长度
      * @param map    Map
      * @param length 指定长度
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean lessThan(final Map map, final int length) {
         return map != null && map.size() < length;
@@ -119,7 +119,7 @@ public final class MapUtils {
      * 判断 Map 长度是否小于等于指定长度
      * @param map    Map
      * @param length 指定长度
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean lessThanOrEqual(final Map map, final int length) {
         return map != null && map.size() <= length;
@@ -852,12 +852,31 @@ public final class MapUtils {
      * @param value1 第一个值
      * @param value2 第二个值
      * @param <T>    泛型
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static <T> boolean equals(final T value1, final T value2) {
         // 两个值都不为 null
         if (value1 != null && value2 != null) {
             try {
+                if (value1 instanceof String && value2 instanceof String) {
+                    return value1.equals(value2);
+                } else if (value1 instanceof CharSequence && value2 instanceof CharSequence) {
+                    CharSequence v1 = (CharSequence) value1;
+                    CharSequence v2 = (CharSequence) value2;
+                    // 获取数据长度
+                    int length = v1.length();
+                    // 判断数据长度是否一致
+                    if (length == v2.length()) {
+                        for (int i = 0; i < length; i++) {
+                            if (v1.charAt(i) != v2.charAt(i)) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+                // 其他都使用 equals 判断
                 return value1.equals(value2);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "equals");

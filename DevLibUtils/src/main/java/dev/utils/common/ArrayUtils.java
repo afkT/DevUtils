@@ -2171,6 +2171,25 @@ public final class ArrayUtils {
         // 两个值都不为 null
         if (value1 != null && value2 != null) {
             try {
+                if (value1 instanceof String && value2 instanceof String) {
+                    return value1.equals(value2);
+                } else if (value1 instanceof CharSequence && value2 instanceof CharSequence) {
+                    CharSequence v1 = (CharSequence) value1;
+                    CharSequence v2 = (CharSequence) value2;
+                    // 获取数据长度
+                    int length = v1.length();
+                    // 判断数据长度是否一致
+                    if (length == v2.length()) {
+                        for (int i = 0; i < length; i++) {
+                            if (v1.charAt(i) != v2.charAt(i)) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+                // 其他都使用 equals 判断
                 return value1.equals(value2);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "equals");

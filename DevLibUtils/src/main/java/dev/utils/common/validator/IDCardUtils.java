@@ -599,9 +599,9 @@ public final class IDCardUtils {
 
     /**
      * 验证小于当前日期 是否有效
-     * @param iYear  待验证日期(年)
-     * @param iMonth 待验证日期(月 1-12)
-     * @param iDate  待验证日期(日)
+     * @param iYear  待校验的日期(年)
+     * @param iMonth 待校验的日期(月 1-12)
+     * @param iDate  待校验的日期(日)
      * @return 是否有效
      */
     private static boolean validateDateSmllerThenNow(final int iYear, final int iMonth, final int iDate) {
@@ -633,7 +633,7 @@ public final class IDCardUtils {
 
     /**
      * 判断是否数字
-     * @param str 待验证的字符串
+     * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
     private static boolean isNum(final String str) {
@@ -644,7 +644,7 @@ public final class IDCardUtils {
 
     /**
      * 判断是否为 null
-     * @param str 待验证的字符串
+     * @param str 待校验的字符串
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String str) {
