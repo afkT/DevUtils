@@ -435,7 +435,7 @@ public final class ColorUtils {
 
     /**
      * 获取随机颜色值
-     * @return 返回随即颜色值
+     * @return 返回随机颜色值
      */
     public static int getRandomColor() {
         return getRandomColor(true);

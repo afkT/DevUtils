@@ -67,7 +67,7 @@ public final class DevCommonUtils {
     /**
      * 获取操作时间
      * @param operateTime 操作时间(毫秒)
-     * @return
+     * @return 返回操作时间
      */
     public static long getOperateTime(final long operateTime) {
         return getOperateTime(operateTime, -1);
@@ -77,7 +77,7 @@ public final class DevCommonUtils {
      * 获取操作时间
      * @param operateTime 操作时间(毫秒)
      * @param randomTime  随机范围(毫秒)
-     * @return
+     * @return 返回操作时间
      */
     public static long getOperateTime(final long operateTime, final int randomTime) {
         int random = 0;
@@ -138,7 +138,7 @@ public final class DevCommonUtils {
      * @param number      MD5 加密次数
      * @param isUppercase 是否大写处理
      * @param salts       特殊 salt 拼接
-     * @return
+     * @return 返回循环加密后的字符串
      */
     public static String whileMD5(final String str, final int number, final boolean isUppercase, final String... salts) {
         if (str != null && number >= 1) {
@@ -185,7 +185,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取随机唯一数
-     * @return
+     * @return {@link UUID}
      */
     public static UUID randomUUID() {
         return UUID.randomUUID();
@@ -193,7 +193,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取随机唯一数 HashCode
-     * @return
+     * @return 返回随机 UUID hashCode
      */
     public static int randomUUIDToHashCode() {
         return UUID.randomUUID().hashCode();
@@ -201,18 +201,18 @@ public final class DevCommonUtils {
 
     /**
      * 获取随机唯一数 HashCode
-     * @param uuid
-     * @return
+     * @param uuid {@link UUID}
+     * @return 返回随机 UUID hashCode
      */
     public static int randomUUIDToHashCode(final UUID uuid) {
         return (uuid != null) ? uuid.hashCode() : 0;
     }
 
     /**
-     * 获取随机数 唯一id
-     * @return
+     * 获取随机规则生成 UUID
+     * @return 返回随机规则生成 UUID
      */
-    public static String getRandomUUID() {
+    public static UUID getRandomUUID() {
         // 获取随机数
         String random1 = (900000 + new Random().nextInt(10000)) + "";
         // 获取随机数
@@ -221,8 +221,15 @@ public final class DevCommonUtils {
         String cTime = Long.toString(System.currentTimeMillis()) + random1 + random2;
         // 生成唯一随机uuid  cTime.hashCode(), random1.hashCode() | random2.hashCode()
         UUID randomUUID = new UUID(cTime.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
-        // 获取uid
-        return randomUUID.toString();
+        return randomUUID;
+    }
+
+    /**
+     * 获取随机规则生成 UUID 字符串
+     * @return 返回随机规则生成 UUID 字符串
+     */
+    public static String getRandomUUIDToString() {
+        return getRandomUUID().toString();
     }
 
     // ==============
