@@ -26,9 +26,9 @@ public final class DESUtils {
     private static final String TAG = DESUtils.class.getSimpleName();
 
     /**
-     * 返回可逆算法 DES 的密钥
+     * 获取可逆算法 DES 的密钥
      * @param key 前8字节将被用来生成密钥
-     * @return 生成的密钥 {@link Key}
+     * @return 生成的密钥
      */
     public static Key getDESKey(final byte[] key) {
         if (key == null) return null;

@@ -75,7 +75,7 @@ public final class ValidatorUtils {
 
     /**
      * 通用匹配函数
-     * @param regex 正则判断
+     * @param regex 正则表达式
      * @param input 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */

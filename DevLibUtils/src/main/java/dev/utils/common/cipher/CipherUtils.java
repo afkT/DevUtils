@@ -13,8 +13,8 @@ public final class CipherUtils {
 
     /**
      * 加密方法
-     * @param object Object
-     * @return {@link String}
+     * @param object 待加密对象
+     * @return 加密后的十六进制字符串
      */
     public static String encrypt(final Object object) {
         return encrypt(object, null);
@@ -22,9 +22,9 @@ public final class CipherUtils {
 
     /**
      * 加密方法
-     * @param object Object
-     * @param cipher 加/解密中间层 {@link Cipher}
-     * @return {@link String}
+     * @param object 待加密对象
+     * @param cipher 加/解密中间层
+     * @return 加密后的十六进制字符串
      */
     public static String encrypt(final Object object, final Cipher cipher) {
         if (object == null) return null;
@@ -37,8 +37,8 @@ public final class CipherUtils {
 
     /**
      * 解密方法
-     * @param hex Hex String
-     * @return Object
+     * @param hex 十六进制字符串
+     * @return 解密后的对象
      */
     public static Object decrypt(final String hex) {
         return decrypt(hex, null);
@@ -46,9 +46,9 @@ public final class CipherUtils {
 
     /**
      * 解密方法
-     * @param hex    Hex String
-     * @param cipher 加/解密中间层 {@link Cipher}
-     * @return Object
+     * @param hex    十六进制字符串
+     * @param cipher 加/解密中间层
+     * @return 解密后的对象
      */
     public static Object decrypt(final String hex, final Cipher cipher) {
         if (hex == null) return null;

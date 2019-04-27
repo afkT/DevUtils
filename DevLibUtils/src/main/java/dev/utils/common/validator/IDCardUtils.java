@@ -235,12 +235,13 @@ public final class IDCardUtils {
     }
 
     /**
-     * 验证香港身份证号码(存在Bug，部份特殊身份证无法检查)
+     * 验证香港身份证号码
+     * (存在Bug，部份特殊身份证无法检查)
      * 身份证前2位为英文字符，如果只出现一个英文字符则表示第一位是空格，对应数字58 前2位英文字符A-Z分别对应数字10-35
      * 最后一位校验码为0-9的数字加上字符"A"，"A"代表10
      * 将身份证号码全部转换为数字，分别对应乘9-1相加的总和，整除11则证件号码有效
      * @param idCard 身份证号码
-     * @return 验证码是否符合
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean validateHKCard(final String idCard) {
         if (isEmpty(idCard)) return false;
@@ -322,7 +323,7 @@ public final class IDCardUtils {
     /**
      * 验证身份证是否合法
      * @param idCard 身份证号码
-     * @return 身份证是否合法
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean validateCard(final String idCard) {
         if (isEmpty(idCard)) return false;
@@ -602,7 +603,7 @@ public final class IDCardUtils {
      * @param iYear  待校验的日期(年)
      * @param iMonth 待校验的日期(月 1-12)
      * @param iDate  待校验的日期(日)
-     * @return 是否有效
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean validateDateSmllerThenNow(final int iYear, final int iMonth, final int iDate) {
         int year = Calendar.getInstance().get(Calendar.YEAR);

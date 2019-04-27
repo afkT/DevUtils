@@ -8,7 +8,7 @@ public class TimeKeeper {
 
     /**
      * 设置等待一段时间后, 通知方法 (异步)
-     * @param keepTimeMillis 堵塞时间
+     * @param keepTimeMillis 堵塞时间(毫秒)
      * @param endCallback    结束回调通知
      */
     public void waitForEndAsyn(final long keepTimeMillis, final OnEndCallback endCallback) {
@@ -24,7 +24,7 @@ public class TimeKeeper {
 
     /**
      * 设置等待一段时间后, 通知方法 (同步)
-     * @param keepTimeMillis 堵塞时间
+     * @param keepTimeMillis 堵塞时间(毫秒)
      * @param endCallback    结束回调通知
      */
     public void waitForEnd(final long keepTimeMillis, final OnEndCallback endCallback) {
@@ -55,10 +55,10 @@ public class TimeKeeper {
 
         /**
          * 结束触发通知方法
-         * @param keepTimeMillis  堵塞时间
-         * @param startTimeMillis 开始堵塞时间
-         * @param endTimeMillis   结束时间
-         * @param isError         是否异常
+         * @param keepTimeMillis  堵塞时间(毫秒)
+         * @param startTimeMillis 开始堵塞时间(毫秒)
+         * @param endTimeMillis   结束时间(毫秒)
+         * @param isError         是否发生异常
          */
         void onEnd(long keepTimeMillis, long startTimeMillis, long endTimeMillis, boolean isError);
     }

@@ -55,8 +55,8 @@ public final class FileBreadthFirstSearchUtils {
 
         /**
          * 保存子文件信息
-         * @param file file
-         * @return {@link FileItem}
+         * @param file 文件
+         * @return 文件信息 {@link FileItem}
          */
         private synchronized FileItem put(final File file) {
             if (mapChilds == null) {
@@ -97,21 +97,21 @@ public final class FileBreadthFirstSearchUtils {
 
         /**
          * 判断是否处理该文件
-         * @param file file
+         * @param file 文件
          * @return {@code true} 处理该文件, {@code false} 跳过该文件不处理
          */
         boolean isHandlerFile(File file);
 
         /**
          * 是否添加到集合
-         * @param file file
+         * @param file 文件
          * @return {@code true} 添加, {@code false} 不添加
          */
         boolean isAddToList(File file);
 
         /**
          * 搜索结束监听
-         * @param rootFileItem 根文件 {@link FileItem}
+         * @param rootFileItem 根文件信息 {@link FileItem}
          * @param startTime    开始扫描时间
          * @param endTime      扫描结束时间
          */
@@ -229,8 +229,8 @@ public final class FileBreadthFirstSearchUtils {
     }
 
     /**
-     * 设置延迟校验时间
-     * @param delayTimeMillis 延迟校验时间
+     * 设置延迟校验时间(毫秒)
+     * @param delayTimeMillis 延迟校验时间(毫秒)
      */
     public void setDelayTime(final long delayTimeMillis) {
         this.delayTime = delayTimeMillis;
@@ -259,7 +259,7 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 搜索目录
-     * @param path 根目录地址
+     * @param path 根目录路径
      */
     public synchronized void query(final String path) {
         if (mIsRunning) {
@@ -316,8 +316,8 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 搜索文件
-     * @param file     file
-     * @param fileItem 所在文件夹对象(上一级目录)
+     * @param file     文件
+     * @param fileItem 所在文件夹信息对象(上一级目录)
      */
     private void queryFile(final File file, final FileItem fileItem) {
         try {

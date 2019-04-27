@@ -58,14 +58,14 @@ public final class FileDepthFirstSearchUtils {
 
         /**
          * 判断是否处理该文件
-         * @param file file
+         * @param file 文件
          * @return {@code true} 处理该文件, {@code false} 跳过该文件不处理
          */
         boolean isHandlerFile(File file);
 
         /**
          * 是否添加到集合
-         * @param file file
+         * @param file 文件
          * @return {@code true} 添加, {@code false} 不添加
          */
         boolean isAddToList(File file);
@@ -173,7 +173,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 搜索目录
-     * @param path       根目录地址
+     * @param path       根目录路径
      * @param isRelation 是否关联到 Child List
      */
     public synchronized void query(final String path, final boolean isRelation) {
@@ -233,7 +233,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 搜索文件
-     * @param file       file
+     * @param file       文件
      * @param lists      保存数据源
      * @param isRelation 是否关联到 Child List
      */

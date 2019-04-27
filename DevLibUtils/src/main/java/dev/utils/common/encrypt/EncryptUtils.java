@@ -43,7 +43,7 @@ public final class EncryptUtils {
     /**
      * MD2 加密
      * @param data 待加密数据
-     * @return MD2 加密后的 byte[]
+     * @return MD2 加密后的数据
      */
     public static byte[] encryptMD2(final byte[] data) {
         return hashTemplate(data, "MD2");
@@ -52,7 +52,7 @@ public final class EncryptUtils {
     /**
      * MD2 加密
      * @param data 待加密数据
-     * @return MD2 加密后的十六进制 String
+     * @return MD2 加密后的十六进制字符串
      */
     public static String encryptMD2ToHexString(final String data) {
         if (data == null || data.length() == 0) return null;
@@ -62,7 +62,7 @@ public final class EncryptUtils {
     /**
      * MD2 加密
      * @param data 待加密数据
-     * @return MD2 加密后的十六进制 String
+     * @return MD2 加密后的十六进制字符串
      */
     public static String encryptMD2ToHexString(final byte[] data) {
         return toHexString(encryptMD2(data));
@@ -73,7 +73,7 @@ public final class EncryptUtils {
     /**
      * MD5 加密
      * @param data 待加密数据
-     * @return MD5 加密后的 byte[]
+     * @return MD5 加密后的数据
      */
     public static byte[] encryptMD5(final byte[] data) {
         return hashTemplate(data, "MD5");
@@ -82,7 +82,7 @@ public final class EncryptUtils {
     /**
      * MD5 加密
      * @param data 待加密数据
-     * @return MD5 加密后的十六进制 String
+     * @return MD5 加密后的十六进制字符串
      */
     public static String encryptMD5ToHexString(final String data) {
         if (data == null || data.length() == 0) return null;
@@ -93,7 +93,7 @@ public final class EncryptUtils {
      * MD5 加密
      * @param data 待加密数据
      * @param salt salt
-     * @return MD5 加密后的十六进制 String
+     * @return MD5 加密后的十六进制字符串
      */
     public static String encryptMD5ToHexString(final String data, final String salt) {
         if (data == null && salt == null) return null;
@@ -107,7 +107,7 @@ public final class EncryptUtils {
     /**
      * MD5 加密
      * @param data 待加密数据
-     * @return MD5 加密后的十六进制 String
+     * @return MD5 加密后的十六进制字符串
      */
     public static String encryptMD5ToHexString(final byte[] data) {
         return toHexString(encryptMD5(data));
@@ -117,7 +117,7 @@ public final class EncryptUtils {
      * MD5 加密
      * @param data 待加密数据
      * @param salt salt
-     * @return MD5 加密后的十六进制 String
+     * @return MD5 加密后的十六进制字符串
      */
     public static String encryptMD5ToHexString(final byte[] data, final byte[] salt) {
         if (data == null && salt == null) return null;
@@ -143,7 +143,7 @@ public final class EncryptUtils {
     /**
      * MD5 加密文件
      * @param filePath 文件路径
-     * @return 文件 MD5 值转 十六进制
+     * @return 文件 MD5 值转十六进制字符串
      */
     public static String encryptMD5FileToHexString(final String filePath) {
         File file = isSpace(filePath) ? null : new File(filePath);
@@ -153,7 +153,7 @@ public final class EncryptUtils {
     /**
      * MD5 加密文件
      * @param file 文件
-     * @return 文件 MD5 值转 十六进制
+     * @return 文件 MD5 值转十六进制字符串
      */
     public static String encryptMD5FileToHexString(final File file) {
         return toHexString(encryptMD5File(file));
@@ -162,7 +162,7 @@ public final class EncryptUtils {
     /**
      * MD5 加密文件
      * @param file 文件
-     * @return 文件 MD5 值
+     * @return 文件 MD5 值 byte[]
      */
     public static byte[] encryptMD5File(final File file) {
         if (file == null) return null;
@@ -205,7 +205,7 @@ public final class EncryptUtils {
     /**
      * SHA1 加密
      * @param data 待加密数据
-     * @return SHA1 加密后的数据转 十六进制
+     * @return SHA1 加密后的数据转十六进制字符串
      */
     public static String encryptSHA1ToHexString(final String data) {
         if (data == null || data.length() == 0) return null;
@@ -215,7 +215,7 @@ public final class EncryptUtils {
     /**
      * SHA1 加密
      * @param data 待加密数据
-     * @return SHA1 加密后的数据转 十六进制
+     * @return SHA1 加密后的数据转十六进制字符串
      */
     public static String encryptSHA1ToHexString(final byte[] data) {
         return toHexString(encryptSHA1(data));
@@ -235,7 +235,7 @@ public final class EncryptUtils {
     /**
      * SHA224 加密
      * @param data 待加密数据
-     * @return SHA224 加密后的数据转 十六进制
+     * @return SHA224 加密后的数据转十六进制字符串
      */
     public static String encryptSHA224ToHexString(final String data) {
         if (data == null || data.length() == 0) return null;
@@ -245,7 +245,7 @@ public final class EncryptUtils {
     /**
      * SHA224 加密
      * @param data 待加密数据
-     * @return SHA224 加密后的数据转 十六进制
+     * @return SHA224 加密后的数据转十六进制字符串
      */
     public static String encryptSHA224ToHexString(final byte[] data) {
         return toHexString(encryptSHA224(data));
@@ -265,7 +265,7 @@ public final class EncryptUtils {
     /**
      * SHA256 加密
      * @param data 待加密数据
-     * @return SHA256 加密后的数据转 十六进制
+     * @return SHA256 加密后的数据转十六进制字符串
      */
     public static String encryptSHA256ToHexString(final String data) {
         if (data == null || data.length() == 0) return null;
@@ -275,7 +275,7 @@ public final class EncryptUtils {
     /**
      * SHA256 加密
      * @param data 待加密数据
-     * @return SHA256 加密后的数据转 十六进制
+     * @return SHA256 加密后的数据转十六进制
      */
     public static String encryptSHA256ToHexString(final byte[] data) {
         return toHexString(encryptSHA256(data));
@@ -295,7 +295,7 @@ public final class EncryptUtils {
     /**
      * SHA384 加密
      * @param data 待加密数据
-     * @return SHA384 加密后的数据转 十六进制
+     * @return SHA384 加密后的数据转十六进制
      */
     public static String encryptSHA384ToHexString(final String data) {
         if (data == null || data.length() == 0) return null;
@@ -305,7 +305,7 @@ public final class EncryptUtils {
     /**
      * SHA384 加密
      * @param data 待加密数据
-     * @return SHA384 加密后的数据转 十六进制
+     * @return SHA384 加密后的数据转十六进制
      */
     public static String encryptSHA384ToHexString(final byte[] data) {
         return toHexString(encryptSHA384(data));
@@ -325,7 +325,7 @@ public final class EncryptUtils {
     /**
      * SHA512 加密
      * @param data 待加密数据
-     * @return SHA512 加密后的数据转 十六进制
+     * @return SHA512 加密后的数据转十六进制
      */
     public static String encryptSHA512ToHexString(final String data) {
         if (data == null || data.length() == 0) return null;
@@ -335,7 +335,7 @@ public final class EncryptUtils {
     /**
      * SHA512 加密
      * @param data 待加密数据
-     * @return SHA512 加密后的数据转 十六进制
+     * @return SHA512 加密后的数据转十六进制
      */
     public static String encryptSHA512ToHexString(final byte[] data) {
         return toHexString(encryptSHA512(data));
@@ -375,7 +375,7 @@ public final class EncryptUtils {
      * HmacMD5 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacMD5 加密后的数据转 十六进制
+     * @return HmacMD5 加密后的数据转十六进制
      */
     public static String encryptHmacMD5ToHexString(final String data, final String key) {
         if (data == null || data.length() == 0 || key == null || key.length() == 0) return null;
@@ -386,7 +386,7 @@ public final class EncryptUtils {
      * HmacMD5 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacMD5 加密后的数据转 十六进制
+     * @return HmacMD5 加密后的数据转十六进制
      */
     public static String encryptHmacMD5ToHexString(final byte[] data, final byte[] key) {
         return toHexString(encryptHmacMD5(data, key));
@@ -408,7 +408,7 @@ public final class EncryptUtils {
      * HmacSHA1 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA1 加密后的数据转 十六进制
+     * @return HmacSHA1 加密后的数据转十六进制
      */
     public static String encryptHmacSHA1ToHexString(final String data, final String key) {
         if (data == null || data.length() == 0 || key == null || key.length() == 0) return null;
@@ -419,7 +419,7 @@ public final class EncryptUtils {
      * HmacSHA1 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA1 加密后的数据转 十六进制
+     * @return HmacSHA1 加密后的数据转十六进制
      */
     public static String encryptHmacSHA1ToHexString(final byte[] data, final byte[] key) {
         return toHexString(encryptHmacSHA1(data, key));
@@ -441,7 +441,7 @@ public final class EncryptUtils {
      * HmacSHA224 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA224 加密后的数据转 十六进制
+     * @return HmacSHA224 加密后的数据转十六进制
      */
     public static String encryptHmacSHA224ToHexString(final String data, final String key) {
         if (data == null || data.length() == 0 || key == null || key.length() == 0) return null;
@@ -452,7 +452,7 @@ public final class EncryptUtils {
      * HmacSHA224 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA224 加密后的数据转 十六进制
+     * @return HmacSHA224 加密后的数据转十六进制
      */
     public static String encryptHmacSHA224ToHexString(final byte[] data, final byte[] key) {
         return toHexString(encryptHmacSHA224(data, key));
@@ -474,7 +474,7 @@ public final class EncryptUtils {
      * HmacSHA256 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA256 加密后的数据转 十六进制
+     * @return HmacSHA256 加密后的数据转十六进制
      */
     public static String encryptHmacSHA256ToHexString(final String data, final String key) {
         if (data == null || data.length() == 0 || key == null || key.length() == 0) return null;
@@ -485,7 +485,7 @@ public final class EncryptUtils {
      * HmacSHA256 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA256 加密后的数据转 十六进制
+     * @return HmacSHA256 加密后的数据转十六进制
      */
     public static String encryptHmacSHA256ToHexString(final byte[] data, final byte[] key) {
         return toHexString(encryptHmacSHA256(data, key));
@@ -507,7 +507,7 @@ public final class EncryptUtils {
      * HmacSHA384 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA384 加密后的数据转 十六进制
+     * @return HmacSHA384 加密后的数据转十六进制
      */
     public static String encryptHmacSHA384ToHexString(final String data, final String key) {
         if (data == null || data.length() == 0 || key == null || key.length() == 0) return null;
@@ -518,7 +518,7 @@ public final class EncryptUtils {
      * HmacSHA384 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA384 加密后的数据转 十六进制
+     * @return HmacSHA384 加密后的数据转十六进制
      */
     public static String encryptHmacSHA384ToHexString(final byte[] data, final byte[] key) {
         return toHexString(encryptHmacSHA384(data, key));
@@ -540,7 +540,7 @@ public final class EncryptUtils {
      * HmacSHA512 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA512 加密后的数据转 十六进制
+     * @return HmacSHA512 加密后的数据转十六进制
      */
     public static String encryptHmacSHA512ToHexString(final String data, final String key) {
         if (data == null || data.length() == 0 || key == null || key.length() == 0) return null;
@@ -551,7 +551,7 @@ public final class EncryptUtils {
      * HmacSHA512 加密
      * @param data 待加密数据
      * @param key  密钥
-     * @return HmacSHA512 加密后的数据转 十六进制
+     * @return HmacSHA512 加密后的数据转十六进制
      */
     public static String encryptHmacSHA512ToHexString(final byte[] data, final byte[] key) {
         return toHexString(encryptHmacSHA512(data, key));
@@ -562,7 +562,7 @@ public final class EncryptUtils {
      * @param data      待加密数据
      * @param key       密钥
      * @param algorithm 算法
-     * @return 返回指定加密算法、密钥，加密后的数据
+     * @return 指定加密算法、密钥，加密后的数据
      */
     private static byte[] hmacTemplate(final byte[] data, final byte[] key, final String algorithm) {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
@@ -609,7 +609,7 @@ public final class EncryptUtils {
      * @param key            密钥
      * @param transformation {@link Cipher#getInstance} transformation
      * @param iv             算法参数 {@link AlgorithmParameterSpec}
-     * @return DES 加密后的数据转 十六进制
+     * @return DES 加密后的数据转十六进制
      */
     public static String encryptDESToHexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return toHexString(encryptDES(data, key, transformation, iv));
@@ -685,7 +685,7 @@ public final class EncryptUtils {
      * @param key            密钥
      * @param transformation {@link Cipher#getInstance} transformation
      * @param iv             算法参数 {@link AlgorithmParameterSpec}
-     * @return 3DES 加密后的数据转 十六进制
+     * @return 3DES 加密后的数据转十六进制
      */
     public static String encrypt3DESToHexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return toHexString(encrypt3DES(data, key, transformation, iv));
@@ -761,7 +761,7 @@ public final class EncryptUtils {
      * @param key            密钥
      * @param transformation {@link Cipher#getInstance} transformation
      * @param iv             算法参数 {@link AlgorithmParameterSpec}
-     * @return AES 加密后的数据转 十六进制
+     * @return AES 加密后的数据转十六进制
      */
     public static String encryptAESToHexString(final byte[] data, final byte[] key, final String transformation, final byte[] iv) {
         return toHexString(encryptAES(data, key, transformation, iv));
@@ -813,9 +813,10 @@ public final class EncryptUtils {
      * @param transformation {@link Cipher#getInstance} transformation
      * @param iv             算法参数 {@link AlgorithmParameterSpec}
      * @param isEncrypt      是否加密处理
-     * @return 返回指定加密算法, 加/解密后的数据
+     * @return 指定加密算法, 加/解密后的数据
      */
-    private static byte[] symmetricTemplate(final byte[] data, final byte[] key, final String algorithm, final String transformation, final byte[] iv, final boolean isEncrypt) {
+    private static byte[] symmetricTemplate(final byte[] data, final byte[] key, final String algorithm,
+                                            final String transformation, final byte[] iv, final boolean isEncrypt) {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
         try {
             SecretKey secretKey;
@@ -872,7 +873,7 @@ public final class EncryptUtils {
      * @param key            密钥
      * @param isPublicKey    {@code true} {@link X509EncodedKeySpec}, {@code false} {@link PKCS8EncodedKeySpec}
      * @param transformation {@link Cipher#getInstance} transformation
-     * @return RSA 加密后的数据转 十六进制
+     * @return RSA 加密后的数据转十六进制
      */
     public static String encryptRSAToHexString(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation) {
         return toHexString(encryptRSA(data, key, isPublicKey, transformation));
@@ -923,7 +924,7 @@ public final class EncryptUtils {
      * @param isPublicKey    {@code true} {@link X509EncodedKeySpec}, {@code false} {@link PKCS8EncodedKeySpec}
      * @param transformation {@link Cipher#getInstance} transformation
      * @param isEncrypt      是否加密处理
-     * @return 返回指定加密算法, 加/解密后的数据
+     * @return 指定加密算法, 加/解密后的数据
      */
     private static byte[] rsaTemplate(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation, final boolean isEncrypt) {
         if (data == null || key == null) return null;
@@ -974,8 +975,8 @@ public final class EncryptUtils {
 
     /**
      * Base64 编码
-     * @param input byte[] 数据
-     * @return 返回 Base64 编码后的 byte[]
+     * @param input 待编码数据
+     * @return Base64 编码后的 byte[]
      */
     private static byte[] base64Encode(final byte[] input) {
         if (input == null) return null;
@@ -984,8 +985,8 @@ public final class EncryptUtils {
 
     /**
      * Base64 解码
-     * @param input byte[] 数据
-     * @return 返回 Base64 解码后的 byte[]
+     * @param input 待解码数据
+     * @return Base64 解码后的 byte[]
      */
     private static byte[] base64Decode(final byte[] input) {
         if (input == null) return null;
@@ -996,7 +997,7 @@ public final class EncryptUtils {
      * 拼接 byte[] 数据
      * @param prefix 第一个byte[]
      * @param suffix 第二个byte[]
-     * @return 返回拼接后的 byte[]
+     * @return 拼接后的 byte[]
      */
     private static byte[] joinBytes(final byte[] prefix, final byte[] suffix) {
         if (prefix == null || suffix == null) return null;
@@ -1032,7 +1033,7 @@ public final class EncryptUtils {
      * 将 byte[] 转换 十六进制字符串
      * @param data      待加密数据
      * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
-     * @return 十六进制 String
+     * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
@@ -1052,11 +1053,11 @@ public final class EncryptUtils {
 
     /**
      * 将十六进制字符串解码
-     * @param str 十六进制字符串
+     * @param hex 十六进制字符串
      * @return 十六进制转(解)码后的数据
      */
-    private static byte[] decodeHex(final String str) {
-        return decodeHex(isEmpty(str) ? null : str.toCharArray());
+    private static byte[] decodeHex(final String hex) {
+        return decodeHex(isEmpty(hex) ? null : hex.toCharArray());
     }
 
     /**

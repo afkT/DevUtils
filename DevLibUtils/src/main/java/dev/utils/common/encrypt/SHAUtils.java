@@ -23,7 +23,7 @@ public final class SHAUtils {
     /**
      * 加密内容 SHA1
      * @param data 待加密数据
-     * @return SHA1 加密后的 String
+     * @return SHA1 加密后的字符串
      */
     public static String sha1(final String data) {
         return shaHex(data, "SHA-1");
@@ -32,7 +32,7 @@ public final class SHAUtils {
     /**
      * 加密内容 SHA224
      * @param data 待加密数据
-     * @return SHA224 加密后的 String
+     * @return SHA224 加密后的字符串
      */
     public static String sha224(final String data) {
         return shaHex(data, "SHA-224");
@@ -41,7 +41,7 @@ public final class SHAUtils {
     /**
      * 加密内容 SHA256
      * @param data 待加密数据
-     * @return SHA256 加密后的 String
+     * @return SHA256 加密后的字符串
      */
     public static String sha256(final String data) {
         return shaHex(data, "SHA-256");
@@ -50,7 +50,7 @@ public final class SHAUtils {
     /**
      * 加密内容 SHA384
      * @param data 待加密数据
-     * @return SHA384 加密后的 String
+     * @return SHA384 加密后的字符串
      */
     public static String sha384(final String data) {
         return shaHex(data, "SHA-384");
@@ -59,7 +59,7 @@ public final class SHAUtils {
     /**
      * 加密内容 SHA512
      * @param data 待加密数据
-     * @return SHA512 加密后的 String
+     * @return SHA512 加密后的字符串
      */
     public static String sha512(final String data) {
         return shaHex(data, "SHA-512");
@@ -70,7 +70,7 @@ public final class SHAUtils {
     /**
      * 获取文件 SHA1 值
      * @param filePath 文件路径
-     * @return 文件 SHA1 值 String
+     * @return 文件 SHA1 字符串信息
      */
     public static String getFileSHA1(final String filePath) {
         return getFileSHA(filePath, "SHA-1");
@@ -79,7 +79,7 @@ public final class SHAUtils {
     /**
      * 获取文件 SHA256 值
      * @param filePath 文件路径
-     * @return 文件 SHA256 值 String
+     * @return 文件 SHA256 字符串信息
      */
     public static String getFileSHA256(final String filePath) {
         return getFileSHA(filePath, "SHA-256");
@@ -91,7 +91,7 @@ public final class SHAUtils {
      * 加密内容 SHA 模板
      * @param data      待加密数据
      * @param algorithm 算法
-     * @return SHA 算法加密后的 String
+     * @return SHA 算法加密后的字符串
      */
     public static String shaHex(final String data, final String algorithm) {
         if (data == null || algorithm == null) return null;
@@ -113,7 +113,7 @@ public final class SHAUtils {
      * 获取文件 SHA 值
      * @param filePath  文件路径
      * @param algorithm 算法
-     * @return 获取文件指定 SHA 值
+     * @return 获取文件指定 SHA 字符串信息
      */
     public static String getFileSHA(final String filePath, final String algorithm) {
         if (filePath == null || algorithm == null) return null;
@@ -139,7 +139,7 @@ public final class SHAUtils {
      * 将 byte[] 转换 十六进制字符串
      * @param data      待加密数据
      * @param hexDigits {@link SHAUtils#HEX_DIGITS}
-     * @return 十六进制 String
+     * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;

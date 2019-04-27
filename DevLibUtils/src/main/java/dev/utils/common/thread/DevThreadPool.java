@@ -184,7 +184,7 @@ public final class DevThreadPool {
     }
 
     /**
-     * 通过反射,调用某个类的方法
+     * 通过反射, 调用某个类的方法
      * @param method 方法
      * @param object 对象
      */
@@ -231,7 +231,7 @@ public final class DevThreadPool {
     }
 
     /**
-     * 判断线程池是否已关闭 = isShutDown 当调用 shutdown() 方法后返回为 true
+     * 判断线程池是否已关闭 - isShutDown 当调用 shutdown() 方法后返回为 true
      * @return {@code true} yes, {@code false} no
      */
     public boolean isShutdown() {

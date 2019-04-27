@@ -14,7 +14,7 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 构造函数
-     * @param cipher 加/解密中间层 {@link Cipher}
+     * @param cipher 加/解密中间层
      */
     public Base64Cipher(final Cipher cipher) {
         this.cipher = cipher;
