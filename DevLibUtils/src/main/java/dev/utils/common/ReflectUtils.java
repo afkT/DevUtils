@@ -15,16 +15,21 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import dev.utils.JCLogUtils;
+
 /**
  * detail: 反射相关工具类
  * @author Ttt
  * <pre>
  *      有两个方法: getMethod, getDeclaredMethod
  *      getMethod 只能调用 public 声明的方法，而 getDeclaredMethod 基本可以调用任何类型声明的方法
- *      反射多用 getDeclaredMethod，尽量少用getMethod
+ *      反射多用 getDeclaredMethod，尽量少用 getMethod
  * </pre>
  */
 public final class ReflectUtils {
+
+    // 日志 TAG
+    private static final String TAG = ReflectUtils.class.getSimpleName();
 
     private final Class<?> type;
 
@@ -68,9 +73,8 @@ public final class ReflectUtils {
      * 设置要反射的类
      * @param clazz 类的类型
      * @return {@link ReflectUtils}
-     * @throws ReflectException 反射异常
      */
-    public static ReflectUtils reflect(final Class<?> clazz) throws ReflectException {
+    public static ReflectUtils reflect(final Class<?> clazz) {
         return new ReflectUtils(clazz);
     }
 
@@ -78,9 +82,8 @@ public final class ReflectUtils {
      * 设置要反射的类
      * @param object 类对象
      * @return {@link ReflectUtils}
-     * @throws ReflectException 反射异常
      */
-    public static ReflectUtils reflect(final Object object) throws ReflectException {
+    public static ReflectUtils reflect(final Object object) {
         return new ReflectUtils(object == null ? Object.class : object.getClass(), object);
     }
 
@@ -88,27 +91,31 @@ public final class ReflectUtils {
 
     /**
      * 获取 Class
-     * @param className
-     * @return
+     * @param className 类名
+     * @return 获取指定类
+     * @throws ReflectException 反射异常
      */
-    private static Class<?> forName(final String className) {
+    private static Class<?> forName(final String className) throws ReflectException {
         try {
             return Class.forName(className);
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "forName");
             throw new ReflectException(e);
         }
     }
 
     /**
      * 获取 Class
-     * @param name
-     * @param classLoader
-     * @return
+     * @param name        类名
+     * @param classLoader 类加载器
+     * @return 获取指定类
+     * @throws ReflectException 反射异常
      */
-    private static Class<?> forName(final String name, final ClassLoader classLoader) {
+    private static Class<?> forName(final String name, final ClassLoader classLoader) throws ReflectException {
         try {
             return Class.forName(name, true, classLoader);
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "forName");
             throw new ReflectException(e);
         }
     }
@@ -120,8 +127,9 @@ public final class ReflectUtils {
     /**
      * 实例化反射对象
      * @return {@link ReflectUtils}
+     * @throws ReflectException 反射异常
      */
-    public ReflectUtils newInstance() {
+    public ReflectUtils newInstance() throws ReflectException {
         return newInstance(new Object[0]);
     }
 
@@ -129,8 +137,9 @@ public final class ReflectUtils {
      * 实例化反射对象
      * @param args 实例化需要的参数
      * @return {@link ReflectUtils}
+     * @throws ReflectException 反射异常
      */
-    public ReflectUtils newInstance(final Object... args) {
+    public ReflectUtils newInstance(final Object... args) throws ReflectException {
         Class<?>[] types = getArgsType(args);
         try {
             Constructor<?> constructor = type().getDeclaredConstructor(types);
@@ -143,18 +152,22 @@ public final class ReflectUtils {
                 }
             }
             if (list.isEmpty()) {
+                JCLogUtils.eTag(TAG, e, "newInstance");
                 throw new ReflectException(e);
             } else {
                 sortConstructors(list);
                 return newInstance(list.get(0), args);
             }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "newInstance");
+            throw new ReflectException(e);
         }
     }
 
     /**
      * 获取参数类型
-     * @param args
-     * @return
+     * @param args 参数数组
+     * @return 参数类型数组
      */
     private Class<?>[] getArgsType(final Object... args) {
         if (args == null) return new Class[0];
@@ -168,9 +181,10 @@ public final class ReflectUtils {
 
     /**
      * 进行排序
-     * @param list
+     * @param list 类构造函数信息集合
      */
     private void sortConstructors(final List<Constructor<?>> list) {
+        if (list == null) return;
         Collections.sort(list, new Comparator<Constructor<?>>() {
             @Override
             public int compare(Constructor<?> o1, Constructor<?> o2) {
@@ -193,14 +207,16 @@ public final class ReflectUtils {
 
     /**
      * 获取实例对象
-     * @param constructor
-     * @param args
-     * @return
+     * @param constructor 类构造函数信息
+     * @param args        构造参数数组
+     * @return {@link ReflectUtils}
+     * @throws ReflectException 反射异常
      */
-    private ReflectUtils newInstance(final Constructor<?> constructor, final Object... args) {
+    private ReflectUtils newInstance(final Constructor<?> constructor, final Object... args) throws ReflectException {
         try {
             return new ReflectUtils(constructor.getDeclaringClass(), accessible(constructor).newInstance(args));
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "newInstance");
             throw new ReflectException(e);
         }
     }
@@ -213,12 +229,14 @@ public final class ReflectUtils {
      * 设置反射的字段
      * @param name 字段名
      * @return {@link ReflectUtils}
+     * @throws ReflectException 反射异常
      */
-    public ReflectUtils field(final String name) {
+    public ReflectUtils field(final String name) throws ReflectException {
         try {
             Field field = getField(name);
             return new ReflectUtils(field.getType(), field.get(object));
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "field");
             throw new ReflectException(e);
         }
     }
@@ -228,24 +246,26 @@ public final class ReflectUtils {
      * @param name  字段名
      * @param value 字段值
      * @return {@link ReflectUtils}
+     * @throws ReflectException 反射异常
      */
-    public ReflectUtils field(final String name, final Object value) {
+    public ReflectUtils field(final String name, final Object value) throws ReflectException {
         try {
             Field field = getField(name);
             field.set(object, unwrap(value));
             return this;
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "field");
             throw new ReflectException(e);
         }
     }
 
     /**
      * 获取 Field 对象
-     * @param name
-     * @return
-     * @throws IllegalAccessException
+     * @param name 字段名
+     * @return {@link Field}
+     * @throws ReflectException 反射异常
      */
-    private Field getField(final String name) throws IllegalAccessException {
+    private Field getField(final String name) throws ReflectException {
         Field field = getAccessibleField(name);
         if ((field.getModifiers() & Modifier.FINAL) == Modifier.FINAL) {
             try {
@@ -253,6 +273,9 @@ public final class ReflectUtils {
                 modifiersField.setAccessible(true);
                 modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
             } catch (NoSuchFieldException ignore) {
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getField");
+                throw new ReflectException(e);
             }
         }
         return field;
@@ -260,10 +283,10 @@ public final class ReflectUtils {
 
     /**
      * 获取可访问字段, 返回 Field 对象
-     * @param name
-     * @return
+     * @param name 字段名
+     * @throws ReflectException 反射异常
      */
-    private Field getAccessibleField(final String name) {
+    private Field getAccessibleField(final String name) throws ReflectException {
         Class<?> type = type();
         try {
             return accessible(type.getField(name));
@@ -275,14 +298,18 @@ public final class ReflectUtils {
                 }
                 type = type.getSuperclass();
             } while (type != null);
+            JCLogUtils.eTag(TAG, e, "getAccessibleField");
+            throw new ReflectException(e);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getAccessibleField");
             throw new ReflectException(e);
         }
     }
 
     /**
      * 获取对象
-     * @param object
-     * @return
+     * @param object 对象
+     * @return 需要反射的对象
      */
     private Object unwrap(final Object object) {
         if (object instanceof ReflectUtils) {
@@ -294,55 +321,65 @@ public final class ReflectUtils {
     // =
 
     /**
-     * 获取Object 对象
+     * 获取 Object 对象
      * 例: 获取父类中的变量
      * Object obj = 对象;
      * getObject(getDeclaredFieldBase(obj, "父类中变量名"), obj);
-     * @param field
-     * @param object
-     * @return
+     * @param field  Field
+     * @param object 对象
+     * @return Object
+     * @throws ReflectException 反射异常
      */
-    public static Object getObject(final Field field, final Object object) {
+    public static Object getObject(final Field field, final Object object) throws ReflectException {
         try {
             field.setAccessible(true);
             return field.get(object);
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getObject");
+            throw new ReflectException(e);
         }
-        return null;
     }
 
     /**
      * 设置枚举值
      * @param clazz 类型
-     * @param name
-     * @param val
+     * @param name  字段名
+     * @param value 字段值
+     * @return {@link ReflectUtils}
+     * @throws ReflectException 反射异常
      */
-    public ReflectUtils setEnumVal(final Class<?> clazz, final String name, final String val) {
+    public ReflectUtils setEnumVal(final Class<?> clazz, final String name, final String value) throws ReflectException {
         try {
-            return field(name, Enum.valueOf((Class<Enum>) clazz, val));
+            return field(name, Enum.valueOf((Class<Enum>) clazz, value));
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "setEnumVal");
+            throw new ReflectException(e);
         }
-        return this;
     }
 
     /**
      * 通过反射获取全部字段
-     * @param object
-     * @param name
-     * @return
-     * @throws Exception
+     * @param object 对象
+     * @param name   指定名
+     * @return Object
+     * @throws ReflectException 反射异常
      */
-    public static Object getDeclaredField(final Object object, final String name) throws Exception {
-        Field field = object.getClass().getDeclaredField(name);
-        field.setAccessible(true);
-        return field.get(object);
+    public static Object getDeclaredField(final Object object, final String name) throws ReflectException {
+        try {
+            Field field = object.getClass().getDeclaredField(name);
+            field.setAccessible(true);
+            return field.get(object);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getAccessibleField");
+            throw new ReflectException(e);
+        }
     }
 
     /**
      * 循环向上转型, 获取对象的 DeclaredField
-     * @param object
-     * @param fieldName
-     * @return
+     * @param object    对象
+     * @param fieldName 属性名
+     * @return {@link Field}
      */
     public static Field getDeclaredFieldBase(final Object object, final String fieldName) {
         return getDeclaredFieldBase(object, fieldName, false);
@@ -350,8 +387,8 @@ public final class ReflectUtils {
 
     /**
      * 循环向上转型, 获取对象的 DeclaredField
-     * @param object    : 子类对象
-     * @param fieldName : 父类中的属性名
+     * @param object    子类对象
+     * @param fieldName 父类中的属性名
      * @param isSuper   是否一直跟到最后, 如果父类还有父类，并且有相同变量名, 则设置isSuper = true，一直会跟到最后的变量
      * @return 父类中的属性对象
      */
@@ -398,11 +435,12 @@ public final class ReflectUtils {
         try {
             Method method = exactMethod(name, types);
             return method(method, object, args);
-        } catch (NoSuchMethodException e) {
+        } catch (Exception e) {
             try {
                 Method method = similarMethod(name, types);
                 return method(method, object, args);
-            } catch (NoSuchMethodException e1) {
+            } catch (Exception e1) {
+                JCLogUtils.eTag(TAG, e, "method");
                 throw new ReflectException(e1);
             }
         }
@@ -410,12 +448,13 @@ public final class ReflectUtils {
 
     /**
      * 设置反射的方法处理
-     * @param method
-     * @param object
-     * @param args
-     * @return
+     * @param method 方法
+     * @param object 对象
+     * @param args   参数
+     * @return {@link ReflectUtils}
+     * @throws ReflectException 反射异常
      */
-    private ReflectUtils method(final Method method, final Object object, final Object... args) {
+    private ReflectUtils method(final Method method, final Object object, final Object... args) throws ReflectException {
         try {
             accessible(method);
             if (method.getReturnType() == void.class) {
@@ -425,18 +464,19 @@ public final class ReflectUtils {
                 return reflect(method.invoke(object, args));
             }
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "method");
             throw new ReflectException(e);
         }
     }
 
     /**
      * 获取准确参数的方法
-     * @param name
-     * @param types
-     * @return
-     * @throws NoSuchMethodException
+     * @param name  方法
+     * @param types 参数类型
+     * @return {@link Method}
+     * @throws ReflectException 反射异常
      */
-    private Method exactMethod(final String name, final Class<?>[] types) throws NoSuchMethodException {
+    private Method exactMethod(final String name, final Class<?>[] types) throws ReflectException {
         Class<?> type = type();
         try {
             return type.getMethod(name, types);
@@ -448,18 +488,22 @@ public final class ReflectUtils {
                 }
                 type = type.getSuperclass();
             } while (type != null);
-            throw new NoSuchMethodException();
+            JCLogUtils.eTag(TAG, e, "exactMethod");
+            throw new ReflectException(e);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "exactMethod");
+            throw new ReflectException(e);
         }
     }
 
     /**
      * 获取相似参数的方法
-     * @param name
-     * @param types
-     * @return
-     * @throws NoSuchMethodException
+     * @param name  方法
+     * @param types 参数类型
+     * @return {@link Method}
+     * @throws ReflectException 反射异常
      */
-    private Method similarMethod(final String name, final Class<?>[] types) throws NoSuchMethodException {
+    private Method similarMethod(final String name, final Class<?>[] types) throws ReflectException {
         Class<?> type = type();
         List<Method> methods = new ArrayList<>();
         for (Method method : type.getMethods()) {
@@ -483,15 +527,15 @@ public final class ReflectUtils {
             }
             type = type.getSuperclass();
         } while (type != null);
-
-        throw new NoSuchMethodException("No similar method " + name + " with params " + Arrays.toString(types) + " could be found on type " + type() + ".");
+        throw new ReflectException("No similar method " + name + " with params " + Arrays.toString(types) + " could be found on type " + type() + ".");
     }
 
     /**
      * 进行方法排序
-     * @param methods
+     * @param methods 方法集合
      */
     private void sortMethods(final List<Method> methods) {
+        if (methods == null) return;
         Collections.sort(methods, new Comparator<Method>() {
             @Override
             public int compare(Method o1, Method o2) {
@@ -512,10 +556,23 @@ public final class ReflectUtils {
         });
     }
 
+    /**
+     * 判断是否相似方法
+     * @param possiblyMatchingMethod 可能的匹配方法
+     * @param desiredMethodName      期望方法名
+     * @param desiredParamTypes      所需参数类型
+     * @return {@code true} yes, {@code false} no
+     */
     private boolean isSimilarSignature(final Method possiblyMatchingMethod, final String desiredMethodName, final Class<?>[] desiredParamTypes) {
         return possiblyMatchingMethod.getName().equals(desiredMethodName) && match(possiblyMatchingMethod.getParameterTypes(), desiredParamTypes);
     }
 
+    /**
+     * 对比处理, 判断是否一样
+     * @param declaredTypes 声明类型
+     * @param actualTypes   实际类型
+     * @return {@code true} yes, {@code false} no
+     */
     private boolean match(final Class<?>[] declaredTypes, final Class<?>[] actualTypes) {
         if (declaredTypes.length == actualTypes.length) {
             for (int i = 0; i < actualTypes.length; i++) {
@@ -549,7 +606,7 @@ public final class ReflectUtils {
     /**
      * 根据类, 代理创建并返回对象
      * @param proxyType
-     * @return 返回代理的对象
+     * @return 代理的对象
      */
     @SuppressWarnings("unchecked")
     public <P> P proxy(final Class<P> proxyType) {
@@ -561,7 +618,7 @@ public final class ReflectUtils {
                 String name = method.getName();
                 try {
                     return reflect(object).method(name, args).get();
-                } catch (ReflectException e) {
+                } catch (Exception e) {
                     if (isMap) {
                         Map<String, Object> map = (Map<String, Object>) object;
                         int length = (args == null ? 0 : args.length);
@@ -574,8 +631,9 @@ public final class ReflectUtils {
                             return null;
                         }
                     }
-                    throw e;
+                    JCLogUtils.eTag(TAG, e, "proxy");
                 }
+                return null;
             }
         };
         return (P) Proxy.newProxyInstance(proxyType.getClassLoader(), new Class[]{proxyType}, handler);
@@ -583,18 +641,17 @@ public final class ReflectUtils {
 
     /**
      * 获取实体类属性名 get/set
-     * @param string
+     * @param str 属性名
      * @return
      */
-    private static String property(final String string) {
-        int length = string.length();
-
+    private static String property(final String str) {
+        int length = str.length();
         if (length == 0) {
             return "";
         } else if (length == 1) {
-            return string.toLowerCase();
+            return str.toLowerCase();
         } else {
-            return string.substring(0, 1).toLowerCase() + string.substring(1);
+            return str.substring(0, 1).toLowerCase() + str.substring(1);
         }
     }
 
@@ -676,16 +733,17 @@ public final class ReflectUtils {
     // =
 
     /**
-     * 内部标记 null
+     * detail: 内部标记 null
+     * @author Ttt
      */
     private static class NULL {
     }
 
     /**
-     * detail: 定义反射异常类
+     * detail: 定义 ReflectUtils 工具异常类
      * @author Ttt
      */
-    public static class ReflectException extends RuntimeException {
+    public static class ReflectException extends Exception {
 
         private static final long serialVersionUID = 858774075258496016L;
 

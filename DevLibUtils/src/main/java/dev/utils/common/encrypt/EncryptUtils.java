@@ -1090,12 +1090,12 @@ public final class EncryptUtils {
      * @param ch    十六进制 char
      * @param index 十六进制字符在字符数组中的位置
      * @return 十六进制 转 int 整数
-     * @throws RuntimeException 当ch不是一个合法的十六进制字符时，抛出运行时异常
+     * @throws Exception 当ch不是一个合法的十六进制字符时，抛出运行时异常
      */
-    private static int toDigit(final char ch, final int index) {
+    private static int toDigit(final char ch, final int index) throws Exception {
         int digit = Character.digit(ch, 16);
         if (digit == -1) {
-            throw new RuntimeException("Illegal hexadecimal character " + ch + " at index " + index);
+            throw new Exception("Illegal hexadecimal character " + ch + " at index " + index);
         }
         return digit;
     }

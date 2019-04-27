@@ -222,7 +222,7 @@ public final class ConvertUtils {
     /**
      * 字符串 转 int
      * @param str String
-     * @return 返回 int
+     * @return int
      */
     public static int toInt(final String str) {
         return toInt(str, 0);
@@ -232,7 +232,7 @@ public final class ConvertUtils {
      * 字符串 转 int
      * @param str          String
      * @param defaultValue 默认值
-     * @return 返回 int, 如果转换失败, 则返回 defaultValue
+     * @return int, 如果转换失败, 则返回 defaultValue
      */
     public static int toInt(final String str, final int defaultValue) {
         if (str == null) return defaultValue;
@@ -247,7 +247,7 @@ public final class ConvertUtils {
     /**
      * 字符串 转 boolean
      * @param str String
-     * @return 返回 boolean
+     * @return boolean
      */
     public static boolean toBoolean(final String str) {
         return toBoolean(str, false);
@@ -257,7 +257,7 @@ public final class ConvertUtils {
      * 字符串 转 boolean
      * @param str          String
      * @param defaultValue 默认值
-     * @return 返回 boolean, 如果转换失败, 则返回 defaultValue
+     * @return boolean, 如果转换失败, 则返回 defaultValue
      */
     public static boolean toBoolean(final String str, final boolean defaultValue) {
         if (str == null) return defaultValue;
@@ -277,7 +277,7 @@ public final class ConvertUtils {
     /**
      * 字符串 转 float
      * @param str String
-     * @return 返回 float
+     * @return float
      */
     public static float toFloat(final String str) {
         return toFloat(str, 0f);
@@ -287,7 +287,7 @@ public final class ConvertUtils {
      * 字符串 转 float
      * @param str          String
      * @param defaultValue 默认值
-     * @return 返回 float, 如果转换失败, 则返回 defaultValue
+     * @return float, 如果转换失败, 则返回 defaultValue
      */
     public static float toFloat(final String str, final float defaultValue) {
         if (str == null) return defaultValue;
@@ -302,7 +302,7 @@ public final class ConvertUtils {
     /**
      * 字符串 转 double
      * @param str String
-     * @return 返回 double
+     * @return double
      */
     public static double toDouble(final String str) {
         return toDouble(str, 0d);
@@ -312,7 +312,7 @@ public final class ConvertUtils {
      * 字符串 转 double
      * @param str          String
      * @param defaultValue 默认值
-     * @return 返回 double, 如果转换失败, 则返回 defaultValue
+     * @return double, 如果转换失败, 则返回 defaultValue
      */
     public static double toDouble(final String str, final double defaultValue) {
         if (str == null) return defaultValue;
@@ -327,7 +327,7 @@ public final class ConvertUtils {
     /**
      * 字符串 转 long
      * @param str String
-     * @return 返回 long
+     * @return long
      */
     public static long toLong(final String str) {
         return toLong(str, 0l);
@@ -337,7 +337,7 @@ public final class ConvertUtils {
      * 字符串 转 long
      * @param str          String
      * @param defaultValue 默认值
-     * @return 返回 long, 如果转换失败, 则返回 defaultValue
+     * @return long, 如果转换失败, 则返回 defaultValue
      */
     public static long toLong(final String str, final long defaultValue) {
         if (str == null) return defaultValue;
@@ -356,7 +356,7 @@ public final class ConvertUtils {
     /**
      * 基本类型对象 转 int
      * @param value Integer
-     * @return 返回 int
+     * @return int
      */
     public static int toInt(final Integer value) {
         return toInt(value, 0);
@@ -366,7 +366,7 @@ public final class ConvertUtils {
      * 基本类型对象 转 int
      * @param value        Integer
      * @param defaultValue 默认值
-     * @return 返回 int, 如果转换失败, 则返回 defaultValue
+     * @return int, 如果转换失败, 则返回 defaultValue
      */
     public static int toInt(final Integer value, final int defaultValue) {
         if (value == null) return defaultValue;
@@ -381,7 +381,7 @@ public final class ConvertUtils {
     /**
      * 基本类型对象 转 boolean
      * @param value Boolean
-     * @return 返回 boolean, 如果转换失败, 则返回 defaultValue
+     * @return boolean, 如果转换失败, 则返回 defaultValue
      */
     public static boolean toBoolean(final Boolean value) {
         return toBoolean(value, false);
@@ -391,7 +391,7 @@ public final class ConvertUtils {
      * 基本类型对象 转 boolean
      * @param value        Boolean
      * @param defaultValue 默认值
-     * @return 返回 boolean, 如果转换失败, 则返回 defaultValue
+     * @return boolean, 如果转换失败, 则返回 defaultValue
      */
     public static boolean toBoolean(final Boolean value, final boolean defaultValue) {
         if (value == null) return defaultValue;
@@ -401,7 +401,7 @@ public final class ConvertUtils {
     /**
      * 基本类型对象 转 float
      * @param value Float
-     * @return 返回 float, 如果转换失败, 则返回 defaultValue
+     * @return float, 如果转换失败, 则返回 defaultValue
      */
     public static float toFloat(final Float value) {
         return toFloat(value, 0f);
@@ -411,7 +411,7 @@ public final class ConvertUtils {
      * 基本类型对象 转 float
      * @param value        Float
      * @param defaultValue 默认值
-     * @return 返回 float, 如果转换失败, 则返回 defaultValue
+     * @return float, 如果转换失败, 则返回 defaultValue
      */
     public static float toFloat(final Float value, final float defaultValue) {
         if (value == null) return defaultValue;
@@ -426,7 +426,7 @@ public final class ConvertUtils {
     /**
      * 基本类型对象 转 double
      * @param value Double
-     * @return 返回 double, 如果转换失败, 则返回 defaultValue
+     * @return double, 如果转换失败, 则返回 defaultValue
      */
     public static double toDouble(final Double value) {
         return toDouble(value, 0d);
@@ -436,7 +436,7 @@ public final class ConvertUtils {
      * 基本类型对象 转 double
      * @param value        Double
      * @param defaultValue 默认值
-     * @return 返回 double, 如果转换失败, 则返回 defaultValue
+     * @return double, 如果转换失败, 则返回 defaultValue
      */
     public static double toDouble(final Double value, final double defaultValue) {
         if (value == null) return defaultValue;
@@ -451,7 +451,7 @@ public final class ConvertUtils {
     /**
      * 基本类型对象 转 long
      * @param value Long
-     * @return 返回 long, 如果转换失败, 则返回 defaultValue
+     * @return long, 如果转换失败, 则返回 defaultValue
      */
     public static long toLong(final Long value) {
         return toLong(value, 0l);
@@ -461,7 +461,7 @@ public final class ConvertUtils {
      * 基本类型对象 转 long
      * @param value        Long
      * @param defaultValue 默认值
-     * @return 返回 long, 如果转换失败, 则返回 defaultValue
+     * @return long, 如果转换失败, 则返回 defaultValue
      */
     public static long toLong(final Long value, final long defaultValue) {
         if (value == null) return defaultValue;
@@ -476,7 +476,7 @@ public final class ConvertUtils {
     /**
      * 基本类型对象 转 short
      * @param value Short
-     * @return 返回 short, 如果转换失败, 则返回 defaultValue
+     * @return short, 如果转换失败, 则返回 defaultValue
      */
     public static short toShort(final Short value) {
         return toShort(value, (short) 0);
@@ -486,7 +486,7 @@ public final class ConvertUtils {
      * 基本类型对象 转 short
      * @param value        Short
      * @param defaultValue 默认值
-     * @return 返回 short, 如果转换失败, 则返回 defaultValue
+     * @return short, 如果转换失败, 则返回 defaultValue
      */
     public static short toShort(final Short value, final short defaultValue) {
         if (value == null) return defaultValue;
@@ -501,7 +501,7 @@ public final class ConvertUtils {
     /**
      * 基本类型对象 转 char
      * @param value Character
-     * @return 返回 char, 如果转换失败, 则返回 defaultValue
+     * @return char, 如果转换失败, 则返回 defaultValue
      */
     public static char toChar(final Character value) {
         return toChar(value, (char) 0);
@@ -511,7 +511,7 @@ public final class ConvertUtils {
      * 基本类型对象 转 char
      * @param value        Character
      * @param defaultValue 默认值
-     * @return 返回 char, 如果转换失败, 则返回 defaultValue
+     * @return char, 如果转换失败, 则返回 defaultValue
      */
     public static char toChar(final Character value, final char defaultValue) {
         if (value == null) return defaultValue;
@@ -526,7 +526,7 @@ public final class ConvertUtils {
     /**
      * 基本类型对象 转 byte
      * @param value Byte
-     * @return 返回 byte, 如果转换失败, 则返回 defaultValue
+     * @return byte, 如果转换失败, 则返回 defaultValue
      */
     public static byte toByte(final Byte value) {
         return toByte(value, (byte) 0);
@@ -536,7 +536,7 @@ public final class ConvertUtils {
      * 基本类型对象 转 byte
      * @param value        Byte
      * @param defaultValue 默认值
-     * @return 返回 byte, 如果转换失败, 则返回 defaultValue
+     * @return byte, 如果转换失败, 则返回 defaultValue
      */
     public static byte toByte(final Byte value, final byte defaultValue) {
         if (value == null) return defaultValue;
@@ -556,7 +556,7 @@ public final class ConvertUtils {
      * 字符串 获取 char (默认第一位)
      * @param str          String
      * @param defaultValue 默认值
-     * @return 返回第一位值, 如果获取失败则返回 defaultValue
+     * @return 第一位值, 如果获取失败则返回 defaultValue
      */
     public static char toChar(final String str, final char defaultValue) {
         return toChar(str, 0, defaultValue);
@@ -567,7 +567,7 @@ public final class ConvertUtils {
      * @param str          String
      * @param pos          索引
      * @param defaultValue 默认值
-     * @return 返回指定索引的值, 如果获取失败则返回 defaultValue
+     * @return 指定索引的值, 如果获取失败则返回 defaultValue
      */
     public static char toChar(final String str, final int pos, final char defaultValue) {
         if (str == null || pos < 0) return defaultValue;
@@ -584,7 +584,7 @@ public final class ConvertUtils {
     /**
      * char 转换 unicode 编码
      * @param value char
-     * @return 返回 int
+     * @return int
      */
     public static int toCharInt(final char value) {
         return (int) value;
@@ -631,7 +631,7 @@ public final class ConvertUtils {
      * </pre>
      * @param str   String
      * @param radix 进制
-     * @return 返回对应进制的值
+     * @return 对应进制的值
      */
     public static int parseInt(final String str, final int radix) {
         if (str == null) return -1;
@@ -647,7 +647,7 @@ public final class ConvertUtils {
      * 字符串转换对应的进制
      * @param str   String
      * @param radix 进制
-     * @return 返回对应进制的值
+     * @return 对应进制的值
      */
     public static long parseLong(final String str, final int radix) {
         if (str == null) return -1;
@@ -736,7 +736,7 @@ public final class ConvertUtils {
      * @param data   byte[]
      * @param off    起始值
      * @param length 所需长度
-     * @return 返回裁剪后的 byte[]
+     * @return 裁剪后的 byte[]
      */
     public static byte[] subBytes(final byte[] data, final int off, final int length) {
         if (data == null || off < 0 || length < 0) return null;
@@ -757,7 +757,7 @@ public final class ConvertUtils {
      * 拼接 byte[] 数据
      * @param prefix 第一个byte[]
      * @param suffix 第二个byte[]
-     * @return 返回拼接后的 byte[]
+     * @return 拼接后的 byte[]
      */
     public static byte[] joinBytes(final byte[] prefix, final byte[] suffix) {
         if (prefix == null || suffix == null) return null;
@@ -1400,7 +1400,7 @@ public final class ConvertUtils {
      * 二进制字符串 转换 byte[] 解码
      * 例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过new String(byte()) 获取 asd => 配合 toBinaryString 使用
      * @param str String
-     * @return 返回解码后的 byte[]
+     * @return 解码后的 byte[]
      */
     public static byte[] decodeBinary(final String str) {
         if (str == null) return null;
@@ -1496,12 +1496,12 @@ public final class ConvertUtils {
      * @param ch    十六进制 char
      * @param index 十六进制字符在字符数组中的位置
      * @return 一个整数
-     * @throws RuntimeException 当ch不是一个合法的十六进制字符时，抛出运行时异常
+     * @throws Exception 当ch不是一个合法的十六进制字符时，抛出运行时异常
      */
-    private static int toDigit(final char ch, final int index) {
+    private static int toDigit(final char ch, final int index) throws Exception {
         int digit = Character.digit(ch, 16);
         if (digit == -1) {
-            throw new RuntimeException("Illegal hexadecimal character " + ch + " at index " + index);
+            throw new Exception("Illegal hexadecimal character " + ch + " at index " + index);
         }
         return digit;
     }
@@ -1518,7 +1518,7 @@ public final class ConvertUtils {
      *      如: 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
      * </pre>
      * @param value int
-     * @return 返回十六进制字符串
+     * @return 十六进制字符串
      */
     public static String toHexString(final int value) {
         try {
@@ -1532,7 +1532,7 @@ public final class ConvertUtils {
     /**
      * long 转换十六进制
      * @param value long
-     * @return 返回十六进制字符串
+     * @return 十六进制字符串
      */
     public static String toHexString(final long value) {
         try {
@@ -1546,7 +1546,7 @@ public final class ConvertUtils {
     /**
      * double 转换十六进制
      * @param value double
-     * @return 返回十六进制字符串
+     * @return 十六进制字符串
      */
     public static String toHexString(final double value) {
         try {
@@ -1560,7 +1560,7 @@ public final class ConvertUtils {
     /**
      * float 转换十六进制
      * @param value float
-     * @return 返回十六进制字符串
+     * @return 十六进制字符串
      */
     public static String toHexString(final float value) {
         try {
@@ -1634,7 +1634,7 @@ public final class ConvertUtils {
     /**
      * 将 string 转换 十六进制字符串
      * @param str String
-     * @return 返回十六进制字符串
+     * @return 十六进制字符串
      */
     public static String toHexString(final String str) {
         return toHexString(str, true);
@@ -1644,7 +1644,7 @@ public final class ConvertUtils {
      * 将 string 转换 十六进制字符串
      * @param str         String
      * @param toLowerCase true: 小写格式, {@code false} 大写格式
-     * @return 返回十六进制字符串
+     * @return 十六进制字符串
      */
     public static String toHexString(final String str, final boolean toLowerCase) {
         return toHexString(isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
@@ -1655,7 +1655,7 @@ public final class ConvertUtils {
     /**
      * 将 byte[] 转换 十六进制字符串
      * @param data byte[]
-     * @return 返回十六进制字符串
+     * @return 十六进制字符串
      */
     public static String toHexString(final byte[] data) {
         return toHexString(data, true);
@@ -1665,7 +1665,7 @@ public final class ConvertUtils {
      * 将 byte[] 转换 十六进制字符串
      * @param data        byte[]
      * @param toLowerCase true: 小写格式, {@code false} 大写格式
-     * @return 返回十六进制字符串
+     * @return 十六进制字符串
      */
     public static String toHexString(final byte[] data, final boolean toLowerCase) {
         return toHexString(data, toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
@@ -1675,7 +1675,7 @@ public final class ConvertUtils {
      * 将 byte[] 转换 十六进制字符串
      * @param data      byte[]
      * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
-     * @return 返回十六进制字符串
+     * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
@@ -1707,7 +1707,7 @@ public final class ConvertUtils {
     /**
      * 获取数组长度
      * @param objects Object[]
-     * @return 返回 array[].length
+     * @return array[].length
      */
     private static int length(final Object... objects) {
         return objects != null ? objects.length : 0;

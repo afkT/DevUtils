@@ -32,22 +32,22 @@ public final class HttpURLConnectionUtils {
 
         /**
          * 请求响应回调
-         * @param result
-         * @param response 请求头响应时间
+         * @param result   请求结果
+         * @param response 请求响应时间
          */
         void onResponse(String result, long response);
 
         /**
          * 请求失败
-         * @param e
+         * @param e 失败异常
          */
         void onFail(Exception e);
     }
 
     /**
      * 异步的Get请求
-     * @param urlStr
-     * @param callBack
+     * @param urlStr   请求地址
+     * @param callBack 请求回调接口
      */
     public static void doGetAsyn(final String urlStr, final CallBack callBack) {
         new Thread() {
@@ -63,9 +63,9 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 异步的Post请求
-     * @param urlStr
-     * @param params
-     * @param callBack
+     * @param urlStr   请求地址
+     * @param params   请求参数
+     * @param callBack 请求回调接口
      */
     public static void doPostAsyn(final String urlStr, final String params, final CallBack callBack) {
         new Thread() {
@@ -81,11 +81,11 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 发送请求
-     * @param method
-     * @param urlStr
-     * @param headers
-     * @param params
-     * @param callBack
+     * @param method   请求方法
+     * @param urlStr   请求地址字符串
+     * @param headers  请求头信息
+     * @param params   请求参数
+     * @param callBack 请求回调接口
      * @return
      */
     public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final CallBack callBack) {
@@ -192,21 +192,21 @@ public final class HttpURLConnectionUtils {
     public interface TimeCallBack {
 
         /**
-         * 请求相应回调
+         * 请求响应回调
          * @param time 毫秒
          */
         void onResponse(long time);
 
         /**
          * 请求失败
-         * @param e
+         * @param e 失败异常
          */
         void onFail(Exception e);
     }
 
     /**
      * 获取网络时间 - 默认使用百度链接
-     * @param timeCallBack
+     * @param timeCallBack 请求时间回调接口
      */
     public static void getNetTime(final TimeCallBack timeCallBack) {
         getNetTime(BAIDU_URL, timeCallBack);
@@ -214,8 +214,8 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 获取网络时间
-     * @param urlStr
-     * @param timeCallBack
+     * @param urlStr       请求地址
+     * @param timeCallBack 请求时间回调接口
      */
     public static void getNetTime(final String urlStr, final TimeCallBack timeCallBack) {
         new Thread(new Runnable() {
@@ -228,8 +228,8 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 请求网络时间(内部私有)
-     * @param urlStr
-     * @param timeCallBack
+     * @param urlStr       请求地址
+     * @param timeCallBack 请求时间回调接口
      */
     private static void reqNetTime(final String urlStr, final TimeCallBack timeCallBack) {
         // 获取连接对象

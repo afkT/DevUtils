@@ -133,7 +133,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param pos        索引
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T get(final Collection<T> collection, final int pos) {
         if (collection != null) {
@@ -162,7 +162,7 @@ public final class CollectionUtils {
      * 获取第一条数据
      * @param collection Collection
      * @param <T>        泛型
-     * @return 返回索引为0的值
+     * @return 索引为0的值
      */
     public static <T> T getFirst(final Collection<T> collection) {
         return get(collection, 0);
@@ -172,7 +172,7 @@ public final class CollectionUtils {
      * 获取最后一条数据
      * @param collection Collection
      * @param <T>        泛型
-     * @return 返回索引 length - 1 的值
+     * @return 索引 length - 1 的值
      */
     public static <T> T getLast(final Collection<T> collection) {
         return get(collection, length(collection) - 1);
@@ -188,7 +188,7 @@ public final class CollectionUtils {
      * @param notNull    是否不允许值为null
      * @param offset     偏移量
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T get(final Collection<T> collection, final T value, final int number, final boolean notNull, final int offset) {
         if (collection != null) {
@@ -226,7 +226,7 @@ public final class CollectionUtils {
      * @param notNull    是否不允许值为null
      * @param offset     偏移量
      * @param <T>        泛型
-     * @return 返回对应的索引
+     * @return 对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value, final int number, final boolean notNull, final int offset) {
         if (collection != null) {
@@ -263,7 +263,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return 返回对应的索引
+     * @return 对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value) {
         return getPosition(collection, value, 0, false, 0);
@@ -275,7 +275,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return 返回对应的索引
+     * @return 对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value, final int number) {
         return getPosition(collection, value, number, false, 0);
@@ -287,7 +287,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return 返回对应的索引
+     * @return 对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value, final boolean notNull) {
         return getPosition(collection, value, 0, notNull, 0);
@@ -300,7 +300,7 @@ public final class CollectionUtils {
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return 返回对应的索引
+     * @return 对应的索引
      */
     public static <T> int getPosition(final Collection<T> collection, final T value, final int number, final boolean notNull) {
         return getPosition(collection, value, number, notNull, 0);
@@ -313,7 +313,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return 返回对应的索引
+     * @return 对应的索引
      */
     public static <T> int getPositionNotNull(final Collection<T> collection, final T value) {
         return getPosition(collection, value, 0, true, 0);
@@ -325,7 +325,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return 返回对应的索引
+     * @return 对应的索引
      */
     public static <T> int getPositionNotNull(final Collection<T> collection, final T value, final int number) {
         return getPosition(collection, value, number, true, 0);
@@ -338,7 +338,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getNext(final Collection<T> collection, final T value) {
         return get(collection, value, 0, false, 1);
@@ -350,7 +350,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getNext(final Collection<T> collection, final T value, final int number) {
         return get(collection, value, number, false, 1);
@@ -362,7 +362,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getNext(final Collection<T> collection, final T value, final boolean notNull) {
         return get(collection, value, 0, notNull, 1);
@@ -375,7 +375,7 @@ public final class CollectionUtils {
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getNext(final Collection<T> collection, final T value, final int number, final boolean notNull) {
         return get(collection, value, number, notNull, 1);
@@ -388,7 +388,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getNextNotNull(final Collection<T> collection, final T value) {
         return get(collection, value, 0, true, 1);
@@ -400,7 +400,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getNextNotNull(final Collection<T> collection, final T value, final int number) {
         return get(collection, value, number, true, 1);
@@ -413,7 +413,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getPrevious(final Collection<T> collection, final T value) {
         return get(collection, value, 0, false, -1);
@@ -425,7 +425,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getPrevious(final Collection<T> collection, final T value, final int number) {
         return get(collection, value, number, false, -1);
@@ -437,7 +437,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getPrevious(final Collection<T> collection, final T value, final boolean notNull) {
         return get(collection, value, 0, notNull, -1);
@@ -450,7 +450,7 @@ public final class CollectionUtils {
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param notNull    是否不允许值为null
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getPrevious(final Collection<T> collection, final T value, final int number, final boolean notNull) {
         return get(collection, value, number, notNull, -1);
@@ -463,7 +463,7 @@ public final class CollectionUtils {
      * @param collection Collection
      * @param value      值
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getPreviousNotNull(final Collection<T> collection, final T value) {
         return get(collection, value, 0, true, -1);
@@ -475,7 +475,7 @@ public final class CollectionUtils {
      * @param value      值
      * @param number     符合条件次数(从0开始, 0 = 1)
      * @param <T>        泛型
-     * @return 返回对应索引的值
+     * @return 对应索引的值
      */
     public static <T> T getPreviousNotNull(final Collection<T> collection, final T value, final int number) {
         return get(collection, value, number, true, -1);

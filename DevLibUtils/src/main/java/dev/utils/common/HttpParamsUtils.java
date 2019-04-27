@@ -23,8 +23,8 @@ public final class HttpParamsUtils {
 
     /**
      * 拆分参数
-     * @param params
-     * @return
+     * @param params 请求参数字符串
+     * @return 拆分后的参数 Map
      */
     public static Map<String, String> splitParams(final String params) {
         return splitParams(params, false);
@@ -32,9 +32,9 @@ public final class HttpParamsUtils {
 
     /**
      * 拆分参数
-     * @param params
-     * @param urlEncode 是否需要编码
-     * @return
+     * @param params    请求参数字符串
+     * @param urlEncode 是否需要 URL 编码
+     * @return 拆分后的参数 Map
      */
     public static Map<String, String> splitParams(final String params, final boolean urlEncode) {
         Map<String, String> mapParams = new HashMap<>();
@@ -63,7 +63,7 @@ public final class HttpParamsUtils {
                         }
                         // 判断是否编码
                         if (urlEncode) {
-                            mapParams.put(key, urlEncode(value));
+                            mapParams.put(key, toUrlEncode(value));
                         } else {
                             mapParams.put(key, value);
                         }
@@ -78,8 +78,8 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接请求参数 - value => String
-     * @param mapParams
-     * @return
+     * @param mapParams Map 请求参数
+     * @return 拼接后的参数
      */
     public static String joinParams(final Map<String, String> mapParams) {
         return joinParams(mapParams, false);
@@ -87,9 +87,9 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接请求参数 - value => String
-     * @param mapParams
-     * @param urlEncode 是否需要编码
-     * @return
+     * @param mapParams Map 请求参数
+     * @param urlEncode 是否需要 URL 编码
+     * @return 拼接后的参数
      */
     public static String joinParams(final Map<String, String> mapParams, final boolean urlEncode) {
         if (mapParams != null) {
@@ -103,7 +103,7 @@ public final class HttpParamsUtils {
                 if (index > 0) builder.append('&');
                 builder.append(entry.getKey());
                 builder.append('=');
-                builder.append(urlEncode ? urlEncode(entry.getValue()) : entry.getValue());
+                builder.append(urlEncode ? toUrlEncode(entry.getValue()) : entry.getValue());
                 index++;
             }
             return builder.toString();
@@ -115,8 +115,8 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接请求参数 - value => Object
-     * @param mapParams
-     * @return
+     * @param mapParams Map 请求参数
+     * @return 拼接后的参数
      */
     public static String joinParamsObj(final Map<String, Object> mapParams) {
         return joinParamsObj(mapParams, false);
@@ -124,9 +124,9 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接请求参数 - value => Object
-     * @param mapParams
-     * @param urlEncode 是否需要编码
-     * @return
+     * @param mapParams Map 请求参数
+     * @param urlEncode 是否需要 URL 编码
+     * @return 拼接后的参数
      */
     public static String joinParamsObj(final Map<String, Object> mapParams, final boolean urlEncode) {
         if (mapParams != null) {
@@ -142,7 +142,7 @@ public final class HttpParamsUtils {
                 builder.append('=');
                 if (urlEncode) {
                     if (entry.getValue() instanceof String) {
-                        builder.append(urlEncode((String) entry.getValue()));
+                        builder.append(toUrlEncode((String) entry.getValue()));
                     }
                 } else {
                     builder.append(entry.getValue());
@@ -158,8 +158,8 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接打印 Map 参数
-     * @param mapParams
-     * @return
+     * @param mapParams Map 请求参数
+     * @return 拼接后的参数
      */
     public static String printMapParams(final Map<String, String> mapParams) {
         return printMapParams(mapParams, false);
@@ -167,9 +167,9 @@ public final class HttpParamsUtils {
 
     /**
      * 拼接打印 Map 参数
-     * @param mapParams
-     * @param urlEncode 是否需要编码
-     * @return
+     * @param mapParams Map 请求参数
+     * @param urlEncode 是否需要 URL 编码
+     * @return 拼接后的参数
      */
     public static String printMapParams(final Map<String, String> mapParams, final boolean urlEncode) {
         if (mapParams != null) {
@@ -179,7 +179,7 @@ public final class HttpParamsUtils {
                 Map.Entry<String, String> entry = iterator.next();
                 builder.append(entry.getKey());
                 builder.append(" => ");
-                builder.append(urlEncode ? urlEncode(entry.getValue()) : entry.getValue());
+                builder.append(urlEncode ? toUrlEncode(entry.getValue()) : entry.getValue());
                 builder.append(NEW_LINE_STR);
             }
             return builder.toString();
@@ -198,10 +198,10 @@ public final class HttpParamsUtils {
 
     /**
      * 进行转换对象处理(请求发送对象)
-     * @param mapParams
-     * @param objStr
-     * @param key
-     * @param value
+     * @param mapParams Map 请求参数
+     * @param objStr    数组名
+     * @param key       数组 key
+     * @param value     数组[key] 保存值
      */
     public static void toConvertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
         if (mapParams != null) {
@@ -217,10 +217,10 @@ public final class HttpParamsUtils {
 
     /**
      * 进行转换对象处理(请求发送对象)
-     * @param mapParams
-     * @param objStr
-     * @param key
-     * @param value
+     * @param mapParams Map 请求参数
+     * @param objStr    数组名
+     * @param key       数组 key
+     * @param value     数组[key] 保存值
      */
     public static void toConvertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
         if (mapParams != null) {
@@ -237,26 +237,27 @@ public final class HttpParamsUtils {
     // =
 
     /**
-     * url 编码 - utf-8
-     * @param input
-     * @return
+     * 进行 URL 编码,默认UTF-8
+     * @param str 待处理字符串
+     * @return 字符串 UTF-8 编码后, 再进行 Url 编码后的字符串
      */
-    public static String urlEncode(final String input) {
-        return urlEncode(input, "UTF-8");
+    public static String toUrlEncode(final String str) {
+        return toUrlEncode(str, "UTF-8");
     }
 
     /**
-     * url编码
-     * @param input
-     * @param charsetName
-     * @return
+     * 进行 URL 编码
+     * @param str 待处理字符串
+     * @param enc 编码格式
+     * @return 指定编码格式编码后, 再进行 Url 编码后的字符串
      */
-    public static String urlEncode(final String input, final String charsetName) {
+    public static String toUrlEncode(final String str, final String enc) {
+        if (str == null || enc == null) return null;
         try {
-            return URLEncoder.encode(input, charsetName);
+            return URLEncoder.encode(str, enc);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "urlEncode");
-            return input;
+            JCLogUtils.eTag(TAG, e, "toUrlEncode");
         }
+        return null;
     }
 }

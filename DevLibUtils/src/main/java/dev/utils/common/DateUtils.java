@@ -64,7 +64,7 @@ public final class DateUtils {
 
     /**
      * 获取当前日期的字符串 - yyyy-MM-dd HH:mm:ss
-     * @return 返回当前日期 yyyy-MM-dd HH:mm:ss 格式字符串
+     * @return 当前日期 yyyy-MM-dd HH:mm:ss 格式字符串
      */
     public static String getDateNow() {
         return getDateNow(yyyyMMddHHmmss);
@@ -73,7 +73,7 @@ public final class DateUtils {
     /**
      * 获取当前日期的字符串
      * @param format 日期格式，如: yyyy-MM-dd HH:mm:ss
-     * @return 返回当前日期指定格式字符串
+     * @return 当前日期指定格式字符串
      */
     public static String getDateNow(final String format) {
         if (format == null) return null;
@@ -91,7 +91,7 @@ public final class DateUtils {
      * 将时间戳转换日期字符串
      * @param time   时间戳
      * @param format 日期格式
-     * @return 返回按照指定格式的日期字符串
+     * @return 按照指定格式的日期字符串
      */
     public static String formatTime(final long time, final String format) {
         if (format == null) return null;
@@ -107,7 +107,7 @@ public final class DateUtils {
      * 将 Date 转换日期字符串
      * @param date   日期
      * @param format 日期格式
-     * @return 返回按照指定格式的日期字符串
+     * @return 按照指定格式的日期字符串
      */
     public static String formatDate(final Date date, final String format) {
         if (date == null || format == null) return null;
@@ -165,7 +165,7 @@ public final class DateUtils {
     /**
      * 解析时间字符串转换为long毫秒 - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
      * @param time 时间
-     * @return 返回毫秒时间
+     * @return 毫秒时间
      */
     public static long parseLong(final String time) {
         return parseLong(time, yyyyMMddHHmmss);
@@ -175,7 +175,7 @@ public final class DateUtils {
      * 解析时间字符串转换为long毫秒
      * @param time   时间
      * @param format 时间的格式
-     * @return 返回毫秒时间
+     * @return 毫秒时间
      */
     public static long parseLong(final String time, final String format) {
         if (time == null || format == null) return 0l;
@@ -193,7 +193,7 @@ public final class DateUtils {
      * @param time       需要转换的时间
      * @param timeFormat time 的 时间格式
      * @param format     把 time 转换成需要的格式
-     * @return 返回转换指定格式的时间字符串
+     * @return 转换指定格式的时间字符串
      */
     public static String parseToString(final String time, final String timeFormat, final String format) {
         if (time != null && timeFormat != null && format != null) {
@@ -240,7 +240,7 @@ public final class DateUtils {
     /**
      * 获取时间差 - (传入时间 - 当前时间)
      * @param time 毫秒
-     * @return 返回与当前时间的时间差(毫秒)
+     * @return 与当前时间的时间差(毫秒)
      */
     public static long getTimeDiff(final long time) {
         return time - System.currentTimeMillis();
@@ -250,7 +250,7 @@ public final class DateUtils {
      * 获取时间差
      * @param time1 时间 yyyy-MM-dd HH:mm:ss 格式
      * @param time2 对比时间 yyyy-MM-dd HH:mm:ss 格式
-     * @return 返回时间差(毫秒)
+     * @return 时间差(毫秒)
      */
     public static long getTimeDiff(final String time1, final String time2) {
         long timeLong1 = parseLong(time1);
@@ -267,7 +267,7 @@ public final class DateUtils {
      * @param timeFormat1 时间格式
      * @param time2       对比时间
      * @param timeFormat2 对比时间格式
-     * @return 返回时间差(毫秒)
+     * @return 时间差(毫秒)
      */
     public static long getTimeDiff(final String time1, final String timeFormat1, final String time2, final String timeFormat2) {
         long timeLong1 = parseLong(time1, timeFormat1);
@@ -422,7 +422,7 @@ public final class DateUtils {
     /**
      * 转换时间处理, 小于10, 则自动补充 0x
      * @param time 待处理时间
-     * @return 返回自动补0时间字符串
+     * @return 自动补0时间字符串
      */
     public static String convertTime(int time) {
         return convertTime(time, true);
@@ -432,7 +432,7 @@ public final class DateUtils {
      * 转换时间处理, 小于10, 则自动补充 0x
      * @param time   待处理时间
      * @param append 判断是否需要自动补0
-     * @return 返回自动补0时间字符串
+     * @return 自动补0时间字符串
      */
     public static String convertTime(final int time, final boolean append) {
         if (append) {
@@ -597,7 +597,7 @@ public final class DateUtils {
 
     /**
      * 生成 HH 按时间排序数组
-     * @return 返回按小时排序的数组
+     * @return 按小时排序的数组
      */
     public static String[] getArrayToHH() {
         List<String> lists = getListToHH();
@@ -606,7 +606,7 @@ public final class DateUtils {
 
     /**
      * 生成 HH 按时间排序集合
-     * @return 返回按小时排序的集合
+     * @return 按小时排序的集合
      */
     public static List<String> getListToHH() {
         List<String> lists = new ArrayList<>();
@@ -618,7 +618,7 @@ public final class DateUtils {
 
     /**
      * 生成 MM 按时间排序数组
-     * @return 返回按分钟排序的数组
+     * @return 按分钟排序的数组
      */
     public static String[] getArrayToMM() {
         List<String> lists = getListToMM();
@@ -627,7 +627,7 @@ public final class DateUtils {
 
     /**
      * 生成 MM 按时间排序集合
-     * @return 返回按分钟排序的集合
+     * @return 按分钟排序的集合
      */
     public static List<String> getListToMM() {
         List<String> lists = new ArrayList<>();
@@ -642,7 +642,7 @@ public final class DateUtils {
      * @param type 0 = 00:00 - 23:00 => 每小时间隔
      *             1 = 00:00 - 23:45 => 每15分钟间隔
      *             2 = 00:00 - 23:30 => 每30分钟间隔
-     * @return 返回指定格式的数组
+     * @return 指定格式的数组
      */
     public static String[] getArrayToHHMM(final int type) {
         List<String> lists = getListToHHMM(type);
@@ -654,7 +654,7 @@ public final class DateUtils {
      * @param type 0 = 00:00 - 23:00 => 每小时间隔
      *             1 = 00:00 - 23:45 => 每15分钟间隔
      *             2 = 00:00 - 23:30 => 每30分钟间隔
-     * @return 返回指定格式的集合
+     * @return 指定格式的集合
      */
     public static List<String> getListToHHMM(final int type) {
         List<String> lists = new ArrayList<>();
@@ -824,7 +824,7 @@ public final class DateUtils {
     /**
      * 传入时间,时间参数(小时、分钟、秒)
      * @param time 时间(秒为单位)
-     * @return 返回 int[] { 小时、分钟、秒}
+     * @return int[] { 小时、分钟、秒}
      */
     public static int[] convertTimeArys(final int time) {
         try {
@@ -876,7 +876,7 @@ public final class DateUtils {
      *                  precision = 3, return 天, 小时, 分钟
      *                  precision = 4, return 天, 小时, 分钟, 秒
      *                  precision = 5，return 天, 小时, 分钟, 秒, 毫秒
-     * @return 返回转换指定格式的时间字符串
+     * @return 转换指定格式的时间字符串
      */
     public static String millisToFitTimeSpan(final long millis, final int precision) {
         if (millis <= 0 || precision <= 0) return null;
@@ -901,7 +901,7 @@ public final class DateUtils {
     /**
      * 转换时间为数组
      * @param millis 时间毫秒
-     * @return 返回 int[5] { 天, 小时, 分钟, 秒, 毫秒}
+     * @return int[5] { 天, 小时, 分钟, 秒, 毫秒}
      */
     public static int[] millisToTimeArys(final long millis) {
         if (millis <= 0) return null;
@@ -1120,7 +1120,7 @@ public final class DateUtils {
      * 字符串 转 int
      * @param str          String
      * @param defaultValue 默认值
-     * @return 返回 int, 如果转换失败, 则返回 defaultValue
+     * @return int, 如果转换失败, 则返回 defaultValue
      */
     private static int toInt(final String str, final int defaultValue) {
         if (str == null) return defaultValue;

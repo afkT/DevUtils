@@ -129,7 +129,7 @@ public final class CoordinateUtils {
      * 转换经度
      * @param lng 经度
      * @param lat 纬度
-     * @return 返回转换后的经度
+     * @return 转换后的经度
      */
     private static double transformLat(final double lng, final double lat) {
         double ret = -100.0 + 2.0 * lng + 3.0 * lat + 0.2 * lat * lat + 0.1 * lng * lat + 0.2 * Math.sqrt(Math.abs(lng));
@@ -143,7 +143,7 @@ public final class CoordinateUtils {
      * 转换纬度
      * @param lng 经度
      * @param lat 纬度
-     * @return 返回转换后的纬度
+     * @return 转换后的纬度
      */
     private static double transformLng(final double lng, final double lat) {
         double ret = 300.0 + lng + 2.0 * lat + 0.1 * lng * lng + 0.1 * lng * lat + 0.1 * Math.sqrt(Math.abs(lng));

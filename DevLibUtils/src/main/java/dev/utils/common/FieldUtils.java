@@ -47,7 +47,7 @@ public final class FieldUtils {
      * @param field  Field
      * @param object Object
      * @param value  Object-Value
-     * @return 返回对应的 Object
+     * @return 对应的 Object
      */
     public static Object set(final Field field, final Object object, final Object value) {
         if (field == null || object == null) return null;
@@ -65,7 +65,7 @@ public final class FieldUtils {
      * 获取域的值
      * @param field  Field
      * @param object Object
-     * @return 返回对应的 Object
+     * @return 对应的 Object
      */
     public static Object get(final Field field, final Object object) {
         if (field == null || object == null) return null;
@@ -130,7 +130,7 @@ public final class FieldUtils {
     /**
      * 获取域的泛型类型，如果不带泛型返回 null
      * @param field Field
-     * @return 返回范型类型
+     * @return 范型类型
      */
     public static Class<?> getGenericType(final Field field) {
         if (field == null) return null;
@@ -153,7 +153,7 @@ public final class FieldUtils {
     /**
      * 获取数组的类型
      * @param field Field
-     * @return 返回数组类型
+     * @return 数组类型
      */
     public static Class<?> getComponentType(final Field field) {
         if (field == null || field.getType() == null) return null;
@@ -163,7 +163,7 @@ public final class FieldUtils {
     /**
      * 获取全部 Field，包括父类
      * @param clazz {@link Class}
-     * @return 返回 {@link List<Field>}
+     * @return {@link List<Field>}
      */
     public static List<Field> getAllDeclaredFields(final Class<?> clazz) {
         if (clazz == null) return null;

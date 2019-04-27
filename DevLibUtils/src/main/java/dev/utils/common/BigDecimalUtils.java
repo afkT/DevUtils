@@ -477,7 +477,7 @@ public final class BigDecimalUtils {
     /**
      * 金额分割，四舍五入金额
      * @param value 金额/数值
-     * @return 返回指定格式处理的字符串
+     * @return 指定格式处理的字符串
      */
     public static String formatMoney(final BigDecimal value) {
         return formatMoney(value, 2, BigDecimal.ROUND_HALF_UP, 3, ",");
@@ -487,7 +487,7 @@ public final class BigDecimalUtils {
      * 金额分割，四舍五入金额
      * @param value 金额/数值
      * @param scale 小数点后保留几位
-     * @return 返回指定格式处理的字符串
+     * @return 指定格式处理的字符串
      */
     public static String formatMoney(final BigDecimal value, final int scale) {
         return formatMoney(value, scale, BigDecimal.ROUND_HALF_UP, 3, ",");
@@ -498,7 +498,7 @@ public final class BigDecimalUtils {
      * @param value 金额/数值
      * @param scale 小数点后保留几位
      * @param mode  处理模式
-     * @return 返回指定格式处理的字符串
+     * @return 指定格式处理的字符串
      */
     public static String formatMoney(final BigDecimal value, final int scale, final int mode) {
         return formatMoney(value, scale, mode, 3, ",");
@@ -510,7 +510,7 @@ public final class BigDecimalUtils {
      * @param scale       小数点后保留几位
      * @param mode        处理模式
      * @param splitNumber 拆分位数
-     * @return 返回指定格式处理的字符串
+     * @return 指定格式处理的字符串
      */
     public static String formatMoney(final BigDecimal value, final int scale, final int mode, final int splitNumber) {
         return formatMoney(value, scale, mode, splitNumber, ",");
@@ -523,7 +523,7 @@ public final class BigDecimalUtils {
      * @param mode        处理模式
      * @param splitNumber 拆分位数
      * @param splitSymbol 拆分符号
-     * @return 返回指定格式处理的字符串
+     * @return 指定格式处理的字符串
      */
     public static String formatMoney(final BigDecimal value, final int scale, final int mode, final int splitNumber, final String splitSymbol) {
         if (value == null) return null;

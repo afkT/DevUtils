@@ -2,6 +2,8 @@ package dev.utils.common;
 
 import java.util.Random;
 
+import dev.utils.JCLogUtils;
+
 /**
  * detail: 随机生成工具类
  * @author Ttt
@@ -10,6 +12,9 @@ public final class RandomUtils {
 
     private RandomUtils() {
     }
+
+    // 日志 TAG
+    private static final String TAG = RandomUtils.class.getSimpleName();
 
     // 0123456789
     public static final char[] NUMBERS = new char[]{48, 49, 50, 51, 52, 53, 54, 55, 56, 57};
@@ -42,8 +47,8 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 boolean 值
-     * @param random
-     * @return
+     * @param random Random
+     * @return 随机 boolean 值
      */
     public static boolean nextBoolean(final Random random) {
         return random != null ? random.nextBoolean() : new Random().nextBoolean();
@@ -51,9 +56,9 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 byte[]
-     * @param random
-     * @param data
-     * @return
+     * @param random Random
+     * @param data   随机数据源
+     * @return 随机 byte[]
      */
     public static byte[] nextBytes(final Random random, final byte[] data) {
         if (random == null || data == null) return data;
@@ -66,8 +71,8 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 double 值
-     * @param random
-     * @return
+     * @param random Random
+     * @return 随机 double 值
      */
     public static double nextDouble(final Random random) {
         return random != null ? random.nextDouble() : new Random().nextDouble();
@@ -75,8 +80,8 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机高斯分布值
-     * @param random
-     * @return
+     * @param random Random
+     * @return 伪随机高斯分布值
      */
     public static double nextGaussian(final Random random) {
         return random != null ? random.nextGaussian() : new Random().nextGaussian();
@@ -84,8 +89,8 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 float 值
-     * @param random
-     * @return
+     * @param random Random
+     * @return 随机 float 值
      */
     public static float nextFloat(final Random random) {
         return random != null ? random.nextFloat() : new Random().nextFloat();
@@ -93,8 +98,8 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 int 值
-     * @param random
-     * @return
+     * @param random Random
+     * @return 随机 int 值
      */
     public static int nextInt(final Random random) {
         return random != null ? random.nextInt() : new Random().nextInt();
@@ -102,9 +107,9 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
-     * @param random
-     * @param number
-     * @return
+     * @param random Random
+     * @param number 最大随机值
+     * @return 随机介于 [0,n) 的区间值
      */
     public static int nextInt(final Random random, final int number) {
         if (number <= 0) return 0;
@@ -113,8 +118,8 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 long 值
-     * @param random
-     * @return
+     * @param random Random
+     * @return 随机 long 值
      */
     public static long nextLong(final Random random) {
         return random != null ? random.nextLong() : new Random().nextLong();
@@ -124,7 +129,7 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 boolean 值
-     * @return
+     * @return 随机 boolean 值
      */
     public static boolean nextBoolean() {
         return new Random().nextBoolean();
@@ -132,8 +137,8 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 byte[]
-     * @param data
-     * @return
+     * @param data 随机数据源
+     * @return 随机 byte[]
      */
     public static byte[] nextBytes(final byte[] data) {
         if (data == null) return null;
@@ -146,7 +151,7 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 double 值
-     * @return
+     * @return 随机 double 值
      */
     public static double nextDouble() {
         return new Random().nextDouble();
@@ -154,7 +159,7 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机高斯分布值
-     * @return
+     * @return 伪随机高斯分布值
      */
     public static double nextGaussian() {
         return new Random().nextGaussian();
@@ -162,7 +167,7 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 float 值
-     * @return
+     * @return 随机 float 值
      */
     public static float nextFloat() {
         return new Random().nextFloat();
@@ -170,7 +175,7 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 int 值
-     * @return
+     * @return 随机 int 值
      */
     public static int nextInt() {
         return new Random().nextInt();
@@ -178,8 +183,8 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
-     * @param number
-     * @return
+     * @param number 最大随机值
+     * @return 随机介于 [0,n) 的区间值
      */
     public static int nextInt(final int number) {
         if (number <= 0) return 0;
@@ -188,7 +193,7 @@ public final class RandomUtils {
 
     /**
      * 获取伪随机 long 值
-     * @return
+     * @return 随机 long 值
      */
     public static long nextLong() {
         return new Random().nextLong();
@@ -199,7 +204,7 @@ public final class RandomUtils {
     /**
      * 获取数字自定义长度的随机数
      * @param length 长度
-     * @return 随机数字符串
+     * @return 随机字符串
      */
     public static String getRandomNumbers(final int length) {
         return getRandom(NUMBERS, length);
@@ -255,7 +260,7 @@ public final class RandomUtils {
      * 获取 char[] 内的随机数
      * @param chars  随机的数据源
      * @param length 需要最终长度
-     * @return
+     * @return 随机字符串
      */
     public static String getRandom(final char[] chars, final int length) {
         if (length > 0 && chars != null && chars.length != 0) {
@@ -272,6 +277,7 @@ public final class RandomUtils {
     /**
      * 获取 0 - 最大随机数之间的随机数
      * @param max 最大随机数
+     * @return 随机介于 [0,max) 的区间值
      */
     public static int getRandom(final int max) {
         return getRandom(0, max);
@@ -281,6 +287,7 @@ public final class RandomUtils {
      * 获取两个数之间的随机数(不含最大随机数,需要 + 1)
      * @param min 最小随机数
      * @param max 最大随机数
+     * @return 随机介于 [min,max) 的区间值
      */
     public static int getRandom(final int min, final int max) {
         if (min > max) {
@@ -298,8 +305,8 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     * @param objects
-     * @return
+     * @param objects 随机数据源
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean shuffle(final Object[] objects) {
         if (objects == null) return false;
@@ -308,9 +315,9 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     * @param objects
+     * @param objects      随机数据源
      * @param shuffleCount 洗牌次数
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean shuffle(final Object[] objects, final int shuffleCount) {
         int length;
@@ -328,8 +335,8 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     * @param ints
-     * @return
+     * @param ints 随机数据源
+     * @return 随机 int[]
      */
     public static int[] shuffle(final int[] ints) {
         if (ints == null) return null;
@@ -338,9 +345,9 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
-     * @param ints
+     * @param ints         随机数据源
      * @param shuffleCount 洗牌次数
-     * @return
+     * @return 随机 int[]
      */
     public static int[] shuffle(final int[] ints, final int shuffleCount) {
         int length;
@@ -362,8 +369,8 @@ public final class RandomUtils {
 
     /**
      * 洗牌算法(第二种)，随机置换指定的数组使用的默认源的随机性
-     * @param objects
-     * @return
+     * @param objects 随机数据源
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean shuffle2(final Object[] objects) {
         if (objects == null) return false;
@@ -386,8 +393,8 @@ public final class RandomUtils {
      * 获取指定范围 Int 值
      * @param origin 开始值
      * @param bound  范围值
-     * @return
-     * @throws IllegalArgumentException
+     * @return 属于指定范围随机 int 值
+     * @throws IllegalArgumentException 参数错误
      */
     public static int nextIntRange(final int origin, final int bound) throws IllegalArgumentException {
         if (origin > bound) {
@@ -412,8 +419,8 @@ public final class RandomUtils {
      * 获取指定范围 long 值
      * @param origin 开始值
      * @param bound  范围值
-     * @return
-     * @throws IllegalArgumentException
+     * @return 属于指定范围随机 long 值
+     * @throws IllegalArgumentException 参数错误
      */
     public static long nextLongRange(final long origin, final long bound) throws IllegalArgumentException {
         if (origin > bound) {
@@ -443,8 +450,8 @@ public final class RandomUtils {
      * 获取指定范围 double 值
      * @param origin 开始值
      * @param bound  范围值
-     * @return
-     * @throws IllegalArgumentException
+     * @return 属于指定范围随机 double 值
+     * @throws IllegalArgumentException 参数错误
      */
     public static double nextDoubleRange(final double origin, final double bound) throws IllegalArgumentException {
         if (origin > bound) {
@@ -464,7 +471,7 @@ public final class RandomUtils {
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
      * @param randomNumberBound  结束值(最大值范围)
-     * @return
+     * @return 指定范围随机 int[]
      */
     public static int[] ints(final int streamSize, final int randomNumberOrigin, final int randomNumberBound) {
         if (randomNumberOrigin >= randomNumberBound) {
@@ -476,11 +483,16 @@ public final class RandomUtils {
 //			IntStream intStream = new Random().ints(streamSize, randomNumberOrigin, randomNumberBound);
 //			return intStream.toArray();
 //		} else {
-        int[] ints = new int[streamSize];
-        for (int i = 0; i < streamSize; i++) {
-            ints[i] = nextIntRange(randomNumberOrigin, randomNumberBound);
+        try {
+            int[] ints = new int[streamSize];
+            for (int i = 0; i < streamSize; i++) {
+                ints[i] = nextIntRange(randomNumberOrigin, randomNumberBound);
+            }
+            return ints;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "ints");
         }
-        return ints;
+        return null;
 //		}
     }
 
@@ -489,7 +501,7 @@ public final class RandomUtils {
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
      * @param randomNumberBound  结束值(最大值范围)
-     * @return
+     * @return 指定范围随机 long[]
      */
     public static long[] longs(final int streamSize, final long randomNumberOrigin, final long randomNumberBound) {
         if (randomNumberOrigin >= randomNumberBound) {
@@ -501,11 +513,16 @@ public final class RandomUtils {
 //			LongStream longStream = new Random().longs(streamSize, randomNumberOrigin, randomNumberBound);
 //			return longStream.toArray();
 //		} else {
-        long[] longs = new long[streamSize];
-        for (int i = 0; i < streamSize; i++) {
-            longs[i] = nextLongRange(randomNumberOrigin, randomNumberBound);
+        try {
+            long[] longs = new long[streamSize];
+            for (int i = 0; i < streamSize; i++) {
+                longs[i] = nextLongRange(randomNumberOrigin, randomNumberBound);
+            }
+            return longs;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "longs");
         }
-        return longs;
+        return null;
 //		}
     }
 
@@ -514,7 +531,7 @@ public final class RandomUtils {
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
      * @param randomNumberBound  结束值(最大值范围)
-     * @return
+     * @return 指定范围随机 double[]
      */
     public static double[] doubles(final int streamSize, final double randomNumberOrigin, final double randomNumberBound) {
         if (randomNumberOrigin >= randomNumberBound) {
@@ -526,11 +543,16 @@ public final class RandomUtils {
 //			DoubleStream doubleStream = new Random().doubles(streamSize, randomNumberOrigin, randomNumberBound);
 //			return doubleStream.toArray();
 //		} else {
-        double[] doubles = new double[streamSize];
-        for (int i = 0; i < streamSize; i++) {
-            doubles[i] = nextDoubleRange(randomNumberOrigin, randomNumberBound);
+        try {
+            double[] doubles = new double[streamSize];
+            for (int i = 0; i < streamSize; i++) {
+                doubles[i] = nextDoubleRange(randomNumberOrigin, randomNumberBound);
+            }
+            return doubles;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "doubles");
         }
-        return doubles;
+        return null;
 //		}
     }
 }

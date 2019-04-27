@@ -19,7 +19,7 @@ public final class ScaleUtils {
      * @param targetWidth   需要的最终宽度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return [0] = 宽度, [1] = 高度
+     * @return int[] {宽度, 高度}
      */
     public static int[] calcScaleToWidth(final int targetWidth, final int currentWidth, final int currentHeight) {
         try {
@@ -43,7 +43,7 @@ public final class ScaleUtils {
      * @param targetHeight  需要的最终高度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return [0] = 宽度, [1] = 高度
+     * @return int[] {宽度, 高度}
      */
     public static int[] calcScaleToHeight(final int targetHeight, final int currentWidth, final int currentHeight) {
         try {
@@ -64,11 +64,11 @@ public final class ScaleUtils {
 
     /**
      * 通过宽度,高度,根据对应的比例 -> 转换成对应的比例宽度高度 - 智能转换
-     * @param width
-     * @param height
-     * @param widthScale
-     * @param heightScale
-     * @return
+     * @param width       宽度
+     * @param height      高度
+     * @param widthScale  宽度比例
+     * @param heightScale 高度比例
+     * @return int[] {宽度, 高度}
      */
     public static int[] calcWidthHeightToScale(final int width, final int height, final float widthScale, final float heightScale) {
         try {
@@ -96,10 +96,10 @@ public final class ScaleUtils {
 
     /**
      * 以宽度为基准 -> 转换对应比例的高度
-     * @param width
-     * @param widthScale
-     * @param heightScale
-     * @return
+     * @param width       宽度
+     * @param widthScale  宽度比例
+     * @param heightScale 高度比例
+     * @return int[] {宽度, 高度}
      */
     public static int[] calcWidthToScale(final int width, final float widthScale, final float heightScale) {
         try {
@@ -117,10 +117,10 @@ public final class ScaleUtils {
 
     /**
      * 以高度为基准 -> 转换对应比例的宽度
-     * @param height
-     * @param widthScale
-     * @param heightScale
-     * @return
+     * @param height      高度
+     * @param widthScale  宽度比例
+     * @param heightScale 高度比例
+     * @return int[] {宽度, 高度}
      */
     public static int[] calcHeightToScale(final int height, final float widthScale, final float heightScale) {
         try {

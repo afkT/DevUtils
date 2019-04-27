@@ -18,7 +18,7 @@ public final class CloseUtils {
 
     /**
      * 关闭 IO
-     * @param closeables closeables
+     * @param closeables Closeable[]
      */
     public static void closeIO(final Closeable... closeables) {
         if (closeables == null) return;
@@ -35,7 +35,7 @@ public final class CloseUtils {
 
     /**
      * 安静关闭 IO
-     * @param closeables closeables
+     * @param closeables Closeable[]
      */
     public static void closeIOQuietly(final Closeable... closeables) {
         if (closeables == null) return;

@@ -21,16 +21,16 @@ public final class StreamUtils {
 
     /**
      * 输入流转输出流
-     * @param is
-     * @return
+     * @param inputStream {@link InputStream}
+     * @return {@link ByteArrayOutputStream}
      */
-    public static ByteArrayOutputStream inputToOutputStream(final InputStream is) {
-        if (is == null) return null;
+    public static ByteArrayOutputStream inputToOutputStream(final InputStream inputStream) {
+        if (inputStream == null) return null;
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             byte[] b = new byte[1024];
             int len;
-            while ((len = is.read(b, 0, 1024)) != -1) {
+            while ((len = inputStream.read(b, 0, 1024)) != -1) {
                 os.write(b, 0, len);
             }
             return os;
@@ -38,19 +38,19 @@ public final class StreamUtils {
             JCLogUtils.eTag(TAG, e, "inputToOutputStream");
             return null;
         } finally {
-            CloseUtils.closeIO(is);
+            CloseUtils.closeIO(inputStream);
         }
     }
 
     /**
      * 输出流转输入流
-     * @param out
-     * @return
+     * @param outputStream {@link OutputStream}
+     * @return {@link ByteArrayInputStream}
      */
-    public static ByteArrayInputStream outputToInputStream(final OutputStream out) {
-        if (out == null) return null;
+    public static ByteArrayInputStream outputToInputStream(final OutputStream outputStream) {
+        if (outputStream == null) return null;
         try {
-            return new ByteArrayInputStream(((ByteArrayOutputStream) out).toByteArray());
+            return new ByteArrayInputStream(((ByteArrayOutputStream) outputStream).toByteArray());
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "outputToInputStream");
             return null;
@@ -59,13 +59,13 @@ public final class StreamUtils {
 
     /**
      * 输入流转 byte[]
-     * @param is
-     * @return
+     * @param inputStream {@link InputStream}
+     * @return byte[]
      */
-    public static byte[] inputStreamToBytes(final InputStream is) {
-        if (is == null) return null;
+    public static byte[] inputStreamToBytes(final InputStream inputStream) {
+        if (inputStream == null) return null;
         try {
-            return inputToOutputStream(is).toByteArray();
+            return inputToOutputStream(inputStream).toByteArray();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "inputStreamToBytes");
             return null;
@@ -74,8 +74,8 @@ public final class StreamUtils {
 
     /**
      * byte[] 转输出流
-     * @param bytes
-     * @return
+     * @param bytes 数据源
+     * @return {@link InputStream}
      */
     public static InputStream bytesToInputStream(final byte[] bytes) {
         if (bytes == null || bytes.length == 0) return null;
@@ -89,13 +89,13 @@ public final class StreamUtils {
 
     /**
      * 输出流转 byte[]
-     * @param out
-     * @return
+     * @param outputStream {@link OutputStream}
+     * @return byte[]
      */
-    public static byte[] outputStreamToBytes(final OutputStream out) {
-        if (out == null) return null;
+    public static byte[] outputStreamToBytes(final OutputStream outputStream) {
+        if (outputStream == null) return null;
         try {
-            return ((ByteArrayOutputStream) out).toByteArray();
+            return ((ByteArrayOutputStream) outputStream).toByteArray();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "outputStreamToBytes");
             return null;
@@ -104,8 +104,8 @@ public final class StreamUtils {
 
     /**
      * byte[] 转 输出流
-     * @param bytes
-     * @return
+     * @param bytes 数据源
+     * @return {@link OutputStream}
      */
     public static OutputStream bytesToOutputStream(final byte[] bytes) {
         if (bytes == null || bytes.length == 0) return null;
@@ -124,14 +124,14 @@ public final class StreamUtils {
 
     /**
      * 输入流转 string
-     * @param is
-     * @param charsetName
-     * @return
+     * @param inputStream {@link InputStream}
+     * @param charsetName 编码格式
+     * @return 指定编码字符串
      */
-    public static String inputStreamToString(final InputStream is, final String charsetName) {
-        if (is == null || isSpace(charsetName)) return null;
+    public static String inputStreamToString(final InputStream inputStream, final String charsetName) {
+        if (inputStream == null || isSpace(charsetName)) return null;
         try {
-            return new String(inputStreamToBytes(is), charsetName);
+            return new String(inputStreamToBytes(inputStream), charsetName);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "inputStreamToString");
             return null;
@@ -140,9 +140,9 @@ public final class StreamUtils {
 
     /**
      * String 转换输入流
-     * @param string
-     * @param charsetName
-     * @return
+     * @param string      数据源
+     * @param charsetName 编码格式
+     * @return {@link InputStream}
      */
     public static InputStream stringToInputStream(final String string, final String charsetName) {
         if (string == null || isSpace(charsetName)) return null;
@@ -156,14 +156,14 @@ public final class StreamUtils {
 
     /**
      * 输出流转 string
-     * @param out
-     * @param charsetName
-     * @return
+     * @param outputStream {@link OutputStream}
+     * @param charsetName  编码格式
+     * @return 指定编码字符串
      */
-    public static String outputStreamToString(final OutputStream out, final String charsetName) {
-        if (out == null || isSpace(charsetName)) return null;
+    public static String outputStreamToString(final OutputStream outputStream, final String charsetName) {
+        if (outputStream == null || isSpace(charsetName)) return null;
         try {
-            return new String(outputStreamToBytes(out), charsetName);
+            return new String(outputStreamToBytes(outputStream), charsetName);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "outputStreamToString");
             return null;
@@ -172,9 +172,9 @@ public final class StreamUtils {
 
     /**
      * string 转 输出流
-     * @param string
-     * @param charsetName
-     * @return
+     * @param string      数据源
+     * @param charsetName 编码格式
+     * @return {@link OutputStream}
      */
     public static OutputStream stringToOutputStream(final String string, final String charsetName) {
         if (string == null || isSpace(charsetName)) return null;

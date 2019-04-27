@@ -21,9 +21,7 @@ public final class DevCommonUtils {
     // 日志 TAG
     private static final String TAG = DevCommonUtils.class.getSimpleName();
     // 换行字符串
-    public static final String NEW_LINE_STR = System.getProperty("line.separator");
-    // 换行字符串 - 两行
-    public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     // ================
     // = 计时相关处理 =
@@ -67,7 +65,7 @@ public final class DevCommonUtils {
     /**
      * 获取操作时间
      * @param operateTime 操作时间(毫秒)
-     * @return 返回操作时间
+     * @return 操作时间
      */
     public static long getOperateTime(final long operateTime) {
         return getOperateTime(operateTime, -1);
@@ -76,8 +74,8 @@ public final class DevCommonUtils {
     /**
      * 获取操作时间
      * @param operateTime 操作时间(毫秒)
-     * @param randomTime  随机范围(毫秒)
-     * @return 返回操作时间
+     * @param randomTime  随机时间范围(毫秒)
+     * @return 操作时间
      */
     public static long getOperateTime(final long operateTime, final int randomTime) {
         int random = 0;
@@ -92,7 +90,7 @@ public final class DevCommonUtils {
 
     /**
      * 堵塞操作
-     * @param sleepTime
+     * @param sleepTime 堵塞时间(毫秒)
      */
     public static void sleepOperate(final long sleepTime) {
         sleepOperate(sleepTime, -1);
@@ -100,8 +98,8 @@ public final class DevCommonUtils {
 
     /**
      * 堵塞操作
-     * @param sleepTime
-     * @param randomTime
+     * @param sleepTime  堵塞时间(毫秒)
+     * @param randomTime 随机时间范围(毫秒)
      */
     public static void sleepOperate(final long sleepTime, final int randomTime) {
         long time = getOperateTime(sleepTime, randomTime);
@@ -138,7 +136,7 @@ public final class DevCommonUtils {
      * @param number      MD5 加密次数
      * @param isUppercase 是否大写处理
      * @param salts       特殊 salt 拼接
-     * @return 返回循环加密后的字符串
+     * @return 循环加密后的字符串
      */
     public static String whileMD5(final String str, final int number, final boolean isUppercase, final String... salts) {
         if (str != null && number >= 1) {
@@ -193,7 +191,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取随机唯一数 HashCode
-     * @return 返回随机 UUID hashCode
+     * @return 随机 UUID hashCode
      */
     public static int randomUUIDToHashCode() {
         return UUID.randomUUID().hashCode();
@@ -202,7 +200,7 @@ public final class DevCommonUtils {
     /**
      * 获取随机唯一数 HashCode
      * @param uuid {@link UUID}
-     * @return 返回随机 UUID hashCode
+     * @return 随机 UUID hashCode
      */
     public static int randomUUIDToHashCode(final UUID uuid) {
         return (uuid != null) ? uuid.hashCode() : 0;
@@ -210,7 +208,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取随机规则生成 UUID
-     * @return 返回随机规则生成 UUID
+     * @return 随机规则生成 UUID
      */
     public static UUID getRandomUUID() {
         // 获取随机数
@@ -226,7 +224,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取随机规则生成 UUID 字符串
-     * @return 返回随机规则生成 UUID 字符串
+     * @return 随机规则生成 UUID 字符串
      */
     public static String getRandomUUIDToString() {
         return getRandomUUID().toString();
@@ -239,7 +237,7 @@ public final class DevCommonUtils {
     /**
      * 转换手机号
      * @param phone 待处理字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String converHideMobile(final String phone) {
         return converHideMobile(phone, "*");
@@ -249,7 +247,7 @@ public final class DevCommonUtils {
      * 转换手机号
      * @param phone  待处理字符串
      * @param symbol 转换符号
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String converHideMobile(final String phone, final String symbol) {
         return converSymbolHide(3, phone, symbol);
@@ -260,7 +258,7 @@ public final class DevCommonUtils {
      * @param start  开始位置
      * @param str    待处理字符串
      * @param symbol 转换符号
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String converSymbolHide(final int start, final String str, final String symbol) {
         if (!isEmpty(str)) {
@@ -296,7 +294,7 @@ public final class DevCommonUtils {
      * @param maxLength 允许最大的长度
      * @param str       待处理字符串
      * @param symbol    转换符号
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String subEllipsize(final int maxLength, final String str, final String symbol) {
         if (maxLength >= 1) {
@@ -319,7 +317,7 @@ public final class DevCommonUtils {
      * @param symbolNumber 转换数量
      * @param str          待处理字符串
      * @param symbol       转换符号
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String subSymbolHide(final int start, final int symbolNumber, final String str, final String symbol) {
         if (!isEmpty(str)) {
@@ -360,7 +358,7 @@ public final class DevCommonUtils {
      * 裁剪字符串
      * @param str      需要裁剪的字符串
      * @param endIndex 结束裁剪的位置
-     * @return 返回裁剪后的字符串
+     * @return 裁剪后的字符串
      */
     public static String substring(final String str, final int endIndex) {
         return substring(str, 0, endIndex, true);
@@ -371,7 +369,7 @@ public final class DevCommonUtils {
      * @param str      需要裁剪的字符串
      * @param endIndex 结束裁剪的位置
      * @param isReturn 开始位置超过限制是否返回内容
-     * @return 返回裁剪后的字符串
+     * @return 裁剪后的字符串
      */
     public static String substring(final String str, final int endIndex, final boolean isReturn) {
         return substring(str, 0, endIndex, isReturn);
@@ -383,7 +381,7 @@ public final class DevCommonUtils {
      * @param beginIndex 开始裁剪的位置
      * @param endIndex   结束裁剪的位置
      * @param isReturn   开始位置超过限制是否返回内容
-     * @return 返回裁剪后的字符串
+     * @return 裁剪后的字符串
      */
     public static String substring(final String str, final int beginIndex, final int endIndex, final boolean isReturn) {
         if (!isEmpty(str) && beginIndex >= 0 && endIndex >= 0 && endIndex >= beginIndex) {
@@ -406,7 +404,7 @@ public final class DevCommonUtils {
      * * 如 _____a_a_a_a________  传入 _ 等于 ____a_a_a_a____
      * @param str    待处理字符串
      * @param suffix 替换符号字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toReplaceSEWith(final String str, final String suffix) {
         return toReplaceSEWith(str, suffix, "");
@@ -418,7 +416,7 @@ public final class DevCommonUtils {
      * @param str    待处理字符串
      * @param suffix 替换匹配内容
      * @param value  需要替换的内容
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toReplaceSEWith(final String str, final String suffix, final String value) {
         try {
@@ -457,7 +455,7 @@ public final class DevCommonUtils {
      * 替换开头字符串
      * @param str    待处理字符串
      * @param prefix 开头匹配字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toReplaceStartsWith(final String str, final String prefix) {
         return toReplaceStartsWith(str, prefix, "");
@@ -468,7 +466,7 @@ public final class DevCommonUtils {
      * @param str         待处理字符串
      * @param prefix      开头匹配字符串
      * @param startAppend 开头追加的内容
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toReplaceStartsWith(final String str, final String prefix, final String startAppend) {
         if (!isEmpty(str) && !isEmpty(prefix)) {
@@ -487,7 +485,7 @@ public final class DevCommonUtils {
      * 替换结尾字符串
      * @param str    待处理字符串
      * @param suffix 结尾匹配字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toReplaceEndsWith(final String str, final String suffix) {
         return toReplaceEndsWith(str, suffix, "");
@@ -498,7 +496,7 @@ public final class DevCommonUtils {
      * @param str    待处理字符串
      * @param suffix 结尾匹配字符串
      * @param value  需要替换的内容
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toReplaceEndsWith(final String str, final String suffix, final String value) {
         if (!isEmpty(str) && !isEmpty(suffix)) {
@@ -521,7 +519,7 @@ public final class DevCommonUtils {
      * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf) ,while
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toClearSEWiths(final String str, final String suffix) {
         if (isEmpty(str) || isEmpty(suffix)) return str;
@@ -555,7 +553,7 @@ public final class DevCommonUtils {
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf) ,while
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toClearStartsWith(final String str, final String suffix) {
         if (isEmpty(str) || isEmpty(suffix)) return str;
@@ -581,7 +579,7 @@ public final class DevCommonUtils {
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf) ,while
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toClearEndsWith(final String str, final String suffix) {
         if (isEmpty(str) || isEmpty(suffix)) return str;
@@ -610,7 +608,7 @@ public final class DevCommonUtils {
      * @param str     待处理字符串
      * @param suffix  匹配判断字符串
      * @param replace 替换的内容
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String replaceStr(final String str, final String suffix, final String replace) {
         // 如果替换的内容或者判断的字符串为null,则直接跳过
@@ -629,7 +627,7 @@ public final class DevCommonUtils {
      * @param str     待处理字符串
      * @param suffix  匹配判断字符串
      * @param replace 替换的内容
-     * @return 返回处理后的字符串 - 替换失败, 返回 null
+     * @return 处理后的字符串, 替换失败则返回 null
      */
     public static String replaceStrToNull(final String str, final String suffix, final String replace) {
         // 如果替换的内容或者判断的字符串为null,则直接跳过
@@ -648,7 +646,7 @@ public final class DevCommonUtils {
      * @param str         内容
      * @param suffixArys  匹配判断字符串数组
      * @param replaceArys 准备替换的字符串数组
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
         // 防止数据为null
@@ -1299,7 +1297,7 @@ public final class DevCommonUtils {
     /**
      * 获取字符串长度
      * @param str 待校验的字符串
-     * @return 返回字符串长度, 如果字符串为 null,则返回 0
+     * @return 字符串长度, 如果字符串为 null,则返回 0
      */
     public static int length(final String str) {
         return str == null ? 0 : str.length();
@@ -1309,7 +1307,7 @@ public final class DevCommonUtils {
      * 获取字符串长度
      * @param str           待校验的字符串
      * @param defaultLength 字符串为null时, 返回的长度
-     * @return 返回字符串长度, 如果字符串为 null,则返回 defaultLength
+     * @return 字符串长度, 如果字符串为 null,则返回 defaultLength
      */
     public static int length(final String str, final int defaultLength) {
         return str != null ? str.length() : defaultLength;
@@ -1646,7 +1644,7 @@ public final class DevCommonUtils {
     /**
      * 清空字符串全部空格
      * @param str 待处理字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toClearSpace(final String str) {
         if (isEmpty(str)) return str;
@@ -1656,7 +1654,7 @@ public final class DevCommonUtils {
     /**
      * 清空字符串前后所有空格
      * @param str 待处理字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toClearSpaceTrim(final String str) {
         if (isEmpty(str)) return str;
@@ -1673,7 +1671,7 @@ public final class DevCommonUtils {
     /**
      * 追加空格
      * @param number 空格数量
-     * @return 返回指定数量的空格字符串
+     * @return 指定数量的空格字符串
      */
     public static String appendSpace(final int number) {
         StringBuffer buffer = new StringBuffer();
@@ -1688,7 +1686,7 @@ public final class DevCommonUtils {
     /**
      * 追加 Tab
      * @param number tab 键数量
-     * @return 返回指定数量的 Tab 字符串
+     * @return 指定数量的 Tab 字符串
      */
     public static String appendTab(final int number) {
         StringBuffer buffer = new StringBuffer();
@@ -1703,7 +1701,7 @@ public final class DevCommonUtils {
     /**
      * 追加 换行
      * @param number 换行数量
-     * @return 返回指定数量的换行字符串
+     * @return 指定数量的换行字符串
      */
     public static String appendLine(final int number) {
         StringBuffer buffer = new StringBuffer();
@@ -1741,7 +1739,7 @@ public final class DevCommonUtils {
      * @param defaultStr 默认字符串
      * @param value1     第一个待校验字符串
      * @param value2     第二个待校验字符串
-     * @return 返回两个待校验字符串中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
+     * @return 两个待校验字符串中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String toCheckValue(final String defaultStr, final String value1, final String value2) {
         if (isEmpty(value1)) {
@@ -1759,7 +1757,7 @@ public final class DevCommonUtils {
      * 检查字符串 - 多个值
      * @param defaultStr 默认字符串
      * @param strs       待校验字符串数组
-     * @return 返回字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
+     * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String toCheckValues(final String defaultStr, final String... strs) {
         if (strs != null && strs.length != 0) {
@@ -1783,7 +1781,7 @@ public final class DevCommonUtils {
      * 检查字符串 - 多个值(删除前后空格对比判断)
      * @param defaultStr 默认字符串
      * @param strs       待校验字符串数组
-     * @return 返回字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
+     * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String toCheckValuesSpace(final String defaultStr, final String... strs) {
         if (strs != null && strs.length != 0) {
@@ -1812,7 +1810,7 @@ public final class DevCommonUtils {
      * 获取格式化后的字符串
      * @param format 待格式化字符串
      * @param args   格式化参数
-     * @return 返回格式化后的字符串
+     * @return 格式化后的字符串
      */
     public static String getFormatString(final String format, final Object... args) {
         if (format == null) return null;
@@ -1828,7 +1826,7 @@ public final class DevCommonUtils {
      * 获取格式化后的字符串
      * @param format 待格式化字符串
      * @param args   格式化参数
-     * @return 返回格式化后的字符串
+     * @return 格式化后的字符串
      */
     public static String getFormatString2(final String format, final Object... args) {
         if (format == null) return null;
@@ -1849,7 +1847,7 @@ public final class DevCommonUtils {
     /**
      * 获取自动数量格式化后的字符串(可变参数)
      * @param args 格式化参数
-     * @return 返回格式化后的字符串
+     * @return 格式化后的字符串
      */
     public static String getAutoFormatString(final Object... args) {
         if (args != null && args.length != 0) {
@@ -1873,7 +1871,7 @@ public final class DevCommonUtils {
     /**
      * 获取自动数量格式化后的字符串(可变参数)
      * @param args 格式化参数
-     * @return 返回格式化后的字符串
+     * @return 格式化后的字符串
      */
     public static String getAutoFormatString2(final Object... args) {
         if (args != null && args.length != 0) {

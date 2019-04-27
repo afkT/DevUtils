@@ -5,7 +5,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -37,9 +36,9 @@ public final class ZipUtils {
      * @param resFiles    待压缩文件路径集合
      * @param zipFilePath 压缩文件路径
      * @return {@code true} 压缩成功, {@code false} 压缩失败
-     * @throws IOException IO错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static boolean zipFiles(final Collection<String> resFiles, final String zipFilePath) throws IOException {
+    public static boolean zipFiles(final Collection<String> resFiles, final String zipFilePath) throws Exception {
         return zipFiles(resFiles, zipFilePath, null);
     }
 
@@ -49,9 +48,9 @@ public final class ZipUtils {
      * @param zipFilePath  压缩文件路径
      * @param comment      压缩文件的注释
      * @return {@code true} 压缩成功, {@code false} 压缩失败
-     * @throws IOException IO错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static boolean zipFiles(final Collection<String> resFilePaths, final String zipFilePath, final String comment) throws IOException {
+    public static boolean zipFiles(final Collection<String> resFilePaths, final String zipFilePath, final String comment) throws Exception {
         if (resFilePaths == null || zipFilePath == null) return false;
         ZipOutputStream zos = null;
         try {
@@ -73,9 +72,9 @@ public final class ZipUtils {
      * @param resFiles 待压缩文件集合
      * @param zipFile  压缩文件
      * @return {@code true} 压缩成功, {@code false} 压缩失败
-     * @throws IOException IO错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static boolean zipFiles(final Collection<File> resFiles, final File zipFile) throws IOException {
+    public static boolean zipFiles(final Collection<File> resFiles, final File zipFile) throws Exception {
         return zipFiles(resFiles, zipFile, null);
     }
 
@@ -85,9 +84,9 @@ public final class ZipUtils {
      * @param zipFile  压缩文件
      * @param comment  压缩文件的注释
      * @return {@code true} 压缩成功, {@code false} 压缩失败
-     * @throws IOException IO错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static boolean zipFiles(final Collection<File> resFiles, final File zipFile, final String comment) throws IOException {
+    public static boolean zipFiles(final Collection<File> resFiles, final File zipFile, final String comment) throws Exception {
         if (resFiles == null || zipFile == null) return false;
         ZipOutputStream zos = null;
         try {
@@ -109,9 +108,9 @@ public final class ZipUtils {
      * @param resFilePath 待压缩文件路径
      * @param zipFilePath 压缩文件路径
      * @return {@code true} 压缩成功, {@code false} 压缩失败
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static boolean zipFile(final String resFilePath, final String zipFilePath) throws IOException {
+    public static boolean zipFile(final String resFilePath, final String zipFilePath) throws Exception {
         return zipFile(getFileByPath(resFilePath), getFileByPath(zipFilePath), null);
     }
 
@@ -121,9 +120,9 @@ public final class ZipUtils {
      * @param zipFilePath 压缩文件路径
      * @param comment     压缩文件的注释
      * @return {@code true} 压缩成功, {@code false} 压缩失败
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static boolean zipFile(final String resFilePath, final String zipFilePath, final String comment) throws IOException {
+    public static boolean zipFile(final String resFilePath, final String zipFilePath, final String comment) throws Exception {
         return zipFile(getFileByPath(resFilePath), getFileByPath(zipFilePath), comment);
     }
 
@@ -132,9 +131,9 @@ public final class ZipUtils {
      * @param resFile 待压缩文件
      * @param zipFile 压缩文件
      * @return {@code true} 压缩成功, {@code false} 压缩失败
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static boolean zipFile(final File resFile, final File zipFile) throws IOException {
+    public static boolean zipFile(final File resFile, final File zipFile) throws Exception {
         return zipFile(resFile, zipFile, null);
     }
 
@@ -144,9 +143,9 @@ public final class ZipUtils {
      * @param zipFile 压缩文件
      * @param comment 压缩文件的注释
      * @return {@code true} 压缩成功, {@code false} 压缩失败
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static boolean zipFile(final File resFile, final File zipFile, final String comment) throws IOException {
+    public static boolean zipFile(final File resFile, final File zipFile, final String comment) throws Exception {
         if (resFile == null || zipFile == null) return false;
         ZipOutputStream zos = null;
         try {
@@ -166,9 +165,9 @@ public final class ZipUtils {
      * @param zos      压缩文件输出流
      * @param comment  压缩文件的注释
      * @return {@code true} 压缩成功, {@code false} 压缩失败
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    private static boolean zipFile(final File resFile, String rootPath, final ZipOutputStream zos, final String comment) throws IOException {
+    private static boolean zipFile(final File resFile, String rootPath, final ZipOutputStream zos, final String comment) throws Exception {
         rootPath = rootPath + (isSpace(rootPath) ? "" : File.separator) + resFile.getName();
         if (resFile.isDirectory()) {
             File[] fileList = resFile.listFiles();
@@ -209,9 +208,9 @@ public final class ZipUtils {
      * @param zipFilePath 待解压文件路径
      * @param destDirPath 目标目录路径
      * @return 文件链表
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static List<File> unzipFile(final String zipFilePath, final String destDirPath) throws IOException {
+    public static List<File> unzipFile(final String zipFilePath, final String destDirPath) throws Exception {
         return unzipFileByKeyword(zipFilePath, destDirPath, null);
     }
 
@@ -220,9 +219,9 @@ public final class ZipUtils {
      * @param zipFile 待解压文件
      * @param destDir 目标目录
      * @return 文件链表
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static List<File> unzipFile(final File zipFile, final File destDir) throws IOException {
+    public static List<File> unzipFile(final File zipFile, final File destDir) throws Exception {
         return unzipFileByKeyword(zipFile, destDir, null);
     }
 
@@ -231,10 +230,10 @@ public final class ZipUtils {
      * @param zipFilePath 待解压文件路径
      * @param destDirPath 目标目录路径
      * @param keyword     关键字
-     * @return 返回带有关键字的文件链表
-     * @throws IOException IO 错误时抛出
+     * @return 带有关键字的文件链表
+     * @throws Exception 异常时抛出
      */
-    public static List<File> unzipFileByKeyword(final String zipFilePath, final String destDirPath, final String keyword) throws IOException {
+    public static List<File> unzipFileByKeyword(final String zipFilePath, final String destDirPath, final String keyword) throws Exception {
         return unzipFileByKeyword(getFileByPath(zipFilePath), getFileByPath(destDirPath), keyword);
     }
 
@@ -243,10 +242,10 @@ public final class ZipUtils {
      * @param zipFile 待解压文件
      * @param destDir 目标目录
      * @param keyword 关键字
-     * @return 返回带有关键字的文件链表
-     * @throws IOException IO 错误时抛出
+     * @return 带有关键字的文件链表
+     * @throws Exception 异常时抛出
      */
-    public static List<File> unzipFileByKeyword(final File zipFile, final File destDir, final String keyword) throws IOException {
+    public static List<File> unzipFileByKeyword(final File zipFile, final File destDir, final String keyword) throws Exception {
         if (zipFile == null || destDir == null) return null;
         List<File> files = new ArrayList<>();
         ZipFile zip = new ZipFile(zipFile);
@@ -279,15 +278,16 @@ public final class ZipUtils {
 
     /**
      * 解压文件
-     * @param destDir
-     * @param files
-     * @param zf
-     * @param entry
-     * @param entryName
-     * @return
-     * @throws IOException
+     * @param destDir   目标目录
+     * @param files     解压文件链表
+     * @param zf        压缩文件条目
+     * @param entry     压缩文件信息
+     * @param entryName 文件名
+     * @return {@code true} success, {@code false} fail
+     * @throws Exception 异常时抛出
      */
-    private static boolean unzipChildFile(final File destDir, final List<File> files, final ZipFile zf, final ZipEntry entry, final String entryName) throws IOException {
+    private static boolean unzipChildFile(final File destDir, final List<File> files, final ZipFile zf,
+                                          final ZipEntry entry, final String entryName) throws Exception {
         File file = new File(destDir, entryName);
         files.add(file);
         if (entry.isDirectory()) {
@@ -315,9 +315,9 @@ public final class ZipUtils {
      * 获取压缩文件中的文件路径链表
      * @param zipFilePath 压缩文件路径
      * @return 压缩文件中的文件路径链表
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static List<String> getFilesPath(final String zipFilePath) throws IOException {
+    public static List<String> getFilesPath(final String zipFilePath) throws Exception {
         return getFilesPath(getFileByPath(zipFilePath));
     }
 
@@ -325,9 +325,9 @@ public final class ZipUtils {
      * 获取压缩文件中的文件路径链表
      * @param zipFile 压缩文件
      * @return 压缩文件中的文件路径链表
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static List<String> getFilesPath(final File zipFile) throws IOException {
+    public static List<String> getFilesPath(final File zipFile) throws Exception {
         if (zipFile == null) return null;
         List<String> paths = new ArrayList<>();
         Enumeration<?> entries = new ZipFile(zipFile).entries();
@@ -347,9 +347,9 @@ public final class ZipUtils {
      * 获取压缩文件中的注释链表
      * @param zipFilePath 压缩文件路径
      * @return 压缩文件中的注释链表
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static List<String> getComments(final String zipFilePath) throws IOException {
+    public static List<String> getComments(final String zipFilePath) throws Exception {
         return getComments(getFileByPath(zipFilePath));
     }
 
@@ -357,9 +357,9 @@ public final class ZipUtils {
      * 获取压缩文件中的注释链表
      * @param zipFile 压缩文件
      * @return 压缩文件中的注释链表
-     * @throws IOException IO 错误时抛出
+     * @throws Exception 异常时抛出
      */
-    public static List<String> getComments(final File zipFile) throws IOException {
+    public static List<String> getComments(final File zipFile) throws Exception {
         if (zipFile == null) return null;
         List<String> comments = new ArrayList<>();
         Enumeration<?> entries = new ZipFile(zipFile).entries();
@@ -396,7 +396,7 @@ public final class ZipUtils {
         try {
             // 存在, 则返回新的路径
             return file.createNewFile();
-        } catch (IOException e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -404,7 +404,7 @@ public final class ZipUtils {
     /**
      * 获取文件
      * @param filePath 文件路径
-     * @return
+     * @return {@link File}
      */
     private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;

@@ -100,13 +100,14 @@ public final class ObjectUtils {
     }
 
     /**
-     * 检查对象非空
+     * 检查对象是否为 null, 为 null 则抛出异常, 不为 null 则返回该对象
      * @param object  对象
-     * @param message 报错
+     * @param message 报错信息
      * @param <T>     泛型
      * @return 非空对象
+     * @throws NullPointerException null 异常
      */
-    public static <T> T requireNonNull(final T object, final String message) {
+    public static <T> T requireNonNull(final T object, final String message) throws NullPointerException {
         if (object == null) throw new NullPointerException(message);
         return object;
     }
@@ -133,8 +134,8 @@ public final class ObjectUtils {
 
     /**
      * 获取一个对象的独一无二的标记
-     * @param object
-     * @return
+     * @param object 对象
+     * @return 对象唯一标记
      */
     public static String getObjectTag(final Object object) {
         if (object == null) return null;

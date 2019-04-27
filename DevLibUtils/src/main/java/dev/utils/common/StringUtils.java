@@ -92,7 +92,7 @@ public final class StringUtils {
     /**
      * 获取字符串长度
      * @param str 待校验的字符串
-     * @return 返回字符串长度, 如果字符串为 null,则返回 0
+     * @return 字符串长度, 如果字符串为 null,则返回 0
      */
     public static int length(final String str) {
         return str == null ? 0 : str.length();
@@ -102,7 +102,7 @@ public final class StringUtils {
      * 获取字符串长度
      * @param str           待校验的字符串
      * @param defaultLength 字符串为null时, 返回的长度
-     * @return 返回字符串长度, 如果字符串为 null,则返回 defaultLength
+     * @return 字符串长度, 如果字符串为 null,则返回 defaultLength
      */
     public static int length(final String str, final int defaultLength) {
         return str != null ? str.length() : defaultLength;
@@ -439,7 +439,7 @@ public final class StringUtils {
     /**
      * 清空字符串全部空格
      * @param str 待处理字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toClearSpace(final String str) {
         if (isEmpty(str)) return str;
@@ -449,7 +449,7 @@ public final class StringUtils {
     /**
      * 清空字符串前后所有空格
      * @param str 待处理字符串
-     * @return 返回处理后的字符串
+     * @return 处理后的字符串
      */
     public static String toClearSpaceTrim(final String str) {
         if (isEmpty(str)) return str;
@@ -466,7 +466,7 @@ public final class StringUtils {
     /**
      * 追加空格
      * @param number 空格数量
-     * @return 返回指定数量的空格字符串
+     * @return 指定数量的空格字符串
      */
     public static String appendSpace(final int number) {
         StringBuffer buffer = new StringBuffer();
@@ -481,7 +481,7 @@ public final class StringUtils {
     /**
      * 追加 Tab
      * @param number tab 键数量
-     * @return 返回指定数量的 Tab 字符串
+     * @return 指定数量的 Tab 字符串
      */
     public static String appendTab(final int number) {
         StringBuffer buffer = new StringBuffer();
@@ -496,7 +496,7 @@ public final class StringUtils {
     /**
      * 追加 换行
      * @param number 换行数量
-     * @return 返回指定数量的换行字符串
+     * @return 指定数量的换行字符串
      */
     public static String appendLine(final int number) {
         StringBuffer buffer = new StringBuffer();
@@ -534,7 +534,7 @@ public final class StringUtils {
      * @param defaultStr 默认字符串
      * @param value1     第一个待校验字符串
      * @param value2     第二个待校验字符串
-     * @return 返回两个待校验字符串中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
+     * @return 两个待校验字符串中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String toCheckValue(final String defaultStr, final String value1, final String value2) {
         if (isEmpty(value1)) {
@@ -552,7 +552,7 @@ public final class StringUtils {
      * 检查字符串 - 多个值
      * @param defaultStr 默认字符串
      * @param strs       待校验字符串数组
-     * @return 返回字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
+     * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String toCheckValues(final String defaultStr, final String... strs) {
         if (strs != null && strs.length != 0) {
@@ -576,7 +576,7 @@ public final class StringUtils {
      * 检查字符串 - 多个值(删除前后空格对比判断)
      * @param defaultStr 默认字符串
      * @param strs       待校验字符串数组
-     * @return 返回字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
+     * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String toCheckValuesSpace(final String defaultStr, final String... strs) {
         if (strs != null && strs.length != 0) {
@@ -605,7 +605,7 @@ public final class StringUtils {
      * 获取格式化后的字符串
      * @param format 待格式化字符串
      * @param args   格式化参数
-     * @return 返回格式化后的字符串
+     * @return 格式化后的字符串
      */
     public static String getFormatString(final String format, final Object... args) {
         if (format == null) return null;
@@ -621,7 +621,7 @@ public final class StringUtils {
      * 获取格式化后的字符串
      * @param format 待格式化字符串
      * @param args   格式化参数
-     * @return 返回格式化后的字符串
+     * @return 格式化后的字符串
      */
     public static String getFormatString2(final String format, final Object... args) {
         if (format == null) return null;
@@ -642,7 +642,7 @@ public final class StringUtils {
     /**
      * 获取自动数量格式化后的字符串(可变参数)
      * @param args 格式化参数
-     * @return 返回格式化后的字符串
+     * @return 格式化后的字符串
      */
     public static String getAutoFormatString(final Object... args) {
         if (args != null && args.length != 0) {
@@ -666,7 +666,7 @@ public final class StringUtils {
     /**
      * 获取自动数量格式化后的字符串(可变参数)
      * @param args 格式化参数
-     * @return 返回格式化后的字符串
+     * @return 格式化后的字符串
      */
     public static String getAutoFormatString2(final Object... args) {
         if (args != null && args.length != 0) {
@@ -694,7 +694,7 @@ public final class StringUtils {
     /**
      * 字符串进行 GBK 编码
      * @param str 待处理字符串
-     * @return 返回 GBK 编码后的字符串
+     * @return GBK 编码后的字符串
      */
     public static String toGBKEncode(final String str) {
         return toStrEncode(str, "GBK");
@@ -703,7 +703,7 @@ public final class StringUtils {
     /**
      * 字符串进行 GBK2312 编码
      * @param str 待处理字符串
-     * @return 返回 GBK2312 编码后的字符串
+     * @return GBK2312 编码后的字符串
      */
     public static String toGBK2312Encode(final String str) {
         return toStrEncode(str, "GBK-2312");
@@ -712,7 +712,7 @@ public final class StringUtils {
     /**
      * 字符串进行 UTF-8 编码
      * @param str 待处理字符串
-     * @return 返回 UTF-8 编码后的字符串
+     * @return UTF-8 编码后的字符串
      */
     public static String toUTF8Encode(final String str) {
         return toStrEncode(str, "UTF-8");
@@ -722,7 +722,7 @@ public final class StringUtils {
      * 进行字符串编码
      * @param str 待处理字符串
      * @param enc 编码格式
-     * @return 返回指定编码格式编码后的字符串
+     * @return 指定编码格式编码后的字符串
      */
     public static String toStrEncode(final String str, final String enc) {
         if (str == null || enc == null) return null;
@@ -739,7 +739,7 @@ public final class StringUtils {
     /**
      * 进行 URL 编码,默认UTF-8
      * @param str 待处理字符串
-     * @return 返回 字符串 UTF-8 编码后, 再进行 Url 编码后的字符串
+     * @return 字符串 UTF-8 编码后, 再进行 Url 编码后的字符串
      */
     public static String toUrlEncode(final String str) {
         return toUrlEncode(str, "UTF-8");
@@ -749,7 +749,7 @@ public final class StringUtils {
      * 进行 URL 编码
      * @param str 待处理字符串
      * @param enc 编码格式
-     * @return 返回指定编码格式编码后, 再进行 Url 编码后的字符串
+     * @return 指定编码格式编码后, 再进行 Url 编码后的字符串
      */
     public static String toUrlEncode(final String str, final String enc) {
         if (str == null || enc == null) return null;
@@ -757,9 +757,8 @@ public final class StringUtils {
             return URLEncoder.encode(str, enc);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toUrlEncode");
-            // 如果URL编码失败,则直接进行字符串编码
-            return toStrEncode(str, enc);
         }
+        return null;
     }
 
     // =
@@ -767,7 +766,7 @@ public final class StringUtils {
     /**
      * 将字符串转移为 ASCII 码
      * @param str 待处理字符串
-     * @return 返回字符串转 ASCII 码后的字符串
+     * @return 字符串转 ASCII 码后的字符串
      */
     public static String toASCII(final String str) {
         if (isEmpty(str)) return str;
@@ -787,7 +786,7 @@ public final class StringUtils {
     /**
      * 将字符串转移为 Unicode 码
      * @param str 待处理字符串
-     * @return 返回字符串转 Unicode 码后的字符串
+     * @return 字符串转 Unicode 码后的字符串
      */
     public static String toUnicode(final String str) {
         if (isEmpty(str)) return str;
@@ -807,7 +806,7 @@ public final class StringUtils {
     /**
      * 将字符数组转移为 Unicode 码
      * @param chars char[]
-     * @return 返回 char[] 转 Unicode 码后的字符串
+     * @return char[] 转 Unicode 码后的字符串
      */
     public static String toUnicodeString(final char[] chars) {
         if (chars == null) return null;
@@ -826,7 +825,7 @@ public final class StringUtils {
     /**
      * 转化为半角字符
      * @param str 待处理字符串
-     * @return 返回转换半角字符串
+     * @return 转换半角字符串
      */
     public static String toDBC(final String str) {
         if (isEmpty(str)) return str;
@@ -846,7 +845,7 @@ public final class StringUtils {
     /**
      * 转化为全角字符 如: a => ａ A => Ａ
      * @param str 待处理字符串
-     * @return 返回转换全角字符串
+     * @return 转换全角字符串
      */
     public static String toSBC(final String str) {
         if (isEmpty(str)) return str;
@@ -908,7 +907,7 @@ public final class StringUtils {
     /**
      * 首字母大写
      * @param str 待处理字符串
-     * @return 返回首字母大写字符串
+     * @return 首字母大写字符串
      */
     public static String upperFirstLetter(final String str) {
         if (isEmpty(str) || !Character.isLowerCase(str.charAt(0))) return str;
@@ -923,7 +922,7 @@ public final class StringUtils {
     /**
      * 首字母小写
      * @param str 待处理字符串
-     * @return 返回首字母小写字符串
+     * @return 首字母小写字符串
      */
     public static String lowerFirstLetter(final String str) {
         if (isEmpty(str) || !Character.isUpperCase(str.charAt(0))) return str;
@@ -938,7 +937,7 @@ public final class StringUtils {
     /**
      * 反转字符串
      * @param str 待处理字符串
-     * @return 返回反转字符串
+     * @return 反转字符串
      */
     public static String reverse(final String str) {
         int len = length(str);
@@ -957,7 +956,7 @@ public final class StringUtils {
     /**
      * 字符串连接，将参数列表拼接为一个字符串
      * @param args 追加数据
-     * @return 返回拼接后的字符串
+     * @return 拼接后的字符串
      */
     public static String concat(final Object... args) {
         return concatSpiltWith("", args);
@@ -967,7 +966,7 @@ public final class StringUtils {
      * 字符串连接，将参数列表拼接为一个字符串
      * @param startStr 开始字符串
      * @param args     追加数据
-     * @return 返回拼接后的字符串
+     * @return 拼接后的字符串
      */
     public static String concatSpiltWith(final String startStr, final Object... args) {
         if (args == null) return null;
@@ -982,7 +981,7 @@ public final class StringUtils {
     /**
      * 下划线命名转为驼峰命名
      * @param str 下划线命名格式字符串
-     * @return 返回驼峰命名格式字符串
+     * @return 驼峰命名格式字符串
      */
     public static String underScoreCaseToCamelCase(final String str) {
         if (isEmpty(str)) return str;
@@ -1010,7 +1009,7 @@ public final class StringUtils {
     /**
      * 驼峰命名法转为下划线命名
      * @param str 驼峰命名格式字符串
-     * @return 返回下划线命名格式字符串
+     * @return 下划线命名格式字符串
      */
     public static String camelCaseToUnderScoreCase(final String str) {
         if (isEmpty(str)) return str;
@@ -1030,7 +1029,7 @@ public final class StringUtils {
     /**
      * 字符串数据库字符转义
      * @param str 待处理字符串
-     * @return 返回转义处理后的字符串
+     * @return 转义处理后的字符串
      */
     public static String sqliteEscape(final String str) {
         if (isEmpty(str)) return str;

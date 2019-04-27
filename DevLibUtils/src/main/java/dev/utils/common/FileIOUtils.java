@@ -334,7 +334,7 @@ public final class FileIOUtils {
     /**
      * 读取文件内容, 返回换行 List
      * @param filePath 文件路径
-     * @return 返回 换行{@link List<String>}
+     * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final String filePath) {
         return readFileToList(getFileByPath(filePath), null);
@@ -344,7 +344,7 @@ public final class FileIOUtils {
      * 读取文件内容, 返回换行 List
      * @param filePath    文件路径
      * @param charsetName 字符编码
-     * @return 返回 换行{@link List<String>}
+     * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final String filePath, final String charsetName) {
         return readFileToList(getFileByPath(filePath), charsetName);
@@ -353,7 +353,7 @@ public final class FileIOUtils {
     /**
      * 读取文件内容, 返回换行 List
      * @param file 文件
-     * @return 返回 换行{@link List<String>}
+     * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final File file) {
         return readFileToList(file, 0, 0x7FFFFFFF, null);
@@ -363,7 +363,7 @@ public final class FileIOUtils {
      * 读取文件内容, 返回换行 List
      * @param file        文件
      * @param charsetName 字符编码
-     * @return 返回 换行{@link List<String>}
+     * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final File file, final String charsetName) {
         return readFileToList(file, 0, 0x7FFFFFFF, charsetName);
@@ -374,7 +374,7 @@ public final class FileIOUtils {
      * @param filePath 文件路径
      * @param start    开始位置
      * @param end      结束位置
-     * @return 返回 换行{@link List<String>}
+     * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final String filePath, final int start, final int end) {
         return readFileToList(getFileByPath(filePath), start, end, null);
@@ -386,7 +386,7 @@ public final class FileIOUtils {
      * @param start       开始位置
      * @param end         结束位置
      * @param charsetName 字符编码
-     * @return 返回 换行{@link List<String>}
+     * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final String filePath, final int start, final int end, final String charsetName) {
         return readFileToList(getFileByPath(filePath), start, end, charsetName);
@@ -397,7 +397,7 @@ public final class FileIOUtils {
      * @param file  文件
      * @param start 开始位置
      * @param end   结束位置
-     * @return 返回 换行{@link List<String>}
+     * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final File file, final int start, final int end) {
         return readFileToList(file, start, end, null);
@@ -409,7 +409,7 @@ public final class FileIOUtils {
      * @param start       开始位置
      * @param end         结束位置
      * @param charsetName 字符编码
-     * @return 返回 换行{@link List<String>}
+     * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final File file, final int start, final int end, final String charsetName) {
         if (!isFileExists(file)) return null;
@@ -443,7 +443,7 @@ public final class FileIOUtils {
     /**
      * 读取文件内容, 返回字符串
      * @param filePath 文件路径
-     * @return 返回文件内容字符串
+     * @return 文件内容字符串
      */
     public static String readFileToString(final String filePath) {
         return readFileToString(getFileByPath(filePath), null);
@@ -453,7 +453,7 @@ public final class FileIOUtils {
      * 读取文件内容, 返回字符串
      * @param filePath    文件路径
      * @param charsetName 字符编码
-     * @return 返回文件内容字符串
+     * @return 文件内容字符串
      */
     public static String readFileToString(final String filePath, final String charsetName) {
         return readFileToString(getFileByPath(filePath), charsetName);
@@ -462,7 +462,7 @@ public final class FileIOUtils {
     /**
      * 读取文件内容, 返回字符串
      * @param file 文件
-     * @return 返回文件内容字符串
+     * @return 文件内容字符串
      */
     public static String readFileToString(final File file) {
         return readFileToString(file, null);
@@ -472,7 +472,7 @@ public final class FileIOUtils {
      * 读取文件内容, 返回字符串
      * @param file        文件
      * @param charsetName 字符编码
-     * @return 返回文件内容字符串
+     * @return 文件内容字符串
      */
     public static String readFileToString(final File file, final String charsetName) {
         if (!isFileExists(file)) return null;
@@ -503,7 +503,7 @@ public final class FileIOUtils {
     /**
      * 读取文件内容, 返回 byte[]
      * @param filePath 文件路径
-     * @return 返回文件内容 byte[]
+     * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByStream(final String filePath) {
         return readFileToBytesByStream(getFileByPath(filePath));
@@ -512,7 +512,7 @@ public final class FileIOUtils {
     /**
      * 读取文件内容, 返回 byte[]
      * @param file 文件
-     * @return 返回文件内容 byte[]
+     * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByStream(final File file) {
         if (!isFileExists(file)) return null;
@@ -538,7 +538,7 @@ public final class FileIOUtils {
     /**
      * 通过 FileChannel, 读取文件内容, 返回 byte[]
      * @param filePath 文件路径
-     * @return 返回文件内容 byte[]
+     * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByChannel(final String filePath) {
         return readFileToBytesByChannel(getFileByPath(filePath));
@@ -547,7 +547,7 @@ public final class FileIOUtils {
     /**
      * 通过 FileChannel, 读取文件内容, 返回 byte[]
      * @param file 文件
-     * @return 返回文件内容 byte[]
+     * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByChannel(final File file) {
         if (!isFileExists(file)) return null;
@@ -570,7 +570,7 @@ public final class FileIOUtils {
     /**
      * 通过 MappedByteBuffer, 读取文件内容, 返回 byte[]
      * @param filePath 文件路径
-     * @return 返回文件内容 byte[]
+     * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByMap(final String filePath) {
         return readFileToBytesByMap(getFileByPath(filePath));
@@ -579,7 +579,7 @@ public final class FileIOUtils {
     /**
      * 通过 MappedByteBuffer, 读取文件内容, 返回 byte[]
      * @param file 文件
-     * @return 返回文件内容 byte[]
+     * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByMap(final File file) {
         if (!isFileExists(file)) return null;
@@ -604,7 +604,7 @@ public final class FileIOUtils {
     /**
      * 获取文件
      * @param filePath 文件路径
-     * @return 返回文件 {@link File}
+     * @return 文件 {@link File}
      */
     private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;

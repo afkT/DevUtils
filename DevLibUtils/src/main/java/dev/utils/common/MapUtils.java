@@ -135,7 +135,7 @@ public final class MapUtils {
      * @param key key
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return 指定 key 的 value
      */
     public static <K, V> V get(final Map<K, V> map, final K key) {
         if (map != null) {
@@ -155,7 +155,7 @@ public final class MapUtils {
      * @param defaultValue 默认value
      * @param <K>          key
      * @param <V>          value
-     * @return
+     * @return 指定 key 的 value, 如果 value 为 null, 则返回 defaultValue
      */
     public static <K, V> V get(final Map<K, V> map, final K key, final V defaultValue) {
         if (map != null) {
@@ -175,11 +175,11 @@ public final class MapUtils {
 
     /**
      * 通过 value 获取 Key
-     * @param map
-     * @param value
+     * @param map   Map
+     * @param value Value
      * @param <K>   key
      * @param <V>   value
-     * @return
+     * @return 等于 value 的 key
      */
     public static <K, V> K getKeyByValue(final Map<K, V> map, final V value) {
         if (map != null) {
@@ -203,11 +203,11 @@ public final class MapUtils {
 
     /**
      * 通过 value 获取 Key 集合 (返回等于 value 的 key 集合)
-     * @param map
-     * @param value
+     * @param map   Map
+     * @param value Value
      * @param <K>   key
      * @param <V>   value
-     * @return
+     * @return 等于 value 的 key 集合
      */
     public static <K, V> List<K> getKeysByValue(final Map<K, V> map, final V value) {
         if (map != null) {
@@ -239,7 +239,7 @@ public final class MapUtils {
      * @param map Map
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return 全部存储 key 集合
      */
     public static <K, V> List<K> getKeys(final Map<K, V> map) {
         if (map != null) {
@@ -257,7 +257,7 @@ public final class MapUtils {
      * @param map Map
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return 全部存储 key 数组
      */
     public static <K, V> K[] getKeysToArrays(final Map<K, V> map) {
         if (map != null) {
@@ -275,7 +275,7 @@ public final class MapUtils {
      * @param map Map
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return 全部存储 value 数组
      */
     public static <K, V> List<V> getValues(final Map<K, V> map) {
         if (map != null) {
@@ -293,7 +293,7 @@ public final class MapUtils {
      * @param map Map
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return 全部存储 value 数组
      */
     public static <K, V> V[] getValuesToArrays(final Map<K, V> map) {
         if (map != null) {
@@ -313,7 +313,7 @@ public final class MapUtils {
      * @param map Map
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return 第一条数据 {@link Map.Entry}
      */
     public static <K, V> Map.Entry<K, V> getFirst(final LinkedHashMap<K, V> map) {
         if (map != null) {
@@ -331,7 +331,7 @@ public final class MapUtils {
      * @param map Map
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return 最后一条数据 {@link Map.Entry}
      */
     public static <K, V> Map.Entry<K, V> getLast(final LinkedHashMap<K, V> map) {
         return getLast(map, true);
@@ -346,7 +346,7 @@ public final class MapUtils {
      * @param isReflection 是否通过反射获取
      * @param <K>          key
      * @param <V>          value
-     * @return
+     * @return 最后一条数据 {@link Map.Entry}
      */
     public static <K, V> Map.Entry<K, V> getLast(final LinkedHashMap<K, V> map, final boolean isReflection) {
         if (map != null) {
@@ -384,7 +384,7 @@ public final class MapUtils {
      * @param key key
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return 指定 key 下一条数据 {@link Map.Entry}
      */
     public static <K, V> Map.Entry<K, V> getNext(final LinkedHashMap<K, V> map, final K key) {
         if (map != null) {
@@ -412,7 +412,7 @@ public final class MapUtils {
      * @param key key
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return 指定 key 上一条数据 {@link Map.Entry}
      */
     public static <K, V> Map.Entry<K, V> getPrevious(final LinkedHashMap<K, V> map, final K key) {
         if (map != null) {
@@ -450,7 +450,7 @@ public final class MapUtils {
      * @param value value
      * @param <K>   key
      * @param <V>   value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean put(final Map<K, V> map, final K key, final V value) {
         return put(map, key, value, false);
@@ -464,7 +464,7 @@ public final class MapUtils {
      * @param notNull 是否不允许 key 为 null
      * @param <K>     key
      * @param <V>     value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean put(final Map<K, V> map, final K key, final V value, final boolean notNull) {
         if (map != null) {
@@ -488,7 +488,7 @@ public final class MapUtils {
      * @param value value
      * @param <K>   key
      * @param <V>   value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putNotNull(final Map<K, V> map, final K key, final V value) {
         return put(map, key, value, true);
@@ -502,7 +502,7 @@ public final class MapUtils {
      * @param entry entry
      * @param <K>   key
      * @param <V>   value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean put(final Map<K, V> map, final Map.Entry<K, V> entry) {
         return put(map, entry, false);
@@ -515,7 +515,7 @@ public final class MapUtils {
      * @param notNull 是否不允许 key 为 null
      * @param <K>     key
      * @param <V>     value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean put(final Map<K, V> map, final Map.Entry<K, V> entry, final boolean notNull) {
         if (map != null && entry != null) {
@@ -538,7 +538,7 @@ public final class MapUtils {
      * @param entry entry
      * @param <K>   key
      * @param <V>   value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putNotNull(final Map<K, V> map, final Map.Entry<K, V> entry) {
         return put(map, entry, true);
@@ -553,7 +553,7 @@ public final class MapUtils {
      * @param listValues values
      * @param <K>        key
      * @param <V>        value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putAll(final Map<K, V> map, final List<K> listKeys, final List<V> listValues) {
         return putAll(map, listKeys, listValues, false);
@@ -567,7 +567,7 @@ public final class MapUtils {
      * @param notNull    是否不允许 key 为 null
      * @param <K>        key
      * @param <V>        value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putAll(final Map<K, V> map, final List<K> listKeys, final List<V> listValues, final boolean notNull) {
         if (map != null && listKeys != null && listValues != null && listKeys.size() == listValues.size()) {
@@ -596,7 +596,7 @@ public final class MapUtils {
      * @param listValues values
      * @param <K>        key
      * @param <V>        value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putAllNotNull(final Map<K, V> map, final List<K> listKeys, final List<V> listValues) {
         return putAll(map, listKeys, listValues, true);
@@ -611,7 +611,7 @@ public final class MapUtils {
      * @param values values
      * @param <K>    key
      * @param <V>    value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putAll(final Map<K, V> map, final K[] keys, final V[] values) {
         return putAll(map, keys, values, false);
@@ -625,7 +625,7 @@ public final class MapUtils {
      * @param notNull 是否不允许 key 为 null
      * @param <K>     key
      * @param <V>     value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putAll(final Map<K, V> map, final K[] keys, final V[] values, final boolean notNull) {
         if (map != null && keys != null && values != null && keys.length == values.length) {
@@ -654,7 +654,7 @@ public final class MapUtils {
      * @param values values
      * @param <K>    key
      * @param <V>    value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putAllNotNull(final Map<K, V> map, final K[] keys, final V[] values) {
         return putAll(map, keys, values, true);
@@ -668,7 +668,7 @@ public final class MapUtils {
      * @param mapData map数据
      * @param <K>     key
      * @param <V>     value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putAll(final Map<K, V> map, final Map<K, V> mapData) {
         return putAll(map, mapData, false);
@@ -681,7 +681,7 @@ public final class MapUtils {
      * @param notNull 是否不允许 key 为 null
      * @param <K>     key
      * @param <V>     value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putAll(final Map<K, V> map, final Map<K, V> mapData, final boolean notNull) {
         if (map != null && mapData != null) {
@@ -718,7 +718,7 @@ public final class MapUtils {
      * @param mapData map数据
      * @param <K>     key
      * @param <V>     value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean putAllNotNull(final Map<K, V> map, final Map<K, V> mapData) {
         return putAll(map, mapData, true);
@@ -734,7 +734,7 @@ public final class MapUtils {
      * @param key key
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean remove(final Map<K, V> map, final K key) {
         if (map != null) {
@@ -755,7 +755,7 @@ public final class MapUtils {
      * @param value value
      * @param <K>   key
      * @param <V>   value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean remove(final Map<K, V> map, final K key, final V value) {
         if (map != null) {
@@ -778,7 +778,7 @@ public final class MapUtils {
      * @param keys keys
      * @param <K>  key
      * @param <V>  value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean removeToKeys(final Map<K, V> map, final Collection<K> keys) {
         if (map != null && keys != null) {
@@ -799,7 +799,7 @@ public final class MapUtils {
      * @param value value
      * @param <K>   key
      * @param <V>   value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean removeToValue(final Map<K, V> map, final V value) {
         if (map != null) {
@@ -827,7 +827,7 @@ public final class MapUtils {
      * @param values values
      * @param <K>    key
      * @param <V>    value
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean removeToValues(final Map<K, V> map, final Collection<V> values) {
         if (map != null && values != null) {
@@ -915,7 +915,7 @@ public final class MapUtils {
      * @param key key
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static <K, V> boolean isNullToValue(final Map<K, V> map, final K key) {
         if (map != null) {
@@ -930,7 +930,7 @@ public final class MapUtils {
      * @param key key
      * @param <K> key
      * @param <V> value
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static <K, V> boolean containsKey(final Map<K, V> map, final K key) {
         if (map != null) {
@@ -949,7 +949,7 @@ public final class MapUtils {
      * @param value value
      * @param <K>   key
      * @param <V>   value
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static <K, V> boolean containsValue(final Map<K, V> map, final V value) {
         if (map != null) {

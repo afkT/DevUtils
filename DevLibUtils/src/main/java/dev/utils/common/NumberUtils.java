@@ -24,7 +24,7 @@ public final class NumberUtils {
      * 计算百分比值 (最大 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 返回百分比值
+     * @return 百分比值
      */
     public static double percent(final int value, final int max) {
         if (max <= 0) return 0.0f;
@@ -37,7 +37,7 @@ public final class NumberUtils {
      * 计算百分比值 (最大 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 返回百分比值
+     * @return 百分比值
      */
     public static double percent(final float value, final float max) {
         if (max <= 0) return 0.0f;
@@ -50,7 +50,7 @@ public final class NumberUtils {
      * 计算百分比值 (最大 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 返回百分比值
+     * @return 百分比值
      */
     public static double percent(final long value, final long max) {
         if (max <= 0) return 0.0f;
@@ -63,7 +63,7 @@ public final class NumberUtils {
      * 计算百分比值 (最大 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 返回百分比值
+     * @return 百分比值
      */
     public static double percent(final double value, final double max) {
         if (max <= 0) return 0.0f;
@@ -78,7 +78,7 @@ public final class NumberUtils {
      * 计算百分比值 (可超出 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 返回比例值
+     * @return 比例值
      */
     public static double percent2(final int value, final int max) {
         if (max <= 0) return 0.0f;
@@ -90,7 +90,7 @@ public final class NumberUtils {
      * 计算百分比值 (可超出 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 返回比例值
+     * @return 比例值
      */
     public static double percent2(final float value, final float max) {
         if (max <= 0) return 0.0f;
@@ -102,7 +102,7 @@ public final class NumberUtils {
      * 计算百分比值 (可超出 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 返回比例值
+     * @return 比例值
      */
     public static double percent2(final long value, final long max) {
         if (max <= 0) return 0.0f;
@@ -114,7 +114,7 @@ public final class NumberUtils {
      * 计算百分比值 (可超出 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 返回比例值
+     * @return 比例值
      */
     public static double percent2(final double value, final double max) {
         if (max <= 0) return 0.0f;
@@ -129,7 +129,7 @@ public final class NumberUtils {
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
-     * @return 返回介于 max、min之间的 value
+     * @return 介于 max、min之间的 value
      */
     public static int clamp(final int value, final int max, final int min) {
         return value > max ? max : value < min ? min : value;
@@ -140,7 +140,7 @@ public final class NumberUtils {
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
-     * @return 返回介于 max、min之间的 value
+     * @return 介于 max、min之间的 value
      */
     public static float clamp(final float value, final float max, final float min) {
         return value > max ? max : value < min ? min : value;
@@ -151,7 +151,7 @@ public final class NumberUtils {
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
-     * @return 返回介于 max、min之间的 value
+     * @return 介于 max、min之间的 value
      */
     public static long clamp(final long value, final long max, final long min) {
         return value > max ? max : value < min ? min : value;
@@ -162,7 +162,7 @@ public final class NumberUtils {
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
-     * @return 返回介于 max、min之间的 value
+     * @return 介于 max、min之间的 value
      */
     public static double clamp(final double value, final double max, final double min) {
         return value > max ? max : value < min ? min : value;
@@ -207,7 +207,7 @@ public final class NumberUtils {
 
     /**
      * 通用匹配函数
-     * @param regex 正则判断
+     * @param regex 正则表达式
      * @param input 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */

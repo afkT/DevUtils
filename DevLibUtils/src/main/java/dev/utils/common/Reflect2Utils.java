@@ -21,8 +21,8 @@ public final class Reflect2Utils {
 
     /**
      * 获取某个对象的公共属性
-     * @param owner
-     * @param fieldName
+     * @param owner     对象
+     * @param fieldName 属性名
      * @return 该属性对象
      */
     public static Object getProperty(final Object owner, final String fieldName) {
@@ -131,7 +131,7 @@ public final class Reflect2Utils {
      * 新建实例
      * @param className 类名
      * @param args      构造函数的参数 如果无构造参数，args 填写为 null
-     * @param argsType
+     * @param argsType  参数类型
      * @return 新建的实例
      */
     public static Object newInstance(final String className, final Object[] args, final Class[] argsType) {
@@ -157,23 +157,33 @@ public final class Reflect2Utils {
     /**
      * 是不是某个类的实例
      * @param object 实例
-     * @param clazz
+     * @param clazz  待判断类
      * @return 如果 obj 是此类的实例，则返回 true
      */
     public static boolean isInstance(final Object object, final Class clazz) {
         if (object == null || clazz == null) return false;
-        return clazz.isInstance(object);
+        try {
+            return clazz.isInstance(object);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "isInstance");
+        }
+        return false;
     }
 
     /**
      * 获取数组中的某个元素
      * @param array 数组
      * @param index 索引
-     * @return 返回指定数组对象中索引组件的值
+     * @return 指定数组对象中索引组件的值
      */
     public static Object getByArray(final Object array, final int index) {
         if (array == null || index < 0) return null;
-        return Array.get(array, index);
+        try {
+            return Array.get(array, index);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getByArray");
+        }
+        return null;
     }
 
     // =
@@ -181,14 +191,20 @@ public final class Reflect2Utils {
     /**
      * 通过反射获取全部字段
      * 如: (ListView) getDeclaredField(对象, "私有属性")
-     * @param object
-     * @param name
-     * @return
+     * @param object 对象
+     * @param name   属性名
+     * @return 字段所属对象
      */
-    public static Object getDeclaredField(final Object object, final String name) throws Exception {
-        Field field = object.getClass().getDeclaredField(name);
-        field.setAccessible(true);
-        return field.get(object);
+    public static Object getDeclaredField(final Object object, final String name) {
+        if (object == null || name == null) return null;
+        try {
+            Field field = object.getClass().getDeclaredField(name);
+            field.setAccessible(true);
+            return field.get(object);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getDeclaredField");
+        }
+        return null;
     }
 
     /**
@@ -217,25 +233,30 @@ public final class Reflect2Utils {
      */
     public static Field getDeclaredFieldParent(final Object object, final String fieldName) {
         if (object == null || fieldName == null) return null;
-        Field field = null;
-        Class<?> clazz = object.getClass();
-        for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                return field;
-            } catch (Exception e) {
-                // 这里甚么都不要做！并且这里的异常必须这样写，不能抛出去。
-                // 如果这里的异常打印或者往外抛，则就不会执行clazz = clazz.getSuperclass(),最后就不会进入到父类中了
+        try {
+            Field field;
+            Class<?> clazz = object.getClass();
+            for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
+                try {
+                    field = clazz.getDeclaredField(fieldName);
+                    return field;
+                } catch (Exception e) {
+                    // 这里甚么都不要做！并且这里的异常必须这样写，不能抛出去。
+                    // 如果这里的异常打印或者往外抛，则就不会执行clazz = clazz.getSuperclass(),最后就不会进入到父类中了
+                }
             }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getDeclaredFieldParent");
         }
         return null;
     }
 
     /**
      * 设置反射的方法
-     * @param object
+     * @param object 对象
      * @param name   方法名
      * @param args   方法需要的参数
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean setFieldMethod(final Object object, final String name, final Object... args) {
         if (object == null || name == null) return false;
@@ -257,9 +278,10 @@ public final class Reflect2Utils {
 
     /**
      * 设置反射的字段
-     * @param object
+     * @param object 对象
      * @param name   字段名
      * @param value  字段值
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean setFieldValue(final Object object, final String name, final Object value) {
         if (object == null || name == null) return false;
