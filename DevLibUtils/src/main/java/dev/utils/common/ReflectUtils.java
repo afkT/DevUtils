@@ -152,14 +152,12 @@ public final class ReflectUtils {
                 }
             }
             if (list.isEmpty()) {
-                JCLogUtils.eTag(TAG, e, "newInstance");
                 throw new ReflectException(e);
             } else {
                 sortConstructors(list);
                 return newInstance(list.get(0), args);
             }
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "newInstance");
             throw new ReflectException(e);
         }
     }
@@ -236,7 +234,6 @@ public final class ReflectUtils {
             Field field = getField(name);
             return new ReflectUtils(field.getType(), field.get(object));
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "field");
             throw new ReflectException(e);
         }
     }
@@ -254,7 +251,6 @@ public final class ReflectUtils {
             field.set(object, unwrap(value));
             return this;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "field");
             throw new ReflectException(e);
         }
     }
@@ -284,6 +280,7 @@ public final class ReflectUtils {
     /**
      * 获取可访问字段, 返回 Field 对象
      * @param name 字段名
+     * @return {@link Field}
      * @throws ReflectException 反射异常
      */
     private Field getAccessibleField(final String name) throws ReflectException {
@@ -335,7 +332,6 @@ public final class ReflectUtils {
             field.setAccessible(true);
             return field.get(object);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getObject");
             throw new ReflectException(e);
         }
     }
@@ -352,7 +348,6 @@ public final class ReflectUtils {
         try {
             return field(name, Enum.valueOf((Class<Enum>) clazz, value));
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "setEnumVal");
             throw new ReflectException(e);
         }
     }
@@ -370,7 +365,6 @@ public final class ReflectUtils {
             field.setAccessible(true);
             return field.get(object);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getAccessibleField");
             throw new ReflectException(e);
         }
     }
@@ -390,7 +384,7 @@ public final class ReflectUtils {
      * @param object    子类对象
      * @param fieldName 父类中的属性名
      * @param isSuper   是否一直跟到最后, 如果父类还有父类，并且有相同变量名, 则设置isSuper = true，一直会跟到最后的变量
-     * @return 父类中的属性对象
+     * @return {@link Field} 父类中的属性对象
      */
     public static Field getDeclaredFieldBase(final Object object, final String fieldName, final boolean isSuper) {
         Field field = null;
@@ -440,7 +434,6 @@ public final class ReflectUtils {
                 Method method = similarMethod(name, types);
                 return method(method, object, args);
             } catch (Exception e1) {
-                JCLogUtils.eTag(TAG, e, "method");
                 throw new ReflectException(e1);
             }
         }
@@ -480,17 +473,14 @@ public final class ReflectUtils {
         Class<?> type = type();
         try {
             return type.getMethod(name, types);
-        } catch (NoSuchMethodException e) {
+        } catch (Exception e) {
             do {
                 try {
                     return type.getDeclaredMethod(name, types);
-                } catch (NoSuchMethodException ignore) {
+                } catch (Exception ignore) {
                 }
                 type = type.getSuperclass();
             } while (type != null);
-            JCLogUtils.eTag(TAG, e, "exactMethod");
-            throw new ReflectException(e);
-        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "exactMethod");
             throw new ReflectException(e);
         }
@@ -574,7 +564,7 @@ public final class ReflectUtils {
      * @return {@code true} yes, {@code false} no
      */
     private boolean match(final Class<?>[] declaredTypes, final Class<?>[] actualTypes) {
-        if (declaredTypes.length == actualTypes.length) {
+        if (declaredTypes != null && actualTypes != null && declaredTypes.length == actualTypes.length) {
             for (int i = 0; i < actualTypes.length; i++) {
                 if (actualTypes[i] == NULL.class || wrapper(declaredTypes[i]).isAssignableFrom(wrapper(actualTypes[i]))) {
                     continue;
@@ -610,6 +600,7 @@ public final class ReflectUtils {
      */
     @SuppressWarnings("unchecked")
     public <P> P proxy(final Class<P> proxyType) {
+        if (proxyType == null) return null;
         final boolean isMap = (object instanceof Map);
         final InvocationHandler handler = new InvocationHandler() {
             @Override
@@ -642,7 +633,7 @@ public final class ReflectUtils {
     /**
      * 获取实体类属性名 get/set
      * @param str 属性名
-     * @return
+     * @return 属性名字
      */
     private static String property(final String str) {
         int length = str.length();
@@ -659,12 +650,17 @@ public final class ReflectUtils {
 
     /**
      * 获取类型
-     * @return
+     * @return {@link Class}
      */
     public Class<?> type() {
         return type;
     }
 
+    /**
+     * 获取类型
+     * @param type {@link Class}
+     * @return {@link Class} 类所属类型
+     */
     private Class<?> wrapper(final Class<?> type) {
         if (type == null) {
             return null;
@@ -704,17 +700,21 @@ public final class ReflectUtils {
 
     /**
      * 获取 HashCode
-     * @return
+     * @return hashCode
      */
     @Override
     public int hashCode() {
-        return object.hashCode();
+        if (object != null) {
+            return object.hashCode();
+        } else {
+            return 0;
+        }
     }
 
     /**
      * 判断反射的两个对象是否一样
-     * @param object
-     * @return
+     * @param object 对象
+     * @return {@code true} yes, {@code false} no
      */
     @Override
     public boolean equals(final Object object) {
@@ -722,8 +722,8 @@ public final class ReflectUtils {
     }
 
     /**
-     * 获取反射获取的对象 toString
-     * @return
+     * 获取反射获取的对象
+     * @return {@link Object#toString()}
      */
     @Override
     public String toString() {

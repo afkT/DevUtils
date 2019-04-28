@@ -19,7 +19,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +46,8 @@ public final class FileUtils {
     // ============
 
     /**
-     * 判断是否为 null
-     * @param str
+     * 判断字符串是否为 null
+     * @param str 待校验的字符串
      * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {
@@ -74,8 +73,8 @@ public final class FileUtils {
 
     /**
      * 获取文件
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 文件 {@link File}
      */
     public static File getFile(final String filePath) {
         return getFileByPath(filePath);
@@ -85,7 +84,7 @@ public final class FileUtils {
      * 获取文件
      * @param filePath 文件路径
      * @param fileName 文件名
-     * @return
+     * @return 文件 {@link File}
      */
     public static File getFile(final String filePath, final String fileName) {
         return (filePath != null && fileName != null) ? new File(filePath, fileName) : null;
@@ -93,8 +92,8 @@ public final class FileUtils {
 
     /**
      * 获取文件
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 文件 {@link File}
      */
     public static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;
@@ -104,7 +103,7 @@ public final class FileUtils {
      * 获取路径, 并且进行创建目录
      * @param filePath 保存目录
      * @param fileName 文件名
-     * @return
+     * @return 文件 {@link File}
      */
     public static File getFileCreateFolder(final String filePath, final String fileName) {
         // 防止不存在目录文件，自动创建
@@ -116,6 +115,7 @@ public final class FileUtils {
     /**
      * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
      * @param dirPath 文件夹路径 (无文件名字.后缀)
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean createFolder(final String dirPath) {
         return createFolder(getFileByPath(dirPath));
@@ -124,6 +124,7 @@ public final class FileUtils {
     /**
      * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
      * @param file 文件夹路径 (无文件名字.后缀)
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean createFolder(final File file) {
         if (file != null) {
@@ -146,7 +147,7 @@ public final class FileUtils {
     /**
      * 创建文件夹目录 - 可以传入文件名
      * @param filePath 文件路径 + 文件名
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean createFolderByPath(final String filePath) {
         return createFolderByPath(getFileByPath(filePath));
@@ -154,8 +155,8 @@ public final class FileUtils {
 
     /**
      * 创建文件夹目录 - 可以传入文件名
-     * @param file
-     * @return
+     * @param file 文件
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean createFolderByPath(final File file) {
         // 创建文件夹 - 如果失败才创建
@@ -171,7 +172,7 @@ public final class FileUtils {
 
     /**
      * 创建多个文件夹, 如果不存在则创建
-     * @param filePaths
+     * @param filePaths 文件路径数组
      */
     public static void createFolderByPaths(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
@@ -183,7 +184,7 @@ public final class FileUtils {
 
     /**
      * 创建多个文件夹, 如果不存在则创建
-     * @param files
+     * @param files 文件数组
      */
     public static void createFolderByPaths(final File... files) {
         if (files != null && files.length != 0) {
@@ -245,7 +246,7 @@ public final class FileUtils {
 
     /**
      * 判断文件是否存在，存在则在创建之前删除
-     * @param filePath
+     * @param filePath 文件路径
      * @return {@code true} 创建成功, {@code false} 创建失败
      */
     public static boolean createFileByDeleteOldFile(final String filePath) {
@@ -254,7 +255,7 @@ public final class FileUtils {
 
     /**
      * 判断文件是否存在，存在则在创建之前删除
-     * @param file
+     * @param file 文件
      * @return {@code true} 创建成功, {@code false} 创建失败
      */
     public static boolean createFileByDeleteOldFile(final File file) {
@@ -273,8 +274,8 @@ public final class FileUtils {
 
     /**
      * 获取文件路径
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件路径
      */
     public static String getPath(final File file) {
         return file != null ? file.getPath() : null;
@@ -282,8 +283,8 @@ public final class FileUtils {
 
     /**
      * 获取文件绝对路径
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件绝对路径
      */
     public static String getAbsolutePath(final File file) {
         return file != null ? file.getAbsolutePath() : null;
@@ -293,8 +294,8 @@ public final class FileUtils {
 
     /**
      * 获取文件名
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件名
      */
     public static String getName(final File file) {
         return file != null ? file.getName() : null;
@@ -303,7 +304,7 @@ public final class FileUtils {
     /**
      * 获取文件名
      * @param filePath 文件路径
-     * @return
+     * @return 文件名
      */
     public static String getName(final String filePath) {
         return getName(filePath, "");
@@ -312,8 +313,8 @@ public final class FileUtils {
     /**
      * 获取文件名
      * @param filePath   文件路径
-     * @param defaultStr
-     * @return
+     * @param defaultStr 默认字符串
+     * @return 文件名, 如果文件路径为 null 时, 返回默认字符串
      */
     public static String getName(final String filePath, final String defaultStr) {
         return isSpace(filePath) ? defaultStr : new File(filePath).getName();
@@ -321,17 +322,17 @@ public final class FileUtils {
 
     /**
      * 获取文件后缀名(无.,单独后缀)
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件后缀名(无., 单独后缀)
      */
     public static String getFileSuffix(final File file) {
         return getFileSuffix(getAbsolutePath(file));
     }
 
     /**
-     * 获取文件后缀 (无 "." 单独后缀)
-     * @param filePath 文件路径、文件名都行
-     * @return
+     * 获取文件后缀(无 "." 单独后缀)
+     * @param filePath 文件路径或文件名
+     * @return 文件后缀(无 " . " 单独后缀)
      */
     public static String getFileSuffix(final String filePath) {
         // 获取最后的索引
@@ -349,8 +350,8 @@ public final class FileUtils {
 
     /**
      * 获取文件名(无后缀)
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件名(无后缀)
      */
     public static String getFileNotSuffix(final File file) {
         return getFileNotSuffix(getName(file));
@@ -358,8 +359,8 @@ public final class FileUtils {
 
     /**
      * 获取文件名(无后缀)
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 文件名(无后缀)
      */
     public static String getFileNotSuffixToPath(final String filePath) {
         return getFileNotSuffix(getName(filePath));
@@ -368,7 +369,7 @@ public final class FileUtils {
     /**
      * 获取文件名(无后缀)
      * @param fileName 文件名
-     * @return
+     * @return 文件名(无后缀)
      */
     public static String getFileNotSuffix(final String fileName) {
         if (fileName != null) {
@@ -382,8 +383,8 @@ public final class FileUtils {
     }
 
     /**
-     * 获取全路径中的不带拓展名的文件名
-     * @param file
+     * 获取路径中的不带拓展名的文件名
+     * @param file 文件
      * @return 不带拓展名的文件名
      */
     public static String getFileNameNoExtension(final File file) {
@@ -392,29 +393,26 @@ public final class FileUtils {
     }
 
     /**
-     * 获取全路径中的不带拓展名的文件名
-     * @param filePath
+     * 获取路径中的不带拓展名的文件名
+     * @param filePath 文件路径
      * @return 不带拓展名的文件名
      */
     public static String getFileNameNoExtension(final String filePath) {
         if (isSpace(filePath)) return filePath;
         int lastPoi = filePath.lastIndexOf('.');
         int lastSep = filePath.lastIndexOf(File.separator);
-
         if (lastSep == -1) {
             return (lastPoi == -1 ? filePath : filePath.substring(0, lastPoi));
         }
-
         if (lastPoi == -1 || lastSep > lastPoi) {
             return filePath.substring(lastSep + 1);
         }
-
         return filePath.substring(lastSep + 1, lastPoi);
     }
 
     /**
-     * 获取全路径中的文件拓展名
-     * @param file
+     * 获取路径中的文件拓展名
+     * @param file 文件
      * @return 文件拓展名
      */
     public static String getFileExtension(final File file) {
@@ -423,8 +421,8 @@ public final class FileUtils {
     }
 
     /**
-     * 获取全路径中的文件拓展名
-     * @param filePath
+     * 获取路径中的文件拓展名
+     * @param filePath 文件路径
      * @return 文件拓展名
      */
     public static String getFileExtension(final String filePath) {
@@ -439,8 +437,8 @@ public final class FileUtils {
 
     /**
      * 检查是否存在某个文件
-     * @param file 文件路径
-     * @return 是否存在文件
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isFileExists(final File file) {
         return file != null && file.exists();
@@ -449,7 +447,7 @@ public final class FileUtils {
     /**
      * 检查是否存在某个文件
      * @param filePath 文件路径
-     * @return 是否存在文件
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isFileExists(final String filePath) {
         return isFileExists(getFileByPath(filePath));
@@ -459,7 +457,7 @@ public final class FileUtils {
      * 检查是否存在某个文件
      * @param filePath 文件路径
      * @param fileName 文件名
-     * @return 是否存在文件
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isFileExists(final String filePath, final String fileName) {
         return filePath != null && fileName != null && new File(filePath, fileName).exists();
@@ -467,8 +465,8 @@ public final class FileUtils {
 
     /**
      * 判断是否文件
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isFile(final String filePath) {
         return isFile(getFileByPath(filePath));
@@ -476,8 +474,8 @@ public final class FileUtils {
 
     /**
      * 判断是否文件
-     * @param file
-     * @return
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isFile(final File file) {
         return file != null && file.exists() && file.isFile();
@@ -485,8 +483,8 @@ public final class FileUtils {
 
     /**
      * 判断是否文件夹
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isDirectory(final String filePath) {
         return isDirectory(getFileByPath(filePath));
@@ -494,8 +492,8 @@ public final class FileUtils {
 
     /**
      * 判断是否文件夹
-     * @param file
-     * @return
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isDirectory(final File file) {
         return file != null && file.exists() && file.isDirectory();
@@ -503,8 +501,8 @@ public final class FileUtils {
 
     /**
      * 判断是否隐藏文件
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isHidden(final String filePath) {
         return isHidden(getFileByPath(filePath));
@@ -512,8 +510,8 @@ public final class FileUtils {
 
     /**
      * 判断是否隐藏文件
-     * @param file
-     * @return
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isHidden(final File file) {
         return file != null && file.exists() && file.isHidden();
@@ -541,18 +539,18 @@ public final class FileUtils {
     }
 
     /**
-     * 简单获取文件编码格式
+     * 获取文件编码格式
      * @param filePath 文件路径
-     * @return 文件编码
+     * @return 文件编码格式
      */
     public static String getFileCharsetSimple(final String filePath) {
         return getFileCharsetSimple(getFileByPath(filePath));
     }
 
     /**
-     * 简单获取文件编码格式
+     * 获取文件编码格式
      * @param file 文件
-     * @return 文件编码
+     * @return 文件编码格式
      */
     public static String getFileCharsetSimple(final File file) {
         int pos = 0;
@@ -579,7 +577,7 @@ public final class FileUtils {
 
     /**
      * 获取文件行数
-     * @param filePath
+     * @param filePath 文件路径
      * @return 文件行数
      */
     public static int getFileLines(final String filePath) {
@@ -588,7 +586,7 @@ public final class FileUtils {
 
     /**
      * 获取文件行数 => 比 readLine 要快很多
-     * @param file
+     * @param file 文件
      * @return 文件行数
      */
     public static int getFileLines(final File file) {
@@ -623,7 +621,7 @@ public final class FileUtils {
 
     /**
      * 获取文件大小
-     * @param filePath
+     * @param filePath 文件路径
      * @return 文件大小
      */
     public static String getFileSize(final String filePath) {
@@ -632,7 +630,7 @@ public final class FileUtils {
 
     /**
      * 获取文件大小
-     * @param file
+     * @param file 文件
      * @return 文件大小
      */
     public static String getFileSize(final File file) {
@@ -659,8 +657,8 @@ public final class FileUtils {
 
     /**
      * 获取文件大小
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 文件大小
      */
     public static long getFileLength(final String filePath) {
         return getFileLength(getFileByPath(filePath));
@@ -668,26 +666,26 @@ public final class FileUtils {
 
     /**
      * 获取文件大小
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件大小
      */
     public static long getFileLength(final File file) {
         return file != null ? file.length() : 0l;
     }
 
     /**
-     * 获取目录长度
+     * 获取目录全部文件大小
      * @param dirPath 目录路径
-     * @return 目录长度
+     * @return 目录全部文件大小
      */
     public static long getDirLength(final String dirPath) {
         return getDirLength(getFileByPath(dirPath));
     }
 
     /**
-     * 获取目录长度
+     * 获取目录全部文件大小
      * @param dir 目录
-     * @return 目录长度
+     * @return 目录全部文件大小
      */
     public static long getDirLength(final File dir) {
         if (!isDirectory(dir)) return 0;
@@ -706,11 +704,12 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件长度 - 网络资源
-     * @param httpUri
-     * @return 文件长度
+     * 获取文件大小 - 网络资源
+     * @param httpUri 文件网络链接
+     * @return 文件大小
      */
     public static long getFileLengthNetwork(final String httpUri) {
+        if (isSpace(httpUri)) return 0l;
         boolean isURL = httpUri.matches("[a-zA-z]+://[^\\s]*");
         if (isURL) {
             try {
@@ -729,8 +728,8 @@ public final class FileUtils {
     }
 
     /**
-     * 获取全路径中的文件名
-     * @param file
+     * 获取路径中的文件名
+     * @param file 文件
      * @return 文件名
      */
     public static String getFileName(final File file) {
@@ -739,8 +738,8 @@ public final class FileUtils {
     }
 
     /**
-     * 获取全路径中的文件名
-     * @param filePath
+     * 获取路径中的文件名
+     * @param filePath 文件路径
      * @return 文件名
      */
     public static String getFileName(final String filePath) {
@@ -750,9 +749,9 @@ public final class FileUtils {
     }
 
     /**
-     * 获取全路径中的最长目录
-     * @param file
-     * @return filePath 最长目录
+     * 获取路径中的最长目录地址
+     * @param file 文件
+     * @return 最长目录地址
      */
     public static String getDirName(final File file) {
         if (file == null) return null;
@@ -760,9 +759,9 @@ public final class FileUtils {
     }
 
     /**
-     * 获取全路径中的最长目录
-     * @param filePath
-     * @return filePath 最长目录
+     * 获取全路径中的最长目录地址
+     * @param filePath 文件路径
+     * @return 最长目录地址
      */
     public static String getDirName(final String filePath) {
         if (isSpace(filePath)) return filePath;
@@ -775,8 +774,8 @@ public final class FileUtils {
     /**
      * 重命名文件 - 同个目录下, 修改文件名
      * @param filePath    文件路径
-     * @param newFileName 新名称
-     * @return
+     * @param newFileName 文件新名称
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean rename(final String filePath, final String newFileName) {
         return rename(getFileByPath(filePath), newFileName);
@@ -785,8 +784,8 @@ public final class FileUtils {
     /**
      * 重命名文件 - 同个目录下, 修改文件名
      * @param file        文件
-     * @param newFileName 新名称
-     * @return
+     * @param newFileName 文件新名称
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean rename(final File file, final String newFileName) {
         // 文件为空返回 false
@@ -807,8 +806,8 @@ public final class FileUtils {
 
     /**
      * 传入文件路径, 返回对应的文件大小
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 文件大小转换字符串
      */
     public static String formatFileSize(final String filePath) {
         File file = getFileByPath(filePath);
@@ -817,8 +816,8 @@ public final class FileUtils {
 
     /**
      * 传入文件路径, 返回对应的文件大小
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件大小转换字符串
      */
     public static String formatFileSize(final File file) {
         return formatFileSize(file != null ? file.length() : 0);
@@ -826,8 +825,8 @@ public final class FileUtils {
 
     /**
      * 传入对应的文件大小double,返回转换后文件大小
-     * @param fileSize
-     * @return
+     * @param fileSize 文件大小
+     * @return 文件大小转换字符串
      */
     public static String formatFileSize(final double fileSize) {
         // 转换文件大小
@@ -852,7 +851,7 @@ public final class FileUtils {
     /**
      * 字节数转合适内存大小 保留 3 位小数 (%.位数f)
      * @param byteSize 字节数
-     * @return 合适内存大小
+     * @return 合适内存大小字符串
      */
     public static String formatByteMemorySize(final double byteSize) {
         return formatByteMemorySize(3, byteSize);
@@ -860,9 +859,9 @@ public final class FileUtils {
 
     /**
      * 字节数转合适内存大小 保留 number 位小数 (%.位数f)
-     * @param number   字节数
+     * @param number   保留小数位数
      * @param byteSize 字节数
-     * @return 合适内存大小
+     * @return 合适内存大小字符串
      */
     public static String formatByteMemorySize(final int number, final double byteSize) {
         if (byteSize < 0d) {
@@ -887,7 +886,7 @@ public final class FileUtils {
     /**
      * 获取文件的 MD5 校验码
      * @param filePath 文件路径
-     * @return 文件的 MD5 校验码
+     * @return 文件 MD5 校验码
      */
     public static String getFileMD5ToString(final String filePath) {
         return getFileMD5ToString(getFileByPath(filePath));
@@ -896,12 +895,14 @@ public final class FileUtils {
     /**
      * 获取文件的 MD5 校验码
      * @param file 文件
-     * @return 文件的 MD5 校验码
+     * @return 文件 MD5 校验码
      */
     public static String getFileMD5ToString(final File file) {
+        if (file == null || !file.exists()) return null;
         try {
             return toHexString(getFileMD5(file), HEX_DIGITS);
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getFileMD5ToString");
         }
         return null;
     }
@@ -909,7 +910,7 @@ public final class FileUtils {
     /**
      * 获取文件的 MD5 校验码
      * @param filePath 文件路径
-     * @return 文件的 MD5 校验码
+     * @return 文件 MD5 校验码
      */
     public static byte[] getFileMD5(final String filePath) {
         return getFileMD5(getFileByPath(filePath));
@@ -918,10 +919,10 @@ public final class FileUtils {
     /**
      * 获取文件的 MD5 校验码
      * @param file 文件
-     * @return 文件的 MD5 校验码
+     * @return 文件 MD5 校验码
      */
     public static byte[] getFileMD5(final File file) {
-        if (file == null) return null;
+        if (file == null || !file.exists()) return null;
         DigestInputStream dis = null;
         try {
             FileInputStream fis = new FileInputStream(file);
@@ -933,7 +934,7 @@ public final class FileUtils {
             }
             md = dis.getMessageDigest();
             return md.digest();
-        } catch (NoSuchAlgorithmException | IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5");
         } finally {
             CloseUtils.closeIO(dis);
@@ -946,7 +947,7 @@ public final class FileUtils {
     /**
      * 获取文件MD5值 - 小写
      * @param filePath 文件路径
-     * @return
+     * @return 文件 MD5 校验码
      */
     public static String getFileMD5ToString2(final String filePath) {
         return getFileMD5ToString2(getFileByPath(filePath));
@@ -955,9 +956,10 @@ public final class FileUtils {
     /**
      * 获取文件MD5值 - 小写
      * @param file 文件地址
-     * @return
+     * @return 文件 MD5 校验码
      */
     public static String getFileMD5ToString2(final File file) {
+        if (file == null || !file.exists()) return null;
         try {
             InputStream fis = new FileInputStream(file);
             byte[] buffer = new byte[1024];
@@ -979,9 +981,9 @@ public final class FileUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data
-     * @param hexDigits
-     * @return
+     * @param data      待加密数据
+     * @param hexDigits {@link FileUtils#HEX_DIGITS}
+     * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
@@ -1005,8 +1007,8 @@ public final class FileUtils {
 
     /**
      * 删除文件
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean deleteFile(final String filePath) {
         return deleteFile(getFileByPath(filePath));
@@ -1014,8 +1016,8 @@ public final class FileUtils {
 
     /**
      * 删除文件
-     * @param file
-     * @return
+     * @param file 文件
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean deleteFile(final File file) {
         // 文件存在，并且不是目录文件,则直接删除
@@ -1027,8 +1029,8 @@ public final class FileUtils {
 
     /**
      * 删除多个文件
-     * @param filePaths
-     * @return
+     * @param filePaths 文件数组
+     * @return {@code true} success, {@code false} fail
      */
     public static void deleteFiles(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
@@ -1040,8 +1042,8 @@ public final class FileUtils {
 
     /**
      * 删除多个文件
-     * @param files
-     * @return
+     * @param files 文件数组
+     * @return {@code true} success, {@code false} fail
      */
     public static void deleteFiles(final File... files) {
         if (files != null && files.length != 0) {
@@ -1055,8 +1057,8 @@ public final class FileUtils {
 
     /**
      * 删除文件夹
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean deleteFolder(final String filePath) {
         return deleteFolder(getFileByPath(filePath));
@@ -1064,8 +1066,8 @@ public final class FileUtils {
 
     /**
      * 删除文件夹
-     * @param file
-     * @return
+     * @param file 文件
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean deleteFolder(final File file) {
         if (file != null) {
@@ -1094,9 +1096,9 @@ public final class FileUtils {
 
     /**
      * 保存文件
-     * @param file
+     * @param file 保存文件
      * @param data 保存内容
-     * @return 是否保存成功
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean saveFile(final File file, final byte[] data) {
         if (file != null && data != null) {
@@ -1122,7 +1124,7 @@ public final class FileUtils {
      * @param filePath 保存路径
      * @param fileName 文件名.后缀
      * @param data     保存内容
-     * @return 是否保存成功
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean saveFile(final String filePath, final String fileName, final byte[] data) {
         if (filePath != null && fileName != null && data != null) {
@@ -1150,7 +1152,7 @@ public final class FileUtils {
      * @param filePath 保存路径
      * @param fileName 文件名.后缀
      * @param content  保存内容
-     * @return 是否保存成功
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean saveFile(final String filePath, final String fileName, final String content) {
         if (filePath != null && fileName != null && content != null) {
@@ -1176,8 +1178,8 @@ public final class FileUtils {
      * @param filePath 保存路径
      * @param fileName 文件名.后缀
      * @param content  保存内容
-     * @param coding   编码
-     * @return 是否保存成功
+     * @param coding   编码格式
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean saveFile(final String filePath, final String fileName, final String content, final String coding) {
         if (filePath != null && fileName != null && content != null) {
@@ -1236,8 +1238,8 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 文件内容 byte[]
      */
     public static byte[] readFileBytes(final String filePath) {
         return readFileBytes(getFileByPath(filePath));
@@ -1245,8 +1247,8 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件内容 byte[]
      */
     public static byte[] readFileBytes(final File file) {
         if (file != null && file.exists()) {
@@ -1266,15 +1268,16 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     * @return
+     * @param inputStream {@link InputStream}
+     * @return 文件内容 byte[]
      */
-    public static byte[] readFileBytes(final InputStream is) {
-        if (is != null) {
+    public static byte[] readFileBytes(final InputStream inputStream) {
+        if (inputStream != null) {
             try {
-                int length = is.available();
+                int length = inputStream.available();
                 byte[] buffer = new byte[length];
-                is.read(buffer);
-                is.close();
+                inputStream.read(buffer);
+                inputStream.close();
                 return buffer;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "readFileBytes");
@@ -1285,8 +1288,8 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 文件内容字符串
      */
     public static String readFile(final String filePath) {
         return readFile(getFileByPath(filePath));
@@ -1294,8 +1297,8 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件内容字符串
      */
     public static String readFile(final File file) {
         if (file != null && file.exists()) {
@@ -1310,13 +1313,13 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     * @param is -> new FileInputStream(path)
-     * @return
+     * @param inputStream {@link InputStream} new FileInputStream(path)
+     * @return 文件内容字符串
      */
-    public static String readFile(final InputStream is) {
-        if (is != null) {
+    public static String readFile(final InputStream inputStream) {
+        if (inputStream != null) {
             try {
-                InputStreamReader isR = new InputStreamReader(is);
+                InputStreamReader isR = new InputStreamReader(inputStream);
                 BufferedReader br = new BufferedReader(isR);
                 StringBuilder builder = new StringBuilder();
                 String line;
@@ -1335,18 +1338,18 @@ public final class FileUtils {
 
     /**
      * 读取文件
-     * @param is     -> new FileInputStream(path)
-     * @param encode 编码
-     * @return
+     * @param inputStream {@link InputStream} new FileInputStream(path)
+     * @param encode      编码格式
+     * @return 文件内容字符串
      */
-    public static String readFile(final InputStream is, final String encode) {
-        if (is != null) {
+    public static String readFile(final InputStream inputStream, final String encode) {
+        if (inputStream != null) {
             try {
                 InputStreamReader isR = null;
                 if (encode != null) {
-                    new InputStreamReader(is, encode);
+                    new InputStreamReader(inputStream, encode);
                 } else {
-                    new InputStreamReader(is);
+                    new InputStreamReader(inputStream);
                 }
                 BufferedReader br = new BufferedReader(isR);
                 StringBuilder builder = new StringBuilder();
@@ -1371,7 +1374,7 @@ public final class FileUtils {
      * @param inputStream  文件流(被复制)
      * @param destFilePath 目标文件地址
      * @param overlay      如果目标文件存在，是否覆盖
-     * @return 如果复制成功返回true，否则返回false
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean copyFile(final InputStream inputStream, final String destFilePath, final boolean overlay) {
         if (inputStream == null || destFilePath == null) {
@@ -1429,7 +1432,7 @@ public final class FileUtils {
      * @param srcFilePath  待复制的文件地址
      * @param destFilePath 目标文件地址
      * @param overlay      如果目标文件存在，是否覆盖
-     * @return 如果复制成功返回true，否则返回false
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean copyFile(final String srcFilePath, final String destFilePath, final boolean overlay) {
         if (srcFilePath == null || destFilePath == null) {
@@ -1495,7 +1498,7 @@ public final class FileUtils {
      * @param srcFolderPath  待复制的文件夹地址
      * @param destFolderPath 目标文件夹地址
      * @param overlay        如果目标文件存在，是否覆盖
-     * @return 如果复制成功返回true，否则返回false
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean copyFolder(final String srcFolderPath, final String destFolderPath, final boolean overlay) {
         return copyFolder(srcFolderPath, destFolderPath, srcFolderPath, overlay);
@@ -1507,7 +1510,7 @@ public final class FileUtils {
      * @param destFolderPath 目标文件夹地址
      * @param sourcePath     源文件地址
      * @param overlay        如果目标文件存在，是否覆盖
-     * @return 如果复制成功返回true，否则返回false
+     * @return {@code true} success, {@code false} fail
      */
     private static boolean copyFolder(final String srcFolderPath, final String destFolderPath, final String sourcePath, boolean overlay) {
         if (srcFolderPath == null || destFolderPath == null || sourcePath == null) {
@@ -1570,10 +1573,10 @@ public final class FileUtils {
 
     /**
      * 移动(剪切)文件
-     * @param srcFilePath
-     * @param destFilePath
-     * @param overlay
-     * @return
+     * @param srcFilePath  待移动的文件地址
+     * @param destFilePath 目标文件地址
+     * @param overlay      如果目标文件存在，是否覆盖
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean moveFile(final String srcFilePath, final String destFilePath, final boolean overlay) {
         // 复制文件
@@ -1586,10 +1589,10 @@ public final class FileUtils {
 
     /**
      * 移动(剪切)文件夹
-     * @param srcFilePath
-     * @param destFilePath
-     * @param overlay
-     * @return
+     * @param srcFilePath  待移动的文件夹地址
+     * @param destFilePath 目标文件夹地址
+     * @param overlay      如果目标文件存在，是否覆盖
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean moveFolder(final String srcFilePath, final String destFilePath, final boolean overlay) {
         // 复制文件夹
@@ -2006,13 +2009,14 @@ public final class FileUtils {
     }
 
     /**
-     * 覆盖/替换事件
+     * detail: 覆盖/替换事件
+     * @author Ttt
      */
     public interface OnReplaceListener {
 
         /**
          * 是否覆盖/替换文件
-         * @return
+         * @return {@code true} yes, {@code false} no
          */
         boolean onReplace();
     }
