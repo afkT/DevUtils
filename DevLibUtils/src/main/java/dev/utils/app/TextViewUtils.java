@@ -444,6 +444,17 @@ public final class TextViewUtils {
 
     /**
      * 设置内容
+     * @param textView
+     * @param content
+     */
+    public static void setText(final TextView textView, final String content) {
+        if (textView != null && content != null) {
+            textView.setText(content);
+        }
+    }
+
+    /**
+     * 设置内容
      * @param view
      * @param content
      */
@@ -503,7 +514,31 @@ public final class TextViewUtils {
         }
     }
 
+    /**
+     * 设置多个 TextView 内容
+     * @param content
+     * @param views
+     */
+    public static void setTexts(final String content, final View... views) {
+        if (content != null && views != null && views.length > 0){
+            for (View view : views){
+                setText(view, content);
+            }
+        }
+    }
+
     // =
+
+    /**
+     * 设置 Html 内容
+     * @param textView
+     * @param content
+     */
+    public static void setHtmlText(final TextView textView, final String content) {
+        if (textView != null && content != null) {
+            textView.setText(Html.fromHtml(content));
+        }
+    }
 
     /**
      * 设置 Html 内容
@@ -569,26 +604,19 @@ public final class TextViewUtils {
     // =
 
     /**
-     * 设置内容
-     * @param textView
+     * 设置 多个 TextView Html 内容
      * @param content
+     * @param views
      */
-    public static void setText(final TextView textView, final String content) {
-        if (textView != null && content != null) {
-            textView.setText(content);
+    public static void setHtmlTexts(final String content, final View... views) {
+        if (content != null && views != null && views.length > 0){
+            for (View view : views){
+                setHtmlText(view, content);
+            }
         }
     }
 
-    /**
-     * 设置 Html 内容
-     * @param textView
-     * @param content
-     */
-    public static void setHtmlText(final TextView textView, final String content) {
-        if (textView != null && content != null) {
-            textView.setText(Html.fromHtml(content));
-        }
-    }
+    // =
 
     /**
      * 获取字体高度

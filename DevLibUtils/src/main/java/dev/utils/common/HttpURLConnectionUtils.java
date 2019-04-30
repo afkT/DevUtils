@@ -86,7 +86,6 @@ public final class HttpURLConnectionUtils {
      * @param headers  请求头信息
      * @param params   请求参数
      * @param callBack 请求回调接口
-     * @return
      */
     public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final CallBack callBack) {
         // 获取连接对象
