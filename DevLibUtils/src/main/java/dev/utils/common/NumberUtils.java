@@ -176,10 +176,7 @@ public final class NumberUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumber(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_NUMBER, str);
-        }
-        return false;
+        return match(REGEX_NUMBER, str);
     }
 
     /**
@@ -188,10 +185,7 @@ public final class NumberUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumberDecimal(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_NUMBER_OR_DECIMAL, str);
-        }
-        return false;
+        return match(REGEX_NUMBER_OR_DECIMAL, str);
     }
 
     // =
@@ -212,10 +206,12 @@ public final class NumberUtils {
      * @return {@code true} yes, {@code false} no
      */
     private static boolean match(final String regex, final String input) {
-        try {
-            return Pattern.matches(regex, input);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "match");
+        if (!isEmpty(input)) {
+            try {
+                return Pattern.matches(regex, input);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "match");
+            }
         }
         return false;
     }

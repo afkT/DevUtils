@@ -600,7 +600,7 @@ public final class ReflectUtils {
      */
     @SuppressWarnings("unchecked")
     public <P> P proxy(final Class<P> proxyType) {
-        if (proxyType == null) return null;
+        if (proxyType == null || object == null) return null;
         final boolean isMap = (object instanceof Map);
         final InvocationHandler handler = new InvocationHandler() {
             @Override
@@ -704,21 +704,28 @@ public final class ReflectUtils {
      */
     @Override
     public int hashCode() {
-        if (object != null) {
-            return object.hashCode();
-        } else {
-            return 0;
-        }
+        return this.object != null ? object.hashCode() : 0;
     }
 
     /**
      * 判断反射的两个对象是否一样
-     * @param object 对象
+     * @param obj 对象
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean equals(final Object object) {
-        return object instanceof ReflectUtils && this.object.equals(((ReflectUtils) object).get());
+    public boolean equals(final Object obj) {
+        if (this.object == null && obj == null) {
+            return true;
+        } else {
+            if (this.object != null && obj != null) {
+                if (obj instanceof ReflectUtils) {
+                    return this.object.equals(((ReflectUtils) obj).get());
+                } else {
+                    this.object.equals(obj);
+                }
+            }
+            return false;
+        }
     }
 
     /**
@@ -727,7 +734,7 @@ public final class ReflectUtils {
      */
     @Override
     public String toString() {
-        return object.toString();
+        return this.object != null ? object.toString() : null;
     }
 
     // =

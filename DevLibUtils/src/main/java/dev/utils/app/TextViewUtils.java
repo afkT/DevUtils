@@ -520,8 +520,8 @@ public final class TextViewUtils {
      * @param views
      */
     public static void setTexts(final String content, final View... views) {
-        if (content != null && views != null && views.length > 0){
-            for (View view : views){
+        if (content != null && views != null && views.length > 0) {
+            for (View view : views) {
                 setText(view, content);
             }
         }
@@ -609,8 +609,8 @@ public final class TextViewUtils {
      * @param views
      */
     public static void setHtmlTexts(final String content, final View... views) {
-        if (content != null && views != null && views.length > 0){
-            for (View view : views){
+        if (content != null && views != null && views.length > 0) {
+            for (View view : views) {
                 setHtmlText(view, content);
             }
         }

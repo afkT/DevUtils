@@ -553,6 +553,7 @@ public final class FileUtils {
      * @return 文件编码格式
      */
     public static String getFileCharsetSimple(final File file) {
+        if (file == null) return null;
         int pos = 0;
         InputStream is = null;
         try {
@@ -590,6 +591,7 @@ public final class FileUtils {
      * @return 文件行数
      */
     public static int getFileLines(final File file) {
+        if (file == null) return 0;
         int lineCount = 1;
         InputStream is = null;
         try {
@@ -710,7 +712,7 @@ public final class FileUtils {
      */
     public static long getFileLengthNetwork(final String httpUri) {
         if (isSpace(httpUri)) return 0l;
-        boolean isURL = httpUri.matches("[a-zA-z]+://[^\\s]*");
+        boolean isURL = httpUri.toLowerCase().matches("http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?");
         if (isURL) {
             try {
                 HttpURLConnection conn = (HttpURLConnection) new URL(httpUri).openConnection();
@@ -831,7 +833,7 @@ public final class FileUtils {
     public static String formatFileSize(final double fileSize) {
         // 转换文件大小
         DecimalFormat df = new DecimalFormat("#.00");
-        String fileSizeStr = "";
+        String fileSizeStr;
         if (fileSize <= 0) {
             fileSizeStr = "0B";
         } else if (fileSize < 1024) {
@@ -961,14 +963,14 @@ public final class FileUtils {
     public static String getFileMD5ToString2(final File file) {
         if (file == null || !file.exists()) return null;
         try {
-            InputStream fis = new FileInputStream(file);
+            InputStream is = new FileInputStream(file);
             byte[] buffer = new byte[1024];
             MessageDigest md5 = MessageDigest.getInstance("MD5");
             int numRead = 0;
-            while ((numRead = fis.read(buffer)) > 0) {
+            while ((numRead = is.read(buffer)) > 0) {
                 md5.update(buffer, 0, numRead);
             }
-            fis.close();
+            is.close();
             return toHexString(md5.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5ToString2");
@@ -1345,19 +1347,19 @@ public final class FileUtils {
     public static String readFile(final InputStream inputStream, final String encode) {
         if (inputStream != null) {
             try {
-                InputStreamReader isR = null;
+                InputStreamReader isr = null;
                 if (encode != null) {
                     new InputStreamReader(inputStream, encode);
                 } else {
                     new InputStreamReader(inputStream);
                 }
-                BufferedReader br = new BufferedReader(isR);
+                BufferedReader br = new BufferedReader(isr);
                 StringBuilder builder = new StringBuilder();
                 String line;
                 while ((line = br.readLine()) != null) {
                     builder.append(line);
                 }
-                isR.close();
+                isr.close();
                 br.close();
                 return builder.toString();
             } catch (Exception e) {
@@ -1380,7 +1382,6 @@ public final class FileUtils {
         if (inputStream == null || destFilePath == null) {
             return false;
         }
-        // 判断目标文件是否存在
         File destFile = new File(destFilePath);
         // 如果属于文件夹则跳过
         if (destFile.isDirectory()) {
@@ -1628,7 +1629,7 @@ public final class FileUtils {
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
     private static boolean copyOrMoveDir(final File srcDir, final File destDir, final OnReplaceListener listener, final boolean isMove) {
-        if (srcDir == null || destDir == null) return false;
+        if (srcDir == null || destDir == null || listener == null) return false;
         // 为防止以上这种情况出现出现误判，须分别在后面加个路径分隔符
         String srcPath = srcDir.getPath() + File.separator;
         String destPath = destDir.getPath() + File.separator;
@@ -1681,7 +1682,7 @@ public final class FileUtils {
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
     private static boolean copyOrMoveFile(final File srcFile, final File destFile, final OnReplaceListener listener, final boolean isMove) {
-        if (srcFile == null || destFile == null) return false;
+        if (srcFile == null || destFile == null || listener == null) return false;
         // 如果源文件和目标文件相同则返回 false
         if (srcFile.equals(destFile)) return false;
         // 源文件不存在或者不是文件则返回 false
@@ -1889,6 +1890,8 @@ public final class FileUtils {
      * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteFilesInDirWithFilter(final File dir, final FileFilter filter) {
+        if (filter == null) return false;
+        // dir is null then return false
         if (dir == null) return false;
         // dir doesn't exist then return true
         if (!dir.exists()) return true;
@@ -1991,7 +1994,7 @@ public final class FileUtils {
      * @return 文件链表
      */
     public static List<File> listFilesInDirWithFilter(final File dir, final FileFilter filter, final boolean isRecursive) {
-        if (!isDirectory(dir)) return null;
+        if (!isDirectory(dir) || filter == null) return null;
         List<File> list = new ArrayList<>();
         File[] files = dir.listFiles();
         if (files != null && files.length != 0) {
