@@ -28,7 +28,7 @@ public class Averager {
 
     /**
      * 获取参与均值计算的数字个数
-     * @return 添加的数字数量
+     * @return 参与均值计算的数字个数
      */
     public Number size() {
         return mNumLists.size();
@@ -36,7 +36,7 @@ public class Averager {
 
     /**
      * 获取平均数
-     * @return 全部数字之和平均数
+     * @return 全部数字平均数
      */
     public Number getAverage() {
         if (mNumLists.size() == 0) {
@@ -51,8 +51,8 @@ public class Averager {
     }
 
     /**
-     * 打印数字集合
-     * @return 添加的数字信息
+     * 输出参与均值计算的数字
+     * @return 参与均值计算的数字
      */
     public String print() {
         return "printList(" + size() + "): " + mNumLists;

@@ -40,7 +40,7 @@ public final class DevThreadManager {
 
     /**
      * 获取 DevThreadManager 实例
-     * @param key 线程配置 key
+     * @param key 线程配置 key {@link DevThreadPool.DevThreadPoolType} or int-Integer
      * @return {@link DevThreadPool}
      */
     public static synchronized DevThreadPool getInstance(final String key) {

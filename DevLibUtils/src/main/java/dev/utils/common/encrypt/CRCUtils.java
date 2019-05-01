@@ -63,14 +63,14 @@ public final class CRCUtils {
     public static String getFileCRC32(final String filePath) {
         if (filePath == null) return null;
         try {
-            InputStream fis = new FileInputStream(filePath);
+            InputStream is = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
             CRC32 crc32 = new CRC32();
             int numRead;
-            while ((numRead = fis.read(buffer)) > 0) {
+            while ((numRead = is.read(buffer)) > 0) {
                 crc32.update(buffer, 0, numRead);
             }
-            fis.close();
+            is.close();
             return Long.toHexString(crc32.getValue());
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileCRC32");

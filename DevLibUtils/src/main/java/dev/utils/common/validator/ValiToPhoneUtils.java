@@ -34,10 +34,12 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     private static boolean match(final String regex, final String input) {
-        try {
-            return Pattern.matches(regex, input);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "match");
+        if (!isEmpty(input)) {
+            try {
+                return Pattern.matches(regex, input);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "match");
+            }
         }
         return false;
     }
@@ -50,10 +52,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneCheck(final String phone) {
-        if (!isEmpty(phone)) {
-            return match(CHAIN_PHONE_FORMAT_CHECK, phone);
-        }
-        return false;
+        return match(CHAIN_PHONE_FORMAT_CHECK, phone);
     }
 
     /**
@@ -62,10 +61,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhone(final String phone) {
-        if (!isEmpty(phone)) {
-            return match(CHINA_PHONE_PATTERN, phone);
-        }
-        return false;
+        return match(CHINA_PHONE_PATTERN, phone);
     }
 
     /**
@@ -74,10 +70,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaTelecom(final String phone) {
-        if (!isEmpty(phone)) {
-            return match(CHINA_TELECOM_PATTERN, phone);
-        }
-        return false;
+        return match(CHINA_TELECOM_PATTERN, phone);
     }
 
     /**
@@ -86,10 +79,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaUnicom(final String phone) {
-        if (!isEmpty(phone)) {
-            return match(CHINA_UNICOM_PATTERN, phone);
-        }
-        return false;
+        return match(CHINA_UNICOM_PATTERN, phone);
     }
 
     /**
@@ -98,10 +88,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaMobile(final String phone) {
-        if (!isEmpty(phone)) {
-            return match(CHINA_MOBILE_PATTERN, phone);
-        }
-        return false;
+        return match(CHINA_MOBILE_PATTERN, phone);
     }
 
     /**
@@ -110,10 +97,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToHkMobile(final String phone) {
-        if (!isEmpty(phone)) {
-            return match(HK_PHONE_PATTERN, phone);
-        }
-        return false;
+        return match(HK_PHONE_PATTERN, phone);
     }
 
     /**
@@ -122,10 +106,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneCallNum(final String phone) {
-        if (!isEmpty(phone)) {
-            return match(PHONE_CALL_PATTERN, phone);
-        }
-        return false;
+        return match(PHONE_CALL_PATTERN, phone);
     }
 
     // ==============

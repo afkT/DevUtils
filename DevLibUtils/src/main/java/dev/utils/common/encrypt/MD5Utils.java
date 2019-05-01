@@ -133,14 +133,14 @@ public final class MD5Utils {
     public static String getFileMD5(final String filePath) {
         if (filePath == null) return null;
         try {
-            InputStream fis = new FileInputStream(filePath);
+            InputStream is = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
             MessageDigest mdInst = MessageDigest.getInstance("MD5");
             int numRead;
-            while ((numRead = fis.read(buffer)) > 0) {
+            while ((numRead = is.read(buffer)) > 0) {
                 mdInst.update(buffer, 0, numRead);
             }
-            fis.close();
+            is.close();
             return toHexString(mdInst.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5");

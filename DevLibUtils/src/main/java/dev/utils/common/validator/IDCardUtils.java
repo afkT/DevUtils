@@ -22,7 +22,7 @@ public final class IDCardUtils {
     // 日志 TAG
     private static final String TAG = IDCardUtils.class.getSimpleName();
     // 加权因子
-    public static final int POWER[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+    private static final int POWER[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
     // 身份证最少位数
     public static final int CHINA_ID_MIN_LENGTH = 15;
     // 身份证最大位数
@@ -110,7 +110,7 @@ public final class IDCardUtils {
 
     /**
      * 身份证校验规则, 验证15位身份编码是否合法
-     * @param idCard 身份证号码
+     * @param idCard 待验证身份证号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean validateIdCard15(final String idCard) {
@@ -140,7 +140,7 @@ public final class IDCardUtils {
 
     /**
      * 身份证校验规则, 验证18位身份编码是否合法
-     * @param idCard 身份证号码
+     * @param idCard 待验证身份证号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean validateIdCard18(final String idCard) {
@@ -600,22 +600,22 @@ public final class IDCardUtils {
 
     /**
      * 验证小于当前日期 是否有效
-     * @param iYear  待校验的日期(年)
-     * @param iMonth 待校验的日期(月 1-12)
-     * @param iDate  待校验的日期(日)
+     * @param yearData  待校验的日期(年)
+     * @param monthData 待校验的日期(月 1-12)
+     * @param dayData   待校验的日期(日)
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean validateDateSmllerThenNow(final int iYear, final int iMonth, final int iDate) {
+    private static boolean validateDateSmllerThenNow(final int yearData, final int monthData, final int dayData) {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int datePerMonth;
         int MIN = 1930;
-        if (iYear < MIN || iYear >= year) {
+        if (yearData < MIN || yearData >= year) {
             return false;
         }
-        if (iMonth < 1 || iMonth > 12) {
+        if (monthData < 1 || monthData > 12) {
             return false;
         }
-        switch (iMonth) {
+        switch (monthData) {
             case 4:
             case 6:
             case 9:
@@ -623,13 +623,13 @@ public final class IDCardUtils {
                 datePerMonth = 30;
                 break;
             case 2:
-                boolean dm = ((iYear % 4 == 0 && iYear % 100 != 0) || (iYear % 400 == 0)) && (iYear > MIN && iYear < year);
+                boolean dm = ((yearData % 4 == 0 && yearData % 100 != 0) || (yearData % 400 == 0)) && (yearData > MIN && yearData < year);
                 datePerMonth = dm ? 29 : 28;
                 break;
             default:
                 datePerMonth = 31;
         }
-        return (iDate >= 1) && (iDate <= datePerMonth);
+        return (dayData >= 1) && (dayData <= datePerMonth);
     }
 
     /**

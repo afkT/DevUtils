@@ -1,5 +1,7 @@
 package dev.utils.common.validator;
 
+import dev.utils.JCLogUtils;
+
 /**
  * detail: 银行卡管理
  * @author AbrahamCaiJin
@@ -25,6 +27,9 @@ public final class BankCheckUtils {
     private BankCheckUtils() {
     }
 
+    // 日志 TAG
+    private static final String TAG = BankCheckUtils.class.getSimpleName();
+
     /**
      * 校验银行卡卡号 是否合法
      * @param cardId 待校验银行卡号
@@ -37,6 +42,7 @@ public final class BankCheckUtils {
             if (bit == 'N') return false;
             return (cardId.charAt(cardId.length() - 1) == bit);
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "checkBankCard");
             return false;
         }
     }
@@ -67,6 +73,7 @@ public final class BankCheckUtils {
             }
             return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getBankCardCheckCode");
             return 'N';
         }
     }
@@ -92,6 +99,7 @@ public final class BankCheckUtils {
             }
             return BANKNAME[index];
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getNameOfBank");
             return "";
         }
     }

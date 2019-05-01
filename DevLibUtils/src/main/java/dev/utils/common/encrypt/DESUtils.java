@@ -28,7 +28,7 @@ public final class DESUtils {
     /**
      * 获取可逆算法 DES 的密钥
      * @param key 前8字节将被用来生成密钥
-     * @return 生成的密钥
+     * @return 可逆算法 DES 的密钥
      */
     public static Key getDESKey(final byte[] key) {
         if (key == null) return null;

@@ -80,10 +80,12 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean match(final String regex, final String input) {
-        try {
-            return Pattern.matches(regex, input);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "match");
+        if (!isEmpty(input)) {
+            try {
+                return Pattern.matches(regex, input);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "match");
+            }
         }
         return false;
     }
@@ -96,10 +98,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumber(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_NUMBER, str);
-        }
-        return false;
+        return match(REGEX_NUMBER, str);
     }
 
     /**
@@ -108,10 +107,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumberDecimal(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_NUMBER_OR_DECIMAL, str);
-        }
-        return false;
+        return match(REGEX_NUMBER_OR_DECIMAL, str);
     }
 
     /**
@@ -120,10 +116,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLetter(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_LETTER, str);
-        }
-        return false;
+        return match(REGEX_LETTER, str);
     }
 
     /**
@@ -132,10 +125,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isContainNumber(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_CONTAIN_NUMBER, str);
-        }
-        return false;
+        return match(REGEX_CONTAIN_NUMBER, str);
     }
 
     /**
@@ -144,10 +134,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumberLetter(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_NUMBER_OR_LETTER, str);
-        }
-        return false;
+        return match(REGEX_NUMBER_OR_LETTER, str);
     }
 
     /**
@@ -156,10 +143,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isSpec(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_SPECIAL, str);
-        }
-        return false;
+        return match(REGEX_SPECIAL, str);
     }
 
     /**
@@ -168,10 +152,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isWx(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_WX, str);
-        }
-        return false;
+        return match(REGEX_WX, str);
     }
 
     /**
@@ -180,10 +161,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isRealName(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_REALNAME, str);
-        }
-        return false;
+        return match(REGEX_REALNAME, str);
     }
 
     /**
@@ -192,10 +170,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNickName(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_NICKNAME, str);
-        }
-        return false;
+        return match(REGEX_NICKNAME, str);
     }
 
     /**
@@ -204,10 +179,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isUserName(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_USERNAME, str);
-        }
-        return false;
+        return match(REGEX_USERNAME, str);
     }
 
     /**
@@ -216,10 +188,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPassword(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_PASSWORD, str);
-        }
-        return false;
+        return match(REGEX_PASSWORD, str);
     }
 
     /**
@@ -228,10 +197,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmail(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_EMAIL, str);
-        }
-        return false;
+        return match(REGEX_EMAIL, str);
     }
 
     /**
@@ -252,10 +218,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isIPAddress(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_IP_ADDR, str);
-        }
-        return false;
+        return match(REGEX_IP_ADDR, str);
     }
 
     // =
@@ -277,10 +240,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isChinese(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_CHINESE, str);
-        }
-        return false;
+        return match(REGEX_CHINESE, str);
     }
 
     /**
@@ -289,10 +249,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isChineseAll(final String str) {
-        if (!isEmpty(str)) {
-            return match(REGEX_CHINESE_ALL, str);
-        }
-        return false;
+        return match(REGEX_CHINESE_ALL, str);
     }
 
     /**

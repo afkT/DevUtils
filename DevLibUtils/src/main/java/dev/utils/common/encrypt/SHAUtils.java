@@ -118,14 +118,14 @@ public final class SHAUtils {
     public static String getFileSHA(final String filePath, final String algorithm) {
         if (filePath == null || algorithm == null) return null;
         try {
-            InputStream fis = new FileInputStream(filePath);
+            InputStream is = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
             MessageDigest md5 = MessageDigest.getInstance(algorithm);
             int numRead = 0;
-            while ((numRead = fis.read(buffer)) > 0) {
+            while ((numRead = is.read(buffer)) > 0) {
                 md5.update(buffer, 0, numRead);
             }
-            fis.close();
+            is.close();
             return toHexString(md5.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileSHA");

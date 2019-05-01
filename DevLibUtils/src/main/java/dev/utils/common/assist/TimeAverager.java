@@ -41,14 +41,14 @@ public class TimeAverager {
 
     /**
      * 求全部计时均值
-     * @return 全部计时时间之和均值
+     * @return 全部计时时间均值
      */
     public Number average() {
         return averager.getAverage();
     }
 
     /**
-     * 打印全部时间值
+     * 输出全部时间值
      * @return 计时信息
      */
     public String print() {
@@ -56,7 +56,7 @@ public class TimeAverager {
     }
 
     /**
-     * 清除数据
+     * 清除计时数据
      */
     public void clear() {
         averager.clear();
