@@ -130,7 +130,9 @@ public final class IDCardUtils {
             Calendar calendar = Calendar.getInstance();
             if (birthDate != null) calendar.setTime(birthDate);
             // 判断是否有效日期
-            if (!validateDateSmllerThenNow(calendar.get(Calendar.YEAR), Integer.valueOf(birthCode.substring(2, 4)), Integer.valueOf(birthCode.substring(4, 6)))) {
+            if (!validateDateSmllerThenNow(calendar.get(Calendar.YEAR),
+                    Integer.valueOf(birthCode.substring(2, 4)),
+                    Integer.valueOf(birthCode.substring(4, 6)))) {
                 return false;
             }
             return true;

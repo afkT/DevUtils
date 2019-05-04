@@ -342,7 +342,8 @@ public final class DevThreadPool {
      * 如果操作未超时，则已完成所有任务。如果确实超时了，则某些任务尚未完成。
      * @throws InterruptedException 如果等待时发生中断，在这种情况下取消尚未完成的任务
      */
-    public <T> List<Future<T>> invokeAll(final Collection<? extends Callable<T>> tasks, final long timeout, final TimeUnit unit) throws InterruptedException {
+    public <T> List<Future<T>> invokeAll(final Collection<? extends Callable<T>> tasks, final long timeout,
+                                         final TimeUnit unit) throws InterruptedException {
         if (threadPool != null && tasks != null && unit != null) {
             return threadPool.invokeAll(tasks, timeout, unit);
         }
