@@ -79,7 +79,7 @@ public final class Reflect2Utils {
         try {
             Class ownerClass = owner.getClass();
             Class[] argsClass = new Class[args.length];
-            for (int i = 0, j = args.length; i < j; i++) {
+            for (int i = 0, len = args.length; i < len; i++) {
                 argsClass[i] = args[i].getClass();
             }
             Method method = ownerClass.getMethod(methodName, argsClass);
@@ -112,7 +112,7 @@ public final class Reflect2Utils {
         try {
             Class ownerClass = Class.forName(className);
             Class[] argsClass = new Class[args.length];
-            for (int i = 0, j = args.length; i < j; i++) {
+            for (int i = 0, len = args.length; i < len; i++) {
                 argsClass[i] = args[i].getClass();
             }
             // getDeclaredMethod() 获取的是类自身声明的所有方法，包含public、protected和private方法。
@@ -142,7 +142,7 @@ public final class Reflect2Utils {
                 return newoneClass.newInstance();
             } else {
 //                Class[] argsClass = new Class[args.length];
-//                for (int i = 0, j = args.length; i < j; i++) {
+//                for (int i = 0, len = args.length; i < len; i++) {
 //                    argsClass[i] = args[i].getClass();
 //                }
                 Constructor cons = newoneClass.getConstructor(argsType);

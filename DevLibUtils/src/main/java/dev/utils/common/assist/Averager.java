@@ -43,7 +43,7 @@ public class Averager {
             return 0;
         } else {
             Float sum = 0f;
-            for (int i = 0, size = mNumLists.size(); i < size; i++) {
+            for (int i = 0, len = mNumLists.size(); i < len; i++) {
                 sum = sum.floatValue() + mNumLists.get(i).floatValue();
             }
             return sum / mNumLists.size();

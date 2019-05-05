@@ -21,15 +21,19 @@ public class AsyncExecutor {
 
     // 日志 TAG
     private final String TAG = AsyncExecutor.class.getSimpleName();
-    // 线程池
-    private ExecutorService threadPool;
     // 主线程 Hander
     private Handler handler = new Handler(Looper.getMainLooper());
+    // 线程池
+    private ExecutorService threadPool;
 
     public AsyncExecutor() {
         this(null);
     }
 
+    /**
+     * 构造函数
+     * @param pool {@link ExecutorService}
+     */
     public AsyncExecutor(final ExecutorService pool) {
         if (threadPool != null) {
             shutdownNow();
@@ -54,45 +58,49 @@ public class AsyncExecutor {
 
     /**
      * 将任务投入线程池执行
-     * @param worker
-     * @return {@link FutureTask<T> }
+     * @param worker 任务 {@link Worker}
+     * @param <T>    泛型
+     * @return {@link FutureTask<T>}
      */
     public <T> FutureTask<T> execute(final Worker<T> worker) {
-        if (worker == null) return null;
-        Callable<T> call = new Callable<T>() {
-            @Override
-            public T call() throws Exception {
-                return postResult(worker, worker.doInBackground());
-            }
-        };
-        FutureTask<T> task = new FutureTask<T>(call) {
-            @Override
-            protected void done() {
-                try {
-                    get();
-                } catch (InterruptedException e) {
-                    LogPrintUtils.eTag(TAG, e, "execute");
-                    worker.abort();
-                    postCancel(worker);
-                } catch (ExecutionException e) {
-                    LogPrintUtils.eTag(TAG, e, "execute");
-                    throw new RuntimeException("An error occured while executing doInBackground()", e.getCause());
-                } catch (CancellationException e) {
-                    worker.abort();
-                    postCancel(worker);
-                    LogPrintUtils.eTag(TAG, e, "execute");
+        if (worker != null) {
+            Callable<T> call = new Callable<T>() {
+                @Override
+                public T call() throws Exception {
+                    return postResult(worker, worker.doInBackground());
                 }
-            }
-        };
-        threadPool.execute(task);
-        return task;
+            };
+            FutureTask<T> task = new FutureTask<T>(call) {
+                @Override
+                protected void done() {
+                    try {
+                        get();
+                    } catch (InterruptedException e) {
+                        LogPrintUtils.eTag(TAG, e, "execute");
+                        worker.abort();
+                        postCancel(worker);
+                    } catch (ExecutionException e) {
+                        LogPrintUtils.eTag(TAG, e, "execute");
+                        throw new RuntimeException("An error occured while executing doInBackground()", e.getCause());
+                    } catch (CancellationException e) {
+                        worker.abort();
+                        postCancel(worker);
+                        LogPrintUtils.eTag(TAG, e, "execute");
+                    }
+                }
+            };
+            threadPool.execute(task);
+            return task;
+        }
+        return null;
     }
 
     /**
      * 将子线程结果传递到UI线程
-     * @param worker
-     * @param result
-     * @return <T>
+     * @param worker 任务 {@link Worker}
+     * @param result 执行数据
+     * @param <T>    泛型
+     * @return 执行数据
      */
     private <T> T postResult(final Worker<T> worker, final T result) {
         if (worker == null) return result;
@@ -109,7 +117,7 @@ public class AsyncExecutor {
 
     /**
      * 将子线程结果传递到UI线程
-     * @param worker
+     * @param worker 任务 {@link Worker}
      */
     private void postCancel(final Worker worker) {
         if (worker == null) return;
@@ -128,27 +136,30 @@ public class AsyncExecutor {
      * @return {@link FutureTask<T>}
      */
     public <T> FutureTask<T> execute(final Callable<T> call) {
-        if (call == null) return null;
-        FutureTask<T> task = new FutureTask<>(call);
-        threadPool.execute(task);
-        return task;
+        if (call != null) {
+            FutureTask<T> task = new FutureTask<>(call);
+            threadPool.execute(task);
+            return task;
+        }
+        return null;
     }
 
     /**
      * detail: 任务
+     * @param <T> 泛型
      * @author Ttt
      */
     public abstract class Worker<T> {
 
         /**
          * 后台运行
-         * @return
+         * @return {@link T} 泛型类型
          */
         protected abstract T doInBackground();
 
         /**
          * 将子线程结果传递到UI线程
-         * @param data
+         * @param data 数据
          */
         protected void onPostExecute(T data) {
         }

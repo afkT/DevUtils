@@ -266,7 +266,7 @@ public final class AnalysisRecordUtils {
         // 追加个边距
         buffer.append(" => ");
         // 循环追加内容
-        for (int i = 0, c = args.length; i < c; i++) {
+        for (int i = 0, len = args.length; i < len; i++) {
             if (isSpace) { // 判断是否追加空格
                 buffer.append(SPACE_STR);
             }

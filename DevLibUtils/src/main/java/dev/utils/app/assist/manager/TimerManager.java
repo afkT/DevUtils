@@ -53,7 +53,8 @@ public final class TimerManager {
             // 开始删除无用资源
             Iterator<AbsTimer> iterator = lists.iterator();
             while (iterator.hasNext()) {
-                if (iterator.next().markSweep) { // 需要回收,则进行回收
+                AbsTimer absTimer = iterator.next();
+                if (absTimer == null || absTimer.markSweep) { // 需要回收,则进行回收
                     iterator.remove();
                 }
             }
@@ -73,18 +74,41 @@ public final class TimerManager {
         return listAbsTimers.size();
     }
 
+    // =
+
     /**
      * 获取属于对应字符串标记的定时器任务(优先获取符合的)
-     * @param markStr
-     * @return 获取对应标记的定时任务 {@link AbsTimer} 对象
+     * @param markStr 判断 {@link AbsTimer#getMarkStr()}
+     * @return 属于对应字符串标记的定时器任务(优先获取符合的) {@link AbsTimer}
      */
     public static AbsTimer getTimer(final String markStr) {
-        if (markStr == null) return null;
+        if (markStr != null) {
+            try {
+                for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
+                    AbsTimer absTimer = listAbsTimers.get(i);
+                    // 判断是否符合标记, 原本标记不为 null, 并且符合条件的
+                    if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
+                        return absTimer;
+                    }
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getTimer");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取属于标记 id 的定时器任务(优先获取符合的)
+     * @param markId 判断 {@link AbsTimer#getMarkId()}
+     * @return 属于标记 id 的定时器任务(优先获取符合的) {@link AbsTimer}
+     */
+    public static AbsTimer getTimer(final int markId) {
         try {
-            for (int i = 0, size = listAbsTimers.size(); i < size; i++) {
+            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
                 AbsTimer absTimer = listAbsTimers.get(i);
-                // 判断是否符合标记 , 原本标记不为null,并且符合条件的
-                if (!TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
+                // 判断是否符合标记
+                if (absTimer != null && absTimer.getMarkId() == markId) {
                     return absTimer;
                 }
             }
@@ -94,33 +118,65 @@ public final class TimerManager {
         return null;
     }
 
+    // =
+
     /**
-     * 获取属于标记id的定时器任务(优先获取符合的)
-     * @param markId
-     * @return 获取对应标记的定时任务 {@link AbsTimer} 对象
+     * 获取属于对应字符串标记的定时器任务集合
+     * @param markStr 判断 {@link AbsTimer#getMarkStr()}
+     * @return 属于对应字符串标记的定时器任务集合 {@link List<AbsTimer>}
      */
-    public static AbsTimer getTimer(final int markId) {
+    public static List<AbsTimer> getTimers(final String markStr) {
+        List<AbsTimer> lists = new ArrayList<>();
+        // 防止为 null
+        if (markStr != null) {
+            try {
+                for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
+                    AbsTimer absTimer = listAbsTimers.get(i);
+                    // 判断是否符合标记, 原本标记不为 null, 并且符合条件的
+                    if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
+                        lists.add(absTimer);
+                    }
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getTimers");
+            }
+        }
+        return lists;
+    }
+
+    /**
+     * 获取属于标记 id 的定时器任务集合
+     * @param markId 判断 {@link AbsTimer#getMarkId()}
+     * @return 属于标记 id 的定时器任务集合 {@link List<AbsTimer>}
+     */
+    public static List<AbsTimer> getTimers(final int markId) {
+        List<AbsTimer> lists = new ArrayList<>();
         try {
-            for (int i = 0, size = listAbsTimers.size(); i < size; i++) {
+            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
                 AbsTimer absTimer = listAbsTimers.get(i);
-                // 判断是否符合标记 , 原本标记不为null,并且符合条件的
-                if (absTimer.getMarkId() == markId) {
-                    return absTimer;
+                // 判断是否符合标记
+                if (absTimer != null && absTimer.getMarkId() == markId) {
+                    lists.add(absTimer);
                 }
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getTimer");
+            LogPrintUtils.eTag(TAG, e, "getTimers");
         }
-        return null;
+        return lists;
     }
+
+    // =
 
     /**
      * 关闭全部任务
      */
     public static void closeAll() {
         try {
-            for (int i = 0, size = listAbsTimers.size(); i < size; i++) {
-                listAbsTimers.get(i).closeTimer(); // 关闭定时器
+            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
+                AbsTimer absTimer = listAbsTimers.get(i);
+                if (absTimer != null) { // 关闭定时器
+                    absTimer.closeTimer();
+                }
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "closeAll");
@@ -132,10 +188,10 @@ public final class TimerManager {
      */
     public static void closeNotRunTask() {
         try {
-            for (int i = 0, size = listAbsTimers.size(); i < size; i++) {
+            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
                 AbsTimer absTimer = listAbsTimers.get(i);
                 // 判断是否运行中
-                if (!absTimer.isRunTimer()) {
+                if (absTimer != null && !absTimer.isRunTimer()) {
                     absTimer.closeTimer(); // 关闭定时器
                 }
             }
@@ -149,10 +205,10 @@ public final class TimerManager {
      */
     public static void closeInfiniteTask() {
         try {
-            for (int i = 0, size = listAbsTimers.size(); i < size; i++) {
+            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
                 AbsTimer absTimer = listAbsTimers.get(i);
                 // 判断是否无限运行
-                if (absTimer.isInfinite()) {
+                if (absTimer != null && absTimer.isInfinite()) {
                     absTimer.closeTimer(); // 关闭定时器
                 }
             }
@@ -163,32 +219,33 @@ public final class TimerManager {
 
     /**
      * 关闭所有符合对应的字符串标记的定时器任务
-     * @param markStr
+     * @param markStr 判断 {@link AbsTimer#getMarkStr()}
      */
     public static void closeMark(final String markStr) {
-        if (markStr == null) return;
-        try {
-            for (int i = 0, size = listAbsTimers.size(); i < size; i++) {
-                AbsTimer absTimer = listAbsTimers.get(i);
-                // 判断是否符合标记 , 原本标记不为null,并且符合条件的
-                if (!TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
-                    absTimer.closeTimer(); // 关闭定时器
+        if (markStr != null) {
+            try {
+                for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
+                    AbsTimer absTimer = listAbsTimers.get(i);
+                    // 判断是否符合标记 , 原本标记不为 null, 并且符合条件的
+                    if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
+                        absTimer.closeTimer(); // 关闭定时器
+                    }
                 }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "closeMark");
             }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "closeMark");
         }
     }
 
     /**
      * 关闭所有符合对应的标记id的定时器任务
-     * @param markId
+     * @param markId 判断 {@link AbsTimer#getMarkId()}
      */
     public static void closeMark(final int markId) {
         try {
-            for (int i = 0, size = listAbsTimers.size(); i < size; i++) {
+            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
                 AbsTimer absTimer = listAbsTimers.get(i);
-                if (absTimer.getMarkId() == markId) {
+                if (absTimer != null && absTimer.getMarkId() == markId) {
                     absTimer.closeTimer(); // 关闭定时器
                 }
             }
@@ -203,9 +260,9 @@ public final class TimerManager {
 
     /**
      * 创建定时器 => 立即执行,无限循环,通知默认what
-     * @param handler 通知的Handler
+     * @param handler 通知的 Handler
      * @param period  循环时间 - 每隔多少秒执行一次
-     * @return 定时器抽象对象
+     * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long period) {
         return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, -1);
@@ -213,10 +270,10 @@ public final class TimerManager {
 
     /**
      * 创建定时器 => 无限循环,通知默认what
-     * @param handler 通知的Handler
+     * @param handler 通知的 Handler
      * @param delay   延迟时间 - 多少毫秒后开始执行
      * @param period  循环时间 - 每隔多少秒执行一次
-     * @return 定时器抽象对象
+     * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long delay, final long period) {
         return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
@@ -224,10 +281,10 @@ public final class TimerManager {
 
     /**
      * 创建定时器 => 立即执行,通知默认what
-     * @param handler      通知的Handler
+     * @param handler      通知的 Handler
      * @param period       循环时间 - 每隔多少秒执行一次
      * @param triggerLimit 触发次数上限(-1,表示无限循环)
-     * @return 定时器抽象对象
+     * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long period, final int triggerLimit) {
         return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, triggerLimit);
@@ -235,10 +292,10 @@ public final class TimerManager {
 
     /**
      * 创建定时器 => 立即执行,无限循环
-     * @param handler 通知的Handler
+     * @param handler 通知的 Handler
      * @param what    通知的what
      * @param period  循环时间 - 每隔多少秒执行一次
-     * @return 定时器抽象对象
+     * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long period) {
         return createTimer(handler, what, 0l, period, -1);
@@ -246,11 +303,11 @@ public final class TimerManager {
 
     /**
      * 创建定时器 => 无限循环
-     * @param handler 通知的Handler
+     * @param handler 通知的 Handler
      * @param what    通知的what
      * @param delay   延迟时间 - 多少毫秒后开始执行
      * @param period  循环时间 - 每隔多少秒执行一次
-     * @return 定时器抽象对象
+     * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long delay, final long period) {
         return createTimer(handler, what, delay, period, -1);
@@ -258,11 +315,11 @@ public final class TimerManager {
 
     /**
      * 创建定时器 => 立即执行
-     * @param handler      通知的Handler
+     * @param handler      通知的 Handler
      * @param what         通知的what
      * @param period       循环时间 - 每隔多少秒执行一次
      * @param triggerLimit 触发次数上限(-1,表示无限循环)
-     * @return 定时器抽象对象
+     * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long period, final int triggerLimit) {
         return createTimer(handler, what, 0l, period, triggerLimit);
@@ -270,12 +327,12 @@ public final class TimerManager {
 
     /**
      * 创建定时器
-     * @param handler      通知的Handler
+     * @param handler      通知的 Handler
      * @param what         通知的what
      * @param delay        延迟时间 - 多少毫秒后开始执行
      * @param period       循环时间 - 每隔多少秒执行一次
      * @param triggerLimit 触发次数上限(-1,表示无限循环)
-     * @return 定时器抽象对象
+     * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long delay, final long period, final int triggerLimit) {
         return new TimerTask(handler, what, delay, period, triggerLimit);
@@ -306,7 +363,7 @@ public final class TimerManager {
 
         /**
          * 获取标记id
-         * @return
+         * @return 标记id
          */
         public final int getMarkId() {
             return markId;
@@ -314,7 +371,7 @@ public final class TimerManager {
 
         /**
          * 获取标记字符串
-         * @return
+         * @return 标记字符串
          */
         public final String getMarkStr() {
             return markStr;
@@ -322,8 +379,8 @@ public final class TimerManager {
 
         /**
          * 设置标记id
-         * @param markId
-         * @return 定时器抽象对象
+         * @param markId 标记id
+         * @return 定时器抽象对象 {@link AbsTimer}
          */
         public final AbsTimer setMarkId(final int markId) {
             this.markId = markId;
@@ -332,8 +389,8 @@ public final class TimerManager {
 
         /**
          * 设置标记字符串
-         * @param markStr
-         * @return 定时器抽象对象
+         * @param markStr 标记字符串
+         * @return 定时器抽象对象 {@link AbsTimer}
          */
         public final AbsTimer setMarkStr(final String markStr) {
             this.markStr = markStr;
@@ -346,9 +403,12 @@ public final class TimerManager {
 
         /**
          * 运行定时器
+         * <pre>
+         *      如果外部通过了createTimer 或者直接new AbsTimer 初始化了对象，没有调用startTimer,都不会保存到 listAbsTimers 并不影响对定时器的控制
+         * </pre>
          */
-        public void startTimer() { // 如果外部通过了createTimer或者直接new AbsTimer 初始化了对象，没有调用startTimer,都不会保存到 listAbsTimers 并不影响对定时器的控制
-            //  标记状态 - 不需要回收
+        public void startTimer() {
+            // 标记状态 - 不需要回收
             this.markSweep = false;
             synchronized (listAbsTimers) {
                 // 不存在才进行添加
@@ -362,53 +422,58 @@ public final class TimerManager {
          * 关闭定时器
          */
         public void closeTimer() {
-            //  标记状态 - 需要回收
+            // 标记状态 - 需要回收
             this.markSweep = true;
         }
 
         /**
          * 判断是否运行中
+         * @return {@code true} yes, {@code false} no
          */
         public abstract boolean isRunTimer();
 
         /**
          * 获取已经触发的次数
+         * @return 已经触发的次数
          */
         public abstract int getTriggerNumber();
 
         /**
          * 获取允许触发的上限次数
+         * @return 允许触发的上限次数
          */
         public abstract int getTriggerLimit();
 
         /**
          * 是否触发结束(到达最大次数)
+         * @return {@code true} yes, {@code false} no
          */
         public abstract boolean isTriggerEnd();
 
         /**
          * 是否无限循环
+         * @return {@code true} yes, {@code false} no
          */
         public abstract boolean isInfinite();
 
         /**
-         * 设置通知的Handler
-         * @param handler
-         * @return 定时器抽象对象
+         * 设置通知的 Handler
+         * @param handler {@link Handler}
+         * @return 定时器抽象对象 {@link AbsTimer}
          */
         public abstract AbsTimer setHandler(Handler handler);
 
         /**
-         * 设置通知的What
-         * @param notifyWhat
-         * @return 定时器抽象对象
+         * 设置通知的 What
+         * @param notifyWhat 通知 what
+         * @return 定时器抽象对象 {@link AbsTimer}
          */
         public abstract AbsTimer setNotifyWhat(int notifyWhat);
 
         /**
-         * 设置通知的Obj
-         * @param notifyObj
-         * @return 定时器抽象对象
+         * 设置通知的 Object
+         * @param notifyObj 通知对象
+         * @return 定时器抽象对象 {@link AbsTimer}
          */
         public abstract AbsTimer setNotifyObject(Object notifyObj);
 
@@ -416,14 +481,14 @@ public final class TimerManager {
          * 设置时间
          * @param delay  延迟时间 - 多少毫秒后开始执行
          * @param period 循环时间 - 每隔多少秒执行一次
-         * @return 定时器抽象对象
+         * @return 定时器抽象对象 {@link AbsTimer}
          */
         public abstract AbsTimer setTime(long delay, long period);
 
         /**
          * 设置触发次数上限
-         * @param triggerLimit
-         * @return 定时器抽象对象
+         * @param triggerLimit 触发次数上限
+         * @return 定时器抽象对象 {@link AbsTimer}
          */
         public abstract AbsTimer setTriggerLimit(int triggerLimit);
     }
@@ -471,7 +536,7 @@ public final class TimerManager {
         }
 
         /**
-         * 开始定时器任务
+         * 开始执行定时器任务
          */
         private void start() {
             // 先关闭旧的定时器
@@ -538,6 +603,9 @@ public final class TimerManager {
         // = 实现抽象类方法 =
         // ==================
 
+        /**
+         * 运行定时器
+         */
         @Override
         public void startTimer() {
             super.startTimer(); // 必须保留这句话
@@ -545,6 +613,9 @@ public final class TimerManager {
             start();
         }
 
+        /**
+         * 关闭定时器
+         */
         @Override
         public void closeTimer() {
             super.closeTimer(); // 必须保留这句话
@@ -552,50 +623,91 @@ public final class TimerManager {
             close();
         }
 
+        /**
+         * 判断是否运行中
+         * @return {@code true} yes, {@code false} no
+         */
         @Override
         public boolean isRunTimer() {
             return running;
         }
 
+        /**
+         * 获取已经触发的次数
+         * @return 已经触发的次数
+         */
         @Override
         public int getTriggerNumber() {
             return triggerNumber;
         }
 
+        /**
+         * 获取允许触发的上限次数
+         * @return 允许触发的上限次数
+         */
         @Override
         public int getTriggerLimit() {
             return triggerLimit;
         }
 
+        /**
+         * 是否触发结束(到达最大次数)
+         * @return {@code true} yes, {@code false} no
+         */
         @Override
         public boolean isTriggerEnd() { // 如果为无限触发,则会返回true ,因为触发次数大于 -1
             return (triggerNumber >= triggerLimit);
             //return (triggerLimit >= 0 && triggerNumber >= triggerLimit);
         }
 
+        /**
+         * 是否无限循环
+         * @return {@code true} yes, {@code false} no
+         */
         @Override
         public boolean isInfinite() {
             return (triggerLimit <= -1);
         }
 
+        /**
+         * 设置通知的 Handler
+         * @param handler {@link Handler}
+         * @return 定时器抽象对象 {@link AbsTimer}
+         */
         @Override
         public AbsTimer setHandler(final Handler handler) {
             this.handler = handler;
             return this;
         }
 
+        /**
+         * 设置通知的 What
+         * @param notifyWhat 通知 what
+         * @return 定时器抽象对象 {@link AbsTimer}
+         */
         @Override
         public AbsTimer setNotifyWhat(final int notifyWhat) {
             this.notifyWhat = notifyWhat;
             return this;
         }
 
+        /**
+         * 设置通知的 Object
+         * @param notifyObj 通知对象
+         * @return 定时器抽象对象 {@link AbsTimer}
+         */
         @Override
         public AbsTimer setNotifyObject(final Object notifyObj) {
             this.notifyObj = notifyObj;
             return this;
         }
 
+        /**
+         * 设置时间
+         * @param delay  延迟时间 - 多少毫秒后开始执行
+         * @param period 循环时间 - 每隔多少秒执行一次
+         * @return 定时器抽象对象 {@link AbsTimer}
+         */
         @Override
         public AbsTimer setTime(final long delay, final long period) {
             this.delay = delay;
@@ -603,6 +715,11 @@ public final class TimerManager {
             return this;
         }
 
+        /**
+         * 设置触发次数上限
+         * @param triggerLimit 触发次数上限
+         * @return 定时器抽象对象 {@link AbsTimer}
+         */
         @Override
         public AbsTimer setTriggerLimit(final int triggerLimit) {
             this.triggerLimit = triggerLimit;

@@ -908,7 +908,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         double[] doubles = new double[length - off];
-        for (int i = 0, count = doubles.length; i < count; i++) {
+        for (int i = 0, len = doubles.length; i < len; i++) {
             doubles[i] = datas[off + i];
         }
         return doubles;
@@ -946,7 +946,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         long[] longs = new long[length - off];
-        for (int i = 0, count = longs.length; i < count; i++) {
+        for (int i = 0, len = longs.length; i < len; i++) {
             longs[i] = datas[off + i];
         }
         return longs;
@@ -984,7 +984,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         float[] floats = new float[length - off];
-        for (int i = 0, count = floats.length; i < count; i++) {
+        for (int i = 0, len = floats.length; i < len; i++) {
             floats[i] = datas[off + i];
         }
         return floats;
@@ -1022,7 +1022,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         String[] strings = new String[length - off];
-        for (int i = 0, count = strings.length; i < count; i++) {
+        for (int i = 0, len = strings.length; i < len; i++) {
             strings[i] = datas[off + i] + "";
         }
         return strings;
@@ -1073,7 +1073,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         int[] ints = new int[length - off];
-        for (int i = 0, count = ints.length; i < count; i++) {
+        for (int i = 0, len = ints.length; i < len; i++) {
             try {
                 ints[i] = Integer.parseInt(datas[off + i]);
             } catch (Exception e) {
@@ -1128,7 +1128,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         double[] doubles = new double[length - off];
-        for (int i = 0, count = doubles.length; i < count; i++) {
+        for (int i = 0, len = doubles.length; i < len; i++) {
             try {
                 doubles[i] = Double.parseDouble(datas[off + i]);
             } catch (Exception e) {
@@ -1183,7 +1183,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         long[] longs = new long[length - off];
-        for (int i = 0, count = longs.length; i < count; i++) {
+        for (int i = 0, len = longs.length; i < len; i++) {
             try {
                 longs[i] = Long.parseLong(datas[off + i]);
             } catch (Exception e) {
@@ -1238,7 +1238,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         float[] floats = new float[length - off];
-        for (int i = 0, count = floats.length; i < count; i++) {
+        for (int i = 0, len = floats.length; i < len; i++) {
             try {
                 floats[i] = Float.parseFloat(datas[off + i]);
             } catch (Exception e) {
@@ -1280,7 +1280,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         int[] ints = new int[length - off];
-        for (int i = 0, count = ints.length; i < count; i++) {
+        for (int i = 0, len = ints.length; i < len; i++) {
             try {
                 ints[i] = (int) datas[off + i];
             } catch (Exception e) {
@@ -1321,7 +1321,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         int[] ints = new int[length - off];
-        for (int i = 0, count = ints.length; i < count; i++) {
+        for (int i = 0, len = ints.length; i < len; i++) {
             try {
                 ints[i] = (int) datas[off + i];
             } catch (Exception e) {
@@ -1362,7 +1362,7 @@ public final class ConvertUtils {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         int[] ints = new int[length - off];
-        for (int i = 0, count = ints.length; i < count; i++) {
+        for (int i = 0, len = ints.length; i < len; i++) {
             try {
                 ints[i] = (int) datas[off + i];
             } catch (Exception e) {
