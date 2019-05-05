@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
+import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 
 /**
@@ -20,17 +21,18 @@ public final class ViewAnimationUtils {
     // ======================
 
     /**
-     * 将给定视图渐渐隐去 (view.setVisibility(View.INVISIBLE))
-     * @param view              被处理的视图
+     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * @param view              待处理的视图
+     * @param durationMillis    动画持续时间
      * @param isBanClick        在执行动画的过程中是否禁止点击
-     * @param durationMillis    持续时间，毫秒
      * @param animationListener 动画监听器
      */
     public static void invisibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick, final AnimationListener animationListener) {
         if (view != null && view.getVisibility() != View.INVISIBLE) {
             view.setVisibility(View.INVISIBLE);
-            AlphaAnimation hiddenAlphaAnimation = AnimationUtils.getHiddenAlphaAnimation(durationMillis);
-            hiddenAlphaAnimation.setAnimationListener(new AnimationListener() {
+            // 获取动画
+            AlphaAnimation animation = AnimationUtils.getHiddenAlphaAnimation(durationMillis);
+            animation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
                     if (isBanClick && view != null) {
@@ -58,14 +60,14 @@ public final class ViewAnimationUtils {
                     }
                 }
             });
-            view.startAnimation(hiddenAlphaAnimation);
+            view.startAnimation(animation);
         }
     }
 
     /**
-     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))
-     * @param view              被处理的视图
-     * @param durationMillis    持续时间，毫秒
+     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * @param view              待处理的视图
+     * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
      */
     public static void invisibleViewByAlpha(final View view, final long durationMillis, final AnimationListener animationListener) {
@@ -73,9 +75,9 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))
-     * @param view           被处理的视图
-     * @param durationMillis 持续时间，毫秒
+     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * @param view           待处理的视图
+     * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
      */
     public static void invisibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick) {
@@ -83,18 +85,17 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))
-     * @param view           被处理的视图
-     * @param durationMillis 持续时间，毫秒
+     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * @param view           待处理的视图
+     * @param durationMillis 动画持续时间
      */
     public static void invisibleViewByAlpha(final View view, final long durationMillis) {
         invisibleViewByAlpha(view, durationMillis, false, null);
     }
 
     /**
-     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view              被处理的视图
+     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * @param view              待处理的视图
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
      */
@@ -103,9 +104,8 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view              被处理的视图
+     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * @param view              待处理的视图
      * @param animationListener 动画监听器
      */
     public static void invisibleViewByAlpha(final View view, final AnimationListener animationListener) {
@@ -113,9 +113,8 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view       被处理的视图
+     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * @param view       待处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      */
     public static void invisibleViewByAlpha(final View view, final boolean isBanClick) {
@@ -123,26 +122,28 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去(view.setVisibility(View.INVISIBLE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view 被处理的视图
+     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * @param view 待处理的视图
      */
     public static void invisibleViewByAlpha(final View view) {
         invisibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, false, null);
     }
 
+    // =
+
     /**
-     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))
-     * @param view              被处理的视图
-     * @param durationMillis    持续时间，毫秒
+     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * @param view              待处理的视图
+     * @param durationMillis    动画持续时间
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
      */
     public static void goneViewByAlpha(final View view, final long durationMillis, final boolean isBanClick, final AnimationListener animationListener) {
         if (view != null && view.getVisibility() != View.GONE) {
             view.setVisibility(View.GONE);
-            AlphaAnimation hiddenAlphaAnimation = AnimationUtils.getHiddenAlphaAnimation(durationMillis);
-            hiddenAlphaAnimation.setAnimationListener(new AnimationListener() {
+            // 获取动画
+            AlphaAnimation animation = AnimationUtils.getHiddenAlphaAnimation(durationMillis);
+            animation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
                     if (isBanClick && view != null) {
@@ -170,14 +171,14 @@ public final class ViewAnimationUtils {
                     }
                 }
             });
-            view.startAnimation(hiddenAlphaAnimation);
+            view.startAnimation(animation);
         }
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))
-     * @param view              被处理的视图
-     * @param durationMillis    持续时间，毫秒
+     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * @param view              待处理的视图
+     * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
      */
     public static void goneViewByAlpha(final View view, final long durationMillis, final AnimationListener animationListener) {
@@ -185,9 +186,9 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))
-     * @param view           被处理的视图
-     * @param durationMillis 持续时间，毫秒
+     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * @param view           待处理的视图
+     * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
      */
     public static void goneViewByAlpha(final View view, final long durationMillis, final boolean isBanClick) {
@@ -195,18 +196,17 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))
-     * @param view           被处理的视图
-     * @param durationMillis 持续时间，毫秒
+     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * @param view           待处理的视图
+     * @param durationMillis 动画持续时间
      */
     public static void goneViewByAlpha(final View view, final long durationMillis) {
         goneViewByAlpha(view, durationMillis, false, null);
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view              被处理的视图
+     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * @param view              待处理的视图
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
      */
@@ -215,9 +215,8 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view              被处理的视图
+     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * @param view              待处理的视图
      * @param animationListener 动画监听器
      */
     public static void goneViewByAlpha(final View view, final AnimationListener animationListener) {
@@ -225,9 +224,8 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view       被处理的视图
+     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * @param view       待处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      */
     public static void goneViewByAlpha(final View view, final boolean isBanClick) {
@@ -235,26 +233,28 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除(view.setVisibility(View.GONE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view 被处理的视图
+     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * @param view 待处理的视图
      */
     public static void goneViewByAlpha(final View view) {
         goneViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, false, null);
     }
 
+    // =
+
     /**
-     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))
-     * @param view              被处理的视图
-     * @param durationMillis    持续时间，毫秒
+     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * @param view              待处理的视图
+     * @param durationMillis    动画持续时间
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
      */
     public static void visibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick, final AnimationListener animationListener) {
         if (view != null && view.getVisibility() != View.VISIBLE) {
             view.setVisibility(View.VISIBLE);
-            AlphaAnimation showAlphaAnimation = AnimationUtils.getShowAlphaAnimation(durationMillis);
-            showAlphaAnimation.setAnimationListener(new AnimationListener() {
+            // 获取动画
+            AlphaAnimation animation = AnimationUtils.getShowAlphaAnimation(durationMillis);
+            animation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
                     if (isBanClick && view != null) {
@@ -282,14 +282,14 @@ public final class ViewAnimationUtils {
                     }
                 }
             });
-            view.startAnimation(showAlphaAnimation);
+            view.startAnimation(animation);
         }
     }
 
     /**
-     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))
-     * @param view              被处理的视图
-     * @param durationMillis    持续时间，毫秒
+     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * @param view              待处理的视图
+     * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
      */
     public static void visibleViewByAlpha(final View view, final long durationMillis, final AnimationListener animationListener) {
@@ -297,9 +297,9 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))
-     * @param view           被处理的视图
-     * @param durationMillis 持续时间，毫秒
+     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * @param view           待处理的视图
+     * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
      */
     public static void visibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick) {
@@ -307,18 +307,17 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))
-     * @param view           被处理的视图
-     * @param durationMillis 持续时间，毫秒
+     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * @param view           待处理的视图
+     * @param durationMillis 动画持续时间
      */
     public static void visibleViewByAlpha(final View view, final long durationMillis) {
         visibleViewByAlpha(view, durationMillis, false, null);
     }
 
     /**
-     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view              被处理的视图
+     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * @param view              待处理的视图
      * @param animationListener 动画监听器
      * @param isBanClick        在执行动画的过程中是否禁止点击
      */
@@ -327,9 +326,8 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view              被处理的视图
+     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * @param view              待处理的视图
      * @param animationListener 动画监听器
      */
     public static void visibleViewByAlpha(final View view, final AnimationListener animationListener) {
@@ -337,9 +335,8 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view       被处理的视图
+     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * @param view       待处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      */
     public static void visibleViewByAlpha(final View view, final boolean isBanClick) {
@@ -347,9 +344,8 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来(view.setVisibility(View.VISIBLE))，
-     * 默认的持续时间为DEFAULT_ALPHA_ANIMATION_DURATION
-     * @param view 被处理的视图
+     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * @param view 待处理的视图
      */
     public static void visibleViewByAlpha(final View view) {
         visibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, false, null);
@@ -361,63 +357,66 @@ public final class ViewAnimationUtils {
 
     /**
      * 视图移动
-     * @param view           要移动的视图
-     * @param fromXDelta     X轴开始坐标
-     * @param toXDelta       X轴结束坐标
-     * @param fromYDelta     Y轴开始坐标
-     * @param toYDelta       Y轴结束坐标
-     * @param cycles         重复
-     * @param durationMillis 持续时间
+     * @param view           待移动的视图
+     * @param fromXDelta     动画开始的X轴坐标
+     * @param toXDelta       动画结束的X轴坐标
+     * @param fromYDelta     动画开始的Y轴坐标
+     * @param toYDelta       动画结束的Y轴坐标
+     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
      */
-    public static void translate(final View view, final float fromXDelta, final float toXDelta, final float fromYDelta, final float toYDelta,
-                                 final float cycles, final long durationMillis, final boolean isBanClick) {
-        if (view == null) return;
-        TranslateAnimation translateAnimation = AnimationUtils.translate(fromXDelta, toXDelta, fromYDelta, toYDelta, cycles, durationMillis);
-        translateAnimation.setAnimationListener(new AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                if (isBanClick && view != null) {
-                    view.setClickable(false);
+    public static void translate(final View view, final float fromXDelta, final float toXDelta,
+                                 final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis, final boolean isBanClick) {
+        if (view != null) {
+            TranslateAnimation animation = AnimationUtils.getTranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta, cycles, durationMillis);
+            animation.setAnimationListener(new AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    if (isBanClick && view != null) {
+                        view.setClickable(false);
+                    }
                 }
-            }
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
+                @Override
+                public void onAnimationRepeat(Animation animation) {
 
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                if (isBanClick && view != null) {
-                    view.setClickable(true);
                 }
-            }
-        });
-        view.startAnimation(translateAnimation);
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    if (isBanClick && view != null) {
+                        view.setClickable(true);
+                    }
+                }
+            });
+            view.startAnimation(animation);
+        }
     }
 
     /**
      * 视图移动
-     * @param view           要移动的视图
-     * @param fromXDelta     X轴开始坐标
-     * @param toXDelta       X轴结束坐标
-     * @param fromYDelta     Y轴开始坐标
-     * @param toYDelta       Y轴结束坐标
-     * @param cycles         重复
-     * @param durationMillis 持续时间
+     * @param view           待移动的视图
+     * @param fromXDelta     动画开始的X轴坐标
+     * @param toXDelta       动画结束的X轴坐标
+     * @param fromYDelta     动画开始的Y轴坐标
+     * @param toYDelta       动画结束的Y轴坐标
+     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param durationMillis 动画持续时间
      */
     public static void translate(final View view, final float fromXDelta, final float toXDelta, final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis) {
         translate(view, fromXDelta, toXDelta, fromYDelta, toYDelta, cycles, durationMillis, false);
     }
 
+    // =
+
     /**
      * 视图摇晃
-     * @param view           要摇动的视图
-     * @param fromXDelta     X轴开始坐标
-     * @param toXDelta       X轴结束坐标
-     * @param cycles         重复次数
-     * @param durationMillis 持续时间
+     * @param view           待摇晃的视图
+     * @param fromXDelta     动画开始的X轴坐标
+     * @param toXDelta       动画结束的X轴坐标
+     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
      */
     public static void shake(final View view, final float fromXDelta, final float toXDelta, final float cycles, final long durationMillis, final boolean isBanClick) {
@@ -426,21 +425,21 @@ public final class ViewAnimationUtils {
 
     /**
      * 视图摇晃
-     * @param view           要摇动的视图
-     * @param fromXDelta     X轴开始坐标
-     * @param toXDelta       X轴结束坐标
-     * @param cycles         重复次数
-     * @param durationMillis 持续时间
+     * @param view           待摇晃的视图
+     * @param fromXDelta     动画开始的X轴坐标
+     * @param toXDelta       动画结束的X轴坐标
+     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param durationMillis 动画持续时间
      */
     public static void shake(final View view, final float fromXDelta, final float toXDelta, final float cycles, final long durationMillis) {
         translate(view, fromXDelta, toXDelta, 0.0f, 0.0f, cycles, durationMillis, false);
     }
 
     /**
-     * 视图摇晃，默认摇晃幅度为10，重复7次
-     * @param view
-     * @param cycles         重复次数
-     * @param durationMillis 持续时间
+     * 视图摇晃(摇晃幅度为10，重复7次)
+     * @param view           待摇晃的视图
+     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
      */
     public static void shake(final View view, final float cycles, final long durationMillis, final boolean isBanClick) {
@@ -448,9 +447,9 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃，默认摇晃幅度为10，持续700毫秒
-     * @param view
-     * @param cycles     重复次数
+     * 视图摇晃(摇晃幅度为10，持续700毫秒)
+     * @param view       待摇晃的视图
+     * @param cycles     动画周期 {@link CycleInterpolator}
      * @param isBanClick 在执行动画的过程中是否禁止点击
      */
     public static void shake(final View view, final float cycles, final boolean isBanClick) {
@@ -458,19 +457,19 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃，默认摇晃幅度为10
-     * @param view
-     * @param cycles         重复次数
-     * @param durationMillis 持续时间
+     * 视图摇晃(摇晃幅度为10)
+     * @param view           待摇晃的视图
+     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param durationMillis 动画持续时间
      */
     public static void shake(final View view, final float cycles, final long durationMillis) {
         translate(view, 0.0f, 10.0f, 0.0f, 0.0f, cycles, durationMillis, false);
     }
 
     /**
-     * 视图摇晃，默认摇晃幅度为10，重复7次
-     * @param view
-     * @param durationMillis 持续时间
+     * 视图摇晃(摇晃幅度为10，重复7次)
+     * @param view           待摇晃的视图
+     * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
      */
     public static void shake(final View view, final long durationMillis, final boolean isBanClick) {
@@ -478,26 +477,28 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃，默认摇晃幅度为10，持续700毫秒
-     * @param view   要摇动的视图
-     * @param cycles 重复次数
+     * 视图摇晃(摇晃幅度为10，持续700毫秒)
+     * @param view   待摇晃的视图
+     * @param cycles 动画周期 {@link CycleInterpolator}
      */
     public static void shake(final View view, final float cycles) {
         translate(view, 0.0f, 10.0f, 0.0f, 0.0f, cycles, 700, false);
     }
 
     /**
-     * 视图摇晃，默认摇晃幅度为10，重复7次
-     * @param view
-     * @param durationMillis 持续时间
+     * 视图摇晃(摇晃幅度为10，重复7次)
+     * @param view           待摇晃的视图
+     * @param durationMillis 动画持续时间
      */
     public static void shake(final View view, final long durationMillis) {
         translate(view, 0.0f, 10.0f, 0.0f, 0.0f, 7, durationMillis, false);
     }
 
+    // =
+
     /**
-     * 视图摇晃，默认摇晃幅度为10，重复7次，持续700毫秒
-     * @param view
+     * 视图摇晃(摇晃幅度为10，重复7次，持续700毫秒)
+     * @param view       待摇晃的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      */
     public static void shake(final View view, final boolean isBanClick) {
@@ -505,8 +506,8 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃，默认摇晃幅度为10，重复7次，持续700毫秒
-     * @param view
+     * 视图摇晃(摇晃幅度为10，重复7次，持续700毫秒)
+     * @param view 待摇晃的视图
      */
     public static void shake(final View view) {
         translate(view, 0.0f, 10.0f, 0.0f, 0.0f, 7, 700, false);
