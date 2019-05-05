@@ -32,7 +32,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 构造函数
-     * @param context Activity
+     * @param context {@link Context} Activity
      */
     public BeepVibrateAssist(final Context context) {
         this.mContext = context;
@@ -40,8 +40,8 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 构造函数
-     * @param context Activity
-     * @param rawId
+     * @param context {@link Context} Activity
+     * @param rawId raw资源id
      */
     public BeepVibrateAssist(final Context context, final @RawRes int rawId) {
         this.mContext = context;
@@ -50,12 +50,12 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 构造函数
-     * @param context
-     * @param path    只支持本地资源
+     * @param context {@link Context} Activity
+     * @param filePath    本地资源路径
      */
-    public BeepVibrateAssist(final Context context, final String path) {
+    public BeepVibrateAssist(final Context context, final String filePath) {
         this.mContext = context;
-        this.mediaPlayer = buildMediaPlayer(path);
+        this.mediaPlayer = buildMediaPlayer(filePath);
     }
 
     // ================
@@ -80,13 +80,13 @@ public final class BeepVibrateAssist implements Closeable {
     }
 
     /**
-     * 内部检查更新
+     * 更新播放流处理
      */
     private synchronized void update() {
         if (shouldBeep() && mediaPlayer != null) {
-            // The volume on STREAM_SYSTEM is not adjustable, and users found it too loud,
-            // so we now play on the music stream.
             try {
+                // The volume on STREAM_SYSTEM is not adjustable, and users found it too loud,
+                // so we now play on the music stream.
                 ((Activity) mContext).setVolumeControlStream(AudioManager.STREAM_MUSIC);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "update");
@@ -107,7 +107,7 @@ public final class BeepVibrateAssist implements Closeable {
     }
 
     /**
-     * 获取是否允许震动
+     * 判断是否允许震动
      * @return {@code true} 允许, {@code false} 不允许
      */
     public boolean isVibrate() {
@@ -116,7 +116,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 设置是否允许震动
-     * @param vibrate
+     * @param vibrate 是否允许震动
      * @return {@link BeepVibrateAssist}
      */
     public BeepVibrateAssist setVibrate(final boolean vibrate) {
@@ -126,8 +126,8 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 设置是否允许震动
-     * @param vibrate
-     * @param vibrateDuration 震动时间
+     * @param vibrate 是否允许震动
+     * @param vibrateDuration 震动时间(毫秒)
      * @return {@link BeepVibrateAssist}
      */
     public BeepVibrateAssist setVibrate(final boolean vibrate, final long vibrateDuration) {
@@ -138,7 +138,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 设置播放资源对象
-     * @param mediaPlayer
+     * @param mediaPlayer {@link MediaPlayer}
      * @return {@link BeepVibrateAssist}
      */
     public BeepVibrateAssist setMediaPlayer(final MediaPlayer mediaPlayer) {
