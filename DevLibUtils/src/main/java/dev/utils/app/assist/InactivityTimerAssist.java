@@ -13,7 +13,7 @@ import android.os.Build;
  * detail: Activity 无操作定时辅助类
  * @author Ttt
  * <pre>
- *      需要注意的是, 需要在对应的生命周期内，调用对应的 onXXX 方法
+ *      需要注意的是, 需要在对应的生命周期内，调用对应的 onPause/onResume/onDestroy 方法
  * </pre>
  */
 public final class InactivityTimerAssist {
@@ -35,12 +35,63 @@ public final class InactivityTimerAssist {
         this(activity, 5 * 60 * 1000L);
     }
 
+    /**
+     * 构造函数
+     * @param activity {@link Activity}
+     * @param inactivityTime 无操作时间间隔(毫秒)
+     */
     public InactivityTimerAssist(final Activity activity, final long inactivityTime) {
         this.activity = activity;
         this.inactivityTime = inactivityTime;
         // 电池广播监听
         powerStatusReceiver = new PowerStatusReceiver();
         // 关闭任务
+        cancel();
+    }
+
+    // ================
+    // = 对外公开方法 =
+    // ================
+
+    /**
+     * 暂停检测
+     * <pre>
+     *      Activity 生命周期 onPause 调用
+     * </pre>
+     */
+    public synchronized void onPause() {
+        // 取消任务
+        cancel();
+        try {
+            // 取消注册广播
+            activity.unregisterReceiver(powerStatusReceiver);
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * 回到 Activity 处理
+     * <pre>
+     *      Activity 生命周期 onResume 调用
+     * </pre>
+     */
+    public synchronized void onResume() {
+        try {
+            // 注册广播
+            activity.registerReceiver(powerStatusReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        } catch (Exception e) {
+        }
+        // 开始检测
+        start();
+    }
+
+    /**
+     * Activity 销毁处理
+     * <pre>
+     *      Activity 生命周期 onDestroy 调用
+     * </pre>
+     */
+    public synchronized void onDestroy() {
         cancel();
     }
 
@@ -51,7 +102,7 @@ public final class InactivityTimerAssist {
     /**
      * 开始计时任务
      */
-    public synchronized void start() {
+    private synchronized void start() {
         // 取消任务
         cancel();
         // 注册任务
@@ -79,51 +130,16 @@ public final class InactivityTimerAssist {
     // =
 
     /**
-     * 暂停检测
-     */
-    public synchronized void onPause() {
-        // 取消任务
-        cancel();
-        try {
-            // 取消注册广播
-            activity.unregisterReceiver(powerStatusReceiver);
-        } catch (Exception e) {
-        }
-    }
-
-    /**
-     * 回到 Activity/xx 处理
-     */
-    public synchronized void onResume() {
-        try {
-            // 注册广播
-            activity.registerReceiver(powerStatusReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        } catch (Exception e) {
-        }
-        // 开始检测
-        start();
-    }
-
-    /**
-     * 页面销毁处理
-     */
-    public void onDestroy() {
-        cancel();
-    }
-
-    // =
-
-    /**
      * detail: 电池监听广播
      * @author Ttt
      */
     private class PowerStatusReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
+            if (intent != null && Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
                 // 0 indicates that we're on battery
-                boolean onBatteryNow = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1) <= 0;
-                if (onBatteryNow) { // 属于非充电才进行记时
+                boolean isBatteryNow = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1) <= 0;
+                if (isBatteryNow) { // 属于非充电才进行记时
                     InactivityTimerAssist.this.start();
                 } else { // 充电中, 则不处理
                     InactivityTimerAssist.this.cancel();
@@ -133,7 +149,7 @@ public final class InactivityTimerAssist {
     }
 
     /**
-     * detail: 定时检测任务
+     * detail: 定时检测任务(无操作检测)
      * @author Ttt
      */
     private class InactivityAsyncTask extends AsyncTask<Object, Object, Object> {
@@ -145,7 +161,7 @@ public final class InactivityTimerAssist {
                 if (activity != null) {
                     activity.finish();
                 }
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
             }
             return null;
         }

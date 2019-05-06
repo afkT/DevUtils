@@ -22,7 +22,7 @@ public final class BeepVibrateAssist implements Closeable {
     // 日志 TAG
     private static final String TAG = BeepVibrateAssist.class.getSimpleName();
     // Context
-    private final Context mContext;
+    private final Activity activity;
     // 播放资源对象
     private MediaPlayer mediaPlayer = null;
     // 是否需要震动
@@ -32,29 +32,29 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 构造函数
-     * @param context {@link Context} Activity
+     * @param activity {@link Activity}
      */
-    public BeepVibrateAssist(final Context context) {
-        this.mContext = context;
+    public BeepVibrateAssist(final Activity activity) {
+        this.activity = activity;
     }
 
     /**
      * 构造函数
-     * @param context {@link Context} Activity
-     * @param rawId raw资源id
+     * @param activity {@link Activity}
+     * @param rawId    raw资源id
      */
-    public BeepVibrateAssist(final Context context, final @RawRes int rawId) {
-        this.mContext = context;
-        this.mediaPlayer = buildMediaPlayer(context, rawId);
+    public BeepVibrateAssist(final Activity activity, @RawRes final int rawId) {
+        this.activity = activity;
+        this.mediaPlayer = buildMediaPlayer(activity, rawId);
     }
 
     /**
      * 构造函数
-     * @param context {@link Context} Activity
-     * @param filePath    本地资源路径
+     * @param activity {@link Activity}
+     * @param filePath 本地资源路径
      */
-    public BeepVibrateAssist(final Context context, final String filePath) {
-        this.mContext = context;
+    public BeepVibrateAssist(final Activity activity, final String filePath) {
+        this.activity = activity;
         this.mediaPlayer = buildMediaPlayer(filePath);
     }
 
@@ -63,13 +63,13 @@ public final class BeepVibrateAssist implements Closeable {
     // ================
 
     /**
-     * 检查是否允许播放声音
+     * 判断是否允许播放声音
      * @return {@code true} 允许, {@code false} 不允许
      */
     private boolean shouldBeep() {
         try {
             // RINGER_MODE_NORMAL(普通)、RINGER_MODE_SILENT(静音)、RINGER_MODE_VIBRATE(震动)
-            AudioManager audioService = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+            AudioManager audioService = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
             if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
                 return false; // 进入只有属于, 静音、震动，才不播放
             }
@@ -82,12 +82,12 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 更新播放流处理
      */
-    private synchronized void update() {
+    private synchronized void streamUpdate() {
         if (shouldBeep() && mediaPlayer != null) {
             try {
                 // The volume on STREAM_SYSTEM is not adjustable, and users found it too loud,
                 // so we now play on the music stream.
-                ((Activity) mContext).setVolumeControlStream(AudioManager.STREAM_MUSIC);
+                activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "update");
             }
@@ -126,7 +126,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 设置是否允许震动
-     * @param vibrate 是否允许震动
+     * @param vibrate         是否允许震动
      * @param vibrateDuration 震动时间(毫秒)
      * @return {@link BeepVibrateAssist}
      */
@@ -143,8 +143,8 @@ public final class BeepVibrateAssist implements Closeable {
      */
     public BeepVibrateAssist setMediaPlayer(final MediaPlayer mediaPlayer) {
         this.mediaPlayer = mediaPlayer;
-        // 进行更新
-        update();
+        // 更新播放流处理
+        streamUpdate();
         return this;
     }
 
@@ -165,7 +165,7 @@ public final class BeepVibrateAssist implements Closeable {
         // 判断是否允许震动
         if (vibrate) {
             try {
-                Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+                Vibrator vibrator = (Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(vibrateDuration);
             } catch (Exception e) {
             }
@@ -189,22 +189,22 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 创建 MediaPlayer 对象
-     * @param context
-     * @param rawId   响声资源id
+     * @param context {@link Context} Activity
+     * @param rawId   raw资源id
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(final Context context, final @RawRes int rawId) {
+    public static MediaPlayer buildMediaPlayer(final Context context, @RawRes final int rawId) {
         return buildMediaPlayer(context, rawId, 0.1f);
     }
 
     /**
      * 创建 MediaPlayer 对象
-     * @param context
-     * @param rawId      响声资源id
+     * @param context    {@link Context} Activity
+     * @param rawId      raw资源id
      * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(final Context context, final @RawRes int rawId, final float beepVolume) {
+    public static MediaPlayer buildMediaPlayer(final Context context, @RawRes final int rawId, final float beepVolume) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -242,20 +242,20 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 创建 MediaPlayer 对象
-     * @param path 响声资源路径(只支持本地资源)
+     * @param filePath 本地资源路径
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(final String path) {
-        return buildMediaPlayer(path, 0.1f);
+    public static MediaPlayer buildMediaPlayer(final String filePath) {
+        return buildMediaPlayer(filePath, 0.1f);
     }
 
     /**
      * 创建 MediaPlayer 对象
-     * @param path       响声资源路径(只支持本地资源)
+     * @param filePath   本地资源路径
      * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(final String path, final float beepVolume) {
+    public static MediaPlayer buildMediaPlayer(final String filePath, final float beepVolume) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -273,7 +273,7 @@ public final class BeepVibrateAssist implements Closeable {
             }
         });
         try {
-            mediaPlayer.setDataSource(path);
+            mediaPlayer.setDataSource(filePath);
             mediaPlayer.setVolume(beepVolume, beepVolume);
             mediaPlayer.prepare();
             return mediaPlayer;

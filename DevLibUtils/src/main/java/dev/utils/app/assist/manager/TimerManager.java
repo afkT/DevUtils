@@ -35,7 +35,7 @@ public final class TimerManager {
     // 日志 TAG
     private static final String TAG = TimerManager.class.getSimpleName();
     // 内部保存定时器对象,防止忘记关闭等其他情况,以及便于控制处理
-    private static final List<AbsTimer> listAbsTimers = new ArrayList<>();
+    private static final List<AbsTimer> mListAbsTimers = new ArrayList<>();
 
     // ============================
     // = ArrayList 对外公开的方法 =
@@ -45,11 +45,11 @@ public final class TimerManager {
      * 回收资源
      */
     public static void gc() {
-        synchronized (listAbsTimers) {
+        synchronized (mListAbsTimers) {
             // 临时数据源
-            List<AbsTimer> lists = new ArrayList<>(listAbsTimers);
+            List<AbsTimer> lists = new ArrayList<>(mListAbsTimers);
             // 清空旧的数据
-            listAbsTimers.clear();
+            mListAbsTimers.clear();
             // 开始删除无用资源
             Iterator<AbsTimer> iterator = lists.iterator();
             while (iterator.hasNext()) {
@@ -59,7 +59,7 @@ public final class TimerManager {
                 }
             }
             // 把不需要回收的保存回去
-            listAbsTimers.addAll(lists);
+            mListAbsTimers.addAll(lists);
             // 移除旧的
             lists.clear();
             lists = null;
@@ -71,7 +71,7 @@ public final class TimerManager {
      * @return 全部任务总数
      */
     public static int timerSize() {
-        return listAbsTimers.size();
+        return mListAbsTimers.size();
     }
 
     // =
@@ -84,8 +84,8 @@ public final class TimerManager {
     public static AbsTimer getTimer(final String markStr) {
         if (markStr != null) {
             try {
-                for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
-                    AbsTimer absTimer = listAbsTimers.get(i);
+                for (int i = 0, len = mListAbsTimers.size(); i < len; i++) {
+                    AbsTimer absTimer = mListAbsTimers.get(i);
                     // 判断是否符合标记, 原本标记不为 null, 并且符合条件的
                     if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
                         return absTimer;
@@ -105,8 +105,8 @@ public final class TimerManager {
      */
     public static AbsTimer getTimer(final int markId) {
         try {
-            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
-                AbsTimer absTimer = listAbsTimers.get(i);
+            for (int i = 0, len = mListAbsTimers.size(); i < len; i++) {
+                AbsTimer absTimer = mListAbsTimers.get(i);
                 // 判断是否符合标记
                 if (absTimer != null && absTimer.getMarkId() == markId) {
                     return absTimer;
@@ -130,8 +130,8 @@ public final class TimerManager {
         // 防止为 null
         if (markStr != null) {
             try {
-                for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
-                    AbsTimer absTimer = listAbsTimers.get(i);
+                for (int i = 0, len = mListAbsTimers.size(); i < len; i++) {
+                    AbsTimer absTimer = mListAbsTimers.get(i);
                     // 判断是否符合标记, 原本标记不为 null, 并且符合条件的
                     if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
                         lists.add(absTimer);
@@ -152,8 +152,8 @@ public final class TimerManager {
     public static List<AbsTimer> getTimers(final int markId) {
         List<AbsTimer> lists = new ArrayList<>();
         try {
-            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
-                AbsTimer absTimer = listAbsTimers.get(i);
+            for (int i = 0, len = mListAbsTimers.size(); i < len; i++) {
+                AbsTimer absTimer = mListAbsTimers.get(i);
                 // 判断是否符合标记
                 if (absTimer != null && absTimer.getMarkId() == markId) {
                     lists.add(absTimer);
@@ -172,8 +172,8 @@ public final class TimerManager {
      */
     public static void closeAll() {
         try {
-            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
-                AbsTimer absTimer = listAbsTimers.get(i);
+            for (int i = 0, len = mListAbsTimers.size(); i < len; i++) {
+                AbsTimer absTimer = mListAbsTimers.get(i);
                 if (absTimer != null) { // 关闭定时器
                     absTimer.closeTimer();
                 }
@@ -188,8 +188,8 @@ public final class TimerManager {
      */
     public static void closeNotRunTask() {
         try {
-            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
-                AbsTimer absTimer = listAbsTimers.get(i);
+            for (int i = 0, len = mListAbsTimers.size(); i < len; i++) {
+                AbsTimer absTimer = mListAbsTimers.get(i);
                 // 判断是否运行中
                 if (absTimer != null && !absTimer.isRunTimer()) {
                     absTimer.closeTimer(); // 关闭定时器
@@ -205,8 +205,8 @@ public final class TimerManager {
      */
     public static void closeInfiniteTask() {
         try {
-            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
-                AbsTimer absTimer = listAbsTimers.get(i);
+            for (int i = 0, len = mListAbsTimers.size(); i < len; i++) {
+                AbsTimer absTimer = mListAbsTimers.get(i);
                 // 判断是否无限运行
                 if (absTimer != null && absTimer.isInfinite()) {
                     absTimer.closeTimer(); // 关闭定时器
@@ -224,8 +224,8 @@ public final class TimerManager {
     public static void closeMark(final String markStr) {
         if (markStr != null) {
             try {
-                for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
-                    AbsTimer absTimer = listAbsTimers.get(i);
+                for (int i = 0, len = mListAbsTimers.size(); i < len; i++) {
+                    AbsTimer absTimer = mListAbsTimers.get(i);
                     // 判断是否符合标记 , 原本标记不为 null, 并且符合条件的
                     if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
                         absTimer.closeTimer(); // 关闭定时器
@@ -243,8 +243,8 @@ public final class TimerManager {
      */
     public static void closeMark(final int markId) {
         try {
-            for (int i = 0, len = listAbsTimers.size(); i < len; i++) {
-                AbsTimer absTimer = listAbsTimers.get(i);
+            for (int i = 0, len = mListAbsTimers.size(); i < len; i++) {
+                AbsTimer absTimer = mListAbsTimers.get(i);
                 if (absTimer != null && absTimer.getMarkId() == markId) {
                     absTimer.closeTimer(); // 关闭定时器
                 }
@@ -404,16 +404,16 @@ public final class TimerManager {
         /**
          * 运行定时器
          * <pre>
-         *      如果外部通过了createTimer 或者直接new AbsTimer 初始化了对象，没有调用startTimer,都不会保存到 listAbsTimers 并不影响对定时器的控制
+         *      如果外部通过了createTimer 或者直接new AbsTimer 初始化了对象，没有调用startTimer,都不会保存到 mListAbsTimers 并不影响对定时器的控制
          * </pre>
          */
         public void startTimer() {
             // 标记状态 - 不需要回收
             this.markSweep = false;
-            synchronized (listAbsTimers) {
+            synchronized (mListAbsTimers) {
                 // 不存在才进行添加
-                if (!listAbsTimers.contains(this)) {
-                    listAbsTimers.add(this);
+                if (!mListAbsTimers.contains(this)) {
+                    mListAbsTimers.add(this);
                 }
             }
         }

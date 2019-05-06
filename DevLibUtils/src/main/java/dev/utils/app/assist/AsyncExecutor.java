@@ -22,9 +22,9 @@ public class AsyncExecutor {
     // 日志 TAG
     private final String TAG = AsyncExecutor.class.getSimpleName();
     // 主线程 Hander
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private Handler handler = new Handler(Looper.getMainLooper());
     // 线程池
-    private ExecutorService mThreadPool;
+    private ExecutorService threadPool;
 
     public AsyncExecutor() {
         this(null);
@@ -35,14 +35,14 @@ public class AsyncExecutor {
      * @param pool {@link ExecutorService}
      */
     public AsyncExecutor(final ExecutorService pool) {
-        if (mThreadPool != null) {
+        if (threadPool != null) {
             shutdownNow();
         }
         // 进行赋值
-        mThreadPool = pool;
+        threadPool = pool;
         // 防止为null
-        if (mThreadPool == null) {
-            mThreadPool = Executors.newCachedThreadPool();
+        if (threadPool == null) {
+            threadPool = Executors.newCachedThreadPool();
         }
     }
 
@@ -50,9 +50,9 @@ public class AsyncExecutor {
      * 立即关闭线程池任务
      */
     public synchronized void shutdownNow() {
-        if (mThreadPool != null && !mThreadPool.isShutdown()) {
-            mThreadPool.shutdownNow();
-            mThreadPool = null;
+        if (threadPool != null && !threadPool.isShutdown()) {
+            threadPool.shutdownNow();
+            threadPool = null;
         }
     }
 
@@ -89,7 +89,7 @@ public class AsyncExecutor {
                     }
                 }
             };
-            mThreadPool.execute(task);
+            threadPool.execute(task);
             return task;
         }
         return null;
@@ -104,7 +104,7 @@ public class AsyncExecutor {
      */
     private <T> T postResult(final Worker<T> worker, final T result) {
         if (worker == null) return result;
-        mHandler.post(new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
                 if (worker != null) {
@@ -121,7 +121,7 @@ public class AsyncExecutor {
      */
     private void postCancel(final Worker worker) {
         if (worker == null) return;
-        mHandler.post(new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
                 worker.onCanceled();
@@ -138,7 +138,7 @@ public class AsyncExecutor {
     public <T> FutureTask<T> execute(final Callable<T> call) {
         if (call != null) {
             FutureTask<T> task = new FutureTask<>(call);
-            mThreadPool.execute(task);
+            threadPool.execute(task);
             return task;
         }
         return null;

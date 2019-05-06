@@ -63,7 +63,9 @@ public final class ScreenSensorAssist {
     // 回调操作
     private Handler handler;
 
-    // 角度处理 Handler
+    /**
+     * 角度处理 Handler
+     */
     private Handler rotateHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -133,8 +135,8 @@ public final class ScreenSensorAssist {
 
     /**
      * 初始化操作
-     * @param context
-     * @param handler 回调Handler
+     * @param context {@link Context}
+     * @param handler 回调 {@link Handler}
      */
     private void init(final Context context, final Handler handler) {
         this.handler = handler;
@@ -152,7 +154,8 @@ public final class ScreenSensorAssist {
 
     /**
      * 开始监听
-     * @param context
+     * @param context {@link Context}
+     * @param handler 回调 {@link Handler}
      */
     public void start(final Context context, final Handler handler) {
         allowChange = true;
@@ -203,7 +206,8 @@ public final class ScreenSensorAssist {
     // =
 
     /**
-     * 重力传感器监听事件
+     * detail: 重力传感器监听事件
+     * @author Ttt
      */
     class OrientationSensorListener implements SensorEventListener {
         @Override
@@ -239,7 +243,8 @@ public final class ScreenSensorAssist {
     }
 
     /**
-     * 重力传感器监听事件(切屏后)
+     * detail: 重力传感器监听事件(切屏后)
+     * @author Ttt
      */
     class OrientationSensorChangeListener implements SensorEventListener {
         @Override
