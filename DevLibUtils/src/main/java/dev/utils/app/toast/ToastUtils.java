@@ -33,34 +33,34 @@ public final class ToastUtils {
     // Toast 判断过滤
     private static ToastUtils.Filter sToastFilter = null;
     // 内部持有单个Toast
-    private static Toast mToast = null;
+    private static Toast sToast = null;
     // 判断是否使用 Handler
-    private static boolean mIsHandler = true;
+    private static boolean sIsHandler = true;
     // 内部 Handler
     private static final Handler sHandler = new Handler(Looper.getMainLooper());
     // Null 值
-    private static String mNullText = "text is null";
+    private static String sNullText = "text is null";
 
     // ============
     // = 部分配置 =
     // ============
 
     // 判断是否使用配置
-    private static boolean mUseConfig = true;
+    private static boolean sUseConfig = true;
     // Toast 的重心、X、Y 轴偏移
-    private static int mGravity, mX, mY;
+    private static int sGravity, sX, sY;
     // 水平边距、垂直边距
-    private static float mHorizontalMargin, mVerticalMargin;
+    private static float sHorizontalMargin, sVerticalMargin;
 
     /**
      * 重置默认参数
      */
     public static void reset() {
-        mIsHandler = true;
-        mUseConfig = true;
-        mNullText = "text is null";
-        mGravity = mX = mY = 0;
-        mHorizontalMargin = mVerticalMargin = 0.0f;
+        sIsHandler = true;
+        sUseConfig = true;
+        sNullText = "text is null";
+        sGravity = sX = sY = 0;
+        sHorizontalMargin = sVerticalMargin = 0.0f;
     }
 
     /**
@@ -76,7 +76,7 @@ public final class ToastUtils {
      * @param isHandler
      */
     public static void setIsHandler(final boolean isHandler) {
-        ToastUtils.mIsHandler = isHandler;
+        ToastUtils.sIsHandler = isHandler;
     }
 
     /**
@@ -84,7 +84,7 @@ public final class ToastUtils {
      * @param nullText
      */
     public static void setNullText(final String nullText) {
-        ToastUtils.mNullText = nullText;
+        ToastUtils.sNullText = nullText;
     }
 
     /**
@@ -92,7 +92,7 @@ public final class ToastUtils {
      * @param useConfig
      */
     public static void setUseConfig(final boolean useConfig) {
-        ToastUtils.mUseConfig = useConfig;
+        ToastUtils.sUseConfig = useConfig;
     }
 
     /**
@@ -102,9 +102,9 @@ public final class ToastUtils {
      * @param yOffset
      */
     public static void setGravity(final int gravity, final int xOffset, final int yOffset) {
-        ToastUtils.mGravity = gravity;
-        ToastUtils.mX = xOffset;
-        ToastUtils.mY = yOffset;
+        ToastUtils.sGravity = gravity;
+        ToastUtils.sX = xOffset;
+        ToastUtils.sY = yOffset;
     }
 
     /**
@@ -113,8 +113,8 @@ public final class ToastUtils {
      * @param verticalMargin
      */
     public static void setMargin(final float horizontalMargin, final float verticalMargin) {
-        ToastUtils.mHorizontalMargin = horizontalMargin;
-        ToastUtils.mVerticalMargin = verticalMargin;
+        ToastUtils.sHorizontalMargin = horizontalMargin;
+        ToastUtils.sVerticalMargin = verticalMargin;
     }
 
     // =================
@@ -398,7 +398,7 @@ public final class ToastUtils {
      * @Toast
      */
     private static void priShowToastText(final boolean isSingle, final Context context, final String text, final int duration) {
-        if (mIsHandler) {
+        if (sIsHandler) {
             sHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -444,7 +444,7 @@ public final class ToastUtils {
         text = sPriToastFilter.handlerContent(text);
         // 设置为null, 便于提示排查
         if (TextUtils.isEmpty(text)) {
-            text = mNullText;
+            text = sNullText;
             // 如果还是为null, 则不处理
             if (TextUtils.isEmpty(text)) {
                 return null;
@@ -454,27 +454,27 @@ public final class ToastUtils {
         if (isSingle) {
             try {
                 // 关闭旧的 Toast
-                if (mToast != null) {
-                    mToast.cancel();
-                    mToast = null;
+                if (sToast != null) {
+                    sToast.cancel();
+                    sToast = null;
                 }
                 // 解决 MIUI 会显示应用名称问题
-                mToast = Toast.makeText(context, null, duration);
-                mToast.setText(text);
+                sToast = Toast.makeText(context, null, duration);
+                sToast.setText(text);
                 // 判断是否使用配置
-                if (mUseConfig) {
+                if (sUseConfig) {
                     // 设置属性配置
-                    if (mGravity != 0) {
-                        mToast.setGravity(mGravity, mX, mY);
+                    if (sGravity != 0) {
+                        sToast.setGravity(sGravity, sX, sY);
                     }
-                    mToast.setMargin(mHorizontalMargin, mVerticalMargin);
+                    sToast.setMargin(sHorizontalMargin, sVerticalMargin);
                 }
                 // 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
-                reflectToastHandler(mToast);
+                reflectToastHandler(sToast);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "newToastText");
             }
-            return mToast;
+            return sToast;
         } else {
             Toast toast = null;
             try {
@@ -482,12 +482,12 @@ public final class ToastUtils {
                 toast = Toast.makeText(context, null, duration);
                 toast.setText(text);
                 // 判断是否使用配置
-                if (mUseConfig) {
+                if (sUseConfig) {
                     // 设置属性配置
-                    if (mGravity != 0) {
-                        toast.setGravity(mGravity, mX, mY);
+                    if (sGravity != 0) {
+                        toast.setGravity(sGravity, sX, sY);
                     }
-                    toast.setMargin(mHorizontalMargin, mVerticalMargin);
+                    toast.setMargin(sHorizontalMargin, sVerticalMargin);
                 }
                 // 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
                 reflectToastHandler(toast);
@@ -547,7 +547,7 @@ public final class ToastUtils {
      */
     public static void showToastView(final boolean isSingle, final Context context, final View view, final int duration) {
         if (view == null) return;
-        if (mIsHandler) {
+        if (sIsHandler) {
             sHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -599,28 +599,28 @@ public final class ToastUtils {
         if (isSingle) {
             try {
                 // 关闭旧的 Toast
-                if (mToast != null) {
-                    mToast.cancel();
-                    mToast = null;
+                if (sToast != null) {
+                    sToast.cancel();
+                    sToast = null;
                 }
                 // 解决 MIUI 会显示应用名称问题
-                mToast = new Toast(context);
-                mToast.setView(view);
-                mToast.setDuration(duration);
+                sToast = new Toast(context);
+                sToast.setView(view);
+                sToast.setDuration(duration);
                 // 判断是否使用配置
-                if (mUseConfig) {
+                if (sUseConfig) {
                     // 设置属性配置
-                    if (mGravity != 0) {
-                        mToast.setGravity(mGravity, mX, mY);
+                    if (sGravity != 0) {
+                        sToast.setGravity(sGravity, sX, sY);
                     }
-                    mToast.setMargin(mHorizontalMargin, mVerticalMargin);
+                    sToast.setMargin(sHorizontalMargin, sVerticalMargin);
                 }
                 // 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
-                reflectToastHandler(mToast);
+                reflectToastHandler(sToast);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "newToastView");
             }
-            return mToast;
+            return sToast;
         } else {
             Toast toast = null;
             try {
@@ -629,12 +629,12 @@ public final class ToastUtils {
                 toast.setView(view);
                 toast.setDuration(duration);
                 // 判断是否使用配置
-                if (mUseConfig) {
+                if (sUseConfig) {
                     // 设置属性配置
-                    if (mGravity != 0) {
-                        toast.setGravity(mGravity, mX, mY);
+                    if (sGravity != 0) {
+                        toast.setGravity(sGravity, sX, sY);
                     }
-                    toast.setMargin(mHorizontalMargin, mVerticalMargin);
+                    toast.setMargin(sHorizontalMargin, sVerticalMargin);
                 }
                 // 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
                 reflectToastHandler(toast);

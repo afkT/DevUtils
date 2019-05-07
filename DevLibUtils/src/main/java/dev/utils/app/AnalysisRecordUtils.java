@@ -40,13 +40,13 @@ public final class AnalysisRecordUtils {
     // Context
     private static Context sContext;
     // 日志文件夹名字(目录名)
-    private static String logFolderName = "LogRecord";
+    private static String sLogFolderName = "LogRecord";
     // 日志存储路径
-    private static String logStoragePath;
+    private static String sLogStoragePath;
     // 是否处理保存
-    private static boolean handler = true;
+    private static boolean sIsHandler = true;
     // 判断是否加空格
-    private static boolean appendSpace = true;
+    private static boolean sAppendSpace = true;
     // 正则 - 空格
     private static final String SPACE_STR = "\\s";
 
@@ -64,9 +64,9 @@ public final class AnalysisRecordUtils {
         // 初始化 App 信息
         getAppInfo();
         // 如果为null, 才设置
-        if (TextUtils.isEmpty(logStoragePath)) {
+        if (TextUtils.isEmpty(sLogStoragePath)) {
             // 获取根路径
-            logStoragePath = FileInfo.getDiskCacheDir(sContext);
+            sLogStoragePath = FileInfo.getDiskCacheDir(sContext);
         }
     }
 
@@ -82,7 +82,7 @@ public final class AnalysisRecordUtils {
      */
     public static String record(final FileInfo fileInfo, final String... args) {
         // 如果不处理, 则直接跳过
-        if (!handler) {
+        if (!sIsHandler) {
             return "record not handler";
         }
         if (fileInfo != null) {
@@ -104,7 +104,7 @@ public final class AnalysisRecordUtils {
      * @return
      */
     public static boolean isHandler() {
-        return handler;
+        return sIsHandler;
     }
 
     /**
@@ -112,7 +112,7 @@ public final class AnalysisRecordUtils {
      * @param handler
      */
     public static void setHandler(final boolean handler) {
-        AnalysisRecordUtils.handler = handler;
+        AnalysisRecordUtils.sIsHandler = handler;
     }
 
     /**
@@ -120,7 +120,7 @@ public final class AnalysisRecordUtils {
      * @return
      */
     public static boolean isAppendSpace() {
-        return appendSpace;
+        return sAppendSpace;
     }
 
     /**
@@ -128,7 +128,7 @@ public final class AnalysisRecordUtils {
      * @param appendSpace
      */
     public static void setAppendSpace(final boolean appendSpace) {
-        AnalysisRecordUtils.appendSpace = appendSpace;
+        AnalysisRecordUtils.sAppendSpace = appendSpace;
     }
 
     /**
@@ -136,7 +136,7 @@ public final class AnalysisRecordUtils {
      * @return
      */
     public static String getLogFolderName() {
-        return logFolderName;
+        return sLogFolderName;
     }
 
     /**
@@ -144,7 +144,7 @@ public final class AnalysisRecordUtils {
      * @param logFolderName
      */
     public static void setLogFolderName(final String logFolderName) {
-        AnalysisRecordUtils.logFolderName = logFolderName;
+        AnalysisRecordUtils.sLogFolderName = logFolderName;
     }
 
     /**
@@ -152,7 +152,7 @@ public final class AnalysisRecordUtils {
      * @return
      */
     public static String getLogStoragePath() {
-        return logStoragePath;
+        return sLogStoragePath;
     }
 
     /**
@@ -160,7 +160,7 @@ public final class AnalysisRecordUtils {
      * @param logStoragePath
      */
     public static void setLogStoragePath(final String logStoragePath) {
-        AnalysisRecordUtils.logStoragePath = logStoragePath;
+        AnalysisRecordUtils.sLogStoragePath = logStoragePath;
     }
 
     // ============
@@ -174,7 +174,7 @@ public final class AnalysisRecordUtils {
      */
     private static String saveLogRecord(final FileInfo fileInfo, final String... args) {
         // 如果不处理, 则直接跳过
-        if (!handler) {
+        if (!sIsHandler) {
             return "record not handler";
         }
         // 文件信息为null, 则不处理
@@ -255,7 +255,7 @@ public final class AnalysisRecordUtils {
      */
     private static String splitLog(final String... args) {
         // 判断是否追加空格
-        boolean isSpace = appendSpace;
+        boolean isSpace = sAppendSpace;
         // =
         StringBuffer buffer = new StringBuffer();
         // 增加换行
@@ -611,7 +611,7 @@ public final class AnalysisRecordUtils {
          */
         public String getLogPath() {
             // 返回拼接后的路径
-            return getSavePath(getStoragePath(), logFolderName + File.separator + getDateNow("yyyy_MM_dd")) + getIntervalTimeFolder();
+            return getSavePath(getStoragePath(), sLogFolderName + File.separator + getDateNow("yyyy_MM_dd")) + getIntervalTimeFolder();
         }
 
         /**

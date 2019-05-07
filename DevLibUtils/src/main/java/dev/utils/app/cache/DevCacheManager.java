@@ -16,24 +16,24 @@ import java.util.concurrent.atomic.AtomicLong;
 final class DevCacheManager {
 
     // 总缓存大小
-    private final AtomicLong cacheSize;
+    private final AtomicLong mCacheSize;
     // 总缓存的文件总数
-    private final AtomicInteger cacheCount;
+    private final AtomicInteger mCacheCount;
     // 大小限制
-    private final long sizeLimit;
+    private final long mSizeLimit;
     // 文件总数限制
-    private final int countLimit;
+    private final int mCountLimit;
     // 保存文件时间信息 - 文件地址, 文件最后使用时间
-    private final Map<File, Long> lastUsageDates = Collections.synchronizedMap(new HashMap<File, Long>());
+    private final Map<File, Long> mLastUsageDates = Collections.synchronizedMap(new HashMap<File, Long>());
     // 文件目录
-    protected File cacheDir;
+    protected File mCacheDir;
 
     protected DevCacheManager(final File cacheDir, final long sizeLimit, final int countLimit) {
-        this.cacheDir = cacheDir;
-        this.sizeLimit = sizeLimit;
-        this.countLimit = countLimit;
-        cacheSize = new AtomicLong();
-        cacheCount = new AtomicInteger();
+        this.mCacheDir = cacheDir;
+        this.mSizeLimit = sizeLimit;
+        this.mCountLimit = countLimit;
+        mCacheSize = new AtomicLong();
+        mCacheCount = new AtomicInteger();
         // 计算文件信息等
         calculateCacheSizeAndCacheCount();
     }
@@ -46,16 +46,16 @@ final class DevCacheManager {
             @Override
             public void run() {
                 int size = 0, count = 0;
-                if (cacheDir != null) {
-                    File[] cachedFiles = cacheDir.listFiles();
+                if (mCacheDir != null) {
+                    File[] cachedFiles = mCacheDir.listFiles();
                     if (cachedFiles != null) {
                         for (File cachedFile : cachedFiles) {
                             size += calculateSize(cachedFile);
                             count += 1;
-                            lastUsageDates.put(cachedFile, cachedFile.lastModified());
+                            mLastUsageDates.put(cachedFile, cachedFile.lastModified());
                         }
-                        cacheSize.set(size);
-                        cacheCount.set(count);
+                        mCacheSize.set(size);
+                        mCacheCount.set(count);
                     }
                 }
             }
@@ -69,32 +69,32 @@ final class DevCacheManager {
     protected void put(final File file) {
         if (file == null) return;
         // 获取文件总数
-        int curCacheCount = cacheCount.get();
+        int curCacheCount = mCacheCount.get();
         // 判断是否超过数量限制
-        while (curCacheCount + 1 > countLimit) {
+        while (curCacheCount + 1 > mCountLimit) {
             // 删除文件, 并获取删除的文件大小
             long freedSize = removeNext();
             // 删除文件大小
-            cacheSize.addAndGet(-freedSize);
+            mCacheSize.addAndGet(-freedSize);
             // 递减文件
-            curCacheCount = cacheCount.addAndGet(-1);
+            curCacheCount = mCacheCount.addAndGet(-1);
         }
         // 累加文件数量
-        cacheCount.addAndGet(1);
+        mCacheCount.addAndGet(1);
         // 计算文件总大小
         long valueSize = calculateSize(file);
         // 判断当前缓存大小
-        long curCacheSize = cacheSize.get();
+        long curCacheSize = mCacheSize.get();
         // 判断是否超过大小限制
-        while (curCacheSize + valueSize > sizeLimit) {
+        while (curCacheSize + valueSize > mSizeLimit) {
             long freedSize = removeNext();
-            curCacheSize = cacheSize.addAndGet(-freedSize);
+            curCacheSize = mCacheSize.addAndGet(-freedSize);
         }
-        cacheSize.addAndGet(valueSize);
+        mCacheSize.addAndGet(valueSize);
 
         Long currentTime = System.currentTimeMillis();
         file.setLastModified(currentTime);
-        lastUsageDates.put(file, currentTime);
+        mLastUsageDates.put(file, currentTime);
     }
 
     /**
@@ -107,7 +107,7 @@ final class DevCacheManager {
         if (file != null) {
             Long currentTime = System.currentTimeMillis();
             file.setLastModified(currentTime);
-            lastUsageDates.put(file, currentTime);
+            mLastUsageDates.put(file, currentTime);
             return file;
         }
         return file;
@@ -120,7 +120,7 @@ final class DevCacheManager {
      */
     protected File newFile(final String key) {
         if (key != null) {
-            return new File(cacheDir, key.hashCode() + "");
+            return new File(mCacheDir, key.hashCode() + "");
         }
         return null;
     }
@@ -142,9 +142,9 @@ final class DevCacheManager {
      * 清空全部缓存数据
      */
     protected void clear() {
-        lastUsageDates.clear();
-        cacheSize.set(0);
-        File[] files = cacheDir.listFiles();
+        mLastUsageDates.clear();
+        mCacheSize.set(0);
+        File[] files = mCacheDir.listFiles();
         if (files != null) {
             for (File f : files) {
                 f.delete();
@@ -157,13 +157,13 @@ final class DevCacheManager {
      * @return 返回移除的文件大小
      */
     private long removeNext() {
-        if (lastUsageDates.isEmpty()) {
+        if (mLastUsageDates.isEmpty()) {
             return 0;
         }
         Long oldestUsage = null;
         File mostLongUsedFile = null;
-        Set<Map.Entry<File, Long>> entries = lastUsageDates.entrySet();
-        synchronized (lastUsageDates) {
+        Set<Map.Entry<File, Long>> entries = mLastUsageDates.entrySet();
+        synchronized (mLastUsageDates) {
             for (Map.Entry<File, Long> entry : entries) {
                 if (mostLongUsedFile == null) {
                     mostLongUsedFile = entry.getKey();
@@ -180,7 +180,7 @@ final class DevCacheManager {
 
         long fileSize = calculateSize(mostLongUsedFile);
         if (mostLongUsedFile.delete()) {
-            lastUsageDates.remove(mostLongUsedFile);
+            mLastUsageDates.remove(mostLongUsedFile);
         }
         return fileSize;
     }

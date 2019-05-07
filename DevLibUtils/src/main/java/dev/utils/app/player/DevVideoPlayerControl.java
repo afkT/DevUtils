@@ -32,7 +32,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     // 画面预览回调
     private SurfaceHolder mSurfaceHolder;
     // 判断是否自动播放
-    private boolean autoPlay;
+    private boolean mAutoPlay;
 
     /**
      * 初始化构造函数
@@ -49,7 +49,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      */
     public DevVideoPlayerControl(final SurfaceView surfaceview, final boolean autoPlay) {
         this.mSurfaceview = surfaceview;
-        this.autoPlay = autoPlay;
+        this.mAutoPlay = autoPlay;
 
         // = 初始化操作 =
 
@@ -138,7 +138,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
                 LogPrintUtils.eTag(TAG, e, "onPrepared");
             }
             // 判断是否自动播放
-            if (autoPlay) {
+            if (mAutoPlay) {
                 try { // 如果没有设置则直接播放
                     DevMediaManager.getInstance().getMediaPlayer().start();
                 } catch (Exception e) {
@@ -329,7 +329,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * @return
      */
     public boolean isAutoPlay() {
-        return autoPlay;
+        return mAutoPlay;
     }
 
     /**
@@ -337,7 +337,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * @param autoPlay
      */
     public void setAutoPlay(final boolean autoPlay) {
-        this.autoPlay = autoPlay;
+        this.mAutoPlay = autoPlay;
     }
 
     /**

@@ -27,21 +27,21 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     // Application
     private Application mApplication;
     // 内部保存配置 Toast
-    private ToastFactory.BaseToast sConfigToast = null;
+    private ToastFactory.BaseToast mConfigToast = null;
     // 当前显示的 Toast
     private ToastFactory.BaseToast mToast = null;
     // Toast 样式信息
-    private IToast.Style sToastStyle = null;
+    private IToast.Style mToastStyle = null;
     // Toast 判断过滤
-    private IToast.Filter sToastFilter = null;
+    private IToast.Filter mToastFilter = null;
     // Toast 默认样式
-    private final IToast.Style sDefaultStyle = new DefaultToastStyle();
+    private final IToast.Style mDefaultStyle = new DefaultToastStyle();
     // 每个线程的 Toast 样式
     private final ThreadLocal<IToast.Style> LOCAL_TOAST_STYLES = new ThreadLocal<>();
     // 判断是否使用 Handler
     private boolean mIsHandler = true;
     // 内部 Handler
-    private final Handler sHandler = new Handler(Looper.getMainLooper());
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
     // Null 值
     private String mNullText = "text is null";
     // Toast 文案长度转换 显示时间
@@ -99,8 +99,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             mIsHandler = true;
             mNullText = "text is null";
             // 初始化 Toast
-            sConfigToast = new ToastFactory.BaseToast(mApplication);
-            sConfigToast.setView(createView());
+            mConfigToast = new ToastFactory.BaseToast(mApplication);
+            mConfigToast.setView(createView());
             // 初始化默认样式
             getToastStyle();
         }
@@ -129,7 +129,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public IToast.Operate defaultStyle() {
-        return style(sDefaultStyle);
+        return style(mDefaultStyle);
     }
 
     /**
@@ -138,10 +138,10 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public IToast.Style getToastStyle() {
-        if (sToastStyle == null) {
-            sToastStyle = sDefaultStyle;
+        if (mToastStyle == null) {
+            mToastStyle = mDefaultStyle;
         }
-        return sToastStyle;
+        return mToastStyle;
     }
 
     /**
@@ -150,7 +150,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public void initStyle(final IToast.Style toastStyle) {
-        sToastStyle = toastStyle;
+        mToastStyle = toastStyle;
         // 防止样式为null
         getToastStyle();
     }
@@ -161,7 +161,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public void initToastFilter(final IToast.Filter toastFilter) {
-        sToastFilter = toastFilter;
+        mToastFilter = toastFilter;
     }
 
     /**
@@ -170,10 +170,10 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public void setView(final View view) {
-        if (sConfigToast != null && view != null) {
-            sConfigToast.setView(view);
+        if (mConfigToast != null && view != null) {
+            mConfigToast.setView(view);
             // 如果是 null, 则抛出异常
-            if (sConfigToast.isEmptyMessageView()) {
+            if (mConfigToast.isEmptyMessageView()) {
                 // 如果设置的布局没有包含一个 TextView 则抛出异常，必须要包含一个 TextView 作为 Message View
                 throw new IllegalArgumentException("The layout must contain a TextView");
             }
@@ -186,13 +186,13 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public void setView(final int layoutId) {
-        if (sConfigToast != null) {
+        if (mConfigToast != null) {
             try {
-                setView(View.inflate(sConfigToast.getView().getContext().getApplicationContext(), layoutId, null));
+                setView(View.inflate(mConfigToast.getView().getContext().getApplicationContext(), layoutId, null));
             } catch (Exception e) {
             }
             // 如果是 null, 则抛出异常
-            if (sConfigToast.isEmptyMessageView()) {
+            if (mConfigToast.isEmptyMessageView()) {
                 // 如果设置的布局没有包含一个 TextView 则抛出异常，必须要包含一个 TextView 作为 Message View
                 throw new IllegalArgumentException("The layout must contain a TextView");
             }
@@ -276,8 +276,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public boolean filter(View view) {
-        if (sToastFilter != null) {
-            return sToastFilter.filter(view);
+        if (mToastFilter != null) {
+            return mToastFilter.filter(view);
         }
         return true;
     }
@@ -289,8 +289,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public boolean filter(String content) {
-        if (sToastFilter != null) {
-            return sToastFilter.filter(content);
+        if (mToastFilter != null) {
+            return mToastFilter.filter(content);
         }
         return true;
     }
@@ -302,8 +302,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public String handlerContent(String content) {
-        if (sToastFilter != null) {
-            return sToastFilter.handlerContent(content);
+        if (mToastFilter != null) {
+            return mToastFilter.handlerContent(content);
         }
         return content;
     }
@@ -348,7 +348,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         // 获取样式
         final IToast.Style style = getThreadToastStyle();
         if (mIsHandler) {
-            sHandler.post(new Runnable() {
+            mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     try {
@@ -396,12 +396,12 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
                 mToast = null;
             }
             // 如果不存在 TextView, 直接跳过
-            if (sConfigToast.isEmptyMessageView()) {
+            if (mConfigToast.isEmptyMessageView()) {
                 return null;
             }
-            View view = sConfigToast.getView();
+            View view = mConfigToast.getView();
             // 获取 Toast TextView
-            TextView toastTextView = sConfigToast.getMessageView();
+            TextView toastTextView = mConfigToast.getMessageView();
             // 设置文案
             toastTextView.setText(text);
             // 设置字体颜色
@@ -482,7 +482,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         final IToast.Style style = getThreadToastStyle();
         // =
         if (mIsHandler) {
-            sHandler.post(new Runnable() {
+            mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     try {

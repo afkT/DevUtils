@@ -27,7 +27,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     // MediaPlayer对象
     private MediaPlayer mMediaPlayer;
     // 单例实例
-    private static DevMediaManager instance;
+    private static DevMediaManager sInstance;
 
     private DevMediaManager() {
     }
@@ -36,10 +36,10 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * 获取 DevMediaManager 实例 ,单例模式
      */
     public static DevMediaManager getInstance() {
-        if (instance == null) {
-            instance = new DevMediaManager();
+        if (sInstance == null) {
+            sInstance = new DevMediaManager();
         }
-        return instance;
+        return sInstance;
     }
 
     // ================

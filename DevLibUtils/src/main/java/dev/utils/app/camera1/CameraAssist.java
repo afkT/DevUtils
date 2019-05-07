@@ -23,20 +23,20 @@ public final class CameraAssist {
     // 摄像头 Camera
     private Camera mCamera;
     // 是否预览中
-    private boolean previewing;
+    private boolean mPreviewing;
     // 自动对焦时间
-    private long autoInterval = 2000l;
+    private long mAutoInterval = 2000l;
     // 预览通知
-    private PreviewNotify previewNotify;
+    private PreviewNotify mPreviewNotify;
 
     // ==============
     // = 内部工具类 =
     // ==============
 
     // 摄像头大小计算
-    private CameraSizeAssist cameraSizeAssist;
+    private CameraSizeAssist mCameraSizeAssist;
     // 自动获取焦点辅助类
-    private AutoFocusAssist autoFocusAssist;
+    private AutoFocusAssist mAutoFocusAssist;
 
     public CameraAssist() {
     }
@@ -46,7 +46,7 @@ public final class CameraAssist {
     }
 
     public CameraAssist(final Camera camera, final long interval) {
-        this.autoInterval = interval;
+        this.mAutoInterval = interval;
         setCamera(camera);
     }
 
@@ -83,16 +83,16 @@ public final class CameraAssist {
      */
     public synchronized void startPreview() {
         Camera theCamera = mCamera;
-        if (theCamera != null && !previewing) {
+        if (theCamera != null && !mPreviewing) {
             // 开始预览
             theCamera.startPreview();
             // 表示预览中
-            previewing = true;
+            mPreviewing = true;
             // 初始化自动获取焦点
-            autoFocusAssist = new AutoFocusAssist(mCamera, autoInterval);
+            mAutoFocusAssist = new AutoFocusAssist(mCamera, mAutoInterval);
             // 开始预览通知
-            if (previewNotify != null) {
-                previewNotify.startPreviewNotify();
+            if (mPreviewNotify != null) {
+                mPreviewNotify.startPreviewNotify();
             }
         }
     }
@@ -101,18 +101,18 @@ public final class CameraAssist {
      * 停止 Camera 画面预览
      */
     public synchronized void stopPreview() {
-        if (autoFocusAssist != null) {
-            autoFocusAssist.stop();
-            autoFocusAssist = null;
+        if (mAutoFocusAssist != null) {
+            mAutoFocusAssist.stop();
+            mAutoFocusAssist = null;
         }
-        if (mCamera != null && previewing) {
+        if (mCamera != null && mPreviewing) {
             // 停止预览
             mCamera.stopPreview();
             // 表示非预览中
-            previewing = false;
+            mPreviewing = false;
             // 停止预览通知
-            if (previewNotify != null) {
-                previewNotify.stopPreviewNotify();
+            if (mPreviewNotify != null) {
+                mPreviewNotify.stopPreviewNotify();
             }
         }
     }
@@ -149,7 +149,7 @@ public final class CameraAssist {
     public Camera.Size getCameraResolution() {
         if (mPreviewSize == null) {
             // 获取预览大小
-            mPreviewSize = cameraSizeAssist.getPreviewSize();
+            mPreviewSize = mCameraSizeAssist.getPreviewSize();
             return mPreviewSize;
         }
         return mPreviewSize;
@@ -171,7 +171,7 @@ public final class CameraAssist {
      * @return {@link CameraSizeAssist}
      */
     public CameraSizeAssist getCameraSizeAssist() {
-        return cameraSizeAssist;
+        return mCameraSizeAssist;
     }
 
     /**
@@ -189,7 +189,7 @@ public final class CameraAssist {
     public void setCamera(final Camera camera) {
         this.mCamera = camera;
         // 初始化 Camera大小
-        this.cameraSizeAssist = new CameraSizeAssist(mCamera);
+        this.mCameraSizeAssist = new CameraSizeAssist(mCamera);
     }
 
     /**
@@ -198,7 +198,7 @@ public final class CameraAssist {
      * @return 返回自身对象(摄像头辅助类)
      */
     public CameraAssist setPreviewNotify(final PreviewNotify previewNotify) {
-        this.previewNotify = previewNotify;
+        this.mPreviewNotify = previewNotify;
         return this;
     }
 
@@ -208,8 +208,8 @@ public final class CameraAssist {
      * @return 返回自身对象(摄像头辅助类)
      */
     public CameraAssist setAutoFocus(final boolean autoFocus) {
-        if (autoFocusAssist != null) {
-            autoFocusAssist.setAutoFocus(autoFocus);
+        if (mAutoFocusAssist != null) {
+            mAutoFocusAssist.setAutoFocus(autoFocus);
         }
         return this;
     }
@@ -219,7 +219,7 @@ public final class CameraAssist {
      * @return {@code true} 预览中, {@code false} 非预览
      */
     public boolean isPreviewing() {
-        return previewing;
+        return mPreviewing;
     }
 
     /**
@@ -227,7 +227,7 @@ public final class CameraAssist {
      * @param autoInterval
      */
     public void setAutoInterval(final long autoInterval) {
-        this.autoInterval = autoInterval;
+        this.mAutoInterval = autoInterval;
     }
 
     // ================================

@@ -20,13 +20,13 @@ public final class DevToast {
     }
 
     // 包下 IToastImpl 类持有对象
-    private static final IToast.Operate toast = new IToastImpl();
+    private static final IToast.Operate sToast = new IToastImpl();
 
     /**
      * 重置默认参数
      */
     public static void reset() {
-        toast.reset();
+        sToast.reset();
     }
 
     /**
@@ -34,7 +34,7 @@ public final class DevToast {
      * @param isHandler
      */
     public static void setIsHandler(final boolean isHandler) {
-        toast.setIsHandler(isHandler);
+        sToast.setIsHandler(isHandler);
     }
 
     /**
@@ -42,7 +42,7 @@ public final class DevToast {
      * @param nullText
      */
     public static void setNullText(final String nullText) {
-        toast.setNullText(nullText);
+        sToast.setNullText(nullText);
     }
 
     /**
@@ -50,7 +50,7 @@ public final class DevToast {
      * @param textLengthConvertDuration
      */
     public static void setTextLength(final int textLengthConvertDuration) {
-        toast.setTextLength(textLengthConvertDuration);
+        sToast.setTextLength(textLengthConvertDuration);
     }
 
     // =
@@ -60,7 +60,7 @@ public final class DevToast {
      * @param application
      */
     public static void init(final Application application) {
-        toast.init(application);
+        sToast.init(application);
     }
 
     // = 配置方法 =
@@ -71,7 +71,7 @@ public final class DevToast {
      * @return
      */
     public static IToast.Operate style(final IToast.Style toastStyle) {
-        return toast.style(toastStyle);
+        return sToast.style(toastStyle);
     }
 
     /**
@@ -79,7 +79,7 @@ public final class DevToast {
      * @return
      */
     public static IToast.Operate defaultStyle() {
-        return toast.defaultStyle();
+        return sToast.defaultStyle();
     }
 
     /**
@@ -87,7 +87,7 @@ public final class DevToast {
      * @return Toast 样式配置
      */
     public static IToast.Style getToastStyle() {
-        return toast.getToastStyle();
+        return sToast.getToastStyle();
     }
 
     /**
@@ -95,7 +95,7 @@ public final class DevToast {
      * @param toastStyle Toast 样式配置
      */
     public static void initStyle(final IToast.Style toastStyle) {
-        toast.initStyle(toastStyle);
+        sToast.initStyle(toastStyle);
     }
 
     /**
@@ -103,7 +103,7 @@ public final class DevToast {
      * @param toastFilter
      */
     public static void initToastFilter(final IToast.Filter toastFilter) {
-        toast.initToastFilter(toastFilter);
+        sToast.initToastFilter(toastFilter);
     }
 
     /**
@@ -111,7 +111,7 @@ public final class DevToast {
      * @param view
      */
     public static void setView(final View view) {
-        toast.setView(view);
+        sToast.setView(view);
     }
 
     /**
@@ -119,7 +119,7 @@ public final class DevToast {
      * @param layoutId
      */
     public static void setView(final int layoutId) {
-        toast.setView(layoutId);
+        sToast.setView(layoutId);
     }
 
     // ============
@@ -132,7 +132,7 @@ public final class DevToast {
      * @param args
      */
     public static void show(final String content, final Object... args) {
-        toast.show(content, args);
+        sToast.show(content, args);
     }
 
     /**
@@ -141,7 +141,7 @@ public final class DevToast {
      * @param args
      */
     public static void show(final int resId, final Object... args) {
-        toast.show(resId, args);
+        sToast.show(resId, args);
     }
 
     /**
@@ -149,7 +149,7 @@ public final class DevToast {
      * @param view
      */
     public static void show(final View view) {
-        toast.show(view);
+        sToast.show(view);
     }
 
     /**
@@ -158,7 +158,7 @@ public final class DevToast {
      * @param duration
      */
     public static void show(final View view, final int duration) {
-        toast.show(view, duration);
+        sToast.show(view, duration);
     }
 
     // =
@@ -167,6 +167,6 @@ public final class DevToast {
      * 取消当前显示的 Toast
      */
     public static void cancel() {
-        toast.cancel();
+        sToast.cancel();
     }
 }

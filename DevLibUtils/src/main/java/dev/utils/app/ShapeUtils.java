@@ -28,10 +28,10 @@ public final class ShapeUtils {
     // 日志 TAG
     private static final String TAG = ShapeUtils.class.getSimpleName();
     // Shape Drawable
-    private final GradientDrawable drawable;
+    private final GradientDrawable mDrawable;
 
     private ShapeUtils(final Builder builder) {
-        drawable = builder.gradientDrawable;
+        mDrawable = builder.gradientDrawable;
     }
 
     /**
@@ -39,7 +39,7 @@ public final class ShapeUtils {
      * @return
      */
     public GradientDrawable getDrawable() {
-        return drawable;
+        return mDrawable;
     }
 
     /**
@@ -49,9 +49,9 @@ public final class ShapeUtils {
     public void setDrawable(final View view) {
         if (view != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                view.setBackground(drawable);
+                view.setBackground(mDrawable);
             else
-                view.setBackgroundDrawable(drawable);
+                view.setBackgroundDrawable(mDrawable);
         }
     }
 

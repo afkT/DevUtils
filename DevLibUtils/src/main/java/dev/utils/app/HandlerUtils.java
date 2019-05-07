@@ -13,17 +13,17 @@ public final class HandlerUtils {
     }
 
     // 主线程 Handler
-    private static Handler mMainHandler;
+    private static Handler sMainHandler;
 
     /**
      * 获取主线程 Handler
      * @return 主线程 Handler
      */
     public static Handler getMainHandler() {
-        if (mMainHandler == null) {
-            mMainHandler = new Handler(Looper.getMainLooper());
+        if (sMainHandler == null) {
+            sMainHandler = new Handler(Looper.getMainLooper());
         }
-        return mMainHandler;
+        return sMainHandler;
     }
 
     /**

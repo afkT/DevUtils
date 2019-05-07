@@ -35,11 +35,11 @@ public final class LocationUtils {
     // 时间常量 = 2分钟
     private static final int MINUTES_TWO = 1000 * 60 * 2;
     // 定位改变通知事件
-    private static OnLocationChangeListener mListener;
+    private static OnLocationChangeListener sListener;
     // 自定义定位事件
-    private static CustomLocationListener myLocationListener;
+    private static CustomLocationListener sCustomLocationListener;
     // 定位管理对象
-    private static LocationManager mLocationManager;
+    private static LocationManager sLocationManager;
 
     /**
      * 获取位置, 需要先判断是否开启了定位
@@ -53,13 +53,13 @@ public final class LocationUtils {
     public static Location getLocation(final LocationListener listener, final long time, final float distance) {
         Location location = null;
         try {
-            mLocationManager = (LocationManager) DevUtils.getContext().getSystemService(LOCATION_SERVICE);
+            sLocationManager = (LocationManager) DevUtils.getContext().getSystemService(LOCATION_SERVICE);
             if (isLocationEnabled()) {
-                mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, time, distance, listener);
-                if (mLocationManager != null) {
-                    location = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                sLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, time, distance, listener);
+                if (sLocationManager != null) {
+                    location = sLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                     if (location != null) {
-                        mLocationManager.removeUpdates(listener);
+                        sLocationManager.removeUpdates(listener);
                         return location;
                     }
                 }
@@ -67,11 +67,11 @@ public final class LocationUtils {
             // when GPS is enabled.
             if (isGpsEnabled()) {
                 if (location == null) {
-                    mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, time, distance, listener);
-                    if (mLocationManager != null) {
-                        location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    sLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, time, distance, listener);
+                    if (sLocationManager != null) {
+                        location = sLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         if (location != null) {
-                            mLocationManager.removeUpdates(listener);
+                            sLocationManager.removeUpdates(listener);
                             return location;
                         }
                     }
@@ -140,17 +140,18 @@ public final class LocationUtils {
     public static boolean register(final long minTime, final long minDistance, final OnLocationChangeListener listener) {
         if (listener == null) return false;
         try {
-            mLocationManager = (LocationManager) DevUtils.getContext().getSystemService(LOCATION_SERVICE);
-            if (mLocationManager == null || (!mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-                    && !mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))) {
+            sLocationManager = (LocationManager) DevUtils.getContext().getSystemService(LOCATION_SERVICE);
+            if (sLocationManager == null || (!sLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                    && !sLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))) {
                 return false;
             }
-            mListener = listener;
-            String provider = mLocationManager.getBestProvider(getCriteria(), true);
-            Location location = mLocationManager.getLastKnownLocation(provider);
+            sListener = listener;
+            String provider = sLocationManager.getBestProvider(getCriteria(), true);
+            Location location = sLocationManager.getLastKnownLocation(provider);
             if (location != null) listener.getLastKnownLocation(location);
-            if (myLocationListener == null) myLocationListener = new CustomLocationListener();
-            mLocationManager.requestLocationUpdates(provider, minTime, minDistance, myLocationListener);
+            if (sCustomLocationListener == null)
+                sCustomLocationListener = new CustomLocationListener();
+            sLocationManager.requestLocationUpdates(provider, minTime, minDistance, sCustomLocationListener);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "register");
@@ -164,15 +165,15 @@ public final class LocationUtils {
     @SuppressLint("MissingPermission")
     public static void unregister() {
         try {
-            if (mLocationManager != null) {
-                if (myLocationListener != null) {
-                    mLocationManager.removeUpdates(myLocationListener);
-                    myLocationListener = null;
+            if (sLocationManager != null) {
+                if (sCustomLocationListener != null) {
+                    sLocationManager.removeUpdates(sCustomLocationListener);
+                    sCustomLocationListener = null;
                 }
-                mLocationManager = null;
+                sLocationManager = null;
             }
-            if (mListener != null) {
-                mListener = null;
+            if (sListener != null) {
+                sListener = null;
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregister");
@@ -317,8 +318,8 @@ public final class LocationUtils {
          */
         @Override
         public void onLocationChanged(Location location) {
-            if (mListener != null) {
-                mListener.onLocationChanged(location);
+            if (sListener != null) {
+                sListener.onLocationChanged(location);
             }
         }
 
@@ -330,8 +331,8 @@ public final class LocationUtils {
          */
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
-            if (mListener != null) {
-                mListener.onStatusChanged(provider, status, extras);
+            if (sListener != null) {
+                sListener.onStatusChanged(provider, status, extras);
             }
             switch (status) {
                 case LocationProvider.AVAILABLE:

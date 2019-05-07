@@ -232,7 +232,7 @@ final class ToastFactory {
         // 当前 Toast 对象
         private final Toast mToast;
         // 判断是否显示中
-        private boolean show;
+        private boolean mShow;
 
         ToastHelper(Toast toast) {
             super(Looper.getMainLooper());
@@ -248,7 +248,7 @@ final class ToastFactory {
          * 显示 Toast 弹窗
          */
         void show() {
-            if (!show) {
+            if (!mShow) {
                 try {
                     if (mToast == null) {
                         return;
@@ -316,7 +316,7 @@ final class ToastFactory {
                     // View 对象不能重复添加, 否则会抛出异常
                     Utils.getWindowManager(DevUtils.getTopActivity()).addView(mToast.getView(), params);
                     // 当前已经显示
-                    show = true;
+                    mShow = true;
                     // 添加一个移除 Toast 的任务
                     sendEmptyMessageDelayed(0, mToast.getDuration() == Toast.LENGTH_LONG ? 3500 : 2000);
                 } catch (Exception e) {
@@ -332,13 +332,13 @@ final class ToastFactory {
             // 移除之前移除 Toast 的任务
             removeMessages(0);
             // 如果显示中, 则移除View
-            if (show) {
+            if (mShow) {
                 try {
                     Utils.getWindowManager(DevUtils.getTopActivity()).removeView(mToast.getView());
                 } catch (Exception ignored) {
                 }
                 // 当前没有显示
-                show = false;
+                mShow = false;
             }
         }
     }

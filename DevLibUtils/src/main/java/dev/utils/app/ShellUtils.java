@@ -21,7 +21,7 @@ public final class ShellUtils {
     // 操作成功
     public static final int SUCCESS = 0;
     // 换行符
-    private static final String LINE_SEP = System.getProperty("line.separator");
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 是否是在 root 下执行命令
@@ -99,10 +99,10 @@ public final class ShellUtils {
             for (String command : commands) {
                 if (command == null) continue;
                 os.write(command.getBytes());
-                os.writeBytes(LINE_SEP);
+                os.writeBytes(NEW_LINE_STR);
                 os.flush();
             }
-            os.writeBytes("exit" + LINE_SEP);
+            os.writeBytes("exit" + NEW_LINE_STR);
             os.flush();
             result = process.waitFor();
             if (isNeedResultMsg) {
@@ -114,13 +114,13 @@ public final class ShellUtils {
                 if ((line = successResult.readLine()) != null) {
                     successMsg.append(line);
                     while ((line = successResult.readLine()) != null) {
-                        successMsg.append(LINE_SEP).append(line);
+                        successMsg.append(NEW_LINE_STR).append(line);
                     }
                 }
                 if ((line = errorResult.readLine()) != null) {
                     errorMsg.append(line);
                     while ((line = errorResult.readLine()) != null) {
-                        errorMsg.append(LINE_SEP).append(line);
+                        errorMsg.append(NEW_LINE_STR).append(line);
                     }
                 }
             }

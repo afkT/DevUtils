@@ -45,60 +45,60 @@ public final class ToastTintUtils {
     // Toast 判断过滤
     private static ToastTintUtils.Filter sToastFilter = null;
     // 内部持有单个Toast
-    private static Toast mToast = null;
+    private static Toast sToast = null;
     // 判断是否使用 Handler
-    private static boolean mIsHandler = true;
+    private static boolean sIsHandler = true;
     // 内部 Handler
     private static final Handler sHandler = new Handler(Looper.getMainLooper());
     // Null 值
-    private static String mNullText = "text is null";
+    private static String sNullText = "text is null";
 
     // ============
     // = 部分配置 =
     // ============
 
     // 判断是否使用配置
-    private static boolean mUseConfig = true;
+    private static boolean sUseConfig = true;
     // Toast 的重心、X、Y 轴偏移
-    private static int mGravity, mX, mY;
+    private static int sGravity, sX, sY;
     // 水平边距、垂直边距
-    private static float mHorizontalMargin, mVerticalMargin;
+    private static float sHorizontalMargin, sVerticalMargin;
 
     // ============
     // = 样式相关 =
     // ============
 
     // 默认样式
-    private static ToastTintUtils.Style defaultStyle = new DefaultStyle();
+    private static ToastTintUtils.Style sDefaultStyle = new DefaultStyle();
     // Normal 样式
-    private static ToastTintUtils.Style normalStyle = new NormalStyle();
+    private static ToastTintUtils.Style sNormalStyle = new NormalStyle();
     // Info 样式
-    private static ToastTintUtils.Style infoStyle = new InfoStyle();
+    private static ToastTintUtils.Style sInfoStyle = new InfoStyle();
     // Warning 样式
-    private static ToastTintUtils.Style warningStyle = new WarningStyle();
+    private static ToastTintUtils.Style sWarningStyle = new WarningStyle();
     // Error 样式
-    private static ToastTintUtils.Style errorStyle = new ErrorStyle();
+    private static ToastTintUtils.Style sErrorStyle = new ErrorStyle();
     // Success 样式
-    private static ToastTintUtils.Style successStyle = new SuccessStyle();
+    private static ToastTintUtils.Style sSuccessStyle = new SuccessStyle();
     // =
     // info icon
-    private static Drawable infoDrawable = null;
+    private static Drawable sInfoDrawable = null;
     // warning icon
-    private static Drawable warningDrawable = null;
+    private static Drawable sWarningDrawable = null;
     // error icon
-    private static Drawable errorDrawable = null;
+    private static Drawable sErrorDrawable = null;
     // Success icon
-    private static Drawable successDrawable = null;
+    private static Drawable sSuccessDrawable = null;
 
     /**
      * 重置默认参数
      */
     public static void reset() {
-        mIsHandler = true;
-        mUseConfig = true;
-        mNullText = "text is null";
-        mGravity = mX = mY = 0;
-        mHorizontalMargin = mVerticalMargin = 0.0f;
+        sIsHandler = true;
+        sUseConfig = true;
+        sNullText = "text is null";
+        sGravity = sX = sY = 0;
+        sHorizontalMargin = sVerticalMargin = 0.0f;
     }
 
     /**
@@ -114,7 +114,7 @@ public final class ToastTintUtils {
      * @param isHandler
      */
     public static void setIsHandler(final boolean isHandler) {
-        ToastTintUtils.mIsHandler = isHandler;
+        ToastTintUtils.sIsHandler = isHandler;
     }
 
     /**
@@ -122,7 +122,7 @@ public final class ToastTintUtils {
      * @param nullText
      */
     public static void setNullText(final String nullText) {
-        ToastTintUtils.mNullText = nullText;
+        ToastTintUtils.sNullText = nullText;
     }
 
     /**
@@ -130,7 +130,7 @@ public final class ToastTintUtils {
      * @param useConfig
      */
     public static void setUseConfig(final boolean useConfig) {
-        ToastTintUtils.mUseConfig = useConfig;
+        ToastTintUtils.sUseConfig = useConfig;
     }
 
     /**
@@ -140,9 +140,9 @@ public final class ToastTintUtils {
      * @param yOffset
      */
     public static void setGravity(final int gravity, final int xOffset, final int yOffset) {
-        ToastTintUtils.mGravity = gravity;
-        ToastTintUtils.mX = xOffset;
-        ToastTintUtils.mY = yOffset;
+        ToastTintUtils.sGravity = gravity;
+        ToastTintUtils.sX = xOffset;
+        ToastTintUtils.sY = yOffset;
     }
 
     /**
@@ -151,8 +151,8 @@ public final class ToastTintUtils {
      * @param verticalMargin
      */
     public static void setMargin(final float horizontalMargin, final float verticalMargin) {
-        ToastTintUtils.mHorizontalMargin = horizontalMargin;
-        ToastTintUtils.mVerticalMargin = verticalMargin;
+        ToastTintUtils.sHorizontalMargin = horizontalMargin;
+        ToastTintUtils.sVerticalMargin = verticalMargin;
     }
 
     // =
@@ -162,7 +162,7 @@ public final class ToastTintUtils {
      * @return
      */
     public static Style getDefaultStyle() {
-        return defaultStyle;
+        return sDefaultStyle;
     }
 
     /**
@@ -170,7 +170,7 @@ public final class ToastTintUtils {
      * @return
      */
     public static Style getNormalStyle() {
-        return normalStyle;
+        return sNormalStyle;
     }
 
     /**
@@ -178,7 +178,7 @@ public final class ToastTintUtils {
      * @return
      */
     public static Style getInfoStyle() {
-        return infoStyle;
+        return sInfoStyle;
     }
 
     /**
@@ -186,7 +186,7 @@ public final class ToastTintUtils {
      * @return
      */
     public static Style getWarningStyle() {
-        return warningStyle;
+        return sWarningStyle;
     }
 
     /**
@@ -194,7 +194,7 @@ public final class ToastTintUtils {
      * @return
      */
     public static Style getErrorStyle() {
-        return errorStyle;
+        return sErrorStyle;
     }
 
     /**
@@ -202,7 +202,7 @@ public final class ToastTintUtils {
      * @return
      */
     public static Style getSuccessStyle() {
-        return successStyle;
+        return sSuccessStyle;
     }
 
     // =
@@ -212,7 +212,7 @@ public final class ToastTintUtils {
      * @param normalStyle
      */
     public static void setNormalStyle(final Style normalStyle) {
-        ToastTintUtils.normalStyle = normalStyle;
+        ToastTintUtils.sNormalStyle = normalStyle;
     }
 
     /**
@@ -220,7 +220,7 @@ public final class ToastTintUtils {
      * @param infoStyle
      */
     public static void setInfoStyle(final Style infoStyle) {
-        ToastTintUtils.infoStyle = infoStyle;
+        ToastTintUtils.sInfoStyle = infoStyle;
     }
 
     /**
@@ -228,7 +228,7 @@ public final class ToastTintUtils {
      * @param warningStyle
      */
     public static void setWarningStyle(final Style warningStyle) {
-        ToastTintUtils.warningStyle = warningStyle;
+        ToastTintUtils.sWarningStyle = warningStyle;
     }
 
     /**
@@ -236,7 +236,7 @@ public final class ToastTintUtils {
      * @param errorStyle
      */
     public static void setErrorStyle(final Style errorStyle) {
-        ToastTintUtils.errorStyle = errorStyle;
+        ToastTintUtils.sErrorStyle = errorStyle;
     }
 
     /**
@@ -244,7 +244,7 @@ public final class ToastTintUtils {
      * @param successStyle
      */
     public static void setSuccessStyle(final Style successStyle) {
-        ToastTintUtils.successStyle = successStyle;
+        ToastTintUtils.sSuccessStyle = successStyle;
     }
 
     /**
@@ -252,11 +252,11 @@ public final class ToastTintUtils {
      * @return
      */
     public static Drawable getInfoDrawable() {
-        if (infoDrawable != null) {
-            return infoDrawable;
+        if (sInfoDrawable != null) {
+            return sInfoDrawable;
         }
-        infoDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_info_white);
-        return infoDrawable;
+        sInfoDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_info_white);
+        return sInfoDrawable;
     }
 
     /**
@@ -264,11 +264,11 @@ public final class ToastTintUtils {
      * @return
      */
     public static Drawable getWarningDrawable() {
-        if (warningDrawable != null) {
-            return warningDrawable;
+        if (sWarningDrawable != null) {
+            return sWarningDrawable;
         }
-        warningDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_warning_white);
-        return warningDrawable;
+        sWarningDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_warning_white);
+        return sWarningDrawable;
     }
 
     /**
@@ -276,11 +276,11 @@ public final class ToastTintUtils {
      * @return
      */
     public static Drawable getErrorDrawable() {
-        if (errorDrawable != null) {
-            return errorDrawable;
+        if (sErrorDrawable != null) {
+            return sErrorDrawable;
         }
-        errorDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_error_white);
-        return errorDrawable;
+        sErrorDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_error_white);
+        return sErrorDrawable;
     }
 
     /**
@@ -288,11 +288,11 @@ public final class ToastTintUtils {
      * @return
      */
     public static Drawable getSuccessDrawable() {
-        if (successDrawable != null) {
-            return successDrawable;
+        if (sSuccessDrawable != null) {
+            return sSuccessDrawable;
         }
-        successDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_success_white);
-        return successDrawable;
+        sSuccessDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_success_white);
+        return sSuccessDrawable;
     }
 
     // =====================
@@ -303,28 +303,28 @@ public final class ToastTintUtils {
      * normal 样式 Toast
      */
     public static void normal(final String text) {
-        custom(true, null, normalStyle, text, Toast.LENGTH_SHORT, null);
+        custom(true, null, sNormalStyle, text, Toast.LENGTH_SHORT, null);
     }
 
     /**
      * normal 样式 Toast
      */
     public static void normal(final String text, final int duration) {
-        custom(true, null, normalStyle, text, duration, null);
+        custom(true, null, sNormalStyle, text, duration, null);
     }
 
     /**
      * normal 样式 Toast
      */
     public static void normal(final String text, final Drawable icon) {
-        custom(true, null, normalStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(true, null, sNormalStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * normal 样式 Toast
      */
     public static void normal(final String text, final int duration, final Drawable icon) {
-        custom(true, null, normalStyle, text, duration, icon);
+        custom(true, null, sNormalStyle, text, duration, icon);
     }
 
     // =
@@ -333,28 +333,28 @@ public final class ToastTintUtils {
      * normal 样式 Toast
      */
     public static void normal(final boolean isSingle, final String text) {
-        custom(isSingle, null, normalStyle, text, Toast.LENGTH_SHORT, null);
+        custom(isSingle, null, sNormalStyle, text, Toast.LENGTH_SHORT, null);
     }
 
     /**
      * normal 样式 Toast
      */
     public static void normal(final boolean isSingle, final String text, final int duration) {
-        custom(isSingle, null, normalStyle, text, duration, null);
+        custom(isSingle, null, sNormalStyle, text, duration, null);
     }
 
     /**
      * normal 样式 Toast
      */
     public static void normal(final boolean isSingle, final String text, final Drawable icon) {
-        custom(isSingle, null, normalStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(isSingle, null, sNormalStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * normal 样式 Toast
      */
     public static void normal(final boolean isSingle, final String text, final int duration, final Drawable icon) {
-        custom(isSingle, null, normalStyle, text, duration, icon);
+        custom(isSingle, null, sNormalStyle, text, duration, icon);
     }
 
     // ===================
@@ -365,28 +365,28 @@ public final class ToastTintUtils {
      * info 样式 Toast
      */
     public static void info(final String text) {
-        custom(true, null, infoStyle, text, Toast.LENGTH_SHORT, getInfoDrawable());
+        custom(true, null, sInfoStyle, text, Toast.LENGTH_SHORT, getInfoDrawable());
     }
 
     /**
      * info 样式 Toast
      */
     public static void info(final String text, final int duration) {
-        custom(true, null, infoStyle, text, duration, getInfoDrawable());
+        custom(true, null, sInfoStyle, text, duration, getInfoDrawable());
     }
 
     /**
      * info 样式 Toast
      */
     public static void info(final String text, final Drawable icon) {
-        custom(true, null, infoStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(true, null, sInfoStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * info 样式 Toast
      */
     public static void info(final String text, final int duration, final Drawable icon) {
-        custom(true, null, infoStyle, text, duration, icon);
+        custom(true, null, sInfoStyle, text, duration, icon);
     }
 
     // =
@@ -395,28 +395,28 @@ public final class ToastTintUtils {
      * info 样式 Toast
      */
     public static void info(final boolean isSingle, final String text) {
-        custom(isSingle, null, infoStyle, text, Toast.LENGTH_SHORT, getInfoDrawable());
+        custom(isSingle, null, sInfoStyle, text, Toast.LENGTH_SHORT, getInfoDrawable());
     }
 
     /**
      * info 样式 Toast
      */
     public static void info(final boolean isSingle, final String text, final int duration) {
-        custom(isSingle, null, infoStyle, text, duration, getInfoDrawable());
+        custom(isSingle, null, sInfoStyle, text, duration, getInfoDrawable());
     }
 
     /**
      * info 样式 Toast
      */
     public static void info(final boolean isSingle, final String text, final Drawable icon) {
-        custom(isSingle, null, infoStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(isSingle, null, sInfoStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * info 样式 Toast
      */
     public static void info(final boolean isSingle, final String text, final int duration, final Drawable icon) {
-        custom(isSingle, null, infoStyle, text, duration, icon);
+        custom(isSingle, null, sInfoStyle, text, duration, icon);
     }
 
     // ======================
@@ -427,28 +427,28 @@ public final class ToastTintUtils {
      * warning 样式 Toast
      */
     public static void warning(final String text) {
-        custom(true, null, warningStyle, text, Toast.LENGTH_SHORT, getWarningDrawable());
+        custom(true, null, sWarningStyle, text, Toast.LENGTH_SHORT, getWarningDrawable());
     }
 
     /**
      * warning 样式 Toast
      */
     public static void warning(final String text, final int duration) {
-        custom(true, null, warningStyle, text, duration, getWarningDrawable());
+        custom(true, null, sWarningStyle, text, duration, getWarningDrawable());
     }
 
     /**
      * warning 样式 Toast
      */
     public static void warning(final String text, final Drawable icon) {
-        custom(true, null, warningStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(true, null, sWarningStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * warning 样式 Toast
      */
     public static void warning(final String text, final int duration, final Drawable icon) {
-        custom(true, null, warningStyle, text, duration, icon);
+        custom(true, null, sWarningStyle, text, duration, icon);
     }
 
     // =
@@ -457,28 +457,28 @@ public final class ToastTintUtils {
      * warning 样式 Toast
      */
     public static void warning(final boolean isSingle, final String text) {
-        custom(isSingle, null, warningStyle, text, Toast.LENGTH_SHORT, getWarningDrawable());
+        custom(isSingle, null, sWarningStyle, text, Toast.LENGTH_SHORT, getWarningDrawable());
     }
 
     /**
      * warning 样式 Toast
      */
     public static void warning(final boolean isSingle, final String text, final int duration) {
-        custom(isSingle, null, warningStyle, text, duration, getWarningDrawable());
+        custom(isSingle, null, sWarningStyle, text, duration, getWarningDrawable());
     }
 
     /**
      * warning 样式 Toast
      */
     public static void warning(final boolean isSingle, final String text, final Drawable icon) {
-        custom(isSingle, null, warningStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(isSingle, null, sWarningStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * warning 样式 Toast
      */
     public static void warning(final boolean isSingle, final String text, final int duration, final Drawable icon) {
-        custom(isSingle, null, warningStyle, text, duration, icon);
+        custom(isSingle, null, sWarningStyle, text, duration, icon);
     }
 
     // ====================
@@ -489,28 +489,28 @@ public final class ToastTintUtils {
      * error 样式 Toast
      */
     public static void error(final String text) {
-        custom(true, null, errorStyle, text, Toast.LENGTH_SHORT, getErrorDrawable());
+        custom(true, null, sErrorStyle, text, Toast.LENGTH_SHORT, getErrorDrawable());
     }
 
     /**
      * error 样式 Toast
      */
     public static void error(final String text, final int duration) {
-        custom(true, null, errorStyle, text, duration, getErrorDrawable());
+        custom(true, null, sErrorStyle, text, duration, getErrorDrawable());
     }
 
     /**
      * error 样式 Toast
      */
     public static void error(final String text, final Drawable icon) {
-        custom(true, null, errorStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(true, null, sErrorStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * error 样式 Toast
      */
     public static void error(final String text, final int duration, final Drawable icon) {
-        custom(true, null, errorStyle, text, duration, icon);
+        custom(true, null, sErrorStyle, text, duration, icon);
     }
 
     // =
@@ -519,28 +519,28 @@ public final class ToastTintUtils {
      * error 样式 Toast
      */
     public static void error(final boolean isSingle, final String text) {
-        custom(isSingle, null, errorStyle, text, Toast.LENGTH_SHORT, getErrorDrawable());
+        custom(isSingle, null, sErrorStyle, text, Toast.LENGTH_SHORT, getErrorDrawable());
     }
 
     /**
      * error 样式 Toast
      */
     public static void error(final boolean isSingle, final String text, final int duration) {
-        custom(isSingle, null, errorStyle, text, duration, getErrorDrawable());
+        custom(isSingle, null, sErrorStyle, text, duration, getErrorDrawable());
     }
 
     /**
      * error 样式 Toast
      */
     public static void error(final boolean isSingle, final String text, final Drawable icon) {
-        custom(isSingle, null, errorStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(isSingle, null, sErrorStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * error 样式 Toast
      */
     public static void error(final boolean isSingle, final String text, final int duration, final Drawable icon) {
-        custom(isSingle, null, errorStyle, text, duration, icon);
+        custom(isSingle, null, sErrorStyle, text, duration, icon);
     }
 
     // ======================
@@ -551,28 +551,28 @@ public final class ToastTintUtils {
      * success 样式 Toast
      */
     public static void success(final String text) {
-        custom(true, null, successStyle, text, Toast.LENGTH_SHORT, getSuccessDrawable());
+        custom(true, null, sSuccessStyle, text, Toast.LENGTH_SHORT, getSuccessDrawable());
     }
 
     /**
      * success 样式 Toast
      */
     public static void success(final String text, final int duration) {
-        custom(true, null, successStyle, text, duration, getSuccessDrawable());
+        custom(true, null, sSuccessStyle, text, duration, getSuccessDrawable());
     }
 
     /**
      * success 样式 Toast
      */
     public static void success(final String text, final Drawable icon) {
-        custom(true, null, successStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(true, null, sSuccessStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * success 样式 Toast
      */
     public static void success(final String text, final int duration, final Drawable icon) {
-        custom(true, null, successStyle, text, duration, icon);
+        custom(true, null, sSuccessStyle, text, duration, icon);
     }
 
     // =
@@ -581,28 +581,28 @@ public final class ToastTintUtils {
      * success 样式 Toast
      */
     public static void success(final boolean isSingle, final String text) {
-        custom(isSingle, null, successStyle, text, Toast.LENGTH_SHORT, getSuccessDrawable());
+        custom(isSingle, null, sSuccessStyle, text, Toast.LENGTH_SHORT, getSuccessDrawable());
     }
 
     /**
      * success 样式 Toast
      */
     public static void success(final boolean isSingle, final String text, final int duration) {
-        custom(isSingle, null, successStyle, text, duration, getSuccessDrawable());
+        custom(isSingle, null, sSuccessStyle, text, duration, getSuccessDrawable());
     }
 
     /**
      * success 样式 Toast
      */
     public static void success(final boolean isSingle, final String text, final Drawable icon) {
-        custom(isSingle, null, successStyle, text, Toast.LENGTH_SHORT, icon);
+        custom(isSingle, null, sSuccessStyle, text, Toast.LENGTH_SHORT, icon);
     }
 
     /**
      * success 样式 Toast
      */
     public static void success(final boolean isSingle, final String text, final int duration, Drawable icon) {
-        custom(isSingle, null, successStyle, text, duration, icon);
+        custom(isSingle, null, sSuccessStyle, text, duration, icon);
     }
 
     // =====================
@@ -749,7 +749,7 @@ public final class ToastTintUtils {
      */
     private static void showToastView(final boolean isSingle, final Context context, final View view, final int duration) {
         if (view == null) return;
-        if (mIsHandler) {
+        if (sIsHandler) {
             sHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -797,28 +797,28 @@ public final class ToastTintUtils {
         if (isSingle) {
             try {
                 // 关闭旧的 Toast
-                if (mToast != null) {
-                    mToast.cancel();
-                    mToast = null;
+                if (sToast != null) {
+                    sToast.cancel();
+                    sToast = null;
                 }
                 // 解决 MIUI 会显示应用名称问题
-                mToast = new Toast(context);
-                mToast.setView(view);
-                mToast.setDuration(duration);
+                sToast = new Toast(context);
+                sToast.setView(view);
+                sToast.setDuration(duration);
                 // 判断是否使用配置
-                if (mUseConfig) {
+                if (sUseConfig) {
                     // 设置属性配置
-                    if (mGravity != 0) {
-                        mToast.setGravity(mGravity, mX, mY);
+                    if (sGravity != 0) {
+                        sToast.setGravity(sGravity, sX, sY);
                     }
-                    mToast.setMargin(mHorizontalMargin, mVerticalMargin);
+                    sToast.setMargin(sHorizontalMargin, sVerticalMargin);
                 }
                 // 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
-                reflectToastHandler(mToast);
+                reflectToastHandler(sToast);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "newToastView");
             }
-            return mToast;
+            return sToast;
         } else {
             Toast toast = null;
             try {
@@ -827,12 +827,12 @@ public final class ToastTintUtils {
                 toast.setView(view);
                 toast.setDuration(duration);
                 // 判断是否使用配置
-                if (mUseConfig) {
+                if (sUseConfig) {
                     // 设置属性配置
-                    if (mGravity != 0) {
-                        toast.setGravity(mGravity, mX, mY);
+                    if (sGravity != 0) {
+                        toast.setGravity(sGravity, sX, sY);
                     }
-                    toast.setMargin(mHorizontalMargin, mVerticalMargin);
+                    toast.setMargin(sHorizontalMargin, sVerticalMargin);
                 }
                 // 反射 Hook Toast 解决 Android 7.1.1 崩溃问题
                 reflectToastHandler(toast);
@@ -867,7 +867,7 @@ public final class ToastTintUtils {
         text = sPriToastFilter.handlerContent(text);
         // 设置为null, 便于提示排查
         if (TextUtils.isEmpty(text)) {
-            text = mNullText;
+            text = sNullText;
             // 如果还是为null, 则不处理
             if (TextUtils.isEmpty(text)) {
                 return null;

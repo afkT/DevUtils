@@ -28,20 +28,20 @@ public final class NotificationUtils {
     // 日志 TAG
     private static final String TAG = NotificationUtils.class.getSimpleName();
     // 通知栏管理类
-    private static NotificationManager mNotificationManager = null;
+    private static NotificationManager sNotificationManager = null;
 
     /**
      * 获取通知栏管理类
      * @return
      */
     public static NotificationManager getNotificationManager() {
-        if (mNotificationManager == null) {
+        if (sNotificationManager == null) {
             try {
-                mNotificationManager = (NotificationManager) DevUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                sNotificationManager = (NotificationManager) DevUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
             } catch (Exception e) {
             }
         }
-        return mNotificationManager;
+        return sNotificationManager;
     }
 
     /**
@@ -49,7 +49,7 @@ public final class NotificationUtils {
      */
     public static void cancelAll() {
         if (getNotificationManager() != null) {
-            mNotificationManager.cancelAll();
+            sNotificationManager.cancelAll();
         }
     }
 
@@ -60,7 +60,7 @@ public final class NotificationUtils {
     public static void cancel(final int... args) {
         if (getNotificationManager() != null && args != null) {
             for (int id : args) {
-                mNotificationManager.cancel(id);
+                sNotificationManager.cancel(id);
             }
         }
     }
@@ -72,7 +72,7 @@ public final class NotificationUtils {
      */
     public static void cancel(final String tag, final int id) {
         if (getNotificationManager() != null && tag != null) {
-            mNotificationManager.cancel(tag, id);
+            sNotificationManager.cancel(tag, id);
         }
     }
 
@@ -84,7 +84,7 @@ public final class NotificationUtils {
      */
     public static boolean notify(final int id, final Notification notification) {
         if (getNotificationManager() != null && notification != null) {
-            mNotificationManager.notify(id, notification);
+            sNotificationManager.notify(id, notification);
             return true;
         }
         return false;
@@ -99,7 +99,7 @@ public final class NotificationUtils {
      */
     public static boolean notify(final String tag, final int id, final Notification notification) {
         if (getNotificationManager() != null && tag != null && notification != null) {
-            mNotificationManager.notify(tag, id, notification);
+            sNotificationManager.notify(tag, id, notification);
             return true;
         }
         return false;

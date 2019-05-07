@@ -17,16 +17,16 @@ public final class SharedUtils {
     }
 
     // 全局 Context
-    private static Context mContext;
+    private static Context sContext;
 
     /**
      * 初始化操作
      * @param context
      */
     public static void init(final Context context) {
-        if (mContext == null && context != null) {
+        if (sContext == null && context != null) {
             // 初始化全局 Context
-            mContext = context.getApplicationContext();
+            sContext = context.getApplicationContext();
         }
     }
 
@@ -36,7 +36,7 @@ public final class SharedUtils {
      * @param value
      */
     public static <T> void put(final String key, final T value) {
-        SPUtils.getPreference(mContext).put(key, value);
+        SPUtils.getPreference(sContext).put(key, value);
     }
 
     /**
@@ -44,7 +44,7 @@ public final class SharedUtils {
      * @param map
      */
     public static <T> void putAll(final Map<String, T> map) {
-        SPUtils.getPreference(mContext).putAll(map);
+        SPUtils.getPreference(sContext).putAll(map);
     }
 
     /**
@@ -53,7 +53,7 @@ public final class SharedUtils {
      * @param list
      */
     public static void putAll(final String key, final List<String> list) {
-        SPUtils.getPreference(mContext).putAll(key, list);
+        SPUtils.getPreference(sContext).putAll(key, list);
     }
 
     /**
@@ -63,7 +63,7 @@ public final class SharedUtils {
      * @param comparator
      */
     public static void putAll(final String key, final List<String> list, final Comparator<String> comparator) {
-        SPUtils.getPreference(mContext).putAll(key, list, comparator);
+        SPUtils.getPreference(sContext).putAll(key, list, comparator);
     }
 
     /**
@@ -71,7 +71,7 @@ public final class SharedUtils {
      * @param key
      */
     public static <T> T get(final String key, final IPreference.DataType type) {
-        return SPUtils.getPreference(mContext).get(key, type);
+        return SPUtils.getPreference(sContext).get(key, type);
     }
 
     /**
@@ -79,7 +79,7 @@ public final class SharedUtils {
      * @return
      */
     public static Map<String, ?> getAll() {
-        return SPUtils.getPreference(mContext).getAll();
+        return SPUtils.getPreference(sContext).getAll();
     }
 
     /**
@@ -88,7 +88,7 @@ public final class SharedUtils {
      * @return
      */
     public static List<String> getAll(final String key) {
-        return SPUtils.getPreference(mContext).getAll(key);
+        return SPUtils.getPreference(sContext).getAll(key);
     }
 
     /**
@@ -97,7 +97,7 @@ public final class SharedUtils {
      * @return
      */
     public static void remove(final String key) {
-        SPUtils.getPreference(mContext).remove(key);
+        SPUtils.getPreference(sContext).remove(key);
     }
 
     /**
@@ -106,7 +106,7 @@ public final class SharedUtils {
      * @return
      */
     public static void removeAll(final List<String> keys) {
-        SPUtils.getPreference(mContext).removeAll(keys);
+        SPUtils.getPreference(sContext).removeAll(keys);
     }
 
     /**
@@ -115,7 +115,7 @@ public final class SharedUtils {
      * @return
      */
     public static void removeAll(final String[] keys) {
-        SPUtils.getPreference(mContext).removeAll(keys);
+        SPUtils.getPreference(sContext).removeAll(keys);
     }
 
     /**
@@ -123,14 +123,14 @@ public final class SharedUtils {
      * @return
      */
     public static boolean contains(final String key) {
-        return SPUtils.getPreference(mContext).contains(key);
+        return SPUtils.getPreference(sContext).contains(key);
     }
 
     /**
      * 清除全部数据
      */
     public static void clear() {
-        SPUtils.getPreference(mContext).clear();
+        SPUtils.getPreference(sContext).clear();
     }
 
     // =
@@ -140,7 +140,7 @@ public final class SharedUtils {
      * @return
      */
     public static int getInt(final String key) {
-        return SPUtils.getPreference(mContext).getInt(key);
+        return SPUtils.getPreference(sContext).getInt(key);
     }
 
     /**
@@ -149,7 +149,7 @@ public final class SharedUtils {
      * @return
      */
     public static float getFloat(final String key) {
-        return SPUtils.getPreference(mContext).getFloat(key);
+        return SPUtils.getPreference(sContext).getFloat(key);
     }
 
     /**
@@ -158,7 +158,7 @@ public final class SharedUtils {
      * @return
      */
     public static long getLong(final String key) {
-        return SPUtils.getPreference(mContext).getLong(key);
+        return SPUtils.getPreference(sContext).getLong(key);
     }
 
     /**
@@ -167,7 +167,7 @@ public final class SharedUtils {
      * @return
      */
     public static boolean getBoolean(final String key) {
-        return SPUtils.getPreference(mContext).getBoolean(key);
+        return SPUtils.getPreference(sContext).getBoolean(key);
     }
 
     /**
@@ -176,7 +176,7 @@ public final class SharedUtils {
      * @return
      */
     public static String getString(final String key) {
-        return SPUtils.getPreference(mContext).getString(key);
+        return SPUtils.getPreference(sContext).getString(key);
     }
 
     /**
@@ -185,6 +185,6 @@ public final class SharedUtils {
      * @return
      */
     public static Set<String> getSet(final String key) {
-        return SPUtils.getPreference(mContext).getSet(key);
+        return SPUtils.getPreference(sContext).getSet(key);
     }
 }

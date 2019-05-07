@@ -25,7 +25,7 @@ final class PreferenceImpl implements IPreference {
     // 文件名
     private static final String NAME = "SPConfig";
     // 默认SharedPreferences对象
-    private SharedPreferences preferences;
+    private SharedPreferences mPreferences;
 
     // ============
     // = 构造函数 =
@@ -36,7 +36,7 @@ final class PreferenceImpl implements IPreference {
      * @param context
      */
     public PreferenceImpl(final Context context) {
-        preferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
+        mPreferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
     }
 
     /**
@@ -45,7 +45,7 @@ final class PreferenceImpl implements IPreference {
      * @param fileName
      */
     public PreferenceImpl(final Context context, final String fileName) {
-        preferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        mPreferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
     }
 
     /**
@@ -55,7 +55,7 @@ final class PreferenceImpl implements IPreference {
      * @param mode
      */
     public PreferenceImpl(final Context context, final String fileName, final int mode) {
-        preferences = context.getSharedPreferences(fileName, mode);
+        mPreferences = context.getSharedPreferences(fileName, mode);
     }
 
     // ============
@@ -97,17 +97,17 @@ final class PreferenceImpl implements IPreference {
     private Object getValue(final String key, final DataType type) {
         switch (type) {
             case INTEGER:
-                return preferences.getInt(key, -1);
+                return mPreferences.getInt(key, -1);
             case FLOAT:
-                return preferences.getFloat(key, -1f);
+                return mPreferences.getFloat(key, -1f);
             case BOOLEAN:
-                return preferences.getBoolean(key, false);
+                return mPreferences.getBoolean(key, false);
             case LONG:
-                return preferences.getLong(key, -1L);
+                return mPreferences.getLong(key, -1L);
             case STRING:
-                return preferences.getString(key, null);
+                return mPreferences.getString(key, null);
             case STRING_SET:
-                return preferences.getStringSet(key, null);
+                return mPreferences.getStringSet(key, null);
             default: // 默认取出String类型的数据
                 return null;
         }
@@ -129,14 +129,14 @@ final class PreferenceImpl implements IPreference {
 
     @Override
     public <T> void put(final String key, final T value) {
-        SharedPreferences.Editor edit = preferences.edit();
+        SharedPreferences.Editor edit = mPreferences.edit();
         put(edit, key, value);
         edit.apply();
     }
 
     @Override
     public <T> void putAll(final Map<String, T> map) {
-        SharedPreferences.Editor edit = preferences.edit();
+        SharedPreferences.Editor edit = mPreferences.edit();
         for (Map.Entry<String, T> entry : map.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
@@ -156,7 +156,7 @@ final class PreferenceImpl implements IPreference {
         for (String value : list) {
             set.add(value);
         }
-        preferences.edit().putStringSet(key, set).apply();
+        mPreferences.edit().putStringSet(key, set).apply();
     }
 
     @Override
@@ -166,7 +166,7 @@ final class PreferenceImpl implements IPreference {
 
     @Override
     public Map<String, ?> getAll() {
-        return preferences.getAll();
+        return mPreferences.getAll();
     }
 
     @Override
@@ -181,12 +181,12 @@ final class PreferenceImpl implements IPreference {
 
     @Override
     public void remove(final String key) {
-        preferences.edit().remove(key).apply();
+        mPreferences.edit().remove(key).apply();
     }
 
     @Override
     public void removeAll(final List<String> keys) {
-        SharedPreferences.Editor edit = preferences.edit();
+        SharedPreferences.Editor edit = mPreferences.edit();
         for (String k : keys) {
             edit.remove(k);
         }
@@ -200,12 +200,12 @@ final class PreferenceImpl implements IPreference {
 
     @Override
     public boolean contains(final String key) {
-        return preferences.contains(key);
+        return mPreferences.contains(key);
     }
 
     @Override
     public void clear() {
-        preferences.edit().clear().apply();
+        mPreferences.edit().clear().apply();
     }
 
     // =

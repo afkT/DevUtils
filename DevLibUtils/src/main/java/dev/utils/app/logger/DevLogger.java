@@ -10,7 +10,7 @@ public final class DevLogger {
     }
 
     // 包下LoggerPrinter类持有对象
-    private static final IPrinter printer = new LoggerPrinter();
+    private static final IPrinter sPrinter = new LoggerPrinter();
 
     // ============
     // = 配置方法 =
@@ -22,7 +22,7 @@ public final class DevLogger {
      * @return
      */
     public static IPrinter other(final LogConfig lConfig) {
-        return printer.other(lConfig);
+        return sPrinter.other(lConfig);
     }
 
     /**
@@ -30,7 +30,7 @@ public final class DevLogger {
      * @return
      */
     public static LogConfig getLogConfig() {
-        return printer.getLogConfig();
+        return sPrinter.getLogConfig();
     }
 
     /**
@@ -38,7 +38,7 @@ public final class DevLogger {
      * @return
      */
     public static LogConfig init() {
-        return printer.init();
+        return sPrinter.init();
     }
 
     /**
@@ -46,7 +46,7 @@ public final class DevLogger {
      * @param lConfig
      */
     public static void init(final LogConfig lConfig) {
-        printer.init(lConfig);
+        sPrinter.init(lConfig);
     }
 
     // ==============================
@@ -59,7 +59,7 @@ public final class DevLogger {
      * @param args
      */
     public static void d(final String message, final Object... args) {
-        printer.d(message, args);
+        sPrinter.d(message, args);
     }
 
     /**
@@ -68,7 +68,7 @@ public final class DevLogger {
      * @param args
      */
     public static void e(final String message, final Object... args) {
-        printer.e(message, args);
+        sPrinter.e(message, args);
     }
 
     /**
@@ -76,7 +76,7 @@ public final class DevLogger {
      * @param throwable
      */
     public static void e(final Throwable throwable) {
-        printer.e(throwable, null);
+        sPrinter.e(throwable, null);
     }
 
     /**
@@ -86,7 +86,7 @@ public final class DevLogger {
      * @param args
      */
     public static void e(final Throwable throwable, final String message, final Object... args) {
-        printer.e(throwable, message, args);
+        sPrinter.e(throwable, message, args);
     }
 
     /**
@@ -95,7 +95,7 @@ public final class DevLogger {
      * @param args
      */
     public static void w(final String message, final Object... args) {
-        printer.w(message, args);
+        sPrinter.w(message, args);
     }
 
     /**
@@ -104,7 +104,7 @@ public final class DevLogger {
      * @param args
      */
     public static void i(final String message, final Object... args) {
-        printer.i(message, args);
+        sPrinter.i(message, args);
     }
 
     /**
@@ -113,7 +113,7 @@ public final class DevLogger {
      * @param args
      */
     public static void v(final String message, final Object... args) {
-        printer.v(message, args);
+        sPrinter.v(message, args);
     }
 
     /**
@@ -122,7 +122,7 @@ public final class DevLogger {
      * @param args
      */
     public static void wtf(final String message, final Object... args) {
-        printer.wtf(message, args);
+        sPrinter.wtf(message, args);
     }
 
     // =
@@ -132,7 +132,7 @@ public final class DevLogger {
      * @param json
      */
     public static void json(final String json) {
-        printer.json(json);
+        sPrinter.json(json);
     }
 
     /**
@@ -140,7 +140,7 @@ public final class DevLogger {
      * @param xml
      */
     public static void xml(final String xml) {
-        printer.xml(xml);
+        sPrinter.xml(xml);
     }
 
     // ================================
@@ -154,7 +154,7 @@ public final class DevLogger {
      * @param args
      */
     public static void dTag(final String tag, final String message, final Object... args) {
-        printer.dTag(tag, message, args);
+        sPrinter.dTag(tag, message, args);
     }
 
     /**
@@ -164,7 +164,7 @@ public final class DevLogger {
      * @param args
      */
     public static void eTag(final String tag, final String message, final Object... args) {
-        printer.eTag(tag, message, args);
+        sPrinter.eTag(tag, message, args);
     }
 
     /**
@@ -175,7 +175,7 @@ public final class DevLogger {
      * @param args
      */
     public static void eTag(final String tag, final Throwable throwable, final String message, final Object... args) {
-        printer.eTag(tag, throwable, message, args);
+        sPrinter.eTag(tag, throwable, message, args);
     }
 
     /**
@@ -184,7 +184,7 @@ public final class DevLogger {
      * @param throwable
      */
     public static void eTag(final String tag, final Throwable throwable) {
-        printer.eTag(tag, throwable, null);
+        sPrinter.eTag(tag, throwable, null);
     }
 
     /**
@@ -194,7 +194,7 @@ public final class DevLogger {
      * @param args
      */
     public static void wTag(final String tag, final String message, final Object... args) {
-        printer.wTag(tag, message, args);
+        sPrinter.wTag(tag, message, args);
     }
 
     /**
@@ -204,7 +204,7 @@ public final class DevLogger {
      * @param args
      */
     public static void iTag(final String tag, final String message, final Object... args) {
-        printer.iTag(tag, message, args);
+        sPrinter.iTag(tag, message, args);
     }
 
     /**
@@ -214,7 +214,7 @@ public final class DevLogger {
      * @param args
      */
     public static void vTag(final String tag, final String message, final Object... args) {
-        printer.vTag(tag, message, args);
+        sPrinter.vTag(tag, message, args);
     }
 
     /**
@@ -224,7 +224,7 @@ public final class DevLogger {
      * @param args
      */
     public static void wtfTag(final String tag, final String message, final Object... args) {
-        printer.wtfTag(tag, message, args);
+        sPrinter.wtfTag(tag, message, args);
     }
 
     // =
@@ -235,7 +235,7 @@ public final class DevLogger {
      * @param json
      */
     public static void jsonTag(final String tag, final String json) {
-        printer.jsonTag(tag, json);
+        sPrinter.jsonTag(tag, json);
     }
 
     /**
@@ -244,6 +244,6 @@ public final class DevLogger {
      * @param xml
      */
     public static void xmlTag(final String tag, final String xml) {
-        printer.xmlTag(tag, xml);
+        sPrinter.xmlTag(tag, xml);
     }
 }

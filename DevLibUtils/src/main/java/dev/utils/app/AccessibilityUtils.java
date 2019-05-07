@@ -41,14 +41,14 @@ public final class AccessibilityUtils {
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
     // AccessibilityService 对象
-    private static AccessibilityService service = null;
+    private static AccessibilityService sService = null;
 
     /**
      * 获取 AccessibilityService 对象
      * @return
      */
     public static AccessibilityService getService() {
-        return service;
+        return sService;
     }
 
     /**
@@ -56,7 +56,7 @@ public final class AccessibilityUtils {
      * @param service
      */
     public static void setService(final AccessibilityService service) {
-        AccessibilityUtils.service = service;
+        AccessibilityUtils.sService = service;
     }
 
     // =
@@ -205,7 +205,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final String text) {
-        return findAccessibilityNodeInfosByText(service, text);
+        return findAccessibilityNodeInfosByText(sService, text);
     }
 
     /**
@@ -233,7 +233,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final String id) {
-        return findAccessibilityNodeInfosByViewId(service, id);
+        return findAccessibilityNodeInfosByViewId(sService, id);
     }
 
     /**
@@ -262,7 +262,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final String text, final String className) {
-        return findAccessibilityNodeInfosByText(service, text, className);
+        return findAccessibilityNodeInfosByText(sService, text, className);
     }
 
     /**
@@ -408,7 +408,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionBack() {
-        return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_BACK);
+        return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_BACK);
     }
 
     /**
@@ -427,7 +427,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionHome() {
-        return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_HOME);
+        return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_HOME);
     }
 
     /**
@@ -446,7 +446,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionPowerDialog() {
-        return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
+        return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
     }
 
     /**
@@ -465,7 +465,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionLockScreen() {
-        return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
+        return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
     }
 
     /**
@@ -484,7 +484,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionTakeScreenshot() {
-        return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
+        return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
     }
 
     /**
@@ -503,7 +503,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionNotifications() {
-        return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
+        return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
     }
 
     /**
@@ -522,7 +522,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionRecents() {
-        return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_RECENTS);
+        return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_RECENTS);
     }
 
     /**
@@ -541,7 +541,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionQuickSettings() {
-        return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
+        return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
     }
 
     /**
@@ -560,7 +560,7 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionSplitScreen() {
-        return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
+        return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
     }
 
     /**

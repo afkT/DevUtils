@@ -44,7 +44,7 @@ public class WifiHotUtils {
     // 定义WifiManager对象
     private WifiManager mWifiManager;
     // 热点 Wifi 配置
-    private WifiConfiguration apWifiConfig;
+    private WifiConfiguration mAPWifiConfig;
 
     /**
      * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
@@ -113,7 +113,7 @@ public class WifiHotUtils {
      * @param wifiConfig wifi配置
      */
     public void stratWifiAp(final WifiConfiguration wifiConfig) {
-        this.apWifiConfig = wifiConfig;
+        this.mAPWifiConfig = wifiConfig;
         // 大于 8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // 关闭热点
@@ -121,7 +121,7 @@ public class WifiHotUtils {
                 mReservation.close();
             }
             // 清空信息
-            apWifiSSID = apWifiPwd = null;
+            mAPWifiSSID = mAPWifiPwd = null;
             // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行发送连接, 无法进行控制(App 关闭后, 热点自动关闭)
             // 必须有定位权限
             mWifiManager.startLocalOnlyHotspot(new WifiManager.LocalOnlyHotspotCallback() {
@@ -132,13 +132,13 @@ public class WifiHotUtils {
                     mReservation = reservation;
                     // 获取配置信息
                     WifiConfiguration wifiConfiguration = reservation.getWifiConfiguration();
-                    apWifiSSID = wifiConfiguration.SSID;
-                    apWifiPwd = wifiConfiguration.preSharedKey;
+                    mAPWifiSSID = wifiConfiguration.SSID;
+                    mAPWifiPwd = wifiConfiguration.preSharedKey;
                     // 打印信息
-                    LogPrintUtils.dTag(TAG, "Android 8.0 wifi Ap ssid: " + apWifiSSID + ", pwd: " + apWifiPwd);
+                    LogPrintUtils.dTag(TAG, "Android 8.0 wifi Ap ssid: " + mAPWifiSSID + ", pwd: " + mAPWifiPwd);
                     // 触发回调
-                    if (wifiAPListener != null) {
-                        wifiAPListener.onStarted(wifiConfiguration);
+                    if (mWifiAPListener != null) {
+                        mWifiAPListener.onStarted(wifiConfiguration);
                     }
                 }
 
@@ -148,8 +148,8 @@ public class WifiHotUtils {
                     // 打印信息
                     LogPrintUtils.dTag(TAG, "Android 8.0 onStopped wifiAp");
                     // 触发回调
-                    if (wifiAPListener != null) {
-                        wifiAPListener.onStopped();
+                    if (mWifiAPListener != null) {
+                        mWifiAPListener.onStopped();
                     }
                 }
 
@@ -159,8 +159,8 @@ public class WifiHotUtils {
                     // 打印信息
                     LogPrintUtils.eTag(TAG, "Android 8.0 onFailed wifiAp, reason : " + reason);
                     // 触发回调
-                    if (wifiAPListener != null) {
-                        wifiAPListener.onFailed(reason);
+                    if (mWifiAPListener != null) {
+                        mWifiAPListener.onFailed(reason);
                     }
                 }
             }, null);
@@ -198,7 +198,7 @@ public class WifiHotUtils {
                 mReservation.close();
             }
             // 清空信息
-            apWifiSSID = apWifiPwd = null;
+            mAPWifiSSID = mAPWifiPwd = null;
             return;
         }
         try {
@@ -498,9 +498,9 @@ public class WifiHotUtils {
     // ===================
 
     // Wifi ssid
-    private String apWifiSSID;
+    private String mAPWifiSSID;
     // wifi 密码
-    private String apWifiPwd;
+    private String mAPWifiPwd;
     // wifi 热点对象
     private WifiManager.LocalOnlyHotspotReservation mReservation;
 
@@ -511,10 +511,10 @@ public class WifiHotUtils {
     public String getApWifiSSID() {
         // 大于 8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return apWifiSSID;
+            return mAPWifiSSID;
         } else {
-            if (apWifiConfig != null) {
-                return apWifiConfig.SSID;
+            if (mAPWifiConfig != null) {
+                return mAPWifiConfig.SSID;
             }
         }
         return null;
@@ -527,10 +527,10 @@ public class WifiHotUtils {
     public String getApWifiPwd() {
         // 大于 8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return apWifiPwd;
+            return mAPWifiPwd;
         } else {
-            if (apWifiConfig != null) {
-                return apWifiConfig.preSharedKey;
+            if (mAPWifiConfig != null) {
+                return mAPWifiConfig.preSharedKey;
             }
         }
         return null;
@@ -538,7 +538,7 @@ public class WifiHotUtils {
 
     // =
 
-    private onWifiAPListener wifiAPListener;
+    private onWifiAPListener mWifiAPListener;
 
     /**
      * 设置 Wifi 热点监听
@@ -546,7 +546,7 @@ public class WifiHotUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setOnWifiAPListener(onWifiAPListener wifiAPListener) {
-        this.wifiAPListener = wifiAPListener;
+        this.mWifiAPListener = wifiAPListener;
     }
 
     /**

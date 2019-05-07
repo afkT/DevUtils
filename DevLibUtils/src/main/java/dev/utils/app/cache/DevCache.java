@@ -51,13 +51,13 @@ public final class DevCache {
     // 缓存最大值(50mb)
     private static final int MAX_SIZE = 1000 * 1000 * 50;
     // 不限制存放数据的数量
-    private static final int maxCount = Integer.MAX_VALUE;
+    private static final int MAX_COUNT = Integer.MAX_VALUE;
     // 不同地址配置缓存对象
-    private static Map<String, DevCache> mInstanceMap = new HashMap<>();
+    private static Map<String, DevCache> sInstanceMaps = new HashMap<>();
     // 缓存管理类
     private DevCacheManager mCache;
     // 缓存地址
-    private static File contextCacheDir = null;
+    private static File sContextCacheDir = null;
 
     /**
      * 内部处理防止 Context 为 null 崩溃问题
@@ -79,10 +79,10 @@ public final class DevCache {
      * @return 应用缓存地址
      */
     public static File getCacheDir(final Context context) {
-        if (contextCacheDir == null) {
-            contextCacheDir = getContext(context).getCacheDir();
+        if (sContextCacheDir == null) {
+            sContextCacheDir = getContext(context).getCacheDir();
         }
-        return contextCacheDir;
+        return sContextCacheDir;
     }
 
     /**
@@ -105,7 +105,7 @@ public final class DevCache {
         // 进行处理
         File file = new File(getCacheDir(context), cacheName);
         // 获取默认地址
-        return get(file, MAX_SIZE, maxCount);
+        return get(file, MAX_SIZE, MAX_COUNT);
     }
 
     /**
@@ -114,7 +114,7 @@ public final class DevCache {
      * @return {@link DevCache}
      */
     public static DevCache get(final File cacheDir) {
-        return get(cacheDir, MAX_SIZE, maxCount);
+        return get(cacheDir, MAX_SIZE, MAX_COUNT);
     }
 
     /**
@@ -139,11 +139,11 @@ public final class DevCache {
     public static DevCache get(final File cacheDir, final long maxSize, final int maxCount) {
         if (cacheDir == null) return null;
         // 判断是否存在缓存信息
-        DevCache manager = mInstanceMap.get(cacheDir.getAbsoluteFile() + myPid());
+        DevCache manager = sInstanceMaps.get(cacheDir.getAbsoluteFile() + myPid());
         if (manager == null) {
             // 初始化新的缓存信息, 并且保存
             manager = new DevCache(cacheDir, maxSize, maxCount);
-            mInstanceMap.put(cacheDir.getAbsolutePath() + myPid(), manager);
+            sInstanceMaps.put(cacheDir.getAbsolutePath() + myPid(), manager);
         }
         return manager;
     }

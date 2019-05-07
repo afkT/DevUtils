@@ -24,7 +24,7 @@ public final class JSONObjectUtils {
     // 日志 TAG
     private static final String TAG = JSONObjectUtils.class.getSimpleName();
     // JSON 格式内容 默认缩进
-    private static final int JSON_INDENT = 4;
+    public static final int JSON_INDENT = 4;
 
     // ====================
     // = 转换 JSON 字符串 =

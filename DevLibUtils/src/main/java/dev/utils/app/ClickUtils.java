@@ -21,15 +21,15 @@ public final class ClickUtils {
     // 日志 TAG
     private static final String TAG = ClickUtils.class.getSimpleName();
     // 上一次点击的标识id = viewId 等
-    private static int lastTagId = -1;
+    private static int sLastTagId = -1;
     // 上次点击时间
-    private static long lastClickTime = 0l; // 局限性是, 全局统一事件，如果上次点击后，立刻点击其他就无法点
+    private static long sLastClickTime = 0l; // 局限性是, 全局统一事件，如果上次点击后，立刻点击其他就无法点
     // 默认间隔时间
     private static long DF_DIFF = 1000l; // 点击间隔1秒内
     // 配置数据
-    private static final Map<String, Long> mapConfig = new HashMap<>();
+    private static final Map<String, Long> sConfigs = new HashMap<>();
     // 点击记录数据
-    private static final Map<String, Long> mapRecords = new HashMap<>();
+    private static final Map<String, Long> sRecords = new HashMap<>();
 
     // =
 
@@ -58,15 +58,15 @@ public final class ClickUtils {
      */
     public static boolean isFastDoubleClick(final int tagId, final long diff) {
         long cTime = System.currentTimeMillis();
-        long dTime = cTime - lastClickTime;
+        long dTime = cTime - sLastClickTime;
         // 判断时间是否超过
-        if (lastTagId == tagId && lastClickTime > 0 && dTime < diff) {
+        if (sLastTagId == tagId && sLastClickTime > 0 && dTime < diff) {
             LogPrintUtils.dTag(TAG, "isFastDoubleClick 无效点击 => tagId: " + tagId + ", diff: " + diff);
             return true;
         }
         LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 => tagId: " + tagId + ", diff: " + diff);
-        lastTagId = tagId;
-        lastClickTime = cTime;
+        sLastTagId = tagId;
+        sLastClickTime = cTime;
         return false;
     }
 
@@ -79,7 +79,7 @@ public final class ClickUtils {
      */
     public static boolean isFastDoubleClick(final String tag) {
         // 获取配置时间
-        Long config_time = mapConfig.get(tag);
+        Long config_time = sConfigs.get(tag);
         // 如果等于null, 则传入默认时间
         if (config_time == null) {
             return isFastDoubleClick(tag, DF_DIFF);
@@ -95,7 +95,7 @@ public final class ClickUtils {
      */
     public static boolean isFastDoubleClick(final String tag, final long diff) {
         // 获取上次点击的时间
-        Long lastTime = mapRecords.get(tag);
+        Long lastTime = sRecords.get(tag);
         if (lastTime == null) {
             lastTime = 0l;
         }
@@ -108,7 +108,7 @@ public final class ClickUtils {
         }
         LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 => tag: " + tag + ", diff: " + diff);
         // 保存上次点击时间
-        mapRecords.put(tag, cTime);
+        sRecords.put(tag, cTime);
         return false;
     }
 
@@ -123,7 +123,7 @@ public final class ClickUtils {
         // 获取TAG
         String tag = ((object != null) ? ("obj_" + object.hashCode()) : "obj_null");
         // 获取配置时间
-        Long config_time = mapConfig.get(tag);
+        Long config_time = sConfigs.get(tag);
         // 如果等于null, 则传入默认时间
         if (config_time == null) {
             return isFastDoubleClick(tag, DF_DIFF);
@@ -141,7 +141,7 @@ public final class ClickUtils {
         // 获取TAG
         String tag = ((object != null) ? ("obj_" + object.hashCode()) : "obj_null");
         // 获取上次点击的时间
-        Long lastTime = mapRecords.get(tag);
+        Long lastTime = sRecords.get(tag);
         if (lastTime == null) {
             lastTime = 0l;
         }
@@ -154,7 +154,7 @@ public final class ClickUtils {
         }
         LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 => obj: " + object + ", diff: " + diff);
         // 保存上次点击时间
-        mapRecords.put(tag, cTime);
+        sRecords.put(tag, cTime);
         return false;
     }
 
@@ -176,7 +176,7 @@ public final class ClickUtils {
      * @param val
      */
     public static void putConfig(final String key, final Long val) {
-        mapConfig.put(key, val);
+        sConfigs.put(key, val);
     }
 
     /**
@@ -184,7 +184,7 @@ public final class ClickUtils {
      * @param key
      */
     public static void removeConfig(final String key) {
-        mapConfig.remove(key);
+        sConfigs.remove(key);
     }
 
     // =
@@ -194,14 +194,14 @@ public final class ClickUtils {
      * @param key
      */
     public static void removeRecord(final String key) {
-        mapRecords.remove(key);
+        sRecords.remove(key);
     }
 
     /**
      * 清空点击记录(全部)
      */
     public static void clearRecord() {
-        mapRecords.clear();
+        sRecords.clear();
     }
 
     /**
