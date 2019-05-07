@@ -18,7 +18,7 @@ public final class SHAUtils {
     // 日志 TAG
     private static final String TAG = SHAUtils.class.getSimpleName();
     // 用于建立十六进制字符的输出的小写字符数组
-    private static final char HEX_DIGITS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * 加密内容 SHA1

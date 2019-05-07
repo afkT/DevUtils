@@ -16,25 +16,25 @@ public final class DevThreadManager {
     // 默认通用线程池 - 通过 CPU 自动处理
     private static final DevThreadPool sDevThreadPool = new DevThreadPool(DevThreadPool.DevThreadPoolType.CALC_CPU);
     // 线程池数据
-    private static final LinkedHashMap<String, DevThreadPool> mapThreads = new LinkedHashMap<>();
+    private static final LinkedHashMap<String, DevThreadPool> sThreads = new LinkedHashMap<>();
     // 配置数据
-    private static final Map<String, Object> mapConfig = new HashMap<>();
+    private static final Map<String, Object> sConfigs = new HashMap<>();
 
     /**
      * 获取 DevThreadManager 实例
-     * @param nThreads 线程数量
+     * @param threadNumber 线程数量
      * @return {@link DevThreadPool}
      */
-    public static synchronized DevThreadPool getInstance(final int nThreads) {
+    public static synchronized DevThreadPool getInstance(final int threadNumber) {
         // 初始化key
-        String key = "n_" + nThreads;
+        String key = "n_" + threadNumber;
         // 如果不为null, 则直接返回
-        DevThreadPool devThreadPool = mapThreads.get(key);
+        DevThreadPool devThreadPool = sThreads.get(key);
         if (devThreadPool != null) {
             return devThreadPool;
         }
-        devThreadPool = new DevThreadPool(nThreads);
-        mapThreads.put(key, devThreadPool);
+        devThreadPool = new DevThreadPool(threadNumber);
+        sThreads.put(key, devThreadPool);
         return devThreadPool;
     }
 
@@ -45,11 +45,11 @@ public final class DevThreadManager {
      */
     public static synchronized DevThreadPool getInstance(final String key) {
         // 如果不为null, 则直接返回
-        DevThreadPool devThreadPool = mapThreads.get(key);
+        DevThreadPool devThreadPool = sThreads.get(key);
         if (devThreadPool != null) {
             return devThreadPool;
         }
-        Object obj = mapConfig.get(key);
+        Object obj = sConfigs.get(key);
         if (obj != null) {
             try {
                 // 判断是否属于线程池类型
@@ -61,7 +61,7 @@ public final class DevThreadManager {
                     devThreadPool = new DevThreadPool(Integer.parseInt((String) obj));
                 }
                 if (devThreadPool != null) {
-                    mapThreads.put(key, devThreadPool);
+                    sThreads.put(key, devThreadPool);
                     return devThreadPool;
                 }
             } catch (Exception e) {
@@ -75,11 +75,11 @@ public final class DevThreadManager {
 
     /**
      * 初始化配置信息
-     * @param mapConfig 线程配置信息 Map
+     * @param mapConfigs 线程配置信息 Map
      */
-    public static void initConfig(final Map<String, Object> mapConfig) {
-        if (mapConfig != null) {
-            mapConfig.putAll(mapConfig);
+    public static void initConfig(final Map<String, Object> mapConfigs) {
+        if (mapConfigs != null) {
+            sConfigs.putAll(mapConfigs);
         }
     }
 
@@ -89,7 +89,7 @@ public final class DevThreadManager {
      * @param value 线程配置 value
      */
     public static void putConfig(final String key, final Object value) {
-        mapConfig.put(key, value);
+        sConfigs.put(key, value);
     }
 
     /**
@@ -97,6 +97,6 @@ public final class DevThreadManager {
      * @param key 线程配置 key
      */
     public static void removeConfig(final String key) {
-        mapConfig.remove(key);
+        sConfigs.remove(key);
     }
 }

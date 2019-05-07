@@ -34,7 +34,7 @@ public final class FileBreadthFirstSearchUtils {
      * @param iSearchHandler 搜索处理接口
      */
     public FileBreadthFirstSearchUtils(final ISearchHandler iSearchHandler) {
-        this.iSearchHandler = iSearchHandler;
+        this.mISearchHandler = iSearchHandler;
     }
 
     /**
@@ -119,22 +119,22 @@ public final class FileBreadthFirstSearchUtils {
     }
 
     // 搜索处理接口
-    private ISearchHandler iSearchHandler;
+    private ISearchHandler mISearchHandler;
 
     // 内部实现接口
-    private ISearchHandler insideHandler = new ISearchHandler() {
+    private ISearchHandler mInsideHandler = new ISearchHandler() {
         @Override
         public boolean isHandlerFile(File file) {
-            if (iSearchHandler != null) {
-                return iSearchHandler.isHandlerFile(file);
+            if (mISearchHandler != null) {
+                return mISearchHandler.isHandlerFile(file);
             }
             return true;
         }
 
         @Override
         public boolean isAddToList(File file) {
-            if (iSearchHandler != null) {
-                return iSearchHandler.isAddToList(file);
+            if (mISearchHandler != null) {
+                return mISearchHandler.isAddToList(file);
             }
             return true;
         }
@@ -144,8 +144,8 @@ public final class FileBreadthFirstSearchUtils {
             // 表示非搜索中
             mIsRunning = false;
             // 触发回调
-            if (iSearchHandler != null) {
-                iSearchHandler.OnEndListener(rootFileItem, startTime, endTime);
+            if (mISearchHandler != null) {
+                mISearchHandler.OnEndListener(rootFileItem, startTime, endTime);
             }
         }
     };
@@ -156,7 +156,7 @@ public final class FileBreadthFirstSearchUtils {
      * @return {@link FileBreadthFirstSearchUtils}
      */
     public FileBreadthFirstSearchUtils setSearchHandler(final ISearchHandler iSearchHandler) {
-        this.iSearchHandler = iSearchHandler;
+        this.mISearchHandler = iSearchHandler;
         return this;
     }
 
@@ -165,7 +165,7 @@ public final class FileBreadthFirstSearchUtils {
      * @return 队列数量
      */
     public int getQueueSameTimeNumber() {
-        return queueSameTimeNumber;
+        return mQueueSameTimeNumber;
     }
 
     /**
@@ -177,7 +177,7 @@ public final class FileBreadthFirstSearchUtils {
         if (mIsRunning) {
             return this;
         }
-        this.queueSameTimeNumber = queueSameTimeNumber;
+        this.mQueueSameTimeNumber = queueSameTimeNumber;
         return this;
     }
 
@@ -209,7 +209,7 @@ public final class FileBreadthFirstSearchUtils {
      * @return 开始搜索时间(毫秒)
      */
     public long getStartTime() {
-        return startTime;
+        return mStartTime;
     }
 
     /**
@@ -217,7 +217,7 @@ public final class FileBreadthFirstSearchUtils {
      * @return 结束搜索时间(毫秒)
      */
     public long getEndTime() {
-        return endTime;
+        return mEndTime;
     }
 
     /**
@@ -225,7 +225,7 @@ public final class FileBreadthFirstSearchUtils {
      * @return 延迟线程校验时间(毫秒)
      */
     public long getDelayTime() {
-        return delayTime;
+        return mDelayTime;
     }
 
     /**
@@ -233,29 +233,29 @@ public final class FileBreadthFirstSearchUtils {
      * @param delayTimeMillis 延迟校验时间(毫秒)
      */
     public void setDelayTime(final long delayTimeMillis) {
-        this.delayTime = delayTimeMillis;
+        this.mDelayTime = delayTimeMillis;
     }
 
     // =
 
     // 根目录对象
-    private FileItem rootFileItem;
+    private FileItem mRootFileItem;
     // 判断是否运行中
     private boolean mIsRunning = false;
     // 是否停止搜索
     private boolean mIsStop = false;
     // 开始搜索时间
-    private long startTime = 0l;
+    private long mStartTime = 0l;
     // 结束搜索时间
-    private long endTime = 0l;
+    private long mEndTime = 0l;
     // 延迟时间
-    private long delayTime = 50l;
+    private long mDelayTime = 50l;
     // 任务队列同时进行数量
-    private int queueSameTimeNumber = 5;
+    private int mQueueSameTimeNumber = 5;
     // 线程池
-    private ExecutorService executor = Executors.newCachedThreadPool();
+    private ExecutorService mExecutor = Executors.newCachedThreadPool();
     // 任务队列
-    private LinkedBlockingQueue<FileQueue> taskQueue = new LinkedBlockingQueue<>();
+    private LinkedBlockingQueue<FileQueue> mTaskQueue = new LinkedBlockingQueue<>();
 
     /**
      * 搜索目录
@@ -266,25 +266,25 @@ public final class FileBreadthFirstSearchUtils {
             return;
         } else if (path == null || path.trim().length() == 0) {
             // 触发结束回调
-            insideHandler.OnEndListener(null, -1, -1);
+            mInsideHandler.OnEndListener(null, -1, -1);
             return;
         }
         // 表示运行中
         mIsRunning = true;
         mIsStop = false;
         // 设置开始搜索时间
-        startTime = System.currentTimeMillis();
+        mStartTime = System.currentTimeMillis();
         try {
             // 获取根目录 File
             File file = new File(path);
             if (file != null) {
                 // 初始化根目录
-                rootFileItem = new FileItem(file);
+                mRootFileItem = new FileItem(file);
                 // 判断是否文件
                 if (file.isFile()) {
                     // 触发结束回调
-                    endTime = System.currentTimeMillis();
-                    insideHandler.OnEndListener(rootFileItem, startTime, endTime);
+                    mEndTime = System.currentTimeMillis();
+                    mInsideHandler.OnEndListener(mRootFileItem, mStartTime, mEndTime);
                     return;
                 }
                 // 获取文件夹全部子文件
@@ -295,22 +295,22 @@ public final class FileBreadthFirstSearchUtils {
                         @Override
                         public void run() {
                             // 查询文件
-                            queryFile(rootFileItem.file, rootFileItem);
+                            queryFile(mRootFileItem.file, mRootFileItem);
                             // 循环队列
                             whileQueue();
                         }
                     }).start();
                 } else {
                     // 触发结束回调
-                    endTime = System.currentTimeMillis();
-                    insideHandler.OnEndListener(rootFileItem, startTime, endTime);
+                    mEndTime = System.currentTimeMillis();
+                    mInsideHandler.OnEndListener(mRootFileItem, mStartTime, mEndTime);
                 }
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "query");
             // 触发结束回调
-            endTime = System.currentTimeMillis();
-            insideHandler.OnEndListener(rootFileItem, startTime, endTime);
+            mEndTime = System.currentTimeMillis();
+            mInsideHandler.OnEndListener(mRootFileItem, mStartTime, mEndTime);
         }
     }
 
@@ -326,7 +326,7 @@ public final class FileBreadthFirstSearchUtils {
             }
             if (file != null && file.exists()) {
                 // 判断是否处理
-                if (insideHandler.isHandlerFile(file)) {
+                if (mInsideHandler.isHandlerFile(file)) {
                     // 如果属于文件夹
                     if (file.isDirectory()) {
                         // 获取文件夹全部子文件
@@ -343,16 +343,16 @@ public final class FileBreadthFirstSearchUtils {
                                 }
                                 FileItem subFileItem = fileItem.put(f);
                                 // 添加任务
-                                taskQueue.offer(new FileQueue(f, subFileItem));
+                                mTaskQueue.offer(new FileQueue(f, subFileItem));
                             } else { // 属于文件
-                                if (!mIsStop && insideHandler.isAddToList(f)) {
+                                if (!mIsStop && mInsideHandler.isAddToList(f)) {
                                     // 属于文件则直接保存
                                     fileItem.put(f);
                                 }
                             }
                         }
                     } else { // 属于文件
-                        if (!mIsStop && insideHandler.isAddToList(file)) {
+                        if (!mIsStop && mInsideHandler.isAddToList(file)) {
                             // 属于文件则直接保存
                             fileItem.put(file);
                         }
@@ -373,24 +373,24 @@ public final class FileBreadthFirstSearchUtils {
      */
     private void whileQueue() {
         // 判断是否为 null
-        boolean isEmpty = taskQueue.isEmpty();
+        boolean isEmpty = mTaskQueue.isEmpty();
         // 循环则不处理
         while (!isEmpty) {
             if (mIsStop) {
                 break;
             }
             // 获取线程活动数量
-            int threadCount = ((ThreadPoolExecutor) executor).getActiveCount();
+            int threadCount = ((ThreadPoolExecutor) mExecutor).getActiveCount();
             // 判断是否超过
-            if (threadCount > queueSameTimeNumber) {
+            if (threadCount > mQueueSameTimeNumber) {
                 continue;
             }
             // 获取文件对象
-            final FileQueue fileQueue = taskQueue.poll();
+            final FileQueue fileQueue = mTaskQueue.poll();
             // 判断是否为 null
             if (fileQueue != null) {
                 // 后台运行
-                executor.execute(new Runnable() {
+                mExecutor.execute(new Runnable() {
                     @Override
                     public void run() {
                         queryFile(fileQueue.file, fileQueue.fileItem);
@@ -399,20 +399,20 @@ public final class FileBreadthFirstSearchUtils {
             }
 
             // 判断是否存在队列数据
-            isEmpty = (taskQueue.isEmpty() && threadCount == 0);
+            isEmpty = (mTaskQueue.isEmpty() && threadCount == 0);
             if (isEmpty) { // 如果不存在, 防止搜索过快, 延迟再次判断
                 if (mIsStop) {
                     break;
                 }
                 try {
-                    Thread.sleep(delayTime);
+                    Thread.sleep(mDelayTime);
                 } catch (Exception e) {
                 }
-                isEmpty = (taskQueue.isEmpty() && threadCount == 0);
+                isEmpty = (mTaskQueue.isEmpty() && threadCount == 0);
             }
         }
         // 触发结束回调
-        endTime = System.currentTimeMillis();
-        insideHandler.OnEndListener(rootFileItem, startTime, endTime);
+        mEndTime = System.currentTimeMillis();
+        mInsideHandler.OnEndListener(mRootFileItem, mStartTime, mEndTime);
     }
 }

@@ -7,16 +7,16 @@ package dev.utils.common.cipher;
 public class Base64Cipher implements Cipher {
 
     // 中间加密层
-    private Cipher cipher;
+    private Cipher mCipher;
     // Base64 编解码 flags
-    private int flags = Base64.DEFAULT;
+    private int mFlags = Base64.DEFAULT;
 
     /**
      * 构造函数
      * @param flags Base64 编解码 flags
      */
     public Base64Cipher(final int flags) {
-        this.flags = flags;
+        this.mFlags = flags;
     }
 
     /**
@@ -24,7 +24,7 @@ public class Base64Cipher implements Cipher {
      * @param cipher 加/解密中间层
      */
     public Base64Cipher(final Cipher cipher) {
-        this.cipher = cipher;
+        this.mCipher = cipher;
     }
 
     /**
@@ -33,8 +33,8 @@ public class Base64Cipher implements Cipher {
      * @param flags  Base64 编解码 flags
      */
     public Base64Cipher(final Cipher cipher, final int flags) {
-        this.cipher = cipher;
-        this.flags = flags;
+        this.mCipher = cipher;
+        this.mFlags = flags;
     }
 
     // =
@@ -48,10 +48,10 @@ public class Base64Cipher implements Cipher {
     public byte[] decrypt(byte[] data) {
         if (data == null) return null;
         // 先解码
-        data = Base64.decode(data, flags);
+        data = Base64.decode(data, mFlags);
         // 再解密
-        if (cipher != null) {
-            data = cipher.decrypt(data);
+        if (mCipher != null) {
+            data = mCipher.decrypt(data);
         }
         return data;
     }
@@ -65,11 +65,11 @@ public class Base64Cipher implements Cipher {
     public byte[] encrypt(byte[] data) {
         if (data == null) return null;
         // 先加密
-        if (cipher != null) {
-            data = cipher.encrypt(data);
+        if (mCipher != null) {
+            data = mCipher.encrypt(data);
         }
         if (data == null) return null;
         // 再编码
-        return Base64.encode(data, flags);
+        return Base64.encode(data, mFlags);
     }
 }

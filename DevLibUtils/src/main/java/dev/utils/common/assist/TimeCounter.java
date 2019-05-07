@@ -7,7 +7,7 @@ package dev.utils.common.assist;
 public class TimeCounter {
 
     // 开始时间
-    private long start;
+    private long mStart;
 
     public TimeCounter() {
         this(true);
@@ -26,8 +26,8 @@ public class TimeCounter {
      * @return 开始时间(毫秒)
      */
     public long start() {
-        start = System.currentTimeMillis();
-        return start;
+        mStart = System.currentTimeMillis();
+        return mStart;
     }
 
     /**
@@ -36,8 +36,8 @@ public class TimeCounter {
      */
     public long durationRestart() {
         long now = System.currentTimeMillis();
-        long diff = now - start;
-        start = now;
+        long diff = now - mStart;
+        mStart = now;
         return diff;
     }
 
@@ -46,7 +46,7 @@ public class TimeCounter {
      * @return 距离开始时间的时间差(毫秒)
      */
     public long duration() {
-        return System.currentTimeMillis() - start;
+        return System.currentTimeMillis() - mStart;
     }
 
     /**
@@ -54,6 +54,6 @@ public class TimeCounter {
      * @return 开始时间(毫秒)
      */
     public long getStartTime() {
-        return start;
+        return mStart;
     }
 }

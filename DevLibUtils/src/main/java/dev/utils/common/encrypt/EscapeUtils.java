@@ -31,12 +31,12 @@ public final class EscapeUtils {
                 buffer.append((char) ch);
             } else if (ch <= 0x007F) {
                 buffer.append('%');
-                buffer.append(hex[ch]);
+                buffer.append(HEX[ch]);
             } else {
                 buffer.append('%');
                 buffer.append('u');
-                buffer.append(hex[(ch >>> 8)]);
-                buffer.append(hex[(0x00FF & ch)]);
+                buffer.append(HEX[(ch >>> 8)]);
+                buffer.append(HEX[(0x00FF & ch)]);
             }
         }
         return buffer.toString();
@@ -67,14 +67,14 @@ public final class EscapeUtils {
             } else if (ch == '%') {
                 int cint = 0;
                 if ('u' != data.charAt(i + 1)) {
-                    cint = (cint << 4) | val[data.charAt(i + 1)];
-                    cint = (cint << 4) | val[data.charAt(i + 2)];
+                    cint = (cint << 4) | BYTE_VALUES[data.charAt(i + 1)];
+                    cint = (cint << 4) | BYTE_VALUES[data.charAt(i + 2)];
                     i += 2;
                 } else {
-                    cint = (cint << 4) | val[data.charAt(i + 2)];
-                    cint = (cint << 4) | val[data.charAt(i + 3)];
-                    cint = (cint << 4) | val[data.charAt(i + 4)];
-                    cint = (cint << 4) | val[data.charAt(i + 5)];
+                    cint = (cint << 4) | BYTE_VALUES[data.charAt(i + 2)];
+                    cint = (cint << 4) | BYTE_VALUES[data.charAt(i + 3)];
+                    cint = (cint << 4) | BYTE_VALUES[data.charAt(i + 4)];
+                    cint = (cint << 4) | BYTE_VALUES[data.charAt(i + 5)];
                     i += 5;
                 }
                 buffer.append((char) cint);
@@ -89,7 +89,7 @@ public final class EscapeUtils {
     // =
 
     // 十六进制 - 0-255
-    private static final String[] hex = {"00", "01", "02", "03", "04", "05",
+    private static final String[] HEX = {"00", "01", "02", "03", "04", "05",
             "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10",
             "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B",
             "1C", "1D", "1E", "1F", "20", "21", "22", "23", "24", "25", "26",
@@ -114,7 +114,7 @@ public final class EscapeUtils {
             "ED", "EE", "EF", "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7",
             "F8", "F9", "FA", "FB", "FC", "FD", "FE", "FF"};
 
-    private static final byte[] val = {0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
+    private static final byte[] BYTE_VALUES = {0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
             0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
             0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
             0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,

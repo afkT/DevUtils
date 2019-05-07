@@ -541,7 +541,7 @@ public final class BigDecimalUtils {
             // 范围处理
             valuePlain = bigDecimal.setScale(scale, mode).toPlainString();
             // 进行拆分小数点处理
-            String values[] = valuePlain.split("\\.");
+            String[] values = valuePlain.split("\\.");
             // 判断是否存在小数点
             boolean isDecimal = (values.length == 2);
 

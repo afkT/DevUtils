@@ -31,17 +31,17 @@ public final class ReflectUtils {
     // 日志 TAG
     private static final String TAG = ReflectUtils.class.getSimpleName();
 
-    private final Class<?> type;
+    private final Class<?> mType;
 
-    private final Object object;
+    private final Object mObject;
 
     private ReflectUtils(final Class<?> type) {
         this(type, type);
     }
 
     private ReflectUtils(final Class<?> type, final Object object) {
-        this.type = type;
-        this.object = object;
+        this.mType = type;
+        this.mObject = object;
     }
 
     // ===========
@@ -232,7 +232,7 @@ public final class ReflectUtils {
     public ReflectUtils field(final String name) throws ReflectException {
         try {
             Field field = getField(name);
-            return new ReflectUtils(field.getType(), field.get(object));
+            return new ReflectUtils(field.getType(), field.get(mObject));
         } catch (Exception e) {
             throw new ReflectException(e);
         }
@@ -248,7 +248,7 @@ public final class ReflectUtils {
     public ReflectUtils field(final String name, final Object value) throws ReflectException {
         try {
             Field field = getField(name);
-            field.set(object, unwrap(value));
+            field.set(mObject, unwrap(value));
             return this;
         } catch (Exception e) {
             throw new ReflectException(e);
@@ -428,11 +428,11 @@ public final class ReflectUtils {
         Class<?>[] types = getArgsType(args);
         try {
             Method method = exactMethod(name, types);
-            return method(method, object, args);
+            return method(method, mObject, args);
         } catch (Exception e) {
             try {
                 Method method = similarMethod(name, types);
-                return method(method, object, args);
+                return method(method, mObject, args);
             } catch (Exception e1) {
                 throw new ReflectException(e1);
             }
@@ -600,18 +600,18 @@ public final class ReflectUtils {
      */
     @SuppressWarnings("unchecked")
     public <P> P proxy(final Class<P> proxyType) {
-        if (proxyType == null || object == null) return null;
-        final boolean isMap = (object instanceof Map);
+        if (proxyType == null || mObject == null) return null;
+        final boolean isMap = (mObject instanceof Map);
         final InvocationHandler handler = new InvocationHandler() {
             @Override
             @SuppressWarnings("null")
             public Object invoke(Object proxy, Method method, Object[] args) {
                 String name = method.getName();
                 try {
-                    return reflect(object).method(name, args).get();
+                    return reflect(mObject).method(name, args).get();
                 } catch (Exception e) {
                     if (isMap) {
-                        Map<String, Object> map = (Map<String, Object>) object;
+                        Map<String, Object> map = (Map<String, Object>) mObject;
                         int length = (args == null ? 0 : args.length);
                         if (length == 0 && name.startsWith("get")) {
                             return map.get(property(name.substring(3)));
@@ -653,7 +653,7 @@ public final class ReflectUtils {
      * @return {@link Class}
      */
     public Class<?> type() {
-        return type;
+        return mType;
     }
 
     /**
@@ -695,7 +695,7 @@ public final class ReflectUtils {
      */
     @SuppressWarnings("unchecked")
     public <T> T get() {
-        return (T) object;
+        return (T) mObject;
     }
 
     /**
@@ -704,7 +704,7 @@ public final class ReflectUtils {
      */
     @Override
     public int hashCode() {
-        return this.object != null ? object.hashCode() : 0;
+        return this.mObject != null ? mObject.hashCode() : 0;
     }
 
     /**
@@ -714,14 +714,14 @@ public final class ReflectUtils {
      */
     @Override
     public boolean equals(final Object obj) {
-        if (this.object == null && obj == null) {
+        if (this.mObject == null && obj == null) {
             return true;
         } else {
-            if (this.object != null && obj != null) {
+            if (this.mObject != null && obj != null) {
                 if (obj instanceof ReflectUtils) {
-                    return this.object.equals(((ReflectUtils) obj).get());
+                    return this.mObject.equals(((ReflectUtils) obj).get());
                 } else {
-                    this.object.equals(obj);
+                    this.mObject.equals(obj);
                 }
             }
             return false;
@@ -734,7 +734,7 @@ public final class ReflectUtils {
      */
     @Override
     public String toString() {
-        return this.object != null ? object.toString() : null;
+        return this.mObject != null ? mObject.toString() : null;
     }
 
     // =

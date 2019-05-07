@@ -19,13 +19,13 @@ import android.os.Build;
 public final class InactivityTimerAssist {
 
     // 无操作时间(到时间自动关闭) - 默认五分钟
-    private long inactivityTime = 5 * 60 * 1000L;
+    private long mInactivityTime = 5 * 60 * 1000L;
     // 对应的页面
-    private Activity activity;
+    private Activity mActivity;
     // 电池广播(充电中, 则不处理, 主要是为了省点)
-    private BroadcastReceiver powerStatusReceiver;
+    private BroadcastReceiver mPowerStatusReceiver;
     // 检查任务
-    private AsyncTask<Object, Object, Object> inactivityTask;
+    private AsyncTask<Object, Object, Object> mInactivityTask;
 
     // ============
     // = 构造函数 =
@@ -37,14 +37,14 @@ public final class InactivityTimerAssist {
 
     /**
      * 构造函数
-     * @param activity {@link Activity}
+     * @param activity       {@link Activity}
      * @param inactivityTime 无操作时间间隔(毫秒)
      */
     public InactivityTimerAssist(final Activity activity, final long inactivityTime) {
-        this.activity = activity;
-        this.inactivityTime = inactivityTime;
+        this.mActivity = activity;
+        this.mInactivityTime = inactivityTime;
         // 电池广播监听
-        powerStatusReceiver = new PowerStatusReceiver();
+        mPowerStatusReceiver = new PowerStatusReceiver();
         // 关闭任务
         cancel();
     }
@@ -64,7 +64,7 @@ public final class InactivityTimerAssist {
         cancel();
         try {
             // 取消注册广播
-            activity.unregisterReceiver(powerStatusReceiver);
+            mActivity.unregisterReceiver(mPowerStatusReceiver);
         } catch (Exception e) {
         }
     }
@@ -78,7 +78,7 @@ public final class InactivityTimerAssist {
     public synchronized void onResume() {
         try {
             // 注册广播
-            activity.registerReceiver(powerStatusReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+            mActivity.registerReceiver(mPowerStatusReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         } catch (Exception e) {
         }
         // 开始检测
@@ -106,12 +106,12 @@ public final class InactivityTimerAssist {
         // 取消任务
         cancel();
         // 注册任务
-        inactivityTask = new InactivityAsyncTask();
+        mInactivityTask = new InactivityAsyncTask();
         // 开启任务
         if (Build.VERSION.SDK_INT >= 11) {
-            inactivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            mInactivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
-            inactivityTask.execute();
+            mInactivityTask.execute();
         }
     }
 
@@ -119,11 +119,11 @@ public final class InactivityTimerAssist {
      * 取消计时任务
      */
     private synchronized void cancel() {
-        AsyncTask<?, ?, ?> task = inactivityTask;
+        AsyncTask<?, ?, ?> task = mInactivityTask;
         if (task != null) {
             task.cancel(true);
             // 重置为null
-            inactivityTask = null;
+            mInactivityTask = null;
         }
     }
 
@@ -156,10 +156,10 @@ public final class InactivityTimerAssist {
         @Override
         protected Object doInBackground(Object... objects) {
             try {
-                Thread.sleep(inactivityTime);
+                Thread.sleep(mInactivityTime);
                 // 关闭页面
-                if (activity != null) {
-                    activity.finish();
+                if (mActivity != null) {
+                    mActivity.finish();
                 }
             } catch (Exception e) {
             }

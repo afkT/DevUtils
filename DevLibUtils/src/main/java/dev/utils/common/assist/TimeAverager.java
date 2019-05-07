@@ -7,16 +7,16 @@ package dev.utils.common.assist;
 public class TimeAverager {
 
     // 计时器
-    private TimeCounter timeCounter = new TimeCounter();
+    private TimeCounter mTimeCounter = new TimeCounter();
     // 均值器
-    private Averager averager = new Averager();
+    private Averager mAverager = new Averager();
 
     /**
      * 开始计时(毫秒)
      * @return 开始时间(毫秒)
      */
     public long start() {
-        return timeCounter.start();
+        return mTimeCounter.start();
     }
 
     /**
@@ -24,8 +24,8 @@ public class TimeAverager {
      * @return 结束时间(毫秒)
      */
     public long end() {
-        long time = timeCounter.duration();
-        averager.add(time);
+        long time = mTimeCounter.duration();
+        mAverager.add(time);
         return time;
     }
 
@@ -34,8 +34,8 @@ public class TimeAverager {
      * @return 距离上次计时的时间差(毫秒)
      */
     public long endAndRestart() {
-        long time = timeCounter.durationRestart();
-        averager.add(time);
+        long time = mTimeCounter.durationRestart();
+        mAverager.add(time);
         return time;
     }
 
@@ -44,7 +44,7 @@ public class TimeAverager {
      * @return 全部计时时间均值
      */
     public Number average() {
-        return averager.getAverage();
+        return mAverager.getAverage();
     }
 
     /**
@@ -52,13 +52,13 @@ public class TimeAverager {
      * @return 计时信息
      */
     public String print() {
-        return averager.print();
+        return mAverager.print();
     }
 
     /**
      * 清除计时数据
      */
     public void clear() {
-        averager.clear();
+        mAverager.clear();
     }
 }

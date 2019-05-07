@@ -45,7 +45,7 @@ public final class DevUtils {
     // 全局 Context - getApplicationContext()
     private static Context sContext;
     // 是否内部 Debug 模式
-    private static boolean debug = false;
+    private static boolean sDebug = false;
 
     /**
      * 初始化方法 - 必须调用 - Application.onCreate 中调用
@@ -218,7 +218,7 @@ public final class DevUtils {
      * 标记 Debug 模式
      */
     public static void openDebug() {
-        DevUtils.debug = true;
+        DevUtils.sDebug = true;
     }
 
     /**
@@ -226,7 +226,7 @@ public final class DevUtils {
      * @return {@code true} debug模式, {@code false} 非debug模式
      */
     public static boolean isDebug() {
-        return debug;
+        return sDebug;
     }
 
     // ==============
@@ -256,7 +256,7 @@ public final class DevUtils {
     // ActivityLifecycleCallbacks 实现类, 监听 Activity
     private static final ActivityLifecycleImpl ACTIVITY_LIFECYCLE = new ActivityLifecycleImpl();
     // Activity 过滤判断接口
-    private static ActivityLifecycleFilter activityLifecycleFilter;
+    private static ActivityLifecycleFilter sActivityLifecycleFilter;
     // 权限 Activity.class name
     public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.PermissionUtils$PermissionActivity";
 
@@ -326,7 +326,7 @@ public final class DevUtils {
      * @param activityLifecycleFilter Activity 过滤判断接口
      */
     public static void setActivityLifecycleFilter(final ActivityLifecycleFilter activityLifecycleFilter) {
-        DevUtils.activityLifecycleFilter = activityLifecycleFilter;
+        DevUtils.sActivityLifecycleFilter = activityLifecycleFilter;
     }
 
     // ============
@@ -362,8 +362,8 @@ public final class DevUtils {
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
             setTopActivity(activity);
 
-            if (DevUtils.absActivityLifecycle != null) {
-                DevUtils.absActivityLifecycle.onActivityCreated(activity, savedInstanceState);
+            if (DevUtils.sAbsActivityLifecycle != null) {
+                DevUtils.sAbsActivityLifecycle.onActivityCreated(activity, savedInstanceState);
             }
         }
 
@@ -378,8 +378,8 @@ public final class DevUtils {
                 ++mForegroundCount;
             }
 
-            if (DevUtils.absActivityLifecycle != null) {
-                DevUtils.absActivityLifecycle.onActivityStarted(activity);
+            if (DevUtils.sAbsActivityLifecycle != null) {
+                DevUtils.sAbsActivityLifecycle.onActivityStarted(activity);
             }
         }
 
@@ -392,15 +392,15 @@ public final class DevUtils {
                 postStatus(true);
             }
 
-            if (DevUtils.absActivityLifecycle != null) {
-                DevUtils.absActivityLifecycle.onActivityResumed(activity);
+            if (DevUtils.sAbsActivityLifecycle != null) {
+                DevUtils.sAbsActivityLifecycle.onActivityResumed(activity);
             }
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
-            if (DevUtils.absActivityLifecycle != null) {
-                DevUtils.absActivityLifecycle.onActivityPaused(activity);
+            if (DevUtils.sAbsActivityLifecycle != null) {
+                DevUtils.sAbsActivityLifecycle.onActivityPaused(activity);
             }
         }
 
@@ -417,15 +417,15 @@ public final class DevUtils {
                 }
             }
 
-            if (DevUtils.absActivityLifecycle != null) {
-                DevUtils.absActivityLifecycle.onActivityStopped(activity);
+            if (DevUtils.sAbsActivityLifecycle != null) {
+                DevUtils.sAbsActivityLifecycle.onActivityStopped(activity);
             }
         }
 
         @Override
         public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-            if (DevUtils.absActivityLifecycle != null) {
-                DevUtils.absActivityLifecycle.onActivitySaveInstanceState(activity, outState);
+            if (DevUtils.sAbsActivityLifecycle != null) {
+                DevUtils.sAbsActivityLifecycle.onActivitySaveInstanceState(activity, outState);
             }
         }
 
@@ -437,8 +437,8 @@ public final class DevUtils {
             // 修复软键盘内存泄漏 在 Activity.onDestroy() 中使用
             KeyBoardUtils.fixSoftInputLeaks(activity);
 
-            if (DevUtils.absActivityLifecycle != null) {
-                DevUtils.absActivityLifecycle.onActivityDestroyed(activity);
+            if (DevUtils.sAbsActivityLifecycle != null) {
+                DevUtils.sAbsActivityLifecycle.onActivityDestroyed(activity);
             }
         }
 
@@ -820,8 +820,8 @@ public final class DevUtils {
                     // 如果相同则不处理(该页面为内部权限框架, 申请权限页面)
                     return true;
                 } else {
-                    if (activityLifecycleFilter != null) {
-                        return activityLifecycleFilter.filter(activity);
+                    if (sActivityLifecycleFilter != null) {
+                        return sActivityLifecycleFilter.filter(activity);
                     }
                 }
             }
@@ -832,14 +832,14 @@ public final class DevUtils {
     // =
 
     // ActivityLifecycleCallbacks 抽象类
-    private static AbsActivityLifecycle absActivityLifecycle;
+    private static AbsActivityLifecycle sAbsActivityLifecycle;
 
     /**
      * 设置 ActivityLifecycle 监听回调
      * @param absActivityLifecycle Activity 生命周期监听类
      */
     public static void setAbsActivityLifecycle(final AbsActivityLifecycle absActivityLifecycle) {
-        DevUtils.absActivityLifecycle = absActivityLifecycle;
+        DevUtils.sAbsActivityLifecycle = absActivityLifecycle;
     }
 
     /**

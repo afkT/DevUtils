@@ -89,15 +89,15 @@ public final class BankCheckUtils {
             // 通过银行卡的前6位确定
             String cardBin6 = cardBin.trim().substring(0, 6);
             int index = -1;
-            for (int i = 0, len = BANKBIN.length; i < len; i++) {
-                if (cardBin6.equals(BANKBIN[i])) {
+            for (int i = 0, len = BANK_BIN.length; i < len; i++) {
+                if (cardBin6.equals(BANK_BIN[i])) {
                     index = i;
                 }
             }
             if (index == -1) {
                 return "";
             }
-            return BANKNAME[index];
+            return BANK_NAME[index];
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getNameOfBank");
             return "";
@@ -115,7 +115,7 @@ public final class BankCheckUtils {
      */
 
     // BIN 号
-    public static final String[] BANKBIN = {"621098", "622150", "622151",
+    private static final String[] BANK_BIN = {"621098", "622150", "622151",
             "622181", "622188", "955100", "621095", "620062", "621285",
             "621798", "621799", "621797", "620529", "622199", "621096",
             "621622", "623219", "621674", "623218", "621599", "370246",
@@ -350,7 +350,7 @@ public final class BankCheckUtils {
             "621481", "621310", "621396", "623251", "628351"};
 
     // 发卡行·卡种名称
-    public static final String[] BANKNAME = {"邮储银行·绿卡通", "邮储银行·绿卡银联标准卡",
+    private static final String[] BANK_NAME = {"邮储银行·绿卡通", "邮储银行·绿卡银联标准卡",
             "邮储银行·绿卡银联标准卡", "邮储银行·绿卡专用卡", "邮储银行·绿卡银联标准卡", "邮储银行·绿卡(银联卡)",
             "邮储银行·绿卡VIP卡", "邮储银行·银联标准卡", "邮储银行·中职学生资助卡", "邮政储蓄银行·IC绿卡通VIP卡",
             "邮政储蓄银行·IC绿卡通", "邮政储蓄银行·IC联名卡", "邮政储蓄银行·IC预付费卡", "邮储银行·绿卡银联标准卡",

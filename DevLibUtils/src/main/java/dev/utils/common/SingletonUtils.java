@@ -6,7 +6,7 @@ package dev.utils.common;
  */
 public abstract class SingletonUtils<T> {
 
-    private T instance;
+    private T mInstance;
 
     /**
      * 实现实例抽象方法
@@ -19,13 +19,13 @@ public abstract class SingletonUtils<T> {
      * @return 实例
      */
     public final T getInstance() {
-        if (instance == null) {
+        if (mInstance == null) {
             synchronized (SingletonUtils.class) {
-                if (instance == null) {
-                    instance = newInstance();
+                if (mInstance == null) {
+                    mInstance = newInstance();
                 }
             }
         }
-        return instance;
+        return mInstance;
     }
 }

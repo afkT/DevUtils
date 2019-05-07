@@ -22,90 +22,90 @@ public final class IDCardUtils {
     // 日志 TAG
     private static final String TAG = IDCardUtils.class.getSimpleName();
     // 加权因子
-    private static final int POWER[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+    private static final int[] POWER = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
     // 身份证最少位数
     public static final int CHINA_ID_MIN_LENGTH = 15;
     // 身份证最大位数
     public static final int CHINA_ID_MAX_LENGTH = 18;
     // 省份编码
-    private static Map<String, String> cityCodes = new HashMap<>();
+    private static Map<String, String> sCityCodes = new HashMap<>();
     // 台湾身份首字母对应数字
-    private static Map<String, Integer> twFirstCode = new HashMap<>();
+    private static Map<String, Integer> sTWFirstCodes = new HashMap<>();
     // 香港身份首字母对应数字
-    private static Map<String, Integer> hkFirstCode = new HashMap<>();
+    private static Map<String, Integer> sHKFirstCodes = new HashMap<>();
 
     static {
-        cityCodes.put("11", "北京");
-        cityCodes.put("12", "天津");
-        cityCodes.put("13", "河北");
-        cityCodes.put("14", "山西");
-        cityCodes.put("15", "内蒙古");
-        cityCodes.put("21", "辽宁");
-        cityCodes.put("22", "吉林");
-        cityCodes.put("23", "黑龙江");
-        cityCodes.put("31", "上海");
-        cityCodes.put("32", "江苏");
-        cityCodes.put("33", "浙江");
-        cityCodes.put("34", "安徽");
-        cityCodes.put("35", "福建");
-        cityCodes.put("36", "江西");
-        cityCodes.put("37", "山东");
-        cityCodes.put("41", "河南");
-        cityCodes.put("42", "湖北");
-        cityCodes.put("43", "湖南");
-        cityCodes.put("44", "广东");
-        cityCodes.put("45", "广西");
-        cityCodes.put("46", "海南");
-        cityCodes.put("50", "重庆");
-        cityCodes.put("51", "四川");
-        cityCodes.put("52", "贵州");
-        cityCodes.put("53", "云南");
-        cityCodes.put("54", "西藏");
-        cityCodes.put("61", "陕西");
-        cityCodes.put("62", "甘肃");
-        cityCodes.put("63", "青海");
-        cityCodes.put("64", "宁夏");
-        cityCodes.put("65", "新疆");
-        cityCodes.put("71", "台湾");
-        cityCodes.put("81", "香港");
-        cityCodes.put("82", "澳门");
-        cityCodes.put("91", "国外");
-        twFirstCode.put("A", 10);
-        twFirstCode.put("B", 11);
-        twFirstCode.put("C", 12);
-        twFirstCode.put("D", 13);
-        twFirstCode.put("E", 14);
-        twFirstCode.put("F", 15);
-        twFirstCode.put("G", 16);
-        twFirstCode.put("H", 17);
-        twFirstCode.put("J", 18);
-        twFirstCode.put("K", 19);
-        twFirstCode.put("L", 20);
-        twFirstCode.put("M", 21);
-        twFirstCode.put("N", 22);
-        twFirstCode.put("P", 23);
-        twFirstCode.put("Q", 24);
-        twFirstCode.put("R", 25);
-        twFirstCode.put("S", 26);
-        twFirstCode.put("T", 27);
-        twFirstCode.put("U", 28);
-        twFirstCode.put("V", 29);
-        twFirstCode.put("X", 30);
-        twFirstCode.put("Y", 31);
-        twFirstCode.put("W", 32);
-        twFirstCode.put("Z", 33);
-        twFirstCode.put("I", 34);
-        twFirstCode.put("O", 35);
-        hkFirstCode.put("A", 1);
-        hkFirstCode.put("B", 2);
-        hkFirstCode.put("C", 3);
-        hkFirstCode.put("R", 18);
-        hkFirstCode.put("U", 21);
-        hkFirstCode.put("Z", 26);
-        hkFirstCode.put("X", 24);
-        hkFirstCode.put("W", 23);
-        hkFirstCode.put("O", 15);
-        hkFirstCode.put("N", 14);
+        sCityCodes.put("11", "北京");
+        sCityCodes.put("12", "天津");
+        sCityCodes.put("13", "河北");
+        sCityCodes.put("14", "山西");
+        sCityCodes.put("15", "内蒙古");
+        sCityCodes.put("21", "辽宁");
+        sCityCodes.put("22", "吉林");
+        sCityCodes.put("23", "黑龙江");
+        sCityCodes.put("31", "上海");
+        sCityCodes.put("32", "江苏");
+        sCityCodes.put("33", "浙江");
+        sCityCodes.put("34", "安徽");
+        sCityCodes.put("35", "福建");
+        sCityCodes.put("36", "江西");
+        sCityCodes.put("37", "山东");
+        sCityCodes.put("41", "河南");
+        sCityCodes.put("42", "湖北");
+        sCityCodes.put("43", "湖南");
+        sCityCodes.put("44", "广东");
+        sCityCodes.put("45", "广西");
+        sCityCodes.put("46", "海南");
+        sCityCodes.put("50", "重庆");
+        sCityCodes.put("51", "四川");
+        sCityCodes.put("52", "贵州");
+        sCityCodes.put("53", "云南");
+        sCityCodes.put("54", "西藏");
+        sCityCodes.put("61", "陕西");
+        sCityCodes.put("62", "甘肃");
+        sCityCodes.put("63", "青海");
+        sCityCodes.put("64", "宁夏");
+        sCityCodes.put("65", "新疆");
+        sCityCodes.put("71", "台湾");
+        sCityCodes.put("81", "香港");
+        sCityCodes.put("82", "澳门");
+        sCityCodes.put("91", "国外");
+        sTWFirstCodes.put("A", 10);
+        sTWFirstCodes.put("B", 11);
+        sTWFirstCodes.put("C", 12);
+        sTWFirstCodes.put("D", 13);
+        sTWFirstCodes.put("E", 14);
+        sTWFirstCodes.put("F", 15);
+        sTWFirstCodes.put("G", 16);
+        sTWFirstCodes.put("H", 17);
+        sTWFirstCodes.put("J", 18);
+        sTWFirstCodes.put("K", 19);
+        sTWFirstCodes.put("L", 20);
+        sTWFirstCodes.put("M", 21);
+        sTWFirstCodes.put("N", 22);
+        sTWFirstCodes.put("P", 23);
+        sTWFirstCodes.put("Q", 24);
+        sTWFirstCodes.put("R", 25);
+        sTWFirstCodes.put("S", 26);
+        sTWFirstCodes.put("T", 27);
+        sTWFirstCodes.put("U", 28);
+        sTWFirstCodes.put("V", 29);
+        sTWFirstCodes.put("X", 30);
+        sTWFirstCodes.put("Y", 31);
+        sTWFirstCodes.put("W", 32);
+        sTWFirstCodes.put("Z", 33);
+        sTWFirstCodes.put("I", 34);
+        sTWFirstCodes.put("O", 35);
+        sHKFirstCodes.put("A", 1);
+        sHKFirstCodes.put("B", 2);
+        sHKFirstCodes.put("C", 3);
+        sHKFirstCodes.put("R", 18);
+        sHKFirstCodes.put("U", 21);
+        sHKFirstCodes.put("Z", 26);
+        sHKFirstCodes.put("X", 24);
+        sHKFirstCodes.put("W", 23);
+        sHKFirstCodes.put("O", 15);
+        sHKFirstCodes.put("N", 14);
     }
 
     /**
@@ -118,7 +118,7 @@ public final class IDCardUtils {
         if (isNum(idCard) && idCard.length() == CHINA_ID_MIN_LENGTH) {
             // 获取省份编码
             String provinceCode = idCard.substring(0, 2);
-            if (cityCodes.get(provinceCode) == null) return false;
+            if (sCityCodes.get(provinceCode) == null) return false;
             // 获取出生日期
             String birthCode = idCard.substring(6, 12);
             Date birthDate = null;
@@ -221,7 +221,7 @@ public final class IDCardUtils {
             String start = idCard.substring(0, 1);
             String mid = idCard.substring(1, 9);
             String end = idCard.substring(9, 10);
-            Integer iStart = twFirstCode.get(start);
+            Integer iStart = sTWFirstCodes.get(start);
             Integer sum = iStart / 10 + (iStart % 10) * 9;
             char[] chars = mid.toCharArray();
             Integer iflag = 8;
@@ -501,7 +501,7 @@ public final class IDCardUtils {
             int idCardLength = idCard.length();
             // 属于15位身份证、或18位身份证
             if (idCardLength == CHINA_ID_MIN_LENGTH || idCardLength == CHINA_ID_MAX_LENGTH) {
-                return cityCodes.get(idCard.substring(0, 2));
+                return sCityCodes.get(idCard.substring(0, 2));
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getProvinceByIdCard");
