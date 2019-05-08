@@ -12,7 +12,7 @@ public class TimeKeeper {
      * @param endCallback    结束回调通知
      */
     public void waitForEndAsyn(final long keepTimeMillis, final OnEndCallback endCallback) {
-        if (keepTimeMillis > 0l) {
+        if (keepTimeMillis > 0L) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -28,7 +28,7 @@ public class TimeKeeper {
      * @param endCallback    结束回调通知
      */
     public void waitForEnd(final long keepTimeMillis, final OnEndCallback endCallback) {
-        if (keepTimeMillis > 0l) {
+        if (keepTimeMillis > 0L) {
             // 开始堵塞时间
             long startTime = System.currentTimeMillis();
             try {

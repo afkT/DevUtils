@@ -1290,7 +1290,7 @@ public final class ADBUtils {
      * @return
      */
     public static boolean swipeClick(final float x, final float y) {
-        return swipe(x, y, x, y, 100l);
+        return swipe(x, y, x, y, 100L);
     }
 
     /**

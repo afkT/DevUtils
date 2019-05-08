@@ -1372,7 +1372,7 @@ public final class ToastTintUtils {
     /**
      * 内部 Toast Filter 实现对象
      */
-    private final static ToastTintUtils.Filter sPriToastFilter = new ToastTintUtils.Filter() {
+    private static final ToastTintUtils.Filter sPriToastFilter = new ToastTintUtils.Filter() {
 
         /**
          * 判断是否显示

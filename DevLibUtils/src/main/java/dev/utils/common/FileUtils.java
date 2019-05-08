@@ -534,7 +534,7 @@ public final class FileUtils {
      * @return 文件最后修改的毫秒时间戳
      */
     public static long getFileLastModified(final File file) {
-        if (file == null) return 0l;
+        if (file == null) return 0L;
         return file.lastModified();
     }
 
@@ -672,7 +672,7 @@ public final class FileUtils {
      * @return 文件大小
      */
     public static long getFileLength(final File file) {
-        return file != null ? file.length() : 0l;
+        return file != null ? file.length() : 0L;
     }
 
     /**
@@ -711,7 +711,7 @@ public final class FileUtils {
      * @return 文件大小
      */
     public static long getFileLengthNetwork(final String httpUri) {
-        if (isSpace(httpUri)) return 0l;
+        if (isSpace(httpUri)) return 0L;
         boolean isURL = httpUri.toLowerCase().matches("http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?");
         if (isURL) {
             try {
@@ -721,12 +721,12 @@ public final class FileUtils {
                 if (conn.getResponseCode() == 200) {
                     return conn.getContentLength();
                 }
-                return 0l;
+                return 0L;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getFileLengthNetwork");
             }
         }
-        return 0l;
+        return 0L;
     }
 
     /**

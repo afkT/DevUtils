@@ -27,7 +27,7 @@ public final class CRCUtils {
      * @return CRC32 long值
      */
     public static long getCRC32(final String data) {
-        if (data == null) return -1l;
+        if (data == null) return -1L;
         try {
             CRC32 crc32 = new CRC32();
             crc32.update(data.getBytes());
@@ -35,7 +35,7 @@ public final class CRCUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getCRC32");
         }
-        return -1l;
+        return -1L;
     }
 
     /**

@@ -240,7 +240,7 @@ public final class ClickUtils {
         // 最后一次点击的标识id
         private int mLastTagId = -1;
         // 最后一次点击时间
-        private long mLastClickTime = 0l;
+        private long mLastClickTime = 0L;
         // 双击间隔时间
         private long mIntervalTime = 1000L;
         // 配置数据
@@ -322,7 +322,7 @@ public final class ClickUtils {
             // 获取上次点击的时间
             Long lastTime = mRecordMaps.get(tag);
             if (lastTime == null) {
-                lastTime = 0l;
+                lastTime = 0L;
             }
             long curTime = System.currentTimeMillis();
             long diffTime = curTime - lastTime;
@@ -412,7 +412,7 @@ public final class ClickUtils {
             // 重置最后一次点击的标识id
             mLastTagId = -1;
             // 重置最后一次点击时间
-            mLastClickTime = 0l;
+            mLastClickTime = 0L;
             // 重置双击间隔时间
             mIntervalTime = 1000L;
             // 清空配置信息

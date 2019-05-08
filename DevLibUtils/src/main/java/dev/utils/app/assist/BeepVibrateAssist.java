@@ -120,7 +120,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @return {@link BeepVibrateAssist}
      */
     public BeepVibrateAssist setVibrate(final boolean vibrate) {
-        setVibrate(vibrate, 200l);
+        setVibrate(vibrate, 200L);
         return this;
     }
 

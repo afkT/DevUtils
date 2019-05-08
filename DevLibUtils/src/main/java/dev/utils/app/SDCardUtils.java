@@ -136,7 +136,7 @@ public final class SDCardUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllBlockSize");
         }
-        return -1l;
+        return -1L;
     }
 
     /**
@@ -157,7 +157,7 @@ public final class SDCardUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAvailableBlocks");
         }
-        return -1l;
+        return -1L;
     }
 
 
@@ -181,7 +181,7 @@ public final class SDCardUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAlreadyBlock");
         }
-        return -1l;
+        return -1L;
     }
 
     /**

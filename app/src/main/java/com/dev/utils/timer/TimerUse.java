@@ -29,7 +29,7 @@ public final class TimerUse {
 
 //        /** 创建定时器 => 立即执行,无限循环,通知默认what */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long period) {
-//            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, -1);
+//            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, -1);
 //        }
 //
 //        /** 创建定时器 => 无限循环,通知默认what */
@@ -39,12 +39,12 @@ public final class TimerUse {
 //
 //        /** 创建定时器 => 立即执行,通知默认what */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long period, int triggerLimit) {
-//            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, triggerLimit);
+//            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, triggerLimit);
 //        }
 //
 //        /** 创建定时器 => 立即执行,无限循环 */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period) {
-//            return createTimer(handler, what, 0l, period, -1);
+//            return createTimer(handler, what, 0L, period, -1);
 //        }
 //
 //        /** 创建定时器 => 无限循环 */
@@ -54,7 +54,7 @@ public final class TimerUse {
 //
 //        /** 创建定时器 => 立即执行 */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period, int triggerLimit) {
-//            return createTimer(handler, what, 0l, period, triggerLimit);
+//            return createTimer(handler, what, 0L, period, triggerLimit);
 //        }
 //
 //        /**
@@ -85,7 +85,7 @@ public final class TimerUse {
                     DevLogger.dTag(TAG, "每隔2秒触发一次, 触发次数: " + number);
                 }
             }
-        }, NOTIFY, 500l, 2000l, -1);
+        }, NOTIFY, 500L, 2000L, -1);
         // 开始定时
         absTimer.startTimer();
 

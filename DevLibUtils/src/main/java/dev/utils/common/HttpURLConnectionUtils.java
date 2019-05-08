@@ -242,7 +242,7 @@ public final class HttpURLConnectionUtils {
             long date = connection.getDate();
             // 获取失败, 则进行修改
             if (date <= 0) {
-                date = -1l;
+                date = -1L;
             }
             // 触发回调
             if (timeCallBack != null) {

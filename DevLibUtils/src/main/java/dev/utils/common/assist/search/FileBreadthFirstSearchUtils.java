@@ -245,11 +245,11 @@ public final class FileBreadthFirstSearchUtils {
     // 是否停止搜索
     private boolean mIsStop = false;
     // 开始搜索时间
-    private long mStartTime = 0l;
+    private long mStartTime = 0L;
     // 结束搜索时间
-    private long mEndTime = 0l;
+    private long mEndTime = 0L;
     // 延迟时间
-    private long mDelayTime = 50l;
+    private long mDelayTime = 50L;
     // 任务队列同时进行数量
     private int mQueueSameTimeNumber = 5;
     // 线程池

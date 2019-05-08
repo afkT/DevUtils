@@ -178,14 +178,14 @@ public final class DateUtils {
      * @return 毫秒时间
      */
     public static long parseLong(final String time, final String format) {
-        if (time == null || format == null) return 0l;
+        if (time == null || format == null) return 0L;
         try {
             // 按规定的时间格式,进行格式化时间，并且获取long时间毫秒，返回毫秒时间
             return new SimpleDateFormat(format).parse(time).getTime();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "parseLong");
         }
-        return 0l;
+        return 0L;
     }
 
     /**
@@ -255,10 +255,10 @@ public final class DateUtils {
     public static long getTimeDiff(final String time1, final String time2) {
         long timeLong1 = parseLong(time1);
         long timeLong2 = parseLong(time2);
-        if (timeLong1 > 1l && timeLong2 > 1l) {
+        if (timeLong1 > 1L && timeLong2 > 1L) {
             return timeLong1 - timeLong2;
         }
-        return -2l;
+        return -2L;
     }
 
     /**
@@ -272,10 +272,10 @@ public final class DateUtils {
     public static long getTimeDiff(final String time1, final String timeFormat1, final String time2, final String timeFormat2) {
         long timeLong1 = parseLong(time1, timeFormat1);
         long timeLong2 = parseLong(time2, timeFormat2);
-        if (timeLong1 > 1l && timeLong2 > 1l) {
+        if (timeLong1 > 1L && timeLong2 > 1L) {
             return timeLong1 - timeLong2;
         }
-        return -2l;
+        return -2L;
     }
 
     // ============

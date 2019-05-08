@@ -517,7 +517,7 @@ public final class ArrayUtils {
      * @return 数组指定索引的值
      */
     public static long get(final long[] longs, final int pos) {
-        return get(longs, pos, -1l);
+        return get(longs, pos, -1L);
     }
 
     /**

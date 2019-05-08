@@ -167,9 +167,9 @@ public final class FileDepthFirstSearchUtils {
     // 是否停止搜索
     private boolean mIsStop = false;
     // 开始搜索时间
-    private long mStartTime = 0l;
+    private long mStartTime = 0L;
     // 结束搜索时间
-    private long mEndTime = 0l;
+    private long mEndTime = 0L;
 
     /**
      * 搜索目录

@@ -265,7 +265,7 @@ public final class TimerManager {
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long period) {
-        return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, -1);
+        return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, -1);
     }
 
     /**
@@ -287,7 +287,7 @@ public final class TimerManager {
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long period, final int triggerLimit) {
-        return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0l, period, triggerLimit);
+        return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, triggerLimit);
     }
 
     /**
@@ -298,7 +298,7 @@ public final class TimerManager {
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long period) {
-        return createTimer(handler, what, 0l, period, -1);
+        return createTimer(handler, what, 0L, period, -1);
     }
 
     /**
@@ -322,7 +322,7 @@ public final class TimerManager {
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long period, final int triggerLimit) {
-        return createTimer(handler, what, 0l, period, triggerLimit);
+        return createTimer(handler, what, 0L, period, triggerLimit);
     }
 
     /**

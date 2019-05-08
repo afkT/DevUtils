@@ -29,7 +29,7 @@ public final class CameraSizeAssist {
     // 摄像头 Camera
     private Camera mCamera;
     // 默认最大的偏差
-    private final double MAX_ASPECT_DISTORTION = 0.15;
+    private final double MAX_ASPECT_DISTORTION = 0.15d;
     // 最小尺寸, 小于该尺寸则不处理
     private final int MIN_PREVIEW_PIXELS = 480 * 320;
 

@@ -800,7 +800,7 @@ public final class ToastUtils {
     /**
      * 内部 Toast Filter 实现对象
      */
-    private final static ToastUtils.Filter sPriToastFilter = new Filter() {
+    private static final ToastUtils.Filter sPriToastFilter = new Filter() {
 
         /**
          * 判断是否显示

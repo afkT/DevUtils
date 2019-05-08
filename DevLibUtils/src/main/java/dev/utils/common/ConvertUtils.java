@@ -330,7 +330,7 @@ public final class ConvertUtils {
      * @return long
      */
     public static long toLong(final String str) {
-        return toLong(str, 0l);
+        return toLong(str, 0L);
     }
 
     /**
@@ -454,7 +454,7 @@ public final class ConvertUtils {
      * @return long, 如果转换失败, 则返回 defaultValue
      */
     public static long toLong(final Long value) {
-        return toLong(value, 0l);
+        return toLong(value, 0L);
     }
 
     /**
@@ -1146,7 +1146,7 @@ public final class ConvertUtils {
      * @return long[]
      */
     public static long[] stringsToLongs(final String... datas) {
-        return stringsToLongs(0, (datas != null) ? datas.length : 0, -1l, datas);
+        return stringsToLongs(0, (datas != null) ? datas.length : 0, -1L, datas);
     }
 
     /**
@@ -1156,7 +1156,7 @@ public final class ConvertUtils {
      * @return long[]
      */
     public static long[] stringsToLongs(final int off, final String... datas) {
-        return stringsToLongs(off, (datas != null) ? datas.length : 0, -1l, datas);
+        return stringsToLongs(off, (datas != null) ? datas.length : 0, -1L, datas);
     }
 
 
@@ -1168,7 +1168,7 @@ public final class ConvertUtils {
      * @return long[]
      */
     public static long[] stringsToLongs(final int off, final int length, final String... datas) {
-        return stringsToLongs(off, length, -1l, datas);
+        return stringsToLongs(off, length, -1L, datas);
     }
 
     /**
