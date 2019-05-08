@@ -503,17 +503,17 @@ public final class BitmapExtendUtils {
      */
     public static Bitmap createWatermarkBitmap(final Bitmap src, final Bitmap watermark) {
         if (src == null || watermark == null) return null;
-        int w = src.getWidth();
-        int h = src.getHeight();
+        int width = src.getWidth();
+        int height = src.getHeight();
         int ww = watermark.getWidth();
         int wh = watermark.getHeight();
         // create the new blank bitmap
-        Bitmap newb = Bitmap.createBitmap(w, h, Config.ARGB_8888);// 创建一个新的和SRC长度宽度一样的位图
+        Bitmap newb = Bitmap.createBitmap(width, height, Config.ARGB_8888);// 创建一个新的和SRC长度宽度一样的位图
         Canvas cv = new Canvas(newb);
         // draw src into
         cv.drawBitmap(src, 0, 0, null);// 在 0，0坐标开始画入src
         // draw watermark into
-        cv.drawBitmap(watermark, w - ww + 5, h - wh + 5, null);// 在src的右下角画入水印
+        cv.drawBitmap(watermark, width - ww + 5, height - wh + 5, null);// 在src的右下角画入水印
         // save all clip
         cv.save();// 保存
         // store

@@ -43,7 +43,7 @@ public final class DevCache {
     // 日志 TAG
     private static final String TAG = DevCache.class.getSimpleName();
     // 缓存文件名
-    private static final String DF_FILE_NAME = DevCache.class.getSimpleName();
+    private static final String DEF_FILE_NAME = DevCache.class.getSimpleName();
     // 过期小时(单位秒) = 1小时
     public static final int TIME_HOUR = 60 * 60;
     // 一天24小时
@@ -91,7 +91,7 @@ public final class DevCache {
      * @return {@link DevCache}
      */
     public static DevCache get(final Context context) {
-        return get(context, DF_FILE_NAME);
+        return get(context, DEF_FILE_NAME);
     }
 
     /**
@@ -125,7 +125,7 @@ public final class DevCache {
      * @return {@link DevCache}
      */
     public static DevCache get(final Context context, final long maxSize, final int maxCount) {
-        File file = new File(getCacheDir(context), DF_FILE_NAME);
+        File file = new File(getCacheDir(context), DEF_FILE_NAME);
         return get(file, maxSize, maxCount);
     }
 

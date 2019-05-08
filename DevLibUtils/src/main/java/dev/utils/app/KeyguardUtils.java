@@ -21,31 +21,31 @@ import dev.DevUtils;
 public final class KeyguardUtils {
 
     // KeyguardUtils 实例
-    private static KeyguardUtils INSTANCE;
+    private static KeyguardUtils sInstance;
 
     /**
      * 获取 KeyguardUtils 实例 ,单例模式
      */
     public static KeyguardUtils getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new KeyguardUtils();
+        if (sInstance == null) {
+            sInstance = new KeyguardUtils();
         }
-        return INSTANCE;
+        return sInstance;
     }
 
     // 锁屏管理类
-    private KeyguardManager keyguardManager;
+    private KeyguardManager mKeyguardManager;
     // android-26 开始过时
-    private KeyguardManager.KeyguardLock keyguardLock;
+    private KeyguardManager.KeyguardLock mKeyguardLock;
 
     /**
      * 构造函数
      */
     private KeyguardUtils() {
         // 获取系统服务
-        keyguardManager = (KeyguardManager) DevUtils.getContext().getSystemService(Context.KEYGUARD_SERVICE);
+        mKeyguardManager = (KeyguardManager) DevUtils.getContext().getSystemService(Context.KEYGUARD_SERVICE);
         // 初始化锁
-        keyguardLock = keyguardManager.newKeyguardLock("KeyguardUtils");
+        mKeyguardLock = mKeyguardManager.newKeyguardLock("KeyguardUtils");
     }
 
     /**
@@ -56,7 +56,7 @@ public final class KeyguardUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             return false;
         } else {
-            return keyguardManager.isKeyguardLocked();
+            return mKeyguardManager.isKeyguardLocked();
         }
     }
 
@@ -68,7 +68,7 @@ public final class KeyguardUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             return false;
         } else {
-            return keyguardManager.isKeyguardSecure();
+            return mKeyguardManager.isKeyguardSecure();
         }
     }
 
@@ -77,7 +77,7 @@ public final class KeyguardUtils {
      * @return
      */
     public boolean inKeyguardRestrictedInputMode() {
-        return keyguardManager.inKeyguardRestrictedInputMode();
+        return mKeyguardManager.inKeyguardRestrictedInputMode();
     }
 
     /**
@@ -85,7 +85,7 @@ public final class KeyguardUtils {
      * @return
      */
     public KeyguardManager getKeyguardManager() {
-        return keyguardManager;
+        return mKeyguardManager;
     }
 
     /**
@@ -93,7 +93,7 @@ public final class KeyguardUtils {
      * @param keyguardManager
      */
     public void setKeyguardManager(final KeyguardManager keyguardManager) {
-        this.keyguardManager = keyguardManager;
+        this.mKeyguardManager = keyguardManager;
     }
 
     // =
@@ -105,7 +105,7 @@ public final class KeyguardUtils {
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
     public void disableKeyguard() {
-        keyguardLock.disableKeyguard();
+        mKeyguardLock.disableKeyguard();
     }
 
     /**
@@ -114,7 +114,7 @@ public final class KeyguardUtils {
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
     public void reenableKeyguard() {
-        keyguardLock.reenableKeyguard();
+        mKeyguardLock.reenableKeyguard();
     }
 
     /**
@@ -123,9 +123,9 @@ public final class KeyguardUtils {
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
     public void release() {
-        if (keyguardLock != null) {
+        if (mKeyguardLock != null) {
             // 禁用显示键盘锁定
-            keyguardLock.reenableKeyguard();
+            mKeyguardLock.reenableKeyguard();
         }
     }
 
@@ -134,7 +134,7 @@ public final class KeyguardUtils {
      * @param tag
      */
     public void newKeyguardLock(final String tag) {
-        keyguardLock = keyguardManager.newKeyguardLock(tag);
+        mKeyguardLock = mKeyguardManager.newKeyguardLock(tag);
     }
 
     /**
@@ -142,7 +142,7 @@ public final class KeyguardUtils {
      * @return
      */
     public KeyguardManager.KeyguardLock getKeyguardLock() {
-        return keyguardLock;
+        return mKeyguardLock;
     }
 
     /**
@@ -150,6 +150,6 @@ public final class KeyguardUtils {
      * @param keyguardLock
      */
     public void setKeyguardLock(final KeyguardManager.KeyguardLock keyguardLock) {
-        this.keyguardLock = keyguardLock;
+        this.mKeyguardLock = keyguardLock;
     }
 }

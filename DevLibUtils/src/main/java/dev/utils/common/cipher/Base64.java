@@ -168,7 +168,7 @@ public final class Base64 {
          * Lookup table for turning bytes into their position in the
          * Base64 alphabet.
          */
-        private static final int DECODE[] = {
+        private static final int[] DECODE = {
                 -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
                 -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
                 -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63,
@@ -191,7 +191,7 @@ public final class Base64 {
          * Decode lookup table for the "web safe" variant (RFC 3548
          * sec. 4) where - and _ replace + and /.
          */
-        private static final int DECODE_WEBSAFE[] = {
+        private static final int[] DECODE_WEBSAFE = {
                 -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
                 -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
                 -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1,
@@ -543,7 +543,7 @@ public final class Base64 {
          * Lookup table for turning Base64 alphabet positions (6 bits)
          * into output bytes.
          */
-        private static final byte ENCODE[] = {
+        private static final byte[] ENCODE = {
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
                 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
                 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
@@ -554,7 +554,7 @@ public final class Base64 {
          * Lookup table for turning Base64 alphabet positions (6 bits)
          * into output bytes.
          */
-        private static final byte ENCODE_WEBSAFE[] = {
+        private static final byte[] ENCODE_WEBSAFE = {
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
                 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
                 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',

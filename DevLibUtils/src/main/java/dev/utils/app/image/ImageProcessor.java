@@ -348,57 +348,57 @@ public class ImageProcessor {
 
         int[][] colors = new int[9][3];
         for (int i = 1, length = width - 1; i < length; i++) {
-            for (int k = 1, len = height - 1; k < len; k++) {
-                for (int m = 0; m < 9; m++) {
+            for (int j = 1, len = height - 1; j < len; j++) {
+                for (int k = 0; k < 9; k++) {
                     int s = 0;
                     int p = 0;
-                    switch (m) {
+                    switch (k) {
                         case 0:
                             s = i - 1;
-                            p = k - 1;
+                            p = j - 1;
                             break;
                         case 1:
                             s = i;
-                            p = k - 1;
+                            p = j - 1;
                             break;
                         case 2:
                             s = i + 1;
-                            p = k - 1;
+                            p = j - 1;
                             break;
                         case 3:
                             s = i + 1;
-                            p = k;
+                            p = j;
                             break;
                         case 4:
                             s = i + 1;
-                            p = k + 1;
+                            p = j + 1;
                             break;
                         case 5:
                             s = i;
-                            p = k + 1;
+                            p = j + 1;
                             break;
                         case 6:
                             s = i - 1;
-                            p = k + 1;
+                            p = j + 1;
                             break;
                         case 7:
                             s = i - 1;
-                            p = k;
+                            p = j;
                             break;
                         case 8:
                             s = i;
-                            p = k;
+                            p = j;
                     }
                     pixColor = mBitmap.getPixel(s, p);
-                    colors[m][0] = Color.red(pixColor);
-                    colors[m][1] = Color.green(pixColor);
-                    colors[m][2] = Color.blue(pixColor);
+                    colors[k][0] = Color.red(pixColor);
+                    colors[k][1] = Color.green(pixColor);
+                    colors[k][2] = Color.blue(pixColor);
                 }
 
-                for (int m = 0; m < 9; m++) {
-                    newR += colors[m][0];
-                    newG += colors[m][1];
-                    newB += colors[m][2];
+                for (int k = 0; k < 9; k++) {
+                    newR += colors[k][0];
+                    newG += colors[k][1];
+                    newB += colors[k][2];
                 }
 
                 newR = (int) (newR / 9F);
@@ -410,7 +410,7 @@ public class ImageProcessor {
                 newB = Math.min(255, Math.max(0, newB));
 
                 newColor = Color.argb(255, newR, newG, newB);
-                newBitmap.setPixel(i, k, newColor);
+                newBitmap.setPixel(i, j, newColor);
 
                 newR = 0;
                 newG = 0;

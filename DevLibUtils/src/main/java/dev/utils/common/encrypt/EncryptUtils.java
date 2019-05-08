@@ -1072,11 +1072,11 @@ public final class EncryptUtils {
             byte[] out = new byte[len >> 1];
             // 16进制由两个字符组成
             for (int i = 0, j = 0; j < len; i++) {
-                int f = toDigit(data[j], j) << 4;
+                int d = toDigit(data[j], j) << 4;
                 j++;
-                f = f | toDigit(data[j], j);
+                d = d | toDigit(data[j], j);
                 j++;
-                out[i] = (byte) (f & 0xFF);
+                out[i] = (byte) (d & 0xFF);
             }
             return out;
         } catch (Exception e) {

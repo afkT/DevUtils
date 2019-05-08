@@ -146,13 +146,13 @@ public final class ImageBmpUtils {
     private static byte[] getBmpBytes(final Bitmap bitmap) {
         try {
             if (bitmap != null) {
-                int w = bitmap.getWidth(), h = bitmap.getHeight();
-                int[] pixels = new int[w * h];
-                bitmap.getPixels(pixels, 0, w, 0, 0, w, h);
+                int width = bitmap.getWidth(), height = bitmap.getHeight();
+                int[] pixels = new int[width * height];
+                bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
                 // =
-                byte[] rgb = addBMP_ARGB_8888(pixels, w, h);
+                byte[] rgb = addBMP_ARGB_8888(pixels, width, height);
                 byte[] header = addBMPImageHeader(rgb.length);
-                byte[] infos = addBMPImageInfosHeader(w, h);
+                byte[] infos = addBMPImageInfosHeader(width, height);
                 // =
                 byte[] buffer = new byte[54 + rgb.length];
                 // =

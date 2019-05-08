@@ -685,9 +685,9 @@ public final class ConvertUtils {
     public static void bytesBitwiseAND(final byte[] data) {
         if (data == null) return;
         for (int i = 0, len = data.length; i < len; i++) {
-            int a = data[i];
-            a = ~a; // 按位补运算符 => 翻转操作数的每一位，即0变成1，1变成0,再通过反转后的二进制初始化回16进制
-            data[i] = (byte) a;
+            int d = data[i];
+            d = ~d; // 按位补运算符 => 翻转操作数的每一位，即0变成1，1变成0,再通过反转后的二进制初始化回16进制
+            data[i] = (byte) d;
         }
     }
 
@@ -1463,11 +1463,11 @@ public final class ConvertUtils {
             byte[] out = new byte[len >> 1];
             // 16进制由两个字符组成
             for (int i = 0, j = 0; j < len; i++) {
-                int f = toDigit(data[j], j) << 4;
+                int d = toDigit(data[j], j) << 4;
                 j++;
-                f = f | toDigit(data[j], j);
+                d = d | toDigit(data[j], j);
                 j++;
-                out[i] = (byte) (f & 0xFF);
+                out[i] = (byte) (d & 0xFF);
             }
             return out;
         } catch (Exception e) {
