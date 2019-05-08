@@ -24,14 +24,14 @@ public final class FlashlightUtils {
     // 日志 TAG
     private final String TAG = FlashlightUtils.class.getSimpleName();
     // 单例对象
-    private static final FlashlightUtils sInstance = new FlashlightUtils();
+    private static final FlashlightUtils INSTANCE = new FlashlightUtils();
 
     /**
      * 获取 FlashlightUtils 实例 ,单例模式
      * @return
      */
     public static FlashlightUtils getInstance() {
-        return sInstance;
+        return INSTANCE;
     }
 
     // =

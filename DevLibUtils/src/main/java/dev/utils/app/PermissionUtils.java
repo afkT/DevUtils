@@ -57,19 +57,19 @@ import dev.DevUtils;
 public final class PermissionUtils {
 
     // 全部权限
-    private static final Set<String> sAllPermissions = new HashSet<>(1);
+    private static final Set<String> sAllPermissionSets = new HashSet<>(1);
     // 申请的权限
-    private List<String> mPermissions = new ArrayList<>();
+    private List<String> mPermissionLists = new ArrayList<>();
     // 准备请求的权限
-    private List<String> mPermissionsRequests = new ArrayList<>();
+    private List<String> mPermissionsRequestLists = new ArrayList<>();
     // 申请通过的权限
-    private List<String> mPermissionsGranteds = new ArrayList<>();
+    private List<String> mPermissionsGrantedLists = new ArrayList<>();
     // 申请未通过的权限
-    private List<String> mPermissionsDenieds = new ArrayList<>();
+    private List<String> mPermissionsDeniedLists = new ArrayList<>();
     // 申请未通过的权限 - 永久拒绝
-    private List<String> mPermissionsDeniedForevers = new ArrayList<>();
+    private List<String> mPermissionsDeniedForeverLists = new ArrayList<>();
     // 查询不到的权限
-    private List<String> mPermissionsNotFounds = new ArrayList<>();
+    private List<String> mPermissionsNotFoundLists = new ArrayList<>();
     // 操作回调
     private PermissionCallBack mCallBack;
     // 回调方法
@@ -95,7 +95,7 @@ public final class PermissionUtils {
                 name = (String) field.get("");
             } catch (IllegalAccessException e) {
             }
-            sAllPermissions.add(name);
+            sAllPermissionSets.add(name);
         }
     }
 
@@ -106,12 +106,12 @@ public final class PermissionUtils {
      * @param permissions
      */
     private PermissionUtils(final String... permissions) {
-        mPermissions.clear();
+        mPermissionLists.clear();
         // 防止数据为null
         if (permissions != null && permissions.length != 0) {
             // 遍历全部需要申请的权限
             for (String permission : permissions) {
-                mPermissions.add(permission);
+                mPermissionLists.add(permission);
             }
         }
     }
@@ -194,26 +194,26 @@ public final class PermissionUtils {
         // 如果 SDK 版本小于 23 则直接通过
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // 表示全部权限都通过
-            mPermissionsGranteds.addAll(mPermissions);
+            mPermissionsGrantedLists.addAll(mPermissionLists);
             // 处理请求回调
             requestCallback();
         } else {
-            for (String permission : mPermissions) {
+            for (String permission : mPermissionLists) {
                 // 首先判断是否存在
-                if (sAllPermissions.contains(permission)) {
+                if (sAllPermissionSets.contains(permission)) {
                     // 判断是否通过请求
                     if (isGranted(DevUtils.getContext(), permission)) {
-                        mPermissionsGranteds.add(permission); // 权限允许通过
+                        mPermissionsGrantedLists.add(permission); // 权限允许通过
                     } else {
-                        mPermissionsRequests.add(permission); // 准备请求权限
+                        mPermissionsRequestLists.add(permission); // 准备请求权限
                     }
                 } else {
                     // 保存到没找到的权限集合
-                    mPermissionsNotFounds.add(permission);
+                    mPermissionsNotFoundLists.add(permission);
                 }
             }
             // 判断是否存在等待请求的权限
-            if (mPermissionsRequests.isEmpty()) {
+            if (mPermissionsRequestLists.isEmpty()) {
                 // 处理请求回调
                 requestCallback();
             } else { // 表示需要申请
@@ -261,7 +261,7 @@ public final class PermissionUtils {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                 sInstance = this;
                 // 请求权限
-                String[] permissions = mPermissionsRequests.toArray(new String[mPermissionsRequests.size()]);
+                String[] permissions = mPermissionsRequestLists.toArray(new String[mPermissionsRequestLists.size()]);
                 // 请求权限
                 ActivityCompat.requestPermissions(activity, permissions, requestCode);
             }
@@ -322,8 +322,8 @@ public final class PermissionUtils {
         protected void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             // 请求权限
-            int size = sInstance.mPermissionsRequests.size();
-            requestPermissions(sInstance.mPermissionsRequests.toArray(new String[size]), 1);
+            int size = sInstance.mPermissionsRequestLists.size();
+            requestPermissions(sInstance.mPermissionsRequestLists.toArray(new String[size]), 1);
         }
 
         /**
@@ -349,7 +349,7 @@ public final class PermissionUtils {
     private void requestCallback() {
         if (mCallBack != null) {
             // 判断是否允许全部权限
-            boolean isGrantedAll = (mPermissions.size() == mPermissionsGranteds.size());
+            boolean isGrantedAll = (mPermissionLists.size() == mPermissionsGrantedLists.size());
             // 允许则触发回调
             if (isGrantedAll) {
                 new Handler(mLooper).post(new Runnable() {
@@ -385,16 +385,16 @@ public final class PermissionUtils {
      * @param activity
      */
     private void getPermissionsStatus(final Activity activity) {
-        for (String permission : mPermissionsRequests) {
+        for (String permission : mPermissionsRequestLists) {
             // 判断是否通过请求
             if (isGranted(activity, permission)) {
-                mPermissionsGranteds.add(permission);
+                mPermissionsGrantedLists.add(permission);
             } else {
                 // 未授权
-                mPermissionsDenieds.add(permission);
+                mPermissionsDeniedLists.add(permission);
                 // 拒绝权限
                 if (!shouldShowRequestPermissionRationale(activity, permission)) {
-                    mPermissionsDeniedForevers.add(permission);
+                    mPermissionsDeniedForeverLists.add(permission);
                 }
             }
         }

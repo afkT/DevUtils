@@ -23,7 +23,7 @@ public final class ClickUtils {
     // 全局共用的点击辅助类
     private static final ClickAssist sGlobalClickAssist = new ClickAssist();
     // 功能模块 ClickAssist Maps
-    private static final Map<Object, ClickAssist> sMapClickAssists = new HashMap<>();
+    private static final Map<Object, ClickAssist> sClickAssistMaps = new HashMap<>();
 
     /**
      * 增加控件的触摸范围，最大范围只能是父布局所包含的的区域
@@ -84,12 +84,12 @@ public final class ClickUtils {
      */
     public static ClickAssist get(final Object object) {
         // 获取对应模块点击辅助类
-        ClickAssist clickAssist = sMapClickAssists.get(object);
+        ClickAssist clickAssist = sClickAssistMaps.get(object);
         if (clickAssist != null) {
             return clickAssist;
         }
         clickAssist = new ClickAssist();
-        sMapClickAssists.put(object, clickAssist);
+        sClickAssistMaps.put(object, clickAssist);
         return clickAssist;
     }
 
@@ -98,7 +98,7 @@ public final class ClickUtils {
      * @param object key by Object
      */
     public static void remove(final Object object) {
-        sMapClickAssists.remove(object);
+        sClickAssistMaps.remove(object);
     }
 
     // ======================
@@ -244,9 +244,9 @@ public final class ClickUtils {
         // 双击间隔时间
         private long mIntervalTime = 1000L;
         // 配置数据
-        private final Map<String, Long> mMapConfigs = new HashMap<>();
+        private final Map<String, Long> mConfigMaps = new HashMap<>();
         // 点击记录数据
-        private final Map<String, Long> mMapRecords = new HashMap<>();
+        private final Map<String, Long> mRecordMaps = new HashMap<>();
 
         public ClickAssist() {
         }
@@ -320,7 +320,7 @@ public final class ClickUtils {
             // 获取TAG
             String tag = ((object != null) ? ("obj_" + object.hashCode()) : "obj_null");
             // 获取上次点击的时间
-            Long lastTime = mMapRecords.get(tag);
+            Long lastTime = mRecordMaps.get(tag);
             if (lastTime == null) {
                 lastTime = 0l;
             }
@@ -333,7 +333,7 @@ public final class ClickUtils {
             }
             LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 => obj: " + object + ", intervalTime: " + intervalTime);
             // 保存上次点击时间
-            mMapRecords.put(tag, curTime);
+            mRecordMaps.put(tag, curTime);
             return false;
         }
 
@@ -345,7 +345,7 @@ public final class ClickUtils {
          */
         public void initConfig(final Map<String, Long> mapConfigs) {
             if (mapConfigs != null) {
-                mMapConfigs.putAll(mapConfigs);
+                mConfigMaps.putAll(mapConfigs);
             }
         }
 
@@ -355,7 +355,7 @@ public final class ClickUtils {
          * @param value config Value
          */
         public void putConfig(final String key, final Long value) {
-            mMapConfigs.put(key, value);
+            mConfigMaps.put(key, value);
         }
 
         /**
@@ -363,7 +363,7 @@ public final class ClickUtils {
          * @param key config Key
          */
         public void removeConfig(final String key) {
-            mMapConfigs.remove(key);
+            mConfigMaps.remove(key);
         }
 
         /**
@@ -373,7 +373,7 @@ public final class ClickUtils {
          */
         public Long getConfigTime(final String key) {
             // 获取配置时间
-            Long configTime = mMapConfigs.get(key);
+            Long configTime = mConfigMaps.get(key);
             // 判断是否为null
             return (configTime != null) ? configTime : mIntervalTime;
         }
@@ -385,14 +385,14 @@ public final class ClickUtils {
          * @param key tag Key
          */
         public void removeRecord(final String key) {
-            mMapRecords.remove(key);
+            mRecordMaps.remove(key);
         }
 
         /**
          * 清空全部点击记录
          */
         public void clearRecord() {
-            mMapRecords.clear();
+            mRecordMaps.clear();
         }
 
         // =
@@ -416,9 +416,9 @@ public final class ClickUtils {
             // 重置双击间隔时间
             mIntervalTime = 1000L;
             // 清空配置信息
-            mMapConfigs.clear();
+            mConfigMaps.clear();
             // 清空点击记录
-            mMapRecords.clear();
+            mRecordMaps.clear();
         }
     }
 }

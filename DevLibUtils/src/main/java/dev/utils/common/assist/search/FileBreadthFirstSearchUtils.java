@@ -31,10 +31,10 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 构造函数
-     * @param iSearchHandler 搜索处理接口
+     * @param searchHandler 搜索处理接口
      */
-    public FileBreadthFirstSearchUtils(final ISearchHandler iSearchHandler) {
-        this.mISearchHandler = iSearchHandler;
+    public FileBreadthFirstSearchUtils(final SearchHandler searchHandler) {
+        this.mSearchHandler = searchHandler;
     }
 
     /**
@@ -93,7 +93,7 @@ public final class FileBreadthFirstSearchUtils {
      * detail: 搜索处理接口
      * @author Ttt
      */
-    public interface ISearchHandler {
+    public interface SearchHandler {
 
         /**
          * 判断是否处理该文件
@@ -119,22 +119,22 @@ public final class FileBreadthFirstSearchUtils {
     }
 
     // 搜索处理接口
-    private ISearchHandler mISearchHandler;
+    private SearchHandler mSearchHandler;
 
     // 内部实现接口
-    private ISearchHandler mInsideHandler = new ISearchHandler() {
+    private SearchHandler mInsideHandler = new SearchHandler() {
         @Override
         public boolean isHandlerFile(File file) {
-            if (mISearchHandler != null) {
-                return mISearchHandler.isHandlerFile(file);
+            if (mSearchHandler != null) {
+                return mSearchHandler.isHandlerFile(file);
             }
             return true;
         }
 
         @Override
         public boolean isAddToList(File file) {
-            if (mISearchHandler != null) {
-                return mISearchHandler.isAddToList(file);
+            if (mSearchHandler != null) {
+                return mSearchHandler.isAddToList(file);
             }
             return true;
         }
@@ -144,19 +144,19 @@ public final class FileBreadthFirstSearchUtils {
             // 表示非搜索中
             mIsRunning = false;
             // 触发回调
-            if (mISearchHandler != null) {
-                mISearchHandler.OnEndListener(rootFileItem, startTime, endTime);
+            if (mSearchHandler != null) {
+                mSearchHandler.OnEndListener(rootFileItem, startTime, endTime);
             }
         }
     };
 
     /**
      * 设置搜索处理接口
-     * @param iSearchHandler 搜索处理接口
+     * @param searchHandler 搜索处理接口
      * @return {@link FileBreadthFirstSearchUtils}
      */
-    public FileBreadthFirstSearchUtils setSearchHandler(final ISearchHandler iSearchHandler) {
-        this.mISearchHandler = iSearchHandler;
+    public FileBreadthFirstSearchUtils setSearchHandler(final SearchHandler searchHandler) {
+        this.mSearchHandler = searchHandler;
         return this;
     }
 

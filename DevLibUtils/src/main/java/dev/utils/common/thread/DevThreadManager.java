@@ -16,9 +16,9 @@ public final class DevThreadManager {
     // 默认通用线程池 - 通过 CPU 自动处理
     private static final DevThreadPool sDevThreadPool = new DevThreadPool(DevThreadPool.DevThreadPoolType.CALC_CPU);
     // 线程池数据
-    private static final LinkedHashMap<String, DevThreadPool> sThreads = new LinkedHashMap<>();
+    private static final LinkedHashMap<String, DevThreadPool> sThreadMaps = new LinkedHashMap<>();
     // 配置数据
-    private static final Map<String, Object> sConfigs = new HashMap<>();
+    private static final Map<String, Object> sConfigMaps = new HashMap<>();
 
     /**
      * 获取 DevThreadManager 实例
@@ -29,12 +29,12 @@ public final class DevThreadManager {
         // 初始化key
         String key = "n_" + threadNumber;
         // 如果不为null, 则直接返回
-        DevThreadPool devThreadPool = sThreads.get(key);
+        DevThreadPool devThreadPool = sThreadMaps.get(key);
         if (devThreadPool != null) {
             return devThreadPool;
         }
         devThreadPool = new DevThreadPool(threadNumber);
-        sThreads.put(key, devThreadPool);
+        sThreadMaps.put(key, devThreadPool);
         return devThreadPool;
     }
 
@@ -45,11 +45,11 @@ public final class DevThreadManager {
      */
     public static synchronized DevThreadPool getInstance(final String key) {
         // 如果不为null, 则直接返回
-        DevThreadPool devThreadPool = sThreads.get(key);
+        DevThreadPool devThreadPool = sThreadMaps.get(key);
         if (devThreadPool != null) {
             return devThreadPool;
         }
-        Object obj = sConfigs.get(key);
+        Object obj = sConfigMaps.get(key);
         if (obj != null) {
             try {
                 // 判断是否属于线程池类型
@@ -61,7 +61,7 @@ public final class DevThreadManager {
                     devThreadPool = new DevThreadPool(Integer.parseInt((String) obj));
                 }
                 if (devThreadPool != null) {
-                    sThreads.put(key, devThreadPool);
+                    sThreadMaps.put(key, devThreadPool);
                     return devThreadPool;
                 }
             } catch (Exception e) {
@@ -79,7 +79,7 @@ public final class DevThreadManager {
      */
     public static void initConfig(final Map<String, Object> mapConfigs) {
         if (mapConfigs != null) {
-            sConfigs.putAll(mapConfigs);
+            sConfigMaps.putAll(mapConfigs);
         }
     }
 
@@ -89,7 +89,7 @@ public final class DevThreadManager {
      * @param value 线程配置 value
      */
     public static void putConfig(final String key, final Object value) {
-        sConfigs.put(key, value);
+        sConfigMaps.put(key, value);
     }
 
     /**
@@ -97,6 +97,6 @@ public final class DevThreadManager {
      * @param key 线程配置 key
      */
     public static void removeConfig(final String key) {
-        sConfigs.remove(key);
+        sConfigMaps.remove(key);
     }
 }

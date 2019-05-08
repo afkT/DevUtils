@@ -341,11 +341,11 @@ public final class DevUtils {
     private static class ActivityLifecycleImpl implements Application.ActivityLifecycleCallbacks, ActivityLifecycleGet, ActivityLifecycleNotify {
 
         // 保存未销毁的 Activity
-        private final LinkedList<Activity> mActivityList = new LinkedList<>();
+        private final LinkedList<Activity> mActivityLists = new LinkedList<>();
         // App 状态改变事件
-        private final Map<Object, OnAppStatusChangedListener> mStatusListenerMap = new ConcurrentHashMap<>();
+        private final Map<Object, OnAppStatusChangedListener> mStatusListenerMaps = new ConcurrentHashMap<>();
         // Activity 销毁事件
-        private final Map<Activity, Set<OnActivityDestroyedListener>> mDestroyedListenerMap = new ConcurrentHashMap<>();
+        private final Map<Activity, Set<OnActivityDestroyedListener>> mDestroyedListenerMaps = new ConcurrentHashMap<>();
 
         // 前台 Activity 总数
         private int mForegroundCount = 0;
@@ -362,8 +362,8 @@ public final class DevUtils {
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
             setTopActivity(activity);
 
-            if (DevUtils.sAbsActivityLifecycle != null) {
-                DevUtils.sAbsActivityLifecycle.onActivityCreated(activity, savedInstanceState);
+            if (DevUtils.sAbstractActivityLifecycle != null) {
+                DevUtils.sAbstractActivityLifecycle.onActivityCreated(activity, savedInstanceState);
             }
         }
 
@@ -378,8 +378,8 @@ public final class DevUtils {
                 ++mForegroundCount;
             }
 
-            if (DevUtils.sAbsActivityLifecycle != null) {
-                DevUtils.sAbsActivityLifecycle.onActivityStarted(activity);
+            if (DevUtils.sAbstractActivityLifecycle != null) {
+                DevUtils.sAbstractActivityLifecycle.onActivityStarted(activity);
             }
         }
 
@@ -392,15 +392,15 @@ public final class DevUtils {
                 postStatus(true);
             }
 
-            if (DevUtils.sAbsActivityLifecycle != null) {
-                DevUtils.sAbsActivityLifecycle.onActivityResumed(activity);
+            if (DevUtils.sAbstractActivityLifecycle != null) {
+                DevUtils.sAbstractActivityLifecycle.onActivityResumed(activity);
             }
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
-            if (DevUtils.sAbsActivityLifecycle != null) {
-                DevUtils.sAbsActivityLifecycle.onActivityPaused(activity);
+            if (DevUtils.sAbstractActivityLifecycle != null) {
+                DevUtils.sAbstractActivityLifecycle.onActivityPaused(activity);
             }
         }
 
@@ -417,28 +417,28 @@ public final class DevUtils {
                 }
             }
 
-            if (DevUtils.sAbsActivityLifecycle != null) {
-                DevUtils.sAbsActivityLifecycle.onActivityStopped(activity);
+            if (DevUtils.sAbstractActivityLifecycle != null) {
+                DevUtils.sAbstractActivityLifecycle.onActivityStopped(activity);
             }
         }
 
         @Override
         public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-            if (DevUtils.sAbsActivityLifecycle != null) {
-                DevUtils.sAbsActivityLifecycle.onActivitySaveInstanceState(activity, outState);
+            if (DevUtils.sAbstractActivityLifecycle != null) {
+                DevUtils.sAbstractActivityLifecycle.onActivitySaveInstanceState(activity, outState);
             }
         }
 
         @Override
         public void onActivityDestroyed(Activity activity) {
-            mActivityList.remove(activity);
+            mActivityLists.remove(activity);
             // 通知 Activity 销毁
             consumeOnActivityDestroyedListener(activity);
             // 修复软键盘内存泄漏 在 Activity.onDestroy() 中使用
             KeyBoardUtils.fixSoftInputLeaks(activity);
 
-            if (DevUtils.sAbsActivityLifecycle != null) {
-                DevUtils.sAbsActivityLifecycle.onActivityDestroyed(activity);
+            if (DevUtils.sAbstractActivityLifecycle != null) {
+                DevUtils.sAbstractActivityLifecycle.onActivityDestroyed(activity);
             }
         }
 
@@ -454,13 +454,13 @@ public final class DevUtils {
             // 判断是否过滤 Activity
             if (ACTIVITY_LIFECYCLE_FILTER.filter(activity)) return;
             // 判断是否已经包含该 Activity
-            if (mActivityList.contains(activity)) {
-                if (!mActivityList.getLast().equals(activity)) {
-                    mActivityList.remove(activity);
-                    mActivityList.addLast(activity);
+            if (mActivityLists.contains(activity)) {
+                if (!mActivityLists.getLast().equals(activity)) {
+                    mActivityLists.remove(activity);
+                    mActivityLists.addLast(activity);
                 }
             } else {
-                mActivityList.addLast(activity);
+                mActivityLists.addLast(activity);
             }
         }
 
@@ -473,7 +473,7 @@ public final class DevUtils {
                 @SuppressLint("PrivateApi")
                 Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
                 Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
-                Field activitiesField = activityThreadClass.getDeclaredField("mActivityList");
+                Field activitiesField = activityThreadClass.getDeclaredField("mActivityLists");
                 activitiesField.setAccessible(true);
                 Map activities = (Map) activitiesField.get(activityThread);
                 if (activities == null) return null;
@@ -503,8 +503,8 @@ public final class DevUtils {
          */
         @Override
         public Activity getTopActivity() {
-            if (!mActivityList.isEmpty()) {
-                final Activity topActivity = mActivityList.getLast();
+            if (!mActivityLists.isEmpty()) {
+                final Activity topActivity = mActivityLists.getLast();
                 if (topActivity != null) {
                     return topActivity;
                 }
@@ -561,7 +561,7 @@ public final class DevUtils {
          */
         @Override
         public int getActivityCount() {
-            return mActivityList.size();
+            return mActivityLists.size();
         }
 
         // ===========================
@@ -575,7 +575,7 @@ public final class DevUtils {
          */
         @Override
         public void addOnAppStatusChangedListener(final Object object, final OnAppStatusChangedListener listener) {
-            mStatusListenerMap.put(object, listener);
+            mStatusListenerMaps.put(object, listener);
         }
 
         /**
@@ -584,7 +584,7 @@ public final class DevUtils {
          */
         @Override
         public void removeOnAppStatusChangedListener(final Object object) {
-            mStatusListenerMap.remove(object);
+            mStatusListenerMaps.remove(object);
         }
 
         /**
@@ -592,7 +592,7 @@ public final class DevUtils {
          */
         @Override
         public void removeAllOnAppStatusChangedListener() {
-            mStatusListenerMap.clear();
+            mStatusListenerMaps.clear();
         }
 
         // =
@@ -606,11 +606,11 @@ public final class DevUtils {
         public void addOnActivityDestroyedListener(final Activity activity, final OnActivityDestroyedListener listener) {
             if (activity == null || listener == null) return;
             Set<OnActivityDestroyedListener> listeners;
-            if (!mDestroyedListenerMap.containsKey(activity)) {
+            if (!mDestroyedListenerMaps.containsKey(activity)) {
                 listeners = new HashSet<>();
-                mDestroyedListenerMap.put(activity, listeners);
+                mDestroyedListenerMaps.put(activity, listeners);
             } else {
-                listeners = mDestroyedListenerMap.get(activity);
+                listeners = mDestroyedListenerMaps.get(activity);
                 if (listeners.contains(listener)) return;
             }
             listeners.add(listener);
@@ -623,7 +623,7 @@ public final class DevUtils {
         @Override
         public void removeOnActivityDestroyedListener(final Activity activity) {
             if (activity == null) return;
-            mDestroyedListenerMap.remove(activity);
+            mDestroyedListenerMaps.remove(activity);
         }
 
         /**
@@ -631,7 +631,7 @@ public final class DevUtils {
          */
         @Override
         public void removeAllOnActivityDestroyedListener() {
-            mDestroyedListenerMap.clear();
+            mDestroyedListenerMaps.clear();
         }
 
         // ================
@@ -643,9 +643,9 @@ public final class DevUtils {
          * @param isForeground 是否在前台
          */
         private void postStatus(final boolean isForeground) {
-            if (mStatusListenerMap.isEmpty()) return;
+            if (mStatusListenerMaps.isEmpty()) return;
             // 保存到新的集合, 防止 ConcurrentModificationException
-            List<OnAppStatusChangedListener> lists = new ArrayList<>(mStatusListenerMap.values());
+            List<OnAppStatusChangedListener> lists = new ArrayList<>(mStatusListenerMaps.values());
             // 遍历通知
             for (OnAppStatusChangedListener listener : lists) {
                 if (listener != null) {
@@ -665,7 +665,7 @@ public final class DevUtils {
         private void consumeOnActivityDestroyedListener(final Activity activity) {
             try {
                 // 保存到新的集合, 防止 ConcurrentModificationException
-                Set<OnActivityDestroyedListener> sets = new HashSet<>(mDestroyedListenerMap.get(activity));
+                Set<OnActivityDestroyedListener> sets = new HashSet<>(mDestroyedListenerMaps.get(activity));
                 // 遍历通知
                 for (OnActivityDestroyedListener listener : sets) {
                     if (listener != null) {
@@ -832,21 +832,21 @@ public final class DevUtils {
     // =
 
     // ActivityLifecycleCallbacks 抽象类
-    private static AbsActivityLifecycle sAbsActivityLifecycle;
+    private static AbstractActivityLifecycle sAbstractActivityLifecycle;
 
     /**
      * 设置 ActivityLifecycle 监听回调
-     * @param absActivityLifecycle Activity 生命周期监听类
+     * @param abstractActivityLifecycle Activity 生命周期监听类
      */
-    public static void setAbsActivityLifecycle(final AbsActivityLifecycle absActivityLifecycle) {
-        DevUtils.sAbsActivityLifecycle = absActivityLifecycle;
+    public static void setAbstractActivityLifecycle(final AbstractActivityLifecycle abstractActivityLifecycle) {
+        DevUtils.sAbstractActivityLifecycle = abstractActivityLifecycle;
     }
 
     /**
      * detail:  ActivityLifecycleCallbacks 抽象类
      * @author Ttt
      */
-    public static abstract class AbsActivityLifecycle implements Application.ActivityLifecycleCallbacks {
+    public static abstract class AbstractActivityLifecycle implements Application.ActivityLifecycleCallbacks {
 
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

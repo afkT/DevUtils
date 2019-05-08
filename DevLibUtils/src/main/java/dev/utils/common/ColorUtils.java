@@ -372,7 +372,7 @@ public final class ColorUtils {
             }
             return (int) color;
         } else {
-            Integer color = sColorNames.get(colorStr.toLowerCase(Locale.ROOT));
+            Integer color = sColorNameMaps.get(colorStr.toLowerCase(Locale.ROOT));
             if (color != null) {
                 return color;
             }
@@ -595,43 +595,43 @@ public final class ColorUtils {
     // =
 
     // 颜色字典集合
-    private static final HashMap<String, Integer> sColorNames;
+    private static final HashMap<String, Integer> sColorNameMaps;
 
     static {
-        sColorNames = new HashMap<>();
-        sColorNames.put("transparent", TRANSPARENT);
-        sColorNames.put("white", WHITE);
-        sColorNames.put("black", BLACK);
-        sColorNames.put("red", RED);
-        sColorNames.put("green", GREEN);
-        sColorNames.put("blue", BLUE);
-        sColorNames.put("gray", GRAY);
-        sColorNames.put("grey", GRAY);
-        sColorNames.put("skyblue", SKYBLUE);
-        sColorNames.put("orange", ORANGE);
-        sColorNames.put("gold", GOLD);
-        sColorNames.put("pink", PINK);
-        sColorNames.put("fuchsia", FUCHSIA);
-        sColorNames.put("graywhite", GRAYWHITE);
-        sColorNames.put("purple", PURPLE);
-        sColorNames.put("cyan", CYAN);
-        sColorNames.put("yellow", YELLOW);
-        sColorNames.put("chocolate", CHOCOLATE);
-        sColorNames.put("tomato", TOMATO);
-        sColorNames.put("orangered", ORANGERED);
-        sColorNames.put("silver", SILVER);
-        sColorNames.put("darkgray", DKGRAY);
-        sColorNames.put("lightgray", LTGRAY);
-        sColorNames.put("lightgrey", LTGRAY);
-        sColorNames.put("magenta", MAGENTA);
-        sColorNames.put("highlight", HIGHLIGHT);
-        sColorNames.put("lowlight", LOWLIGHT);
-        sColorNames.put("aqua", 0xFF00FFFF);
-        sColorNames.put("lime", 0xFF00FF00);
-        sColorNames.put("maroon", 0xFF800000);
-        sColorNames.put("navy", 0xFF000080);
-        sColorNames.put("olive", 0xFF808000);
-        sColorNames.put("teal", 0xFF008080);
+        sColorNameMaps = new HashMap<>();
+        sColorNameMaps.put("transparent", TRANSPARENT);
+        sColorNameMaps.put("white", WHITE);
+        sColorNameMaps.put("black", BLACK);
+        sColorNameMaps.put("red", RED);
+        sColorNameMaps.put("green", GREEN);
+        sColorNameMaps.put("blue", BLUE);
+        sColorNameMaps.put("gray", GRAY);
+        sColorNameMaps.put("grey", GRAY);
+        sColorNameMaps.put("skyblue", SKYBLUE);
+        sColorNameMaps.put("orange", ORANGE);
+        sColorNameMaps.put("gold", GOLD);
+        sColorNameMaps.put("pink", PINK);
+        sColorNameMaps.put("fuchsia", FUCHSIA);
+        sColorNameMaps.put("graywhite", GRAYWHITE);
+        sColorNameMaps.put("purple", PURPLE);
+        sColorNameMaps.put("cyan", CYAN);
+        sColorNameMaps.put("yellow", YELLOW);
+        sColorNameMaps.put("chocolate", CHOCOLATE);
+        sColorNameMaps.put("tomato", TOMATO);
+        sColorNameMaps.put("orangered", ORANGERED);
+        sColorNameMaps.put("silver", SILVER);
+        sColorNameMaps.put("darkgray", DKGRAY);
+        sColorNameMaps.put("lightgray", LTGRAY);
+        sColorNameMaps.put("lightgrey", LTGRAY);
+        sColorNameMaps.put("magenta", MAGENTA);
+        sColorNameMaps.put("highlight", HIGHLIGHT);
+        sColorNameMaps.put("lowlight", LOWLIGHT);
+        sColorNameMaps.put("aqua", 0xFF00FFFF);
+        sColorNameMaps.put("lime", 0xFF00FF00);
+        sColorNameMaps.put("maroon", 0xFF800000);
+        sColorNameMaps.put("navy", 0xFF000080);
+        sColorNameMaps.put("olive", 0xFF808000);
+        sColorNameMaps.put("teal", 0xFF008080);
     }
 
     // =

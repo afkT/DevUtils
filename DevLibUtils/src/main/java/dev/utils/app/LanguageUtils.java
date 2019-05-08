@@ -120,31 +120,31 @@ public class LanguageUtils {
     // 台湾
     public static final String TAIWAN_CHINESE = TRADITIONAL_CHINESE;
     // 支持的语言字典
-    private static Map<String, Locale> mSupportLanguages = new HashMap<>(20);
+    private static Map<String, Locale> sSupportLanguageMaps = new HashMap<>(20);
 
     static {
         // 英语
-        mSupportLanguages.put(ENGLISH, Locale.ENGLISH);
+        sSupportLanguageMaps.put(ENGLISH, Locale.ENGLISH);
         // 英语 - 英式
-        mSupportLanguages.put(UK, Locale.UK);
+        sSupportLanguageMaps.put(UK, Locale.UK);
         // 英语 - 美式
-        mSupportLanguages.put(US, Locale.US);
+        sSupportLanguageMaps.put(US, Locale.US);
         // 法语
-        mSupportLanguages.put(FRENCH, Locale.FRENCH);
+        sSupportLanguageMaps.put(FRENCH, Locale.FRENCH);
         // 德语
-        mSupportLanguages.put(GERMAN, Locale.GERMAN);
+        sSupportLanguageMaps.put(GERMAN, Locale.GERMAN);
         // 日文
-        mSupportLanguages.put(JAPAN, Locale.JAPAN);
+        sSupportLanguageMaps.put(JAPAN, Locale.JAPAN);
         // 韩文
-        mSupportLanguages.put(KOREA, Locale.KOREA);
+        sSupportLanguageMaps.put(KOREA, Locale.KOREA);
         // 中文
-        mSupportLanguages.put(CHINESE, Locale.CHINESE);
+        sSupportLanguageMaps.put(CHINESE, Locale.CHINESE);
         // 简体中文
-        mSupportLanguages.put(SIMPLIFIED_CHINESE, Locale.SIMPLIFIED_CHINESE);
+        sSupportLanguageMaps.put(SIMPLIFIED_CHINESE, Locale.SIMPLIFIED_CHINESE);
         // 繁体中文 - 默认香港
-        mSupportLanguages.put(TRADITIONAL_CHINESE, Locale.TRADITIONAL_CHINESE);
+        sSupportLanguageMaps.put(TRADITIONAL_CHINESE, Locale.TRADITIONAL_CHINESE);
         // 台湾
-        mSupportLanguages.put(TAIWAN_CHINESE, Locale.TAIWAN);
+        sSupportLanguageMaps.put(TAIWAN_CHINESE, Locale.TAIWAN);
     }
 
     /**
@@ -152,7 +152,7 @@ public class LanguageUtils {
      * @return
      */
     public static Map<String, Locale> getSupportLanguages() {
-        return new HashMap<>(mSupportLanguages);
+        return new HashMap<>(sSupportLanguageMaps);
     }
 
     /**
@@ -161,7 +161,7 @@ public class LanguageUtils {
      * @param locale
      */
     public static void putSupportLanguage(final String language, final Locale locale) {
-        mSupportLanguages.put(language, locale);
+        sSupportLanguageMaps.put(language, locale);
     }
 
     /**
@@ -169,7 +169,7 @@ public class LanguageUtils {
      * @param language
      */
     public static void removeSupportLanguage(final String language) {
-        mSupportLanguages.remove(language);
+        sSupportLanguageMaps.remove(language);
     }
 
     /**
@@ -178,7 +178,7 @@ public class LanguageUtils {
      * @return {@code true} 支持, {@code false} 不支持
      */
     public static boolean isSupportLanguage(final String language) {
-        return mSupportLanguages.containsKey(language);
+        return sSupportLanguageMaps.containsKey(language);
     }
 
     /**
@@ -188,7 +188,7 @@ public class LanguageUtils {
      */
     public static Locale getSupportLanguage(final String language) {
         if (isSupportLanguage(language)) {
-            return mSupportLanguages.get(language);
+            return sSupportLanguageMaps.get(language);
         }
         return null;
     }

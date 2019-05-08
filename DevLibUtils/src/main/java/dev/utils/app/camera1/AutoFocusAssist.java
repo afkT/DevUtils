@@ -24,12 +24,12 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // 日志 TAG
     private final String TAG = AutoFocusAssist.class.getSimpleName();
     // 设置对焦模式
-    public static final Collection<String> FOCUS_MODES_CALLING_AF;
+    public static final Collection<String> FOCUS_MODES;
 
     static {
-        FOCUS_MODES_CALLING_AF = new ArrayList<>();
-        FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_AUTO); // 自动对焦
-        FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_MACRO); // 微距
+        FOCUS_MODES = new ArrayList<>();
+        FOCUS_MODES.add(Camera.Parameters.FOCUS_MODE_AUTO); // 自动对焦
+        FOCUS_MODES.add(Camera.Parameters.FOCUS_MODE_MACRO); // 微距
     }
 
     // ========
@@ -67,7 +67,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
             // 获取对象对焦模式
             String currentFocusMode = camera.getParameters().getFocusMode();
             // 判断是否(使用/支持)对焦
-            mUseAutoFocus = FOCUS_MODES_CALLING_AF.contains(currentFocusMode);
+            mUseAutoFocus = FOCUS_MODES.contains(currentFocusMode);
         } else {
             // 不支持对焦
             mUseAutoFocus = false;
@@ -82,10 +82,10 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      */
     public static void setFocusModes(final Collection<String> collection) {
         // 清空旧的
-        FOCUS_MODES_CALLING_AF.clear();
+        FOCUS_MODES.clear();
         // 防止为null
         if (collection != null) {
-            FOCUS_MODES_CALLING_AF.addAll(collection);
+            FOCUS_MODES.addAll(collection);
         }
     }
 

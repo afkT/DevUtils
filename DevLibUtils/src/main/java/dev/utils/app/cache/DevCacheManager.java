@@ -24,7 +24,7 @@ final class DevCacheManager {
     // 文件总数限制
     private final int mCountLimit;
     // 保存文件时间信息 - 文件地址, 文件最后使用时间
-    private final Map<File, Long> mLastUsageDates = Collections.synchronizedMap(new HashMap<File, Long>());
+    private final Map<File, Long> mLastUsageDateMaps = Collections.synchronizedMap(new HashMap<File, Long>());
     // 文件目录
     protected File mCacheDir;
 
@@ -52,7 +52,7 @@ final class DevCacheManager {
                         for (File cachedFile : cachedFiles) {
                             size += calculateSize(cachedFile);
                             count += 1;
-                            mLastUsageDates.put(cachedFile, cachedFile.lastModified());
+                            mLastUsageDateMaps.put(cachedFile, cachedFile.lastModified());
                         }
                         mCacheSize.set(size);
                         mCacheCount.set(count);
@@ -94,7 +94,7 @@ final class DevCacheManager {
 
         Long currentTime = System.currentTimeMillis();
         file.setLastModified(currentTime);
-        mLastUsageDates.put(file, currentTime);
+        mLastUsageDateMaps.put(file, currentTime);
     }
 
     /**
@@ -107,7 +107,7 @@ final class DevCacheManager {
         if (file != null) {
             Long currentTime = System.currentTimeMillis();
             file.setLastModified(currentTime);
-            mLastUsageDates.put(file, currentTime);
+            mLastUsageDateMaps.put(file, currentTime);
             return file;
         }
         return file;
@@ -142,7 +142,7 @@ final class DevCacheManager {
      * 清空全部缓存数据
      */
     protected void clear() {
-        mLastUsageDates.clear();
+        mLastUsageDateMaps.clear();
         mCacheSize.set(0);
         File[] files = mCacheDir.listFiles();
         if (files != null) {
@@ -157,13 +157,13 @@ final class DevCacheManager {
      * @return 返回移除的文件大小
      */
     private long removeNext() {
-        if (mLastUsageDates.isEmpty()) {
+        if (mLastUsageDateMaps.isEmpty()) {
             return 0;
         }
         Long oldestUsage = null;
         File mostLongUsedFile = null;
-        Set<Map.Entry<File, Long>> entries = mLastUsageDates.entrySet();
-        synchronized (mLastUsageDates) {
+        Set<Map.Entry<File, Long>> entries = mLastUsageDateMaps.entrySet();
+        synchronized (mLastUsageDateMaps) {
             for (Map.Entry<File, Long> entry : entries) {
                 if (mostLongUsedFile == null) {
                     mostLongUsedFile = entry.getKey();
@@ -180,7 +180,7 @@ final class DevCacheManager {
 
         long fileSize = calculateSize(mostLongUsedFile);
         if (mostLongUsedFile.delete()) {
-            mLastUsageDates.remove(mostLongUsedFile);
+            mLastUsageDateMaps.remove(mostLongUsedFile);
         }
         return fileSize;
     }

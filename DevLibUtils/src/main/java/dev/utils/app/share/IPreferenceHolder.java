@@ -11,7 +11,7 @@ import java.util.HashMap;
 class IPreferenceHolder {
 
     // HashMap 保存持有对象
-    private static final HashMap<String, IPreference> hashMap = new HashMap<>();
+    private static final HashMap<String, IPreference> sHashMaps = new HashMap<>();
 
     /**
      * 初始化
@@ -19,14 +19,14 @@ class IPreferenceHolder {
      */
     public static IPreference getPreference(final Context context) {
         // 判断是否为存在对应的持有类
-        IPreference ipref = hashMap.get(null);
+        IPreference ipref = sHashMaps.get(null);
         // 判断是否为存在
         if (ipref != null) {
             return ipref;
         }
         // 初始化并保存
         ipref = new PreferenceImpl(context);
-        hashMap.put(null, ipref);
+        sHashMaps.put(null, ipref);
         return ipref;
     }
 
@@ -37,14 +37,14 @@ class IPreferenceHolder {
      */
     public static IPreference getPreference(final Context context, final String fileName) {
         // 判断是否为存在对应的持有类
-        IPreference ipref = hashMap.get(fileName);
+        IPreference ipref = sHashMaps.get(fileName);
         // 判断是否为存在
         if (ipref != null) {
             return ipref;
         }
         // 初始化并保存
         ipref = new PreferenceImpl(context, fileName);
-        hashMap.put(fileName, ipref);
+        sHashMaps.put(fileName, ipref);
         return ipref;
     }
 
@@ -57,14 +57,14 @@ class IPreferenceHolder {
     public static IPreference getPreference(final Context context, final String fileName, final int mode) {
         String key = fileName + "_" + mode;
         // 判断是否为存在对应的持有类
-        IPreference ipref = hashMap.get(key);
+        IPreference ipref = sHashMaps.get(key);
         // 判断是否为存在
         if (ipref != null) {
             return ipref;
         }
         // 初始化并保存
         ipref = new PreferenceImpl(context, fileName, mode);
-        hashMap.put(key, ipref);
+        sHashMaps.put(key, ipref);
         return ipref;
     }
 
