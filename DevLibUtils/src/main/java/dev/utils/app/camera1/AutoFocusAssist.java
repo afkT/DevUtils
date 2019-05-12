@@ -37,7 +37,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // ========
 
     // 间隔获取焦点时间
-    private long mInterval = 2000L;
+    private long mInterval;
     // 摄像头对象
     private final Camera mCamera;
     // 判断摄像头是否使用对焦
@@ -55,10 +55,19 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // = 构造函数 =
     // ============
 
+    /**
+     * 构造函数
+     * @param camera {@link android.hardware.Camera}
+     */
     public AutoFocusAssist(final Camera camera) {
         this(camera, 2000L);
     }
 
+    /**
+     * 构造函数
+     * @param camera   {@link android.hardware.Camera}
+     * @param interval 自动对焦时间间隔
+     */
     public AutoFocusAssist(final Camera camera, final long interval) {
         this.mCamera = camera;
         this.mInterval = interval;
@@ -78,7 +87,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
     /**
      * 设置对焦模式
-     * @param collection
+     * @param collection 对焦模式集合
      */
     public static void setFocusModes(final Collection<String> collection) {
         // 清空旧的
@@ -99,7 +108,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
     /**
      * 设置是否开启自动对焦
-     * @param autoFocus
+     * @param autoFocus 是否自动对焦
      */
     public void setAutoFocus(final boolean autoFocus) {
         this.mAutoFocus = autoFocus;
@@ -114,7 +123,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     /**
      * 对焦回调 {@link Camera.AutoFocusCallback} 重写方法
      * @param success   是否对焦成功
-     * @param theCamera 对焦的摄像头
+     * @param theCamera 对焦的 {@link android.hardware.Camera}
      */
     @Override
     public synchronized void onAutoFocus(boolean success, Camera theCamera) {

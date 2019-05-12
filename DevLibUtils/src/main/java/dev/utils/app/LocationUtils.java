@@ -128,9 +128,7 @@ public final class LocationUtils {
      * <uses-permission android:name="android.permission.INTERNET" />
      * <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
      * <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-     * 如果 minDistance 为 0，则通过 minTime 来定时更新；
-     * minDistance 不为 0，则以 minDistance 为准；
-     * 两者都为0，则随时刷新。
+     * 如果 minDistance 为 0，则通过 minTime 来定时更新, minDistance 不为 0，则以 minDistance 为准, 两者都为0，则随时刷新
      * @param minTime     位置信息更新周期(单位: 毫秒)
      * @param minDistance 位置变化最小距离: 当位置距离变化超过此值时，将更新位置信息(单位: 米)
      * @param listener    位置刷新的回调接口
@@ -281,7 +279,7 @@ public final class LocationUtils {
         boolean isMoreAccurate = accuracyDelta < 0;
         boolean isSignificantlyLessAccurate = accuracyDelta > 200;
 
-        //  检查旧位置和新位置是否来自同一提供者。
+        //  检查旧位置和新位置是否来自同一提供者
         boolean isFromSameProvider = isSameProvider(newLocation.getProvider(), currentBestLocation.getProvider());
 
         // 判断最新的位置

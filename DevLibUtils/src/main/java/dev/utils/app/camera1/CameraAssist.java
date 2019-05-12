@@ -41,10 +41,19 @@ public final class CameraAssist {
     public CameraAssist() {
     }
 
+    /**
+     * 构造函数
+     * @param camera {@link android.hardware.Camera}
+     */
     public CameraAssist(final Camera camera) {
         setCamera(camera);
     }
 
+    /**
+     * 构造函数
+     * @param camera   {@link android.hardware.Camera}
+     * @param interval 自动对焦时间间隔
+     */
     public CameraAssist(final Camera camera, final long interval) {
         this.mAutoInterval = interval;
         setCamera(camera);
@@ -56,8 +65,8 @@ public final class CameraAssist {
 
     /**
      * 打开摄像头程序
-     * @param holder
-     * @return 返回自身对象(摄像头辅助类)
+     * @param holder {@link SurfaceHolder}
+     * @return {@link CameraAssist}
      */
     public synchronized CameraAssist openDriver(final SurfaceHolder holder) throws IOException {
         Camera theCamera = mCamera;
@@ -67,7 +76,7 @@ public final class CameraAssist {
     }
 
     /**
-     * 关闭相机驱动程
+     * 关闭摄像头程序
      */
     public synchronized void closeDriver() {
         // 释放摄像头资源
@@ -79,7 +88,7 @@ public final class CameraAssist {
     // ============
 
     /**
-     * 开始将Camera画面预览到手机上
+     * 开始将 Camera 画面预览到手机上
      */
     public synchronized void startPreview() {
         Camera theCamera = mCamera;
@@ -144,7 +153,7 @@ public final class CameraAssist {
 
     /**
      * 获取相机分辨率
-     * @return Camera 分辨率
+     * @return {@link Camera.Size} 相机分辨率
      */
     public Camera.Size getCameraResolution() {
         if (mPreviewSize == null) {
@@ -156,8 +165,8 @@ public final class CameraAssist {
     }
 
     /**
-     * 获取预览大小
-     * @return Camera 预览分辨率
+     * 获取预览分辨率
+     * @return {@link Camera.Size} 预览分辨率
      */
     public Camera.Size getPreviewSize() {
         if (null != mCamera) {
@@ -184,7 +193,7 @@ public final class CameraAssist {
 
     /**
      * 设置摄像头
-     * @param camera
+     * @param camera {@link android.hardware.Camera}
      */
     public void setCamera(final Camera camera) {
         this.mCamera = camera;
@@ -194,8 +203,8 @@ public final class CameraAssist {
 
     /**
      * 设置预览回调
-     * @param previewNotify
-     * @return 返回自身对象(摄像头辅助类)
+     * @param previewNotify 预览通知接口
+     * @return {@link CameraSizeAssist}
      */
     public CameraAssist setPreviewNotify(final PreviewNotify previewNotify) {
         this.mPreviewNotify = previewNotify;
@@ -204,8 +213,8 @@ public final class CameraAssist {
 
     /**
      * 设置是否开启自动对焦
-     * @param autoFocus
-     * @return 返回自身对象(摄像头辅助类)
+     * @param autoFocus 是否自动对焦
+     * @return {@link CameraSizeAssist}
      */
     public CameraAssist setAutoFocus(final boolean autoFocus) {
         if (mAutoFocusAssist != null) {
@@ -224,7 +233,7 @@ public final class CameraAssist {
 
     /**
      * 设置自动对焦时间间隔
-     * @param autoInterval
+     * @param autoInterval 自动对焦时间间隔
      */
     public void setAutoInterval(final long autoInterval) {
         this.mAutoInterval = autoInterval;

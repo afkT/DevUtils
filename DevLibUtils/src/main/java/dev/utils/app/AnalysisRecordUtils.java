@@ -421,9 +421,7 @@ public final class AnalysisRecordUtils {
     // 秒
     public static final int SS = 3;
 
-    //用 @IntDef "包住" 常量；
-    // @Retention 定义策略
-    // 声明构造器
+    // 声明构造器 用 @IntDef "包住" 常量, @Retention 定义策略
     @IntDef({DEFAULT, HH, MM, SS})
     @Retention(RetentionPolicy.SOURCE)
     public @interface TIME {

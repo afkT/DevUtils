@@ -22,7 +22,7 @@ public final class CameraUtils {
 
     /**
      * 判断是否支持反转摄像头(是否存在前置摄像头)
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isSupportReverse() {
         try {
@@ -50,9 +50,9 @@ public final class CameraUtils {
     }
 
     /**
-     * 检查是否有摄像头
-     * @param facing 前置还是后置
-     * @return
+     * 检查是否有指定的摄像头
+     * @param facing 摄像头标识id
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean checkCameraFacing(final int facing) {
         try {
@@ -72,8 +72,8 @@ public final class CameraUtils {
 
     /**
      * 判断是否使用前置摄像头
-     * @param facing
-     * @return
+     * @param facing 摄像头标识id
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isFrontCamera(final int facing) {
         return facing == Camera.CameraInfo.CAMERA_FACING_FRONT;
@@ -81,17 +81,17 @@ public final class CameraUtils {
 
     /**
      * 判断是否使用后置摄像头
-     * @param facing
-     * @return
+     * @param facing 摄像头标识id
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isBackCamera(final int facing) {
         return facing == Camera.CameraInfo.CAMERA_FACING_BACK;
     }
 
     /**
-     * 判断使用的视像头
+     * 判断使用的摄像头
      * @param isFrontCamera 是否前置摄像头
-     * @return
+     * @return 摄像头标识id
      */
     public static int isUseCameraFacing(final boolean isFrontCamera) {
         // 默认使用后置摄像头
@@ -121,9 +121,9 @@ public final class CameraUtils {
 
     /**
      * 释放摄像头资源
-     * @param camera 摄像头对象
+     * @param camera {@link android.hardware.Camera}
      */
-    public static void freeCameraResource(android.hardware.Camera camera) {
+    public static void freeCameraResource(Camera camera) {
         try {
             if (camera != null) {
                 camera.setPreviewCallback(null);
@@ -140,9 +140,9 @@ public final class CameraUtils {
 
     /**
      * 初始化摄像头
-     * @param camera
+     * @param camera        {@link android.hardware.Camera}
      * @param isFrontCamera {@code true} 前置(屏幕面), {@code false} 后置(手机背面)
-     * @return 使用的摄像头
+     * @return {@link android.hardware.Camera}
      */
     public static Camera initCamera(Camera camera, final boolean isFrontCamera) {
         // 如果之前存在摄像头数据, 则释放资源
@@ -169,7 +169,7 @@ public final class CameraUtils {
     /**
      * 打开摄像头
      * @param cameraId {@link Camera.CameraInfo} CAMERA_FACING_FRONT(前置), CAMERA_FACING_BACK(后置)
-     * @return
+     * @return {@link android.hardware.Camera}
      */
     public static Camera open(int cameraId) {
         // 判断支持的摄像头数量
@@ -214,7 +214,7 @@ public final class CameraUtils {
 
     /**
      * 打开摄像头(默认后置摄像头)
-     * @return
+     * @return {@link android.hardware.Camera}
      */
     public static Camera open() {
         return open(-1); // Camera.CameraInfo.CAMERA_FACING_BACK

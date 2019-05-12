@@ -37,6 +37,10 @@ public final class CameraSizeAssist {
     // = 构造函数 =
     // ============
 
+    /**
+     * 构造函数
+     * @param camera {@link android.hardware.Camera}
+     */
     public CameraSizeAssist(final Camera camera) {
         this.mCamera = camera;
     }
@@ -55,7 +59,7 @@ public final class CameraSizeAssist {
 
     /**
      * 设置预览大小
-     * @param previewSize
+     * @param previewSize 预览 {@link Camera.Size}
      * @return {@link Camera.Parameters}
      */
     public Camera.Parameters setPreviewSize(final Camera.Size previewSize) {
@@ -64,8 +68,8 @@ public final class CameraSizeAssist {
 
     /**
      * 设置预览大小
-     * @param parameters
-     * @param previewSize
+     * @param parameters  {@link Camera.Parameters}
+     * @param previewSize 预览 {@link Camera.Size}
      * @return {@link Camera.Parameters}
      */
     public Camera.Parameters setPreviewSize(Camera.Parameters parameters, final Camera.Size previewSize) {
@@ -87,7 +91,7 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的预览分辨率计算，设置预览尺寸
-     * @return Camera 预览分辨率
+     * @return {@link Camera.Size} 预览分辨率
      */
     public Camera.Size getPreviewSize() {
         return getPreviewSize(null, -1d);
@@ -95,8 +99,8 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的预览分辨率计算，设置预览尺寸
-     * @param point
-     * @return Camera 预览分辨率
+     * @param point {@link Point} point.x => 宽, point.y => 高
+     * @return {@link Camera.Size}  预览分辨率
      */
     public Camera.Size getPreviewSize(final Point point) {
         return getPreviewSize(point, -1d);
@@ -104,8 +108,8 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的预览分辨率计算，设置预览尺寸
-     * @return Camera 预览分辨率
-     * @distortion point
+     * @param distortion 偏差比例值
+     * @return {@link Camera.Size} 预览分辨率
      */
     public Camera.Size getPreviewSize(final double distortion) {
         return getPreviewSize(null, distortion);
@@ -113,9 +117,10 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的预览分辨率计算，设置预览尺寸(无任何操作, 单独把Camera显示到SurfaceView 预览尺寸)
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸) (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸)
+     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
-     * @return Camera 预览分辨率
+     * @return {@link Camera.Size} 预览分辨率
      */
     public Camera.Size getPreviewSize(final Point point, final double distortion) {
         if (mCamera == null) {
@@ -137,7 +142,7 @@ public final class CameraSizeAssist {
 
     /**
      * 设置拍照图片大小
-     * @param pictureSize
+     * @param pictureSize 拍照图片 {@link Camera.Size}
      * @return {@link Camera.Parameters}
      */
     public Camera.Parameters setPictureSize(final Camera.Size pictureSize) {
@@ -146,8 +151,8 @@ public final class CameraSizeAssist {
 
     /**
      * 设置拍照图片大小
-     * @param parameters
-     * @param pictureSize
+     * @param parameters  {@link Camera.Parameters}
+     * @param pictureSize 拍照图片 {@link Camera.Size}
      * @return {@link Camera.Parameters}
      */
     public Camera.Parameters setPictureSize(Camera.Parameters parameters, final Camera.Size pictureSize) {
@@ -173,7 +178,7 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的拍照分辨率计算
-     * @return Camera 拍照分辨率
+     * @return {@link Camera.Size} 拍照分辨率
      */
     public Camera.Size getPictureSize() {
         return getPictureSize(false, null, -1d);
@@ -181,8 +186,8 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的拍照分辨率计算
-     * @param max
-     * @return Camera 拍照分辨率
+     * @param max 是否使用最大的尺寸
+     * @return {@link Camera.Size} 拍照分辨率
      */
     public Camera.Size getPictureSize(final boolean max) {
         return getPictureSize(max, null, -1d);
@@ -190,8 +195,9 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的拍照分辨率计算
-     * @param point
-     * @return Camera 拍照分辨率
+     * @param point 指定的尺寸(为null, 则使用屏幕尺寸)
+     *              (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
+     * @return {@link Camera.Size} 拍照分辨率
      */
     public Camera.Size getPictureSize(final Point point) {
         return getPictureSize(false, point, -1d);
@@ -199,8 +205,8 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的拍照分辨率计算
-     * @param distortion
-     * @return Camera 拍照分辨率
+     * @param distortion 偏差比例值
+     * @return {@link Camera.Size} 拍照分辨率
      */
     public Camera.Size getPictureSize(final double distortion) {
         return getPictureSize(false, null, distortion);
@@ -208,9 +214,9 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的拍照分辨率计算
-     * @param point
-     * @param distortion
-     * @return Camera 拍照分辨率
+     * @param point      {@link Point} point.x => 宽, point.y => 高
+     * @param distortion 偏差比例值
+     * @return {@link Camera.Size} 拍照分辨率
      */
     public Camera.Size getPictureSize(final Point point, final double distortion) {
         return getPictureSize(false, point, distortion);
@@ -219,9 +225,10 @@ public final class CameraSizeAssist {
     /**
      * 根据手机支持的拍照分辨率计算，设置预览尺寸
      * @param max        是否使用最大的尺寸
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸) (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸)
+     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
-     * @return Camera 拍照分辨率
+     * @return {@link Camera.Size} 拍照分辨率
      */
     public Camera.Size getPictureSize(final boolean max, final Point point, final double distortion) {
         if (mCamera == null) {
@@ -243,7 +250,7 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的视频录制分辨率计算
-     * @return Camera 视频分辨率
+     * @return {@link Camera.Size} 视频分辨率
      */
     public Camera.Size getVideoSize() {
         return getVideoSize(false, null, -1d, false);
@@ -251,8 +258,8 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的视频录制分辨率计算
-     * @param max
-     * @return Camera 视频分辨率
+     * @param max 是否使用最大的尺寸
+     * @return {@link Camera.Size} 视频分辨率
      */
     public Camera.Size getVideoSize(final boolean max) {
         return getVideoSize(max, null, -1d, false);
@@ -260,8 +267,8 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的视频录制分辨率计算
-     * @param point
-     * @return Camera 视频分辨率
+     * @param point {@link Point} point.x => 宽, point.y => 高
+     * @return {@link Camera.Size} 视频分辨率
      */
     public Camera.Size getVideoSize(final Point point) {
         return getVideoSize(false, point, -1d, false);
@@ -269,8 +276,8 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的视频录制分辨率计算
-     * @param distortion
-     * @return Camera 视频分辨率
+     * @param distortion 偏差比例值
+     * @return {@link Camera.Size} 视频分辨率
      */
     public Camera.Size getVideoSize(final double distortion) {
         return getVideoSize(false, null, distortion, false);
@@ -278,9 +285,9 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的视频录制分辨率计算
-     * @param point
-     * @param distortion
-     * @return Camera 视频分辨率
+     * @param point      {@link Point} point.x => 宽, point.y => 高
+     * @param distortion 偏差比例值
+     * @return {@link Camera.Size} 视频分辨率
      */
     public Camera.Size getVideoSize(final Point point, final double distortion) {
         return getVideoSize(false, point, distortion, false);
@@ -289,10 +296,11 @@ public final class CameraSizeAssist {
     /**
      * 根据手机支持的视频录制分辨率计算，设置预览尺寸
      * @param max        是否使用最大的尺寸
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸) (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸)
+     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
      * @param minAccord  是否存在最小使用最小
-     * @return Camera 视频分辨率
+     * @return {@link Camera.Size} 视频分辨率
      */
     public Camera.Size getVideoSize(final boolean max, final Point point, final double distortion, final boolean minAccord) {
         if (mCamera == null) {
@@ -314,9 +322,10 @@ public final class CameraSizeAssist {
 
     /**
      * 根据对应的尺寸, 计算相应最符合的大小
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸) (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x = > 宽, point.y => 高
+     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
-     * @return Camera 预览分辨率
+     * @return {@link Camera.Size} 预览分辨率
      */
     private Camera.Size calcPreviewSize(Point point, double distortion) {
         // 判断是否为 null
@@ -368,7 +377,7 @@ public final class CameraSizeAssist {
             LogPrintUtils.dTag(TAG, builder.toString());
         }
 
-        // 判断是否竖屏 point.x = > 宽, point.y => 高
+        // 判断是否竖屏 point.x => 宽, point.y => 高
         boolean isPortrait = point.y > point.x;
         // 如果是竖屏, 则修改
         if (isPortrait) {
@@ -438,9 +447,10 @@ public final class CameraSizeAssist {
     /**
      * 根据对应的尺寸, 计算相应最符合的大小
      * @param max        是否使用最大的尺寸
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸) (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x = > 宽, point.y => 高
+     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
-     * @return Camera 拍照分辨率
+     * @return {@link Camera.Size} 拍照分辨率
      */
     private Camera.Size calcPictureSize(final boolean max, Point point, double distortion) {
         // 判断是否为 null
@@ -505,7 +515,7 @@ public final class CameraSizeAssist {
             }
         }
 
-        // 判断是否竖屏 point.x = > 宽, point.y => 高
+        // 判断是否竖屏 point.x => 宽, point.y => 高
         boolean isPortrait = point.y > point.x;
         // 如果是竖屏, 则修改
         if (isPortrait) {
@@ -588,10 +598,11 @@ public final class CameraSizeAssist {
     /**
      * 根据对应的尺寸, 计算相应最符合的大小
      * @param max        是否使用最大的尺寸
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸) (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x = > 宽, point.y => 高
+     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
      * @param minAccord  是否判断存在最小使用最小
-     * @return Camera 视频分辨率
+     * @return {@link Camera.Size} 视频分辨率
      */
     private Camera.Size calcVideoSize(final boolean max, Point point, double distortion, final boolean minAccord) {
         // 判断是否为 null
@@ -656,7 +667,7 @@ public final class CameraSizeAssist {
             }
         }
 
-        // 判断是否竖屏 point.x = > 宽, point.y => 高
+        // 判断是否竖屏 point.x => 宽, point.y => 高
         boolean isPortrait = point.y > point.x;
         // 如果是竖屏, 则修改
         if (isPortrait) {

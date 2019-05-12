@@ -304,7 +304,7 @@ public final class AnimationUtils {
      * @param toY               动画结束后在Y坐标的大小
      * @param pivotXType        缩放中心点的X坐标类型, 取值范围为 {@link Animation#ABSOLUTE}、
      *                          {@link Animation#RELATIVE_TO_SELF}、{@link Animation#RELATIVE_TO_PARENT}
-     * @param pivotXValue       缩放中心点的X坐标值, 当 pivotXType == ABSOLUTE 时，表示绝对位置；否则表示相对位置，1.0表示100%。
+     * @param pivotXValue       缩放中心点的X坐标值, 当 pivotXType == ABSOLUTE 时，表示绝对位置, 否则表示相对位置，1.0表示100%。
      * @param pivotYType        缩放中心点的Y坐标类型
      * @param pivotYValue       缩放中心点的Y坐标值
      * @param durationMillis    动画持续时间

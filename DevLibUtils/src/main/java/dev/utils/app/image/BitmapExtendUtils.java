@@ -1251,10 +1251,10 @@ public final class BitmapExtendUtils {
         android.content.ContentResolver resolver = DevUtils.getContext().getContentResolver();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeStream(new BufferedInputStream(resolver.openInputStream(uri), 16 * 1024), null, options);
-        // 获取图片的宽度、高度；
+        // 获取图片的宽度、高度
         float imgWidth = options.outWidth;
         float imgHeight = options.outHeight;
-        // 分别计算图片宽度、高度与目标宽度、高度的比例；取大于等于该比例的最小整数；
+        // 分别计算图片宽度、高度与目标宽度、高度的比例, 取大于等于该比例的最小整数
         int widthRatio = (int) Math.ceil(imgWidth / (float) targetWidth);
         int heightRatio = (int) Math.ceil(imgHeight / (float) targetHeight);
         options.inSampleSize = 1;
@@ -1265,7 +1265,7 @@ public final class BitmapExtendUtils {
                 options.inSampleSize = heightRatio;
             }
         }
-        // 设置好缩放比例后，加载图片进内容；
+        // 设置好缩放比例后，加载图片进内容
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeStream(new BufferedInputStream(resolver.openInputStream(uri), 16 * 1024), null, options);
     }

@@ -130,7 +130,7 @@ public class ImageProcessor {
         int width = mBitmap.getWidth();
         int height = mBitmap.getHeight();
 
-        /* 获取倒影图片，并创建一张宽度与原图相同，但高度等于原图的高度加上间距加上倒影的高度的图片，并创建画布。画布分为上中下三部分，上: 是原图；中: 是原图与倒影的间距；下: 是倒影 */
+        /* 获取倒影图片，并创建一张宽度与原图相同，但高度等于原图的高度加上间距加上倒影的高度的图片，并创建画布。画布分为上中下三部分，上: 是原图, 中: 是原图与倒影的间距, 下: 是倒影 */
         Bitmap reflectionImage = reverseByVertical(mBitmap);//
         Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapWithReflection);
