@@ -603,7 +603,7 @@ public final class DialogUtils {
      * @param singleChoiceListener 单选事件
      * @return
      */
-    public static AlertDialog createSingleChoiceDialog(final Context context, final @ArrayRes int itemsId, final int checkedItem, final String title, final Drawable icon,
+    public static AlertDialog createSingleChoiceDialog(final Context context, @ArrayRes final int itemsId, final int checkedItem, final String title, final Drawable icon,
                                                        final String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
         return createSingleChoiceDialog(context, itemsId, checkedItem, title, icon, null, positiveBtnText, singleChoiceListener, 0);
     }
@@ -620,7 +620,7 @@ public final class DialogUtils {
      * @param singleChoiceListener 单选事件
      * @return
      */
-    public static AlertDialog createSingleChoiceDialog(final Context context, final @ArrayRes int itemsId, final int checkedItem, final String title, final Drawable icon,
+    public static AlertDialog createSingleChoiceDialog(final Context context, @ArrayRes final int itemsId, final int checkedItem, final String title, final Drawable icon,
                                                        final String negativeBtnText, final String positiveBtnText, final SingleChoiceListener singleChoiceListener) {
         return createSingleChoiceDialog(context, itemsId, checkedItem, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
     }
@@ -637,7 +637,7 @@ public final class DialogUtils {
      * @param themeResId           样式
      * @return
      */
-    public static AlertDialog createSingleChoiceDialog(final Context context, final @ArrayRes int itemsId, final int checkedItem, final String title, final Drawable icon,
+    public static AlertDialog createSingleChoiceDialog(final Context context, @ArrayRes final int itemsId, final int checkedItem, final String title, final Drawable icon,
                                                        final String negativeBtnText, final String positiveBtnText, final SingleChoiceListener singleChoiceListener, @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
@@ -868,7 +868,7 @@ public final class DialogUtils {
      * @param multiChoiceListener 多选事件
      * @return
      */
-    public static AlertDialog createMultiChoiceDialog(final Context context, final @ArrayRes int itemsId, final boolean[] checkedItems, final String title, final Drawable icon,
+    public static AlertDialog createMultiChoiceDialog(final Context context, @ArrayRes final int itemsId, final boolean[] checkedItems, final String title, final Drawable icon,
                                                       final String positiveBtnText, final MultiChoiceListener multiChoiceListener) {
         return createMultiChoiceDialog(context, itemsId, checkedItems, title, icon, null, positiveBtnText, multiChoiceListener, 0);
     }
@@ -885,7 +885,7 @@ public final class DialogUtils {
      * @param multiChoiceListener 多选事件
      * @return
      */
-    public static AlertDialog createMultiChoiceDialog(final Context context, final @ArrayRes int itemsId, final boolean[] checkedItems, final String title, final Drawable icon,
+    public static AlertDialog createMultiChoiceDialog(final Context context, @ArrayRes final int itemsId, final boolean[] checkedItems, final String title, final Drawable icon,
                                                       final String negativeBtnText, final String positiveBtnText, final MultiChoiceListener multiChoiceListener) {
         return createMultiChoiceDialog(context, itemsId, checkedItems, title, icon, negativeBtnText, positiveBtnText, multiChoiceListener, 0);
     }
@@ -903,8 +903,10 @@ public final class DialogUtils {
      * @param themeResId          样式
      * @return
      */
-    public static AlertDialog createMultiChoiceDialog(final Context context, final @ArrayRes int itemsId, final boolean[] checkedItems, final String title, final Drawable icon,
-                                                      final String negativeBtnText, final String positiveBtnText, final MultiChoiceListener multiChoiceListener, final @StyleRes int themeResId) {
+    public static AlertDialog createMultiChoiceDialog(final Context context, @ArrayRes final int itemsId, final boolean[] checkedItems,
+                                                      final String title, final Drawable icon, final String negativeBtnText,
+                                                      final String positiveBtnText, final MultiChoiceListener multiChoiceListener,
+                                                      @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
             if (!isEmpty(title)) {
@@ -1015,8 +1017,9 @@ public final class DialogUtils {
      * @param themeResId          样式
      * @return
      */
-    public static AlertDialog createMultiChoiceDialog(final Context context, final CharSequence[] items, final boolean[] checkedItems, final String title, final Drawable icon,
-                                                      final String negativeBtnText, final String positiveBtnText, final MultiChoiceListener multiChoiceListener, final @StyleRes int themeResId) {
+    public static AlertDialog createMultiChoiceDialog(final Context context, final CharSequence[] items, final boolean[] checkedItems,
+                                                      final String title, final Drawable icon, final String negativeBtnText, final String positiveBtnText,
+                                                      final MultiChoiceListener multiChoiceListener, @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
             if (!isEmpty(title)) {

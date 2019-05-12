@@ -28,6 +28,12 @@ final class DevCacheManager {
     // 文件目录
     protected File mCacheDir;
 
+    /**
+     * 构造函数
+     * @param cacheDir   存储地址
+     * @param sizeLimit  文件大小限制
+     * @param countLimit 文件总数限制
+     */
     protected DevCacheManager(final File cacheDir, final long sizeLimit, final int countLimit) {
         this.mCacheDir = cacheDir;
         this.mSizeLimit = sizeLimit;
@@ -64,7 +70,7 @@ final class DevCacheManager {
 
     /**
      * 添加文件
-     * @param file
+     * @param file 文件
      */
     protected void put(final File file) {
         if (file == null) return;
@@ -99,7 +105,7 @@ final class DevCacheManager {
 
     /**
      * 获取文件
-     * @param key
+     * @param key 保存的 key
      * @return {@link File}
      */
     protected File get(final String key) {
@@ -115,7 +121,7 @@ final class DevCacheManager {
 
     /**
      * 创建文件对象
-     * @param key
+     * @param key 保存的 key
      * @return {@link File}
      */
     protected File newFile(final String key) {
@@ -127,7 +133,7 @@ final class DevCacheManager {
 
     /**
      * 删除文件
-     * @param key
+     * @param key 保存的 key
      * @return {@code true} 删除成功, {@code false} 删除失败
      */
     protected boolean remove(final String key) {
@@ -187,7 +193,7 @@ final class DevCacheManager {
 
     /**
      * 计算文件大小
-     * @param file
+     * @param file 文件
      * @return 文件大小
      */
     private long calculateSize(final File file) {

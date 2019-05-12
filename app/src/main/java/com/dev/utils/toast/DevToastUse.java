@@ -226,7 +226,7 @@ public final class DevToastUse {
          */
         @Override
         public int[] getPadding() {
-            return new int[] { 25, 10, 25, 10 };
+            return new int[]{25, 10, 25, 10};
         }
     }
 }

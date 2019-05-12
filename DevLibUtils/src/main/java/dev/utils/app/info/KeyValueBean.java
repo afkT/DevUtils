@@ -53,7 +53,7 @@ public class KeyValueBean {
      * @param value
      * @return
      */
-    public static KeyValueBean get(final @StringRes int resId, final String value) {
+    public static KeyValueBean get(@StringRes final int resId, final String value) {
         return new KeyValueBean(DevUtils.getContext().getString(resId), value);
     }
 }

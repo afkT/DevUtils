@@ -22,7 +22,7 @@
 | getAsJSONArray | 读取 JSONArray 数据 |
 | getAsBinary | 获取 byte[] 数据 |
 | getAsObject | 读取 Serializable 数据 |
-| getAsBitmap | 读取 bitmap 数据 |
+| getAsBitmap | 读取 Bitmap 数据 |
 | getAsDrawable | 读取 Drawable 数据 |
 | file | 获取缓存文件 |
 | remove | 移除某个key |

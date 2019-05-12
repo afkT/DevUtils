@@ -10,6 +10,7 @@ import android.view.animation.AnticipateOvershootInterpolator;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
@@ -94,8 +95,8 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个旋转动画
      */
-    public static RotateAnimation getRotateAnimation(final float fromDegrees, final float toDegrees, final float pivotX, final float pivotY, final long durationMillis,
-                                                     final AnimationListener animationListener) {
+    public static RotateAnimation getRotateAnimation(final float fromDegrees, final float toDegrees, final float pivotX, final float pivotY,
+                                                     final long durationMillis, final AnimationListener animationListener) {
         RotateAnimation rotateAnimation = new RotateAnimation(fromDegrees, toDegrees, pivotX, pivotY);
         rotateAnimation.setDuration(durationMillis);
         if (animationListener != null) {
@@ -301,7 +302,8 @@ public final class AnimationUtils {
      * @param toX               动画结束后在X坐标的大小
      * @param fromY             动画开始前在Y坐标的大小
      * @param toY               动画结束后在Y坐标的大小
-     * @param pivotXType        缩放中心点的X坐标类型, 取值范围为 {@link Animation#ABSOLUTE}、{@link Animation#RELATIVE_TO_SELF}、{@link Animation#RELATIVE_TO_PARENT}
+     * @param pivotXType        缩放中心点的X坐标类型, 取值范围为 {@link Animation#ABSOLUTE}、
+     *                          {@link Animation#RELATIVE_TO_SELF}、{@link Animation#RELATIVE_TO_PARENT}
      * @param pivotXValue       缩放中心点的X坐标值, 当 pivotXType == ABSOLUTE 时，表示绝对位置；否则表示相对位置，1.0表示100%。
      * @param pivotYType        缩放中心点的Y坐标类型
      * @param pivotYValue       缩放中心点的Y坐标值
@@ -540,17 +542,17 @@ public final class AnimationUtils {
      * @param fromYValue     动画开始前的Y坐标值
      * @param toYType        动画结束后的Y坐标类型
      * @param toYValue       动画结束后的Y坐标值
-     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param interpolator   动画周期
      * @param durationMillis 动画持续时间
      * @return 一个视图移动动画
      */
     public static TranslateAnimation getTranslateAnimation(final int fromXType, final float fromXValue, final int toXType, final float toXValue,
                                                            final int fromYType, final float fromYValue, final int toYType, final float toYValue,
-                                                           final float cycles, final long durationMillis) {
+                                                           final Interpolator interpolator, final long durationMillis) {
         TranslateAnimation translateAnimation = new TranslateAnimation(fromXType, fromXValue, toXType, toXValue, fromYType, fromYValue, toYType, toYValue);
         translateAnimation.setDuration(durationMillis);
-        if (cycles > 0.0) {
-            translateAnimation.setInterpolator(new CycleInterpolator(cycles));
+        if (interpolator != null) {
+            translateAnimation.setInterpolator(interpolator);
         }
         return translateAnimation;
     }
@@ -561,16 +563,16 @@ public final class AnimationUtils {
      * @param toXDelta       动画结束的X轴坐标
      * @param fromYDelta     动画开始的Y轴坐标
      * @param toYDelta       动画结束的Y轴坐标
-     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param interpolator   动画周期
      * @param durationMillis 动画持续时间
      * @return 一个视图移动动画
      */
     public static TranslateAnimation getTranslateAnimation(final float fromXDelta, final float toXDelta, final float fromYDelta, final float toYDelta,
-                                                           final float cycles, final long durationMillis) {
+                                                           final Interpolator interpolator, final long durationMillis) {
         TranslateAnimation translateAnimation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
         translateAnimation.setDuration(durationMillis);
-        if (cycles > 0.0) {
-            translateAnimation.setInterpolator(new CycleInterpolator(cycles));
+        if (interpolator != null) {
+            translateAnimation.setInterpolator(interpolator);
         }
         return translateAnimation;
     }
@@ -586,7 +588,8 @@ public final class AnimationUtils {
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation(final float fromXDelta, final float toXDelta, final float cycles, final long durationMillis) {
-        return getTranslateAnimation(fromXDelta, toXDelta, 0.0f, 0.0f, cycles, durationMillis);
+        Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
+        return getTranslateAnimation(fromXDelta, toXDelta, 0.0f, 0.0f, interpolator, durationMillis);
     }
 
     /**
@@ -596,7 +599,8 @@ public final class AnimationUtils {
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation(final float cycles, final long durationMillis) {
-        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, cycles, durationMillis);
+        Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
+        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, interpolator, durationMillis);
     }
 
     /**
@@ -605,7 +609,8 @@ public final class AnimationUtils {
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation(final float cycles) {
-        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, cycles, 700);
+        Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
+        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, interpolator, 700);
     }
 
     /**
@@ -614,7 +619,7 @@ public final class AnimationUtils {
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation(final long durationMillis) {
-        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, 7, durationMillis);
+        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, new CycleInterpolator(7), durationMillis);
     }
 
     /**
@@ -622,6 +627,6 @@ public final class AnimationUtils {
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation() {
-        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, 7, 700);
+        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, new CycleInterpolator(7), 700);
     }
 }

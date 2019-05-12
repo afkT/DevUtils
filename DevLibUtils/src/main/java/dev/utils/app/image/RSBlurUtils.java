@@ -36,7 +36,7 @@ public final class RSBlurUtils {
      * @throws RSRuntimeException
      */
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static Bitmap blur(final Bitmap bitmap, final @IntRange(from = 0, to = 25) int radius) throws RSRuntimeException {
+    public static Bitmap blur(final Bitmap bitmap, @IntRange(from = 0, to = 25) final int radius) throws RSRuntimeException {
         try {
             RenderScript rs = RenderScript.create(DevUtils.getContext());
             Allocation input = Allocation.createFromBitmap(rs, bitmap, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);

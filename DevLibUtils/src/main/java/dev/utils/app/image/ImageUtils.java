@@ -402,7 +402,7 @@ public final class ImageUtils {
      * @param borderColor 边框颜色
      * @return 圆形图片
      */
-    public static Bitmap toRound(final Bitmap src, final @IntRange(from = 0) int borderSize, final @ColorInt int borderColor) {
+    public static Bitmap toRound(final Bitmap src, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor) {
         return toRound(src, borderSize, borderColor, false);
     }
 
@@ -414,7 +414,7 @@ public final class ImageUtils {
      * @param borderColor 边框颜色
      * @return 圆形图片
      */
-    public static Bitmap toRound(final Bitmap src, final @IntRange(from = 0) int borderSize, final @ColorInt int borderColor, final boolean recycle) {
+    public static Bitmap toRound(final Bitmap src, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor, final boolean recycle) {
         if (isEmptyBitmap(src)) return null;
         int width = src.getWidth();
         int height = src.getHeight();
@@ -475,7 +475,7 @@ public final class ImageUtils {
      * @param borderColor 边框颜色
      * @return 圆角图片
      */
-    public static Bitmap toRoundCorner(final Bitmap src, final float radius, final @IntRange(from = 0) int borderSize, final @ColorInt int borderColor) {
+    public static Bitmap toRoundCorner(final Bitmap src, final float radius, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor) {
         return toRoundCorner(src, radius, borderSize, borderColor, false);
     }
 
@@ -488,7 +488,7 @@ public final class ImageUtils {
      * @param recycle     是否回收
      * @return 圆角图片
      */
-    public static Bitmap toRoundCorner(final Bitmap src, final float radius, final @IntRange(from = 0) int borderSize, final @ColorInt int borderColor, final boolean recycle) {
+    public static Bitmap toRoundCorner(final Bitmap src, final float radius, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor, final boolean recycle) {
         if (isEmptyBitmap(src)) return null;
         int width = src.getWidth();
         int height = src.getHeight();

@@ -23,7 +23,9 @@ public final class LoggerUse {
 
     // 日志 TAG
     private static final String LOG_TAG = LoggerUse.class.getSimpleName();
-    /** 日志文件夹路径 */
+    /**
+     * 日志文件夹路径
+     */
     private static final String LOG_SD_PATH = Config.SDP_PATH + File.separator + "Logger" + File.separator;
 
     // ========

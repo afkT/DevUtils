@@ -972,7 +972,7 @@ public final class ToastTintUtils {
      * @param id
      * @return
      */
-    private static Drawable getDrawable(final Context context, final @DrawableRes int id) {
+    private static Drawable getDrawable(final Context context, @DrawableRes final int id) {
         if (context == null) {
             return null;
         }
@@ -988,7 +988,7 @@ public final class ToastTintUtils {
      * @param tintColor
      * @return
      */
-    private static Drawable tintIcon(final Drawable drawable, final @ColorInt int tintColor) {
+    private static Drawable tintIcon(final Drawable drawable, @ColorInt final int tintColor) {
         if (drawable != null) {
             try {
                 drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
@@ -1005,7 +1005,7 @@ public final class ToastTintUtils {
      * @param tintColor
      * @return
      */
-    private static Drawable tint9PatchDrawableFrame(final Context context, final @ColorInt int tintColor) {
+    private static Drawable tint9PatchDrawableFrame(final Context context, @ColorInt final int tintColor) {
         try {
             final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, dev.utils.R.drawable.dev_toast_frame);
             return tintIcon(toastDrawable, tintColor);

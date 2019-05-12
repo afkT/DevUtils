@@ -42,7 +42,7 @@ public final class TimerManager {
     // ============================
 
     /**
-     * 回收资源
+     * 回收定时器资源
      */
     public static void gc() {
         synchronized (mTimerLists) {
@@ -259,7 +259,7 @@ public final class TimerManager {
     // ==========================================================
 
     /**
-     * 创建定时器 => 立即执行,无限循环,通知默认what
+     * 创建定时器 => 立即执行,无限循环,通知默认 what
      * @param handler 通知的 Handler
      * @param period  循环时间 - 每隔多少秒执行一次
      * @return 定时器抽象对象 {@link AbsTimer}
@@ -269,7 +269,7 @@ public final class TimerManager {
     }
 
     /**
-     * 创建定时器 => 无限循环,通知默认what
+     * 创建定时器 => 无限循环,通知默认 what
      * @param handler 通知的 Handler
      * @param delay   延迟时间 - 多少毫秒后开始执行
      * @param period  循环时间 - 每隔多少秒执行一次
@@ -280,7 +280,7 @@ public final class TimerManager {
     }
 
     /**
-     * 创建定时器 => 立即执行,通知默认what
+     * 创建定时器 => 立即执行,通知默认 what
      * @param handler      通知的 Handler
      * @param period       循环时间 - 每隔多少秒执行一次
      * @param triggerLimit 触发次数上限(-1,表示无限循环)
@@ -293,7 +293,7 @@ public final class TimerManager {
     /**
      * 创建定时器 => 立即执行,无限循环
      * @param handler 通知的 Handler
-     * @param what    通知的what
+     * @param what    通知的 what
      * @param period  循环时间 - 每隔多少秒执行一次
      * @return 定时器抽象对象 {@link AbsTimer}
      */
@@ -304,7 +304,7 @@ public final class TimerManager {
     /**
      * 创建定时器 => 无限循环
      * @param handler 通知的 Handler
-     * @param what    通知的what
+     * @param what    通知的 what
      * @param delay   延迟时间 - 多少毫秒后开始执行
      * @param period  循环时间 - 每隔多少秒执行一次
      * @return 定时器抽象对象 {@link AbsTimer}
@@ -316,7 +316,7 @@ public final class TimerManager {
     /**
      * 创建定时器 => 立即执行
      * @param handler      通知的 Handler
-     * @param what         通知的what
+     * @param what         通知的 what
      * @param period       循环时间 - 每隔多少秒执行一次
      * @param triggerLimit 触发次数上限(-1,表示无限循环)
      * @return 定时器抽象对象 {@link AbsTimer}
@@ -328,7 +328,7 @@ public final class TimerManager {
     /**
      * 创建定时器
      * @param handler      通知的 Handler
-     * @param what         通知的what
+     * @param what         通知的 what
      * @param delay        延迟时间 - 多少毫秒后开始执行
      * @param period       循环时间 - 每隔多少秒执行一次
      * @param triggerLimit 触发次数上限(-1,表示无限循环)
@@ -352,7 +352,7 @@ public final class TimerManager {
      */
     public static abstract class AbsTimer {
 
-        // 默认通知的what
+        // 默认通知的 what
         public static final int TIMER_NOTIFY_WHAT = 50000;
         // 状态标识 - 是否标记清除
         private boolean markSweep = true;
@@ -464,7 +464,7 @@ public final class TimerManager {
         public abstract AbsTimer setHandler(Handler handler);
 
         /**
-         * 设置通知的 What
+         * 设置通知的 what
          * @param notifyWhat 通知 what
          * @return 定时器抽象对象 {@link AbsTimer}
          */
@@ -681,7 +681,7 @@ public final class TimerManager {
         }
 
         /**
-         * 设置通知的 What
+         * 设置通知的 what
          * @param notifyWhat 通知 what
          * @return 定时器抽象对象 {@link AbsTimer}
          */

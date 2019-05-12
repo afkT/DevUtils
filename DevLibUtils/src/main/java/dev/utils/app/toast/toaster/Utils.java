@@ -154,7 +154,7 @@ final class Utils {
      * @param view
      * @param drawable
      */
-    public static void setBackground(final @NonNull View view, final Drawable drawable) {
+    public static void setBackground(@NonNull final View view, final Drawable drawable) {
         if (view != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                 view.setBackground(drawable);
@@ -169,7 +169,7 @@ final class Utils {
      * @param id
      * @return
      */
-    public static Drawable getDrawable(final Context context, final @DrawableRes int id) {
+    public static Drawable getDrawable(final Context context, @DrawableRes final int id) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             return context.getDrawable(id);
         else
@@ -182,7 +182,7 @@ final class Utils {
      * @param tintColor
      * @return
      */
-    public static Drawable tintIcon(final @NonNull Drawable drawable, final @ColorInt int tintColor) {
+    public static Drawable tintIcon(@NonNull final Drawable drawable, @ColorInt final int tintColor) {
         if (drawable != null) {
             try {
                 drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
@@ -199,7 +199,7 @@ final class Utils {
      * @param tintColor
      * @return
      */
-    public static Drawable tint9PatchDrawableFrame(final Context context, final @ColorInt int tintColor) {
+    public static Drawable tint9PatchDrawableFrame(final Context context, @ColorInt final int tintColor) {
         try {
             final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, dev.utils.R.drawable.dev_toast_frame);
             return tintIcon(toastDrawable, tintColor);

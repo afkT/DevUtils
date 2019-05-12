@@ -23,10 +23,12 @@ final class DevCacheUtils {
 
     // 日志 TAG
     private static final String TAG = DevCacheUtils.class.getSimpleName();
+    // 空格
+    private static final char mSeparator = ' ';
 
     /**
      * 判断缓存的 String 数据是否到期
-     * @param data
+     * @param data 待存储数据
      * @return {@code true} 到期了, {@code false} 还没有到期
      */
     public static boolean isDue(final String data) {
@@ -36,7 +38,7 @@ final class DevCacheUtils {
 
     /**
      * 判断缓存的 byte 数据是否到期
-     * @param data
+     * @param data 待存储数据
      * @return {@code true} 到期了, {@code false} 还没有到期
      */
     public static boolean isDue(final byte[] data) {
@@ -65,9 +67,9 @@ final class DevCacheUtils {
 
     /**
      * 保存数据, 创建时间信息
-     * @param second
-     * @param strInfo
-     * @return
+     * @param second  时间(秒)
+     * @param strInfo 字符串信息
+     * @return 字符串, 包含创建时间、存储数据等
      */
     public static String newStringWithDateInfo(final int second, final String strInfo) {
         return createDateInfo(second) + strInfo;
@@ -75,9 +77,9 @@ final class DevCacheUtils {
 
     /**
      * 保存数据, 创建时间信息
-     * @param second
-     * @param data
-     * @return
+     * @param second 时间(秒)
+     * @param data   待存储数据
+     * @return byte[], 包含创建时间、存储数据等
      */
     public static byte[] newByteArrayWithDateInfo(final int second, final byte[] data) {
         if (data != null) {
@@ -94,12 +96,12 @@ final class DevCacheUtils {
         return null;
     }
 
-    private static final char mSeparator = ' ';
+    // =
 
     /**
      * 创建时间信息
-     * @param second
-     * @return
+     * @param second 时间(秒)
+     * @return 时间信息字符串
      */
     private static String createDateInfo(final int second) {
         String currentTime = System.currentTimeMillis() + "";
@@ -111,8 +113,8 @@ final class DevCacheUtils {
 
     /**
      * 清空时间信息
-     * @param strInfo
-     * @return
+     * @param strInfo 存储数据
+     * @return 存储数据
      */
     public static String clearDateInfo(final String strInfo) {
         if (strInfo != null && hasDateInfo(strInfo.getBytes())) {
@@ -123,8 +125,8 @@ final class DevCacheUtils {
 
     /**
      * 清空时间信息
-     * @param data
-     * @return
+     * @param data 存储数据
+     * @return 存储数据
      */
     public static byte[] clearDateInfo(final byte[] data) {
         if (hasDateInfo(data)) {
@@ -138,9 +140,9 @@ final class DevCacheUtils {
     }
 
     /**
-     * 检验时间信息
-     * @param data
-     * @return
+     * 判断是否时间信息
+     * @param data 时间数据
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean hasDateInfo(final byte[] data) {
         return data != null && data.length > 15 && data[13] == '-' && indexOf(data, mSeparator) > 14;
@@ -148,8 +150,8 @@ final class DevCacheUtils {
 
     /**
      * 获取时间信息 - 保存时间、过期时间
-     * @param data
-     * @return
+     * @param data 时间数据
+     * @return String[]
      */
     private static String[] getDateInfoFromDate(final byte[] data) {
         if (hasDateInfo(data)) {
@@ -167,6 +169,12 @@ final class DevCacheUtils {
         return null;
     }
 
+    /**
+     * 获取字符所在的索引
+     * @param data 数据
+     * @param ch   字符
+     * @return 对应的索引
+     */
     private static int indexOf(final byte[] data, final char ch) {
         if (data != null) {
             for (int i = 0; i < data.length; i++) {
@@ -178,6 +186,14 @@ final class DevCacheUtils {
         return -1;
     }
 
+    /**
+     * 复制 byte[] 范围
+     * @param original 原始数据
+     * @param from     开始位置
+     * @param to       所需位置
+     * @return byte[]
+     * @throws Exception 索引异常
+     */
     private static byte[] copyOfRange(final byte[] original, final int from, final int to) throws Exception {
         int newLength = to - from;
         if (newLength < 0)
@@ -189,9 +205,9 @@ final class DevCacheUtils {
     }
 
     /**
-     * Bitmap → byte[]
-     * @param bitmap
-     * @return
+     * Bitmap 转 byte[]
+     * @param bitmap {@link Bitmap}
+     * @return byte[]
      */
     public static byte[] bitmapToBytes(final Bitmap bitmap) {
         if (bitmap == null) return null;
@@ -206,9 +222,9 @@ final class DevCacheUtils {
     }
 
     /**
-     * byte[] → Bitmap
-     * @param bytes
-     * @return
+     * byte[] 转 Bitmap
+     * @param bytes byte[]
+     * @return {@link Bitmap}
      */
     public static Bitmap bytesToBitmap(final byte[] bytes) {
         if (bytes != null && bytes.length != 0) {
@@ -222,9 +238,9 @@ final class DevCacheUtils {
     }
 
     /**
-     * Drawable → Bitmap
-     * @param drawable
-     * @return
+     * Drawable 转 Bitmap
+     * @param drawable {@link Drawable}
+     * @return {@link Bitmap}
      */
     public static Bitmap drawableToBitmap(final Drawable drawable) {
         if (drawable == null) return null;
@@ -249,9 +265,9 @@ final class DevCacheUtils {
     }
 
     /**
-     * Bitmap → Drawable
-     * @param bitmap
-     * @return
+     * Bitmap 转 Drawable
+     * @param bitmap {@link Bitmap}
+     * @return {@link Drawable}
      */
     @SuppressWarnings("deprecation")
     public static Drawable bitmapToDrawable(final Bitmap bitmap) {

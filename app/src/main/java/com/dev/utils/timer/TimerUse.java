@@ -19,7 +19,9 @@ public final class TimerUse {
     private static final String TAG = TimerUse.class.getSimpleName();
     // 创建定时器
     TimerManager.AbsTimer absTimer;
-    /** 通知常量 */
+    /**
+     * 通知常量
+     */
     private final int NOTIFY = 100;
 
     /**
@@ -27,17 +29,17 @@ public final class TimerUse {
      */
     private void timerUse() {
 
-//        /** 创建定时器 => 立即执行,无限循环,通知默认what */
+//        /** 创建定时器 => 立即执行,无限循环,通知默认 what */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long period) {
 //            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, -1);
 //        }
 //
-//        /** 创建定时器 => 无限循环,通知默认what */
+//        /** 创建定时器 => 无限循环,通知默认 what */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long delay, long period) {
 //            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
 //        }
 //
-//        /** 创建定时器 => 立即执行,通知默认what */
+//        /** 创建定时器 => 立即执行,通知默认 what */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long period, int triggerLimit) {
 //            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, triggerLimit);
 //        }

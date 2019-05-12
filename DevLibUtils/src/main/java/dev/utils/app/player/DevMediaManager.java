@@ -136,7 +136,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @param rawId 播放资源
      * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
-    public boolean playPrepareRaw(final @RawRes int rawId) {
+    public boolean playPrepareRaw(@RawRes final int rawId) {
         return playPrepareRaw(rawId, false);
     }
 
@@ -146,7 +146,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @param isLooping 是否循环播放
      * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
-    public boolean playPrepareRaw(final @RawRes int rawId, final boolean isLooping) {
+    public boolean playPrepareRaw(@RawRes final int rawId, final boolean isLooping) {
         try {
             mPlayRawId = rawId;
             mPlayUri = null;

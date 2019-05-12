@@ -5,6 +5,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.CycleInterpolator;
+import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 
 /**
@@ -27,7 +28,8 @@ public final class ViewAnimationUtils {
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
      */
-    public static void invisibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick, final AnimationListener animationListener) {
+    public static void invisibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick,
+                                            final AnimationListener animationListener) {
         if (view != null && view.getVisibility() != View.INVISIBLE) {
             view.setVisibility(View.INVISIBLE);
             // 获取动画
@@ -138,7 +140,8 @@ public final class ViewAnimationUtils {
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
      */
-    public static void goneViewByAlpha(final View view, final long durationMillis, final boolean isBanClick, final AnimationListener animationListener) {
+    public static void goneViewByAlpha(final View view, final long durationMillis, final boolean isBanClick,
+                                       final AnimationListener animationListener) {
         if (view != null && view.getVisibility() != View.GONE) {
             view.setVisibility(View.GONE);
             // 获取动画
@@ -249,7 +252,8 @@ public final class ViewAnimationUtils {
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
      */
-    public static void visibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick, final AnimationListener animationListener) {
+    public static void visibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick,
+                                          final AnimationListener animationListener) {
         if (view != null && view.getVisibility() != View.VISIBLE) {
             view.setVisibility(View.VISIBLE);
             // 获取动画
@@ -362,14 +366,15 @@ public final class ViewAnimationUtils {
      * @param toXDelta       动画结束的X轴坐标
      * @param fromYDelta     动画开始的Y轴坐标
      * @param toYDelta       动画结束的Y轴坐标
-     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param interpolator   动画周期
      * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
      */
     public static void translate(final View view, final float fromXDelta, final float toXDelta,
-                                 final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis, final boolean isBanClick) {
+                                 final float fromYDelta, final float toYDelta, final Interpolator interpolator,
+                                 final long durationMillis, final boolean isBanClick) {
         if (view != null) {
-            TranslateAnimation animation = AnimationUtils.getTranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta, cycles, durationMillis);
+            TranslateAnimation animation = AnimationUtils.getTranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta, interpolator, durationMillis);
             animation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -403,8 +408,28 @@ public final class ViewAnimationUtils {
      * @param toYDelta       动画结束的Y轴坐标
      * @param cycles         动画周期 {@link CycleInterpolator}
      * @param durationMillis 动画持续时间
+     * @param isBanClick     在执行动画的过程中是否禁止点击
      */
-    public static void translate(final View view, final float fromXDelta, final float toXDelta, final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis) {
+    public static void translate(final View view, final float fromXDelta, final float toXDelta,
+                                 final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis, final boolean isBanClick) {
+        if (view != null) {
+            Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
+            translate(view, fromXDelta, toXDelta, fromYDelta, toYDelta, interpolator, durationMillis, isBanClick);
+        }
+    }
+
+    /**
+     * 视图移动
+     * @param view           待移动的视图
+     * @param fromXDelta     动画开始的X轴坐标
+     * @param toXDelta       动画结束的X轴坐标
+     * @param fromYDelta     动画开始的Y轴坐标
+     * @param toYDelta       动画结束的Y轴坐标
+     * @param cycles         动画周期 {@link CycleInterpolator}
+     * @param durationMillis 动画持续时间
+     */
+    public static void translate(final View view, final float fromXDelta, final float toXDelta,
+                                 final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis) {
         translate(view, fromXDelta, toXDelta, fromYDelta, toYDelta, cycles, durationMillis, false);
     }
 
@@ -419,7 +444,8 @@ public final class ViewAnimationUtils {
      * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
      */
-    public static void shake(final View view, final float fromXDelta, final float toXDelta, final float cycles, final long durationMillis, final boolean isBanClick) {
+    public static void shake(final View view, final float fromXDelta, final float toXDelta,
+                             final float cycles, final long durationMillis, final boolean isBanClick) {
         translate(view, fromXDelta, toXDelta, 0.0f, 0.0f, cycles, durationMillis, isBanClick);
     }
 

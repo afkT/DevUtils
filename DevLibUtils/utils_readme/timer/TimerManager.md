@@ -46,7 +46,7 @@
 | closeAll | 关闭全部任务 |
 | closeInfiniteTask | 关闭所有无限循环的任务 |
 | closeMark | 关闭所有符合对应的字符串标记的定时器任务 |
-| createTimer | 创建定时器 => 立即执行,无限循环,通知默认what |
+| createTimer | 创建定时器 => 立即执行,无限循环,通知默认 what |
 | getMarkId | 获取标记id |
 | getMarkStr | 获取标记字符串 |
 | setMarkId | 设置标记id |
@@ -67,17 +67,17 @@
 
 #### 使用方法
 ```java
-/** 创建定时器 => 立即执行,无限循环,通知默认what */
+/** 创建定时器 => 立即执行,无限循环,通知默认 what */
 public static TimerManager.AbsTimer createTimer(Handler handler, long period) {
     return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, -1);
 }
 
-/** 创建定时器 => 无限循环,通知默认what */
+/** 创建定时器 => 无限循环,通知默认 what */
 public static TimerManager.AbsTimer createTimer(Handler handler, long delay, long period) {
     return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
 }
 
-/** 创建定时器 => 立即执行,通知默认what */
+/** 创建定时器 => 立即执行,通知默认 what */
 public static TimerManager.AbsTimer createTimer(Handler handler, long period, int triggerLimit) {
     return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, triggerLimit);
 }
