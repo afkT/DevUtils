@@ -72,7 +72,7 @@ public final class ViewUtils {
     // =
 
     /**
-     * 判断View 是否为null
+     * 判断 View 是否为 null
      * @param view
      * @return {@code true} is null, {@code false} not null
      */
@@ -81,7 +81,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断View 是否为null
+     * 判断 View 是否为 null
      * @param views
      * @return {@code true} is null, {@code false} not null
      */
@@ -99,7 +99,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断View 是否显示
+     * 判断 View 是否显示
      * @param view
      * @return
      */
@@ -142,7 +142,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断View 是否隐藏占位
+     * 判断 View 是否隐藏占位
      * @param view
      * @return
      */
@@ -151,7 +151,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断View 是否隐藏占位
+     * 判断 View 是否隐藏占位
      * @param view
      * @param defaultValue
      * @return
@@ -166,7 +166,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断View 是否隐藏
+     * 判断 View 是否隐藏
      * @param view
      * @return
      */
@@ -175,7 +175,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断View 是否隐藏
+     * 判断 View 是否隐藏
      * @param view
      * @param defaultValue
      * @return
@@ -581,7 +581,7 @@ public final class ViewUtils {
     public static int calcListViewItemHeight(final ListView listView, final boolean isSet) {
         // 获取 Adapter
         ListAdapter listAdapter = listView.getAdapter();
-        // 防止为null
+        // 防止为 null
         if (listAdapter == null) {
             return 0;
         }
@@ -631,7 +631,7 @@ public final class ViewUtils {
     public static int calcGridViewItemHeight(final GridView gridView, final int numColumns, final boolean isSet) {
         // 获取 Adapter
         ListAdapter listAdapter = gridView.getAdapter();
-        // 防止为null
+        // 防止为 null
         if (listAdapter == null) {
             return 0;
         }

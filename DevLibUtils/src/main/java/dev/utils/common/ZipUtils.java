@@ -171,7 +171,7 @@ public final class ZipUtils {
         rootPath = rootPath + (isSpace(rootPath) ? "" : File.separator) + resFile.getName();
         if (resFile.isDirectory()) {
             File[] fileList = resFile.listFiles();
-            // 如果是空文件夹那么创建它，我把'/'换为File.separator测试就不成功，eggPain
+            // 如果是空文件夹那么创建它
             if (fileList == null || fileList.length == 0) {
                 ZipEntry entry = new ZipEntry(rootPath + '/');
                 entry.setComment(comment);

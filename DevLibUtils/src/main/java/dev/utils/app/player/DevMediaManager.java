@@ -76,7 +76,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "destroyMedia");
         }
-        // 重置为null
+        // 重置为 null
         mMediaPlayer = null;
         // 清空播放信息
         clearMPlayerData();
@@ -284,7 +284,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @return {@code true} 执行成功, {@code false} 执行中断(失败)
      */
     public boolean playPrepare(final MediaSet mediaSet) {
-        // 防止为null
+        // 防止为 null
         if (mediaSet == null) {
             return false;
         }
@@ -537,7 +537,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     // ===============
 
     /**
-     * 判断 MediaPlayer 是否为null
+     * 判断 MediaPlayer 是否为 null
      * @return
      */
     public boolean isNullMediaPlayer() {
@@ -545,7 +545,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     }
 
     /**
-     * 判断 MediaPlayer 是否不为null
+     * 判断 MediaPlayer 是否不为 null
      * @return
      */
     public boolean isNotNullMediaPlayer() {

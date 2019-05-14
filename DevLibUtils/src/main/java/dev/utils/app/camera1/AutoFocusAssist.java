@@ -71,7 +71,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     public AutoFocusAssist(final Camera camera, final long interval) {
         this.mCamera = camera;
         this.mInterval = interval;
-        // 防止为null
+        // 防止为 null
         if (camera != null) {
             // 获取对象对焦模式
             String currentFocusMode = camera.getParameters().getFocusMode();
@@ -92,7 +92,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     public static void setFocusModes(final Collection<String> collection) {
         // 清空旧的
         FOCUS_MODES.clear();
-        // 防止为null
+        // 防止为 null
         if (collection != null) {
             FOCUS_MODES.addAll(collection);
         }
@@ -142,7 +142,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      */
     @SuppressLint("NewApi")
     private synchronized void autoFocusAgainLater() {
-        // 不属于停止, 并且任务等于null, 才处理
+        // 不属于停止, 并且任务等于 null, 才处理
         if (!mStopped && mOutstandingTask == null) {
             // 初始化任务
             AutoFocusTask newTask = new AutoFocusTask();
@@ -170,7 +170,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
         }
         // 支持对焦才处理
         if (mUseAutoFocus) {
-            // 重置任务为null
+            // 重置任务为 null
             mOutstandingTask = null;
             // 不属于停止 并且 非对焦中
             if (!mStopped && !mFocusing) {

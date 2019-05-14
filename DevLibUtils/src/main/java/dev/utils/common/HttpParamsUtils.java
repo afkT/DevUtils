@@ -45,15 +45,15 @@ public final class HttpParamsUtils {
             int valLength = 0;
             // 进行循环遍历
             for (String val : keyValues) {
-                // 数据不为null
+                // 数据不为 null
                 if (val != null && (valLength = val.length()) != 0) {
                     // 获取首位 = 索引
                     int indexOf = val.indexOf('=');
                     // 不存在则不处理
                     if (indexOf != -1) {
-                        // 获取key
+                        // 获取 key
                         String key = val.substring(0, indexOf);
-                        // 获取value
+                        // 获取 value
                         String value = null;
                         // 防止资源浪费
                         if (indexOf + 1 == valLength) {
@@ -193,7 +193,7 @@ public final class HttpParamsUtils {
 
     // 正常数据
     // objStr[key] => sex=男&name=Ttt
-    // 方法会进行 url编码
+    // 方法会进行 URL 编码
     // objStr[key] => sex%3D%E7%94%B7%26name%3DTtt
 
     /**
@@ -237,9 +237,9 @@ public final class HttpParamsUtils {
     // =
 
     /**
-     * 进行 URL 编码,默认UTF-8
+     * 进行 URL 编码, 默认 UTF-8
      * @param str 待处理字符串
-     * @return 字符串 UTF-8 编码后, 再进行 Url 编码后的字符串
+     * @return 字符串 UTF-8 编码后, 再进行 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str) {
         return toUrlEncode(str, "UTF-8");
@@ -249,7 +249,7 @@ public final class HttpParamsUtils {
      * 进行 URL 编码
      * @param str 待处理字符串
      * @param enc 编码格式
-     * @return 指定编码格式编码后, 再进行 Url 编码后的字符串
+     * @return 指定编码格式编码后, 再进行 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str, final String enc) {
         if (str == null || enc == null) return null;

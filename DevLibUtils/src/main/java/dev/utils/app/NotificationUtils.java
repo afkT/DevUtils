@@ -185,7 +185,7 @@ public final class NotificationUtils {
             builder.setContentText(msg);
             // 设置消息提醒，震动 | 声音
             builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND);
-            // 将AutoCancel设为true后，当你点击通知栏的notification后，它会自动被取消消失
+            // 将AutoCancel设为 true 后，当你点击通知栏的notification后，它会自动被取消消失
             builder.setAutoCancel(isAutoCancel);
             // 设置时间
             builder.setWhen(System.currentTimeMillis());

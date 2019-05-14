@@ -53,12 +53,12 @@ final class LoggerPrinter implements IPrinter {
     }
 
     /**
-     * 默认参数初始化,防止设置信息为null
+     * 默认参数初始化,防止设置信息为 null
      * @return 日志配置
      */
     @Override
     public LogConfig init() {
-        // 判断日志配置信息是否等于null
+        // 判断日志配置信息是否等于 null
         if (LOG_CONFIG == null) {
             // 生成默认配置信息
             LOG_CONFIG = new LogConfig();
@@ -74,7 +74,7 @@ final class LoggerPrinter implements IPrinter {
     @Override
     public void init(LogConfig lConfig) {
         LOG_CONFIG = lConfig;
-        // 防止日志配置参数为null
+        // 防止日志配置参数为 null
         init();
     }
 
@@ -142,13 +142,13 @@ final class LoggerPrinter implements IPrinter {
         }
         // 日志 TAG
         String tag = lConfig.tag;
-        // 判断传入JSON格式信息是否为null
+        // 判断传入 JSON 格式信息是否为 null
         if (TextUtils.isEmpty(json)) {
             logHandle(lConfig, tag, Log.DEBUG, "Empty/Null json content");
             return;
         }
         try {
-            // 属于对象的JSON格式信息
+            // 属于对象的 JSON 格式信息
             if (json.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(json);
                 // 进行缩进
@@ -156,7 +156,7 @@ final class LoggerPrinter implements IPrinter {
                 // 打印信息
                 logHandle(lConfig, tag, Log.DEBUG, message);
             } else if (json.startsWith("[")) {
-                // 属于数据的JSON格式信息
+                // 属于数据的 JSON 格式信息
                 JSONArray jsonArray = new JSONArray(json);
                 // 进行缩进
                 String message = jsonArray.toString(LogConstants.JSON_INDENT);
@@ -192,7 +192,7 @@ final class LoggerPrinter implements IPrinter {
         }
         // 日志 TAG
         String tag = lConfig.tag;
-        // 判断传入XML格式信息是否为null
+        // 判断传入 XML 格式信息是否为 null
         if (TextUtils.isEmpty(xml)) {
             logHandle(lConfig, tag, Log.DEBUG, "Empty/Null xml content");
             return;
@@ -288,13 +288,13 @@ final class LoggerPrinter implements IPrinter {
         if (!isPrintLog(lConfig, Log.DEBUG)) {
             return;
         }
-        // 判断传入JSON格式信息是否为null
+        // 判断传入 JSON 格式信息是否为 null
         if (TextUtils.isEmpty(json)) {
             logHandle(lConfig, tag, Log.DEBUG, "Empty/Null json content");
             return;
         }
         try {
-            // 属于对象的JSON格式信息
+            // 属于对象的 JSON 格式信息
             if (json.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(json);
                 // 进行缩进
@@ -302,7 +302,7 @@ final class LoggerPrinter implements IPrinter {
                 // 打印信息
                 logHandle(lConfig, tag, Log.DEBUG, message);
             } else if (json.startsWith("[")) {
-                // 属于数据的JSON格式信息
+                // 属于数据的 JSON 格式信息
                 JSONArray jsonArray = new JSONArray(json);
                 // 进行缩进
                 String message = jsonArray.toString(LogConstants.JSON_INDENT);
@@ -335,7 +335,7 @@ final class LoggerPrinter implements IPrinter {
         if (!isPrintLog(lConfig, Log.DEBUG)) {
             return;
         }
-        // 判断传入XML格式信息是否为null
+        // 判断传入 XML 格式信息是否为 null
         if (TextUtils.isEmpty(xml)) {
             logHandle(lConfig, tag, Log.DEBUG, "Empty/Null xml content");
             return;
@@ -438,7 +438,7 @@ final class LoggerPrinter implements IPrinter {
     /**
      * 最终打印方法 f = Final
      * @param logType 日志类型
-     * @param tag     日志Tag
+     * @param tag     日志 TAG
      * @param msg     打印信息
      */
     private void fLogPrinter(int logType, String tag, String msg) {
@@ -479,7 +479,7 @@ final class LoggerPrinter implements IPrinter {
 
     /**
      * 日志处理方法(统一调用这个)
-     * @param tag     日志Tag
+     * @param tag     日志 TAG
      * @param logType 日志类型
      * @param msg     打印信息
      * @param args    占位符替换
@@ -491,13 +491,13 @@ final class LoggerPrinter implements IPrinter {
     /**
      * 日志处理方法(统一调用这个) - 此方法是同步的,以避免混乱的日志的顺序。
      * @param lConfig 配置信息
-     * @param tag     日志Tag
+     * @param tag     日志 TAG
      * @param logType 日志类型
      * @param msg     打印信息
      * @param args    占位符替换
      */
     private synchronized void logHandle(LogConfig lConfig, String tag, int logType, String msg, Object... args) {
-        if (lConfig == null) { // 如果配置为null,才进行获取
+        if (lConfig == null) { // 如果配置为 null,才进行获取
             // 获取当前线程日志配置信息
             lConfig = getThreadLogConfig();
         }
@@ -505,11 +505,11 @@ final class LoggerPrinter implements IPrinter {
         if (!isPrintLog(lConfig, logType)) {
             return;
         }
-        // 防止TAG为null
+        // 防止TAG为 null
         if (TextUtils.isEmpty(tag)) {
             // 获取配置的TAG
             tag = lConfig.tag;
-            // 防止配置的TAG也为null
+            // 防止配置的TAG也为 null
             if (TextUtils.isEmpty(tag)) {
                 // 使用默认的TAG
                 tag = LogConstants.DEFAULT_LOG_TAG;
@@ -577,7 +577,7 @@ final class LoggerPrinter implements IPrinter {
      * 日志线程信息主体部分
      * @param lConfig      日志配置
      * @param logType      日志类型
-     * @param tag          日志Tag
+     * @param tag          日志 TAG
      * @param methodCount  方法总数
      * @param methodOffset 方法偏移索引
      */
@@ -640,7 +640,7 @@ final class LoggerPrinter implements IPrinter {
     /**
      * 日志顶部
      * @param logType 日志类型
-     * @param tag     日志Tag
+     * @param tag     日志 TAG
      */
     private void logTopBorder(int logType, String tag) {
         fLogPrinter(logType, tag, LogConstants.TOP_BORDER);
@@ -649,7 +649,7 @@ final class LoggerPrinter implements IPrinter {
     /**
      * 日志结尾
      * @param logType 日志类型
-     * @param tag     日志Tag
+     * @param tag     日志 TAG
      */
     private void logBottomBorder(int logType, String tag) {
         fLogPrinter(logType, tag, LogConstants.BOTTOM_BORDER);
@@ -658,7 +658,7 @@ final class LoggerPrinter implements IPrinter {
     /**
      * 日志换行
      * @param logType 日志类型
-     * @param tag     日志Tag
+     * @param tag     日志 TAG
      */
     private void logDivider(int logType, String tag) {
         fLogPrinter(logType, tag, LogConstants.MIDDLE_BORDER);
@@ -667,7 +667,7 @@ final class LoggerPrinter implements IPrinter {
     /**
      * 日志内容
      * @param logType 日志类型
-     * @param tag     日志Tag
+     * @param tag     日志 TAG
      * @param msg     日志信息
      */
     private void logContent(int logType, String tag, String msg) {
@@ -730,7 +730,7 @@ final class LoggerPrinter implements IPrinter {
     private LogConfig getThreadLogConfig() {
         // 获取当前线程的日志配置信息
         LogConfig lConfig = LOCAL_LOG_CONFIGS.get();
-        // 如果等于null,则返回默认配置信息
+        // 如果等于 null, 则返回默认配置信息
         if (lConfig == null) {
             return init();
         } else {

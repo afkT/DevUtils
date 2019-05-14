@@ -532,9 +532,9 @@ public final class AnimationUtils {
 
     /**
      * 获取一个视图移动动画
-     * @param fromXType      动画开始前的X坐标类型。取值范围为 {@link Animation#ABSOLUTE}（绝对位置）、
-     *                       {@link Animation#RELATIVE_TO_SELF}（以自身宽或高为参考）、
-     *                       {@link Animation#RELATIVE_TO_PARENT}（以父控件宽或高为参考）
+     * @param fromXType      动画开始前的X坐标类型。取值范围为 {@link Animation#ABSOLUTE}(绝对位置)、
+     *                       {@link Animation#RELATIVE_TO_SELF}(以自身宽或高为参考)、
+     *                       {@link Animation#RELATIVE_TO_PARENT}(以父控件宽或高为参考)
      * @param fromXValue     动画开始前的X坐标值
      * @param toXType        动画结束后的X坐标类型
      * @param toXValue       动画结束后的X坐标值

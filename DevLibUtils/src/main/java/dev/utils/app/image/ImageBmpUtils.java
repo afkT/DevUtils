@@ -112,7 +112,7 @@ public final class ImageBmpUtils {
     }
 
     /**
-     * 增加位图 ARGB值
+     * 增加位图 ARGB 值
      * @param data 数据
      * @param w    宽度
      * @param h    高度
@@ -139,7 +139,7 @@ public final class ImageBmpUtils {
     }
 
     /**
-     * 获取bmp位图 byte数据
+     * 获取bmp位图 byte[]
      * @param bitmap
      * @return
      */
@@ -179,7 +179,7 @@ public final class ImageBmpUtils {
 
         FileOutputStream fos = null;
         try {
-            // 转换Bmp byte数据
+            // 转换Bmp byte[]
             byte[] buffer = getBmpBytes(bitmap);
             // 创建写入流
             fos = new FileOutputStream(new File(path));

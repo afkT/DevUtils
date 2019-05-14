@@ -127,7 +127,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         LogPrintUtils.dTag(TAG, "onPrepared");
         // =
         if (mSurfaceview != null) {
-            // 如果等于null，或者不在显示中,则跳过
+            // 如果等于 null，或者不在显示中,则跳过
             if (mSurfaceHolder.getSurface() == null || !mSurfaceHolder.getSurface().isValid())
                 return;
 
@@ -309,10 +309,10 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * @return
      */
     public boolean isPlaying(final String uri) {
-        if (!TextUtils.isEmpty(uri)) { // 需要播放的地址,必须不等于null
+        if (!TextUtils.isEmpty(uri)) { // 需要播放的地址,必须不等于 null
             // 获取之前播放路径
             String playUri = DevMediaManager.getInstance().getPlayUri();
-            // 如果不等于null,并且播放地址相同
+            // 如果不等于 null, 并且播放地址相同
             if (playUri != null && playUri.equals(uri)) {
                 try {
                     return DevMediaManager.getInstance().isPlaying();

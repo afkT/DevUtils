@@ -117,7 +117,7 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的预览分辨率计算，设置预览尺寸(无任何操作, 单独把Camera显示到SurfaceView 预览尺寸)
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 预览分辨率
@@ -195,7 +195,7 @@ public final class CameraSizeAssist {
 
     /**
      * 根据手机支持的拍照分辨率计算
-     * @param point 指定的尺寸(为null, 则使用屏幕尺寸)
+     * @param point 指定的尺寸(为 null, 则使用屏幕尺寸)
      *              (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @return {@link Camera.Size} 拍照分辨率
      */
@@ -225,7 +225,7 @@ public final class CameraSizeAssist {
     /**
      * 根据手机支持的拍照分辨率计算，设置预览尺寸
      * @param max        是否使用最大的尺寸
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 拍照分辨率
@@ -296,7 +296,7 @@ public final class CameraSizeAssist {
     /**
      * 根据手机支持的视频录制分辨率计算，设置预览尺寸
      * @param max        是否使用最大的尺寸
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
      * @param minAccord  是否存在最小使用最小
@@ -322,7 +322,7 @@ public final class CameraSizeAssist {
 
     /**
      * 根据对应的尺寸, 计算相应最符合的大小
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 预览分辨率
@@ -340,7 +340,7 @@ public final class CameraSizeAssist {
         Camera.Parameters params = mCamera.getParameters();
         // 获取手机支持的分辨率集合,并以宽度为基准降序排序
         List<Camera.Size> listPreviewSizes = params.getSupportedPreviewSizes();
-        // 防止数据为null
+        // 防止数据为 null
         if (listPreviewSizes == null) {
             // 获取默认预览大小
             Camera.Size defaultSize = params.getPreviewSize();
@@ -447,7 +447,7 @@ public final class CameraSizeAssist {
     /**
      * 根据对应的尺寸, 计算相应最符合的大小
      * @param max        是否使用最大的尺寸
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 拍照分辨率
@@ -465,7 +465,7 @@ public final class CameraSizeAssist {
         Camera.Parameters params = mCamera.getParameters();
         // 获取手机支持的分辨率集合,并以宽度为基准降序排序
         List<Camera.Size> listPictureSizes = params.getSupportedPictureSizes();
-        // 防止数据为null
+        // 防止数据为 null
         if (listPictureSizes == null) {
             // 获取默认拍照大小
             Camera.Size defaultSize = params.getPictureSize();
@@ -598,7 +598,7 @@ public final class CameraSizeAssist {
     /**
      * 根据对应的尺寸, 计算相应最符合的大小
      * @param max        是否使用最大的尺寸
-     * @param point      指定的尺寸(为null, 则使用屏幕尺寸)
+     * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
      * @param minAccord  是否判断存在最小使用最小
@@ -617,7 +617,7 @@ public final class CameraSizeAssist {
         Camera.Parameters params = mCamera.getParameters();
         // 获取手机支持的分辨率集合,并以宽度为基准降序排序
         List<Camera.Size> listVideoSizes = params.getSupportedVideoSizes();
-        // 防止数据为null
+        // 防止数据为 null
         if (listVideoSizes == null) {
             // 获取默认拍照大小
             Camera.Size defaultSize = params.getPreferredPreviewSizeForVideo();

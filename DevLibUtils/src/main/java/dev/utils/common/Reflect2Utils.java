@@ -115,8 +115,8 @@ public final class Reflect2Utils {
             for (int i = 0, len = args.length; i < len; i++) {
                 argsClass[i] = args[i].getClass();
             }
-            // getDeclaredMethod() 获取的是类自身声明的所有方法，包含public、protected和private方法。
-            // getMethod() 获取的是类的所有共有方法，这就包括自身的所有public方法，和从基类继承的、从接口实现的所有public方法。
+            // getDeclaredMethod() 获取的是类自身声明的所有方法，包含 public、protected 和 private 方法。
+            // getMethod() 获取的是类的所有共有方法，这就包括自身的所有 public 方法，和从基类继承的、从接口实现的所有 public 方法。
             Method method = ownerClass.getDeclaredMethod(methodName, argsClass);
             if (!method.isAccessible()) method.setAccessible(true);
             return method.invoke(null, args);
@@ -242,7 +242,7 @@ public final class Reflect2Utils {
                     return field;
                 } catch (Exception e) {
                     // 这里甚么都不要做！并且这里的异常必须这样写，不能抛出去。
-                    // 如果这里的异常打印或者往外抛，则就不会执行clazz = clazz.getSuperclass(),最后就不会进入到父类中了
+                    // 如果这里的异常打印或者往外抛，则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
                 }
             }
         } catch (Exception e) {
@@ -263,7 +263,7 @@ public final class Reflect2Utils {
         try {
             Method method = object.getClass().getDeclaredMethod(name);
             method.setAccessible(true);
-            // 如果不为null, 则不放参数
+            // 如果不为 null, 则不放参数
             if (args != null && args.length != 0) {
                 method.invoke(object, args);
             } else {

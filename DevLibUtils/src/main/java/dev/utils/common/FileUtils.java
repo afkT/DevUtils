@@ -108,7 +108,7 @@ public final class FileUtils {
     public static File getFileCreateFolder(final String filePath, final String fileName) {
         // 防止不存在目录文件，自动创建
         createFolder(filePath);
-        // 返回处理过后的File
+        // 返回处理过后的 File
         return getFile(filePath, fileName);
     }
 
@@ -586,7 +586,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件行数 => 比 readLine 要快很多
+     * 获取文件行数(比 readLine 要快很多)
      * @param file 文件
      * @return 文件行数
      */
@@ -881,9 +881,9 @@ public final class FileUtils {
         }
     }
 
-    // =================
-    // = 获取文件MD5值 =
-    // =================
+    // ===================
+    // = 获取文件 MD5 值 =
+    // ===================
 
     /**
      * 获取文件的 MD5 校验码
@@ -947,7 +947,7 @@ public final class FileUtils {
     // =
 
     /**
-     * 获取文件MD5值 - 小写
+     * 获取文件 MD5 值 - 小写
      * @param filePath 文件路径
      * @return 文件 MD5 校验码
      */
@@ -956,7 +956,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件MD5值 - 小写
+     * 获取文件 MD5 值 - 小写
      * @param file 文件地址
      * @return 文件 MD5 校验码
      */
@@ -1210,7 +1210,7 @@ public final class FileUtils {
     }
 
     /**
-     * 追加文件: 使用FileWriter
+     * 追加文件(使用 FileWriter)
      * @param filePath 文件路径
      * @param content  追加内容
      */

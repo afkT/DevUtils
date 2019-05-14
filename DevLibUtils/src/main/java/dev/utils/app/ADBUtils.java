@@ -467,7 +467,7 @@ public final class ADBUtils {
         if (result.isSuccess3()) {
             String mainStr = "android.intent.action.MAIN:";
             int start = result.successMsg.indexOf(mainStr);
-            // 防止都为null
+            // 防止都为 null
             if (start != -1) {
                 try {
                     // 进行裁剪字符串
@@ -722,7 +722,7 @@ public final class ADBUtils {
     public static List<String> getActivitysToPackageLists(final String packageName) {
         // 获取对应包名的 Activity 数据结果
         String result = getActivitysToPackage(packageName);
-        // 防止数据为null
+        // 防止数据为 null
         if (!TextUtils.isEmpty(result)) {
             try {
                 List<String> lists = new ArrayList<>();
@@ -797,7 +797,7 @@ public final class ADBUtils {
         List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
         // 数据长度
         int length = DevCommonUtils.length(lists);
-        // 防止数据为null
+        // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
                 if (lists.get(length - 1).endsWith(activity)) {
@@ -837,7 +837,7 @@ public final class ADBUtils {
         List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
         // 数据长度
         int length = DevCommonUtils.length(lists);
-        // 防止数据为null
+        // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             // 循环判断
             for (String activity : activitys) {
@@ -882,7 +882,7 @@ public final class ADBUtils {
         List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
         // 数据长度
         int length = DevCommonUtils.length(lists);
-        // 防止数据为null
+        // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
                 if (lists.get(length - 1).endsWith(activity)) {
@@ -920,7 +920,7 @@ public final class ADBUtils {
         List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
         // 数据长度
         int length = DevCommonUtils.length(lists);
-        // 防止数据为null
+        // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             // 循环判断
             for (String activity : activitys) {
@@ -1387,7 +1387,7 @@ public final class ADBUtils {
     /**
      * 屏幕截图
      * @param path      /sdcard/xxx/x.png
-     * @param displayId -d display-id	指定截图的显示屏编号（有多显示屏的情况下）默认0
+     * @param displayId -d display-id	指定截图的显示屏编号(有多显示屏的情况下)默认0
      * @return
      */
     public static boolean screencap(final String path, final int displayId) {
@@ -1697,7 +1697,7 @@ public final class ADBUtils {
         }
         // = 结尾 =
         lists.add("sendevent /dev/input/event1 3 57 4294967295");
-        // 释放touch事件（必须使用0 0 0配对）
+        // 释放touch事件(必须使用0 0 0配对)
         lists.add("sendevent /dev/input/event1 1 330 0");
         lists.add("sendevent /dev/input/event1 0 0 0");
 
@@ -2096,7 +2096,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 更改亮度值（亮度值在0—255之间）
+     * 更改亮度值(亮度值在0—255之间)
      * @param brightness
      * @return
      */

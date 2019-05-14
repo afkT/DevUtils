@@ -63,7 +63,7 @@ public final class AnalysisRecordUtils {
         getDeviceInfo();
         // 初始化 App 信息
         getAppInfo();
-        // 如果为null, 才设置
+        // 如果为 null, 才设置
         if (TextUtils.isEmpty(sLogStoragePath)) {
             // 获取根路径
             sLogStoragePath = FileInfo.getDiskCacheDir(sContext);
@@ -95,7 +95,7 @@ public final class AnalysisRecordUtils {
             // 无数据记录
             return "no data record";
         }
-        // 信息为null
+        // 信息为 null
         return "info is null";
     }
 
@@ -177,13 +177,13 @@ public final class AnalysisRecordUtils {
         if (!sIsHandler) {
             return "record not handler";
         }
-        // 文件信息为null, 则不处理
+        // 文件信息为 null, 则不处理
         if (fileInfo == null) {
             return "info is null";
         }
-        // 如果文件地址为null, 则不处理
+        // 如果文件地址为 null, 则不处理
         if (TextUtils.isEmpty(fileInfo.getFileName())) {
-            // 文件名为null
+            // 文件名为 null
             return "fileName is null";
         }
         // 获取文件名
@@ -347,7 +347,7 @@ public final class AnalysisRecordUtils {
      */
     private static String handlerDeviceInfo(final String eHint) {
         try {
-            // 如果不为null,则直接返回之前的信息
+            // 如果不为 null,则直接返回之前的信息
             if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
                 return DEVICE_INFO_STR;
             }
@@ -382,7 +382,7 @@ public final class AnalysisRecordUtils {
      * @return
      */
     private static String getAppInfo() {
-        // 如果不为null,则直接返回之前的信息
+        // 如果不为 null,则直接返回之前的信息
         if (!TextUtils.isEmpty(APP_INFO_STR)) {
             return APP_INFO_STR;
         }

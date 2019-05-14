@@ -30,7 +30,7 @@ public final class MapUtils {
 
     /**
      * 判断 Map 是否为 null
-     * @param map Map
+     * @param map {@link Map}
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Map map) {
@@ -39,7 +39,7 @@ public final class MapUtils {
 
     /**
      * 判断 Map 是否不为 null
-     * @param map Map
+     * @param map {@link Map}
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final Map map) {
@@ -52,7 +52,7 @@ public final class MapUtils {
 
     /**
      * 获取 Map 长度
-     * @param map Map
+     * @param map {@link Map}
      * @return 如果 Map 为 null, 则返回默认长度, 如果不为 null, 则返回 map.size()
      */
     public static int length(final Map map) {
@@ -61,7 +61,7 @@ public final class MapUtils {
 
     /**
      * 获取 Map 长度
-     * @param map           Map
+     * @param map           {@link Map}
      * @param defaultLength 集合为 null 默认长度
      * @return 如果 Map 为 null, 则返回 defaultLength, 如果不为 null, 则返回 map.size()
      */
@@ -73,7 +73,7 @@ public final class MapUtils {
 
     /**
      * 获取长度 to Map 是否等于期望长度
-     * @param map    Map
+     * @param map    {@link Map}
      * @param length 期望长度
      * @return {@code true} yes, {@code false} no
      */
@@ -85,7 +85,7 @@ public final class MapUtils {
 
     /**
      * 判断 Map 长度是否大于指定长度
-     * @param map    Map
+     * @param map    {@link Map}
      * @param length 指定长度
      * @return {@code true} yes, {@code false} no
      */
@@ -95,7 +95,7 @@ public final class MapUtils {
 
     /**
      * 判断 Map 长度是否大于等于指定长度
-     * @param map    Map
+     * @param map    {@link Map}
      * @param length 指定长度
      * @return {@code true} yes, {@code false} no
      */
@@ -107,7 +107,7 @@ public final class MapUtils {
 
     /**
      * 判断 Map 长度是否小于指定长度
-     * @param map    Map
+     * @param map    {@link Map}
      * @param length 指定长度
      * @return {@code true} yes, {@code false} no
      */
@@ -117,7 +117,7 @@ public final class MapUtils {
 
     /**
      * 判断 Map 长度是否小于等于指定长度
-     * @param map    Map
+     * @param map    {@link Map}
      * @param length 指定长度
      * @return {@code true} yes, {@code false} no
      */
@@ -131,7 +131,7 @@ public final class MapUtils {
 
     /**
      * 获取 Value
-     * @param map Map
+     * @param map {@link Map}
      * @param key key
      * @param <K> key
      * @param <V> value
@@ -149,13 +149,13 @@ public final class MapUtils {
     }
 
     /**
-     * 获取 Value, 如果 Value 为 null, 则返回 defaultValue
-     * @param map          Map
+     * 获取 Value 如果 Value 为 null, 则返回 defaultValue
+     * @param map          {@link Map}
      * @param key          key
      * @param defaultValue 默认value
      * @param <K>          key
      * @param <V>          value
-     * @return 指定 key 的 value, 如果 value 为 null, 则返回 defaultValue
+     * @return 指定 key 的 value 如果 value 为 null, 则返回 defaultValue
      */
     public static <K, V> V get(final Map<K, V> map, final K key, final V defaultValue) {
         if (map != null) {
@@ -174,8 +174,8 @@ public final class MapUtils {
     }
 
     /**
-     * 通过 value 获取 Key
-     * @param map   Map
+     * 通过 Value 获取 Key
+     * @param map   {@link Map}
      * @param value Value
      * @param <K>   key
      * @param <V>   value
@@ -202,8 +202,8 @@ public final class MapUtils {
     }
 
     /**
-     * 通过 value 获取 Key 集合 (返回等于 value 的 key 集合)
-     * @param map   Map
+     * 通过 Value 获取 Key 集合 (返回等于 value 的 key 集合)
+     * @param map   {@link Map}
      * @param value Value
      * @param <K>   key
      * @param <V>   value
@@ -236,7 +236,7 @@ public final class MapUtils {
 
     /**
      * 通过 Map 获取 Key 集合
-     * @param map Map
+     * @param map {@link Map}
      * @param <K> key
      * @param <V> value
      * @return 全部存储 key 集合
@@ -254,7 +254,7 @@ public final class MapUtils {
 
     /**
      * 通过 Map 获取 Key 数组
-     * @param map Map
+     * @param map {@link Map}
      * @param <K> key
      * @param <V> value
      * @return 全部存储 key 数组
@@ -272,7 +272,7 @@ public final class MapUtils {
 
     /**
      * 通过 Map 获取 Value 集合
-     * @param map Map
+     * @param map {@link Map}
      * @param <K> key
      * @param <V> value
      * @return 全部存储 value 数组
@@ -290,7 +290,7 @@ public final class MapUtils {
 
     /**
      * 通过 Map 获取 Value 数组
-     * @param map Map
+     * @param map {@link Map}
      * @param <K> key
      * @param <V> value
      * @return 全部存储 value 数组
@@ -310,7 +310,7 @@ public final class MapUtils {
 
     /**
      * 获取第一条数据
-     * @param map Map
+     * @param map {@link Map}
      * @param <K> key
      * @param <V> value
      * @return 第一条数据 {@link Map.Entry}
@@ -328,7 +328,7 @@ public final class MapUtils {
 
     /**
      * 获取最后一条数据
-     * @param map Map
+     * @param map {@link Map}
      * @param <K> key
      * @param <V> value
      * @return 最后一条数据 {@link Map.Entry}
@@ -342,7 +342,7 @@ public final class MapUtils {
      * <pre>
      *      @see <a href="http://bookshadow.com/weblog/2016/10/27/java-linked-hash-map-get-first-and-get-last/"/>
      * </pre>
-     * @param map          Map
+     * @param map          {@link Map}
      * @param isReflection 是否通过反射获取
      * @param <K>          key
      * @param <V>          value
@@ -380,7 +380,7 @@ public final class MapUtils {
 
     /**
      * 根据指定 key 获取 key 所在位置的下一条数据
-     * @param map Map
+     * @param map {@link Map}
      * @param key key
      * @param <K> key
      * @param <V> value
@@ -408,7 +408,7 @@ public final class MapUtils {
 
     /**
      * 根据指定 key 获取 key 所在位置的上一条数据
-     * @param map Map
+     * @param map {@link Map}
      * @param key key
      * @param <K> key
      * @param <V> value
@@ -445,7 +445,7 @@ public final class MapUtils {
 
     /**
      * 添加一条数据
-     * @param map   Map
+     * @param map   {@link Map}
      * @param key   key
      * @param value value
      * @param <K>   key
@@ -458,7 +458,7 @@ public final class MapUtils {
 
     /**
      * 添加一条数据
-     * @param map     Map
+     * @param map     {@link Map}
      * @param key     key
      * @param value   value
      * @param notNull 是否不允许 key 为 null
@@ -483,7 +483,7 @@ public final class MapUtils {
 
     /**
      * 添加一条数据, 不允许 key 为 null
-     * @param map   Map
+     * @param map   {@link Map}
      * @param key   key
      * @param value value
      * @param <K>   key
@@ -498,7 +498,7 @@ public final class MapUtils {
 
     /**
      * 添加一条数据
-     * @param map   Map
+     * @param map   {@link Map}
      * @param entry entry
      * @param <K>   key
      * @param <V>   value
@@ -510,7 +510,7 @@ public final class MapUtils {
 
     /**
      * 添加一条数据
-     * @param map     Map
+     * @param map     {@link Map}
      * @param entry   entry
      * @param notNull 是否不允许 key 为 null
      * @param <K>     key
@@ -534,7 +534,7 @@ public final class MapUtils {
 
     /**
      * 添加一条数据, 不允许 key 为 null
-     * @param map   Map
+     * @param map   {@link Map}
      * @param entry entry
      * @param <K>   key
      * @param <V>   value
@@ -548,7 +548,7 @@ public final class MapUtils {
 
     /**
      * 添加多条数据
-     * @param map        Map
+     * @param map        {@link Map}
      * @param listKeys   keys
      * @param listValues values
      * @param <K>        key
@@ -561,7 +561,7 @@ public final class MapUtils {
 
     /**
      * 添加多条数据
-     * @param map        Map
+     * @param map        {@link Map}
      * @param listKeys   keys
      * @param listValues values
      * @param notNull    是否不允许 key 为 null
@@ -591,7 +591,7 @@ public final class MapUtils {
 
     /**
      * 添加多条数据, 不允许 key 为 null
-     * @param map        Map
+     * @param map        {@link Map}
      * @param listKeys   keys
      * @param listValues values
      * @param <K>        key
@@ -606,7 +606,7 @@ public final class MapUtils {
 
     /**
      * 添加多条数据
-     * @param map    Map
+     * @param map    {@link Map}
      * @param keys   keys
      * @param values values
      * @param <K>    key
@@ -619,7 +619,7 @@ public final class MapUtils {
 
     /**
      * 添加多条数据
-     * @param map     Map
+     * @param map     {@link Map}
      * @param keys    keys
      * @param values  values
      * @param notNull 是否不允许 key 为 null
@@ -649,7 +649,7 @@ public final class MapUtils {
 
     /**
      * 添加多条数据, 不允许 key 为 null
-     * @param map    Map
+     * @param map    {@link Map}
      * @param keys   keys
      * @param values values
      * @param <K>    key
@@ -664,8 +664,8 @@ public final class MapUtils {
 
     /**
      * 添加多条数据
-     * @param map     Map
-     * @param mapData map数据
+     * @param map     {@link Map}
+     * @param mapData map 数据
      * @param <K>     key
      * @param <V>     value
      * @return {@code true} success, {@code false} fail
@@ -676,8 +676,8 @@ public final class MapUtils {
 
     /**
      * 添加多条数据
-     * @param map     Map
-     * @param mapData map数据
+     * @param map     {@link Map}
+     * @param mapData map 数据
      * @param notNull 是否不允许 key 为 null
      * @param <K>     key
      * @param <V>     value
@@ -714,8 +714,8 @@ public final class MapUtils {
 
     /**
      * 添加多条数据, 不允许 key 为 null
-     * @param map     Map
-     * @param mapData map数据
+     * @param map     {@link Map}
+     * @param mapData map 数据
      * @param <K>     key
      * @param <V>     value
      * @return {@code true} success, {@code false} fail
@@ -730,7 +730,7 @@ public final class MapUtils {
 
     /**
      * 移除一条数据
-     * @param map Map
+     * @param map {@link Map}
      * @param key key
      * @param <K> key
      * @param <V> value
@@ -750,7 +750,7 @@ public final class MapUtils {
 
     /**
      * 移除一条数据
-     * @param map   Map
+     * @param map   {@link Map}
      * @param key   key
      * @param value value
      * @param <K>   key
@@ -774,7 +774,7 @@ public final class MapUtils {
 
     /**
      * 移除多条数据
-     * @param map  Map
+     * @param map  {@link Map}
      * @param keys keys
      * @param <K>  key
      * @param <V>  value
@@ -795,7 +795,7 @@ public final class MapUtils {
 
     /**
      * 移除等于 value 的所有数据
-     * @param map   Map
+     * @param map   {@link Map}
      * @param value value
      * @param <K>   key
      * @param <V>   value
@@ -823,7 +823,7 @@ public final class MapUtils {
 
     /**
      * 移除等于 value 的所有数据 (Collection<Value>)
-     * @param map    Map
+     * @param map    {@link Map}
      * @param values values
      * @param <K>    key
      * @param <V>    value
@@ -883,7 +883,7 @@ public final class MapUtils {
             }
             return false;
         }
-        // 防止两个值都为null
+        // 防止两个值都为 null
         return (value1 == null && value2 == null);
     }
 
@@ -893,7 +893,7 @@ public final class MapUtils {
      * 切换保存状态
      * 1.如果存在, 则删除
      * 2.如果不存在, 则保存
-     * @param map   Map
+     * @param map   {@link Map}
      * @param key   key
      * @param value value
      */
@@ -911,7 +911,7 @@ public final class MapUtils {
 
     /**
      * 判断指定 key 的 value 是否为 null
-     * @param map Map
+     * @param map {@link Map}
      * @param key key
      * @param <K> key
      * @param <V> value
@@ -926,7 +926,7 @@ public final class MapUtils {
 
     /**
      * 判断 Map 是否存储了 key
-     * @param map Map
+     * @param map {@link Map}
      * @param key key
      * @param <K> key
      * @param <V> value
@@ -945,7 +945,7 @@ public final class MapUtils {
 
     /**
      * 判断 Map 是否存储了 value
-     * @param map   Map
+     * @param map   {@link Map}
      * @param value value
      * @param <K>   key
      * @param <V>   value

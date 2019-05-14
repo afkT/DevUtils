@@ -387,7 +387,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 判断是否连接为null - unknown ssid
+     * 判断是否连接为 null - unknown ssid
      * @param ssid
      * @return
      */
@@ -419,7 +419,7 @@ public final class WifiUtils {
                     return getSSID();
                 }
             } else {
-                // 获取当前活跃的网络（连接的网络信息）
+                // 获取当前活跃的网络(连接的网络信息)
                 Network network = cManager.getActiveNetwork();
                 if (network != null) {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
@@ -487,7 +487,7 @@ public final class WifiUtils {
         if (ssid == null) return null;
         // 获取wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
-        // 防止为null
+        // 防止为 null
         if (listWifiConfigs == null) {
             return null;
         }
@@ -510,7 +510,7 @@ public final class WifiUtils {
     public WifiConfiguration isExsits(final int networkId) {
         // 获取wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
-        // 防止为null
+        // 防止为 null
         if (listWifiConfigs == null) {
             return null;
         }
@@ -542,7 +542,7 @@ public final class WifiUtils {
             WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             // 获取wifi 连接过的配置信息
             List<WifiConfiguration> listWifiConfigs = mWifiManager.getConfiguredNetworks();
-            // 防止为null
+            // 防止为 null
             if (listWifiConfigs != null) {
                 // 遍历判断是否存在
                 for (int i = 0, len = listWifiConfigs.size(); i < len; i++) {
@@ -779,7 +779,7 @@ public final class WifiUtils {
      * @return
      */
     public boolean removeWifiConfig(final WifiConfiguration wcg) {
-        // 如果等于null则直接返回
+        // 如果等于 null 则直接返回
         if (wcg == null)
             return false;
         try {

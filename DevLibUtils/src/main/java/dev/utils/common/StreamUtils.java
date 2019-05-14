@@ -123,7 +123,7 @@ public final class StreamUtils {
     }
 
     /**
-     * 输入流转 string
+     * 输入流转 String
      * @param inputStream {@link InputStream}
      * @param charsetName 编码格式
      * @return 指定编码字符串
@@ -155,7 +155,7 @@ public final class StreamUtils {
     }
 
     /**
-     * 输出流转 string
+     * 输出流转 String
      * @param outputStream {@link OutputStream}
      * @param charsetName  编码格式
      * @return 指定编码字符串
@@ -171,7 +171,7 @@ public final class StreamUtils {
     }
 
     /**
-     * string 转 输出流
+     * String 转 输出流
      * @param string      数据源
      * @param charsetName 编码格式
      * @return {@link OutputStream}

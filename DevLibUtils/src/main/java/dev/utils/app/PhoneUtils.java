@@ -112,7 +112,7 @@ public final class PhoneUtils {
         int state = 3;
         try {
             String countryCode = getUserCountry();
-            // 不等于null,表示属于存在SIM卡
+            // 不等于 null, 表示属于存在SIM卡
             if (countryCode != null) {
                 // zh_CN Locale.SIMPLIFIED_CHINESE
                 // 截取前面两位属于zh表示属于中国
@@ -420,7 +420,7 @@ public final class PhoneUtils {
      */
     public static String getAndroidId() {
         try {
-            // 在设备首次启动时，系统会随机生成一个64位的数字，并把这个数字以16进制字符串的形式保存下来，这个16进制的字符串就是ANDROID_ID，当设备被wipe后该值会被重置。
+            // 在设备首次启动时，系统会随机生成一个64位的数字，并把这个数字以十六进制字符串的形式保存下来，这个十六进制的字符串就是ANDROID_ID，当设备被wipe后该值会被重置。
             String androidId = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
             return androidId;
         } catch (Exception e) {

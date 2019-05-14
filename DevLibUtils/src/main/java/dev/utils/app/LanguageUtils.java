@@ -90,7 +90,7 @@ public class LanguageUtils {
         Locale locale = getSupportLanguage(language);
         if (locale != null) {
             return applyLanguage(context, locale);
-        } else { // 如果为null, 则使用系统默认语言
+        } else { // 如果为 null, 则使用系统默认语言
             return applyLanguage(context, getSystemPreferredLanguage());
         }
     }

@@ -122,7 +122,7 @@ public final class InactivityTimerAssist {
         AsyncTask<?, ?, ?> task = mInactivityTask;
         if (task != null) {
             task.cancel(true);
-            // 重置为null
+            // 重置为 null
             mInactivityTask = null;
         }
     }

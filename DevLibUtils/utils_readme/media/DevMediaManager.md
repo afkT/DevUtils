@@ -42,8 +42,8 @@
 | onBufferingUpdate | MediaPlayer 缓冲更新回调 |
 | onSeekComplete | 滑动加载完成回调 |
 | setMeidaListener | 设置MediaPlayer回调 |
-| isNullMediaPlayer | 判断 MediaPlayer 是否为null |
-| isNotNullMediaPlayer | 判断 MediaPlayer 是否不为null |
+| isNullMediaPlayer | 判断 MediaPlayer 是否为 null |
+| isNotNullMediaPlayer | 判断 MediaPlayer 是否不为 null |
 | getMediaPlayer | 获取 MediaPlayer 对象 |
 | setMediaPlayer | 设置 MediaPlayer 对象 |
 | setTAG | 设置Tag打印 |

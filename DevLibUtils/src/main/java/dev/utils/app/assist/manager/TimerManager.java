@@ -655,7 +655,7 @@ public final class TimerManager {
          * @return {@code true} yes, {@code false} no
          */
         @Override
-        public boolean isTriggerEnd() { // 如果为无限触发,则会返回true ,因为触发次数大于 -1
+        public boolean isTriggerEnd() { // 如果为无限触发,则会返回 true ,因为触发次数大于 -1
             return (triggerNumber >= triggerLimit);
             //return (triggerLimit >= 0 && triggerNumber >= triggerLimit);
         }

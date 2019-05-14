@@ -70,7 +70,7 @@ final class PreferenceImpl implements IPreference {
      */
     @SuppressWarnings("unchecked")
     private void put(final SharedPreferences.Editor editor, final String key, final Object object) {
-        // key 不为null时再存入，否则不存储
+        // key 不为 null时再存入，否则不存储
         if (key != null && object != null) {
             if (object instanceof Integer) {
                 editor.putInt(key, (Integer) object);

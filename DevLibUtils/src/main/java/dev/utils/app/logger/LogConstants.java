@@ -26,7 +26,7 @@ final class LogConstants {
     public static final boolean JUDGE_DISPLAY_THREAD_LOG = false;
 
     /**
-     * 默认的日志Tag
+     * 默认的日志 TAG
      */
     public static final String DEFAULT_LOG_TAG = DevLogger.class.getSimpleName();
 

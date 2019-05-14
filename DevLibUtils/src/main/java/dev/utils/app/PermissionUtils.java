@@ -107,7 +107,7 @@ public final class PermissionUtils {
      */
     private PermissionUtils(final String... permissions) {
         mPermissionLists.clear();
-        // 防止数据为null
+        // 防止数据为 null
         if (permissions != null && permissions.length != 0) {
             // 遍历全部需要申请的权限
             for (String permission : permissions) {
@@ -124,7 +124,7 @@ public final class PermissionUtils {
      * @return
      */
     public static boolean isGranted(final String... permissions) {
-        // 防止数据为null
+        // 防止数据为 null
         if (permissions != null && permissions.length != 0) {
             // 遍历全部需要申请的权限
             for (String permission : permissions) {

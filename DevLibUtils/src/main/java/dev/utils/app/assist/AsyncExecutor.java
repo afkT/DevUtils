@@ -40,7 +40,7 @@ public class AsyncExecutor {
         }
         // 进行赋值
         mThreadPool = pool;
-        // 防止为null
+        // 防止为 null
         if (mThreadPool == null) {
             mThreadPool = Executors.newCachedThreadPool();
         }

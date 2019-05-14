@@ -340,7 +340,7 @@ public final class ShapeUtils {
 //            radial 放射性渐变，以开始色为中心。
 //            sweep 扫描线式的渐变。
 //
-//            android:useLevel ["true" | "false"] 如果要使用LevelListDrawable对象，就要设置为true。设置为true无渐变。false有渐变色
+//            android:useLevel ["true" | "false"] 如果要使用LevelListDrawable对象，就要设置为 true。设置为 true无渐变。false有渐变色
 //
 //            android:gradientRadius 整型
 //            渐变色半径.当 android:type="radial" 时才使用。单独使用 android:type="radial"会报错。

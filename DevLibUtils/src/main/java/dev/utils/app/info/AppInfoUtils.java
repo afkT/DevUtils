@@ -77,7 +77,7 @@ public final class AppInfoUtils {
     public static PackageInfo getPackageInfo(final String packageName) {
         try {
             PackageManager pManager = DevUtils.getContext().getPackageManager();
-            // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于null,需要这样获取)
+            // 获取对应的PackageInfo(原始的PackageInfo 获取 signatures 等于 null, 需要这样获取)
             PackageInfo pInfo = pManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             // 返回app信息
             return pInfo;
@@ -197,7 +197,7 @@ public final class AppInfoUtils {
     public static List<AppInfoBean> getAppLists(final AppInfoBean.AppType appType) {
         // App信息
         ArrayList<AppInfoBean> listApps = new ArrayList<>();
-        // 防止为null
+        // 防止为 null
         if (appType != null) {
             // 管理应用程序包
             PackageManager pManager = DevUtils.getContext().getPackageManager();

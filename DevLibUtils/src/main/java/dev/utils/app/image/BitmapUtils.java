@@ -47,7 +47,7 @@ public final class BitmapUtils {
     private static final String TAG = BitmapUtils.class.getSimpleName();
 
     /**
-     * 将10进制颜色（Int）转换为Drawable对象
+     * 将十进制颜色(Int)转换为Drawable对象
      * @param color
      * @return
      */
@@ -61,7 +61,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 将16进制颜色（String）转化为Drawable对象
+     * 将十六进制颜色(String)转化为Drawable对象
      * @param color
      * @return
      */
@@ -223,7 +223,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * Bitmay 转换成byte数组
+     * Bitmay 转换成 byte[]
      * @param bitmap
      * @return
      */
@@ -232,7 +232,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * Bitmay 转换成byte数组
+     * Bitmay 转换成 byte[]
      * @param bitmap
      * @param format
      * @return
@@ -242,7 +242,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * Bitmay 转换成byte数组
+     * Bitmay 转换成 byte[]
      * @param bitmap
      * @param quality
      * @param format
@@ -263,7 +263,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * Drawable 转换成 byte数组
+     * Drawable 转换成 byte[]
      * @param drawable
      * @return
      */
@@ -272,7 +272,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * Drawable 转换成 byte数组
+     * Drawable 转换成 byte[]
      * @param drawable
      * @param format
      * @return
@@ -282,7 +282,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * Drawable 转换成 byte数组
+     * Drawable 转换成 byte[]
      * @param drawable
      * @return
      */
@@ -291,7 +291,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * Drawable 转换成 byte数组
+     * Drawable 转换成 byte[]
      * @param drawable
      * @param format
      * @return
@@ -317,7 +317,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * byte数组转换成Drawable
+     * Byte[] 转换成 Drawable
      * @param bytes
      * @return
      */
@@ -550,7 +550,7 @@ public final class BitmapUtils {
         try {
             view.clearFocus();
             view.setPressed(false);
-            // 能画缓存就返回false
+            // 能画缓存就返回 false
             boolean willNotCache = view.willNotCacheDrawing();
             view.setWillNotCacheDrawing(false);
             int color = view.getDrawingCacheBackgroundColor();
@@ -700,7 +700,7 @@ public final class BitmapUtils {
         BitmapFactory.Options options = new BitmapFactory.Options();
         // 不解析图片信息
         options.inJustDecodeBounds = true;
-        // 此时返回的bitmap为null
+        // 此时返回的bitmap为 null
         Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
         // options.outHeight为原始图片的高
         return new int[]{options.outWidth, options.outHeight};

@@ -151,7 +151,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     @Override
     public void initStyle(final IToast.Style toastStyle) {
         mToastStyle = toastStyle;
-        // 防止样式为null
+        // 防止样式为 null
         getToastStyle();
     }
 
@@ -318,7 +318,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     private IToast.Style getThreadToastStyle() {
         // 获取当前线程的线程的 Toast 样式
         IToast.Style toastStyle = LOCAL_TOAST_STYLES.get();
-        // 如果等于null,则返回默认配置信息
+        // 如果等于 null, 则返回默认配置信息
         if (toastStyle == null) {
             return getToastStyle();
         } else {
@@ -381,10 +381,10 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     private Toast newToastText(final IToast.Style style, String text) {
         if (style == null) return null;
-        // 设置为null, 便于提示排查
+        // 设置为 null, 便于提示排查
         if (TextUtils.isEmpty(text)) {
             text = mNullText;
-            // 如果还是为null, 则不处理
+            // 如果还是为 null, 则不处理
             if (TextUtils.isEmpty(text)) {
                 return null;
             }
@@ -517,7 +517,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     private Toast newToastView(final IToast.Style style, final View view, final int duration) {
         if (style == null) {
             return null;
-        } else if (view == null) { // 防止显示的View 为null
+        } else if (view == null) { // 防止显示的View 为 null
             return null;
         }
         try {

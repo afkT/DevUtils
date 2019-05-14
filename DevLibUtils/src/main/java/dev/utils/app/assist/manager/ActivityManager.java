@@ -197,7 +197,7 @@ public final class ActivityManager {
     public void finishActivity(final Activity activity) {
         // 先移除 Activity
         removeActivity(activity);
-        // Activity 不为null, 并且属于未销毁状态
+        // Activity 不为 null, 并且属于未销毁状态
         if (activity != null && !activity.isFinishing()) {
             // Activity finish
             activity.finish();

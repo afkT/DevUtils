@@ -284,7 +284,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 获取两个数之间的随机数(不含最大随机数,需要 + 1)
+     * 获取两个数之间的随机数(不含最大随机数, 需要 + 1)
      * @param min 最小随机数
      * @param max 最大随机数
      * @return 随机介于 [min,max) 的区间值
@@ -390,7 +390,7 @@ public final class RandomUtils {
     // =
 
     /**
-     * 获取指定范围 Int 值
+     * 获取指定范围 int 值
      * @param origin 开始值
      * @param bound  范围值
      * @return 属于指定范围随机 int 值
@@ -467,7 +467,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 获取随机 int 数组
+     * 获取随机 int[]
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
      * @param randomNumberBound  结束值(最大值范围)
@@ -497,7 +497,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 获取随机 long 数组
+     * 获取随机 long[]
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
      * @param randomNumberBound  结束值(最大值范围)
@@ -527,7 +527,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 获取随机 double 数组
+     * 获取随机 double[]
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
      * @param randomNumberBound  结束值(最大值范围)

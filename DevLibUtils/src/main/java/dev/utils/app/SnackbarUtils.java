@@ -373,7 +373,7 @@ public final class SnackbarUtils {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
             if (!snackbar.isShownOrQueued()) {
-                // 防止内容为null
+                // 防止内容为 null
                 if (!TextUtils.isEmpty(text)) {
                     setSnackbarStyle(snackbar);
                     if (snackbar != null) {
@@ -1167,7 +1167,7 @@ public final class SnackbarUtils {
     public Snackbar setSnackbarStyle(final Snackbar snackbar, final SnackbarUtils.Style style) {
         if (snackbar == null) { // 防止 Snackbar 为 null
             return snackbar;
-        } else if (style == null) { // 防止 Style 为null
+        } else if (style == null) { // 防止 Style 为 null
             return snackbar;
         }
         // 获取显示的View
@@ -1443,7 +1443,7 @@ public final class SnackbarUtils {
             if (mViewLocations != null && mViewGravity != -1 && mViewHeight > 0) {
                 // View (坐标)边距
                 int[] margin = new int[4];
-                // 判断 Style 是否为null
+                // 判断 Style 是否为 null
                 if (mStyleBuilder != null) {
                     // 默认边距
                     int[] rootMargin = mStyleBuilder.getRootMargin();
@@ -1485,7 +1485,7 @@ public final class SnackbarUtils {
                             if (mAutoCalc) {
                                 // 思路如上: 超出高度后, 则直接设置居上, 计算边距则 view mWindowTop - 追加边距(状态栏高度) + view height, 设置到View 的下方
                                 // 计算处理主要是, 只需要知道 view Y 轴位置 + view height - 追加边距(状态栏高度) = 需要的边距
-                                // 为什么需要减 状态栏高度, 是因为 view Y （view mWindowTop） 就包含状态栏的高度信息
+                                // 为什么需要减 状态栏高度, 是因为 view Y (view mWindowTop) 就包含状态栏的高度信息
                                 try {
                                     FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(rootView.getLayoutParams().width, rootView.getLayoutParams().height);
                                     params.gravity = Gravity.TOP;

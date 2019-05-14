@@ -43,7 +43,7 @@ public final class BitmapCropUtils {
         if (file.isDirectory() || !file.exists()) return;
 
         if (bitmap == null) {
-            return; // 防止图片为null
+            return; // 防止图片为 null
         }
         // 裁剪处理后的图片
         Bitmap cBitmap = null;

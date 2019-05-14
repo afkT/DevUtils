@@ -120,7 +120,7 @@ final class Utils {
      */
     private static String handlerDeviceInfo(final String eHint) {
         try {
-            // 如果不为null,则直接返回之前的信息
+            // 如果不为 null,则直接返回之前的信息
             if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
                 return DEVICE_INFO_STR;
             }
@@ -294,7 +294,7 @@ final class Utils {
      * @param context
      */
     public static void init(final Context context) {
-        // 如果版本信息为null，才进行处理
+        // 如果版本信息为 null，才进行处理
         if (TextUtils.isEmpty(APP_VERSION_CODE) || TextUtils.isEmpty(APP_VERSION_NAME)) {
             // 获取 App 版本信息
             String[] aVersion = getAppVersion(context);

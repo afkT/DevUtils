@@ -45,7 +45,7 @@ public final class HttpURLConnectionUtils {
     }
 
     /**
-     * 异步的Get请求
+     * 异步的 Get 请求
      * @param urlStr   请求地址
      * @param callBack 请求回调接口
      */
@@ -62,7 +62,7 @@ public final class HttpURLConnectionUtils {
     }
 
     /**
-     * 异步的Post请求
+     * 异步的 Post 请求
      * @param urlStr   请求地址
      * @param params   请求参数
      * @param callBack 请求回调接口
@@ -111,9 +111,9 @@ public final class HttpURLConnectionUtils {
             if (params != null && params.length() != 0) {
                 // 允许写入
                 connection.setDoInput(true);
-                // 设置是否向connection输出，如果是post请求，参数要放在http正文内，因此需要设为true
+                // 设置是否向 connection 输出，如果是 post 请求，参数要放在 http 正文内，因此需要设为 true
                 connection.setDoOutput(true);
-                // Post 请求不能使用缓存
+                // post 请求不能使用缓存
                 connection.setUseCaches(false);
                 // 写入数据
                 OutputStream ot = connection.getOutputStream();
@@ -126,7 +126,7 @@ public final class HttpURLConnectionUtils {
             connection.setReadTimeout(TIMEOUT_IN_MILLIONS); // 设置读取超时
             // 获取请求状态码
             int responseCode = connection.getResponseCode();
-            // 判断请求码是否是200
+            // 判断请求码是否是 200
             if (responseCode >= 200 && responseCode < 300) {
                 // 输入流
                 inputStream = connection.getInputStream();
@@ -145,7 +145,7 @@ public final class HttpURLConnectionUtils {
                     callBack.onResponse(result, connection.getDate());
                 }
             } else {
-                // 响应成功,非200直接返回null
+                // 响应成功, 非 200 直接返回 null
                 if (callBack != null) {
                     callBack.onFail(new Exception("responseCode not >= 200 or < 300 , code: " + responseCode));
                 }
@@ -170,7 +170,7 @@ public final class HttpURLConnectionUtils {
             }
             if (connection != null) {
                 try {
-                    // 关闭底层连接Socket
+                    // 关闭底层连接 Socket
                     connection.disconnect();
                 } catch (Exception ignore) {
                 }
@@ -257,7 +257,7 @@ public final class HttpURLConnectionUtils {
         } finally {
             if (connection != null) {
                 try {
-                    // 关闭底层连接Socket
+                    // 关闭底层连接 Socket
                     connection.disconnect();
                 } catch (Exception ignore) {
                 }

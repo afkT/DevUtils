@@ -33,7 +33,7 @@ public final class DevLoggerUtils {
     // ========================
 
     /**
-     * 获取发布 Log 配置(打印线程信息,显示方法总数3,从0开始,不进行排序, 默认属于ERROR级别日志)
+     * 获取发布 Log 配置(打印线程信息,显示方法总数 3,从 0 开始,不进行排序, 默认属于ERROR级别日志)
      * @param tag
      * @return
      */
@@ -42,7 +42,7 @@ public final class DevLoggerUtils {
     }
 
     /**
-     * 获取发布 Log 配置(打印线程信息,显示方法总数3,从0开始,不进行排序)
+     * 获取发布 Log 配置(打印线程信息,显示方法总数 3,从 0 开始,不进行排序)
      * @param tag
      * @param lLevel 日志级别(分四种) - LogLevel
      * @return
@@ -54,7 +54,7 @@ public final class DevLoggerUtils {
     // =
 
     /**
-     * 获取调试 Log 配置(打印线程信息,显示方法总数3,从0开始,不进行排序, 默认属于ERROR级别日志)
+     * 获取调试 Log 配置(打印线程信息,显示方法总数 3,从 0 开始,不进行排序, 默认属于ERROR级别日志)
      * @param tag
      * @return
      */
@@ -63,7 +63,7 @@ public final class DevLoggerUtils {
     }
 
     /**
-     * 获取调试 Log 配置(打印线程信息,显示方法总数3,从0开始,进行排序)
+     * 获取调试 Log 配置(打印线程信息,显示方法总数 3,从 0 开始,进行排序)
      * @param tag
      * @param lLevel 日志级别(分四种) - {@link LogLevel}
      * @return
@@ -75,8 +75,8 @@ public final class DevLoggerUtils {
     // =
 
     /**
-     * 获取 Log 配置(打印线程信息,显示方法总数3,从0开始,并且美化日志信息, 默认属于DEBUG级别日志)
-     * @param tag 日志Tag
+     * 获取 Log 配置(打印线程信息,显示方法总数 3,从 0 开始,并且美化日志信息, 默认属于DEBUG级别日志)
+     * @param tag 日志 TAG
      * @return
      */
     public static LogConfig getSortLogConfig(final String tag) {
@@ -84,8 +84,8 @@ public final class DevLoggerUtils {
     }
 
     /**
-     * 获取 Log 配置(打印线程信息,显示方法总数3,从0开始,并且美化日志信息)
-     * @param tag    日志Tag
+     * 获取 Log 配置(打印线程信息,显示方法总数 3,从 0 开始,并且美化日志信息)
+     * @param tag    日志 TAG
      * @param lLevel 日志级别(分四种) - LogLevel
      * @return
      */
@@ -97,7 +97,7 @@ public final class DevLoggerUtils {
 
     /**
      * 获取 Log 配置
-     * @param tag        日志Tag
+     * @param tag        日志 TAG
      * @param count      显示的方法总数(推荐3)
      * @param offset     方法偏移索引(从第几个方法开始打印,默认推荐0)
      * @param allMethod  是否打印全部方法

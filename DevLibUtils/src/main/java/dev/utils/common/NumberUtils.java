@@ -125,44 +125,44 @@ public final class NumberUtils {
     // =
 
     /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     * 返回的 value 介于 max、min 之间，若 value 小于 min，返回 min，若大于 max，返回 max
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
-     * @return 介于 max、min之间的 value
+     * @return 介于 max、min 之间的 value
      */
     public static int clamp(final int value, final int max, final int min) {
         return value > max ? max : value < min ? min : value;
     }
 
     /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     * 返回的 value 介于 max、min 之间，若 value 小于 min，返回 min，若大于 max，返回 max
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
-     * @return 介于 max、min之间的 value
+     * @return 介于 max、min 之间的 value
      */
     public static float clamp(final float value, final float max, final float min) {
         return value > max ? max : value < min ? min : value;
     }
 
     /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     * 返回的 value 介于 max、min 之间，若 value 小于 min，返回 min，若大于 max，返回 max
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
-     * @return 介于 max、min之间的 value
+     * @return 介于 max、min 之间的 value
      */
     public static long clamp(final long value, final long max, final long min) {
         return value > max ? max : value < min ? min : value;
     }
 
     /**
-     * 返回的 value 介于 max、min之间，若 value 小于min，返回min，若大于max，返回max
+     * 返回的 value 介于 max、min 之间，若 value 小于 min，返回 min，若大于 max，返回 max
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
-     * @return 介于 max、min之间的 value
+     * @return 介于 max、min 之间的 value
      */
     public static double clamp(final double value, final double max, final double min) {
         return value > max ? max : value < min ? min : value;

@@ -285,7 +285,7 @@ public final class DialogUtils {
      * @return
      */
     public static <T extends Dialog> T autoCloseDialog(final T dialog, final long time, final Handler handler) {
-        // 不为null, 并且显示中
+        // 不为 null, 并且显示中
         if (dialog != null && dialog.isShowing()) {
             if (handler != null) {
                 handler.postDelayed(new Runnable() {
@@ -312,7 +312,7 @@ public final class DialogUtils {
      * @return
      */
     public static <T extends PopupWindow> T autoClosePopupWindow(final T popupWindow, final long time, final Handler handler) {
-        // 不为null, 并且显示中
+        // 不为 null, 并且显示中
         if (popupWindow != null && popupWindow.isShowing()) {
             if (handler != null) {
                 handler.postDelayed(new Runnable() {

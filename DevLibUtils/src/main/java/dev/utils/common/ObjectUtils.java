@@ -95,7 +95,7 @@ public final class ObjectUtils {
             }
             return false;
         }
-        // 防止两个值都为null
+        // 防止两个值都为 null
         return (value1 == null && value2 == null);
     }
 

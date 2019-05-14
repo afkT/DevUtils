@@ -89,7 +89,7 @@ public final class ContentResolverUtils {
         if (file != null && !TextUtils.isEmpty(mimeType)) {
             try {
                 ContentResolver mContentResolver = DevUtils.getContext().getContentResolver();
-                // 防止创建时间为null
+                // 防止创建时间为 null
                 if (createTime <= 0)
                     createTime = System.currentTimeMillis();
 

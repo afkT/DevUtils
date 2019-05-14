@@ -787,10 +787,10 @@ public final class ToastTintUtils {
         if (context == null) {
             context = DevUtils.getContext();
         }
-        // 防止 Context 为null
+        // 防止 Context 为 null
         if (context == null) {
             return null;
-        } else if (view == null) { // 防止显示的View 为null
+        } else if (view == null) { // 防止显示的View 为 null
             return null;
         }
         // 判断是否显示唯一, 单独共用一个
@@ -865,10 +865,10 @@ public final class ToastTintUtils {
         }
         // 处理内容
         text = sPriToastFilter.handlerContent(text);
-        // 设置为null, 便于提示排查
+        // 设置为 null, 便于提示排查
         if (TextUtils.isEmpty(text)) {
             text = sNullText;
-            // 如果还是为null, 则不处理
+            // 如果还是为 null, 则不处理
             if (TextUtils.isEmpty(text)) {
                 return null;
             }

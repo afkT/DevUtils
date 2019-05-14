@@ -29,7 +29,7 @@ public final class DevCommonUtils {
 
     /**
      * 耗时时间记录
-     * @param buffer    拼接Buffer
+     * @param buffer    拼接 Buffer
      * @param startTime 开始时间
      * @param endTime   结束时间
      */
@@ -39,7 +39,7 @@ public final class DevCommonUtils {
 
     /**
      * 耗时时间记录
-     * @param buffer    拼接Buffer
+     * @param buffer    拼接 Buffer
      * @param title     标题
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -79,7 +79,7 @@ public final class DevCommonUtils {
      */
     public static long getOperateTime(final long operateTime, final int randomTime) {
         int random = 0;
-        // 大于2才处理
+        // 大于 2 才处理
         if (randomTime >= 2) {
             // 随机时间
             random = RandomUtils.getRandom(randomTime);
@@ -217,7 +217,7 @@ public final class DevCommonUtils {
         String random2 = (900000 + new Random().nextInt(10000)) + "";
         // 获取当前时间
         String cTime = Long.toString(System.currentTimeMillis()) + random1 + random2;
-        // 生成唯一随机uuid  cTime.hashCode(), random1.hashCode() | random2.hashCode()
+        // 生成唯一随机 uuid  cTime.hashCode(), random1.hashCode() | random2.hashCode()
         UUID randomUUID = new UUID(cTime.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
         return randomUUID;
     }
@@ -400,7 +400,7 @@ public final class DevCommonUtils {
     // =
 
     /**
-     * 替换(删除 - 替换成"") 字符串中符合 特定标记字符的 startsWith - endsWith
+     * 替换(删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
      * * 如 _____a_a_a_a________  传入 _ 等于 ____a_a_a_a____
      * @param str    待处理字符串
      * @param suffix 替换符号字符串
@@ -424,7 +424,7 @@ public final class DevCommonUtils {
                 return str;
             // 获取编辑内容长度
             int kLength = suffix.length();
-            // 保存新的Buffer中,减少内存开销
+            // 保存新的 Buffer 中, 减少内存开销
             StringBuffer buffer = new StringBuffer(str);
             // 判断是否在最头部
             if (buffer.indexOf(suffix) == 0) {
@@ -526,9 +526,9 @@ public final class DevCommonUtils {
         try {
             // 获取编辑内容长度
             int kLength = suffix.length();
-            // 保存新的Buffer中,减少内存开销
+            // 保存新的 Buffer 中, 减少内存开销
             StringBuffer buffer = new StringBuffer(str);
-            // 进行循环判断 - 属于最前面的,才进行处理
+            // 进行循环判断 - 属于最前面的, 才进行处理
             while (buffer.indexOf(suffix) == 0) {
                 buffer.delete(0, kLength);
             }
@@ -536,7 +536,7 @@ public final class DevCommonUtils {
             int lastIndexOf = -1;
             // 数据长度
             int bufLength = -1;
-            // 进行循环判断 - 属于最后面的,才进行处理
+            // 进行循环判断 - 属于最后面的, 才进行处理
             while ((lastIndexOf = buffer.lastIndexOf(suffix)) == ((bufLength = buffer.length()) - kLength)) {
                 buffer.delete(lastIndexOf, bufLength);
             }
@@ -560,9 +560,9 @@ public final class DevCommonUtils {
         try {
             // 获取编辑内容长度
             int kLength = suffix.length();
-            // 保存新的Buffer中,减少内存开销
+            // 保存新的 Buffer 中, 减少内存开销
             StringBuffer buffer = new StringBuffer(str);
-            // 进行循环判断 - 属于最前面的,才进行处理
+            // 进行循环判断 - 属于最前面的, 才进行处理
             while (buffer.indexOf(suffix) == 0) {
                 buffer.delete(0, kLength);
             }
@@ -586,11 +586,11 @@ public final class DevCommonUtils {
         try {
             // 获取编辑内容长度
             int kLength = suffix.length();
-            // 保存新的Buffer中,减少内存开销
+            // 保存新的 Buffer 中, 减少内存开销
             StringBuffer buffer = new StringBuffer(str);
             // 获取最后一位位置
             int sLength = 0;
-            // 进行循环判断 - 属于最前面的,才进行处理
+            // 进行循环判断 - 属于最前面的, 才进行处理
             while (buffer.lastIndexOf(suffix) == ((sLength = buffer.length()) - kLength)) {
                 buffer.delete(sLength - kLength, sLength);
             }
@@ -611,7 +611,7 @@ public final class DevCommonUtils {
      * @return 处理后的字符串
      */
     public static String replaceStr(final String str, final String suffix, final String replace) {
-        // 如果替换的内容或者判断的字符串为null,则直接跳过
+        // 如果替换的内容或者判断的字符串为 null,则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
@@ -630,7 +630,7 @@ public final class DevCommonUtils {
      * @return 处理后的字符串, 替换失败则返回 null
      */
     public static String replaceStrToNull(final String str, final String suffix, final String replace) {
-        // 如果替换的内容或者判断的字符串为null,则直接跳过
+        // 如果替换的内容或者判断的字符串为 null,则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
@@ -649,7 +649,7 @@ public final class DevCommonUtils {
      * @return 处理后的字符串
      */
     public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
-        // 防止数据为null
+        // 防止数据为 null
         if (str != null && suffixArys != null && replaceArys != null) {
             String cStr = str;
             // 替换的特殊字符串长度
@@ -663,7 +663,7 @@ public final class DevCommonUtils {
                     // 进行替换字符串
                     cStr = replaceStr(cStr, suffixArys[i], replaceArys[i]);
                 }
-                // 最终不为null,则进行返回
+                // 最终不为 null,则进行返回
                 return cStr;
             }
         }
@@ -849,7 +849,7 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param objects object[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final Object[] objects) {
         return length(objects, 0);
@@ -858,7 +858,7 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param ints int[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final int[] ints) {
         return length(ints, 0);
@@ -867,7 +867,7 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param bytes byte[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final byte[] bytes) {
         return length(bytes, 0);
@@ -876,7 +876,7 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param chars char[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final char[] chars) {
         return length(chars, 0);
@@ -885,7 +885,7 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param shorts short[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final short[] shorts) {
         return length(shorts, 0);
@@ -894,7 +894,7 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param longs long[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final long[] longs) {
         return length(longs, 0);
@@ -903,7 +903,7 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param floats float[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final float[] floats) {
         return length(floats, 0);
@@ -912,7 +912,7 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param doubles double[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final double[] doubles) {
         return length(doubles, 0);
@@ -921,7 +921,7 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param booleans boolean[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final boolean[] booleans) {
         return length(booleans, 0);
@@ -932,8 +932,8 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param objects       object[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final Object[] objects, final int defaultLength) {
         return objects != null ? objects.length : defaultLength;
@@ -942,8 +942,8 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param ints          int[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final int[] ints, final int defaultLength) {
         return ints != null ? ints.length : defaultLength;
@@ -952,8 +952,8 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param bytes         byte[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final byte[] bytes, final int defaultLength) {
         return bytes != null ? bytes.length : defaultLength;
@@ -962,8 +962,8 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param chars         char[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final char[] chars, final int defaultLength) {
         return chars != null ? chars.length : defaultLength;
@@ -972,8 +972,8 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param shorts        short[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final short[] shorts, final int defaultLength) {
         return shorts != null ? shorts.length : defaultLength;
@@ -982,8 +982,8 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param longs         long[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final long[] longs, final int defaultLength) {
         return longs != null ? longs.length : defaultLength;
@@ -992,8 +992,8 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param floats        float[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final float[] floats, final int defaultLength) {
         return floats != null ? floats.length : defaultLength;
@@ -1002,8 +1002,8 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param doubles       double[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final double[] doubles, final int defaultLength) {
         return doubles != null ? doubles.length : defaultLength;
@@ -1012,8 +1012,8 @@ public final class DevCommonUtils {
     /**
      * 获取数组长度
      * @param booleans      boolean[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final boolean[] booleans, final int defaultLength) {
         return booleans != null ? booleans.length : defaultLength;
@@ -1117,7 +1117,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断 Collection 是否为 null
-     * @param collection Collection
+     * @param collection {@link Collection}
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Collection collection) {
@@ -1126,7 +1126,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断 Collection 是否不为 null
-     * @param collection Collection
+     * @param collection {@link Collection}
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final Collection collection) {
@@ -1139,7 +1139,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取 Collection 长度
-     * @param collection Collection
+     * @param collection {@link Collection}
      * @return 如果 Collection 为 null, 则返回默认长度, 如果不为 null, 则返回 collection.size()
      */
     public static int length(final Collection collection) {
@@ -1148,7 +1148,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取 Collection 长度
-     * @param collection    Collection
+     * @param collection    {@link Collection}
      * @param defaultLength 集合为 null 默认长度
      * @return 如果 Collection 为 null, 则返回 defaultLength, 如果不为 null, 则返回 collection.size()
      */
@@ -1160,7 +1160,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Collection 是否等于期望长度
-     * @param collection Collection
+     * @param collection {@link Collection}
      * @param length     期望长度
      * @return {@code true} yes, {@code false} no
      */
@@ -1174,7 +1174,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断 Map 是否为 null
-     * @param map Map
+     * @param map {@link Map}
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Map map) {
@@ -1183,7 +1183,7 @@ public final class DevCommonUtils {
 
     /**
      * 判断 Map 是否不为 null
-     * @param map Map
+     * @param map {@link Map}
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final Map map) {
@@ -1196,7 +1196,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取 Map 长度
-     * @param map Map
+     * @param map {@link Map}
      * @return 如果 Map 为 null, 则返回默认长度, 如果不为 null, 则返回 map.size()
      */
     public static int length(final Map map) {
@@ -1205,7 +1205,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取 Map 长度
-     * @param map           Map
+     * @param map           {@link Map}
      * @param defaultLength 集合为 null 默认长度
      * @return 如果 Map 为 null, 则返回 defaultLength, 如果不为 null, 则返回 map.size()
      */
@@ -1217,7 +1217,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取长度 to Map 是否等于期望长度
-     * @param map    Map
+     * @param map    {@link Map}
      * @param length 期望长度
      * @return {@code true} yes, {@code false} no
      */
@@ -1265,7 +1265,7 @@ public final class DevCommonUtils {
             }
             return false;
         }
-        // 默认表示属于null
+        // 默认表示属于 null
         return true;
     }
 
@@ -1306,7 +1306,7 @@ public final class DevCommonUtils {
     /**
      * 获取字符串长度
      * @param str           待校验的字符串
-     * @param defaultLength 字符串为null时, 返回的长度
+     * @param defaultLength 字符串为 null 时, 返回的长度
      * @return 字符串长度, 如果字符串为 null,则返回 defaultLength
      */
     public static int length(final String str, final int defaultLength) {
@@ -1365,7 +1365,7 @@ public final class DevCommonUtils {
             }
             return false;
         }
-        // 防止两个值都为null
+        // 防止两个值都为 null
         return (value1 == null && value2 == null);
     }
 
@@ -1397,7 +1397,7 @@ public final class DevCommonUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = strs[i];
-                // 如果等于null,则跳过
+                // 如果等于 null, 则跳过
                 if (val == null) {
                     return false;
                 }
@@ -1420,7 +1420,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断多个字符串,只要有一个符合条件,则通过
+     * 判断多个字符串,只要有一个符合条件, 则通过
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -1430,7 +1430,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断多个字符串,只要有一个符合条件,则通过
+     * 判断多个字符串,只要有一个符合条件, 则通过
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
      * @param strs     待校验的字符串数组
@@ -1444,7 +1444,7 @@ public final class DevCommonUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = strs[i];
-                // 如果等于null,则跳过
+                // 如果等于 null, 则跳过
                 if (val == null) {
                     continue;
                 } else {
@@ -1493,7 +1493,7 @@ public final class DevCommonUtils {
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 获取参数
                 String val = strs[i];
-                // 判断是否为 null,或者长度为0
+                // 判断是否为 null, 或者长度为 0
                 if (!isEmpty(val) && cLength != 0) {
                     if (isIgnore) {
                         // 转换小写
@@ -1510,7 +1510,7 @@ public final class DevCommonUtils {
                     }
                 } else {
                     // 下面这一串可以不要,因为判断字符串是否包含
-                    // 已经处理了值不为null,并且需要判断的值长度不能为0,下面则不需要加上
+                    // 已经处理了值不为 null, 并且需要判断的值长度不能为 0, 下面则不需要加上
                     if (strTemp.equals(val)) {
                         return true;
                     }
@@ -1550,7 +1550,7 @@ public final class DevCommonUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = strs[i];
-                // 判断是否为 null,或者长度为0
+                // 判断是否为 null, 或者长度为 0
                 if (!isEmpty(val)) {
                     if (isIgnore) {
                         // 转换小写
@@ -1601,7 +1601,7 @@ public final class DevCommonUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = strs[i];
-                // 判断是否为 null,或者长度为0
+                // 判断是否为 null, 或者长度为 0
                 if (!isEmpty(val)) {
                     if (isIgnore) {
                         // 转换小写
@@ -1699,7 +1699,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 追加 换行
+     * 追加换行
      * @param number 换行数量
      * @return 指定数量的换行字符串
      */

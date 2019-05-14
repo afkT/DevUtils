@@ -132,7 +132,7 @@ public final class NetWorkUtils {
                     }
                 }
             } else {
-                // 获取当前活跃的网络（连接的网络信息）
+                // 获取当前活跃的网络(连接的网络信息)
                 Network network = cManager.getActiveNetwork();
                 // 判断是否为 null
                 if (network != null) {
@@ -172,7 +172,7 @@ public final class NetWorkUtils {
                     }
                 }
             } else {
-                // 获取当前活跃的网络（连接的网络信息）
+                // 获取当前活跃的网络(连接的网络信息)
                 Network network = cManager.getActiveNetwork();
                 if (network != null) {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
@@ -437,9 +437,9 @@ public final class NetWorkUtils {
             try {
                 // 获取网络连接状态
                 ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-                // 获取当前活跃的网络（连接的网络信息）
+                // 获取当前活跃的网络(连接的网络信息)
                 Network network = cManager.getActiveNetwork();
-                // 防止为null
+                // 防止为 null
                 if (network != null) {
                     // 属于可用则修改为未知
                     netType = NetworkType.NETWORK_UNKNOWN;

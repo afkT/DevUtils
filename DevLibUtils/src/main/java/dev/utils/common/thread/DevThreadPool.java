@@ -298,9 +298,9 @@ public final class DevThreadPool {
     }
 
     /**
-     * 提交一个Runnable任务用于执行
+     * 提交一个 Runnable 任务用于执行
      * @param task 任务
-     * @return 表示任务等待完成的 Future, 该 Future 的 {@code get} 方法在成功完成时将会返回null结果。
+     * @return 表示任务等待完成的 Future, 该 Future 的 {@code get} 方法在成功完成时将会返回 null 结果。
      */
     public Future<?> submit(final Runnable task) {
         if (mThreadPool != null && task != null) {

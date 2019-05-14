@@ -568,7 +568,7 @@ public final class ScreenUtils {
             Bitmap bmp = view.getDrawingCache();
             int[] sParams = getScreenWidthHeight();
 
-            // 主要是 getWindowVisibleDisplayFrame 内容才不为null
+            // 主要是 getWindowVisibleDisplayFrame 内容才不为 null
             Rect frame = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
             // 创建新的图片

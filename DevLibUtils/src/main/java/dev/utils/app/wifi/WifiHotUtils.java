@@ -381,7 +381,7 @@ public class WifiHotUtils {
                 String[] splitted = line.split(" +");
                 if (splitted != null && splitted.length >= 4) {
                     String ipAdr = splitted[0]; // Ip地址
-                    // 防止地址为null,并且需要以.拆分 存在4个长度  255.255.255.255
+                    // 防止地址为 null,并且需要以.拆分 存在4个长度  255.255.255.255
                     if (ipAdr != null && ipAdr.split("\\.").length >= 3) {
                         return true;
                     }
@@ -421,7 +421,7 @@ public class WifiHotUtils {
                 String[] splitted = line.split(" +");
                 if (splitted != null && splitted.length >= 4) {
                     String ipAdr = splitted[0]; // Ip地址
-                    // 防止地址为null,并且需要以.拆分 存在4个长度  255.255.255.255
+                    // 防止地址为 null,并且需要以.拆分 存在4个长度  255.255.255.255
                     if (ipAdr != null && ipAdr.split("\\.").length >= 3) {
                         return ipAdr;
                     }

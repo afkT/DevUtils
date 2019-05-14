@@ -374,7 +374,7 @@ public final class ClickUtils {
         public Long getConfigTime(final String key) {
             // 获取配置时间
             Long configTime = mConfigMaps.get(key);
-            // 判断是否为null
+            // 判断是否为 null
             return (configTime != null) ? configTime : mIntervalTime;
         }
 

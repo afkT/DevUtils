@@ -60,7 +60,7 @@ public final class StringUtils {
             }
             return false;
         }
-        // 默认表示属于null
+        // 默认表示属于 null
         return true;
     }
 
@@ -101,7 +101,7 @@ public final class StringUtils {
     /**
      * 获取字符串长度
      * @param str           待校验的字符串
-     * @param defaultLength 字符串为null时, 返回的长度
+     * @param defaultLength 字符串为 null 时, 返回的长度
      * @return 字符串长度, 如果字符串为 null,则返回 defaultLength
      */
     public static int length(final String str, final int defaultLength) {
@@ -160,7 +160,7 @@ public final class StringUtils {
             }
             return false;
         }
-        // 防止两个值都为null
+        // 防止两个值都为 null
         return (value1 == null && value2 == null);
     }
 
@@ -192,7 +192,7 @@ public final class StringUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = strs[i];
-                // 如果等于null,则跳过
+                // 如果等于 null, 则跳过
                 if (val == null) {
                     return false;
                 }
@@ -215,7 +215,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断多个字符串,只要有一个符合条件,则通过
+     * 判断多个字符串,只要有一个符合条件, 则通过
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -225,7 +225,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断多个字符串,只要有一个符合条件,则通过
+     * 判断多个字符串,只要有一个符合条件, 则通过
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
      * @param strs     待校验的字符串数组
@@ -239,7 +239,7 @@ public final class StringUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = strs[i];
-                // 如果等于null,则跳过
+                // 如果等于 null, 则跳过
                 if (val == null) {
                     continue;
                 } else {
@@ -288,7 +288,7 @@ public final class StringUtils {
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 获取参数
                 String val = strs[i];
-                // 判断是否为 null,或者长度为0
+                // 判断是否为 null, 或者长度为 0
                 if (!isEmpty(val) && cLength != 0) {
                     if (isIgnore) {
                         // 转换小写
@@ -305,7 +305,7 @@ public final class StringUtils {
                     }
                 } else {
                     // 下面这一串可以不要,因为判断字符串是否包含
-                    // 已经处理了值不为null,并且需要判断的值长度不能为0,下面则不需要加上
+                    // 已经处理了值不为 null, 并且需要判断的值长度不能为 0, 下面则不需要加上
                     if (strTemp.equals(val)) {
                         return true;
                     }
@@ -345,7 +345,7 @@ public final class StringUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = strs[i];
-                // 判断是否为 null,或者长度为0
+                // 判断是否为 null, 或者长度为 0
                 if (!isEmpty(val)) {
                     if (isIgnore) {
                         // 转换小写
@@ -396,7 +396,7 @@ public final class StringUtils {
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
                 String val = strs[i];
-                // 判断是否为 null,或者长度为0
+                // 判断是否为 null, 或者长度为 0
                 if (!isEmpty(val)) {
                     if (isIgnore) {
                         // 转换小写
@@ -494,7 +494,7 @@ public final class StringUtils {
     }
 
     /**
-     * 追加 换行
+     * 追加换行
      * @param number 换行数量
      * @return 指定数量的换行字符串
      */
@@ -737,9 +737,9 @@ public final class StringUtils {
     // =
 
     /**
-     * 进行 URL 编码,默认UTF-8
+     * 进行 URL 编码, 默认 UTF-8
      * @param str 待处理字符串
-     * @return 字符串 UTF-8 编码后, 再进行 Url 编码后的字符串
+     * @return 字符串 UTF-8 编码后, 再进行 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str) {
         return toUrlEncode(str, "UTF-8");
@@ -749,7 +749,7 @@ public final class StringUtils {
      * 进行 URL 编码
      * @param str 待处理字符串
      * @param enc 编码格式
-     * @return 指定编码格式编码后, 再进行 Url 编码后的字符串
+     * @return 指定编码格式编码后, 再进行 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str, final String enc) {
         if (str == null || enc == null) return null;
