@@ -26,9 +26,9 @@ public final class DevThreadManager {
      * @return {@link DevThreadPool}
      */
     public static synchronized DevThreadPool getInstance(final int threadNumber) {
-        // 初始化key
+        // 初始化 key
         String key = "n_" + threadNumber;
-        // 如果不为null, 则直接返回
+        // 如果不为 null, 则直接返回
         DevThreadPool devThreadPool = sThreadMaps.get(key);
         if (devThreadPool != null) {
             return devThreadPool;
@@ -44,7 +44,7 @@ public final class DevThreadManager {
      * @return {@link DevThreadPool}
      */
     public static synchronized DevThreadPool getInstance(final String key) {
-        // 如果不为null, 则直接返回
+        // 如果不为 null, 则直接返回
         DevThreadPool devThreadPool = sThreadMaps.get(key);
         if (devThreadPool != null) {
             return devThreadPool;

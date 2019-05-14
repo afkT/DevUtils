@@ -24,7 +24,7 @@ public final class CRCUtils {
     /**
      * 获取 CRC32 值
      * @param data 字符串数据
-     * @return CRC32 long值
+     * @return CRC32 long 值
      */
     public static long getCRC32(final String data) {
         if (data == null) return -1L;

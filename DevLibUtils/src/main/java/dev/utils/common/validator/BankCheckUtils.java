@@ -11,14 +11,14 @@ import dev.utils.JCLogUtils;
  *      因为并不是一个随便的信用卡号码都是合法的，它必须通过 Luhn 算法来验证通过。
  *      <p></p>
  *      该校验的过程:
- *      1、从卡号最后一位数字开始，逆向将奇数位(1、3、5等等)相加。
- *      2、从卡号最后一位数字开始，逆向将偶数位数字，先乘以2(如果乘积为两位数，则将其减去9)，再求和。
- *      3、将奇数位总和加上偶数位总和，结果应该可以被10整除。
+ *      1、从卡号最后一位数字开始，逆向将奇数位 (1、3、5 等等) 相加。
+ *      2、从卡号最后一位数字开始，逆向将偶数位数字，先乘以 2 (如果乘积为两位数，则将其减去 9)，再求和。
+ *      3、将奇数位总和加上偶数位总和，结果应该可以被 10 整除。
  *      <p></p>
  *      例如，卡号是: 5432123456788881
  *      则奇数、偶数位(用红色标出)分布: 5432123456788881
  *      奇数位和 = 35
- *      偶数位乘以 2(有些要减去 9)的结果: 1 6 2 6 1 5 7 7，求和=35。
+ *      偶数位乘以 2 (有些要减去 9) 的结果: 1 6 2 6 1 5 7 7，求和=35。
  *      最后 35 + 35 = 70 可以被 10 整除，认定校验通过。
  * </pre>
  */
@@ -31,7 +31,7 @@ public final class BankCheckUtils {
     private static final String TAG = BankCheckUtils.class.getSimpleName();
 
     /**
-     * 校验银行卡卡号 是否合法
+     * 校验银行卡卡号是否合法
      * @param cardId 待校验银行卡号
      * @return {@code true} yes, {@code false} no
      */
@@ -57,7 +57,7 @@ public final class BankCheckUtils {
             if (nonCheckCodeCardId == null
                     || nonCheckCodeCardId.trim().length() == 0
                     || !nonCheckCodeCardId.matches("\\d+")) {
-                // 如果传的不是数据返回N
+                // 如果传的不是数据返回 N
                 return 'N';
             }
             char[] chs = nonCheckCodeCardId.trim().toCharArray();
@@ -79,14 +79,14 @@ public final class BankCheckUtils {
     }
 
     /**
-     * 通过银行卡 的前六位确定 判断银行开户行及卡种
+     * 通过银行卡的 前六位确定 判断银行开户行及卡种
      * @param cardBin 待校验银行卡号
      * @return 银行开户行及卡种
      */
     public static String getNameOfBank(final String cardBin) {
         if (cardBin == null || cardBin.trim().length() < 6) return "";
         try {
-            // 通过银行卡的前6位确定
+            // 通过银行卡的前六位确定
             String cardBin6 = cardBin.trim().substring(0, 6);
             int index = -1;
             for (int i = 0, len = BANK_BIN.length; i < len; i++) {
@@ -107,10 +107,10 @@ public final class BankCheckUtils {
     // =
 
     /*
-     * 银行卡是由”发卡行标识代码 + 自定义 + 校验码 “等部分组成的 BIN号 银联标准卡与以往发行的银行卡最直接的区别就是其卡号前6位数字的不同。
-     * 银行卡卡号的前6位是用来表示发卡银行或机构的，称为“发卡行识别码”(Bank Identification Number，缩写为“BIN”)。
+     * 银行卡是由”发卡行标识代码 + 自定义 + 校验码 “等部分组成的 BIN 号 银联标准卡与以往发行的银行卡最直接的区别就是其卡号前六位数字的不同。
+     * 银行卡卡号的前六位是用来表示发卡银行或机构的，称为“发卡行识别码”(Bank Identification Number，缩写为“BIN”)。
      * 银联标准卡是由国内各家商业银行 (含邮储、信用社)共同发行、符合银联业务规范和技术标准、卡正面右下角带有“银联”标识，
-     * (目前新发行的银联标准卡一定带有国际化的银联新标识 ，新发的非银联标准卡使用旧的联网通用银联标识)、 卡号前6位为622126至622925之一的银行卡，
+     * (目前新发行的银联标准卡一定带有国际化的银联新标识 ，新发的非银联标准卡使用旧的联网通用银联标识)、 卡号前六位为 622126 至 622925 之一的银行卡，
      * 是中国银行卡产业共有的民族品牌。
      */
 

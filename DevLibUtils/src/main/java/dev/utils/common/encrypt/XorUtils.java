@@ -19,8 +19,10 @@ public final class XorUtils {
 
     /**
      * 加密 (固定 key 方式) - 这种方式 加/解密 方法共用
-     * 加密: byte[] bytes = encryptAsFix("123".getBytes());
-     * 解密: String str = new String(encryptAsFix(bytes));
+     * <pre>
+     *      加密: byte[] bytes = encryptAsFix("123".getBytes());
+     *      解密: String str = new String(encryptAsFix(bytes));
+     * </pre>
      * @param data 待加/解密数据
      * @return 加/解密后的数据 byte[]
      */

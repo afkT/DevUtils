@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: MD5加密 不可逆(Message Digest，消息摘要算法)
+ * detail: MD5 加密 不可逆(Message Digest，消息摘要算法)
  * @author Ttt
  */
 public final class MD5Utils {
@@ -45,7 +45,7 @@ public final class MD5Utils {
     public static String md5(final byte[] data) {
         if (data == null) return null;
         try {
-            // 获取MD5摘要算法的 MessageDigest 对象
+            // 获取 MD5 摘要算法的 MessageDigest 对象
             MessageDigest mdInst = MessageDigest.getInstance("MD5");
             // 使用指定的字节更新摘要
             mdInst.update(data);
@@ -81,7 +81,7 @@ public final class MD5Utils {
     public static String md5Upper(final byte[] data) {
         if (data == null) return null;
         try {
-            // 获取MD5摘要算法的 MessageDigest 对象
+            // 获取 MD5 摘要算法的 MessageDigest 对象
             MessageDigest mdInst = MessageDigest.getInstance("MD5");
             // 使用指定的字节更新摘要
             mdInst.update(data);
@@ -106,7 +106,7 @@ public final class MD5Utils {
     /**
      * 将 byte[] 转换 十六进制字符串
      * @param data      待加密数据
-     * @param hexDigits {@link MD5Utils#HEX_DIGITS}， {@link MD5Utils#HEX_DIGITS_UPPER}
+     * @param hexDigits {@link MD5Utils#HEX_DIGITS}、{@link MD5Utils#HEX_DIGITS_UPPER}
      * @return 十六进制字符串
      */
     public static String toHexString(final byte[] data, final char[] hexDigits) {

@@ -109,12 +109,12 @@ public final class IDCardUtils {
     }
 
     /**
-     * 身份证校验规则, 验证15位身份编码是否合法
+     * 身份证校验规则, 验证 15 位身份编码是否合法
      * @param idCard 待验证身份证号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean validateIdCard15(final String idCard) {
-        // 属于数字, 并且长度为15位数
+        // 属于数字, 并且长度为 15 位数
         if (isNum(idCard) && idCard.length() == CHINA_ID_MIN_LENGTH) {
             // 获取省份编码
             String provinceCode = idCard.substring(0, 2);
@@ -141,7 +141,7 @@ public final class IDCardUtils {
     }
 
     /**
-     * 身份证校验规则, 验证18位身份编码是否合法
+     * 身份证校验规则, 验证 18 位身份编码是否合法
      * @param idCard 待验证身份证号码
      * @return {@code true} yes, {@code false} no
      */
@@ -151,7 +151,7 @@ public final class IDCardUtils {
             String code17 = idCard.substring(0, 17);
             // 第 18 位
             String code18 = idCard.substring(17, CHINA_ID_MAX_LENGTH);
-            // 判断前17位是否数字
+            // 判断前 17 位是否数字
             if (isNum(code17)) {
                 try {
                     int[] cardArys = converCharToInt(code17.toCharArray());
@@ -172,11 +172,11 @@ public final class IDCardUtils {
 
     /**
      * 将 15 位身份证号码转换为 18 位
-     * @param idCard 15位身份编码
-     * @return 18位身份编码
+     * @param idCard 15 位身份编码
+     * @return 18 位身份编码
      */
     public static String convert15CardTo18(final String idCard) {
-        // 属于数字, 并且长度为15位数
+        // 属于数字, 并且长度为 15 位数
         if (isNum(idCard) && idCard.length() == CHINA_ID_MIN_LENGTH) {
             String idCard18;
             Date birthDate = null;
@@ -238,10 +238,10 @@ public final class IDCardUtils {
 
     /**
      * 验证香港身份证号码
-     * (存在Bug，部份特殊身份证无法检查)
-     * 身份证前2位为英文字符，如果只出现一个英文字符则表示第一位是空格，对应数字58 前2位英文字符A-Z分别对应数字10-35
-     * 最后一位校验码为0-9的数字加上字符"A"，"A"代表10
-     * 将身份证号码全部转换为数字，分别对应乘9-1相加的总和，整除11则证件号码有效
+     * (存在 Bug，部份特殊身份证无法检查)
+     * 身份证前 2 位为英文字符，如果只出现一个英文字符则表示第一位是空格，对应数字 58 前 2 位英文字符 A-Z 分别对应数字 10-35
+     * 最后一位校验码为 0-9 的数字加上字符 "A", "A" 代表 10
+     * 将身份证号码全部转换为数字，分别对应乘 9-1 相加的总和，整除 11 则证件号码有效
      * @param idCard 身份证号码
      * @return {@code true} yes, {@code false} no
      */
@@ -345,11 +345,11 @@ public final class IDCardUtils {
         if (isEmpty(idCard)) return 0;
         try {
             String idCardStr = idCard;
-            // 属于15位身份证, 则转换为18位
+            // 属于 15 位身份证, 则转换为 18 位
             if (idCardStr.length() == CHINA_ID_MIN_LENGTH) {
                 idCardStr = convert15CardTo18(idCard);
             }
-            // 属于18位身份证才处理
+            // 属于 18 位身份证才处理
             if (idCardStr.length() == CHINA_ID_MAX_LENGTH) {
                 String year = idCardStr.substring(6, 10);
                 // 获取当前年份
@@ -372,11 +372,11 @@ public final class IDCardUtils {
         if (isEmpty(idCard)) return null;
         try {
             String idCardStr = idCard;
-            // 属于15位身份证, 则转换为18位
+            // 属于 15 位身份证, 则转换为 18 位
             if (idCardStr.length() == CHINA_ID_MIN_LENGTH) {
                 idCardStr = convert15CardTo18(idCard);
             }
-            // 属于18位身份证才处理
+            // 属于 18 位身份证才处理
             if (idCardStr.length() == CHINA_ID_MAX_LENGTH) {
                 return idCardStr.substring(6, 14);
             }
@@ -465,17 +465,17 @@ public final class IDCardUtils {
     /**
      * 根据身份编号获取性别
      * @param idCard 身份编号
-     * @return 性别(M - 男 ， F - 女 ， N - 未知)
+     * @return 性别(M - 男 、 F - 女 、 N - 未知)
      */
     public static String getGenderByIdCard(final String idCard) {
         if (isEmpty(idCard)) return null;
         try {
             String idCardStr = idCard;
-            // 属于15位身份证, 则转换为18位
+            // 属于 15 位身份证, 则转换为 18 位
             if (idCardStr.length() == CHINA_ID_MIN_LENGTH) {
                 idCardStr = convert15CardTo18(idCard);
             }
-            // 属于18位身份证才处理
+            // 属于 18 位身份证才处理
             if (idCardStr.length() == CHINA_ID_MAX_LENGTH) {
                 // 获取第 17 位性别信息
                 String cardNumber = idCardStr.substring(16, 17);
@@ -499,7 +499,7 @@ public final class IDCardUtils {
         try {
             // 身份证长度
             int idCardLength = idCard.length();
-            // 属于15位身份证、或18位身份证
+            // 属于 15 位身份证、或 18 位身份证
             if (idCardLength == CHINA_ID_MIN_LENGTH || idCardLength == CHINA_ID_MAX_LENGTH) {
                 return sCityCodeMaps.get(idCard.substring(0, 2));
             }

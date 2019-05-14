@@ -124,8 +124,8 @@ public final class EncryptUtils {
         if (salt == null) return toHexString(encryptMD5(data));
         if (data == null) return toHexString(encryptMD5(salt));
         // 拼接数据
-        byte[] datas = joinBytes(data, salt);
-        return toHexString(encryptMD5(datas));
+        byte[] bytes = joinBytes(data, salt);
+        return toHexString(encryptMD5(bytes));
     }
 
     // =
@@ -1004,7 +1004,7 @@ public final class EncryptUtils {
         // 获取数据长度
         int prefixLength = prefix.length;
         int suffixLength = suffix.length;
-        // 数据都为null, 则直接跳过
+        // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建 byte[]
         byte[] bytes = new byte[prefixLength + suffixLength];
