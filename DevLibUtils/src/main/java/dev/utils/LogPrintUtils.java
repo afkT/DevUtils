@@ -24,16 +24,16 @@ public final class LogPrintUtils {
     private LogPrintUtils() {
     }
 
-    // JSON格式内容缩进
+    // JSON 格式内容缩进
     private static final int JSON_INDENT = 4;
-    // 是否打印日志 上线 = false，开发、debug = true
+    // 是否打印日志 上线(生产) = false, 开发(debug) = true
     private static boolean JUDGE_PRINT_LOG = false;
     // 默认 DEFAULT_TAG
     private static final String DEFAULT_TAG = LogPrintUtils.class.getSimpleName();
 
     /**
      * 判断是否打印日志
-     * @return {@code true} 打印日志, {@code false} 不打印日志
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isPrintLog() {
         return JUDGE_PRINT_LOG;
@@ -61,7 +61,7 @@ public final class LogPrintUtils {
     /**
      * 最终打印日志方法(全部调用此方法)
      * @param logType 打印日志类型
-     * @param tag     打印Tag
+     * @param tag     打印 Tag
      * @param msg     打印消息
      */
     private static void printLog(final int logType, final String tag, final String msg) {
@@ -94,21 +94,21 @@ public final class LogPrintUtils {
      * 处理信息
      * @param message 打印信息
      * @param args    占位符替换
-     * @return 返回处理(格式化 、 判断)后准备打印的日志信息
+     * @return 返回处理(格式化)后准备打印的日志信息
      */
     private static String createMessage(final String message, final Object... args) {
         String result;
         try {
             if (message != null) {
                 if (args == null) {
-                    // 动态参数为null
+                    // 动态参数为 null
                     result = "params is null";
                 } else {
                     // 格式化字符串
                     result = (args.length == 0 ? message : String.format(message, args));
                 }
             } else {
-                // 打印内容为null
+                // 打印内容为 null
                 result = "message is null";
             }
         } catch (Exception e) {
@@ -123,7 +123,7 @@ public final class LogPrintUtils {
      * @param throwable 错误异常
      * @param message   需要打印的消息
      * @param args      动态参数
-     * @return 返回处理(格式化 、 判断)后准备打印的日志信息
+     * @return 返回处理(格式化)后准备打印的日志信息
      */
     private static String splitErrorMessage(final Throwable throwable, final String message, final Object... args) {
         String result;
@@ -241,13 +241,13 @@ public final class LogPrintUtils {
 
     public static void jsonTag(final String tag, final String json) {
         if (JUDGE_PRINT_LOG) {
-            // 判断传入JSON格式信息是否为null
+            // 判断传入 JSON 格式信息是否为 null
             if (isEmpty(json)) {
                 printLog(Log.ERROR, tag, "Empty/Null json content");
                 return;
             }
             try {
-                // 属于对象的JSON格式信息
+                // 属于对象的 JSON 格式信息
                 if (json.startsWith("{")) {
                     JSONObject jsonObject = new JSONObject(json);
                     // 进行缩进
@@ -255,7 +255,7 @@ public final class LogPrintUtils {
                     // 打印信息
                     printLog(Log.DEBUG, tag, message);
                 } else if (json.startsWith("[")) {
-                    // 属于数据的JSON格式信息
+                    // 属于数据的 JSON 格式信息
                     JSONArray jsonArray = new JSONArray(json);
                     // 进行缩进
                     String message = jsonArray.toString(JSON_INDENT);
@@ -283,7 +283,7 @@ public final class LogPrintUtils {
 
     public static void xmlTag(final String tag, final String xml) {
         if (JUDGE_PRINT_LOG) {
-            // 判断传入XML格式信息是否为null
+            // 判断传入 XML 格式信息是否为 null
             if (isEmpty(xml)) {
                 printLog(Log.ERROR, tag, "Empty/Null xml content");
                 return;

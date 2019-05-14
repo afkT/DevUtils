@@ -19,7 +19,7 @@ public final class JCLogUtils {
     private JCLogUtils() {
     }
 
-    // 是否打印日志 上线 = false，开发、debug = true
+    // 是否打印日志 上线(生产) = false, 开发(debug) = true
     private static boolean JUDGE_PRINT_LOG = false;
     // 判断是否控制台打印信息
     private static boolean JUDGE_CONTROL_PRINT_LOG = false;
@@ -30,7 +30,7 @@ public final class JCLogUtils {
     // = 日志类型 =
     // ============
 
-    // 普通信息模式
+    // INFO 模式
     private static final int INFO = 0;
     // DEBUG 模式
     private static final int DEBUG = 1;
@@ -39,7 +39,7 @@ public final class JCLogUtils {
 
     /**
      * 判断是否打印日志
-     * @return {@code true} 打印日志, {@code false} 不打印日志
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isPrintLog() {
         return JUDGE_PRINT_LOG;
@@ -75,7 +75,7 @@ public final class JCLogUtils {
     /**
      * 最终打印日志方法(全部调用此方法)
      * @param logType 打印日志类型
-     * @param tag     打印Tag
+     * @param tag     打印 Tag
      * @param msg     打印消息
      */
     private static void printLog(final int logType, final String tag, final String msg) {
@@ -104,21 +104,21 @@ public final class JCLogUtils {
      * 处理信息
      * @param message 打印信息
      * @param args    占位符替换
-     * @return 返回处理(格式化 、 判断)后准备打印的日志信息
+     * @return 返回处理(格式化)后准备打印的日志信息
      */
     private static String createMessage(final String message, final Object... args) {
         String result;
         try {
             if (message != null) {
                 if (args == null) {
-                    // 动态参数为null
+                    // 动态参数为 null
                     result = "params is null";
                 } else {
                     // 格式化字符串
                     result = (args.length == 0 ? message : String.format(message, args));
                 }
             } else {
-                // 打印内容为null
+                // 打印内容为 null
                 result = "message is null";
             }
         } catch (Exception e) {
@@ -133,7 +133,7 @@ public final class JCLogUtils {
      * @param throwable 错误异常
      * @param message   需要打印的消息
      * @param args      动态参数
-     * @return 返回处理(格式化 、 判断)后准备打印的日志信息
+     * @return 返回处理(格式化)后准备打印的日志信息
      */
     private static String splitErrorMessage(final Throwable throwable, final String message, final Object... args) {
         String result;
@@ -217,7 +217,7 @@ public final class JCLogUtils {
 
     public static void xmlTag(final String tag, final String xml) {
         if (JUDGE_PRINT_LOG) {
-            // 判断传入XML格式信息是否为null
+            // 判断传入 XML 格式信息是否为 null
             if (isEmpty(xml)) {
                 printLog(ERROR, tag, "Empty/Null xml content");
                 return;

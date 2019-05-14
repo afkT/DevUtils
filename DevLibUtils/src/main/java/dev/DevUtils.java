@@ -48,8 +48,8 @@ public final class DevUtils {
     private static boolean sDebug = false;
 
     /**
-     * 初始化方法 - 必须调用 - Application.onCreate 中调用
-     * @param context Context
+     * 初始化方法(必须调用)
+     * @param context {@link Context}
      */
     public static void init(final Context context) {
         // 设置全局 Context
@@ -79,39 +79,27 @@ public final class DevUtils {
 
     /**
      * 初始化全局 Context
-     * @param context Context
+     * @param context {@link Context}
      */
     private static void initContext(final Context context) {
-        // 如果为null, 才进行判断处理
-        if (DevUtils.sContext == null) {
-            // 防止传进来的为null
-            if (context == null) {
-                return;
-            }
+        if (DevUtils.sContext == null && context != null) {
             DevUtils.sContext = context.getApplicationContext();
         }
     }
 
     /**
      * 初始化全局 Application
-     * @param context Context
+     * @param context {@link Context}
      */
     private static void initApplication(final Context context) {
-        // 如果为null, 才进行判断处理
-        if (DevUtils.sApplication == null) {
-            if (context == null) {
-                return;
-            }
-            Application mApplication = null;
+        if (DevUtils.sApplication == null && context != null) {
             try {
-                mApplication = (Application) context.getApplicationContext();
+                Application application = (Application) context.getApplicationContext();
+                if (application != null) {
+                    DevUtils.sApplication = application;
+                }
             } catch (Exception e) {
             }
-            // 防止传进来的为null
-            if (mApplication == null) {
-                return;
-            }
-            DevUtils.sApplication = mApplication;
         }
     }
 
@@ -124,8 +112,8 @@ public final class DevUtils {
     }
 
     /**
-     * 获取 Context (判断null,视情况返回全局 Context)
-     * @param context Context
+     * 获取 Context (判断null, 视情况返回全局 Context)
+     * @param context {@link Context}
      * @return {@link Context}
      */
     public static Context getContext(final Context context) {
@@ -143,11 +131,11 @@ public final class DevUtils {
     public static Application getApplication() {
         if (DevUtils.sApplication != null) return DevUtils.sApplication;
         try {
-            Application app = getApplicationByReflect();
-            if (app != null) {
-                init(app); // 初始化操作
+            Application application = getApplicationByReflect();
+            if (application != null) {
+                init(application); // 初始化操作
             }
-            return app;
+            return application;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApplication");
         }
@@ -189,19 +177,19 @@ public final class DevUtils {
 
     /**
      * 执行 UI 线程任务
-     * @param action 线程任务
+     * @param runnable 线程任务
      */
-    public static void runOnUiThread(final Runnable action) {
-        HandlerUtils.postRunnable(action);
+    public static void runOnUiThread(final Runnable runnable) {
+        HandlerUtils.postRunnable(runnable);
     }
 
     /**
-     * 执行UI 线程任务 - 延时执行
-     * @param action      线程任务
+     * 执行 UI 线程任务 - 延时执行
+     * @param runnable    线程任务
      * @param delayMillis 延时执行时间(毫秒)
      */
-    public static void runOnUiThread(final Runnable action, final long delayMillis) {
-        HandlerUtils.postRunnable(action, delayMillis);
+    public static void runOnUiThread(final Runnable runnable, final long delayMillis) {
+        HandlerUtils.postRunnable(runnable, delayMillis);
     }
 
     /**
@@ -223,7 +211,7 @@ public final class DevUtils {
 
     /**
      * 判断是否 Debug 模式
-     * @return {@code true} debug模式, {@code false} 非debug模式
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isDebug() {
         return sDebug;
@@ -261,13 +249,13 @@ public final class DevUtils {
     public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.PermissionUtils$PermissionActivity";
 
     /**
-     * 注册绑定Activity 生命周期事件处理
-     * @param application Application
+     * 注册绑定 Activity 生命周期事件处理
+     * @param application {@link Application}
      */
     private static void registerActivityLifecycleCallbacks(final Application application) {
         // 先移除监听
         unregisterActivityLifecycleCallbacks(application);
-        // 防止为null
+        // 防止为 null
         if (application != null) {
             try {
                 // 绑定新的监听
@@ -280,7 +268,7 @@ public final class DevUtils {
 
     /**
      * 解除注册 Activity 生命周期事件处理
-     * @param application Application
+     * @param application {@link Application}
      */
     private static void unregisterActivityLifecycleCallbacks(final Application application) {
         if (application != null) {
@@ -334,7 +322,7 @@ public final class DevUtils {
     // ============
 
     /**
-     * detail: 对Activity的生命周期事件进行集中处理。  ActivityLifecycleCallbacks 实现方法
+     * detail: 对 Activity 的生命周期事件进行集中处理, ActivityLifecycleCallbacks 实现方法
      * @author Ttt
      * @see <a href="http://blog.csdn.net/tongcpp/article/details/40344871"/>
      */
@@ -448,7 +436,7 @@ public final class DevUtils {
 
         /**
          * 保存 Activity 栈顶
-         * @param activity Activity
+         * @param activity {@link Activity}
          */
         private void setTopActivity(final Activity activity) {
             // 判断是否过滤 Activity
@@ -547,7 +535,7 @@ public final class DevUtils {
         }
 
         /**
-         * 判断应用是否后台(不可见)
+         * 判断应用是否在后台(不可见)
          * @return {@code true} yes, {@code false} no
          */
         @Override
@@ -599,7 +587,7 @@ public final class DevUtils {
 
         /**
          * 添加 Activity 销毁通知事件
-         * @param activity Activity
+         * @param activity {@link Activity}
          * @param listener Activity 销毁通知事件
          */
         @Override
@@ -618,7 +606,7 @@ public final class DevUtils {
 
         /**
          * 移除 Activity 销毁通知事件
-         * @param activity Activity
+         * @param activity {@link Activity}
          */
         @Override
         public void removeOnActivityDestroyedListener(final Activity activity) {
@@ -660,7 +648,7 @@ public final class DevUtils {
 
         /**
          * 通知 Activity 销毁, 并且消费(移除)监听事件
-         * @param activity Activity
+         * @param activity {@link Activity}
          */
         private void consumeOnActivityDestroyedListener(final Activity activity) {
             try {
@@ -706,7 +694,7 @@ public final class DevUtils {
         boolean isTopActivity(Class clazz);
 
         /**
-         * 判断应用是否后台(不可见)
+         * 判断应用是否在后台(不可见)
          * @return {@code true} yes, {@code false} no
          */
         boolean isBackground();
@@ -726,7 +714,7 @@ public final class DevUtils {
 
         /**
          * 判断是否过滤该类(不进行添加等操作)
-         * @param activity Activity
+         * @param activity {@link Activity}
          * @return {@code true} yes, {@code false} no
          */
         boolean filter(Activity activity);
@@ -760,14 +748,14 @@ public final class DevUtils {
 
         /**
          * 添加 Activity 销毁通知事件
-         * @param activity Activity
+         * @param activity {@link Activity}
          * @param listener Activity 销毁通知事件
          */
         void addOnActivityDestroyedListener(Activity activity, OnActivityDestroyedListener listener);
 
         /**
          * 移除 Activity 销毁通知事件
-         * @param activity Activity
+         * @param activity {@link Activity}
          */
         void removeOnActivityDestroyedListener(Activity activity);
 
@@ -802,7 +790,7 @@ public final class DevUtils {
 
         /**
          * Activity 销毁通知
-         * @param activity Activity
+         * @param activity {@link Activity}
          */
         void onActivityDestroyed(Activity activity);
     }
