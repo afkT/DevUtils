@@ -193,7 +193,7 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param objects object[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final Object[] objects) {
         return length(objects, 0);
@@ -202,7 +202,7 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param ints int[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final int[] ints) {
         return length(ints, 0);
@@ -211,7 +211,7 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param bytes byte[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final byte[] bytes) {
         return length(bytes, 0);
@@ -220,7 +220,7 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param chars char[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final char[] chars) {
         return length(chars, 0);
@@ -229,7 +229,7 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param shorts short[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final short[] shorts) {
         return length(shorts, 0);
@@ -238,7 +238,7 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param longs long[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final long[] longs) {
         return length(longs, 0);
@@ -247,7 +247,7 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param floats float[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final float[] floats) {
         return length(floats, 0);
@@ -256,7 +256,7 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param doubles double[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final double[] doubles) {
         return length(doubles, 0);
@@ -265,7 +265,7 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param booleans boolean[]
-     * @return 如果数据为null, 则返回默认长度, 如果不为null, 则返回 array[].length
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final boolean[] booleans) {
         return length(booleans, 0);
@@ -276,8 +276,8 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param objects       object[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final Object[] objects, final int defaultLength) {
         return objects != null ? objects.length : defaultLength;
@@ -286,8 +286,8 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param ints          int[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final int[] ints, final int defaultLength) {
         return ints != null ? ints.length : defaultLength;
@@ -296,8 +296,8 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param bytes         byte[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final byte[] bytes, final int defaultLength) {
         return bytes != null ? bytes.length : defaultLength;
@@ -306,8 +306,8 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param chars         char[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final char[] chars, final int defaultLength) {
         return chars != null ? chars.length : defaultLength;
@@ -316,8 +316,8 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param shorts        short[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final short[] shorts, final int defaultLength) {
         return shorts != null ? shorts.length : defaultLength;
@@ -326,8 +326,8 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param longs         long[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final long[] longs, final int defaultLength) {
         return longs != null ? longs.length : defaultLength;
@@ -336,8 +336,8 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param floats        float[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final float[] floats, final int defaultLength) {
         return floats != null ? floats.length : defaultLength;
@@ -346,8 +346,8 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param doubles       double[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final double[] doubles, final int defaultLength) {
         return doubles != null ? doubles.length : defaultLength;
@@ -356,8 +356,8 @@ public final class ArrayUtils {
     /**
      * 获取数组长度
      * @param booleans      boolean[]
-     * @param defaultLength 数组为null时, 返回的长度
-     * @return 如果数据为null, 则返回 defaultLength, 如果不为null, 则返回 array[].length
+     * @param defaultLength 数组为 null 时, 返回的长度
+     * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final boolean[] booleans, final int defaultLength) {
         return booleans != null ? booleans.length : defaultLength;
@@ -757,7 +757,7 @@ public final class ArrayUtils {
      * 获取数组第一条数据
      * @param array 数组
      * @param <T>   泛型
-     * @return 数组索引为0的值
+     * @return 数组索引为 0 的值
      */
     public static <T> T getFirst(final T[] array) {
         return get(array, 0);
@@ -766,7 +766,7 @@ public final class ArrayUtils {
     /**
      * 获取数组第一条数据
      * @param ints int[]
-     * @return 数组索引为0的值
+     * @return 数组索引为 0 的值
      */
     public static int getFirst(final int[] ints) {
         return get(ints, 0);
@@ -775,7 +775,7 @@ public final class ArrayUtils {
     /**
      * 获取数组第一条数据
      * @param bytes byte[]
-     * @return 数组索引为0的值
+     * @return 数组索引为 0 的值
      */
     public static byte getFirst(final byte[] bytes) {
         return get(bytes, 0);
@@ -784,7 +784,7 @@ public final class ArrayUtils {
     /**
      * 获取数组第一条数据
      * @param chars char[]
-     * @return 数组索引为0的值
+     * @return 数组索引为 0 的值
      */
     public static char getFirst(final char[] chars) {
         return get(chars, 0);
@@ -793,7 +793,7 @@ public final class ArrayUtils {
     /**
      * 获取数组第一条数据
      * @param shorts short[]
-     * @return 数组索引为0的值
+     * @return 数组索引为 0 的值
      */
     public static short getFirst(final short[] shorts) {
         return get(shorts, 0);
@@ -802,7 +802,7 @@ public final class ArrayUtils {
     /**
      * 获取数组第一条数据
      * @param longs long[]
-     * @return 数组索引为0的值
+     * @return 数组索引为 0 的值
      */
     public static long getFirst(final long[] longs) {
         return get(longs, 0);
@@ -811,7 +811,7 @@ public final class ArrayUtils {
     /**
      * 获取数组第一条数据
      * @param floats float[]
-     * @return 数组索引为0的值
+     * @return 数组索引为 0 的值
      */
     public static float getFirst(final float[] floats) {
         return get(floats, 0);
@@ -820,7 +820,7 @@ public final class ArrayUtils {
     /**
      * 获取数组第一条数据
      * @param doubles double[]
-     * @return 数组索引为0的值
+     * @return 数组索引为 0 的值
      */
     public static double getFirst(final double[] doubles) {
         return get(doubles, 0);
@@ -829,7 +829,7 @@ public final class ArrayUtils {
     /**
      * 获取数组第一条数据
      * @param booleans boolean[]
-     * @return 数组索引为0的值
+     * @return 数组索引为 0 的值
      */
     public static boolean getFirst(final boolean[] booleans) {
         return get(booleans, 0);
@@ -927,8 +927,8 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array   数组
      * @param value   值
-     * @param number  符合条件次数(从0开始, 0 = 1)
-     * @param notNull 是否不允许值为null
+     * @param number  符合条件次数(从 0 开始, 0 = 1)
+     * @param notNull 是否不允许值为 null
      * @param offset  偏移量
      * @param <T>     泛型
      * @return 对应索引的值
@@ -963,8 +963,8 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array   数组
      * @param value   值
-     * @param number  符合条件次数(从0开始, 0 = 1)
-     * @param notNull 是否不允许值为null
+     * @param number  符合条件次数(从 0 开始, 0 = 1)
+     * @param notNull 是否不允许值为 null
      * @param offset  偏移量
      * @param <T>     泛型
      * @return 对应索引的值
@@ -1012,7 +1012,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param <T>    泛型
      * @return 对应索引的值
      */
@@ -1024,7 +1024,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值
      * @param array   数组
      * @param value   值
-     * @param notNull 是否不允许值为null
+     * @param notNull 是否不允许值为 null
      * @param <T>     泛型
      * @return 对应索引的值
      */
@@ -1036,8 +1036,8 @@ public final class ArrayUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值
      * @param array   数组
      * @param value   值
-     * @param number  符合条件次数(从0开始, 0 = 1)
-     * @param notNull 是否不允许值为null
+     * @param number  符合条件次数(从 0 开始, 0 = 1)
+     * @param notNull 是否不允许值为 null
      * @param <T>     泛型
      * @return 对应索引的值
      */
@@ -1048,7 +1048,7 @@ public final class ArrayUtils {
     // =
 
     /**
-     * 根据指定 value 获取 value 所在位置 + 偏移量的值, 不允许值为null
+     * 根据指定 value 获取 value 所在位置 + 偏移量的值, 不允许值为 null
      * @param array 数组
      * @param value 值
      * @param <T>   泛型
@@ -1059,10 +1059,10 @@ public final class ArrayUtils {
     }
 
     /**
-     * 根据指定 value 获取 value 所在位置 + 偏移量的值, 不允许值为null
+     * 根据指定 value 获取 value 所在位置 + 偏移量的值, 不允许值为 null
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param <T>    泛型
      * @return 对应索引的值
      */
@@ -1087,7 +1087,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param <T>    泛型
      * @return 对应的索引
      */
@@ -1099,7 +1099,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取索引
      * @param array   数组
      * @param value   值
-     * @param notNull 是否不允许值为null
+     * @param notNull 是否不允许值为 null
      * @param <T>     泛型
      * @return 对应的索引
      */
@@ -1111,8 +1111,8 @@ public final class ArrayUtils {
      * 根据指定 value 获取索引
      * @param array   数组
      * @param value   值
-     * @param number  符合条件次数(从0开始, 0 = 1)
-     * @param notNull 是否不允许值为null
+     * @param number  符合条件次数(从 0 开始, 0 = 1)
+     * @param notNull 是否不允许值为 null
      * @param <T>     泛型
      * @return 对应的索引
      */
@@ -1123,7 +1123,7 @@ public final class ArrayUtils {
     // =
 
     /**
-     * 根据指定 value 获取索引, 不允许值为null
+     * 根据指定 value 获取索引, 不允许值为 null
      * @param array 数组
      * @param value 值
      * @param <T>   泛型
@@ -1134,10 +1134,10 @@ public final class ArrayUtils {
     }
 
     /**
-     * 根据指定 value 获取索引, 不允许值为null
+     * 根据指定 value 获取索引, 不允许值为 null
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param <T>    泛型
      * @return 对应的索引
      */
@@ -1151,7 +1151,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1182,7 +1182,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1215,7 +1215,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1246,7 +1246,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1279,7 +1279,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1310,7 +1310,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1343,7 +1343,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1374,7 +1374,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1407,7 +1407,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1438,7 +1438,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1471,7 +1471,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1502,7 +1502,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1535,7 +1535,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1566,7 +1566,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1599,7 +1599,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1630,7 +1630,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从0开始, 0 = 1)
+     * @param number 符合条件次数(从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1662,7 +1662,7 @@ public final class ArrayUtils {
     // ============
 
     /**
-     * int 数组转换 Integer 数组
+     * int[] 转换 Integer[]
      * @param ints int[]
      * @return {@link Integer[]}
      */
@@ -1681,7 +1681,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * byte 数组转换 Byte 数组
+     * byte[] 转换 Byte[]
      * @param bytes byte[]
      * @return {@link Byte[]}
      */
@@ -1700,7 +1700,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * char 数组转换 Character 数组
+     * char[] 转换 Character[]
      * @param chars char[]
      * @return {@link Character[]}
      */
@@ -1719,7 +1719,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * short 数组转换 Short 数组
+     * short[] 转换 Short[]
      * @param shorts short[]
      * @return {@link Short[]}
      */
@@ -1738,7 +1738,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * long 数组转换 Long 数组
+     * long[] 转换 Long[]
      * @param longs long[]
      * @return {@link Long[]}
      */
@@ -1757,7 +1757,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * float 数组转换 Float 数组
+     * float[] 转换 Float[]
      * @param floats float[]
      * @return {@link Float[]}
      */
@@ -1776,7 +1776,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * double 数组转换 Double 数组
+     * double[] 转换 Double[]
      * @param doubles double[]
      * @return {@link Double[]}
      */
@@ -1795,7 +1795,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * boolean 数组转换 Boolean 数组
+     * boolean[] 转换 Boolean[]
      * @param booleans boolean[]
      * @return {@link Boolean[]}
      */
@@ -1816,7 +1816,7 @@ public final class ArrayUtils {
     // =
 
     /**
-     * Integer 数组转换 int 数组
+     * Integer[] 转换 int[]
      * @param integers     Integer[]
      * @param defaultValue 转换失败使用得默认值
      * @return int[]
@@ -1840,7 +1840,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * Byte 数组转换 byte 数组
+     * Byte[] 转换 byte[]
      * @param bytes        Byte[]
      * @param defaultValue 转换失败使用得默认值
      * @return byte[]
@@ -1864,7 +1864,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * Character 数组转换 char 数组
+     * Character[] 转换 char[]
      * @param characters   Character[]
      * @param defaultValue 转换失败使用得默认值
      * @return char[]
@@ -1888,7 +1888,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * Short 数组转换 short 数组
+     * Short[] 转换 short[]
      * @param shorts       Short[]
      * @param defaultValue 转换失败使用得默认值
      * @return short[]
@@ -1912,7 +1912,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * Long 数组转换 long 数组
+     * Long[] 转换 long[]
      * @param longs        Long[]
      * @param defaultValue 转换失败使用得默认值
      * @return long[]
@@ -1936,7 +1936,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * Float 数组转换 float 数组
+     * Float[] 转换 float[]
      * @param floats       Float[]
      * @param defaultValue 转换失败使用得默认值
      * @return float[]
@@ -1960,7 +1960,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * Double 数组转换 double 数组
+     * Double[] 转换 double[]
      * @param doubles      Double[]
      * @param defaultValue 转换失败使用得默认值
      * @return double[]
@@ -1984,7 +1984,7 @@ public final class ArrayUtils {
     }
 
     /**
-     * Boolean 数组转换 boolean 数组
+     * Boolean[] 转换 boolean[]
      * @param booleans Boolean[]
      * @return boolean[]
      */
@@ -2196,7 +2196,7 @@ public final class ArrayUtils {
             }
             return false;
         }
-        // 防止两个值都为null
+        // 防止两个值都为 null
         return (value1 == null && value2 == null);
     }
 }

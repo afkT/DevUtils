@@ -40,11 +40,11 @@ public final class DateUtils {
     public static final String hhmmMMDDyyyy = "hh:mm M月d日 yyyy";
     public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
 
-    // 一分钟 60秒
+    // 一分钟 60 秒
     public static final int MINUTE_S = 60;
-    // 一小时 60 * 60秒
+    // 一小时 60 * 60 秒
     public static final int HOUR_S = 3600;
-    // 一天 24 * 60 * 60*/
+    // 一天 24 * 60 * 60
     public static final int DAY_S = 86400;
 
     // 秒与毫秒的倍数
@@ -136,7 +136,7 @@ public final class DateUtils {
     }
 
     /**
-     * 将日期字符串转换为 Date - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
+     * 将日期字符串转换为 Date - 默认表示 time 属于 yyyy-MM-dd HH:mm:ss 格式
      * @param time 时间
      * @return {@link Date}
      */
@@ -163,7 +163,7 @@ public final class DateUtils {
     // =
 
     /**
-     * 解析时间字符串转换为long毫秒 - 默认表示time 属于 yyyy-MM-dd HH:mm:ss 格式
+     * 解析时间字符串转换为 long 毫秒 - 默认表示 time 属于 yyyy-MM-dd HH:mm:ss 格式
      * @param time 时间
      * @return 毫秒时间
      */
@@ -172,7 +172,7 @@ public final class DateUtils {
     }
 
     /**
-     * 解析时间字符串转换为long毫秒
+     * 解析时间字符串转换为 long 毫秒
      * @param time   时间
      * @param format 时间的格式
      * @return 毫秒时间
@@ -191,7 +191,7 @@ public final class DateUtils {
     /**
      * 转换时间为指定字符串
      * @param time       需要转换的时间
-     * @param timeFormat time 的 时间格式
+     * @param timeFormat time 的时间格式
      * @param format     把 time 转换成需要的格式
      * @return 转换指定格式的时间字符串
      */
@@ -420,19 +420,19 @@ public final class DateUtils {
     }
 
     /**
-     * 转换时间处理, 小于10, 则自动补充 0x
+     * 转换时间处理, 小于 10, 则自动补充 0x
      * @param time 待处理时间
-     * @return 自动补0时间字符串
+     * @return 自动补 0 时间字符串
      */
-    public static String convertTime(int time) {
+    public static String convertTime(final int time) {
         return convertTime(time, true);
     }
 
     /**
-     * 转换时间处理, 小于10, 则自动补充 0x
+     * 转换时间处理, 小于 10, 则自动补充 0x
      * @param time   待处理时间
-     * @param append 判断是否需要自动补0
-     * @return 自动补0时间字符串
+     * @param append 判断是否需要自动补 0
+     * @return 自动补 0 时间字符串
      */
     public static String convertTime(final int time, final boolean append) {
         if (append) {
@@ -481,7 +481,7 @@ public final class DateUtils {
 
     /**
      * 获取时 - 24
-     * @return 24小时制小时
+     * @return 24 小时制小时
      */
     public static int get24Hour() {
         return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -489,7 +489,7 @@ public final class DateUtils {
 
     /**
      * 获取时 - 12
-     * @return 12小时制小时
+     * @return 12 小时制小时
      */
     public static int get12Hour() {
         return Calendar.getInstance().get(Calendar.HOUR);
@@ -639,9 +639,9 @@ public final class DateUtils {
 
     /**
      * 生成 HH:mm 按间隔时间排序数组
-     * @param type 0 = 00:00 - 23:00 => 每小时间隔
-     *             1 = 00:00 - 23:45 => 每15分钟间隔
-     *             2 = 00:00 - 23:30 => 每30分钟间隔
+     * @param type 0 = 00:00 - 23:00 => 每 1 小时间隔
+     *             1 = 00:00 - 23:45 => 每 15 分钟间隔
+     *             2 = 00:00 - 23:30 => 每 30 分钟间隔
      * @return 指定格式的数组
      */
     public static String[] getArrayToHHMM(final int type) {
@@ -651,9 +651,9 @@ public final class DateUtils {
 
     /**
      * 生成 HH:mm 按间隔时间排序集合
-     * @param type 0 = 00:00 - 23:00 => 每小时间隔
-     *             1 = 00:00 - 23:45 => 每15分钟间隔
-     *             2 = 00:00 - 23:30 => 每30分钟间隔
+     * @param type 0 = 00:00 - 23:00 => 每 1 小时间隔
+     *             1 = 00:00 - 23:45 => 每 15 分钟间隔
+     *             2 = 00:00 - 23:30 => 每 30 分钟间隔
      * @return 指定格式的集合
      */
     public static List<String> getListToHHMM(final int type) {
@@ -701,10 +701,10 @@ public final class DateUtils {
 
     /**
      * 获取 HH:mm 按间隔时间排序的集合中, 指定时间所在索引
-     * @param time HH:mm格式
-     * @param type 0 = 00:00 - 23:00 => 每小时间隔
-     *             1 = 00:00 - 23:45 => 每15分钟间隔
-     *             2 = 00:00 - 23:30 => 每30分钟间隔
+     * @param time HH:mm 格式
+     * @param type 0 = 00:00 - 23:00 => 每 1 小时间隔
+     *             1 = 00:00 - 23:45 => 每 15 分钟间隔
+     *             2 = 00:00 - 23:30 => 每 30 分钟间隔
      * @return 获取指定数据, 在对应格式类型内的索引
      */
     public static int getListToHHMMPosition(final String time, final int type) {
@@ -791,9 +791,9 @@ public final class DateUtils {
                 int dMinute;
                 int dHour;
                 // 转换时间格式
-                if (time < MINUTE_S) { // 小于1分钟
+                if (time < MINUTE_S) { // 小于一分钟
                     return "00:00:" + ((time >= 10) ? time : ("0" + time));
-                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于1小时
+                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于一小时
                     dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
                     dMinute = (time - dSecond) / MINUTE_S;
                     return "00:" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((dSecond >= 10) ? dSecond : ("0" + dSecond));
@@ -822,9 +822,9 @@ public final class DateUtils {
     }
 
     /**
-     * 传入时间,时间参数(小时、分钟、秒)
+     * 传入时间, 时间参数(小时、分钟、秒)
      * @param time 时间(秒为单位)
-     * @return int[] { 小时、分钟、秒}
+     * @return int[] {小时、分钟、秒}
      */
     public static int[] convertTimeArys(final int time) {
         try {
@@ -839,9 +839,9 @@ public final class DateUtils {
                 int dMinute;
                 int dHour;
                 // 转换时间格式
-                if (time < MINUTE_S) { // 小于1分钟
+                if (time < MINUTE_S) { // 小于一分钟
                     return new int[]{0, 0, time};
-                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于1小时
+                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于一小时
                     dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
                     dMinute = (time - dSecond) / MINUTE_S;
                     return new int[]{0, dMinute, dSecond};
@@ -875,7 +875,7 @@ public final class DateUtils {
      *                  precision = 2, return 天, 小时
      *                  precision = 3, return 天, 小时, 分钟
      *                  precision = 4, return 天, 小时, 分钟, 秒
-     *                  precision = 5，return 天, 小时, 分钟, 秒, 毫秒
+     *                  precision = 5, return 天, 小时, 分钟, 秒, 毫秒
      * @return 转换指定格式的时间字符串
      */
     public static String millisToFitTimeSpan(final long millis, final int precision) {
@@ -901,7 +901,7 @@ public final class DateUtils {
     /**
      * 转换时间为数组
      * @param millis 时间毫秒
-     * @return int[5] { 天, 小时, 分钟, 秒, 毫秒}
+     * @return int[5] {天, 小时, 分钟, 秒, 毫秒}
      */
     public static int[] millisToTimeArys(final long millis) {
         if (millis <= 0) return null;
@@ -923,7 +923,7 @@ public final class DateUtils {
     // ======================
 
     /**
-     * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
@@ -933,7 +933,7 @@ public final class DateUtils {
     }
 
     /**
-     * 判断时间是否在[startTime, endTime]区间，注意时间格式要一致
+     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -1074,7 +1074,7 @@ public final class DateUtils {
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
      * <pre>
-     *      如当前时间 2018-12-07 15:27:23, 判断距离 14:39:20(endTime) 有多久
+     *      如当前时间 2018-12-07 15:27:23, 判断距离 14:39:20 (endTime) 有多久
      *      如果过了这个时间段, 则返回 2018-12-08 14:39:20 (明天的这个时间段时间)
      *      如果没有过这个时间段(如: 17:39:20) 则返回当天时间段 2018-12-07 17:39:20 (2018-12-07 + endTime)
      * </pre>
@@ -1120,7 +1120,7 @@ public final class DateUtils {
      * 字符串 转 int
      * @param str          String
      * @param defaultValue 默认值
-     * @return int, 如果转换失败, 则返回 defaultValue
+     * @return int 如果转换失败, 则返回 defaultValue
      */
     private static int toInt(final String str, final int defaultValue) {
         if (str == null) return defaultValue;

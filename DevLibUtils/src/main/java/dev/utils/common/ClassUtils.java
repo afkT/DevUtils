@@ -9,7 +9,7 @@ import java.util.Date;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 类工具
+ * detail: 类 (Class) 工具
  * @author Ttt
  */
 public final class ClassUtils {
@@ -21,7 +21,7 @@ public final class ClassUtils {
     private static final String TAG = ClassUtils.class.getSimpleName();
 
     /**
-     * 判断类是否是基础数据类型 - 目前支持11种
+     * 判断类是否是基础数据类型 - 目前支持 11 种
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
      */
@@ -34,7 +34,7 @@ public final class ClassUtils {
     }
 
     /**
-     * 根据类获取对象: 不再必须一个无参构造
+     * 根据类获取对象, 不再必须一个无参构造
      * @param clazz {@link Class}
      * @return 初始化后的对象
      */
@@ -149,7 +149,7 @@ public final class ClassUtils {
     /**
      * 获取接口泛型类型
      * @param object         Object
-     * @param interfaceClazz 接口Class
+     * @param interfaceClazz 接口 Class
      * @return 泛型类型
      */
     public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz) {
@@ -159,7 +159,7 @@ public final class ClassUtils {
     /**
      * 获取接口泛型类型
      * @param object         Object
-     * @param interfaceClazz 接口Class
+     * @param interfaceClazz 接口 Class
      * @param pos            泛型参数索引
      * @return 泛型类型
      */
@@ -175,7 +175,7 @@ public final class ClassUtils {
     /**
      * 获取接口泛型类型
      * @param clazz          {@link Class}
-     * @param interfaceClazz 接口Class
+     * @param interfaceClazz 接口 Class
      * @return 泛型类型
      */
     public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz) {
@@ -185,7 +185,7 @@ public final class ClassUtils {
     /**
      * 获取接口泛型类型
      * @param clazz          {@link Class}
-     * @param interfaceClazz 接口Class
+     * @param interfaceClazz 接口 Class
      * @param pos            泛型参数索引
      * @return 泛型类型
      */

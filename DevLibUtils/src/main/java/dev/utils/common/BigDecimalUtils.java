@@ -114,7 +114,7 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 提供精确的减法运算。
+     * 提供精确的减法运算
      * @param v1 被减数
      * @param v2 减数
      * @return 两个参数的差
@@ -263,8 +263,8 @@ public final class BigDecimalUtils {
     // =
 
     /**
-     * 提供(相对)精确的除法运算,当发生除不尽的情况时,
-     * 精确到小数点以后10位,以后的数字四舍五入.
+     * 提供(相对)精确的除法运算
+     * 当发生除不尽的情况时, 精确到小数点以后 10 位, 以后的数字四舍五入
      * @param v1 被除数
      * @param v2 除数
      * @return 两个参数的商
@@ -274,8 +274,8 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 提供(相对)精确的除法运算.
-     * 当发生除不尽的情况时,由scale参数指 定精度,以后的数字四舍五入.
+     * 提供(相对)精确的除法运算
+     * 当发生除不尽的情况时, 由 scale 参数指定精度, 以后的数字四舍五入
      * @param v1    被除数
      * @param v2    除数
      * @param scale 表示需要精确到小数点以后几位
@@ -297,8 +297,8 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 提供(相对)精确的除法运算。当发生除不尽的情况时，由scale参数指
-     * 定精度，以后的数字四舍五入
+     * 提供(相对)精确的除法运算
+     * 当发生除不尽的情况时, 由 scale 参数指定精度, 以后的数字四舍五入
      * @param v1    被除数
      * @param v2    除数
      * @param scale 表示需要精确到小数点以后几位

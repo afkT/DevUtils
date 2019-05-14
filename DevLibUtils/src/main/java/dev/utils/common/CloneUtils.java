@@ -36,7 +36,7 @@ public final class CloneUtils {
     }
 
     /**
-     * 通过序列化实体类, 获取对应的byte数组数据
+     * 通过序列化实体类, 获取对应的 byte[] 数据
      * @param serializable Object implements {@link Serializable}
      * @return 克隆后 byte[]
      */
@@ -62,7 +62,7 @@ public final class CloneUtils {
     }
 
     /**
-     * 通过 byte 数据, 生成 Object 对象
+     * 通过 byte[] 生成 Object 对象
      * @param data byte[]
      * @return {@link Object}
      */

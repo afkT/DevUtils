@@ -83,14 +83,14 @@ public final class ColorUtils {
      * 0-255 十进值转换成十六进制，如 255 就是 ff
      * 255 * 0.x = 十进制 -> 十六进制
      * <p></p>
-     * 透明度0-100
+     * 透明度 0-100
      * 00、19、33、4C、66、7F、99、B2、CC、E5、FF
      */
 
     /**
      * 获取十六进制透明度字符串
      * @param alpha 0-255
-     * @return 透明度（十六进制）值
+     * @return 透明度(十六进制)值
      */
     public static String toHexAlpha(final int alpha) {
         try {
@@ -106,7 +106,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 返回一个颜色中的透明度值(返回10进制)
+     * 返回一个颜色中的透明度值(返回十进制)
      * @param color argb color
      * @return alpha 值
      */
@@ -126,7 +126,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 返回一个颜色中红色的色值(返回10进制)
+     * 返回一个颜色中红色的色值(返回十进制)
      * @param color argb/rgb color
      * @return red 值
      */
@@ -146,7 +146,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 返回一个颜色中绿色的色值(返回10进制)
+     * 返回一个颜色中绿色的色值(返回十进制)
      * @param color argb/rgb color
      * @return green 百分比值
      */
@@ -166,7 +166,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 返回一个颜色中蓝色的色值(返回10进制)
+     * 返回一个颜色中蓝色的色值(返回十进制)
      * @param color argb/rgb color
      * @return blue 百分比值
      */
@@ -401,7 +401,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 颜色值 转换 RGB颜色 字符串
+     * 颜色值 转换 RGB 颜色字符串
      * @param colorInt rgb int color
      * @return rgb color String
      */
@@ -416,7 +416,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 颜色值 转换 ARGB颜色 字符串
+     * 颜色值 转换 ARGB 颜色字符串
      * @param colorInt argb int color
      * @return argb color String
      */
@@ -471,7 +471,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 颜色加深(单独修改 RGB值, 不变动透明度)
+     * 颜色加深(单独修改 RGB 值, 不变动透明度)
      * @param colorStr  color String
      * @param darkValue 加深值
      * @return 加深后的颜色值
@@ -483,7 +483,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 颜色加深(单独修改 RGB值, 不变动透明度)
+     * 颜色加深(单独修改 RGB 值, 不变动透明度)
      * @param color     int color
      * @param darkValue 加深值
      * @return 加深后的颜色值
@@ -506,7 +506,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 颜色变浅, 变亮(单独修改 RGB值, 不变动透明度)
+     * 颜色变浅, 变亮(单独修改 RGB 值, 不变动透明度)
      * @param colorStr   color String
      * @param lightValue 变亮(变浅)值
      * @return 变亮(变浅)后的颜色值
@@ -518,7 +518,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 颜色变浅, 变亮(单独修改 RGB值, 不变动透明度)
+     * 颜色变浅, 变亮(单独修改 RGB 值, 不变动透明度)
      * @param color      int color
      * @param lightValue 变亮(变浅)值
      * @return 变亮(变浅)后的颜色值

@@ -1070,7 +1070,7 @@ public final class EncryptUtils {
         try {
             int len = data.length;
             byte[] out = new byte[len >> 1];
-            // 16进制由两个字符组成
+            // 十六进制由两个字符组成
             for (int i = 0, j = 0; j < len; i++) {
                 int d = toDigit(data[j], j) << 4;
                 j++;
