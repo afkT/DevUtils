@@ -190,7 +190,7 @@ public final class IDCardUtils {
             Calendar calendar = Calendar.getInstance();
             if (birthDate != null) calendar.setTime(birthDate);
             try {
-                // 获取出生年(完全表现形式,如: 2010)
+                // 获取出生年(完全表现形式, 如: 2010)
                 String year = String.valueOf(calendar.get(Calendar.YEAR));
                 // 保存省市区信息 + 年 + 月日 + 后续信息(顺序位、性别等)
                 idCard18 = idCard.substring(0, 6) + year + idCard.substring(8);
@@ -238,10 +238,10 @@ public final class IDCardUtils {
 
     /**
      * 验证香港身份证号码
-     * (存在 Bug，部份特殊身份证无法检查)
-     * 身份证前 2 位为英文字符，如果只出现一个英文字符则表示第一位是空格，对应数字 58 前 2 位英文字符 A-Z 分别对应数字 10-35
+     * (存在 Bug, 部份特殊身份证无法检查)
+     * 身份证前 2 位为英文字符, 如果只出现一个英文字符则表示第一位是空格, 对应数字 58 前 2 位英文字符 A-Z 分别对应数字 10-35
      * 最后一位校验码为 0-9 的数字加上字符 "A", "A" 代表 10
-     * 将身份证号码全部转换为数字，分别对应乘 9-1 相加的总和，整除 11 则证件号码有效
+     * 将身份证号码全部转换为数字, 分别对应乘 9-1 相加的总和, 整除 11 则证件号码有效
      * @param idCard 身份证号码
      * @return {@code true} yes, {@code false} no
      */
@@ -479,7 +479,7 @@ public final class IDCardUtils {
             if (idCardStr.length() == CHINA_ID_MAX_LENGTH) {
                 // 获取第 17 位性别信息
                 String cardNumber = idCardStr.substring(16, 17);
-                // 奇数为男，偶数为女。
+                // 奇数为男, 偶数为女
                 return (Integer.parseInt(cardNumber) % 2 == 0) ? "F" : "M";
             }
         } catch (Exception e) {
@@ -510,7 +510,7 @@ public final class IDCardUtils {
     }
 
     /**
-     * 将身份证的每位和对应位的加权因子相乘之后，再获取和值
+     * 将身份证的每位和对应位的加权因子相乘之后, 再获取和值
      * @param data byte[] 数据
      * @return 身份证编码, 加权引子
      */

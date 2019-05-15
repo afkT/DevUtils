@@ -97,7 +97,7 @@ public final class FileRecordUse {
         // =
 
         // 保存错误信息
-        NullPointerException nullPointerException = new NullPointerException("报错啦， null 异常啊");
+        NullPointerException nullPointerException = new NullPointerException("报错啦，null 异常啊");
         // 记录日志
         AnalysisRecordUtils.record(fileInfo, ErrorUtils.getThrowableMsg(nullPointerException));
     }

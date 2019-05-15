@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 文件广度优先搜索算法 (多线程 + 队列，搜索某个目录下的全部文件)
+ * detail: 文件广度优先搜索算法(多线程 + 队列, 搜索某个目录下的全部文件)
  * @author Ttt
  */
 public final class FileBreadthFirstSearchUtils {

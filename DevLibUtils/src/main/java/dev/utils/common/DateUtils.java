@@ -72,7 +72,7 @@ public final class DateUtils {
 
     /**
      * 获取当前日期的字符串
-     * @param format 日期格式，如: yyyy-MM-dd HH:mm:ss
+     * @param format 日期格式, 如: yyyy-MM-dd HH:mm:ss
      * @return 当前日期指定格式字符串
      */
     public static String getDateNow(final String format) {
@@ -180,7 +180,7 @@ public final class DateUtils {
     public static long parseLong(final String time, final String format) {
         if (time == null || format == null) return 0L;
         try {
-            // 按规定的时间格式,进行格式化时间，并且获取long时间毫秒，返回毫秒时间
+            // 按规定的时间格式, 进行格式化时间, 并且获取long时间毫秒, 返回毫秒时间
             return new SimpleDateFormat(format).parse(time).getTime();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "parseLong");
@@ -527,7 +527,7 @@ public final class DateUtils {
     }
 
     /**
-     * 根据年份、月份，获取对应的天数 (完整天数, 无判断是否属于未来日期)
+     * 根据年份、月份, 获取对应的天数 (完整天数, 无判断是否属于未来日期)
      * @param year  年数
      * @param month 月份
      * @return 获取指定年份所属的月份的天数
@@ -563,7 +563,7 @@ public final class DateUtils {
     }
 
     /**
-     * 根据年份，获取对应的月份
+     * 根据年份, 获取对应的月份
      * @param year 年份
      * @return 内部判断是否相同一年, 不能超过限制未来的月份
      */
@@ -577,7 +577,7 @@ public final class DateUtils {
     }
 
     /**
-     * 根据年份、月份，获取对应的天数
+     * 根据年份、月份, 获取对应的天数
      * @param year  年份
      * @param month 月份
      * @return 内部判断是否相同一年、月份, 不能超过限制未来的天数
@@ -764,7 +764,7 @@ public final class DateUtils {
     // =
 
     /**
-     * 传入时间，获取时间(00:00:00 格式) - 不处理大于一天
+     * 传入时间, 获取时间(00:00:00 格式) - 不处理大于一天
      * @param time 时间(秒为单位)
      * @return 转换 (00:00:00 格式) 时间字符串
      */
@@ -773,7 +773,7 @@ public final class DateUtils {
     }
 
     /**
-     * 传入时间，获取时间(00:00:00 格式)
+     * 传入时间, 获取时间(00:00:00 格式)
      * @param time          时间(秒为单位)
      * @param isHandlerMDay 是否处理大于一天的时间
      * @return 转换 (00:00:00 格式) 时间字符串
@@ -794,24 +794,24 @@ public final class DateUtils {
                 if (time < MINUTE_S) { // 小于一分钟
                     return "00:00:" + ((time >= 10) ? time : ("0" + time));
                 } else if (time >= MINUTE_S && time < HOUR_S) { // 小于一小时
-                    dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
+                    dSecond = time % MINUTE_S; // 取模分钟, 获取多出的秒数
                     dMinute = (time - dSecond) / MINUTE_S;
                     return "00:" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((dSecond >= 10) ? dSecond : ("0" + dSecond));
                 } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
-                    rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
+                    rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
                     dHour = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                    rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
+                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒速
                     return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
-                } else { // 多余的时间，直接格式化
+                } else { // 多余的时间, 直接格式化
                     // 大于一天的情况
                     if (isHandlerMDay) {
-                        rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
+                        rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
                         dHour = (time - rMinute) / HOUR_S; // 获取小时
                         dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                         dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                        rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
+                        rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒速
                         return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
                     }
                 }
@@ -842,23 +842,23 @@ public final class DateUtils {
                 if (time < MINUTE_S) { // 小于一分钟
                     return new int[]{0, 0, time};
                 } else if (time >= MINUTE_S && time < HOUR_S) { // 小于一小时
-                    dSecond = time % MINUTE_S; // 取模分钟，获取多出的秒数
+                    dSecond = time % MINUTE_S; // 取模分钟, 获取多出的秒数
                     dMinute = (time - dSecond) / MINUTE_S;
                     return new int[]{0, dMinute, dSecond};
                 } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
-                    rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
+                    rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
                     dHour = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                    rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
+                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒速
                     return new int[]{dHour, dMinute, rSecond};
-                } else { // 多余的时间，直接格式化
+                } else { // 多余的时间, 直接格式化
                     // 大于一天的情况
-                    rMinute = time % HOUR_S; // 取模小时，获取多出的分钟
+                    rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
                     dHour = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                    rSecond = dSecond % MINUTE_S; // 取模分钟，获取多余的秒速
+                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒速
                     return new int[]{dHour, dMinute, rSecond};
                 }
             }
@@ -923,7 +923,7 @@ public final class DateUtils {
     // ======================
 
     /**
-     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
@@ -933,7 +933,7 @@ public final class DateUtils {
     }
 
     /**
-     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -944,7 +944,7 @@ public final class DateUtils {
     }
 
     /**
-     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
@@ -954,7 +954,7 @@ public final class DateUtils {
     }
 
     /**
-     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -965,7 +965,7 @@ public final class DateUtils {
     }
 
     /**
-     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -1000,7 +1000,7 @@ public final class DateUtils {
     }
 
     /**
-     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间
@@ -1011,7 +1011,7 @@ public final class DateUtils {
     }
 
     /**
-     * 判断时间是否在 [startTime, endTime] 区间，注意时间格式要一致
+     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
      * @param nowTime   当前时间
      * @param startTime 开始时间
      * @param endTime   结束时间

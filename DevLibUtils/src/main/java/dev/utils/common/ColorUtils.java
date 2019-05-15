@@ -80,7 +80,7 @@ public final class ColorUtils {
     public static final int LOWLIGHT = 0x33000000;
 
     /**
-     * 0-255 十进值转换成十六进制，如 255 就是 ff
+     * 0-255 十进值转换成十六进制, 如 255 就是 ff
      * 255 * 0.x = 十进制 -> 十六进制
      * <p></p>
      * 透明度 0-100
@@ -452,7 +452,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 判断是否为ARGB格式的十六进制颜色，例如: FF990587
+     * 判断是否为 ARGB 格式的十六进制颜色, 例如: FF990587
      * @param colorStr color String
      * @return {@code true} yes, {@code false} no
      */
@@ -650,7 +650,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 返回的 value 介于 max、min 之间，若 value 小于 min，返回 min，若大于 max，返回 max
+     * 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值

@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 检验联系(手机号,座机)工具类
+ * detail: 检验联系(手机号, 座机)工具类
  * @author Ttt
  * @see <a href="http://blog.csdn.net/linbilin_/article/details/49796617"/>
  * @see <a href="http://www.cnblogs.com/zengxiangzhan/p/phone.html"/>
@@ -47,7 +47,7 @@ public final class ValiToPhoneUtils {
     // =
 
     /**
-     * 中国手机号格式验证,在输入可以调用该方法,点击发送验证码,使用 isPhone
+     * 中国手机号格式验证, 在输入可以调用该方法, 点击发送验证码, 使用 isPhone
      * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
@@ -128,7 +128,7 @@ public final class ValiToPhoneUtils {
     // 中国移动号码正则
     public static final String CHINA_MOBILE_PATTERN;
 
-    // 香港手机号码正则 => 香港手机号码8位数，5|6|8|9 开头 + 7 位任意数
+    // 香港手机号码正则 => 香港手机号码 8 位数, 5|6|8|9 开头 + 7 位任意数
     public static final String HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
 
     // ============
@@ -145,7 +145,7 @@ public final class ValiToPhoneUtils {
         // ============
 
         // 电信: 133、153、180、181、189 、177(4G)、149、173、174、199
-        // 进行拼接字符串,便于理解,后期修改
+        // 进行拼接字符串, 便于理解
         StringBuffer buffer = new StringBuffer();
         buffer.append("^13[3]{1}\\d{8}$"); // 13开头
         buffer.append("|"); // 或
@@ -166,7 +166,7 @@ public final class ValiToPhoneUtils {
         // ============
 
         // 联通: 130、131、132、155、156、185、186、176(4G)、145(上网卡)、146、166、171、175
-        // 进行拼接字符串,便于理解,后期修改
+        // 进行拼接字符串, 便于理解
         buffer = new StringBuffer();
         buffer.append("^13[0,1,2]{1}\\d{8}$"); // 13开头
         buffer.append("|"); // 或
@@ -187,7 +187,7 @@ public final class ValiToPhoneUtils {
         // ============
 
         // 移动: 134、135、136、137、138、139、150、151、152、157、158、159、182、183、184、187、188、178(4G)、147(上网卡)、148、172、198
-        // 进行拼接字符串,便于理解,后期修改
+        // 进行拼接字符串, 便于理解
         buffer = new StringBuffer();
         buffer.append("^13[4,5,6,7,8,9]{1}\\d{8}$"); // 13开头
         buffer.append("|"); // 或

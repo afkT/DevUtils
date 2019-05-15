@@ -225,7 +225,7 @@ public final class ValidatorUtils {
 
 //     // http://blog.csdn.net/myfuturein/article/details/6885216
 //    [\\u0391-\\uFFE5] 匹配双字节字符(汉字 + 符号)
-//    [\\u4e00-\\u9fa5] 注意只匹配汉字，不匹配双字节字符
+//    [\\u4e00-\\u9fa5] 注意只匹配汉字, 不匹配双字节字符
 
     // 正则表达式: 验证汉字
     public static final String REGEX_CHINESE = "^[\u4e00-\u9fa5]+$";
@@ -235,7 +235,7 @@ public final class ValidatorUtils {
     public static final String REGEX_CHINESE_ALL2 = "[\u0391-\uFFE5]";
 
     /**
-     * 校验汉字(无符号,纯汉字)
+     * 校验汉字(无符号, 纯汉字)
      * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */

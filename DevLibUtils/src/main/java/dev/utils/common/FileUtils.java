@@ -106,14 +106,14 @@ public final class FileUtils {
      * @return 文件 {@link File}
      */
     public static File getFileCreateFolder(final String filePath, final String fileName) {
-        // 防止不存在目录文件，自动创建
+        // 防止不存在目录文件, 自动创建
         createFolder(filePath);
         // 返回处理过后的 File
         return getFile(filePath, fileName);
     }
 
     /**
-     * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
+     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
      * @param dirPath 文件夹路径 (无文件名字.后缀)
      * @return {@code true} success, {@code false} fail
      */
@@ -122,7 +122,7 @@ public final class FileUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
+     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
      * @param file 文件夹路径 (无文件名字.后缀)
      * @return {@code true} success, {@code false} fail
      */
@@ -197,7 +197,7 @@ public final class FileUtils {
     // =
 
     /**
-     * 判断目录是否存在，不存在则判断是否创建成功
+     * 判断目录是否存在, 不存在则判断是否创建成功
      * @param dirPath 目录路径
      * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
@@ -206,17 +206,17 @@ public final class FileUtils {
     }
 
     /**
-     * 判断目录是否存在，不存在则判断是否创建成功
+     * 判断目录是否存在, 不存在则判断是否创建成功
      * @param file 文件
      * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     public static boolean createOrExistsDir(final File file) {
-        // 如果存在，是目录则返回 true，是文件则返回 false，不存在则返回是否创建成功
+        // 如果存在, 是目录则返回 true, 是文件则返回 false, 不存在则返回是否创建成功
         return file != null && (file.exists() ? file.isDirectory() : file.mkdirs());
     }
 
     /**
-     * 判断文件是否存在，不存在则判断是否创建成功
+     * 判断文件是否存在, 不存在则判断是否创建成功
      * @param filePath 文件路径
      * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
@@ -225,13 +225,13 @@ public final class FileUtils {
     }
 
     /**
-     * 判断文件是否存在，不存在则判断是否创建成功
+     * 判断文件是否存在, 不存在则判断是否创建成功
      * @param file 文件
      * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     public static boolean createOrExistsFile(final File file) {
         if (file == null) return false;
-        // 如果存在，是文件则返回 true，是目录则返回 false
+        // 如果存在, 是文件则返回 true, 是目录则返回 false
         if (file.exists()) return file.isFile();
         // 判断文件是否存在, 不存在则直接返回
         if (!createOrExistsDir(file.getParentFile())) return false;
@@ -245,7 +245,7 @@ public final class FileUtils {
     }
 
     /**
-     * 判断文件是否存在，存在则在创建之前删除
+     * 判断文件是否存在, 存在则在创建之前删除
      * @param filePath 文件路径
      * @return {@code true} 创建成功, {@code false} 创建失败
      */
@@ -254,7 +254,7 @@ public final class FileUtils {
     }
 
     /**
-     * 判断文件是否存在，存在则在创建之前删除
+     * 判断文件是否存在, 存在则在创建之前删除
      * @param file 文件
      * @return {@code true} 创建成功, {@code false} 创建失败
      */
@@ -321,9 +321,9 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件后缀名(无.,单独后缀)
+     * 获取文件后缀名(无. 单独后缀)
      * @param file 文件
-     * @return 文件后缀名(无., 单独后缀)
+     * @return 文件后缀名(无. 单独后缀)
      */
     public static String getFileSuffix(final File file) {
         return getFileSuffix(getAbsolutePath(file));
@@ -826,7 +826,7 @@ public final class FileUtils {
     }
 
     /**
-     * 传入对应的文件大小double,返回转换后文件大小
+     * 传入对应的文件大小 double, 返回转换后文件大小
      * @param fileSize 文件大小
      * @return 文件大小转换字符串
      */
@@ -1022,7 +1022,7 @@ public final class FileUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean deleteFile(final File file) {
-        // 文件存在，并且不是目录文件,则直接删除
+        // 文件存在, 并且不是目录文件, 则直接删除
         if (file != null && file.exists() && !file.isDirectory()) {
             return file.delete();
         }
@@ -1074,7 +1074,7 @@ public final class FileUtils {
     public static boolean deleteFolder(final File file) {
         if (file != null) {
             try {
-                // 文件存在，并且不是目录文件,则直接删除
+                // 文件存在, 并且不是目录文件, 则直接删除
                 if (file.exists()) {
                     if (file.isDirectory()) { // 属于文件目录
                         File[] files = file.listFiles();
@@ -1217,11 +1217,11 @@ public final class FileUtils {
     public static void appendFile(final String filePath, final String content) {
         if (filePath == null || content == null) return;
         File file = new File(filePath);
-        // 如果文件不存在,则跳过
+        // 如果文件不存在, 则跳过
         if (!file.exists()) return;
         FileWriter writer = null;
         try {
-            // 打开一个写文件器，构造函数中的第二个参数true表示以追加形式写文件
+            // 打开一个写文件器, 构造函数中的第二个参数 true 表示以追加形式写文件
             writer = new FileWriter(file, true);
             writer.write(content);
         } catch (Exception e) {
@@ -1375,7 +1375,7 @@ public final class FileUtils {
      * 复制单个文件
      * @param inputStream  文件流(被复制)
      * @param destFilePath 目标文件地址
-     * @param overlay      如果目标文件存在，是否覆盖
+     * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
     public static boolean copyFile(final InputStream inputStream, final String destFilePath, final boolean overlay) {
@@ -1390,11 +1390,11 @@ public final class FileUtils {
         if (destFile.exists()) {
             // 如果目标文件存在并允许覆盖
             if (overlay) {
-                // 删除已经存在的目标文件，无论目标文件是目录还是单个文件
+                // 删除已经存在的目标文件, 无论目标文件是目录还是单个文件
                 destFile.delete();
             }
         } else {
-            // 如果目标文件所在目录不存在，则创建目录
+            // 如果目标文件所在目录不存在, 则创建目录
             if (!destFile.getParentFile().exists()) {
                 // 目标文件所在目录不存在
                 if (!destFile.getParentFile().mkdirs()) {
@@ -1432,7 +1432,7 @@ public final class FileUtils {
      * 复制单个文件
      * @param srcFilePath  待复制的文件地址
      * @param destFilePath 目标文件地址
-     * @param overlay      如果目标文件存在，是否覆盖
+     * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
     public static boolean copyFile(final String srcFilePath, final String destFilePath, final boolean overlay) {
@@ -1455,11 +1455,11 @@ public final class FileUtils {
         if (destFile.exists()) {
             // 如果目标文件存在并允许覆盖
             if (overlay) {
-                // 删除已经存在的目标文件，无论目标文件是目录还是单个文件
+                // 删除已经存在的目标文件, 无论目标文件是目录还是单个文件
                 new File(destFilePath).delete();
             }
         } else {
-            // 如果目标文件所在目录不存在，则创建目录
+            // 如果目标文件所在目录不存在, 则创建目录
             if (!destFile.getParentFile().exists()) {
                 // 目标文件所在目录不存在
                 if (!destFile.getParentFile().mkdirs()) {
@@ -1498,7 +1498,7 @@ public final class FileUtils {
      * 复制文件夹
      * @param srcFolderPath  待复制的文件夹地址
      * @param destFolderPath 目标文件夹地址
-     * @param overlay        如果目标文件存在，是否覆盖
+     * @param overlay        如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
     public static boolean copyFolder(final String srcFolderPath, final String destFolderPath, final boolean overlay) {
@@ -1510,7 +1510,7 @@ public final class FileUtils {
      * @param srcFolderPath  待复制的文件夹地址
      * @param destFolderPath 目标文件夹地址
      * @param sourcePath     源文件地址
-     * @param overlay        如果目标文件存在，是否覆盖
+     * @param overlay        如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
     private static boolean copyFolder(final String srcFolderPath, final String destFolderPath, final String sourcePath, boolean overlay) {
@@ -1526,7 +1526,7 @@ public final class FileUtils {
         }
         // 判断目标文件是否存在
         File destFile = new File(destFolderPath);
-        // 如果文件夹没创建,则创建
+        // 如果文件夹没创建, 则创建
         if (!destFile.exists()) {
             // 允许创建多级目录
             destFile.mkdirs();
@@ -1543,7 +1543,7 @@ public final class FileUtils {
             if (files != null && files.length != 0) {
                 // 进行遍历
                 for (File file : files) {
-                    // 文件存在,才进行处理
+                    // 文件存在才进行处理
                     if (file.exists()) {
                         // 属于文件夹
                         if (file.isDirectory()) {
@@ -1576,7 +1576,7 @@ public final class FileUtils {
      * 移动(剪切)文件
      * @param srcFilePath  待移动的文件地址
      * @param destFilePath 目标文件地址
-     * @param overlay      如果目标文件存在，是否覆盖
+     * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
     public static boolean moveFile(final String srcFilePath, final String destFilePath, final boolean overlay) {
@@ -1592,7 +1592,7 @@ public final class FileUtils {
      * 移动(剪切)文件夹
      * @param srcFilePath  待移动的文件夹地址
      * @param destFilePath 目标文件夹地址
-     * @param overlay      如果目标文件存在，是否覆盖
+     * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
     public static boolean moveFolder(final String srcFilePath, final String destFilePath, final boolean overlay) {
@@ -1630,7 +1630,7 @@ public final class FileUtils {
      */
     private static boolean copyOrMoveDir(final File srcDir, final File destDir, final OnReplaceListener listener, final boolean isMove) {
         if (srcDir == null || destDir == null || listener == null) return false;
-        // 为防止以上这种情况出现出现误判，须分别在后面加个路径分隔符
+        // 为防止以上这种情况出现出现误判, 须分别在后面加个路径分隔符
         String srcPath = srcDir.getPath() + File.separator;
         String destPath = destDir.getPath() + File.separator;
         if (destPath.contains(srcPath)) return false;

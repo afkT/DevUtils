@@ -7,7 +7,7 @@ package dev.utils.common.assist;
 public class TimeKeeper {
 
     /**
-     * 设置等待一段时间后, 通知方法 (异步)
+     * 设置等待一段时间后, 通知方法(异步)
      * @param keepTimeMillis 堵塞时间(毫秒)
      * @param endCallback    结束回调通知
      */
@@ -23,7 +23,7 @@ public class TimeKeeper {
     }
 
     /**
-     * 设置等待一段时间后, 通知方法 (同步)
+     * 设置等待一段时间后, 通知方法(同步)
      * @param keepTimeMillis 堵塞时间(毫秒)
      * @param endCallback    结束回调通知
      */

@@ -115,8 +115,8 @@ public final class Reflect2Utils {
             for (int i = 0, len = args.length; i < len; i++) {
                 argsClass[i] = args[i].getClass();
             }
-            // getDeclaredMethod() 获取的是类自身声明的所有方法，包含 public、protected 和 private 方法。
-            // getMethod() 获取的是类的所有共有方法，这就包括自身的所有 public 方法，和从基类继承的、从接口实现的所有 public 方法。
+            // getDeclaredMethod() 获取的是类自身声明的所有方法, 包含 public、protected 和 private 方法
+            // getMethod() 获取的是类的所有共有方法, 这就包括自身的所有 public 方法, 和从基类继承的、从接口实现的所有 public 方法
             Method method = ownerClass.getDeclaredMethod(methodName, argsClass);
             if (!method.isAccessible()) method.setAccessible(true);
             return method.invoke(null, args);
@@ -130,7 +130,7 @@ public final class Reflect2Utils {
     /**
      * 新建实例
      * @param className 类名
-     * @param args      构造函数的参数 如果无构造参数，args 填写为 null
+     * @param args      构造函数的参数 如果无构造参数, args 填写为 null
      * @param argsType  参数类型
      * @return 新建的实例
      */
@@ -158,7 +158,7 @@ public final class Reflect2Utils {
      * 是不是某个类的实例
      * @param object 实例
      * @param clazz  待判断类
-     * @return 如果 obj 是此类的实例，则返回 true
+     * @return 如果 obj 是此类的实例, 则返回 true
      */
     public static boolean isInstance(final Object object, final Class clazz) {
         if (object == null || clazz == null) return false;
@@ -241,8 +241,8 @@ public final class Reflect2Utils {
                     field = clazz.getDeclaredField(fieldName);
                     return field;
                 } catch (Exception e) {
-                    // 这里甚么都不要做！并且这里的异常必须这样写，不能抛出去。
-                    // 如果这里的异常打印或者往外抛，则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
+                    // 这里甚么都不要做！并且这里的异常必须这样写, 不能抛出去
+                    // 如果这里的异常打印或者往外抛, 则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
                 }
             }
         } catch (Exception e) {

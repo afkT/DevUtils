@@ -106,10 +106,10 @@ public final class RandomUtils {
     }
 
     /**
-     * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
+     * 获取伪随机 int 值 - 该值介于 [0, n) 的区间
      * @param random Random
      * @param number 最大随机值
-     * @return 随机介于 [0,n) 的区间值
+     * @return 随机介于 [0, n) 的区间值
      */
     public static int nextInt(final Random random, final int number) {
         if (number <= 0) return 0;
@@ -182,9 +182,9 @@ public final class RandomUtils {
     }
 
     /**
-     * 获取伪随机 int 值 - 该值介于 [0,n) 的区间
+     * 获取伪随机 int 值 - 该值介于 [0, n) 的区间
      * @param number 最大随机值
-     * @return 随机介于 [0,n) 的区间值
+     * @return 随机介于 [0, n) 的区间值
      */
     public static int nextInt(final int number) {
         if (number <= 0) return 0;
@@ -277,7 +277,7 @@ public final class RandomUtils {
     /**
      * 获取 0 - 最大随机数之间的随机数
      * @param max 最大随机数
-     * @return 随机介于 [0,max) 的区间值
+     * @return 随机介于 [0, max) 的区间值
      */
     public static int getRandom(final int max) {
         return getRandom(0, max);
@@ -287,7 +287,7 @@ public final class RandomUtils {
      * 获取两个数之间的随机数(不含最大随机数, 需要 + 1)
      * @param min 最小随机数
      * @param max 最大随机数
-     * @return 随机介于 [min,max) 的区间值
+     * @return 随机介于 [min, max) 的区间值
      */
     public static int getRandom(final int min, final int max) {
         if (min > max) {
@@ -304,7 +304,7 @@ public final class RandomUtils {
     // java.util.Collections.shuffle(List<?> list);
 
     /**
-     * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
+     * 洗牌算法(第一种), 随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
      * @param objects 随机数据源
      * @return {@code true} success, {@code false} fail
      */
@@ -314,7 +314,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
+     * 洗牌算法(第一种), 随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
      * @param objects      随机数据源
      * @param shuffleCount 洗牌次数
      * @return {@code true} success, {@code false} fail
@@ -334,7 +334,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
+     * 洗牌算法(第一种), 随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
      * @param ints 随机数据源
      * @return 随机 int[]
      */
@@ -344,7 +344,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 洗牌算法(第一种)，随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
+     * 洗牌算法(第一种), 随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
      * @param ints         随机数据源
      * @param shuffleCount 洗牌次数
      * @return 随机 int[]
@@ -368,7 +368,7 @@ public final class RandomUtils {
     // =
 
     /**
-     * 洗牌算法(第二种)，随机置换指定的数组使用的默认源的随机性
+     * 洗牌算法(第二种), 随机置换指定的数组使用的默认源的随机性
      * @param objects 随机数据源
      * @return {@code true} success, {@code false} fail
      */

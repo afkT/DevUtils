@@ -23,7 +23,7 @@ public final class CipherUtils {
     /**
      * 加密方法
      * @param object 待加密对象
-     * @param cipher 加/解密中间层
+     * @param cipher 加解密中间层
      * @return 加密后的十六进制字符串
      */
     public static String encrypt(final Object object, final Cipher cipher) {
@@ -47,7 +47,7 @@ public final class CipherUtils {
     /**
      * 解密方法
      * @param hex    十六进制字符串
-     * @param cipher 加/解密中间层
+     * @param cipher 加解密中间层
      * @return 解密后的对象
      */
     public static Object decrypt(final String hex, final Cipher cipher) {

@@ -516,7 +516,7 @@ public final class DevCommonUtils {
     /**
      * (这个方法功能主要把字符符合标记的 头部和尾部都替换成 "")
      * 如 _____a_a_a_a________  传入 _ 等于 a_a_a_a
-     * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf) ,while
+     * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
@@ -550,7 +550,7 @@ public final class DevCommonUtils {
     /**
      * 清空属于特定字符串开头的字段
      * 如 _____a_a_a_a________  传入 _ 等于 a_a_a_a_____
-     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf) ,while
+     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
@@ -576,7 +576,7 @@ public final class DevCommonUtils {
     /**
      * 清空属于特定字符串结尾的字段
      * 如 _____a_a_a_a________  传入 _ 等于 _____a_a_a_a
-     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf) ,while
+     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
@@ -611,7 +611,7 @@ public final class DevCommonUtils {
      * @return 处理后的字符串
      */
     public static String replaceStr(final String str, final String suffix, final String replace) {
-        // 如果替换的内容或者判断的字符串为 null,则直接跳过
+        // 如果替换的内容或者判断的字符串为 null, 则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
@@ -630,7 +630,7 @@ public final class DevCommonUtils {
      * @return 处理后的字符串, 替换失败则返回 null
      */
     public static String replaceStrToNull(final String str, final String suffix, final String replace) {
-        // 如果替换的内容或者判断的字符串为 null,则直接跳过
+        // 如果替换的内容或者判断的字符串为 null, 则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
@@ -663,7 +663,7 @@ public final class DevCommonUtils {
                     // 进行替换字符串
                     cStr = replaceStr(cStr, suffixArys[i], replaceArys[i]);
                 }
-                // 最终不为 null,则进行返回
+                // 最终不为 null, 则进行返回
                 return cStr;
             }
         }
@@ -1297,7 +1297,7 @@ public final class DevCommonUtils {
     /**
      * 获取字符串长度
      * @param str 待校验的字符串
-     * @return 字符串长度, 如果字符串为 null,则返回 0
+     * @return 字符串长度, 如果字符串为 null, 则返回 0
      */
     public static int length(final String str) {
         return str == null ? 0 : str.length();
@@ -1307,7 +1307,7 @@ public final class DevCommonUtils {
      * 获取字符串长度
      * @param str           待校验的字符串
      * @param defaultLength 字符串为 null 时, 返回的长度
-     * @return 字符串长度, 如果字符串为 null,则返回 defaultLength
+     * @return 字符串长度, 如果字符串为 null, 则返回 defaultLength
      */
     public static int length(final String str, final int defaultLength) {
         return str != null ? str.length() : defaultLength;
@@ -1420,7 +1420,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断多个字符串,只要有一个符合条件, 则通过
+     * 判断多个字符串, 只要有一个符合条件则通过
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -1430,7 +1430,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断多个字符串,只要有一个符合条件, 则通过
+     * 判断多个字符串, 只要有一个符合条件则通过
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
      * @param strs     待校验的字符串数组
@@ -1464,7 +1464,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断一堆值中，是否存在符合该条件的(包含)
+     * 判断一堆值中, 是否存在符合该条件的(包含)
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -1474,7 +1474,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断一堆值中，是否存在符合该条件的(包含)
+     * 判断一堆值中, 是否存在符合该条件的(包含)
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
      * @param strs     待校验的字符串数组
@@ -1509,7 +1509,7 @@ public final class DevCommonUtils {
                         }
                     }
                 } else {
-                    // 下面这一串可以不要,因为判断字符串是否包含
+                    // 下面这一串可以不要, 因为判断字符串是否包含
                     // 已经处理了值不为 null, 并且需要判断的值长度不能为 0, 下面则不需要加上
                     if (strTemp.equals(val)) {
                         return true;
@@ -1659,7 +1659,7 @@ public final class DevCommonUtils {
     public static String toClearSpaceTrim(final String str) {
         if (isEmpty(str)) return str;
         String strTemp = str;
-        // 如果前面或者后面都是 空格开头,就一直进行处理
+        // 如果前面或者后面都是空格开头, 就一直进行处理
         while (strTemp.startsWith(" ") || strTemp.endsWith(" ")) {
             strTemp = strTemp.trim();
         }
@@ -1765,7 +1765,7 @@ public final class DevCommonUtils {
                 String val = strs[i];
                 if (isEmpty(val)) {
                     if (i == len - 1) {
-                        return defaultStr; // 属于最后一个,则返回默认值
+                        return defaultStr; // 属于最后一个, 则返回默认值
                     } else {
                         continue; // 不属于最后一个则跳过
                     }
@@ -1790,7 +1790,7 @@ public final class DevCommonUtils {
                 String val = toClearSpaceTrim(strs[i]);
                 if (isEmpty(val)) {
                     if (i == len - 1) {
-                        return defaultStr; // 属于最后一个,则返回默认值
+                        return defaultStr; // 属于最后一个, 则返回默认值
                     } else {
                         continue; // 不属于最后一个则跳过
                     }

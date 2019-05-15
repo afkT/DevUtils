@@ -679,14 +679,14 @@ public final class ConvertUtils {
 //    boolean equals = data.equals(data1);
 
     /**
-     * 按位求补 byte[] 位移编/解码(共用同一个方法)
+     * 按位求补 byte[] 位移编解码(共用同一个方法)
      * @param data byte[]
      */
     public static void bytesBitwiseAND(final byte[] data) {
         if (data == null) return;
         for (int i = 0, len = data.length; i < len; i++) {
             int d = data[i];
-            d = ~d; // 按位补运算符 => 翻转操作数的每一位，即 0 变成 1，1 变成 0, 再通过反转后的二进制初始化回十六进制
+            d = ~d; // 按位补运算符 => 翻转操作数的每一位, 即 0 变成 1, 1 变成 0, 再通过反转后的二进制初始化回十六进制
             data[i] = (byte) d;
         }
     }
@@ -1496,7 +1496,7 @@ public final class ConvertUtils {
      * @param ch    十六进制 char
      * @param index 十六进制字符在字符数组中的位置
      * @return 一个整数
-     * @throws Exception 当ch不是一个合法的十六进制字符时，抛出运行时异常
+     * @throws Exception 当 ch 不是一个合法的十六进制字符时, 抛出运行时异常
      */
     private static int toDigit(final char ch, final int index) throws Exception {
         int digit = Character.digit(ch, 16);
@@ -1616,7 +1616,7 @@ public final class ConvertUtils {
     /**
      * 将 byte[] 转换为 十六进制 char[]
      * @param data      byte[]
-     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
+     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}、{@link ConvertUtils#HEX_DIGITS_UPPER}
      * @return 十六进制 char[]
      */
     private static char[] toHexChars(final byte[] data, final char[] hexDigits) {
@@ -1674,7 +1674,7 @@ public final class ConvertUtils {
     /**
      * 将 byte[] 转换 十六进制字符串
      * @param data      byte[]
-     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
+     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}、{@link ConvertUtils#HEX_DIGITS_UPPER}
      * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {

@@ -22,8 +22,8 @@ import dev.utils.JCLogUtils;
  * @author Ttt
  * <pre>
  *      有两个方法: getMethod, getDeclaredMethod
- *      getMethod 只能调用 public 声明的方法，而 getDeclaredMethod 基本可以调用任何类型声明的方法
- *      反射多用 getDeclaredMethod，尽量少用 getMethod
+ *      getMethod 只能调用 public 声明的方法, 而 getDeclaredMethod 基本可以调用任何类型声明的方法
+ *      反射多用 getDeclaredMethod, 尽量少用 getMethod
  * </pre>
  */
 public final class ReflectUtils {
@@ -383,7 +383,7 @@ public final class ReflectUtils {
      * 循环向上转型, 获取对象的 DeclaredField
      * @param object    子类对象
      * @param fieldName 父类中的属性名
-     * @param isSuper   是否一直跟到最后, 如果父类还有父类，并且有相同变量名, 则设置 isSuper = true，一直会跟到最后的变量
+     * @param isSuper   是否一直跟到最后, 如果父类还有父类, 并且有相同变量名, 则设置 isSuper = true, 一直会跟到最后的变量
      * @return {@link Field} 父类中的属性对象
      */
     public static Field getDeclaredFieldBase(final Object object, final String fieldName, final boolean isSuper) {
@@ -396,8 +396,8 @@ public final class ReflectUtils {
                     return field;
                 }
             } catch (Exception e) {
-                // 这里甚么都不要做！并且这里的异常必须这样写，不能抛出去。
-                // 如果这里的异常打印或者往外抛，则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
+                // 这里甚么都不要做！并且这里的异常必须这样写, 不能抛出去
+                // 如果这里的异常打印或者往外抛, 则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
             }
         }
         return field;

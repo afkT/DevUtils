@@ -475,7 +475,7 @@ public final class BigDecimalUtils {
     // =
 
     /**
-     * 金额分割，四舍五入金额
+     * 金额分割, 四舍五入金额
      * @param value 金额/数值
      * @return 指定格式处理的字符串
      */
@@ -484,7 +484,7 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 金额分割，四舍五入金额
+     * 金额分割, 四舍五入金额
      * @param value 金额/数值
      * @param scale 小数点后保留几位
      * @return 指定格式处理的字符串
@@ -494,7 +494,7 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 金额分割，四舍五入金额
+     * 金额分割, 四舍五入金额
      * @param value 金额/数值
      * @param scale 小数点后保留几位
      * @param mode  处理模式
@@ -505,7 +505,7 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 金额分割，四舍五入金额
+     * 金额分割, 四舍五入金额
      * @param value       金额/数值
      * @param scale       小数点后保留几位
      * @param mode        处理模式
@@ -517,7 +517,7 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 金额分割，四舍五入金额
+     * 金额分割, 四舍五入金额
      * @param value       金额/数值
      * @param scale       小数点后保留几位
      * @param mode        处理模式

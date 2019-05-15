@@ -111,7 +111,7 @@ public final class HttpURLConnectionUtils {
             if (params != null && params.length() != 0) {
                 // 允许写入
                 connection.setDoInput(true);
-                // 设置是否向 connection 输出，如果是 post 请求，参数要放在 http 正文内，因此需要设为 true
+                // 设置是否向 connection 输出, 如果是 post 请求, 参数要放在 http 正文内, 因此需要设为 true
                 connection.setDoOutput(true);
                 // post 请求不能使用缓存
                 connection.setUseCaches(false);

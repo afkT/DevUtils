@@ -1,7 +1,7 @@
 package dev.utils.common.cipher;
 
 /**
- * detail: Baes64 编/解码 并进行 加/解密
+ * detail: Baes64 编解码(并进行)加解密
  * @author Ttt
  */
 public class Base64Cipher implements Cipher {
@@ -21,7 +21,7 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 构造函数
-     * @param cipher 加/解密中间层
+     * @param cipher 加解密中间层
      */
     public Base64Cipher(final Cipher cipher) {
         this.mCipher = cipher;
@@ -29,7 +29,7 @@ public class Base64Cipher implements Cipher {
 
     /**
      * 构造函数
-     * @param cipher 加/解密中间层
+     * @param cipher 加解密中间层
      * @param flags  Base64 编解码 flags
      */
     public Base64Cipher(final Cipher cipher, final int flags) {

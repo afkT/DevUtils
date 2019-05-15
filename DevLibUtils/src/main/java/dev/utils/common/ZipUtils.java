@@ -373,23 +373,23 @@ public final class ZipUtils {
     // =
 
     /**
-     * 判断目录是否存在，不存在则判断是否创建成功
+     * 判断目录是否存在, 不存在则判断是否创建成功
      * @param file 文件
      * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     private static boolean createOrExistsDir(final File file) {
-        // 如果存在，是目录则返回 true，是文件则返回 false，不存在则返回是否创建成功
+        // 如果存在, 是目录则返回 true, 是文件则返回 false, 不存在则返回是否创建成功
         return file != null && (file.exists() ? file.isDirectory() : file.mkdirs());
     }
 
     /**
-     * 判断文件是否存在，不存在则判断是否创建成功
+     * 判断文件是否存在, 不存在则判断是否创建成功
      * @param file 文件
      * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     private static boolean createOrExistsFile(final File file) {
         if (file == null) return false;
-        // 如果存在，是文件则返回 true，是目录则返回 false
+        // 如果存在, 是文件则返回 true, 是目录则返回 false
         if (file.exists()) return file.isFile();
         // 判断文件是否存在, 不存在则直接返回
         if (!createOrExistsDir(file.getParentFile())) return false;

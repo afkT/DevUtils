@@ -125,7 +125,7 @@ public final class NumberUtils {
     // =
 
     /**
-     * 返回的 value 介于 max、min 之间，若 value 小于 min，返回 min，若大于 max，返回 max
+     * 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
@@ -136,7 +136,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 返回的 value 介于 max、min 之间，若 value 小于 min，返回 min，若大于 max，返回 max
+     * 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
@@ -147,7 +147,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 返回的 value 介于 max、min 之间，若 value 小于 min，返回 min，若大于 max，返回 max
+     * 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值
@@ -158,7 +158,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 返回的 value 介于 max、min 之间，若 value 小于 min，返回 min，若大于 max，返回 max
+     * 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max
      * @param value 指定值
      * @param max   最大值
      * @param min   最小值

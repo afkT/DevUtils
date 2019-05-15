@@ -7,7 +7,7 @@ import java.util.List;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 文件深度优先搜索算法 (递归搜索某个目录下的全部文件)
+ * detail: 文件深度优先搜索算法(递归搜索某个目录下的全部文件)
  * @author Ttt
  */
 public final class FileDepthFirstSearchUtils {
@@ -46,7 +46,7 @@ public final class FileDepthFirstSearchUtils {
         // 文件
         public File file;
 
-        // 子文件夹、文件对象
+        // 子文件夹内文件
         public List<FileItem> listChilds = null;
     }
 

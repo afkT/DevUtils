@@ -450,7 +450,7 @@ public final class BitmapUtils {
      * @param bitmap   图片资源
      * @param filePath 保存路径
      * @param format   如 Bitmap.CompressFormat.PNG
-     * @param quality  保存的图片质量， 100 则完整质量不压缩保存
+     * @param quality  保存的图片质量，100 则完整质量不压缩保存
      * @return 保存结果
      */
     public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format, final int quality) {

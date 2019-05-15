@@ -10,7 +10,7 @@ import android.support.annotation.RequiresPermission;
 import dev.DevUtils;
 
 /**
- * detail: 锁屏工具类 - 锁屏管理， 锁屏、禁用锁屏，判断是否锁屏
+ * detail: 锁屏工具类 - 锁屏管理，锁屏、禁用锁屏，判断是否锁屏
  * @author Ttt
  * <pre>
  *      需要的权限:

@@ -63,7 +63,7 @@ public final class ScaleUtils {
     }
 
     /**
-     * 通过宽度,高度,根据对应的比例 -> 转换成对应的比例宽度高度 - 智能转换
+     * 通过宽度、高度根据对应的比例 -> 转换成对应的比例宽度高度 - 智能转换
      * @param width       宽度
      * @param height      高度
      * @param widthScale  宽度比例
@@ -72,7 +72,7 @@ public final class ScaleUtils {
      */
     public static int[] calcWidthHeightToScale(final int width, final int height, final float widthScale, final float heightScale) {
         try {
-            // 如果宽度的比例,大于等于高度比例
+            // 如果宽度的比例, 大于等于高度比例
             if (widthScale >= heightScale) { // 以宽度为基准
                 // 设置宽度 -> 以宽度为基准
                 int sWidth = width;
@@ -130,6 +130,130 @@ public final class ScaleUtils {
             int sWidth = (int) (((float) sHeight) * (widthScale / heightScale));
             // 返回对应的比例
             return new int[]{sWidth, sHeight};
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "calcHeightToScale");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 计算缩放比例 - 根据宽度比例转换高度
+     * @param targetWidth   需要的最终宽度
+     * @param currentWidth  当前宽度
+     * @param currentHeight 当前高度
+     * @return float[] {宽度, 高度}
+     */
+    public static float[] calcScaleToWidth(final float targetWidth, final float currentWidth, final float currentHeight) {
+        try {
+            if (currentWidth == 0f) {
+                return new float[]{0f, 0f};
+            }
+            // 计算比例
+            float scale = targetWidth / currentWidth;
+            // 计算缩放后的高度
+            float sHeight = scale * currentHeight;
+            // 返回对应的数据
+            return new float[]{targetWidth, sHeight};
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "calcScaleToWidth");
+        }
+        return null;
+    }
+
+    /**
+     * 计算缩放比例 - 根据高度比例转换宽度
+     * @param targetHeight  需要的最终高度
+     * @param currentWidth  当前宽度
+     * @param currentHeight 当前高度
+     * @return float[] {宽度, 高度}
+     */
+    public static float[] calcScaleToHeight(final float targetHeight, final float currentWidth, final float currentHeight) {
+        try {
+            if (currentHeight == 0f) {
+                return new float[]{0f, 0f};
+            }
+            // 计算比例
+            float scale = targetHeight / currentHeight;
+            // 计算缩放后的宽度
+            float sWidth = scale * currentWidth;
+            // 返回对应的数据
+            return new float[]{sWidth, targetHeight};
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "calcScaleToHeight");
+        }
+        return null;
+    }
+
+    /**
+     * 通过宽度、高度根据对应的比例 -> 转换成对应的比例宽度高度 - 智能转换
+     * @param width       宽度
+     * @param height      高度
+     * @param widthScale  宽度比例
+     * @param heightScale 高度比例
+     * @return float[] {宽度, 高度}
+     */
+    public static float[] calcWidthHeightToScale(final float width, final float height, final float widthScale, final float heightScale) {
+        try {
+            // 如果宽度的比例, 大于等于高度比例
+            if (widthScale >= heightScale) { // 以宽度为基准
+                // 设置宽度 -> 以宽度为基准
+                float sWidth = width;
+                // 计算宽度
+                float sHeight = sWidth * (heightScale / widthScale);
+                // 返回对应的比例
+                return new float[]{sWidth, sHeight};
+            } else { // 以高度为基准
+                // 设置高度
+                float sHeight = height;
+                // 同步缩放比例
+                float sWidth = sHeight * (widthScale / heightScale);
+                // 返回对应的比例
+                return new float[]{sWidth, sHeight};
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "calcWidthHeightToScale");
+        }
+        return null;
+    }
+
+    /**
+     * 以宽度为基准 -> 转换对应比例的高度
+     * @param width       宽度
+     * @param widthScale  宽度比例
+     * @param heightScale 高度比例
+     * @return float[] {宽度, 高度}
+     */
+    public static float[] calcWidthToScale(final float width, final float widthScale, final float heightScale) {
+        try {
+            // 设置宽度
+            float sWidth = width;
+            // 计算高度
+            float sHeight = sWidth * (heightScale / widthScale);
+            // 返回对应的比例
+            return new float[]{sWidth, sHeight};
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "calcWidthToScale");
+        }
+        return null;
+    }
+
+    /**
+     * 以高度为基准 -> 转换对应比例的宽度
+     * @param height      高度
+     * @param widthScale  宽度比例
+     * @param heightScale 高度比例
+     * @return float[] {宽度, 高度}
+     */
+    public static float[] calcHeightToScale(final float height, final float widthScale, final float heightScale) {
+        try {
+            // 设置高度
+            float sHeight = height;
+            // 计算宽度
+            float sWidth = sHeight * (widthScale / heightScale);
+            // 返回对应的比例
+            return new float[]{sWidth, sHeight};
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "calcHeightToScale");
         }

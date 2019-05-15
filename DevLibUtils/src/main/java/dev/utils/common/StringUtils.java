@@ -92,7 +92,7 @@ public final class StringUtils {
     /**
      * 获取字符串长度
      * @param str 待校验的字符串
-     * @return 字符串长度, 如果字符串为 null,则返回 0
+     * @return 字符串长度, 如果字符串为 null, 则返回 0
      */
     public static int length(final String str) {
         return str == null ? 0 : str.length();
@@ -102,7 +102,7 @@ public final class StringUtils {
      * 获取字符串长度
      * @param str           待校验的字符串
      * @param defaultLength 字符串为 null 时, 返回的长度
-     * @return 字符串长度, 如果字符串为 null,则返回 defaultLength
+     * @return 字符串长度, 如果字符串为 null, 则返回 defaultLength
      */
     public static int length(final String str, final int defaultLength) {
         return str != null ? str.length() : defaultLength;
@@ -215,7 +215,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断多个字符串,只要有一个符合条件, 则通过
+     * 判断多个字符串, 只要有一个符合条件则通过
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -225,7 +225,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断多个字符串,只要有一个符合条件, 则通过
+     * 判断多个字符串, 只要有一个符合条件则通过
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
      * @param strs     待校验的字符串数组
@@ -259,7 +259,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断一堆值中，是否存在符合该条件的(包含)
+     * 判断一堆值中, 是否存在符合该条件的(包含)
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -269,7 +269,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断一堆值中，是否存在符合该条件的(包含)
+     * 判断一堆值中, 是否存在符合该条件的(包含)
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
      * @param strs     待校验的字符串数组
@@ -304,7 +304,7 @@ public final class StringUtils {
                         }
                     }
                 } else {
-                    // 下面这一串可以不要,因为判断字符串是否包含
+                    // 下面这一串可以不要, 因为判断字符串是否包含
                     // 已经处理了值不为 null, 并且需要判断的值长度不能为 0, 下面则不需要加上
                     if (strTemp.equals(val)) {
                         return true;
@@ -454,7 +454,7 @@ public final class StringUtils {
     public static String toClearSpaceTrim(final String str) {
         if (isEmpty(str)) return str;
         String strTemp = str;
-        // 如果前面或者后面都是 空格开头,就一直进行处理
+        // 如果前面或者后面都是空格开头, 就一直进行处理
         while (strTemp.startsWith(" ") || strTemp.endsWith(" ")) {
             strTemp = strTemp.trim();
         }
@@ -560,7 +560,7 @@ public final class StringUtils {
                 String val = strs[i];
                 if (isEmpty(val)) {
                     if (i == len - 1) {
-                        return defaultStr; // 属于最后一个,则返回默认值
+                        return defaultStr; // 属于最后一个, 则返回默认值
                     } else {
                         continue; // 不属于最后一个则跳过
                     }
@@ -585,7 +585,7 @@ public final class StringUtils {
                 String val = toClearSpaceTrim(strs[i]);
                 if (isEmpty(val)) {
                     if (i == len - 1) {
-                        return defaultStr; // 属于最后一个,则返回默认值
+                        return defaultStr; // 属于最后一个, 则返回默认值
                     } else {
                         continue; // 不属于最后一个则跳过
                     }
@@ -954,7 +954,7 @@ public final class StringUtils {
     }
 
     /**
-     * 字符串连接，将参数列表拼接为一个字符串
+     * 字符串连接, 将参数列表拼接为一个字符串
      * @param args 追加数据
      * @return 拼接后的字符串
      */
@@ -963,7 +963,7 @@ public final class StringUtils {
     }
 
     /**
-     * 字符串连接，将参数列表拼接为一个字符串
+     * 字符串连接, 将参数列表拼接为一个字符串
      * @param startStr 开始字符串
      * @param args     追加数据
      * @return 拼接后的字符串

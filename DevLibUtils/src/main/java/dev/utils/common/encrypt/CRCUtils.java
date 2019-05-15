@@ -10,7 +10,8 @@ import dev.utils.JCLogUtils;
  * detail: CRC 工具类
  * @author Ttt
  * <pre>
- *      Cyclic Redundancy Check, CRC 循环冗余校验 是一种根据网络数据包或电脑文件等数据产生简短固定位数校验码的一种散列函数
+ *      Cyclic Redundancy Check 循环冗余校验
+ *      CRC 是一种根据网络数据包或电脑文件等数据产生简短固定位数校验码的一种散列函数
  * </pre>
  */
 public final class CRCUtils {

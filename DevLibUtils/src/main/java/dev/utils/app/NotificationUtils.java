@@ -247,7 +247,7 @@ public final class NotificationUtils {
      * detail: 设置通知栏 Led 灯参数实体类
      * @author Ttt
      * <pre>
-     *      手机处于锁屏状态时， LED灯就会不停地闪烁， 提醒用户去查看手机,下面是绿色的灯光一 闪一闪的效果
+     *      手机处于锁屏状态时，LED灯就会不停地闪烁，提醒用户去查看手机,下面是绿色的灯光一 闪一闪的效果
      * </pre>
      */
     public static class LightPattern {
@@ -279,7 +279,7 @@ public final class NotificationUtils {
      * @author Ttt
      * <pre>
      *      vibrate 属性是一个长整型的数组，用于设置手机静止和震动的时长，以毫秒为单位。
-     *      参数中下标为0的值表示手机静止的时长，下标为1的值表示手机震动的时长， 下标为2的值又表示手机静止的时长，以此类推。
+     *      参数中下标为0的值表示手机静止的时长，下标为1的值表示手机震动的时长，下标为2的值又表示手机静止的时长，以此类推。
      * </pre>
      */
     public static class VibratePattern {

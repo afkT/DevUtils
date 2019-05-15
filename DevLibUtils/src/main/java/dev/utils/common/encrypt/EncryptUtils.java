@@ -26,7 +26,7 @@ import dev.utils.common.ConvertUtils;
 import dev.utils.common.cipher.Base64;
 
 /**
- * detail: 加/解密 通用工具类
+ * detail: 加解密 通用工具类
  * @author Blankj
  * @author Ttt (重写、规范注释、逻辑判断等)
  */
@@ -562,7 +562,7 @@ public final class EncryptUtils {
      * @param data      待加密数据
      * @param key       密钥
      * @param algorithm 算法
-     * @return 指定加密算法、密钥，加密后的数据
+     * @return 指定加密算法和密钥, 加密后的数据
      */
     private static byte[] hmacTemplate(final byte[] data, final byte[] key, final String algorithm) {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
@@ -807,13 +807,13 @@ public final class EncryptUtils {
 
     /**
      * 对称加密模版方法
-     * @param data           待加/解密数据
+     * @param data           待加解密数据
      * @param key            密钥
      * @param algorithm      算法
      * @param transformation {@link Cipher#getInstance} transformation
      * @param iv             算法参数 {@link AlgorithmParameterSpec}
      * @param isEncrypt      是否加密处理
-     * @return 指定加密算法, 加/解密后的数据
+     * @return 指定加密算法, 加解密后的数据
      */
     private static byte[] symmetricTemplate(final byte[] data, final byte[] key, final String algorithm,
                                             final String transformation, final byte[] iv, final boolean isEncrypt) {
@@ -918,13 +918,13 @@ public final class EncryptUtils {
     }
 
     /**
-     * RSA 加/解密模版方法
-     * @param data           待加/解密数据
+     * RSA 加解密模版方法
+     * @param data           待加解密数据
      * @param key            密钥
      * @param isPublicKey    {@code true} {@link X509EncodedKeySpec}, {@code false} {@link PKCS8EncodedKeySpec}
      * @param transformation {@link Cipher#getInstance} transformation
      * @param isEncrypt      是否加密处理
-     * @return 指定加密算法, 加/解密后的数据
+     * @return 指定加密算法, 加解密后的数据
      */
     private static byte[] rsaTemplate(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation, final boolean isEncrypt) {
         if (data == null || key == null) return null;
@@ -1032,7 +1032,7 @@ public final class EncryptUtils {
     /**
      * 将 byte[] 转换 十六进制字符串
      * @param data      待加密数据
-     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}， {@link ConvertUtils#HEX_DIGITS_UPPER}
+     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}、{@link ConvertUtils#HEX_DIGITS_UPPER}
      * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {
@@ -1090,7 +1090,7 @@ public final class EncryptUtils {
      * @param ch    十六进制 char
      * @param index 十六进制字符在字符数组中的位置
      * @return 十六进制 转 int 整数
-     * @throws Exception 当ch不是一个合法的十六进制字符时，抛出运行时异常
+     * @throws Exception 当 ch 不是一个合法的十六进制字符时, 抛出运行时异常
      */
     private static int toDigit(final char ch, final int index) throws Exception {
         int digit = Character.digit(ch, 16);

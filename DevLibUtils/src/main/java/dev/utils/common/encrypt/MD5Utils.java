@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: MD5 加密 不可逆(Message Digest，消息摘要算法)
+ * detail: MD5 加密 (Message Digest 消息摘要算法)
  * @author Ttt
  */
 public final class MD5Utils {

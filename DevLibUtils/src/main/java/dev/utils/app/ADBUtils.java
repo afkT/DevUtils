@@ -2140,7 +2140,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取日期时间选项中通过网络获取时间的状态，
+     * 获取日期时间选项中通过网络获取时间的状态
      * @return 1 允许、0 不允许、-1 未知
      */
     public static int getGlobalAutoTime() {

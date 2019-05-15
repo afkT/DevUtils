@@ -11,7 +11,7 @@ import dev.utils.JCLogUtils;
  * detail: 3DES 对称加密
  * @author Ttt
  * <pre>
- *      Triple DES、DESede，进行了三重 DES 加密的算法，对称加密算法
+ *      Triple DES、DESede 进行了三重 DES 加密的算法(对称加密算法)
  * </pre>
  */
 public final class TripleDESUtils {
