@@ -8,11 +8,11 @@
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/DevLibUtils/src/main/java/dev/utils/app/toast/toaster)
 
-* Toast 工具类（[DevToast](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/toaster/DevToast.java)）：Toast 工具类(对外公开直接调用)，直接调用 IToastImpl 类方法。
+* Toast 工具类（[DevToast](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/toaster/DevToast.java)）：Toast 工具类(对外公开直接调用)，直接调用 IToastImpl 类方法
 
-* Toast 接口（[IToast](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/toaster/IToast.java)）：主要编写 Operate 操作接口、Style 样式接口、Filter 过滤接口。
+* Toast 接口（[IToast](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/toaster/IToast.java)）：主要编写 Operate 操作接口、Style 样式接口、Filter 过滤接口
 
-* Toast 接口实现方法（[IToastImpl](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/toaster/IToastImpl.java)）：实现 Toast.Operate 接口，并且对对应的方法，进行处理。
+* Toast 接口实现方法（[IToastImpl](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/toaster/IToastImpl.java)）：实现 Toast.Operate 接口，并且对对应的方法，进行处理
 
 * Toast 工厂模式（[ToastFactory](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/toaster/ToastFactory.java)）：用于生成适配不同 Android 版本对应的 Toast，以及解决无通知权限显示 Toast
 

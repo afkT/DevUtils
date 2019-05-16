@@ -130,17 +130,17 @@ public class ImageProcessor {
         int width = mBitmap.getWidth();
         int height = mBitmap.getHeight();
 
-        /* 获取倒影图片，并创建一张宽度与原图相同，但高度等于原图的高度加上间距加上倒影的高度的图片，并创建画布。画布分为上中下三部分，上: 是原图, 中: 是原图与倒影的间距, 下: 是倒影 */
+        // 获取倒影图片，并创建一张宽度与原图相同，但高度等于原图的高度加上间距加上倒影的高度的图片，并创建画布, 画布分为上中下三部分，上: 是原图, 中: 是原图与倒影的间距, 下: 是倒影
         Bitmap reflectionImage = reverseByVertical(mBitmap); //
         Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapWithReflection);
 
-        /* 将原图画到画布的上半部分，将倒影画到画布的下半部分，倒影与画布顶部的间距是原图的高度加上原图与倒影之间的间距 */
+        // 将原图画到画布的上半部分，将倒影画到画布的下半部分，倒影与画布顶部的间距是原图的高度加上原图与倒影之间的间距
         canvas.drawBitmap(mBitmap, 0, 0, null);
         canvas.drawBitmap(reflectionImage, 0, height + reflectionSpacing, null);
         reflectionImage.recycle();
 
-        /* 将倒影改成半透明，创建画笔，并设置画笔的渐变从半透明的白色到全透明的白色，然后再倒影上面画半透明效果 */
+        // 将倒影改成半透明，创建画笔，并设置画笔的渐变从半透明的白色到全透明的白色，然后再倒影上面画半透明效果
         Paint paint = new Paint();
         paint.setShader(new LinearGradient(0, mBitmap.getHeight(), 0, bitmapWithReflection.getHeight() + reflectionSpacing, 0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP));
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));

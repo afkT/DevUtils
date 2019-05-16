@@ -489,7 +489,7 @@ final class LoggerPrinter implements IPrinter {
     }
 
     /**
-     * 日志处理方法(统一调用这个) - 此方法是同步的,以避免混乱的日志的顺序。
+     * 日志处理方法(统一调用这个) - 此方法是同步的,以避免混乱的日志的顺序
      * @param lConfig 配置信息
      * @param tag     日志 TAG
      * @param logType 日志类型
@@ -600,7 +600,7 @@ final class LoggerPrinter implements IPrinter {
         int traceCount = trace.length;
         // 获取堆栈偏移量
         int stackOffset = getStackOffset(trace) + methodOffset;
-        // 对应的方法计数与当前堆栈可能超过,进行堆栈跟踪。修剪计数
+        // 对应的方法计数与当前堆栈可能超过,进行堆栈跟踪
         if (methodCount + stackOffset > traceCount) {
             methodCount = traceCount - stackOffset - 1;
         }
@@ -705,7 +705,7 @@ final class LoggerPrinter implements IPrinter {
     }
 
     /**
-     * 确定该类的方法调用后的堆栈跟踪的起始索引。
+     * 确定该类的方法调用后的堆栈跟踪的起始索引
      * @param trace 堆栈
      * @return 堆栈跟踪索引
      */

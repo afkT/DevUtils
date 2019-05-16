@@ -63,7 +63,7 @@ final class LogConstants {
     public static final int JSON_INDENT = 4;
 
     /**
-     * 最小堆栈跟踪索引,在本类中启动2次本地调用。
+     * 最小堆栈跟踪索引,在本类中启动2次本地调用
      */
     public static final int MIN_STACK_OFFSET = 3;
 

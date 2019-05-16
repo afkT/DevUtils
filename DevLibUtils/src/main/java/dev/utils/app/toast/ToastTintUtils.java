@@ -134,7 +134,7 @@ public final class ToastTintUtils {
     }
 
     /**
-     * 设置 Toast 显示在屏幕上的位置。
+     * 设置 Toast 显示在屏幕上的位置
      * @param gravity
      * @param xOffset
      * @param yOffset

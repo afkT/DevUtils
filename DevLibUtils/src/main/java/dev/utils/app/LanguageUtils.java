@@ -66,7 +66,7 @@ public class LanguageUtils {
                     context.createConfigurationContext(config);
                 } else {
                     // updateConfiguration
-                    // 获取屏幕参数: 主要是分辨率，像素等。
+                    // 获取屏幕参数: 主要是分辨率，像素等
                     DisplayMetrics dm = resources.getDisplayMetrics();
                     config.locale = locale;
                     // 更新语言

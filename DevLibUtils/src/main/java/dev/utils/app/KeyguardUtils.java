@@ -109,7 +109,7 @@ public final class KeyguardUtils {
     }
 
     /**
-     * 使能显示锁屏界面，如果你之前调用了disableKeyguard()方法取消锁屏界面，那么会马上显示锁屏界面。
+     * 使能显示锁屏界面，如果你之前调用了disableKeyguard()方法取消锁屏界面，那么会马上显示锁屏界面
      * <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)

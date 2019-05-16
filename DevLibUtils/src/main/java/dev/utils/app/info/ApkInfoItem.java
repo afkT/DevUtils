@@ -141,8 +141,8 @@ public final class ApkInfoItem {
             effective = false;
             try {
                 cert.checkValidity();
-                // CertificateExpiredException - 如果证书已过期。
-                // CertificateNotYetValidException - 如果证书不再有效。
+                // CertificateExpiredException - 如果证书已过期
+                // CertificateNotYetValidException - 如果证书不再有效
             } catch (CertificateExpiredException ce) {
                 effective = true;
             } catch (CertificateNotYetValidException ce) {

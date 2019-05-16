@@ -422,7 +422,7 @@ public final class ResourceUtils {
     }
 
     /**
-     * 从res/raw 中获取内容。
+     * 从res/raw 中获取内容
      * @param resId 资源id
      * @return
      */
@@ -502,7 +502,7 @@ public final class ResourceUtils {
     }
 
     /**
-     * 从res/raw 中获取内容。(返回List<String>一行的全部内容属于一个索引)
+     * 从res/raw 中获取内容(返回List<String>一行的全部内容属于一个索引)
      * @param resId 资源id
      * @return
      */

@@ -41,7 +41,7 @@ public final class FileRecordUtils {
 
     // App 版本(如1.0.01) 显示给用户看的
     private static String APP_VERSION_NAME = "";
-    // android:versionCode——整数值,代表应用程序代码的相对版本,也就是版本更新过多少次。(不显示给用户看)
+    // android:versionCode——整数值,代表应用程序代码的相对版本,也就是版本更新过多少次(不显示给用户看)
     private static String APP_VERSION_CODE = "";
     // 设备信息
     private static String DEVICE_INFO_STR = null;
@@ -82,7 +82,7 @@ public final class FileRecordUtils {
      * @param dInfoMaps 传入设备信息传出HashMap
      */
     private static void getDeviceInfo(final Map<String, String> dInfoMaps) {
-        // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段。
+        // 获取设备信息类的所有申明的字段,即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
         for (Field field : fields) {

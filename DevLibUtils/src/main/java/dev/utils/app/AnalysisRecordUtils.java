@@ -310,7 +310,7 @@ public final class AnalysisRecordUtils {
      * @param dInfoMaps 传入设备信息传出HashMap
      */
     private static void getDeviceInfo(final Map<String, String> dInfoMaps) {
-        // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段。
+        // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
         for (Field field : fields) {

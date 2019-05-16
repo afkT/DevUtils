@@ -8,7 +8,7 @@
 
 #### 项目类结构
 
-* Toast 工具类（[ToastTintUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/ToastTintUtils.java)）：Toast 美化工具类。
+* Toast 工具类（[ToastTintUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/ToastTintUtils.java)）：Toast 美化工具类
 
 
 #### 框架亮点
@@ -34,7 +34,7 @@
 | setIsHandler | 设置是否使用 Handler 显示 Toast |
 | setNullText | 设置 Text 为 null 的文本 |
 | setUseConfig | 判断是否使用配置 |
-| setGravity | 设置 Toast 显示在屏幕上的位置。 |
+| setGravity | 设置 Toast 显示在屏幕上的位置 |
 | setMargin | 设置边距 |
 | getDefaultStyle | 获取默认样式 |
 | getNormalStyle | 获取 Normal 样式 |

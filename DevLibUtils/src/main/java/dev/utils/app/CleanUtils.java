@@ -105,7 +105,7 @@ public final class CleanUtils {
     }
 
     /**
-     * 清除自定义路径下的文件，使用需小心，请不要误删。而且只支持目录下的文件删除
+     * 清除自定义路径下的文件，使用需小心请不要误删, 而且只支持目录下的文件删除
      * @param filePath 文件路径
      */
     public static boolean cleanCustomDir(final String filePath) {
@@ -113,7 +113,7 @@ public final class CleanUtils {
     }
 
     /**
-     * 清除自定义路径下的文件，使用需小心，请不要误删。而且只支持目录下的文件删除
+     * 清除自定义路径下的文件，使用需小心请不要误删, 而且只支持目录下的文件删除
      * @param file 文件路径
      */
     public static boolean cleanCustomDir(final File file) {

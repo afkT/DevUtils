@@ -44,19 +44,19 @@ import static android.Manifest.permission.INTERNET;
  *      android.os.Build.CPU_ABI2: 获取第二个指令集名称
  *      android.os.Build.DEVICE: 获取设备驱动名称
  *      android.os.Build.DISPLAY: 获取设备显示的版本包(在系统设置中显示为版本号)和ID一样
- *      android.os.Build.FINGERPRINT: 设备的唯一标识。由设备的多个信息拼接合成。
+ *      android.os.Build.FINGERPRINT: 设备的唯一标识, 由设备的多个信息拼接合成
  *      android.os.Build.HARDWARE: 设备硬件名称,一般和基板名称一样(BOARD)
  *      android.os.Build.HOST: 设备主机地址
- *      android.os.Build.ID: 设备版本号。
- *      android.os.Build.MODEL : 获取手机的型号 设备名称。
+ *      android.os.Build.ID: 设备版本号
+ *      android.os.Build.MODEL : 获取手机的型号 设备名称
  *      android.os.Build.MANUFACTURER:获取设备制造商
  *      android:os.Build.PRODUCT: 整个产品的名称
  *      android:os.Build.RADIO: 无线电固件版本号，通常是不可用的 显示unknown
- *      android.os.Build.TAGS: 设备标签。如release-keys 或测试的 test-keys
+ *      android.os.Build.TAGS: 设备标签, 如release-keys 或测试的 test-keys
  *      android.os.Build.TIME: 时间
  *      android.os.Build.TYPE: 设备版本类型  主要为"user" 或"eng".
  *      android.os.Build.USER: 设备用户名 基本上都为android-build
- *      android.os.Build.VERSION.RELEASE: 获取系统版本字符串。如4.1.2 或2.2 或2.3等
+ *      android.os.Build.VERSION.RELEASE: 获取系统版本字符串, 如4.1.2 或2.2 或2.3等
  *      android.os.Build.VERSION.CODENAME: 设备当前的系统开发代号，一般使用REL代替
  *      android.os.Build.VERSION.INCREMENTAL: 系统源代码控制值，一个数字或者git hash值
  *      android.os.Build.VERSION.SDK: 系统的API级别 一般使用下面大的SDK_INT 来查看
@@ -78,7 +78,7 @@ public final class DeviceUtils {
      * @param dInfoMaps 传入设备信息传出HashMap
      */
     public static void getDeviceInfo(final Map<String, String> dInfoMaps) {
-        // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段。
+        // 获取设备信息类的所有申明的字段,即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
         for (Field field : fields) {
@@ -158,7 +158,7 @@ public final class DeviceUtils {
     /**
      * 获取Android id
      * <pre>
-     *      在设备首次启动时，系统会随机生成一个64位的数字，并把这个数字以十六进制字符串的形式保存下来，这个十六进制的字符串就是ANDROID_ID，当设备被wipe后该值会被重置。
+     *      在设备首次启动时，系统会随机生成一个64位的数字，并把这个数字以十六进制字符串的形式保存下来，这个十六进制的字符串就是ANDROID_ID，当设备被wipe后该值会被重置
      * </pre>
      * @return
      */

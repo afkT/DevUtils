@@ -209,7 +209,7 @@ public final class ADBUtils {
 
     /**
      * 查看应用详细信息
-     * 输出中包含很多信息，包括 Activity Resolver Table、Registered ContentProviders、包名、userId、安装后的文件资源代码等路径、版本信息、权限信息和授予状态、签名版本信息等。
+     * 输出中包含很多信息，包括 Activity Resolver Table、Registered ContentProviders、包名、userId、安装后的文件资源代码等路径、版本信息、权限信息和授予状态、签名版本信息等
      * @param packageName
      * @return
      */
@@ -395,7 +395,7 @@ public final class ADBUtils {
     /**
      * 卸载 App
      * @param packageName
-     * @param isKeepData  -k 参数可选，表示卸载应用但保留数据和缓存目录。
+     * @param isKeepData  -k 参数可选，表示卸载应用但保留数据和缓存目录
      * @return
      */
     public static boolean uninstallApp(final String packageName, final boolean isKeepData) {
@@ -964,9 +964,9 @@ public final class ADBUtils {
 
     /**
      * 查看正在运行的 Services
-     * @param packageName 参数不是必须的，指定 <packagename> 表示查看与某个包名相关的 Services，不指定表示查看所有 Services。
+     * @param packageName 参数不是必须的，指定 <packagename> 表示查看与某个包名相关的 Services，不指定表示查看所有 Services
      *                    <packagename> 不一定要给出完整的包名，比如运行 adb shell dumpsys activity services org.mazhuang，
-     *                    那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来。
+     *                    那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来
      * @return
      */
     public static String getServices(final String packageName) {
@@ -1436,9 +1436,9 @@ public final class ADBUtils {
     /**
      * 录制屏幕 (以 mp4 格式保存到 /sdcard)
      * @param path    /sdcard/xxx/x.mp4
-     * @param size    视频的尺寸，比如 1280x720，默认是屏幕分辨率。
-     * @param bitRate 视频的比特率，默认是 4Mbps。
-     * @param time    录制时长，单位秒。(默认/最长 180秒)
+     * @param size    视频的尺寸，比如 1280x720，默认是屏幕分辨率
+     * @param bitRate 视频的比特率，默认是 4Mbps
+     * @param time    录制时长，单位秒(默认/最长 180秒)
      * @return
      */
     public static boolean screenrecord(final String path, final String size, final int bitRate, final int time) {
@@ -1498,7 +1498,7 @@ public final class ADBUtils {
     /**
      * 设置系统时间
      * @param time yyyyMMdd.HHmmss 20160823.131500
-     *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒。
+     *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒
      * @return
      */
     public static boolean setSystemTime(final String time) {
@@ -1517,7 +1517,7 @@ public final class ADBUtils {
     /**
      * 设置系统时间
      * @param time MMddHHmmyyyy.ss 082313152016.00
-     *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒。
+     *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒
      * @return
      */
     public static boolean setSystemTime2(final String time) {
@@ -1829,7 +1829,7 @@ public final class ADBUtils {
             // 如果使用命令修改过，那输出可能是:
             // Physical size: 1080x1920
             // Override size: 480x1024
-            // 表明设备的屏幕分辨率原本是 1080px * 1920px，当前被修改为 480px * 1024px。
+            // 表明设备的屏幕分辨率原本是 1080px * 1920px，当前被修改为 480px * 1024px
             return result.successMsg;
         }
         return null;
@@ -1895,7 +1895,7 @@ public final class ADBUtils {
         } else {
             // 在 Android 4.4 及以下版本可通过如下命令获取 IMEI
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys iphonesubinfo", true);
-            if (result.isSuccess3()) { // 返回值中的 Device ID 就是 IMEI。
+            if (result.isSuccess3()) { // 返回值中的 Device ID 就是 IMEI
                 try {
                     String[] splitArys = result.successMsg.split(NEW_LINE_STR);
                     for (String str : splitArys) {
@@ -1929,7 +1929,7 @@ public final class ADBUtils {
             if (result.isSuccess3()) {
                 return result.successMsg;
             } else {
-                // 可以看到网络连接名称、启用状态、IP 地址和 Mac 地址等信息。
+                // 可以看到网络连接名称、启用状态、IP 地址和 Mac 地址等信息
                 result = ShellUtils.execCmd("netcfg", isRoot);
                 if (result.isSuccess3()) {
                     return result.successMsg;
@@ -2177,7 +2177,7 @@ public final class ADBUtils {
 
     /**
      * 允许访问非 SDK API
-     * 不需要设备获得 Root 权限。
+     * 不需要设备获得 Root 权限
      * @return
      */
     public static int putHiddenApi() {
@@ -2191,7 +2191,7 @@ public final class ADBUtils {
 
     /**
      * 禁止访问非 SDK API
-     * 不需要设备获得 Root 权限。
+     * 不需要设备获得 Root 权限
      * @return
      */
     public static int deleteHiddenApi() {

@@ -84,7 +84,7 @@ artifacts {
 
 // = 项目打包 aar =
 
-// 将被嵌入的应用打包成 aar 包，这也是 Android Studio 的一种新特性，可以将应用所使用的资源性文件一起打包。编译即可打包生成 aar 包，而且也不用担心漏掉资源问题。
+// 将被嵌入的应用打包成 aar 包，这也是 Android Studio 的一种新特性，可以将应用所使用的资源性文件一起打包, 编译即可打包生成 aar 包，而且也不用担心漏掉资源问题
 // 直接使用 aar, 内部包含 jar
 // build\outputs\aar\DevLibUtils-debug.aar, DevLibUtils-release.aar
 
@@ -93,7 +93,7 @@ artifacts {
 // Terminal 输入 gradlew makeJar
 
 // 方式 A : 点击 Android Studio 右侧(一般在这个位置)的 Gradle 面板，在项目或者该类库的目录中找到 Tasks -> other -> makeJar 命令
-// 双击这个makeJar之后等一会就会编译好jar包。
+// 双击这个 makeJar 之后等一会就会编译好 jar 包
 
 // DevLibUtils.jar
 // DevLibUtils_v1.0.jar

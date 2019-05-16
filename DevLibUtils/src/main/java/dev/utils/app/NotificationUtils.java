@@ -177,7 +177,7 @@ public final class NotificationUtils {
             builder.setSmallIcon(icon);
             // 设置图标
             builder.setLargeIcon(BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon));
-            // 指定通知的ticker内容，通知被创建的时候，在状态栏一闪而过，属于瞬时提示信息。
+            // 指定通知的ticker内容，通知被创建的时候，在状态栏一闪而过，属于瞬时提示信息
             builder.setTicker(ticker);
             // 设置标题
             builder.setContentTitle(title);
@@ -212,7 +212,7 @@ public final class NotificationUtils {
 //            notification.icon = icon;
 //            // 设置图标
 //            notification.largeIcon = BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon);
-//            // 指定通知的ticker内容，通知被创建的时候，在状态栏一闪而过，属于瞬时提示信息。
+//            // 指定通知的ticker内容，通知被创建的时候，在状态栏一闪而过，属于瞬时提示信息
 //            notification.tickerText = title;
 //            // 设置时间
 //            notification.when = System.currentTimeMillis();
@@ -278,8 +278,8 @@ public final class NotificationUtils {
      * detail: 设置通知栏 震动参数实体类
      * @author Ttt
      * <pre>
-     *      vibrate 属性是一个长整型的数组，用于设置手机静止和震动的时长，以毫秒为单位。
-     *      参数中下标为0的值表示手机静止的时长，下标为1的值表示手机震动的时长，下标为2的值又表示手机静止的时长，以此类推。
+     *      vibrate 属性是一个长整型的数组，用于设置手机静止和震动的时长，以毫秒为单位
+     *      参数中下标为0的值表示手机静止的时长，下标为1的值表示手机震动的时长，下标为2的值又表示手机静止的时长，以此类推
      * </pre>
      */
     public static class VibratePattern {

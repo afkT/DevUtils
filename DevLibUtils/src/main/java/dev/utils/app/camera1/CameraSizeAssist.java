@@ -427,7 +427,7 @@ public final class CameraSizeAssist {
             }
         }
 
-        // 如果没有精确匹配，请使用最大预览大小。这对于旧设备来说不是一个好主意，因为需要额外的计算。我们很可能会在新的Android 4 + 设备上运行，那里的CPU功能更强大。
+        // 如果没有精确匹配，请使用最大预览大小, 这对于旧设备来说不是一个好主意，因为需要额外的计算, 我们很可能会在新的Android 4 + 设备上运行，那里的CPU功能更强大
         if (!listPreviewSizes.isEmpty()) {
             // 获取最大的尺寸
             Camera.Size largestPreview = listPreviewSizes.get(0);
