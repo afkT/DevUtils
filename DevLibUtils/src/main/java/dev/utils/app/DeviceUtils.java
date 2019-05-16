@@ -51,14 +51,14 @@ import static android.Manifest.permission.INTERNET;
  *      android.os.Build.MODEL : 获取手机的型号 设备名称
  *      android.os.Build.MANUFACTURER:获取设备制造商
  *      android:os.Build.PRODUCT: 整个产品的名称
- *      android:os.Build.RADIO: 无线电固件版本号，通常是不可用的 显示unknown
+ *      android:os.Build.RADIO: 无线电固件版本号, 通常是不可用的 显示unknown
  *      android.os.Build.TAGS: 设备标签, 如release-keys 或测试的 test-keys
  *      android.os.Build.TIME: 时间
  *      android.os.Build.TYPE: 设备版本类型  主要为"user" 或"eng".
  *      android.os.Build.USER: 设备用户名 基本上都为android-build
  *      android.os.Build.VERSION.RELEASE: 获取系统版本字符串, 如4.1.2 或2.2 或2.3等
- *      android.os.Build.VERSION.CODENAME: 设备当前的系统开发代号，一般使用REL代替
- *      android.os.Build.VERSION.INCREMENTAL: 系统源代码控制值，一个数字或者git hash值
+ *      android.os.Build.VERSION.CODENAME: 设备当前的系统开发代号, 一般使用REL代替
+ *      android.os.Build.VERSION.INCREMENTAL: 系统源代码控制值, 一个数字或者git hash值
  *      android.os.Build.VERSION.SDK: 系统的API级别 一般使用下面大的SDK_INT 来查看
  *      android.os.Build.VERSION.SDK_INT: 系统的API级别 数字表示
  * </pre>
@@ -93,7 +93,7 @@ public final class DeviceUtils {
                         // 判断是否数组
                         if (object instanceof String[]) {
                             if (object != null) {
-                                // 获取类型对应字段的数据，并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
+                                // 获取类型对应字段的数据, 并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
                                 dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
                             }
                             continue;
@@ -112,11 +112,11 @@ public final class DeviceUtils {
     /**
      * 处理设备信息
      * @param dInfoMaps 设备信息
-     * @param eHint     错误提示，如获取设备信息失败
+     * @param eHint     错误提示, 如获取设备信息失败
      */
     public static String handlerDeviceInfo(final Map<String, String> dInfoMaps, final String eHint) {
         try {
-            // 初始化StringBuilder，拼接字符串
+            // 初始化StringBuilder, 拼接字符串
             StringBuilder builder = new StringBuilder();
             // 获取设备信息
             Iterator<Map.Entry<String, String>> mapIter = dInfoMaps.entrySet().iterator();
@@ -158,7 +158,7 @@ public final class DeviceUtils {
     /**
      * 获取Android id
      * <pre>
-     *      在设备首次启动时，系统会随机生成一个64位的数字，并把这个数字以十六进制字符串的形式保存下来，这个十六进制的字符串就是ANDROID_ID，当设备被wipe后该值会被重置
+     *      在设备首次启动时, 系统会随机生成一个64位的数字, 并把这个数字以十六进制字符串的形式保存下来, 这个十六进制的字符串就是ANDROID_ID, 当设备被wipe后该值会被重置
      * </pre>
      * @return
      */
@@ -426,7 +426,7 @@ public final class DeviceUtils {
 
     /**
      * 重启设备 (需要 root 权限) - 并进行特殊的引导模式 (recovery、Fastboot)
-     * @param reason 传递给内核来请求特殊的引导模式，如"recovery"
+     * @param reason 传递给内核来请求特殊的引导模式, 如"recovery"
      *               重启到 Fastboot 模式 bootloader
      */
     public static void reboot(final String reason) {

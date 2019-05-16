@@ -26,7 +26,7 @@ public final class ClickUtils {
     private static final Map<Object, ClickAssist> sClickAssistMaps = new HashMap<>();
 
     /**
-     * 增加控件的触摸范围，最大范围只能是父布局所包含的的区域
+     * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
      * @param view  待添加点击范围 View
      * @param range 点击范围
      */
@@ -35,7 +35,7 @@ public final class ClickUtils {
     }
 
     /**
-     * 增加控件的触摸范围，最大范围只能是父布局所包含的的区域
+     * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
      * @param view   待添加点击范围 View
      * @param top    top range
      * @param bottom bottom range

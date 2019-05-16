@@ -177,15 +177,15 @@ public final class NotificationUtils {
             builder.setSmallIcon(icon);
             // 设置图标
             builder.setLargeIcon(BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon));
-            // 指定通知的ticker内容，通知被创建的时候，在状态栏一闪而过，属于瞬时提示信息
+            // 指定通知的ticker内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
             builder.setTicker(ticker);
             // 设置标题
             builder.setContentTitle(title);
             // 设置内容
             builder.setContentText(msg);
-            // 设置消息提醒，震动 | 声音
+            // 设置消息提醒, 震动 | 声音
             builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND);
-            // 将AutoCancel设为 true 后，当你点击通知栏的notification后，它会自动被取消消失
+            // 将AutoCancel设为 true 后, 当你点击通知栏的notification后, 它会自动被取消消失
             builder.setAutoCancel(isAutoCancel);
             // 设置时间
             builder.setWhen(System.currentTimeMillis());
@@ -212,11 +212,11 @@ public final class NotificationUtils {
 //            notification.icon = icon;
 //            // 设置图标
 //            notification.largeIcon = BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon);
-//            // 指定通知的ticker内容，通知被创建的时候，在状态栏一闪而过，属于瞬时提示信息
+//            // 指定通知的ticker内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
 //            notification.tickerText = title;
 //            // 设置时间
 //            notification.when = System.currentTimeMillis();
-//            // 设置消息提醒，震动 | 声音
+//            // 设置消息提醒, 震动 | 声音
 //            notification.defaults = Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND;
 //            // 点击了此通知则取消该通知栏
 //            if (isAutoCancel) {
@@ -229,9 +229,9 @@ public final class NotificationUtils {
 //            // 设置 led 灯参数
 //            if (lightPattern != null) {
 //                try {
-//                    notification.ledARGB = lightPattern.argb; // 控制 LED 灯的颜色，一般有红绿蓝三种颜色可选
-//                    notification.ledOffMS = lightPattern.startOffMS; // 指定 LED 灯暗去的时长，也是以毫秒为单位
-//                    notification.ledOnMS = lightPattern.durationMS; // 指定 LED 灯亮起的时长，以毫秒为单位
+//                    notification.ledARGB = lightPattern.argb; // 控制 LED 灯的颜色, 一般有红绿蓝三种颜色可选
+//                    notification.ledOffMS = lightPattern.startOffMS; // 指定 LED 灯暗去的时长, 也是以毫秒为单位
+//                    notification.ledOnMS = lightPattern.durationMS; // 指定 LED 灯亮起的时长, 以毫秒为单位
 //                    notification.flags = Notification.FLAG_SHOW_LIGHTS;
 //                } catch (Exception e) {
 //                }
@@ -247,14 +247,14 @@ public final class NotificationUtils {
      * detail: 设置通知栏 Led 灯参数实体类
      * @author Ttt
      * <pre>
-     *      手机处于锁屏状态时，LED灯就会不停地闪烁，提醒用户去查看手机,下面是绿色的灯光一 闪一闪的效果
+     *      手机处于锁屏状态时, LED灯就会不停地闪烁, 提醒用户去查看手机,下面是绿色的灯光一 闪一闪的效果
      * </pre>
      */
     public static class LightPattern {
 
-        private int argb = 0; // 控制 LED 灯的颜色，一般有红绿蓝三种颜色可选
-        private int startOffMS = 0; // 指定 LED 灯暗去的时长，也是以毫秒为单位
-        private int durationMS = 0; // 指定 LED 灯亮起的时长，以毫秒为单位
+        private int argb = 0; // 控制 LED 灯的颜色, 一般有红绿蓝三种颜色可选
+        private int startOffMS = 0; // 指定 LED 灯暗去的时长, 也是以毫秒为单位
+        private int durationMS = 0; // 指定 LED 灯亮起的时长, 以毫秒为单位
 
         private LightPattern(int argb, int startOffMS, int durationMS) {
             this.argb = argb;
@@ -278,8 +278,8 @@ public final class NotificationUtils {
      * detail: 设置通知栏 震动参数实体类
      * @author Ttt
      * <pre>
-     *      vibrate 属性是一个长整型的数组，用于设置手机静止和震动的时长，以毫秒为单位
-     *      参数中下标为0的值表示手机静止的时长，下标为1的值表示手机震动的时长，下标为2的值又表示手机静止的时长，以此类推
+     *      vibrate 属性是一个长整型的数组, 用于设置手机静止和震动的时长, 以毫秒为单位
+     *      参数中下标为0的值表示手机静止的时长, 下标为1的值表示手机震动的时长, 下标为2的值又表示手机静止的时长, 以此类推
      * </pre>
      */
     public static class VibratePattern {

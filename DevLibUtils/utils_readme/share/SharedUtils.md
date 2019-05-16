@@ -4,13 +4,13 @@
 
 > 1. apply没有返回值而 commit返回boolean表明修改是否提交成功
 > 2. apply是将修改数据原子提交到内存, 而后异步真正提交到硬件磁盘, 而commit是同步的提交到硬件磁盘
-> 3. apply方法不会提示任何失败的提示 apply的效率高一些，如果没有必要确认是否提交成功建议使用apply
+> 3. apply方法不会提示任何失败的提示 apply的效率高一些, 如果没有必要确认是否提交成功建议使用apply
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/DevLibUtils/src/main/java/dev/utils/app/share)
 
 * SharedPreferences 工具类（[SPUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/share/SPUtils.java)）：SP 操作工具类, 实现 IPreferenceHolder 初始化方法
 
-* IPreference 持有类（[IPreferenceHolder.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/share/IPreferenceHolder.java)）：IPreference 持有类，内部返回实现类 IPreference
+* IPreference 持有类（[IPreferenceHolder.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/share/IPreferenceHolder.java)）：IPreference 持有类, 内部返回实现类 IPreference
 
 * IPreference 接口类（[IPreference.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/share/IPreference.java)）：主要是正常操作方法接口类
 
@@ -56,7 +56,7 @@ SharedUtils.put("ac", 123);
 // = SPUtils =
 // ===========
 
-// 想要自定义 模式，名字等
+// 想要自定义 模式, 名字等
 SPUtils.getPreference(DevUtils.getContext()).put("aa", 1);
 SPUtils.getPreference(DevUtils.getContext(), "xxx").put("aa", 1);
 SPUtils.getPreference(DevUtils.getContext(), "xxxxx", Context.MODE_PRIVATE).put("aa", 1);

@@ -22,7 +22,7 @@ public final class ImageBmpUtils {
     // = 转换BMP图片 =
 
     /**
-     * bmp位图，头结构
+     * bmp位图, 头结构
      * @param size 文件总大小(字节数)
      * @return
      */
@@ -36,7 +36,7 @@ public final class ImageBmpUtils {
         buffer[3] = (byte) (size >> 8);
         buffer[4] = (byte) (size >> 16);
         buffer[5] = (byte) (size >> 24);
-        // = 位图文件保留字，必须为0 =
+        // = 位图文件保留字, 必须为0 =
         buffer[6] = 0x00;
         buffer[7] = 0x00;
         buffer[8] = 0x00;
@@ -50,7 +50,7 @@ public final class ImageBmpUtils {
     }
 
     /**
-     * bmp位图，头信息
+     * bmp位图, 头信息
      * @param w 宽度
      * @param h 高度
      * @return
@@ -125,7 +125,7 @@ public final class ImageBmpUtils {
         byte[] buffer = new byte[w * h * 4]; // A + R + G + B = 4
         int offset = 0; // 计算偏移量
         for (int i = len - 1; i >= 0; i -= w) {
-            // DIB文件格式最后一行为第一行，每行按从左到右顺序
+            // DIB文件格式最后一行为第一行, 每行按从左到右顺序
             int end = i, start = i - w + 1;
             for (int j = start; j <= end; j++) {
                 buffer[offset] = (byte) (data[j] >> 0);

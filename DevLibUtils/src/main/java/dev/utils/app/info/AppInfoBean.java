@@ -206,7 +206,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 是否系统程序被手动更新后，也成为第三方应用程序
+     * 是否系统程序被手动更新后, 也成为第三方应用程序
      * @param pInfo
      * @return
      */

@@ -71,7 +71,7 @@ public final class BeepVibrateAssist implements Closeable {
             // RINGER_MODE_NORMAL(普通)、RINGER_MODE_SILENT(静音)、RINGER_MODE_VIBRATE(震动)
             AudioManager audioService = (AudioManager) mActivity.getSystemService(Context.AUDIO_SERVICE);
             if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-                return false; // 进入只有属于, 静音、震动，才不播放
+                return false; // 进入只有属于, 静音、震动, 才不播放
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shouldBeep");

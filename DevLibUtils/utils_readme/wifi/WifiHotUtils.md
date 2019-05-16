@@ -13,7 +13,7 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| createWifiConfigToAp | 创建Wifi配置信息(无其他操作，单独返回WifiConfig) => Wifi热点 (就支持 无密码/WPA2 PSK) |
+| createWifiConfigToAp | 创建Wifi配置信息(无其他操作, 单独返回WifiConfig) => Wifi热点 (就支持 无密码/WPA2 PSK) |
 | stratWifiAp | 开启Wifi热点 |
 | closeWifiAp | 关闭Wifi热点 |
 | getWifiApState | 获取Wifi热点状态 |
@@ -60,7 +60,7 @@ wifiHotUtils.closeWifiAp();
 
 // 8.0 以后热点是针对应用开启, 并且必须强制使用随机生成的 WifiConfig 信息, 无法替换
 
-// 如果应用开启了热点, 然后后台清空内存, 对应的热点会关闭, 应用开启的热点是系统随机的，不影响系统设置中的热点配置信息
+// 如果应用开启了热点, 然后后台清空内存, 对应的热点会关闭, 应用开启的热点是系统随机的, 不影响系统设置中的热点配置信息
 
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
     wifiHotUtils.setOnWifiAPListener(new WifiHotUtils.onWifiAPListener() {

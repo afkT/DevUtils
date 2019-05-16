@@ -70,7 +70,7 @@ public class WifiVo implements Parcelable {
         listWifiVos.clear();
         // 遍历wifi列表数据
         for (int i = 0, len = listScanResults.size(); i < len; i++) {
-            // 如果出现异常，或者失败，则无视当前的索引wifi信息
+            // 如果出现异常, 或者失败, 则无视当前的索引wifi信息
             try {
                 // 获取当前索引的wifi信息
                 ScanResult sResult = listScanResults.get(i);

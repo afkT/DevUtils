@@ -103,15 +103,15 @@ public class ImageProcessor {
 
     /**
      * 圆角处理
-     * @param pixels 角度，度数越大圆角越大
+     * @param pixels 角度, 度数越大圆角越大
      * @return 转换成圆角后的图片
      */
     public Bitmap roundCorner(final float pixels) {
         Bitmap output = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
         Paint paint = new Paint();
-        Rect rect = new Rect(0, 0, mBitmap.getWidth(), mBitmap.getHeight()); // 创建一个同原图一样大小的矩形，用于把原图绘制到这个矩形上
-        RectF rectF = new RectF(rect); // 创建一个精度更高的矩形，用于画出圆角效果
+        Rect rect = new Rect(0, 0, mBitmap.getWidth(), mBitmap.getHeight()); // 创建一个同原图一样大小的矩形, 用于把原图绘制到这个矩形上
+        RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
         paint.setAntiAlias(true);
         canvas.drawARGB(0, 0, 0, 0); // 涂上黑色全透明的底色
         paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
@@ -130,17 +130,17 @@ public class ImageProcessor {
         int width = mBitmap.getWidth();
         int height = mBitmap.getHeight();
 
-        // 获取倒影图片，并创建一张宽度与原图相同，但高度等于原图的高度加上间距加上倒影的高度的图片，并创建画布, 画布分为上中下三部分，上: 是原图, 中: 是原图与倒影的间距, 下: 是倒影
+        // 获取倒影图片, 并创建一张宽度与原图相同, 但高度等于原图的高度加上间距加上倒影的高度的图片, 并创建画布, 画布分为上中下三部分, 上: 是原图, 中: 是原图与倒影的间距, 下: 是倒影
         Bitmap reflectionImage = reverseByVertical(mBitmap); //
         Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapWithReflection);
 
-        // 将原图画到画布的上半部分，将倒影画到画布的下半部分，倒影与画布顶部的间距是原图的高度加上原图与倒影之间的间距
+        // 将原图画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是原图的高度加上原图与倒影之间的间距
         canvas.drawBitmap(mBitmap, 0, 0, null);
         canvas.drawBitmap(reflectionImage, 0, height + reflectionSpacing, null);
         reflectionImage.recycle();
 
-        // 将倒影改成半透明，创建画笔，并设置画笔的渐变从半透明的白色到全透明的白色，然后再倒影上面画半透明效果
+        // 将倒影改成半透明, 创建画笔, 并设置画笔的渐变从半透明的白色到全透明的白色, 然后再倒影上面画半透明效果
         Paint paint = new Paint();
         paint.setShader(new LinearGradient(0, mBitmap.getHeight(), 0, bitmapWithReflection.getHeight() + reflectionSpacing, 0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP));
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
@@ -442,7 +442,7 @@ public class ImageProcessor {
         int newG = 0;
         int newB = 0;
 
-        int delta = 16; // 值越小图片会越亮，越大则越暗
+        int delta = 16; // 值越小图片会越亮, 越大则越暗
 
         int idx = 0;
         int[] pixels = new int[width * height];
@@ -523,7 +523,7 @@ public class ImageProcessor {
                 newG = pixG;
                 newB = pixB;
 
-                // 计算当前点到光照中心的距离，平面座标系中求两点之间的距离
+                // 计算当前点到光照中心的距离, 平面座标系中求两点之间的距离
                 int distance = (int) (
                         Math.pow((centerY - i), 2) + Math.pow(centerX - k, 2));
                 if (distance < radius * radius) {

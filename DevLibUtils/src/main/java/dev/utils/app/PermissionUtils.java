@@ -51,7 +51,7 @@ import dev.DevUtils;
  *      @see <a href="https://www.aliyun.com/jiaocheng/8030.html"/>
  *      尽量避免在 onResume中调用
  *      com.anthonycr.grant:permissions:1.0 也是会触发onResume 只是 通过 Set<String> mPendingRequests 来控制请求过的权限
- *      拒绝后在onResume 方法内再次请求, 直接触发授权成功, 如果需要清空通过调用 notifyPermissionsChange 通知改变, 否则一直调用获取权限，拒绝过后，都会认为是请求通过
+ *      拒绝后在onResume 方法内再次请求, 直接触发授权成功, 如果需要清空通过调用 notifyPermissionsChange 通知改变, 否则一直调用获取权限, 拒绝过后, 都会认为是请求通过
  * </pre>
  */
 public final class PermissionUtils {

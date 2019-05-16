@@ -48,17 +48,17 @@ public final class BitmapExtendUtils {
      * 图片压缩处理(使用Options的方法)
      * <pre>
      *      说明 使用方法:
-     *      首先你要将Options的inJustDecodeBounds属性设置为 true，BitmapFactory.decode一次图片
+     *      首先你要将Options的inJustDecodeBounds属性设置为 true, BitmapFactory.decode一次图片
      *      然后将Options连同期望的宽度和高度一起传递到到本方法中
      *      之后再使用本方法的返回值做参数调用BitmapFactory.decode创建图片
      *      <p></p>
-     *      说明 BitmapFactory创建bitmap会尝试为已经构建的bitmap分配内存，
-     *      这时就会很容易导致OOM出现, 为此每一种创建方法都提供了一个可选的Options参数，
-     *      将这个参数的inJustDecodeBounds属性设置为 true就可以让解析方法禁止为bitmap分配内存，
-     *      返回值也不再是一个Bitmap对象，而是 null, 虽然 Bitmap 是 null 了，但是Options的outWidth、outHeight和outMimeType属性都会被赋值
+     *      说明 BitmapFactory创建bitmap会尝试为已经构建的bitmap分配内存
+     *      这时就会很容易导致OOM出现, 为此每一种创建方法都提供了一个可选的Options参数
+     *      将这个参数的inJustDecodeBounds属性设置为 true就可以让解析方法禁止为bitmap分配内存
+     *      返回值也不再是一个Bitmap对象, 而是 null, 虽然 Bitmap 是 null 了, 但是Options的outWidth、outHeight和outMimeType属性都会被赋值
      * </pre>
-     * @param targetWidth  目标宽度,这里的宽高只是阀值，实际显示的图片将小于等于这个值
-     * @param targetHeight 目标高度,这里的宽高只是阀值，实际显示的图片将小于等于这个值
+     * @param targetWidth  目标宽度,这里的宽高只是阀值, 实际显示的图片将小于等于这个值
+     * @param targetHeight 目标高度,这里的宽高只是阀值, 实际显示的图片将小于等于这个值
      * @return
      */
     public static BitmapFactory.Options calculateInSampleSize(final BitmapFactory.Options options, final int targetWidth, final int targetHeight) {
@@ -72,7 +72,7 @@ public final class BitmapExtendUtils {
                 // 计算出实际宽高和目标宽高的比率
                 final int heightRatio = Math.round((float) height / (float) targetHeight);
                 final int widthRatio = Math.round((float) width / (float) targetWidth);
-                // 选择宽和高中最小的比率作为inSampleSize的值，这样可以保证最终图片的宽和高
+                // 选择宽和高中最小的比率作为inSampleSize的值, 这样可以保证最终图片的宽和高
                 // 一定都会大于等于目标的宽和高
                 inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
             }
@@ -336,11 +336,11 @@ public final class BitmapExtendUtils {
         if (bitmap == null) return null;
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // 质量压缩方法, 这里100表示不压缩, 把压缩后的数据存放到baos中
         int options = 100;
         while (baos.toByteArray().length / 1024 > size) { // 循环判断如果压缩后图片是否大于100kb,大于继续压缩
             baos.reset(); // 重置baos即清空baos
-            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos); // 这里压缩options%，把压缩后的数据存放到baos中
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos); // 这里压缩options%, 把压缩后的数据存放到baos中
             options -= 10; // 每次都减少10
         }
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray()); // 把压缩后的数据baos存放到ByteArrayInputStream中
@@ -511,7 +511,7 @@ public final class BitmapExtendUtils {
         Bitmap newb = Bitmap.createBitmap(width, height, Config.ARGB_8888); // 创建一个新的和SRC长度宽度一样的位图
         Canvas cv = new Canvas(newb);
         // draw src into
-        cv.drawBitmap(src, 0, 0, null); // 在 0，0坐标开始画入src
+        cv.drawBitmap(src, 0, 0, null); // 在 0, 0坐标开始画入src
         // draw watermark into
         cv.drawBitmap(watermark, width - ww + 5, height - wh + 5, null); // 在src的右下角画入水印
         // save all clip
@@ -538,14 +538,14 @@ public final class BitmapExtendUtils {
 
     /**
      * 图片压缩方法(使用compress的方法)
-     * 说明 如果bitmap本身的大小小于maxSize，则不作处理
+     * 说明 如果bitmap本身的大小小于maxSize, 则不作处理
      * @param bitmap  要压缩的图片
-     * @param maxSize 压缩后的大小，单位kb
+     * @param maxSize 压缩后的大小, 单位kb
      * @return
      */
     public static Bitmap compress(final Bitmap bitmap, final double maxSize) {
         if (bitmap == null) return null;
-        // 将bitmap放至数组中，意在获取bitmap的大小(与实际读取的原文件要大)
+        // 将bitmap放至数组中, 意在获取bitmap的大小(与实际读取的原文件要大)
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         // 格式、质量、输出流
         bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
@@ -557,7 +557,7 @@ public final class BitmapExtendUtils {
         // 判断bitmap占用空间是否大于允许最大空间 如果大于则压缩 小于则不压缩
         if (i > 1) {
             // 缩放图片 此处用到平方根 将宽带和高度压缩掉对应的平方根倍
-            // (保持宽高不变，缩放后也达到了最大占用空间的大小)
+            // (保持宽高不变, 缩放后也达到了最大占用空间的大小)
             return scale(bitmap, bitmap.getWidth() / Math.sqrt(i), bitmap.getHeight() / Math.sqrt(i));
         }
         return null;
@@ -656,8 +656,8 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 更改图片色系，变亮或变暗
-     * @param delta 图片的亮暗程度值，越小图片会越亮，取值范围(0,24)
+     * 更改图片色系, 变亮或变暗
+     * @param delta 图片的亮暗程度值, 越小图片会越亮, 取值范围(0,24)
      * @return
      */
     public static Bitmap adjustTone(final Bitmap src, final int delta) {
@@ -955,7 +955,7 @@ public final class BitmapExtendUtils {
         int newG = 0;
         int newB = 0;
 
-        int delta = 16; // 值越小图片会越亮，越大则越暗
+        int delta = 16; // 值越小图片会越亮, 越大则越暗
 
         int idx = 0;
         int[] pixels = new int[width * height];
@@ -1036,7 +1036,7 @@ public final class BitmapExtendUtils {
                 newG = pixG;
                 newB = pixB;
 
-                // 计算当前点到光照中心的距离，平面座标系中求两点之间的距离
+                // 计算当前点到光照中心的距离, 平面座标系中求两点之间的距离
                 int distance = (int) (Math.pow((centerY - i), 2) + Math.pow(centerX - k, 2));
                 if (distance < radius * radius) {
                     // 按照距离大小计算增加的光照值
@@ -1220,7 +1220,7 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 将YUV格式的图片的源数据从横屏模式转为竖屏模式，注: 将源图片的宽高互换一下就是新图片的宽高
+     * 将YUV格式的图片的源数据从横屏模式转为竖屏模式, 注: 将源图片的宽高互换一下就是新图片的宽高
      * @param sourceData YUV格式的图片的源数据
      * @param width      源图片的宽
      * @param height     源图片的高
@@ -1265,7 +1265,7 @@ public final class BitmapExtendUtils {
                 options.inSampleSize = heightRatio;
             }
         }
-        // 设置好缩放比例后，加载图片进内容
+        // 设置好缩放比例后, 加载图片进内容
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeStream(new BufferedInputStream(resolver.openInputStream(uri), 16 * 1024), null, options);
     }

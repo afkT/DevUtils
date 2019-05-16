@@ -137,7 +137,7 @@ public final class ScreenUtils {
 
     /**
      * 通过 Context 获取屏幕宽度高度
-     * @return int[] 0 = 宽度，1 = 高度
+     * @return int[] 0 = 宽度, 1 = 高度
      */
     public static int[] getScreenWidthHeight() {
         try {
@@ -383,13 +383,13 @@ public final class ScreenUtils {
     /**
      * 设置屏幕为横屏
      * 还有一种就是在 Activity 中加属性 android:screenOrientation="landscape"
-     * 不设置 Activity 的 android:configChanges 时，
-     * 切屏会重新调用各个生命周期，切横屏时会执行一次，切竖屏时会执行两次
-     * 设置 Activity 的 android:configChanges="orientation"时，
-     * 切屏还是会重新调用各个生命周期，切横、竖屏时只会执行一次
+     * 不设置 Activity 的 android:configChanges 时,
+     * 切屏会重新调用各个生命周期, 切横屏时会执行一次, 切竖屏时会执行两次
+     * 设置 Activity 的 android:configChanges="orientation"时,
+     * 切屏还是会重新调用各个生命周期, 切横、竖屏时只会执行一次
      * 设置 Activity 的 android:configChanges="orientation|keyboardHidden|screenSize"
      * (4.0 以上必须带最后一个参数)时
-     * 切屏不会重新调用各个生命周期，只会执行 onConfigurationChanged 方法
+     * 切屏不会重新调用各个生命周期, 只会执行 onConfigurationChanged 方法
      * @param activity
      */
     public static void setLandscape(@NonNull final Activity activity) {
@@ -509,7 +509,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * 获取应用区域 TitleBar 高度 (顶部灰色TitleBar高度，没有设置 android:theme 的 NoTitleBar 时会显示)
+     * 获取应用区域 TitleBar 高度 (顶部灰色TitleBar高度, 没有设置 android:theme 的 NoTitleBar 时会显示)
      * @param activity
      * @return
      */
@@ -540,7 +540,7 @@ public final class ScreenUtils {
 
     /**
      * 获取进入休眠时长
-     * @return 进入休眠时长，报错返回 -1
+     * @return 进入休眠时长, 报错返回 -1
      */
     public static int getSleepDuration() {
         try {
@@ -556,7 +556,7 @@ public final class ScreenUtils {
     // ==============
 
     /**
-     * 获取当前屏幕截图，包含状态栏 (顶部灰色TitleBar高度，没有设置 android:theme 的 NoTitleBar 时会显示)
+     * 获取当前屏幕截图, 包含状态栏 (顶部灰色TitleBar高度, 没有设置 android:theme 的 NoTitleBar 时会显示)
      * @param activity
      * @return
      */
@@ -582,7 +582,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * 获取当前屏幕截图，不包含状态栏 (如果 android:theme 全屏了，则截图无状态栏)
+     * 获取当前屏幕截图, 不包含状态栏 (如果 android:theme 全屏了, 则截图无状态栏)
      * @param activity
      * @return
      */

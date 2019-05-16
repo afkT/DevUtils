@@ -9,7 +9,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 
 /**
- * detail: 视图动画工具箱 (AnimationUtils 基础上封装) ，提供简单的控制视图的动画的工具方法
+ * detail: 视图动画工具箱 (AnimationUtils 基础上封装) , 提供简单的控制视图的动画的工具方法
  * @author Ttt
  */
 public final class ViewAnimationUtils {
@@ -462,7 +462,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为10，重复7次)
+     * 视图摇晃(摇晃幅度为10, 重复7次)
      * @param view           待摇晃的视图
      * @param cycles         动画周期 {@link CycleInterpolator}
      * @param durationMillis 动画持续时间
@@ -473,7 +473,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为10，持续700毫秒)
+     * 视图摇晃(摇晃幅度为10, 持续700毫秒)
      * @param view       待摇晃的视图
      * @param cycles     动画周期 {@link CycleInterpolator}
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -493,7 +493,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为10，重复7次)
+     * 视图摇晃(摇晃幅度为10, 重复7次)
      * @param view           待摇晃的视图
      * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
@@ -503,7 +503,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为10，持续700毫秒)
+     * 视图摇晃(摇晃幅度为10, 持续700毫秒)
      * @param view   待摇晃的视图
      * @param cycles 动画周期 {@link CycleInterpolator}
      */
@@ -512,7 +512,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为10，重复7次)
+     * 视图摇晃(摇晃幅度为10, 重复7次)
      * @param view           待摇晃的视图
      * @param durationMillis 动画持续时间
      */
@@ -523,7 +523,7 @@ public final class ViewAnimationUtils {
     // =
 
     /**
-     * 视图摇晃(摇晃幅度为10，重复7次，持续700毫秒)
+     * 视图摇晃(摇晃幅度为10, 重复7次, 持续700毫秒)
      * @param view       待摇晃的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      */
@@ -532,7 +532,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为10，重复7次，持续700毫秒)
+     * 视图摇晃(摇晃幅度为10, 重复7次, 持续700毫秒)
      * @param view 待摇晃的视图
      */
     public static void shake(final View view) {

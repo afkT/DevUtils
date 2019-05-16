@@ -1467,7 +1467,7 @@ public final class SnackbarUtils {
                         if (mViewTop - mShadowMargin - mAppendTopMargin >= measuredHeight) {
                             // 思路: 没有超出高度, 则正常显示在指定View 上方
                             // 改为布局居下(相反方向), 然后设置 bottomMargin 为 屏幕高度 - view mWindowTop + 阴影大小
-                            // 这样的思路，主要是只用知道 view 的 Y 轴位置, 然后用屏幕高度减去 y 得到的就是需要向下的边距, 不需要计算 Snackbar View 高度
+                            // 这样的思路, 主要是只用知道 view 的 Y 轴位置, 然后用屏幕高度减去 y 得到的就是需要向下的边距, 不需要计算 Snackbar View 高度
                             try {
                                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(rootView.getLayoutParams().width, rootView.getLayoutParams().height);
                                 params.gravity = Gravity.BOTTOM;
@@ -1505,7 +1505,7 @@ public final class SnackbarUtils {
                         if (screenHeight - (mViewTop + mShadowMargin + mAppendTopMargin + mViewHeight) >= measuredHeight) {
                             // 思路: 没有超出高度, 则正常显示在指定View 下方
                             // 并且改为布局居上, 然后设置 topMargin 为 view mWindowTop - (阴影大小 + 追加边距(状态栏高度))
-                            // 这样的思路，主要是不居下，不用知道 Snackbar view 高度, 导致向下边距计算错误，转换思路从上处理
+                            // 这样的思路, 主要是不居下, 不用知道 Snackbar view 高度, 导致向下边距计算错误, 转换思路从上处理
                             try {
                                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(rootView.getLayoutParams().width, rootView.getLayoutParams().height);
                                 params.gravity = Gravity.TOP;

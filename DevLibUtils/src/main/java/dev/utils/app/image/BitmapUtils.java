@@ -450,7 +450,7 @@ public final class BitmapUtils {
      * @param bitmap   图片资源
      * @param filePath 保存路径
      * @param format   如 Bitmap.CompressFormat.PNG
-     * @param quality  保存的图片质量，100 则完整质量不压缩保存
+     * @param quality  保存的图片质量, 100 则完整质量不压缩保存
      * @return 保存结果
      */
     public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format, final int quality) {
@@ -578,10 +578,10 @@ public final class BitmapUtils {
     // =
 
     /**
-     * 计算视频宽高大小，视频比例xxx*xxx按屏幕比例放大或者缩小
+     * 计算视频宽高大小, 视频比例xxx*xxx按屏幕比例放大或者缩小
      * @param width  高度比例
      * @param height 宽度比例
-     * @return 返回宽高 0 = 宽，1 = 高
+     * @return 返回宽高 0 = 宽, 1 = 高
      */
     public static int[] reckonVideoWidthHeight(final float width, final float height) {
         try {

@@ -135,7 +135,7 @@ final class Utils {
      * @return
      */
     public static WindowManager getWindowManager(final Activity activity) {
-        // 如果使用的 WindowManager 对象不是当前 Activity 创建的，则会抛出异常
+        // 如果使用的 WindowManager 对象不是当前 Activity 创建的, 则会抛出异常
         // android.view.WindowManager$BadTokenException: Unable to add window -- token null is not for an application
         if (activity != null) {
             try {

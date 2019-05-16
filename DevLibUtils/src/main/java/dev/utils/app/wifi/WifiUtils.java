@@ -53,14 +53,14 @@ public final class WifiUtils {
     public static final int WPA = 2;
 
     /**
-     * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
+     * 构造器(只能进行初始化WifiManager操作, 其他靠方法定义)
      */
     public WifiUtils() {
         this(DevUtils.getContext());
     }
 
     /**
-     * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
+     * 构造器(只能进行初始化WifiManager操作, 其他靠方法定义)
      * @param context
      */
     public WifiUtils(final Context context) {
@@ -91,7 +91,7 @@ public final class WifiUtils {
      * 打开WIFI
      */
     public void openWifi() {
-        // 如果没有打开wifi，才进行打开
+        // 如果没有打开wifi, 才进行打开
         if (!isOpenWifi()) {
             mWifiManager.setWifiEnabled(true);
         }
@@ -101,7 +101,7 @@ public final class WifiUtils {
      * 关闭WIFI
      */
     public void closeWifi() {
-        // 如果已经打开了wifi，才进行关闭
+        // 如果已经打开了wifi, 才进行关闭
         if (isOpenWifi()) {
             mWifiManager.setWifiEnabled(false);
         }
@@ -111,8 +111,8 @@ public final class WifiUtils {
      * 自动切换wifi开关状态
      */
     public void toggleWifiEnabled() {
-        // 如果打开了，则关闭
-        // 如果关闭了，则打开
+        // 如果打开了, 则关闭
+        // 如果关闭了, 则打开
         // =
         mWifiManager.setWifiEnabled(!isOpenWifi());
     }
@@ -240,7 +240,7 @@ public final class WifiUtils {
     // =
 
     /**
-     * 判断是否存在\"ssid\"，存在则裁剪返回
+     * 判断是否存在\"ssid\", 存在则裁剪返回
      * @param ssid
      */
     public static String formatSSID(final String ssid) {
@@ -258,7 +258,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 格式化，处理SSID
+     * 格式化, 处理SSID
      * @param ssid
      * @param isHandler {@code true} 添加引号, {@code false} 删除引号
      * @return
@@ -467,7 +467,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 获知Wifi配置，是否属于密码加密类型
+     * 获知Wifi配置, 是否属于密码加密类型
      * @param wifiConfig
      * @return
      */
@@ -586,9 +586,9 @@ public final class WifiUtils {
         // 步骤
         // 1.创建Wifi静态Ip连接配置
         // 2.创建正常Wifi连接配置
-        // 3.查询准备连接的Wifi-SSID 是否存在配置文件，准备进行删除
+        // 3.查询准备连接的Wifi-SSID 是否存在配置文件, 准备进行删除
         // 4.查询当前连接的Wifi-SSID 准备进行断开
-        // 5.同步进行断开，删除操作，并且进行保存
+        // 5.同步进行断开, 删除操作, 并且进行保存
         // 6.调用连接方法
         // 7.返回连接的配置信息
         // =
@@ -617,7 +617,7 @@ public final class WifiUtils {
                 // =
                 LogPrintUtils.dTag(TAG, "属于正常方式连接(DHCP)");
             }
-            // 判断当前准备连接的wifi，是否存在配置文件
+            // 判断当前准备连接的wifi, 是否存在配置文件
             WifiConfiguration preWifiConfig = this.isExsits(ssid);
             // =
             if (preWifiConfig != null) {
@@ -697,7 +697,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 创建Wifi配置信息(无其他操作，单独返回WifiConfig)
+     * 创建Wifi配置信息(无其他操作, 单独返回WifiConfig)
      * @param ssid
      * @param pwd
      * @param wType
@@ -808,7 +808,7 @@ public final class WifiUtils {
     }
 
     // ============================
-    // = 设置静态ip，域名，等信息 =
+    // = 设置静态ip, 域名, 等信息 =
     // ============================
 
     /**
@@ -831,7 +831,7 @@ public final class WifiUtils {
                 return null;
             }
         }
-        // 暂时不需要设置dns，所以dns参数传入null
+        // 暂时不需要设置dns, 所以dns参数传入null
         return setStaticWifiConfig(wifiConfig, ip, gateway, null, 24);
     }
 
@@ -851,8 +851,8 @@ public final class WifiUtils {
             }
             // 设置Inet地址
             InetAddress intetAddress = InetAddress.getByName(ip);
-            if (Build.VERSION.SDK_INT <= 20) { // 旧的版本，5.0之前
-                // 设置IP分配方式，静态ip
+            if (Build.VERSION.SDK_INT <= 20) { // 旧的版本, 5.0之前
+                // 设置IP分配方式, 静态ip
                 setEnumField(wifiConfig, "STATIC", "ipAssignment");
                 // 设置不用代理
                 setEnumField(wifiConfig, "NONE", "proxySettings");
@@ -866,7 +866,7 @@ public final class WifiUtils {
                 }
             } else { // 5.0新版本改变到其他地方
                 Object obj = getDeclaredField(wifiConfig, "mIpConfiguration");
-                // 设置IP分配方式，静态ip
+                // 设置IP分配方式, 静态ip
                 setEnumField(obj, "STATIC", "ipAssignment");
                 // 设置不用代理
                 setEnumField(obj, "NONE", "proxySettings");
@@ -1004,7 +1004,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 通过反射枚举类，进行设置
+     * 通过反射枚举类, 进行设置
      * @param object 设置对象
      * @param value  设置参数值
      * @param name   变量名
@@ -1016,7 +1016,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 通过反射，进行设置
+     * 通过反射, 进行设置
      * @param object 设置对象
      * @param val    设置参数值
      * @param name   变量名

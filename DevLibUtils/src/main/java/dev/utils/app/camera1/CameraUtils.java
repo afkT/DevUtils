@@ -103,7 +103,7 @@ public final class CameraUtils {
             cFacingArys[0] = checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT);
             // 判断是否支持后置
             cFacingArys[1] = checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_BACK);
-            // 进行判断想要使用的是前置，还是后置
+            // 进行判断想要使用的是前置, 还是后置
             if (isFrontCamera && cFacingArys[0]) { // 使用前置, 必须也支持前置
                 // 表示使用前置摄像头
                 cameraFacing = Camera.CameraInfo.CAMERA_FACING_FRONT;
@@ -150,7 +150,7 @@ public final class CameraUtils {
             freeCameraResource(camera);
         }
         try {
-            // 进行判断想要使用的是前置，还是后置
+            // 进行判断想要使用的是前置, 还是后置
             if (isFrontCamera && checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT)) { // 使用前置, 必须也支持前置
                 // 初始化前置摄像头
                 camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);

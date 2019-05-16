@@ -96,7 +96,7 @@ public final class ContentResolverUtils {
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.MediaColumns.TITLE, file.getName());
                 values.put(MediaStore.MediaColumns.DISPLAY_NAME, file.getName());
-                // 值一样，但是还是用常量区分对待
+                // 值一样, 但是还是用常量区分对待
                 values.put(isVideo ? MediaStore.Video.VideoColumns.DATE_TAKEN : MediaStore.Images.ImageColumns.DATE_TAKEN, createTime);
                 values.put(MediaStore.MediaColumns.DATE_MODIFIED, System.currentTimeMillis());
                 values.put(MediaStore.MediaColumns.DATE_ADDED, System.currentTimeMillis());

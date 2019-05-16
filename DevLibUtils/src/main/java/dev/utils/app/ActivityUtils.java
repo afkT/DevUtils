@@ -255,13 +255,13 @@ public final class ActivityUtils {
 
     /**
      * 获取系统桌面信息 - packageName
-     * (注: 存在多个桌面时且未指定默认桌面时，该方法返回Null,使用时需处理这个情况)
+     * (注: 存在多个桌面时且未指定默认桌面时, 该方法返回Null,使用时需处理这个情况)
      * @return
      */
     public static String getLauncherCategoryHomeToPackageName() {
         ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
         if (res != null && res.activityInfo != null) {
-            // 有多个桌面程序存在，且未指定默认项时
+            // 有多个桌面程序存在, 且未指定默认项时
             if (res.activityInfo.packageName.equals("android")) {
                 return null;
             } else {
@@ -278,7 +278,7 @@ public final class ActivityUtils {
     public static String getLauncherCategoryHomeToActivityName() {
         ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
         if (res != null && res.activityInfo != null) {
-            // 有多个桌面程序存在，且未指定默认项时
+            // 有多个桌面程序存在, 且未指定默认项时
             if (res.activityInfo.packageName.equals("android")) {
                 return null;
             } else {
@@ -295,7 +295,7 @@ public final class ActivityUtils {
     public static String getLauncherCategoryHomeToPackageAndName() {
         ResolveInfo res = getLauncherCategoryHomeToResolveInfo();
         if (res != null && res.activityInfo != null) {
-            // 有多个桌面程序存在，且未指定默认项时
+            // 有多个桌面程序存在, 且未指定默认项时
             if (res.activityInfo.packageName.equals("android")) {
                 return null;
             } else {

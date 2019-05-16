@@ -186,7 +186,7 @@ public final class SDCardUtils {
 
     /**
      * 返回对应路径的空间大小信息
-     * @return 返回数据，0 = 总空间大小，1 = 空闲控件大小 ，2 = 已使用空间大小
+     * @return 返回数据, 0 = 总空间大小, 1 = 空闲控件大小 , 2 = 已使用空间大小
      */
     public static long[] getBlockSizeInfos(final String path) {
         try {
@@ -230,7 +230,7 @@ public final class SDCardUtils {
     }
 
     /**
-     * 获取 SD 卡剩余容量，即可用大小
+     * 获取 SD 卡剩余容量, 即可用大小
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -296,7 +296,7 @@ public final class SDCardUtils {
         } else {
             cachePath = DevUtils.getContext().getCacheDir().getPath();
         }
-        // 防止不存在目录文件，自动创建
+        // 防止不存在目录文件, 自动创建
         FileUtils.createFolder(cachePath);
         // 返回文件存储地址
         return cachePath;
@@ -320,7 +320,7 @@ public final class SDCardUtils {
         if (filePath == null) return null;
         // 获取缓存地址
         String cachePath = new File(getDiskCacheDir(), filePath).getAbsolutePath();
-        // 防止不存在目录文件，自动创建
+        // 防止不存在目录文件, 自动创建
         FileUtils.createFolder(cachePath);
         // 返回缓存地址
         return cachePath;

@@ -20,7 +20,7 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *      支持子线程弹出 Toast, 可通过开关配置
  *      内部解决 Android 7.1.1 崩溃问题
- *      但无处理 部分ROM 如魅族、小米、三星等关闭应用通知，无法显示 Toast 问题
+ *      但无处理 部分ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
  * </pre>
  */
 public final class ToastUtils {
@@ -690,7 +690,7 @@ public final class ToastUtils {
         }
         // 防止 Context 为 null
         if (context != null) {
-            // 表示需要格式化字符串,只是为了减少 format步骤,增加判断，为 null不影响
+            // 表示需要格式化字符串,只是为了减少 format步骤,增加判断, 为 null不影响
             if (objs != null && objs.length != 0) {
                 if (text != null) { // String.format() 中的 objs 可以为 null,但是 text不能为 null
                     try {

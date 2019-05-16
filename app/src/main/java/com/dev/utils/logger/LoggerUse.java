@@ -43,15 +43,15 @@ public final class LoggerUse {
         lConfig.methodCount = 3;
         // 堆栈方法索引偏移(0 = 最新经过调用的方法信息,偏移则往上推,如 1 = 倒数第二条经过调用的方法信息)
         lConfig.methodOffset = 0;
-        // 是否输出全部方法(在特殊情况下，如想要打印全部经过的方法，但是不知道经过的总数)
+        // 是否输出全部方法(在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数)
         lConfig.outputMethodAll = false;
-        // 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
+        // 显示日志线程信息(特殊情况, 显示经过的线程信息,具体情况如上)
         lConfig.displayThreadInfo = false;
         // 是否排序日志(格式化后)
         lConfig.sortLog = false; // 是否美化日志, 边框包围
         // 日志级别
         lConfig.logLevel = LogLevel.DEBUG;
-        // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
+        // 设置Tag(特殊情况使用, 不使用全部的Tag时,如单独输出在某个Tag下)
         lConfig.tag = "BaseLog";
         // 进行初始化配置 => 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
         DevLogger.init(lConfig);
@@ -112,7 +112,7 @@ public final class LoggerUse {
         // =
         // 初始化日志配置
         LogConfig lConfig = new LogConfig();
-        // 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
+        // 显示日志线程信息(特殊情况, 显示经过的线程信息,具体情况如上)
         lConfig.displayThreadInfo = true;
         // 是否排序日志(格式化后)
         lConfig.sortLog = true;
@@ -149,7 +149,7 @@ public final class LoggerUse {
             // 保存自定义头部、底部信息
             DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
             // =
-            // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
+            // 自定义(无设备信息、失败信息获取失败) - 正常不会出现, 所以其实这个可以不用
             String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
             // 保存的路径
             fileName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
@@ -165,7 +165,7 @@ public final class LoggerUse {
         // = 保存日志 =
         // 保存文件名
         String fileName = System.currentTimeMillis() + ".log";
-        // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
+        // 自定义(无设备信息、失败信息获取失败) - 正常不会出现, 所以其实这个可以不用
         String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
         // 保存日志
         DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fileName, eHint);
@@ -225,7 +225,7 @@ public final class LoggerUse {
         } catch (ClassNotFoundException e) {
             DevLogger.e(e, "发生异常");
         }
-        // 占位符(其他类型，一样)
+        // 占位符(其他类型, 一样)
         DevLogger.d("%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
         // =
         DevLogger.dTag(tag, "%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
@@ -252,15 +252,15 @@ public final class LoggerUse {
         lConfig.methodCount = 3;
         // 堆栈方法索引偏移(0 = 最新经过调用的方法信息,偏移则往上推,如 1 = 倒数第二条经过调用的方法信息)
         lConfig.methodOffset = 0;
-        // 是否输出全部方法(在特殊情况下，如想要打印全部经过的方法，但是不知道经过的总数)
+        // 是否输出全部方法(在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数)
         lConfig.outputMethodAll = false;
-        // 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
+        // 显示日志线程信息(特殊情况, 显示经过的线程信息,具体情况如上)
         lConfig.displayThreadInfo = true;
         // 是否排序日志(格式化后)
         lConfig.sortLog = true;
         // 日志级别
         lConfig.logLevel = LogLevel.DEBUG;
-        // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
+        // 设置Tag(特殊情况使用, 不使用全部的Tag时,如单独输出在某个Tag下)
         lConfig.tag = "SAD";
         // 打印不换行的日志信息
         DevLogger.other(lConfig).e("new Config - e");
@@ -272,15 +272,15 @@ public final class LoggerUse {
         tLConfig.methodCount = 10;
         // 堆栈方法索引偏移(0 = 最新经过调用的方法信息,偏移则往上推,如 1 = 倒数第二条经过调用的方法信息)
         tLConfig.methodOffset = 0;
-        // 是否输出全部方法(在特殊情况下，如想要打印全部经过的方法，但是不知道经过的总数)
+        // 是否输出全部方法(在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数)
         tLConfig.outputMethodAll = false;
-        // 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
+        // 显示日志线程信息(特殊情况, 显示经过的线程信息,具体情况如上)
         tLConfig.displayThreadInfo = true;
         // 是否排序日志(格式化后)
         tLConfig.sortLog = true;
         // 日志级别
         tLConfig.logLevel = LogLevel.DEBUG;
-        // 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
+        // 设置Tag(特殊情况使用, 不使用全部的Tag时,如单独输出在某个Tag下)
         tLConfig.tag = "SAD";
         try {
             String s = null;

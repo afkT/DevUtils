@@ -59,8 +59,8 @@ colors[2] = ContextCompat.getColor(DevUtils.getContext(), R.color.orange);
 // ShapeUtils.newBuilderToGradient(GradientDrawable.Orientation.BR_TL, colors).build().setDrawable(vid_view1);
 
 GradientDrawable drawable = ShapeUtils.newBuilderToGradient(GradientDrawable.Orientation.BR_TL, colors).build().getDrawable();
-// drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT); // 线性渐变，这是默认设置
-// drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT); // 放射性渐变，以开始色为中心
+// drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT); // 线性渐变, 这是默认设置
+// drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT); // 放射性渐变, 以开始色为中心
 drawable.setGradientType(GradientDrawable.SWEEP_GRADIENT); // 扫描线式的渐变
 BitmapUtils.setBackground(vid_view1, drawable);
 ```

@@ -127,7 +127,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         LogPrintUtils.dTag(TAG, "onPrepared");
         // =
         if (mSurfaceview != null) {
-            // 如果等于 null，或者不在显示中,则跳过
+            // 如果等于 null, 或者不在显示中,则跳过
             if (mSurfaceHolder.getSurface() == null || !mSurfaceHolder.getSurface().isValid())
                 return;
 

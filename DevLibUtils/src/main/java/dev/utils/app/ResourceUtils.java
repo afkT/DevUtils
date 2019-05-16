@@ -215,7 +215,7 @@ public final class ResourceUtils {
      * 根据资源名获取资源id
      * @param name 资源名
      * @param type 资源类型
-     * @return 资源id，找不到返回0
+     * @return 资源id, 找不到返回0
      */
     public static int getResourceId(final String name, final String type) {
         try {
@@ -379,7 +379,7 @@ public final class ResourceUtils {
 
     /**
      * 获取 Assets 资源文件数据
-     * @param fileName 资源文件名，可分成，如根目录，a.txt 或者子目录 /www/a.html
+     * @param fileName 资源文件名, 可分成, 如根目录, a.txt 或者子目录 /www/a.html
      * @return
      */
     public static byte[] readBytesFromAssets(final String fileName) {
@@ -469,7 +469,7 @@ public final class ResourceUtils {
 
     /**
      * 获取 Assets 资源文件数据(返回List<String> 一行的全部内容属于一个索引)
-     * @param fileName 资源文件名，可分成，如根目录，a.txt 或者子目录 /www/a.html
+     * @param fileName 资源文件名, 可分成, 如根目录, a.txt 或者子目录 /www/a.html
      * @return
      */
     public static List<String> geFileToListFromAssets(final String fileName) {
@@ -539,7 +539,7 @@ public final class ResourceUtils {
 
     /**
      * 从Assets 资源中获取内容并保存到本地
-     * @param fileName 资源文件名，可分成，如根目录，a.txt 或者子目录 /www/a.html
+     * @param fileName 资源文件名, 可分成, 如根目录, a.txt 或者子目录 /www/a.html
      * @param file     保存地址
      * @return 是否保存成功
      */

@@ -90,7 +90,7 @@ public final class CameraSizeAssist {
     // =
 
     /**
-     * 根据手机支持的预览分辨率计算，设置预览尺寸
+     * 根据手机支持的预览分辨率计算, 设置预览尺寸
      * @return {@link Camera.Size} 预览分辨率
      */
     public Camera.Size getPreviewSize() {
@@ -98,7 +98,7 @@ public final class CameraSizeAssist {
     }
 
     /**
-     * 根据手机支持的预览分辨率计算，设置预览尺寸
+     * 根据手机支持的预览分辨率计算, 设置预览尺寸
      * @param point {@link Point} point.x => 宽, point.y => 高
      * @return {@link Camera.Size}  预览分辨率
      */
@@ -107,7 +107,7 @@ public final class CameraSizeAssist {
     }
 
     /**
-     * 根据手机支持的预览分辨率计算，设置预览尺寸
+     * 根据手机支持的预览分辨率计算, 设置预览尺寸
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 预览分辨率
      */
@@ -116,7 +116,7 @@ public final class CameraSizeAssist {
     }
 
     /**
-     * 根据手机支持的预览分辨率计算，设置预览尺寸(无任何操作, 单独把Camera显示到SurfaceView 预览尺寸)
+     * 根据手机支持的预览分辨率计算, 设置预览尺寸(无任何操作, 单独把Camera显示到SurfaceView 预览尺寸)
      * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
@@ -223,7 +223,7 @@ public final class CameraSizeAssist {
     }
 
     /**
-     * 根据手机支持的拍照分辨率计算，设置预览尺寸
+     * 根据手机支持的拍照分辨率计算, 设置预览尺寸
      * @param max        是否使用最大的尺寸
      * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
@@ -294,7 +294,7 @@ public final class CameraSizeAssist {
     }
 
     /**
-     * 根据手机支持的视频录制分辨率计算，设置预览尺寸
+     * 根据手机支持的视频录制分辨率计算, 设置预览尺寸
      * @param max        是否使用最大的尺寸
      * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
@@ -427,7 +427,7 @@ public final class CameraSizeAssist {
             }
         }
 
-        // 如果没有精确匹配，请使用最大预览大小, 这对于旧设备来说不是一个好主意，因为需要额外的计算, 我们很可能会在新的Android 4 + 设备上运行，那里的CPU功能更强大
+        // 如果没有精确匹配, 请使用最大预览大小, 这对于旧设备来说不是一个好主意, 因为需要额外的计算, 我们很可能会在新的Android 4 + 设备上运行, 那里的CPU功能更强大
         if (!listPreviewSizes.isEmpty()) {
             // 获取最大的尺寸
             Camera.Size largestPreview = listPreviewSizes.get(0);
@@ -578,7 +578,7 @@ public final class CameraSizeAssist {
             return maxAccordSize;
         }
 
-        // 如果没有精确匹配，请使用最大尺寸大小
+        // 如果没有精确匹配, 请使用最大尺寸大小
         if (!listPictureSizes.isEmpty()) {
             // 获取最大的尺寸
             Camera.Size largestPicture = listPictureSizes.get(0);
@@ -738,7 +738,7 @@ public final class CameraSizeAssist {
             return maxAccordSize;
         }
 
-        // 如果没有精确匹配，请使用最大尺寸大小
+        // 如果没有精确匹配, 请使用最大尺寸大小
         if (!listVideoSizes.isEmpty()) {
             // 获取最大的尺寸
             Camera.Size largestVideo = listVideoSizes.get(0);

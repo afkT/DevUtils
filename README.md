@@ -8,8 +8,8 @@
 
 # About (持续更新, 目前含100+工具类)
 
-> DevUtils 是一个 Android 工具库, 主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用
-> <p>该项目尽可能的便于开发人员，快捷、快速开发安全可靠的项目，以及内置部分常用的资源文件，如 color.xml、(toast) layout.xml 等
+> DevUtils 是一个 Android 工具库, 主要根据不同功能模块, 封装快捷使用的工具类及 API 方法调用
+> <p>该项目尽可能的便于开发人员, 快捷、快速开发安全可靠的项目, 以及内置部分常用的资源文件, 如 color.xml、(toast) layout.xml 等
 
 # Gradle
 
@@ -76,13 +76,13 @@ public class BaseApplication extends Application {
 
 ## Other
 
-> [DevQuickUtils](https://github.com/afkT/DevQuickUtils) 是一个 基于 [DevUtils](https://github.com/afkT/DevUtils) 二次封装的快捷开发实现库, 封装多数逻辑判断代码，内含 Http、ImageLoader、Log 等兼容 Engine 框架， 封装 Activity、Fragment、Bean 基类以及 ReqInfoAssist(请求信息辅助类)、PageInfoAssist(分页辅助类)、MultiSelectListAssist、MultiSelectMapAssist(多选辅助类) 等，便于开发人员，基于 [DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils) 快速熟练开发 Android 项目
+> [DevQuickUtils](https://github.com/afkT/DevQuickUtils) 是一个 基于 [DevUtils](https://github.com/afkT/DevUtils) 二次封装的快捷开发实现库, 封装多数逻辑判断代码, 内含 Http、ImageLoader、Log 等兼容 Engine 框架,  封装 Activity、Fragment、Bean 基类以及 ReqInfoAssist(请求信息辅助类)、PageInfoAssist(分页辅助类)、MultiSelectListAssist、MultiSelectMapAssist(多选辅助类) 等, 便于开发人员, 基于 [DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils) 快速熟练开发 Android 项目
 
-> [DevQuickUtils - app module](https://github.com/afkT/DevQuickUtils/tree/master/app/src/main/java/demo/pro) 基于 ([DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils)) 库基础上实现常见功能、UI效果等，并持续增加比较火的框架使用、二次封装等，以及部分架构设计思路、使用等综合示范项目
+> [DevQuickUtils - app module](https://github.com/afkT/DevQuickUtils/tree/master/app/src/main/java/demo/pro) 基于 ([DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils)) 库基础上实现常见功能、UI效果等, 并持续增加比较火的框架使用、二次封装等, 以及部分架构设计思路、使用等综合示范项目
 
 # Thanks
 
-> 感谢以下开源项目的作者，本项目中有些功能受你们项目灵感的启发，有些功能也用到你们的代码完成
+> 感谢以下开源项目的作者, 本项目中有些功能受你们项目灵感的启发, 有些功能也用到你们的代码完成
 
 - [GrenderG/Toasty](https://github.com/GrenderG/Toasty)
 - [Blankj/AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode)

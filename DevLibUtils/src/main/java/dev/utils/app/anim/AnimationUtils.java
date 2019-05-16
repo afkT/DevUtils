@@ -26,8 +26,8 @@ import android.view.animation.TranslateAnimation;
  *      {@link BounceInterpolator} 结束回弹效果
  *      {@link CycleInterpolator} 跳一跳效果
  *      {@link OvershootInterpolator} 动画结束时向前弹一定距离再回到原来位置
- *      {@link AccelerateDecelerateInterpolator} 系统默认的动画效果，先加速后减速
- *      {@link AnticipateOvershootInterpolator} 开始之前向前甩，结束的时候向后甩
+ *      {@link AccelerateDecelerateInterpolator} 系统默认的动画效果, 先加速后减速
+ *      {@link AnticipateOvershootInterpolator} 开始之前向前甩, 结束的时候向后甩
  *      {@link DecelerateInterpolator} 开始加速再减速
  *      <p></p>
  *      设置无限重复次数
@@ -304,7 +304,7 @@ public final class AnimationUtils {
      * @param toY               动画结束后在Y坐标的大小
      * @param pivotXType        缩放中心点的X坐标类型, 取值范围为 {@link Animation#ABSOLUTE}、
      *                          {@link Animation#RELATIVE_TO_SELF}、{@link Animation#RELATIVE_TO_PARENT}
-     * @param pivotXValue       缩放中心点的X坐标值, 当 pivotXType == ABSOLUTE 时，表示绝对位置, 否则表示相对位置，1.0表示100%
+     * @param pivotXValue       缩放中心点的X坐标值, 当 pivotXType == ABSOLUTE 时, 表示绝对位置, 否则表示相对位置, 1.0表示100%
      * @param pivotYType        缩放中心点的Y坐标类型
      * @param pivotYValue       缩放中心点的Y坐标值
      * @param durationMillis    动画持续时间
@@ -604,7 +604,7 @@ public final class AnimationUtils {
     }
 
     /**
-     * 获取一个视图摇晃动画(摇晃幅度为10，持续700毫秒)
+     * 获取一个视图摇晃动画(摇晃幅度为10, 持续700毫秒)
      * @param cycles 动画周期 {@link CycleInterpolator}
      * @return 一个视图摇晃动画
      */
@@ -614,7 +614,7 @@ public final class AnimationUtils {
     }
 
     /**
-     * 获取一个视图摇晃动画(摇晃幅度为10，重复7次)
+     * 获取一个视图摇晃动画(摇晃幅度为10, 重复7次)
      * @param durationMillis 动画持续时间
      * @return 一个视图摇晃动画
      */
@@ -623,7 +623,7 @@ public final class AnimationUtils {
     }
 
     /**
-     * 获取一个视图摇晃动画((摇晃幅度为10，重复7次，持续700毫秒)
+     * 获取一个视图摇晃动画((摇晃幅度为10, 重复7次, 持续700毫秒)
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation() {

@@ -128,9 +128,9 @@ public final class LocationUtils {
      * <uses-permission android:name="android.permission.INTERNET" />
      * <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
      * <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-     * 如果 minDistance 为 0，则通过 minTime 来定时更新, minDistance 不为 0，则以 minDistance 为准, 两者都为0，则随时刷新
+     * 如果 minDistance 为 0, 则通过 minTime 来定时更新, minDistance 不为 0, 则以 minDistance 为准, 两者都为0, 则随时刷新
      * @param minTime     位置信息更新周期(单位: 毫秒)
-     * @param minDistance 位置变化最小距离: 当位置距离变化超过此值时，将更新位置信息(单位: 米)
+     * @param minDistance 位置变化最小距离: 当位置距离变化超过此值时, 将更新位置信息(单位: 米)
      * @param listener    位置刷新的回调接口
      * @return {@code true} 初始化成功, {@code false} 初始化失败
      */
@@ -184,7 +184,7 @@ public final class LocationUtils {
      */
     private static Criteria getCriteria() {
         Criteria criteria = new Criteria();
-        // 设置定位精确度 Criteria.ACCURACY_COARSE比较粗略，Criteria.ACCURACY_FINE则比较精细
+        // 设置定位精确度 Criteria.ACCURACY_COARSE比较粗略, Criteria.ACCURACY_FINE则比较精细
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
         // 设置是否要求速度
         criteria.setSpeedRequired(false);
@@ -311,7 +311,7 @@ public final class LocationUtils {
      */
     private static class CustomLocationListener implements LocationListener {
         /**
-         * 当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+         * 当坐标改变时触发此函数, 如果Provider传进相同的坐标, 它就不会被触发
          * @param location 坐标
          */
         @Override
@@ -346,14 +346,14 @@ public final class LocationUtils {
         }
 
         /**
-         * provider被enable时触发此函数，比如GPS被打开
+         * provider被enable时触发此函数, 比如GPS被打开
          */
         @Override
         public void onProviderEnabled(String provider) {
         }
 
         /**
-         * provider被disable时触发此函数，比如GPS被关闭
+         * provider被disable时触发此函数, 比如GPS被关闭
          */
         @Override
         public void onProviderDisabled(String provider) {
@@ -373,7 +373,7 @@ public final class LocationUtils {
         void getLastKnownLocation(Location location);
 
         /**
-         * 当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+         * 当坐标改变时触发此函数, 如果Provider传进相同的坐标, 它就不会被触发
          * @param location 坐标
          */
         void onLocationChanged(Location location);

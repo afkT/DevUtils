@@ -32,7 +32,7 @@ public final class ShareUse {
         // = SPUtils =
         // ===========
 
-        // 想要自定义 模式，名字等
+        // 想要自定义 模式, 名字等
         SPUtils.getPreference(DevUtils.getContext()).put("aa", 1);
         SPUtils.getPreference(DevUtils.getContext(), "xxx").put("aa", 1);
         SPUtils.getPreference(DevUtils.getContext(), "xxxxx", Context.MODE_PRIVATE).put("aa", 1);

@@ -17,7 +17,7 @@
 
 * 支持使用 MediaSet 抽象类设置 MediaPlayer 其他配置方法等, 以及是否循环播放等
 
-* 支持快捷播放 raw、assets、本地SDCard、http 等路径，多媒体文件
+* 支持快捷播放 raw、assets、本地SDCard、http 等路径, 多媒体文件
 
 
 ## API 文档

@@ -63,15 +63,15 @@ public final class PathUtils {
     }
 
     /**
-     * 获取内存应用数据库路径 - path /data/data/package/databases.
-     * @return /data/data/package/databases.
+     * 获取内存应用数据库路径 - path /data/data/package/databases
+     * @return /data/data/package/databases
      */
     public static String getInternalAppDbsPath() {
         return DevUtils.getContext().getApplicationInfo().dataDir + "/databases";
     }
 
     /**
-     * 获取内存应用数据库路径 - path /data/data/package/databases/name.
+     * 获取内存应用数据库路径 - path /data/data/package/databases/name
      * @param name
      * @return /data/data/package/databases/name
      */
@@ -80,7 +80,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取内存应用文件路径 - path/data/data/package/files.
+     * 获取内存应用文件路径 - path/data/data/package/files
      * @return /data/data/package/files
      */
     public static String getInternalAppFilesPath() {
@@ -88,7 +88,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取内存应用 SP 路径 - path/data/data/package/shared_prefs.
+     * 获取内存应用 SP 路径 - path/data/data/package/shared_prefs
      * @return /data/data/package/shared_prefs
      */
     public static String getInternalAppSpPath() {
@@ -96,7 +96,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取内存应用未备份文件路径 - path/data/data/package/no_backup.
+     * 获取内存应用未备份文件路径 - path/data/data/package/no_backup
      * @return /data/data/package/no_backup
      */
     public static String getInternalAppNoBackupFilesPath() {
@@ -107,7 +107,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存路径 - path/storage/emulated/0.
+     * 获取外存路径 - path/storage/emulated/0
      * @return /storage/emulated/0
      */
     public static String getExternalStoragePath() {
@@ -116,7 +116,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存音乐路径 - path/storage/emulated/0/Music.
+     * 获取外存音乐路径 - path/storage/emulated/0/Music
      * @return /storage/emulated/0/Music
      */
     public static String getExternalMusicPath() {
@@ -125,7 +125,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存播客路径 - path/storage/emulated/0/Podcasts.
+     * 获取外存播客路径 - path/storage/emulated/0/Podcasts
      * @return /storage/emulated/0/Podcasts
      */
     public static String getExternalPodcastsPath() {
@@ -134,7 +134,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存铃声路径 - path/storage/emulated/0/Ringtones.
+     * 获取外存铃声路径 - path/storage/emulated/0/Ringtones
      * @return /storage/emulated/0/Ringtones
      */
     public static String getExternalRingtonesPath() {
@@ -143,7 +143,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存闹铃路径 - path/storage/emulated/0/Alarms.
+     * 获取外存闹铃路径 - path/storage/emulated/0/Alarms
      * @return /storage/emulated/0/Alarms
      */
     public static String getExternalAlarmsPath() {
@@ -152,7 +152,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存通知路径 - path/storage/emulated/0/Notifications.
+     * 获取外存通知路径 - path/storage/emulated/0/Notifications
      * @return /storage/emulated/0/Notifications
      */
     public static String getExternalNotificationsPath() {
@@ -161,7 +161,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存图片路径 - path/storage/emulated/0/Pictures.
+     * 获取外存图片路径 - path/storage/emulated/0/Pictures
      * @return /storage/emulated/0/Pictures
      */
     public static String getExternalPicturesPath() {
@@ -170,7 +170,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存影片路径 - path/storage/emulated/0/Movies.
+     * 获取外存影片路径 - path/storage/emulated/0/Movies
      * @return /storage/emulated/0/Movies
      */
     public static String getExternalMoviesPath() {
@@ -179,7 +179,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存下载路径 - path/storage/emulated/0/Download.
+     * 获取外存下载路径 - path/storage/emulated/0/Download
      * @return /storage/emulated/0/Download
      */
     public static String getExternalDownloadsPath() {
@@ -188,7 +188,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存数码相机图片路径 - path/storage/emulated/0/DCIM.
+     * 获取外存数码相机图片路径 - path/storage/emulated/0/DCIM
      * @return /storage/emulated/0/DCIM
      */
     public static String getExternalDcimPath() {
@@ -197,7 +197,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存文档路径 - path/storage/emulated/0/Documents.
+     * 获取外存文档路径 - path/storage/emulated/0/Documents
      * @return /storage/emulated/0/Documents
      */
     public static String getExternalDocumentsPath() {
@@ -209,7 +209,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用数据路径 - path/storage/emulated/0/Android/data/package.
+     * 获取外存应用数据路径 - path/storage/emulated/0/Android/data/package
      * @return /storage/emulated/0/Android/data/package
      */
     public static String getExternalAppDataPath() {
@@ -218,7 +218,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用缓存路径 - path/storage/emulated/0/Android/data/package/cache.
+     * 获取外存应用缓存路径 - path/storage/emulated/0/Android/data/package/cache
      * @return /storage/emulated/0/Android/data/package/cache
      */
     public static String getExternalAppCachePath() {
@@ -227,7 +227,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用文件路径 - path/storage/emulated/0/Android/data/package/files.
+     * 获取外存应用文件路径 - path/storage/emulated/0/Android/data/package/files
      * @return /storage/emulated/0/Android/data/package/files
      */
     public static String getExternalAppFilesPath() {
@@ -236,7 +236,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用音乐路径 - path/storage/emulated/0/Android/data/package/files/Music.
+     * 获取外存应用音乐路径 - path/storage/emulated/0/Android/data/package/files/Music
      * @return /storage/emulated/0/Android/data/package/files/Music
      */
     public static String getExternalAppMusicPath() {
@@ -245,7 +245,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用播客路径 - path/storage/emulated/0/Android/data/package/files/Podcasts.
+     * 获取外存应用播客路径 - path/storage/emulated/0/Android/data/package/files/Podcasts
      * @return /storage/emulated/0/Android/data/package/files/Podcasts
      */
     public static String getExternalAppPodcastsPath() {
@@ -254,7 +254,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用铃声路径 - path/storage/emulated/0/Android/data/package/files/Ringtones.
+     * 获取外存应用铃声路径 - path/storage/emulated/0/Android/data/package/files/Ringtones
      * @return /storage/emulated/0/Android/data/package/files/Ringtones
      */
     public static String getExternalAppRingtonesPath() {
@@ -263,7 +263,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用闹铃路径 - path/storage/emulated/0/Android/data/package/files/Alarms.
+     * 获取外存应用闹铃路径 - path/storage/emulated/0/Android/data/package/files/Alarms
      * @return /storage/emulated/0/Android/data/package/files/Alarms
      */
     public static String getExternalAppAlarmsPath() {
@@ -272,7 +272,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用通知路径 - path/storage/emulated/0/Android/data/package/files/Notifications.
+     * 获取外存应用通知路径 - path/storage/emulated/0/Android/data/package/files/Notifications
      * @return /storage/emulated/0/Android/data/package/files/Notifications
      */
     public static String getExternalAppNotificationsPath() {
@@ -281,7 +281,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用图片路径 - path/storage/emulated/0/Android/data/package/files/Pictures.
+     * 获取外存应用图片路径 - path/storage/emulated/0/Android/data/package/files/Pictures
      * @return path /storage/emulated/0/Android/data/package/files/Pictures
      */
     public static String getExternalAppPicturesPath() {
@@ -290,7 +290,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用影片路径 - path/storage/emulated/0/Android/data/package/files/Movies.
+     * 获取外存应用影片路径 - path/storage/emulated/0/Android/data/package/files/Movies
      * @return /storage/emulated/0/Android/data/package/files/Movies
      */
     public static String getExternalAppMoviesPath() {
@@ -299,7 +299,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用下载路径 - path/storage/emulated/0/Android/data/package/files/Download.
+     * 获取外存应用下载路径 - path/storage/emulated/0/Android/data/package/files/Download
      * @return /storage/emulated/0/Android/data/package/files/Download
      */
     public static String getExternalAppDownloadPath() {
@@ -308,7 +308,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用数码相机图片路径 - path/storage/emulated/0/Android/data/package/files/DCIM.
+     * 获取外存应用数码相机图片路径 - path/storage/emulated/0/Android/data/package/files/DCIM
      * @return /storage/emulated/0/Android/data/package/files/DCIM
      */
     public static String getExternalAppDcimPath() {
@@ -317,7 +317,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用文档路径 - path/storage/emulated/0/Android/data/package/files/Documents.
+     * 获取外存应用文档路径 - path/storage/emulated/0/Android/data/package/files/Documents
      * @return /storage/emulated/0/Android/data/package/files/Documents
      */
     public static String getExternalAppDocumentsPath() {
@@ -329,7 +329,7 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外存应用 OBB 路径 - path/storage/emulated/0/Android/obb/package.
+     * 获取外存应用 OBB 路径 - path/storage/emulated/0/Android/obb/package
      * @return /storage/emulated/0/Android/obb/package
      */
     public static String getExternalAppObbPath() {

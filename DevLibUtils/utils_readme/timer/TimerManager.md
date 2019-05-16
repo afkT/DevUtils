@@ -9,7 +9,7 @@
  * AbsTimer -> 定时器抽象类,对外提供该类对象,以及内部方法,便于内部实现方法的隐藏,以及达到对定时器任务的控制处理
  * TimerTask -> 内部私有类,实现了具体的定时器操作,以及代码控制等,防止外部直接new,导致定时器混乱
  * =
- * 如果外部想要实现定时器,但是通过内部 ArrayList 控制,也可以通过 实现AbsTimer接口,内部的startTimer()、closeTimer() 进行了对AbsTimer的保存，标记等操作
+ * 如果外部想要实现定时器,但是通过内部 ArrayList 控制,也可以通过 实现AbsTimer接口,内部的startTimer()、closeTimer() 进行了对AbsTimer的保存, 标记等操作
  * 需要注意的是,实现start(close)Timer() 方法,必须保留 super.start(close)Timer(); -> 内部 ArrayList 进行了操作,而不对外开放(不需要主动调用)
  * =
  * startTimer() -> 主要进行添加到 ArrayList, 并且标记不需要回收
@@ -149,7 +149,7 @@ Handler handler = new Handler() {
     }
 };
 
-// 配置参数 - 意思是 一开始0秒直接触发第一次，然后后面每隔60秒触发一次，通过Handler通知 NOTIFY 常量 (-1表示无限次)
+// 配置参数 - 意思是 一开始0秒直接触发第一次, 然后后面每隔60秒触发一次, 通过Handler通知 NOTIFY 常量 (-1表示无限次)
 absTimer.setTriggerLimit(-1).setTime(0, 60 * 1000).setNotifyWhat(NOTIFY);
 
 // 配置参数 - 一秒钟后进行触发,然后每隔1秒循环触发(但是触发一次 TriggerLimit 限制了次数), 并通过设置的Handler通知 对应传入的What

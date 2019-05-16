@@ -48,7 +48,7 @@ public final class AppInfoUtils {
             PackageInfo pInfo = pManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
             // = 设置 Apk 位置信息 =
             ApplicationInfo appInfo = pInfo.applicationInfo;
-            /* 必须加这两句，不然下面icon获取是default icon而不是应用包的icon */
+            /* 必须加这两句, 不然下面icon获取是default icon而不是应用包的icon */
             appInfo.sourceDir = apkUri;
             appInfo.publicSourceDir = apkUri;
             return pInfo;

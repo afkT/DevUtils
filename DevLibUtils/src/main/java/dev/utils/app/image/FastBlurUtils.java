@@ -241,7 +241,7 @@ public final class FastBlurUtils {
      * 对图片进行毛玻璃化 数值越大效果越明显
      * @param originBitmap 位图
      * @param scaleRatio   缩放比率
-     * @param blurRadius   毛玻璃化比率，虚化程度
+     * @param blurRadius   毛玻璃化比率, 虚化程度
      * @return 位图
      */
     public static Bitmap blur(final Bitmap originBitmap, final int scaleRatio, final int blurRadius) {
@@ -257,7 +257,7 @@ public final class FastBlurUtils {
 
 
     /**
-     * 对图片进行 毛玻璃化，虚化 数值越大效果越明显
+     * 对图片进行 毛玻璃化, 虚化 数值越大效果越明显
      * @param originBitmap 位图
      * @param width        缩放后的期望宽度
      * @param height       缩放后的期望高度

@@ -32,7 +32,7 @@ import dev.utils.R;
  * <pre>
  *      支持子线程弹出 Toast, 可通过开关配置
  *      内部解决 Android 7.1.1 崩溃问题
- *      但无处理 部分ROM 如魅族、小米、三星等关闭应用通知，无法显示 Toast 问题
+ *      但无处理 部分ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
  * </pre>
  */
 public final class ToastTintUtils {

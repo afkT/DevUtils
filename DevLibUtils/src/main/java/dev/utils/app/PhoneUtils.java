@@ -79,7 +79,7 @@ public final class PhoneUtils {
     }
 
     /**
-     * 获取Sim卡所属地区，非国内地区暂不支持播放
+     * 获取Sim卡所属地区, 非国内地区暂不支持播放
      * @return 返回SIM的地区码
      */
     public static String getUserCountry() {
@@ -104,8 +104,8 @@ public final class PhoneUtils {
     }
 
     /**
-     * 判断地区，是否属于国内
-     * @return 状态码 1 属于国内(中国)，2 属于 国外，3 属于无SIM卡
+     * 判断地区, 是否属于国内
+     * @return 状态码 1 属于国内(中国), 2 属于 国外, 3 属于无SIM卡
      */
     public static int judgeArea() {
         // 默认属于无sim卡
@@ -195,12 +195,12 @@ public final class PhoneUtils {
      * @return IMEI 码
      * <pre>
      *      IMEI是International Mobile Equipment Identity (国际移动设备标识)的简称
-     *      IMEI由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的
+     *      IMEI由15位数字组成的”电子串号”, 它与每台手机一一对应, 而且该码是全世界唯一的
      *      其组成为:
-     *      1. 前6位数(TAC)是”型号核准号码”，一般代表机型
-     *      2. 接着的2位数(FAC)是”最后装配号”，一般代表产地
-     *      3. 之后的6位数(SNR)是”串号”，一般代表生产顺序号
-     *      4. 最后1位数(SP)通常是”0″，为检验码，目前暂备用
+     *      1. 前6位数(TAC)是”型号核准号码”, 一般代表机型
+     *      2. 接着的2位数(FAC)是”最后装配号”, 一般代表产地
+     *      3. 之后的6位数(SNR)是”串号”, 一般代表生产顺序号
+     *      4. 最后1位数(SP)通常是”0″, 为检验码, 目前暂备用
      * </pre>
      */
     @SuppressLint({"HardwareIds"})
@@ -264,16 +264,16 @@ public final class PhoneUtils {
      * @return IMSI 码
      * <pre>
      *      IMSI是国际移动用户识别码的简称(International Mobile Subscriber Identity)
-     *      IMSI共有15位，其结构如下:
+     *      IMSI共有15位, 其结构如下:
      *      MCC+MNC+MIN
-     *      MCC: Mobile Country Code，移动国家码，共3位，中国为460;
-     *      MNC: Mobile NetworkCode，移动网络码，共2位
-     *      在中国，移动的代码为电00和02，联通的代码为01，电信的代码为03
+     *      MCC: Mobile Country Code, 移动国家码, 共3位, 中国为460;
+     *      MNC: Mobile NetworkCode, 移动网络码, 共2位
+     *      在中国, 移动的代码为电00和02, 联通的代码为01, 电信的代码为03
      *      合起来就是(也是Android手机中APN配置文件中的代码):
      *      中国移动: 46000 46002
      *      中国联通: 46001
      *      中国电信: 46003
-     *      举例，一个典型的IMSI号码为460030912121001
+     *      举例, 一个典型的IMSI号码为460030912121001
      * </pre>
      */
     @SuppressLint({"HardwareIds"})
@@ -310,8 +310,8 @@ public final class PhoneUtils {
      * 获取移动终端类型
      * <pre>
      *      {@link TelephonyManager#PHONE_TYPE_NONE } : 0 手机制式未知
-     *      {@link TelephonyManager#PHONE_TYPE_GSM  } : 1 手机制式为 GSM，移动和联通
-     *      {@link TelephonyManager#PHONE_TYPE_CDMA } : 2 手机制式为 CDMA，电信
+     *      {@link TelephonyManager#PHONE_TYPE_GSM  } : 1 手机制式为 GSM, 移动和联通
+     *      {@link TelephonyManager#PHONE_TYPE_CDMA } : 2 手机制式为 CDMA, 电信
      *      {@link TelephonyManager#PHONE_TYPE_SIP  } : 3
      * </pre>
      * @return 手机制式
@@ -420,7 +420,7 @@ public final class PhoneUtils {
      */
     public static String getAndroidId() {
         try {
-            // 在设备首次启动时，系统会随机生成一个64位的数字，并把这个数字以十六进制字符串的形式保存下来，这个十六进制的字符串就是ANDROID_ID，当设备被wipe后该值会被重置
+            // 在设备首次启动时, 系统会随机生成一个64位的数字, 并把这个数字以十六进制字符串的形式保存下来, 这个十六进制的字符串就是ANDROID_ID, 当设备被wipe后该值会被重置
             String androidId = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
             return androidId;
         } catch (Exception e) {

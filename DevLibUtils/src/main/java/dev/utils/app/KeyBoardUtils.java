@@ -363,15 +363,15 @@ public final class KeyBoardUtils {
 
     // =
 
-    // 下面暂时无法使用，缺少判断键盘是否显示，否则和自动切换无区别
+    // 下面暂时无法使用, 缺少判断键盘是否显示, 否则和自动切换无区别
     // InputMethodManager.isActive()   (无法获取)
-    // Activity.getWindow().getAttributes().softInputMode  (有些版本可以，不适用)
+    // Activity.getWindow().getAttributes().softInputMode  (有些版本可以, 不适用)
 
     /**
-     * 自动切换键盘状态，如果键盘显示了则隐藏，隐藏着显示
+     * 自动切换键盘状态, 如果键盘显示了则隐藏, 隐藏着显示
      */
     public static void toggleKeyboard() {
-        // 程序启动后，自动弹出软键盘，可以通过设置一个时间函数来实现，不能再onCreate里写
+        // 程序启动后, 自动弹出软键盘, 可以通过设置一个时间函数来实现, 不能再onCreate里写
         try {
             InputMethodManager imm = (InputMethodManager) DevUtils.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);

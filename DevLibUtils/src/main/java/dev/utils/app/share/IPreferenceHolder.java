@@ -5,7 +5,7 @@ import android.content.Context;
 import java.util.HashMap;
 
 /**
- * detail: IPreference 持有类，内部返回实现类
+ * detail: IPreference 持有类, 内部返回实现类
  * @author Ttt
  */
 class IPreferenceHolder {

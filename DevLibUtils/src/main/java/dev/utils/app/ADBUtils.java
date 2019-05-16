@@ -29,7 +29,7 @@ import dev.utils.common.DevCommonUtils;
  *      adb shell input
  *      @see <a href="https://blog.csdn.net/soslinken/article/details/49587497"/>
  *      <p></p>
- *      android 上发送adb 指令，不需要加 adb shell
+ *      android 上发送adb 指令, 不需要加 adb shell
  *      @see <a href="https://www.imooc.com/qadetail/198264"/>
  *      <p></p>
  *      grep 是 linux 下的命令, windows 用 findstr
@@ -209,7 +209,7 @@ public final class ADBUtils {
 
     /**
      * 查看应用详细信息
-     * 输出中包含很多信息，包括 Activity Resolver Table、Registered ContentProviders、包名、userId、安装后的文件资源代码等路径、版本信息、权限信息和授予状态、签名版本信息等
+     * 输出中包含很多信息, 包括 Activity Resolver Table、Registered ContentProviders、包名、userId、安装后的文件资源代码等路径、版本信息、权限信息和授予状态、签名版本信息等
      * @param packageName
      * @return
      */
@@ -395,7 +395,7 @@ public final class ADBUtils {
     /**
      * 卸载 App
      * @param packageName
-     * @param isKeepData  -k 参数可选，表示卸载应用但保留数据和缓存目录
+     * @param isKeepData  -k 参数可选, 表示卸载应用但保留数据和缓存目录
      * @return
      */
     public static boolean uninstallApp(final String packageName, final boolean isKeepData) {
@@ -964,8 +964,8 @@ public final class ADBUtils {
 
     /**
      * 查看正在运行的 Services
-     * @param packageName 参数不是必须的，指定 <packagename> 表示查看与某个包名相关的 Services，不指定表示查看所有 Services
-     *                    <packagename> 不一定要给出完整的包名，比如运行 adb shell dumpsys activity services org.mazhuang，
+     * @param packageName 参数不是必须的, 指定 <packagename> 表示查看与某个包名相关的 Services, 不指定表示查看所有 Services
+     *                    <packagename> 不一定要给出完整的包名, 比如运行 adb shell dumpsys activity services org.mazhuang,
      *                    那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来
      * @return
      */
@@ -1436,9 +1436,9 @@ public final class ADBUtils {
     /**
      * 录制屏幕 (以 mp4 格式保存到 /sdcard)
      * @param path    /sdcard/xxx/x.mp4
-     * @param size    视频的尺寸，比如 1280x720，默认是屏幕分辨率
-     * @param bitRate 视频的比特率，默认是 4Mbps
-     * @param time    录制时长，单位秒(默认/最长 180秒)
+     * @param size    视频的尺寸, 比如 1280x720, 默认是屏幕分辨率
+     * @param bitRate 视频的比特率, 默认是 4Mbps
+     * @param time    录制时长, 单位秒(默认/最长 180秒)
      * @return
      */
     public static boolean screenrecord(final String path, final String size, final int bitRate, final int time) {
@@ -1593,7 +1593,7 @@ public final class ADBUtils {
 
     /**
      * 重启设备 (需要 root 权限) - 并进行特殊的引导模式 (recovery、Fastboot)
-     * @param reason 传递给内核来请求特殊的引导模式，如"recovery"
+     * @param reason 传递给内核来请求特殊的引导模式, 如"recovery"
      *               重启到 Fastboot 模式 bootloader
      */
     public static void reboot(final String reason) {
@@ -1800,7 +1800,7 @@ public final class ADBUtils {
      */
     public static String getBattery() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys battery", true);
-        if (result.isSuccess3()) { // scale 代表最大电量，level 代表当前电量
+        if (result.isSuccess3()) { // scale 代表最大电量, level 代表当前电量
             return result.successMsg;
         }
         return null;
@@ -1826,10 +1826,10 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd("wm size", true);
         if (result.isSuccess3()) {
             // 正常返回 Physical size: 1080x1920
-            // 如果使用命令修改过，那输出可能是:
+            // 如果使用命令修改过, 那输出可能是:
             // Physical size: 1080x1920
             // Override size: 480x1024
-            // 表明设备的屏幕分辨率原本是 1080px * 1920px，当前被修改为 480px * 1024px
+            // 表明设备的屏幕分辨率原本是 1080px * 1920px, 当前被修改为 480px * 1024px
             return result.successMsg;
         }
         return null;
@@ -1924,7 +1924,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd("ifconfig | grep Mask", isRoot);
         if (result.isSuccess3()) {
             return result.successMsg;
-        } else { // 如果设备连着 WiFi，可以使用如下命令来查看局域网 IP
+        } else { // 如果设备连着 WiFi, 可以使用如下命令来查看局域网 IP
             result = ShellUtils.execCmd("ifconfig wlan0", isRoot);
             if (result.isSuccess3()) {
                 return result.successMsg;

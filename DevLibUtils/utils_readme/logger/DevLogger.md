@@ -4,15 +4,15 @@
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/DevLibUtils/src/main/java/dev/utils/app/logger)
 
-* 日志操作类（[DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLogger.java)）：日志操作类(对外公开直接调用)，直接调用日志输入类方法
+* 日志操作类（[DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLogger.java)）：日志操作类(对外公开直接调用), 直接调用日志输入类方法
 
 * 日志操作工具类（[DevLoggerUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)）：提供常用日志配置快捷获取方法、以及日志存储方法等
 
-* 日志接口（[IPrinter](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/IPrinter.java)）：主要编写可以被外部调用接口，以及可以操作的类型
+* 日志接口（[IPrinter](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/IPrinter.java)）：主要编写可以被外部调用接口, 以及可以操作的类型
 
-* 日志输出类（[LoggerPrinter](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LoggerPrinter.java)）：实现日志接口，并且对对应的方法，进行处理，最终打印
+* 日志输出类（[LoggerPrinter](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LoggerPrinter.java)）：实现日志接口, 并且对对应的方法, 进行处理, 最终打印
 
-* 日志设置（[LogConfig](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LogConfig.java)）：该类主要控制日志输出方式，以及是否输入日志，堆栈方法等
+* 日志设置（[LogConfig](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LogConfig.java)）：该类主要控制日志输出方式, 以及是否输入日志, 堆栈方法等
 
 * 日志配置（[LogConstants](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LogConstants.java)）：该类主要是常量配置信息
 
@@ -79,15 +79,15 @@ LogConfig lConfig = new LogConfig();
 lConfig.methodCount = 3;
 // 堆栈方法索引偏移(0 = 最新经过调用的方法信息,偏移则往上推,如 1 = 倒数第二条经过调用的方法信息)
 lConfig.methodOffset = 0;
-// 是否输出全部方法(在特殊情况下，如想要打印全部经过的方法，但是不知道经过的总数)
+// 是否输出全部方法(在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数)
 lConfig.outputMethodAll = false;
-// 显示日志线程信息(特殊情况，显示经过的线程信息,具体情况如上)
+// 显示日志线程信息(特殊情况, 显示经过的线程信息,具体情况如上)
 lConfig.displayThreadInfo = false;
 // 是否排序日志(格式化后)
 lConfig.sortLog = false; // 是否美化日志, 边框包围
 // 日志级别
 lConfig.logLevel = LogLevel.DEBUG;
-// 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
+// 设置Tag(特殊情况使用, 不使用全部的Tag时,如单独输出在某个Tag下)
 lConfig.tag = "BaseLog";
 // 进行初始化配置 => 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
 DevLogger.init(lConfig);
@@ -103,7 +103,7 @@ LogConfig lConfig = new LogConfig();
 lConfig.logLevel = LogLevel.NONE; // 全部不打印
 DevLogger.init(lConfig); // 该方法设置全局默认日志配置
 
-// 还有一种情况，部分日志发布的时候不打印，但是有部分异常信息需要打印, 则单独使用配置
+// 还有一种情况, 部分日志发布的时候不打印, 但是有部分异常信息需要打印, 则单独使用配置
 DevLoggerUtils.getReleaseLogConfig(TAG) => 使用封装好的线上配置都行
 DevLoggerUtils.getReleaseLogConfig(TAG, LogLevel) => 使用封装好的线上配置都行
 DevLogger.init(DevLoggerUtils.getReleaseLogConfig(TAG));
@@ -130,7 +130,7 @@ DevLogger.wTag(tag, "测试数据 - w");
 DevLogger.eTag(tag, "错误 - e");
 DevLogger.wtfTag(tag, "测试数据 - wtf");
 
-// 占位符(其他类型，一样)
+// 占位符(其他类型, 一样)
 DevLogger.d("%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
 // =
 DevLogger.dTag(tag, "%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
@@ -153,7 +153,7 @@ LogConfig lConfig = new LogConfig();
 lConfig.sortLog = true;
 // 日志级别
 lConfig.logLevel = LogLevel.DEBUG;
-// 设置Tag(特殊情况使用，不使用全部的Tag时,如单独输出在某个Tag下)
+// 设置Tag(特殊情况使用, 不使用全部的Tag时,如单独输出在某个Tag下)
 lConfig.tag = "SAD";
 // 打印日志信息
 DevLogger.other(lConfig).e("new Config - e");
@@ -186,7 +186,7 @@ try {
     // 保存自定义头部、底部信息
     DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
     // =
-    // 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
+    // 自定义(无设备信息、失败信息获取失败) - 正常不会出现, 所以其实这个可以不用
     String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
     // 保存的路径
     fileName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
@@ -200,7 +200,7 @@ try {
 
 // 保存文件名
 String fileName = System.currentTimeMillis() + ".log";
-// 自定义(无设备信息、失败信息获取失败) - 正常不会出现，所以其实这个可以不用
+// 自定义(无设备信息、失败信息获取失败) - 正常不会出现, 所以其实这个可以不用
 String[] eHint = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
 // 保存日志
 DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fileName, eHint);

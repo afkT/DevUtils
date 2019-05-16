@@ -44,7 +44,7 @@ public final class EditTextUtils {
     // =
 
     /**
-     * 设置长度限制，并且设置内容
+     * 设置长度限制, 并且设置内容
      * @param editText
      * @param content
      * @param maxLength
@@ -266,11 +266,11 @@ public final class EditTextUtils {
     // ===============================
 
     /**
-     * 限制只能输入字母和数字，默认弹出英文输入法
+     * 限制只能输入字母和数字, 默认弹出英文输入法
      * @return
      */
     public static DigitsKeyListener getNumberAndEnglishKeyListener() {
-        /** 限制只能输入字母和数字，默认弹出英文输入法 */
+        /** 限制只能输入字母和数字, 默认弹出英文输入法 */
         DigitsKeyListener digitsKeyListener = new DigitsKeyListener() {
             @Override
             public int getInputType() {
@@ -287,11 +287,11 @@ public final class EditTextUtils {
     }
 
     /**
-     * 限制只能输入数字，默认弹出数字列表
+     * 限制只能输入数字, 默认弹出数字列表
      * @return
      */
     public static DigitsKeyListener getNumberKeyListener() {
-        /** 限制只能输入数字，默认弹出数字列表 */
+        /** 限制只能输入数字, 默认弹出数字列表 */
         DigitsKeyListener digitsKeyListener = new DigitsKeyListener() {
             @Override
             public int getInputType() {

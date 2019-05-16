@@ -58,7 +58,7 @@ public final class UriUtils {
     }
 
     /**
-     * Return a content URI for a given file.
+     * Return a content URI for a given file
      * @param file
      * @return
      */
@@ -84,7 +84,7 @@ public final class UriUtils {
             path = uri.getPath();
             return path;
         }
-        // 以 content:// 开头的，比如 content://media/extenral/images/media/17766
+        // 以 content:// 开头的, 比如 content://media/extenral/images/media/17766
         if (ContentResolver.SCHEME_CONTENT.equals(uri.getScheme()) && Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
             if (cursor != null) {
@@ -98,7 +98,7 @@ public final class UriUtils {
             }
             return path;
         }
-        // 4.4及之后的 是以 content:// 开头的，比如 content://com.android.providers.media.documents/document/image%3A235700
+        // 4.4及之后的 是以 content:// 开头的, 比如 content://com.android.providers.media.documents/document/image%3A235700
         if (ContentResolver.SCHEME_CONTENT.equals(uri.getScheme()) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (DocumentsContract.isDocumentUri(context, uri)) {
                 if (isExternalStorageDocument(uri)) {

@@ -79,7 +79,7 @@ public final class HtmlUtils {
      * @param content 给定的字符串
      * @return 最后放在 Html.fromHtml() 内
      * <pre>
-     *      如果需要倾斜自定义角度，需要自定义TextView,在 onDraw 里面加上
+     *      如果需要倾斜自定义角度, 需要自定义TextView,在 onDraw 里面加上
      *      - 倾斜度, 上下左右居中
      *      canvas.rotate(倾斜角度, getMeasuredWidth() / 3, getMeasuredHeight() / 3);
      * </pre>
@@ -104,7 +104,7 @@ public final class HtmlUtils {
      * @param source      给定的字符串
      * @param keyword     给定的关键字
      * @param replacement 替换的内容
-     * @return 返回的是带Html标签的字符串，在使用时要通过Html.fromHtml() 转换为Spanned对象再传递给TextView对象
+     * @return 返回的是带Html标签的字符串, 在使用时要通过Html.fromHtml() 转换为Spanned对象再传递给TextView对象
      */
     public static String keywordReplaceAll(final String source, final String keyword, final String replacement) {
         try {

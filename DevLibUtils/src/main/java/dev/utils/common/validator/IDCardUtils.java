@@ -464,7 +464,7 @@ public final class IDCardUtils {
     /**
      * 根据身份编号获取性别
      * @param idCard 身份编号
-     * @return 性别(M - 男 、 F - 女 、 N - 未知)
+     * @return 性别 男(M)、女(F)、未知(N)
      */
     public static String getGenderByIdCard(final String idCard) {
         if (isEmpty(idCard)) return null;

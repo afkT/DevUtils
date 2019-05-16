@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
  * detail: 本应用数据清除管理器
  * @author Ttt
  * <pre>
- *      主要功能有清除内/外缓存，清除数据库，清除sharedPreference，清除files和清除自定义目录
+ *      主要功能有清除内/外缓存, 清除数据库, 清除sharedPreference, 清除files和清除自定义目录
  * </pre>
  */
 public final class CleanUtils {
@@ -105,7 +105,7 @@ public final class CleanUtils {
     }
 
     /**
-     * 清除自定义路径下的文件，使用需小心请不要误删, 而且只支持目录下的文件删除
+     * 清除自定义路径下的文件, 使用需小心请不要误删, 而且只支持目录下的文件删除
      * @param filePath 文件路径
      */
     public static boolean cleanCustomDir(final String filePath) {
@@ -113,7 +113,7 @@ public final class CleanUtils {
     }
 
     /**
-     * 清除自定义路径下的文件，使用需小心请不要误删, 而且只支持目录下的文件删除
+     * 清除自定义路径下的文件, 使用需小心请不要误删, 而且只支持目录下的文件删除
      * @param file 文件路径
      */
     public static boolean cleanCustomDir(final File file) {
@@ -141,8 +141,8 @@ public final class CleanUtils {
 
     /**
      * 获取文件夹大小
-     * Context.getExternalFilesDir() --> SDCard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据
-     * Context.getExternalCacheDir() --> SDCard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据
+     * Context.getExternalFilesDir() --> SDCard/Android/data/你的应用的包名/files/ 目录, 一般放一些长时间保存的数据
+     * Context.getExternalCacheDir() --> SDCard/Android/data/你的应用包名/cache/目录, 一般存放临时缓存数据
      * @param file
      * @return
      */

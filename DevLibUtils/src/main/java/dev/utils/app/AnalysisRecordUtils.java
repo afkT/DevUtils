@@ -325,7 +325,7 @@ public final class AnalysisRecordUtils {
                         // 判断是否数组
                         if (object instanceof String[]) {
                             if (object != null) {
-                                // 获取类型对应字段的数据，并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
+                                // 获取类型对应字段的数据, 并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
                                 dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
                             }
                             continue;
@@ -673,7 +673,7 @@ public final class AnalysisRecordUtils {
 
         /**
          * 获取当前日期的字符串
-         * @param format 日期格式，如: HH, mm, ss
+         * @param format 日期格式, 如: HH, mm, ss
          * @return 字符串
          */
         private String getDateNow(final String format) {
@@ -697,7 +697,7 @@ public final class AnalysisRecordUtils {
         private String getSavePath(final String storagePath, final String filePath) {
             // 获取保存地址
             File file = new File(storagePath, filePath);
-            // 防止不存在目录文件，自动创建
+            // 防止不存在目录文件, 自动创建
             createFolder(file);
             // 返回缓存地址
             return file.getAbsolutePath();
@@ -715,7 +715,7 @@ public final class AnalysisRecordUtils {
             } else {
                 cachePath = context.getCacheDir().getPath();
             }
-            // 防止不存在目录文件，自动创建
+            // 防止不存在目录文件, 自动创建
             createFolder(new File(cachePath));
             // 返回文件存储地址
             return cachePath;
@@ -763,7 +763,7 @@ public final class AnalysisRecordUtils {
         }
         FileWriter writer = null;
         try {
-            // 打开一个写文件器，构造函数中的第二个参数true表示以追加形式写文件
+            // 打开一个写文件器, 构造函数中的第二个参数true表示以追加形式写文件
             writer = new FileWriter(file, true);
             writer.write(text);
         } catch (IOException e) {

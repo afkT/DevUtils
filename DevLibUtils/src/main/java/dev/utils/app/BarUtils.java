@@ -477,7 +477,7 @@ public final class BarUtils {
     }
 
     /**
-     * 获取状态栏颜色 = (传入颜色等，进行生成)
+     * 获取状态栏颜色 = (传入颜色等, 进行生成)
      * @param color
      * @param alpha
      * @return

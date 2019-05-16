@@ -174,7 +174,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             mConfigToast.setView(view);
             // 如果是 null, 则抛出异常
             if (mConfigToast.isEmptyMessageView()) {
-                // 如果设置的布局没有包含一个 TextView 则抛出异常，必须要包含一个 TextView 作为 Message View
+                // 如果设置的布局没有包含一个 TextView 则抛出异常, 必须要包含一个 TextView 作为 Message View
                 throw new IllegalArgumentException("The layout must contain a TextView");
             }
         }
@@ -193,7 +193,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             }
             // 如果是 null, 则抛出异常
             if (mConfigToast.isEmptyMessageView()) {
-                // 如果设置的布局没有包含一个 TextView 则抛出异常，必须要包含一个 TextView 作为 Message View
+                // 如果设置的布局没有包含一个 TextView 则抛出异常, 必须要包含一个 TextView 作为 Message View
                 throw new IllegalArgumentException("The layout must contain a TextView");
             }
         }

@@ -111,7 +111,7 @@ public final class TimerUse {
 //            }
 //        };
 //
-//        // 配置参数 - 意思是 一开始0秒直接触发第一次，然后后面每隔60秒触发一次，通过Handler通知 NOTIFY 常量 (-1表示无限次)
+//        // 配置参数 - 意思是 一开始0秒直接触发第一次, 然后后面每隔60秒触发一次, 通过Handler通知 NOTIFY 常量 (-1表示无限次)
 //        absTimer.setTriggerLimit(-1).setTime(0, 60 * 1000).setNotifyWhat(NOTIFY);
 //
 //        // 配置参数 - 一秒钟后进行触发,然后每隔1秒循环触发(但是触发一次 TriggerLimit 限制了次数), 并通过设置的Handler通知 对应传入的What

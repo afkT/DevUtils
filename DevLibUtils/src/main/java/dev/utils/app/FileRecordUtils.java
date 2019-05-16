@@ -97,7 +97,7 @@ public final class FileRecordUtils {
                         // 判断是否数组
                         if (object instanceof String[]) {
                             if (object != null) {
-                                // 获取类型对应字段的数据，并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
+                                // 获取类型对应字段的数据, 并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
                                 dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
                             }
                             continue;
@@ -295,7 +295,7 @@ public final class FileRecordUtils {
      * 初始化调用方法
      */
     public static void init() {
-        // 如果版本信息为 null，才进行处理
+        // 如果版本信息为 null, 才进行处理
         if (TextUtils.isEmpty(APP_VERSION_CODE) || TextUtils.isEmpty(APP_VERSION_NAME)) {
             // 获取 App 版本信息
             String[] aVersion = getAppVersion();
@@ -514,7 +514,7 @@ public final class FileRecordUtils {
                 }
             }
             if (isUnifiedHandler) {
-                // 统一处理,如果数据未null,则设置为“”,防止拼接出现   "null"
+                // 统一处理,如果数据未null,则设置为 "", 防止拼接出现 "null"
                 for (int i = 0; i < length; i++) {
                     if (hArrays[i] == null) {
                         hArrays[i] = "";

@@ -47,14 +47,14 @@ public class WifiHotUtils {
     private WifiConfiguration mAPWifiConfig;
 
     /**
-     * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
+     * 构造器(只能进行初始化WifiManager操作, 其他靠方法定义)
      */
     public WifiHotUtils() {
         this(DevUtils.getContext());
     }
 
     /**
-     * 构造器(只能进行初始化WifiManager操作，其他靠方法定义)
+     * 构造器(只能进行初始化WifiManager操作, 其他靠方法定义)
      * @param context
      */
     public WifiHotUtils(final Context context) {
@@ -68,7 +68,7 @@ public class WifiHotUtils {
     // =============
 
     /**
-     * 创建Wifi配置信息(无其他操作，单独返回WifiConfig) => Wifi热点 (就支持 无密码/WPA2 PSK)
+     * 创建Wifi配置信息(无其他操作, 单独返回WifiConfig) => Wifi热点 (就支持 无密码/WPA2 PSK)
      * @param ssid
      * @param pwd  密码需要大于等于8位
      * @return
@@ -362,7 +362,7 @@ public class WifiHotUtils {
             case WIFI_AP_STATE_FAILED: // Wifi热点状态未知
                 break;
         }
-        // 如果属于开启，则进行关闭
+        // 如果属于开启, 则进行关闭
         if (isOpen && isExecute) {
             closeWifiAp();
         }

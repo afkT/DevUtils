@@ -9,7 +9,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: dp，px，sp转换、View获取宽高等
+ * detail: dp, px, sp转换、View获取宽高等
  * @author Ttt
  */
 public final class SizeUtils {
@@ -236,7 +236,7 @@ public final class SizeUtils {
     // =
 
     /**
-     * 在 onCreate 中获取视图的尺寸 - 需回调 onGetSizeListener 接口，在 onGetSize 中获取 view 宽高
+     * 在 onCreate 中获取视图的尺寸 - 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 view 宽高
      * 用法示例如下所示
      * SizeUtils.forceGetViewSize(view, new SizeUtils.onGetSizeListener() {
      * Override

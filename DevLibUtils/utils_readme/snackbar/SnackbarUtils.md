@@ -22,9 +22,9 @@
 
 * 支持手动关闭 Snackbar, 以及 Snackbar 事件监听处理等
 
-* 支持自定义样式, 可配置样式属性比较全面，高度自由可配置
+* 支持自定义样式, 可配置样式属性比较全面, 高度自由可配置
 
-* 支持样式构建引用, 在统一的样式上构建使用，并快捷修改全局样式
+* 支持样式构建引用, 在统一的样式上构建使用, 并快捷修改全局样式
 
 ## API 文档
 
@@ -260,7 +260,7 @@ snackbarUtils1.setStyle(styleBuilder2);
 #### 自定义样式
 ```java
 /**
- * detail: 自定义样式 - 可参照下方实现方法，进行配置
+ * detail: 自定义样式 - 可参照下方实现方法, 进行配置
  * @author Ttt
  */
 class NightStyle extends SnackbarUtils.Style {

@@ -762,7 +762,7 @@ public final class ImageUtils {
     }
 
     /**
-     * 快速模糊 - 先缩小原图，对小图进行模糊，再放大回原先尺寸
+     * 快速模糊 - 先缩小原图, 对小图进行模糊, 再放大回原先尺寸
      * @param src    源图片
      * @param scale  缩放比例(0...1)
      * @param radius 模糊半径
@@ -775,7 +775,7 @@ public final class ImageUtils {
     }
 
     /**
-     * 快速模糊图片 - 先缩小原图，对小图进行模糊，再放大回原先尺寸
+     * 快速模糊图片 - 先缩小原图, 对小图进行模糊, 再放大回原先尺寸
      * @param src     源图片
      * @param scale   缩放比例(0...1)
      * @param radius  模糊半径(0...25)
@@ -1345,12 +1345,12 @@ public final class ImageUtils {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         src.compress(CompressFormat.JPEG, 100, baos);
         byte[] bytes;
-        if (baos.size() <= maxByteSize) { // 最好质量的不大于最大字节，则返回最佳质量
+        if (baos.size() <= maxByteSize) { // 最好质量的不大于最大字节, 则返回最佳质量
             bytes = baos.toByteArray();
         } else {
             baos.reset();
             src.compress(CompressFormat.JPEG, 0, baos);
-            if (baos.size() >= maxByteSize) { // 最差质量不小于最大字节，则返回最差质量
+            if (baos.size() >= maxByteSize) { // 最差质量不小于最大字节, 则返回最差质量
                 bytes = baos.toByteArray();
             } else {
                 // 二分法寻找最佳质量
@@ -1472,7 +1472,7 @@ public final class ImageUtils {
     }
 
     /**
-     * 判断文件是否存在，存在则在创建之前删除
+     * 判断文件是否存在, 存在则在创建之前删除
      * @param file
      * @return {@code true} 创建成功, {@code false} 创建失败
      */
@@ -1491,12 +1491,12 @@ public final class ImageUtils {
     }
 
     /**
-     * 判断目录是否存在，不存在则判断是否创建成功
+     * 判断目录是否存在, 不存在则判断是否创建成功
      * @param file 文件
      * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
      */
     private static boolean createOrExistsDir(final File file) {
-        // 如果存在，是目录则返回 true，是文件则返回 false，不存在则返回是否创建成功
+        // 如果存在, 是目录则返回 true, 是文件则返回 false, 不存在则返回是否创建成功
         return file != null && (file.exists() ? file.isDirectory() : file.mkdirs());
     }
 

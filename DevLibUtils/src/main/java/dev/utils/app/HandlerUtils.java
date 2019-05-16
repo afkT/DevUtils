@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 /**
- * detail: Handler 工具类, 默认开启一个 Handler，方便在各个地方随时执行主线程任务
+ * detail: Handler 工具类, 默认开启一个 Handler, 方便在各个地方随时执行主线程任务
  * @author Ttt
  */
 public final class HandlerUtils {

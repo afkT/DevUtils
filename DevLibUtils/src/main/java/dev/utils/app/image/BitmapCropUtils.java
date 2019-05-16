@@ -19,7 +19,7 @@ public final class BitmapCropUtils {
     // 日志 TAG
     private static final String TAG = BitmapCropUtils.class.getSimpleName();
 
-    // = 裁剪图片,裁剪中间部分，防止全图压缩 =
+    // = 裁剪图片,裁剪中间部分, 防止全图压缩 =
 
     /**
      * 裁剪图片(默认比例16:9)

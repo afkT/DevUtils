@@ -227,7 +227,7 @@ public final class DevCache {
      * 保存 String 数据到缓存中
      * @param key      保存的 key
      * @param value    保存的 String 数据
-     * @param saveTime 保存的时间，单位:秒
+     * @param saveTime 保存的时间, 单位:秒
      */
     public void put(final String key, final String value, final int saveTime) {
         if (key != null && value != null) {
@@ -301,7 +301,7 @@ public final class DevCache {
      * 保存 JSONObject 数据到缓存中
      * @param key      保存的 key
      * @param value    保存的 JSONObject 数据
-     * @param saveTime 保存的时间，单位:秒
+     * @param saveTime 保存的时间, 单位:秒
      */
     public void put(final String key, final JSONObject value, final int saveTime) {
         if (value != null) {
@@ -353,7 +353,7 @@ public final class DevCache {
      * 保存 JSONArray 数据到缓存中
      * @param key      保存的 key
      * @param value    保存的 JSONArray 数据
-     * @param saveTime 保存的时间，单位:秒
+     * @param saveTime 保存的时间, 单位:秒
      */
     public void put(final String key, final JSONArray value, final int saveTime) {
         if (value != null) {
@@ -446,7 +446,7 @@ public final class DevCache {
      * 保存 byte 数据到缓存中
      * @param key      保存的 key
      * @param data     保存的数据
-     * @param saveTime 保存的时间，单位:秒
+     * @param saveTime 保存的时间, 单位:秒
      */
     public void put(final String key, final byte[] data, final int saveTime) {
         put(key, DevCacheUtils.newByteArrayWithDateInfo(saveTime, data));
@@ -506,7 +506,7 @@ public final class DevCache {
      * 保存 Serializable 数据到缓存中
      * @param key      保存的 key
      * @param value    保存的value
-     * @param saveTime 保存的时间，单位:秒
+     * @param saveTime 保存的时间, 单位:秒
      */
     public void put(final String key, final Serializable value, final int saveTime) {
         ByteArrayOutputStream baos = null;
@@ -592,7 +592,7 @@ public final class DevCache {
      * 保存 Bitmap 到缓存中
      * @param key      保存的 key
      * @param value    保存的 bitmap 数据
-     * @param saveTime 保存的时间，单位:秒
+     * @param saveTime 保存的时间, 单位:秒
      */
     public void put(final String key, final Bitmap value, final int saveTime) {
         put(key, DevCacheUtils.bitmapToBytes(value), saveTime);
@@ -626,7 +626,7 @@ public final class DevCache {
      * 保存 Drawable 到缓存中
      * @param key      保存的 key
      * @param value    保存的 drawable 数据
-     * @param saveTime 保存的时间，单位:秒
+     * @param saveTime 保存的时间, 单位:秒
      */
     public void put(final String key, final Drawable value, final int saveTime) {
         put(key, DevCacheUtils.drawableToBitmap(value), saveTime);
