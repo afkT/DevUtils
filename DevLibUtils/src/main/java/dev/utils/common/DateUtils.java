@@ -180,7 +180,7 @@ public final class DateUtils {
     public static long parseLong(final String time, final String format) {
         if (time == null || format == null) return 0L;
         try {
-            // 按规定的时间格式, 进行格式化时间, 并且获取long时间毫秒, 返回毫秒时间
+            // 按规定的时间格式, 进行格式化时间, 并且获取 long 时间毫秒, 返回毫秒时间
             return new SimpleDateFormat(format).parse(time).getTime();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "parseLong");
@@ -747,7 +747,7 @@ public final class DateUtils {
                                 return hour * 4 + 3;
                             }
                         } else if (type == 2) { // 30 分钟一个间隔
-                            // 大于等于30, 表示属于基数
+                            // 大于等于 30, 表示属于基数
                             if (minute >= 30) { // 属于奇数(30), 需要加 1
                                 return hour * 2 + 1;
                             } else {

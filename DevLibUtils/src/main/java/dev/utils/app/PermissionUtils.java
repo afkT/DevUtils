@@ -272,6 +272,10 @@ public final class PermissionUtils {
     // = 请求权限回调 =
     // ================
 
+    /**
+     * detail: 权限请求回调
+     * @author Ttt
+     */
     public interface PermissionCallBack {
         /**
          * 授权通过权限

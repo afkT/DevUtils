@@ -716,7 +716,7 @@ public final class BigDecimalUtils {
                 for (int i = array[0].length() - 1, j = 0; (i >= numOfIntPart - array[0].length() - (numOfIntPart - array[0].length())) && (j < numOfIntPart); i--, j++) {
                     tempA1[j] = array[0].charAt(i);
                 }
-                // 补0
+                // 补 0
                 for (int i = array[0].length(); i < array[0].length() + numOfIntPart - array[0].length(); i++) {
                     tempA1[i] = '0';
                 }

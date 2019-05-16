@@ -262,7 +262,7 @@ public final class ConvertUtils {
     public static boolean toBoolean(final String str, final boolean defaultValue) {
         if (str == null) return defaultValue;
         try {
-            // 判断是否0
+            // 判断是否 0
             if (str.equalsIgnoreCase("true") || str.equalsIgnoreCase("1")) {
                 return true;
             } else {
@@ -755,8 +755,8 @@ public final class ConvertUtils {
 
     /**
      * 拼接 byte[] 数据
-     * @param prefix 第一个byte[]
-     * @param suffix 第二个byte[]
+     * @param prefix 第一个 byte[]
+     * @param suffix 第二个 byte[]
      * @return 拼接后的 byte[]
      */
     public static byte[] joinBytes(final byte[] prefix, final byte[] suffix) {

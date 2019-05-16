@@ -995,8 +995,8 @@ public final class EncryptUtils {
 
     /**
      * 拼接 byte[] 数据
-     * @param prefix 第一个byte[]
-     * @param suffix 第二个byte[]
+     * @param prefix 第一个 byte[]
+     * @param suffix 第二个 byte[]
      * @return 拼接后的 byte[]
      */
     private static byte[] joinBytes(final byte[] prefix, final byte[] suffix) {
