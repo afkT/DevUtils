@@ -743,9 +743,6 @@ public final class ConvertUtils {
         try {
             byte[] bytes = new byte[length];
             System.arraycopy(data, off, bytes, 0, length);
-//            for (int i = off; i <= length; i++) {
-//                bytes[i - off] = data[i];
-//            }
             return bytes;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "subBytes");
@@ -814,10 +811,10 @@ public final class ConvertUtils {
         if (object != null) {
             ObjectOutputStream oos = null;
             try {
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                oos = new ObjectOutputStream(bos);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                oos = new ObjectOutputStream(baos);
                 oos.writeObject(object);
-                return bos.toByteArray();
+                return baos.toByteArray();
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "objectToBytes");
             } finally {
@@ -1398,7 +1395,7 @@ public final class ConvertUtils {
 
     /**
      * 二进制字符串 转换 byte[] 解码
-     * 例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过 new String(byte()) 获取 asd => 配合 toBinaryString 使用
+     * 例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过 new String(byte()) 获取配合 toBinaryString 使用
      * @param str String
      * @return 解码后的 byte[]
      */

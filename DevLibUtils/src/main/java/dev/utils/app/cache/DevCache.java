@@ -205,17 +205,17 @@ public final class DevCache {
         if (file == null || value == null) {
             return;
         }
-        BufferedWriter out = null;
+        BufferedWriter bw = null;
         try {
-            out = new BufferedWriter(new FileWriter(file), 1024);
-            out.write(value);
+            bw = new BufferedWriter(new FileWriter(file), 1024);
+            bw.write(value);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put");
         } finally {
-            if (out != null) {
+            if (bw != null) {
                 try {
-                    out.flush();
-                    out.close();
+                    bw.flush();
+                    bw.close();
                 } catch (IOException e) {
                 }
             }
@@ -248,12 +248,12 @@ public final class DevCache {
         if (!file.exists())
             return null;
         boolean removeFile = false;
-        BufferedReader in = null;
+        BufferedReader br = null;
         try {
-            in = new BufferedReader(new FileReader(file));
+            br = new BufferedReader(new FileReader(file));
             String readString = "";
             String currentLine;
-            while ((currentLine = in.readLine()) != null) {
+            while ((currentLine = br.readLine()) != null) {
                 readString += currentLine;
             }
             if (!DevCacheUtils.isDue(readString)) {
@@ -267,9 +267,9 @@ public final class DevCache {
             LogPrintUtils.eTag(TAG, e, "getAsString");
             return null;
         } finally {
-            if (in != null) {
+            if (br != null) {
                 try {
-                    in.close();
+                    br.close();
                 } catch (IOException e) {
                 }
             }
@@ -396,17 +396,17 @@ public final class DevCache {
             return;
         }
         File file = mCache.newFile(key);
-        FileOutputStream out = null;
+        FileOutputStream fos = null;
         try {
-            out = new FileOutputStream(file);
-            out.write(data);
+            fos = new FileOutputStream(file);
+            fos.write(data);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put byte[]");
         } finally {
-            if (out != null) {
+            if (fos != null) {
                 try {
-                    out.flush();
-                    out.close();
+                    fos.flush();
+                    fos.close();
                 } catch (IOException e) {
                 }
             }

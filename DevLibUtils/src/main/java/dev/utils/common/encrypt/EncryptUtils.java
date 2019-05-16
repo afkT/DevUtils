@@ -167,17 +167,17 @@ public final class EncryptUtils {
     public static byte[] encryptMD5File(final File file) {
         if (file == null) return null;
         FileInputStream fis = null;
-        DigestInputStream digestInputStream;
+        DigestInputStream dis;
         try {
             fis = new FileInputStream(file);
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            digestInputStream = new DigestInputStream(fis, md);
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            dis = new DigestInputStream(fis, digest);
             byte[] buffer = new byte[256 * 1024];
             while (true) {
-                if (!(digestInputStream.read(buffer) > 0)) break;
+                if (!(dis.read(buffer) > 0)) break;
             }
-            md = digestInputStream.getMessageDigest();
-            return md.digest();
+            digest = dis.getMessageDigest();
+            return digest.digest();
         } catch (NoSuchAlgorithmException | IOException e) {
             JCLogUtils.eTag(TAG, e, "encryptMD5File");
             return null;
@@ -350,9 +350,9 @@ public final class EncryptUtils {
     private static byte[] hashTemplate(final byte[] data, final String algorithm) {
         if (data == null || data.length == 0) return null;
         try {
-            MessageDigest md = MessageDigest.getInstance(algorithm);
-            md.update(data);
-            return md.digest();
+            MessageDigest digest = MessageDigest.getInstance(algorithm);
+            digest.update(data);
+            return digest.digest();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "hashTemplate");
             return null;
@@ -558,7 +558,7 @@ public final class EncryptUtils {
     }
 
     /**
-     * hmac 加密模版方法
+     * Hmac 加密模版方法
      * @param data      待加密数据
      * @param key       密钥
      * @param algorithm 算法

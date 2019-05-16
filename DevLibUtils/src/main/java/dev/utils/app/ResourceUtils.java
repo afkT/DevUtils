@@ -384,21 +384,21 @@ public final class ResourceUtils {
      */
     public static byte[] readBytesFromAssets(final String fileName) {
         if (DevUtils.getContext() != null && !TextUtils.isEmpty(fileName)) {
-            InputStream iStream = null;
+            InputStream is = null;
             try {
-                iStream = DevUtils.getContext().getResources().getAssets().open(fileName);
-                int length = iStream.available();
+                is = DevUtils.getContext().getResources().getAssets().open(fileName);
+                int length = is.available();
                 byte[] buffer = new byte[length];
-                iStream.read(buffer);
-                iStream.close();
-                iStream = null;
+                is.read(buffer);
+                is.close();
+                is = null;
                 return buffer;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "readBytesFromAssets");
             } finally {
-                if (iStream != null) {
+                if (is != null) {
                     try {
-                        iStream.close();
+                        is.close();
                     } catch (Exception e) {
                     }
                 }
@@ -428,21 +428,21 @@ public final class ResourceUtils {
      */
     public static byte[] readBytesFromRaw(final int resId) {
         if (DevUtils.getContext() != null) {
-            InputStream iStream = null;
+            InputStream is = null;
             try {
-                iStream = DevUtils.getContext().getResources().openRawResource(resId);
-                int length = iStream.available();
+                is = DevUtils.getContext().getResources().openRawResource(resId);
+                int length = is.available();
                 byte[] buffer = new byte[length];
-                iStream.read(buffer);
-                iStream.close();
-                iStream = null;
+                is.read(buffer);
+                is.close();
+                is = null;
                 return buffer;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "readBytesFromRaw");
             } finally {
-                if (iStream != null) {
+                if (is != null) {
                     try {
-                        iStream.close();
+                        is.close();
                     } catch (Exception e) {
                     }
                 }
@@ -474,16 +474,16 @@ public final class ResourceUtils {
      */
     public static List<String> geFileToListFromAssets(final String fileName) {
         if (DevUtils.getContext() != null && !TextUtils.isEmpty(fileName)) {
-            InputStream iStream = null;
-            InputStreamReader inReader = null;
-            BufferedReader bufReader = null;
+            InputStream is = null;
+            InputStreamReader isr = null;
+            BufferedReader br = null;
             try {
-                iStream = DevUtils.getContext().getResources().getAssets().open(fileName);
-                inReader = new InputStreamReader(iStream);
-                bufReader = new BufferedReader(inReader);
+                is = DevUtils.getContext().getResources().getAssets().open(fileName);
+                isr = new InputStreamReader(is);
+                br = new BufferedReader(isr);
                 List<String> fileContent = new ArrayList<>();
                 String line;
-                while ((line = bufReader.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     fileContent.add(line);
                 }
                 return fileContent;
@@ -491,9 +491,9 @@ public final class ResourceUtils {
                 LogPrintUtils.eTag(TAG, e, "geFileToListFromAssets");
             } finally {
                 try {
-                    bufReader.close();
-                    inReader.close();
-                    iStream.close();
+                    br.close();
+                    isr.close();
+                    is.close();
                 } catch (Exception e) {
                 }
             }
@@ -508,16 +508,16 @@ public final class ResourceUtils {
      */
     public static List<String> geFileToListFromRaw(final int resId) {
         if (DevUtils.getContext() != null) {
-            InputStream iStream = null;
-            InputStreamReader inReader = null;
-            BufferedReader bufReader = null;
+            InputStream is = null;
+            InputStreamReader isr = null;
+            BufferedReader br = null;
             try {
-                iStream = DevUtils.getContext().getResources().openRawResource(resId);
-                inReader = new InputStreamReader(iStream);
-                bufReader = new BufferedReader(inReader);
+                is = DevUtils.getContext().getResources().openRawResource(resId);
+                isr = new InputStreamReader(is);
+                br = new BufferedReader(isr);
                 List<String> fileContent = new ArrayList<>();
                 String line = null;
-                while ((line = bufReader.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     fileContent.add(line);
                 }
                 return fileContent;
@@ -525,9 +525,9 @@ public final class ResourceUtils {
                 LogPrintUtils.eTag(TAG, e, "geFileToListFromRaw");
             } finally {
                 try {
-                    bufReader.close();
-                    inReader.close();
-                    iStream.close();
+                    br.close();
+                    isr.close();
+                    is.close();
                 } catch (Exception e) {
                 }
             }
@@ -547,27 +547,27 @@ public final class ResourceUtils {
         if (DevUtils.getContext() != null) {
             try {
                 // 获取 Assets 文件
-                InputStream iStream = DevUtils.getContext().getResources().getAssets().open(fileName);
+                InputStream is = DevUtils.getContext().getResources().getAssets().open(fileName);
                 // 存入SDCard
-                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                FileOutputStream fos = new FileOutputStream(file);
                 // 设置数据缓冲
                 byte[] buffer = new byte[1024];
                 // 创建输入输出流
-                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 int len = 0;
-                while ((len = iStream.read(buffer)) != -1) {
-                    outStream.write(buffer, 0, len);
+                while ((len = is.read(buffer)) != -1) {
+                    baos.write(buffer, 0, len);
                 }
                 // 保存数据
-                byte[] bytes = outStream.toByteArray();
+                byte[] bytes = baos.toByteArray();
                 // 写入保存的文件
-                fileOutputStream.write(bytes);
+                fos.write(bytes);
                 // 关闭流
-                outStream.close();
-                iStream.close();
+                baos.close();
+                is.close();
                 // =
-                fileOutputStream.flush();
-                fileOutputStream.close();
+                fos.flush();
+                fos.close();
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "saveAssetsFormFile");
@@ -586,27 +586,27 @@ public final class ResourceUtils {
         if (DevUtils.getContext() != null) {
             try {
                 // 获取raw 文件
-                InputStream iStream = DevUtils.getContext().getResources().openRawResource(resId);
+                InputStream is = DevUtils.getContext().getResources().openRawResource(resId);
                 // 存入SDCard
-                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                FileOutputStream fos = new FileOutputStream(file);
                 // 设置数据缓冲
                 byte[] buffer = new byte[1024];
                 // 创建输入输出流
-                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 int len = 0;
-                while ((len = iStream.read(buffer)) != -1) {
-                    outStream.write(buffer, 0, len);
+                while ((len = is.read(buffer)) != -1) {
+                    baos.write(buffer, 0, len);
                 }
                 // 保存数据
-                byte[] bytes = outStream.toByteArray();
+                byte[] bytes = baos.toByteArray();
                 // 写入保存的文件
-                fileOutputStream.write(bytes);
+                fos.write(bytes);
                 // 关闭流
-                outStream.close();
-                iStream.close();
+                baos.close();
+                is.close();
                 // =
-                fileOutputStream.flush();
-                fileOutputStream.close();
+                fos.flush();
+                fos.close();
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "saveRawFormFile");

@@ -43,8 +43,8 @@ public final class CPUUtils {
         try {
             //读取CPU信息
             Process pp = Runtime.getRuntime().exec("cat/proc/cpuinfo");
-            InputStreamReader ir = new InputStreamReader(pp.getInputStream());
-            LineNumberReader input = new LineNumberReader(ir);
+            InputStreamReader isr = new InputStreamReader(pp.getInputStream());
+            LineNumberReader input = new LineNumberReader(isr);
             //查找CPU序列号
             for (int i = 1; i < 100; i++) {
                 str = input.readLine();
@@ -106,25 +106,25 @@ public final class CPUUtils {
     public static String getMaxCpuFreq() {
         String result = "";
         ProcessBuilder cmd;
-        InputStream in = null;
+        InputStream is = null;
         try {
             String[] args = {"/system/bin/cat", "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"};
             cmd = new ProcessBuilder(args);
             Process process = cmd.start();
-            in = process.getInputStream();
+            is = process.getInputStream();
             byte[] re = new byte[24];
-            while (in.read(re) != -1) {
+            while (is.read(re) != -1) {
                 result = result + new String(re);
             }
-            in.close();
+            is.close();
             result = Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(result.trim()) * 1024) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMaxCpuFreq");
             result = "unknown";
         } finally {
-            if (in != null) {
+            if (is != null) {
                 try {
-                    in.close();
+                    is.close();
                 } catch (IOException e) {
                 }
             }
@@ -139,25 +139,25 @@ public final class CPUUtils {
     public static String getMinCpuFreq() {
         String result = "";
         ProcessBuilder cmd;
-        InputStream in = null;
+        InputStream is = null;
         try {
             String[] args = {"/system/bin/cat", "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"};
             cmd = new ProcessBuilder(args);
             Process process = cmd.start();
-            in = process.getInputStream();
+            is = process.getInputStream();
             byte[] re = new byte[24];
-            while (in.read(re) != -1) {
+            while (is.read(re) != -1) {
                 result = result + new String(re);
             }
-            in.close();
+            is.close();
             result = Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(result.trim()) * 1024) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMinCpuFreq");
             result = "unknown";
         } finally {
-            if (in != null) {
+            if (is != null) {
                 try {
-                    in.close();
+                    is.close();
                 } catch (IOException e) {
                 }
             }
@@ -226,9 +226,9 @@ public final class CPUUtils {
      */
     public static String getCpuName() {
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("/proc/cpuinfo"), 8192);
-            String line = bufferedReader.readLine();
-            bufferedReader.close();
+            BufferedReader br = new BufferedReader(new FileReader("/proc/cpuinfo"), 8192);
+            String line = br.readLine();
+            br.close();
             String[] array = line.split(":\\s+", 2);
             if (array.length > 1) {
                 return array[1];
@@ -245,26 +245,26 @@ public final class CPUUtils {
      * @return
      */
     public static String getCMDOutputString(final String[] strings) {
-        InputStream in = null;
+        InputStream is = null;
         try {
             ProcessBuilder cmd = new ProcessBuilder(strings);
             Process process = cmd.start();
-            in = process.getInputStream();
+            is = process.getInputStream();
             StringBuilder builder = new StringBuilder();
             byte[] re = new byte[64];
             int len;
-            while ((len = in.read(re)) != -1) {
+            while ((len = is.read(re)) != -1) {
                 builder.append(new String(re, 0, len));
             }
-            in.close();
+            is.close();
             process.destroy();
             return builder.toString();
         } catch (IOException e) {
             LogPrintUtils.eTag(TAG, e, "getCMDOutputString");
         } finally {
-            if (in != null) {
+            if (is != null) {
                 try {
-                    in.close();
+                    is.close();
                 } catch (IOException e) {
                 }
             }

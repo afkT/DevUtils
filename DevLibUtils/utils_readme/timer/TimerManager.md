@@ -32,7 +32,7 @@
 
 * 内部自动添加定时器到集合中, 便于项目控制处理
 
-* 支持关闭指定 mark timer、 all timer , 获取指定 Timer
+* 支持关闭指定 mark timer、all timer , 获取指定 Timer
 
 * 内部封装 Timer, 支持获取执行次数、是否无限循环、通知what、通知Obj、mark标记等通用功能
 

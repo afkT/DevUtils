@@ -969,9 +969,9 @@ public final class AppUtils {
     private static byte[] hashTemplate(final byte[] data, final String algorithm) {
         if (data == null || data.length == 0) return null;
         try {
-            MessageDigest md = MessageDigest.getInstance(algorithm);
-            md.update(data);
-            return md.digest();
+            MessageDigest digest = MessageDigest.getInstance(algorithm);
+            digest.update(data);
+            return digest.digest();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "hashTemplate");
             return null;
@@ -1054,9 +1054,9 @@ public final class AppUtils {
     public static boolean openOfficeByWPS(final String filePath) {
         try {
             // 检查是否安装WPS
-            String wpsPackageEng = "cn.wps.moffice_eng";// 普通版与英文版一样
+            String wpsPackageEng = "cn.wps.moffice_eng"; // 普通版与英文版一样
             // String wpsActivity = "cn.wps.moffice.documentmanager.PreStartActivity";
-            String wpsActivity2 = "cn.wps.moffice.documentmanager.PreStartActivity2";// 默认第三方程序启动
+            String wpsActivity2 = "cn.wps.moffice.documentmanager.PreStartActivity2"; // 默认第三方程序启动
 
             Intent intent = new Intent();
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

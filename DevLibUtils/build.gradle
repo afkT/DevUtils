@@ -85,23 +85,24 @@ artifacts {
 // = 项目打包 aar =
 
 // 将被嵌入的应用打包成 aar 包，这也是 Android Studio 的一种新特性，可以将应用所使用的资源性文件一起打包。编译即可打包生成 aar 包，而且也不用担心漏掉资源问题。
-// 直接使用aar, 内部包含 jar
+// 直接使用 aar, 内部包含 jar
 // build\outputs\aar\DevLibUtils-debug.aar, DevLibUtils-release.aar
 
 // = 项目打包 jar =
 
 // Terminal 输入 gradlew makeJar
 
-// 方式 A : 点击 Android Studio 右侧(一般在这个位置)的 Gradle 面板，在项目或者该类库的目录中找到 Tasks -> other -> makeJar 命令，双击这个makeJar之后等一会就会编译好jar包。
+// 方式 A : 点击 Android Studio 右侧(一般在这个位置)的 Gradle 面板，在项目或者该类库的目录中找到 Tasks -> other -> makeJar 命令
+// 双击这个makeJar之后等一会就会编译好jar包。
 
 // DevLibUtils.jar
 // DevLibUtils_v1.0.jar
 
 def _BASENAME = "DevLibUtils";
 def _VERSION = "_v" + android.defaultConfig.versionName;
-def _DestinationPath = "build"; //生成jar包的位置
-//def zipFile = file('build/intermediates/bundles/debug/classes.jar'); //待打包文件位置
-def zipFile = file('build/intermediates/intermediate-jars/debug/classes.jar'); //待打包文件位置
+def _DestinationPath = "build"; // 生成 jar 包的位置
+//def zipFile = file('build/intermediates/bundles/debug/classes.jar'); // 待打包文件位置
+def zipFile = file('build/intermediates/intermediate-jars/debug/classes.jar'); // 待打包文件位置
 
 task deleteBuild(type:Delete) {
     delete _DestinationPath + _BASENAME + _VERSION + ".jar"
@@ -109,7 +110,7 @@ task deleteBuild(type:Delete) {
 
 task makeJar(type:Jar) {
     from zipTree(zipFile)
-    from fileTree(dir:'src/main',includes:['assets/**']) //将assets目录打入jar包
+    from fileTree(dir:'src/main',includes:['assets/**']) // 将 assets 目录打入 jar 包
     baseName = _BASENAME + _VERSION
     destinationDir = file(_DestinationPath)
 }

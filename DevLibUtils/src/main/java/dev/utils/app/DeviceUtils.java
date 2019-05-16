@@ -425,7 +425,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 重启设备 (需要 root 权限) - 并进行特殊的引导模式 (recovery、 Fastboot)
+     * 重启设备 (需要 root 权限) - 并进行特殊的引导模式 (recovery、Fastboot)
      * @param reason 传递给内核来请求特殊的引导模式，如"recovery"
      *               重启到 Fastboot 模式 bootloader
      */
@@ -489,14 +489,14 @@ public final class DeviceUtils {
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver - Process");
             }
-            InputStream outs = process.getInputStream();
-            InputStreamReader isrout = new InputStreamReader(outs);
-            BufferedReader brout = new BufferedReader(isrout, 8 * 1024);
+            InputStream is = process.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr, 8 * 1024);
 
             String result = "";
             String line;
             try {
-                while ((line = brout.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     result += line;
                 }
             } catch (IOException e) {

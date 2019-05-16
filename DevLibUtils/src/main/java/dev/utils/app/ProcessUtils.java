@@ -95,10 +95,10 @@ public final class ProcessUtils {
      * @return 进程名
      */
     public static String getProcessName(final int pid) {
-        BufferedReader reader = null;
+        BufferedReader br = null;
         try {
-            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
-            String processName = reader.readLine();
+            br = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = br.readLine();
             if (!TextUtils.isEmpty(processName)) {
                 processName = processName.trim();
             }
@@ -106,9 +106,9 @@ public final class ProcessUtils {
         } catch (Throwable throwable) {
             LogPrintUtils.eTag(TAG, throwable, "getProcessName");
         } finally {
-            if (reader != null) {
+            if (br != null) {
                 try {
-                    reader.close();
+                    br.close();
                 } catch (IOException e) {
                 }
             }

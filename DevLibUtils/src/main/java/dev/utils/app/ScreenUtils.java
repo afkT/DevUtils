@@ -373,7 +373,7 @@ public final class ScreenUtils {
      */
     public static void setFullScreen(@NonNull final Activity activity) {
         try {
-            activity.requestWindowFeature(Window.FEATURE_NO_TITLE);// 隐藏标题
+            activity.requestWindowFeature(Window.FEATURE_NO_TITLE); // 隐藏标题
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setFullScreen");

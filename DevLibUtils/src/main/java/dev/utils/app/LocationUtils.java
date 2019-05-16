@@ -361,7 +361,8 @@ public final class LocationUtils {
     }
 
     /**
-     * 定位改变事件
+     * detail: 定位改变事件
+     * @author Ttt
      */
     public interface OnLocationChangeListener {
 
@@ -383,6 +384,6 @@ public final class LocationUtils {
          * @param status   状态
          * @param extras   provider可选包
          */
-        void onStatusChanged(String provider, int status, Bundle extras);//位置状态发生改变
+        void onStatusChanged(String provider, int status, Bundle extras); // 位置状态发生改变
     }
 }

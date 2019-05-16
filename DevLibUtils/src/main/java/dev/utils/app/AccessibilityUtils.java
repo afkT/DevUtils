@@ -136,14 +136,14 @@ public final class AccessibilityUtils {
         buffer.append("=========================");
         buffer.append(NEW_LINE_STR);
 
-        int eventType = event.getEventType();//事件类型
-        buffer.append("packageName:" + event.getPackageName() + "");//响应事件的包名，也就是哪个应用才响应了这个事件
+        int eventType = event.getEventType(); // 事件类型
+        buffer.append("packageName:" + event.getPackageName() + ""); // 响应事件的包名，也就是哪个应用才响应了这个事件
         buffer.append(NEW_LINE_STR);
 
-        buffer.append("source:" + event.getSource() + "");//事件源信息
+        buffer.append("source:" + event.getSource() + ""); // 事件源信息
         buffer.append(NEW_LINE_STR);
 
-        buffer.append("source class:" + event.getClassName() + "");//事件源的类名，比如android.widget.TextView
+        buffer.append("source class:" + event.getClassName() + ""); // 事件源的类名，比如android.widget.TextView
         buffer.append(NEW_LINE_STR);
 
         buffer.append("event type(int):" + eventType + "");

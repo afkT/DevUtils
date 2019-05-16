@@ -27,13 +27,13 @@ public final class StreamUtils {
     public static ByteArrayOutputStream inputToOutputStream(final InputStream inputStream) {
         if (inputStream == null) return null;
         try {
-            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             byte[] b = new byte[1024];
             int len;
             while ((len = inputStream.read(b, 0, 1024)) != -1) {
-                os.write(b, 0, len);
+                baos.write(b, 0, len);
             }
-            return os;
+            return baos;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "inputToOutputStream");
             return null;
@@ -109,16 +109,16 @@ public final class StreamUtils {
      */
     public static OutputStream bytesToOutputStream(final byte[] bytes) {
         if (bytes == null || bytes.length == 0) return null;
-        ByteArrayOutputStream os = null;
+        ByteArrayOutputStream baos = null;
         try {
-            os = new ByteArrayOutputStream();
-            os.write(bytes);
-            return os;
+            baos = new ByteArrayOutputStream();
+            baos.write(bytes);
+            return baos;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "bytesToOutputStream");
             return null;
         } finally {
-            CloseUtils.closeIO(os);
+            CloseUtils.closeIO(baos);
         }
     }
 

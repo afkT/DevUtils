@@ -11,7 +11,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- * detail: Java Common 日志打印工具类(简化版) - 项目内部使用 - 主要打印 Java 日志
+ * detail: Java Common 日志打印工具类(简化版) - 项目内部使用(主要打印 Java 日志)
  * @author Ttt
  */
 public final class JCLogUtils {
@@ -19,7 +19,7 @@ public final class JCLogUtils {
     private JCLogUtils() {
     }
 
-    // 是否打印日志 上线(生产) = false, 开发(debug) = true
+    // 是否打印日志 线上(release) = false, 开发(debug) = true
     private static boolean JUDGE_PRINT_LOG = false;
     // 判断是否控制台打印信息
     private static boolean JUDGE_CONTROL_PRINT_LOG = false;

@@ -55,7 +55,7 @@ public final class BitmapExtendUtils {
      *      说明 BitmapFactory创建bitmap会尝试为已经构建的bitmap分配内存，
      *      这时就会很容易导致OOM出现。为此每一种创建方法都提供了一个可选的Options参数，
      *      将这个参数的inJustDecodeBounds属性设置为 true就可以让解析方法禁止为bitmap分配内存，
-     *      返回值也不再是一个Bitmap对象，而是 null。虽然 Bitmap 是 null 了，但是Options的outWidth、 outHeight和outMimeType属性都会被赋值。
+     *      返回值也不再是一个Bitmap对象，而是 null。虽然 Bitmap 是 null 了，但是Options的outWidth、outHeight和outMimeType属性都会被赋值。
      * </pre>
      * @param targetWidth  目标宽度,这里的宽高只是阀值，实际显示的图片将小于等于这个值
      * @param targetHeight 目标高度,这里的宽高只是阀值，实际显示的图片将小于等于这个值
@@ -150,24 +150,24 @@ public final class BitmapExtendUtils {
      */
     public static byte[] getBytesFromStream(final InputStream is) {
         if (is == null) return null;
-        ByteArrayOutputStream os = new ByteArrayOutputStream(1024);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
         try {
             int len;
             byte[] buffer = new byte[1024];
             while ((len = is.read(buffer)) >= 0) {
-                os.write(buffer, 0, len);
+                baos.write(buffer, 0, len);
             }
         } catch (IOException e) {
             LogPrintUtils.eTag(TAG, e, "getBytesFromStream");
         } finally {
-            if (os != null) {
+            if (baos != null) {
                 try {
-                    os.close();
+                    baos.close();
                 } catch (IOException e) {
                 }
             }
         }
-        return os.toByteArray();
+        return baos.toByteArray();
     }
 
 
@@ -336,15 +336,15 @@ public final class BitmapExtendUtils {
         if (bitmap == null) return null;
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;
         while (baos.toByteArray().length / 1024 > size) { // 循环判断如果压缩后图片是否大于100kb,大于继续压缩
-            baos.reset();// 重置baos即清空baos
-            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);// 这里压缩options%，把压缩后的数据存放到baos中
-            options -= 10;// 每次都减少10
+            baos.reset(); // 重置baos即清空baos
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos); // 这里压缩options%，把压缩后的数据存放到baos中
+            options -= 10; // 每次都减少10
         }
-        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());// 把压缩后的数据baos存放到ByteArrayInputStream中
-        return BitmapFactory.decodeStream(isBm, null, null);// 把ByteArrayInputStream数据生成图片
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray()); // 把压缩后的数据baos存放到ByteArrayInputStream中
+        return BitmapFactory.decodeStream(isBm, null, null); // 把ByteArrayInputStream数据生成图片
     }
 
     /**
@@ -508,16 +508,16 @@ public final class BitmapExtendUtils {
         int ww = watermark.getWidth();
         int wh = watermark.getHeight();
         // create the new blank bitmap
-        Bitmap newb = Bitmap.createBitmap(width, height, Config.ARGB_8888);// 创建一个新的和SRC长度宽度一样的位图
+        Bitmap newb = Bitmap.createBitmap(width, height, Config.ARGB_8888); // 创建一个新的和SRC长度宽度一样的位图
         Canvas cv = new Canvas(newb);
         // draw src into
-        cv.drawBitmap(src, 0, 0, null);// 在 0，0坐标开始画入src
+        cv.drawBitmap(src, 0, 0, null); // 在 0，0坐标开始画入src
         // draw watermark into
-        cv.drawBitmap(watermark, width - ww + 5, height - wh + 5, null);// 在src的右下角画入水印
+        cv.drawBitmap(watermark, width - ww + 5, height - wh + 5, null); // 在src的右下角画入水印
         // save all clip
-        cv.save();// 保存
+        cv.save(); // 保存
         // store
-        cv.restore();// 存储
+        cv.restore(); // 存储
         return newb;
     }
 
@@ -530,9 +530,9 @@ public final class BitmapExtendUtils {
      */
     public static Bitmap codec(final Bitmap bitmap, final Bitmap.CompressFormat format, final int quality) {
         if (bitmap == null || format == null) return null;
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        bitmap.compress(format, quality, os);
-        byte[] array = os.toByteArray();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(format, quality, baos);
+        byte[] array = baos.toByteArray();
         return BitmapFactory.decodeByteArray(array, 0, array.length);
     }
 

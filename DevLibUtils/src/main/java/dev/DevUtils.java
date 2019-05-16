@@ -94,10 +94,7 @@ public final class DevUtils {
     private static void initApplication(final Context context) {
         if (DevUtils.sApplication == null && context != null) {
             try {
-                Application application = (Application) context.getApplicationContext();
-                if (application != null) {
-                    DevUtils.sApplication = application;
-                }
+                DevUtils.sApplication = (Application) context.getApplicationContext();
             } catch (Exception e) {
             }
         }

@@ -1339,7 +1339,6 @@ public final class ToastTintUtils {
         }
     }
 
-
     // ============
     // = 其他接口 =
     // ============

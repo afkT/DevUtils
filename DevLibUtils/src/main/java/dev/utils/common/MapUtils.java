@@ -130,7 +130,7 @@ public final class MapUtils {
     // ============
 
     /**
-     * 获取 Value
+     * 获取 value
      * @param map {@link Map}
      * @param key key
      * @param <K> key
@@ -149,7 +149,7 @@ public final class MapUtils {
     }
 
     /**
-     * 获取 Value 如果 Value 为 null, 则返回 defaultValue
+     * 获取 value 如果 value 为 null, 则返回 defaultValue
      * @param map          {@link Map}
      * @param key          key
      * @param defaultValue 默认 value
@@ -174,7 +174,7 @@ public final class MapUtils {
     }
 
     /**
-     * 通过 Value 获取 Key
+     * 通过 value 获取 key
      * @param map   {@link Map}
      * @param value Value
      * @param <K>   key
@@ -202,7 +202,7 @@ public final class MapUtils {
     }
 
     /**
-     * 通过 Value 获取 Key 集合 (返回等于 value 的 key 集合)
+     * 通过 value 获取 key 集合 (返回等于 value 的 key 集合)
      * @param map   {@link Map}
      * @param value Value
      * @param <K>   key
@@ -235,7 +235,7 @@ public final class MapUtils {
     // =
 
     /**
-     * 通过 Map 获取 Key 集合
+     * 通过 Map 获取 key 集合
      * @param map {@link Map}
      * @param <K> key
      * @param <V> value
@@ -253,7 +253,7 @@ public final class MapUtils {
     }
 
     /**
-     * 通过 Map 获取 Key 数组
+     * 通过 Map 获取 key 数组
      * @param map {@link Map}
      * @param <K> key
      * @param <V> value
@@ -271,7 +271,7 @@ public final class MapUtils {
     }
 
     /**
-     * 通过 Map 获取 Value 集合
+     * 通过 Map 获取 value 集合
      * @param map {@link Map}
      * @param <K> key
      * @param <V> value
@@ -289,7 +289,7 @@ public final class MapUtils {
     }
 
     /**
-     * 通过 Map 获取 Value 数组
+     * 通过 Map 获取 value 数组
      * @param map {@link Map}
      * @param <K> key
      * @param <V> value

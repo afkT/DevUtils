@@ -182,7 +182,7 @@ public final class BitmapUtils {
      */
     public static Bitmap getSDCardBitmapStream(final String filePath) {
         try {
-            FileInputStream fis = new FileInputStream(new File(filePath));//文件输入流
+            FileInputStream fis = new FileInputStream(new File(filePath)); // 文件输入流
             Bitmap bmp = BitmapFactory.decodeStream(fis);
             return bmp;
         } catch (Exception e) {
@@ -251,9 +251,9 @@ public final class BitmapUtils {
     public static byte[] bitmapToByte(final Bitmap bitmap, final int quality, final Bitmap.CompressFormat format) {
         if (bitmap == null || format == null) return null;
         try {
-            ByteArrayOutputStream o = new ByteArrayOutputStream();
-            bitmap.compress(format, quality, o);
-            return o.toByteArray();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(format, quality, baos);
+            return baos.toByteArray();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bitmapToByte");
         }

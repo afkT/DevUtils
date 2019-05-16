@@ -506,7 +506,8 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 输入法弹出、隐藏改变事件
+     * detail: 输入法弹出、隐藏改变事件
+     * @author Ttt
      */
     public interface OnSoftInputChangedListener {
 

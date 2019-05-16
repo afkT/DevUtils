@@ -16,7 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- * detail: Android 日志打印工具类(简化版) - 项目内部使用 - 主要打印 Android 日志
+ * detail: Android 日志打印工具类(简化版) - 项目内部使用(主要打印 Android 日志)
  * @author Ttt
  */
 public final class LogPrintUtils {
@@ -26,7 +26,7 @@ public final class LogPrintUtils {
 
     // JSON 格式内容缩进
     private static final int JSON_INDENT = 4;
-    // 是否打印日志 上线(生产) = false, 开发(debug) = true
+    // 是否打印日志 线上(release) = false, 开发(debug) = true
     private static boolean JUDGE_PRINT_LOG = false;
     // 默认 DEFAULT_TAG
     private static final String DEFAULT_TAG = LogPrintUtils.class.getSimpleName();

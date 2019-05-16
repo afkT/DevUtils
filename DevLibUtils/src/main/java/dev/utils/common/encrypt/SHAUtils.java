@@ -98,11 +98,11 @@ public final class SHAUtils {
         try {
             byte[] bytes = data.getBytes();
             // 获取 SHA-1 摘要算法的 MessageDigest 对象
-            MessageDigest mdInst = MessageDigest.getInstance(algorithm);
+            MessageDigest digest = MessageDigest.getInstance(algorithm);
             // 使用指定的字节更新摘要
-            mdInst.update(bytes);
+            digest.update(bytes);
             // 获取密文
-            return toHexString(mdInst.digest(), HEX_DIGITS);
+            return toHexString(digest.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "shaHex");
         }
@@ -120,13 +120,13 @@ public final class SHAUtils {
         try {
             InputStream is = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
-            MessageDigest md5 = MessageDigest.getInstance(algorithm);
+            MessageDigest digest = MessageDigest.getInstance(algorithm);
             int numRead = 0;
             while ((numRead = is.read(buffer)) > 0) {
-                md5.update(buffer, 0, numRead);
+                digest.update(buffer, 0, numRead);
             }
             is.close();
-            return toHexString(md5.digest(), HEX_DIGITS);
+            return toHexString(digest.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileSHA");
         }

@@ -2,7 +2,7 @@
 
 #### 使用演示类 [FileRecordUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/record/FileRecordUse.java) 介绍了配置参数及使用
 
-> 三个工具类, 实际上是两个工具类的差异 ( DevLoggerUtils/FileRecordUtils 、 AnalysisRecordUtils)
+> 三个工具类, 实际上是两个工具类的差异 ( DevLoggerUtils/FileRecordUtils、AnalysisRecordUtils)
 
 > DevLoggerUtils => 内部的 Utils, 实际和 FileRecordUtils 代码相同, 使用方式一致
 

@@ -259,7 +259,8 @@ public final class SizeUtils {
     }
 
     /**
-     * 获取到 View 尺寸的监听
+     * detail: 获取到 View 尺寸的监听
+     * @author Ttt
      */
     public interface onGetSizeListener {
 

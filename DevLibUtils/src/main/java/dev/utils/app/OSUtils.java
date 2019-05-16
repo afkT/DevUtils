@@ -121,11 +121,11 @@ public final class OSUtils {
      */
     private static ROM initRomType() {
         ROM rom = ROM.Other;
-        FileInputStream is = null;
+        FileInputStream fis = null;
         try {
             Properties buildProperties = new Properties();
-            is = new FileInputStream(new File(Environment.getRootDirectory(), "build.prop"));
-            buildProperties.load(is);
+            fis = new FileInputStream(new File(Environment.getRootDirectory(), "build.prop"));
+            buildProperties.load(fis);
 
             if (buildProperties.containsKey(KEY_MIUI_VERSION_NANE) || buildProperties.containsKey(KEY_MIUI_VERSION_CODE)) {
                 // MIUI
@@ -307,9 +307,9 @@ public final class OSUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "initRomType");
         } finally {
-            if (is != null) {
+            if (fis != null) {
                 try {
-                    is.close();
+                    fis.close();
                 } catch (Exception e) {
                 }
             }

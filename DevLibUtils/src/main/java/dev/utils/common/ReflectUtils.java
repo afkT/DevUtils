@@ -396,7 +396,7 @@ public final class ReflectUtils {
                     return field;
                 }
             } catch (Exception e) {
-                // 这里甚么都不要做！并且这里的异常必须这样写, 不能抛出去
+                // 这里甚么都不要做, 并且这里的异常必须这样写, 不能抛出去
                 // 如果这里的异常打印或者往外抛, 则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
             }
         }

@@ -1345,7 +1345,7 @@ public final class ImageUtils {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         src.compress(CompressFormat.JPEG, 100, baos);
         byte[] bytes;
-        if (baos.size() <= maxByteSize) {// 最好质量的不大于最大字节，则返回最佳质量
+        if (baos.size() <= maxByteSize) { // 最好质量的不大于最大字节，则返回最佳质量
             bytes = baos.toByteArray();
         } else {
             baos.reset();

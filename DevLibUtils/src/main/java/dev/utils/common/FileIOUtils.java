@@ -414,17 +414,17 @@ public final class FileIOUtils {
     public static List<String> readFileToList(final File file, final int start, final int end, final String charsetName) {
         if (!isFileExists(file)) return null;
         if (start > end) return null;
-        BufferedReader reader = null;
+        BufferedReader br = null;
         try {
             String line;
             int curLine = 1;
             List<String> list = new ArrayList<>();
             if (isSpace(charsetName)) {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
             }
-            while ((line = reader.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
                 if (curLine > end) break;
                 if (start <= curLine && curLine <= end) list.add(line);
                 ++curLine;
@@ -434,7 +434,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToList");
             return null;
         } finally {
-            CloseUtils.closeIO(reader);
+            CloseUtils.closeIO(br);
         }
     }
 
@@ -476,18 +476,18 @@ public final class FileIOUtils {
      */
     public static String readFileToString(final File file, final String charsetName) {
         if (!isFileExists(file)) return null;
-        BufferedReader reader = null;
+        BufferedReader br = null;
         try {
             StringBuilder builder = new StringBuilder();
             if (isSpace(charsetName)) {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
             }
             String line;
-            if ((line = reader.readLine()) != null) {
+            if ((line = br.readLine()) != null) {
                 builder.append(line);
-                while ((line = reader.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     builder.append(NEW_LINE_STR).append(line);
                 }
             }
@@ -496,7 +496,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToString");
             return null;
         } finally {
-            CloseUtils.closeIO(reader);
+            CloseUtils.closeIO(br);
         }
     }
 
@@ -517,21 +517,21 @@ public final class FileIOUtils {
     public static byte[] readFileToBytesByStream(final File file) {
         if (!isFileExists(file)) return null;
         FileInputStream fis = null;
-        ByteArrayOutputStream os = null;
+        ByteArrayOutputStream baos = null;
         try {
             fis = new FileInputStream(file);
-            os = new ByteArrayOutputStream();
+            baos = new ByteArrayOutputStream();
             byte[] b = new byte[sBufferSize];
             int len;
             while ((len = fis.read(b, 0, sBufferSize)) != -1) {
-                os.write(b, 0, len);
+                baos.write(b, 0, len);
             }
-            return os.toByteArray();
+            return baos.toByteArray();
         } catch (IOException e) {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByStream");
             return null;
         } finally {
-            CloseUtils.closeIO(fis, os);
+            CloseUtils.closeIO(fis, baos);
         }
     }
 

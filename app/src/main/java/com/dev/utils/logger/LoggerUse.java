@@ -83,7 +83,7 @@ public final class LoggerUse {
      */
     private static void testTime() {
         // 拼接字符串
-        StringBuffer sBuffer = new StringBuffer();
+        StringBuffer buffer = new StringBuffer();
         // 日志 TAG
         final String tag = "CALC_TIME";
         // =
@@ -96,7 +96,7 @@ public final class LoggerUse {
             Log.d(tag, "A:" + (i + 1));
         }
         // 拼接时间信息
-        DevCommonUtils.timeRecord(sBuffer, "正常系统Log耗时记录", sTime, System.currentTimeMillis());
+        DevCommonUtils.timeRecord(buffer, "正常系统Log耗时记录", sTime, System.currentTimeMillis());
 
         // =
         // 设置开始时间
@@ -107,7 +107,7 @@ public final class LoggerUse {
             DevLogger.dTag(tag, "B:" + (i + 1));
         }
         // 拼接时间信息
-        DevCommonUtils.timeRecord(sBuffer, "Logger耗时记录", sTime, System.currentTimeMillis());
+        DevCommonUtils.timeRecord(buffer, "Logger耗时记录", sTime, System.currentTimeMillis());
 
         // =
         // 初始化日志配置
@@ -125,9 +125,9 @@ public final class LoggerUse {
             DevLogger.other(lConfig).dTag(tag, "C:" + (i + 1));
         }
         // 拼接时间信息
-        DevCommonUtils.timeRecord(sBuffer, "Logger耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
+        DevCommonUtils.timeRecord(buffer, "Logger耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
         // 打印时间
-        Log.d(LOG_TAG, sBuffer.toString());
+        Log.d(LOG_TAG, buffer.toString());
     }
 
     /**

@@ -1186,7 +1186,7 @@ public final class ADBUtils {
     /**
      * 收紧内存
      * @param pid   进程 ID
-     * @param level HIDDEN、RUNNING_MODERATE、BACKGROUND、 RUNNING_LOW、MODERATE、RUNNING_CRITICAL、COMPLETE
+     * @param level HIDDEN、RUNNING_MODERATE、BACKGROUND、RUNNING_LOW、MODERATE、RUNNING_CRITICAL、COMPLETE
      * @return
      */
     public static boolean sendTrimMemory(final int pid, final String level) {
@@ -1592,7 +1592,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 重启设备 (需要 root 权限) - 并进行特殊的引导模式 (recovery、 Fastboot)
+     * 重启设备 (需要 root 权限) - 并进行特殊的引导模式 (recovery、Fastboot)
      * @param reason 传递给内核来请求特殊的引导模式，如"recovery"
      *               重启到 Fastboot 模式 bootloader
      */

@@ -46,12 +46,12 @@ public final class MD5Utils {
         if (data == null) return null;
         try {
             // 获取 MD5 摘要算法的 MessageDigest 对象
-            MessageDigest mdInst = MessageDigest.getInstance("MD5");
+            MessageDigest digest = MessageDigest.getInstance("MD5");
             // 使用指定的字节更新摘要
-            mdInst.update(data);
+            digest.update(data);
             // 获取密文
-            byte[] md = mdInst.digest();
-            return toHexString(md, HEX_DIGITS);
+            byte[] bytes = digest.digest();
+            return toHexString(bytes, HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "md5");
         }
@@ -82,12 +82,12 @@ public final class MD5Utils {
         if (data == null) return null;
         try {
             // 获取 MD5 摘要算法的 MessageDigest 对象
-            MessageDigest mdInst = MessageDigest.getInstance("MD5");
+            MessageDigest digest = MessageDigest.getInstance("MD5");
             // 使用指定的字节更新摘要
-            mdInst.update(data);
+            digest.update(data);
             // 获取密文
-            byte[] md = mdInst.digest();
-            return toHexString(md, HEX_DIGITS_UPPER);
+            byte[] bytes = digest.digest();
+            return toHexString(bytes, HEX_DIGITS_UPPER);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "md5Upper");
         }
@@ -135,13 +135,13 @@ public final class MD5Utils {
         try {
             InputStream is = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
-            MessageDigest mdInst = MessageDigest.getInstance("MD5");
+            MessageDigest digest = MessageDigest.getInstance("MD5");
             int numRead;
             while ((numRead = is.read(buffer)) > 0) {
-                mdInst.update(buffer, 0, numRead);
+                digest.update(buffer, 0, numRead);
             }
             is.close();
-            return toHexString(mdInst.digest(), HEX_DIGITS);
+            return toHexString(digest.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5");
         }

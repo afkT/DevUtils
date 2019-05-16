@@ -826,7 +826,7 @@ public final class FileUtils {
     }
 
     /**
-     * 传入对应的文件大小 double, 返回转换后文件大小
+     * 传入对应的文件大小, 返回转换后文件大小
      * @param fileSize 文件大小
      * @return 文件大小转换字符串
      */
@@ -928,14 +928,14 @@ public final class FileUtils {
         DigestInputStream dis = null;
         try {
             FileInputStream fis = new FileInputStream(file);
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            dis = new DigestInputStream(fis, md);
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            dis = new DigestInputStream(fis, digest);
             byte[] buffer = new byte[1024 * 256];
             while (true) {
                 if (!(dis.read(buffer) > 0)) break;
             }
-            md = dis.getMessageDigest();
-            return md.digest();
+            digest = dis.getMessageDigest();
+            return digest.digest();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5");
         } finally {
@@ -965,13 +965,13 @@ public final class FileUtils {
         try {
             InputStream is = new FileInputStream(file);
             byte[] buffer = new byte[1024];
-            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            MessageDigest digest = MessageDigest.getInstance("MD5");
             int numRead = 0;
             while ((numRead = is.read(buffer)) > 0) {
-                md5.update(buffer, 0, numRead);
+                digest.update(buffer, 0, numRead);
             }
             is.close();
-            return toHexString(md5.digest(), HEX_DIGITS);
+            return toHexString(digest.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5ToString2");
         }
@@ -1255,11 +1255,11 @@ public final class FileUtils {
     public static byte[] readFileBytes(final File file) {
         if (file != null && file.exists()) {
             try {
-                FileInputStream fin = new FileInputStream(file);
-                int length = fin.available();
+                FileInputStream fis = new FileInputStream(file);
+                int length = fis.available();
                 byte[] buffer = new byte[length];
-                fin.read(buffer);
-                fin.close();
+                fis.read(buffer);
+                fis.close();
                 return buffer;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "readFileBytes");
@@ -1321,14 +1321,14 @@ public final class FileUtils {
     public static String readFile(final InputStream inputStream) {
         if (inputStream != null) {
             try {
-                InputStreamReader isR = new InputStreamReader(inputStream);
-                BufferedReader br = new BufferedReader(isR);
+                InputStreamReader isr = new InputStreamReader(inputStream);
+                BufferedReader br = new BufferedReader(isr);
                 StringBuilder builder = new StringBuilder();
                 String line;
                 while ((line = br.readLine()) != null) {
                     builder.append(line);
                 }
-                isR.close();
+                isr.close();
                 br.close();
                 return builder.toString();
             } catch (Exception e) {
@@ -1405,12 +1405,12 @@ public final class FileUtils {
         }
         // 复制文件
         int byteread = 0; // 读取的字节数
-        InputStream in = inputStream;
+        InputStream is = inputStream;
         OutputStream out = null;
         try {
             out = new FileOutputStream(destFile);
             byte[] buffer = new byte[1024];
-            while ((byteread = in.read(buffer)) != -1) {
+            while ((byteread = is.read(buffer)) != -1) {
                 out.write(buffer, 0, byteread);
             }
             return true;
@@ -1421,8 +1421,8 @@ public final class FileUtils {
             try {
                 if (out != null)
                     out.close();
-                if (in != null)
-                    in.close();
+                if (is != null)
+                    is.close();
             } catch (IOException e) {
             }
         }
@@ -1470,13 +1470,13 @@ public final class FileUtils {
         }
         // 复制文件
         int byteread = 0; // 读取的字节数
-        InputStream in = null;
+        InputStream is = null;
         OutputStream out = null;
         try {
-            in = new FileInputStream(srcFile);
+            is = new FileInputStream(srcFile);
             out = new FileOutputStream(destFile);
             byte[] buffer = new byte[1024];
-            while ((byteread = in.read(buffer)) != -1) {
+            while ((byteread = is.read(buffer)) != -1) {
                 out.write(buffer, 0, byteread);
             }
             return true;
@@ -1487,8 +1487,8 @@ public final class FileUtils {
             try {
                 if (out != null)
                     out.close();
-                if (in != null)
-                    in.close();
+                if (is != null)
+                    is.close();
             } catch (IOException e) {
             }
         }

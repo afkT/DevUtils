@@ -90,8 +90,8 @@ public final class HttpURLConnectionUtils {
     public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final CallBack callBack) {
         // 获取连接对象
         HttpURLConnection connection = null;
-        InputStream inputStream = null;
-        ByteArrayOutputStream bout = null;
+        InputStream is = null;
+        ByteArrayOutputStream baos = null;
         try {
             // 请求路径
             URL url = new URL(urlStr);
@@ -129,16 +129,16 @@ public final class HttpURLConnectionUtils {
             // 判断请求码是否是 200
             if (responseCode >= 200 && responseCode < 300) {
                 // 输入流
-                inputStream = connection.getInputStream();
-                bout = new ByteArrayOutputStream();
+                is = connection.getInputStream();
+                baos = new ByteArrayOutputStream();
                 // 设置缓存流大小
                 byte[] buffer = new byte[1024];
                 int len = 0;
-                while (((len = inputStream.read(buffer)) != -1)) {
-                    bout.write(buffer, 0, len);
+                while (((len = is.read(buffer)) != -1)) {
+                    baos.write(buffer, 0, len);
                 }
                 // 获取请求结果
-                String result = new String(bout.toByteArray());
+                String result = new String(baos.toByteArray());
                 // 判断是否回调
                 if (callBack != null) {
                     // 请求成功, 触发回调
@@ -156,15 +156,15 @@ public final class HttpURLConnectionUtils {
                 callBack.onFail(e);
             }
         } finally {
-            if (bout != null) {
+            if (baos != null) {
                 try {
-                    bout.close();
+                    baos.close();
                 } catch (Exception ignore) {
                 }
             }
-            if (inputStream != null) {
+            if (is != null) {
                 try {
-                    inputStream.close();
+                    is.close();
                 } catch (Exception ignore) {
                 }
             }

@@ -159,9 +159,9 @@ public final class SignaturesUtils {
                 String pubKey = cert.getPublicKey().toString(); // 公钥
                 String signNumber = cert.getSerialNumber().toString();
 
-                LogPrintUtils.dTag(TAG, "signName:" + cert.getSigAlgName());//算法名
+                LogPrintUtils.dTag(TAG, "signName:" + cert.getSigAlgName()); // 算法名
                 LogPrintUtils.dTag(TAG, "pubKey:" + pubKey);
-                LogPrintUtils.dTag(TAG, "signNumber:" + signNumber);//证书序列编号
+                LogPrintUtils.dTag(TAG, "signNumber:" + signNumber); // 证书序列编号
                 LogPrintUtils.dTag(TAG, "subjectDN:" + cert.getSubjectDN().toString());
                 LogPrintUtils.dTag(TAG, cert.getNotAfter() + "--" + cert.getNotBefore());
             }

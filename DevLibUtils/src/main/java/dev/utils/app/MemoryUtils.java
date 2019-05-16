@@ -68,14 +68,14 @@ public final class MemoryUtils {
     public static String printMemoryInfo() {
         try {
             FileReader fileReader = new FileReader(MEM_INFO_PATH);
-            BufferedReader bufferedReader = new BufferedReader(fileReader, 4 * 1024);
+            BufferedReader br = new BufferedReader(fileReader, 4 * 1024);
             StringBuffer buffer = new StringBuffer();
             String str;
-            while ((str = bufferedReader.readLine()) != null) {
+            while ((str = br.readLine()) != null) {
                 // 追加保存内容
                 buffer.append(str);
             }
-            bufferedReader.close();
+            br.close();
             return buffer.toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printMemoryInfo");
@@ -175,14 +175,14 @@ public final class MemoryUtils {
     public static String getMemInfoIype(final String type) {
         try {
             FileReader fileReader = new FileReader(MEM_INFO_PATH);
-            BufferedReader bufferedReader = new BufferedReader(fileReader, 4 * 1024);
+            BufferedReader br = new BufferedReader(fileReader, 4 * 1024);
             String str = null;
-            while ((str = bufferedReader.readLine()) != null) {
+            while ((str = br.readLine()) != null) {
                 if (str.contains(type)) {
                     break;
                 }
             }
-            bufferedReader.close();
+            br.close();
             /* \\s表示   空格,回车,换行等空白符,
             +号表示一个或多个的意思     */
             String[] array = str.split("\\s+");

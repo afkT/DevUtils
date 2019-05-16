@@ -273,12 +273,12 @@ public final class ScreenSensorAssist {
                     orientation += 360;
                 }
             }
-            if (orientation > 225 && orientation < 315) {// 检测到当前实际是横屏
+            if (orientation > 225 && orientation < 315) { // 检测到当前实际是横屏
                 if (!mPortrait) {
                     mSensorManager.registerListener(mListener, mSensor, SensorManager.SENSOR_DELAY_UI);
                     mSensorManagerChange.unregisterListener(mListenerChange);
                 }
-            } else if ((orientation > 315 && orientation < 360) || (orientation > 0 && orientation < 45)) {// 检测到当前实际是竖屏
+            } else if ((orientation > 315 && orientation < 360) || (orientation > 0 && orientation < 45)) { // 检测到当前实际是竖屏
                 if (mPortrait) {
                     mSensorManager.registerListener(mListener, mSensor, SensorManager.SENSOR_DELAY_UI);
                     mSensorManagerChange.unregisterListener(mListenerChange);

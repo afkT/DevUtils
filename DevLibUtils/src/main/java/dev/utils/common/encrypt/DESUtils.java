@@ -33,9 +33,9 @@ public final class DESUtils {
     public static Key getDESKey(final byte[] key) {
         if (key == null) return null;
         try {
-            DESKeySpec des = new DESKeySpec(key);
+            DESKeySpec desKey = new DESKeySpec(key);
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
-            return keyFactory.generateSecret(des);
+            return keyFactory.generateSecret(desKey);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getDESKey");
         }

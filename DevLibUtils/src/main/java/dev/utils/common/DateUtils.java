@@ -44,7 +44,7 @@ public final class DateUtils {
     public static final int MINUTE_S = 60;
     // 一小时 60 * 60 秒
     public static final int HOUR_S = 3600;
-    // 一天 24 * 60 * 60
+    // 一天 24 * 60 * 60 秒
     public static final int DAY_S = 86400;
 
     // 秒与毫秒的倍数
@@ -802,7 +802,7 @@ public final class DateUtils {
                     dHour = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒速
+                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
                     return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
                 } else { // 多余的时间, 直接格式化
                     // 大于一天的情况
@@ -811,7 +811,7 @@ public final class DateUtils {
                         dHour = (time - rMinute) / HOUR_S; // 获取小时
                         dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                         dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                        rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒速
+                        rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
                         return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
                     }
                 }
@@ -850,7 +850,7 @@ public final class DateUtils {
                     dHour = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒速
+                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
                     return new int[]{dHour, dMinute, rSecond};
                 } else { // 多余的时间, 直接格式化
                     // 大于一天的情况
@@ -858,7 +858,7 @@ public final class DateUtils {
                     dHour = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒速
+                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
                     return new int[]{dHour, dMinute, rSecond};
                 }
             }

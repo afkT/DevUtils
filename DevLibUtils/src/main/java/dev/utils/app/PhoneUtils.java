@@ -590,10 +590,10 @@ public final class PhoneUtils {
                 while (cursor.moveToNext()) {
                     // 6.获取查询的数据
                     String contact_id = cursor.getString(0);
-                    // cursor.getString(cursor.getColumnIndex("contact_id"));//getColumnIndex
+                    // cursor.getString(cursor.getColumnIndex("contact_id")); // getColumnIndex
                     // : 查询字段在 cursor 中索引值,一般都是用在查询字段比较多的时候
                     // 判断 contact_id 是否为空
-                    if (!TextUtils.isEmpty(contact_id)) {//null   ""
+                    if (!TextUtils.isEmpty(contact_id)) { // null   ""
                         // 7.根据 contact_id 查询 view_data 表中的数据
                         // selection : 查询条件
                         // selectionArgs :查询条件的参数
@@ -689,7 +689,7 @@ public final class PhoneUtils {
 //                    num = cursor.getString(cursor.getColumnIndex("data1"));
 //                }
 //                cursor.close();
-//                num = num.replaceAll("-", "");//替换的操作,555-6 -> 5556
+//                num = num.replaceAll("-", ""); // 替换的操作,555-6 -> 5556
 //            }
 //        }
     }
@@ -718,7 +718,7 @@ public final class PhoneUtils {
                 null,
                 null);
         // 设置最大进度
-        int count = cursor.getCount();//获取短信的个数
+        int count = cursor.getCount(); // 获取短信的个数
         // 2.备份短信
         // 2.1获取xml序列器
         XmlSerializer xmlSerializer = Xml.newSerializer();
