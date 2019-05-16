@@ -342,7 +342,7 @@ public final class EncryptUtils {
     }
 
     /**
-     * hash 加密模版方法
+     * Hash 加密模版方法
      * @param data      待加密数据
      * @param algorithm 算法
      * @return 指定加密算法加密后的数据

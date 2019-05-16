@@ -52,7 +52,7 @@ public final class DevUtils {
      * @param context {@link Context}
      */
     public static void init(final Context context) {
-        // 设置全局 Context
+        // 初始化全局 Context
         initContext(context);
         // 初始化全局 Application
         initApplication(context);
@@ -63,15 +63,15 @@ public final class DevUtils {
         // = 初始化工具类相关 =
         // ====================
 
-        // 初始化缓存类
+        // 初始化 Cache
         DevCache.get(context);
-        // 初始化Shared 工具类
+        // 初始化 SharedPreferences
         SharedUtils.init(context);
-        // 初始化记录文件配置
+        // 初始化 File Record
         FileRecordUtils.init();
-        // 初始化记录工具类
+        // 初始化 Record
         AnalysisRecordUtils.init(context);
-        // 初始化 DevLogger 配置
+        // 初始化 DevLogger
         DevLoggerUtils.init(context);
         // 初始化 Toast
         DevToast.init(sApplication);
@@ -112,7 +112,7 @@ public final class DevUtils {
     }
 
     /**
-     * 获取 Context (判断null, 视情况返回全局 Context)
+     * 获取 Context (判断 null, 视情况返回全局 Context)
      * @param context {@link Context}
      * @return {@link Context}
      */

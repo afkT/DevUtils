@@ -46,7 +46,7 @@ public final class FileDepthFirstSearchUtils {
         // 文件
         public File file;
 
-        // 子文件夹内文件
+        // 子文件夹目录
         public List<FileItem> listChilds = null;
     }
 

@@ -569,7 +569,7 @@ public final class DateUtils {
      */
     public static int getYearMonthNumber(final int year) {
         // 如: 当前 2019-01, 传入 2019 则返回 1
-        // 传入 2018, 返回 12, 不会返回未来的月份
+        // 传入 2018 返回 12, 不会返回未来的月份
         if (year == getYear()) {
             return getMonth();
         }

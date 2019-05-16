@@ -1,7 +1,7 @@
 package dev.utils.common.cipher;
 
 /**
- * detail: Baes64 编解码(并进行)加解密
+ * detail: Base64 编解码(并进行)加解密
  * @author Ttt
  */
 public class Base64Cipher implements Cipher {
