@@ -68,7 +68,7 @@ public class WifiHotUtils {
     // =============
 
     /**
-     * 创建Wifi配置信息(无其他操作, 单独返回WifiConfig) => Wifi热点 (就支持 无密码/WPA2 PSK)
+     * 创建Wifi配置信息(无其他操作, 单独返回WifiConfig) => Wifi热点 (支持 无密码/WPA2 PSK)
      * @param ssid
      * @param pwd  密码需要大于等于8位
      * @return

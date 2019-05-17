@@ -91,7 +91,7 @@ public final class ProcessUtils {
 
     /**
      * 获取进程号对应的进程名
-     * @param pid 进程号 => android.os.Process.myPid()
+     * @param pid 进程id android.os.Process.myPid()
      * @return 进程名
      */
     public static String getProcessName(final int pid) {

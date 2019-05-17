@@ -77,7 +77,7 @@ public final class HttpParamsUtils {
     // =
 
     /**
-     * 拼接请求参数 - value => String
+     * 拼接请求参数 - value(String)
      * @param mapParams Map 请求参数
      * @return 拼接后的参数
      */
@@ -86,7 +86,7 @@ public final class HttpParamsUtils {
     }
 
     /**
-     * 拼接请求参数 - value => String
+     * 拼接请求参数 - value(String)
      * @param mapParams Map 请求参数
      * @param urlEncode 是否需要 URL 编码
      * @return 拼接后的参数
@@ -114,7 +114,7 @@ public final class HttpParamsUtils {
     // =
 
     /**
-     * 拼接请求参数 - value => Object
+     * 拼接请求参数 - value(Object)
      * @param mapParams Map 请求参数
      * @return 拼接后的参数
      */
@@ -123,7 +123,7 @@ public final class HttpParamsUtils {
     }
 
     /**
-     * 拼接请求参数 - value => Object
+     * 拼接请求参数 - value(Object)
      * @param mapParams Map 请求参数
      * @param urlEncode 是否需要 URL 编码
      * @return 拼接后的参数
