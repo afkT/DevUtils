@@ -116,8 +116,8 @@ public final class SignaturesUtils {
         try {
             for (int i = 0, len = signatures.length; i < len; i++) {
                 CertificateFactory cf = CertificateFactory.getInstance("X.509");
-                ByteArrayInputStream stream = new ByteArrayInputStream(signatures[i].toByteArray());
-                X509Certificate cert = (X509Certificate) cf.generateCertificate(stream);
+                ByteArrayInputStream bais = new ByteArrayInputStream(signatures[i].toByteArray());
+                X509Certificate cert = (X509Certificate) cf.generateCertificate(bais);
                 debuggable = cert.getSubjectX500Principal().equals(DEBUG_DN);
                 if (debuggable) {
                     break;
@@ -135,8 +135,8 @@ public final class SignaturesUtils {
     public static X509Certificate getX509Certificate(final Signature[] signatures) {
         try {
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            ByteArrayInputStream stream = new ByteArrayInputStream(signatures[0].toByteArray());
-            X509Certificate cert = (X509Certificate) cf.generateCertificate(stream);
+            ByteArrayInputStream bais = new ByteArrayInputStream(signatures[0].toByteArray());
+            X509Certificate cert = (X509Certificate) cf.generateCertificate(bais);
             return cert;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getX509Certificate");
@@ -153,8 +153,8 @@ public final class SignaturesUtils {
         try {
             for (int i = 0, len = signatures.length; i < len; i++) {
                 CertificateFactory cf = CertificateFactory.getInstance("X.509");
-                ByteArrayInputStream stream = new ByteArrayInputStream(signatures[i].toByteArray());
-                X509Certificate cert = (X509Certificate) cf.generateCertificate(stream);
+                ByteArrayInputStream bais = new ByteArrayInputStream(signatures[i].toByteArray());
+                X509Certificate cert = (X509Certificate) cf.generateCertificate(bais);
 
                 String pubKey = cert.getPublicKey().toString(); // 公钥
                 String signNumber = cert.getSerialNumber().toString();

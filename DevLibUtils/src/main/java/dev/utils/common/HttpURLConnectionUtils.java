@@ -116,10 +116,10 @@ public final class HttpURLConnectionUtils {
                 // post 请求不能使用缓存
                 connection.setUseCaches(false);
                 // 写入数据
-                OutputStream ot = connection.getOutputStream();
-                ot.write(params.getBytes());
-                ot.flush();
-                ot.close();
+                OutputStream os = connection.getOutputStream();
+                os.write(params.getBytes());
+                os.flush();
+                os.close();
             }
             // 单位是毫秒
             connection.setConnectTimeout(TIMEOUT_IN_MILLIONS); // 设置连接超时

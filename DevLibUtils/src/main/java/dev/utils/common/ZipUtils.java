@@ -295,17 +295,17 @@ public final class ZipUtils {
         } else {
             if (!createOrExistsFile(file)) return false;
             InputStream is = null;
-            OutputStream out = null;
+            OutputStream os = null;
             try {
                 is = new BufferedInputStream(zf.getInputStream(entry));
-                out = new BufferedOutputStream(new FileOutputStream(file));
+                os = new BufferedOutputStream(new FileOutputStream(file));
                 byte[] buffer = new byte[BUFFER_LEN];
                 int len;
                 while ((len = is.read(buffer)) != -1) {
-                    out.write(buffer, 0, len);
+                    os.write(buffer, 0, len);
                 }
             } finally {
-                CloseUtils.closeIO(is, out);
+                CloseUtils.closeIO(is, os);
             }
         }
         return true;

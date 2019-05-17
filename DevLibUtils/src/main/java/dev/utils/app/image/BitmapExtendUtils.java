@@ -343,8 +343,8 @@ public final class BitmapExtendUtils {
             bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos); // 这里压缩options%, 把压缩后的数据存放到baos中
             options -= 10; // 每次都减少10
         }
-        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray()); // 把压缩后的数据baos存放到ByteArrayInputStream中
-        return BitmapFactory.decodeStream(isBm, null, null); // 把ByteArrayInputStream数据生成图片
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); // 把压缩后的数据baos存放到ByteArrayInputStream中
+        return BitmapFactory.decodeStream(bais, null, null); // 把ByteArrayInputStream数据生成图片
     }
 
     /**

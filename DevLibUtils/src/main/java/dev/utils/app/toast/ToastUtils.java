@@ -690,7 +690,7 @@ public final class ToastUtils {
         }
         // 防止 Context 为 null
         if (context != null) {
-            // 表示需要格式化字符串,只是为了减少 format步骤,增加判断, 为 null不影响
+            // 表示需要格式化字符串,只是为了减少 format 步骤,增加判断, 为 null 不影响
             if (objs != null && objs.length != 0) {
                 if (text != null) { // String.format() 中的 objs 可以为 null,但是 text不能为 null
                     try {

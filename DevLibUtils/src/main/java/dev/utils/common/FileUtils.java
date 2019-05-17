@@ -1406,12 +1406,12 @@ public final class FileUtils {
         // 复制文件
         int byteread = 0; // 读取的字节数
         InputStream is = inputStream;
-        OutputStream out = null;
+        OutputStream os = null;
         try {
-            out = new FileOutputStream(destFile);
+            os = new FileOutputStream(destFile);
             byte[] buffer = new byte[1024];
             while ((byteread = is.read(buffer)) != -1) {
-                out.write(buffer, 0, byteread);
+                os.write(buffer, 0, byteread);
             }
             return true;
         } catch (Exception e) {
@@ -1419,8 +1419,8 @@ public final class FileUtils {
             return false;
         } finally {
             try {
-                if (out != null)
-                    out.close();
+                if (os != null)
+                    os.close();
                 if (is != null)
                     is.close();
             } catch (IOException e) {
@@ -1471,13 +1471,13 @@ public final class FileUtils {
         // 复制文件
         int byteread = 0; // 读取的字节数
         InputStream is = null;
-        OutputStream out = null;
+        OutputStream os = null;
         try {
             is = new FileInputStream(srcFile);
-            out = new FileOutputStream(destFile);
+            os = new FileOutputStream(destFile);
             byte[] buffer = new byte[1024];
             while ((byteread = is.read(buffer)) != -1) {
-                out.write(buffer, 0, byteread);
+                os.write(buffer, 0, byteread);
             }
             return true;
         } catch (Exception e) {
@@ -1485,8 +1485,8 @@ public final class FileUtils {
             return false;
         } finally {
             try {
-                if (out != null)
-                    out.close();
+                if (os != null)
+                    os.close();
                 if (is != null)
                     is.close();
             } catch (IOException e) {
