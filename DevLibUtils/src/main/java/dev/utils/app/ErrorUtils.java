@@ -73,7 +73,7 @@ public final class ErrorUtils {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
-                // 初始化Writer,PrintWriter打印流
+                // 初始化Writer, PrintWriter打印流
                 Writer writer = new StringWriter();
                 printWriter = new PrintWriter(writer);
                 // 写入错误栈信息
@@ -111,15 +111,15 @@ public final class ErrorUtils {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
-                // 初始化Writer,PrintWriter打印流
+                // 初始化 Writer、PrintWriter 打印流
                 Writer writer = new StringWriter();
                 printWriter = new PrintWriter(writer);
                 // 获取错误栈信息
                 StackTraceElement[] stElement = ex.getStackTrace();
-                // 标题,提示属于什么异常
+                // 标题, 提示属于什么异常
                 printWriter.append(ex.toString());
                 printWriter.append(NEW_LINE_STR);
-                // 遍历错误栈信息,并且进行换行,缩进
+                // 遍历错误栈信息, 并且进行换行缩进
                 for (StackTraceElement st : stElement) {
                     printWriter.append("\tat ");
                     printWriter.append(st.toString());

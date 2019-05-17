@@ -247,7 +247,7 @@ public final class NotificationUtils {
      * detail: 设置通知栏 Led 灯参数实体类
      * @author Ttt
      * <pre>
-     *      手机处于锁屏状态时, LED灯就会不停地闪烁, 提醒用户去查看手机,下面是绿色的灯光一 闪一闪的效果
+     *      手机处于锁屏状态时, LED灯就会不停地闪烁, 提醒用户去查看手机, 下面是绿色的灯光一闪一闪的效果
      * </pre>
      */
     public static class LightPattern {

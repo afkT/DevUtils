@@ -104,7 +104,7 @@ public final class OSUtils {
     // 联想
     private static final String KEY_LENOVO_DEVICE = "ro.lenovo.device"; // "phone"
     private static final String KEY_LENOVO_PLATFORM = "ro.lenovo.platform"; // "qualcomm"
-    private static final String KEY_LENOVO_ADB = "ro.lenovo.adb"; // "apkctl,speedup"
+    private static final String KEY_LENOVO_ADB = "ro.lenovo.adb"; // "apkctl, speedup"
     private static final String VALUE_LENOVO_CLIENT_ID_BASE = "android-lenovo";
 
     /**

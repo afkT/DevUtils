@@ -620,14 +620,14 @@ public final class AccessibilityUtils {
 //    // 向上滑动
 //    performGlobalAction(service, AccessibilityService.GESTURE_SWIPE_UP);
 
-//    disableSelf()	禁用当前服务,也就是在服务可以通过该方法停止运行
+//    disableSelf()	禁用当前服务, 也就是在服务可以通过该方法停止运行
 //    getSystemService(String name)	获取系统服务
-//    onServiceConnected()	系统成功绑定该服务时被触发,也就是当你在设置中开启相应的服务,系统成功的绑定了该服务时会触发,通常我们可以在这里做一些初始化操作
+//    onServiceConnected()	系统成功绑定该服务时被触发, 也就是当你在设置中开启相应的服务, 系统成功的绑定了该服务时会触发, 通常我们可以在这里做一些初始化操作
 //    getSeviceInfo()	获取当前服务的配置信息
 //    setServiceInfo(AccessibilityServiceInfo info)	设置当前服务的配置信息
 //    onAccessibilityEvent(AccessibilityEvent event)	有关AccessibilityEvent事件的回调函数.系统通过sendAccessibiliyEvent()不断的发送AccessibilityEvent到此处
-//    performGlobalAction(int action)	执行全局操作,比如返回,回到主页,打开最近等操作
+//    performGlobalAction(int action)	执行全局操作, 比如回到主页、打开最近等操作
 //    findFoucs(int falg)	查找拥有特定焦点类型的控件
-//    getRootInActiveWindow()	如果配置能够获取窗口内容,则会返回当前活动窗口的根结点
-//    onKeyEvent(KeyEvent event)	如果允许服务监听按键操作,该方法是按键事件的回调,需要注意,这个过程发生了系统处理按键事件之前
+//    getRootInActiveWindow()	如果配置能够获取窗口内容, 则会返回当前活动窗口的根结点
+//    onKeyEvent(KeyEvent event)	如果允许服务监听按键操作, 该方法是按键事件的回调, 需要注意, 这个过程发生了系统处理按键事件之前
 }

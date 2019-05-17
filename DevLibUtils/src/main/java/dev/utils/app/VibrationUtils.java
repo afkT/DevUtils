@@ -37,7 +37,7 @@ public final class VibrationUtils {
     /**
      * 指定手机以pattern模式震动
      * <uses-permission android:name="android.permission.VIBRATE" />
-     * @param pattern new long[]{400,800,1200,1600}, 就是指定在 400ms、800ms、1200ms、1600ms 这些时间点交替启动、关闭手机震动器
+     * @param pattern new long[]{400, 800, 1200, 1600}, 就是指定在 400ms、800ms、1200ms、1600ms 这些时间点交替启动、关闭手机震动器
      * @param repeat  指定pattern数组的索引, 指定pattern数组中从repeat索引开始的震动进行循环, -1表示只震动一次, 非-1表示从 pattern的指定下标开始重复震动
      */
     @RequiresPermission(android.Manifest.permission.VIBRATE)

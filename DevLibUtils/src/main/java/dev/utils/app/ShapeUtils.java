@@ -167,7 +167,7 @@ public final class ShapeUtils {
 //            android:topRightRadius="8dp" />
 
             if (gradientDrawable != null) {
-                // radii 数组分别指定四个圆角的半径, 每个角可以指定[X_Radius,Y_Radius], 四个圆角的顺序为左上, 右上, 右下, 左下, 如果X_Radius,Y_Radius为0表示还是直角
+                // radii 数组分别指定四个圆角的半径, 每个角可以指定 [X_Radius, Y_Radius], 四个圆角的顺序为左上, 右上, 右下, 左下, 如果 X_Radius, Y_Radius 为 0 表示还是直角
                 gradientDrawable.setCornerRadii(new float[]{leftTop, leftTop, rightTop, rightTop, rightBottom, rightBottom, leftBottom, leftBottom});
             }
             return this;

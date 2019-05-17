@@ -186,7 +186,7 @@ public final class IntentUtils {
     /**
      * 获取 到应用商店app详情界面的意图
      * @param packageName 目标 App 的包名
-     * @param marketPkg   应用商店包名 ,如果为""则由系统弹出应用商店列表供用户选择,否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
+     * @param marketPkg   应用商店包名, 如果为 "" 则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
      */
     public static Intent getLaunchAppDetailIntent(final String packageName, final String marketPkg) {
         return getLaunchAppDetailIntent(packageName, marketPkg, false);
@@ -195,7 +195,7 @@ public final class IntentUtils {
     /**
      * 获取 到应用商店app详情界面的意图
      * @param packageName 目标App的包名
-     * @param marketPkg   应用商店包名 ,如果为""则由系统弹出应用商店列表供用户选择,否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
+     * @param marketPkg   应用商店包名, 如果为 "" 则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
      * @param isNewTask   是否开启新的任务栈
      */
     public static Intent getLaunchAppDetailIntent(final String packageName, final String marketPkg, final boolean isNewTask) {

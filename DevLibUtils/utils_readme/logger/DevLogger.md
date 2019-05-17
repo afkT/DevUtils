@@ -50,7 +50,7 @@
 | :- | :- |
 | other | 使用单次其他日志配置 |
 | getLogConfig | 获取日志配置信息 |
-| init | 初始化日志配置信息(可以不调用,使用了 App 默认配置) |
+| init | 初始化日志配置信息(使用默认配置) |
 | d | 打印 Log.DEBUG |
 | e | 打印 Log.ERROR |
 | w | 打印 Log.WARN |

@@ -24,13 +24,13 @@ public interface IPrinter {
     LogConfig getLogConfig();
 
     /**
-     * 初始化日志配置信息(可以不调用,使用了App默认配置)
+     * 初始化日志配置信息(使用默认配置)
      * @return 日志配置
      */
     LogConfig init();
 
     /**
-     * 手动改变日志配置信息(非单次,一直持续)
+     * 手动改变日志配置信息
      * @param lConfig 日志配置
      */
     void init(LogConfig lConfig);
