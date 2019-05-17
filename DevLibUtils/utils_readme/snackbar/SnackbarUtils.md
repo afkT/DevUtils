@@ -14,7 +14,7 @@
 
 * 支持通过 view/window/fragment/activity 构建 Snackbar 且可通过链式调用
 
-* 支持自动区分资源 stringId , 支持可变参数传参, 自动格式化显示文本内容
+* 支持自动区分资源 stringId, 支持可变参数传参, 自动格式化显示文本内容
 
 * 使用 WeakReference 防止内存溢出, 并且支持 Snackbar 释放处理
 

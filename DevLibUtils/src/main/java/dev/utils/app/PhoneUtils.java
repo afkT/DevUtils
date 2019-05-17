@@ -194,12 +194,12 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return IMEI 码
      * <pre>
-     *      IMEI是International Mobile Equipment Identity (国际移动设备标识)的简称
-     *      IMEI由15位数字组成的”电子串号”, 它与每台手机一一对应, 而且该码是全世界唯一的
+     *      IMEI 是International Mobile Equipment Identity (国际移动设备标识)的简称
+     *      IMEI 由 15 位数字组成的 ”电子串号”, 它与每台手机一一对应, 而且该码是全世界唯一的
      *      其组成为:
-     *      1. 前6位数(TAC)是”型号核准号码”, 一般代表机型
-     *      2. 接着的2位数(FAC)是”最后装配号”, 一般代表产地
-     *      3. 之后的6位数(SNR)是”串号”, 一般代表生产顺序号
+     *      1. 前6位数(TAC)是 ”型号核准号码”, 一般代表机型
+     *      2. 接着的2位数(FAC)是 ”最后装配号”, 一般代表产地
+     *      3. 之后的6位数(SNR)是 ”串号”, 一般代表生产顺序号
      *      4. 最后1位数(SP)通常是”0″, 为检验码, 目前暂备用
      * </pre>
      */

@@ -101,7 +101,7 @@ try {
 
 #### AnalysisRecordUtils 工具类 - 使用方法
 ```java
-// 默认存储到 android/data/包名/cache文件/ , 可以自己特殊设置
+// 默认存储到 android/data/包名/cache文件/, 可以自己特殊设置
 AnalysisRecordUtils.setLogStoragePath(SDCardUtils.getSDCardPath());
 
 // 设置存储文件夹名
@@ -145,7 +145,7 @@ AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSD
 // =
 
 // 保存错误信息
-NullPointerException nullPointerException = new NullPointerException("报错啦,  null 异常啊");
+NullPointerException nullPointerException = new NullPointerException("报错啦, null 异常啊");
 // 记录日志
 AnalysisRecordUtils.record(fileInfo, ErrorUtils.getThrowableMsg(nullPointerException));
 ```

@@ -412,7 +412,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串中符合 特定标记字符的 startsWith - endsWith
-     * 如 _____a_a_a_a________  传入 _ , c 等于 c____a_a_a_a____c
+     * 如 _____a_a_a_a________  传入 _, c 等于 c____a_a_a_a____c
      * @param str    待处理字符串
      * @param suffix 替换匹配内容
      * @param value  需要替换的内容
@@ -1728,7 +1728,7 @@ public final class DevCommonUtils {
      * 检查字符串
      * @param defaultStr 默认字符串
      * @param str        待校验字符串
-     * @return 如果待校验字符串为 null, 则返回 defaultStr , 如果不为 null, 则返回该字符串
+     * @return 如果待校验字符串为 null, 则返回 defaultStr, 如果不为 null, 则返回该字符串
      */
     public static String toCheckValue(final String defaultStr, final String str) {
         return isEmpty(str) ? defaultStr : str;

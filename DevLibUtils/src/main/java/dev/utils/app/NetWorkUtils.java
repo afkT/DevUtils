@@ -148,7 +148,7 @@ public final class NetWorkUtils {
     /**
      * 获取连接的网络类型
      * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return -1 = 等于未知 , 1 = Wifi, 2 = 移动网络
+     * @return -1 = 等于未知, 1 = Wifi, 2 = 移动网络
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static int getConnectType() {

@@ -523,7 +523,7 @@ public final class StringUtils {
      * 检查字符串
      * @param defaultStr 默认字符串
      * @param str        待校验字符串
-     * @return 如果待校验字符串为 null, 则返回 defaultStr , 如果不为 null, 则返回该字符串
+     * @return 如果待校验字符串为 null, 则返回 defaultStr, 如果不为 null, 则返回该字符串
      */
     public static String toCheckValue(final String defaultStr, final String str) {
         return isEmpty(str) ? defaultStr : str;

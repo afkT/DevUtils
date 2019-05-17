@@ -15,16 +15,16 @@ import dev.utils.LogPrintUtils;
  * detail: 定时器工具类
  * @author Ttt
  * <pre>
- *      主要是为了控制整个项目的定时器,防止定时器混乱,或者导致忘记关闭等情况,以及减少初始化等操作代码
+ *      主要是为了控制整个项目的定时器, 防止定时器混乱, 或者导致忘记关闭等情况, 以及减少初始化等操作代码
  *      主要实现是 AbsTimer、TimerTask 这两个类
- *      AbsTimer => 定时器抽象类,对外提供该类对象,以及内部方法,便于内部实现方法的隐藏,以及达到对定时器任务的控制处理
- *      TimerTask => 内部私有类,实现了具体的定时器操作,以及代码控制等,防止外部直接new,导致定时器混乱
+ *      AbsTimer => 定时器抽象类, 对外提供该类对象以及内部方法便于内部实现方法的隐藏, 以达到对定时器任务的控制处理
+ *      TimerTask => 内部私有类, 实现了具体的定时器操作以及代码控制等, 防止外部直接 new 导致定时器混乱
  *      <p></p>
- *      如果外部想要实现定时器,但是通过内部 ArrayList 控制,也可以通过 实现AbsTimer接口,内部的startTimer()、closeTimer() 进行了对AbsTimer的保存, 标记等操作
- *      需要注意的是,实现start(close)Timer() 方法,必须保留 super.start(close)Timer(); => 内部 ArrayList 进行了操作,而不对外开放(不需要主动调用)
+ *      如果外部想要实现定时器, 但是通过内部 ArrayList 控制, 也可以通过实现 AbsTimer 接口, 内部的 startTimer()、closeTimer() 进行了对 AbsTimer 的保存、标记等操作
+ *      需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer(); => 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
  *      <p></p>
  *      startTimer() => 主要进行添加到 ArrayList, 并且标记不需要回收
- *      closeTimer() => 不直接操作remove,防止出现ConcurrentModificationException 异常, 而是做一个标记,便于后续回收
+ *      closeTimer() => 不直接操作 remove, 防止出现 ConcurrentModificationException 异常, 而是做一个标记, 便于后续回收
  * </pre>
  */
 public final class TimerManager {
@@ -34,7 +34,7 @@ public final class TimerManager {
 
     // 日志 TAG
     private static final String TAG = TimerManager.class.getSimpleName();
-    // 内部保存定时器对象,防止忘记关闭等其他情况,以及便于控制处理
+    // 内部保存定时器对象, 防止忘记关闭等其他情况便于控制处理
     private static final List<AbsTimer> mTimerLists = new ArrayList<>();
 
     // ============================
@@ -54,7 +54,7 @@ public final class TimerManager {
             Iterator<AbsTimer> iterator = lists.iterator();
             while (iterator.hasNext()) {
                 AbsTimer absTimer = iterator.next();
-                if (absTimer == null || absTimer.markSweep) { // 需要回收,则进行回收
+                if (absTimer == null || absTimer.markSweep) { // 进行回收
                     iterator.remove();
                 }
             }
@@ -226,7 +226,7 @@ public final class TimerManager {
             try {
                 for (int i = 0, len = mTimerLists.size(); i < len; i++) {
                     AbsTimer absTimer = mTimerLists.get(i);
-                    // 判断是否符合标记 , 原本标记不为 null, 并且符合条件的
+                    // 判断是否符合标记, 原本标记不为 null, 并且符合条件的
                     if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
                         absTimer.closeTimer(); // 关闭定时器
                     }
@@ -238,7 +238,7 @@ public final class TimerManager {
     }
 
     /**
-     * 关闭所有符合对应的标记id的定时器任务
+     * 关闭所有符合对应的标记 id 的定时器任务
      * @param markId 判断 {@link AbsTimer#getMarkId()}
      */
     public static void closeMark(final int markId) {
@@ -254,12 +254,12 @@ public final class TimerManager {
         }
     }
 
-    // ==========================================================
-    // = 对外公开初始化AbsTimer方法(内部控制对 TimerTask的生成) =
-    // ==========================================================
+    // =============================================================
+    // = 对外公开初始化 AbsTimer 方法(内部控制对 TimerTask 的创建) =
+    // =============================================================
 
     /**
-     * 创建定时器 => 立即执行,无限循环,通知默认 what
+     * 创建定时器 => 立即执行、无限循环、通知默认 what
      * @param handler 通知的 Handler
      * @param period  循环时间 - 每隔多少秒执行一次
      * @return 定时器抽象对象 {@link AbsTimer}
@@ -269,7 +269,7 @@ public final class TimerManager {
     }
 
     /**
-     * 创建定时器 => 无限循环,通知默认 what
+     * 创建定时器 => 无限循环、通知默认 what
      * @param handler 通知的 Handler
      * @param delay   延迟时间 - 多少毫秒后开始执行
      * @param period  循环时间 - 每隔多少秒执行一次
@@ -283,7 +283,7 @@ public final class TimerManager {
      * 创建定时器 => 立即执行,通知默认 what
      * @param handler      通知的 Handler
      * @param period       循环时间 - 每隔多少秒执行一次
-     * @param triggerLimit 触发次数上限(-1,表示无限循环)
+     * @param triggerLimit 触发次数上限(-1 表示无限循环)
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long period, final int triggerLimit) {
@@ -318,7 +318,7 @@ public final class TimerManager {
      * @param handler      通知的 Handler
      * @param what         通知的 what
      * @param period       循环时间 - 每隔多少秒执行一次
-     * @param triggerLimit 触发次数上限(-1,表示无限循环)
+     * @param triggerLimit 触发次数上限(-1 表示无限循环)
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long period, final int triggerLimit) {
@@ -331,7 +331,7 @@ public final class TimerManager {
      * @param what         通知的 what
      * @param delay        延迟时间 - 多少毫秒后开始执行
      * @param period       循环时间 - 每隔多少秒执行一次
-     * @param triggerLimit 触发次数上限(-1,表示无限循环)
+     * @param triggerLimit 触发次数上限(-1 表示无限循环)
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long delay, final long period, final int triggerLimit) {
@@ -343,7 +343,7 @@ public final class TimerManager {
     // =====================================
 
     /**
-     * detail: 定时器抽象类,主要对内部Timer参数进行控制,以及防止外部直接new TimerTask, 照成不必要的失误
+     * detail: 定时器抽象类, 主要对内部 Timer 参数进行控制, 以及防止外部直接 new TimerTask, 照成不必要的失误
      * @author Ttt
      * <pre>
      *      @TODO 推荐使用 {@link TimerManager#createTimer} 创建定时任务, 如果需要自己实现 AbsTimer, 则参考 {@link TimerManager.TimerTask} 实现
@@ -362,8 +362,8 @@ public final class TimerManager {
         private String markStr = null;
 
         /**
-         * 获取标记id
-         * @return 标记id
+         * 获取标记 id
+         * @return 标记 id
          */
         public final int getMarkId() {
             return markId;
@@ -378,8 +378,8 @@ public final class TimerManager {
         }
 
         /**
-         * 设置标记id
-         * @param markId 标记id
+         * 设置标记 id
+         * @param markId 标记 id
          * @return 定时器抽象对象 {@link AbsTimer}
          */
         public final AbsTimer setMarkId(final int markId) {
@@ -404,7 +404,7 @@ public final class TimerManager {
         /**
          * 运行定时器
          * <pre>
-         *      如果外部通过了createTimer 或者直接new AbsTimer 初始化了对象, 没有调用startTimer,都不会保存到 mTimerLists 并不影响对定时器的控制
+         *      如果外部通过了 createTimer 或者直接 new AbsTimer 初始化了对象, 没有调用 startTimer, 都不会保存到 mTimerLists 并不影响对定时器的控制
          * </pre>
          */
         public void startTimer() {
@@ -501,7 +501,7 @@ public final class TimerManager {
      * detail: 定时器内部封装类 - 定时器任务类
      * @author Ttt
      * <pre>
-     *      便于快捷使用, 并且防止外部new, 从而达到对整个项目定时器的控制
+     *      便于快捷使用, 并且防止外部 new 从而达到对整个项目定时器的控制
      * </pre>
      */
     private static final class TimerTask extends AbsTimer {
@@ -510,7 +510,7 @@ public final class TimerManager {
         private Timer timer;
         // 定时器任务栈
         private java.util.TimerTask timerTask;
-        // 通知Handler
+        // 通知 Handler
         private Handler handler;
         // 通知的数据
         private Object notifyObj = null;
@@ -546,8 +546,8 @@ public final class TimerManager {
             // 每次重置触发次数
             triggerNumber = 0;
             // 开启定时器
-            timer = new Timer(); // 每次重新new 防止被取消
-            // 重新生成定时器 防止出现TimerTask is scheduled already 所以同一个定时器任务只能被放置一次
+            timer = new Timer(); // 每次重新 new 防止被取消
+            // 重新生成定时器, 防止出现 TimerTask is scheduled already 同一个定时器任务只能被放置一次
             timerTask = new java.util.TimerTask() {
                 @Override
                 public void run() {
@@ -557,25 +557,25 @@ public final class TimerManager {
                     triggerNumber++;
                     // 进行通知
                     if (handler != null) {
-                        // 从Message池中返回一个新的Message实例 - 通知what, arg1 = 触发次数, arg2 = 触发上限, obj = notifyObj
+                        // 从 Message 池中返回一个新的 Message 实例 - 通知 what, arg1 = 触发次数, arg2 = 触发上限, obj = notifyObj
                         Message msg = handler.obtainMessage(notifyWhat, triggerNumber, triggerLimit, notifyObj);
                         handler.sendMessage(msg);
                     }
-                    // 如果大于触发次数,则关闭
+                    // 如果大于触发次数, 则关闭
                     if (triggerLimit >= 0 && triggerNumber >= triggerLimit) {
-                        // 关闭任务,进行标记需要回收
+                        // 关闭任务, 进行标记需要回收
                         closeTimer();
                     }
                 }
             };
             try {
-                // xx毫秒后执行,每隔xx毫秒再执行一次
+                // xx 毫秒后执行, 每隔 xx 毫秒再执行一次
                 timer.schedule(timerTask, delay, period);
             } catch (Exception e) {
                 // 表示非运行定时器中
                 running = false;
-                // 关闭任务,进行标记需要回收
-                closeTimer(); // 启动失败,则进行标记,标记需要回收
+                // 关闭任务, 进行标记需要回收
+                closeTimer(); // 启动失败, 则进行标记需要回收
             }
         }
 
@@ -655,7 +655,7 @@ public final class TimerManager {
          * @return {@code true} yes, {@code false} no
          */
         @Override
-        public boolean isTriggerEnd() { // 如果为无限触发,则会返回 true ,因为触发次数大于 -1
+        public boolean isTriggerEnd() { // 如果为无限触发, 则会返回 true, 因为触发次数大于 -1
             return (triggerNumber >= triggerLimit);
             // return (triggerLimit >= 0 && triggerNumber >= triggerLimit);
         }

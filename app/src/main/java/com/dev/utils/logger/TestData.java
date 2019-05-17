@@ -23,7 +23,7 @@ class TestData {
         public String sSite = null; // site是分享此内容的网站名称, 仅在QQ空间使用
         public String sSiteUrl = null; // siteUrl是分享此内容的网站地址, 仅在QQ空间使用
         // = 微信平台分享类型 =
-        public int weChatATShareType = 0; // 分享类型shareType(SHARE_IMAGE) ,shareType(SHARE_VIDEO) , shareType(SHARE_WEBPAGE)
+        public int weChatATShareType = 0; // 分享类型shareType(SHARE_IMAGE) ,shareType(SHARE_VIDEO), shareType(SHARE_WEBPAGE)
         // 栈索引(用于移除顶部栈View)
         public int sTaskId = -1; // -1 表示不需要移除栈例如单图片分享,不会添加到栈,自然也不需要移除
         // 分享模式

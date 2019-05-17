@@ -54,7 +54,7 @@ import static android.Manifest.permission.INTERNET;
  *      android:os.Build.RADIO: 无线电固件版本号, 通常是不可用的 显示unknown
  *      android.os.Build.TAGS: 设备标签, 如release-keys 或测试的 test-keys
  *      android.os.Build.TIME: 时间
- *      android.os.Build.TYPE: 设备版本类型  主要为"user" 或"eng".
+ *      android.os.Build.TYPE: 设备版本类型 主要为 "user" 或"eng".
  *      android.os.Build.USER: 设备用户名 基本上都为android-build
  *      android.os.Build.VERSION.RELEASE: 获取系统版本字符串, 如4.1.2 或2.2 或2.3等
  *      android.os.Build.VERSION.CODENAME: 设备当前的系统开发代号, 一般使用REL代替

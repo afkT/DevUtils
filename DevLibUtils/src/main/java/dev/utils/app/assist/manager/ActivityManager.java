@@ -11,7 +11,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Activity 管理类; 用于管理应用程序 Activity
+ * detail: Activity 管理类, 用于管理应用程序 Activity
  * @author Ttt
  */
 public final class ActivityManager {
@@ -25,7 +25,7 @@ public final class ActivityManager {
     private static final ActivityManager INSTANCE = new ActivityManager();
 
     /**
-     * 获取 ActivityManager 实例 ,单例模式
+     * 获取 ActivityManager 实例
      */
     public static ActivityManager getInstance() {
         return INSTANCE;
@@ -164,7 +164,7 @@ public final class ActivityManager {
     public boolean existActivitys(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {
             synchronized (mActivityStacks) {
-                // 保存新的任务,防止出现同步问题
+                // 保存新的任务, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
                 try {
@@ -181,7 +181,7 @@ public final class ActivityManager {
                         }
                     }
                 } finally {
-                    // 移除,并且清空内存
+                    // 移除, 并且清空内存
                     stack.clear();
                     stack = null;
                 }
@@ -223,10 +223,10 @@ public final class ActivityManager {
     public void finishActivity(final Class<?> clazz) {
         if (clazz != null) {
             synchronized (mActivityStacks) {
-                // 保存新的任务,防止出现同步问题
+                // 保存新的任务, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
-                // 清空全部,便于后续操作处理
+                // 清空全部, 便于后续操作处理
                 mActivityStacks.clear();
                 // 进行遍历移除
                 Iterator<Activity> iterator = stack.iterator();
@@ -239,17 +239,17 @@ public final class ActivityManager {
                             if (!activity.isFinishing()) {
                                 activity.finish();
                             }
-                            // 删除对应的Item
+                            // 删除对应的 Item
                             iterator.remove();
                         }
                     } else {
-                        // 删除对应的Item
+                        // 删除对应的 Item
                         iterator.remove();
                     }
                 }
                 // 把不符合条件的保存回去
                 mActivityStacks.addAll(stack);
-                // 移除,并且清空内存
+                // 移除, 并且清空内存
                 stack.clear();
                 stack = null;
             }
@@ -263,10 +263,10 @@ public final class ActivityManager {
     public void finishActivity(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {
             synchronized (mActivityStacks) {
-                // 保存新的任务,防止出现同步问题
+                // 保存新的任务, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
-                // 清空全部,便于后续操作处理
+                // 清空全部, 便于后续操作处理
                 mActivityStacks.clear();
                 // 判断是否销毁
                 boolean isRemove;
@@ -288,21 +288,21 @@ public final class ActivityManager {
                         }
                         // 判断是否销毁
                         if (isRemove) {
-                            // 如果 Activity 没有finish 则进行finish
+                            // 如果 Activity 没有 finish 则进行 finish
                             if (!activity.isFinishing()) {
                                 activity.finish();
                             }
-                            // 删除对应的Item
+                            // 删除对应的 Item
                             iterator.remove();
                         }
                     } else {
-                        // 删除对应的Item
+                        // 删除对应的 Item
                         iterator.remove();
                     }
                 }
                 // 把不符合条件的保存回去
                 mActivityStacks.addAll(stack);
-                // 移除,并且清空内存
+                // 移除, 并且清空内存
                 stack.clear();
                 stack = null;
             }
@@ -316,33 +316,33 @@ public final class ActivityManager {
     public void finishAllActivityToIgnore(final Class<?> clazz) {
         if (clazz != null) {
             synchronized (mActivityStacks) {
-                // 保存新的任务,防止出现同步问题
+                // 保存新的任务, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
-                // 清空全部,便于后续操作处理
+                // 清空全部, 便于后续操作处理
                 mActivityStacks.clear();
                 // 进行遍历移除
                 Iterator<Activity> iterator = stack.iterator();
                 while (iterator.hasNext()) {
                     Activity activity = iterator.next();
-                    // 判断是否想要关闭的Activity
+                    // 判断是否想要关闭的 Activity
                     if (activity != null) {
                         if (!(activity.getClass() == clazz)) {
                             // 如果 Activity 没有 finish 则进行 finish
                             if (!activity.isFinishing()) {
                                 activity.finish();
                             }
-                            // 删除对应的Item
+                            // 删除对应的 Item
                             iterator.remove();
                         }
                     } else {
-                        // 删除对应的Item
+                        // 删除对应的 Item
                         iterator.remove();
                     }
                 }
                 // 把不符合条件的保存回去
                 mActivityStacks.addAll(stack);
-                // 移除,并且清空内存
+                // 移除, 并且清空内存
                 stack.clear();
                 stack = null;
             }
@@ -356,10 +356,10 @@ public final class ActivityManager {
     public void finishAllActivityToIgnore(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {
             synchronized (mActivityStacks) {
-                // 保存新的任务,防止出现同步问题
+                // 保存新的任务, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
-                // 清空全部,便于后续操作处理
+                // 清空全部, 便于后续操作处理
                 mActivityStacks.clear();
                 // 判断是否销毁
                 boolean isRemove;
@@ -367,7 +367,7 @@ public final class ActivityManager {
                 Iterator<Activity> iterator = stack.iterator();
                 while (iterator.hasNext()) {
                     Activity activity = iterator.next();
-                    // 判断是否想要关闭的Activity
+                    // 判断是否想要关闭的 Activity
                     if (activity != null) {
                         // 默认需要销毁
                         isRemove = true;
@@ -381,21 +381,21 @@ public final class ActivityManager {
                         }
                         // 判断是否销毁
                         if (isRemove) {
-                            // 如果 Activity 没有finish 则进行finish
+                            // 如果 Activity 没有 finish 则进行 finish
                             if (!activity.isFinishing()) {
                                 activity.finish();
                             }
-                            // 删除对应的Item
+                            // 删除对应的 Item
                             iterator.remove();
                         }
                     } else {
-                        // 删除对应的Item
+                        // 删除对应的 Item
                         iterator.remove();
                     }
                 }
                 // 把不符合条件的保存回去
                 mActivityStacks.addAll(stack);
-                // 移除,并且清空内存
+                // 移除, 并且清空内存
                 stack.clear();
                 stack = null;
             }
@@ -403,14 +403,14 @@ public final class ActivityManager {
     }
 
     /**
-     * 结束所有Activity
+     * 结束所有 Activity
      */
     public void finishAllActivity() {
         synchronized (mActivityStacks) {
-            // 保存新的任务,防止出现同步问题
+            // 保存新的任务, 防止出现同步问题
             Stack<Activity> stack = new Stack<>();
             stack.addAll(mActivityStacks);
-            // 清空全部,便于后续操作处理
+            // 清空全部, 便于后续操作处理
             mActivityStacks.clear();
             // 进行遍历移除
             Iterator<Activity> iterator = stack.iterator();
@@ -418,11 +418,11 @@ public final class ActivityManager {
                 Activity activity = iterator.next();
                 if (activity != null && !activity.isFinishing()) {
                     activity.finish();
-                    // 删除对应的Item
+                    // 删除对应的 Item
                     iterator.remove();
                 }
             }
-            // 移除,并且清空内存
+            // 移除, 并且清空内存
             stack.clear();
             stack = null;
         }
@@ -436,7 +436,7 @@ public final class ActivityManager {
     public void appExit() {
         try {
             finishAllActivity();
-            // 退出JVM(java虚拟机),释放所占内存资源,0表示正常退出(非0的都为异常退出)
+            // 退出 JVM (Java 虚拟机), 释放所占内存资源, 0 表示正常退出, 非 0 的都为异常退出
             System.exit(0);
             // 从操作系统中结束掉当前程序的进程
             android.os.Process.killProcess(android.os.Process.myPid());

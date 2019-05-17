@@ -58,7 +58,7 @@ public final class FileRecordUtils {
 
     /**
      * 获取 App 版本信息
-     * @return 0 = versionName , 1 = versionCode
+     * @return 0 = versionName, 1 = versionCode
      */
     private static String[] getAppVersion() {
         String[] versions = null;

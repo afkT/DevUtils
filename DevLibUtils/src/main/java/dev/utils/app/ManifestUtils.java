@@ -262,7 +262,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 App 版本信息
-     * @return 0 = versionName , 1 = versionCode
+     * @return 0 = versionName, 1 = versionCode
      */
     public static String[] getAppVersion() {
         try {

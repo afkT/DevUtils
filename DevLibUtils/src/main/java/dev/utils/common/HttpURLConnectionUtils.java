@@ -147,7 +147,7 @@ public final class HttpURLConnectionUtils {
             } else {
                 // 响应成功, 非 200 直接返回 null
                 if (callBack != null) {
-                    callBack.onFail(new Exception("responseCode not >= 200 or < 300 , code: " + responseCode));
+                    callBack.onFail(new Exception("responseCode not >= 200 or < 300, code: " + responseCode));
                 }
             }
         } catch (Exception e) {

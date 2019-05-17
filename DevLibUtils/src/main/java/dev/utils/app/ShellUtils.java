@@ -193,7 +193,7 @@ public final class ShellUtils {
         }
 
         /**
-         * 判断是否执行成功(判断 successMsg) , 并且 successMsg 是否包含某个字符串
+         * 判断是否执行成功(判断 successMsg), 并且 successMsg 是否包含某个字符串
          * @param contains
          * @return
          */
