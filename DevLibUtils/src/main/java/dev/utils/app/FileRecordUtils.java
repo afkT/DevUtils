@@ -484,7 +484,7 @@ public final class FileRecordUtils {
      * @return
      */
     public static String[] handlerVariable(final int length, final String[] strings) {
-        // 处理后的数据,
+        // 处理后的数据
         String[] hArrays = new String[length];
         // 是否统一处理
         boolean isUnifiedHandler = true;

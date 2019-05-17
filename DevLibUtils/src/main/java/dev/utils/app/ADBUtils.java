@@ -965,7 +965,7 @@ public final class ADBUtils {
     /**
      * 查看正在运行的 Services
      * @param packageName 参数不是必须的, 指定 <packagename> 表示查看与某个包名相关的 Services, 不指定表示查看所有 Services
-     *                    <packagename> 不一定要给出完整的包名, 比如运行 adb shell dumpsys activity services org.mazhuang,
+     *                    <packagename> 不一定要给出完整的包名, 比如运行 adb shell dumpsys activity services org.mazhuang
      *                    那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来
      * @return
      */

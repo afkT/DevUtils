@@ -683,8 +683,7 @@ public final class PhoneUtils {
 //                String num = null;
 //                // 创建内容解析者
 //                ContentResolver contentResolver = getContentResolver();
-//                Cursor cursor = contentResolver.query(uri,
-//                        null, null, null, null);
+//                Cursor cursor = contentResolver.query(uri, null, null, null, null);
 //                while (cursor.moveToNext()) {
 //                    num = cursor.getString(cursor.getColumnIndex("data1"));
 //                }
@@ -712,11 +711,7 @@ public final class PhoneUtils {
         // selection : 查询的条件
         // selectionArgs : 查询条件的参数
         // sortOrder : 排序
-        Cursor cursor = resolver.query(uri,
-                new String[]{"address", "date", "type", "body"},
-                null,
-                null,
-                null);
+        Cursor cursor = resolver.query(uri, new String[]{"address", "date", "type", "body"}, null, null, null);
         // 设置最大进度
         int count = cursor.getCount(); // 获取短信的个数
         // 2.备份短信

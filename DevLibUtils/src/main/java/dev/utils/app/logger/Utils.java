@@ -468,7 +468,7 @@ final class Utils {
      * @return
      */
     public static String[] handlerVariable(final int length, final String[] strArrays) {
-        // 处理后的数据,
+        // 处理后的数据
         String[] hArrays = new String[length];
         // 是否统一处理
         boolean isUnifiedHandler = true;

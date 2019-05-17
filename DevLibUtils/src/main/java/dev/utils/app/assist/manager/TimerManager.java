@@ -16,7 +16,7 @@ import dev.utils.LogPrintUtils;
  * @author Ttt
  * <pre>
  *      主要是为了控制整个项目的定时器,防止定时器混乱,或者导致忘记关闭等情况,以及减少初始化等操作代码
- *      主要实现是 AbsTimer、TimerTask 这两个类,
+ *      主要实现是 AbsTimer、TimerTask 这两个类
  *      AbsTimer => 定时器抽象类,对外提供该类对象,以及内部方法,便于内部实现方法的隐藏,以及达到对定时器任务的控制处理
  *      TimerTask => 内部私有类,实现了具体的定时器操作,以及代码控制等,防止外部直接new,导致定时器混乱
  *      <p></p>
