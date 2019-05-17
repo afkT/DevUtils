@@ -153,10 +153,10 @@ public final class AccessibilityUtils {
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:// 通知栏事件
                 buffer.append("event type:TYPE_NOTIFICATION_STATE_CHANGED");
                 break;
-            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED://窗体状态改变
+            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED: // 窗体状态改变
                 buffer.append("event type:TYPE_WINDOW_STATE_CHANGED");
                 break;
-            case AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED://View获取到焦点
+            case AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED: // View 获取到焦点
                 buffer.append("event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
@@ -460,7 +460,7 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 锁定屏幕 -> 非锁屏
+     * 锁定屏幕(非锁屏)
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -469,7 +469,7 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 锁定屏幕 -> 非锁屏
+     * 锁定屏幕(非锁屏)
      * @param service
      * @return
      */

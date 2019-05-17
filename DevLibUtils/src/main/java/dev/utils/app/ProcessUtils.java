@@ -51,7 +51,7 @@ public final class ProcessUtils {
      * @param pid
      */
     public static void kill(final int pid) {
-        //从操作系统中结束掉当前程序的进程
+        // 从操作系统中结束掉当前程序的进程
         android.os.Process.killProcess(pid);
     }
 

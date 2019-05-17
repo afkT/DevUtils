@@ -347,7 +347,7 @@ public final class CameraSizeAssist {
             return defaultSize;
         }
 
-        // 进行排序处理 -> 并以宽度 * 高度 为基准降序排序
+        // 进行排序处理, 并以宽度 * 高度 为基准降序排序
         Collections.sort(listPreviewSizes, new Comparator<Camera.Size>() {
             @Override
             public int compare(Camera.Size lhs, Camera.Size rhs) {
@@ -472,7 +472,7 @@ public final class CameraSizeAssist {
             return defaultSize;
         }
 
-        // 进行排序处理 -> 并以宽度 * 高度 为基准降序排序
+        // 进行排序处理, 并以宽度 * 高度 为基准降序排序
         Collections.sort(listPictureSizes, new Comparator<Camera.Size>() {
             @Override
             public int compare(Camera.Size lhs, Camera.Size rhs) {
@@ -624,7 +624,7 @@ public final class CameraSizeAssist {
             return defaultSize;
         }
 
-        // 进行排序处理 -> 并以宽度 * 高度 为基准降序排序
+        // 进行排序处理, 并以宽度 * 高度 为基准降序排序
         Collections.sort(listVideoSizes, new Comparator<Camera.Size>() {
             @Override
             public int compare(Camera.Size lhs, Camera.Size rhs) {

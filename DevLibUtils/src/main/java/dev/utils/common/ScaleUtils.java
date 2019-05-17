@@ -63,7 +63,7 @@ public final class ScaleUtils {
     }
 
     /**
-     * 通过宽度、高度根据对应的比例 -> 转换成对应的比例宽度高度 - 智能转换
+     * 通过宽度、高度根据对应的比例, 转换成对应的比例宽度高度 - 智能转换
      * @param width       宽度
      * @param height      高度
      * @param widthScale  宽度比例
@@ -74,7 +74,7 @@ public final class ScaleUtils {
         try {
             // 如果宽度的比例, 大于等于高度比例
             if (widthScale >= heightScale) { // 以宽度为基准
-                // 设置宽度 -> 以宽度为基准
+                // 设置宽度, 以宽度为基准
                 int sWidth = width;
                 // 计算宽度
                 int sHeight = (int) (((float) sWidth) * (heightScale / widthScale));
@@ -95,7 +95,7 @@ public final class ScaleUtils {
     }
 
     /**
-     * 以宽度为基准 -> 转换对应比例的高度
+     * 以宽度为基准, 转换对应比例的高度
      * @param width       宽度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
@@ -116,7 +116,7 @@ public final class ScaleUtils {
     }
 
     /**
-     * 以高度为基准 -> 转换对应比例的宽度
+     * 以高度为基准, 转换对应比例的宽度
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
@@ -187,7 +187,7 @@ public final class ScaleUtils {
     }
 
     /**
-     * 通过宽度、高度根据对应的比例 -> 转换成对应的比例宽度高度 - 智能转换
+     * 通过宽度、高度根据对应的比例, 转换成对应的比例宽度高度 - 智能转换
      * @param width       宽度
      * @param height      高度
      * @param widthScale  宽度比例
@@ -198,7 +198,7 @@ public final class ScaleUtils {
         try {
             // 如果宽度的比例, 大于等于高度比例
             if (widthScale >= heightScale) { // 以宽度为基准
-                // 设置宽度 -> 以宽度为基准
+                // 设置宽度, 以宽度为基准
                 float sWidth = width;
                 // 计算宽度
                 float sHeight = sWidth * (heightScale / widthScale);
@@ -219,7 +219,7 @@ public final class ScaleUtils {
     }
 
     /**
-     * 以宽度为基准 -> 转换对应比例的高度
+     * 以宽度为基准, 转换对应比例的高度
      * @param width       宽度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
@@ -240,7 +240,7 @@ public final class ScaleUtils {
     }
 
     /**
-     * 以高度为基准 -> 转换对应比例的宽度
+     * 以高度为基准, 转换对应比例的宽度
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例

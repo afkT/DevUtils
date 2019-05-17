@@ -58,7 +58,7 @@ public final class BitmapCropUtils {
             int dHeight = iHeight - rHeight;
             // =
             // 判断裁剪方式
-            if (dHeight >= 0) { // 属于宽度 * 对应比例 >= 高度  -> 以高度做偏移
+            if (dHeight >= 0) { // 属于宽度 * 对应比例 >= 高度, 以高度做偏移
                 // 计算偏移的y轴
                 int offsetY = dHeight / 2;
                 // 创建图片

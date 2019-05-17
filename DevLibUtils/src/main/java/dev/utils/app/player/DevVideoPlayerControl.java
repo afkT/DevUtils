@@ -88,7 +88,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        LogPrintUtils.dTag(TAG, "surfaceChanged -> format: " + format + ", width: " + width + ", height: " + height);
+        LogPrintUtils.dTag(TAG, "surfaceChanged => format: " + format + ", width: " + width + ", height: " + height);
     }
 
     /**
@@ -193,7 +193,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      */
     @Override
     public void onError(int what, int extra) {
-        LogPrintUtils.dTag(TAG, "onError -> what: " + what + ", extra: " + extra);
+        LogPrintUtils.dTag(TAG, "onError => what: " + what + ", extra: " + extra);
         // 触发回调
         if (mMediaListener != null) {
             mMediaListener.onError(what, extra);
@@ -205,7 +205,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      */
     @Override
     public void onVideoSizeChanged(int width, int height) {
-        LogPrintUtils.dTag(TAG, "onVideoSizeChanged -> width: " + width + ", height: " + height);
+        LogPrintUtils.dTag(TAG, "onVideoSizeChanged => width: " + width + ", height: " + height);
         // 触发回调
         if (mMediaListener != null) {
             mMediaListener.onVideoSizeChanged(width, height);

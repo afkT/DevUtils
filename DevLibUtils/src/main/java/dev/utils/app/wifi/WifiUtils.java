@@ -953,7 +953,7 @@ public final class WifiUtils {
      * @throws Exception
      */
     private void setStaticIpConfig(final String ip, final String gateway, final String dns, final int prefixLength, final Object object) throws Exception {
-        // 从WifiConfig -> mIpConfiguration 获取staticIpConfiguration
+        // 从 WifiConfig => mIpConfiguration 获取staticIpConfiguration
         // 获取 staticIpConfiguration 变量
         Object staticIpConfigClass = getField(object, "staticIpConfiguration");
         if (staticIpConfigClass == null) {

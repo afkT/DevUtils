@@ -219,7 +219,7 @@ public final class ResourceUtils {
      */
     public static int getResourceId(final String name, final String type) {
         try {
-            //PackageManager pm = DevUtils.getContext().getPackageManager();
+            // PackageManager pm = DevUtils.getContext().getPackageManager();
             Resources resources = DevUtils.getContext().getResources();
             return resources.getIdentifier(name, type, DevUtils.getContext().getPackageName());
         } catch (Exception e) {

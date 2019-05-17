@@ -698,7 +698,7 @@ public final class TextViewUtils {
     public static int getCenterRectY(final Rect targetRect, final Paint paint) {
         // 获取字体高度
         Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
-        // 获取底部Y轴居中位置
+        // 获取底部 Y 轴居中位置
         return targetRect.top + (targetRect.bottom - targetRect.top) / 2 - (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.top;
         // canvas.drawText(testString, targetRect.centerX(), baseline, paint);
     }
@@ -762,9 +762,9 @@ public final class TextViewUtils {
         }
         // 获取数据长度
         int length = text.length();
-        // 循环除2
+        // 循环除 2
         while (true) {
-            // 数据至少为2位以上
+            // 数据至少为 2 位以上
             if (length < 2) {
                 return 0; // 表示第一位已经超过
             }

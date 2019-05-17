@@ -47,7 +47,7 @@
 | setIsHandler | 设置是否使用 Handler 显示 Toast |
 | setNullText | 设置 Text 为 null 的文本 |
 | setTextLength | 设置 Toast 文案长度转换 显示时间 |
-| init | Application 初始化调用 (必须调用 -> 内部已经调用) |
+| init | Application 初始化调用 (内部已调用) |
 | style | 使用单次 Toast 样式配置 |
 | defaultStyle | 使用默认 Toast 样式 |
 | getToastStyle | 获取 Toast 样式配置 |

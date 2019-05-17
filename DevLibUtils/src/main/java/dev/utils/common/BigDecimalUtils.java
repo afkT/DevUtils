@@ -651,7 +651,7 @@ public final class BigDecimalUtils {
             }
             // 整数部分满足精度要求(情况3)
             if (array[0].length() == numOfIntPart) {
-                //直接获取整数部分长度字符
+                // 直接获取整数部分长度字符
                 for (int i = 0; i < array[0].length(); i++) {
                     tempA[i] = array[0].charAt(i);
                 }

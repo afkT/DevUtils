@@ -158,7 +158,7 @@ public final class ActivityManager {
 
     /**
      * 检测是否包含指定的 Activity
-     * @param clazzs Class[] -> Class(Activity)[]
+     * @param clazzs Class[] => Class(Activity)[]
      * @return {@code true} yes, {@code false} no
      */
     public boolean existActivitys(final Class<?>... clazzs) {
@@ -258,7 +258,7 @@ public final class ActivityManager {
 
     /**
      * 结束多个类名 Activity
-     * @param clazzs Class[] -> Class(Activity)[]
+     * @param clazzs Class[] => Class(Activity)[]
      */
     public void finishActivity(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {
@@ -351,7 +351,7 @@ public final class ActivityManager {
 
     /**
      * 结束全部 Activity 除忽略的 Activity 外
-     * @param clazzs Class[] -> Class(Activity)[]
+     * @param clazzs Class[] => Class(Activity)[]
      */
     public void finishAllActivityToIgnore(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {

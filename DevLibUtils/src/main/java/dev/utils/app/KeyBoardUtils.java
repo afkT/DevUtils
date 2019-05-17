@@ -181,7 +181,7 @@ public final class KeyBoardUtils {
             try {
                 InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(activity.getWindow().peekDecorView().getWindowToken(), 0);
-                //imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+                // imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeKeyboard");
             }
@@ -197,7 +197,7 @@ public final class KeyBoardUtils {
             try {
                 InputMethodManager imm = (InputMethodManager) dialog.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(dialog.getWindow().peekDecorView().getWindowToken(), 0);
-                //imm.hideSoftInputFromWindow(dialog.getCurrentFocus().getWindowToken(), 0);
+                // imm.hideSoftInputFromWindow(dialog.getCurrentFocus().getWindowToken(), 0);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeKeyboard");
             }

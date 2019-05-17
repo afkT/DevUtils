@@ -259,7 +259,7 @@ public final class DevCache {
             if (!DevCacheUtils.isDue(readString)) {
                 return DevCacheUtils.clearDateInfo(readString);
             } else {
-                LogPrintUtils.dTag(TAG, "getAsString key: " + key + " -> 文件已过期");
+                LogPrintUtils.dTag(TAG, "getAsString key: " + key + " => 文件已过期");
                 removeFile = true;
                 return null;
             }
@@ -470,7 +470,7 @@ public final class DevCache {
             if (!DevCacheUtils.isDue(byteArray)) {
                 return DevCacheUtils.clearDateInfo(byteArray);
             } else {
-                LogPrintUtils.dTag(TAG, "getAsBinary - key: " + key + " -> 文件已过期");
+                LogPrintUtils.dTag(TAG, "getAsBinary - key: " + key + " => 文件已过期");
                 removeFile = true;
                 return null;
             }

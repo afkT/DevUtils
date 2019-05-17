@@ -50,7 +50,7 @@ public final class SDCardUtils {
     }
 
     /**
-     * 获取SD卡路径(无添加  -> / -> File.separator)
+     * 获取SD卡路径(无添加 File.separator)
      * @return
      */
     public static String getSDCardPath() {

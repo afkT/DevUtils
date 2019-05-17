@@ -408,7 +408,7 @@ public final class NetWorkUtils {
                             // = 4G网络 =
                             case TelephonyManager.NETWORK_TYPE_LTE:
                             case TelephonyManager.NETWORK_TYPE_IWLAN:
-                                //case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
+                                // case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
                             case 19:
                                 netType = NetworkType.NETWORK_4G;
                                 break;
@@ -503,7 +503,7 @@ public final class NetWorkUtils {
                 return 2;
             case TelephonyManager.NETWORK_TYPE_LTE:
             case TelephonyManager.NETWORK_TYPE_IWLAN:
-                //case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
+                // case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
             case 19:
                 return 3;
             default:

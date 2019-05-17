@@ -689,7 +689,7 @@ public final class PhoneUtils {
 //                    num = cursor.getString(cursor.getColumnIndex("data1"));
 //                }
 //                cursor.close();
-//                num = num.replaceAll("-", ""); // 替换的操作,555-6 -> 5556
+//                num = num.replaceAll("-", ""); // 替换的操作,555-6 => 5556
 //            }
 //        }
     }

@@ -187,19 +187,19 @@ public class ImageProcessor {
      * @return 改变了饱和度值之后的图片
      */
     public Bitmap saturation(final int saturationValue) {
-        //计算出符合要求的饱和度值
+        // 计算出符合要求的饱和度值
         float newSaturationValue = saturationValue * 1.0F / 127;
-        //创建一个颜色矩阵
+        // 创建一个颜色矩阵
         ColorMatrix saturationColorMatrix = new ColorMatrix();
-        //设置饱和度值
+        // 设置饱和度值
         saturationColorMatrix.setSaturation(newSaturationValue);
-        //创建一个画笔并设置其颜色过滤器
+        // 创建一个画笔并设置其颜色过滤器
         Paint paint = new Paint();
         paint.setColorFilter(new ColorMatrixColorFilter(saturationColorMatrix));
-        //创建一个新的图片并创建画布
+        // 创建一个新的图片并创建画布
         Bitmap newBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(newBitmap);
-        //将原图使用给定的画笔画到画布上
+        // 将原图使用给定的画笔画到画布上
         canvas.drawBitmap(mBitmap, 0, 0, paint);
         return newBitmap;
     }
@@ -210,19 +210,19 @@ public class ImageProcessor {
      * @return 改变了亮度值之后的图片
      */
     public Bitmap lum(final int lumValue) {
-        //计算出符合要求的亮度值
+        // 计算出符合要求的亮度值
         float newlumValue = lumValue * 1.0F / 127;
-        //创建一个颜色矩阵
+        // 创建一个颜色矩阵
         ColorMatrix lumColorMatrix = new ColorMatrix();
-        //设置亮度值
+        // 设置亮度值
         lumColorMatrix.setScale(newlumValue, newlumValue, newlumValue, 1);
-        //创建一个画笔并设置其颜色过滤器
+        // 创建一个画笔并设置其颜色过滤器
         Paint paint = new Paint();
         paint.setColorFilter(new ColorMatrixColorFilter(lumColorMatrix));
-        //创建一个新的图片并创建画布
+        // 创建一个新的图片并创建画布
         Bitmap newBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(newBitmap);
-        //将原图使用给定的画笔画到画布上
+        // 将原图使用给定的画笔画到画布上
         canvas.drawBitmap(mBitmap, 0, 0, paint);
         return newBitmap;
     }
@@ -233,9 +233,9 @@ public class ImageProcessor {
      * @return 改变了色相值之后的图片
      */
     public Bitmap hue(final int hueValue) {
-        //计算出符合要求的色相值
+        // 计算出符合要求的色相值
         float newHueValue = (hueValue - 127) * 1.0F / 127 * 180;
-        //创建一个颜色矩阵
+        // 创建一个颜色矩阵
         ColorMatrix hueColorMatrix = new ColorMatrix();
         // 控制让红色区在色轮上旋转的角度
         hueColorMatrix.setRotate(0, newHueValue);
@@ -243,13 +243,13 @@ public class ImageProcessor {
         hueColorMatrix.setRotate(1, newHueValue);
         // 控制让蓝色区在色轮上旋转的角度
         hueColorMatrix.setRotate(2, newHueValue);
-        //创建一个画笔并设置其颜色过滤器
+        // 创建一个画笔并设置其颜色过滤器
         Paint paint = new Paint();
         paint.setColorFilter(new ColorMatrixColorFilter(hueColorMatrix));
-        //创建一个新的图片并创建画布
+        // 创建一个新的图片并创建画布
         Bitmap newBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(newBitmap);
-        //将原图使用给定的画笔画到画布上
+        // 将原图使用给定的画笔画到画布上
         canvas.drawBitmap(mBitmap, 0, 0, paint);
         return newBitmap;
     }
@@ -262,19 +262,19 @@ public class ImageProcessor {
      * @return 亮度、色相、饱和度处理后的图片
      */
     public Bitmap lumAndHueAndSaturation(final int lumValue, final int hueValue, final int saturationValue) {
-        //计算出符合要求的饱和度值
+        // 计算出符合要求的饱和度值
         float newSaturationValue = saturationValue * 1.0F / 127;
-        //计算出符合要求的亮度值
+        // 计算出符合要求的亮度值
         float newlumValue = lumValue * 1.0F / 127;
-        //计算出符合要求的色相值
+        // 计算出符合要求的色相值
         float newHueValue = (hueValue - 127) * 1.0F / 127 * 180;
 
-        //创建一个颜色矩阵并设置其饱和度
+        // 创建一个颜色矩阵并设置其饱和度
         ColorMatrix colorMatrix = new ColorMatrix();
 
-        //设置饱和度值
+        // 设置饱和度值
         colorMatrix.setSaturation(newSaturationValue);
-        //设置亮度值
+        // 设置亮度值
         colorMatrix.setScale(newlumValue, newlumValue, newlumValue, 1);
         // 控制让红色区在色轮上旋转的角度
         colorMatrix.setRotate(0, newHueValue);
@@ -283,13 +283,13 @@ public class ImageProcessor {
         // 控制让蓝色区在色轮上旋转的角度
         colorMatrix.setRotate(2, newHueValue);
 
-        //创建一个画笔并设置其颜色过滤器
+        // 创建一个画笔并设置其颜色过滤器
         Paint paint = new Paint();
         paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        //创建一个新的图片并创建画布
+        // 创建一个新的图片并创建画布
         Bitmap newBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(newBitmap);
-        //将原图使用给定的画笔画到画布上
+        // 将原图使用给定的画笔画到画布上
         canvas.drawBitmap(mBitmap, 0, 0, paint);
         return newBitmap;
     }

@@ -16,7 +16,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 获取CPU信息工具类
+ * detail: 获取 CPU 信息工具类
  * @author Ttt
  */
 public final class CPUUtils {
@@ -28,32 +28,32 @@ public final class CPUUtils {
     private static final String TAG = CPUUtils.class.getSimpleName();
 
     /**
-     * 获取处理器的Java虚拟机的数量
+     * 获取处理器的 Java 虚拟机的数量
      */
     public static int getProcessorsCount() {
         return Runtime.getRuntime().availableProcessors();
     }
 
     /**
-     * 获取手机CPU序列号
-     * @return cpu序列号(16位) 读取失败为"0000000000000000"
+     * 获取手机 CPU 序列号
+     * @return cpu 序列号(16位) 读取失败为"0000000000000000"
      */
     public static String getSysCPUSerialNum() {
         String str = "", strCPU = "", cpuSerialNum = "0000000000000000";
         try {
-            //读取CPU信息
+            // 读取 CPU 信息
             Process pp = Runtime.getRuntime().exec("cat/proc/cpuinfo");
             InputStreamReader isr = new InputStreamReader(pp.getInputStream());
             LineNumberReader input = new LineNumberReader(isr);
-            //查找CPU序列号
+            // 查找 CPU 序列号
             for (int i = 1; i < 100; i++) {
                 str = input.readLine();
                 if (str != null) {
-                    //查找到序列号所在行
+                    // 查找到序列号所在行
                     if (str.indexOf("Serial") > -1) {
-                        //提取序列号
+                        // 提取序列号
                         strCPU = str.substring(str.indexOf(":") + 1);
-                        //去空格
+                        // 去空格
                         cpuSerialNum = strCPU.trim();
                         break;
                     }
@@ -192,7 +192,7 @@ public final class CPUUtils {
         class CpuFilter implements FileFilter {
             @Override
             public boolean accept(File pathname) {
-                //Check if filename is "cpu", followed by a single digit number
+                // Check if filename is "cpu", followed by a single digit number
                 if (Pattern.matches("cpu[0-9]+", pathname.getName())) {
                     return true;
                 }
@@ -202,11 +202,11 @@ public final class CPUUtils {
         // CPU 核心数
         int CPU_CORES = 0;
         try {
-            //Get directory containing CPU info
+            // Get directory containing CPU info
             File dir = new File("/sys/devices/system/cpu/");
-            //Filter to only list the devices we care about
+            // Filter to only list the devices we care about
             File[] files = dir.listFiles(new CpuFilter());
-            //Return the number of cores (virtual CPU devices)
+            // Return the number of cores (virtual CPU devices)
             CPU_CORES = files.length;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCoresNumbers");

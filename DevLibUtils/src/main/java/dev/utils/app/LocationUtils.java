@@ -279,7 +279,7 @@ public final class LocationUtils {
         boolean isMoreAccurate = accuracyDelta < 0;
         boolean isSignificantlyLessAccurate = accuracyDelta > 200;
 
-        //  检查旧位置和新位置是否来自同一提供者
+        // 检查旧位置和新位置是否来自同一提供者
         boolean isFromSameProvider = isSameProvider(newLocation.getProvider(), currentBestLocation.getProvider());
 
         // 判断最新的位置

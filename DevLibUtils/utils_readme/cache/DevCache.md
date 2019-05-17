@@ -42,7 +42,7 @@ DevCache.get(mContext).put("ctv", cacheVo);
 CacheVo ctv = (CacheVo) DevCache.get(mContext).getAsObject("ctv");
 // 打印获取后的数据
 DevLogger.dTag(TAG, "保存后: " + ctv.toString());
-// 设置保存有效时间 -> 5秒
+// 设置保存有效时间 5秒
 DevCache.get(mContext).put("ctva", new CacheVo("测试有效时间"), 1);
 
 // 保存到指定文件夹下

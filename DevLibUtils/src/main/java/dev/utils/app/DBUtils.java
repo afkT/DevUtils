@@ -32,7 +32,7 @@ public final class DBUtils {
             return false;
         }
         try {
-            //  Database 文件地址
+            // Database 文件地址
             String sourceFilePath = getDBPath() + dbName;
             // 获取结果
             boolean result = FileUtils.copyFile(sourceFilePath, targetFile, true);
@@ -98,7 +98,7 @@ public final class DBUtils {
      */
     public static String getDBPath() {
         try {
-            //  Database 文件地址
+            // Database 文件地址
             String dbPath = Environment.getDataDirectory() + "/data/" + DevUtils.getContext().getPackageName() + "/databases/";
             // 返回数据库路径
             return dbPath;

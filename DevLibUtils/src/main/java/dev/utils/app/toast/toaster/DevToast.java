@@ -56,7 +56,7 @@ public final class DevToast {
     // =
 
     /**
-     * Application 初始化调用 (必须调用 -> 内部已经调用)
+     * Application 初始化调用 (内部已调用)
      * @param application
      */
     public static void init(final Application application) {

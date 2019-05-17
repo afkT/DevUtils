@@ -522,7 +522,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 通过View, 获取Bitmap -> 绘制整个View
+     * 通过 View 获取 Bitmap, 绘制整个View
      * @param view
      * @return
      */

@@ -665,7 +665,7 @@ public final class ViewUtils {
             totalHeight += singleMax;
         }
         // 每列之间的间隔 |
-        //int hSpaec = gridView.getHorizontalSpacing();
+        // int hSpaec = gridView.getHorizontalSpacing();
         // 每行之间的间隔 -
         int vSpace = gridView.getVerticalSpacing();
         // 最后获取整个gridView完整显示需要的高度

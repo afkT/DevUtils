@@ -169,7 +169,7 @@ public final class SnackbarUse {
         // = 显示区域 =
 
         // 设置是否自动计算边距 (如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示)
-        // setAutoCalc -> 只有调用 above / bellow 该属性才有意义
+        // setAutoCalc 只有调用 above / bellow 该属性才有意义
 
         // 设置 Snackbar 显示在指定 View 的上方, 并且向上边距 20
         SnackbarUtils.with(view).above(targetView, 20);

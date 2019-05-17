@@ -247,7 +247,7 @@ public final class EditTextUtils {
     /**
      * 设置输入限制
      * @param editText
-     * @param digits   只能输入的内容 -> 1234567890
+     * @param digits   只能输入的内容, 1234567890
      * @return
      */
     public static EditText setKeyListener(final EditText editText, final String digits) {
@@ -321,7 +321,7 @@ public final class EditTextUtils {
 
         // 标记id - 一定程度上唯一
         private final int markId;
-        // 判断是否操作中 - 操作状态 -> 如果是否使用搜索数据等
+        // 判断是否操作中
         private boolean operate = false;
         // 标记状态, 特殊需求处理
         private int operateState = -1;

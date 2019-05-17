@@ -764,7 +764,7 @@ public final class MapUtils {
                 if (equals(value, map.get(key))) {
                     map.remove(key);
                 }
-                //return map.remove(key, value);
+                // return map.remove(key, value);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "remove");
             }
