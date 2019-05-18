@@ -343,7 +343,7 @@ public final class ShapeUtils {
 //            android:useLevel ["true" | "false"] 如果要使用LevelListDrawable对象, 就要设置为 true, 设置为 true无渐变, false 有渐变色
 //
 //            android:gradientRadius 整型
-//            渐变色半径.当 android:type="radial" 时才使用, 单独使用 android:type="radial" 会报错
+//            渐变色半径, 当 android:type="radial" 时才使用, 单独使用 android:type="radial" 会报错
 //
 //            android:centerX 整型 渐变中心X点坐标的相对位置
 //            android:centerY 整型 渐变中心Y点坐标的相对位置

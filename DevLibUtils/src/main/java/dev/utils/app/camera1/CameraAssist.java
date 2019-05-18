@@ -20,7 +20,7 @@ public final class CameraAssist {
 
     // 日志 TAG
     private final String TAG = CameraAssist.class.getSimpleName();
-    // 摄像头 Camera
+    // 摄像头对象
     private Camera mCamera;
     // 是否预览中
     private boolean mPreviewing;
@@ -169,7 +169,7 @@ public final class CameraAssist {
      * @return {@link Camera.Size} 预览分辨率
      */
     public Camera.Size getPreviewSize() {
-        if (null != mCamera) {
+        if (null != mCamera && null != mCamera.getParameters()) {
             return mCamera.getParameters().getPreviewSize();
         }
         return null;
@@ -197,7 +197,7 @@ public final class CameraAssist {
      */
     public void setCamera(final Camera camera) {
         this.mCamera = camera;
-        // 初始化 Camera大小
+        // 初始化 Camera 大小
         this.mCameraSizeAssist = new CameraSizeAssist(mCamera);
     }
 

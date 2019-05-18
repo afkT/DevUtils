@@ -96,7 +96,7 @@ public class AsyncExecutor {
     }
 
     /**
-     * 将子线程结果传递到UI线程
+     * 将子线程结果传递到 UI 线程
      * @param worker 任务 {@link Worker}
      * @param result 执行数据
      * @param <T>    泛型
@@ -116,7 +116,7 @@ public class AsyncExecutor {
     }
 
     /**
-     * 将子线程结果传递到UI线程
+     * 将子线程结果传递到 UI 线程
      * @param worker 任务 {@link Worker}
      */
     private void postCancel(final Worker worker) {
@@ -158,7 +158,7 @@ public class AsyncExecutor {
         protected abstract T doInBackground();
 
         /**
-         * 将子线程结果传递到UI线程
+         * 将子线程结果传递到 UI 线程
          * @param data 数据
          */
         protected void onPostExecute(T data) {

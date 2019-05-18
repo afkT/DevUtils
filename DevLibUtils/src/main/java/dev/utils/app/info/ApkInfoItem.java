@@ -41,7 +41,7 @@ public final class ApkInfoItem {
     private String appSHA256;
     @Keep // App 最低支持版本
     private int minSdkVersion = -1;
-    @Keep // App 兼容sdk版本
+    @Keep // App 兼容 SDK 版本
     private int targetSdkVersion = -1;
     @Keep // App 安装包大小
     private String apkLength;
@@ -59,19 +59,19 @@ public final class ApkInfoItem {
     private String certVersion;
     @Keep // 证书算法名称
     private String certSigalgname;
-    @Keep // 证书算法OID
+    @Keep // 证书算法 OID
     private String certSigalgoid;
     @Keep // 证书机器码
     private String certSerialnumber;
-    @Keep // 证书 DER编码
+    @Keep // 证书 DER 编码
     private String certDercode;
     @Keep // App 参数集
     private List<KeyValueBean> listKeyValues = new ArrayList<>();
 
     /**
      * 初始化 ApkInfoItem 对象
-     * @param pInfo
-     * @return
+     * @param pInfo {@link PackageInfo}
+     * @return {@link ApkInfoItem}
      */
     protected static ApkInfoItem obtain(final PackageInfo pInfo) {
         try {
@@ -84,7 +84,8 @@ public final class ApkInfoItem {
 
     /**
      * 初始化 AppInfoItem 对象
-     * @param pInfo
+     * @param pInfo {@link PackageInfo}
+     * @return {@link ApkInfoItem}
      */
     private ApkInfoItem(final PackageInfo pInfo) {
         // 获取 Context
@@ -97,18 +98,18 @@ public final class ApkInfoItem {
         // 获取签名信息
         Signature[] signatures = SignaturesUtils.getSignaturesFromApk(new File(appInfoBean.getSourceDir()));
         // =
-        // App 签名MD5
+        // App MD5 签名
         appMD5 = SignaturesUtils.signatureMD5(signatures);
         // App SHA1
         appSHA1 = SignaturesUtils.signatureSHA1(signatures);
         // App SHA256
         appSHA256 = SignaturesUtils.signatureSHA256(signatures);
-        // 属于7.0以上才有的方法
+        // 属于 7.0 以上才有的方法
         if (AppCommonUtils.isN()) {
             // App 最低支持版本
             minSdkVersion = pInfo.applicationInfo.minSdkVersion;
         }
-        // App 兼容sdk版本
+        // App 兼容 SDK 版本
         targetSdkVersion = pInfo.applicationInfo.targetSdkVersion;
         // App 安装包大小
         apkLength = Formatter.formatFileSize(DevUtils.getContext(), FileUtils.getFileLength(appInfoBean.getSourceDir()));
@@ -154,7 +155,7 @@ public final class ApkInfoItem {
             certVersion = cert.getVersion() + "";
             // 证书算法名称
             certSigalgname = cert.getSigAlgName();
-            // 证书算法OID
+            // 证书算法 OID
             certSigalgoid = cert.getSigAlgOID();
             // 证书机器码
             certSerialnumber = cert.getSerialNumber().toString();
@@ -173,7 +174,7 @@ public final class ApkInfoItem {
             listTemps.add(KeyValueBean.get(R.string.dev_str_version, certVersion));
             // 证书算法名称
             listTemps.add(KeyValueBean.get(R.string.dev_str_sigalgname, certSigalgname));
-            // 证书算法OID
+            // 证书算法 OID
             listTemps.add(KeyValueBean.get(R.string.dev_str_sigalgoid, certSigalgoid));
             // 证书机器码
             listTemps.add(KeyValueBean.get(R.string.dev_str_dercode, certSerialnumber));
@@ -190,7 +191,7 @@ public final class ApkInfoItem {
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_packname, appInfoBean.getAppPackName()));
         // 没报错才存储 MD5 信息
         if (!isError) {
-            // App 签名 MD5
+            // App MD5 签名
             listKeyValues.add(KeyValueBean.get(R.string.dev_str_md5, appMD5));
         }
         // App 版本号 - 主要用于 App 内部版本判断 int 类型
@@ -203,14 +204,14 @@ public final class ApkInfoItem {
         if (!isError) {
             // App SHA1
             listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha1, appSHA1));
-            // App SHA256.
+            // App SHA256
             listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha256, appSHA256));
         }
         // App 最低支持版本
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(minSdkVersion) + "+ )"));
-        // App 兼容sdk版本
+        // App 兼容 SDK 版本
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
-        // 获取 Apk 大小
+        // 获取 APK 大小
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_apk_length, apkLength));
         // 没报错才存储 其他签名信息
         if (!isError) {
@@ -267,7 +268,7 @@ public final class ApkInfoItem {
     }
 
     /**
-     * 获取 App 兼容sdk版本
+     * 获取 App 兼容 SDK 版本
      * @return
      */
     public int getTargetSdkVersion() {

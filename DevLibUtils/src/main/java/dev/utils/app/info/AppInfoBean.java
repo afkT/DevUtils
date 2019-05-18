@@ -162,7 +162,7 @@ public class AppInfoBean {
     }
 
     /**
-     * 获取 Apk 大小
+     * 获取 APK 大小
      * @return
      */
     public long getApkSize() {

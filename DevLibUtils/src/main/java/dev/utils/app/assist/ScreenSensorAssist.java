@@ -147,7 +147,7 @@ public final class ScreenSensorAssist {
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mListener = new OrientationSensorListener();
 
-        // 根据 旋转之后/点击全屏之后 两者方向一致, 激活 sm
+        // 根据 旋转之后/点击全屏之后 两者方向一致, 激活 SensorManager
         mSensorManagerChange = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mListenerChange = new OrientationSensorChangeListener();
     }

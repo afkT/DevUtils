@@ -403,6 +403,33 @@ public final class BitmapUtils {
         return bitmap;
     }
 
+    /**
+     * Drawable 转 Bitmap
+     * @param drawable {@link Drawable}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap drawableToBitmap4(final Drawable drawable) {
+        if (drawable == null) return null;
+        try {
+            // 取 drawable 的长宽
+            int width = drawable.getIntrinsicWidth();
+            int height = drawable.getIntrinsicHeight();
+            // 取 drawable 的颜色格式
+            Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
+            // 建立对应 bitmap
+            Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+            // 建立对应 bitmap 的画布
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, width, height);
+            // 把 drawable 内容画到画布中
+            drawable.draw(canvas);
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "drawableToBitmap4");
+        }
+        return null;
+    }
+
     // =
 
     /**

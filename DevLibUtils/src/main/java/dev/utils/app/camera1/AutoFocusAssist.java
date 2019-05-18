@@ -75,7 +75,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
         if (camera != null) {
             // 获取对象对焦模式
             String currentFocusMode = camera.getParameters().getFocusMode();
-            // 判断是否(使用/支持)对焦
+            // 判断是否支持对焦
             mUseAutoFocus = FOCUS_MODES.contains(currentFocusMode);
         } else {
             // 不支持对焦
@@ -142,7 +142,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      */
     @SuppressLint("NewApi")
     private synchronized void autoFocusAgainLater() {
-        // 不属于停止, 并且任务等于 null, 才处理
+        // 不属于停止, 并且任务等于 null 才处理
         if (!mStopped && mOutstandingTask == null) {
             // 初始化任务
             AutoFocusTask newTask = new AutoFocusTask();

@@ -1825,10 +1825,10 @@ public final class ADBUtils {
     public static String getScreenSize() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("wm size", true);
         if (result.isSuccess3()) {
-            // 正常返回 Physical size: 1080x1920
+            // 正常返回 Physical size: 1080 x 1920
             // 如果使用命令修改过, 那输出可能是:
-            // Physical size: 1080x1920
-            // Override size: 480x1024
+            // Physical size: 1080 x 1920
+            // Override size: 480 x 1024
             // 表明设备的屏幕分辨率原本是 1080px * 1920px, 当前被修改为 480px * 1024px
             return result.successMsg;
         }

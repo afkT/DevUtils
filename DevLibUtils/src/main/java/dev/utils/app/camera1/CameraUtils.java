@@ -28,13 +28,13 @@ public final class CameraUtils {
         try {
             // 默认是不支持
             int isSupportReverse = 0;
-            // 判断是否支持前置,支持则使用前置
+            // 判断是否支持前置, 支持则使用前置
             if (checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT)) {
                 isSupportReverse += 1;
                 // =
                 LogPrintUtils.dTag(TAG, "支持前置摄像头(手机屏幕)");
             }
-            // 判断是否支持后置,是则使用后置
+            // 判断是否支持后置, 是则使用后置
             if (checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_BACK)) {
                 isSupportReverse += 1;
                 // =
@@ -51,7 +51,7 @@ public final class CameraUtils {
 
     /**
      * 检查是否有指定的摄像头
-     * @param facing 摄像头标识id
+     * @param facing 摄像头标识 id
      * @return {@code true} yes, {@code false} no
      */
     public static boolean checkCameraFacing(final int facing) {
@@ -72,7 +72,7 @@ public final class CameraUtils {
 
     /**
      * 判断是否使用前置摄像头
-     * @param facing 摄像头标识id
+     * @param facing 摄像头标识 id
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isFrontCamera(final int facing) {
@@ -81,7 +81,7 @@ public final class CameraUtils {
 
     /**
      * 判断是否使用后置摄像头
-     * @param facing 摄像头标识id
+     * @param facing 摄像头标识 id
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isBackCamera(final int facing) {
@@ -91,7 +91,7 @@ public final class CameraUtils {
     /**
      * 判断使用的摄像头
      * @param isFrontCamera 是否前置摄像头
-     * @return 摄像头标识id
+     * @return 摄像头标识 id
      */
     public static int isUseCameraFacing(final boolean isFrontCamera) {
         // 默认使用后置摄像头

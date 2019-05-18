@@ -15,13 +15,13 @@ import dev.utils.LogPrintUtils;
  * detail: 定时器工具类
  * @author Ttt
  * <pre>
- *      主要是为了控制整个项目的定时器, 防止定时器混乱, 或者导致忘记关闭等情况, 以及减少初始化等操作代码
+ *      主要是为了控制整个项目的定时器, 防止定时器混乱, 或者忘记关闭等情况, 以及减少初始化等操作代码
  *      主要实现是 AbsTimer、TimerTask 这两个类
  *      AbsTimer => 定时器抽象类, 对外提供该类对象以及内部方法便于内部实现方法的隐藏, 以达到对定时器任务的控制处理
  *      TimerTask => 内部私有类, 实现了具体的定时器操作以及代码控制等, 防止外部直接 new 导致定时器混乱
  *      <p></p>
  *      如果外部想要实现定时器, 但是通过内部 ArrayList 控制, 也可以通过实现 AbsTimer 接口, 内部的 startTimer()、closeTimer() 进行了对 AbsTimer 的保存、标记等操作
- *      需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer(); => 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
+ *      需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer() => 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
  *      <p></p>
  *      startTimer() => 主要进行添加到 ArrayList, 并且标记不需要回收
  *      closeTimer() => 不直接操作 remove, 防止出现 ConcurrentModificationException 异常, 而是做一个标记, 便于后续回收
@@ -70,7 +70,7 @@ public final class TimerManager {
      * 获取全部任务总数
      * @return 全部任务总数
      */
-    public static int timerSize() {
+    public static int getTimerSize() {
         return mTimerLists.size();
     }
 
@@ -515,13 +515,13 @@ public final class TimerManager {
         // 通知的数据
         private Object notifyObj = null;
         // 通知类型
-        private int notifyWhat = AbsTimer.TIMER_NOTIFY_WHAT;
+        private int notifyWhat;
         // 延迟时间 - 多少毫秒后开始执行
         private long delay;
         // 循环时间 - 每隔多少秒执行一次
         private long period;
         // 触发次数上限
-        private int triggerLimit = 1;
+        private int triggerLimit;
         // 触发次数
         private int triggerNumber = 0;
         // 定时器是否运行中
@@ -655,9 +655,8 @@ public final class TimerManager {
          * @return {@code true} yes, {@code false} no
          */
         @Override
-        public boolean isTriggerEnd() { // 如果为无限触发, 则会返回 true, 因为触发次数大于 -1
-            return (triggerNumber >= triggerLimit);
-            // return (triggerLimit >= 0 && triggerNumber >= triggerLimit);
+        public boolean isTriggerEnd() {
+            return (triggerLimit >= 0 && triggerNumber >= triggerLimit);
         }
 
         /**

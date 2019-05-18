@@ -21,7 +21,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     // 日志 TAG
     private static final String TAG = BeepVibrateAssist.class.getSimpleName();
-    // Context
+    // Activity
     private final Activity mActivity;
     // 播放资源对象
     private MediaPlayer mMediaPlayer = null;
@@ -41,7 +41,7 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 构造函数
      * @param activity {@link Activity}
-     * @param rawId    raw资源id
+     * @param rawId    R.raw.id
      */
     public BeepVibrateAssist(final Activity activity, @RawRes final int rawId) {
         this.mActivity = activity;
@@ -71,7 +71,7 @@ public final class BeepVibrateAssist implements Closeable {
             // RINGER_MODE_NORMAL(普通)、RINGER_MODE_SILENT(静音)、RINGER_MODE_VIBRATE(震动)
             AudioManager audioService = (AudioManager) mActivity.getSystemService(Context.AUDIO_SERVICE);
             if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-                return false; // 进入只有属于, 静音、震动, 才不播放
+                return false; // 只有属于, 静音、震动, 才不播放
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shouldBeep");
@@ -190,7 +190,7 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 创建 MediaPlayer 对象
      * @param context {@link Context} Activity
-     * @param rawId   raw资源id
+     * @param rawId   R.raw.id
      * @return {@link MediaPlayer}
      */
     public static MediaPlayer buildMediaPlayer(final Context context, @RawRes final int rawId) {
@@ -200,7 +200,7 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 创建 MediaPlayer 对象
      * @param context    {@link Context} Activity
-     * @param rawId      raw资源id
+     * @param rawId      R.raw.id
      * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */

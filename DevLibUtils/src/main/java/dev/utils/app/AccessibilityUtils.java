@@ -143,7 +143,7 @@ public final class AccessibilityUtils {
         buffer.append("source:" + event.getSource() + ""); // 事件源信息
         buffer.append(NEW_LINE_STR);
 
-        buffer.append("source class:" + event.getClassName() + ""); // 事件源的类名, 比如android.widget.TextView
+        buffer.append("source class:" + event.getClassName() + ""); // 事件源的类名, 比如 android.widget.TextView
         buffer.append(NEW_LINE_STR);
 
         buffer.append("event type(int):" + eventType + "");
@@ -625,7 +625,7 @@ public final class AccessibilityUtils {
 //    onServiceConnected()	系统成功绑定该服务时被触发, 也就是当你在设置中开启相应的服务, 系统成功的绑定了该服务时会触发, 通常我们可以在这里做一些初始化操作
 //    getSeviceInfo()	获取当前服务的配置信息
 //    setServiceInfo(AccessibilityServiceInfo info)	设置当前服务的配置信息
-//    onAccessibilityEvent(AccessibilityEvent event)	有关AccessibilityEvent事件的回调函数.系统通过sendAccessibiliyEvent()不断的发送AccessibilityEvent到此处
+//    onAccessibilityEvent(AccessibilityEvent event)	有关AccessibilityEvent事件的回调函数, 系统通过sendAccessibiliyEvent()不断的发送AccessibilityEvent到此处
 //    performGlobalAction(int action)	执行全局操作, 比如回到主页、打开最近等操作
 //    findFoucs(int falg)	查找拥有特定焦点类型的控件
 //    getRootInActiveWindow()	如果配置能够获取窗口内容, 则会返回当前活动窗口的根结点

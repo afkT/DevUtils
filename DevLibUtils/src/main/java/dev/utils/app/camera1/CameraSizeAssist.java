@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.app.ScreenUtils;
 
 /**
- * detail: 摄像头 预览、输出大小 辅助类
+ * detail: 摄像头 (预览、输出大小) 辅助类
  * @author Ttt
  * <pre>
  *      需要的权限:
@@ -26,7 +26,7 @@ public final class CameraSizeAssist {
 
     // 日志 TAG
     private final String TAG = CameraSizeAssist.class.getSimpleName();
-    // 摄像头 Camera
+    // 摄像头对象
     private Camera mCamera;
     // 默认最大的偏差
     private final double MAX_ASPECT_DISTORTION = 0.15d;
@@ -116,7 +116,7 @@ public final class CameraSizeAssist {
     }
 
     /**
-     * 根据手机支持的预览分辨率计算, 设置预览尺寸(无任何操作, 单独把Camera显示到SurfaceView 预览尺寸)
+     * 根据手机支持的预览分辨率计算, 设置预览尺寸(无任何操作, 单独把 Camera 显示到 SurfaceView 预览尺寸)
      * @param point      指定的尺寸(为 null, 则使用屏幕尺寸)
      *                   (从指定的宽高, 开始往下(超过的不处理) 选择最接近尺寸) point.x => 宽, point.y => 高
      * @param distortion 偏差比例值
@@ -370,7 +370,7 @@ public final class CameraSizeAssist {
             builder.append("预览支持尺寸: \r\n");
             // 打印信息
             for (Camera.Size previewSize : listPreviewSizes) {
-                // 例: 1080x1920
+                // 例: 1080 x 1920
                 builder.append(previewSize.width).append("x").append(previewSize.height).append("\r\n");
             }
             // 打印尺寸信息
@@ -427,7 +427,7 @@ public final class CameraSizeAssist {
             }
         }
 
-        // 如果没有精确匹配, 请使用最大预览大小, 这对于旧设备来说不是一个好主意, 因为需要额外的计算, 我们很可能会在新的Android 4 + 设备上运行, 那里的CPU功能更强大
+        // 如果没有精确匹配, 则使用最大预览大小
         if (!listPreviewSizes.isEmpty()) {
             // 获取最大的尺寸
             Camera.Size largestPreview = listPreviewSizes.get(0);
@@ -495,7 +495,7 @@ public final class CameraSizeAssist {
             builder.append("拍照支持尺寸: \r\n");
             // 打印信息
             for (Camera.Size pictureSize : listPictureSizes) {
-                // 例: 1080x1920
+                // 例: 1080 x 1920
                 builder.append(pictureSize.width).append("x").append(pictureSize.height).append("\r\n");
             }
             // 打印尺寸信息
@@ -578,7 +578,7 @@ public final class CameraSizeAssist {
             return maxAccordSize;
         }
 
-        // 如果没有精确匹配, 请使用最大尺寸大小
+        // 如果没有精确匹配, 则使用最大尺寸大小
         if (!listPictureSizes.isEmpty()) {
             // 获取最大的尺寸
             Camera.Size largestPicture = listPictureSizes.get(0);
@@ -647,7 +647,7 @@ public final class CameraSizeAssist {
             builder.append("视频录制支持尺寸: \r\n");
             // 打印信息
             for (Camera.Size videoSize : listVideoSizes) {
-                // 例: 1080x1920
+                // 例: 1080 x 1920
                 builder.append(videoSize.width).append("x").append(videoSize.height).append("\r\n");
             }
             // 打印尺寸信息
@@ -738,7 +738,7 @@ public final class CameraSizeAssist {
             return maxAccordSize;
         }
 
-        // 如果没有精确匹配, 请使用最大尺寸大小
+        // 如果没有精确匹配, 则使用最大尺寸大小
         if (!listVideoSizes.isEmpty()) {
             // 获取最大的尺寸
             Camera.Size largestVideo = listVideoSizes.get(0);

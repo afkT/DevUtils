@@ -39,7 +39,7 @@ public final class AppInfoItem {
     private String appSHA256;
     @Keep // App 最低支持版本
     private int minSdkVersion = -1;
-    @Keep // App 兼容sdk版本
+    @Keep // App 兼容 SDK 版本
     private int targetSdkVersion = -1;
     @Keep // App 安装包大小
     private String apkLength;
@@ -103,7 +103,7 @@ public final class AppInfoItem {
             // App 最低支持版本
             minSdkVersion = pInfo.applicationInfo.minSdkVersion;
         }
-        // App 兼容sdk版本
+        // App 兼容 SDK 版本
         targetSdkVersion = pInfo.applicationInfo.targetSdkVersion;
         // App 安装包大小
         apkLength = Formatter.formatFileSize(DevUtils.getContext(), FileUtils.getFileLength(appInfoBean.getSourceDir()));
@@ -163,7 +163,7 @@ public final class AppInfoItem {
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_name, appInfoBean.getVersionName()));
         // App SHA1
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha1, appSHA1));
-        // App SHA256.
+        // App SHA256
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha256, appSHA256));
         // App 首次安装时间
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_first_install_time, dFormat.format(pInfo.firstInstallTime)));
@@ -171,7 +171,7 @@ public final class AppInfoItem {
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_last_update_time, dFormat.format(pInfo.lastUpdateTime)));
         // App 最低支持版本
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(minSdkVersion) + "+ )"));
-        // App 兼容sdk版本
+        // App 兼容 SDK 版本
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
         // Apk 大小
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_apk_length, apkLength));
@@ -242,7 +242,7 @@ public final class AppInfoItem {
     }
 
     /**
-     * 获取 App 兼容sdk版本
+     * 获取 App 兼容 SDK 版本
      * @return
      */
     public int getTargetSdkVersion() {

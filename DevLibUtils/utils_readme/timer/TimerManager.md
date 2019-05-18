@@ -4,13 +4,13 @@
 
 ```java
 /**
- * 主要是为了控制整个项目的定时器, 防止定时器混乱, 或者导致忘记关闭等情况, 以及减少初始化等操作代码
+ * 主要是为了控制整个项目的定时器, 防止定时器混乱, 或者忘记关闭等情况, 以及减少初始化等操作代码
  * 主要实现是 AbsTimer、TimerTask 这两个类
  * AbsTimer => 定时器抽象类, 对外提供该类对象以及内部方法便于内部实现方法的隐藏, 以达到对定时器任务的控制处理
  * TimerTask => 内部私有类, 实现了具体的定时器操作以及代码控制等, 防止外部直接 new 导致定时器混乱
  * <p></p>
  * 如果外部想要实现定时器, 但是通过内部 ArrayList 控制, 也可以通过实现 AbsTimer 接口, 内部的 startTimer()、closeTimer() 进行了对 AbsTimer 的保存、标记等操作
- * 需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer(); => 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
+ * 需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer() => 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
  * <p></p>
  * startTimer() => 主要进行添加到 ArrayList, 并且标记不需要回收
  * closeTimer() => 不直接操作 remove, 防止出现 ConcurrentModificationException 异常, 而是做一个标记, 便于后续回收

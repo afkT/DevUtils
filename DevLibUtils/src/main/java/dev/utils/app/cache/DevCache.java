@@ -44,11 +44,11 @@ public final class DevCache {
     private static final String TAG = DevCache.class.getSimpleName();
     // 缓存文件名
     private static final String DEF_FILE_NAME = DevCache.class.getSimpleName();
-    // 过期小时(单位秒) = 1小时
+    // 过期小时(单位秒) = 1 小时
     public static final int TIME_HOUR = 60 * 60;
-    // 一天24小时
+    // 一天 24 小时
     public static final int TIME_DAY = TIME_HOUR * 24;
-    // 缓存最大值(50mb)
+    // 缓存最大值(50 mb)
     private static final int MAX_SIZE = 1000 * 1000 * 50;
     // 不限制存放数据的数量
     private static final int MAX_COUNT = Integer.MAX_VALUE;
@@ -149,8 +149,8 @@ public final class DevCache {
     }
 
     /**
-     * 获取进程pid - android.os.Process.myPid()
-     * @return 进程id
+     * 获取进程 id - android.os.Process.myPid()
+     * @return 进程 id
      */
     private static String myPid() {
         return "_" + android.os.Process.myPid();
@@ -418,7 +418,7 @@ public final class DevCache {
      * 返回缓存流写入数据对象
      * @param key 保存的 key
      * @return {@link OutputStream}
-     * @throws FileNotFoundException 文件不存在异常
+     * @throws FileNotFoundException 文件不存在
      */
     public OutputStream put(final String key) throws FileNotFoundException {
         File file = mCache.newFile(key);
@@ -429,10 +429,10 @@ public final class DevCache {
     }
 
     /**
-     * 获取对应key File 输入流
+     * 获取对应 key 的 File 输入流
      * @param key 保存的 key
      * @return {@link InputStream}
-     * @throws FileNotFoundException 文件不存在异常
+     * @throws FileNotFoundException 文件不存在
      */
     public InputStream get(final String key) throws FileNotFoundException {
         File file = mCache.get(key);
@@ -496,7 +496,7 @@ public final class DevCache {
     /**
      * 保存 Serializable 数据到缓存中
      * @param key   保存的 key
-     * @param value 保存的value
+     * @param value 保存的 value
      */
     public void put(final String key, final Serializable value) {
         put(key, value, -1);
@@ -505,7 +505,7 @@ public final class DevCache {
     /**
      * 保存 Serializable 数据到缓存中
      * @param key      保存的 key
-     * @param value    保存的value
+     * @param value    保存的 value
      * @param saveTime 保存的时间, 单位:秒
      */
     public void put(final String key, final Serializable value, final int saveTime) {
@@ -657,7 +657,7 @@ public final class DevCache {
     }
 
     /**
-     * 移除某个key
+     * 移除某个 key 的数据
      * @param key 保存的 key
      * @return {@code true} yes, {@code false} no
      */
