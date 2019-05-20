@@ -67,7 +67,7 @@ public final class AppInfoItem {
     private List<KeyValueBean> listKeyValues = new ArrayList<>();
 
     /**
-     * 初始化 AppInfoItem 对象
+     * 获取 AppInfoItem
      * @param packageInfo {@link PackageInfo}
      * @return {@link AppInfoItem}
      */
@@ -81,7 +81,7 @@ public final class AppInfoItem {
     }
 
     /**
-     * 初始化 AppInfoItem 对象
+     * 初始化 AppInfoItem
      * @param packageInfo {@link PackageInfo}
      */
     private AppInfoItem(final PackageInfo packageInfo) {

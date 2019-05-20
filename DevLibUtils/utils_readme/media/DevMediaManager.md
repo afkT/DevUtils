@@ -26,47 +26,47 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| getInstance | 获取 DevMediaManager 实例 ,单例模式 |
+| getInstance | 获取 DevMediaManager 实例 |
 | setAudioStreamType | 设置流类型 |
 | playPrepareRaw | 播放 Raw 资源 |
 | playPrepareAssets | 播放 Assets 资源 |
-| playPrepare | 预加载播放 - (file-path or http/rtsp URL) http资源, 本地资源 |
-| isPlaying | 是否播放中(判断null) |
-| pause | 暂停操作(判断null) |
-| stop | 停止操作(判断null) - 销毁MediaPlayer |
+| playPrepare | 预加载播放 - (file-path or http/rtsp URL) http 资源、本地资源 |
+| isPlaying | 是否播放中 |
+| pause | 暂停操作 |
+| stop | 停止操作 - 销毁 MediaPlayer |
 | isIgnoreWhat | 是否忽略错误类型 |
 | onError | 播放出错回调 |
 | onVideoSizeChanged | 视频大小改变回调 |
-| onPrepared | 使用 mMediaPlayer.prepareAsync(); 异步播放准备成功回调 |
+| onPrepared | 使用 mMediaPlayer.prepareAsync() 异步播放准备成功回调 |
 | onCompletion | 视频播放结束回调 |
 | onBufferingUpdate | MediaPlayer 缓冲更新回调 |
 | onSeekComplete | 滑动加载完成回调 |
-| setMeidaListener | 设置MediaPlayer回调 |
+| setMeidaListener | 设置 MediaPlayer 回调事件 |
 | isNullMediaPlayer | 判断 MediaPlayer 是否为 null |
 | isNotNullMediaPlayer | 判断 MediaPlayer 是否不为 null |
 | getMediaPlayer | 获取 MediaPlayer 对象 |
 | setMediaPlayer | 设置 MediaPlayer 对象 |
-| setTAG | 设置Tag打印 |
+| setTAG | 设置日志打印 TAG |
 | getVolume | 获取播放音量 |
 | setVolume | 设置播放音量 |
-| getPlayRawId | 获取播放的资源id |
-| getPlayUri | 获取当前播放的地址 |
+| getPlayRawId | 获取播放资源 id |
+| getPlayUri | 获取播放地址 |
 | getVideoWidth | 获取视频宽度 |
 | getVideoHeight | 获取视频高度 |
-| getCurrentPosition | 获取当前播放时间 |
+| getCurrentPosition | 获取播放时间 |
 | getDuration | 获取资源总时间 |
 | getPlayPercent | 获取播放进度百分比 |
 | isLooping | 是否循环播放 - 默认不循环 |
-| setMediaConfig | 设置播放配置 uri等 |
+| setMediaConfig | 设置播放配置 |
 
 
 * **视频播放控制器 ->** [DevVideoPlayerControl.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/player/DevVideoPlayerControl.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| surfaceChanged | surface 改变通知 |
-| surfaceCreated | surface 创建 |
-| surfaceDestroyed | surface 销毁 |
+| surfaceChanged | Surface 改变通知 |
+| surfaceCreated | Surface 创建 |
+| surfaceDestroyed | Surface 销毁 |
 | onPrepared | 准备完成回调 |
 | onCompletion | 播放完成/结束 |
 | onBufferingUpdate | 缓存进度 |
@@ -77,14 +77,14 @@
 | pausePlayer | 暂停播放 |
 | stopPlayer | 停止播放 |
 | startPlayer | 开始播放 |
-| getSurfaceview | 获取显示的SurfaceView |
+| getSurfaceview | 获取 SurfaceView |
 | isPlaying | 是否播放中 |
 | isAutoPlay | 判断是否自动播放 |
 | setAutoPlay | 设置自动播放 |
-| getPlayUri | 获取当前播放的地址 |
+| getPlayUri | 获取播放地址 |
 | getVideoWidth | 获取视频宽度 |
 | getVideoHeight | 获取视频高度 |
-| getCurrentPosition | 获取当前播放时间 |
+| getCurrentPosition | 获取播放时间 |
 | getDuration | 获取资源总时间 |
 | getPlayPercent | 获取播放进度百分比 |
 

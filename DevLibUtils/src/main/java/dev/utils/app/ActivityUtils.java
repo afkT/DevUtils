@@ -212,7 +212,7 @@ public final class ActivityUtils {
         if (packageName == null) return null;
         try {
             PackageManager pManager = DevUtils.getContext().getPackageManager();
-            // 获取对应的PackageInfo
+            // 获取对应的 PackageInfo
             PackageInfo packageInfo = pManager.getPackageInfo(packageName, 0);
 
             if (packageInfo == null) return null;

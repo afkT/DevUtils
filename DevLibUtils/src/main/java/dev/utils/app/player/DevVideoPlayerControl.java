@@ -27,7 +27,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     // = View =
     // ========
 
-    // 播放载体SurfaceView
+    // 播放预览载体 SurfaceView
     private SurfaceView mSurfaceview;
     // 画面预览回调
     private SurfaceHolder mSurfaceHolder;
@@ -35,23 +35,21 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     private boolean mAutoPlay;
 
     /**
-     * 初始化构造函数
-     * @param surfaceview
+     * 构造函数
+     * @param surfaceview {@link SurfaceView}
      */
     public DevVideoPlayerControl(final SurfaceView surfaceview) {
         this(surfaceview, false);
     }
 
     /**
-     * 初始化构造函数
-     * @param surfaceview
-     * @param autoPlay
+     * 构造函数
+     * @param surfaceview {@link SurfaceView}
+     * @param autoPlay    是否自动播放
      */
     public DevVideoPlayerControl(final SurfaceView surfaceview, final boolean autoPlay) {
         this.mSurfaceview = surfaceview;
         this.mAutoPlay = autoPlay;
-
-        // = 初始化操作 =
 
         // 初始化 DevMediaManager 回调事件类
         DevMediaManager.getInstance().setMeidaListener(this);
@@ -69,7 +67,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         if (mSurfaceHolder != null) {
             mSurfaceHolder.removeCallback(this);
         }
-        // 设置Holder
+        // 设置 Holder
         mSurfaceHolder = mSurfaceview.getHolder();
         // 移除旧的回调
         if (mSurfaceHolder != null) {
@@ -84,7 +82,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     // ====================
 
     /**
-     * surface 改变通知
+     * Surface 改变通知
      */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
@@ -92,7 +90,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     }
 
     /**
-     * surface 创建
+     * Surface 创建
      */
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -108,7 +106,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     }
 
     /**
-     * surface 销毁
+     * Surface 销毁
      */
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
@@ -127,7 +125,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         LogPrintUtils.dTag(TAG, "onPrepared");
         // =
         if (mSurfaceview != null) {
-            // 如果等于 null, 或者不在显示中,则跳过
+            // 如果等于 null, 或者不在显示中, 则跳过
             if (mSurfaceHolder.getSurface() == null || !mSurfaceHolder.getSurface().isValid())
                 return;
 
@@ -219,7 +217,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 设置播放监听事件
-     * @param mediaListener
+     * @param mediaListener {@link DevMediaManager.MediaListener}
      */
     public void setMediaListener(final DevMediaManager.MediaListener mediaListener) {
         this.mMediaListener = mediaListener;
@@ -246,7 +244,6 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     /**
      * 开始播放
      * @param playUri 播放地址
-     * @return
      */
     public void startPlayer(final String playUri) {
         startPlayer(playUri, false);
@@ -286,8 +283,8 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     }
 
     /**
-     * 获取显示的SurfaceView
-     * @return
+     * 获取 SurfaceView
+     * @return {@link SurfaceView}
      */
     public SurfaceView getSurfaceview() {
         return mSurfaceview;
@@ -297,7 +294,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 是否播放中
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isPlaying() {
         return DevMediaManager.getInstance().isPlaying();
@@ -306,10 +303,10 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     /**
      * 是否播放中
      * @param uri 播放地址
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isPlaying(final String uri) {
-        if (!TextUtils.isEmpty(uri)) { // 需要播放的地址,必须不等于 null
+        if (!TextUtils.isEmpty(uri)) { // 需要播放的地址, 必须不等于 null
             // 获取之前播放路径
             String playUri = DevMediaManager.getInstance().getPlayUri();
             // 如果不等于 null, 并且播放地址相同
@@ -326,7 +323,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 判断是否自动播放
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isAutoPlay() {
         return mAutoPlay;
@@ -334,15 +331,15 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 设置自动播放
-     * @param autoPlay
+     * @param autoPlay 是否自动播放
      */
     public void setAutoPlay(final boolean autoPlay) {
         this.mAutoPlay = autoPlay;
     }
 
     /**
-     * 获取当前播放的地址
-     * @return
+     * 获取播放地址
+     * @return 播放地址
      */
     public String getPlayUri() {
         return DevMediaManager.getInstance().getPlayUri();
@@ -351,7 +348,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 获取视频宽度
-     * @return
+     * @return 视频宽度
      */
     public int getVideoWidth() {
         return DevMediaManager.getInstance().getVideoWidth();
@@ -359,15 +356,15 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 获取视频高度
-     * @return
+     * @return 视频高度
      */
     public int getVideoHeight() {
         return DevMediaManager.getInstance().getVideoHeight();
     }
 
     /**
-     * 获取当前播放时间
-     * @return
+     * 获取播放时间
+     * @return 播放时间
      */
     public int getCurrentPosition() {
         return DevMediaManager.getInstance().getCurrentPosition();
@@ -375,7 +372,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 获取资源总时间
-     * @return
+     * @return 资源总时间
      */
     public int getDuration() {
         return DevMediaManager.getInstance().getDuration();
@@ -383,7 +380,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 获取播放进度百分比
-     * @return
+     * @return 播放进度百分比
      */
     public int getPlayPercent() {
         return DevMediaManager.getInstance().getPlayPercent();
