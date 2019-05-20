@@ -57,16 +57,16 @@
 | i | 打印 Log.INFO |
 | v | 打印 Log.VERBOSE |
 | wtf | 打印 Log.ASSERT |
-| json | 格式化Json格式数据,并打印 |
-| xml | 格式化XML格式数据,并打印 |
+| json | 格式化 JSON 格式数据, 并打印 |
+| xml | 格式化 XML 格式数据, 并打印 |
 | dTag | 打印 Log.DEBUG |
 | eTag | 打印 Log.ERROR |
 | wTag | 打印 Log.WARN |
 | iTag | 打印 Log.INFO |
 | vTag | 打印 Log.VERBOSE |
 | wtfTag | 打印 Log.ASSERT |
-| jsonTag | 格式化Json格式数据,并打印 |
-| xmlTag | 格式化XML格式数据,并打印 |
+| jsonTag | 格式化 JSON 格式数据, 并打印 |
+| xmlTag | 格式化 XML 格式数据, 并打印 |
 
 
 #### 全局配置
@@ -74,23 +74,23 @@
 ```java
 // = 在BaseApplication 中调用 =
 // 初始化日志配置
-LogConfig lConfig = new LogConfig();
+LogConfig logConfig = new LogConfig();
 // 堆栈方法总数(显示经过的方法)
-lConfig.methodCount = 3;
-// 堆栈方法索引偏移(0 = 最新经过调用的方法信息,偏移则往上推,如 1 = 倒数第二条经过调用的方法信息)
-lConfig.methodOffset = 0;
+logConfig.methodCount = 3;
+// 堆栈方法索引偏移(0 = 最新经过调用的方法信息, 偏移则往上推, 如 1 = 倒数第二条经过调用的方法信息)
+logConfig.methodOffset = 0;
 // 是否输出全部方法(在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数)
-lConfig.outputMethodAll = false;
-// 显示日志线程信息(特殊情况, 显示经过的线程信息,具体情况如上)
-lConfig.displayThreadInfo = false;
+logConfig.outputMethodAll = false;
+// 显示日志线程信息(特殊情况, 显示经过的线程信息, 具体情况如上)
+logConfig.displayThreadInfo = false;
 // 是否排序日志(格式化后)
-lConfig.sortLog = false; // 是否美化日志, 边框包围
+logConfig.sortLog = false; // 是否美化日志, 边框包围
 // 日志级别
-lConfig.logLevel = LogLevel.DEBUG;
-// 设置Tag(特殊情况使用, 不使用全部的Tag时,如单独输出在某个Tag下)
-lConfig.tag = "BaseLog";
+logConfig.logLevel = LogLevel.DEBUG;
+// 设置 TAG (特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下)
+logConfig.tag = "BaseLog";
 // 进行初始化配置 => 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
-DevLogger.init(lConfig);
+DevLogger.init(logConfig);
 // 进行初始化配置 => 在DevUtils.init() 内部调用了
 // DevLoggerUtils.init(mContext); // 日志操作工具类, 快捷获取 LogConfig、以及保存日志到文件中等
 ```
@@ -99,9 +99,9 @@ DevLogger.init(lConfig);
 #### 配置事项
 ```java
 // 发布的时候, 默认不需要打印日志则修改为
-LogConfig lConfig = new LogConfig();
-lConfig.logLevel = LogLevel.NONE; // 全部不打印
-DevLogger.init(lConfig); // 该方法设置全局默认日志配置
+LogConfig logConfig = new LogConfig();
+logConfig.logLevel = LogLevel.NONE; // 全部不打印
+DevLogger.init(logConfig); // 该方法设置全局默认日志配置
 
 // 还有一种情况, 部分日志发布的时候不打印, 但是有部分异常信息需要打印, 则单独使用配置
 DevLoggerUtils.getReleaseLogConfig(TAG) => 使用封装好的线上配置都行
@@ -148,21 +148,21 @@ DevLogger.xmlTag(tag, TestData.XML_DATA);
 #### 打印日志(自定义配置)
 ```java
 // 初始化日志配置
-LogConfig lConfig = new LogConfig();
+LogConfig logConfig = new LogConfig();
 // 是否排序日志(格式化后)
-lConfig.sortLog = true;
+logConfig.sortLog = true;
 // 日志级别
-lConfig.logLevel = LogLevel.DEBUG;
-// 设置Tag(特殊情况使用, 不使用全部的Tag时,如单独输出在某个Tag下)
-lConfig.tag = "SAD";
+logConfig.logLevel = LogLevel.DEBUG;
+// 设置 TAG (特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下)
+logConfig.tag = "SAD";
 // 打印日志信息
-DevLogger.other(lConfig).e("new Config - e");
-DevLogger.other(lConfig).e(new Exception("报错"), "new Config - e");
-DevLogger.other(lConfig).eTag(tag, "new Config - e");
-DevLogger.other(lConfig).eTag(tag, new Exception("报错"), "new Config - e");
+DevLogger.other(logConfig).e("new Config - e");
+DevLogger.other(logConfig).e(new Exception("报错"), "new Config - e");
+DevLogger.other(logConfig).eTag(tag, "new Config - e");
+DevLogger.other(logConfig).eTag(tag, new Exception("报错"), "new Config - e");
 
 // 有 Tag 优先使用自定义 Tag, 无 Tag 才使用 LogConfig.tag 
-DevLogger.other(lConfig).eTag(tag, "new Config - e");
+DevLogger.other(logConfig).eTag(tag, "new Config - e");
 ```
 
 

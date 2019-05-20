@@ -102,7 +102,7 @@ public final class JCLogUtils {
 
     /**
      * 处理信息
-     * @param message 打印信息
+     * @param message 日志信息
      * @param args    占位符替换
      * @return 返回处理(格式化)后准备打印的日志信息
      */

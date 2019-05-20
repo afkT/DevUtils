@@ -22,8 +22,8 @@ public final class ErrorUtils {
 
     /**
      * 获取错误信息
-     * @param e
-     * @return
+     * @param e 错误信息
+     * @return 错误信息字符串
      */
     public static String getErrorMsg(final Exception e) {
         try {
@@ -38,8 +38,8 @@ public final class ErrorUtils {
 
     /**
      * 将异常栈信息转为字符串
-     * @param e 字符串
-     * @return 异常栈
+     * @param e 错误信息
+     * @return 错误信息字符串
      */
     public static String getThrowableMsg(final Throwable e) {
         try {
@@ -67,7 +67,7 @@ public final class ErrorUtils {
      * 获取错误信息(无换行)
      * @param eHint 获取失败提示
      * @param ex    错误信息
-     * @return
+     * @return 错误信息字符串
      */
     public static String getThrowableMsg(final String eHint, final Throwable ex) {
         PrintWriter printWriter = null;
@@ -95,7 +95,7 @@ public final class ErrorUtils {
     /**
      * 获取错误信息(有换行)
      * @param ex 错误信息
-     * @return 默认返回 ""
+     * @return 错误信息字符串
      */
     public static String getThrowableNewLinesMsg(final Throwable ex) {
         return getThrowableNewLinesMsg("", ex);
@@ -105,7 +105,7 @@ public final class ErrorUtils {
      * 获取错误信息(有换行)
      * @param eHint 获取失败提示
      * @param ex    错误信息
-     * @return
+     * @return 错误信息字符串
      */
     public static String getThrowableNewLinesMsg(final String eHint, final Throwable ex) {
         PrintWriter printWriter = null;

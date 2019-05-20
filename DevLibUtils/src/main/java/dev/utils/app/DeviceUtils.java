@@ -78,15 +78,15 @@ public final class DeviceUtils {
      * @param dInfoMaps 传入设备信息传出HashMap
      */
     public static void getDeviceInfo(final Map<String, String> dInfoMaps) {
-        // 获取设备信息类的所有申明的字段,即包括 public、private 和 proteced, 但是不包括父类的申明字段
+        // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
         for (Field field : fields) {
             try {
-                // 取消 java 的权限控制检查
+                // 取消 Java 的权限控制检查
                 field.setAccessible(true);
 
-                // 转换 当前设备支持的ABI - CPU指令集
+                // 转换当前设备支持的 ABI - CPU 指令集
                 if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
                     try {
                         Object object = field.get(null);
@@ -113,6 +113,7 @@ public final class DeviceUtils {
      * 处理设备信息
      * @param dInfoMaps 设备信息
      * @param eHint     错误提示, 如获取设备信息失败
+     * @return 拼接后的设备信息字符串
      */
     public static String handlerDeviceInfo(final Map<String, String> dInfoMaps, final String eHint) {
         try {
@@ -122,7 +123,7 @@ public final class DeviceUtils {
             Iterator<Map.Entry<String, String>> mapIter = dInfoMaps.entrySet().iterator();
             // 遍历设备信息
             while (mapIter.hasNext()) {
-                // 获取对应的key-value
+                // 获取对应的 key - value
                 Map.Entry<String, String> rnEntry = mapIter.next();
                 String rnKey = rnEntry.getKey(); // key
                 String rnValue = rnEntry.getValue(); // value

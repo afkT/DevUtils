@@ -130,7 +130,7 @@ public final class KeyguardUtils {
     }
 
     /**
-     * 生成一个新的 KeyguardLock, 并且设置 Tag
+     * 生成一个新的 KeyguardLock, 并且设置 TAG
      * @param tag
      */
     public void newKeyguardLock(final String tag) {

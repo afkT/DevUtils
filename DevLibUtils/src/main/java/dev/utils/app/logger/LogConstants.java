@@ -41,7 +41,7 @@ final class LogConstants {
     public static final int DEFAULT_LOG_METHOD_OFFSET = 0;
 
     /**
-     * 默认日志级别 - 异常级别(只有 e,wtf 才进行显示)
+     * 默认日志级别 - 异常级别(只有 e, wtf 才进行显示)
      */
     public static final LogLevel DEFAULT_LOG_LEVEL = LogLevel.ERROR;
 
@@ -50,20 +50,21 @@ final class LogConstants {
     // ================
 
     /**
-     * Android 的最大限制为一个日志条目 4076字节,4000字节作为块的大小从默认字符集是UTF-8
-     * <p></p>
-     * Android's max limit for a log entry is ~4076 bytes,
-     * so 4000 bytes is used as chunk size since default charset is UTF-8
+     * Android 一个日志条目最大限制为 4076 字节, 设置 4000 字节作为块的大小从默认字符集是 UTF-8
+     * <pre>
+     *      Android's max limit for a log entry is ~4076 bytes,
+     *      so 4000 bytes is used as chunk size since default charset is UTF-8
+     * </pre>
      */
     public static final int CHUNK_SIZE = 4000;
 
     /**
-     * JSON格式内容缩进
+     * JSON 格式内容缩进
      */
     public static final int JSON_INDENT = 4;
 
     /**
-     * 最小堆栈跟踪索引,在本类中启动2次本地调用
+     * 最小堆栈跟踪索引
      */
     public static final int MIN_STACK_OFFSET = 3;
 
@@ -77,8 +78,9 @@ final class LogConstants {
     public static final char HORIZONTAL_DOUBLE_LINE = '║';
     public static final String DOUBLE_DIVIDER = "═══════";
     public static final String SINGLE_DIVIDER = "───────";
-    // =
+
     public static final String TOP_BORDER = TOP_LEFT_CORNER + DOUBLE_DIVIDER + DOUBLE_DIVIDER;
     public static final String BOTTOM_BORDER = BOTTOM_LEFT_CORNER + DOUBLE_DIVIDER + DOUBLE_DIVIDER;
     public static final String MIDDLE_BORDER = MIDDLE_CORNER + SINGLE_DIVIDER + SINGLE_DIVIDER;
+
 }

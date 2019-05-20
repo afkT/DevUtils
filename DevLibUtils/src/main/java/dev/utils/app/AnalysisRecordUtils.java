@@ -310,15 +310,15 @@ public final class AnalysisRecordUtils {
      * @param dInfoMaps 传入设备信息传出HashMap
      */
     private static void getDeviceInfo(final Map<String, String> dInfoMaps) {
-        // 获取设备信息类的所有申明的字段,即包括public、private和proteced, 但是不包括父类的申明字段
+        // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
         for (Field field : fields) {
             try {
-                // 取消 java 的权限控制检查
+                // 取消 Java 的权限控制检查
                 field.setAccessible(true);
 
-                // 转换 当前设备支持的ABI - CPU指令集
+                // 转换当前设备支持的 ABI - CPU 指令集
                 if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
                     try {
                         Object object = field.get(null);
@@ -344,20 +344,20 @@ public final class AnalysisRecordUtils {
     /**
      * 处理设备信息
      * @param eHint 错误提示,如获取设备信息失败
+     * @return 拼接后的设备信息字符串
      */
     private static String handlerDeviceInfo(final String eHint) {
         try {
-            // 如果不为 null,则直接返回之前的信息
+            // 如果不为 null, 则直接返回之前的信息
             if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
                 return DEVICE_INFO_STR;
             }
-            // 初始化 StringBuffer,拼接字符串
             StringBuffer buffer = new StringBuffer();
             // 获取设备信息
             Iterator<Map.Entry<String, String>> mapIter = DEVICE_INFO_MAPS.entrySet().iterator();
             // 遍历设备信息
             while (mapIter.hasNext()) {
-                // 获取对应的key-value
+                // 获取对应的 key - value
                 Map.Entry<String, String> rnEntry = mapIter.next();
                 String rnKey = rnEntry.getKey(); // key
                 String rnValue = rnEntry.getValue(); // value
@@ -382,7 +382,7 @@ public final class AnalysisRecordUtils {
      * @return
      */
     private static String getAppInfo() {
-        // 如果不为 null,则直接返回之前的信息
+        // 如果不为 null, 则直接返回之前的信息
         if (!TextUtils.isEmpty(APP_INFO_STR)) {
             return APP_INFO_STR;
         }
@@ -783,7 +783,7 @@ public final class AnalysisRecordUtils {
      * @param txt      保存内容
      * @param filePath 保存路径
      * @param fileName 文件名.后缀
-     * @return 是否保存成功
+     * @return {@code true} 保存成功, {@code false} 保存失败
      */
     private static boolean saveFile(final String txt, final String filePath, final String fileName) {
         try {
@@ -804,7 +804,8 @@ public final class AnalysisRecordUtils {
 
     /**
      * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
-     * @param filePath 文件夹路径
+     * @param filePath 文件路径
+     * @return 文件 {@link File}
      */
     private static File createFile(final String filePath) {
         try {

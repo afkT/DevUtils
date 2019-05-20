@@ -24,7 +24,7 @@ import java.util.Map;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 内部快捷操作工具类(便于单独提取Logger,不依赖其他工具类)
+ * detail: 内部快捷操作工具类(便于单独提取 Logger, 不依赖其他工具类)
  * @author Ttt
  */
 final class Utils {
@@ -39,9 +39,9 @@ final class Utils {
     // = 配置信息 =
     // ============
 
-    // App 版本(如1.0.01) 显示给用户看的
+    // App 版本(如 1.0.01) 显示给用户看的
     private static String APP_VERSION_NAME = "";
-    // android:versionCode——整数值,代表应用程序代码的相对版本, 也就是版本更新过多少次(不显示给用户看)
+    // android:versionCode 整数值, 代表应用程序代码的相对版本, 也就是版本更新过多少次(不显示给用户看)
     private static String APP_VERSION_CODE = "";
     // 设备信息
     private static String DEVICE_INFO_STR = null;
@@ -58,7 +58,8 @@ final class Utils {
 
     /**
      * 获取 App 版本信息
-     * @param context
+     * @param context {@link Context}
+     * @return String[], 0 = versionName, 1 = versionCode
      */
     private static String[] getAppVersion(final Context context) {
         String[] versions = null;
@@ -82,15 +83,15 @@ final class Utils {
      * @param dInfoMaps 传入设备信息传出 HashMap
      */
     private static void getDeviceInfo(final Map<String, String> dInfoMaps) {
-        // 获取设备信息类的所有申明的字段,即包括 public、private 和 proteced, 但是不包括父类的申明字段
+        // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
         for (Field field : fields) {
             try {
-                // 取消 java 的权限控制检查
+                // 取消 Java 的权限控制检查
                 field.setAccessible(true);
 
-                // 转换 当前设备支持的ABI - CPU指令集
+                // 转换当前设备支持的 ABI - CPU 指令集
                 if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
                     try {
                         Object object = field.get(null);
@@ -116,21 +117,20 @@ final class Utils {
     /**
      * 处理设备信息
      * @param eHint 错误提示,如获取设备信息失败
-     * @return
+     * @return 拼接后的设备信息字符串
      */
     private static String handlerDeviceInfo(final String eHint) {
         try {
-            // 如果不为 null,则直接返回之前的信息
+            // 如果不为 null, 则直接返回之前的信息
             if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
                 return DEVICE_INFO_STR;
             }
-            // 初始化StringBuilder,拼接字符串
             StringBuilder builder = new StringBuilder();
             // 获取设备信息
             Iterator<Map.Entry<String, String>> mapIter = DEVICE_INFO_MAPS.entrySet().iterator();
             // 遍历设备信息
             while (mapIter.hasNext()) {
-                // 获取对应的key-value
+                // 获取对应的 key - value
                 Map.Entry<String, String> rnEntry = mapIter.next();
                 String rnKey = rnEntry.getKey(); // key
                 String rnValue = rnEntry.getValue(); // value
@@ -159,7 +159,7 @@ final class Utils {
 
     /**
      * 获取当前日期的字符串
-     * @return 字符串
+     * @return 当前日期 yyyy-MM-dd HH:mm:ss 格式字符串
      */
     @SuppressLint("SimpleDateFormat")
     private static String getDateNow() {
@@ -177,8 +177,9 @@ final class Utils {
     // ============
 
     /**
-     * 判断某个文件夹是否创建,未创建则创建(不能加入文件名)
-     * @param filePath 文件夹路径
+     * 判断某个文件夹是否创建, 未创建则创建(不能加入文件名)
+     * @param filePath 文件路径
+     * @return 文件 {@link File}
      */
     private static File createFile(final String filePath) {
         try {
@@ -199,7 +200,7 @@ final class Utils {
      * 保存文件
      * @param txt      保存内容
      * @param filePath 保存路径(包含文件名.后缀)
-     * @return 是否保存成功
+     * @return {@code true} 保存成功, {@code false} 保存失败
      */
     private static boolean saveFile(final String txt, final String filePath) {
         try {
@@ -222,13 +223,13 @@ final class Utils {
      * 获取错误信息(无换行)
      * @param eHint 获取失败提示
      * @param ex    错误信息
-     * @return
+     * @return 错误信息字符串
      */
     private static String getThrowableMsg(final String eHint, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
-                // 初始化Writer,PrintWriter打印流
+                // 初始化 Writer、PrintWriter 打印流
                 Writer writer = new StringWriter();
                 printWriter = new PrintWriter(writer);
                 // 写入错误栈信息
@@ -251,21 +252,21 @@ final class Utils {
      * 获取错误信息(有换行)
      * @param eHint 获取失败提示
      * @param ex    错误信息
-     * @return
+     * @return 错误信息字符串
      */
     private static String getThrowableNewLinesMsg(final String eHint, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
-                // 初始化Writer,PrintWriter打印流
+                // 初始化 Writer、PrintWriter 打印流
                 Writer writer = new StringWriter();
                 printWriter = new PrintWriter(writer);
                 // 获取错误栈信息
                 StackTraceElement[] stElement = ex.getStackTrace();
-                // 标题,提示属于什么异常
+                // 标题, 提示属于什么异常
                 printWriter.append(ex.toString());
                 printWriter.append(NEW_LINE_STR);
-                // 遍历错误栈信息,并且进行换行,缩进
+                // 遍历错误栈信息, 并且进行换行缩进
                 for (StackTraceElement st : stElement) {
                     printWriter.append("\tat ");
                     printWriter.append(st.toString());
@@ -291,16 +292,16 @@ final class Utils {
 
     /**
      * 初始化调用方法
-     * @param context
+     * @param context {@link Context}
      */
     public static void init(final Context context) {
         // 如果版本信息为 null, 才进行处理
         if (TextUtils.isEmpty(APP_VERSION_CODE) || TextUtils.isEmpty(APP_VERSION_NAME)) {
             // 获取 App 版本信息
-            String[] aVersion = getAppVersion(context);
+            String[] versions = getAppVersion(context);
             // 保存 App 版本信息
-            APP_VERSION_NAME = aVersion[0];
-            APP_VERSION_CODE = aVersion[1];
+            APP_VERSION_NAME = versions[0];
+            APP_VERSION_CODE = versions[1];
         }
         // 判断是否存在设备信息
         if (DEVICE_INFO_MAPS.size() == 0) {
@@ -322,7 +323,7 @@ final class Utils {
      * @param fileName   文件名(含后缀)
      * @param isNewLines 是否换行
      * @param eHint      错误提示(无设备信息、失败信息获取失败)
-     * @return
+     * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName, final boolean isNewLines, final String... eHint) {
         return saveErrorLog(ex, null, null, filePath, fileName, isNewLines, eHint);
@@ -337,18 +338,18 @@ final class Utils {
      * @param fileName   文件名(含后缀)
      * @param isNewLines 是否换行
      * @param eHint      错误提示(无设备信息、失败信息获取失败)
-     * @return
+     * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName, final boolean isNewLines, String... eHint) {
+    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName, final boolean isNewLines, final String... eHint) {
         // 处理可变参数(错误提示)
-        eHint = handlerVariable(2, eHint);
+        String[] errorHints = handlerVariable(2, eHint);
         // 日志拼接
         StringBuilder builder = new StringBuilder();
         // 防止文件夹不存在
         createFile(filePath);
         // 设备信息
-        String dInfo = handlerDeviceInfo(eHint[0]);
-        // 如果存在顶部内容,则进行添加
+        String deviceInfo = handlerDeviceInfo(errorHints[0]);
+        // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(head)) {
             builder.append(head);
             builder.append(NEW_LINE_STR_X2);
@@ -366,7 +367,7 @@ final class Utils {
         builder.append("============================");
         // 保存设备信息
         builder.append(NEW_LINE_STR_X2);
-        builder.append(dInfo);
+        builder.append(deviceInfo);
         builder.append(NEW_LINE_STR);
         builder.append("============================");
         builder.append(NEW_LINE_STR_X2);
@@ -375,13 +376,13 @@ final class Utils {
         String eMsg;
         // 是否换行
         if (isNewLines) {
-            eMsg = getThrowableNewLinesMsg(eHint[1], ex);
+            eMsg = getThrowableNewLinesMsg(errorHints[1], ex);
         } else {
-            eMsg = getThrowableMsg(eHint[1], ex);
+            eMsg = getThrowableMsg(errorHints[1], ex);
         }
         // 保存异常信息
         builder.append(eMsg);
-        // 如果存在顶部内容,则进行添加
+        // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(bottom)) {
             builder.append(NEW_LINE_STR);
             builder.append("============================");
@@ -398,7 +399,7 @@ final class Utils {
      * @param filePath 保存路径
      * @param fileName 文件名(含后缀)
      * @param eHint    错误提示(无设备信息、失败信息获取失败)
-     * @return
+     * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveLog(final String log, final String filePath, final String fileName, final String... eHint) {
         return saveLog(log, null, null, filePath, fileName, eHint);
@@ -412,18 +413,18 @@ final class Utils {
      * @param filePath 保存路径
      * @param fileName 文件名(含后缀)
      * @param eHint    错误提示(无设备信息、失败信息获取失败)
-     * @return
+     * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLog(final String log, final String head, final String bottom, final String filePath, final String fileName, String... eHint) {
+    public static boolean saveLog(final String log, final String head, final String bottom, final String filePath, final String fileName, final String... eHint) {
         // 处理可变参数(错误提示)
-        eHint = handlerVariable(2, eHint);
+        String[] errorHints = handlerVariable(2, eHint);
         // 日志拼接
         StringBuilder builder = new StringBuilder();
         // 防止文件夹不存在
         createFile(filePath);
         // 设备信息
-        String dInfo = handlerDeviceInfo(eHint[0]);
-        // 如果存在顶部内容,则进行添加
+        String deviceInfo = handlerDeviceInfo(errorHints[0]);
+        // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(head)) {
             builder.append(head);
             builder.append(NEW_LINE_STR_X2);
@@ -441,14 +442,14 @@ final class Utils {
         builder.append("============================");
         // 保存设备信息
         builder.append(NEW_LINE_STR_X2);
-        builder.append(dInfo);
+        builder.append(deviceInfo);
         builder.append(NEW_LINE_STR);
         builder.append("============================");
         builder.append(NEW_LINE_STR_X2);
         // =
         // 保存日志信息
         builder.append(log);
-        // 如果存在顶部内容,则进行添加
+        // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(bottom)) {
             builder.append(NEW_LINE_STR);
             builder.append("============================");
@@ -485,7 +486,7 @@ final class Utils {
                             hArrays[i] = strArrays[i];
                         }
                     }
-                    // 但可变参数长度,超过预留长度时,已经处理完毕,不需要再次处理,节省遍历资源
+                    // 但可变参数长度, 超过预留长度时, 已经处理完毕, 不需要再次处理, 节省遍历资源
                     isUnifiedHandler = false;
                 } else {
                     for (int i = 0; i < vLength; i++) {
@@ -498,7 +499,7 @@ final class Utils {
                 }
             }
             if (isUnifiedHandler) {
-                // 统一处理,如果数据未null,则设置为 "", 防止拼接出现 "null"
+                // 统一处理, 如果数据为 null, 则设置为 "", 防止拼接出现 "null"
                 for (int i = 0; i < length; i++) {
                     if (hArrays[i] == null) {
                         hArrays[i] = "";

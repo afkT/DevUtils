@@ -9,7 +9,7 @@ public final class DevLogger {
     private DevLogger() {
     }
 
-    // 包下LoggerPrinter类持有对象
+    // 包下 LoggerPrinter 类持有对象
     private static final IPrinter sPrinter = new LoggerPrinter();
 
     // ============
@@ -18,16 +18,16 @@ public final class DevLogger {
 
     /**
      * 使用单次其他日志配置
-     * @param lConfig
-     * @return
+     * @param logConfig 日志配置
+     * @return {@link IPrinter}
      */
-    public static IPrinter other(final LogConfig lConfig) {
-        return sPrinter.other(lConfig);
+    public static IPrinter other(final LogConfig logConfig) {
+        return sPrinter.other(logConfig);
     }
 
     /**
      * 获取日志配置信息
-     * @return
+     * @return {@link LogConfig} 日志配置
      */
     public static LogConfig getLogConfig() {
         return sPrinter.getLogConfig();
@@ -35,18 +35,18 @@ public final class DevLogger {
 
     /**
      * 初始化日志配置信息(使用默认配置)
-     * @return
+     * @return {@link LogConfig} 日志配置
      */
     public static LogConfig init() {
         return sPrinter.init();
     }
 
     /**
-     * 手动改变日志配置信息
-     * @param lConfig
+     * 自定义日志配置信息
+     * @param logConfig 日志配置
      */
-    public static void init(final LogConfig lConfig) {
-        sPrinter.init(lConfig);
+    public static void init(final LogConfig logConfig) {
+        sPrinter.init(logConfig);
     }
 
     // ==============================
@@ -55,8 +55,8 @@ public final class DevLogger {
 
     /**
      * 打印 Log.DEBUG
-     * @param message
-     * @param args
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void d(final String message, final Object... args) {
         sPrinter.d(message, args);
@@ -64,8 +64,8 @@ public final class DevLogger {
 
     /**
      * 打印 Log.ERROR
-     * @param message
-     * @param args
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void e(final String message, final Object... args) {
         sPrinter.e(message, args);
@@ -73,7 +73,7 @@ public final class DevLogger {
 
     /**
      * 打印 Log.ERROR
-     * @param throwable
+     * @param throwable 异常
      */
     public static void e(final Throwable throwable) {
         sPrinter.e(throwable, null);
@@ -81,9 +81,9 @@ public final class DevLogger {
 
     /**
      * 打印 Log.ERROR
-     * @param throwable
-     * @param message
-     * @param args
+     * @param throwable 异常
+     * @param message   日志信息
+     * @param args      格式化参数
      */
     public static void e(final Throwable throwable, final String message, final Object... args) {
         sPrinter.e(throwable, message, args);
@@ -91,8 +91,8 @@ public final class DevLogger {
 
     /**
      * 打印 Log.WARN
-     * @param message
-     * @param args
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void w(final String message, final Object... args) {
         sPrinter.w(message, args);
@@ -100,8 +100,8 @@ public final class DevLogger {
 
     /**
      * 打印 Log.INFO
-     * @param message
-     * @param args
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void i(final String message, final Object... args) {
         sPrinter.i(message, args);
@@ -109,8 +109,8 @@ public final class DevLogger {
 
     /**
      * 打印 Log.VERBOSE
-     * @param message
-     * @param args
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void v(final String message, final Object... args) {
         sPrinter.v(message, args);
@@ -118,8 +118,8 @@ public final class DevLogger {
 
     /**
      * 打印 Log.ASSERT
-     * @param message
-     * @param args
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void wtf(final String message, final Object... args) {
         sPrinter.wtf(message, args);
@@ -128,16 +128,16 @@ public final class DevLogger {
     // =
 
     /**
-     * 格式化Json格式数据,并打印
-     * @param json
+     * 格式化 JSON 格式数据, 并打印
+     * @param json JSON 格式字符串
      */
     public static void json(final String json) {
         sPrinter.json(json);
     }
 
     /**
-     * 格式化XML格式数据,并打印
-     * @param xml
+     * 格式化 XML 格式数据, 并打印
+     * @param xml XML 格式字符串
      */
     public static void xml(final String xml) {
         sPrinter.xml(xml);
@@ -149,9 +149,9 @@ public final class DevLogger {
 
     /**
      * 打印 Log.DEBUG
-     * @param tag
-     * @param message
-     * @param args
+     * @param tag     日志 TAG
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void dTag(final String tag, final String message, final Object... args) {
         sPrinter.dTag(tag, message, args);
@@ -159,9 +159,9 @@ public final class DevLogger {
 
     /**
      * 打印 Log.ERROR
-     * @param tag
-     * @param message
-     * @param args
+     * @param tag     日志 TAG
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void eTag(final String tag, final String message, final Object... args) {
         sPrinter.eTag(tag, message, args);
@@ -169,29 +169,29 @@ public final class DevLogger {
 
     /**
      * 打印 Log.ERROR
-     * @param tag
-     * @param throwable
-     * @param message
-     * @param args
-     */
-    public static void eTag(final String tag, final Throwable throwable, final String message, final Object... args) {
-        sPrinter.eTag(tag, throwable, message, args);
-    }
-
-    /**
-     * 打印 Log.ERROR
-     * @param tag
-     * @param throwable
+     * @param tag       日志 TAG
+     * @param throwable 异常
      */
     public static void eTag(final String tag, final Throwable throwable) {
         sPrinter.eTag(tag, throwable, null);
     }
 
     /**
+     * 打印 Log.ERROR
+     * @param tag       日志 TAG
+     * @param throwable 异常
+     * @param message   日志信息
+     * @param args      格式化参数
+     */
+    public static void eTag(final String tag, final Throwable throwable, final String message, final Object... args) {
+        sPrinter.eTag(tag, throwable, message, args);
+    }
+
+    /**
      * 打印 Log.WARN
-     * @param tag
-     * @param message
-     * @param args
+     * @param tag     日志 TAG
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void wTag(final String tag, final String message, final Object... args) {
         sPrinter.wTag(tag, message, args);
@@ -199,9 +199,9 @@ public final class DevLogger {
 
     /**
      * 打印 Log.INFO
-     * @param tag
-     * @param message
-     * @param args
+     * @param tag     日志 TAG
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void iTag(final String tag, final String message, final Object... args) {
         sPrinter.iTag(tag, message, args);
@@ -209,9 +209,9 @@ public final class DevLogger {
 
     /**
      * 打印 Log.VERBOSE
-     * @param tag
-     * @param message
-     * @param args
+     * @param tag     日志 TAG
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void vTag(final String tag, final String message, final Object... args) {
         sPrinter.vTag(tag, message, args);
@@ -219,9 +219,9 @@ public final class DevLogger {
 
     /**
      * 打印 Log.ASSERT
-     * @param tag
-     * @param message
-     * @param args
+     * @param tag     日志 TAG
+     * @param message 日志信息
+     * @param args    格式化参数
      */
     public static void wtfTag(final String tag, final String message, final Object... args) {
         sPrinter.wtfTag(tag, message, args);
@@ -230,18 +230,18 @@ public final class DevLogger {
     // =
 
     /**
-     * 格式化Json格式数据,并打印
-     * @param tag
-     * @param json
+     * 格式化 JSON 格式数据, 并打印
+     * @param tag  日志 TAG
+     * @param json JSON 格式字符串
      */
     public static void jsonTag(final String tag, final String json) {
         sPrinter.jsonTag(tag, json);
     }
 
     /**
-     * 格式化XML格式数据,并打印
-     * @param tag
-     * @param xml
+     * 格式化 XML 格式数据, 并打印
+     * @param tag 日志 TAG
+     * @param xml XML 格式字符串
      */
     public static void xmlTag(final String tag, final String xml) {
         sPrinter.xmlTag(tag, xml);
