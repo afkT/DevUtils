@@ -31,7 +31,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 保存一个数据
+     * 保存数据
      * @param key
      * @param value
      */
@@ -40,7 +40,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 保存一个 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set)
+     * 保存 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set)
      * @param map
      */
     public static <T> void putAll(final Map<String, T> map) {
@@ -48,7 +48,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 保存一个List集合
+     * 保存 List 集合
      * @param key
      * @param list
      */
@@ -57,7 +57,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 保存一个 List 集合, 并且自定义保存顺序
+     * 保存 List 集合, 并且自定义保存顺序
      * @param key
      * @param list
      * @param comparator
@@ -67,7 +67,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 根据 key 取出一个数据
+     * 根据 key 获取数据
      * @param key
      */
     public static <T> T get(final String key, final IPreference.DataType type) {
@@ -75,7 +75,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 取出全部数据
+     * 获取全部数据
      * @return
      */
     public static Map<String, ?> getAll() {
@@ -83,7 +83,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 取出一个 List 集合
+     * 获取 List 集合
      * @param key
      * @return
      */
@@ -92,7 +92,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 移除一个数据
+     * 移除数据
      * @param key
      * @return
      */
@@ -101,7 +101,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 移除一个集合的数据
+     * 移除集合的数据
      * @param keys
      * @return
      */
@@ -110,7 +110,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 移除一个数组的数据
+     * 移除数组的数据
      * @param keys
      * @return
      */

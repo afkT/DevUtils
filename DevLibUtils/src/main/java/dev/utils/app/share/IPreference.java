@@ -15,7 +15,8 @@ import java.util.Set;
 public interface IPreference {
 
     /**
-     * 枚举: 存储或取出的数据类型
+     * detail: 存储/取出 数据类型
+     * @author Ttt
      */
     enum DataType {
         INTEGER, LONG, BOOLEAN, FLOAT, STRING, STRING_SET
@@ -24,68 +25,70 @@ public interface IPreference {
     // =
 
     /**
-     * 保存一个数据
-     * @param key
-     * @param value
+     * 保存数据
+     * @param key 保存的 key
+     * @param value 保存的 value
      */
     <T> void put(String key, T value);
 
     /**
-     * 保存一个 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set)
-     * @param map
+     * 保存 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set)
+     * @param map {@link Map}
      */
     <T> void putAll(Map<String, T> map);
 
     /**
-     * 保存一个List集合
-     * @param key
-     * @param list
+     * 保存 List 集合
+     * @param key 保存的 key
+     * @param list 保存的 value
      */
     void putAll(String key, List<String> list);
 
     /**
-     * 保存一个 List 集合, 并且自定义保存顺序
-     * @param key
-     * @param list
-     * @param comparator
+     * 保存 List 集合, 并且自定义保存顺序
+     * @param key 保存的 key
+     * @param list 保存的 value
+     * @param comparator 排序 {@link Comparator}
      */
     void putAll(String key, List<String> list, Comparator<String> comparator);
 
     /**
-     * 根据 key 取出一个数据
-     * @param key
+     * 根据 key 获取数据
+     * @param key 保存的 key
+     * @param type 数据类型
+     * @return 存储的数据
      */
     <T> T get(String key, DataType type);
 
     /**
-     * 取出全部数据
-     * @return
+     * 获取全部数据
+     * @return {@link Map}
      */
     Map<String, ?> getAll();
 
     /**
-     * 取出一个 List 集合
+     * 获取 List 集合
      * @param key
      * @return
      */
     List<String> getAll(String key);
 
     /**
-     * 移除一个数据
+     * 移除数据
      * @param key
      * @return
      */
     void remove(String key);
 
     /**
-     * 移除一个集合的数据
+     * 移除集合的数据
      * @param keys
      * @return
      */
     void removeAll(List<String> keys);
 
     /**
-     * 移除一个数组的数据
+     * 移除数组的数据
      * @param keys
      * @return
      */

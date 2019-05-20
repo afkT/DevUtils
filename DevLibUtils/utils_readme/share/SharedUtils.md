@@ -23,12 +23,12 @@
 | 方法 | 注释 |
 | :- | :- |
 | init | 初始化操作 |
-| put | 保存一个数据 |
-| putAll | 保存一个 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set) |
-| get | 根据 key 取出一个数据 |
-| getAll | 取出全部数据 |
-| remove | 移除一个数据 |
-| removeAll | 移除一个集合的数据 |
+| put | 保存数据 |
+| putAll | 保存 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set) |
+| get | 根据 key 获取数据 |
+| getAll | 获取全部数据 |
+| remove | 移除数据 |
+| removeAll | 移除集合的数据 |
 | contains | 是否存在 key |
 | clear | 清除全部数据 |
 | getInt | 获取 int 类型的数据 |
