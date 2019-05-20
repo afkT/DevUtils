@@ -214,7 +214,8 @@ public final class NetWorkUtils {
     // =
 
     /**
-     * 网络连接类型
+     * detail: 网络连接类型
+     * @author Ttt
      */
     public enum NetworkType {
         NETWORK_WIFI,

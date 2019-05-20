@@ -128,7 +128,7 @@ public final class BarUtils {
      * 添加状态栏同等高度到View的顶部
      * @param view The view.
      */
-    public static void addMarginTopEqualStatusBarHeight(@NonNull View view) {
+    public static void addMarginTopEqualStatusBarHeight(@NonNull final View view) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
         view.setTag(TAG_OFFSET);
         Object haveSetOffset = view.getTag(KEY_OFFSET);
@@ -142,7 +142,7 @@ public final class BarUtils {
      * 添加状态栏同等高度到View的顶部
      * @param view The view.
      */
-    public static void subtractMarginTopEqualStatusBarHeight(@NonNull View view) {
+    public static void subtractMarginTopEqualStatusBarHeight(@NonNull final View view) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
         Object haveSetOffset = view.getTag(KEY_OFFSET);
         if (haveSetOffset == null || !(Boolean) haveSetOffset) return;

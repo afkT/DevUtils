@@ -20,7 +20,7 @@ import dev.utils.LogPrintUtils;
  * detail: 签名工具类(获取 App 签名信息)
  * @author Ttt
  * <pre>
- *      Android的 Apk 应用签名机制以及读取签名的方法
+ *      Android 的 APK 应用签名机制以及读取签名的方法
  *      @see <a href="http://www.jb51.net/article/79894.htm"/>
  * </pre>
  */
@@ -173,7 +173,7 @@ public final class SignaturesUtils {
     // =
 
     /**
-     * 从 Apk 中读取签名
+     * 从 APK 中读取签名
      * @param file
      * @return
      */
@@ -189,7 +189,7 @@ public final class SignaturesUtils {
     }
 
     /**
-     * 从 Apk 中读取签名
+     * 从 APK 中读取签名
      * @param file
      * @return
      */

@@ -18,8 +18,8 @@ public class KeyValueBean {
 
     /**
      * 构造函数
-     * @param key
-     * @param value
+     * @param key   key
+     * @param value value
      */
     public KeyValueBean(final String key, final String value) {
         this.key = key;
@@ -28,7 +28,7 @@ public class KeyValueBean {
 
     /**
      * 获取 key
-     * @return
+     * @return key
      */
     public String getKey() {
         return key;
@@ -36,7 +36,7 @@ public class KeyValueBean {
 
     /**
      * 获取 value
-     * @return
+     * @return value
      */
     public String getValue() {
         return value;
@@ -48,10 +48,10 @@ public class KeyValueBean {
     }
 
     /**
-     * 通过 resId 设置key, 并且初始化 KeyValueBean
-     * @param resId
-     * @param value
-     * @return
+     * 通过 resId 设置 key, 并且初始化 KeyValueBean
+     * @param resId R.string.id
+     * @param value value
+     * @return {@link KeyValueBean}
      */
     public static KeyValueBean get(@StringRes final int resId, final String value) {
         return new KeyValueBean(DevUtils.getContext().getString(resId), value);

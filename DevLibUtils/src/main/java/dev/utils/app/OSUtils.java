@@ -317,6 +317,10 @@ public final class OSUtils {
         return rom;
     }
 
+    /**
+     * detail: ROM 类型
+     * @author Ttt
+     */
     public enum ROM {
         MIUI, // 小米
         Flyme, // 魅族

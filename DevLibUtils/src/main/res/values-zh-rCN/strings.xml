@@ -12,7 +12,7 @@
     <string name="dev_str_last_update_time">最近更新时间</string>
     <string name="dev_str_minsdkversion">App 最低支持版本</string>
     <string name="dev_str_targetsdkversion">App 兼容sdk版本</string>
-    <string name="dev_str_apk_length">Apk 安装包大小</string>
+    <string name="dev_str_apk_length">APK 安装包大小</string>
     <string name="dev_str_effective">有效时间</string>
     <string name="dev_str_iseffective">签名是否过期</string>
     <string name="dev_str_overdue">已过期</string>

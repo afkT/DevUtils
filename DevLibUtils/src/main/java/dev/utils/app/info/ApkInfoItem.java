@@ -24,14 +24,14 @@ import dev.utils.app.SignaturesUtils;
 import dev.utils.common.FileUtils;
 
 /**
- * detail: Apk 信息Item
+ * detail: APK 信息Item
  * @author Ttt
  */
 public final class ApkInfoItem {
 
     // 日志 TAG
     private static final String TAG = ApkInfoItem.class.getSimpleName();
-    @Keep// App 基本信息实体类
+    @Keep // App 基本信息实体类
     private AppInfoBean appInfoBean;
     @Keep // App MD5 签名
     private String appMD5;
@@ -39,7 +39,7 @@ public final class ApkInfoItem {
     private String appSHA1;
     @Keep // App SHA256 签名
     private String appSHA256;
-    @Keep // App 最低支持版本
+    @Keep // App 最低支持 Android SDK 版本
     private int minSdkVersion = -1;
     @Keep // App 兼容 SDK 版本
     private int targetSdkVersion = -1;
@@ -51,7 +51,7 @@ public final class ApkInfoItem {
     private Date notBefore;
     @Keep // 证书有效期
     private Date notAfter;
-    @Keep // 证书是否过期 {@code true} 过期, {@code false} 未过期
+    @Keep // 证书是否过期
     private boolean effective;
     @Keep // 证书发布方
     private String certPrincipal;
@@ -70,12 +70,12 @@ public final class ApkInfoItem {
 
     /**
      * 初始化 ApkInfoItem 对象
-     * @param pInfo {@link PackageInfo}
+     * @param packageInfo {@link PackageInfo}
      * @return {@link ApkInfoItem}
      */
-    protected static ApkInfoItem obtain(final PackageInfo pInfo) {
+    protected static ApkInfoItem obtain(final PackageInfo packageInfo) {
         try {
-            return new ApkInfoItem(pInfo);
+            return new ApkInfoItem(packageInfo);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "obtain");
         }
@@ -84,17 +84,16 @@ public final class ApkInfoItem {
 
     /**
      * 初始化 AppInfoItem 对象
-     * @param pInfo {@link PackageInfo}
-     * @return {@link ApkInfoItem}
+     * @param packageInfo {@link PackageInfo}
      */
-    private ApkInfoItem(final PackageInfo pInfo) {
+    private ApkInfoItem(final PackageInfo packageInfo) {
         // 获取 Context
         Context context = DevUtils.getContext();
         // 格式化日期
         SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         // =
         // 获取 App 信息
-        appInfoBean = new AppInfoBean(pInfo);
+        appInfoBean = new AppInfoBean(packageInfo);
         // 获取签名信息
         Signature[] signatures = SignaturesUtils.getSignaturesFromApk(new File(appInfoBean.getSourceDir()));
         // =
@@ -106,15 +105,14 @@ public final class ApkInfoItem {
         appSHA256 = SignaturesUtils.signatureSHA256(signatures);
         // 属于 7.0 以上才有的方法
         if (AppCommonUtils.isN()) {
-            // App 最低支持版本
-            minSdkVersion = pInfo.applicationInfo.minSdkVersion;
+            // App 最低支持 Android SDK 版本
+            minSdkVersion = packageInfo.applicationInfo.minSdkVersion;
         }
         // App 兼容 SDK 版本
-        targetSdkVersion = pInfo.applicationInfo.targetSdkVersion;
+        targetSdkVersion = packageInfo.applicationInfo.targetSdkVersion;
         // App 安装包大小
         apkLength = Formatter.formatFileSize(DevUtils.getContext(), FileUtils.getFileLength(appInfoBean.getSourceDir()));
 
-        // = 临时数据存储 =
         // 是否保存
         boolean isError = false;
         // 临时签名信息
@@ -138,7 +136,7 @@ public final class ApkInfoItem {
             builder.append(notAfter);
             // 保存有效期转换信息
             String effectiveStr = builder.toString();
-            // 证书是否过期 {@code true} 过期, {@code false} 未过期
+            // 证书是否过期
             effective = false;
             try {
                 cert.checkValidity();
@@ -207,7 +205,7 @@ public final class ApkInfoItem {
             // App SHA256
             listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha256, appSHA256));
         }
-        // App 最低支持版本
+        // App 最低支持 Android SDK 版本
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(minSdkVersion) + "+ )"));
         // App 兼容 SDK 版本
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
@@ -221,7 +219,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取 AppInfoBean
-     * @return {@link AppInfoBean }
+     * @return {@link AppInfoBean}
      */
     public AppInfoBean getAppInfoBean() {
         return appInfoBean;
@@ -237,7 +235,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取 App MD5 签名
-     * @return
+     * @return App MD5 签名
      */
     public String getAppMD5() {
         return appMD5;
@@ -245,7 +243,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取 App SHA1 签名
-     * @return
+     * @return App SHA1 签名
      */
     public String getAppSHA1() {
         return appSHA1;
@@ -253,15 +251,15 @@ public final class ApkInfoItem {
 
     /**
      * 获取 App SHA256 签名
-     * @return
+     * @return App SHA256 签名
      */
     public String getAppSHA256() {
         return appSHA256;
     }
 
     /**
-     * 获取 App 最低支持版本
-     * @return
+     * 获取 App 最低支持 Android SDK 版本
+     * @return App 最低支持 Android SDK 版本
      */
     public int getMinSdkVersion() {
         return minSdkVersion;
@@ -269,7 +267,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取 App 兼容 SDK 版本
-     * @return
+     * @return App 兼容 SDK 版本
      */
     public int getTargetSdkVersion() {
         return targetSdkVersion;
@@ -277,7 +275,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取 App 安装包大小
-     * @return
+     * @return App 安装包大小
      */
     public String getApkLength() {
         return apkLength;
@@ -285,7 +283,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取证书对象
-     * @return
+     * @return {@link X509Certificate}
      */
     public X509Certificate getX509Certificate() {
         return cert;
@@ -293,7 +291,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取证书生成日期
-     * @return
+     * @return 证书生成日期
      */
     public Date getNotBefore() {
         return notBefore;
@@ -301,15 +299,15 @@ public final class ApkInfoItem {
 
     /**
      * 获取证书有效期
-     * @return
+     * @return 证书有效期
      */
     public Date getNotAfter() {
         return notAfter;
     }
 
     /**
-     * 获取证书是否过期 {@code true} 过期, {@code false} 未过期
-     * @return
+     * 获取证书是否过期
+     * @return {@code true} 过期, {@code false} 未过期
      */
     public boolean isEffective() {
         return effective;
@@ -317,7 +315,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取证书发布方
-     * @return
+     * @return 证书发布方
      */
     public String getCertPrincipal() {
         return certPrincipal;
@@ -325,7 +323,7 @@ public final class ApkInfoItem {
 
     /**
      * 获取证书版本号
-     * @return
+     * @return 证书版本号
      */
     public String getCertVersion() {
         return certVersion;
@@ -333,15 +331,15 @@ public final class ApkInfoItem {
 
     /**
      * 获取证书算法名称
-     * @return
+     * @return 证书算法名称
      */
     public String getCertSigalgname() {
         return certSigalgname;
     }
 
     /**
-     * 获取证书算法OID
-     * @return
+     * 获取证书算法 OID
+     * @return 证书算法 OID
      */
     public String getCertSigalgoid() {
         return certSigalgoid;
@@ -349,15 +347,15 @@ public final class ApkInfoItem {
 
     /**
      * 获取证书机器码
-     * @return
+     * @return 证书机器码
      */
     public String getCertSerialnumber() {
         return certSerialnumber;
     }
 
     /**
-     * 获取证书 DER编码
-     * @return
+     * 获取证书 DER 编码
+     * @return 证书 DER 编码
      */
     public String getCertDercode() {
         return certDercode;

@@ -2205,7 +2205,7 @@ public final class ADBUtils {
 
     /**
      * 开启无障碍辅助功能
-     * @param packageName              包名
+     * @param packageName              应用包名
      * @param accessibilityServiceName 无障碍服务名
      * @return
      */
@@ -2225,7 +2225,7 @@ public final class ADBUtils {
 
     /**
      * 关闭无障碍辅助功能
-     * @param packageName              包名
+     * @param packageName              应用包名
      * @param accessibilityServiceName 无障碍服务名
      * @return
      */
@@ -2250,7 +2250,7 @@ public final class ADBUtils {
     /**
      * 检查是否存在某个文件
      * @param file 文件路径
-     * @return 是否存在文件
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean isFileExists(final File file) {
         return file != null && file.exists();

@@ -63,7 +63,7 @@ public final class ActivityUtils {
     /**
      * 判断是否存在指定的Activity
      * @param context
-     * @param packageName 包名
+     * @param packageName 应用包名
      * @param className   activity 全路径类名
      * @return
      */
@@ -213,14 +213,14 @@ public final class ActivityUtils {
         try {
             PackageManager pManager = DevUtils.getContext().getPackageManager();
             // 获取对应的PackageInfo
-            PackageInfo pInfo = pManager.getPackageInfo(packageName, 0);
+            PackageInfo packageInfo = pManager.getPackageInfo(packageName, 0);
 
-            if (pInfo == null) return null;
+            if (packageInfo == null) return null;
 
             // 创建一个类别为 CATEGORY_LAUNCHER 的该包名的 Intent
             Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
             resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-            resolveIntent.setPackage(pInfo.packageName);
+            resolveIntent.setPackage(packageInfo.packageName);
 
             // 通过 getPackageManager() 的 queryIntentActivities 方法遍历
             List<ResolveInfo> lists = pManager.queryIntentActivities(resolveIntent, 0);

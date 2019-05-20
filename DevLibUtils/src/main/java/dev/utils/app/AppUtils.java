@@ -315,7 +315,7 @@ public final class AppUtils {
     }
 
     /**
-     * 获取 App 名
+     * 获取 App 应用名
      * @return
      */
     public static String getAppName() {
@@ -323,7 +323,7 @@ public final class AppUtils {
     }
 
     /**
-     * 获取 App 名
+     * 获取 App 应用名
      * @param packageName
      * @return
      */
@@ -911,7 +911,7 @@ public final class AppUtils {
     /**
      * 检查是否存在某个文件
      * @param file 文件路径
-     * @return 是否存在文件
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean isFileExists(final File file) {
         return file != null && file.exists();
