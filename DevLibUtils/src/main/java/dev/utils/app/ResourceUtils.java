@@ -304,7 +304,6 @@ public final class ResourceUtils {
         return 0;
     }
 
-
     /**
      * 获取 style id
      * @param resName style的名称

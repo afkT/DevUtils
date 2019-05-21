@@ -42,7 +42,6 @@ public final class DESUtils {
         return null;
     }
 
-
     /**
      * DES 加密
      * @param data 待加密数据

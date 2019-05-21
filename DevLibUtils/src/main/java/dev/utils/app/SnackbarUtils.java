@@ -286,7 +286,6 @@ public final class SnackbarUtils {
         dismiss(true);
     }
 
-
     /**
      * 关闭 Snackbar
      * @param setNull

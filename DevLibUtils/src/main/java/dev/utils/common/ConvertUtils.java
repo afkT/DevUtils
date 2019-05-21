@@ -1046,7 +1046,6 @@ public final class ConvertUtils {
         return stringsToInts(off, (datas != null) ? datas.length : 0, -1, datas);
     }
 
-
     /**
      * string[] 转换 int[]
      * @param off    起始值
@@ -1100,7 +1099,6 @@ public final class ConvertUtils {
     public static double[] stringsToDoubles(final int off, final String... datas) {
         return stringsToDoubles(off, (datas != null) ? datas.length : 0, -1d, datas);
     }
-
 
     /**
      * string[] 转换 double[]
@@ -1156,7 +1154,6 @@ public final class ConvertUtils {
         return stringsToLongs(off, (datas != null) ? datas.length : 0, -1L, datas);
     }
 
-
     /**
      * string[] 转换 long[]
      * @param off    起始值
@@ -1210,7 +1207,6 @@ public final class ConvertUtils {
     public static float[] stringsToFloats(final int off, final String... datas) {
         return stringsToFloats(off, (datas != null) ? datas.length : 0, -1f, datas);
     }
-
 
     /**
      * string[] 转换 float[]

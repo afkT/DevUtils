@@ -333,7 +333,6 @@ public final class ManifestUtils {
         }
     }
 
-
     /**
      * 获取 App 版本名 - 对外显示
      * @param packageName

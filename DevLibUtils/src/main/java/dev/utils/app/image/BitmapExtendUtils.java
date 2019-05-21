@@ -170,7 +170,6 @@ public final class BitmapExtendUtils {
         return baos.toByteArray();
     }
 
-
     /**
      * 获取一个指定大小的bitmap
      * @param is           从输入流中读取Bitmap

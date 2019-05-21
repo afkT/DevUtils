@@ -345,7 +345,6 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         return DevMediaManager.getInstance().getPlayUri();
     }
 
-
     /**
      * 获取视频宽度
      * @return 视频宽度

@@ -160,7 +160,6 @@ public final class SDCardUtils {
         return -1L;
     }
 
-
     /**
      * 返回对应路径, 已使用的空间大小
      * @param path

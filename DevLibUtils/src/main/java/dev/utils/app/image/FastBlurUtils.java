@@ -255,7 +255,6 @@ public final class FastBlurUtils {
         return blurBitmap;
     }
 
-
     /**
      * 对图片进行 毛玻璃化, 虚化 数值越大效果越明显
      * @param originBitmap 位图
