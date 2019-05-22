@@ -43,7 +43,7 @@ public class WifiHotUtils {
     private Context mContext;
     // WifiManager 对象
     private WifiManager mWifiManager;
-    // 热点 Wifi 配置
+    // Wifi 热点配置
     private WifiConfiguration mAPWifiConfig;
 
     /**
@@ -54,7 +54,7 @@ public class WifiHotUtils {
     }
 
     /**
-     * 构造函数(只能进行初始化 WifiManager 操作, 其他靠方法定义)
+     * 构造函数
      * @param context {@link Context}
      */
     public WifiHotUtils(final Context context) {
@@ -68,10 +68,19 @@ public class WifiHotUtils {
     // =============
 
     /**
-     * 创建 wifi 配置信息(无其他操作, 单独返回 WifiConfig) => Wifi热点 (支持 无密码/WPA2 PSK)
+     * 创建 wifi 热点配置(支持 无密码/WPA2 PSK)
+     * @param ssid wifi ssid
+     * @return {@link WifiConfiguration} 热点配置
+     */
+    public static WifiConfiguration createWifiConfigToAp(final String ssid) {
+        return createWifiConfigToAp(ssid, null);
+    }
+
+    /**
+     * 创建 wifi 热点配置(支持 无密码/WPA2 PSK)
      * @param ssid wifi ssid
      * @param pwd  密码(需要大于等于 8 位)
-     * @return
+     * @return {@link WifiConfiguration}
      */
     public static WifiConfiguration createWifiConfigToAp(final String ssid, final String pwd) {
         try {
@@ -122,7 +131,7 @@ public class WifiHotUtils {
             }
             // 清空信息
             mAPWifiSSID = mAPWifiPwd = null;
-            // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行发送连接, 无法进行控制(App 关闭后, 热点自动关闭)
+            // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行创建, 无法进行控制(App 关闭后, 热点自动关闭)
             // 必须有定位权限
             mWifiManager.startLocalOnlyHotspot(new WifiManager.LocalOnlyHotspotCallback() {
                 @Override
@@ -135,7 +144,7 @@ public class WifiHotUtils {
                     mAPWifiSSID = wifiConfiguration.SSID;
                     mAPWifiPwd = wifiConfiguration.preSharedKey;
                     // 打印信息
-                    LogPrintUtils.dTag(TAG, "Android 8.0 wifi Ap ssid: " + mAPWifiSSID + ", pwd: " + mAPWifiPwd);
+                    LogPrintUtils.dTag(TAG, "Android 8.0 onStarted wifiAp ssid: " + mAPWifiSSID + ", pwd: " + mAPWifiPwd);
                     // 触发回调
                     if (mWifiAPListener != null) {
                         mWifiAPListener.onStarted(wifiConfiguration);
@@ -212,7 +221,7 @@ public class WifiHotUtils {
             wifiConfig.allowedPairwiseCiphers.clear();
             wifiConfig.allowedProtocols.clear();
             wifiConfig.priority = 0;
-            // 设置 wifi SSID
+            // 设置 wifi ssid
             wifiConfig.SSID = "CloseWifiAp"; // formatSSID(ssid,true);
             // 设置 wifi 密码
             wifiConfig.preSharedKey = "CloseWifiAp";
@@ -259,7 +268,7 @@ public class WifiHotUtils {
 
     /**
      * 获取 wifi 热点状态
-     * @return
+     * @return wifi 热点状态
      */
     public int getWifiApState() {
         try {
@@ -278,7 +287,7 @@ public class WifiHotUtils {
 
     /**
      * 获取 wifi 热点配置信息
-     * @return
+     * @return {@link WifiConfiguration} 热点配置
      */
     public WifiConfiguration getWifiApConfiguration() {
         try {
@@ -296,7 +305,7 @@ public class WifiHotUtils {
 
     /**
      * 设置 wifi 热点配置信息
-     * @param apWifiConfig Wifi 热点配置信息
+     * @param apWifiConfig wifi 热点配置
      * @return {@code true} success, {@code false} fail
      */
     public boolean setWifiApConfiguration(final WifiConfiguration apWifiConfig) {
@@ -370,7 +379,7 @@ public class WifiHotUtils {
     }
 
     /**
-     * 是否有连接热点
+     * 是否有设备连接热点
      * @return {@code true} yes, {@code false} no
      */
     public boolean isConnectHot() {
@@ -380,9 +389,9 @@ public class WifiHotUtils {
             while ((line = br.readLine()) != null) {
                 String[] splitted = line.split(" +");
                 if (splitted != null && splitted.length >= 4) {
-                    String ipAdr = splitted[0]; // Ip地址
-                    // 防止地址为 null,并且需要以.拆分 存在4个长度  255.255.255.255
-                    if (ipAdr != null && ipAdr.split("\\.").length >= 3) {
+                    String ipAddress = splitted[0]; // IP 地址
+                    // 防止地址为 null, 并且需要以.拆分存在 4 个长度 255.255.255.255
+                    if (ipAddress != null && ipAddress.split("\\.").length >= 3) {
                         return true;
                     }
                 }
@@ -394,15 +403,15 @@ public class WifiHotUtils {
     }
 
     /**
-     * 获取热点主机ip地址
-     * @return
+     * 获取热点主机 IP 地址
+     * @return 热点主机 IP 地址
      */
     public String getHotspotServiceIp() {
         try {
             // 获取网关信息
-            DhcpInfo dhcpinfo = mWifiManager.getDhcpInfo();
+            DhcpInfo dhcpInfo = mWifiManager.getDhcpInfo();
             // 获取服务器地址
-            return intToString(dhcpinfo.serverAddress);
+            return intToString(dhcpInfo.serverAddress);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getHotspotServiceIp");
         }
@@ -410,8 +419,8 @@ public class WifiHotUtils {
     }
 
     /**
-     * 获取连接上的子网关热点IP(一个)
-     * @return
+     * 获取连接上的子网关热点 IP(一个)
+     * @return 连接上的子网关热点 IP
      */
     public String getHotspotAllotIp() {
         try {
@@ -420,10 +429,10 @@ public class WifiHotUtils {
             while ((line = br.readLine()) != null) {
                 String[] splitted = line.split(" +");
                 if (splitted != null && splitted.length >= 4) {
-                    String ipAdr = splitted[0]; // Ip地址
+                    String ipAddress = splitted[0]; // IP 地址
                     // 防止地址为 null,并且需要以.拆分 存在4个长度  255.255.255.255
-                    if (ipAdr != null && ipAdr.split("\\.").length >= 3) {
-                        return ipAdr;
+                    if (ipAddress != null && ipAddress.split("\\.").length >= 3) {
+                        return ipAddress;
                     }
                 }
             }
@@ -434,20 +443,68 @@ public class WifiHotUtils {
     }
 
     /**
-     * 获取热点拼接后的ip网关掩码
-     * @param defaultGateway 默认网关掩码
-     * @param ipAdr          ip地址
-     * @return
+     * 获取连接的热点信息
+     * @return 连接的热点信息
      */
-    public String getHotspotSplitIpMask(final String defaultGateway, final String ipAdr) {
+    public String getConnectHotspotMsg() {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("/proc/net/arp"));
+            StringBuilder builder = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                builder.append(line);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getHotspotAllotIp");
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+        return null;
+    }
+
+//    /**
+//     * 获取连接的热点信息
+//     * @return 获取连接的热点信息
+//     */
+//    private String getConnectHotspotMsg() {
+//        try {
+//            BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                String[] splitted = line.split(" +");
+//                if (splitted != null && splitted.length >= 4) {
+//                    String ip = splitted[0]; // IP 地址
+//                    String mac = splitted[3]; // Mac 地址
+//                }
+//            }
+//        } catch (Exception e) {
+//            LogPrintUtils.eTag(TAG, e, "getConnectHotspotMsg");
+//        }
+//        return null;
+//    }
+
+    /**
+     * 获取热点拼接后的 IP 网关掩码
+     * @param defaultGateway 默认网关掩码
+     * @param ipAddress      IP 地址
+     * @return 网关掩码
+     */
+    public String getHotspotSplitIpMask(final String defaultGateway, final String ipAddress) {
         // 网关掩码
         String hsMask = defaultGateway;
         // 获取网关掩码
-        if (ipAdr != null) {
+        if (ipAddress != null) {
             try {
-                int length = ipAdr.lastIndexOf(".");
+                int length = ipAddress.lastIndexOf(".");
                 // 进行裁剪
-                hsMask = ipAdr.substring(0, length) + ".255";
+                hsMask = ipAddress.substring(0, length) + ".255";
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getHotspotSplitIpMask");
             }
@@ -455,30 +512,10 @@ public class WifiHotUtils {
         return hsMask;
     }
 
-//    /**
-//     * 获取连接的热点信息(暂时不用)
-//     * @return
-//     */
-//    private void getConnectedHotMsg() {
-//        try {
-//            BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                String[] splitted = line.split(" +");
-//                if (splitted != null && splitted.length >= 4) {
-//                    String ip = splitted[0]; // Ip地址
-//                    String mac = splitted[3]; // Mac 地址
-//                }
-//            }
-//        } catch (Exception e) {
-//            LogPrintUtils.eTag(TAG, e, "getConnectedHotMsg");
-//        }
-//    }
-
     /**
-     * 转换ip地址
-     * @param data 需要转换的数据
-     * @return
+     * 转换 IP 地址
+     * @param data 待转换的数据
+     * @return 转换后的 IP 地址
      */
     private String intToString(final int data) {
         StringBuffer buffer = new StringBuffer();
@@ -493,11 +530,11 @@ public class WifiHotUtils {
         return buffer.toString();
     }
 
-    // ===================
-    // = Android 8.0相关 =
-    // ===================
+    // ====================
+    // = Android 8.0 相关 =
+    // ====================
 
-    // Wifi ssid
+    // wifi ssid
     private String mAPWifiSSID;
     // wifi 密码
     private String mAPWifiPwd;
@@ -505,8 +542,8 @@ public class WifiHotUtils {
     private WifiManager.LocalOnlyHotspotReservation mReservation;
 
     /**
-     * 获取Wifi 热点名
-     * @return
+     * 获取 wifi 热点名
+     * @return wifi ssid
      */
     public String getApWifiSSID() {
         // 大于 8.0
@@ -538,16 +575,18 @@ public class WifiHotUtils {
 
     // =
 
-    // Wifi 热点监听
+    // wifi 热点监听
     private onWifiAPListener mWifiAPListener;
 
     /**
-     * 设置 Wifi 热点监听
+     * 设置 wifi 热点监听事件
      * @param wifiAPListener
+     * @return {@link WifiHotUtils}
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setOnWifiAPListener(final onWifiAPListener wifiAPListener) {
+    public WifiHotUtils setOnWifiAPListener(final onWifiAPListener wifiAPListener) {
         this.mWifiAPListener = wifiAPListener;
+        return this;
     }
 
     /**
@@ -558,7 +597,7 @@ public class WifiHotUtils {
 
         /**
          * 开启热点回调
-         * @param wifiConfig {@link WifiConfiguration} 热点配置
+         * @param wifiConfig 热点配置
          */
         void onStarted(WifiConfiguration wifiConfig);
 

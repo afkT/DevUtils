@@ -25,7 +25,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: wifi工具类
+ * detail: Wifi 工具类
  * @author Ttt
  * <pre>
  *      需要的权限:
@@ -47,20 +47,20 @@ public final class WifiUtils {
 
     // 没有密码
     public static final int NOPWD = 0;
-    // wep加密方式
+    // wep 加密方式
     public static final int WEP = 1;
-    // wpa加密方式
+    // wpa 加密方式
     public static final int WPA = 2;
 
     /**
-     * 构造器(只能进行初始化WifiManager操作, 其他靠方法定义)
+     * 构造函数
      */
     public WifiUtils() {
         this(DevUtils.getContext());
     }
 
     /**
-     * 构造器(只能进行初始化WifiManager操作, 其他靠方法定义)
+     * 构造函数
      * @param context {@link Context}
      */
     public WifiUtils(final Context context) {
@@ -69,8 +69,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取wifi管理对象
-     * @return
+     * 获取 WifiManager
+     * @return {@link WifiManager}
      */
     public WifiManager getWifiManager() {
         return this.mWifiManager;
@@ -81,24 +81,25 @@ public final class WifiUtils {
     // ===========================
 
     /**
-     * 判断是否打开wifi
+     * 判断是否打开 wifi
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isOpenWifi() {
         return mWifiManager.isWifiEnabled();
     }
 
     /**
-     * 打开WIFI
+     * 打开 wifi
      */
     public void openWifi() {
-        // 如果没有打开wifi, 才进行打开
+        // 如果没有打开 wifi, 才进行打开
         if (!isOpenWifi()) {
             mWifiManager.setWifiEnabled(true);
         }
     }
 
     /**
-     * 关闭WIFI
+     * 关闭 wifi
      */
     public void closeWifi() {
         // 如果已经打开了wifi, 才进行关闭
@@ -108,7 +109,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 自动切换wifi开关状态
+     * 自动切换 wifi 开关状态
      */
     public void toggleWifiEnabled() {
         // 如果打开了, 则关闭
@@ -118,7 +119,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取当前WIFI连接状态
+     * 获取当前 wifi 连接状态
+     * @return wifi 连接状态
      */
     public int getWifiState() {
         // WifiManager.WIFI_STATE_ENABLED: // 已打开
@@ -134,38 +136,41 @@ public final class WifiUtils {
     // ============
 
     /**
-     * 开始扫描wifi
+     * 开始扫描 wifi
+     * @return {@code true} 操作成功, {@code false} 操作失败
      */
     public boolean startScan() {
-        // 开始扫描
         return mWifiManager.startScan();
     }
 
     /**
-     * 获取已配置的网络
+     * 获取已配置(连接过) 的 wifi 配置
+     * @return {@link List<WifiConfiguration>} 已配置(连接过) 的 wifi 配置
      */
     public List<WifiConfiguration> getConfiguration() {
         return mWifiManager.getConfiguredNetworks();
     }
 
     /**
-     * 获取网络列表
+     * 获取附近的 wifi 列表
+     * @return {@link List<ScanResult>} 附近的 wifi 列表
      */
     public List<ScanResult> getWifiList() {
         return mWifiManager.getScanResults();
     }
 
     /**
-     * 获取WifiInfo对象
+     * 获取连接的 WifiInfo
+     * @return {@link WifiInfo}
      */
     public WifiInfo getWifiInfo() {
         return mWifiManager.getConnectionInfo();
     }
 
     /**
-     * 获取MAC地址
-     * @param wifiInfo
-     * @return
+     * 获取 MAC 地址
+     * @param wifiInfo {@link WifiInfo}
+     * @return MAC 地址
      */
     public String getMacAddress(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return null;
@@ -173,9 +178,9 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取接入点的BSSID
-     * @param wifiInfo
-     * @return
+     * 获取连接的 BSSID
+     * @param wifiInfo {@link WifiInfo}
+     * @return BSSID
      */
     public String getBSSID(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return null;
@@ -183,9 +188,9 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取IP地址
-     * @param wifiInfo
-     * @return
+     * 获取 IP 地址
+     * @param wifiInfo {@link WifiInfo}
+     * @return IP 地址
      */
     public int getIPAddress(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return -1;
@@ -193,21 +198,19 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取连接的ID
-     * @param wifiInfo
-     * @return
+     * 获取连接的 Network Id
+     * @param wifiInfo {@link WifiInfo}
+     * @return Network Id
      */
     public int getNetworkId(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return -1;
         return wifiInfo.getNetworkId();
     }
 
-    // =
-
     /**
-     * 获取SSID
-     * @param wifiInfo wifi信息
-     * @return
+     * 获取 wifi SSID
+     * @param wifiInfo {@link WifiInfo}
+     * @return wifi SSID
      */
     public static String getSSID(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return null;
@@ -221,15 +224,16 @@ public final class WifiUtils {
     }
 
     /**
-     * 通过 Context 获取当前连接的ssid
+     * 获取当前连接的 wifi SSID
+     * @return wifi SSID
      */
     public static String getSSID() {
         try {
             // 初始化 WifiManager 对象
             WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-            // 获取当前连接的wifi
+            // 获取当前连接的 wifi
             WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
-            // 获取wifi - SSID
+            // 获取 wifi SSID
             return formatSSID(wifiInfo.getSSID(), false);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSSID");
@@ -240,12 +244,13 @@ public final class WifiUtils {
     // =
 
     /**
-     * 判断是否存在\"ssid\", 存在则裁剪返回
-     * @param ssid
+     * 判断是否存在 \"ssid\", 存在则裁剪返回
+     * @param ssid 待处理的 SSID
+     * @return 处理后的 SSID
      */
     public static String formatSSID(final String ssid) {
         if (ssid == null) return null;
-        // 自动去掉SSID
+        // 自动去掉 ""
         if (ssid != null && ssid.startsWith("\"") && ssid.endsWith("\"")) {
             try {
                 // 裁剪连接的 ssid, 并返回
@@ -258,14 +263,14 @@ public final class WifiUtils {
     }
 
     /**
-     * 格式化, 处理SSID
-     * @param ssid
-     * @param isHandler {@code true} 添加引号, {@code false} 删除引号
-     * @return
+     * 格式化处理 SSID
+     * @param ssid     待处理的 SSID
+     * @param isAppend {@code true} 添加引号, {@code false} 删除引号
+     * @return 处理后的 SSID
      */
-    public static String formatSSID(final String ssid, final boolean isHandler) {
+    public static String formatSSID(final String ssid, final boolean isAppend) {
         if (ssid == null) return null;
-        if (isHandler) {
+        if (isAppend) {
             return "\"" + ssid + "\"";
         } else {
             return formatSSID(ssid);
@@ -273,10 +278,10 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取密码(经过处理)
-     * @param pwd     需要处理的密码
+     * 获取处理后的密码
+     * @param pwd     待处理的密码
      * @param isJudge 是否需要判断
-     * @return
+     * @return 处理后的密码
      */
     public String getPassword(final String pwd, final boolean isJudge) {
         if (pwd == null) return null;
@@ -289,8 +294,8 @@ public final class WifiUtils {
 
     /**
      * 判断是否 wep 加密
-     * @param wepKey
-     * @return
+     * @param wepKey 加密类型
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isHexWepKey(final String wepKey) {
         if (wepKey == null) return false;
@@ -303,19 +308,24 @@ public final class WifiUtils {
     }
 
     /**
-     * 判断是否 十六进制
-     * @param key
-     * @return
+     * 判断是否十六进制数据
+     * @param data 待检验数据
+     * @return {@code true} yes, {@code false} no
      */
-    public static boolean isHex(final String key) {
-        if (key == null) return false;
-        for (int i = key.length() - 1; i >= 0; i--) {
-            char c = key.charAt(i);
-            if (!(c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f')) {
-                return false;
+    public static boolean isHex(final String data) {
+        if (data == null) return false;
+        // 获取数据长度
+        int len = data.length();
+        if (len > 0) {
+            for (int i = len - 1; i >= 0; i--) {
+                char c = data.charAt(i);
+                if (!(c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f')) {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     // ============
@@ -323,15 +333,15 @@ public final class WifiUtils {
     // ============
 
     /**
-     * 获取加密类型(int常量) - 判断String
-     * @param type
+     * 获取加密类型
+     * @param typeStr 加密类型
+     * @return 加密类型 {@link WifiUtils#NOPWD}、{@link WifiUtils#WPA}、{@link WifiUtils#WEP}
      */
-    public static int getWifiType(final String type) {
-        if (type == null) return NOPWD;
-        // WPA 是本机的用法
-        if (type.contains("WPA")) {
+    public static int getWifiType(final String typeStr) {
+        if (typeStr == null) return NOPWD;
+        if (typeStr.contains("WPA")) {
             return WPA;
-        } else if (type.contains("WEP")) {
+        } else if (typeStr.contains("WEP")) {
             return WEP;
         }
         // 默认没有密码
@@ -339,15 +349,15 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取加密类型(int常量) - 判断int(String)
-     * @param type
+     * 获取加密类型
+     * @param typeInt 加密类型
+     * @return 加密类型 {@link WifiUtils#NOPWD}、{@link WifiUtils#WPA}、{@link WifiUtils#WEP}
      */
-    public static int getWifiTypeInt(final String type) {
-        if (type == null) return NOPWD;
-        // WPA 是本机的用法
-        if (type.equals("2")) {
+    public static int getWifiTypeInt(final String typeInt) {
+        if (typeInt == null) return NOPWD;
+        if (typeInt.equals("2")) {
             return WPA;
-        } else if (type.equals("1")) {
+        } else if (typeInt.equals("1")) {
             return WEP;
         }
         // 默认没有密码
@@ -355,8 +365,9 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取加密类型(int常量)
-     * @param type
+     * 获取加密类型
+     * @param type 加密类型
+     * @return 加密类型
      */
     public static String getWifiType(final int type) {
         switch (type) {
@@ -371,9 +382,9 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取加密类型(String)
-     * @param type
-     * @return
+     * 获取加密类型
+     * @param type 加密类型
+     * @return 加密类型
      */
     public static String getWifiTypeStr(final int type) {
         switch (type) {
@@ -388,8 +399,8 @@ public final class WifiUtils {
 
     /**
      * 判断是否连接为 null - unknown ssid
-     * @param ssid
-     * @return
+     * @param ssid wifi ssid
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isConnNull(final String ssid) {
         if (ssid == null) {
@@ -401,9 +412,11 @@ public final class WifiUtils {
     }
 
     /**
-     * 判断是否连接上Wifi(非连接中)
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return 返回ssid
+     * 获取连接的 wifi 热点 SSID
+     * <pre>
+     *      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
+     * @return wifi 热点 SSID
      */
     @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     public static String isConnectAphot() {
@@ -415,7 +428,7 @@ public final class WifiUtils {
                 // 连接状态
                 NetworkInfo.State nState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
                 if ((nState == NetworkInfo.State.CONNECTED)) {
-                    // 获取连接的ssid
+                    // 获取连接的 ssid
                     return getSSID();
                 }
             } else {
@@ -425,7 +438,7 @@ public final class WifiUtils {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
                     // 判断是否连接 wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                        // 获取连接的ssid
+                        // 获取连接的 ssid
                         return getSSID();
                     }
                 }
@@ -436,23 +449,23 @@ public final class WifiUtils {
         return null;
     }
 
-    // ================
-    // = Wifi配置操作 =
-    // ================
+    // =================
+    // = Wifi 配置操作 =
+    // =================
 
     // 默认没有密码
     public static final int SECURITY_NONE = 0;
-    // WEP加密方式
+    // WEP 加密方式
     public static final int SECURITY_WEP = 1;
-    // PSK加密方式
+    // PSK 加密方式
     public static final int SECURITY_PSK = 2;
-    // EAP加密方式
+    // EAP 加密方式
     public static final int SECURITY_EAP = 3;
 
     /**
-     * 获取Wifi配置, 加密类型
-     * @param wifiConfig
-     * @return
+     * 获取 wifi 加密类型
+     * @param wifiConfig wifi 配置信息
+     * @return wifi 加密类型
      */
     public static int getSecurity(final WifiConfiguration wifiConfig) {
         if (wifiConfig == null) return SECURITY_NONE;
@@ -467,9 +480,9 @@ public final class WifiUtils {
     }
 
     /**
-     * 获知Wifi配置, 是否属于密码加密类型
-     * @param wifiConfig
-     * @return
+     * 判断 wifi 加密类型, 是否为加密类型
+     * @param wifiConfig wifi 配置信息
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isExsitsPwd(final WifiConfiguration wifiConfig) {
         if (wifiConfig == null) return false;
@@ -479,23 +492,22 @@ public final class WifiUtils {
     }
 
     /**
-     * 查看以前是否也配置过这个网络
-     * @param ssid 需要判断的wifi SSID
+     * 获取指定的 ssid 网络配置 (需连接保存过, 才存在)
+     * @param ssid wifi ssid
+     * @return {@link WifiConfiguration}
      */
     public WifiConfiguration isExsits(final String ssid) {
         if (ssid == null) return null;
-        // 获取wifi 连接过的配置信息
+        // 获取 wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
         // 防止为 null
-        if (listWifiConfigs == null) {
-            return null;
-        }
+        if (listWifiConfigs == null) return null;
         // 遍历判断是否存在
         for (int i = 0, len = listWifiConfigs.size(); i < len; i++) {
-            WifiConfiguration wConfig = listWifiConfigs.get(i);
-            if (wConfig != null) {
-                if (wConfig.SSID.equals("\"" + ssid + "\"")) {
-                    return wConfig;
+            WifiConfiguration wifiConfig = listWifiConfigs.get(i);
+            if (wifiConfig != null) {
+                if (wifiConfig.SSID.equals("\"" + ssid + "\"")) {
+                    return wifiConfig;
                 }
             }
         }
@@ -503,16 +515,15 @@ public final class WifiUtils {
     }
 
     /**
-     * 查看以前是否也配置过这个网络
-     * @param networkId 网络id
+     * 获取指定的 network id 网络配置 (需连接保存过, 才存在)
+     * @param networkId network id
+     * @return {@link WifiConfiguration}
      */
     public WifiConfiguration isExsits(final int networkId) {
-        // 获取wifi 连接过的配置信息
+        // 获取 wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
         // 防止为 null
-        if (listWifiConfigs == null) {
-            return null;
-        }
+        if (listWifiConfigs == null) return null;
         // 遍历判断是否存在
         for (int i = 0, len = listWifiConfigs.size(); i < len; i++) {
             WifiConfiguration wConfig = listWifiConfigs.get(i);
@@ -530,16 +541,16 @@ public final class WifiUtils {
     // ============
 
     /**
-     * 删除指定的 Wifi(SSID) 配置信息
-     * @param ssid
-     * @return 删除结果
+     * 删除指定的 wifi(SSID) 配置信息
+     * @param ssid wifi ssid
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean delWifiConfig(final String ssid) {
         if (ssid == null) return false;
         try {
             // 初始化 WifiManager 对象
             WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-            // 获取wifi 连接过的配置信息
+            // 获取 wifi 连接过的配置信息
             List<WifiConfiguration> listWifiConfigs = mWifiManager.getConfiguredNetworks();
             // 防止为 null
             if (listWifiConfigs != null) {
@@ -563,61 +574,64 @@ public final class WifiUtils {
         return false;
     }
 
+    // =
+
     /**
-     * 快速连接Wifi(不使用静态ip方式)
-     * @param ssid  wifi SSID
-     * @param pwd   wifi密码
-     * @param wType 加密类型
+     * 快速连接 wifi (不使用静态 IP 方式)
+     * @param ssid wifi ssid
+     * @param pwd  wifi 密码
+     * @param type wifi 加密类型
+     * @return {@link WifiConfiguration}
      */
-    public WifiConfiguration quickConnWifi(final String ssid, final String pwd, final int wType) {
-        return quickConnWifi(ssid, pwd, wType, false, null);
+    public WifiConfiguration quickConnWifi(final String ssid, final String pwd, final int type) {
+        return quickConnWifi(ssid, pwd, type, false, null);
     }
 
     /**
-     * 快速连接Wifi
-     * @param ssid     wifi SSID
-     * @param pwd      wifi密码
-     * @param wType    加密类型
-     * @param isStatic 是否使用静态ip连接
-     * @param ip       静态IP地址
-     * @return 连接成功的 WifiConfiguration
+     * 快速连接 wifi
+     * @param ssid     wifi ssid
+     * @param pwd      wifi 密码
+     * @param type     wifi 加密类型
+     * @param isStatic 是否使用静态 IP 连接
+     * @param ip       静态 IP 地址
+     * @return {@link WifiConfiguration}
      */
-    public WifiConfiguration quickConnWifi(final String ssid, final String pwd, final int wType, final boolean isStatic, final String ip) {
-        // 步骤
-        // 1.创建Wifi静态Ip连接配置
-        // 2.创建正常Wifi连接配置
-        // 3.查询准备连接的Wifi-SSID 是否存在配置文件, 准备进行删除
-        // 4.查询当前连接的Wifi-SSID 准备进行断开
+    public WifiConfiguration quickConnWifi(final String ssid, final String pwd, final int type, final boolean isStatic, final String ip) {
+        // 步骤:
+        // 1.创建 wifi 静态 IP 连接配置
+        // 2.创建正常 wifi 连接配置
+        // 3.查询准备连接的 wifi SSID 是否存在配置文件, 准备进行删除
+        // 4.查询当前连接的 wifi SSID 准备进行断开
         // 5.同步进行断开, 删除操作, 并且进行保存
         // 6.调用连接方法
         // 7.返回连接的配置信息
         // =
         try {
-            // 正常的Wifi连接配置
+            // 正常的 wifi 连接配置
             WifiConfiguration connWifiConfig = null;
-            // 如果需要通过静态 ip 方式连接, 则进行设置
+            // 如果需要通过静态 IP 方式连接, 则进行设置
             if (isStatic && !TextUtils.isEmpty(ip)) {
-                // 创建Wifi静态IP连接配置
-                WifiConfiguration staticWifiConfig = setStaticWifiConfig(createWifiConfig(ssid, pwd, wType, true), ip);
-                // 如果静态ip方式, 配置失败, 则初始化正常连接的Wifi配置
+                // 创建 wifi 静态 IP 连接配置
+                WifiConfiguration staticWifiConfig = setStaticWifiConfig(createWifiConfig(ssid, pwd, type, true), ip);
+                // 如果静态 IP 方式, 配置失败, 则初始化正常连接的 wifi 配置
                 if (staticWifiConfig == null) {
                     // 创建正常的配置信息
-                    connWifiConfig = createWifiConfig(ssid, pwd, wType, true);
+                    connWifiConfig = createWifiConfig(ssid, pwd, type, true);
                     // =
                     LogPrintUtils.dTag(TAG, "属于正常方式连接(DHCP)");
                 } else {
                     // 设置静态信息
                     connWifiConfig = staticWifiConfig;
                     // =
-                    LogPrintUtils.dTag(TAG, "属于静态IP方式连接");
+                    LogPrintUtils.dTag(TAG, "属于静态 IP 方式连接");
                 }
             } else {
                 // 创建正常的配置信息
-                connWifiConfig = createWifiConfig(ssid, pwd, wType, true);
+                connWifiConfig = createWifiConfig(ssid, pwd, type, true);
                 // =
                 LogPrintUtils.dTag(TAG, "属于正常方式连接(DHCP)");
             }
-            // 判断当前准备连接的wifi, 是否存在配置文件
+            // 判断当前准备连接的 wifi, 是否存在配置文件
             WifiConfiguration preWifiConfig = this.isExsits(ssid);
             // =
             if (preWifiConfig != null) {
@@ -630,12 +644,12 @@ public final class WifiUtils {
             }
             // =
             // 连接网络
-            int _nId = mWifiManager.addNetwork(connWifiConfig);
-            if (_nId != -1) {
+            int nId = mWifiManager.addNetwork(connWifiConfig);
+            if (nId != -1) {
                 try {
-                    // 获取当前连接的Wifi对象
+                    // 获取当前连接的 wifi 对象
                     WifiInfo wifiInfo = getWifiInfo();
-                    // 获取连接的id
+                    // 获取连接的 id
                     int networdId = wifiInfo.getNetworkId();
                     // 禁用网络
                     boolean isDisable = mWifiManager.disableNetwork(networdId);
@@ -644,26 +658,26 @@ public final class WifiUtils {
                     // 打印断开连接结果
                     LogPrintUtils.dTag(TAG, "isDisConnect : " + isDisConnect + ", isDisable: " + isDisable);
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + _nId);
+                    LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + nId);
                 }
                 // 开始连接
-                boolean isResult = mWifiManager.enableNetwork(_nId, true);
+                boolean isResult = mWifiManager.enableNetwork(nId, true);
                 // =
                 if (!isResult) {
-                    isResult = mWifiManager.enableNetwork(_nId, true);
+                    isResult = mWifiManager.enableNetwork(nId, true);
                 }
                 // 打印结果
                 LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result: " + isResult);
             } else {
-                // 尝试不带引号SSID连接
+                // 尝试不带引号 SSID 连接
                 connWifiConfig.SSID = formatSSID(connWifiConfig.SSID, false);
                 // 连接网络
-                _nId = mWifiManager.addNetwork(connWifiConfig);
-                if (_nId != -1) {
+                nId = mWifiManager.addNetwork(connWifiConfig);
+                if (nId != -1) {
                     try {
-                        // 获取当前连接的Wifi对象
+                        // 获取当前连接的 wifi 对象
                         WifiInfo wifiInfo = getWifiInfo();
-                        // 获取连接的id
+                        // 获取连接的 id
                         int networdId = wifiInfo.getNetworkId();
                         // 禁用网络
                         boolean isDisable = mWifiManager.disableNetwork(networdId);
@@ -672,22 +686,22 @@ public final class WifiUtils {
                         // 打印断开连接结果
                         LogPrintUtils.dTag(TAG, "isDisConnect : " + isDisConnect + ", isDisable: " + isDisable);
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + _nId);
+                        LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + nId);
                     }
                     // 开始连接
-                    boolean isResult = mWifiManager.enableNetwork(_nId, true);
+                    boolean isResult = mWifiManager.enableNetwork(nId, true);
                     // =
                     if (!isResult) {
-                        isResult = mWifiManager.enableNetwork(_nId, true);
+                        isResult = mWifiManager.enableNetwork(nId, true);
                     }
                     // 打印结果
                     LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result: " + isResult);
                 }
             }
-            // 保存id
-            connWifiConfig.networkId = _nId;
-            // 连接的networkId
-            LogPrintUtils.dTag(TAG, "连接的SSID - networkId : " + _nId);
+            // 保存 id
+            connWifiConfig.networkId = nId;
+            // 连接的 networkId
+            LogPrintUtils.dTag(TAG, "连接的 SSID - networkId : " + nId);
             // 返回连接的信息
             return connWifiConfig;
         } catch (Exception e) {
@@ -697,13 +711,14 @@ public final class WifiUtils {
     }
 
     /**
-     * 创建Wifi配置信息(无其他操作, 单独返回WifiConfig)
-     * @param ssid
-     * @param pwd
-     * @param wType
+     * 创建 wifi 配置信息
+     * @param ssid      wifi ssid
+     * @param pwd       wifi 密码
+     * @param type      wifi 加密类型
      * @param isHandler 是否处理双引号
+     * @return {@link WifiConfiguration}
      */
-    public static WifiConfiguration createWifiConfig(final String ssid, final String pwd, final int wType, final boolean isHandler) {
+    public static WifiConfiguration createWifiConfig(final String ssid, final String pwd, final int type, final boolean isHandler) {
         try {
             // 创建一个新的网络配置
             WifiConfiguration wifiConfig = new WifiConfiguration();
@@ -719,7 +734,7 @@ public final class WifiUtils {
             } else {
                 wifiConfig.SSID = ssid;
             }
-            switch (wType) {
+            switch (type) {
                 case WifiUtils.NOPWD: // 不存在密码
                     wifiConfig.hiddenSSID = true;
                     wifiConfig.allowedKeyManagement.set(KeyMgmt.NONE);
@@ -773,17 +788,16 @@ public final class WifiUtils {
     // ============
 
     /**
-     * 移除某个Wifi配置信息
-     * @param wcg
-     * @return
+     * 移除 wifi 配置信息
+     * @param wifiConfig wifi 配置信息
+     * @return {@code true} success, {@code false} fail
      */
-    public boolean removeWifiConfig(final WifiConfiguration wcg) {
+    public boolean removeWifiConfig(final WifiConfiguration wifiConfig) {
         // 如果等于 null 则直接返回
-        if (wcg == null)
-            return false;
+        if (wifiConfig == null) return false;
         try {
             // 删除配置
-            boolean isResult = mWifiManager.removeNetwork(wcg.networkId);
+            boolean isResult = mWifiManager.removeNetwork(wifiConfig.networkId);
             // 保存操作
             mWifiManager.saveConfiguration();
             // 返回删除结果
@@ -795,27 +809,27 @@ public final class WifiUtils {
     }
 
     /**
-     * 断开指定ID的网络
-     * @param netId wifiid
+     * 断开指定 networkId 的网络
+     * @param networkId network id
      */
-    public void disconnectWifi(final int netId) {
+    public void disconnectWifi(final int networkId) {
         try {
-            mWifiManager.disableNetwork(netId);
+            mWifiManager.disableNetwork(networkId);
             mWifiManager.disconnect();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, "disconnectWifi", e);
         }
     }
 
-    // ============================
-    // = 设置静态ip, 域名, 等信息 =
-    // ============================
+    // ===========================
+    // = 设置静态 IP、域名等信息 =
+    // ===========================
 
     /**
-     * 设置静态Wifi信息
-     * @param wifiConfig Wifi配置信息
-     * @param ip         静态ip
-     * @return
+     * 设置静态 wifi 配置信息
+     * @param wifiConfig wifi 配置信息
+     * @param ip         静态 IP
+     * @return {@link WifiConfiguration}
      */
     private WifiConfiguration setStaticWifiConfig(final WifiConfiguration wifiConfig, final String ip) {
         String gateway = null;
@@ -831,46 +845,46 @@ public final class WifiUtils {
                 return null;
             }
         }
-        // 暂时不需要设置dns, 所以dns参数传入null
+        // 暂时不需要设置 DNS, 所以 DNS 参数传入 null
         return setStaticWifiConfig(wifiConfig, ip, gateway, null, 24);
     }
 
     /**
-     * 设置静态Wifi信息
-     * @param wifiConfig          Wifi配置信息
-     * @param ip                  静态ip
+     * 设置静态 wifi 配置信息
+     * @param wifiConfig          wifi 配置信息
+     * @param ip                  静态 IP
      * @param gateway             网关
-     * @param dns                 dns
+     * @param dns                 DNS
      * @param networkPrefixLength 网络前缀长度
-     * @return
+     * @return {@link WifiConfiguration}
      */
     private WifiConfiguration setStaticWifiConfig(final WifiConfiguration wifiConfig, final String ip, final String gateway, final String dns, final int networkPrefixLength) {
         try {
             if (ip == null || gateway == null) {
                 return null;
             }
-            // 设置Inet地址
+            // 设置 InetAddress
             InetAddress intetAddress = InetAddress.getByName(ip);
-            if (Build.VERSION.SDK_INT <= 20) { // 旧的版本, 5.0之前
-                // 设置IP分配方式, 静态ip
+            if (Build.VERSION.SDK_INT <= 20) { // 旧的版本, 5.0 之前
+                // 设置 IP 分配方式, 静态 IP
                 setEnumField(wifiConfig, "STATIC", "ipAssignment");
                 // 设置不用代理
                 setEnumField(wifiConfig, "NONE", "proxySettings");
-                // 设置ip地址
+                // 设置 IP 地址
                 setIpAddress(intetAddress, networkPrefixLength, wifiConfig);
                 // 设置网关
                 setGateway(InetAddress.getByName(gateway), wifiConfig);
                 if (dns != null) { // 判断是否需要设置域名
-                    // 设置DNS
+                    // 设置 DNS
                     setDNS(InetAddress.getByName(dns), wifiConfig);
                 }
-            } else { // 5.0新版本改变到其他地方
+            } else { // 5.0 新版本改变到其他地方
                 Object obj = getDeclaredField(wifiConfig, "mIpConfiguration");
-                // 设置IP分配方式, 静态ip
+                // 设置 IP 分配方式, 静态 IP
                 setEnumField(obj, "STATIC", "ipAssignment");
                 // 设置不用代理
                 setEnumField(obj, "NONE", "proxySettings");
-                // 设置ip地址、网关、DNS
+                // 设置 IP 地址、网关、DNS
                 setStaticIpConfig(ip, gateway, dns, networkPrefixLength, obj);
             }
             return wifiConfig;
@@ -880,6 +894,12 @@ public final class WifiUtils {
         return null;
     }
 
+    /**
+     * 转换 IP 地址
+     * @param inetAddr {@link InetAddress}
+     * @return IPv4 地址
+     * @throws Exception 不属于 IPv4 地址
+     */
     private int inetAddressToInt(final InetAddress inetAddr) throws Exception {
         byte[] data = inetAddr.getAddress();
         if (data.length != 4) {
@@ -889,10 +909,10 @@ public final class WifiUtils {
     }
 
     /**
-     * 设置DNS
-     * @param dns
-     * @param wifiConfig
-     * @throws Exception
+     * 设置 DNS
+     * @param dns        DNS
+     * @param wifiConfig wifi 配置信息
+     * @throws Exception 设置失败, 抛出异常
      */
     private void setDNS(final InetAddress dns, final WifiConfiguration wifiConfig) throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
@@ -906,9 +926,9 @@ public final class WifiUtils {
 
     /**
      * 设置网关
-     * @param gateway
-     * @param wifiConfig
-     * @throws Exception
+     * @param gateway    网关
+     * @param wifiConfig wifi 配置信息
+     * @throws Exception 设置失败, 抛出异常
      */
     private void setGateway(final InetAddress gateway, final WifiConfiguration wifiConfig) throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
@@ -924,52 +944,52 @@ public final class WifiUtils {
     }
 
     /**
-     * 设置Ip地址
-     * @param addr         ip地址
+     * 设置 IP 地址
+     * @param address      IP 地址
      * @param prefixLength 网络前缀长度
-     * @param wifiConfig   Wifi配置信息
-     * @throws Exception
+     * @param wifiConfig   wifi 配置信息
+     * @throws Exception 设置失败, 抛出异常
      */
-    private void setIpAddress(final InetAddress addr, final int prefixLength, final WifiConfiguration wifiConfig) throws Exception {
+    private void setIpAddress(final InetAddress address, final int prefixLength, final WifiConfiguration wifiConfig) throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
         if (linkProperties == null)
             throw new NullPointerException();
 
         Class laClass = Class.forName("android.net.LinkAddress");
         Constructor laConstructor = laClass.getConstructor(new Class[]{InetAddress.class, int.class});
-        Object linkAddress = laConstructor.newInstance(addr, prefixLength);
+        Object linkAddress = laConstructor.newInstance(address, prefixLength);
         ArrayList mLinkAddresses = (ArrayList) getDeclaredField(linkProperties, "mLinkAddresses");
         mLinkAddresses.clear();
         mLinkAddresses.add(linkAddress);
     }
 
     /**
-     * 设置Ip地址、网关、DNS(5.0之后)
-     * @param ip           静态ip
+     * 设置 IP 地址、网关、DNS (5.0之后)
+     * @param ip           静态 IP
      * @param gateway      网关
-     * @param dns          dns
+     * @param dns          DNS
      * @param prefixLength 网络前缀长度
-     * @param object       Wifi配置信息
-     * @throws Exception
+     * @param object       wifi 配置信息
+     * @throws Exception 设置失败, 抛出异常
      */
     private void setStaticIpConfig(final String ip, final String gateway, final String dns, final int prefixLength, final Object object) throws Exception {
-        // 从 WifiConfig 成员变量 mIpConfiguration 获取staticIpConfiguration
+        // 从 WifiConfig 成员变量 mIpConfiguration 获取 staticIpConfiguration
         // 获取 staticIpConfiguration 变量
         Object staticIpConfigClass = getField(object, "staticIpConfiguration");
         if (staticIpConfigClass == null) {
-            // 创建静态ip配置类
+            // 创建静态 IP 配置类
             staticIpConfigClass = Class.forName("android.net.StaticIpConfiguration").newInstance();
         }
-        // 初始化LinkAddress 并设置ip地址
+        // 初始化 LinkAddress 并设置 IP 地址
         Class laClass = Class.forName("android.net.LinkAddress");
         Constructor laConstructor = laClass.getConstructor(new Class[]{InetAddress.class, int.class});
         Object linkAddress = laConstructor.newInstance(InetAddress.getByName(ip), prefixLength);
-        // 设置地址ip地址 ipAddress
+        // 设置地址 IP 地址 ipAddress
         setValueField(staticIpConfigClass, linkAddress, "ipAddress");
         // 设置网关 gateway
         setValueField(staticIpConfigClass, InetAddress.getByName(gateway), "gateway");
         if (dns != null) { // 判断是否需要设置域名
-            // 设置DNS
+            // 设置 DNS
             List<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(staticIpConfigClass, "dnsServers");
             mDnses.clear(); // or add a new dns address, here I just want to replace DNS1
             mDnses.add(InetAddress.getByName(dns));
@@ -979,11 +999,11 @@ public final class WifiUtils {
     }
 
     /**
-     * 通过反射获取public字段
-     * @param object
-     * @param name
-     * @return
-     * @throws Exception
+     * 通过反射获取
+     * @param object Object
+     * @param name   字段名
+     * @return 对应的字段
+     * @throws Exception 获取失败, 抛出异常
      */
     private Object getField(final Object object, final String name) throws Exception {
         Field field = object.getClass().getField(name);
@@ -991,11 +1011,11 @@ public final class WifiUtils {
     }
 
     /**
-     * 通过反射获取全部字段
-     * @param object
-     * @param name
-     * @return
-     * @throws Exception
+     * 通过反射获取
+     * @param object Object
+     * @param name   字段名
+     * @return 对应的字段
+     * @throws Exception 获取失败, 抛出异常
      */
     private Object getDeclaredField(final Object object, final String name) throws Exception {
         Field field = object.getClass().getDeclaredField(name);
@@ -1005,10 +1025,10 @@ public final class WifiUtils {
 
     /**
      * 通过反射枚举类, 进行设置
-     * @param object 设置对象
+     * @param object Object
      * @param value  设置参数值
-     * @param name   变量名
-     * @throws Exception 抛出异常
+     * @param name   字段名
+     * @throws Exception 设置失败, 抛出异常
      */
     private void setEnumField(final Object object, final String value, final String name) throws Exception {
         Field field = object.getClass().getField(name);
@@ -1017,10 +1037,10 @@ public final class WifiUtils {
 
     /**
      * 通过反射, 进行设置
-     * @param object 设置对象
+     * @param object Object
      * @param val    设置参数值
-     * @param name   变量名
-     * @throws Exception 抛出异常
+     * @param name   字段名
+     * @throws Exception 设置失败, 抛出异常
      */
     private void setValueField(final Object object, final Object val, final String name) throws Exception {
         Field field = object.getClass().getField(name);

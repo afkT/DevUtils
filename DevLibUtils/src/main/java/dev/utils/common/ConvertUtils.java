@@ -1427,6 +1427,27 @@ public final class ConvertUtils {
     // ======================
 
     /**
+     * 判断是否十六进制数据
+     * @param data 待检验数据
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHex(final String data) {
+        if (data == null) return false;
+        // 获取数据长度
+        int len = data.length();
+        if (len > 0) {
+            for (int i = len - 1; i >= 0; i--) {
+                char c = data.charAt(i);
+                if (!(c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f')) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 将十六进制字节数组解码
      * @param data 十六进制 byte[]
      * @return 十六进制转(解)码后的数据

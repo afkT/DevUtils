@@ -24,12 +24,12 @@ import java.io.InputStream;
  */
 public class ImageProcessor {
 
-    // 需要处理的Bitmap
+    // 待处理的Bitmap
     private Bitmap mBitmap;
 
     /**
      * 构造方法
-     * @param bitmap 需要处理的bitmap
+     * @param bitmap 待处理的bitmap
      */
     public ImageProcessor(final Bitmap bitmap) {
         this.mBitmap = bitmap;

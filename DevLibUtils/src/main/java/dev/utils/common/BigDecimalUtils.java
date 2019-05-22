@@ -361,7 +361,7 @@ public final class BigDecimalUtils {
 
     /**
      * 提供精确的小数位获取
-     * @param v            需要处理的数字
+     * @param v            待处理的数字
      * @param scale        小数点后保留几位
      * @param roundingMode 取小数点模式
      * @return 最后的结果

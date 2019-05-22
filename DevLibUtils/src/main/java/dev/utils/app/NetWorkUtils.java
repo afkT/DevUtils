@@ -254,7 +254,7 @@ public final class NetWorkUtils {
 
     /**
      * 使用 ping ip 方式判断网络是否可用
-     * @param ip ip地址
+     * @param ip IP 地址
      * @return
      */
     @RequiresPermission(Manifest.permission.INTERNET)
@@ -538,9 +538,9 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 获取域名ip地址
+     * 获取域名 IP 地址
      * @param domain 域名  www.baidu.com  不需要加上http
-     * @return ip地址
+     * @return IP 地址
      */
     public static String getDomainAddress(final String domain) {
         try {
@@ -566,9 +566,9 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 获取IP地址
-     * @param useIPv4 是否用IPv4
-     * @return IP地址
+     * 获取 IP 地址
+     * @param useIPv4 是否用 IPv4
+     * @return IP 地址
      */
     public static String getIPAddress(boolean useIPv4) {
         try {

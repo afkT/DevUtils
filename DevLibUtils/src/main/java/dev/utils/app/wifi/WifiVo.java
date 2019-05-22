@@ -18,7 +18,7 @@ public class WifiVo implements Parcelable {
     // 日志 TAG
     private static final String TAG = WifiVo.class.getSimpleName();
 
-    @Keep // wifi SSID
+    @Keep // wifi ssid
     public String wSSID = null;
     @Keep // wifi 密码
     public String wPwd = null;
@@ -35,19 +35,29 @@ public class WifiVo implements Parcelable {
     /**
      * 获取 wifi 信息
      * @param scanResult 扫描的 wifi 信息
+     * @return {@link WifiVo}
      */
     public static WifiVo createWifiVo(final ScanResult scanResult) {
+        return createWifiVo(scanResult, false);
+    }
+
+    /**
+     * 获取 wifi 信息
+     * @param scanResult 扫描的 wifi 信息
+     * @param isAppend   {@code true} 添加引号, {@code false} 删除引号
+     * @return {@link WifiVo}
+     */
+    public static WifiVo createWifiVo(final ScanResult scanResult, final boolean isAppend) {
         if (scanResult != null) {
             try {
                 // 防止 wifi 名长度为 0
                 if (scanResult.SSID.length() == 0) {
                     return null;
                 }
-                // 初始化 wifi 信息实体类
                 WifiVo wifiVo = new WifiVo();
-                // ssid
-                wifiVo.wSSID = WifiUtils.formatSSID(scanResult.SSID, false);
-                // 加密类型
+                // wifi ssid
+                wifiVo.wSSID = WifiUtils.formatSSID(scanResult.SSID, isAppend);
+                // wifi 加密类型
                 wifiVo.wType = WifiUtils.getWifiType(scanResult.capabilities);
                 // wifi 信号等级
                 wifiVo.wLevel = scanResult.level;
