@@ -4,7 +4,7 @@
 
 > 1. 支持子线程弹出 Toast, 可通过开关配置
 > 2. 内部解决 Android 7.1.1 崩溃问题
-> 3. 但无处理 部分ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
+> 3. 但无处理 部分 ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
 
 #### 项目类结构
 
@@ -33,7 +33,7 @@
 | setToastFilter | 设置 Toast 过滤器 |
 | setIsHandler | 设置是否使用 Handler 显示 Toast |
 | setNullText | 设置 Text 为 null 的文本 |
-| setUseConfig | 判断是否使用配置 |
+| setUseConfig | 设置是否使用配置 |
 | setGravity | 设置 Toast 显示在屏幕上的位置 |
 | setMargin | 设置边距 |
 | getDefaultStyle | 获取默认样式 |

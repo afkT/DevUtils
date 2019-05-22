@@ -38,9 +38,9 @@ final class Utils {
 
     /**
      * 获取格式化字符串
-     * @param format
-     * @param args
-     * @return
+     * @param format 待格式化字符串
+     * @param args   格式化参数
+     * @return 格式化后的字符串
      */
     public static String getFormatString(final String format, final Object... args) {
         try {
@@ -57,8 +57,8 @@ final class Utils {
 
     /**
      * 获取 R.string 资源的格式化字符串
-     * @param resId
-     * @param objs
+     * @param resId R.string.id
+     * @param objs  格式化参数
      */
     public static String getFormatRes(final int resId, final Object... objs) {
         try {
@@ -91,9 +91,9 @@ final class Utils {
 
     /**
      * 检查通知栏权限有没有开启
-     * 参考SupportCompat包中的: NotificationManagerCompat.from(context).areNotificationsEnabled();
+     * 参考 SupportCompat 包中的: NotificationManagerCompat.from(context).areNotificationsEnabled();
      * @param context {@link Context}
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotificationEnabled(final Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -120,8 +120,8 @@ final class Utils {
 
     /**
      * 获取一个对象的独一无二的标记
-     * @param object
-     * @return
+     * @param object 对象
+     * @return 对象唯一标记
      */
     public static String getObjectTag(final Object object) {
         if (object == null) return null;
@@ -130,9 +130,9 @@ final class Utils {
     }
 
     /**
-     * 获取一个WindowManager对象
-     * @param activity
-     * @return
+     * 获取一个 WindowManager 对象
+     * @param activity {@link Activity}
+     * @return {@link WindowManager}
      */
     public static WindowManager getWindowManager(final Activity activity) {
         // 如果使用的 WindowManager 对象不是当前 Activity 创建的, 则会抛出异常
@@ -151,8 +151,8 @@ final class Utils {
 
     /**
      * 设置背景
-     * @param view
-     * @param drawable
+     * @param view     {@link View}
+     * @param drawable 背景 {@link Drawable}
      */
     public static void setBackground(@NonNull final View view, final Drawable drawable) {
         if (view != null) {
@@ -166,8 +166,8 @@ final class Utils {
     /**
      * 获取 Drawable
      * @param context {@link Context}
-     * @param id
-     * @return
+     * @param id      R.drawable.id
+     * @return {@link Drawable}
      */
     public static Drawable getDrawable(final Context context, @DrawableRes final int id) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -178,9 +178,9 @@ final class Utils {
 
     /**
      * 图片着色
-     * @param drawable
-     * @param tintColor
-     * @return
+     * @param drawable  {@link Drawable}
+     * @param tintColor R.color.id
+     * @return {@link Drawable}
      */
     public static Drawable tintIcon(@NonNull final Drawable drawable, @ColorInt final int tintColor) {
         if (drawable != null) {
@@ -196,8 +196,8 @@ final class Utils {
     /**
      * .9 图片着色
      * @param context   {@link Context}
-     * @param tintColor
-     * @return
+     * @param tintColor R.color.id
+     * @return {@link Drawable}
      */
     public static Drawable tint9PatchDrawableFrame(final Context context, @ColorInt final int tintColor) {
         try {

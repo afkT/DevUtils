@@ -27,12 +27,12 @@ import dev.utils.LogPrintUtils;
 import dev.utils.R;
 
 /**
- * detail: 自定义View着色美化 Toast 工具类
+ * detail: 自定义 View 着色美化 Toast 工具类
  * @author Ttt
  * <pre>
  *      支持子线程弹出 Toast, 可通过开关配置
  *      内部解决 Android 7.1.1 崩溃问题
- *      但无处理 部分ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
+ *      但无处理 部分 ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
  * </pre>
  */
 public final class ToastTintUtils {
@@ -44,14 +44,14 @@ public final class ToastTintUtils {
     private static final String TAG = ToastTintUtils.class.getSimpleName();
     // Toast 判断过滤
     private static ToastTintUtils.Filter sToastFilter = null;
-    // 内部持有单个Toast
+    // 内部持有单个 Toast
     private static Toast sToast = null;
     // 判断是否使用 Handler
     private static boolean sIsHandler = true;
     // 内部 Handler
     private static final Handler sHandler = new Handler(Looper.getMainLooper());
-    // Null 值
-    private static String sNullText = "text is null";
+    // Null 值 - null 提示值
+    private static String sNullText = null;
 
     // ============
     // = 部分配置 =
@@ -96,14 +96,14 @@ public final class ToastTintUtils {
     public static void reset() {
         sIsHandler = true;
         sUseConfig = true;
-        sNullText = "text is null";
+        sNullText = null;
         sGravity = sX = sY = 0;
         sHorizontalMargin = sVerticalMargin = 0.0f;
     }
 
     /**
      * 设置 Toast 过滤器
-     * @param toastFilter
+     * @param toastFilter {@link ToastUtils.Filter}
      */
     public static void setToastFilter(final ToastTintUtils.Filter toastFilter) {
         ToastTintUtils.sToastFilter = toastFilter;
@@ -111,7 +111,7 @@ public final class ToastTintUtils {
 
     /**
      * 设置是否使用 Handler 显示 Toast
-     * @param isHandler
+     * @param isHandler {@code true} 使用, {@code false} 不使用
      */
     public static void setIsHandler(final boolean isHandler) {
         ToastTintUtils.sIsHandler = isHandler;
@@ -119,15 +119,15 @@ public final class ToastTintUtils {
 
     /**
      * 设置 Text 为 null 的文本
-     * @param nullText
+     * @param nullText 显示内容为 null 时, 使用的提示值
      */
     public static void setNullText(final String nullText) {
         ToastTintUtils.sNullText = nullText;
     }
 
     /**
-     * 判断是否使用配置
-     * @param useConfig
+     * 设置是否使用配置
+     * @param useConfig {@code true} 使用, {@code false} 不使用
      */
     public static void setUseConfig(final boolean useConfig) {
         ToastTintUtils.sUseConfig = useConfig;
@@ -135,9 +135,9 @@ public final class ToastTintUtils {
 
     /**
      * 设置 Toast 显示在屏幕上的位置
-     * @param gravity
-     * @param xOffset
-     * @param yOffset
+     * @param gravity 重心
+     * @param xOffset X 轴偏移
+     * @param yOffset Y 轴偏移
      */
     public static void setGravity(final int gravity, final int xOffset, final int yOffset) {
         ToastTintUtils.sGravity = gravity;
@@ -147,8 +147,8 @@ public final class ToastTintUtils {
 
     /**
      * 设置边距
-     * @param horizontalMargin
-     * @param verticalMargin
+     * @param horizontalMargin 水平边距
+     * @param verticalMargin   垂直边距
      */
     public static void setMargin(final float horizontalMargin, final float verticalMargin) {
         ToastTintUtils.sHorizontalMargin = horizontalMargin;
@@ -159,7 +159,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取默认样式
-     * @return
+     * @return {@link Style} 默认样式
      */
     public static Style getDefaultStyle() {
         return sDefaultStyle;
@@ -167,7 +167,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Normal 样式
-     * @return
+     * @return {@link Style} Normal 样式
      */
     public static Style getNormalStyle() {
         return sNormalStyle;
@@ -175,7 +175,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Info 样式
-     * @return
+     * @return {@link Style} Info 样式
      */
     public static Style getInfoStyle() {
         return sInfoStyle;
@@ -183,7 +183,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Warning 样式
-     * @return
+     * @return {@link Style} Warning 样式
      */
     public static Style getWarningStyle() {
         return sWarningStyle;
@@ -191,7 +191,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Error 样式
-     * @return
+     * @return {@link Style} Error 样式
      */
     public static Style getErrorStyle() {
         return sErrorStyle;
@@ -199,7 +199,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Success 样式
-     * @return
+     * @return {@link Style} Success 样式
      */
     public static Style getSuccessStyle() {
         return sSuccessStyle;
@@ -209,7 +209,7 @@ public final class ToastTintUtils {
 
     /**
      * 设置 Normal 样式
-     * @param normalStyle
+     * @param normalStyle Normal 样式
      */
     public static void setNormalStyle(final Style normalStyle) {
         ToastTintUtils.sNormalStyle = normalStyle;
@@ -217,7 +217,7 @@ public final class ToastTintUtils {
 
     /**
      * 设置 Info 样式
-     * @param infoStyle
+     * @param infoStyle Info 样式
      */
     public static void setInfoStyle(final Style infoStyle) {
         ToastTintUtils.sInfoStyle = infoStyle;
@@ -225,7 +225,7 @@ public final class ToastTintUtils {
 
     /**
      * 设置 Warning 样式
-     * @param warningStyle
+     * @param warningStyle Warning 样式
      */
     public static void setWarningStyle(final Style warningStyle) {
         ToastTintUtils.sWarningStyle = warningStyle;
@@ -233,7 +233,7 @@ public final class ToastTintUtils {
 
     /**
      * 设置 Error 样式
-     * @param errorStyle
+     * @param errorStyle Error 样式
      */
     public static void setErrorStyle(final Style errorStyle) {
         ToastTintUtils.sErrorStyle = errorStyle;
@@ -241,7 +241,7 @@ public final class ToastTintUtils {
 
     /**
      * 设置 Success 样式
-     * @param successStyle
+     * @param successStyle Success 样式
      */
     public static void setSuccessStyle(final Style successStyle) {
         ToastTintUtils.sSuccessStyle = successStyle;
@@ -249,7 +249,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Info 样式 icon
-     * @return
+     * @return {@link Drawable} Info 样式 icon
      */
     public static Drawable getInfoDrawable() {
         if (sInfoDrawable != null) {
@@ -261,7 +261,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Warning 样式 icon
-     * @return
+     * @return {@link Drawable} Warning 样式 icon
      */
     public static Drawable getWarningDrawable() {
         if (sWarningDrawable != null) {
@@ -273,7 +273,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Error 样式 icon
-     * @return
+     * @return {@link Drawable} Error 样式 icon
      */
     public static Drawable getErrorDrawable() {
         if (sErrorDrawable != null) {
@@ -285,7 +285,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Success 样式 icon
-     * @return
+     * @return {@link Drawable} Success 样式 icon
      */
     public static Drawable getSuccessDrawable() {
         if (sSuccessDrawable != null) {
@@ -301,6 +301,7 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
+     * @param text Toast 提示文本
      */
     public static void normal(final String text) {
         custom(true, null, sNormalStyle, text, Toast.LENGTH_SHORT, null);
@@ -308,6 +309,8 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void normal(final String text, final int duration) {
         custom(true, null, sNormalStyle, text, duration, null);
@@ -315,6 +318,8 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
+     * @param text Toast 提示文本
+     * @param icon Toast icon Drawable
      */
     public static void normal(final String text, final Drawable icon) {
         custom(true, null, sNormalStyle, text, Toast.LENGTH_SHORT, icon);
@@ -322,6 +327,9 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void normal(final String text, final int duration, final Drawable icon) {
         custom(true, null, sNormalStyle, text, duration, icon);
@@ -331,6 +339,8 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
      */
     public static void normal(final boolean isSingle, final String text) {
         custom(isSingle, null, sNormalStyle, text, Toast.LENGTH_SHORT, null);
@@ -338,6 +348,9 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void normal(final boolean isSingle, final String text, final int duration) {
         custom(isSingle, null, sNormalStyle, text, duration, null);
@@ -345,6 +358,9 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param icon     Toast icon Drawable
      */
     public static void normal(final boolean isSingle, final String text, final Drawable icon) {
         custom(isSingle, null, sNormalStyle, text, Toast.LENGTH_SHORT, icon);
@@ -352,6 +368,10 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void normal(final boolean isSingle, final String text, final int duration, final Drawable icon) {
         custom(isSingle, null, sNormalStyle, text, duration, icon);
@@ -363,6 +383,7 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
+     * @param text Toast 提示文本
      */
     public static void info(final String text) {
         custom(true, null, sInfoStyle, text, Toast.LENGTH_SHORT, getInfoDrawable());
@@ -370,6 +391,8 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void info(final String text, final int duration) {
         custom(true, null, sInfoStyle, text, duration, getInfoDrawable());
@@ -377,6 +400,8 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
+     * @param text Toast 提示文本
+     * @param icon Toast icon Drawable
      */
     public static void info(final String text, final Drawable icon) {
         custom(true, null, sInfoStyle, text, Toast.LENGTH_SHORT, icon);
@@ -384,6 +409,9 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void info(final String text, final int duration, final Drawable icon) {
         custom(true, null, sInfoStyle, text, duration, icon);
@@ -393,6 +421,8 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
      */
     public static void info(final boolean isSingle, final String text) {
         custom(isSingle, null, sInfoStyle, text, Toast.LENGTH_SHORT, getInfoDrawable());
@@ -400,6 +430,9 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void info(final boolean isSingle, final String text, final int duration) {
         custom(isSingle, null, sInfoStyle, text, duration, getInfoDrawable());
@@ -407,6 +440,9 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param icon     Toast icon Drawable
      */
     public static void info(final boolean isSingle, final String text, final Drawable icon) {
         custom(isSingle, null, sInfoStyle, text, Toast.LENGTH_SHORT, icon);
@@ -414,6 +450,10 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void info(final boolean isSingle, final String text, final int duration, final Drawable icon) {
         custom(isSingle, null, sInfoStyle, text, duration, icon);
@@ -425,6 +465,7 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
+     * @param text Toast 提示文本
      */
     public static void warning(final String text) {
         custom(true, null, sWarningStyle, text, Toast.LENGTH_SHORT, getWarningDrawable());
@@ -432,6 +473,8 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void warning(final String text, final int duration) {
         custom(true, null, sWarningStyle, text, duration, getWarningDrawable());
@@ -439,6 +482,8 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
+     * @param text Toast 提示文本
+     * @param icon Toast icon Drawable
      */
     public static void warning(final String text, final Drawable icon) {
         custom(true, null, sWarningStyle, text, Toast.LENGTH_SHORT, icon);
@@ -446,6 +491,9 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void warning(final String text, final int duration, final Drawable icon) {
         custom(true, null, sWarningStyle, text, duration, icon);
@@ -455,6 +503,8 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
      */
     public static void warning(final boolean isSingle, final String text) {
         custom(isSingle, null, sWarningStyle, text, Toast.LENGTH_SHORT, getWarningDrawable());
@@ -462,6 +512,9 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void warning(final boolean isSingle, final String text, final int duration) {
         custom(isSingle, null, sWarningStyle, text, duration, getWarningDrawable());
@@ -469,6 +522,9 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param icon     Toast icon Drawable
      */
     public static void warning(final boolean isSingle, final String text, final Drawable icon) {
         custom(isSingle, null, sWarningStyle, text, Toast.LENGTH_SHORT, icon);
@@ -476,6 +532,10 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void warning(final boolean isSingle, final String text, final int duration, final Drawable icon) {
         custom(isSingle, null, sWarningStyle, text, duration, icon);
@@ -487,6 +547,7 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
+     * @param text Toast 提示文本
      */
     public static void error(final String text) {
         custom(true, null, sErrorStyle, text, Toast.LENGTH_SHORT, getErrorDrawable());
@@ -494,6 +555,8 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void error(final String text, final int duration) {
         custom(true, null, sErrorStyle, text, duration, getErrorDrawable());
@@ -501,6 +564,8 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
+     * @param text Toast 提示文本
+     * @param icon Toast icon Drawable
      */
     public static void error(final String text, final Drawable icon) {
         custom(true, null, sErrorStyle, text, Toast.LENGTH_SHORT, icon);
@@ -508,6 +573,9 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void error(final String text, final int duration, final Drawable icon) {
         custom(true, null, sErrorStyle, text, duration, icon);
@@ -517,6 +585,8 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
      */
     public static void error(final boolean isSingle, final String text) {
         custom(isSingle, null, sErrorStyle, text, Toast.LENGTH_SHORT, getErrorDrawable());
@@ -524,6 +594,9 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void error(final boolean isSingle, final String text, final int duration) {
         custom(isSingle, null, sErrorStyle, text, duration, getErrorDrawable());
@@ -531,6 +604,9 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param icon     Toast icon Drawable
      */
     public static void error(final boolean isSingle, final String text, final Drawable icon) {
         custom(isSingle, null, sErrorStyle, text, Toast.LENGTH_SHORT, icon);
@@ -538,6 +614,10 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void error(final boolean isSingle, final String text, final int duration, final Drawable icon) {
         custom(isSingle, null, sErrorStyle, text, duration, icon);
@@ -549,6 +629,7 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
+     * @param text Toast 提示文本
      */
     public static void success(final String text) {
         custom(true, null, sSuccessStyle, text, Toast.LENGTH_SHORT, getSuccessDrawable());
@@ -556,6 +637,8 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void success(final String text, final int duration) {
         custom(true, null, sSuccessStyle, text, duration, getSuccessDrawable());
@@ -563,6 +646,8 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
+     * @param text Toast 提示文本
+     * @param icon Toast icon Drawable
      */
     public static void success(final String text, final Drawable icon) {
         custom(true, null, sSuccessStyle, text, Toast.LENGTH_SHORT, icon);
@@ -570,6 +655,9 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void success(final String text, final int duration, final Drawable icon) {
         custom(true, null, sSuccessStyle, text, duration, icon);
@@ -579,6 +667,8 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
      */
     public static void success(final boolean isSingle, final String text) {
         custom(isSingle, null, sSuccessStyle, text, Toast.LENGTH_SHORT, getSuccessDrawable());
@@ -586,6 +676,9 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void success(final boolean isSingle, final String text, final int duration) {
         custom(isSingle, null, sSuccessStyle, text, duration, getSuccessDrawable());
@@ -593,6 +686,9 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param icon     Toast icon Drawable
      */
     public static void success(final boolean isSingle, final String text, final Drawable icon) {
         custom(isSingle, null, sSuccessStyle, text, Toast.LENGTH_SHORT, icon);
@@ -600,8 +696,12 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
-    public static void success(final boolean isSingle, final String text, final int duration, Drawable icon) {
+    public static void success(final boolean isSingle, final String text, final int duration, final Drawable icon) {
         custom(isSingle, null, sSuccessStyle, text, duration, icon);
     }
 
@@ -611,6 +711,8 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param style Toast 样式 {@link ToastTintUtils.Style}
+     * @param text  Toast 提示文本
      */
     public static void custom(final ToastTintUtils.Style style, final String text) {
         custom(true, null, style, text, Toast.LENGTH_SHORT, null);
@@ -618,6 +720,9 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void custom(final ToastTintUtils.Style style, final String text, final int duration) {
         custom(true, null, style, text, duration, null);
@@ -625,6 +730,9 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param style Toast 样式 {@link ToastTintUtils.Style}
+     * @param text  Toast 提示文本
+     * @param icon  Toast icon Drawable
      */
     public static void custom(final ToastTintUtils.Style style, final String text, final Drawable icon) {
         custom(true, null, style, text, Toast.LENGTH_SHORT, icon);
@@ -632,6 +740,10 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void custom(final ToastTintUtils.Style style, final String text, final int duration, final Drawable icon) {
         custom(true, null, style, text, duration, icon);
@@ -641,6 +753,9 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
      */
     public static void custom(final boolean isSingle, final ToastTintUtils.Style style, final String text) {
         custom(isSingle, null, style, text, Toast.LENGTH_SHORT, null);
@@ -648,6 +763,10 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void custom(final boolean isSingle, final ToastTintUtils.Style style, final String text, final int duration) {
         custom(isSingle, null, style, text, duration, null);
@@ -655,6 +774,10 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param icon     Toast icon Drawable
      */
     public static void custom(final boolean isSingle, final ToastTintUtils.Style style, final String text, final Drawable icon) {
         custom(isSingle, null, style, text, Toast.LENGTH_SHORT, icon);
@@ -662,6 +785,11 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void custom(final boolean isSingle, final ToastTintUtils.Style style, final String text, final int duration, final Drawable icon) {
         custom(isSingle, null, style, text, duration, icon);
@@ -671,6 +799,9 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param context {@link Context}
+     * @param style   Toast 样式 {@link ToastTintUtils.Style}
+     * @param text    Toast 提示文本
      */
     public static void custom(final Context context, final ToastTintUtils.Style style, final String text) {
         custom(true, context, style, text, Toast.LENGTH_SHORT, null);
@@ -678,6 +809,10 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param context  {@link Context}
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void custom(final Context context, final ToastTintUtils.Style style, final String text, final int duration) {
         custom(true, context, style, text, duration, null);
@@ -685,6 +820,10 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param context {@link Context}
+     * @param style   Toast 样式 {@link ToastTintUtils.Style}
+     * @param text    Toast 提示文本
+     * @param icon    Toast icon Drawable
      */
     public static void custom(final Context context, final ToastTintUtils.Style style, final String text, final Drawable icon) {
         custom(true, context, style, text, Toast.LENGTH_SHORT, icon);
@@ -692,6 +831,11 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param context  {@link Context}
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
     public static void custom(final Context context, final ToastTintUtils.Style style, final String text, final int duration, final Drawable icon) {
         custom(true, context, style, text, duration, icon);
@@ -701,6 +845,10 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param context  {@link Context}
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
      */
     public static void custom(final boolean isSingle, final Context context, final ToastTintUtils.Style style, final String text) {
         custom(isSingle, context, style, text, Toast.LENGTH_SHORT, null);
@@ -708,6 +856,11 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param context  {@link Context}
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void custom(final boolean isSingle, final Context context, final ToastTintUtils.Style style, final String text, final int duration) {
         custom(isSingle, context, style, text, duration, null);
@@ -715,6 +868,11 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param context  {@link Context}
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param icon     Toast icon Drawable
      */
     public static void custom(final boolean isSingle, final Context context, final ToastTintUtils.Style style, final String text, final Drawable icon) {
         custom(isSingle, context, style, text, Toast.LENGTH_SHORT, icon);
@@ -722,14 +880,15 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
-     * @param isSingle 是否单独显示
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
      * @param context  {@link Context}
-     * @param style    Toast 样式
-     * @param text     文案
-     * @param duration 显示时长
-     * @param icon     图标
+     * @param style    Toast 样式 {@link ToastTintUtils.Style}
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param icon     Toast icon Drawable
      */
-    public static void custom(final boolean isSingle, final Context context, final ToastTintUtils.Style style, final String text, final int duration, final Drawable icon) {
+    public static void custom(final boolean isSingle, final Context context, final ToastTintUtils.Style style, final String text, final int duration,
+                              final Drawable icon) {
         // 获取View
         View view = inflaterView(context, style, text, icon);
         // 显示Toast
@@ -742,10 +901,10 @@ public final class ToastTintUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param isSingle
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
      * @param context  {@link Context}
-     * @param view
-     * @param duration
+     * @param view     Toast 显示的 View
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     private static void showToastView(final boolean isSingle, final Context context, final View view, final int duration) {
         if (view == null) return;
@@ -777,11 +936,11 @@ public final class ToastTintUtils {
 
     /**
      * 获取一个新的 View Toast
-     * @param isSingle
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
      * @param context  {@link Context}
-     * @param view
-     * @param duration
-     * @return
+     * @param view     Toast 显示的 View
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @return {@link Toast}
      */
     private static Toast newToastView(final boolean isSingle, Context context, final View view, final int duration) {
         if (context == null) {
@@ -790,7 +949,7 @@ public final class ToastTintUtils {
         // 防止 Context 为 null
         if (context == null) {
             return null;
-        } else if (view == null) { // 防止显示的View 为 null
+        } else if (view == null) { // 防止显示的 View 为 null
             return null;
         }
         // 判断是否显示唯一, 单独共用一个
@@ -846,12 +1005,12 @@ public final class ToastTintUtils {
     /**
      * 实例化 Layout View
      * @param context {@link Context}
-     * @param style
-     * @param text
-     * @param icon
-     * @return
+     * @param style   Toast 样式 {@link ToastTintUtils.Style}
+     * @param text    Toast 提示文本
+     * @param icon    Toast icon Drawable
+     * @return {@link View} inflate dev_toast_layout
      */
-    private static View inflaterView(Context context, final ToastTintUtils.Style style, String text, Drawable icon) {
+    private static View inflaterView(Context context, final ToastTintUtils.Style style, final String text, Drawable icon) {
         if (context == null) {
             context = DevUtils.getContext();
         }
@@ -859,33 +1018,36 @@ public final class ToastTintUtils {
         if (style == null) {
             return null;
         }
+        // 提示文本
+        String toastText = text;
         // 判断是否过滤
-        if (!sPriToastFilter.filter(text)) {
+        if (!sPriToastFilter.filter(toastText)) {
             return null;
         }
         // 处理内容
-        text = sPriToastFilter.handlerContent(text);
+        toastText = sPriToastFilter.handlerContent(toastText);
         // 设置为 null, 便于提示排查
-        if (TextUtils.isEmpty(text)) {
-            text = sNullText;
+        if (TextUtils.isEmpty(toastText)) {
+            toastText = sNullText;
             // 如果还是为 null, 则不处理
-            if (TextUtils.isEmpty(text)) {
+            if (TextUtils.isEmpty(toastText)) {
                 return null;
             }
         }
         if (context != null) {
             try {
-                // 引入View
+                // 引入 View
                 final View toastLayout = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(dev.utils.R.layout.dev_toast_layout, null);
-                // 初始化View
+                // 初始化 View
                 final ImageView toastIcon = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_igview);
                 final TextView toastTextView = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_tv);
 
                 // =================
                 // = TextView 相关 =
                 // =================
+
                 // 设置文案
-                toastTextView.setText(text);
+                toastTextView.setText(toastText);
                 // 设置字体颜色
                 if (style.getTextColor() != 0) {
                     toastTextView.setTextColor(style.getTextColor());
@@ -898,7 +1060,7 @@ public final class ToastTintUtils {
                 if (style.getMaxLines() >= 1) {
                     toastTextView.setMaxLines(style.getMaxLines());
                 }
-                // 设置Ellipsize 效果
+                // 设置 Ellipsize 效果
                 if (style.getEllipsize() != null) {
                     toastTextView.setEllipsize(style.getEllipsize());
                 }
@@ -910,6 +1072,7 @@ public final class ToastTintUtils {
                 // ==================
                 // = ImageView 相关 =
                 // ==================
+
                 // 判断是否使用图标
                 if (icon != null) {
                     // 判断是否渲染图标
@@ -926,6 +1089,7 @@ public final class ToastTintUtils {
                 // =================
                 // = 背景View 相关 =
                 // =================
+
                 // 背景图片
                 Drawable drawableFrame = style.getBackground();
                 // 判断是否为 null
@@ -938,13 +1102,12 @@ public final class ToastTintUtils {
                 }
                 // 设置 View 背景
                 setBackground(toastLayout, drawableFrame);
-                // 返回View
+                // 返回 View
                 return toastLayout;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "inflaterView");
             }
         }
-        // 默认返回null
         return null;
     }
 
@@ -954,8 +1117,8 @@ public final class ToastTintUtils {
 
     /**
      * 设置背景
-     * @param view
-     * @param drawable
+     * @param view     {@link View}
+     * @param drawable 背景 {@link Drawable}
      */
     private static void setBackground(final View view, final Drawable drawable) {
         if (view != null) {
@@ -969,8 +1132,8 @@ public final class ToastTintUtils {
     /**
      * 获取 Drawable
      * @param context {@link Context}
-     * @param id
-     * @return
+     * @param id      R.drawable.id
+     * @return {@link Drawable}
      */
     private static Drawable getDrawable(final Context context, @DrawableRes final int id) {
         if (context == null) {
@@ -984,9 +1147,9 @@ public final class ToastTintUtils {
 
     /**
      * 图片着色
-     * @param drawable
-     * @param tintColor
-     * @return
+     * @param drawable  {@link Drawable}
+     * @param tintColor R.color.id
+     * @return {@link Drawable}
      */
     private static Drawable tintIcon(final Drawable drawable, @ColorInt final int tintColor) {
         if (drawable != null) {
@@ -1002,8 +1165,8 @@ public final class ToastTintUtils {
     /**
      * .9 图片着色
      * @param context   {@link Context}
-     * @param tintColor
-     * @return
+     * @param tintColor R.color.id
+     * @return {@link Drawable}
      */
     private static Drawable tint9PatchDrawableFrame(final Context context, @ColorInt final int tintColor) {
         try {
@@ -1021,11 +1184,11 @@ public final class ToastTintUtils {
 
     /**
      * 反射 Hook Toast 设置 Handler
-     * @param toast
+     * @param toast {@link Toast}
      */
     private static void reflectToastHandler(final Toast toast) {
         if (toast == null) return;
-        // 反射设置 Toat Handler 解决 Android7.1.1Toast 崩溃 问题
+        // 反射设置 Toat Handler 解决 Android 7.1.1 Toast 崩溃问题
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
             try {
                 Field field_tn = Toast.class.getDeclaredField("mTN");
@@ -1079,56 +1242,56 @@ public final class ToastTintUtils {
     public interface Style {
 
         /**
-         * 文本颜色
-         * @return
+         * 获取文本颜色
+         * @return 文本颜色
          */
         int getTextColor();
 
         /**
-         * 字体大小
-         * @return
+         * 获取字体大小
+         * @return 字体大小
          */
         float getTextSize();
 
         /**
-         * 背景着色颜色
-         * @return
+         * 获取背景着色颜色
+         * @return 背景着色颜色
          */
         int getBackgroundTintColor();
 
         /**
-         * 背景图片
-         * @return
+         * 获取背景图片
+         * @return 背景图片
          */
         Drawable getBackground();
 
         /**
-         * 最大行数
-         * @return
+         * 获取最大行数
+         * @return 最大行数
          */
         int getMaxLines();
 
         /**
-         * Ellipsize 效果
-         * @return
+         * 获取 Ellipsize 效果
+         * @return Ellipsize 效果
          */
         TextUtils.TruncateAt getEllipsize();
 
         /**
-         * 字体样式
-         * @return
+         * 获取字体样式
+         * @return 字体样式
          */
         Typeface getTypeface();
 
         /**
          * 获取图标着色颜色
-         * @return
+         * @return 图标着色颜色
          */
         int getTintIconColor();
 
         /**
          * 是否渲染图标 - getTintIconColor() 着色渲染
-         * @return
+         * @return {@code true} yes, {@code false} no
          */
         boolean isTintIcon();
     }
@@ -1142,8 +1305,8 @@ public final class ToastTintUtils {
     public static class DefaultStyle implements Style {
 
         /**
-         * 文本颜色
-         * @return
+         * 获取获取文本颜色
+         * @return 文本颜色
          */
         @Override
         public int getTextColor() {
@@ -1151,8 +1314,8 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 字体大小
-         * @return
+         * 获取字体大小
+         * @return 字体大小
          */
         @Override
         public float getTextSize() {
@@ -1160,8 +1323,8 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 背景着色颜色
-         * @return
+         * 获取背景着色颜色
+         * @return 背景着色颜色
          */
         @Override
         public int getBackgroundTintColor() {
@@ -1169,8 +1332,8 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 背景图片
-         * @return
+         * 获取背景图片
+         * @return 背景图片
          */
         @Override
         public Drawable getBackground() {
@@ -1178,8 +1341,8 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 最大行数
-         * @return
+         * 获取最大行数
+         * @return 最大行数
          */
         @Override
         public int getMaxLines() {
@@ -1187,8 +1350,8 @@ public final class ToastTintUtils {
         }
 
         /**
-         * Ellipsize 效果
-         * @return
+         * 获取 Ellipsize 效果
+         * @return Ellipsize 效果
          */
         @Override
         public TextUtils.TruncateAt getEllipsize() {
@@ -1196,8 +1359,8 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 字体样式
-         * @return
+         * 获取字体样式
+         * @return 字体样式
          */
         @Override
         public Typeface getTypeface() {
@@ -1207,7 +1370,7 @@ public final class ToastTintUtils {
 
         /**
          * 获取图标着色颜色
-         * @return
+         * @return 图标着色颜色
          */
         @Override
         public int getTintIconColor() {
@@ -1216,7 +1379,7 @@ public final class ToastTintUtils {
 
         /**
          * 是否渲染图标 - getTintIconColor() 着色渲染
-         * @return
+         * @return {@code true} yes, {@code false} no
          */
         @Override
         public boolean isTintIcon() {
@@ -1231,7 +1394,8 @@ public final class ToastTintUtils {
     public static class NormalStyle extends DefaultStyle {
 
         /**
-         * 背景着色颜色
+         * 获取背景着色颜色
+         * @return 背景着色颜色
          */
         @Override
         public int getBackgroundTintColor() {
@@ -1240,6 +1404,7 @@ public final class ToastTintUtils {
 
         /**
          * 是否渲染图标 - getTintIconColor() 着色渲染
+         * @return {@code true} yes, {@code false} no
          */
         @Override
         public boolean isTintIcon() {
@@ -1254,7 +1419,8 @@ public final class ToastTintUtils {
     public static class InfoStyle extends DefaultStyle {
 
         /**
-         * 背景着色颜色
+         * 获取背景着色颜色
+         * @return 背景着色颜色
          */
         @Override
         public int getBackgroundTintColor() {
@@ -1263,6 +1429,7 @@ public final class ToastTintUtils {
 
         /**
          * 是否渲染图标 - getTintIconColor() 着色渲染
+         * @return {@code true} yes, {@code false} no
          */
         @Override
         public boolean isTintIcon() {
@@ -1277,7 +1444,8 @@ public final class ToastTintUtils {
     public static class WarningStyle extends DefaultStyle {
 
         /**
-         * 背景着色颜色
+         * 获取背景着色颜色
+         * @return 背景着色颜色
          */
         @Override
         public int getBackgroundTintColor() {
@@ -1286,6 +1454,7 @@ public final class ToastTintUtils {
 
         /**
          * 是否渲染图标 - getTintIconColor() 着色渲染
+         * @return {@code true} yes, {@code false} no
          */
         @Override
         public boolean isTintIcon() {
@@ -1300,7 +1469,8 @@ public final class ToastTintUtils {
     public static class ErrorStyle extends DefaultStyle {
 
         /**
-         * 背景着色颜色
+         * 获取背景着色颜色
+         * @return 背景着色颜色
          */
         @Override
         public int getBackgroundTintColor() {
@@ -1309,6 +1479,7 @@ public final class ToastTintUtils {
 
         /**
          * 是否渲染图标 - getTintIconColor() 着色渲染
+         * @return {@code true} yes, {@code false} no
          */
         @Override
         public boolean isTintIcon() {
@@ -1323,7 +1494,8 @@ public final class ToastTintUtils {
     public static class SuccessStyle extends DefaultStyle {
 
         /**
-         * 背景着色颜色
+         * 获取背景着色颜色
+         * @return 背景着色颜色
          */
         @Override
         public int getBackgroundTintColor() {
@@ -1332,6 +1504,7 @@ public final class ToastTintUtils {
 
         /**
          * 是否渲染图标 - getTintIconColor() 着色渲染
+         * @return {@code true} yes, {@code false} no
          */
         @Override
         public boolean isTintIcon() {
@@ -1351,14 +1524,14 @@ public final class ToastTintUtils {
 
         /**
          * 判断是否显示
-         * @param content
+         * @param content Toast 显示文案
          * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         boolean filter(String content);
 
         /**
          * 获取 Toast 显示的文案
-         * @param content
+         * @param content Toast 显示文案
          * @return 处理后的内容
          */
         String handlerContent(String content);
@@ -1375,7 +1548,7 @@ public final class ToastTintUtils {
 
         /**
          * 判断是否显示
-         * @param content
+         * @param content Toast 显示文案
          * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         @Override
@@ -1388,7 +1561,7 @@ public final class ToastTintUtils {
 
         /**
          * 获取 Toast 显示的文案
-         * @param content
+         * @param content Toast 显示文案
          * @return 处理后的内容
          */
         @Override

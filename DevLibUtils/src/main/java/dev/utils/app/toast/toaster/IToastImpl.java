@@ -42,8 +42,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     private boolean mIsHandler = true;
     // 内部 Handler
     private final Handler mHandler = new Handler(Looper.getMainLooper());
-    // Null 值
-    private String mNullText = "text is null";
+    // Null 值 - null 提示值
+    private String mNullText = null;
     // Toast 文案长度转换 显示时间
     private int mTextLengthConvertDuration = 15;
 
@@ -58,7 +58,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 设置是否使用 Handler 显示 Toast
-     * @param isHandler
+     * @param isHandler {@code true} 使用, {@code false} 不使用
      */
     @Override
     public void setIsHandler(final boolean isHandler) {
@@ -67,7 +67,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 设置 Text 为 null 的文本
-     * @param nullText
+     * @param nullText 显示内容为 null 时, 使用的提示值
      */
     @Override
     public void setNullText(final String nullText) {
@@ -76,7 +76,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 设置 Toast 文案长度转换 显示时间
-     * @param textLengthConvertDuration
+     * @param textLengthConvertDuration Toast 文案长度转换界限
      */
     @Override
     public void setTextLength(final int textLengthConvertDuration) {
@@ -89,7 +89,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * Application 初始化调用
-     * @param application
+     * @param application {@link Application}
      */
     @Override
     public void init(final Application application) {
@@ -97,7 +97,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             this.mApplication = application;
             // 初始化默认参数
             mIsHandler = true;
-            mNullText = "text is null";
+            mNullText = null;
             // 初始化 Toast
             mConfigToast = new ToastFactory.BaseToast(mApplication);
             mConfigToast.setView(createView());
@@ -113,7 +113,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     /**
      * 使用单次 Toast 样式配置
      * @param toastStyle Toast 样式
-     * @return
+     * @return {@link IToast.Operate}
      */
     @Override
     public IToast.Operate style(final IToast.Style toastStyle) {
@@ -125,7 +125,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 使用默认 Toast 样式
-     * @return
+     * @return {@link IToast.Operate}
      */
     @Override
     public IToast.Operate defaultStyle() {
@@ -145,7 +145,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     }
 
     /**
-     * 初始化 Toast 样式配置(非单次, 一直持续)
+     * 初始化 Toast 样式配置
      * @param toastStyle Toast 样式配置
      */
     @Override
@@ -157,7 +157,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 初始化 Toast 过滤器
-     * @param toastFilter
+     * @param toastFilter Toast 过滤器
      */
     @Override
     public void initToastFilter(final IToast.Filter toastFilter) {
@@ -165,8 +165,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     }
 
     /**
-     * 设置 Toast 显示的View
-     * @param view
+     * 设置 Toast 显示的 View
+     * @param view Toast 显示的 View
      */
     @Override
     public void setView(final View view) {
@@ -181,8 +181,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     }
 
     /**
-     * 设置 Toast 显示的View
-     * @param layoutId
+     * 设置 Toast 显示的 View
+     * @param layoutId R.layout.id
      */
     @Override
     public void setView(final int layoutId) {
@@ -205,34 +205,34 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 显示 Toast
-     * @param content
-     * @param args
+     * @param text Toast 提示文本
+     * @param objs 格式化参数
      */
     @Override
-    public void show(final String content, final Object... args) {
-        String text = Utils.getFormatString(content, args);
-        if (filter(text)) {
-            priShowToastText(handlerContent(text));
+    public void show(final String text, final Object... objs) {
+        String context = Utils.getFormatString(text, objs);
+        if (filter(context)) {
+            priShowToastText(handlerContent(context));
         }
     }
 
     /**
-     * 显示 R.string.resId Toast
-     * @param resId
-     * @param args
+     * 显示 R.string.id Toast
+     * @param resId R.string.id
+     * @param objs  格式化参数
      */
     @Override
-    public void show(final int resId, final Object... args) {
-        String text = Utils.getFormatRes(resId, args);
-        if (filter(text)) {
+    public void show(final int resId, final Object... objs) {
+        String context = Utils.getFormatRes(resId, objs);
+        if (filter(context)) {
             // 获取处理的内容
-            priShowToastText(handlerContent(text));
+            priShowToastText(handlerContent(context));
         }
     }
 
     /**
      * 通过 View 显示 Toast
-     * @param view
+     * @param view Toast 显示的 View
      */
     @Override
     public void show(final View view) {
@@ -243,8 +243,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 通过 View 显示 Toast
-     * @param view
-     * @param duration
+     * @param view     Toast 显示的 View
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     @Override
     public void show(final View view, final int duration) {
@@ -255,6 +255,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     // =
 
+    /**
+     * 取消当前显示的 Toast
+     */
     @Override
     public void cancel() {
         if (mToast != null) {
@@ -271,7 +274,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 判断是否显示
-     * @param view
+     * @param view Toast 显示的 View
      * @return {@code true} 接着执行, {@code false} 过滤不处理
      */
     @Override
@@ -284,7 +287,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 判断是否显示
-     * @param content
+     * @param content Toast 显示文案
      * @return {@code true} 接着执行, {@code false} 过滤不处理
      */
     @Override
@@ -297,7 +300,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 获取 Toast 显示的文案
-     * @param content
+     * @param content Toast 显示文案
      * @return 处理后的内容
      */
     @Override
@@ -314,6 +317,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 返回对应线程的 Toast 样式信息
+     * @return Toast 样式
      */
     private IToast.Style getThreadToastStyle() {
         // 获取当前线程的线程的 Toast 样式
@@ -329,8 +333,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     }
 
     /**
-     * 默认创建View
-     * @return
+     * 默认创建 View
+     * @return {@link TextView}
      */
     private TextView createView() {
         TextView textView = new TextView(mApplication);
@@ -341,8 +345,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 内部私有方法, 最终显示 Toast
-     * @param text
-     * @Toast
+     * @param text Toast 提示文本
      */
     private void priShowToastText(final String text) {
         // 获取样式
@@ -375,17 +378,19 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 获取一个新的 Text Toast
-     * @param style
-     * @param text
-     * @return
+     * @param style Toast 样式 {@link IToast.Style}
+     * @param text  Toast 提示文本
+     * @return {@link Toast}
      */
-    private Toast newToastText(final IToast.Style style, String text) {
+    private Toast newToastText(final IToast.Style style, final String text) {
         if (style == null) return null;
+        // 提示文本
+        String toastText = text;
         // 设置为 null, 便于提示排查
-        if (TextUtils.isEmpty(text)) {
-            text = mNullText;
+        if (TextUtils.isEmpty(toastText)) {
+            toastText = mNullText;
             // 如果还是为 null, 则不处理
-            if (TextUtils.isEmpty(text)) {
+            if (TextUtils.isEmpty(toastText)) {
                 return null;
             }
         }
@@ -403,7 +408,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             // 获取 Toast TextView
             TextView toastTextView = mConfigToast.getMessageView();
             // 设置文案
-            toastTextView.setText(text);
+            toastTextView.setText(toastText);
             // 设置字体颜色
             if (style.getTextColor() != 0) {
                 toastTextView.setTextColor(style.getTextColor());
@@ -416,7 +421,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             if (style.getMaxLines() >= 1) {
                 toastTextView.setMaxLines(style.getMaxLines());
             }
-            // 设置Ellipsize 效果
+            // 设置 Ellipsize 效果
             if (style.getEllipsize() != null) {
                 toastTextView.setEllipsize(style.getEllipsize());
             }
@@ -464,7 +469,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             // 设置边距
             mToast.setMargin(style.getHorizontalMargin(), style.getVerticalMargin());
             // 设置显示时间
-            mToast.setDuration((text.length() < mTextLengthConvertDuration) ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
+            mToast.setDuration((toastText.length() < mTextLengthConvertDuration) ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "newToastText");
         }
@@ -473,8 +478,8 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 显示 View Toast 方法
-     * @param view
-     * @param duration
+     * @param view     Toast 显示的 View
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     private void priShowToastView(final View view, final int duration) {
         if (view == null) return;
@@ -509,15 +514,15 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 获取一个新的 View Toast
-     * @param style
-     * @param view
-     * @param duration
+     * @param style    Toast 样式 {@link IToast.Style}
+     * @param view     Toast 显示的 View
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      * @return
      */
     private Toast newToastView(final IToast.Style style, final View view, final int duration) {
         if (style == null) {
             return null;
-        } else if (view == null) { // 防止显示的View 为 null
+        } else if (view == null) { // 防止显示的 View 为 null
             return null;
         }
         try {

@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * detail: Toast 对外提供接口方法
@@ -28,19 +29,19 @@ public final class IToast {
 
         /**
          * 设置是否使用 Handler 显示 Toast
-         * @param isHandler
+         * @param isHandler {@code true} 使用, {@code false} 不使用
          */
         void setIsHandler(boolean isHandler);
 
         /**
          * 设置 Text 为 null 的文本
-         * @param nullText
+         * @param nullText 显示内容为 null 时, 使用的提示值
          */
         void setNullText(String nullText);
 
         /**
          * 设置 Toast 文案长度转换 显示时间
-         * @param textLengthConvertDuration
+         * @param textLengthConvertDuration Toast 文案长度转换界限
          */
         void setTextLength(int textLengthConvertDuration);
 
@@ -48,7 +49,7 @@ public final class IToast {
 
         /**
          * Application 初始化调用
-         * @param application
+         * @param application {@link Application}
          */
         void init(Application application);
 
@@ -59,13 +60,13 @@ public final class IToast {
         /**
          * 使用单次 Toast 样式配置
          * @param toastStyle Toast 样式
-         * @return
+         * @return {@link IToast.Operate}
          */
         IToast.Operate style(IToast.Style toastStyle);
 
         /**
          * 使用默认 Toast 样式
-         * @return
+         * @return {@link IToast.Operate}
          */
         IToast.Operate defaultStyle();
 
@@ -76,26 +77,26 @@ public final class IToast {
         IToast.Style getToastStyle();
 
         /**
-         * 初始化 Toast 样式配置(非单次, 一直持续)
+         * 初始化 Toast 样式配置
          * @param toastStyle Toast 样式配置
          */
         void initStyle(IToast.Style toastStyle);
 
         /**
          * 初始化 Toast 过滤器
-         * @param toastFilter
+         * @param toastFilter Toast 过滤器
          */
         void initToastFilter(IToast.Filter toastFilter);
 
         /**
-         * 设置 Toast 显示的View
-         * @param view
+         * 设置 Toast 显示的 View
+         * @param view Toast 显示的 View
          */
         void setView(View view);
 
         /**
-         * 设置 Toast 显示的View
-         * @param layoutId
+         * 设置 Toast 显示的 View
+         * @param layoutId R.layout.id
          */
         void setView(int layoutId);
 
@@ -105,30 +106,30 @@ public final class IToast {
 
         /**
          * 显示 Toast
-         * @param content
-         * @param args
+         * @param text Toast 提示文本
+         * @param objs 格式化参数
          */
-        void show(String content, Object... args);
+        void show(String text, Object... objs);
 
         /**
-         * 显示 R.string.resId Toast
-         * @param resId
-         * @param args
+         * 显示 R.string.id Toast
+         * @param resId R.string.id
+         * @param objs  格式化参数
          */
-        void show(int resId, Object... args);
+        void show(int resId, Object... objs);
 
         // =
 
         /**
          * 通过 View 显示 Toast
-         * @param view
+         * @param view Toast 显示的 View
          */
         void show(View view);
 
         /**
          * 通过 View 显示 Toast
-         * @param view
-         * @param duration
+         * @param view     Toast 显示的 View
+         * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
          */
         void show(View view, int duration);
 
@@ -151,56 +152,56 @@ public final class IToast {
     public interface Style {
 
         /**
-         * Toast 的重心
-         * @return
+         * 获取 Toast 的重心
+         * @return Toast 的重心
          */
         int getGravity();
 
         /**
-         * X轴偏移
-         * @return
+         * 获取 X 轴偏移
+         * @return X 轴偏移
          */
         int getXOffset();
 
         /**
-         * Y轴偏移
-         * @return
+         * 获取 Y 轴偏移
+         * @return Y 轴偏移
          */
         int getYOffset();
 
         /**
          * 获取水平边距
-         * @return
+         * @return 水平边距
          */
         int getHorizontalMargin();
 
         /**
          * 获取垂直边距
-         * @return
+         * @return 垂直边距
          */
         int getVerticalMargin();
 
         /**
-         * Toast Z轴坐标阴影
-         * @return
+         * 获取 Toast Z 轴坐标阴影
+         * @return Toast Z 轴坐标阴影
          */
         int getZ();
 
         /**
-         * 圆角大小
-         * @return
+         * 获取圆角大小
+         * @return 圆角大小
          */
         float getCornerRadius();
 
         /**
-         * 背景着色颜色
-         * @return
+         * 获取背景着色颜色
+         * @return 背景着色颜色
          */
         int getBackgroundTintColor();
 
         /**
-         * 背景图片
-         * @return
+         * 获取背景图片
+         * @return 背景图片
          */
         Drawable getBackground();
 
@@ -209,38 +210,38 @@ public final class IToast {
         // =================
 
         /**
-         * 文本颜色
-         * @return
+         * 获取文本颜色
+         * @return 文本颜色
          */
         int getTextColor();
 
         /**
-         * 字体大小
-         * @return
+         * 获取字体大小
+         * @return 字体大小
          */
         float getTextSize();
 
         /**
-         * 最大行数
-         * @return
+         * 获取最大行数
+         * @return 最大行数
          */
         int getMaxLines();
 
         /**
-         * Ellipsize 效果
-         * @return
+         * 获取 Ellipsize 效果
+         * @return Ellipsize 效果
          */
         TextUtils.TruncateAt getEllipsize();
 
         /**
-         * 字体样式
-         * @return
+         * 获取字体样式
+         * @return 字体样式
          */
         Typeface getTypeface();
 
         /**
-         * TextView padding 边距 - new int[] { left, top, right, bottom }
-         * @return
+         * 获取 TextView padding 边距 - new int[] { left, top, right, bottom }
+         * @return TextView padding 边距
          */
         int[] getPadding();
     }
@@ -253,21 +254,21 @@ public final class IToast {
 
         /**
          * 判断是否显示
-         * @param view
+         * @param view Toast 显示的 View
          * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         boolean filter(View view);
 
         /**
          * 判断是否显示
-         * @param content
+         * @param content Toast 显示文案
          * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         boolean filter(String content);
 
         /**
          * 获取 Toast 显示的文案
-         * @param content
+         * @param content Toast 显示文案
          * @return 处理后的内容
          */
         String handlerContent(String content);

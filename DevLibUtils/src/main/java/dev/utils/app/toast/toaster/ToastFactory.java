@@ -71,8 +71,8 @@ final class ToastFactory {
 
         /**
          * 递归获取 ViewGroup 中的 TextView 对象
-         * @param group
-         * @return
+         * @param group {@link ViewGroup}
+         * @return {@link TextView}
          */
         private TextView findTextView(ViewGroup group) {
             for (int i = 0; i < group.getChildCount(); i++) {
@@ -89,15 +89,15 @@ final class ToastFactory {
 
         /**
          * 判断是否 null 的 Message View
-         * @return
+         * @return {@code true} yes, {@code false} no
          */
         public final boolean isEmptyMessageView() {
             return mMessageView == null;
         }
 
         /**
-         * 获取TextView
-         * @return
+         * 获取 TextView
+         * @return {@link TextView}
          */
         public TextView getMessageView() {
             return mMessageView;
@@ -108,7 +108,7 @@ final class ToastFactory {
 //        /**
 //         * 获取系统 Toast View
 //         * @param context {@link Context}
-//         * @return
+//         * @return {@link View}
 //         */
 //        public static final View getToastSystemView(Context context) {
 //            return Toast.makeText(context, "", Toast.LENGTH_SHORT).getView();
@@ -117,6 +117,7 @@ final class ToastFactory {
 //        /**
 //         * 设置系统 Toast View
 //         * @param context {@link Context}
+//         * @return {@link BaseToast}
 //         */
 //        public final BaseToast setToastSystemView(Context context) {
 //            setView(getToastSystemView(context));
@@ -130,9 +131,13 @@ final class ToastFactory {
      */
     static final class SafeToast extends BaseToast {
 
+        /**
+         * 构造函数
+         * @param context {@link Context}
+         */
         public SafeToast(Context context) {
             super(context);
-            // 反射设置 Toat Handler 解决 Android7.1.1Toast 崩溃 问题
+            // 反射设置 Toat Handler 解决 Android 7.1.1 Toast 崩溃问题
             if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
                 try {
                     Field field_tn = Toast.class.getDeclaredField("mTN");
@@ -185,6 +190,10 @@ final class ToastFactory {
         // Toast Window 显示辅助类
         private final ToastHelper mToastHelper;
 
+        /**
+         * 构造函数
+         * @param context {@link Context}
+         */
         public NotificationToast(Context context) {
             super(context);
             // 初始化操作
@@ -209,7 +218,7 @@ final class ToastFactory {
     /**
      * 创建 Toast
      * @param context {@link Context}
-     * @return
+     * @return {@link BaseToast}
      */
     public static BaseToast create(Context context) {
         if (Utils.isNotificationEnabled(context)) {
@@ -331,7 +340,7 @@ final class ToastFactory {
         void cancel() {
             // 移除之前移除 Toast 的任务
             removeMessages(0);
-            // 如果显示中, 则移除View
+            // 如果显示中, 则移除 View
             if (mShow) {
                 try {
                     Utils.getWindowManager(DevUtils.getTopActivity()).removeView(mToast.getView());

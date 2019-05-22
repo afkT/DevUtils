@@ -12,8 +12,8 @@ import android.text.TextUtils;
 public class DefaultToastStyle implements IToast.Style {
 
     /**
-     * Toast 的重心
-     * @return
+     * 获取 Toast 的重心
+     * @return Toast 的重心
      */
     @Override
     public int getGravity() {
@@ -21,8 +21,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * X轴偏移
-     * @return
+     * 获取 X 轴偏移
+     * @return X 轴偏移
      */
     @Override
     public int getXOffset() {
@@ -30,8 +30,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * Y轴偏移
-     * @return
+     * 获取 Y 轴偏移
+     * @return Y 轴偏移
      */
     @Override
     public int getYOffset() {
@@ -40,7 +40,7 @@ public class DefaultToastStyle implements IToast.Style {
 
     /**
      * 获取水平边距
-     * @return
+     * @return 水平边距
      */
     @Override
     public int getHorizontalMargin() {
@@ -49,7 +49,7 @@ public class DefaultToastStyle implements IToast.Style {
 
     /**
      * 获取垂直边距
-     * @return
+     * @return 垂直边距
      */
     @Override
     public int getVerticalMargin() {
@@ -57,8 +57,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * Toast Z轴坐标阴影
-     * @return
+     * 获取 Toast Z 轴坐标阴影
+     * @return Toast Z 轴坐标阴影
      */
     @Override
     public int getZ() {
@@ -66,8 +66,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * 圆角大小
-     * @return
+     * 获取圆角大小
+     * @return 圆角大小
      */
     @Override
     public float getCornerRadius() {
@@ -75,8 +75,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * 背景着色颜色
-     * @return
+     * 获取背景着色颜色
+     * @return 背景着色颜色
      */
     @Override
     public int getBackgroundTintColor() {
@@ -84,8 +84,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * 背景图片
-     * @return
+     * 获取背景图片
+     * @return 背景图片
      */
     @Override
     public Drawable getBackground() {
@@ -97,8 +97,8 @@ public class DefaultToastStyle implements IToast.Style {
     // =================
 
     /**
-     * 文本颜色
-     * @return
+     * 获取文本颜色
+     * @return 文本颜色
      */
     @Override
     public int getTextColor() {
@@ -106,8 +106,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * 字体大小
-     * @return
+     * 获取字体大小
+     * @return 字体大小
      */
     @Override
     public float getTextSize() {
@@ -115,8 +115,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * 最大行数
-     * @return
+     * 获取最大行数
+     * @return 最大行数
      */
     @Override
     public int getMaxLines() {
@@ -124,8 +124,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * Ellipsize 效果
-     * @return
+     * 获取 Ellipsize 效果
+     * @return Ellipsize 效果
      */
     @Override
     public TextUtils.TruncateAt getEllipsize() {
@@ -133,8 +133,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * 字体样式
-     * @return
+     * 获取字体样式
+     * @return 字体样式
      */
     @Override
     public Typeface getTypeface() {
@@ -143,8 +143,8 @@ public class DefaultToastStyle implements IToast.Style {
     }
 
     /**
-     * TextView padding 边距 - new int[] { left, top, right, bottom }
-     * @return
+     * 获取 TextView padding 边距 - new int[] { left, top, right, bottom }
+     * @return TextView padding 边距
      */
     @Override
     public int[] getPadding() {

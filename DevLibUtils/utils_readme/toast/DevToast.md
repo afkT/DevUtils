@@ -4,7 +4,7 @@
 
 > 1. 支持子线程弹出 Toast, 可通过开关配置
 > 2. 内部解决 Android 7.1.1 崩溃问题
-> 3. 已处理 部分ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
+> 3. 已处理 部分 ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/DevLibUtils/src/main/java/dev/utils/app/toast/toaster)
 
@@ -51,9 +51,9 @@
 | style | 使用单次 Toast 样式配置 |
 | defaultStyle | 使用默认 Toast 样式 |
 | getToastStyle | 获取 Toast 样式配置 |
-| initStyle | 初始化 Toast 样式配置(非单次, 一直持续) |
+| initStyle | 初始化 Toast 样式配置 |
 | initToastFilter | 初始化 Toast 过滤器 |
-| setView | 设置 Toast 显示的View |
+| setView | 设置 Toast 显示的 View |
 | show | 显示 Toast |
 | cancel | 取消当前显示的 Toast |
 

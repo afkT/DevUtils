@@ -167,7 +167,7 @@ public final class SnackbarUtils {
 
     /**
      * 向 Snackbar 布局中添加View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
-     * @param layoutId
+     * @param layoutId R.layout.id
      * @param index
      * @return
      */

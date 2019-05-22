@@ -20,7 +20,7 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *      支持子线程弹出 Toast, 可通过开关配置
  *      内部解决 Android 7.1.1 崩溃问题
- *      但无处理 部分ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
+ *      但无处理 部分 ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
  * </pre>
  */
 public final class ToastUtils {
@@ -32,14 +32,14 @@ public final class ToastUtils {
     private static final String TAG = ToastUtils.class.getSimpleName();
     // Toast 判断过滤
     private static ToastUtils.Filter sToastFilter = null;
-    // 内部持有单个Toast
+    // 内部持有单个 Toast
     private static Toast sToast = null;
     // 判断是否使用 Handler
     private static boolean sIsHandler = true;
     // 内部 Handler
     private static final Handler sHandler = new Handler(Looper.getMainLooper());
-    // Null 值
-    private static String sNullText = "text is null";
+    // Null 值 - null 提示值
+    private static String sNullText = null;
 
     // ============
     // = 部分配置 =
@@ -58,14 +58,14 @@ public final class ToastUtils {
     public static void reset() {
         sIsHandler = true;
         sUseConfig = true;
-        sNullText = "text is null";
+        sNullText = null;
         sGravity = sX = sY = 0;
         sHorizontalMargin = sVerticalMargin = 0.0f;
     }
 
     /**
      * 设置 Toast 过滤器
-     * @param toastFilter
+     * @param toastFilter {@link ToastUtils.Filter}
      */
     public static void setToastFilter(final ToastUtils.Filter toastFilter) {
         ToastUtils.sToastFilter = toastFilter;
@@ -73,7 +73,7 @@ public final class ToastUtils {
 
     /**
      * 设置是否使用 Handler 显示 Toast
-     * @param isHandler
+     * @param isHandler {@code true} 使用, {@code false} 不使用
      */
     public static void setIsHandler(final boolean isHandler) {
         ToastUtils.sIsHandler = isHandler;
@@ -81,15 +81,15 @@ public final class ToastUtils {
 
     /**
      * 设置 Text 为 null 的文本
-     * @param nullText
+     * @param nullText 显示内容为 null 时, 使用的提示值
      */
     public static void setNullText(final String nullText) {
         ToastUtils.sNullText = nullText;
     }
 
     /**
-     * 判断是否使用配置
-     * @param useConfig
+     * 设置是否使用配置
+     * @param useConfig {@code true} 使用, {@code false} 不使用
      */
     public static void setUseConfig(final boolean useConfig) {
         ToastUtils.sUseConfig = useConfig;
@@ -97,9 +97,9 @@ public final class ToastUtils {
 
     /**
      * 设置 Toast 显示在屏幕上的位置
-     * @param gravity
-     * @param xOffset
-     * @param yOffset
+     * @param gravity 重心
+     * @param xOffset X 轴偏移
+     * @param yOffset Y 轴偏移
      */
     public static void setGravity(final int gravity, final int xOffset, final int yOffset) {
         ToastUtils.sGravity = gravity;
@@ -109,17 +109,17 @@ public final class ToastUtils {
 
     /**
      * 设置边距
-     * @param horizontalMargin
-     * @param verticalMargin
+     * @param horizontalMargin 水平边距
+     * @param verticalMargin   垂直边距
      */
     public static void setMargin(final float horizontalMargin, final float verticalMargin) {
         ToastUtils.sHorizontalMargin = horizontalMargin;
         ToastUtils.sVerticalMargin = verticalMargin;
     }
 
-    // =================
-    // = 统一显示Toast =
-    // =================
+    // ==================
+    // = 统一显示 Toast =
+    // ==================
 
     // ======================
     // = Toast.LENGTH_SHORT =
@@ -127,8 +127,8 @@ public final class ToastUtils {
 
     /**
      * 显示 LENGTH_SHORT Toast
-     * @param text
-     * @param objs
+     * @param text Toast 提示文本
+     * @param objs 格式化参数
      */
     public static void showShort(final String text, final Object... objs) {
         showShort(null, text, objs);
@@ -137,8 +137,8 @@ public final class ToastUtils {
     /**
      * 显示 LENGTH_SHORT Toast
      * @param context {@link Context}
-     * @param text
-     * @param objs
+     * @param text    Toast 提示文本
+     * @param objs    格式化参数
      */
     public static void showShort(final Context context, final String text, final Object... objs) {
         handlerToastStr(true, context, text, Toast.LENGTH_SHORT, objs);
@@ -147,19 +147,19 @@ public final class ToastUtils {
     // =
 
     /**
-     * * 显示 LENGTH_SHORT Toast
-     * @param resId
-     * @param objs
+     * 显示 LENGTH_SHORT Toast
+     * @param resId R.string.id
+     * @param objs  格式化参数
      */
     public static void showShort(final int resId, final Object... objs) {
         showShort(null, resId, objs);
     }
 
     /**
-     * * 显示 LENGTH_SHORT Toast
+     * 显示 LENGTH_SHORT Toast
      * @param context {@link Context}
-     * @param resId
-     * @param objs
+     * @param resId   R.string.id
+     * @param objs    格式化参数
      */
     public static void showShort(final Context context, final int resId, final Object... objs) {
         handlerToastRes(true, context, resId, Toast.LENGTH_SHORT, objs);
@@ -171,8 +171,8 @@ public final class ToastUtils {
 
     /**
      * 显示 LENGTH_LONG Toast
-     * @param text
-     * @param objs
+     * @param text Toast 提示文本
+     * @param objs 格式化参数
      */
     public static void showLong(final String text, final Object... objs) {
         showLong(null, text, objs);
@@ -181,8 +181,8 @@ public final class ToastUtils {
     /**
      * 显示 LENGTH_LONG Toast
      * @param context {@link Context}
-     * @param text
-     * @param objs
+     * @param text    Toast 提示文本
+     * @param objs    格式化参数
      */
     public static void showLong(final Context context, final String text, final Object... objs) {
         handlerToastStr(true, context, text, Toast.LENGTH_LONG, objs);
@@ -192,8 +192,8 @@ public final class ToastUtils {
 
     /**
      * 显示 LENGTH_LONG Toast
-     * @param resId
-     * @param objs
+     * @param resId R.string.id
+     * @param objs  格式化参数
      */
     public static void showLong(final int resId, final Object... objs) {
         showLong(null, resId, objs);
@@ -202,21 +202,21 @@ public final class ToastUtils {
     /**
      * 显示 LENGTH_LONG Toast
      * @param context {@link Context}
-     * @param resId
-     * @param objs
+     * @param resId   R.string.id
+     * @param objs    格式化参数
      */
     public static void showLong(final Context context, final int resId, final Object... objs) {
         handlerToastRes(true, context, resId, Toast.LENGTH_LONG, objs);
     }
 
-    // =============
-    // = Toast方法 =
-    // =============
+    // ==============
+    // = Toast 方法 =
+    // ==============
 
     /**
      * 显示 Toast
-     * @param resId
-     * @param duration
+     * @param resId    R.string.id
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToast(final int resId, final int duration) {
         showToast(null, resId, duration);
@@ -225,8 +225,8 @@ public final class ToastUtils {
     /**
      * 显示 Toast
      * @param context  {@link Context}
-     * @param resId
-     * @param duration
+     * @param resId    R.string.id
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToast(final Context context, final int resId, final int duration) {
         handlerToastRes(true, context, resId, duration);
@@ -234,8 +234,8 @@ public final class ToastUtils {
 
     /**
      * 显示 Toast
-     * @param text
-     * @param duration
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToast(final String text, final int duration) {
         priShowToastText(true, null, text, duration);
@@ -244,16 +244,16 @@ public final class ToastUtils {
     /**
      * 显示 Toast
      * @param context  {@link Context}
-     * @param text
-     * @param duration
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToast(final Context context, final String text, final int duration) {
         priShowToastText(true, context, text, duration);
     }
 
-    // ===================
-    // = 非统一显示Toast =
-    // ===================
+    // ====================
+    // = 非统一显示 Toast =
+    // ====================
 
     // ======================
     // = Toast.LENGTH_SHORT =
@@ -261,8 +261,8 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_SHORT Toast
-     * @param text
-     * @param objs
+     * @param text Toast 提示文本
+     * @param objs 格式化参数
      */
     public static void showShortNew(final String text, final Object... objs) {
         showShortNew(null, text, objs);
@@ -271,8 +271,8 @@ public final class ToastUtils {
     /**
      * 显示 new LENGTH_SHORT Toast
      * @param context {@link Context}
-     * @param text
-     * @param objs
+     * @param text    Toast 提示文本
+     * @param objs    格式化参数
      */
     public static void showShortNew(final Context context, final String text, final Object... objs) {
         handlerToastStr(false, context, text, Toast.LENGTH_SHORT, objs);
@@ -282,8 +282,8 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_SHORT Toast
-     * @param resId
-     * @param objs
+     * @param resId R.string.id
+     * @param objs  格式化参数
      */
     public static void showShortNew(final int resId, final Object... objs) {
         showShortNew(null, resId, objs);
@@ -292,8 +292,8 @@ public final class ToastUtils {
     /**
      * 显示 new LENGTH_SHORT Toast
      * @param context {@link Context}
-     * @param resId
-     * @param objs
+     * @param resId   R.string.id
+     * @param objs    格式化参数
      */
     public static void showShortNew(final Context context, final int resId, final Object... objs) {
         handlerToastRes(false, context, resId, Toast.LENGTH_SHORT, objs);
@@ -305,8 +305,8 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_LONG Toast
-     * @param text
-     * @param objs
+     * @param text Toast 提示文本
+     * @param objs 格式化参数
      */
     public static void showLongNew(final String text, final Object... objs) {
         showLongNew(null, text, objs);
@@ -315,8 +315,8 @@ public final class ToastUtils {
     /**
      * 显示 new LENGTH_LONG Toast
      * @param context {@link Context}
-     * @param text
-     * @param objs
+     * @param text    Toast 提示文本
+     * @param objs    格式化参数
      */
     public static void showLongNew(final Context context, final String text, final Object... objs) {
         handlerToastStr(false, context, text, Toast.LENGTH_LONG, objs);
@@ -326,8 +326,8 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_LONG Toast
-     * @param resId
-     * @param objs
+     * @param resId R.string.id
+     * @param objs  格式化参数
      */
     public static void showLongNew(final int resId, final Object... objs) {
         showLongNew(null, resId, objs);
@@ -336,21 +336,21 @@ public final class ToastUtils {
     /**
      * 显示 new LENGTH_LONG Toast
      * @param context {@link Context}
-     * @param resId
-     * @param objs
+     * @param resId   R.string.id
+     * @param objs    格式化参数
      */
     public static void showLongNew(final Context context, final int resId, final Object... objs) {
         handlerToastRes(false, context, resId, Toast.LENGTH_LONG, objs);
     }
 
-    // =============
-    // = Toast方法 =
-    // =============
+    // ==============
+    // = Toast 方法 =
+    // ==============
 
     /**
      * 显示新的 Toast
-     * @param resId
-     * @param duration
+     * @param resId    R.string.id
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToastNew(final int resId, final int duration) {
         showToastNew(null, resId, duration);
@@ -359,8 +359,8 @@ public final class ToastUtils {
     /**
      * 显示新的 Toast
      * @param context  {@link Context}
-     * @param resId
-     * @param duration
+     * @param resId    R.string.id
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToastNew(final Context context, final int resId, final int duration) {
         handlerToastRes(false, context, resId, duration);
@@ -368,8 +368,8 @@ public final class ToastUtils {
 
     /**
      * 显示新的 Toast
-     * @param text
-     * @param duration
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToastNew(final String text, final int duration) {
         priShowToastText(false, null, text, duration);
@@ -378,8 +378,8 @@ public final class ToastUtils {
     /**
      * 显示新的 Toast
      * @param context  {@link Context}
-     * @param text
-     * @param duration
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToastNew(final Context context, final String text, final int duration) {
         priShowToastText(false, context, text, duration);
@@ -391,11 +391,10 @@ public final class ToastUtils {
 
     /**
      * 内部私有方法, 最终显示 Toast
-     * @param isSingle
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
      * @param context  {@link Context}
-     * @param text
-     * @param duration
-     * @Toast
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     private static void priShowToastText(final boolean isSingle, final Context context, final String text, final int duration) {
         if (sIsHandler) {
@@ -426,27 +425,29 @@ public final class ToastUtils {
 
     /**
      * 获取一个新的 Text Toast
-     * @param isSingle
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
      * @param context  {@link Context}
-     * @param text
-     * @param duration
-     * @return
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @return {@link Toast}
      */
-    public static Toast newToastText(final boolean isSingle, Context context, String text, final int duration) {
+    public static Toast newToastText(final boolean isSingle, Context context, final String text, final int duration) {
         if (context == null) {
             context = DevUtils.getContext();
         }
+        // 提示文本
+        String toastText = text;
         // 判断是否过滤
-        if (!sPriToastFilter.filter(text)) {
+        if (!sPriToastFilter.filter(toastText)) {
             return null;
         }
         // 处理内容
-        text = sPriToastFilter.handlerContent(text);
+        toastText = sPriToastFilter.handlerContent(toastText);
         // 设置为 null, 便于提示排查
-        if (TextUtils.isEmpty(text)) {
-            text = sNullText;
+        if (TextUtils.isEmpty(toastText)) {
+            toastText = sNullText;
             // 如果还是为 null, 则不处理
-            if (TextUtils.isEmpty(text)) {
+            if (TextUtils.isEmpty(toastText)) {
                 return null;
             }
         }
@@ -460,7 +461,7 @@ public final class ToastUtils {
                 }
                 // 解决 MIUI 会显示应用名称问题
                 sToast = Toast.makeText(context, null, duration);
-                sToast.setText(text);
+                sToast.setText(toastText);
                 // 判断是否使用配置
                 if (sUseConfig) {
                     // 设置属性配置
@@ -480,7 +481,7 @@ public final class ToastUtils {
             try {
                 // 解决 MIUI 会显示应用名称问题
                 toast = Toast.makeText(context, null, duration);
-                toast.setText(text);
+                toast.setText(toastText);
                 // 判断是否使用配置
                 if (sUseConfig) {
                     // 设置属性配置
@@ -504,7 +505,7 @@ public final class ToastUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param view
+     * @param view Toast 显示的 View
      */
     public static void showToastView(final View view) {
         showToastView(true, null, view, Toast.LENGTH_SHORT);
@@ -512,8 +513,8 @@ public final class ToastUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param view
-     * @param duration
+     * @param view     Toast 显示的 View
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToastView(final View view, final int duration) {
         showToastView(true, null, view, duration);
@@ -521,8 +522,8 @@ public final class ToastUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param isSingle
-     * @param view
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param view     Toast 显示的 View
      */
     public static void showToastView(final boolean isSingle, final View view) {
         showToastView(isSingle, null, view, Toast.LENGTH_SHORT);
@@ -530,9 +531,9 @@ public final class ToastUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param isSingle
-     * @param view
-     * @param duration
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param view     Toast 显示的 View
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToastView(final boolean isSingle, final View view, final int duration) {
         showToastView(isSingle, null, view, duration);
@@ -540,10 +541,10 @@ public final class ToastUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param isSingle
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
      * @param context  {@link Context}
-     * @param view
-     * @param duration
+     * @param view     Toast 显示的 View
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
     public static void showToastView(final boolean isSingle, final Context context, final View view, final int duration) {
         if (view == null) return;
@@ -575,11 +576,11 @@ public final class ToastUtils {
 
     /**
      * 获取一个新的 View Toast
-     * @param isSingle
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
      * @param context  {@link Context}
-     * @param view
-     * @param duration
-     * @return
+     * @param view     Toast 显示的 View
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @return {@link Toast}
      */
     public static Toast newToastView(final boolean isSingle, Context context, final View view, final int duration) {
         if (context == null) {
@@ -592,7 +593,7 @@ public final class ToastUtils {
         // 防止 Context 为 null
         if (context == null) {
             return null;
-        } else if (view == null) { // 防止显示的View 为 null
+        } else if (view == null) { // 防止显示的 View 为 null
             return null;
         }
         // 判断是否显示唯一, 单独共用一个
@@ -650,12 +651,12 @@ public final class ToastUtils {
     // ================
 
     /**
-     * 处理 R.string 资源Toast的格式化
-     * @param isSingle 是否单独共用显示一个
+     * 处理 R.string 资源 Toast 的格式化
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
      * @param context  {@link Context}
-     * @param resId
-     * @param duration
-     * @param objs
+     * @param resId    R.string.id
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG} {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param objs     格式化参数
      */
     private static void handlerToastRes(final boolean isSingle, Context context, final int resId, final int duration, final Object... objs) {
         if (context == null) {
@@ -678,11 +679,12 @@ public final class ToastUtils {
     }
 
     /**
-     * 处理字符串Toast的格式化
+     * 处理字符串 Toast 的格式化
+     * @param isSingle 是否单例 Toast (全局共用 Toast)
      * @param context  {@link Context}
-     * @param text
-     * @param duration
-     * @param objs
+     * @param text     Toast 提示文本
+     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param objs     格式化参数
      */
     private static void handlerToastStr(final boolean isSingle, Context context, final String text, final int duration, final Object... objs) {
         if (context == null) {
@@ -692,7 +694,7 @@ public final class ToastUtils {
         if (context != null) {
             // 表示需要格式化字符串, 只是为了减少 format 步骤, 增加判断, 为 null 不影响
             if (objs != null && objs.length != 0) {
-                if (text != null) { // String.format() 中的 objs 可以为 null,但是 text不能为 null
+                if (text != null) { // String.format() 中的 objs 可以为 null, 但是 text 不能为 null
                     try {
                         priShowToastText(isSingle, context, String.format(text, objs), duration);
                     } catch (Exception e) {
@@ -714,11 +716,11 @@ public final class ToastUtils {
 
     /**
      * 反射 Hook Toast 设置 Handler
-     * @param toast
+     * @param toast {@link Toast}
      */
     private static void reflectToastHandler(final Toast toast) {
         if (toast == null) return;
-        // 反射设置 Toat Handler 解决 Android7.1.1Toast 崩溃 问题
+        // 反射设置 Toat Handler 解决 Android 7.1.1 Toast 崩溃问题
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
             try {
                 Field field_tn = Toast.class.getDeclaredField("mTN");
@@ -773,21 +775,21 @@ public final class ToastUtils {
 
         /**
          * 判断是否显示
-         * @param view
+         * @param view Toast 显示的 View
          * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         boolean filter(View view);
 
         /**
          * 判断是否显示
-         * @param content
+         * @param content Toast 显示文案
          * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         boolean filter(String content);
 
         /**
          * 获取 Toast 显示的文案
-         * @param content
+         * @param content Toast 显示文案
          * @return 处理后的内容
          */
         String handlerContent(String content);
@@ -804,7 +806,7 @@ public final class ToastUtils {
 
         /**
          * 判断是否显示
-         * @param view
+         * @param view Toast 显示的 View
          * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         @Override
@@ -817,7 +819,7 @@ public final class ToastUtils {
 
         /**
          * 判断是否显示
-         * @param content
+         * @param content Toast 显示文案
          * @return {@code true} 接着执行, {@code false} 过滤不处理
          */
         @Override
@@ -830,7 +832,7 @@ public final class ToastUtils {
 
         /**
          * 获取 Toast 显示的文案
-         * @param content
+         * @param content Toast 显示文案
          * @return 处理后的内容
          */
         @Override
