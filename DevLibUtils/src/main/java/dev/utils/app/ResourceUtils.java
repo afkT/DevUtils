@@ -281,7 +281,7 @@ public final class ResourceUtils {
             Field field = mipmap.getField(imageName);
             int resId = field.getInt(imageName);
             return resId;
-        } catch (NoSuchFieldException e) { // 如果没有在"drawable"下找到imageName,将会返回0
+        } catch (NoSuchFieldException e) { // 如果没有在 "drawable" 下找到 imageName, 将会返回0
             LogPrintUtils.eTag(TAG, e, "getDrawableId2");
             return 0;
         } catch (Exception e) {
@@ -408,7 +408,7 @@ public final class ResourceUtils {
 
     /**
      * 读取字符串 来自 Assets文件
-     * @param fileName
+     * @param fileName 文件名
      * @return
      */
     public static String readStringFromAssets(final String fileName) {

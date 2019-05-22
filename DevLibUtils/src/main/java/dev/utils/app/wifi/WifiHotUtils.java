@@ -21,9 +21,9 @@ import dev.utils.LogPrintUtils;
  * detail: Wifi 热点工具类
  * @author Ttt
  * <pre>
- *      Android 8.0 开始, 热点操作方法, 已经变更
+ *      Android 8.0 开始, 热点操作方法已经变更
  *      @see <a href="https://blog.csdn.net/bukker/article/details/78649504"/>
- *      Android 7.1 系统以上不支持自动开启热点,需要手动开启热点
+ *      Android 7.1 系统以上不支持自动开启热点, 需要手动开启热点
  *      @see <a href="https://www.jianshu.com/p/9dbb02c3e21f"/>
  *      <p></p>
  *      需要的权限:
@@ -41,25 +41,25 @@ public class WifiHotUtils {
     private static final String TAG = WifiHotUtils.class.getSimpleName();
     // Context
     private Context mContext;
-    // 定义WifiManager对象
+    // WifiManager 对象
     private WifiManager mWifiManager;
     // 热点 Wifi 配置
     private WifiConfiguration mAPWifiConfig;
 
     /**
-     * 构造器(只能进行初始化WifiManager操作, 其他靠方法定义)
+     * 构造函数
      */
     public WifiHotUtils() {
         this(DevUtils.getContext());
     }
 
     /**
-     * 构造器(只能进行初始化WifiManager操作, 其他靠方法定义)
-     * @param context
+     * 构造函数(只能进行初始化 WifiManager 操作, 其他靠方法定义)
+     * @param context {@link Context}
      */
     public WifiHotUtils(final Context context) {
         this.mContext = context;
-        // 初始化WifiManager对象
+        // 初始化 WifiManager 对象
         mWifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
     }
 
@@ -68,9 +68,9 @@ public class WifiHotUtils {
     // =============
 
     /**
-     * 创建Wifi配置信息(无其他操作, 单独返回WifiConfig) => Wifi热点 (支持 无密码/WPA2 PSK)
-     * @param ssid
-     * @param pwd  密码需要大于等于8位
+     * 创建 wifi 配置信息(无其他操作, 单独返回 WifiConfig) => Wifi热点 (支持 无密码/WPA2 PSK)
+     * @param ssid wifi ssid
+     * @param pwd  密码(需要大于等于 8 位)
      * @return
      */
     public static WifiConfiguration createWifiConfigToAp(final String ssid, final String pwd) {
@@ -83,7 +83,7 @@ public class WifiHotUtils {
             wifiConfig.allowedPairwiseCiphers.clear();
             wifiConfig.allowedProtocols.clear();
             wifiConfig.priority = 0;
-            /** 设置连接的SSID */
+            // 设置连接的 SSID
             wifiConfig.SSID = ssid;
             // 判断密码
             if (TextUtils.isEmpty(pwd)) {
@@ -109,8 +109,8 @@ public class WifiHotUtils {
     }
 
     /**
-     * 开启Wifi热点
-     * @param wifiConfig wifi配置
+     * 开启 wifi 热点
+     * @param wifiConfig wifi 配置
      */
     public void stratWifiAp(final WifiConfiguration wifiConfig) {
         this.mAPWifiConfig = wifiConfig;
@@ -164,11 +164,11 @@ public class WifiHotUtils {
                     }
                 }
             }, null);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) { // android 7.1 系统以上不支持自动开启热点,需要手动开启热点
-            // 先设置wifi热点信息, 这样跳转前保存热点信息, 开启热点则是对应设置的信息
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) { // android 7.1 系统以上不支持自动开启热点, 需要手动开启热点
+            // 先设置 wifi 热点信息, 这样跳转前保存热点信息, 开启热点则是对应设置的信息
             boolean setResult = setWifiApConfiguration(wifiConfig);
             // 打印日志
-            LogPrintUtils.dTag(TAG, "设置Wifi 热点信息是否成功: " + setResult);
+            LogPrintUtils.dTag(TAG, "设置 wifi 热点信息是否成功: " + setResult);
             // https://www.cnblogs.com/bluestorm/p/3665555.html
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_MAIN);
@@ -177,9 +177,9 @@ public class WifiHotUtils {
             mContext.startActivity(intent);
         } else {
             try {
-                // 获取设置Wifi热点方法
+                // 获取设置 wifi 热点方法
                 Method method = mWifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
-                // 开启Wifi热点
+                // 开启 wifi 热点
                 method.invoke(mWifiManager, wifiConfig, true);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "stratWifiAp");
@@ -188,7 +188,7 @@ public class WifiHotUtils {
     }
 
     /**
-     * 关闭Wifi热点
+     * 关闭 wifi 热点
      */
     public void closeWifiAp() {
         // 大于 8.0
@@ -202,7 +202,7 @@ public class WifiHotUtils {
             return;
         }
         try {
-            // 获取设置Wifi热点方法
+            // 获取设置 wifi 热点方法
             Method method = mWifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
             // 创建一个新的网络配置
             WifiConfiguration wifiConfig = new WifiConfiguration();
@@ -212,11 +212,11 @@ public class WifiHotUtils {
             wifiConfig.allowedPairwiseCiphers.clear();
             wifiConfig.allowedProtocols.clear();
             wifiConfig.priority = 0;
-            // 设置Wifi SSID
+            // 设置 wifi SSID
             wifiConfig.SSID = "CloseWifiAp"; // formatSSID(ssid,true);
-            // 设置Wifi密码
+            // 设置 wifi 密码
             wifiConfig.preSharedKey = "CloseWifiAp";
-            // 设置Wifi属性
+            // 设置 wifi 属性
             wifiConfig.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
             wifiConfig.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
             wifiConfig.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
@@ -225,7 +225,7 @@ public class WifiHotUtils {
             wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
             wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
             wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
-            // 开启Wifi热点
+            // 开启 wifi 热点
             method.invoke(mWifiManager, wifiConfig, false);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "closeWifiAp");
@@ -237,35 +237,35 @@ public class WifiHotUtils {
     // ================
 
     /**
-     * Wifi热点正在关闭 -- WifiManager.WIFI_AP_STATE_DISABLING
+     * wifi 热点正在关闭 - WifiManager.WIFI_AP_STATE_DISABLING
      */
     public static final int WIFI_AP_STATE_DISABLING = 10;
     /**
-     * Wifi热点已关闭 -- WifiManager.WIFI_AP_STATE_DISABLED
+     * wifi 热点已关闭 - WifiManager.WIFI_AP_STATE_DISABLED
      */
     public static final int WIFI_AP_STATE_DISABLED = 11;
     /**
-     * Wifi热点正在打开 -- WifiManager.WIFI_AP_STATE_ENABLING
+     * wifi 热点正在打开 - WifiManager.WIFI_AP_STATE_ENABLING
      */
     public static final int WIFI_AP_STATE_ENABLING = 12;
     /**
-     * Wifi热点已打开 -- WifiManager.WIFI_AP_STATE_ENABLED
+     * wifi 热点已打开 - WifiManager.WIFI_AP_STATE_ENABLED
      */
     public static final int WIFI_AP_STATE_ENABLED = 13;
     /**
-     * Wifi热点状态未知 -- WifiManager.WIFI_AP_STATE_FAILED
+     * wifi 热点状态未知 - WifiManager.WIFI_AP_STATE_FAILED
      */
     public static final int WIFI_AP_STATE_FAILED = 14;
 
     /**
-     * 获取Wifi热点状态
+     * 获取 wifi 热点状态
      * @return
      */
     public int getWifiApState() {
         try {
             // 反射获取方法
             Method method = mWifiManager.getClass().getMethod("getWifiApState");
-            // 调用方法,获取状态
+            // 调用方法, 获取状态
             int wifiApState = (Integer) method.invoke(mWifiManager);
             // 打印状态
             LogPrintUtils.dTag(TAG, "WifiApState: " + wifiApState);
@@ -277,12 +277,12 @@ public class WifiHotUtils {
     }
 
     /**
-     * 获取Wifi热点配置信息
+     * 获取 wifi 热点配置信息
      * @return
      */
     public WifiConfiguration getWifiApConfiguration() {
         try {
-            // 获取Wifi热点方法
+            // 获取 wifi 热点方法
             Method method = mWifiManager.getClass().getMethod("getWifiApConfiguration");
             // 获取配置
             WifiConfiguration wifiApConfig = (WifiConfiguration) method.invoke(mWifiManager);
@@ -295,15 +295,15 @@ public class WifiHotUtils {
     }
 
     /**
-     * 设置Wifi热点配置信息
-     * @param apWifiConfig
-     * @return 是否成功
+     * 设置 wifi 热点配置信息
+     * @param apWifiConfig Wifi 热点配置信息
+     * @return {@code true} success, {@code false} fail
      */
     public boolean setWifiApConfiguration(final WifiConfiguration apWifiConfig) {
         try {
-            // 获取设置Wifi热点方法
+            // 获取设置 wifi 热点方法
             Method method = mWifiManager.getClass().getMethod("setWifiApConfiguration", WifiConfiguration.class);
-            // 开启Wifi热点
+            // 开启 wifi 热点
             return (boolean) method.invoke(mWifiManager, apWifiConfig);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setWifiApConfiguration");
@@ -314,52 +314,52 @@ public class WifiHotUtils {
     // =
 
     /**
-     * 判断是否打开Wifi热点
-     * @return
+     * 判断是否打开 wifi 热点
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isOpenWifiAp() {
         // 判断是否开启热点(默认未打开)
         boolean isOpen = false;
-        // 获取当前Wifi热点状态
+        // 获取当前 wifi 热点状态
         int wifiApState = getWifiApState();
         switch (wifiApState) {
-            case WIFI_AP_STATE_DISABLING: // Wifi热点正在关闭
+            case WIFI_AP_STATE_DISABLING: // wifi 热点正在关闭
                 break;
-            case WIFI_AP_STATE_DISABLED: // Wifi热点已关闭
+            case WIFI_AP_STATE_DISABLED: // wifi 热点已关闭
                 break;
-            case WIFI_AP_STATE_ENABLING: // Wifi热点正在打开
+            case WIFI_AP_STATE_ENABLING: // wifi 热点正在打开
                 break;
-            case WIFI_AP_STATE_ENABLED: // Wifi热点已打开
+            case WIFI_AP_STATE_ENABLED: // wifi 热点已打开
                 isOpen = true;
                 break;
-            case WIFI_AP_STATE_FAILED: // Wifi热点状态未知
+            case WIFI_AP_STATE_FAILED: // wifi 热点状态未知
                 break;
         }
         return isOpen;
     }
 
     /**
-     * 关闭Wifi热点(判断当前状态)
+     * 关闭 wifi 热点(判断当前状态)
      * @param isExecute 是否执行关闭
-     * @return 之前是否打开热点
+     * @return {@code true} success, {@code false} fail
      */
     public boolean closeWifiApCheck(boolean isExecute) {
         // 判断是否开启热点(默认是)
         boolean isOpen = true;
-        // 获取当前Wifi热点状态
+        // 获取当前 wifi 热点状态
         int wifiApState = getWifiApState();
         switch (wifiApState) {
-            case WIFI_AP_STATE_DISABLING: // Wifi热点正在关闭
+            case WIFI_AP_STATE_DISABLING: // wifi 热点正在关闭
                 isExecute = false;
                 break;
-            case WIFI_AP_STATE_DISABLED: // Wifi热点已关闭
+            case WIFI_AP_STATE_DISABLED: // wifi 热点已关闭
                 isOpen = false;
                 break;
-            case WIFI_AP_STATE_ENABLING: // Wifi热点正在打开
+            case WIFI_AP_STATE_ENABLING: // wifi 热点正在打开
                 break;
-            case WIFI_AP_STATE_ENABLED: // Wifi热点已打开
+            case WIFI_AP_STATE_ENABLED: // wifi 热点已打开
                 break;
-            case WIFI_AP_STATE_FAILED: // Wifi热点状态未知
+            case WIFI_AP_STATE_FAILED: // wifi 热点状态未知
                 break;
         }
         // 如果属于开启, 则进行关闭
@@ -371,7 +371,7 @@ public class WifiHotUtils {
 
     /**
      * 是否有连接热点
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isConnectHot() {
         try {
@@ -521,8 +521,8 @@ public class WifiHotUtils {
     }
 
     /**
-     * 获取Wifi 热点密码
-     * @return
+     * 获取 wifi 热点密码
+     * @return wifi 热点密码
      */
     public String getApWifiPwd() {
         // 大于 8.0
@@ -538,6 +538,7 @@ public class WifiHotUtils {
 
     // =
 
+    // Wifi 热点监听
     private onWifiAPListener mWifiAPListener;
 
     /**
@@ -545,19 +546,19 @@ public class WifiHotUtils {
      * @param wifiAPListener
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setOnWifiAPListener(onWifiAPListener wifiAPListener) {
+    public void setOnWifiAPListener(final onWifiAPListener wifiAPListener) {
         this.mWifiAPListener = wifiAPListener;
     }
 
     /**
-     * detail: Android Wifi监听
+     * detail: Android Wifi 热点监听
      * @author Ttt
      */
     public interface onWifiAPListener {
 
         /**
-         * 开启热点触发
-         * @param wifiConfig
+         * 开启热点回调
+         * @param wifiConfig {@link WifiConfiguration} 热点配置
          */
         void onStarted(WifiConfiguration wifiConfig);
 
@@ -568,7 +569,7 @@ public class WifiHotUtils {
 
         /**
          * 失败回调
-         * @param reason
+         * @param reason 失败原因(错误码)
          */
         void onFailed(int reason);
     }

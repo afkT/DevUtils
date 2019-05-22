@@ -218,7 +218,7 @@ public final class ShapeUtils {
 //        <!-- 描边
 //            android:width      整型 描边的宽度
 //            android:color      颜色值 描边的颜色
-//            android:dashWidth  整型 表示描边的样式是虚线的宽度, 值为0时, 表示为实线, 值大于 0 则为虚线
+//            android:dashWidth  整型 表示描边的样式是虚线的宽度, 值为 0 时, 表示为实线, 值大于 0 则为虚线
 //            android:dashGap    整型 表示描边为虚线时, 虚线之间的间隔 即“ - - - - ”
 //        ->
 
@@ -329,7 +329,7 @@ public final class ShapeUtils {
         // = 设置渐变 =
         // ============
 
-//        <!-- 渐变, 这个设置之后一般就不要设置solid填充色了
+//        <!-- 渐变, 这个设置之后一般就不要设置 solid 填充色了
 //            android:startColor  颜色值 起始颜色
 //            android:endColor    颜色值 结束颜色
 //            android:centerColor 整型 渐变中间颜色, 即开始颜色与结束颜色之间的颜色
@@ -340,7 +340,7 @@ public final class ShapeUtils {
 //            radial 放射性渐变, 以开始色为中心
 //            sweep 扫描线式的渐变
 //
-//            android:useLevel ["true" | "false"] 如果要使用LevelListDrawable对象, 就要设置为 true, 设置为 true无渐变, false 有渐变色
+//            android:useLevel ["true" | "false"] 如果要使用 LevelListDrawable 对象, 就要设置为 true, 设置为 true 无渐变, false 有渐变色
 //
 //            android:gradientRadius 整型
 //            渐变色半径, 当 android:type="radial" 时才使用, 单独使用 android:type="radial" 会报错

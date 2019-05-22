@@ -24,7 +24,7 @@
 | :- | :- |
 | init | 初始化操作 |
 | put | 保存数据 |
-| putAll | 保存 Map 集合(只能是 Integer, Long, Boolean, Float, String, Set) |
+| putAll | 保存 Map 集合(只能是 Integer、Long、Boolean、Float、String、Set) |
 | get | 根据 key 获取数据 |
 | getAll | 获取全部数据 |
 | remove | 移除数据 |

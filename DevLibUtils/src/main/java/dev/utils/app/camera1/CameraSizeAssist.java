@@ -338,7 +338,7 @@ public final class CameraSizeAssist {
         }
         // 获取 Camera 参数
         Camera.Parameters params = mCamera.getParameters();
-        // 获取手机支持的分辨率集合,并以宽度为基准降序排序
+        // 获取手机支持的分辨率集合, 并以宽度为基准降序排序
         List<Camera.Size> listPreviewSizes = params.getSupportedPreviewSizes();
         // 防止数据为 null
         if (listPreviewSizes == null) {
@@ -463,7 +463,7 @@ public final class CameraSizeAssist {
         }
         // 获取 Camera 参数
         Camera.Parameters params = mCamera.getParameters();
-        // 获取手机支持的分辨率集合,并以宽度为基准降序排序
+        // 获取手机支持的分辨率集合, 并以宽度为基准降序排序
         List<Camera.Size> listPictureSizes = params.getSupportedPictureSizes();
         // 防止数据为 null
         if (listPictureSizes == null) {
@@ -615,7 +615,7 @@ public final class CameraSizeAssist {
         }
         // 获取 Camera 参数
         Camera.Parameters params = mCamera.getParameters();
-        // 获取手机支持的分辨率集合,并以宽度为基准降序排序
+        // 获取手机支持的分辨率集合, 并以宽度为基准降序排序
         List<Camera.Size> listVideoSizes = params.getSupportedVideoSizes();
         // 防止数据为 null
         if (listVideoSizes == null) {

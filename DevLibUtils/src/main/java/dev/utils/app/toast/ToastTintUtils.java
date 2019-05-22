@@ -723,7 +723,7 @@ public final class ToastTintUtils {
     /**
      * custom Toast
      * @param isSingle 是否单独显示
-     * @param context
+     * @param context  {@link Context}
      * @param style    Toast 样式
      * @param text     文案
      * @param duration 显示时长
@@ -743,7 +743,7 @@ public final class ToastTintUtils {
     /**
      * 显示 View Toast 方法
      * @param isSingle
-     * @param context
+     * @param context  {@link Context}
      * @param view
      * @param duration
      */
@@ -778,7 +778,7 @@ public final class ToastTintUtils {
     /**
      * 获取一个新的 View Toast
      * @param isSingle
-     * @param context
+     * @param context  {@link Context}
      * @param view
      * @param duration
      * @return
@@ -845,7 +845,7 @@ public final class ToastTintUtils {
 
     /**
      * 实例化 Layout View
-     * @param context
+     * @param context {@link Context}
      * @param style
      * @param text
      * @param icon
@@ -968,7 +968,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取 Drawable
-     * @param context
+     * @param context {@link Context}
      * @param id
      * @return
      */
@@ -1001,7 +1001,7 @@ public final class ToastTintUtils {
 
     /**
      * .9 图片着色
-     * @param context
+     * @param context   {@link Context}
      * @param tintColor
      * @return
      */

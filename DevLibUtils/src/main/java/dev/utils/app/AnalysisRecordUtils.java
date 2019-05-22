@@ -53,7 +53,7 @@ public final class AnalysisRecordUtils {
 
     /**
      * 初始化操作
-     * @param context
+     * @param context {@link Context}
      */
     public static void init(final Context context) {
         if (context != null) {
@@ -235,7 +235,7 @@ public final class AnalysisRecordUtils {
                 buffer.append(NEW_LINE_STR);
                 buffer.append("===========================");
                 buffer.append(NEW_LINE_STR);
-                // 创建文件夹,并且进行处理
+                // 创建文件夹, 并且进行处理
                 saveFile(buffer.toString(), logPath, fileName);
                 // 追加内容
                 appendFile(logFile, logContent);
@@ -343,7 +343,7 @@ public final class AnalysisRecordUtils {
 
     /**
      * 处理设备信息
-     * @param eHint 错误提示,如获取设备信息失败
+     * @param eHint 错误提示, 如获取设备信息失败
      * @return 拼接后的设备信息字符串
      */
     private static String handlerDeviceInfo(final String eHint) {
@@ -412,7 +412,7 @@ public final class AnalysisRecordUtils {
     // = 日志保存时间 =
     // ================
 
-    // DEFAULT - 默认天,在根目录下
+    // DEFAULT - 默认天, 在根目录下
     public static final int DEFAULT = 0;
     // 小时
     public static final int HH = 1;
@@ -516,7 +516,7 @@ public final class AnalysisRecordUtils {
 
         /**
          * 获取记录分析文件信息
-         * @param fileName
+         * @param fileName     文件名
          * @param fileFunction
          * @return
          */
@@ -527,7 +527,7 @@ public final class AnalysisRecordUtils {
         /**
          * 获取记录分析文件信息
          * @param folderName
-         * @param fileName
+         * @param fileName     文件名
          * @param fileFunction
          * @return
          */
@@ -539,7 +539,7 @@ public final class AnalysisRecordUtils {
          * 获取记录分析文件信息
          * @param storagePath
          * @param folderName
-         * @param fileName
+         * @param fileName     文件名
          * @param fileFunction
          * @return
          */
@@ -551,7 +551,7 @@ public final class AnalysisRecordUtils {
 
         /**
          * 获取记录分析文件信息
-         * @param fileName
+         * @param fileName         文件名
          * @param fileFunction
          * @param fileIntervalTime
          * @return
@@ -563,7 +563,7 @@ public final class AnalysisRecordUtils {
         /**
          * 获取记录分析文件信息
          * @param folderName
-         * @param fileName
+         * @param fileName         文件名
          * @param fileFunction
          * @param fileIntervalTime
          * @return
@@ -576,7 +576,7 @@ public final class AnalysisRecordUtils {
          * 获取记录分析文件信息
          * @param storagePath
          * @param folderName
-         * @param fileName
+         * @param fileName         文件名
          * @param fileFunction
          * @param fileIntervalTime
          * @return
@@ -589,7 +589,7 @@ public final class AnalysisRecordUtils {
          * 获取记录分析文件信息
          * @param storagePath
          * @param folderName
-         * @param fileName
+         * @param fileName         文件名
          * @param fileFunction
          * @param fileIntervalTime
          * @param isHandler
@@ -722,7 +722,7 @@ public final class AnalysisRecordUtils {
         }
 
         /**
-         * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
+         * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
          * @param file 文件夹路径 (无文件名字.后缀)
          */
         private static boolean createFolder(final File file) {
@@ -758,7 +758,7 @@ public final class AnalysisRecordUtils {
             return;
         }
         File file = new File(filePath);
-        if (!file.exists()) { // 如果文件不存在,则跳过
+        if (!file.exists()) { // 如果文件不存在, 则跳过
             return;
         }
         FileWriter writer = null;
@@ -803,7 +803,7 @@ public final class AnalysisRecordUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建,未创建则创建(纯路径 - 无文件名)
+     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
      * @param filePath 文件路径
      * @return 文件 {@link File}
      */

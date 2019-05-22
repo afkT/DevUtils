@@ -166,7 +166,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 向 Snackbar 布局中添加View (Google不建议,复杂的布局应该使用DialogFragment进行展示)
+     * 向 Snackbar 布局中添加View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
      * @param layoutId
      * @param index
      * @return
@@ -186,7 +186,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 向 Snackbar 布局中添加View (Google不建议,复杂的布局应该使用DialogFragment进行展示)
+     * 向 Snackbar 布局中添加View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
      * @param view
      * @param index
      * @return
@@ -1546,7 +1546,7 @@ public final class SnackbarUtils {
 
     /**
      * 获取屏幕的高度(单位 px)
-     * @param context
+     * @param context {@link Context}
      * @return 屏幕高
      */
     private int getScreenHeight(final Context context) {

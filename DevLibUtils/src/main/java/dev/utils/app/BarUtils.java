@@ -496,7 +496,7 @@ public final class BarUtils {
 
     /**
      * 创建对应颜色的状态栏View
-     * @param context
+     * @param context {@link Context}
      * @param color
      * @param alpha
      * @return
@@ -511,7 +511,7 @@ public final class BarUtils {
 
     /**
      * 创建对应透明度的状态栏View
-     * @param context
+     * @param context {@link Context}
      * @param alpha
      * @return
      */

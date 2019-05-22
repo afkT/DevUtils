@@ -524,7 +524,7 @@ public final class IntentUtils {
 //        } else {
 //            activity.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
 //        }
-//        // 跳转到 无线和网络 设置页面(可以设置移动网络,sim卡1, 2的移动网络)
+//        // 跳转到 无线和网络 设置页面(可以设置移动网络, sim卡1, 2 的移动网络)
 //        Intent intent =  new Intent(Settings.ACTION_AIRPLANE_MODE_SETTINGS);
 //        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
         try {

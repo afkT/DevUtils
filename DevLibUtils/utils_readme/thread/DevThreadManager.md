@@ -14,7 +14,7 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| getInstance | 获取 DevThreadManager 实例 ,单例模式 |
+| getInstance | 获取 DevThreadManager 实例 |
 | initConfig | 初始化配置信息 |
 | putConfig | 添加配置信息 |
 | removeConfig | 移除配置信息 |
@@ -28,7 +28,7 @@
 | shutdown | shutdown 会等待所有提交的任务执行完成, 不管是正在执行还是保存在任务队列中的已提交任务 |
 | shutdownNow | shutdownNow会尝试中断正在执行的任务(其主要是中断一些指定方法如sleep方法), 并且停止执行等待队列中提交的任务 |
 | isShutdown | 判断线程池是否已关闭 = isShutDown当调用shutdown()方法后返回为 true |
-| isTerminated | 若关闭后所有任务都已完成,则返回 true. |
+| isTerminated | 若关闭后所有任务都已完成, 则返回 true. |
 | awaitTermination | 请求关闭、发生超时或者当前线程中断 |
 | submit | 提交一个Callable任务用于执行 |
 | invokeAll | 执行给定的任务 |

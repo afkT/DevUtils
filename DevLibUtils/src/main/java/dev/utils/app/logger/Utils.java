@@ -116,7 +116,7 @@ final class Utils {
 
     /**
      * 处理设备信息
-     * @param eHint 错误提示,如获取设备信息失败
+     * @param eHint 错误提示, 如获取设备信息失败
      * @return 拼接后的设备信息字符串
      */
     private static String handlerDeviceInfo(final String eHint) {

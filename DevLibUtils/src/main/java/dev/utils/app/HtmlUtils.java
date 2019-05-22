@@ -47,7 +47,7 @@ public final class HtmlUtils {
      * @param content 给定的字符串
      * @return 最后放在 Html.fromHtml() 内
      * <pre>
-     *      这种方式也可以加粗,但是是所有字体加粗(非部分字体加粗)
+     *      这种方式也可以加粗, 但是是所有字体加粗(非部分字体加粗)
      *      android.text.TextPaint tp = textView.getPaint();
      *      tp.setFakeBoldText(true);
      * </pre>
@@ -57,7 +57,7 @@ public final class HtmlUtils {
     }
 
     /**
-     * 为给定的字符串添加HTML颜色标记,以及加粗
+     * 为给定的字符串添加HTML颜色标记, 以及加粗
      * @param content 给定的字符串
      * @return 最后放在 Html.fromHtml() 内
      */
@@ -79,7 +79,7 @@ public final class HtmlUtils {
      * @param content 给定的字符串
      * @return 最后放在 Html.fromHtml() 内
      * <pre>
-     *      如果需要倾斜自定义角度, 需要自定义TextView,在 onDraw 里面加上
+     *      如果需要倾斜自定义角度, 需要自定义 TextView, 在 onDraw 里面加上
      *      - 倾斜度, 上下左右居中
      *      canvas.rotate(倾斜角度, getMeasuredWidth() / 3, getMeasuredHeight() / 3);
      * </pre>

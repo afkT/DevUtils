@@ -523,7 +523,7 @@ public final class KeyBoardUtils {
 
     /**
      * 修复软键盘内存泄漏 在 Activity.onDestroy() 中使用
-     * @param context
+     * @param context {@link Context}
      */
     public static void fixSoftInputLeaks(final Context context) {
         if (context == null) return;

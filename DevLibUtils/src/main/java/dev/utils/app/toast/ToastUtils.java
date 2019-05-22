@@ -136,7 +136,7 @@ public final class ToastUtils {
 
     /**
      * 显示 LENGTH_SHORT Toast
-     * @param context
+     * @param context {@link Context}
      * @param text
      * @param objs
      */
@@ -157,7 +157,7 @@ public final class ToastUtils {
 
     /**
      * * 显示 LENGTH_SHORT Toast
-     * @param context
+     * @param context {@link Context}
      * @param resId
      * @param objs
      */
@@ -180,7 +180,7 @@ public final class ToastUtils {
 
     /**
      * 显示 LENGTH_LONG Toast
-     * @param context
+     * @param context {@link Context}
      * @param text
      * @param objs
      */
@@ -201,7 +201,7 @@ public final class ToastUtils {
 
     /**
      * 显示 LENGTH_LONG Toast
-     * @param context
+     * @param context {@link Context}
      * @param resId
      * @param objs
      */
@@ -224,7 +224,7 @@ public final class ToastUtils {
 
     /**
      * 显示 Toast
-     * @param context
+     * @param context  {@link Context}
      * @param resId
      * @param duration
      */
@@ -243,7 +243,7 @@ public final class ToastUtils {
 
     /**
      * 显示 Toast
-     * @param context
+     * @param context  {@link Context}
      * @param text
      * @param duration
      */
@@ -270,7 +270,7 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_SHORT Toast
-     * @param context
+     * @param context {@link Context}
      * @param text
      * @param objs
      */
@@ -291,7 +291,7 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_SHORT Toast
-     * @param context
+     * @param context {@link Context}
      * @param resId
      * @param objs
      */
@@ -314,7 +314,7 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_LONG Toast
-     * @param context
+     * @param context {@link Context}
      * @param text
      * @param objs
      */
@@ -335,7 +335,7 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_LONG Toast
-     * @param context
+     * @param context {@link Context}
      * @param resId
      * @param objs
      */
@@ -358,7 +358,7 @@ public final class ToastUtils {
 
     /**
      * 显示新的 Toast
-     * @param context
+     * @param context  {@link Context}
      * @param resId
      * @param duration
      */
@@ -377,7 +377,7 @@ public final class ToastUtils {
 
     /**
      * 显示新的 Toast
-     * @param context
+     * @param context  {@link Context}
      * @param text
      * @param duration
      */
@@ -392,7 +392,7 @@ public final class ToastUtils {
     /**
      * 内部私有方法, 最终显示 Toast
      * @param isSingle
-     * @param context
+     * @param context  {@link Context}
      * @param text
      * @param duration
      * @Toast
@@ -427,7 +427,7 @@ public final class ToastUtils {
     /**
      * 获取一个新的 Text Toast
      * @param isSingle
-     * @param context
+     * @param context  {@link Context}
      * @param text
      * @param duration
      * @return
@@ -541,7 +541,7 @@ public final class ToastUtils {
     /**
      * 显示 View Toast 方法
      * @param isSingle
-     * @param context
+     * @param context  {@link Context}
      * @param view
      * @param duration
      */
@@ -576,7 +576,7 @@ public final class ToastUtils {
     /**
      * 获取一个新的 View Toast
      * @param isSingle
-     * @param context
+     * @param context  {@link Context}
      * @param view
      * @param duration
      * @return
@@ -652,7 +652,7 @@ public final class ToastUtils {
     /**
      * 处理 R.string 资源Toast的格式化
      * @param isSingle 是否单独共用显示一个
-     * @param context
+     * @param context  {@link Context}
      * @param resId
      * @param duration
      * @param objs
@@ -679,7 +679,7 @@ public final class ToastUtils {
 
     /**
      * 处理字符串Toast的格式化
-     * @param context
+     * @param context  {@link Context}
      * @param text
      * @param duration
      * @param objs
@@ -690,7 +690,7 @@ public final class ToastUtils {
         }
         // 防止 Context 为 null
         if (context != null) {
-            // 表示需要格式化字符串,只是为了减少 format 步骤,增加判断, 为 null 不影响
+            // 表示需要格式化字符串, 只是为了减少 format 步骤, 增加判断, 为 null 不影响
             if (objs != null && objs.length != 0) {
                 if (text != null) { // String.format() 中的 objs 可以为 null,但是 text不能为 null
                     try {

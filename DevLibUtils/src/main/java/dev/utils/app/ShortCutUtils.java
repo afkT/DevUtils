@@ -29,7 +29,7 @@ public final class ShortCutUtils {
 
     /**
      * 检测是否存在桌面快捷方式
-     * @param context
+     * @param context {@link Context}
      * @param name
      * @return 是否存在桌面图标
      */
@@ -59,7 +59,7 @@ public final class ShortCutUtils {
 
     /**
      * 为程序创建桌面快捷方式
-     * @param context
+     * @param context   {@link Context}
      * @param className
      * @param name
      * @param res
@@ -84,7 +84,7 @@ public final class ShortCutUtils {
 
     /**
      * 删除程序的快捷方式
-     * @param context
+     * @param context {@link Context}
      * @param name
      */
     public static void delShortcut(final Context context, final String className, final String name) {

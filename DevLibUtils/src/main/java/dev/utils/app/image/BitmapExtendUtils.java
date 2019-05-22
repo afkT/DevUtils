@@ -57,8 +57,8 @@ public final class BitmapExtendUtils {
      *      将这个参数的inJustDecodeBounds属性设置为 true就可以让解析方法禁止为bitmap分配内存
      *      返回值也不再是一个Bitmap对象, 而是 null, 虽然 Bitmap 是 null 了, 但是Options的outWidth、outHeight和outMimeType属性都会被赋值
      * </pre>
-     * @param targetWidth  目标宽度,这里的宽高只是阀值, 实际显示的图片将小于等于这个值
-     * @param targetHeight 目标高度,这里的宽高只是阀值, 实际显示的图片将小于等于这个值
+     * @param targetWidth  目标宽度, 这里的宽高只是阀值, 实际显示的图片将小于等于这个值
+     * @param targetHeight 目标高度, 这里的宽高只是阀值, 实际显示的图片将小于等于这个值
      * @return
      */
     public static BitmapFactory.Options calculateInSampleSize(final BitmapFactory.Options options, final int targetWidth, final int targetHeight) {
@@ -337,7 +337,7 @@ public final class BitmapExtendUtils {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // 质量压缩方法, 这里100表示不压缩, 把压缩后的数据存放到baos中
         int options = 100;
-        while (baos.toByteArray().length / 1024 > size) { // 循环判断如果压缩后图片是否大于100kb,大于继续压缩
+        while (baos.toByteArray().length / 1024 > size) { // 循环判断如果压缩后图片是否大于 100kb, 大于继续压缩
             baos.reset(); // 重置baos即清空baos
             bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos); // 这里压缩options%, 把压缩后的数据存放到baos中
             options -= 10; // 每次都减少10

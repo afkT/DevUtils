@@ -280,7 +280,7 @@ public final class TimerManager {
     }
 
     /**
-     * 创建定时器 => 立即执行,通知默认 what
+     * 创建定时器 => 立即执行、通知默认 what
      * @param handler      通知的 Handler
      * @param period       循环时间 - 每隔多少秒执行一次
      * @param triggerLimit 触发次数上限(-1 表示无限循环)
@@ -291,7 +291,7 @@ public final class TimerManager {
     }
 
     /**
-     * 创建定时器 => 立即执行,无限循环
+     * 创建定时器 => 立即执行、无限循环
      * @param handler 通知的 Handler
      * @param what    通知的 what
      * @param period  循环时间 - 每隔多少秒执行一次
@@ -338,9 +338,9 @@ public final class TimerManager {
         return new TimerTask(handler, what, delay, period, triggerLimit);
     }
 
-    // =====================================
-    // = 定时器抽象类,开放对定时器操作方法 =
-    // =====================================
+    // ======================================
+    // = 定时器抽象类, 开放对定时器操作方法 =
+    // ======================================
 
     /**
      * detail: 定时器抽象类, 主要对内部 Timer 参数进行控制, 以及防止外部直接 new TimerTask, 照成不必要的失误
@@ -397,9 +397,9 @@ public final class TimerManager {
             return this;
         }
 
-        // ===========================
-        // = 定时器任务,功能实现方法 =
-        // ===========================
+        // ============================
+        // = 定时器任务, 功能实现方法 =
+        // ============================
 
         /**
          * 运行定时器

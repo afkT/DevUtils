@@ -10,7 +10,7 @@ import java.util.List;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Wifi信息实体类
+ * detail: Wifi 信息实体类
  * @author Ttt
  */
 public class WifiVo implements Parcelable {
@@ -33,24 +33,24 @@ public class WifiVo implements Parcelable {
     }
 
     /**
-     * 获取Wifi信息
-     * @param sResult 扫描的Wifi信息
+     * 获取 wifi 信息
+     * @param scanResult 扫描的 wifi 信息
      */
-    public static WifiVo createWifiVo(final ScanResult sResult) {
-        if (sResult != null) {
+    public static WifiVo createWifiVo(final ScanResult scanResult) {
+        if (scanResult != null) {
             try {
-                // 防止wifi名长度为0
-                if (sResult.SSID.length() == 0) {
+                // 防止 wifi 名长度为 0
+                if (scanResult.SSID.length() == 0) {
                     return null;
                 }
-                // 初始化wifi信息实体类
+                // 初始化 wifi 信息实体类
                 WifiVo wifiVo = new WifiVo();
-                // 保存ssid
-                wifiVo.wSSID = WifiUtils.formatSSID(sResult.SSID, false);
-                // 保存加密类型
-                wifiVo.wType = WifiUtils.getWifiType(sResult.capabilities);
-                // 保存wifi信号等级
-                wifiVo.wLevel = sResult.level;
+                // ssid
+                wifiVo.wSSID = WifiUtils.formatSSID(scanResult.SSID, false);
+                // 加密类型
+                wifiVo.wType = WifiUtils.getWifiType(scanResult.capabilities);
+                // wifi 信号等级
+                wifiVo.wLevel = scanResult.level;
                 return wifiVo;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "createWifiVo");
@@ -60,7 +60,7 @@ public class WifiVo implements Parcelable {
     }
 
     /**
-     * 扫描Wifi信息
+     * 扫描 wifi 信息
      * @param listWifiVos     数据源
      * @param listScanResults 扫描返回的数据
      */
@@ -68,18 +68,18 @@ public class WifiVo implements Parcelable {
         if (listWifiVos == null || listScanResults == null) return;
         // 清空旧数据
         listWifiVos.clear();
-        // 遍历wifi列表数据
+        // 遍历 wifi 列表数据
         for (int i = 0, len = listScanResults.size(); i < len; i++) {
-            // 如果出现异常, 或者失败, 则无视当前的索引wifi信息
+            // 如果出现异常、或者失败, 则无视当前的索引 wifi 信息
             try {
-                // 获取当前索引的wifi信息
-                ScanResult sResult = listScanResults.get(i);
-                // 防止wifi名长度为0
-                if (sResult.SSID.length() == 0) {
+                // 获取当前索引的 wifi 信息
+                ScanResult scanResult = listScanResults.get(i);
+                // 防止 wifi 名长度为 0
+                if (scanResult.SSID.length() == 0) {
                     continue;
                 }
-                // 保存wifi信息
-                listWifiVos.add(createWifiVo(sResult));
+                // 保存 wifi 信息
+                listWifiVos.add(createWifiVo(scanResult));
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "scanWifiVos");
             }

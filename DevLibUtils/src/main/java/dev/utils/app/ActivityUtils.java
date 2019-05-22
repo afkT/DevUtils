@@ -62,7 +62,7 @@ public final class ActivityUtils {
 
     /**
      * 判断是否存在指定的Activity
-     * @param context
+     * @param context     {@link Context}
      * @param packageName 应用包名
      * @param className   activity 全路径类名
      * @return
@@ -255,7 +255,7 @@ public final class ActivityUtils {
 
     /**
      * 获取系统桌面信息 - packageName
-     * (注: 存在多个桌面时且未指定默认桌面时, 该方法返回Null,使用时需处理这个情况)
+     * (注: 存在多个桌面时且未指定默认桌面时, 该方法返回 Null, 使用时需处理这个情况)
      * @return
      */
     public static String getLauncherCategoryHomeToPackageName() {
@@ -319,7 +319,7 @@ public final class ActivityUtils {
 
     /**
      * 设置跳转动画
-     * @param context
+     * @param context   {@link Context}
      * @param enterAnim
      * @param exitAnim
      * @return

@@ -3,7 +3,7 @@
 #### 使用演示类 [WifiHotUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/wifi/WifiHotUse.java) 介绍了配置参数及使用
 
 > 1. Android 8.0 开始, 热点操作方法, 已经变更 - https://blog.csdn.net/bukker/article/details/78649504
-> 2. Android 7.1 系统以上不支持自动开启热点,需要手动开启热点 - https://www.jianshu.com/p/9dbb02c3e21f
+> 2. Android 7.1 系统以上不支持自动开启热点, 需要手动开启热点 - https://www.jianshu.com/p/9dbb02c3e21f
 
 #### 项目类结构
 
@@ -13,7 +13,7 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| createWifiConfigToAp | 创建Wifi配置信息(无其他操作, 单独返回WifiConfig) => Wifi热点 (支持 无密码/WPA2 PSK) |
+| createWifiConfigToAp | 创建 wifi 配置信息(无其他操作, 单独返回 WifiConfig) => Wifi热点 (支持 无密码/WPA2 PSK) |
 | stratWifiAp | 开启Wifi热点 |
 | closeWifiAp | 关闭Wifi热点 |
 | getWifiApState | 获取Wifi热点状态 |

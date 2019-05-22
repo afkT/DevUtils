@@ -298,7 +298,7 @@ public final class Base64 {
                     if (p >= len) break;
                 }
 
-                // The fast path isn't available -- either we've read a
+                // The fast path isn't available either we've read a
                 // partial tuple, or the next four input bytes aren't all
                 // data, or whatever.  Fall back to the slower state
                 // machine implementation.

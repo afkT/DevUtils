@@ -51,7 +51,7 @@
 | style | 使用单次 Toast 样式配置 |
 | defaultStyle | 使用默认 Toast 样式 |
 | getToastStyle | 获取 Toast 样式配置 |
-| initStyle | 初始化 Toast 样式配置(非单次,一直持续) |
+| initStyle | 初始化 Toast 样式配置(非单次, 一直持续) |
 | initToastFilter | 初始化 Toast 过滤器 |
 | setView | 设置 Toast 显示的View |
 | show | 显示 Toast |

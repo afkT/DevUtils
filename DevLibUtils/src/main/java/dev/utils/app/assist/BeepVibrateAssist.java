@@ -189,7 +189,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 创建 MediaPlayer 对象
-     * @param context {@link Context} Activity
+     * @param context {@link Context}
      * @param rawId   R.raw.id
      * @return {@link MediaPlayer}
      */
@@ -199,7 +199,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 创建 MediaPlayer 对象
-     * @param context    {@link Context} Activity
+     * @param context    {@link Context}
      * @param rawId      R.raw.id
      * @param beepVolume 音量
      * @return {@link MediaPlayer}

@@ -42,7 +42,7 @@ final class ToastFactory {
 
         /**
          * 构造函数
-         * @param context
+         * @param context {@link Context}
          */
         public BaseToast(Context context) {
             super(context);
@@ -107,7 +107,7 @@ final class ToastFactory {
 //
 //        /**
 //         * 获取系统 Toast View
-//         * @param context
+//         * @param context {@link Context}
 //         * @return
 //         */
 //        public static final View getToastSystemView(Context context) {
@@ -116,7 +116,7 @@ final class ToastFactory {
 //
 //        /**
 //         * 设置系统 Toast View
-//         * @param context
+//         * @param context {@link Context}
 //         */
 //        public final BaseToast setToastSystemView(Context context) {
 //            setView(getToastSystemView(context));
@@ -208,7 +208,7 @@ final class ToastFactory {
 
     /**
      * 创建 Toast
-     * @param context
+     * @param context {@link Context}
      * @return
      */
     public static BaseToast create(Context context) {

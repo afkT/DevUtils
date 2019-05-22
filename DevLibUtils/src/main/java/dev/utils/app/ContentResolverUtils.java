@@ -49,8 +49,8 @@ public final class ContentResolverUtils {
 
     /**
      * 添加图片到系统相册(包含原图、相册图, 会存在两张) - 想要一张, 直接调用 notifyMediaStore()
-     * @param file
-     * @param fileName
+     * @param file     文件
+     * @param fileName 文件名
      * @param isNotify
      * @return
      */

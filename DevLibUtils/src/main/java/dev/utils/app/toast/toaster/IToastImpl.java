@@ -106,9 +106,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         }
     }
 
-    // ===============================
-    // = 实现IToast接口,对外公开方法 =
-    // ===============================
+    // ==================================
+    // = 实现 IToast 接口, 对外公开方法 =
+    // ==================================
 
     /**
      * 使用单次 Toast 样式配置
@@ -145,7 +145,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     }
 
     /**
-     * 初始化 Toast 样式配置(非单次,一直持续)
+     * 初始化 Toast 样式配置(非单次, 一直持续)
      * @param toastStyle Toast 样式配置
      */
     @Override
@@ -324,7 +324,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         } else {
             LOCAL_TOAST_STYLES.remove();
         }
-        // 如果存在当前线程的配置信息,则返回
+        // 如果存在当前线程的配置信息, 则返回
         return toastStyle;
     }
 

@@ -76,7 +76,7 @@ public final class IToast {
         IToast.Style getToastStyle();
 
         /**
-         * 初始化 Toast 样式配置(非单次,一直持续)
+         * 初始化 Toast 样式配置(非单次, 一直持续)
          * @param toastStyle Toast 样式配置
          */
         void initStyle(IToast.Style toastStyle);

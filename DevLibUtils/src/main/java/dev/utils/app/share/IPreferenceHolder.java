@@ -14,13 +14,14 @@ class IPreferenceHolder {
     private static final HashMap<String, IPreference> sHashMaps = new HashMap<>();
 
     /**
-     * 初始化
-     * @param context
+     * 获取 IPreference (SharedPreferences) 操作接口
+     * @param context {@link Context}
+     * @return {@link IPreference}
      */
     public static IPreference getPreference(final Context context) {
-        // 判断是否为存在对应的持有类
+        // 判断是否存在对应的持有类
         IPreference ipref = sHashMaps.get(null);
-        // 判断是否为存在
+        // 判断是否存在
         if (ipref != null) {
             return ipref;
         }
@@ -31,14 +32,15 @@ class IPreferenceHolder {
     }
 
     /**
-     * 初始化
-     * @param context
-     * @param fileName
+     * 获取 IPreference (SharedPreferences) 操作接口
+     * @param context  {@link Context}
+     * @param fileName 文件名
+     * @return {@link IPreference}
      */
     public static IPreference getPreference(final Context context, final String fileName) {
-        // 判断是否为存在对应的持有类
+        // 判断是否存在对应的持有类
         IPreference ipref = sHashMaps.get(fileName);
-        // 判断是否为存在
+        // 判断是否存在
         if (ipref != null) {
             return ipref;
         }
@@ -49,16 +51,17 @@ class IPreferenceHolder {
     }
 
     /**
-     * 初始化
-     * @param context
-     * @param fileName
-     * @param mode
+     * 获取 IPreference (SharedPreferences) 操作接口
+     * @param context  {@link Context}
+     * @param fileName 文件名
+     * @param mode     SharedPreferences 操作模式
+     * @return {@link IPreference}
      */
     public static IPreference getPreference(final Context context, final String fileName, final int mode) {
         String key = fileName + "_" + mode;
-        // 判断是否为存在对应的持有类
+        // 判断是否存在对应的持有类
         IPreference ipref = sHashMaps.get(key);
-        // 判断是否为存在
+        // 判断是否存在
         if (ipref != null) {
             return ipref;
         }
@@ -67,5 +70,4 @@ class IPreferenceHolder {
         sHashMaps.put(key, ipref);
         return ipref;
     }
-
 }

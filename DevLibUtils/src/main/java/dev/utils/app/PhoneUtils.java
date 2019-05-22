@@ -581,7 +581,7 @@ public final class PhoneUtils {
         // 3.生成查询地址
         Uri raw_uri = Uri.parse("content://com.android.contacts/raw_contacts");
         Uri date_uri = Uri.parse("content://com.android.contacts/data");
-        // 4.查询操作,先查询 raw_contacts,查询 contact_id
+        // 4.查询操作, 先查询 raw_contacts,查询 contact_id
         // projection : 查询的字段
         Cursor cursor = resolver.query(raw_uri, new String[]{"contact_id"}, null, null, null);
         try {
@@ -591,7 +591,7 @@ public final class PhoneUtils {
                     // 6.获取查询的数据
                     String contact_id = cursor.getString(0);
                     // cursor.getString(cursor.getColumnIndex("contact_id")); // getColumnIndex
-                    // : 查询字段在 cursor 中索引值,一般都是用在查询字段比较多的时候
+                    // : 查询字段在 cursor 中索引值, 一般都是用在查询字段比较多的时候
                     // 判断 contact_id 是否为空
                     if (!TextUtils.isEmpty(contact_id)) { // null   ""
                         // 7.根据 contact_id 查询 view_data 表中的数据

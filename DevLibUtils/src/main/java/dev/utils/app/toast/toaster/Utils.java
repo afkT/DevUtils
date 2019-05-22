@@ -92,7 +92,7 @@ final class Utils {
     /**
      * 检查通知栏权限有没有开启
      * 参考SupportCompat包中的: NotificationManagerCompat.from(context).areNotificationsEnabled();
-     * @param context
+     * @param context {@link Context}
      * @return
      */
     public static boolean isNotificationEnabled(final Context context) {
@@ -136,7 +136,7 @@ final class Utils {
      */
     public static WindowManager getWindowManager(final Activity activity) {
         // 如果使用的 WindowManager 对象不是当前 Activity 创建的, 则会抛出异常
-        // android.view.WindowManager$BadTokenException: Unable to add window -- token null is not for an application
+        // android.view.WindowManager$BadTokenException: Unable to add window - token null is not for an application
         if (activity != null) {
             try {
                 return ((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE));
@@ -165,7 +165,7 @@ final class Utils {
 
     /**
      * 获取 Drawable
-     * @param context
+     * @param context {@link Context}
      * @param id
      * @return
      */
@@ -195,7 +195,7 @@ final class Utils {
 
     /**
      * .9 图片着色
-     * @param context
+     * @param context   {@link Context}
      * @param tintColor
      * @return
      */

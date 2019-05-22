@@ -27,7 +27,7 @@ public final class FlashlightUtils {
     private static final FlashlightUtils INSTANCE = new FlashlightUtils();
 
     /**
-     * 获取 FlashlightUtils 实例 ,单例模式
+     * 获取 FlashlightUtils 实例
      * @return
      */
     public static FlashlightUtils getInstance() {

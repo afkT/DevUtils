@@ -24,7 +24,7 @@ public final class KeyguardUtils {
     private static KeyguardUtils sInstance;
 
     /**
-     * 获取 KeyguardUtils 实例 ,单例模式
+     * 获取 KeyguardUtils 实例
      */
     public static KeyguardUtils getInstance() {
         if (sInstance == null) {

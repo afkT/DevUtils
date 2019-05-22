@@ -48,7 +48,7 @@ final class DevCacheUtils {
         if (strs != null && strs.length == 2) {
             // 保存的时间
             String saveTimeStr = strs[0];
-            // 判断是否 0 开头,是的话裁剪
+            // 判断是否 0 开头, 是的话裁剪
             while (saveTimeStr.startsWith("0")) {
                 saveTimeStr = saveTimeStr.substring(1);
             }

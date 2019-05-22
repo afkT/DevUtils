@@ -88,7 +88,7 @@ public class ImageProcessor {
 
     /**
      * 将给定资源ID的Drawable转换成Bitmap
-     * @param context
+     * @param context {@link Context}
      * @param resId   Drawable资源文件的ID
      * @return 新的Bitmap
      */

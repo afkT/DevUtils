@@ -38,7 +38,7 @@ public final class WifiUtils {
 
     // 日志 TAG
     private static final String TAG = WifiUtils.class.getSimpleName();
-    // 定义WifiManager对象
+    // WifiManager 对象
     private WifiManager mWifiManager;
 
     // ========
@@ -61,10 +61,10 @@ public final class WifiUtils {
 
     /**
      * 构造器(只能进行初始化WifiManager操作, 其他靠方法定义)
-     * @param context
+     * @param context {@link Context}
      */
     public WifiUtils(final Context context) {
-        // 初始化WifiManager对象
+        // 初始化 WifiManager 对象
         mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
     }
 
@@ -212,7 +212,7 @@ public final class WifiUtils {
     public static String getSSID(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return null;
         try {
-            // 获取SSID,并进行处理
+            // 获取 SSID, 并进行处理
             return formatSSID(wifiInfo.getSSID(), false);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSSID");
@@ -225,7 +225,7 @@ public final class WifiUtils {
      */
     public static String getSSID() {
         try {
-            // 初始化WifiManager对象
+            // 初始化 WifiManager 对象
             WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             // 获取当前连接的wifi
             WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
@@ -248,7 +248,7 @@ public final class WifiUtils {
         // 自动去掉SSID
         if (ssid != null && ssid.startsWith("\"") && ssid.endsWith("\"")) {
             try {
-                // 裁剪连接的ssid,并返回
+                // 裁剪连接的 ssid, 并返回
                 return ssid.substring(1, ssid.length() - 1);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "formatSSID");
@@ -450,7 +450,7 @@ public final class WifiUtils {
     public static final int SECURITY_EAP = 3;
 
     /**
-     * 获取Wifi配置,加密类型
+     * 获取Wifi配置, 加密类型
      * @param wifiConfig
      * @return
      */
@@ -537,7 +537,7 @@ public final class WifiUtils {
     public static boolean delWifiConfig(final String ssid) {
         if (ssid == null) return false;
         try {
-            // 初始化WifiManager对象
+            // 初始化 WifiManager 对象
             WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             // 获取wifi 连接过的配置信息
             List<WifiConfiguration> listWifiConfigs = mWifiManager.getConfiguredNetworks();
@@ -595,11 +595,11 @@ public final class WifiUtils {
         try {
             // 正常的Wifi连接配置
             WifiConfiguration connWifiConfig = null;
-            // 如果需要通过静态ip方式连接,则进行设置
+            // 如果需要通过静态 ip 方式连接, 则进行设置
             if (isStatic && !TextUtils.isEmpty(ip)) {
                 // 创建Wifi静态IP连接配置
                 WifiConfiguration staticWifiConfig = setStaticWifiConfig(createWifiConfig(ssid, pwd, wType, true), ip);
-                // 如果静态ip方式,配置失败,则初始化正常连接的Wifi配置
+                // 如果静态ip方式, 配置失败, 则初始化正常连接的Wifi配置
                 if (staticWifiConfig == null) {
                     // 创建正常的配置信息
                     connWifiConfig = createWifiConfig(ssid, pwd, wType, true);
@@ -713,7 +713,7 @@ public final class WifiUtils {
             wifiConfig.allowedPairwiseCiphers.clear();
             wifiConfig.allowedProtocols.clear();
             wifiConfig.priority = 0;
-            /** 设置连接的SSID */
+            // 设置连接的 SSID
             if (isHandler) {
                 wifiConfig.SSID = formatSSID(ssid, true);
             } else {

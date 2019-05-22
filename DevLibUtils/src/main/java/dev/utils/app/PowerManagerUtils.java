@@ -26,7 +26,7 @@ public final class PowerManagerUtils {
     private static PowerManagerUtils sInstance;
 
     /**
-     * 获取 PowerManagerUtils 实例 ,单例模式
+     * 获取 PowerManagerUtils 实例
      */
     public static PowerManagerUtils getInstance() {
         if (sInstance == null) {

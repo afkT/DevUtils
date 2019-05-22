@@ -26,7 +26,7 @@ public final class AlarmUtils {
 
     /**
      * 开启定时器
-     * @param context
+     * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param pendingIntent   响应动作
      */
@@ -48,7 +48,7 @@ public final class AlarmUtils {
 
     /**
      * 关闭定时器
-     * @param context
+     * @param context       {@link Context}
      * @param pendingIntent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
@@ -63,7 +63,7 @@ public final class AlarmUtils {
 
     /**
      * 开启轮询服务
-     * @param context
+     * @param context         {@link Context}
      * @param triggerAtMillis
      * @param clazz
      * @param action
@@ -82,7 +82,7 @@ public final class AlarmUtils {
 
     /**
      * 停止轮询服务
-     * @param context
+     * @param context {@link Context}
      * @param clazz
      * @param action
      */
@@ -100,7 +100,7 @@ public final class AlarmUtils {
 
     /**
      * 开启轮询广播
-     * @param context
+     * @param context         {@link Context}
      * @param triggerAtMillis
      * @param intent
      */
@@ -116,7 +116,7 @@ public final class AlarmUtils {
 
     /**
      * 停止轮询广播
-     * @param context
+     * @param context {@link Context}
      * @param intent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
@@ -131,7 +131,7 @@ public final class AlarmUtils {
 
     /**
      * 开启轮询 Activity
-     * @param context
+     * @param context         {@link Context}
      * @param triggerAtMillis
      * @param intent
      */
@@ -147,7 +147,7 @@ public final class AlarmUtils {
 
     /**
      * 停止轮询 Activity
-     * @param context
+     * @param context {@link Context}
      * @param intent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)

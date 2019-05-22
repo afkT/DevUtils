@@ -41,7 +41,7 @@ public final class FileRecordUtils {
 
     // App 版本(如 1.0.01) 显示给用户看的
     private static String APP_VERSION_NAME = "";
-    // android:versionCode 整数值, 代表应用程序代码的相对版本,也就是版本更新过多少次(不显示给用户看)
+    // android:versionCode 整数值, 代表应用程序代码的相对版本, 也就是版本更新过多少次(不显示给用户看)
     private static String APP_VERSION_CODE = "";
     // 设备信息
     private static String DEVICE_INFO_STR = null;
@@ -115,7 +115,7 @@ public final class FileRecordUtils {
 
     /**
      * 处理设备信息
-     * @param eHint 错误提示,如获取设备信息失败
+     * @param eHint 错误提示, 如获取设备信息失败
      * @return 拼接后的设备信息字符串
      */
     private static String handlerDeviceInfo(final String eHint) {

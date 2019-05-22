@@ -94,7 +94,7 @@ public final class BitmapUtils {
 
     /**
      * .9 图片着色
-     * @param context
+     * @param context   {@link Context}
      * @param tintColor
      * @param id
      * @return
@@ -126,7 +126,7 @@ public final class BitmapUtils {
 
     /**
      * 获取 Drawable
-     * @param context
+     * @param context {@link Context}
      * @param id
      * @return
      */
@@ -145,7 +145,7 @@ public final class BitmapUtils {
 
     /**
      * 通过Resources获取Bitmap
-     * @param context
+     * @param context {@link Context}
      * @param resId
      * @return
      */
@@ -161,7 +161,7 @@ public final class BitmapUtils {
 
     /**
      * 通过Resources获取Drawable
-     * @param context
+     * @param context {@link Context}
      * @param resId
      * @return
      */

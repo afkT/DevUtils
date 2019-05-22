@@ -63,13 +63,13 @@ public final class NetWorkUtils {
                 ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
                 // 反射获取方法
                 Method method = cManager.getClass().getMethod("getMobileDataEnabled");
-                // 调用方法,获取状态
+                // 调用方法, 获取状态
                 mState = (Boolean) method.invoke(cManager);
             } else {
                 TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
                 // 反射获取方法
                 Method method = tm.getClass().getDeclaredMethod("getDataEnabled");
-                // 调用方法,获取状态
+                // 调用方法, 获取状态
                 mState = (Boolean) method.invoke(tm);
             }
             // 返回移动网络开关状态

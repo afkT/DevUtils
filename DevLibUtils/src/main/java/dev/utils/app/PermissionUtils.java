@@ -138,7 +138,7 @@ public final class PermissionUtils {
 
     /**
      * 判断是否授予了权限
-     * @param context
+     * @param context    {@link Context}
      * @param permission
      * @return
      */
@@ -310,7 +310,7 @@ public final class PermissionUtils {
 
         /**
          * 跳转 PermissionActivity 请求权限 内部方法
-         * @param context
+         * @param context {@link Context}
          */
         protected static void start(final Context context) {
             Intent starter = new Intent(context, PermissionActivity.class);
