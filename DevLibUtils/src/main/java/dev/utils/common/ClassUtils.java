@@ -36,6 +36,7 @@ public final class ClassUtils {
     /**
      * 根据类获取对象, 不再必须一个无参构造
      * @param clazz {@link Class}
+     * @param <T>  泛型
      * @return 初始化后的对象
      */
     public static <T> T newInstance(final Class<T> clazz) {

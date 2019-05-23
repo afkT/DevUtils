@@ -818,6 +818,7 @@ public final class CollectionUtils {
     /**
      * 清空集合全部数据
      * @param collection {@link Collection}
+     * @param <T>  泛型
      */
     public static <T> void clearAll(final Collection<T> collection) {
         if (collection != null) {

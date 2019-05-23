@@ -123,6 +123,7 @@ public final class JSONObjectUtils {
      * </pre>
      * @param object
      * @param type   JSONObject.class || JSONArray.class || JSONTokener.class
+     * @param <T>  泛型
      * @return
      */
     public static <T> T fromJson(final Object object, final Class<T> type) {
