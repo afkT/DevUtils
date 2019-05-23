@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
+import android.support.annotation.RequiresApi;
 import android.text.Html;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -19,12 +22,28 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *      获取字体信息 Paint.FontMetrics
  *      @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
+ *      @see <a href="http://www.cnblogs.com/tianzhijiexian/p/4297664.html"/>
  *      将字画在矩形背景的正中位置
  *      @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
- *      控制文字水平间距:
+ *      TextView 设置行间距、行高, 以及字间距
+ *      @see <a href="https://blog.csdn.net/shanshan_1117/article/details/79564271"/>
+ *      <p></p>
+ *      设置文字水平间距: {@link TextViewUtils#setLetterSpacing(View, float)}
  *      android:letterSpacing
- *      控制文字行间距:
+ *      设置文字行间距(行高): {@link TextViewUtils#setLineSpacing(View, float)}、{@link TextViewUtils#setLineSpacingAndMultiplier(View, float, float)}
  *      android:lineSpacingExtra
+ *      android:lineSpacingMultiplier
+ *      <p></p>
+ *      setPaintFlags:
+ *      Paint.ANTI_ALIAS_FLAG 抗锯齿标志
+ *      Paint.FILTER_BITMAP_FLAG 使位图过滤的位掩码标志
+ *      Paint.DITHER_FLAG 使位图进行有利的抖动的位掩码标志
+ *      Paint.UNDERLINE_TEXT_FLAG 下划线
+ *      Paint.STRIKE_THRU_TEXT_FLAG 中划线
+ *      Paint.FAKE_BOLD_TEXT_FLAG 加粗
+ *      Paint.LINEAR_TEXT_FLAG 使文本平滑线性扩展的油漆标志
+ *      Paint.SUBPIXEL_TEXT_FLAG 使文本的亚像素定位的绘图标志
+ *      Paint.EMBEDDED_BITMAP_TEXT_FLAG 绘制文本时允许使用位图字体的绘图标志
  * </pre>
  */
 public final class TextViewUtils {
@@ -191,10 +210,8 @@ public final class TextViewUtils {
      * @param isBold {@code true} yes, {@code false} no
      */
     public static void setBold(final View view, final boolean isBold) {
-        if (view != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setTypeface(Typeface.defaultFromStyle(isBold ? Typeface.BOLD : Typeface.NORMAL));
-            }
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setTypeface(Typeface.defaultFromStyle(isBold ? Typeface.BOLD : Typeface.NORMAL));
         }
     }
 
@@ -205,10 +222,8 @@ public final class TextViewUtils {
      * @param isBold   {@code true} yes, {@code false} no
      */
     public static void setBold(final View view, final Typeface typeface, final boolean isBold) {
-        if (view != null && typeface != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
-            }
+        if (view != null && typeface != null && view instanceof TextView) {
+            ((TextView) view).setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
         }
     }
 
@@ -218,10 +233,8 @@ public final class TextViewUtils {
      * @param color R.color.id
      */
     public static void setTextColor(final View view, @ColorInt final int color) {
-        if (view != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setTextColor(color);
-            }
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setTextColor(color);
         }
     }
 
@@ -313,10 +326,8 @@ public final class TextViewUtils {
      * @param typeface {@link Typeface} 字体样式
      */
     public static void setTypeface(final View view, final Typeface typeface) {
-        if (view != null && typeface != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setTypeface(typeface);
-            }
+        if (view != null && typeface != null && view instanceof TextView) {
+            ((TextView) view).setTypeface(typeface);
         }
     }
 
@@ -327,9 +338,155 @@ public final class TextViewUtils {
      * @param style    样式
      */
     public static void setTypeface(final View view, final Typeface typeface, final int style) {
-        if (view != null && typeface != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setTypeface(typeface, style);
+        if (view != null && typeface != null && view instanceof TextView) {
+            ((TextView) view).setTypeface(typeface, style);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置字体大小 - px 像素
+     * @param textView {@link TextView}
+     * @param size     字体大小
+     */
+    public static void setTextSizeByPx(final TextView textView, final float size) {
+        if (textView != null) {
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+        }
+    }
+
+    /**
+     * 设置字体大小 - sp 缩放像素
+     * @param textView {@link TextView}
+     * @param size     字体大小
+     */
+    public static void setTextSizeBySp(final TextView textView, final float size) {
+        if (textView != null) {
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        }
+    }
+
+    /**
+     * 设置字体大小 - dp 与设备无关的像素
+     * @param textView {@link TextView}
+     * @param size     字体大小
+     */
+    public static void setTextSizeByDp(final TextView textView, final float size) {
+        if (textView != null) {
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, size);
+        }
+    }
+
+    /**
+     * 设置字体大小 - inches 英寸
+     * @param textView {@link TextView}
+     * @param size     字体大小
+     */
+    public static void setTextSizeByIn(final TextView textView, final float size) {
+        if (textView != null) {
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_IN, size);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置字体大小 - px 像素
+     * @param view {@link TextView}
+     * @param size 字体大小
+     */
+    public static void setTextSizeByPx(final View view, final float size) {
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+        }
+    }
+
+    /**
+     * 设置字体大小 - sp 缩放像素
+     * @param view {@link TextView}
+     * @param size 字体大小
+     */
+    public static void setTextSizeBySp(final View view, final float size) {
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        }
+    }
+
+    /**
+     * 设置字体大小 - dp 与设备无关的像素
+     * @param view {@link TextView}
+     * @param size 字体大小
+     */
+    public static void setTextSizeByDp(final View view, final float size) {
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_DIP, size);
+        }
+    }
+
+    /**
+     * 设置字体大小 - inches 英寸
+     * @param view {@link TextView}
+     * @param size 字体大小
+     */
+    public static void setTextSizeByIn(final View view, final float size) {
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_IN, size);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置字体大小
+     * @param textView {@link TextView}
+     * @param unit     参数类型
+     * @param size     字体大小
+     */
+    public static void setTextSize(final TextView textView, final int unit, final float size) {
+        if (textView != null) {
+            textView.setTextSize(unit, size);
+        }
+    }
+
+    /**
+     * 设置字体大小
+     * @param view {@link TextView}
+     * @param unit 参数类型
+     * @param size 字体大小
+     */
+    public static void setTextSize(final View view, final int unit, final float size) {
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setTextSize(unit, size);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置多个 TextView 字体大小
+     * @param views TextView[]
+     * @param unit  参数类型
+     * @param size  字体大小
+     */
+    public static void setTextSizes(final TextView[] views, final int unit, final float size) {
+        if (views != null && views.length > 0) {
+            for (TextView view : views) {
+                setTextSize(view, unit, size);
+            }
+        }
+    }
+
+    /**
+     * 设置多个 TextView 字体大小
+     * @param views View(TextView)[]
+     * @param unit  参数类型
+     * @param size  字体大小
+     */
+    public static void setTextSizes(final View[] views, final int unit, final float size) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                setTextSize(view, unit, size);
             }
         }
     }
@@ -351,10 +508,8 @@ public final class TextViewUtils {
      * @param view {@link TextView}
      */
     public static void clearFlags(final View view) {
-        if (view != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setPaintFlags(0);
-            }
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setPaintFlags(0);
         }
     }
 
@@ -455,6 +610,136 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 设置文字水平间距
+     * @param textView      {@link TextView}
+     * @param letterSpacing 文字水平间距值
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void setLetterSpacing(final TextView textView, final float letterSpacing) {
+        if (textView != null) {
+            textView.setLetterSpacing(letterSpacing);
+        }
+    }
+
+    /**
+     * 设置文字水平间距
+     * <pre>
+     *      android:letterSpacing
+     * </pre>
+     * @param view          {@link TextView}
+     * @param letterSpacing 文字水平间距值
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void setLetterSpacing(final View view, final float letterSpacing) {
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setLetterSpacing(letterSpacing);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置文字行间距(行高)
+     * @param textView    {@link TextView}
+     * @param lineSpacing 文字行间距(行高), android:lineSpacingExtra
+     */
+    public static void setLineSpacing(final TextView textView, final float lineSpacing) {
+        setLineSpacingAndMultiplier(textView, lineSpacing, 1.0f);
+    }
+
+    /**
+     * 设置文字行间距(行高)、行间距倍数
+     * @param textView    {@link TextView}
+     * @param lineSpacing 文字行间距(行高), android:lineSpacingExtra
+     * @param multiplier  行间距倍数, android:lineSpacingMultiplier
+     */
+    public static void setLineSpacingAndMultiplier(final TextView textView, final float lineSpacing, final float multiplier) {
+        if (textView != null) {
+            textView.setLineSpacing(lineSpacing, multiplier);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置文字行间距(行高)
+     * @param view        {@link TextView}
+     * @param lineSpacing 文字行间距(行高), android:lineSpacingExtra
+     */
+    public static void setLineSpacing(final View view, final float lineSpacing) {
+        setLineSpacingAndMultiplier(view, lineSpacing, 1.0f);
+    }
+
+    /**
+     * 设置文字行间距(行高)、行间距倍数
+     * @param view        {@link TextView}
+     * @param lineSpacing 文字行间距(行高), android:lineSpacingExtra
+     * @param multiplier  行间距倍数, android:lineSpacingMultiplier
+     */
+    public static void setLineSpacingAndMultiplier(final View view, final float lineSpacing, final float multiplier) {
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setLineSpacing(lineSpacing, multiplier);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置字体水平方向的缩放
+     * @param textView {@link TextView}
+     * @param size     缩放比例
+     */
+    public static void setTextScaleX(final TextView textView, final float size) {
+        if (textView != null) {
+            textView.setTextScaleX(size);
+        }
+    }
+
+    /**
+     * 设置字体水平方向的缩放
+     * <pre>
+     *      android:textScaleX
+     * </pre>
+     * @param view {@link TextView}
+     * @param size 缩放比例
+     */
+    public static void setTextScaleX(final View view, final float size) {
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setTextScaleX(size);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置是否保留字体留白间隙区域
+     * @param textView   {@link TextView}
+     * @param includepad 是否保留字体留白间隙区域
+     */
+    public static void setLetterSpacing(final TextView textView, final boolean includepad) {
+        if (textView != null) {
+            textView.setIncludeFontPadding(includepad);
+        }
+    }
+
+    /**
+     * 设置是否保留字体留白间隙区域
+     * <pre>
+     *      android:includeFontPadding
+     *      https://blog.csdn.net/bdmh/article/details/78110557
+     * </pre>
+     * @param view       {@link TextView}
+     * @param includepad 是否保留字体留白间隙区域
+     */
+    public static void setIncludeFontPadding(final View view, final boolean includepad) {
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setIncludeFontPadding(includepad);
+        }
+    }
+
+    // =
+
+    /**
      * 设置文本
      * @param textView {@link TextView}
      * @param text     TextView text
@@ -471,10 +756,8 @@ public final class TextViewUtils {
      * @param text TextView text
      */
     public static void setText(final View view, final String text) {
-        if (view != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setText(text);
-            }
+        if (view != null && view instanceof TextView) {
+            ((TextView) view).setText(text);
         }
     }
 
@@ -571,10 +854,8 @@ public final class TextViewUtils {
      * @param content Html content
      */
     public static void setHtmlText(final View view, final String content) {
-        if (view != null && content != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setText(Html.fromHtml(content));
-            }
+        if (view != null && content != null && view instanceof TextView) {
+            ((TextView) view).setText(Html.fromHtml(content));
         }
     }
 

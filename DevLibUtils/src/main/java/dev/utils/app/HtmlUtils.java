@@ -13,9 +13,9 @@ public final class HtmlUtils {
     }
 
     /**
-     * 设置内容, 最终做处理
-     * @param textView
-     * @param content
+     * 设置 Html 内容
+     * @param textView    {@link TextView}
+     * @param content Html content
      */
     public static void setHtmlText(final TextView textView, final String content) {
         if (textView != null && content != null) {
