@@ -36,5 +36,5 @@ public enum LogLevel {
     /**
      * 异常级别 e, wtf
      */
-    ERROR;
+    ERROR
 }

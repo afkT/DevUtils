@@ -226,9 +226,9 @@ public final class LoggerUse {
             DevLogger.e(e, "发生异常");
         }
         // 占位符(其他类型, 一样)
-        DevLogger.d("%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
+        DevLogger.d("%s测试占位符数据 - d%s", "1.", " - Format");
         // =
-        DevLogger.dTag(tag, "%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
+        DevLogger.dTag(tag, "%s测试占位符数据 - d%s", "1.", " - Format");
 
 
         // = 使用自定义临时配置 =

@@ -59,7 +59,7 @@ public final class ClickUtils {
                             bounds.right += right;
 
                             TouchDelegate touchDelegate = new TouchDelegate(bounds, view);
-                            if (View.class.isInstance(view.getParent())) {
+                            if (view.getParent() instanceof View) {
                                 ((View) view.getParent()).setTouchDelegate(touchDelegate);
                             }
                         } catch (Exception e) {

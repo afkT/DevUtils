@@ -42,7 +42,7 @@ public final class AppCommonUtils {
         // 获取随机数
         String random2 = (900000 + new Random().nextInt(10000)) + "";
         // 获取当前时间
-        String cTime = Long.toString(System.currentTimeMillis()) + random1 + random2;
+        String cTime = System.currentTimeMillis() + random1 + random2;
         // 生成唯一随机uuid  cTime.hashCode(), random1.hashCode() | random2.hashCode()
         UUID randomUUID = new UUID(cTime.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
         // 获取uid

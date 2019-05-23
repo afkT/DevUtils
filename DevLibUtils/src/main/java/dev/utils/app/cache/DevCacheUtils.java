@@ -56,9 +56,7 @@ final class DevCacheUtils {
             long saveTime = Long.valueOf(saveTimeStr); // 保存时间
             long deleteAfter = Long.valueOf(strs[1]); // 过期时间
             // 判断当前时间是否大于 保存时间 + 过期时间
-            if (System.currentTimeMillis() > saveTime + deleteAfter * 1000) {
-                return true;
-            }
+            return System.currentTimeMillis() > saveTime + deleteAfter * 1000;
         }
         return false;
     }

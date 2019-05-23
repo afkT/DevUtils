@@ -263,11 +263,7 @@ public final class ConvertUtils {
         if (str == null) return defaultValue;
         try {
             // 判断是否 0
-            if (str.equalsIgnoreCase("true") || str.equalsIgnoreCase("1")) {
-                return true;
-            } else {
-                return false;
-            }
+            return str.equalsIgnoreCase("true") || str.equalsIgnoreCase("1");
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toBoolean");
         }

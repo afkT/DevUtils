@@ -520,10 +520,7 @@ public final class DateUtils {
      */
     public static boolean isLeapYear(final int year) {
         // 判断是否闰年
-        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-            return true;
-        }
-        return false;
+        return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
     }
 
     /**
@@ -1033,11 +1030,7 @@ public final class DateUtils {
         Calendar end = Calendar.getInstance();
         end.setTime(endTime);
         // 判断是否在 begin 之后的时间, 并且在 end 之前的时间
-        if (now.after(begin) && now.before(end)) {
-            return true;
-        } else {
-            return false;
-        }
+        return now.after(begin) && now.before(end);
     }
 
     // =

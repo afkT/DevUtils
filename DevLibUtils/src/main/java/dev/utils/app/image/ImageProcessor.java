@@ -457,9 +457,9 @@ public class ImageProcessor {
                         pixG = Color.green(pixColor);
                         pixB = Color.blue(pixColor);
 
-                        newR = newR + (int) (pixR * gauss[idx]);
-                        newG = newG + (int) (pixG * gauss[idx]);
-                        newB = newB + (int) (pixB * gauss[idx]);
+                        newR = newR + (pixR * gauss[idx]);
+                        newG = newG + (pixG * gauss[idx]);
+                        newB = newB + (pixB * gauss[idx]);
                         idx++;
                     }
                 }

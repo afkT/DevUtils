@@ -297,9 +297,7 @@ public final class NotificationUtils {
          */
         public boolean isEmpty() {
             if (vibrates != null) {
-                if (vibrates.length != 0) {
-                    return false;
-                }
+                return vibrates.length == 0;
             }
             return true;
         }

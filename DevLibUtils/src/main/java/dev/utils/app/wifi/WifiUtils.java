@@ -403,12 +403,10 @@ public final class WifiUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isConnNull(final String ssid) {
+        // <unknown ssid>
         if (ssid == null) {
             return true;
-        } else if (ssid.indexOf("unknown") != -1) { // <unknown ssid>
-            return true;
-        }
-        return false;
+        } else return ssid.indexOf("unknown") != -1;
     }
 
     /**
@@ -936,7 +934,7 @@ public final class WifiUtils {
             throw new NullPointerException();
 
         Class routeInfoClass = Class.forName("android.net.RouteInfo");
-        Constructor routeInfoConstructor = routeInfoClass.getConstructor(new Class[]{InetAddress.class});
+        Constructor routeInfoConstructor = routeInfoClass.getConstructor(InetAddress.class);
         Object routeInfo = routeInfoConstructor.newInstance(gateway);
         ArrayList mRoutes = (ArrayList) getDeclaredField(linkProperties, "mRoutes");
         mRoutes.clear();
@@ -956,7 +954,7 @@ public final class WifiUtils {
             throw new NullPointerException();
 
         Class laClass = Class.forName("android.net.LinkAddress");
-        Constructor laConstructor = laClass.getConstructor(new Class[]{InetAddress.class, int.class});
+        Constructor laConstructor = laClass.getConstructor(InetAddress.class, int.class);
         Object linkAddress = laConstructor.newInstance(address, prefixLength);
         ArrayList mLinkAddresses = (ArrayList) getDeclaredField(linkProperties, "mLinkAddresses");
         mLinkAddresses.clear();
@@ -982,7 +980,7 @@ public final class WifiUtils {
         }
         // 初始化 LinkAddress 并设置 IP 地址
         Class laClass = Class.forName("android.net.LinkAddress");
-        Constructor laConstructor = laClass.getConstructor(new Class[]{InetAddress.class, int.class});
+        Constructor laConstructor = laClass.getConstructor(InetAddress.class, int.class);
         Object linkAddress = laConstructor.newInstance(InetAddress.getByName(ip), prefixLength);
         // 设置地址 IP 地址 ipAddress
         setValueField(staticIpConfigClass, linkAddress, "ipAddress");

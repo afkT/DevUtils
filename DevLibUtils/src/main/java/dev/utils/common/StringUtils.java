@@ -889,15 +889,12 @@ public final class StringUtils {
      */
     public static boolean isChinese(final char ch) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(ch);
-        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
+        return ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
                 || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
                 || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
                 || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
                 || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
-                || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {
-            return true;
-        }
-        return false;
+                || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS;
     }
 
     // ==================
@@ -912,7 +909,7 @@ public final class StringUtils {
     public static String upperFirstLetter(final String str) {
         if (isEmpty(str) || !Character.isLowerCase(str.charAt(0))) return str;
         try {
-            return String.valueOf((char) (str.charAt(0) - 32)) + str.substring(1);
+            return (char) (str.charAt(0) - 32) + str.substring(1);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "upperFirstLetter");
             return str;
@@ -927,7 +924,7 @@ public final class StringUtils {
     public static String lowerFirstLetter(final String str) {
         if (isEmpty(str) || !Character.isUpperCase(str.charAt(0))) return str;
         try {
-            return String.valueOf((char) (str.charAt(0) + 32)) + str.substring(1);
+            return (char) (str.charAt(0) + 32) + str.substring(1);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "lowerFirstLetter");
             return str;

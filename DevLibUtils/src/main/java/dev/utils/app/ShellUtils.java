@@ -175,10 +175,7 @@ public final class ShellUtils {
          * @return
          */
         public boolean isSuccess2() {
-            if (result == SUCCESS && (errorMsg == null || errorMsg.length() == 0)) {
-                return true;
-            }
-            return false;
+            return result == SUCCESS && (errorMsg == null || errorMsg.length() == 0);
         }
 
         /**
@@ -186,10 +183,7 @@ public final class ShellUtils {
          * @return
          */
         public boolean isSuccess3() {
-            if (result == SUCCESS && successMsg != null && successMsg.length() != 0) {
-                return true;
-            }
-            return false;
+            return result == SUCCESS && successMsg != null && successMsg.length() != 0;
         }
 
         /**
@@ -199,9 +193,7 @@ public final class ShellUtils {
          */
         public boolean isSuccess4(final String contains) {
             if (result == SUCCESS && successMsg != null && successMsg.length() != 0) {
-                if (contains != null && contains.length() != 0 && successMsg.toLowerCase().contains(contains)) {
-                    return true;
-                }
+                return contains != null && contains.length() != 0 && successMsg.toLowerCase().contains(contains);
             }
             return false;
         }

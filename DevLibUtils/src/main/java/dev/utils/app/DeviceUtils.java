@@ -468,8 +468,8 @@ public final class DeviceUtils {
         try {
             Class cl = Class.forName("android.os.SystemProperties");
             Object invoker = cl.newInstance();
-            Method m = cl.getMethod("get", new Class[]{String.class, String.class});
-            Object result = m.invoke(invoker, new Object[]{"gsm.version.baseband", "no message"});
+            Method m = cl.getMethod("get", String.class, String.class);
+            Object result = m.invoke(invoker, "gsm.version.baseband", "no message");
             Version = (String) result;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBaseband_Ver");

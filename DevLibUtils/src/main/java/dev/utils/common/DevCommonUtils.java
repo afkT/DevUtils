@@ -122,10 +122,8 @@ public final class DevCommonUtils {
     public static boolean isHttpRes(final String str) {
         if (!isEmpty(str)) {
             // 属于第一位开始, 才是属于网络资源
-            if (str.toLowerCase().startsWith("http:") ||
-                    str.toLowerCase().startsWith("https:")) {
-                return true;
-            }
+            return str.toLowerCase().startsWith("http:") ||
+                    str.toLowerCase().startsWith("https:");
         }
         return false;
     }
@@ -216,7 +214,7 @@ public final class DevCommonUtils {
         // 获取随机数
         String random2 = (900000 + new Random().nextInt(10000)) + "";
         // 获取当前时间
-        String cTime = Long.toString(System.currentTimeMillis()) + random1 + random2;
+        String cTime = System.currentTimeMillis() + random1 + random2;
         // 生成唯一随机 uuid  cTime.hashCode(), random1.hashCode() | random2.hashCode()
         UUID randomUUID = new UUID(cTime.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
         return randomUUID;

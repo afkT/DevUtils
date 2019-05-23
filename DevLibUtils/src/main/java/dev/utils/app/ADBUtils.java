@@ -322,10 +322,7 @@ public final class ADBUtils {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, params, filePath), isRoot);
         // 判断是否成功
-        if (result.isSuccess4("success")) {
-            return true;
-        }
-        return false;
+        return result.isSuccess4("success");
     }
 
     /**
@@ -410,10 +407,7 @@ public final class ADBUtils {
         // 执行 shell cmd
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, isRoot);
         // 判断是否成功
-        if (result.isSuccess4("success")) {
-            return true;
-        }
-        return false;
+        return result.isSuccess4("success");
     }
 
     /**
@@ -805,11 +799,7 @@ public final class ADBUtils {
                     for (int i = length - 2; i >= 0; i--) {
                         String data = lists.get(i);
                         // 判断是否该页面结尾
-                        if (data.endsWith(activity)) {
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        return data.endsWith(activity);
                     }
                 }
             } catch (Exception e) {
@@ -847,11 +837,7 @@ public final class ADBUtils {
                         for (int i = length - 2; i >= 0; i--) {
                             String data = lists.get(i);
                             // 判断是否该页面结尾
-                            if (data.endsWith(activity)) {
-                                return true;
-                            } else {
-                                return false;
-                            }
+                            return data.endsWith(activity);
                         }
                     }
                 } catch (Exception e) {

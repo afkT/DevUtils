@@ -291,7 +291,7 @@ public final class ZipUtils {
         File file = new File(destDir, entryName);
         files.add(file);
         if (entry.isDirectory()) {
-            if (!createOrExistsDir(file)) return false;
+            return createOrExistsDir(file);
         } else {
             if (!createOrExistsFile(file)) return false;
             InputStream is = null;

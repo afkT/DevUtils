@@ -625,8 +625,8 @@ public final class AppUtils {
      */
     public static boolean isAppRoot() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("echo root", true);
-        if (result.result == 0) return true; // result.errorMsg => 失败错误消息
-        return false;
+        // result.errorMsg => 失败错误消息
+        return result.result == 0;
     }
 
     /**
