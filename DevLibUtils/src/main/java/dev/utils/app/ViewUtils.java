@@ -35,8 +35,8 @@ public final class ViewUtils {
 
     /**
      * 获取 Context
-     * @param view
-     * @return
+     * @param view {@link View}
+     * @return {@link Context}
      */
     public static Context getContext(final View view) {
         if (view != null) {
@@ -46,19 +46,41 @@ public final class ViewUtils {
     }
 
     /**
+     * 获取 View 的 Context (Activity)
+     * @param view {@link View}
+     * @return {@link Activity}
+     */
+    public static Activity getActivity(final View view) {
+        try {
+            Context context = view.getContext();
+            while (context instanceof ContextWrapper) {
+                if (context instanceof Activity) {
+                    return (Activity) context;
+                }
+                context = ((ContextWrapper) context).getBaseContext();
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getActivity");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * 获取 View
-     * @param resource
-     * @return
+     * @param resource R.layout.id
+     * @return {@link View}
      */
     public static View getView(@LayoutRes final int resource) {
         return getView(resource, null);
     }
 
     /**
-     * 获取View
-     * @param resource
-     * @param root
-     * @return
+     * 获取 View
+     * @param resource R.layout.id
+     * @param root     {@link ViewGroup}
+     * @return {@link View}
      */
     public static View getView(@LayoutRes final int resource, final ViewGroup root) {
         try {
@@ -73,7 +95,7 @@ public final class ViewUtils {
 
     /**
      * 判断 View 是否为 null
-     * @param view
+     * @param view {@link View}
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final View view) {
@@ -82,7 +104,7 @@ public final class ViewUtils {
 
     /**
      * 判断 View 是否为 null
-     * @param views
+     * @param views View[]
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final View... views) {
@@ -100,8 +122,8 @@ public final class ViewUtils {
 
     /**
      * 判断 View 是否显示
-     * @param view
-     * @return
+     * @param view {@link View}
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isVisibility(final View view) {
         return isVisibility(view, true);
@@ -109,23 +131,21 @@ public final class ViewUtils {
 
     /**
      * 判断 View 是否显示
-     * @param view
-     * @param defaultValue
-     * @return
+     * @param view         {@link View}
+     * @param defaultValue view 为 null 默认值
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isVisibility(final View view, final boolean defaultValue) {
         if (view != null) {
-            // 判断是否显示
             return (view.getVisibility() == View.VISIBLE);
         }
-        // 出现意外返回默认值
         return defaultValue;
     }
 
     /**
      * 判断 View 是否都显示显示
-     * @param views
-     * @return
+     * @param views View[]
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isVisibilitys(final View... views) {
         if (views != null && views.length != 0) {
@@ -143,8 +163,8 @@ public final class ViewUtils {
 
     /**
      * 判断 View 是否隐藏占位
-     * @param view
-     * @return
+     * @param view {@link View}
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isVisibilityIN(final View view) {
         return isVisibilityIN(view, false);
@@ -152,23 +172,21 @@ public final class ViewUtils {
 
     /**
      * 判断 View 是否隐藏占位
-     * @param view
-     * @param defaultValue
-     * @return
+     * @param view         {@link View}
+     * @param defaultValue view 为 null 默认值
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isVisibilityIN(final View view, final boolean defaultValue) {
         if (view != null) {
-            // 判断是否显示
             return (view.getVisibility() == View.INVISIBLE);
         }
-        // 出现意外返回默认值
         return defaultValue;
     }
 
     /**
      * 判断 View 是否隐藏
-     * @param view
-     * @return
+     * @param view {@link View}
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isVisibilityGone(final View view) {
         return isVisibilityGone(view, false);
@@ -176,16 +194,14 @@ public final class ViewUtils {
 
     /**
      * 判断 View 是否隐藏
-     * @param view
-     * @param defaultValue
-     * @return
+     * @param view         {@link View}
+     * @param defaultValue view 为 null 默认值
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isVisibilityGone(final View view, final boolean defaultValue) {
         if (view != null) {
-            // 判断是否显示
             return (view.getVisibility() == View.GONE);
         }
-        // 出现意外返回默认值
         return defaultValue;
     }
 
@@ -193,8 +209,8 @@ public final class ViewUtils {
 
     /**
      * 获取显示的状态 (View.VISIBLE : View.GONE)
-     * @param isVisibility
-     * @return
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
+     * @return 显示的状态 {@link View#VISIBLE}、{@link View#GONE}
      */
     public static int getVisibility(final boolean isVisibility) {
         return isVisibility ? View.VISIBLE : View.GONE;
@@ -202,8 +218,8 @@ public final class ViewUtils {
 
     /**
      * 获取显示的状态 (View.VISIBLE : View.INVISIBLE)
-     * @param isVisibility
-     * @return
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.INVISIBLE
+     * @return 显示的状态 {@link View#VISIBLE}、{@link View#INVISIBLE}
      */
     public static int getVisibilityIN(final boolean isVisibility) {
         return isVisibility ? View.VISIBLE : View.INVISIBLE;
@@ -212,9 +228,10 @@ public final class ViewUtils {
     // =
 
     /**
-     * 设置View显示状态
-     * @param isVisibility
-     * @param view
+     * 设置 View 显示的状态
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
+     * @param view         {@link View}
+     * @return isVisibility
      */
     public static boolean setVisibility(final boolean isVisibility, final View view) {
         if (view != null) {
@@ -224,9 +241,10 @@ public final class ViewUtils {
     }
 
     /**
-     * 设置View显示的状态
-     * @param isVisibility
-     * @param view
+     * 设置 View 显示的状态
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param view         {@link View}
+     * @return isVisibility 是否传入 {@link View#VISIBLE}
      */
     public static boolean setVisibility(final int isVisibility, final View view) {
         if (view != null) {
@@ -238,9 +256,10 @@ public final class ViewUtils {
     // =
 
     /**
-     * 设置View 显示的状态
-     * @param isVisibility
-     * @param views
+     * 设置 View 显示的状态
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
+     * @param views        View[]
+     * @return isVisibility 是否传入 {@link View#VISIBLE}
      */
     public static boolean setVisibilitys(final boolean isVisibility, final View... views) {
         return setVisibilitys(getVisibility(isVisibility), views);
@@ -248,8 +267,9 @@ public final class ViewUtils {
 
     /**
      * 设置View 显示的状态
-     * @param isVisibility
-     * @param views
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return isVisibility 是否传入 {@link View#VISIBLE}
      */
     public static boolean setVisibilitys(final int isVisibility, final View... views) {
         if (views != null && views.length != 0) {
@@ -267,8 +287,8 @@ public final class ViewUtils {
 
     /**
      * 切换 View 显示的状态
-     * @param view
-     * @param views
+     * @param view  {@link View}
+     * @param views View[]
      */
     public static void toggleVisibilitys(final View view, final View... views) {
         if (view != null) {
@@ -279,8 +299,8 @@ public final class ViewUtils {
 
     /**
      * 切换 View 显示的状态
-     * @param viewArys
-     * @param views
+     * @param viewArys View[]
+     * @param views    View[]
      */
     public static void toggleVisibilitys(final View[] viewArys, final View... views) {
         toggleVisibilitys(View.GONE, viewArys, views);
@@ -288,9 +308,9 @@ public final class ViewUtils {
 
     /**
      * 切换 View 显示的状态
-     * @param viewArys
-     * @param status
-     * @param views
+     * @param status   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param viewArys View[]
+     * @param views    View[]
      */
     public static void toggleVisibilitys(final int status, final View[] viewArys, final View... views) {
         // 默认前面显示
@@ -303,9 +323,9 @@ public final class ViewUtils {
 
     /**
      * 反转 View 显示的状态
-     * @param status
-     * @param viewArys
-     * @param views
+     * @param status   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param viewArys View[]
+     * @param views    View[]
      */
     public static void reverseVisibilitys(final int status, final View[] viewArys, final View... views) {
         reverseVisibilitys(status == View.VISIBLE, viewArys, views);
@@ -313,9 +333,9 @@ public final class ViewUtils {
 
     /**
      * 反转 View 显示的状态
-     * @param isVisibility
-     * @param viewArys
-     * @param views
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
+     * @param viewArys     View[]
+     * @param views        View[]
      */
     public static void reverseVisibilitys(final boolean isVisibility, final View[] viewArys, final View... views) {
         // 默认处理第一个数组
@@ -326,9 +346,9 @@ public final class ViewUtils {
 
     /**
      * 反转 View 显示的状态
-     * @param status
-     * @param view
-     * @param views
+     * @param status {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param view   {@link View}
+     * @param views  View[]
      */
     public static void reverseVisibilitys(final int status, final View view, final View... views) {
         reverseVisibilitys(status == View.VISIBLE, view, views);
@@ -336,9 +356,9 @@ public final class ViewUtils {
 
     /**
      * 反转 View 显示的状态
-     * @param isVisibility
-     * @param view
-     * @param views
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
+     * @param view         {@link View}
+     * @param views        View[]
      */
     public static void reverseVisibilitys(final boolean isVisibility, final View view, final View... views) {
         // 默认处理第一个 View
@@ -350,11 +370,11 @@ public final class ViewUtils {
     // =
 
     /**
-     * 切换View状态
+     * 切换 View 状态
      * @param isChange     是否改变
-     * @param isVisibility 是否显示
-     * @param view         需要判断的View
-     * @return
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param view         {@link View}
+     * @return isChange
      */
     public static boolean toogleView(final boolean isChange, final int isVisibility, final View view) {
         if (isChange && view != null) {
@@ -366,19 +386,19 @@ public final class ViewUtils {
     // =
 
     /**
-     * 设置View 图片资源
-     * @param draw
-     * @param views
+     * 设置 View 图片资源
+     * @param draw  R.drawable.id
+     * @param views View[]
      */
     public static void setViewImageRes(final int draw, final ImageView... views) {
         setViewImageRes(draw, View.VISIBLE, views);
     }
 
     /**
-     * 设置View 图片资源
-     * @param draw
-     * @param isVisibility
-     * @param views
+     * 设置 View 图片资源
+     * @param draw         R.drawable.id
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
      */
     public static void setViewImageRes(final int draw, final int isVisibility, final ImageView... views) {
         if (views != null && views.length != 0) {
@@ -398,16 +418,16 @@ public final class ViewUtils {
         }
     }
 
-    // ====================
-    // = 初始化View操作等 =
-    // ====================
+    // ======================
+    // = 初始化 View 操作等 =
+    // ======================
 
     /**
-     * 初始化View
-     * @param view
-     * @param id
+     * 初始化 View
+     * @param view {@link View}
+     * @param id   R.id.viewId
      * @param <T>  泛型
-     * @return
+     * @return {@link View}
      */
     public static <T extends View> T findViewById(final View view, final int id) {
         try {
@@ -419,11 +439,11 @@ public final class ViewUtils {
     }
 
     /**
-     * 初始化View
-     * @param window
-     * @param id
+     * 初始化 View
+     * @param window {@link Window}
+     * @param id     R.id.viewId
      * @param <T>    泛型
-     * @return
+     * @return {@link View}
      */
     public static <T extends View> T findViewById(final Window window, final int id) {
         try {
@@ -435,11 +455,11 @@ public final class ViewUtils {
     }
 
     /**
-     * 初始化View
-     * @param activity
-     * @param id
+     * 初始化 View
+     * @param activity {@link Activity}
+     * @param id       R.id.viewId
      * @param <T>      泛型
-     * @return
+     * @return {@link View}
      */
     public static <T extends View> T findViewById(final Activity activity, final int id) {
         try {
@@ -451,8 +471,8 @@ public final class ViewUtils {
     }
 
     /**
-     * 把自身从父View中移除
-     * @param view
+     * 把自身从父 View 中移除
+     * @param view {@link View}
      */
     public static void removeSelfFromParent(final View view) {
         if (view != null) {
@@ -465,10 +485,10 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断触点是否落在该View上
-     * @param ev
-     * @param view
-     * @return
+     * 判断触点是否落在该 View 上
+     * @param ev   {@link MotionEvent}
+     * @param view 待判断 {@link View}
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isTouchInView(final MotionEvent ev, final View view) {
         int[] vLoc = new int[2];
@@ -481,8 +501,8 @@ public final class ViewUtils {
 
     /**
      * View 改变请求
-     * @param view
-     * @param isAll
+     * @param view  {@link View}
+     * @param isAll 是否全部父布局 View 都请求
      */
     public static void requestLayoutParent(final View view, final boolean isAll) {
         ViewParent parent = view.getParent();
@@ -499,7 +519,7 @@ public final class ViewUtils {
 
     /**
      * 测量 View
-     * @param view
+     * @param view {@link View}
      */
     public static void measureView(final View view) {
         try {
@@ -522,9 +542,9 @@ public final class ViewUtils {
     }
 
     /**
-     * 获取view的宽度
-     * @param view
-     * @return
+     * 获取 View 的宽度
+     * @param view {@link View}
+     * @return View 的宽度
      */
     public static int getViewWidth(final View view) {
         measureView(view);
@@ -532,33 +552,98 @@ public final class ViewUtils {
     }
 
     /**
-     * 获取view的高度
-     * @param view
-     * @return
+     * 获取 View 的高度
+     * @param view {@link View}
+     * @return View 的高度
      */
     public static int getViewHeight(final View view) {
         measureView(view);
         return view.getMeasuredHeight();
     }
 
+    // ===============
+    // = 设置 Margin =
+    // ===============
+
     /**
-     * 获取 View 的 Context (Activity)
-     * @param view
-     * @return
+     * 设置 Margin 边距
+     * @param view      {@link View}
+     * @param leftRight Left and Right Margin
+     * @param topBottom Top and bottom Margin
+     * @return {@code true} success, {@code false} fail
      */
-    public static Activity getActivity(final View view) {
-        try {
-            Context context = view.getContext();
-            while (context instanceof ContextWrapper) {
-                if (context instanceof Activity) {
-                    return (Activity) context;
+    public static boolean setMargin(View view, int leftRight, int topBottom) {
+        return setMargin(view, leftRight, topBottom, leftRight, topBottom);
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param view   {@link View}
+     * @param margin Margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMargin(View view, int margin) {
+        return setMargin(view, margin, margin, margin, margin);
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param view   {@link View}
+     * @param left   Left Margin
+     * @param top    Top Margin
+     * @param right  Right Margin
+     * @param bottom Bottom Margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMargin(View view, int left, int top, int right, int bottom) {
+        if (view != null) {
+            // 判断是否属于 ViewGroup.MarginLayoutParams
+            if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                try {
+                    // 设置边距
+                    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(left, top, right, bottom);
+                } catch (Exception e) {
                 }
-                context = ((ContextWrapper) context).getBaseContext();
             }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getActivity");
         }
-        return null;
+        return false;
+    }
+
+    // =
+
+    /**
+     * 设置 Margin 边距
+     * @param views     View[]
+     * @param leftRight Left and Right Margin
+     * @param topBottom Top and bottom Margin
+     */
+    public static void setMargin(View[] views, int leftRight, int topBottom) {
+        setMargin(views, leftRight, topBottom, leftRight, topBottom);
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param views  View[]
+     * @param margin Margin
+     */
+    public static void setMargin(View[] views, int margin) {
+        setMargin(views, margin, margin, margin, margin);
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param views  View[]
+     * @param left   Left Margin
+     * @param top    Top Margin
+     * @param right  Right Margin
+     * @param bottom Bottom Margin
+     */
+    public static void setMargin(View[] views, int left, int top, int right, int bottom) {
+        if (views != null && views.length != 0) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                setMargin(views[i], left, top, right, bottom);
+            }
+        }
     }
 
     // ============
@@ -566,17 +651,19 @@ public final class ViewUtils {
     // ============
 
     /**
-     * 计算ListView Item 高度
-     * @param listView
+     * 计算 ListView Item 高度
+     * @param listView {@link ListView}
+     * @return ListView Item 高度
      */
     public static int calcListViewItemHeight(final ListView listView) {
         return calcListViewItemHeight(listView, false);
     }
 
     /**
-     * 计算ListView Item 高度
-     * @param listView
+     * 计算 ListView Item 高度
+     * @param listView {@link ListView}
      * @param isSet    是否 setLayoutParams
+     * @return ListView Item 高度
      */
     public static int calcListViewItemHeight(final ListView listView, final boolean isSet) {
         // 获取 Adapter
@@ -612,9 +699,10 @@ public final class ViewUtils {
     // ============
 
     /**
-     * 计算GridView Item 高度
-     * @param gridView
-     * @param numColumns
+     * 计算 GridView Item 高度
+     * @param gridView   {@link GridView}
+     * @param numColumns GridView 行数
+     * @return GridView Item 高度
      */
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     public static int calcGridViewItemHeight(final GridView gridView, final int numColumns) {
@@ -622,10 +710,11 @@ public final class ViewUtils {
     }
 
     /**
-     * 计算GridView Item 高度
-     * @param gridView
-     * @param numColumns
+     * 计算 GridView Item 高度
+     * @param gridView   {@link GridView}
+     * @param numColumns GridView 行数
      * @param isSet      是否 setLayoutParams
+     * @return GridView Item 高度
      */
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     public static int calcGridViewItemHeight(final GridView gridView, final int numColumns, final boolean isSet) {
@@ -668,7 +757,7 @@ public final class ViewUtils {
         // int hSpaec = gridView.getHorizontalSpacing();
         // 每行之间的间隔 -
         int vSpace = gridView.getVerticalSpacing();
-        // 最后获取整个gridView完整显示需要的高度
+        // 最后获取整个 GridView 完整显示需要的高度
         totalHeight += (vSpace * (count - 1));
         // 判断是否需要设置高度
         if (isSet) {
@@ -683,10 +772,10 @@ public final class ViewUtils {
     // =
 
     /**
-     * 获取单独一个Item 高度
-     * @param absViews
-     * @param pos
-     * @return
+     * 获取单独一个 Item 高度
+     * @param absViews {@link AbsListView}
+     * @param pos      索引
+     * @return Item 高度
      */
     public static int getItemHeighet(final AbsListView absViews, final int pos) {
         if (absViews != null) {
@@ -696,11 +785,11 @@ public final class ViewUtils {
     }
 
     /**
-     * 获取单独一个Item 高度
-     * @param absViews
-     * @param pos
-     * @param defaultHeight
-     * @return
+     * 获取单独一个 Item 高度
+     * @param absViews      {@link AbsListView}
+     * @param pos           索引
+     * @param defaultHeight 默认高度
+     * @return Item 高度
      */
     public static int getItemHeighet(final AbsListView absViews, final int pos, final int defaultHeight) {
         if (absViews != null) {
@@ -710,29 +799,29 @@ public final class ViewUtils {
     }
 
     /**
-     * 获取单独一个Item 高度
-     * @param listAdapter
-     * @param absViews
-     * @param pos
-     * @return
+     * 获取单独一个 Item 高度
+     * @param listAdapter {@link ListAdapter}
+     * @param absViews    {@link AbsListView}
+     * @param pos         索引
+     * @return Item 高度
      */
     public static int getItemHeighet(final ListAdapter listAdapter, final AbsListView absViews, final int pos) {
         return getItemHeighet(listAdapter, absViews, pos, 0);
     }
 
     /**
-     * 获取单独一个Item 高度
-     * @param listAdapter
-     * @param absViews
-     * @param pos
-     * @param defaultHeight
-     * @return
+     * 获取单独一个 Item 高度
+     * @param listAdapter   {@link ListAdapter}
+     * @param absViews      {@link AbsListView}
+     * @param pos           索引
+     * @param defaultHeight 默认高度
+     * @return Item 高度
      */
     public static int getItemHeighet(final ListAdapter listAdapter, final AbsListView absViews, final int pos, final int defaultHeight) {
         try {
-            // listAdapter.getCount()返回数据项的数目
+            // listAdapter.getCount() 返回数据项的数目
             View listItem = listAdapter.getView(pos, null, absViews);
-            // 计算子项View 的宽高
+            // 计算子项 View 的宽高
             listItem.measure(0, 0);
             // 统计所有子项的总高度
             return listItem.getMeasuredHeight();
