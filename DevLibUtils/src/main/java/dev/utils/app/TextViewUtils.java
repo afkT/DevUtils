@@ -21,6 +21,10 @@ import dev.utils.LogPrintUtils;
  *      @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
  *      将字画在矩形背景的正中位置
  *      @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
+ *      控制文字水平间距:
+ *      android:letterSpacing
+ *      控制文字行间距:
+ *      android:lineSpacingExtra
  * </pre>
  */
 public final class TextViewUtils {
@@ -32,9 +36,9 @@ public final class TextViewUtils {
     private static final String TAG = TextViewUtils.class.getSimpleName();
 
     /**
-     * 获取TextView
-     * @param view
-     * @return
+     * 获取 TextView
+     * @param view {@link View}
+     * @return {@link TextView}
      */
     public static TextView getTextView(final View view) {
         if (view != null) {
@@ -48,9 +52,10 @@ public final class TextViewUtils {
     }
 
     /**
-     * 获取TextView
-     * @param view
-     * @return
+     * 获取 TextView
+     * @param view {@link View}
+     * @param id   R.id.viewId
+     * @return {@link TextView}
      */
     public static TextView getTextView(final View view, @IdRes final int id) {
         if (view != null) {
@@ -64,9 +69,10 @@ public final class TextViewUtils {
     }
 
     /**
-     * 获取TextView
-     * @param activity
-     * @return
+     * 获取 TextView
+     * @param activity {@link Activity}
+     * @param id       R.id.viewId
+     * @return {@link TextView}
      */
     public static TextView getTextView(final Activity activity, @IdRes final int id) {
         if (activity != null) {
@@ -80,9 +86,10 @@ public final class TextViewUtils {
     }
 
     /**
-     * 获取TextView
-     * @param window
-     * @return
+     * 获取 TextView
+     * @param window {@link Window}
+     * @param id     R.id.viewId
+     * @return {@link TextView}
      */
     public static TextView getTextView(final Window window, @IdRes final int id) {
         if (window != null) {
@@ -99,8 +106,8 @@ public final class TextViewUtils {
 
     /**
      * 获取文本
-     * @param textView
-     * @return
+     * @param textView {@link TextView}
+     * @return {@link TextView#getText()}
      */
     public static String getText(final TextView textView) {
         if (textView != null) {
@@ -111,8 +118,8 @@ public final class TextViewUtils {
 
     /**
      * 获取文本
-     * @param view
-     * @return
+     * @param view {@link TextView}
+     * @return {@link TextView#getText()}
      */
     public static String getText(final View view) {
         if (view != null) {
@@ -127,8 +134,9 @@ public final class TextViewUtils {
 
     /**
      * 获取文本
-     * @param view
-     * @return
+     * @param view {@link View}
+     * @param id   R.id.viewId
+     * @return {@link TextView#getText()}
      */
     public static String getText(final View view, @IdRes final int id) {
         if (view != null) {
@@ -143,8 +151,9 @@ public final class TextViewUtils {
 
     /**
      * 获取文本
-     * @param activity
-     * @return
+     * @param activity {@link Activity}
+     * @param id       R.id.viewId
+     * @return {@link TextView#getText()}
      */
     public static String getText(final Activity activity, @IdRes final int id) {
         if (activity != null) {
@@ -159,8 +168,9 @@ public final class TextViewUtils {
 
     /**
      * 获取文本
-     * @param window
-     * @return
+     * @param window {@link Window}
+     * @param id     R.id.viewId
+     * @return {@link TextView#getText()}
      */
     public static String getText(final Window window, @IdRes final int id) {
         if (window != null) {
@@ -177,9 +187,8 @@ public final class TextViewUtils {
 
     /**
      * 设置是否加粗
-     * @param view
-     * @param isBold
-     * @return
+     * @param view   {@link TextView}
+     * @param isBold {@code true} yes, {@code false} no
      */
     public static void setBold(final View view, final boolean isBold) {
         if (view != null) {
@@ -191,10 +200,9 @@ public final class TextViewUtils {
 
     /**
      * 设置是否加粗
-     * @param view
-     * @param typeface
-     * @param isBold
-     * @return
+     * @param view     {@link TextView}
+     * @param typeface {@link Typeface} 字体样式
+     * @param isBold   {@code true} yes, {@code false} no
      */
     public static void setBold(final View view, final Typeface typeface, final boolean isBold) {
         if (view != null && typeface != null) {
@@ -206,8 +214,8 @@ public final class TextViewUtils {
 
     /**
      * 设置字体颜色
-     * @param view
-     * @param color
+     * @param view  {@link TextView}
+     * @param color R.color.id
      */
     public static void setTextColor(final View view, @ColorInt final int color) {
         if (view != null) {
@@ -219,8 +227,8 @@ public final class TextViewUtils {
 
     /**
      * 设置字体颜色
-     * @param textView
-     * @param color
+     * @param textView {@link TextView}
+     * @param color    R.color.id
      */
     public static void setTextColor(final TextView textView, @ColorInt final int color) {
         if (textView != null) {
@@ -230,9 +238,9 @@ public final class TextViewUtils {
 
     /**
      * 设置字体颜色
-     * @param view
-     * @param id
-     * @param color
+     * @param view  {@link View}
+     * @param id    R.id.viewId
+     * @param color R.color.id
      */
     public static void setTextColor(final View view, @IdRes final int id, @ColorInt final int color) {
         if (view != null) {
@@ -246,9 +254,9 @@ public final class TextViewUtils {
 
     /**
      * 设置字体颜色
-     * @param activity
-     * @param id
-     * @param color
+     * @param activity {@link Activity}
+     * @param id       R.id.viewId
+     * @param color    R.color.id
      */
     public static void setTextColor(final Activity activity, @IdRes final int id, @ColorInt final int color) {
         if (activity != null) {
@@ -262,9 +270,9 @@ public final class TextViewUtils {
 
     /**
      * 设置字体颜色
-     * @param window
-     * @param id
-     * @param color
+     * @param window {@link Window}
+     * @param id     R.id.viewId
+     * @param color  R.color.id
      */
     public static void setTextColor(final Window window, @IdRes final int id, @ColorInt final int color) {
         if (window != null) {
@@ -278,50 +286,50 @@ public final class TextViewUtils {
 
     /**
      * 设置字体
-     * @param textView
-     * @param tf
+     * @param textView {@link TextView}
+     * @param typeface {@link Typeface} 字体样式
      */
-    public static void setTypeface(final TextView textView, final Typeface tf) {
-        if (textView != null && tf != null) {
-            textView.setTypeface(tf);
+    public static void setTypeface(final TextView textView, final Typeface typeface) {
+        if (textView != null && typeface != null) {
+            textView.setTypeface(typeface);
         }
     }
 
     /**
      * 设置字体
-     * @param textView
-     * @param tf
-     * @param style
+     * @param textView {@link TextView}
+     * @param typeface {@link Typeface} 字体样式
+     * @param style    样式
      */
-    public static void setTypeface(final TextView textView, final Typeface tf, final int style) {
-        if (textView != null && tf != null) {
-            textView.setTypeface(tf, style);
+    public static void setTypeface(final TextView textView, final Typeface typeface, final int style) {
+        if (textView != null && typeface != null) {
+            textView.setTypeface(typeface, style);
         }
     }
 
     /**
      * 设置字体
-     * @param view
-     * @param tf
+     * @param view     {@link TextView}
+     * @param typeface {@link Typeface} 字体样式
      */
-    public static void setTypeface(final View view, final Typeface tf) {
-        if (view != null && tf != null) {
+    public static void setTypeface(final View view, final Typeface typeface) {
+        if (view != null && typeface != null) {
             if (view instanceof TextView) {
-                ((TextView) view).setTypeface(tf);
+                ((TextView) view).setTypeface(typeface);
             }
         }
     }
 
     /**
      * 设置字体
-     * @param view
-     * @param tf
-     * @param style
+     * @param view     {@link TextView}
+     * @param typeface {@link Typeface} 字体样式
+     * @param style    样式
      */
-    public static void setTypeface(final View view, final Typeface tf, final int style) {
-        if (view != null && tf != null) {
+    public static void setTypeface(final View view, final Typeface typeface, final int style) {
+        if (view != null && typeface != null) {
             if (view instanceof TextView) {
-                ((TextView) view).setTypeface(tf, style);
+                ((TextView) view).setTypeface(typeface, style);
             }
         }
     }
@@ -330,7 +338,7 @@ public final class TextViewUtils {
 
     /**
      * 清空 flags
-     * @param textView
+     * @param textView {@link TextView}
      */
     public static void clearFlags(final TextView textView) {
         if (textView != null) {
@@ -340,7 +348,7 @@ public final class TextViewUtils {
 
     /**
      * 清空 flags
-     * @param view
+     * @param view {@link TextView}
      */
     public static void clearFlags(final View view) {
         if (view != null) {
@@ -350,9 +358,11 @@ public final class TextViewUtils {
         }
     }
 
+    // =
+
     /**
      * 设置下划线
-     * @param textView
+     * @param textView {@link TextView}
      */
     public static void setUnderlineText(final TextView textView) {
         setUnderlineText(textView, true);
@@ -360,8 +370,8 @@ public final class TextViewUtils {
 
     /**
      * 设置下划线并加清晰
-     * @param textView
-     * @param isAntiAlias
+     * @param textView    {@link TextView}
+     * @param isAntiAlias 是否消除锯齿
      */
     public static void setUnderlineText(final TextView textView, final boolean isAntiAlias) {
         if (textView != null) {
@@ -374,7 +384,7 @@ public final class TextViewUtils {
 
     /**
      * 设置下划线
-     * @param view
+     * @param view {@link TextView}
      */
     public static void setUnderlineText(final View view) {
         setUnderlineText(view, true);
@@ -382,8 +392,8 @@ public final class TextViewUtils {
 
     /**
      * 设置下划线并加清晰
-     * @param view
-     * @param isAntiAlias
+     * @param view        {@link TextView}
+     * @param isAntiAlias 是否消除锯齿
      */
     public static void setUnderlineText(final View view, final boolean isAntiAlias) {
         if (view != null && view instanceof TextView) {
@@ -399,7 +409,7 @@ public final class TextViewUtils {
 
     /**
      * 设置中划线
-     * @param textView
+     * @param textView {@link TextView}
      */
     public static void setStrikeThruText(final TextView textView) {
         setStrikeThruText(textView, true);
@@ -407,7 +417,8 @@ public final class TextViewUtils {
 
     /**
      * 设置中划线并加清晰
-     * @param textView
+     * @param textView    {@link TextView}
+     * @param isAntiAlias 是否消除锯齿
      */
     public static void setStrikeThruText(final TextView textView, final boolean isAntiAlias) {
         if (textView != null) {
@@ -420,7 +431,7 @@ public final class TextViewUtils {
 
     /**
      * 设置中划线
-     * @param view
+     * @param view {@link TextView}
      */
     public static void setStrikeThruText(final View view) {
         setStrikeThruText(view, true);
@@ -428,7 +439,8 @@ public final class TextViewUtils {
 
     /**
      * 设置中划线并加清晰
-     * @param view
+     * @param view        {@link TextView}
+     * @param isAntiAlias 是否消除锯齿
      */
     public static void setStrikeThruText(final View view, final boolean isAntiAlias) {
         if (view != null && view instanceof TextView) {
@@ -443,39 +455,39 @@ public final class TextViewUtils {
     // =
 
     /**
-     * 设置内容
-     * @param textView
-     * @param content
+     * 设置文本
+     * @param textView {@link TextView}
+     * @param text     TextView text
      */
-    public static void setText(final TextView textView, final String content) {
-        if (textView != null && content != null) {
-            textView.setText(content);
+    public static void setText(final TextView textView, final String text) {
+        if (textView != null) {
+            textView.setText(text);
         }
     }
 
     /**
-     * 设置内容
-     * @param view
-     * @param content
+     * 设置文本
+     * @param view {@link TextView}
+     * @param text TextView text
      */
-    public static void setText(final View view, final String content) {
-        if (view != null && content != null) {
+    public static void setText(final View view, final String text) {
+        if (view != null) {
             if (view instanceof TextView) {
-                ((TextView) view).setText(content);
+                ((TextView) view).setText(text);
             }
         }
     }
 
     /**
-     * 设置内容
-     * @param view
-     * @param id
-     * @param content
+     * 设置文本
+     * @param view {@link View}
+     * @param id   R.id.viewId
+     * @param text TextView text
      */
-    public static void setText(final View view, @IdRes final int id, final String content) {
+    public static void setText(final View view, @IdRes final int id, final String text) {
         if (view != null) {
             try {
-                ((TextView) view.findViewById(id)).setText(content);
+                ((TextView) view.findViewById(id)).setText(text);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setText");
             }
@@ -483,15 +495,15 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置内容
-     * @param activity
-     * @param id
-     * @param content
+     * 设置文本
+     * @param activity {@link Activity}
+     * @param id       R.id.viewId
+     * @param text     TextView text
      */
-    public static void setText(final Activity activity, @IdRes final int id, final String content) {
+    public static void setText(final Activity activity, @IdRes final int id, final String text) {
         if (activity != null) {
             try {
-                ((TextView) activity.findViewById(id)).setText(content);
+                ((TextView) activity.findViewById(id)).setText(text);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setText");
             }
@@ -499,15 +511,15 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置内容
-     * @param window
-     * @param id
-     * @param content
+     * 设置文本
+     * @param window {@link Window}
+     * @param id     R.id.viewId
+     * @param text   TextView text
      */
-    public static void setText(final Window window, @IdRes final int id, final String content) {
+    public static void setText(final Window window, @IdRes final int id, final String text) {
         if (window != null) {
             try {
-                ((TextView) window.findViewById(id)).setText(content);
+                ((TextView) window.findViewById(id)).setText(text);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setText");
             }
@@ -515,14 +527,27 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置多个 TextView 内容
-     * @param content
-     * @param views
+     * 设置多个 TextView 文本
+     * @param text  TextView text
+     * @param views View(TextView)[]
      */
-    public static void setTexts(final String content, final View... views) {
-        if (content != null && views != null && views.length > 0) {
+    public static void setTexts(final String text, final View... views) {
+        if (views != null && views.length > 0) {
             for (View view : views) {
-                setText(view, content);
+                setText(view, text);
+            }
+        }
+    }
+
+    /**
+     * 设置多个 TextView 文本
+     * @param text  TextView text
+     * @param views TextView[]
+     */
+    public static void setTexts(final String text, final TextView... views) {
+        if (views != null && views.length > 0) {
+            for (TextView view : views) {
+                setText(view, text);
             }
         }
     }
@@ -531,8 +556,8 @@ public final class TextViewUtils {
 
     /**
      * 设置 Html 内容
-     * @param textView
-     * @param content
+     * @param textView {@link TextView}
+     * @param content  Html content
      */
     public static void setHtmlText(final TextView textView, final String content) {
         if (textView != null && content != null) {
@@ -542,8 +567,8 @@ public final class TextViewUtils {
 
     /**
      * 设置 Html 内容
-     * @param view
-     * @param content
+     * @param view    {@link TextView}
+     * @param content Html content
      */
     public static void setHtmlText(final View view, final String content) {
         if (view != null && content != null) {
@@ -555,12 +580,12 @@ public final class TextViewUtils {
 
     /**
      * 设置 Html 内容
-     * @param view
-     * @param id
-     * @param content
+     * @param view    {@link View}
+     * @param id      R.id.viewId
+     * @param content Html content
      */
     public static void setHtmlText(final View view, @IdRes final int id, final String content) {
-        if (view != null) {
+        if (view != null && content != null) {
             try {
                 ((TextView) view.findViewById(id)).setText(Html.fromHtml(content));
             } catch (Exception e) {
@@ -571,12 +596,12 @@ public final class TextViewUtils {
 
     /**
      * 设置 Html 内容
-     * @param activity
-     * @param id
-     * @param content
+     * @param activity {@link Activity}
+     * @param id       R.id.viewId
+     * @param content  Html content
      */
     public static void setHtmlText(final Activity activity, @IdRes final int id, final String content) {
-        if (activity != null) {
+        if (activity != null && content != null) {
             try {
                 ((TextView) activity.findViewById(id)).setText(Html.fromHtml(content));
             } catch (Exception e) {
@@ -587,12 +612,12 @@ public final class TextViewUtils {
 
     /**
      * 设置 Html 内容
-     * @param window
-     * @param id
-     * @param content
+     * @param window  {@link Window}
+     * @param id      R.id.viewId
+     * @param content Html content
      */
     public static void setHtmlText(final Window window, @IdRes final int id, final String content) {
-        if (window != null) {
+        if (window != null && content != null) {
             try {
                 ((TextView) window.findViewById(id)).setText(Html.fromHtml(content));
             } catch (Exception e) {
@@ -604,9 +629,9 @@ public final class TextViewUtils {
     // =
 
     /**
-     * 设置 多个 TextView Html 内容
-     * @param content
-     * @param views
+     * 设置多个 TextView Html 内容
+     * @param content Html content
+     * @param views   View(TextView)[]
      */
     public static void setHtmlTexts(final String content, final View... views) {
         if (content != null && views != null && views.length > 0) {
@@ -616,12 +641,25 @@ public final class TextViewUtils {
         }
     }
 
+    /**
+     * 设置多个 TextView Html 内容
+     * @param content Html content
+     * @param views   TextView[]
+     */
+    public static void setHtmlTexts(final String content, final TextView... views) {
+        if (content != null && views != null && views.length > 0) {
+            for (TextView view : views) {
+                setHtmlText(view, content);
+            }
+        }
+    }
+
     // =
 
     /**
      * 获取字体高度
-     * @param textView
-     * @return
+     * @param textView {@link TextView}
+     * @return 字体高度
      */
     public static int getTextHeight(final TextView textView) {
         if (textView != null) {
@@ -632,8 +670,8 @@ public final class TextViewUtils {
 
     /**
      * 获取字体高度
-     * @param paint
-     * @return
+     * @param paint {@link TextView#getPaint()}
+     * @return 字体高度
      */
     public static int getTextHeight(final Paint paint) {
         // 获取字体高度
@@ -646,8 +684,8 @@ public final class TextViewUtils {
 
     /**
      * 获取字体顶部偏移高度
-     * @param textView
-     * @return
+     * @param textView {@link TextView}
+     * @return 字体顶部偏移高度
      */
     public static int getTextTopOffsetHeight(final TextView textView) {
         if (textView != null) {
@@ -658,8 +696,8 @@ public final class TextViewUtils {
 
     /**
      * 获取字体顶部偏移高度
-     * @param paint
-     * @return
+     * @param paint {@link TextView#getPaint()}
+     * @return 字体顶部偏移高度
      */
     public static int getTextTopOffsetHeight(final Paint paint) {
         // 获取字体高度
@@ -672,8 +710,8 @@ public final class TextViewUtils {
 
     /**
      * 计算字体宽度
-     * @param textView
-     * @return
+     * @param textView {@link TextView}
+     * @return 字体宽度
      */
     public static float getTextWidth(final TextView textView) {
         return getTextWidth(textView.getPaint(), textView.getText().toString());
@@ -681,19 +719,19 @@ public final class TextViewUtils {
 
     /**
      * 计算字体宽度
-     * @param paint
-     * @param hintStr
-     * @return
+     * @param paint {@link TextView#getPaint()}
+     * @param text  待计算的文本
+     * @return 字体宽度
      */
-    public static float getTextWidth(final Paint paint, final String hintStr) {
-        return paint.measureText(hintStr);
+    public static float getTextWidth(final Paint paint, final String text) {
+        return paint.measureText(text);
     }
 
     /**
      * 获取画布中间居中位置
-     * @param targetRect
-     * @param paint
-     * @return
+     * @param targetRect {@link Rect} 目标坐标
+     * @param paint      {@link TextView#getPaint()}
+     * @return 画布 Y 轴居中位置
      */
     public static int getCenterRectY(final Rect targetRect, final Paint paint) {
         // 获取字体高度
@@ -705,10 +743,10 @@ public final class TextViewUtils {
 
     /**
      * 通过需要的高度, 计算字体大小
-     * @param tHeight 需要的字体高度
-     * @return
+     * @param textHeight 需要的字体高度
+     * @return 字体大小
      */
-    public static float reckonTextSize(final int tHeight) {
+    public static float reckonTextSize(final int textHeight) {
         // 创建画笔
         Paint paint = new Paint();
         // 默认字体大小
@@ -724,9 +762,9 @@ public final class TextViewUtils {
             // 计算内容高度
             calcTextHeight = (int) Math.ceil((fontMetrics.descent - fontMetrics.ascent));
             // 符合条件则直接返回
-            if (calcTextHeight == tHeight) {
+            if (calcTextHeight == textHeight) {
                 return textSize;
-            } else if (calcTextHeight > tHeight) { // 如果计算的字体高度大于
+            } else if (calcTextHeight > textHeight) { // 如果计算的字体高度大于
                 textSize -= 0.5f;
             } else {
                 textSize += 0.5f;
@@ -736,9 +774,9 @@ public final class TextViewUtils {
 
     /**
      * 计算第几位超过宽度
-     * @param textView
-     * @param width
-     * @return -1 表示没超过
+     * @param textView {@link TextView}
+     * @param width    指定的宽度
+     * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static int calcTextWidth(final TextView textView, final float width) {
         if (textView != null) {
@@ -749,9 +787,10 @@ public final class TextViewUtils {
 
     /**
      * 计算第几位超过宽度
-     * @param text
-     * @param width
-     * @return -1 表示没超过
+     * @param paint {@link TextView#getPaint()}
+     * @param text  文本内容
+     * @param width 指定的宽度
+     * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static int calcTextWidth(final Paint paint, final String text, final float width) {
         // 先获取宽度
