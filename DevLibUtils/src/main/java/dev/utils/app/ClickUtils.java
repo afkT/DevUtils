@@ -109,7 +109,7 @@ public final class ClickUtils {
      * 判断是否双击(无效点击 - 短时间内多次点击)
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFastDoubleClick() {
+    public static boolean isFastDoubleClick() {
         return sGlobalClickAssist.isFastDoubleClick();
     }
 
@@ -118,7 +118,7 @@ public final class ClickUtils {
      * @param tagId id
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFastDoubleClick(final int tagId) {
+    public static boolean isFastDoubleClick(final int tagId) {
         return sGlobalClickAssist.isFastDoubleClick(tagId);
     }
 
@@ -128,7 +128,7 @@ public final class ClickUtils {
      * @param intervalTime 时间间隔
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFastDoubleClick(final int tagId, final long intervalTime) {
+    public static boolean isFastDoubleClick(final int tagId, final long intervalTime) {
         return sGlobalClickAssist.isFastDoubleClick(tagId, intervalTime);
     }
 
@@ -140,7 +140,7 @@ public final class ClickUtils {
      * @param configKey 时间间隔配置 Key
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFastDoubleClick(final Object object, final String configKey) {
+    public static boolean isFastDoubleClick(final Object object, final String configKey) {
         return sGlobalClickAssist.isFastDoubleClick(object, configKey);
     }
 
@@ -150,7 +150,7 @@ public final class ClickUtils {
      * @param intervalTime 时间间隔
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFastDoubleClick(final Object object, final long intervalTime) {
+    public static boolean isFastDoubleClick(final Object object, final long intervalTime) {
         return sGlobalClickAssist.isFastDoubleClick(object, intervalTime);
     }
 
@@ -160,7 +160,7 @@ public final class ClickUtils {
      * 初始化配置信息
      * @param mapConfigs config Maps
      */
-    public void initConfig(final Map<String, Long> mapConfigs) {
+    public static void initConfig(final Map<String, Long> mapConfigs) {
         sGlobalClickAssist.initConfig(mapConfigs);
     }
 
@@ -169,7 +169,7 @@ public final class ClickUtils {
      * @param key   config Key
      * @param value config Value
      */
-    public void putConfig(final String key, final Long value) {
+    public static void putConfig(final String key, final Long value) {
         sGlobalClickAssist.putConfig(key, value);
     }
 
@@ -177,7 +177,7 @@ public final class ClickUtils {
      * 移除配置信息
      * @param key config Key
      */
-    public void removeConfig(final String key) {
+    public static void removeConfig(final String key) {
         sGlobalClickAssist.removeConfig(key);
     }
 
@@ -186,7 +186,7 @@ public final class ClickUtils {
      * @param key config Key
      * @return 配置时间
      */
-    public Long getConfigTime(final String key) {
+    public static Long getConfigTime(final String key) {
         return sGlobalClickAssist.getConfigTime(key);
     }
 
@@ -196,14 +196,14 @@ public final class ClickUtils {
      * 移除点击记录
      * @param key tag Key
      */
-    public void removeRecord(final String key) {
+    public static void removeRecord(final String key) {
         sGlobalClickAssist.removeRecord(key);
     }
 
     /**
      * 清空全部点击记录
      */
-    public void clearRecord() {
+    public static void clearRecord() {
         sGlobalClickAssist.clearRecord();
     }
 
@@ -213,14 +213,14 @@ public final class ClickUtils {
      * 设置默认点击时间间隔
      * @param intervalTime 时间间隔
      */
-    public void setIntervalTime(final long intervalTime) {
+    public static void setIntervalTime(final long intervalTime) {
         sGlobalClickAssist.setIntervalTime(intervalTime);
     }
 
     /**
      * 重置处理
      */
-    public void reset() {
+    public static void reset() {
         sGlobalClickAssist.reset();
     }
 
