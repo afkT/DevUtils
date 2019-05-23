@@ -562,8 +562,34 @@ public final class ViewUtils {
     }
 
     // ===============
-    // = 设置 Margin =
+    // = View Margin =
     // ===============
+
+    /**
+     * 获取 View Margin
+     * @param view {@link View}
+     * @return new int[] {left, top right, bottom}
+     */
+    public static int[] getMargin(View view) {
+        int[] margins = new int[]{0, 0, 0, 0};
+        if (view != null) {
+            // 判断是否属于 ViewGroup.MarginLayoutParams
+            if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                try {
+                    ViewGroup.MarginLayoutParams layoutParams = ((ViewGroup.MarginLayoutParams) view.getLayoutParams());
+                    margins[0] = layoutParams.leftMargin;
+                    margins[1] = layoutParams.topMargin;
+                    margins[2] = layoutParams.rightMargin;
+                    margins[3] = layoutParams.bottomMargin;
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getMargin");
+                }
+            }
+        }
+        return margins;
+    }
+
+    // =
 
     /**
      * 设置 Margin 边距
@@ -603,6 +629,7 @@ public final class ViewUtils {
                     // 设置边距
                     ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(left, top, right, bottom);
                 } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "setMargin");
                 }
             }
         }
@@ -642,6 +669,106 @@ public final class ViewUtils {
         if (views != null && views.length != 0) {
             for (int i = 0, len = views.length; i < len; i++) {
                 setMargin(views[i], left, top, right, bottom);
+            }
+        }
+    }
+
+    // ================
+    // = View Padding =
+    // ================
+
+    /**
+     * 获取 View Padding
+     * @param view {@link View}
+     * @return new int[] {left, top right, bottom}
+     */
+    public static int[] getPadding(View view) {
+        int[] paddings = new int[]{0, 0, 0, 0};
+        if (view != null) {
+            paddings[0] = view.getPaddingLeft();
+            paddings[1] = view.getPaddingTop();
+            paddings[2] = view.getPaddingRight();
+            paddings[3] = view.getPaddingBottom();
+        }
+        return paddings;
+    }
+
+    // =
+
+    /**
+     * 设置 Padding 边距
+     * @param view      {@link View}
+     * @param leftRight Left and Right Padding
+     * @param topBottom Top and bottom Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPadding(View view, int leftRight, int topBottom) {
+        return setPadding(view, leftRight, topBottom, leftRight, topBottom);
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param view    {@link View}
+     * @param padding Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPadding(View view, int padding) {
+        return setPadding(view, padding, padding, padding, padding);
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param view   {@link View}
+     * @param left   Left Padding
+     * @param top    Top Padding
+     * @param right  Right Padding
+     * @param bottom Bottom Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPadding(View view, int left, int top, int right, int bottom) {
+        if (view != null) {
+            try {
+                view.setPadding(left, top, right, bottom);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setPadding");
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 设置 Padding 边距
+     * @param views     View[]
+     * @param leftRight Left and Right Padding
+     * @param topBottom Top and bottom Padding
+     */
+    public static void setPadding(View[] views, int leftRight, int topBottom) {
+        setPadding(views, leftRight, topBottom, leftRight, topBottom);
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param views   View[]
+     * @param padding Padding
+     */
+    public static void setPadding(View[] views, int padding) {
+        setPadding(views, padding, padding, padding, padding);
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param views  View[]
+     * @param left   Left Padding
+     * @param top    Top Padding
+     * @param right  Right Padding
+     * @param bottom Bottom Padding
+     */
+    public static void setPadding(View[] views, int left, int top, int right, int bottom) {
+        if (views != null && views.length != 0) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                setPadding(views[i], left, top, right, bottom);
             }
         }
     }
