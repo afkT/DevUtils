@@ -121,7 +121,7 @@ final class LoggerPrinter implements IPrinter {
     @Override
     public void e(final Throwable throwable, final String message, final Object... args) {
         // 日志消息
-        String logMsg = null;
+        String logMsg = message;
         // 判断消息
         if (throwable != null && message != null) {
             logMsg = message + " : " + throwable.toString();
@@ -323,7 +323,7 @@ final class LoggerPrinter implements IPrinter {
     @Override
     public void eTag(final String tag, final Throwable throwable, final String message, final Object... args) {
         // 日志消息
-        String logMsg = null;
+        String logMsg = message;
         // 判断消息
         if (throwable != null && message != null) {
             logMsg = message + " : " + throwable.toString();
@@ -554,6 +554,9 @@ final class LoggerPrinter implements IPrinter {
      * @param message 日志信息
      */
     private void finalLogPrinter(final int logType, final String tag, final String message) {
+        // 防止 null 处理
+        if (message == null) return;
+        // 获取日志类型
         switch (logType) {
             case Log.VERBOSE:
                 Log.v(tag, message);
@@ -650,6 +653,8 @@ final class LoggerPrinter implements IPrinter {
         }
         // 获取打印的日志信息
         String message = createMessage(msg, args);
+        // 防止 null 处理
+        if (message == null) return;
         // 打印头部
         logTopBorder(logType, logTag);
         // 打印头部线程信息
@@ -799,11 +804,13 @@ final class LoggerPrinter implements IPrinter {
      * @return 返回处理(格式化)后准备打印的日志信息
      */
     private String createMessage(final String message, final Object... args) {
-        try {
-            return args.length == 0 ? message : String.format(message, args);
-        } catch (Exception e) {
+        if (message != null) {
+            try {
+                return args.length == 0 ? message : String.format(message, args);
+            } catch (Exception e) {
+            }
         }
-        return "";
+        return "message is null";
     }
 
     // ================

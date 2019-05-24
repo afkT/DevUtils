@@ -217,7 +217,7 @@ public final class AppUtils {
 
     /**
      * 获取 SystemService
-     * @param <T>  泛型
+     * @param <T> 泛型
      * @return
      */
     public static <T> T getSystemService(final String name) {

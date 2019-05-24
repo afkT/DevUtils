@@ -498,10 +498,13 @@ public final class ScreenUtils {
      */
     public static int getStatusHeight() {
         try {
-            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
-            Object object = clazz.newInstance();
-            int height = Integer.parseInt(clazz.getField("status_bar_height").get(object).toString());
-            return DevUtils.getContext().getResources().getDimensionPixelSize(height);
+            int id = DevUtils.getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+            return DevUtils.getContext().getResources().getDimensionPixelSize(id);
+
+//            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
+//            Object object = clazz.newInstance();
+//            int id = Integer.parseInt(clazz.getField("status_bar_height").get(object).toString());
+//            return DevUtils.getContext().getResources().getDimensionPixelSize(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getStatusHeight");
         }

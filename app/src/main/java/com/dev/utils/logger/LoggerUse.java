@@ -230,7 +230,6 @@ public final class LoggerUse {
         // =
         DevLogger.dTag(tag, "%s测试占位符数据 - d%s", "1.", " - Format");
 
-
         // = 使用自定义临时配置 =
         // 自定义配置, 如下使用方式
         // DevLogger.other(logConfig).d(message);

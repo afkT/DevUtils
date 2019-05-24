@@ -34,7 +34,6 @@ public final class ThreadUse {
         // 使用配置的信息
         DevThreadManager.getInstance("QPQP").execute(runnable);
 
-
         DevThreadManager.putConfig("QQQQQQ", 10);
         // 使用配置的信息
         DevThreadManager.getInstance("QQQQQQ").execute(runnable);

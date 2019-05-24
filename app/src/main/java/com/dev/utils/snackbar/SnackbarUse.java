@@ -52,7 +52,6 @@ public final class SnackbarUse {
 
         SnackbarUtils.with(activity);
 
-
         // ================
         // = 获取相关方法 =
         // ================
@@ -82,7 +81,6 @@ public final class SnackbarUse {
         // 获取 Snackbar 显示效果样式配置信息
         SnackbarUtils.StyleBuilder styleBuilder = SnackbarUtils.with(view).getStyle();
 
-
         // ================
         // = 设置相关方法 =
         // ================
@@ -104,7 +102,6 @@ public final class SnackbarUse {
         // 设置 Snackbar 显示效果为 自定义样式效果
         Snackbar snackbar2 = SnackbarUtils.with(view).setSnackbarStyle(snackbar, style);
 
-
         // = 设置 Action Button 文案等 =
 
         // 设置 Snackbar Action Button(snackbar_action) 文案
@@ -124,7 +121,6 @@ public final class SnackbarUse {
 
         // 设置 Snackbar Action Button(snackbar_action) 文案以及点击事件
         SnackbarUtils.with(view).setAction(clickListener, "撤销");
-
 
         // = 设置 事件相关 =
 

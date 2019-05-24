@@ -50,7 +50,6 @@ public final class AnalysisRecordUtils {
     // 正则 - 空格
     private static final String SPACE_STR = "\\s";
 
-
     /**
      * 初始化操作
      * @param context {@link Context}

@@ -2013,7 +2013,7 @@ public final class ArrayUtils {
     /**
      * 转换数组为集合
      * @param array 数组
-     * @param <T>  泛型
+     * @param <T>   泛型
      * @return {@link List<T>}
      */
     public static <T> List<T> asList(final T[] array) {

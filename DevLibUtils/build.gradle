@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-def dev_utils_version = "1.6.6";
+def dev_utils_version = "1.6.7";
 
 android {
     compileSdkVersion 28
@@ -9,7 +9,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 166
+        versionCode 167
         versionName dev_utils_version
 
         /**
@@ -20,7 +20,6 @@ android {
          */
         manifestPlaceholders = [ dev_utils_version : dev_utils_version ]
     }
-
 
     buildTypes {
 

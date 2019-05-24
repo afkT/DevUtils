@@ -76,26 +76,26 @@ public final class JCLogUtils {
      * 最终打印日志方法(全部调用此方法)
      * @param logType 打印日志类型
      * @param tag     打印 Tag
-     * @param msg     打印消息
+     * @param message 日志信息
      */
-    private static void printLog(final int logType, final String tag, final String msg) {
+    private static void printLog(final int logType, final String tag, final String message) {
         switch (logType) {
             case INFO:
-                LogPrintUtils.iTag(tag, msg);
+                LogPrintUtils.iTag(tag, message);
             case ERROR:
-                LogPrintUtils.eTag(tag, msg);
+                LogPrintUtils.eTag(tag, message);
                 break;
             case DEBUG:
             default:
-                LogPrintUtils.dTag(tag, msg);
+                LogPrintUtils.dTag(tag, message);
                 break;
         }
         if (JUDGE_CONTROL_PRINT_LOG) {
             // 打印信息
             if (isEmpty(tag)) {
-                System.out.println(msg);
+                System.out.println(message);
             } else {
-                System.out.println(tag + " : " + msg);
+                System.out.println(tag + " : " + message);
             }
         }
     }

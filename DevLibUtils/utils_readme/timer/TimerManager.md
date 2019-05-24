@@ -67,32 +67,32 @@
 
 #### 使用方法
 ```java
-/** 创建定时器 => 立即执行、无限循环、通知默认 what */
+// 创建定时器 => 立即执行、无限循环、通知默认 what
 public static TimerManager.AbsTimer createTimer(Handler handler, long period) {
     return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, -1);
 }
 
-/** 创建定时器 => 无限循环、通知默认 what */
+// 创建定时器 => 无限循环、通知默认 what
 public static TimerManager.AbsTimer createTimer(Handler handler, long delay, long period) {
     return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
 }
 
-/** 创建定时器 => 立即执行、通知默认 what */
+// 创建定时器 => 立即执行、通知默认 what
 public static TimerManager.AbsTimer createTimer(Handler handler, long period, int triggerLimit) {
     return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, triggerLimit);
 }
 
-/** 创建定时器 => 立即执行、无限循环 */
+// 创建定时器 => 立即执行、无限循环
 public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period) {
     return createTimer(handler, what, 0L, period, -1);
 }
 
-/** 创建定时器 => 无限循环 */
+// 创建定时器 => 无限循环
 public static TimerManager.AbsTimer createTimer(Handler handler, int what, long delay, long period) {
     return createTimer(handler, what, delay, period, -1);
 }
 
-/** 创建定时器 => 立即执行 */
+// 创建定时器 => 立即执行
 public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period, int triggerLimit) {
     return createTimer(handler, what, 0L, period, triggerLimit);
 }
@@ -167,18 +167,18 @@ absTimer.closeTimer();
 // 判断是否运行中
 absTimer.isRunTimer();
 
-/** 关闭所有符合对应的标记id的定时器任务 */
+// 关闭所有符合对应的标记id的定时器任务
 TimerManager.closeMark(id);
 
-/** 关闭所有符合对应的字符串标记的定时器任务 */
+// 关闭所有符合对应的字符串标记的定时器任务
 TimerManager.closeMark("mark");
 
-/** 关闭所有无限循环的任务 */
+// 关闭所有无限循环的任务
 TimerManager.closeInfiniteTask();
 
-/** 关闭全部任务 */
+// 关闭全部任务
 TimerManager.closeAll();
 
-/** 回收资源 - 回收需要回收的 */
+// 回收资源 - 回收需要回收的
 TimerManager.gc();
 ```

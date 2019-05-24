@@ -150,7 +150,6 @@ public final class MemoryUtils {
     // 获取可用内存
     public static final String MEMAVAILABLE = "MemAvailable";
 
-
     /**
      * 获取总内存大小
      * @return

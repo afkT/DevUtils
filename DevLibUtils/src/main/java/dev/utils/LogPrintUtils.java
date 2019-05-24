@@ -62,30 +62,33 @@ public final class LogPrintUtils {
      * 最终打印日志方法(全部调用此方法)
      * @param logType 打印日志类型
      * @param tag     打印 Tag
-     * @param msg     打印消息
+     * @param message 日志信息
      */
-    private static void printLog(final int logType, final String tag, final String msg) {
+    private static void printLog(final int logType, final String tag, final String message) {
+        // 防止 null 处理
+        if (message == null) return;
+        // 获取日志类型
         switch (logType) {
             case Log.ERROR:
-                Log.e(tag, msg);
+                Log.e(tag, message);
                 break;
             case Log.INFO:
-                Log.i(tag, msg);
+                Log.i(tag, message);
                 break;
             case Log.VERBOSE:
-                Log.v(tag, msg);
+                Log.v(tag, message);
                 break;
             case Log.WARN:
-                Log.w(tag, msg);
+                Log.w(tag, message);
                 break;
             case Log.ASSERT:
-                Log.wtf(tag, msg);
+                Log.wtf(tag, message);
                 break;
             case Log.DEBUG:
-                Log.d(tag, msg);
+                Log.d(tag, message);
                 break;
             default:
-                Log.d(tag, msg);
+                Log.d(tag, message);
                 break;
         }
     }
