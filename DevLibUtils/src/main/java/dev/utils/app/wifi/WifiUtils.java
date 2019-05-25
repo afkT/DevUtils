@@ -172,7 +172,7 @@ public final class WifiUtils {
      * @param wifiInfo {@link WifiInfo}
      * @return MAC 地址
      */
-    public String getMacAddress(final WifiInfo wifiInfo) {
+    public static String getMacAddress(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return null;
         return wifiInfo.getMacAddress();
     }
@@ -182,7 +182,7 @@ public final class WifiUtils {
      * @param wifiInfo {@link WifiInfo}
      * @return BSSID
      */
-    public String getBSSID(final WifiInfo wifiInfo) {
+    public static String getBSSID(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return null;
         return wifiInfo.getBSSID();
     }
@@ -192,7 +192,7 @@ public final class WifiUtils {
      * @param wifiInfo {@link WifiInfo}
      * @return IP 地址
      */
-    public int getIPAddress(final WifiInfo wifiInfo) {
+    public static int getIPAddress(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return -1;
         return wifiInfo.getIpAddress();
     }
@@ -202,7 +202,7 @@ public final class WifiUtils {
      * @param wifiInfo {@link WifiInfo}
      * @return Network Id
      */
-    public int getNetworkId(final WifiInfo wifiInfo) {
+    public static int getNetworkId(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return -1;
         return wifiInfo.getNetworkId();
     }
@@ -283,7 +283,7 @@ public final class WifiUtils {
      * @param isJudge 是否需要判断
      * @return 处理后的密码
      */
-    public String getPassword(final String pwd, final boolean isJudge) {
+    public static String getPassword(final String pwd, final boolean isJudge) {
         if (pwd == null) return null;
         if (isJudge && isHexWepKey(pwd)) {
             return pwd;
