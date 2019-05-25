@@ -384,7 +384,7 @@ public final class BarUtils {
      * @param alpha
      * @param isDecor
      */
-    private static void addStatusBarColor(final Activity activity, final int color, final int alpha, boolean isDecor) {
+    private static void addStatusBarColor(final Activity activity, final int color, final int alpha, final boolean isDecor) {
         ViewGroup parent = isDecor ? (ViewGroup) activity.getWindow().getDecorView() : (ViewGroup) activity.findViewById(android.R.id.content);
         View fakeStatusBarView = parent.findViewWithTag(TAG_COLOR);
         if (fakeStatusBarView != null) {
@@ -403,7 +403,7 @@ public final class BarUtils {
      * @param alpha
      * @param isDecor
      */
-    private static void addStatusBarAlpha(final Activity activity, final int alpha, boolean isDecor) {
+    private static void addStatusBarAlpha(final Activity activity, final int alpha, final boolean isDecor) {
         ViewGroup parent = isDecor ? (ViewGroup) activity.getWindow().getDecorView() : (ViewGroup) activity.findViewById(android.R.id.content);
         View fakeStatusBarView = parent.findViewWithTag(TAG_ALPHA);
         if (fakeStatusBarView != null) {
@@ -616,7 +616,7 @@ public final class BarUtils {
      * @param isVisible True to set navigation bar visible, false otherwise.
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static void setNavBarVisibility(@NonNull final Activity activity, boolean isVisible) {
+    public static void setNavBarVisibility(@NonNull final Activity activity, final boolean isVisible) {
         setNavBarVisibility(activity.getWindow(), isVisible);
     }
 
@@ -626,7 +626,7 @@ public final class BarUtils {
      * @param isVisible True to set navigation bar visible, false otherwise.
      */
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    public static void setNavBarVisibility(@NonNull final Window window, boolean isVisible) {
+    public static void setNavBarVisibility(@NonNull final Window window, final boolean isVisible) {
         final int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         final View decorView = window.getDecorView();

@@ -74,7 +74,7 @@ final class ToastFactory {
          * @param group {@link ViewGroup}
          * @return {@link TextView}
          */
-        private TextView findTextView(ViewGroup group) {
+        private TextView findTextView(final ViewGroup group) {
             for (int i = 0; i < group.getChildCount(); i++) {
                 View view = group.getChildAt(i);
                 if ((view instanceof TextView)) {
@@ -220,7 +220,7 @@ final class ToastFactory {
      * @param context {@link Context}
      * @return {@link BaseToast}
      */
-    public static BaseToast create(Context context) {
+    public static BaseToast create(final Context context) {
         if (Utils.isNotificationEnabled(context)) {
             return new SafeToast(context);
         }

@@ -125,7 +125,7 @@ public class WifiVo implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(final Parcel dest, final int flags) {
         dest.writeString(wSSID);
         dest.writeString(wPwd);
         dest.writeInt(wType);

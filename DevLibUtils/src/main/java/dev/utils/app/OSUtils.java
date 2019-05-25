@@ -353,7 +353,7 @@ public final class OSUtils {
          * 设置 Rom 具体版本号
          * @param version
          */
-        void setVersion(String version) {
+        void setVersion(final String version) {
             this.version = version;
         }
 
@@ -361,7 +361,7 @@ public final class OSUtils {
          * 设置 Rom 版本
          * @param baseVersion
          */
-        void setBaseVersion(int baseVersion) {
+        void setBaseVersion(final int baseVersion) {
             this.baseVersion = baseVersion;
         }
 

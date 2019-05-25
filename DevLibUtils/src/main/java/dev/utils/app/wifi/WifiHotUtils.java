@@ -352,14 +352,16 @@ public class WifiHotUtils {
      * @param isExecute 是否执行关闭
      * @return {@code true} success, {@code false} fail
      */
-    public boolean closeWifiApCheck(boolean isExecute) {
+    public boolean closeWifiApCheck(final boolean isExecute) {
         // 判断是否开启热点(默认是)
         boolean isOpen = true;
+        // 判断是否执行关闭
+        boolean isExecuteClose = isExecute;
         // 获取当前 wifi 热点状态
         int wifiApState = getWifiApState();
         switch (wifiApState) {
             case WIFI_AP_STATE_DISABLING: // wifi 热点正在关闭
-                isExecute = false;
+                isExecuteClose = false;
                 break;
             case WIFI_AP_STATE_DISABLED: // wifi 热点已关闭
                 isOpen = false;
@@ -372,7 +374,7 @@ public class WifiHotUtils {
                 break;
         }
         // 如果属于开启, 则进行关闭
-        if (isOpen && isExecute) {
+        if (isOpen && isExecuteClose) {
             closeWifiAp();
         }
         return isOpen;

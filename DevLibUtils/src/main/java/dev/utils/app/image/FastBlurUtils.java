@@ -19,19 +19,13 @@ public final class FastBlurUtils {
      * @param canReuseInBitmap 是否重用
      * @return 位图
      */
-    public static Bitmap blur(final Bitmap sentBitmap, final int radius, boolean canReuseInBitmap) {
+    public static Bitmap blur(final Bitmap sentBitmap, final int radius, final boolean canReuseInBitmap) {
         if (sentBitmap == null) return null;
 
         Bitmap bitmap;
-        // 如果修改原图
-        if (canReuseInBitmap) {
-            // 判断 Bitmap 是否可变
-            if (!sentBitmap.isMutable()) { // 不可变则修改
-                canReuseInBitmap = false;
-            }
-        }
 
-        if (canReuseInBitmap) {
+        // 如果修改原图, 并且 Bitmap 属于可变才进行设置
+        if (canReuseInBitmap && sentBitmap.isMutable()) {
             bitmap = sentBitmap;
         } else {
             bitmap = sentBitmap.copy(sentBitmap.getConfig(), true);

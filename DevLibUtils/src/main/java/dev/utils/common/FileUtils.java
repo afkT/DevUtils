@@ -1513,7 +1513,7 @@ public final class FileUtils {
      * @param overlay        如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    private static boolean copyFolder(final String srcFolderPath, final String destFolderPath, final String sourcePath, boolean overlay) {
+    private static boolean copyFolder(final String srcFolderPath, final String destFolderPath, final String sourcePath, final boolean overlay) {
         if (srcFolderPath == null || destFolderPath == null || sourcePath == null) {
             return false;
         }

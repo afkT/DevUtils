@@ -348,15 +348,15 @@ public final class FileRecordUtils {
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName,
-                                       final boolean isNewLines, final boolean printDevice, String... eHint) {
+                                       final boolean isNewLines, final boolean printDevice, final String... eHint) {
         // 处理可变参数(错误提示)
-        eHint = handlerVariable(2, eHint);
+        String[] errorHints = handlerVariable(2, eHint);
         // 日志拼接
         StringBuilder builder = new StringBuilder();
         // 防止文件夹不存在
         createFile(filePath);
         // 设备信息
-        String deviceInfo = handlerDeviceInfo(eHint[0]);
+        String deviceInfo = handlerDeviceInfo(errorHints[0]);
         // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(head)) {
             builder.append(head);
@@ -387,9 +387,9 @@ public final class FileRecordUtils {
         String eMsg = null;
         // 是否换行
         if (isNewLines) {
-            eMsg = getThrowableNewLinesMsg(eHint[1], ex);
+            eMsg = getThrowableNewLinesMsg(errorHints[1], ex);
         } else {
-            eMsg = getThrowableMsg(eHint[1], ex);
+            eMsg = getThrowableMsg(errorHints[1], ex);
         }
         // 保存异常信息
         builder.append(eMsg);
@@ -428,15 +428,16 @@ public final class FileRecordUtils {
      * @param eHint       错误提示(无设备信息、失败信息获取失败)
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLog(final String log, final String head, final String bottom, final String filePath, final String fileName, final boolean printDevice, String... eHint) {
+    public static boolean saveLog(final String log, final String head, final String bottom, final String filePath,
+                                  final String fileName, final boolean printDevice, final String... eHint) {
         // 处理可变参数(错误提示)
-        eHint = handlerVariable(2, eHint);
+        String[] errorHints = handlerVariable(2, eHint);
         // 日志拼接
         StringBuilder builder = new StringBuilder();
         // 防止文件夹不存在
         createFile(filePath);
         // 设备信息
-        String deviceInfo = handlerDeviceInfo(eHint[0]);
+        String deviceInfo = handlerDeviceInfo(errorHints[0]);
         // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(head)) {
             builder.append(head);

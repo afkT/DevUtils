@@ -123,7 +123,7 @@ public final class CameraUtils {
      * 释放摄像头资源
      * @param camera {@link android.hardware.Camera}
      */
-    public static void freeCameraResource(Camera camera) {
+    public static void freeCameraResource(final Camera camera) {
         try {
             if (camera != null) {
                 camera.setPreviewCallback(null);
@@ -133,8 +133,6 @@ public final class CameraUtils {
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "freeCameraResource");
-        } finally {
-            camera = null;
         }
     }
 

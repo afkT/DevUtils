@@ -482,7 +482,7 @@ public final class NetWorkUtils {
      *      {@link TelephonyManager#getNetworkClass} hide 方法
      * </pre>
      */
-    public static int getNetworkClass(int networkType) {
+    public static int getNetworkClass(final int networkType) {
         switch (networkType) {
             case TelephonyManager.NETWORK_TYPE_GPRS:
             case TelephonyManager.NETWORK_TYPE_GSM:
@@ -570,7 +570,7 @@ public final class NetWorkUtils {
      * @param useIPv4 是否用 IPv4
      * @return IP 地址
      */
-    public static String getIPAddress(boolean useIPv4) {
+    public static String getIPAddress(final boolean useIPv4) {
         try {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
             while (nis.hasMoreElements()) {

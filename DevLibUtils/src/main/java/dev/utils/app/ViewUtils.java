@@ -570,7 +570,7 @@ public final class ViewUtils {
      * @param view {@link View}
      * @return new int[] {left, top right, bottom}
      */
-    public static int[] getMargin(View view) {
+    public static int[] getMargin(final View view) {
         int[] margins = new int[]{0, 0, 0, 0};
         if (view != null) {
             // 判断是否属于 ViewGroup.MarginLayoutParams
@@ -598,7 +598,7 @@ public final class ViewUtils {
      * @param topBottom Top and bottom Margin
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setMargin(View view, int leftRight, int topBottom) {
+    public static boolean setMargin(final View view, final int leftRight, final int topBottom) {
         return setMargin(view, leftRight, topBottom, leftRight, topBottom);
     }
 
@@ -608,7 +608,7 @@ public final class ViewUtils {
      * @param margin Margin
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setMargin(View view, int margin) {
+    public static boolean setMargin(final View view, final int margin) {
         return setMargin(view, margin, margin, margin, margin);
     }
 
@@ -621,7 +621,7 @@ public final class ViewUtils {
      * @param bottom Bottom Margin
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setMargin(View view, int left, int top, int right, int bottom) {
+    public static boolean setMargin(final View view, final int left, final int top, final int right, final int bottom) {
         if (view != null) {
             // 判断是否属于 ViewGroup.MarginLayoutParams
             if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
@@ -644,7 +644,7 @@ public final class ViewUtils {
      * @param leftRight Left and Right Margin
      * @param topBottom Top and bottom Margin
      */
-    public static void setMargin(View[] views, int leftRight, int topBottom) {
+    public static void setMargin(final View[] views, final int leftRight, final int topBottom) {
         setMargin(views, leftRight, topBottom, leftRight, topBottom);
     }
 
@@ -653,7 +653,7 @@ public final class ViewUtils {
      * @param views  View[]
      * @param margin Margin
      */
-    public static void setMargin(View[] views, int margin) {
+    public static void setMargin(final View[] views, final int margin) {
         setMargin(views, margin, margin, margin, margin);
     }
 
@@ -665,7 +665,7 @@ public final class ViewUtils {
      * @param right  Right Margin
      * @param bottom Bottom Margin
      */
-    public static void setMargin(View[] views, int left, int top, int right, int bottom) {
+    public static void setMargin(final View[] views, final int left, final int top, final int right, final int bottom) {
         if (views != null && views.length != 0) {
             for (int i = 0, len = views.length; i < len; i++) {
                 setMargin(views[i], left, top, right, bottom);
@@ -682,7 +682,7 @@ public final class ViewUtils {
      * @param view {@link View}
      * @return new int[] {left, top right, bottom}
      */
-    public static int[] getPadding(View view) {
+    public static int[] getPadding(final View view) {
         int[] paddings = new int[]{0, 0, 0, 0};
         if (view != null) {
             paddings[0] = view.getPaddingLeft();
@@ -702,7 +702,7 @@ public final class ViewUtils {
      * @param topBottom Top and bottom Padding
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setPadding(View view, int leftRight, int topBottom) {
+    public static boolean setPadding(final View view, final int leftRight, final int topBottom) {
         return setPadding(view, leftRight, topBottom, leftRight, topBottom);
     }
 
@@ -712,7 +712,7 @@ public final class ViewUtils {
      * @param padding Padding
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setPadding(View view, int padding) {
+    public static boolean setPadding(final View view, final int padding) {
         return setPadding(view, padding, padding, padding, padding);
     }
 
@@ -725,7 +725,7 @@ public final class ViewUtils {
      * @param bottom Bottom Padding
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setPadding(View view, int left, int top, int right, int bottom) {
+    public static boolean setPadding(final View view, final int left, final int top, final int right, final int bottom) {
         if (view != null) {
             try {
                 view.setPadding(left, top, right, bottom);
@@ -744,7 +744,7 @@ public final class ViewUtils {
      * @param leftRight Left and Right Padding
      * @param topBottom Top and bottom Padding
      */
-    public static void setPadding(View[] views, int leftRight, int topBottom) {
+    public static void setPadding(final View[] views, final int leftRight, final int topBottom) {
         setPadding(views, leftRight, topBottom, leftRight, topBottom);
     }
 
@@ -753,7 +753,7 @@ public final class ViewUtils {
      * @param views   View[]
      * @param padding Padding
      */
-    public static void setPadding(View[] views, int padding) {
+    public static void setPadding(final View[] views, final int padding) {
         setPadding(views, padding, padding, padding, padding);
     }
 
@@ -765,7 +765,7 @@ public final class ViewUtils {
      * @param right  Right Padding
      * @param bottom Bottom Padding
      */
-    public static void setPadding(View[] views, int left, int top, int right, int bottom) {
+    public static void setPadding(final View[] views, final int left, final int top, final int right, final int bottom) {
         if (views != null && views.length != 0) {
             for (int i = 0, len = views.length; i < len; i++) {
                 setPadding(views[i], left, top, right, bottom);
