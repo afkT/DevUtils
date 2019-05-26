@@ -1,6 +1,8 @@
 package dev.utils.common;
 
 import java.net.URLEncoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import dev.utils.JCLogUtils;
 
@@ -256,6 +258,53 @@ public final class StringUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 统计字符串匹配个数
+     * @param str     待匹配字符串
+     * @param keyword 匹配 key
+     * @return 字符串 key 匹配个数
+     */
+    public static int countMatches(final String str, final String keyword) {
+        if (isEmpty(str) || isEmpty(keyword)) return 0;
+        try {
+            int count = 0;
+            Matcher matcher = Pattern.compile(keyword).matcher(str);
+            // find() 对字符串进行匹配, 匹配到的字符串可以在任何位置
+            while (matcher.find()) {
+                count++;
+            }
+            return count;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "countMatches");
+        }
+        return -1;
+    }
+
+    /**
+     * 统计字符串匹配个数
+     * @param str     待匹配字符串
+     * @param keyword 匹配 key
+     * @return 字符串 key 匹配个数
+     */
+    public static int countMatches2(final String str, final String keyword) {
+        if (isEmpty(str) || isEmpty(keyword)) return 0;
+        try {
+            // 获取匹配 key 长度
+            int keyLength = keyword.length();
+            // =
+            int count = 0;
+            int index = 0;
+            while ((index = str.indexOf(keyword, index)) != -1) {
+                index = index + keyLength;
+                count++;
+            }
+            return count;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "countMatches2");
+        }
+        return -1;
     }
 
     /**
