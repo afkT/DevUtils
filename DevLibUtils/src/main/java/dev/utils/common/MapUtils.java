@@ -891,8 +891,10 @@ public final class MapUtils {
 
     /**
      * 切换保存状态
-     * 1.如果存在, 则删除
-     * 2.如果不存在, 则保存
+     * <pre>
+     *      1.如果存在, 则删除
+     *      2.如果不存在, 则保存
+     * </pre>
      * @param map   {@link Map}
      * @param key   key
      * @param value value
@@ -901,10 +903,14 @@ public final class MapUtils {
         if (map != null) {
             // 判断是否存在 key
             boolean existKey = map.containsKey(key);
-            if (existKey) { // 存在则删除
-                map.remove(key);
-            } else { // 不存在则保存
-                map.put(key, value);
+            try {
+                if (existKey) { // 存在则删除
+                    map.remove(key);
+                } else { // 不存在则保存
+                    map.put(key, value);
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "toggle");
             }
         }
     }
@@ -960,5 +966,191 @@ public final class MapUtils {
             }
         }
         return false;
+    }
+
+    // =================
+    // = 特殊 Map 操作 =
+    // =================
+
+    /**
+     * 添加一条数据 - (Value) List<T>
+     * @param map   待添加 {@link Map}
+     * @param key   key
+     * @param value value, add to list
+     * @param <K>   key
+     * @param <T>   value type
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <K, T> boolean putToList(final Map<K, ArrayList<T>> map, final K key, final T value) {
+        return putToList(map, key, value, true);
+    }
+
+    /**
+     * 添加一条数据 - (Value) List<T>
+     * @param map   {@link Map}
+     * @param key   key
+     * @param value value, add to list
+     * @param isNew 当指定(key)的 value 为 null, 是否创建
+     * @param <K>   key
+     * @param <T>   value type
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <K, T> boolean putToList(final Map<K, ArrayList<T>> map, final K key, final T value, final boolean isNew) {
+        if (map != null) {
+            if (map.containsKey(key)) {
+                ArrayList<T> lists = map.get(key);
+                if (lists != null) {
+                    try {
+                        lists.add(value);
+                        map.put(key, lists);
+                        return true;
+                    } catch (Exception e) {
+                        JCLogUtils.eTag(TAG, e, "putToList");
+                    }
+                }
+            } else {
+                // 判断是否创建
+                if (isNew) {
+                    try {
+                        ArrayList<T> lists = new ArrayList<>();
+                        lists.add(value);
+                        map.put(key, lists);
+                        return true;
+                    } catch (Exception e) {
+                        JCLogUtils.eTag(TAG, e, "putToList");
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 移除一条数据 - (Value) List<T>
+     * @param map {@link Map}
+     * @param key key
+     * @param <K> key
+     * @param <T> value type
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <K, T> boolean removeToList(final Map<K, ArrayList<T>> map, final K key) {
+        if (map != null) {
+            try {
+                map.remove(key);
+                return true;
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "removeToList");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 移除一条数据 - (Value) List<T>
+     * @param map   {@link Map}
+     * @param key   key
+     * @param value value, remove to list
+     * @param <K>   key
+     * @param <T>   value type
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <K, T> boolean removeToList(final Map<K, ArrayList<T>> map, final K key, final T value) {
+        if (map != null) {
+            if (map.containsKey(key)) {
+                ArrayList<T> lists = map.get(key);
+                if (lists != null) {
+                    try {
+                        lists.remove(value);
+                        return true;
+                    } catch (Exception e) {
+                        JCLogUtils.eTag(TAG, e, "removeToList");
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 移除多条数据 - (Value) List<T>
+     * @param map   {@link Map}
+     * @param key   key
+     * @param lists 删除的 list 数据源
+     * @param <K>   key
+     * @param <T>   value type
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <K, T> boolean removeToLists(final Map<K, ArrayList<T>> map, final K key, final ArrayList<T> lists) {
+        if (map != null && lists != null) {
+            if (map.containsKey(key)) {
+                ArrayList<T> list = map.get(key);
+                if (list != null) {
+                    try {
+                        list.removeAll(lists);
+                        return true;
+                    } catch (Exception e) {
+                        JCLogUtils.eTag(TAG, e, "removeToLists");
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 移除多条数据 - 通过 Map 进行移除
+     * @param map       {@link Map}
+     * @param removeMap {@link Map} 移除对比数据源
+     * @param <K>       key
+     * @param <T>       value type
+     */
+    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap) {
+        removeToMap(map, removeMap, true);
+    }
+
+    /**
+     * 移除多条数据 - 通过 Map 进行移除
+     * @param map         {@link Map}
+     * @param removeMap   {@link Map} 移除对比数据源
+     * @param removeEmpty 是否移除 null、长度为 0 的数据
+     * @param <K>         key
+     * @param <T>         value type
+     */
+    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap, boolean removeEmpty) {
+        if (map != null && removeMap != null) {
+            Iterator<Map.Entry<K, ArrayList<T>>> iterator = removeMap.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<K, ArrayList<T>> entry = iterator.next();
+                // 获取 key
+                K key = entry.getKey();
+                // 进行移除处理
+                if (map.containsKey(key)) {
+                    ArrayList<T> value = entry.getValue();
+                    try {
+                        if (value != null) {
+                            map.get(key).removeAll(value);
+                        }
+                    } catch (Exception e) {
+                        JCLogUtils.eTag(TAG, e, "removeToMap - removeAll");
+                    }
+                    // 判断是否移除 null、长度为 0 的数据
+                    if (removeEmpty) {
+                        ArrayList<T> lists = map.get(key);
+                        try {
+                            // 不存在数据了, 则移除
+                            if (lists == null || lists.size() == 0) {
+                                map.remove(key);
+                            }
+                        } catch (Exception e) {
+                            JCLogUtils.eTag(TAG, e, "removeToMap");
+                        }
+                    }
+                }
+            }
+        }
     }
 }
