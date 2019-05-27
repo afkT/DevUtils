@@ -1128,22 +1128,22 @@ public final class CollectionUtils {
     // = 转换处理 =
     // ============
 
-    /**
-     * 转换数组 to 集合数据类型数组
-     * @param collection {@link Collection}
-     * @param <T>        泛型
-     * @return 转换后的数组
-     */
-    public static <T> T[] toArray(final Collection<T> collection) {
-        if (collection != null) {
-            try {
-                return (T[]) collection.toArray();
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toArray");
-            }
-        }
-        return null;
-    }
+//    /**
+//     * 转换数组 to 集合数据类型数组
+//     * @param collection {@link Collection}
+//     * @param <T>        泛型
+//     * @return 转换后的数组
+//     */
+//    public static <T> T[] toArray(final Collection<T> collection) {
+//        if (collection != null) {
+//            try {
+//                return (T[]) collection.toArray();
+//            } catch (Exception e) {
+//                JCLogUtils.eTag(TAG, e, "toArray");
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * 转换数组 to Object

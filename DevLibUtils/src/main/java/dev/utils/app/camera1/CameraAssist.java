@@ -4,8 +4,6 @@ import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.view.SurfaceHolder;
 
-import java.io.IOException;
-
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
@@ -67,8 +65,9 @@ public final class CameraAssist {
      * 打开摄像头程序
      * @param holder {@link SurfaceHolder}
      * @return {@link CameraAssist}
+     * @throws Exception 设置预览画面, 异常时抛出
      */
-    public synchronized CameraAssist openDriver(final SurfaceHolder holder) throws IOException {
+    public synchronized CameraAssist openDriver(final SurfaceHolder holder) throws Exception {
         Camera theCamera = mCamera;
         // 设置预览 Holder
         theCamera.setPreviewDisplay(holder);

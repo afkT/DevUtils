@@ -2200,4 +2200,236 @@ public final class ArrayUtils {
         // 防止两个值都为 null
         return (value1 == null && value2 == null);
     }
+
+    // =
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @param <T>    泛型
+     * @return 拼接后的数组集合
+     */
+    public static <T> ArrayList<T> arraycopy(final T[] prefix, final T[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建集合
+        ArrayList<T> lists = new ArrayList<>(prefixLength + suffixLength);
+        // 进行判断处理
+        if (prefixLength != 0) {
+            for (int i = 0; i < prefixLength; i++) {
+                lists.add(prefix[i]);
+            }
+        }
+        if (suffixLength != 0) {
+            for (int i = 0; i < suffixLength; i++) {
+                lists.add(suffix[i]);
+            }
+        }
+        return lists;
+    }
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    public static int[] arraycopy(final int[] prefix, final int[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        int[] arrays = new int[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
+    }
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    public static byte[] arraycopy(final byte[] prefix, final byte[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        byte[] arrays = new byte[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
+    }
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    public static char[] arraycopy(final char[] prefix, final char[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        char[] arrays = new char[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
+    }
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    public static short[] arraycopy(final short[] prefix, final short[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        short[] arrays = new short[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
+    }
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    public static long[] arraycopy(final long[] prefix, final long[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        long[] arrays = new long[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
+    }
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    public static float[] arraycopy(final float[] prefix, final float[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        float[] arrays = new float[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
+    }
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    public static double[] arraycopy(final double[] prefix, final double[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        double[] arrays = new double[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
+    }
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    public static boolean[] arraycopy(final boolean[] prefix, final boolean[] suffix) {
+        if (prefix == null || suffix == null) return null;
+        // 获取数据长度
+        int prefixLength = prefix.length;
+        int suffixLength = suffix.length;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        boolean[] arrays = new boolean[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
+    }
 }
