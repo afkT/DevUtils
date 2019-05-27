@@ -20,13 +20,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.R;
 
 /**
  * detail: 资源文件工具类
@@ -39,24 +37,6 @@ public final class ResourceUtils {
 
     // 日志 TAG
     private static final String TAG = ResourceUtils.class.getSimpleName();
-
-    // =
-
-    public static final String LAYTOUT = "layout";
-    public static final String DRAWABLE = "drawable";
-    public static final String MIPMAP = "mipmap";
-    public static final String MENU = "menu";
-    public static final String RAW = "raw";
-    public static final String ANIM = "anim";
-    public static final String STRING = "string";
-    public static final String STYLE = "style";
-    public static final String STYLEABLE = "styleable";
-    public static final String INTEGER = "integer";
-    public static final String ID = "id";
-    public static final String DIMEN = "dimen";
-    public static final String COLOR = "color";
-    public static final String BOOL = "bool";
-    public static final String ATTR = "attr";
 
     // ================
     // = 快捷获取方法 =
@@ -212,48 +192,12 @@ public final class ResourceUtils {
     // =
 
     /**
-     * 根据资源名获取资源id
-     * @param name 资源名
-     * @param type 资源类型
-     * @return 资源id, 找不到返回0
-     */
-    public static int getResourceId(final String name, final String type) {
-        try {
-            // PackageManager pm = DevUtils.getContext().getPackageManager();
-            Resources resources = DevUtils.getContext().getResources();
-            return resources.getIdentifier(name, type, DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getResourceId");
-        }
-        return 0;
-    }
-
-    /**
-     * 获取 layout 布局文件 id
+     * 获取 layout id
      * @param resName layout xml 的文件名
      * @return layout
      */
     public static int getLayoutId(final String resName) {
-        try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, "layout", DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getLayoutId");
-        }
-        return 0;
-    }
-
-    /**
-     * 获取 string id
-     * @param resName string name的名称
-     * @return
-     */
-    public static int getStringId(final String resName) {
-        try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, "string", DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getStringId");
-        }
-        return 0;
+        return getIdentifier(resName, "layout");
     }
 
     /**
@@ -262,32 +206,7 @@ public final class ResourceUtils {
      * @return
      */
     public static int getDrawableId(final String resName) {
-        try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, "drawable", DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDrawableId");
-        }
-        return 0;
-    }
-
-    /**
-     * 获取 drawable id
-     * @param imageName
-     * @return
-     */
-    public static int getDrawableId2(final String imageName) {
-        Class mipmap = R.drawable.class;
-        try {
-            Field field = mipmap.getField(imageName);
-            int resId = field.getInt(imageName);
-            return resId;
-        } catch (NoSuchFieldException e) { // 如果没有在 "drawable" 下找到 imageName, 将会返回0
-            LogPrintUtils.eTag(TAG, e, "getDrawableId2");
-            return 0;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDrawableId2");
-            return 0;
-        }
+        return getIdentifier(resName, "drawable");
     }
 
     /**
@@ -296,40 +215,25 @@ public final class ResourceUtils {
      * @return
      */
     public static int getMipmapId(final String resName) {
-        try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, "mipmap", DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMipmapId");
-        }
-        return 0;
+        return getIdentifier(resName, "mipmap");
     }
 
     /**
-     * 获取 style id
-     * @param resName style的名称
-     * @return style
+     * 获取 menu id
+     * @param resName menu 名称
+     * @return
      */
-    public static int getStyleId(final String resName) {
-        try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, "style", DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getStyleId");
-        }
-        return 0;
+    public static int getMenuId(final String resName) {
+        return getIdentifier(resName, "menu");
     }
 
     /**
-     * 获取 styleable id
-     * @param resName styleable 的名称
-     * @return styleable
+     * 获取 raw id
+     * @param resName raw 名称
+     * @return
      */
-    public static Object getStyleableId(final String resName) {
-        try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, "styleable", DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getStyleableId");
-        }
-        return 0;
+    public static int getRawId(final String resName) {
+        return getIdentifier(resName, "raw");
     }
 
     /**
@@ -338,26 +242,7 @@ public final class ResourceUtils {
      * @return anim
      */
     public static int getAnimId(final String resName) {
-        try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, "anim", DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAnimId");
-        }
-        return 0;
-    }
-
-    /**
-     * 获取 id
-     * @param resName id 的名称
-     * @return
-     */
-    public static int getId(final String resName) {
-        try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, "id", DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getId");
-        }
-        return 0;
+        return getIdentifier(resName, "anim");
     }
 
     /**
@@ -366,10 +251,103 @@ public final class ResourceUtils {
      * @return
      */
     public static int getColorId(final String resName) {
+        return getIdentifier(resName, "color");
+    }
+
+    /**
+     * 获取 dimen id
+     * @param resName dimen 名称
+     * @return
+     */
+    public static int getDimenId(final String resName) {
+        return getIdentifier(resName, "dimen");
+    }
+
+    /**
+     * 获取 attr id
+     * @param resName attr 名称
+     * @return
+     */
+    public static int getAttrId(final String resName) {
+        return getIdentifier(resName, "attr");
+    }
+
+    /**
+     * 获取 style id
+     * @param resName style的名称
+     * @return style
+     */
+    public static int getStyleId(final String resName) {
+        return getIdentifier(resName, "style");
+    }
+
+    /**
+     * 获取 styleable id
+     * @param resName styleable 的名称
+     * @return styleable
+     */
+    public static Object getStyleableId(final String resName) {
+        return getIdentifier(resName, "styleable");
+    }
+
+    /**
+     * 获取 id
+     * @param resName id 的名称
+     * @return
+     */
+    public static int getId(final String resName) {
+        return getIdentifier(resName, "id");
+    }
+
+    /**
+     * 获取 string id
+     * @param resName string name的名称
+     * @return
+     */
+    public static int getStringId(final String resName) {
+        return getIdentifier(resName, "string");
+    }
+
+    /**
+     * 获取 bool id
+     * @param resName bool 名称
+     * @return
+     */
+    public static int getBoolId(final String resName) {
+        return getIdentifier(resName, "bool");
+    }
+
+    /**
+     * 获取 integer id
+     * @param resName integer 名称
+     * @return
+     */
+    public static int getIntegerId(final String resName) {
+        return getIdentifier(resName, "integer");
+    }
+
+    /**
+     * 获取资源 id
+     * @param resName 资源名
+     * @param defType 资源类型
+     * @return 资源 id
+     */
+    public static int getIdentifier(final String resName, final String defType){
+        return getIdentifier(resName, defType, AppUtils.getAppPackageName());
+    }
+
+    /**
+     * 获取资源 id
+     * @param resName 资源名
+     * @param defType 资源类型
+     * @param packageName 包名
+     * @return 资源 id
+     */
+    public static int getIdentifier(final String resName, final String defType, final String packageName){
         try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, "color", DevUtils.getContext().getPackageName());
+            return DevUtils.getContext().getResources().getIdentifier(resName, defType, packageName);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getColorId");
+            LogPrintUtils.eTag(TAG, e, "getIdentifier - " + packageName + " " + resName + ": " + defType);
         }
         return 0;
     }
