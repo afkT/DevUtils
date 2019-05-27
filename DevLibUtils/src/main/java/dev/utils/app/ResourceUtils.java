@@ -332,18 +332,18 @@ public final class ResourceUtils {
      * @param defType 资源类型
      * @return 资源 id
      */
-    public static int getIdentifier(final String resName, final String defType){
+    public static int getIdentifier(final String resName, final String defType) {
         return getIdentifier(resName, defType, AppUtils.getAppPackageName());
     }
 
     /**
      * 获取资源 id
-     * @param resName 资源名
-     * @param defType 资源类型
+     * @param resName     资源名
+     * @param defType     资源类型
      * @param packageName 包名
      * @return 资源 id
      */
-    public static int getIdentifier(final String resName, final String defType, final String packageName){
+    public static int getIdentifier(final String resName, final String defType, final String packageName) {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, defType, packageName);
         } catch (Exception e) {
