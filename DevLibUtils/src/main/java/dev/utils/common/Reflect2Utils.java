@@ -185,7 +185,9 @@ public final class Reflect2Utils {
 
     /**
      * 通过反射获取全部字段
-     * 如: (ListView) getDeclaredField(对象, "私有属性")
+     * <pre>
+     *      如: (char[]) getDeclaredField(String, "value")
+     * </pre>
      * @param object 对象
      * @param name   属性名
      * @return 字段所属对象
@@ -222,23 +224,46 @@ public final class Reflect2Utils {
 
     /**
      * 循环向上转型, 获取对象的 DeclaredField
-     * @param object    子类对象
-     * @param fieldName 父类中的属性名
-     * @return 父类中的变量对象
+     * @param object    对象
+     * @param fieldName 属性名
+     * @return {@link Field}
      */
     public static Field getDeclaredFieldParent(final Object object, final String fieldName) {
+        return getDeclaredFieldParent(object, fieldName, 1);
+    }
+
+    /**
+     * 循环向上转型, 获取对象的 DeclaredField
+     * @param object    子类对象
+     * @param fieldName 父类中的属性名
+     * @param fieldNumber 字段出现次数, 如果父类还有父类, 并且有相同变量名, 设置负数 一直会跟到最后的变量
+     * @return {@link Field} 父类中的属性对象
+     */
+    public static Field getDeclaredFieldParent(final Object object, final String fieldName, final int fieldNumber) {
         if (object == null || fieldName == null) return null;
         try {
-            Field field;
+            // 获取当前出现次数
+            int number = 0;
+            // 限制值
+            int limitNumber = (fieldNumber >= 0) ? fieldNumber : Integer.MAX_VALUE;
+            // =
+            Field field = null;
             Class<?> clazz = object.getClass();
             for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
                 try {
                     field = clazz.getDeclaredField(fieldName);
-                    return field;
+                    if (number >= limitNumber) {
+                        return field;
+                    }
+                    number ++;
                 } catch (Exception e) {
                     // 这里甚么都不要做, 并且这里的异常必须这样写, 不能抛出去
                     // 如果这里的异常打印或者往外抛, 则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
                 }
+            }
+            // 负数表示跟到最后
+            if (fieldNumber < 0){
+                return field;
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getDeclaredFieldParent");
@@ -289,5 +314,27 @@ public final class Reflect2Utils {
             JCLogUtils.eTag(TAG, e, "setFieldValue");
         }
         return false;
+    }
+
+    /**
+     * 获取 Object 对象
+     * <pre>
+     *      例: 获取父类中的变量
+     *      Object obj = 对象;
+     *      getObject(getDeclaredFieldParent(obj, "父类中变量名"), obj);
+     * </pre>
+     * @param field  {@link Field}
+     * @param object 对象
+     * @return Object
+     */
+    public static Object getObject(final Field field, final Object object) {
+        if (field == null || object == null) return false;
+        try {
+            field.setAccessible(true);
+            return field.get(object);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getObject");
+        }
+        return null;
     }
 }

@@ -1032,7 +1032,6 @@ public final class FileUtils {
     /**
      * 删除多个文件
      * @param filePaths 文件数组
-     * @return {@code true} success, {@code false} fail
      */
     public static void deleteFiles(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
@@ -1045,7 +1044,6 @@ public final class FileUtils {
     /**
      * 删除多个文件
      * @param files 文件数组
-     * @return {@code true} success, {@code false} fail
      */
     public static void deleteFiles(final File... files) {
         if (files != null && files.length != 0) {

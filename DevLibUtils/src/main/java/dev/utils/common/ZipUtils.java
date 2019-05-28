@@ -167,27 +167,28 @@ public final class ZipUtils {
      * @return {@code true} 压缩成功, {@code false} 压缩失败
      * @throws Exception 异常时抛出
      */
-    private static boolean zipFile(final File resFile, String rootPath, final ZipOutputStream zos, final String comment) throws Exception {
-        rootPath = rootPath + (isSpace(rootPath) ? "" : File.separator) + resFile.getName();
+    private static boolean zipFile(final File resFile, final String rootPath, final ZipOutputStream zos, final String comment) throws Exception {
+        // 处理后的文件路径
+        String filePath = rootPath + (isSpace(rootPath) ? "" : File.separator) + resFile.getName();
         if (resFile.isDirectory()) {
             File[] fileList = resFile.listFiles();
             // 如果是空文件夹那么创建它
             if (fileList == null || fileList.length == 0) {
-                ZipEntry entry = new ZipEntry(rootPath + '/');
+                ZipEntry entry = new ZipEntry(filePath + '/');
                 entry.setComment(comment);
                 zos.putNextEntry(entry);
                 zos.closeEntry();
             } else {
                 for (File file : fileList) {
                     // 如果递归返回 false 则返回 false
-                    if (!zipFile(file, rootPath, zos, comment)) return false;
+                    if (!zipFile(file, filePath, zos, comment)) return false;
                 }
             }
         } else {
             InputStream is = null;
             try {
                 is = new BufferedInputStream(new FileInputStream(resFile));
-                ZipEntry entry = new ZipEntry(rootPath);
+                ZipEntry entry = new ZipEntry(filePath);
                 entry.setComment(comment);
                 zos.putNextEntry(entry);
                 byte[] buffer = new byte[BUFFER_LEN];

@@ -318,25 +318,6 @@ public final class ReflectUtils {
     // =
 
     /**
-     * 获取 Object 对象
-     * 例: 获取父类中的变量
-     * Object obj = 对象;
-     * getObject(getDeclaredFieldBase(obj, "父类中变量名"), obj);
-     * @param field  {@link Field}
-     * @param object 对象
-     * @return Object
-     * @throws ReflectException 反射异常
-     */
-    public static Object getObject(final Field field, final Object object) throws ReflectException {
-        try {
-            field.setAccessible(true);
-            return field.get(object);
-        } catch (Exception e) {
-            throw new ReflectException(e);
-        }
-    }
-
-    /**
      * 设置枚举值
      * @param clazz 类型
      * @param name  字段名
@@ -350,57 +331,6 @@ public final class ReflectUtils {
         } catch (Exception e) {
             throw new ReflectException(e);
         }
-    }
-
-    /**
-     * 通过反射获取全部字段
-     * @param object 对象
-     * @param name   指定名
-     * @return Object
-     * @throws ReflectException 反射异常
-     */
-    public static Object getDeclaredField(final Object object, final String name) throws ReflectException {
-        try {
-            Field field = object.getClass().getDeclaredField(name);
-            field.setAccessible(true);
-            return field.get(object);
-        } catch (Exception e) {
-            throw new ReflectException(e);
-        }
-    }
-
-    /**
-     * 循环向上转型, 获取对象的 DeclaredField
-     * @param object    对象
-     * @param fieldName 属性名
-     * @return {@link Field}
-     */
-    public static Field getDeclaredFieldBase(final Object object, final String fieldName) {
-        return getDeclaredFieldBase(object, fieldName, false);
-    }
-
-    /**
-     * 循环向上转型, 获取对象的 DeclaredField
-     * @param object    子类对象
-     * @param fieldName 父类中的属性名
-     * @param isSuper   是否一直跟到最后, 如果父类还有父类, 并且有相同变量名, 则设置 isSuper = true, 一直会跟到最后的变量
-     * @return {@link Field} 父类中的属性对象
-     */
-    public static Field getDeclaredFieldBase(final Object object, final String fieldName, final boolean isSuper) {
-        Field field = null;
-        Class<?> clazz = object.getClass();
-        for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                if (!isSuper) {
-                    return field;
-                }
-            } catch (Exception e) {
-                // 这里甚么都不要做, 并且这里的异常必须这样写, 不能抛出去
-                // 如果这里的异常打印或者往外抛, 则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
-            }
-        }
-        return field;
     }
 
     // ==========
@@ -577,6 +507,12 @@ public final class ReflectUtils {
         }
     }
 
+    /**
+     * 设置对象可访问处理
+     * @param accessible 对象
+     * @param <T>        泛型
+     * @return 传入的对象
+     */
     private <T extends AccessibleObject> T accessible(final T accessible) {
         if (accessible == null) return null;
         if (accessible instanceof Member) {
@@ -636,7 +572,7 @@ public final class ReflectUtils {
      * @param str 属性名
      * @return 属性名字
      */
-    private static String property(final String str) {
+    private String property(final String str) {
         int length = str.length();
         if (length == 0) {
             return "";
