@@ -748,15 +748,14 @@ public final class ConvertUtils {
 
     /**
      * 拼接 byte[] 数据
-     * @param prefix 第一个 byte[]
-     * @param suffix 第二个 byte[]
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
      * @return 拼接后的 byte[]
      */
     public static byte[] joinBytes(final byte[] prefix, final byte[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建 byte[]

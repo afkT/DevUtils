@@ -300,6 +300,7 @@ public final class DevThreadPool {
     /**
      * 提交一个 Runnable 任务用于执行
      * @param task 任务
+     * @param <?>  未知类型
      * @return 表示任务等待完成的 Future, 该 Future 的 {@code get} 方法在成功完成时将会返回 null 结果
      */
     public Future<?> submit(final Runnable task) {
@@ -397,6 +398,7 @@ public final class DevThreadPool {
      * @param command 命令
      * @param delay   延迟时间
      * @param unit    单位
+     * @param <?>     未知类型
      * @return 表示挂起任务完成的 ScheduledFuture, 并且其 {@code get()} 方法在完成后将返回 {@code null}
      */
     public ScheduledFuture<?> schedule(final Runnable command, final long delay, final TimeUnit unit) {
@@ -427,6 +429,7 @@ public final class DevThreadPool {
      * @param initialDelay 首次执行的延迟时间
      * @param period       连续执行之间的周期
      * @param unit         时间单位
+     * @param <?>          未知类型
      * @return 表示挂起任务完成的 ScheduledFuture, 并且其 {@code get()} 方法在取消后将抛出异常
      */
     public ScheduledFuture<?> scheduleWithFixedRate(final Runnable command, final long initialDelay, final long period, final TimeUnit unit) {
@@ -442,6 +445,7 @@ public final class DevThreadPool {
      * @param initialDelay 首次执行的延迟时间
      * @param delay        每一次执行终止和下一次执行开始之间的延迟
      * @param unit         时间单位
+     * @param <?>          未知类型
      * @return 表示挂起任务完成的 ScheduledFuture, 并且其 {@code get()} 方法在取消后将抛出异常
      */
     public ScheduledFuture<?> scheduleWithFixedDelay(final Runnable command, final long initialDelay, final long delay, final TimeUnit unit) {

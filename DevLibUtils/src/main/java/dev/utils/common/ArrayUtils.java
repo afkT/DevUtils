@@ -2211,10 +2211,9 @@ public final class ArrayUtils {
      * @return 拼接后的数组集合
      */
     public static <T> ArrayList<T> arraycopy(final T[] prefix, final T[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建集合
@@ -2240,10 +2239,9 @@ public final class ArrayUtils {
      * @return 拼接后的数组
      */
     public static int[] arraycopy(final int[] prefix, final int[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建数组
@@ -2265,10 +2263,9 @@ public final class ArrayUtils {
      * @return 拼接后的数组
      */
     public static byte[] arraycopy(final byte[] prefix, final byte[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建数组
@@ -2290,10 +2287,9 @@ public final class ArrayUtils {
      * @return 拼接后的数组
      */
     public static char[] arraycopy(final char[] prefix, final char[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建数组
@@ -2315,10 +2311,9 @@ public final class ArrayUtils {
      * @return 拼接后的数组
      */
     public static short[] arraycopy(final short[] prefix, final short[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建数组
@@ -2340,10 +2335,9 @@ public final class ArrayUtils {
      * @return 拼接后的数组
      */
     public static long[] arraycopy(final long[] prefix, final long[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建数组
@@ -2365,10 +2359,9 @@ public final class ArrayUtils {
      * @return 拼接后的数组
      */
     public static float[] arraycopy(final float[] prefix, final float[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建数组
@@ -2390,10 +2383,9 @@ public final class ArrayUtils {
      * @return 拼接后的数组
      */
     public static double[] arraycopy(final double[] prefix, final double[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建数组
@@ -2415,10 +2407,9 @@ public final class ArrayUtils {
      * @return 拼接后的数组
      */
     public static boolean[] arraycopy(final boolean[] prefix, final boolean[] suffix) {
-        if (prefix == null || suffix == null) return null;
         // 获取数据长度
-        int prefixLength = prefix.length;
-        int suffixLength = suffix.length;
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建数组
