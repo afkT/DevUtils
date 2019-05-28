@@ -677,9 +677,9 @@ public final class AnalysisRecordUtils {
          */
         private String getDateNow(final String format) {
             try {
-                Calendar cld = Calendar.getInstance();
+                Calendar calendar = Calendar.getInstance();
                 DateFormat df = new SimpleDateFormat(format);
-                return df.format(cld.getTime());
+                return df.format(calendar.getTime());
             } catch (Exception e) {
             }
             return null;

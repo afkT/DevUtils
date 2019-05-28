@@ -11,7 +11,7 @@ import java.util.List;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 域工具
+ * detail: 变量字段工具类
  * @author Ttt
  */
 public final class FieldUtils {
@@ -43,7 +43,7 @@ public final class FieldUtils {
     }
 
     /**
-     * 设置域的值
+     * 设置字段的值
      * @param field  {@link Field}
      * @param object Object
      * @param value  Object-Value
@@ -62,7 +62,7 @@ public final class FieldUtils {
     }
 
     /**
-     * 获取域的值
+     * 获取字段的值
      * @param field  {@link Field}
      * @param object Object
      * @return 对应的 Object
@@ -128,7 +128,7 @@ public final class FieldUtils {
     // =
 
     /**
-     * 获取域的泛型类型, 如果不带泛型返回 null
+     * 获取字段的泛型类型, 如果不带泛型返回 null
      * @param field {@link Field}
      * @param <?>   未知类型
      * @return 泛型类型

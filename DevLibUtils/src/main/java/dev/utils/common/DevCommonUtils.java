@@ -214,9 +214,9 @@ public final class DevCommonUtils {
         // 获取随机数
         String random2 = (900000 + new Random().nextInt(10000)) + "";
         // 获取当前时间
-        String cTime = System.currentTimeMillis() + random1 + random2;
-        // 生成唯一随机 uuid  cTime.hashCode(), random1.hashCode() | random2.hashCode()
-        UUID randomUUID = new UUID(cTime.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
+        String time = System.currentTimeMillis() + random1 + random2;
+        // 生成唯一随机 uuid  time.hashCode(), random1.hashCode() | random2.hashCode()
+        UUID randomUUID = new UUID(time.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
         return randomUUID;
     }
 

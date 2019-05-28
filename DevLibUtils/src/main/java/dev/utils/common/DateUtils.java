@@ -290,9 +290,9 @@ public final class DateUtils {
     public static int getYear(final Date date) {
         if (date == null) return -1;
         try {
-            Calendar cld = Calendar.getInstance();
-            cld.setTime(date);
-            return cld.get(Calendar.YEAR);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            return calendar.get(Calendar.YEAR);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getYear");
         }
@@ -307,9 +307,9 @@ public final class DateUtils {
     public static int getMonth(final Date date) {
         if (date == null) return -1;
         try {
-            Calendar cld = Calendar.getInstance();
-            cld.setTime(date);
-            return cld.get(Calendar.MONTH) + 1;
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            return calendar.get(Calendar.MONTH) + 1;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getMonth");
         }
@@ -324,9 +324,9 @@ public final class DateUtils {
     public static int getDay(final Date date) {
         if (date == null) return -1;
         try {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            return c.get(Calendar.DAY_OF_MONTH);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            return calendar.get(Calendar.DAY_OF_MONTH);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getDay");
         }
@@ -341,9 +341,9 @@ public final class DateUtils {
     public static int getWeek(final Date date) {
         if (date == null) return -1;
         try {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            int week = c.get(Calendar.DAY_OF_WEEK);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            int week = calendar.get(Calendar.DAY_OF_WEEK);
             return week;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getWeek");
@@ -359,9 +359,9 @@ public final class DateUtils {
     public static int get24Hour(final Date date) {
         if (date == null) return -1;
         try {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            return c.get(Calendar.HOUR_OF_DAY);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            return calendar.get(Calendar.HOUR_OF_DAY);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "get24Hour");
         }
@@ -376,9 +376,9 @@ public final class DateUtils {
     public static int get12Hour(final Date date) {
         if (date == null) return -1;
         try {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            return c.get(Calendar.HOUR);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            return calendar.get(Calendar.HOUR);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "get12Hour");
         }
@@ -393,9 +393,9 @@ public final class DateUtils {
     public static int getMinute(final Date date) {
         if (date == null) return -1;
         try {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            return c.get(Calendar.MINUTE);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            return calendar.get(Calendar.MINUTE);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getMinute");
         }
@@ -410,9 +410,9 @@ public final class DateUtils {
     public static int getSecond(final Date date) {
         if (date == null) return -1;
         try {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            return c.get(Calendar.SECOND);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            return calendar.get(Calendar.SECOND);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getSecond");
         }
@@ -1088,15 +1088,15 @@ public final class DateUtils {
             // 获取结束时间转换
             int endNumber = Integer.parseInt(endTime.replace(":", ""));
             // 时间处理
-            Calendar cld = Calendar.getInstance();
-            cld.setTime(new Date(startTime)); // 设置当前时间
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date(startTime)); // 设置当前时间
             // 如果当前时间大于结束时间, 表示非第二天
             if (startNumber > endNumber) {
                 // 时间累加一天
-                cld.add(Calendar.DATE, 1); // 当前日期加一天
+                calendar.add(Calendar.DATE, 1); // 当前日期加一天
             }
             // 获取天数时间
-            String yyyyMMdd = DateUtils.formatDate(cld.getTime(), DateUtils.yyyyMMdd);
+            String yyyyMMdd = DateUtils.formatDate(calendar.getTime(), DateUtils.yyyyMMdd);
             // 累加时间
             String yyyyMMddHHmmss = yyyyMMdd + " " + endTime + (isSecond ? "" : ":00");
             // 返回转换后的时间

@@ -164,9 +164,9 @@ final class Utils {
     @SuppressLint("SimpleDateFormat")
     private static String getDateNow() {
         try {
-            Calendar cld = Calendar.getInstance();
+            Calendar calendar = Calendar.getInstance();
             DateFormat df = new SimpleDateFormat(yyyyMMddHHmmss);
-            return df.format(cld.getTime());
+            return df.format(calendar.getTime());
         } catch (Exception e) {
         }
         return null;
