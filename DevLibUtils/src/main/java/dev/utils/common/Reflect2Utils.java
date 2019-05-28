@@ -234,8 +234,8 @@ public final class Reflect2Utils {
 
     /**
      * 循环向上转型, 获取对象的 DeclaredField
-     * @param object    子类对象
-     * @param fieldName 父类中的属性名
+     * @param object      子类对象
+     * @param fieldName   父类中的属性名
      * @param fieldNumber 字段出现次数, 如果父类还有父类, 并且有相同变量名, 设置负数 一直会跟到最后的变量
      * @return {@link Field} 父类中的属性对象
      */
@@ -255,14 +255,14 @@ public final class Reflect2Utils {
                     if (number >= limitNumber) {
                         return field;
                     }
-                    number ++;
+                    number++;
                 } catch (Exception e) {
                     // 这里甚么都不要做, 并且这里的异常必须这样写, 不能抛出去
                     // 如果这里的异常打印或者往外抛, 则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
                 }
             }
             // 负数表示跟到最后
-            if (fieldNumber < 0){
+            if (fieldNumber < 0) {
                 return field;
             }
         } catch (Exception e) {

@@ -130,6 +130,7 @@ public final class FieldUtils {
     /**
      * 获取域的泛型类型, 如果不带泛型返回 null
      * @param field {@link Field}
+     * @param <?>   未知类型
      * @return 泛型类型
      */
     public static Class<?> getGenericType(final Field field) {
@@ -153,6 +154,7 @@ public final class FieldUtils {
     /**
      * 获取数组的类型
      * @param field {@link Field}
+     * @param <?>   未知类型
      * @return 数组类型
      */
     public static Class<?> getComponentType(final Field field) {

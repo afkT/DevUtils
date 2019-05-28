@@ -92,6 +92,7 @@ public final class ReflectUtils {
     /**
      * 获取 Class
      * @param className 类名
+     * @param <?>       未知类型
      * @return 获取指定类
      * @throws ReflectException 反射异常
      */
@@ -108,6 +109,7 @@ public final class ReflectUtils {
      * 获取 Class
      * @param name        类名
      * @param classLoader 类加载器
+     * @param <?>         未知类型
      * @return 获取指定类
      * @throws ReflectException 反射异常
      */
@@ -165,6 +167,7 @@ public final class ReflectUtils {
     /**
      * 获取参数类型
      * @param args 参数数组
+     * @param <?>  未知类型
      * @return 参数类型数组
      */
     private Class<?>[] getArgsType(final Object... args) {
@@ -596,6 +599,7 @@ public final class ReflectUtils {
     /**
      * 获取类型
      * @param type {@link Class}
+     * @param <?>  未知类型
      * @return {@link Class} 类所属类型
      */
     private Class<?> wrapper(final Class<?> type) {

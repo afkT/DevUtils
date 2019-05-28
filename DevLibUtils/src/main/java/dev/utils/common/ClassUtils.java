@@ -98,6 +98,7 @@ public final class ClassUtils {
     /**
      * 获取父类泛型类型
      * @param object Object
+     * @param <?>    未知类型
      * @return 泛型类型
      */
     public static Class<?> getGenericSuperclass(final Object object) {
@@ -108,6 +109,7 @@ public final class ClassUtils {
      * 获取父类泛型类型
      * @param object Object
      * @param pos    泛型参数索引
+     * @param <?>    未知类型
      * @return 泛型类型
      */
     public static Class<?> getGenericSuperclass(final Object object, final int pos) {
@@ -122,6 +124,7 @@ public final class ClassUtils {
     /**
      * 获取父类泛型类型
      * @param clazz {@link Class}
+     * @param <?>   未知类型
      * @return 泛型类型
      */
     public static Class<?> getGenericSuperclass(final Class clazz) {
@@ -132,6 +135,7 @@ public final class ClassUtils {
      * 获取父类泛型类型
      * @param clazz {@link Class}
      * @param pos   泛型参数索引
+     * @param <?>   未知类型
      * @return 泛型类型
      */
     public static Class<?> getGenericSuperclass(final Class clazz, final int pos) {
@@ -151,6 +155,7 @@ public final class ClassUtils {
      * 获取接口泛型类型
      * @param object         Object
      * @param interfaceClazz 接口 Class
+     * @param <?>            未知类型
      * @return 泛型类型
      */
     public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz) {
@@ -162,6 +167,7 @@ public final class ClassUtils {
      * @param object         Object
      * @param interfaceClazz 接口 Class
      * @param pos            泛型参数索引
+     * @param <?>            未知类型
      * @return 泛型类型
      */
     public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz, final int pos) {
@@ -177,6 +183,7 @@ public final class ClassUtils {
      * 获取接口泛型类型
      * @param clazz          {@link Class}
      * @param interfaceClazz 接口 Class
+     * @param <?>            未知类型
      * @return 泛型类型
      */
     public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz) {
@@ -188,6 +195,7 @@ public final class ClassUtils {
      * @param clazz          {@link Class}
      * @param interfaceClazz 接口 Class
      * @param pos            泛型参数索引
+     * @param <?>            未知类型
      * @return 泛型类型
      */
     public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz, final int pos) {

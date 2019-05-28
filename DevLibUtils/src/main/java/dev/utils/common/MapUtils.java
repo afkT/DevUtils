@@ -898,6 +898,8 @@ public final class MapUtils {
      * @param map   {@link Map}
      * @param key   key
      * @param value value
+     * @param <K>   key
+     * @param <V>   value
      */
     public static <K, V> void toggle(final Map<K, V> map, final K key, final V value) {
         if (map != null) {

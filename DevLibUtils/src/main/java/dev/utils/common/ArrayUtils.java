@@ -1985,7 +1985,8 @@ public final class ArrayUtils {
 
     /**
      * Boolean[] 转换 boolean[]
-     * @param booleans Boolean[]
+     * @param booleans     Boolean[]
+     * @param defaultValue 转换失败使用得默认值
      * @return boolean[]
      */
     public static boolean[] booleansToBooleans(final Boolean[] booleans, final boolean defaultValue) {

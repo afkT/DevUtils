@@ -248,6 +248,7 @@ public final class RandomUtils {
 
     /**
      * 获取自定义数据自定义长度的随机数
+     * @param source 随机的数据源
      * @param length 长度
      * @return 随机字符串
      */
