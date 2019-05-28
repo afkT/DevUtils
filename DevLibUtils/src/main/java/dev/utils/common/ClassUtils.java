@@ -85,7 +85,7 @@ public final class ClassUtils {
     }
 
     /**
-     * 是否数组类型
+     * 判断是否数组类型
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
      */

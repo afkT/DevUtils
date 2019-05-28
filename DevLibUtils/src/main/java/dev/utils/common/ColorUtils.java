@@ -213,7 +213,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 根据对应的 alpha, red、green、blue 生成一个颜色值 (含透明度)
+     * 根据对应的 alpha、red、green、blue 生成一个颜色值 (含透明度)
      * @param alpha 透明度 [0-255]
      * @param red   红色值 [0-255]
      * @param green 绿色值 [0-255]
@@ -225,7 +225,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 根据对应的 alpha, red、green、blue 生成一个颜色值 (含透明度)
+     * 根据对应的 alpha、red、green、blue 生成一个颜色值 (含透明度)
      * @param alpha 透明度 [0-255]
      * @param red   红色值 [0-255]
      * @param green 绿色值 [0-255]
@@ -392,10 +392,12 @@ public final class ColorUtils {
      * @return argb/rgb 颜色值
      */
     public static int parseColor(final String colorStr) {
-        try {
-            return priParseColor(colorStr);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "parseColor");
+        if (colorStr != null) {
+            try {
+                return priParseColor(colorStr);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "parseColor");
+            }
         }
         return -1;
     }

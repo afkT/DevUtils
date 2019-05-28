@@ -124,7 +124,7 @@ public final class EncryptUtils {
         if (salt == null) return toHexString(encryptMD5(data));
         if (data == null) return toHexString(encryptMD5(salt));
         // 拼接数据
-        byte[] bytes = joinBytes(data, salt);
+        byte[] bytes = arraycopy(data, salt);
         return toHexString(encryptMD5(bytes));
     }
 
@@ -952,14 +952,14 @@ public final class EncryptUtils {
                 int index = 0;
                 for (int i = 0; i < count; i++) {
                     System.arraycopy(data, index, buff, 0, maxLen);
-                    ret = joinBytes(ret, cipher.doFinal(buff));
+                    ret = arraycopy(ret, cipher.doFinal(buff));
                     index += maxLen;
                 }
                 if (index != dataLength) {
                     int restLen = dataLength - index;
                     buff = new byte[restLen];
                     System.arraycopy(data, index, buff, 0, restLen);
-                    ret = joinBytes(ret, cipher.doFinal(buff));
+                    ret = arraycopy(ret, cipher.doFinal(buff));
                 }
                 return ret;
             } else {
@@ -994,12 +994,12 @@ public final class EncryptUtils {
     }
 
     /**
-     * 拼接 byte[] 数据
+     * 拼接数组
      * @param prefix 第一个数组
      * @param suffix 第二个数组
-     * @return 拼接后的 byte[]
+     * @return 拼接后的数组
      */
-    private static byte[] joinBytes(final byte[] prefix, final byte[] suffix) {
+    private static byte[] arraycopy(final byte[] prefix, final byte[] suffix) {
         // 获取数据长度
         int prefixLength = (prefix != null) ? prefix.length : 0;
         int suffixLength = (suffix != null) ? suffix.length : 0;

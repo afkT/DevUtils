@@ -9,7 +9,7 @@ import java.util.Arrays;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 转换工具类(Byte、Hex等)
+ * detail: 转换工具类(Byte、Hex 等)
  * @author Ttt
  * <pre>
  *      byte 是字节数据类型、有符号型的、占 1 个字节、大小范围为 [ -128 - 127]
@@ -727,49 +727,6 @@ public final class ConvertUtils {
         return null;
     }
 
-    /**
-     * 从 byte[] 上截取一段
-     * @param data   byte[]
-     * @param off    起始值
-     * @param length 所需长度
-     * @return 裁剪后的 byte[]
-     */
-    public static byte[] subBytes(final byte[] data, final int off, final int length) {
-        if (data == null || off < 0 || length < 0) return null;
-        try {
-            byte[] bytes = new byte[length];
-            System.arraycopy(data, off, bytes, 0, length);
-            return bytes;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "subBytes");
-        }
-        return null;
-    }
-
-    /**
-     * 拼接 byte[] 数据
-     * @param prefix 第一个数组
-     * @param suffix 第二个数组
-     * @return 拼接后的 byte[]
-     */
-    public static byte[] joinBytes(final byte[] prefix, final byte[] suffix) {
-        // 获取数据长度
-        int prefixLength = (prefix != null) ? prefix.length : 0;
-        int suffixLength = (suffix != null) ? suffix.length : 0;
-        // 数据都为 null, 则直接跳过
-        if (prefixLength + suffixLength == 0) return null;
-        // 创建 byte[]
-        byte[] bytes = new byte[prefixLength + suffixLength];
-        // 进行判断处理
-        if (prefixLength != 0) {
-            System.arraycopy(prefix, 0, bytes, 0, prefixLength);
-        }
-        if (suffixLength != 0) {
-            System.arraycopy(suffix, 0, bytes, prefixLength, suffixLength);
-        }
-        return bytes;
-    }
-
     // =
 
     /**
@@ -1386,7 +1343,9 @@ public final class ConvertUtils {
 
     /**
      * 二进制字符串 转换 byte[] 解码
-     * 例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过 new String(byte()) 获取配合 toBinaryString 使用
+     * <pre>
+     *      例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过 new String(byte()) 获取配合 toBinaryString 使用
+     * </pre>
      * @param str String
      * @return 解码后的 byte[]
      */

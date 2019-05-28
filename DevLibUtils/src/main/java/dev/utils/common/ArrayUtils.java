@@ -2424,4 +2424,180 @@ public final class ArrayUtils {
         }
         return arrays;
     }
+
+    // =
+
+    /**
+     * 从数组上截取一段
+     * @param data   数组
+     * @param off    起始值
+     * @param length 所需长度
+     * @param <T>    泛型
+     * @return 裁剪后的数组
+     */
+    public static <T> ArrayList<T> subarray(final T[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            ArrayList<T> lists = new ArrayList<>(length);
+            for (int i = off; i < off + length; i++) {
+                lists.add(data[i]);
+            }
+            return lists;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subarray");
+        }
+        return null;
+    }
+
+    /**
+     * 从数组上截取一段
+     * @param data   数组
+     * @param off    起始值
+     * @param length 所需长度
+     * @return 裁剪后的数组
+     */
+    public static int[] subarray(final int[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            int[] arrays = new int[length];
+            System.arraycopy(data, off, arrays, 0, length);
+            return arrays;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subarray");
+        }
+        return null;
+    }
+
+    /**
+     * 从数组上截取一段
+     * @param data   数组
+     * @param off    起始值
+     * @param length 所需长度
+     * @return 裁剪后的数组
+     */
+    public static byte[] subarray(final byte[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            byte[] arrays = new byte[length];
+            System.arraycopy(data, off, arrays, 0, length);
+            return arrays;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subarray");
+        }
+        return null;
+    }
+
+    /**
+     * 从数组上截取一段
+     * @param data   数组
+     * @param off    起始值
+     * @param length 所需长度
+     * @return 裁剪后的数组
+     */
+    public static char[] subarray(final char[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            char[] arrays = new char[length];
+            System.arraycopy(data, off, arrays, 0, length);
+            return arrays;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subarray");
+        }
+        return null;
+    }
+
+    /**
+     * 从数组上截取一段
+     * @param data   数组
+     * @param off    起始值
+     * @param length 所需长度
+     * @return 裁剪后的数组
+     */
+    public static short[] subarray(final short[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            short[] arrays = new short[length];
+            System.arraycopy(data, off, arrays, 0, length);
+            return arrays;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subarray");
+        }
+        return null;
+    }
+
+    /**
+     * 从数组上截取一段
+     * @param data   数组
+     * @param off    起始值
+     * @param length 所需长度
+     * @return 裁剪后的数组
+     */
+    public static long[] subarray(final long[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            long[] arrays = new long[length];
+            System.arraycopy(data, off, arrays, 0, length);
+            return arrays;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subarray");
+        }
+        return null;
+    }
+
+    /**
+     * 从数组上截取一段
+     * @param data   数组
+     * @param off    起始值
+     * @param length 所需长度
+     * @return 裁剪后的数组
+     */
+    public static float[] subarray(final float[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            float[] arrays = new float[length];
+            System.arraycopy(data, off, arrays, 0, length);
+            return arrays;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subarray");
+        }
+        return null;
+    }
+
+    /**
+     * 从数组上截取一段
+     * @param data   数组
+     * @param off    起始值
+     * @param length 所需长度
+     * @return 裁剪后的数组
+     */
+    public static double[] subarray(final double[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            double[] arrays = new double[length];
+            System.arraycopy(data, off, arrays, 0, length);
+            return arrays;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subarray");
+        }
+        return null;
+    }
+
+    /**
+     * 从数组上截取一段
+     * @param data   数组
+     * @param off    起始值
+     * @param length 所需长度
+     * @return 裁剪后的数组
+     */
+    public static boolean[] subarray(final boolean[] data, final int off, final int length) {
+        if (data == null || off < 0 || length < 0) return null;
+        try {
+            boolean[] arrays = new boolean[length];
+            System.arraycopy(data, off, arrays, 0, length);
+            return arrays;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subarray");
+        }
+        return null;
+    }
 }

@@ -339,7 +339,7 @@ public final class DevThreadPool {
      * @param unit    时间单位
      * @param <T>     泛型
      * @return 表示任务的 Future 列表, 列表顺序与给定任务列表的迭代器所生成的顺序相同
-     *         如果操作未超时, 则已完成所有任务, 如果确实超时了, 则某些任务尚未完成
+     * 如果操作未超时, 则已完成所有任务, 如果确实超时了, 则某些任务尚未完成
      * @throws InterruptedException 如果等待时发生中断, 在这种情况下取消尚未完成的任务
      */
     public <T> List<Future<T>> invokeAll(final Collection<? extends Callable<T>> tasks, final long timeout,
