@@ -50,7 +50,7 @@ public final class FileBreadthFirstSearchUtils {
         // 文件
         public File file;
 
-        // HashMap 保存目录信息
+        // 子文件夹目录
         public Map<String, FileItem> mapChilds;
 
         /**

@@ -51,12 +51,12 @@ public final class TextCalcUse {
      */
     private void printInfo(TextView textView) {
         StringBuilder builder = new StringBuilder();
-        builder.append("\n内容：" + textView.getText().toString());
-        builder.append("\n高度：" + TextViewUtils.getTextHeight(textView));
-        builder.append("\n偏移高度：" + TextViewUtils.getTextTopOffsetHeight(textView));
-        builder.append("\n宽度：" + TextViewUtils.getTextWidth(textView));
-        builder.append("\n字体大小：" + textView.getTextSize());
-        builder.append("\n计算字体大小：" + TextViewUtils.reckonTextSize(TextViewUtils.getTextHeight(textView)));
+        builder.append("\n内容: " + textView.getText().toString());
+        builder.append("\n高度: " + TextViewUtils.getTextHeight(textView));
+        builder.append("\n偏移高度: " + TextViewUtils.getTextTopOffsetHeight(textView));
+        builder.append("\n宽度: " + TextViewUtils.getTextWidth(textView));
+        builder.append("\n字体大小: " + textView.getTextSize());
+        builder.append("\n计算字体大小: " + TextViewUtils.reckonTextSize(TextViewUtils.getTextHeight(textView)));
         // 打印日志
         DevLogger.dTag(TAG, builder.toString());
     }

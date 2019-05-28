@@ -49,16 +49,16 @@ public final class DevThreadManager {
         if (devThreadPool != null) {
             return devThreadPool;
         }
-        Object obj = sConfigMaps.get(key);
-        if (obj != null) {
+        Object object = sConfigMaps.get(key);
+        if (object != null) {
             try {
                 // 判断是否属于线程池类型
-                if (obj instanceof DevThreadPool.DevThreadPoolType) {
-                    devThreadPool = new DevThreadPool((DevThreadPool.DevThreadPoolType) obj);
-                } else if (obj instanceof Integer) {
-                    devThreadPool = new DevThreadPool((Integer) obj);
+                if (object instanceof DevThreadPool.DevThreadPoolType) {
+                    devThreadPool = new DevThreadPool((DevThreadPool.DevThreadPoolType) object);
+                } else if (object instanceof Integer) {
+                    devThreadPool = new DevThreadPool((Integer) object);
                 } else { // 其他类型, 统一转换 Integer
-                    devThreadPool = new DevThreadPool(Integer.parseInt((String) obj));
+                    devThreadPool = new DevThreadPool(Integer.parseInt((String) object));
                 }
                 if (devThreadPool != null) {
                     sThreadMaps.put(key, devThreadPool);

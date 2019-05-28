@@ -138,8 +138,8 @@ Handler handler = new Handler() {
         switch (msg.what) {
             case NOTIFY:
                 // 获取触发次数
-                DevLogger.dTag(TAG, "已经触发次数：" + absTimer.getTriggerNumber());
-                DevLogger.dTag(TAG, "触发上限次数：" + absTimer.getTriggerLimit());
+                DevLogger.dTag(TAG, "已经触发次数: " + absTimer.getTriggerNumber());
+                DevLogger.dTag(TAG, "触发上限次数: " + absTimer.getTriggerLimit());
                 // 判断是否触发结束
                 if (absTimer.isTriggerEnd()) {
                     DevLogger.dTag(TAG, "触发结束");
