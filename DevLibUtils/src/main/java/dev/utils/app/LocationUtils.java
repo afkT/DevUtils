@@ -112,7 +112,7 @@ public final class LocationUtils {
     }
 
     /**
-     * 打开Gps设置界面
+     * 打开 GPS 设置界面
      */
     public static void openGpsSettings() {
         try {
@@ -343,14 +343,14 @@ public final class LocationUtils {
         }
 
         /**
-         * provider被enable时触发此函数, 比如GPS被打开
+         * provider 被 enable 时触发此函数, 比如 GPS 被打开
          */
         @Override
         public void onProviderEnabled(String provider) {
         }
 
         /**
-         * provider被disable时触发此函数, 比如GPS被关闭
+         * provider 被 disable 时触发此函数, 比如 GPS 被关闭
          */
         @Override
         public void onProviderDisabled(String provider) {

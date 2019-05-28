@@ -16,7 +16,7 @@ public final class WifiHotUse {
     }
 
     /**
-     * Wifi热点使用方法
+     * Wifi 热点使用方法
      */
     private void wifiHotUse() {
 

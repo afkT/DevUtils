@@ -19,9 +19,7 @@ public final class TimerUse {
     private static final String TAG = TimerUse.class.getSimpleName();
     // 创建定时器
     TimerManager.AbsTimer absTimer;
-    /**
-     * 通知常量
-     */
+    // 通知常量
     private final int NOTIFY = 100;
 
     /**

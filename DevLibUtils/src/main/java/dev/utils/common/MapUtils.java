@@ -1109,18 +1109,19 @@ public final class MapUtils {
      * @param <T>       value type
      */
     public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap) {
-        removeToMap(map, removeMap, true);
+        removeToMap(map, removeMap, true, false);
     }
 
     /**
      * 移除多条数据 - 通过 Map 进行移除
-     * @param map         {@link Map}
-     * @param removeMap   {@link Map} 移除对比数据源
-     * @param removeEmpty 是否移除 null、长度为 0 的数据
-     * @param <K>         key
-     * @param <T>         value type
+     * @param map             {@link Map}
+     * @param removeMap       {@link Map} 移除对比数据源
+     * @param removeEmpty     是否移除 null、长度为 0 的数据
+     * @param isNullRemoveAll 如果待移除的 ArrayList 是 null, 是否移除全部
+     * @param <K>             key
+     * @param <T>             value type
      */
-    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap, boolean removeEmpty) {
+    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap, boolean removeEmpty, boolean isNullRemoveAll) {
         if (map != null && removeMap != null) {
             Iterator<Map.Entry<K, ArrayList<T>>> iterator = removeMap.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -1133,6 +1134,10 @@ public final class MapUtils {
                     try {
                         if (value != null) {
                             map.get(key).removeAll(value);
+                        } else {
+                            if (isNullRemoveAll) {
+                                map.remove(key);
+                            }
                         }
                     } catch (Exception e) {
                         JCLogUtils.eTag(TAG, e, "removeToMap - removeAll");
