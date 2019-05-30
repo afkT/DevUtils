@@ -19,7 +19,7 @@ import android.graphics.Shader;
 import java.io.InputStream;
 
 /**
- * detail: 图片处理器
+ * detail: 图片处理工具类
  * @author Ttt
  */
 public class ImageProcessor {

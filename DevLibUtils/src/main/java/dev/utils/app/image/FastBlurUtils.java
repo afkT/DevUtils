@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 
 /**
- * detail: 毛玻璃效果
+ * detail: 毛玻璃效果工具类
  * @author Ttt
  */
 public final class FastBlurUtils {

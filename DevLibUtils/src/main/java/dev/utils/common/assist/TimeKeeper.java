@@ -1,7 +1,7 @@
 package dev.utils.common.assist;
 
 /**
- * detail: 堵塞时间处理
+ * detail: 堵塞时间辅助类
  * @author Ttt
  */
 public class TimeKeeper {

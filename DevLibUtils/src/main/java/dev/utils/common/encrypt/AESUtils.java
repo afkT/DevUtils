@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: AES 对称加密
+ * detail: AES 对称加密工具类
  * @author Ttt
  * <pre>
  *      Advanced Encryption Standard 高级数据加密标准(对称加密算法)

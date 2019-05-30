@@ -3,7 +3,7 @@ package dev.utils.common;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 计算比例方法
+ * detail: 计算比例工具类
  * @author Ttt
  */
 public final class ScaleUtils {

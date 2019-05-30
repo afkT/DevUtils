@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * detail: 线程池管理类
+ * detail: 线程池管理工具类
  * @author Ttt
  */
 public final class DevThreadManager {

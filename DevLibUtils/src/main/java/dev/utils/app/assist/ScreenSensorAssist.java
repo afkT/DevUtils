@@ -11,7 +11,7 @@ import android.os.Message;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 屏幕传感器(监听是否横竖屏)
+ * detail: 屏幕传感器辅助类(监听是否横竖屏)
  * @author Ttt
  */
 public final class ScreenSensorAssist {

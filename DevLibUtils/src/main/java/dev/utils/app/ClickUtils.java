@@ -10,7 +10,7 @@ import java.util.Map;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 点击工具类
+ * detail: 点击(双击)工具类
  * @author Ttt
  */
 public final class ClickUtils {

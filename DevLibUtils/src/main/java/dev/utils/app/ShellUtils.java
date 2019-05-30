@@ -144,7 +144,7 @@ public final class ShellUtils {
     }
 
     /**
-     * detail: 返回的命令结果
+     * detail: 命令执行结果实体类
      * @author Ttt
      */
     public static class CommandResult {

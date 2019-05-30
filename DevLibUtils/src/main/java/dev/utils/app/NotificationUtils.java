@@ -13,7 +13,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 通知栏管理类
+ * detail: 通知栏管理工具类
  * @author Ttt
  * <pre>
  *      @see <a href="https://blog.csdn.net/hss01248/article/details/55096553"/>

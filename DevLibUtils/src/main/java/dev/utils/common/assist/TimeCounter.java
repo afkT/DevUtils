@@ -1,7 +1,7 @@
 package dev.utils.common.assist;
 
 /**
- * detail: 时间计时器
+ * detail: 时间计时辅助类
  * @author Ttt
  */
 public class TimeCounter {

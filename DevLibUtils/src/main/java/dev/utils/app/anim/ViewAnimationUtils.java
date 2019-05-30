@@ -9,7 +9,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 
 /**
- * detail: 视图动画工具箱(AnimationUtils 基础上封装), 提供简单的控制视图的动画的工具方法
+ * detail: 视图动画工具类(AnimationUtils 基础上封装), 提供简单的控制视图的动画的工具方法
  * @author Ttt
  */
 public final class ViewAnimationUtils {

@@ -1,7 +1,7 @@
 package dev.utils.common.assist;
 
 /**
- * detail: 时间均值计算器
+ * detail: 时间均值计算辅助类
  * @author Ttt
  */
 public class TimeAverager {

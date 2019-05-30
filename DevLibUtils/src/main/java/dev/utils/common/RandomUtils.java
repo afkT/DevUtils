@@ -5,7 +5,7 @@ import java.util.Random;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 随机生成工具类
+ * detail: 随机工具类
  * @author Ttt
  */
 public final class RandomUtils {

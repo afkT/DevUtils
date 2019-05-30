@@ -14,7 +14,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Android 自己的 RenderScript 实现图片模糊
+ * detail: Android RenderScript 实现图片模糊工具类
  * @author Ttt
  * <pre>
  *      注: 仅在 SDK >= 17 时有用
