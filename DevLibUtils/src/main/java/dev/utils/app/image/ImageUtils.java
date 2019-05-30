@@ -869,10 +869,14 @@ public final class ImageUtils {
      * @param recycle 是否回收
      * @return stack 模糊后的图片
      */
-    public static Bitmap stackBlur(final Bitmap src, int radius, final boolean recycle) {
+    public static Bitmap stackBlur(final Bitmap src, final int radius, final boolean recycle) {
         Bitmap ret = recycle ? src : src.copy(src.getConfig(), true);
-        if (radius < 1) {
-            radius = 1;
+
+        // 模糊半径
+        int blurRadius = radius;
+        // 防止意外
+        if (blurRadius < 1) {
+            blurRadius = 1;
         }
         int width = ret.getWidth();
         int height = ret.getHeight();
@@ -883,7 +887,7 @@ public final class ImageUtils {
         int wm = width - 1;
         int hm = height - 1;
         int wh = width * height;
-        int div = radius + radius + 1;
+        int div = blurRadius + blurRadius + 1;
 
         int[] r = new int[wh];
         int[] g = new int[wh];
@@ -905,15 +909,15 @@ public final class ImageUtils {
         int stackstart;
         int[] sir;
         int rbs;
-        int r1 = radius + 1;
+        int r1 = blurRadius + 1;
         int routsum, goutsum, boutsum;
         int rinsum, ginsum, binsum;
 
         for (y = 0; y < height; y++) {
             rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
-            for (i = -radius; i <= radius; i++) {
+            for (i = -blurRadius; i <= blurRadius; i++) {
                 p = pix[yi + Math.min(wm, Math.max(i, 0))];
-                sir = stack[i + radius];
+                sir = stack[i + blurRadius];
                 sir[0] = (p & 0xff0000) >> 16;
                 sir[1] = (p & 0x00ff00) >> 8;
                 sir[2] = (p & 0x0000ff);
@@ -931,7 +935,7 @@ public final class ImageUtils {
                     boutsum += sir[2];
                 }
             }
-            stackpointer = radius;
+            stackpointer = blurRadius;
 
             for (x = 0; x < width; x++) {
 
@@ -943,7 +947,7 @@ public final class ImageUtils {
                 gsum -= goutsum;
                 bsum -= boutsum;
 
-                stackstart = stackpointer - radius + div;
+                stackstart = stackpointer - blurRadius + div;
                 sir = stack[stackstart % div];
 
                 routsum -= sir[0];
@@ -951,7 +955,7 @@ public final class ImageUtils {
                 boutsum -= sir[2];
 
                 if (y == 0) {
-                    vmin[x] = Math.min(x + radius + 1, wm);
+                    vmin[x] = Math.min(x + blurRadius + 1, wm);
                 }
                 p = pix[yw + vmin[x]];
 
@@ -984,11 +988,11 @@ public final class ImageUtils {
         }
         for (x = 0; x < width; x++) {
             rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
-            yp = -radius * width;
-            for (i = -radius; i <= radius; i++) {
+            yp = -blurRadius * width;
+            for (i = -blurRadius; i <= blurRadius; i++) {
                 yi = Math.max(0, yp) + x;
 
-                sir = stack[i + radius];
+                sir = stack[i + blurRadius];
 
                 sir[0] = r[yi];
                 sir[1] = g[yi];
@@ -1015,7 +1019,7 @@ public final class ImageUtils {
                 }
             }
             yi = x;
-            stackpointer = radius;
+            stackpointer = blurRadius;
             for (y = 0; y < height; y++) {
                 // Preserve alpha channel: ( 0xff000000 & pix[yi] )
                 pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
@@ -1024,7 +1028,7 @@ public final class ImageUtils {
                 gsum -= goutsum;
                 bsum -= boutsum;
 
-                stackstart = stackpointer - radius + div;
+                stackstart = stackpointer - blurRadius + div;
                 sir = stack[stackstart % div];
 
                 routsum -= sir[0];

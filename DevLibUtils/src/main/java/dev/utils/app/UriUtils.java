@@ -142,6 +142,7 @@ public final class UriUtils {
     }
 
     /**
+     * 获取此 Uri Cursor 对应条件的数据行 data 字段
      * @param context
      * @param uri
      * @param selection
@@ -166,7 +167,8 @@ public final class UriUtils {
     }
 
     /**
-     * @param uri
+     * 判读 Uri authority  是否为 ExternalStorage Provider
+     * @param uri {@link Uri}
      * @return
      */
     private static boolean isExternalStorageDocument(final Uri uri) {
@@ -174,7 +176,8 @@ public final class UriUtils {
     }
 
     /**
-     * @param uri
+     * 判读 Uri authority  是否为 Downloads Provider
+     * @param uri {@link Uri}
      * @return
      */
     private static boolean isDownloadsDocument(final Uri uri) {
@@ -182,7 +185,8 @@ public final class UriUtils {
     }
 
     /**
-     * @param uri
+     * 判读 Uri authority  是否为 Media Provider
+     * @param uri {@link Uri}
      * @return
      */
     private static boolean isMediaDocument(final Uri uri) {

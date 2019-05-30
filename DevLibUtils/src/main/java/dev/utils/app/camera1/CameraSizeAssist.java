@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.app.ScreenUtils;
 
 /**
- * detail: 摄像头 (预览、输出大小) 辅助类
+ * detail: 摄像头(预览、输出大小) 辅助类
  * @author Ttt
  * <pre>
  *      需要的权限:

@@ -300,6 +300,10 @@ public final class DeviceUtils {
         return CUSTOM_MAC;
     }
 
+    /**
+     * 通过 InetAddress 获取 Mac 地址
+     * @return Mac 地址
+     */
     private static String getMacAddressByInetAddress() {
         try {
             InetAddress inetAddress = getInetAddress();
@@ -322,6 +326,10 @@ public final class DeviceUtils {
         return "02:00:00:00:00:00";
     }
 
+    /**
+     * 获取 InetAddress
+     * @return
+     */
     private static InetAddress getInetAddress() {
         try {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();

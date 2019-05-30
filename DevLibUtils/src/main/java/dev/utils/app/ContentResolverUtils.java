@@ -86,19 +86,21 @@ public final class ContentResolverUtils {
      * @param mimeType
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertIntoMediaStore(final File file, long createTime, final boolean isVideo, final String mimeType) {
+    public static boolean insertIntoMediaStore(final File file, final long createTime, final boolean isVideo, final String mimeType) {
         if (file != null && !TextUtils.isEmpty(mimeType)) {
             try {
                 ContentResolver mContentResolver = DevUtils.getContext().getContentResolver();
+                // 插入时间
+                long insertTime = createTime;
                 // 防止创建时间为 null
-                if (createTime <= 0)
-                    createTime = System.currentTimeMillis();
+                if (insertTime <= 0)
+                    insertTime = System.currentTimeMillis();
 
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.MediaColumns.TITLE, file.getName());
                 values.put(MediaStore.MediaColumns.DISPLAY_NAME, file.getName());
                 // 值一样, 但是还是用常量区分对待
-                values.put(isVideo ? MediaStore.Video.VideoColumns.DATE_TAKEN : MediaStore.Images.ImageColumns.DATE_TAKEN, createTime);
+                values.put(isVideo ? MediaStore.Video.VideoColumns.DATE_TAKEN : MediaStore.Images.ImageColumns.DATE_TAKEN, insertTime);
                 values.put(MediaStore.MediaColumns.DATE_MODIFIED, System.currentTimeMillis());
                 values.put(MediaStore.MediaColumns.DATE_ADDED, System.currentTimeMillis());
                 if (!isVideo)
