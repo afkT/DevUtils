@@ -83,6 +83,10 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * Surface 改变通知
+     * @param holder
+     * @param format
+     * @param width
+     * @param height
      */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
@@ -91,6 +95,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * Surface 创建
+     * @param holder
      */
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -107,6 +112,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * Surface 销毁
+     * @param holder
      */
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
@@ -164,6 +170,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 缓存进度
+     * @param percent 缓冲百分比进度
      */
     @Override
     public void onBufferingUpdate(int percent) {
@@ -187,7 +194,9 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     }
 
     /**
-     * 异常回调
+     * 播放出错回调
+     * @param what  异常 what
+     * @param extra 异常 extra
      * @return {@code true} 处理了异常, {@code false} 将调用 OnCompletionListener
      */
     @Override
@@ -201,7 +210,9 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     }
 
     /**
-     * 视频大小改变通知
+     * 视频大小改变回调
+     * @param width  宽度
+     * @param height 高度
      */
     @Override
     public void onVideoSizeChanged(int width, int height) {

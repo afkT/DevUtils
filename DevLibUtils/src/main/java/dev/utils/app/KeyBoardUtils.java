@@ -387,6 +387,7 @@ public final class KeyBoardUtils {
     /**
      * 某个View里面的子View的View判断
      * @param view
+     * @param activity
      */
     public static void judgeView(final View view, final Activity activity) {
         if (view == null || activity == null) return;

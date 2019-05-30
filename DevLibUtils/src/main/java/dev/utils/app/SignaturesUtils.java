@@ -107,7 +107,8 @@ public final class SignaturesUtils {
     }
 
     /**
-     * 判断签名是debug签名还是release签名
+     * 判断签名是 debug 签名还是 release 签名
+     * @param signatures
      * @return {@code true} 开发(debug.keystore), {@code false} 上线发布(非.android默认debug.keystore)
      */
     public static boolean isDebuggable(final Signature[] signatures) {
@@ -131,6 +132,7 @@ public final class SignaturesUtils {
 
     /**
      * 获取 App 证书对象
+     * @param signatures
      * @return {@link X509Certificate}
      */
     public static X509Certificate getX509Certificate(final Signature[] signatures) {

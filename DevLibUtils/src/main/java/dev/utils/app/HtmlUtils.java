@@ -26,6 +26,7 @@ public final class HtmlUtils {
     /**
      * 为给定的字符串添加HTML颜色标记
      * @param content 给定的字符串
+     * @param color
      * @return 最后放在 Html.fromHtml() 内
      */
     public static String addHtmlColor(final String content, final String color) {
@@ -36,6 +37,7 @@ public final class HtmlUtils {
      * 为给定的字符串添加HTML颜色标记
      * @param content 给定的字符串
      * @param fString 格式化的内容
+     * @param color
      * @return 最后放在 Html.fromHtml() 内
      */
     public static String addHtmlColor(final String content, final String fString, final String color) {
@@ -59,6 +61,7 @@ public final class HtmlUtils {
     /**
      * 为给定的字符串添加HTML颜色标记, 以及加粗
      * @param content 给定的字符串
+     * @param color
      * @return 最后放在 Html.fromHtml() 内
      */
     public static String addHtmlColorAndBlod(final String content, final String color) {

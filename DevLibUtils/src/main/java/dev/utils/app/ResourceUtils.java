@@ -107,6 +107,7 @@ public final class ResourceUtils {
 
     /**
      * 获取 ColorStateList
+     * @param id
      * @return
      */
     public static ColorStateList getColorStateList(final int id) {
@@ -122,7 +123,7 @@ public final class ResourceUtils {
 
     /**
      * 获取字符串
-     * @param strId 字符串id
+     * @param strId R.string.id
      * @return 字符串
      */
     public static String getString(final int strId) {
@@ -136,6 +137,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 String
+     * @param id         R.string.id
+     * @param formatArgs 格式化参数
      * @return
      */
     public static String getString(@StringRes final int id, final Object... formatArgs) {

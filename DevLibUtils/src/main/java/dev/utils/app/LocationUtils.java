@@ -322,7 +322,7 @@ public final class LocationUtils {
          * provider的在可用、暂时不可用和无服务三个状态直接切换时触发此函数
          * @param provider 提供者
          * @param status   状态
-         * @param extras   provider可选包
+         * @param extras   provider 可选包
          */
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -344,6 +344,7 @@ public final class LocationUtils {
 
         /**
          * provider 被 enable 时触发此函数, 比如 GPS 被打开
+         * @param provider
          */
         @Override
         public void onProviderEnabled(String provider) {
@@ -351,6 +352,7 @@ public final class LocationUtils {
 
         /**
          * provider 被 disable 时触发此函数, 比如 GPS 被关闭
+         * @param provider
          */
         @Override
         public void onProviderDisabled(String provider) {

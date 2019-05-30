@@ -302,6 +302,7 @@ public final class ADBUtils {
 
     /**
      * 安装应用
+     * @param params
      * @param filePath /sdcard/xxx/x.apk
      * @return
      */
@@ -2142,6 +2143,7 @@ public final class ADBUtils {
 
     /**
      * 修改日期时间选项中通过网络获取时间的状态, 设置是否开启
+     * @param isOpen
      * @return
      */
     public static boolean setGlobalAutoTime(final boolean isOpen) {

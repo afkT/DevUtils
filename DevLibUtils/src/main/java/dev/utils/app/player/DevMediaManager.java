@@ -381,6 +381,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * 播放出错回调
+     * @param mp    {@link MediaPlayer}
+     * @param what  异常 what
+     * @param extra 异常 extra
      * @return {@code true} 处理了异常, {@code false} 将调用 OnCompletionListener
      */
     @Override
@@ -395,6 +398,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * 视频大小改变回调
+     * @param mp     {@link MediaPlayer}
+     * @param width  宽度
+     * @param height 高度
      */
     @Override
     public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
@@ -409,6 +415,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * 使用 mMediaPlayer.prepareAsync() 异步播放准备成功回调
+     * @param mp {@link MediaPlayer}
      */
     @Override
     public void onPrepared(MediaPlayer mp) {
@@ -421,6 +428,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * 视频播放结束回调
+     * @param mp {@link MediaPlayer}
      */
     @Override
     public void onCompletion(MediaPlayer mp) {
@@ -433,6 +441,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * MediaPlayer 缓冲更新回调
+     * @param mp      {@link MediaPlayer}
+     * @param percent 缓冲百分比进度
      */
     @Override
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
@@ -445,6 +455,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * 滑动加载完成回调
+     * @param mp {@link MediaPlayer}
      */
     @Override
     public void onSeekComplete(MediaPlayer mp) {

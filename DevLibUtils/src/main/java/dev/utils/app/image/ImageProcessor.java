@@ -124,6 +124,7 @@ public class ImageProcessor {
     /**
      * 倒影处理
      * @param reflectionSpacing 原图与倒影之间的间距
+     * @param reflectionHeight  倒影高度
      * @return 加上倒影后的图片
      */
     public Bitmap reflection(final int reflectionSpacing, final int reflectionHeight) {

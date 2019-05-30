@@ -24,6 +24,9 @@ public final class PollingUtils {
 
     /**
      * 开启轮询
+     * @param context
+     * @param mills
+     * @param pendingIntent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startPolling(final Context context, final int mills, final PendingIntent pendingIntent) {
@@ -37,6 +40,8 @@ public final class PollingUtils {
 
     /**
      * 停止轮询
+     * @param context
+     * @param pendingIntent
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopPolling(final Context context, final PendingIntent pendingIntent) {
@@ -50,6 +55,10 @@ public final class PollingUtils {
 
     /**
      * 开启轮询服务
+     * @param context
+     * @param mills
+     * @param clazz
+     * @param action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startPollingService(final Context context, final int mills, final Class<?> clazz, final String action) {
@@ -65,6 +74,9 @@ public final class PollingUtils {
 
     /**
      * 停止轮询服务
+     * @param context
+     * @param clazz
+     * @param action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopPollingService(final Context context, final Class<?> clazz, final String action) {

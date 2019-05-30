@@ -571,6 +571,12 @@ public final class IntentUtils {
 
     // =
 
+    /**
+     * 获取 Intent
+     * @param intent
+     * @param isNewTask
+     * @return
+     */
     private static Intent getIntent(final Intent intent, final boolean isNewTask) {
         if (intent != null) {
             return isNewTask ? intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) : intent;

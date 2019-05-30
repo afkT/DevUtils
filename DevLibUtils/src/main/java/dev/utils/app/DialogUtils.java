@@ -254,10 +254,11 @@ public final class DialogUtils {
 
     /**
      * 创建加载中 Dialog (原生样式)
-     * @param context  {@link Context}
-     * @param title    dialog 标题
-     * @param content  dialog 内容
-     * @param isCancel 是否可以返回键关闭
+     * @param context        {@link Context}
+     * @param title          dialog 标题
+     * @param content        dialog 内容
+     * @param isCancel       是否可以返回键关闭
+     * @param cancelListener 取消事件
      * @return
      */
     public static ProgressDialog createProgressDialog(final Context context, final String title, final String content, final boolean isCancel, final DialogInterface.OnCancelListener cancelListener) {
@@ -282,6 +283,7 @@ public final class DialogUtils {
      * @param dialog
      * @param time
      * @param handler
+     * @param <T>     泛型
      * @return
      */
     public static <T extends Dialog> T autoCloseDialog(final T dialog, final long time, final Handler handler) {
@@ -309,6 +311,7 @@ public final class DialogUtils {
      * @param popupWindow
      * @param time
      * @param handler
+     * @param <T>         泛型
      * @return
      */
     public static <T extends PopupWindow> T autoClosePopupWindow(final T popupWindow, final long time, final Handler handler) {
@@ -406,6 +409,7 @@ public final class DialogUtils {
 
     /**
      * 创建单选列表样式 Dialog
+     * @param context              {@link Context}
      * @param itemsId              R.arrays 数据源
      * @param title                标题
      * @param icon                 图标(标题左侧)
@@ -627,6 +631,7 @@ public final class DialogUtils {
 
     /**
      * 创建单选样式 Dialog
+     * @param context              {@link Context}
      * @param itemsId              R.arrays 数据源
      * @param checkedItem          默认选中索引
      * @param title                标题

@@ -84,7 +84,8 @@ public final class ShortCutUtils {
 
     /**
      * 删除程序的快捷方式
-     * @param context {@link Context}
+     * @param context   {@link Context}
+     * @param className
      * @param name
      */
     public static void delShortcut(final Context context, final String className, final String name) {

@@ -57,6 +57,7 @@ public final class BitmapExtendUtils {
      *      将这个参数的inJustDecodeBounds属性设置为 true就可以让解析方法禁止为bitmap分配内存
      *      返回值也不再是一个Bitmap对象, 而是 null, 虽然 Bitmap 是 null 了, 但是Options的outWidth、outHeight和outMimeType属性都会被赋值
      * </pre>
+     * @param options
      * @param targetWidth  目标宽度, 这里的宽高只是阀值, 实际显示的图片将小于等于这个值
      * @param targetHeight 目标高度, 这里的宽高只是阀值, 实际显示的图片将小于等于这个值
      * @return
@@ -111,6 +112,7 @@ public final class BitmapExtendUtils {
 
     /**
      * 获取一个指定大小的bitmap
+     * @param filePath
      * @param targetWidth  目标宽度
      * @param targetHeight 目标高度
      * @return {@link Bitmap}
@@ -627,8 +629,8 @@ public final class BitmapExtendUtils {
 
     /**
      * 旋转图片
-     * @param angle  旋转角度
      * @param bitmap 要旋转的图片
+     * @param angle  旋转角度
      * @return {@link Bitmap}
      */
     public static Bitmap rotate(final Bitmap bitmap, final int angle) {
@@ -664,6 +666,7 @@ public final class BitmapExtendUtils {
 
     /**
      * 更改图片色系, 变亮或变暗
+     * @param src
      * @param delta 图片的亮暗程度值, 越小图片会越亮, 取值范围(0,24)
      * @return {@link Bitmap}
      */
@@ -1248,7 +1251,9 @@ public final class BitmapExtendUtils {
      * rather than the one of {@link BitmapFactory}
      * which will be easy to get OutOfMemory Exception
      * while loading a big image file.
-     * @param uri 压缩相册返回的照片
+     * @param uri          压缩相册返回的照片
+     * @param targetWidth
+     * @param targetHeight
      * @return
      * @throws FileNotFoundException
      */

@@ -409,9 +409,9 @@ public final class ImageUtils {
     /**
      * 转为圆形图片
      * @param src         源图片
-     * @param recycle     是否回收
      * @param borderSize  边框尺寸
      * @param borderColor 边框颜色
+     * @param recycle     是否回收
      * @return 圆形图片
      */
     public static Bitmap toRound(final Bitmap src, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor, final boolean recycle) {

@@ -322,8 +322,8 @@ public final class ViewAnimationUtils {
     /**
      * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
      * @param view              待处理的视图
-     * @param animationListener 动画监听器
      * @param isBanClick        在执行动画的过程中是否禁止点击
+     * @param animationListener 动画监听器
      */
     public static void visibleViewByAlpha(final View view, final boolean isBanClick, final AnimationListener animationListener) {
         visibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, isBanClick, animationListener);

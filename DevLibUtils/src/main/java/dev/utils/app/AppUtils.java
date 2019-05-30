@@ -106,6 +106,7 @@ public final class AppUtils {
 
     /**
      * 获取 String
+     * @param id R.string.id
      * @return
      */
     public static String getString(@StringRes final int id) {
@@ -119,6 +120,8 @@ public final class AppUtils {
 
     /**
      * 获取 String
+     * @param id         R.string.id
+     * @param formatArgs 格式化参数
      * @return
      */
     public static String getString(@StringRes final int id, final Object... formatArgs) {
@@ -204,6 +207,7 @@ public final class AppUtils {
 
     /**
      * 获取 ColorStateList
+     * @param id
      * @return
      */
     public static ColorStateList getColorStateList(final int id) {
@@ -217,7 +221,8 @@ public final class AppUtils {
 
     /**
      * 获取 SystemService
-     * @param <T> 泛型
+     * @param name
+     * @param <T>  泛型
      * @return
      */
     public static <T> T getSystemService(final String name) {
@@ -402,7 +407,7 @@ public final class AppUtils {
 
     /**
      * 安装 App(支持 8.0)的意图
-     * @param file
+     * @param file      文件
      * @param authority 7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
      * @return 是否可以跳转
      */
@@ -778,7 +783,7 @@ public final class AppUtils {
 
     /**
      * 跳转到 专门的 App 应用商城详情页面
-     * @param marketPkg
+     * @param packageName
      * @param marketPkg
      * @return
      */

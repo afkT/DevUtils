@@ -60,6 +60,7 @@ public final class UriUtils {
     /**
      * Return a content URI for a given file
      * @param file
+     * @param authority
      * @return
      */
     public static Uri getUriForFile(final File file, final String authority) {
@@ -140,6 +141,13 @@ public final class UriUtils {
         return null;
     }
 
+    /**
+     * @param context
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
+     */
     private static String getDataColumn(final Context context, final Uri uri, final String selection, final String[] selectionArgs) {
         Cursor cursor = null;
         final String column = "_data";
@@ -157,14 +165,26 @@ public final class UriUtils {
         return null;
     }
 
+    /**
+     * @param uri
+     * @return
+     */
     private static boolean isExternalStorageDocument(final Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
+    /**
+     * @param uri
+     * @return
+     */
     private static boolean isDownloadsDocument(final Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
+    /**
+     * @param uri
+     * @return
+     */
     private static boolean isMediaDocument(final Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
