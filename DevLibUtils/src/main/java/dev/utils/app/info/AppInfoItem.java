@@ -22,7 +22,7 @@ import dev.utils.app.SignaturesUtils;
 import dev.utils.common.FileUtils;
 
 /**
- * detail: App 信息Item
+ * detail: App 信息 Item
  * @author Ttt
  */
 public final class AppInfoItem {

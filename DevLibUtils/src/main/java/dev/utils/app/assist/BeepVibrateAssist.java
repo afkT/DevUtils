@@ -14,7 +14,7 @@ import java.io.Closeable;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 播放“bee”的声音, 并且震动 辅助类
+ * detail: 播放“bee”的声音, 并且震动辅助类
  * @author Ttt
  */
 public final class BeepVibrateAssist implements Closeable {

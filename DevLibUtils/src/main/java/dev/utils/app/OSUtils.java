@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 工具类: OS 系统相关
+ * detail: OS 系统相关
  * @author Ttt
  * <pre>
  *      由于国内定制系统的泛滥, 不同定制系统的一些功能或实现方法会有所不同, 如果需要做到足够好的适配工作, 需要 对不同的定制系统做一些专门的适配

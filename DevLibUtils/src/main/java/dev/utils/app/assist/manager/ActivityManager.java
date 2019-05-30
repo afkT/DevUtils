@@ -11,7 +11,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Activity 管理类, 用于管理应用程序 Activity
+ * detail: Activity 管理工具类(用于管理应用程序 Activity)
  * @author Ttt
  */
 public final class ActivityManager {

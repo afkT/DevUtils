@@ -12,7 +12,7 @@ import java.util.concurrent.RejectedExecutionException;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 自动获取焦点 辅助类
+ * detail: 摄像头自动获取焦点辅助类
  * @author Ttt
  * <pre>
  *      对焦模式

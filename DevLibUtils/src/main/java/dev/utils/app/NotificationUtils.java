@@ -275,7 +275,7 @@ public final class NotificationUtils {
     }
 
     /**
-     * detail: 设置通知栏 震动参数实体类
+     * detail: 设置通知栏震动参数实体类
      * @author Ttt
      * <pre>
      *      vibrate 属性是一个长整型的数组, 用于设置手机静止和震动的时长, 以毫秒为单位

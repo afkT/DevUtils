@@ -24,7 +24,7 @@ import dev.utils.app.SignaturesUtils;
 import dev.utils.common.FileUtils;
 
 /**
- * detail: APK 信息Item
+ * detail: APK 信息 Item
  * @author Ttt
  */
 public final class ApkInfoItem {

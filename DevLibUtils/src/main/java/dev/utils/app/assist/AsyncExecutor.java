@@ -13,7 +13,7 @@ import java.util.concurrent.FutureTask;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 异步执行
+ * detail: 异步执行辅助类
  * @author MaTianyu
  * @author Ttt (重写、规范注释、逻辑判断等)
  */

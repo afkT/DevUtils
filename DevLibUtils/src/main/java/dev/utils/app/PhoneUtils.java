@@ -766,8 +766,11 @@ public final class PhoneUtils {
     // ============
 
     /**
-     * 双卡双待神机IMSI、IMSI、PhoneType信息
-     * <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+     * detail: 双卡双待神机 IMSI、IMSI、PhoneType 信息实体类
+     * <pre>
+     *      <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+     * </pre>
+     * @author Ttt
      */
     public static class TeleInfo {
         public String imsi_1;
