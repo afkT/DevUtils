@@ -36,7 +36,7 @@
 | stop | 停止操作 - 销毁 MediaPlayer |
 | isIgnoreWhat | 是否忽略错误类型 |
 | onError | 播放出错回调 |
-| onVideoSizeChanged | 视频大小改变回调 |
+| onVideoSizeChanged | 视频大小改变通知 |
 | onPrepared | 使用 mMediaPlayer.prepareAsync() 异步播放准备成功回调 |
 | onCompletion | 视频播放结束回调 |
 | onBufferingUpdate | MediaPlayer 缓冲更新回调 |

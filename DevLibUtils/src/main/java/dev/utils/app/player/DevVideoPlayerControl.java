@@ -210,7 +210,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     }
 
     /**
-     * 视频大小改变回调
+     * 视频大小改变通知
      * @param width  宽度
      * @param height 高度
      */

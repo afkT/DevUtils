@@ -397,7 +397,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     }
 
     /**
-     * 视频大小改变回调
+     * 视频大小改变通知
      * @param mp     {@link MediaPlayer}
      * @param width  宽度
      * @param height 高度
@@ -509,7 +509,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         boolean onError(int what, int extra);
 
         /**
-         * 视频大小改变回调
+         * 视频大小改变通知
          * @param width  宽度
          * @param height 高度
          */
