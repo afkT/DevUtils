@@ -1,7 +1,7 @@
 package dev.utils.common.encrypt;
 
 /**
- * detail: 字符串(编解码) 工具类
+ * detail: 字符串(编解码)工具类
  * @author Ttt
  */
 public final class EscapeUtils {

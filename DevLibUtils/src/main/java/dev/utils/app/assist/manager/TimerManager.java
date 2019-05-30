@@ -498,7 +498,7 @@ public final class TimerManager {
     // =================================
 
     /**
-     * detail: 定时器内部封装类 - 定时器任务类
+     * detail: 定时器内部封装类(定时器任务类)
      * @author Ttt
      * <pre>
      *      便于快捷使用, 并且防止外部 new 从而达到对整个项目定时器的控制

@@ -9,7 +9,7 @@ import java.util.Date;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 类 (Class) 工具
+ * detail: 类(Class)工具类
  * @author Ttt
  */
 public final class ClassUtils {

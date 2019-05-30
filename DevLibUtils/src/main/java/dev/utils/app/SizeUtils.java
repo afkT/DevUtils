@@ -9,7 +9,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: dp, px, sp转换、View获取宽高等
+ * detail: 大小工具类(dp, px, sp 转换、View 获取宽高等)
  * @author Ttt
  */
 public final class SizeUtils {

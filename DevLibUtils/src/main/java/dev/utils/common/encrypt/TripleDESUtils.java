@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 3DES 对称加密
+ * detail: 3DES 对称加密工具类
  * @author Ttt
  * <pre>
  *      Triple DES、DESede 进行了三重 DES 加密的算法(对称加密算法)

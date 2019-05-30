@@ -13,7 +13,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 获取内存信息
+ * detail: 内存信息工具类
  * @author Ttt
  */
 public final class MemoryUtils {

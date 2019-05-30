@@ -21,7 +21,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
 
 /**
- * detail: Intent(意图) 相关工具类
+ * detail: Intent(意图)相关工具类
  * @author Ttt
  * <pre>
  *      7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性

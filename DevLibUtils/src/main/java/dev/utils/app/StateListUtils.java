@@ -13,7 +13,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 颜色状态列表 工具类
+ * detail: 颜色状态列表工具类
  * @author Ttt
  * <pre>
  *      @see <a href="https://blog.csdn.net/wuqilianga/article/details/72964884"/>

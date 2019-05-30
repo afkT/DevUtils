@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Toast;
 
 /**
- * detail: Toast 工具类 (支持子线程弹出 Toast, 处理无通知权限)
+ * detail: Toast 工具类(支持子线程弹出 Toast, 处理无通知权限)
  * @author Ttt
  * <pre>
  *      支持子线程弹出 Toast, 可通过开关配置

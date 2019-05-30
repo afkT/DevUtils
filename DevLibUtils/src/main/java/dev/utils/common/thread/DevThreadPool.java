@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * detail: 线程池 - 构建类
+ * detail: 线程池(构建类)
  * @author Ttt
  * <pre>
  *      @see <a href="https://www.jianshu.com/p/4d4634c92253"/>

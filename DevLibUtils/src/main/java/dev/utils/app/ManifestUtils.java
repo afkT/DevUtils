@@ -12,7 +12,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Android Manifest工具类
+ * detail: Android Manifest 工具类
  * @author Ttt
  */
 public final class ManifestUtils {

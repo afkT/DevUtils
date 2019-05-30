@@ -1,7 +1,7 @@
 package dev.utils.common.cipher;
 
 /**
- * detail: 解密(解码) 接口
+ * detail: 解密(解码)接口
  * @author Ttt
  */
 public interface Decrypt {

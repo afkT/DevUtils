@@ -3,7 +3,7 @@ package dev.utils.common.validator;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 银行卡管理
+ * detail: 银行卡管理工具类
  * @author AbrahamCaiJin
  * @author Ttt (重写、规范注释、逻辑判断等)
  * <pre>

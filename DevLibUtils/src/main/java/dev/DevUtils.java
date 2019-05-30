@@ -828,7 +828,7 @@ public final class DevUtils {
     }
 
     /**
-     * detail:  ActivityLifecycleCallbacks 抽象类
+     * detail: ActivityLifecycleCallbacks 抽象类
      * @author Ttt
      */
     public static abstract class AbstractActivityLifecycle implements Application.ActivityLifecycleCallbacks {

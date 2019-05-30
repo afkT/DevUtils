@@ -9,7 +9,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
 
 /**
- * detail: 数据库工具类 (导入导出等)
+ * detail: 数据库工具类(导入导出等)
  * @author Ttt
  */
 public final class DBUtils {

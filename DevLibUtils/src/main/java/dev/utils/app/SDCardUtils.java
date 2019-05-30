@@ -20,7 +20,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
 
 /**
- * detail: SD卡相关辅助类
+ * detail: SDCard 相关辅助类
  * @author Ttt
  */
 public final class SDCardUtils {

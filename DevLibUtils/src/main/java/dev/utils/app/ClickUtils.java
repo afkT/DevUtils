@@ -227,7 +227,7 @@ public final class ClickUtils {
     // =
 
     /**
-     * detail: 点击(双击) 辅助类
+     * detail: 点击(双击)辅助类
      * @author Ttt
      * <pre>
      *      ps: 该辅助类, 主要避免全局共用一个双击控制类, 容易出现冲突, 方便控制某个 Activity/功能模块 双击处理

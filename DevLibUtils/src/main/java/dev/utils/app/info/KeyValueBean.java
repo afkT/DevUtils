@@ -6,7 +6,7 @@ import android.support.annotation.StringRes;
 import dev.DevUtils;
 
 /**
- * detail: 键对值 实体类
+ * detail: 键对值实体类
  * @author Ttt
  */
 public class KeyValueBean {

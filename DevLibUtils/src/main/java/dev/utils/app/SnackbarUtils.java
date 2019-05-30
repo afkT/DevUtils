@@ -444,7 +444,7 @@ public final class SnackbarUtils {
     // =
 
     /**
-     * detail:  Snackbar 样式配置构造类
+     * detail: Snackbar 样式配置构造类
      * @author Ttt
      */
     public static final class StyleBuilder extends Style {

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * detail: SPUtils 工具类 - 直接单独使用
+ * detail: SPUtils 工具类(单独使用)
  * @author Ttt
  */
 public final class SharedUtils {

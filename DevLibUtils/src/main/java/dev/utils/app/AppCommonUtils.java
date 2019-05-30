@@ -11,7 +11,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: App通用工具类
+ * detail: App 通用工具类
  * @author Ttt
  */
 public final class AppCommonUtils {

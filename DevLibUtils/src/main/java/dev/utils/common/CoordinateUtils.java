@@ -3,7 +3,7 @@ package dev.utils.common;
 import static java.lang.Math.PI;
 
 /**
- * detail: 坐标相关工具类 - GPS 纠偏
+ * detail: 坐标(GPS 纠偏)相关工具类
  * @author Ttt
  * <pre>
  *      地球坐标系 (WGS-84)

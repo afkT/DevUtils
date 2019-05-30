@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 图片Buf转换 - 转换BMP图片
+ * detail: 图片 Buf 转换 BMP 图片
  * @author Ttt
  */
 public final class ImageBmpUtils {
