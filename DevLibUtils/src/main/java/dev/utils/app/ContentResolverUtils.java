@@ -72,7 +72,7 @@ public final class ContentResolverUtils {
     /**
      * 添加视频到系统相册
      * @param file
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean insertVideoIntoMediaStore(final File file) {
         return insertIntoMediaStore(file, -1, true, "video/3gp");
@@ -84,6 +84,7 @@ public final class ContentResolverUtils {
      * @param createTime
      * @param isVideo
      * @param mimeType
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean insertIntoMediaStore(final File file, long createTime, final boolean isVideo, final String mimeType) {
         if (file != null && !TextUtils.isEmpty(mimeType)) {

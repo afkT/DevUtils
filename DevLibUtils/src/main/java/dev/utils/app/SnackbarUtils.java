@@ -238,7 +238,7 @@ public final class SnackbarUtils {
      * @param listener
      * @param resId
      * @param objs
-     * @return
+     * @return 格式化后的字符串
      */
     public SnackbarUtils setAction(final View.OnClickListener listener, final int resId, final Object... objs) {
         Snackbar snackbar = getSnackbar();
@@ -411,6 +411,7 @@ public final class SnackbarUtils {
      * 获取 R.string 资源的格式化字符串
      * @param resId
      * @param objs
+     * @return 格式化后的字符串
      */
     private String getFormatRes(final int resId, final Object... objs) {
         try {

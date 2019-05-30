@@ -131,6 +131,7 @@ public final class SignaturesUtils {
 
     /**
      * 获取 App 证书对象
+     * @return {@link X509Certificate}
      */
     public static X509Certificate getX509Certificate(final Signature[] signatures) {
         try {
@@ -147,7 +148,6 @@ public final class SignaturesUtils {
     /**
      * 打印签名信息
      * @param signatures
-     * @return
      */
     public static void printSignatureName(final Signature[] signatures) {
         try {

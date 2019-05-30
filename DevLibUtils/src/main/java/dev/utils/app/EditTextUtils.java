@@ -114,6 +114,7 @@ public final class EditTextUtils {
      * 设置内容
      * @param editText
      * @param content
+     * @return {@link EditText}
      */
     public static EditText setText(final EditText editText, final String content) {
         return setText(editText, content, true);
@@ -124,6 +125,7 @@ public final class EditTextUtils {
      * @param editText
      * @param content
      * @param isSelect 是否设置光标
+     * @return {@link EditText}
      */
     public static EditText setText(final EditText editText, final String content, final boolean isSelect) {
         if (editText != null) {

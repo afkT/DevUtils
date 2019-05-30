@@ -527,7 +527,7 @@ public final class DateUtils {
      * 根据年份、月份, 获取对应的天数 (完整天数, 无判断是否属于未来日期)
      * @param year  年数
      * @param month 月份
-     * @return 获取指定年份所属的月份的天数
+     * @return 指定年份所属的月份的天数
      */
     public static int getMonthDayNumberAll(final int year, final int month) {
         int number = 31;
@@ -702,7 +702,7 @@ public final class DateUtils {
      * @param type 0 = 00:00 - 23:00 => 每 1 小时间隔
      *             1 = 00:00 - 23:45 => 每 15 分钟间隔
      *             2 = 00:00 - 23:30 => 每 30 分钟间隔
-     * @return 获取指定数据, 在对应格式类型内的索引
+     * @return 指定数据, 在对应格式类型内的索引
      */
     public static int getListToHHMMPosition(final String time, final int type) {
         if (time != null && time.length() != 0) {
@@ -1038,7 +1038,7 @@ public final class DateUtils {
     /**
      * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
      * @param endTime 结束时间 HH:mm
-     * @return 获取距离指定结束时间还有多少毫秒
+     * @return 距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiffHHmm(final String endTime) {
         return getEndTimeDiff(System.currentTimeMillis(), endTime, HHmm);
@@ -1048,7 +1048,7 @@ public final class DateUtils {
      * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
      * @param startTime 开始时间
      * @param endTime   结束时间 HH:mm
-     * @return 获取距离指定结束时间还有多少毫秒
+     * @return 距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiffHHmm(final long startTime, final String endTime) {
         return getEndTimeDiff(startTime, endTime, HHmm);
@@ -1058,7 +1058,7 @@ public final class DateUtils {
      * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
      * @param endTime 结束时间
      * @param format  格式 如: HH:mm
-     * @return 获取距离指定结束时间还有多少毫秒
+     * @return 距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiff(final String endTime, final String format) {
         return getEndTimeDiff(System.currentTimeMillis(), endTime, format);
@@ -1074,7 +1074,7 @@ public final class DateUtils {
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @param format    格式 如: HH:mm
-     * @return 获取距离指定结束时间还有多少毫秒
+     * @return 距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiff(final long startTime, final String endTime, final String format) {
         if (startTime < 1 || endTime == null || format == null) return -1;

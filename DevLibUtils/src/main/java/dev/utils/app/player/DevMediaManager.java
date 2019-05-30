@@ -381,13 +381,14 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * 播放出错回调
+     * @return {@code true} 处理了异常, {@code false} 将调用 OnCompletionListener
      */
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
         LogPrintUtils.dTag(TAG, "onError - what: " + what + ", extra: " + extra);
         // 触发回调
         if (mMeidaListener != null) {
-            mMeidaListener.onError(what, extra);
+            return mMeidaListener.onError(what, extra);
         }
         return false;
     }
@@ -492,8 +493,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
          * 播放出错回调
          * @param what  异常 what
          * @param extra 异常 extra
+         * @return {@code true} 处理了异常, {@code false} 将调用 OnCompletionListener
          */
-        void onError(int what, int extra);
+        boolean onError(int what, int extra);
 
         /**
          * 视频大小改变回调

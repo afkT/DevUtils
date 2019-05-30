@@ -473,7 +473,7 @@ public class WifiHotUtils {
 
 //    /**
 //     * 获取连接的热点信息
-//     * @return 获取连接的热点信息
+//     * @return 连接的热点信息
 //     */
 //    private String getConnectHotspotMsg() {
 //        try {

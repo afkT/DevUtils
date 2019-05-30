@@ -105,7 +105,7 @@ public final class ShapeUtils {
         /**
          * 设置圆角
          * @param left
-         * @return
+         * @return {@link ShapeUtils.Builder}
          */
         public Builder setRadiusLeft(final float left) {
             setCornerRadii(left, 0, 0, left);
@@ -116,7 +116,7 @@ public final class ShapeUtils {
          * 设置圆角
          * @param leftTop
          * @param leftBottom
-         * @return
+         * @return {@link ShapeUtils.Builder}
          */
         public Builder setRadiusLeft(final float leftTop, final float leftBottom) {
             setCornerRadii(leftTop, 0, 0, leftBottom);
@@ -130,7 +130,7 @@ public final class ShapeUtils {
         /**
          * 设置圆角
          * @param right
-         * @return
+         * @return {@link ShapeUtils.Builder}
          */
         public Builder setRadiusRight(final float right) {
             setCornerRadii(0, right, right, 0);
@@ -141,7 +141,7 @@ public final class ShapeUtils {
          * 设置圆角
          * @param rightTop
          * @param rightBottom
-         * @return
+         * @return {@link ShapeUtils.Builder}
          */
         public Builder setRadiusRight(final float rightTop, final float rightBottom) {
             setCornerRadii(0, rightTop, rightBottom, 0);
@@ -158,6 +158,7 @@ public final class ShapeUtils {
          * @param rightTop
          * @param rightBottom
          * @param leftBottom
+         * @return {@link ShapeUtils.Builder}
          */
         public Builder setCornerRadii(final float leftTop, final float rightTop, final float rightBottom, final float leftBottom) {
 //        <corners

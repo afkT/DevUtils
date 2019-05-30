@@ -383,7 +383,7 @@ public final class ADBUtils {
     /**
      * 卸载 App
      * @param packageName
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final String packageName) {
         return uninstallApp(packageName, false);
@@ -393,7 +393,7 @@ public final class ADBUtils {
      * 卸载 App
      * @param packageName
      * @param isKeepData  -k 参数可选, 表示卸载应用但保留数据和缓存目录
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final String packageName, final boolean isKeepData) {
         if (isSpace(packageName)) return false;
@@ -1623,7 +1623,6 @@ public final class ADBUtils {
      * @param tX
      * @param tY
      * @param number 循环次数
-     * @return
      */
     public static void sendEventSlide(final float x, final float y, final float tX, final float tY, final int number) {
         List<String> lists = new ArrayList<>();

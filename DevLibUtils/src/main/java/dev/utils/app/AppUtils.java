@@ -509,8 +509,7 @@ public final class AppUtils {
     /**
      * 卸载 App
      * @param packageName
-     * @param
-     * @return 卸载 App 的意图
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -528,6 +527,7 @@ public final class AppUtils {
      * @param activity
      * @param packageName
      * @param requestCode
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final Activity activity, final String packageName, final int requestCode) {
         if (isSpace(packageName)) return false;
@@ -712,6 +712,7 @@ public final class AppUtils {
     /**
      * 打开 App
      * @param packageName
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchApp(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -729,6 +730,7 @@ public final class AppUtils {
      * @param activity
      * @param packageName
      * @param requestCode
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchApp(final Activity activity, final String packageName, final int requestCode) {
         if (isSpace(packageName)) return false;
@@ -743,7 +745,7 @@ public final class AppUtils {
 
     /**
      * 跳转到 专门的 App 设置详情页面
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings() {
         return launchAppDetailsSettings(DevUtils.getContext().getPackageName());
@@ -752,6 +754,7 @@ public final class AppUtils {
     /**
      * 跳转到 专门的 App 设置详情页面
      * @param packageName
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -1008,6 +1011,7 @@ public final class AppUtils {
     /**
      * 启动本地应用打开 PDF
      * @param filePath 文件路径
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openPDFFile(final String filePath) {
         try {
@@ -1029,6 +1033,7 @@ public final class AppUtils {
     /**
      * 启动本地应用打开 Word
      * @param filePath 文件路径
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openWordFile(final String filePath) {
         try {
@@ -1051,6 +1056,7 @@ public final class AppUtils {
     /**
      * 调用 WPS 打开 office 文档
      * @param filePath 文件路径
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openOfficeByWPS(final String filePath) {
         try {

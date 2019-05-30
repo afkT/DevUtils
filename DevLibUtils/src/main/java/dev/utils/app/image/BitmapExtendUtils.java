@@ -89,6 +89,7 @@ public final class BitmapExtendUtils {
      * @param resId        图片ID
      * @param targetWidth  目标宽度
      * @param targetHeight 目标高度
+     * @return {@link Bitmap}
      */
     public static Bitmap getBitmapFromResource(final Resources res, final int resId, final int targetWidth, final int targetHeight) {
 //        if (res == null) return null;
@@ -112,6 +113,7 @@ public final class BitmapExtendUtils {
      * 获取一个指定大小的bitmap
      * @param targetWidth  目标宽度
      * @param targetHeight 目标高度
+     * @return {@link Bitmap}
      */
     public static Bitmap getBitmapFromFile(final String filePath, final int targetWidth, final int targetHeight) {
         if (TextUtils.isEmpty(filePath)) return null;
@@ -131,6 +133,7 @@ public final class BitmapExtendUtils {
      * @param length       从offset处开始的长度
      * @param targetWidth  目标宽度
      * @param targetHeight 目标高度
+     * @return {@link Bitmap}
      */
     public static Bitmap getBitmapFromByteArray(final byte[] data, final int offset, final int length, final int targetWidth, final int targetHeight) {
         if (data == null || data.length == 0) return null;
@@ -176,6 +179,7 @@ public final class BitmapExtendUtils {
      * @param outPadding
      * @param targetWidth  目标宽度
      * @param targetHeight 目标高度
+     * @return {@link Bitmap}
      */
     public static Bitmap getBitmapFromStream(final InputStream is, final Rect outPadding, final int targetWidth, final int targetHeight) {
         if (is == null) return null;
@@ -190,9 +194,9 @@ public final class BitmapExtendUtils {
 
     /**
      * 合并Bitmap
-     * @param bgd 背景Bitmap
-     * @param fg  前景Bitmap
-     * @return 合成后的Bitmap
+     * @param bgd 背景 Bitmap
+     * @param fg  前景 Bitmap
+     * @return {@link Bitmap}
      */
     public static Bitmap combineImages(final Bitmap bgd, final Bitmap fg) {
         if (bgd == null || fg == null) return null;
@@ -214,7 +218,7 @@ public final class BitmapExtendUtils {
      * 合并Bitmap
      * @param bgd 后景Bitmap
      * @param fg  前景Bitmap
-     * @return 合成后Bitmap
+     * @return {@link Bitmap}
      */
     public static Bitmap combineImagesToSameSize(Bitmap bgd, Bitmap fg) {
         if (bgd == null || fg == null) return null;
@@ -245,7 +249,7 @@ public final class BitmapExtendUtils {
      * @param bitmap 源Bitmap
      * @param w      宽
      * @param h      高
-     * @return 目标Bitmap
+     * @return {@link Bitmap}
      */
     public static Bitmap zoom(final Bitmap bitmap, final int w, final int h) {
         if (bitmap == null) return null;
@@ -263,7 +267,7 @@ public final class BitmapExtendUtils {
      * 获取圆角图片的方法
      * @param bitmap  源Bitmap
      * @param roundPx 圆角大小
-     * @return 期望Bitmap
+     * @return {@link Bitmap}
      */
     public static Bitmap getRoundedCornerBitmap(final Bitmap bitmap, final float roundPx) {
         if (bitmap == null) return null;
@@ -290,7 +294,7 @@ public final class BitmapExtendUtils {
     /**
      * 获取带倒影的图片方法
      * @param bitmap 源Bitmap
-     * @return 带倒影的Bitmap
+     * @return {@link Bitmap}
      */
     public static Bitmap createReflectionBitmap(final Bitmap bitmap) {
         if (bitmap == null) return null;
@@ -329,7 +333,7 @@ public final class BitmapExtendUtils {
      * 压缩图片大小
      * @param bitmap 源Bitmap
      * @param size   kb为单位, 大于xx大小, 则一直压缩
-     * @return 压缩后的Bitmap
+     * @return {@link Bitmap}
      */
     public static Bitmap compressImage(final Bitmap bitmap, final long size) {
         if (bitmap == null) return null;
@@ -349,7 +353,7 @@ public final class BitmapExtendUtils {
     /**
      * 将彩色图转换为灰度图
      * @param bitmap 源Bitmap
-     * @return 返回转换好的位图
+     * @return {@link Bitmap}
      */
     public static Bitmap convertGreyImg(final Bitmap bitmap) {
         if (bitmap == null) return null;
@@ -381,7 +385,7 @@ public final class BitmapExtendUtils {
     /**
      * 转换图片成圆形
      * @param bitmap 传入Bitmap对象
-     * @return 圆形Bitmap
+     * @return {@link Bitmap}
      */
     public static Bitmap getRoundBitmap(final Bitmap bitmap) {
         if (bitmap == null) return null;
@@ -437,7 +441,7 @@ public final class BitmapExtendUtils {
     /**
      * 创建图片缩略图
      * @param bitmap
-     * @return
+     * @return {@link Bitmap}
      */
     public static Bitmap createThumbnailBitmap(final Bitmap bitmap) {
         if (bitmap == null) return null;
@@ -498,7 +502,7 @@ public final class BitmapExtendUtils {
      * 生成水印图片 水印在右下角
      * @param src
      * @param watermark
-     * @return
+     * @return {@link Bitmap}
      */
     public static Bitmap createWatermarkBitmap(final Bitmap src, final Bitmap watermark) {
         if (src == null || watermark == null) return null;
@@ -525,7 +529,7 @@ public final class BitmapExtendUtils {
      * @param bitmap  需要重新编码的Bitmap
      * @param format  编码后的格式(目前只支持png和jpeg这两种格式)
      * @param quality 重新生成后的bitmap的质量
-     * @return 返回重新生成后的bitmap
+     * @return {@link Bitmap}
      */
     public static Bitmap codec(final Bitmap bitmap, final Bitmap.CompressFormat format, final int quality) {
         if (bitmap == null || format == null) return null;
@@ -540,7 +544,7 @@ public final class BitmapExtendUtils {
      * 说明 如果bitmap本身的大小小于maxSize, 则不作处理
      * @param bitmap  要压缩的图片
      * @param maxSize 压缩后的大小, 单位kb
-     * @return
+     * @return {@link Bitmap}
      */
     public static Bitmap compress(final Bitmap bitmap, final double maxSize) {
         if (bitmap == null) return null;
@@ -567,6 +571,7 @@ public final class BitmapExtendUtils {
      * @param bitmap    源图片资源
      * @param newWidth  缩放后宽度
      * @param newHeight 缩放后高度
+     * @return {@link Bitmap}
      */
     public static Bitmap scale(final Bitmap bitmap, final double newWidth, final double newHeight) {
         if (bitmap == null) return null;
@@ -588,6 +593,7 @@ public final class BitmapExtendUtils {
      * 图片的缩放方法
      * @param bitmap      源图片资源
      * @param scaleMatrix 缩放规则
+     * @return {@link Bitmap}
      */
     public static Bitmap scale(final Bitmap bitmap, final Matrix scaleMatrix) {
         if (bitmap == null) return null;
@@ -599,6 +605,7 @@ public final class BitmapExtendUtils {
      * @param bitmap 源图片资源
      * @param scaleX 横向缩放比例
      * @param scaleY 纵向缩放比例
+     * @return {@link Bitmap}
      */
     public static Bitmap scale(final Bitmap bitmap, final float scaleX, final float scaleY) {
         if (bitmap == null) return null;
@@ -611,6 +618,7 @@ public final class BitmapExtendUtils {
      * 图片的缩放方法
      * @param bitmap 源图片资源
      * @param scale  缩放比例
+     * @return {@link Bitmap}
      */
     public static Bitmap scale(final Bitmap bitmap, final float scale) {
         if (bitmap == null) return null;
@@ -621,7 +629,7 @@ public final class BitmapExtendUtils {
      * 旋转图片
      * @param angle  旋转角度
      * @param bitmap 要旋转的图片
-     * @return 旋转后的图片
+     * @return {@link Bitmap}
      */
     public static Bitmap rotate(final Bitmap bitmap, final int angle) {
         if (bitmap == null) return null;
@@ -633,7 +641,7 @@ public final class BitmapExtendUtils {
     /**
      * 水平翻转处理
      * @param bitmap 原图
-     * @return 水平翻转后的图片
+     * @return {@link Bitmap}
      */
     public static Bitmap reverseByHorizontal(final Bitmap bitmap) {
         if (bitmap == null) return null;
@@ -657,7 +665,7 @@ public final class BitmapExtendUtils {
     /**
      * 更改图片色系, 变亮或变暗
      * @param delta 图片的亮暗程度值, 越小图片会越亮, 取值范围(0,24)
-     * @return
+     * @return {@link Bitmap}
      */
     public static Bitmap adjustTone(final Bitmap src, final int delta) {
         if (src == null) return null;
@@ -716,7 +724,7 @@ public final class BitmapExtendUtils {
     /**
      * 将彩色图转换为黑白图
      * @param bitmap 位图
-     * @return 返回转换好的位图
+     * @return {@link Bitmap}
      */
     public static Bitmap convertToBlackWhite(final Bitmap bitmap) {
         if (bitmap == null) return null;

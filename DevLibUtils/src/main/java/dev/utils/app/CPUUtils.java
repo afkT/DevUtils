@@ -29,6 +29,7 @@ public final class CPUUtils {
 
     /**
      * 获取处理器的 Java 虚拟机的数量
+     * @return 处理器的 Java 虚拟机的数量
      */
     public static int getProcessorsCount() {
         return Runtime.getRuntime().availableProcessors();

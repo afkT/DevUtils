@@ -170,6 +170,7 @@ public final class AnalysisRecordUtils {
      * 最终保存方法
      * @param fileInfo
      * @param args
+     * @return 拼接后的日志内容
      */
     private static String saveLogRecord(final FileInfo fileInfo, final String... args) {
         // 如果不处理, 则直接跳过
@@ -723,6 +724,7 @@ public final class AnalysisRecordUtils {
         /**
          * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
          * @param file 文件夹路径 (无文件名字.后缀)
+         * @return {@code true} success, {@code false} fail
          */
         private static boolean createFolder(final File file) {
             if (file != null) {

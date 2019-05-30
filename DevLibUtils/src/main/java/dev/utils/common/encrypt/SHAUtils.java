@@ -113,7 +113,7 @@ public final class SHAUtils {
      * 获取文件 SHA 值
      * @param filePath  文件路径
      * @param algorithm 算法
-     * @return 获取文件指定 SHA 字符串信息
+     * @return 文件指定 SHA 字符串信息
      */
     public static String getFileSHA(final String filePath, final String algorithm) {
         if (filePath == null || algorithm == null) return null;

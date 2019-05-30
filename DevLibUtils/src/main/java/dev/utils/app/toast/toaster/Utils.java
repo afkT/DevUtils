@@ -59,6 +59,7 @@ final class Utils {
      * 获取 R.string 资源的格式化字符串
      * @param resId R.string.id
      * @param objs  格式化参数
+     * @return 格式化后的字符串
      */
     public static String getFormatRes(final int resId, final Object... objs) {
         try {

@@ -173,6 +173,7 @@ public final class PermissionUtils {
     /**
      * 设置回调方法
      * @param callBack
+     * @return {@link PermissionUtils}
      */
     public PermissionUtils callBack(final PermissionCallBack callBack) {
         if (mIsRequest) {

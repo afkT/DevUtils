@@ -437,6 +437,7 @@ public final class BitmapUtils {
      * @param bitmap  需要保存的数据
      * @param path    保存路径
      * @param quality 压缩比例
+     * @return {@link Bitmap}
      */
     public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final String path, final int quality) {
         return saveBitmapToSDCard(bitmap, path, Bitmap.CompressFormat.JPEG, quality);
@@ -446,6 +447,7 @@ public final class BitmapUtils {
      * 保存图片到SD卡 - PNG
      * @param bitmap 需要保存的数据
      * @param path   保存路径
+     * @return {@link Bitmap}
      */
     public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String path) {
         return saveBitmapToSDCard(bitmap, path, Bitmap.CompressFormat.PNG, 80);
@@ -456,6 +458,7 @@ public final class BitmapUtils {
      * @param bitmap  需要保存的数据
      * @param path    保存路径
      * @param quality 压缩比例
+     * @return {@link Bitmap}
      */
     public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String path, final int quality) {
         return saveBitmapToSDCard(bitmap, path, Bitmap.CompressFormat.PNG, quality);
@@ -466,7 +469,7 @@ public final class BitmapUtils {
      * @param bitmap  需要保存的数据
      * @param path    保存路径
      * @param quality 压缩比例
-     * @return
+     * @return {@link Bitmap}
      */
     public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String path, final int quality) {
         return saveBitmapToSDCard(bitmap, path, Bitmap.CompressFormat.PNG, quality);

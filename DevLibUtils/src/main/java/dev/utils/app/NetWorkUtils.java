@@ -114,6 +114,7 @@ public final class NetWorkUtils {
     /**
      * 判断是否连接了网络
      * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isConnect() {

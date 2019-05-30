@@ -53,6 +53,7 @@ public final class AppCommonUtils {
      * 获取 R.string 资源的格式化字符串
      * @param resId
      * @param objs
+     * @return 格式化后的字符串
      */
     public static String getFormatRes(final int resId, final Object... objs) {
         return getFormatRes(false, resId, objs);
@@ -63,6 +64,7 @@ public final class AppCommonUtils {
      * @param errorMsg 是否设置异常信息
      * @param resId
      * @param objs
+     * @return 格式化后的字符串
      */
     public static String getFormatRes(final boolean errorMsg, final int resId, final Object... objs) {
         try {

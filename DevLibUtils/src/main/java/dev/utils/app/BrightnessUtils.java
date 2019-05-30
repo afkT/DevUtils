@@ -87,6 +87,7 @@ public final class BrightnessUtils {
      * 设置屏幕亮度
      * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
      * @param brightness 亮度值
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(WRITE_SETTINGS)
     public static boolean setBrightness(@IntRange(from = 0, to = 255) final int brightness) {

@@ -301,6 +301,7 @@ public final class AccessibilityUtils {
     /**
      * 点击指定的节点
      * @param nodeInfo
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean performClick(final AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo != null && nodeInfo.isClickable()) {
@@ -353,6 +354,7 @@ public final class AccessibilityUtils {
     /**
      * 长按指定的节点
      * @param nodeInfo
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo != null && nodeInfo.isClickable()) {
@@ -580,6 +582,8 @@ public final class AccessibilityUtils {
     /**
      * 模拟对应 Action 操作
      * @param nodeInfo
+     * @param action
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean preformAction(final AccessibilityNodeInfo nodeInfo, final int action) {
         if (nodeInfo != null) {

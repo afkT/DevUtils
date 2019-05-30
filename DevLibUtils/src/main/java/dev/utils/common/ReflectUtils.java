@@ -93,7 +93,7 @@ public final class ReflectUtils {
      * 获取 Class
      * @param className 类名
      * @param <?>       未知类型
-     * @return 获取指定类
+     * @return 指定类
      * @throws ReflectException 反射异常
      */
     private static Class<?> forName(final String className) throws ReflectException {
@@ -110,7 +110,7 @@ public final class ReflectUtils {
      * @param name        类名
      * @param classLoader 类加载器
      * @param <?>         未知类型
-     * @return 获取指定类
+     * @return 指定类
      * @throws ReflectException 反射异常
      */
     private static Class<?> forName(final String name, final ClassLoader classLoader) throws ReflectException {

@@ -25,6 +25,7 @@ public final class KeyguardUtils {
 
     /**
      * 获取 KeyguardUtils 实例
+     * @return {@link KeyguardUtils}
      */
     public static KeyguardUtils getInstance() {
         if (sInstance == null) {

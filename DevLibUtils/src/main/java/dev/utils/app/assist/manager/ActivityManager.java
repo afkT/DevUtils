@@ -26,6 +26,7 @@ public final class ActivityManager {
 
     /**
      * 获取 ActivityManager 实例
+     * @return {@link ActivityManager}
      */
     public static ActivityManager getInstance() {
         return INSTANCE;

@@ -83,7 +83,8 @@ public final class MediaUse {
             }
 
             @Override
-            public void onError(int what, int extra) {
+            public boolean onError(int what, int extra) {
+                return false;
             }
 
             @Override

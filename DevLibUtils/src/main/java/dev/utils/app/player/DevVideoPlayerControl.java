@@ -188,14 +188,16 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 异常回调
+     * @return {@code true} 处理了异常, {@code false} 将调用 OnCompletionListener
      */
     @Override
-    public void onError(int what, int extra) {
+    public boolean onError(int what, int extra) {
         LogPrintUtils.dTag(TAG, "onError => what: " + what + ", extra: " + extra);
         // 触发回调
         if (mMediaListener != null) {
-            mMediaListener.onError(what, extra);
+            return mMediaListener.onError(what, extra);
         }
+        return false;
     }
 
     /**
