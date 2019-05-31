@@ -298,15 +298,15 @@ public final class AnimationUtils {
 
     /**
      * 获取一个缩放动画
-     * @param fromX             动画开始前在 X 坐标的大小
-     * @param toX               动画结束后在 X 坐标的大小
-     * @param fromY             动画开始前在 Y 坐标的大小
-     * @param toY               动画结束后在 Y 坐标的大小
+     * @param fromX             动画开始前在 X 坐标
+     * @param toX               动画结束后在 X 坐标
+     * @param fromY             动画开始前在 Y 坐标
+     * @param toY               动画结束后在 Y 坐标
      * @param pivotXType        缩放中心点的 X 坐标类型, 取值范围为 {@link Animation#ABSOLUTE}、
      *                          {@link Animation#RELATIVE_TO_SELF}、{@link Animation#RELATIVE_TO_PARENT}
-     * @param pivotXValue       缩放中心点的 X 坐标值, 当 pivotXType == ABSOLUTE 时, 表示绝对位置, 否则表示相对位置, 1.0 表示 100%
+     * @param pivotXValue       缩放中心点的 X 坐标, 当 pivotXType == ABSOLUTE 时, 表示绝对位置, 否则表示相对位置, 1.0 表示 100%
      * @param pivotYType        缩放中心点的 Y 坐标类型
-     * @param pivotYValue       缩放中心点的 Y 坐标值
+     * @param pivotYValue       缩放中心点的 Y 坐标
      * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
      * @return 一个缩放动画
@@ -324,12 +324,12 @@ public final class AnimationUtils {
 
     /**
      * 获取一个缩放动画
-     * @param fromX             动画开始前在 X 坐标的大小
-     * @param toX               动画结束后在 X 坐标的大小
-     * @param fromY             动画开始前在 Y 坐标的大小
-     * @param toY               动画结束后在 Y 坐标的大小
-     * @param pivotX            缩放中心点的 X 坐标值
-     * @param pivotY            缩放中心点的 Y 坐标值
+     * @param fromX             动画开始前在 X 坐标
+     * @param toX               动画结束后在 X 坐标
+     * @param fromY             动画开始前在 Y 坐标
+     * @param toY               动画结束后在 Y 坐标
+     * @param pivotX            缩放中心点的 X 坐标
+     * @param pivotY            缩放中心点的 Y 坐标
      * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
      * @return 一个缩放动画
@@ -347,10 +347,10 @@ public final class AnimationUtils {
 
     /**
      * 获取一个缩放动画
-     * @param fromX             动画开始前在 X 坐标的大小
-     * @param toX               动画结束后在 X 坐标的大小
-     * @param fromY             动画开始前在 Y 坐标的大小
-     * @param toY               动画结束后在 Y 坐标的大小
+     * @param fromX             动画开始前在 X 坐标
+     * @param toX               动画结束后在 X 坐标
+     * @param fromY             动画开始前在 Y 坐标
+     * @param toY               动画结束后在 Y 坐标
      * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
      * @return 一个缩放动画
@@ -369,10 +369,10 @@ public final class AnimationUtils {
 
     /**
      * 获取一个中心点缩放动画
-     * @param fromX             动画开始前在 X 坐标的大小
-     * @param toX               动画结束后在 X 坐标的大小
-     * @param fromY             动画开始前在 Y 坐标的大小
-     * @param toY               动画结束后在 Y 坐标的大小
+     * @param fromX             动画开始前在 X 坐标
+     * @param toX               动画结束后在 X 坐标
+     * @param fromY             动画开始前在 Y 坐标
+     * @param toY               动画结束后在 Y 坐标
      * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
      * @return 一个中心点缩放动画
@@ -391,10 +391,10 @@ public final class AnimationUtils {
 
     /**
      * 获取一个中心点缩放动画
-     * @param fromX          动画开始前在 X 坐标的大小
-     * @param toX            动画结束后在 X 坐标的大小
-     * @param fromY          动画开始前在 Y 坐标的大小
-     * @param toY            动画结束后在 Y 坐标的大小
+     * @param fromX          动画开始前在 X 坐标
+     * @param toX            动画结束后在 X 坐标
+     * @param fromY          动画开始前在 Y 坐标
+     * @param toY            动画结束后在 Y 坐标
      * @param durationMillis 动画持续时间
      * @return 一个中心点缩放动画
      */
@@ -405,10 +405,10 @@ public final class AnimationUtils {
 
     /**
      * 获取一个中心点缩放动画
-     * @param fromX             动画开始前在 X 坐标的大小
-     * @param toX               动画结束后在 X 坐标的大小
-     * @param fromY             动画开始前在 Y 坐标的大小
-     * @param toY               动画结束后在 Y 坐标的大小
+     * @param fromX             动画开始前在 X 坐标
+     * @param toX               动画结束后在 X 坐标
+     * @param fromY             动画开始前在 Y 坐标
+     * @param toY               动画结束后在 Y 坐标
      * @param animationListener 动画监听器
      * @return 一个中心点缩放动画
      */
@@ -421,8 +421,8 @@ public final class AnimationUtils {
 
     /**
      * 获取一个中心点缩放动画
-     * @param fromX             动画开始前在 X 坐标的大小
-     * @param fromY             动画开始前在 Y 坐标的大小
+     * @param fromX             动画开始前在 X 坐标
+     * @param fromY             动画开始前在 Y 坐标
      * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
      * @return 一个中心点缩放动画
@@ -434,8 +434,8 @@ public final class AnimationUtils {
 
     /**
      * 获取一个中心点缩放动画
-     * @param fromX          动画开始前在 X 坐标的大小
-     * @param fromY          动画开始前在 Y 坐标的大小
+     * @param fromX          动画开始前在 X 坐标
+     * @param fromY          动画开始前在 Y 坐标
      * @param durationMillis 动画持续时间
      * @return 一个中心点缩放动画
      */
@@ -445,8 +445,8 @@ public final class AnimationUtils {
 
     /**
      * 获取一个中心点缩放动画
-     * @param fromX             动画开始前在 X 坐标的大小
-     * @param fromY             动画开始前在 Y 坐标的大小
+     * @param fromX             动画开始前在 X 坐标
+     * @param fromY             动画开始前在 Y 坐标
      * @param animationListener 动画监听器
      * @return 一个中心点缩放动画
      */
@@ -535,13 +535,13 @@ public final class AnimationUtils {
      * @param fromXType      动画开始前的 X 坐标类型, 取值范围为 {@link Animation#ABSOLUTE} 绝对位置、
      *                       {@link Animation#RELATIVE_TO_SELF} 以自身宽或高为参考、
      *                       {@link Animation#RELATIVE_TO_PARENT} 以父控件宽或高为参考
-     * @param fromXValue     动画开始前的 X 坐标值
+     * @param fromXValue     动画开始前的 X 坐标
      * @param toXType        动画结束后的 X 坐标类型
-     * @param toXValue       动画结束后的 X 坐标值
+     * @param toXValue       动画结束后的 X 坐标
      * @param fromYType      动画开始前的 Y 坐标类型
-     * @param fromYValue     动画开始前的 Y 坐标值
+     * @param fromYValue     动画开始前的 Y 坐标
      * @param toYType        动画结束后的 Y 坐标类型
-     * @param toYValue       动画结束后的 Y 坐标值
+     * @param toYValue       动画结束后的 Y 坐标
      * @param interpolator   动画周期
      * @param durationMillis 动画持续时间
      * @return 一个视图移动动画
