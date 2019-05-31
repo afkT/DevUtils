@@ -36,7 +36,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // = 变量 =
     // ========
 
-    // 间隔获取焦点时间
+    // 自动对焦时间间隔
     private long mInterval;
     // 摄像头对象
     private final Camera mCamera;

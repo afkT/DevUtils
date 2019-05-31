@@ -82,11 +82,8 @@ final class DevCacheUtils {
     public static byte[] newByteArrayWithDateInfo(final int second, final byte[] data) {
         if (data != null) {
             try {
-                byte[] dataArys = createDateInfo(second).getBytes();
-                byte[] retData = new byte[dataArys.length + data.length];
-                System.arraycopy(dataArys, 0, retData, 0, dataArys.length);
-                System.arraycopy(data, 0, retData, dataArys.length, data.length);
-                return retData;
+                byte[] dateArys = createDateInfo(second).getBytes();
+                return arraycopy(dateArys, data);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "newByteArrayWithDateInfo");
             }
@@ -278,5 +275,31 @@ final class DevCacheUtils {
             LogPrintUtils.eTag(TAG, e, "bitmapToDrawable");
         }
         return null;
+    }
+
+    // =
+
+    /**
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    private static byte[] arraycopy(final byte[] prefix, final byte[] suffix) {
+        // 获取数据长度
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        byte[] arrays = new byte[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
     }
 }

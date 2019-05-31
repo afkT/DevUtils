@@ -48,7 +48,7 @@ public final class DevCache {
     public static final int TIME_HOUR = 60 * 60;
     // 一天 24 小时
     public static final int TIME_DAY = TIME_HOUR * 24;
-    // 缓存最大值(50 mb)
+    // 缓存最大值 50 MB
     private static final int MAX_SIZE = 1000 * 1000 * 50;
     // 不限制存放数据的数量
     private static final int MAX_COUNT = Integer.MAX_VALUE;
@@ -191,9 +191,9 @@ public final class DevCache {
         }
     }
 
-    // ===================
-    // = String数据 读写 =
-    // ===================
+    // ====================
+    // = string 数据 读写 =
+    // ====================
 
     /**
      * 保存 String 数据到缓存中

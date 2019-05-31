@@ -22,7 +22,7 @@ public final class CameraAssist {
     private Camera mCamera;
     // 是否预览中
     private boolean mPreviewing;
-    // 自动对焦时间
+    // 自动对焦时间间隔
     private long mAutoInterval = 2000L;
     // 预览通知
     private PreviewNotify mPreviewNotify;
