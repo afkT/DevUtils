@@ -197,7 +197,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * 播放出错回调
      * @param what  异常 what
      * @param extra 异常 extra
-     * @return {@code true} 处理了异常, {@code false} 将调用 OnCompletionListener
+     * @return {@code true} 处理异常, {@code false} 调用 OnCompletionListener
      */
     @Override
     public boolean onError(int what, int extra) {

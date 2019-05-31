@@ -2,7 +2,6 @@ package dev.utils.app.assist.manager;
 
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;

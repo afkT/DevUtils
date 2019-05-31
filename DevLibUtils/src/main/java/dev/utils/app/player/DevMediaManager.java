@@ -302,7 +302,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
             // 设置循环播放
             mMediaPlayer.setLooping(mediaSet.isLooping());
             // 设置播放音量
-            if (mediaSet.getVolume() > 0f) {
+            if (mediaSet.getVolume() >= 0f) {
                 mMediaPlayer.setVolume(mediaSet.getVolume(), mediaSet.getVolume());
             }
             // 设置播放路径
@@ -384,7 +384,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @param mp    {@link MediaPlayer}
      * @param what  异常 what
      * @param extra 异常 extra
-     * @return {@code true} 处理了异常, {@code false} 将调用 OnCompletionListener
+     * @return {@code true} 处理异常, {@code false} 调用 OnCompletionListener
      */
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
@@ -504,7 +504,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
          * 播放出错回调
          * @param what  异常 what
          * @param extra 异常 extra
-         * @return {@code true} 处理了异常, {@code false} 将调用 OnCompletionListener
+         * @return {@code true} 处理异常, {@code false} 调用 OnCompletionListener
          */
         boolean onError(int what, int extra);
 
@@ -554,9 +554,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         public abstract void setMediaConfig(MediaPlayer mediaPlayer) throws Exception;
     }
 
-    // ===============
-    // = get/set方法 =
-    // ===============
+    // ================
+    // = get/set 方法 =
+    // ================
 
     /**
      * 判断 MediaPlayer 是否为 null

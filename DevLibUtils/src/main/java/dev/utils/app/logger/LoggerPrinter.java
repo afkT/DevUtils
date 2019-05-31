@@ -500,12 +500,12 @@ final class LoggerPrinter implements IPrinter {
         switch (logLevel) {
             case NONE: // 全部不打印
                 break;
-            case DEBUG: // 调试级别 v,d - 全部打印
+            case DEBUG: // 调试级别 v, d - 全部打印
                 isPrint = true;
                 break;
             case INFO: // 正常级别  i
             case WARN: // 警告级别  w
-            case ERROR: // 异常级别  e,wtf
+            case ERROR: // 异常级别 e, wtf
                 isPrint = checkLogLevel(logLevel, logType);
                 break;
             default:
@@ -532,7 +532,7 @@ final class LoggerPrinter implements IPrinter {
                     return true;
                 }
                 break;
-            case ERROR: // 异常级别 e,wtf
+            case ERROR: // 异常级别 e, wtf
                 if (logType == Log.ERROR || logType == Log.ASSERT) {
                     return true;
                 }
@@ -583,7 +583,7 @@ final class LoggerPrinter implements IPrinter {
     }
 
     /**
-     * 日志处理方法(统一调用这个)
+     * 日志处理方法
      * @param logType 日志类型
      * @param message 日志信息
      * @param args    占位符替换
@@ -593,7 +593,7 @@ final class LoggerPrinter implements IPrinter {
     }
 
     /**
-     * 日志处理方法(统一调用这个)
+     * 日志处理方法
      * @param tag     日志 TAG
      * @param logType 日志类型
      * @param message 日志信息
@@ -604,7 +604,7 @@ final class LoggerPrinter implements IPrinter {
     }
 
     /**
-     * 日志处理方法(统一调用这个) - 此方法是同步的, 以避免混乱的日志的顺序
+     * 日志处理方法 - 此方法是同步的, 以避免混乱的日志的顺序
      * @param config  配置信息
      * @param tag     日志 TAG
      * @param logType 日志类型

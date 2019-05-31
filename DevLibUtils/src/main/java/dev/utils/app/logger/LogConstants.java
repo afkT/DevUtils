@@ -69,7 +69,7 @@ final class LogConstants {
     public static final int MIN_STACK_OFFSET = 3;
 
     // =======================
-    // = 绘制日志工具 - 字符 =
+    // = 绘制日志格式 - 字符 =
     // =======================
 
     public static final char TOP_LEFT_CORNER = '╔';

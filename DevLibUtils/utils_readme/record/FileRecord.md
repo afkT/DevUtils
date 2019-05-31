@@ -21,9 +21,9 @@
 | 方法 | 注释 |
 | :- | :- |
 | init | 初始化调用方法(获取版本号) |
-| getReleaseLogConfig | 获取 Release Log 配置(打印线程信息, 显示方法总数 3, 从 0 开始, 不进行排序, 默认只打印 ERROR 级别日志) |
-| getDebugLogConfig | 获取 Debug Log 配置(打印线程信息, 显示方法总数 3, 从 0 开始, 不进行排序, 默认只打印 ERROR 级别日志) |
-| getSortLogConfig | 获取 Log 配置(打印线程信息, 显示方法总数 3, 从 0 开始, 并且美化日志信息, 默认打印 DEBUG 级别及以上日志) |
+| getReleaseLogConfig | 获取 Release Log 配置(打印线程信息、显示方法总数 3、从 0 开始、不进行排序、默认只打印 ERROR 级别日志) |
+| getDebugLogConfig | 获取 Debug Log 配置(打印线程信息、显示方法总数 3、从 0 开始、不进行排序、默认只打印 ERROR 级别日志) |
+| getSortLogConfig | 获取 Log 配置(打印线程信息、显示方法总数 3、从 0 开始、并且美化日志信息、默认打印 DEBUG 级别及以上日志) |
 | getLogConfig | 获取 Log 配置 |
 | saveErrorLog | 保存 App 错误日志 |
 | saveLog | 保存 App 日志 |

@@ -41,7 +41,7 @@ final class Utils {
 
     // App 版本(如 1.0.01) 显示给用户看的
     private static String APP_VERSION_NAME = "";
-    // android:versionCode 整数值, 代表应用程序代码的相对版本, 也就是版本更新过多少次(不显示给用户看)
+    // android:versionCode 整数值, 代表应用程序代码的相对版本
     private static String APP_VERSION_CODE = "";
     // 设备信息
     private static String DEVICE_INFO_STR = null;
@@ -90,7 +90,6 @@ final class Utils {
             try {
                 // 取消 Java 的权限控制检查
                 field.setAccessible(true);
-
                 // 转换当前设备支持的 ABI - CPU 指令集
                 if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
                     try {
@@ -98,7 +97,7 @@ final class Utils {
                         // 判断是否数组
                         if (object instanceof String[]) {
                             if (object != null) {
-                                // 获取类型对应字段的数据, 并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
+                                // 获取类型对应字段的数据, 并保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
                                 dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
                             }
                             continue;

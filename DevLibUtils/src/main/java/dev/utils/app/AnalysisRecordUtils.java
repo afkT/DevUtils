@@ -317,7 +317,6 @@ public final class AnalysisRecordUtils {
             try {
                 // 取消 Java 的权限控制检查
                 field.setAccessible(true);
-
                 // 转换当前设备支持的 ABI - CPU 指令集
                 if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
                     try {
@@ -325,7 +324,7 @@ public final class AnalysisRecordUtils {
                         // 判断是否数组
                         if (object instanceof String[]) {
                             if (object != null) {
-                                // 获取类型对应字段的数据, 并保存 - 保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
+                                // 获取类型对应字段的数据, 并保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
                                 dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
                             }
                             continue;

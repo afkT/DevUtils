@@ -83,7 +83,7 @@ public final class ApkInfoItem {
     }
 
     /**
-     * 初始化 AppInfoItem
+     * 初始化 ApkInfoItem
      * @param packageInfo {@link PackageInfo}
      */
     private ApkInfoItem(final PackageInfo packageInfo) {
