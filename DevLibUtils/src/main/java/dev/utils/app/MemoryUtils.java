@@ -112,13 +112,13 @@ public final class MemoryUtils {
         try {
             ActivityManager.MemoryInfo mi = getMemoryInfo();
             StringBuilder builder = new StringBuilder();
-            builder.append("Memory :   ");
+            builder.append("Memory : ");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                builder.append("\ntotalMem :").append(mi.totalMem);
+                builder.append("\ntotalMem : ").append(mi.totalMem);
             }
-            builder.append("\navailMem :").append(mi.availMem);
-            builder.append("\nlowMemory :").append(mi.lowMemory);
-            builder.append("\nthreshold :").append(mi.threshold);
+            builder.append("\navailMem : ").append(mi.availMem);
+            builder.append("\nlowMemory : ").append(mi.lowMemory);
+            builder.append("\nthreshold : ").append(mi.threshold);
             return builder.toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printMemoryInfo2");

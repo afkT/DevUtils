@@ -24,7 +24,7 @@ final class PreferenceImpl implements IPreference {
 
     // 文件名
     private static final String NAME = "SPConfig";
-    // 默认 SharedPreferences 对象
+    // SharedPreferences 对象
     private SharedPreferences mPreferences;
 
     // ============

@@ -47,7 +47,7 @@ public final class DevToastUse {
         // 设置文本长度限制, 超过设置的位数则 为 LENGTH_LONG
         DevToast.setTextLength(15);
 
-        // 支持自定义View - 可不配置, 默认使用系统 Toast View
+        // 支持自定义 View - 可不配置, 默认使用系统 Toast View
         DevToast.setView(view);
         DevToast.setView(viewId);
 

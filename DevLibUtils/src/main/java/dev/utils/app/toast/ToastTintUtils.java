@@ -1086,9 +1086,9 @@ public final class ToastTintUtils {
                     toastIcon.setVisibility(View.GONE);
                 }
 
-                // =================
-                // = 背景View 相关 =
-                // =================
+                // ==================
+                // = 背景 View 相关 =
+                // ==================
 
                 // 背景图片
                 Drawable drawableFrame = style.getBackground();
@@ -1236,7 +1236,7 @@ public final class ToastTintUtils {
     // ============
 
     /**
-     * detail: Toast 自定义View 着色等相关 样式配置
+     * detail: Toast 自定义 View 着色等相关 样式配置
      * @author Ttt
      */
     public interface Style {

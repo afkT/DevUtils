@@ -421,7 +421,7 @@ public class WifiHotUtils {
     }
 
     /**
-     * 获取连接上的子网关热点 IP(一个)
+     * 获取连接上的子网关热点 IP (一个)
      * @return 连接上的子网关热点 IP
      */
     public String getHotspotAllotIp() {
@@ -432,7 +432,7 @@ public class WifiHotUtils {
                 String[] splitted = line.split(" +");
                 if (splitted != null && splitted.length >= 4) {
                     String ipAddress = splitted[0]; // IP 地址
-                    // 防止地址为 null,并且需要以.拆分 存在4个长度  255.255.255.255
+                    // 防止地址为 null, 并且需要以.拆分存在 4 个长度 255.255.255.255
                     if (ipAddress != null && ipAddress.split("\\.").length >= 3) {
                         return ipAddress;
                     }

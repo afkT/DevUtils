@@ -110,11 +110,12 @@ public final class WifiUtils {
 
     /**
      * 自动切换 wifi 开关状态
+     * <pre>
+     *      如果打开了, 则关闭
+     *      如果关闭了, 则打开
+     * </pre>
      */
     public void toggleWifiEnabled() {
-        // 如果打开了, 则关闭
-        // 如果关闭了, 则打开
-        // =
         mWifiManager.setWifiEnabled(!isOpenWifi());
     }
 
@@ -132,7 +133,7 @@ public final class WifiUtils {
     }
 
     // ============
-    // = GET 操作 =
+    // = get 操作 =
     // ============
 
     /**
@@ -144,8 +145,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取已配置(连接过) 的 wifi 配置
-     * @return {@link List<WifiConfiguration>} 已配置(连接过) 的 wifi 配置
+     * 获取已配置(连接过)的 wifi 配置
+     * @return {@link List<WifiConfiguration>} 已配置(连接过)的 wifi 配置
      */
     public List<WifiConfiguration> getConfiguration() {
         return mWifiManager.getConfiguredNetworks();
@@ -962,7 +963,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 设置 IP 地址、网关、DNS (5.0之后)
+     * 设置 IP 地址、网关、DNS (5.0 之后)
      * @param ip           静态 IP
      * @param gateway      网关
      * @param dns          DNS
