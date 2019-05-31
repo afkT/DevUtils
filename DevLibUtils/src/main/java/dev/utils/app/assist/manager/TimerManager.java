@@ -87,7 +87,7 @@ public final class TimerManager {
                 for (int i = 0, len = mTimerLists.size(); i < len; i++) {
                     AbsTimer absTimer = mTimerLists.get(i);
                     // 判断是否符合标记, 原本标记不为 null, 并且符合条件的
-                    if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
+                    if (absTimer != null && absTimer.getMarkStr() != null && absTimer.getMarkStr().equals(markStr)) {
                         return absTimer;
                     }
                 }
@@ -133,7 +133,7 @@ public final class TimerManager {
                 for (int i = 0, len = mTimerLists.size(); i < len; i++) {
                     AbsTimer absTimer = mTimerLists.get(i);
                     // 判断是否符合标记, 原本标记不为 null, 并且符合条件的
-                    if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
+                    if (absTimer != null && absTimer.getMarkStr() != null && absTimer.getMarkStr().equals(markStr)) {
                         lists.add(absTimer);
                     }
                 }
@@ -227,7 +227,7 @@ public final class TimerManager {
                 for (int i = 0, len = mTimerLists.size(); i < len; i++) {
                     AbsTimer absTimer = mTimerLists.get(i);
                     // 判断是否符合标记, 原本标记不为 null, 并且符合条件的
-                    if (absTimer != null && !TextUtils.isEmpty(absTimer.getMarkStr()) && absTimer.getMarkStr().equals(markStr)) {
+                    if (absTimer != null && absTimer.getMarkStr() != null && absTimer.getMarkStr().equals(markStr)) {
                         absTimer.closeTimer(); // 关闭定时器
                     }
                 }

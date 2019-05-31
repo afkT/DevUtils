@@ -132,7 +132,7 @@ public final class ActivityManager {
 
     /**
      * 移除多个 Activity
-     * @param activitys {@link Activity} 数组
+     * @param activitys Activity[]
      */
     public void removeActivity(final Activity... activitys) {
         if (activitys != null && activitys.length != 0) {
@@ -165,7 +165,7 @@ public final class ActivityManager {
     public boolean existActivitys(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {
             synchronized (mActivityStacks) {
-                // 保存新的任务, 防止出现同步问题
+                // 保存新的堆栈, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
                 try {
@@ -182,7 +182,7 @@ public final class ActivityManager {
                         }
                     }
                 } finally {
-                    // 移除, 并且清空内存
+                    // 移除数据, 并且清空内存
                     stack.clear();
                     stack = null;
                 }
@@ -200,7 +200,6 @@ public final class ActivityManager {
         removeActivity(activity);
         // Activity 不为 null, 并且属于未销毁状态
         if (activity != null && !activity.isFinishing()) {
-            // Activity finish
             activity.finish();
         }
     }
@@ -224,7 +223,7 @@ public final class ActivityManager {
     public void finishActivity(final Class<?> clazz) {
         if (clazz != null) {
             synchronized (mActivityStacks) {
-                // 保存新的任务, 防止出现同步问题
+                // 保存新的堆栈, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
                 // 清空全部, 便于后续操作处理
@@ -250,7 +249,7 @@ public final class ActivityManager {
                 }
                 // 把不符合条件的保存回去
                 mActivityStacks.addAll(stack);
-                // 移除, 并且清空内存
+                // 移除数据, 并且清空内存
                 stack.clear();
                 stack = null;
             }
@@ -264,7 +263,7 @@ public final class ActivityManager {
     public void finishActivity(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {
             synchronized (mActivityStacks) {
-                // 保存新的任务, 防止出现同步问题
+                // 保存新的堆栈, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
                 // 清空全部, 便于后续操作处理
@@ -303,7 +302,7 @@ public final class ActivityManager {
                 }
                 // 把不符合条件的保存回去
                 mActivityStacks.addAll(stack);
-                // 移除, 并且清空内存
+                // 移除数据, 并且清空内存
                 stack.clear();
                 stack = null;
             }
@@ -317,7 +316,7 @@ public final class ActivityManager {
     public void finishAllActivityToIgnore(final Class<?> clazz) {
         if (clazz != null) {
             synchronized (mActivityStacks) {
-                // 保存新的任务, 防止出现同步问题
+                // 保存新的堆栈, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
                 // 清空全部, 便于后续操作处理
@@ -343,7 +342,7 @@ public final class ActivityManager {
                 }
                 // 把不符合条件的保存回去
                 mActivityStacks.addAll(stack);
-                // 移除, 并且清空内存
+                // 移除数据, 并且清空内存
                 stack.clear();
                 stack = null;
             }
@@ -357,7 +356,7 @@ public final class ActivityManager {
     public void finishAllActivityToIgnore(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {
             synchronized (mActivityStacks) {
-                // 保存新的任务, 防止出现同步问题
+                // 保存新的堆栈, 防止出现同步问题
                 Stack<Activity> stack = new Stack<>();
                 stack.addAll(mActivityStacks);
                 // 清空全部, 便于后续操作处理
@@ -396,7 +395,7 @@ public final class ActivityManager {
                 }
                 // 把不符合条件的保存回去
                 mActivityStacks.addAll(stack);
-                // 移除, 并且清空内存
+                // 移除数据, 并且清空内存
                 stack.clear();
                 stack = null;
             }
@@ -408,7 +407,7 @@ public final class ActivityManager {
      */
     public void finishAllActivity() {
         synchronized (mActivityStacks) {
-            // 保存新的任务, 防止出现同步问题
+            // 保存新的堆栈, 防止出现同步问题
             Stack<Activity> stack = new Stack<>();
             stack.addAll(mActivityStacks);
             // 清空全部, 便于后续操作处理
@@ -423,7 +422,7 @@ public final class ActivityManager {
                     iterator.remove();
                 }
             }
-            // 移除, 并且清空内存
+            // 移除数据, 并且清空内存
             stack.clear();
             stack = null;
         }
