@@ -397,7 +397,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 关机 (需要 root 权限)
+     * 关机(需要 root 权限)
      * @return
      */
     public static boolean shutdown() {
@@ -414,7 +414,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 重启设备 (需要 root 权限)
+     * 重启设备(需要 root 权限)
      * @return
      */
     public static boolean reboot() {
@@ -433,7 +433,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 重启设备 (需要 root 权限) - 并进行特殊的引导模式 (recovery、Fastboot)
+     * 重启设备(需要 root 权限) - 并进行特殊的引导模式 (recovery、Fastboot)
      * @param reason 传递给内核来请求特殊的引导模式, 如"recovery"
      *               重启到 Fastboot 模式 bootloader
      */

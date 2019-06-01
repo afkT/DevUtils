@@ -514,7 +514,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 获取广播 ip 地址
+     * 获取广播 IP 地址
      * @return
      */
     public static String getBroadcastIpAddress() {
@@ -601,7 +601,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 根据 WiFi 获取网络 IP 地址
+     * 根据 Wifi 获取网络 IP 地址
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      * @return
      */
@@ -618,7 +618,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 根据 WiFi 获取网关 IP 地址
+     * 根据 Wifi 获取网关 IP 地址
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      * @return
      */
@@ -635,7 +635,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 根据 WiFi 获取子网掩码 IP 地址
+     * 根据 Wifi 获取子网掩码 IP 地址
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      * @return
      */
@@ -652,7 +652,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 根据 WiFi 获取服务端 IP 地址
+     * 根据 Wifi 获取服务端 IP 地址
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      * @return
      */

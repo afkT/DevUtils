@@ -456,7 +456,7 @@ public final class AppUtils {
     // =
 
     /**
-     * 静默安装 App
+     * 静默安装应用
      * @param filePath
      * @return
      */
@@ -465,7 +465,7 @@ public final class AppUtils {
     }
 
     /**
-     * 静默安装 App
+     * 静默安装应用
      * @param file
      * @return
      */
@@ -474,7 +474,7 @@ public final class AppUtils {
     }
 
     /**
-     * 静默安装 App
+     * 静默安装应用
      * @param filePath
      * @param params
      * @return
@@ -484,7 +484,7 @@ public final class AppUtils {
     }
 
     /**
-     * 静默安装 App
+     * 静默安装应用
      * @param file
      * @param params
      * @return
@@ -494,7 +494,7 @@ public final class AppUtils {
     }
 
     /**
-     * 静默安装 App
+     * 静默安装应用
      * <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
      * @param file
      * @param params
@@ -512,7 +512,7 @@ public final class AppUtils {
     // =
 
     /**
-     * 卸载 App
+     * 卸载应用
      * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */
@@ -528,7 +528,7 @@ public final class AppUtils {
     }
 
     /**
-     * 卸载 App
+     * 卸载应用
      * @param activity
      * @param packageName 应用包名
      * @param requestCode
@@ -546,7 +546,7 @@ public final class AppUtils {
     }
 
     /**
-     * 静默卸载 App
+     * 静默卸载应用
      * @param packageName 应用包名
      * @return
      */
@@ -555,7 +555,7 @@ public final class AppUtils {
     }
 
     /**
-     * 静默卸载 App
+     * 静默卸载应用
      * @param packageName 应用包名
      * @param isKeepData
      * @return
@@ -565,7 +565,7 @@ public final class AppUtils {
     }
 
     /**
-     * 静默卸载 App
+     * 静默卸载应用
      * @param packageName 应用包名
      * @param isKeepData
      * @param isRooted

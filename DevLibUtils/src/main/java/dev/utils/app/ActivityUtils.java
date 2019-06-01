@@ -292,6 +292,9 @@ public final class ActivityUtils {
 
     /**
      * 获取对应包名应用启动的 Activity
+     * <pre>
+     *     android.intent.category.LAUNCHER (android.intent.action.MAIN)
+     * </pre>
      * @param packageName 应用包名
      * @return package.xx.Activity.className
      */
