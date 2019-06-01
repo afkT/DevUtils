@@ -8,10 +8,10 @@ import dev.utils.JCLogUtils;
 
 /**
  * detail: MD5 加密工具类
+ * @author Ttt
  * <pre>
  *     Message Digest 消息摘要算法
  * </pre>
- * @author Ttt
  */
 public final class MD5Utils {
 

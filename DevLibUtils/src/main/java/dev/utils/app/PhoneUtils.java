@@ -767,10 +767,10 @@ public final class PhoneUtils {
 
     /**
      * detail: 双卡双待神机 IMSI、IMSI、PhoneType 信息实体类
+     * @author Ttt
      * <pre>
      *     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
      * </pre>
-     * @author Ttt
      */
     public static class TeleInfo {
         public String imsi_1;

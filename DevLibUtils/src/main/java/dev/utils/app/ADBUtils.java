@@ -103,8 +103,8 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd("pm list packages" + typeStr, false);
         if (result.isSuccess3()) {
             try {
-                String[] arys = result.successMsg.split(NEW_LINE_STR);
-                return Arrays.asList(arys);
+                String[] arrays = result.successMsg.split(NEW_LINE_STR);
+                return Arrays.asList(arrays);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getAppList type => " + typeStr);
             }
@@ -1902,8 +1902,8 @@ public final class ADBUtils {
                         if (!TextUtils.isEmpty(str)) {
                             if (str.toLowerCase().indexOf("device") != -1) {
                                 // 进行拆分
-                                String[] arys = str.split(SPACE_STR);
-                                return arys[arys.length - 1];
+                                String[] arrays = str.split(SPACE_STR);
+                                return arrays[arrays.length - 1];
                             }
                         }
                     }

@@ -10,9 +10,10 @@ import android.support.annotation.RequiresApi;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: AlarmManager(全局定时器/闹钟)工具类, 指定时长或以周期形式执行某项操作
+ * detail: AlarmManager(全局定时器/闹钟)工具类
  * @author Ttt
  * <pre>
+ *     指定时长或以周期形式执行某项操作
  *     @see <a href="https://www.cnblogs.com/zyw-205520/p/4040923.html"/>
  * </pre>
  */
@@ -28,7 +29,7 @@ public final class AlarmUtils {
      * 开启定时器
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
-     * @param pendingIntent   响应动作
+     * @param pendingIntent   {@link PendingIntent} 响应动作
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startAlarmIntent(final Context context, final long triggerAtMillis, final PendingIntent pendingIntent) {
@@ -49,7 +50,7 @@ public final class AlarmUtils {
     /**
      * 关闭定时器
      * @param context       {@link Context}
-     * @param pendingIntent
+     * @param pendingIntent {@link PendingIntent} 响应动作
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopAlarmIntent(final Context context, final PendingIntent pendingIntent) {
@@ -64,9 +65,9 @@ public final class AlarmUtils {
     /**
      * 开启轮询服务
      * @param context         {@link Context}
-     * @param triggerAtMillis
-     * @param clazz
-     * @param action
+     * @param triggerAtMillis 执行时间
+     * @param clazz           Class
+     * @param action          Intent Action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startAlarmService(final Context context, final long triggerAtMillis, final Class<?> clazz, final String action) {
@@ -83,8 +84,8 @@ public final class AlarmUtils {
     /**
      * 停止轮询服务
      * @param context {@link Context}
-     * @param clazz
-     * @param action
+     * @param clazz   Class
+     * @param action  Intent Action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopAlarmService(final Context context, final Class<?> clazz, final String action) {
@@ -101,8 +102,8 @@ public final class AlarmUtils {
     /**
      * 开启轮询广播
      * @param context         {@link Context}
-     * @param triggerAtMillis
-     * @param intent
+     * @param triggerAtMillis 执行时间
+     * @param intent          Intent Action
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startAlarmBroadcast(final Context context, final long triggerAtMillis, final Intent intent) {
@@ -117,7 +118,7 @@ public final class AlarmUtils {
     /**
      * 停止轮询广播
      * @param context {@link Context}
-     * @param intent
+     * @param intent  {@link Intent}
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopAlarmBroadcast(final Context context, final Intent intent) {
@@ -132,8 +133,8 @@ public final class AlarmUtils {
     /**
      * 开启轮询 Activity
      * @param context         {@link Context}
-     * @param triggerAtMillis
-     * @param intent
+     * @param triggerAtMillis 执行时间
+     * @param intent          {@link Intent}
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startAlarmActivity(final Context context, final long triggerAtMillis, final Intent intent) {
@@ -148,7 +149,7 @@ public final class AlarmUtils {
     /**
      * 停止轮询 Activity
      * @param context {@link Context}
-     * @param intent
+     * @param intent  {@link Intent}
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void stopAlarmActivity(final Context context, final Intent intent) {
