@@ -340,7 +340,7 @@ public final class MapUtils {
     /**
      * 获取最后一条数据
      * <pre>
-     *      @see <a href="http://bookshadow.com/weblog/2016/10/27/java-linked-hash-map-get-first-and-get-last/"/>
+     *     @see <a href="http://bookshadow.com/weblog/2016/10/27/java-linked-hash-map-get-first-and-get-last/"/>
      * </pre>
      * @param map          {@link Map}
      * @param isReflection 是否通过反射获取
@@ -892,8 +892,8 @@ public final class MapUtils {
     /**
      * 切换保存状态
      * <pre>
-     *      1.如果存在, 则删除
-     *      2.如果不存在, 则保存
+     *     1.如果存在, 则删除
+     *     2.如果不存在, 则保存
      * </pre>
      * @param map   {@link Map}
      * @param key   key

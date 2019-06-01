@@ -20,18 +20,18 @@ import android.view.animation.TranslateAnimation;
  * detail: 动画工具类
  * @author Ttt
  * <pre>
- *      setInterpolator:
- *      {@link AccelerateInterpolator} 先减速后加速
- *      {@link AnticipateInterpolator} 动画开始之前有回弹效果
- *      {@link BounceInterpolator} 结束回弹效果
- *      {@link CycleInterpolator} 跳一跳效果
- *      {@link OvershootInterpolator} 动画结束时向前弹一定距离再回到原来位置
- *      {@link AccelerateDecelerateInterpolator} 系统默认的动画效果, 先加速后减速
- *      {@link AnticipateOvershootInterpolator} 开始之前向前甩, 结束的时候向后甩
- *      {@link DecelerateInterpolator} 开始加速再减速
- *      <p></p>
- *      设置无限重复次数
- *      {@link Animation#setRepeatCount} param {@link Animation#INFINITE}
+ *     setInterpolator:
+ *     {@link AccelerateInterpolator} 先减速后加速
+ *     {@link AnticipateInterpolator} 动画开始之前有回弹效果
+ *     {@link BounceInterpolator} 结束回弹效果
+ *     {@link CycleInterpolator} 跳一跳效果
+ *     {@link OvershootInterpolator} 动画结束时向前弹一定距离再回到原来位置
+ *     {@link AccelerateDecelerateInterpolator} 系统默认的动画效果, 先加速后减速
+ *     {@link AnticipateOvershootInterpolator} 开始之前向前甩, 结束的时候向后甩
+ *     {@link DecelerateInterpolator} 开始加速再减速
+ *     <p></p>
+ *     设置无限重复次数
+ *     {@link Animation#setRepeatCount} param {@link Animation#INFINITE}
  * </pre>
  */
 public final class AnimationUtils {

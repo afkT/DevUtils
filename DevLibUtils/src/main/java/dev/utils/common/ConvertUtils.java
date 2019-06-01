@@ -12,23 +12,23 @@ import dev.utils.JCLogUtils;
  * detail: 转换工具类(Byte、Hex 等)
  * @author Ttt
  * <pre>
- *      byte 是字节数据类型、有符号型的、占 1 个字节、大小范围为 [ -128 - 127]
- *      当大于 127 时则开始缩进  127 = 127, 128 = -128, 129 = -127
- *      char 是字符数据类型、无符号型的、占 2 个字节(unicode 码)、大小范围为 [0 - 65535]
- *      <p></p>
- *      48 - 57 = 0-9
- *      58 - 64 = :;<=>?@
- *      65 - 90 = A-Z
- *      91 - 96 = [\]^_`
- *      97 - 122 = a-z
- *      <p></p>
- *      Binary(二进制) toBinaryString
- *      Oct(八进制)
- *      Dec(十进制)
- *      Hex(十六进制) 以 0x 开始的数据表示十六进制
- *      <p></p>
- *      位移加密: bytesEncrypt(byte[] bytes)
- *      @see <a href="http://www.runoob.com/java/java-operators.html"/>
+ *     byte 是字节数据类型、有符号型的、占 1 个字节、大小范围为 [ -128 - 127]
+ *     当大于 127 时则开始缩进  127 = 127, 128 = -128, 129 = -127
+ *     char 是字符数据类型、无符号型的、占 2 个字节(unicode 码)、大小范围为 [0 - 65535]
+ *     <p></p>
+ *     48 - 57 = 0-9
+ *     58 - 64 = :;<=>?@
+ *     65 - 90 = A-Z
+ *     91 - 96 = [\]^_`
+ *     97 - 122 = a-z
+ *     <p></p>
+ *     Binary(二进制) toBinaryString
+ *     Oct(八进制)
+ *     Dec(十进制)
+ *     Hex(十六进制) 以 0x 开始的数据表示十六进制
+ *     <p></p>
+ *     位移加密: bytesEncrypt(byte[] bytes)
+ *     @see <a href="http://www.runoob.com/java/java-operators.html"/>
  * </pre>
  */
 public final class ConvertUtils {
@@ -623,7 +623,7 @@ public final class ConvertUtils {
     /**
      * 字符串转换对应的进制
      * <pre>
-     *      如: parseInt("1f603", 16) = 128515
+     *     如: parseInt("1f603", 16) = 128515
      * </pre>
      * @param str   String
      * @param radix 进制
@@ -1344,7 +1344,7 @@ public final class ConvertUtils {
     /**
      * 二进制字符串 转换 byte[] 解码
      * <pre>
-     *      例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过 new String(byte()) 获取配合 toBinaryString 使用
+     *     例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过 new String(byte()) 获取配合 toBinaryString 使用
      * </pre>
      * @param str String
      * @return 解码后的 byte[]
@@ -1483,7 +1483,7 @@ public final class ConvertUtils {
     /**
      * int 转换十六进制
      * <pre>
-     *      如: 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
+     *     如: 传入 0x1f603 => toHexString(0x1f603); 返回: 1f603
      * </pre>
      * @param value int
      * @return 十六进制字符串

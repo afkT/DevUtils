@@ -17,7 +17,7 @@ import dev.utils.LogPrintUtils;
  * detail: EditText 工具类
  * @author Ttt
  * <pre>
- *      @see <a href="https://blog.csdn.net/zhoujn90/article/details/44983905"/>
+ *     @see <a href="https://blog.csdn.net/zhoujn90/article/details/44983905"/>
  * </pre>
  */
 public final class EditTextUtils {
@@ -315,8 +315,8 @@ public final class EditTextUtils {
      * detail: 开发输入监听抽象类
      * @author Ttt
      * <pre>
-     *      @see <a href="https://blog.csdn.net/zhuwentao2150/article/details/51546773"/>
-     *      editText.addTextChangedListener(DevTextWatcher);
+     *     @see <a href="https://blog.csdn.net/zhuwentao2150/article/details/51546773"/>
+     *     editText.addTextChangedListener(DevTextWatcher);
      * </pre>
      */
     public static abstract class DevTextWatcher implements TextWatcher {

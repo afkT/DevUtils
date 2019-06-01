@@ -28,10 +28,10 @@ import dev.utils.LogPrintUtils;
  * detail: Wifi 工具类
  * @author Ttt
  * <pre>
- *      需要的权限:
- *      <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
- *      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
- *      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+ *     需要的权限:
+ *     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+ *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+ *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
  * </pre>
  */
 public final class WifiUtils {
@@ -111,8 +111,8 @@ public final class WifiUtils {
     /**
      * 自动切换 wifi 开关状态
      * <pre>
-     *      如果打开了, 则关闭
-     *      如果关闭了, 则打开
+     *     如果打开了, 则关闭
+     *     如果关闭了, 则打开
      * </pre>
      */
     public void toggleWifiEnabled() {
@@ -413,7 +413,7 @@ public final class WifiUtils {
     /**
      * 获取连接的 wifi 热点 SSID
      * <pre>
-     *      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
      * </pre>
      * @return wifi 热点 SSID
      */

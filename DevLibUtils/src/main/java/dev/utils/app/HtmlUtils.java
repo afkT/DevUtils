@@ -49,9 +49,9 @@ public final class HtmlUtils {
      * @param content 给定的字符串
      * @return 最后放在 Html.fromHtml() 内
      * <pre>
-     *      这种方式也可以加粗, 但是是所有字体加粗(非部分字体加粗)
-     *      android.text.TextPaint tp = textView.getPaint();
-     *      tp.setFakeBoldText(true);
+     *     这种方式也可以加粗, 但是是所有字体加粗(非部分字体加粗)
+     *     android.text.TextPaint tp = textView.getPaint();
+     *     tp.setFakeBoldText(true);
      * </pre>
      */
     public static String addHtmlBold(final String content) {
@@ -82,9 +82,9 @@ public final class HtmlUtils {
      * @param content 给定的字符串
      * @return 最后放在 Html.fromHtml() 内
      * <pre>
-     *      如果需要倾斜自定义角度, 需要自定义 TextView, 在 onDraw 里面加上
-     *      - 倾斜度, 上下左右居中
-     *      canvas.rotate(倾斜角度, getMeasuredWidth() / 3, getMeasuredHeight() / 3);
+     *     如果需要倾斜自定义角度, 需要自定义 TextView, 在 onDraw 里面加上
+     *     - 倾斜度, 上下左右居中
+     *     canvas.rotate(倾斜角度, getMeasuredWidth() / 3, getMeasuredHeight() / 3);
      * </pre>
      */
     public static String addHtmlIncline(final String content) {

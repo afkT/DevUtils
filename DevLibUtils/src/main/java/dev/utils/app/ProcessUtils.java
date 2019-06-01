@@ -118,7 +118,7 @@ public final class ProcessUtils {
 
     /**
      * 根据包名获取进程id
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static int getPid(final String packageName) {
@@ -159,7 +159,7 @@ public final class ProcessUtils {
 
     /**
      * 根据包名获取进程信息
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final String packageName) {
@@ -294,7 +294,7 @@ public final class ProcessUtils {
     /**
      * 杀死后台服务进程
      * <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
-     * @param packageName
+     * @param packageName 应用包名
      * @return {@code true} 杀死成功, {@code false} 杀死失败
      */
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)

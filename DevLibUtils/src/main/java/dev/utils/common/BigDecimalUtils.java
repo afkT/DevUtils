@@ -8,8 +8,8 @@ import dev.utils.JCLogUtils;
  * detail: 资金运算工具类
  * @author Ttt
  * <pre>
- *      @see <a href="https://www.cnblogs.com/liqforstudy/p/5652517.html"/>
- *      向下取 round = BigDecimal.ROUND_DOWN;
+ *     @see <a href="https://www.cnblogs.com/liqforstudy/p/5652517.html"/>
+ *     向下取 round = BigDecimal.ROUND_DOWN;
  * </pre>
  */
 public final class BigDecimalUtils {

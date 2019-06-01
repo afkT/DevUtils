@@ -11,8 +11,8 @@ import dev.utils.JCLogUtils;
  * detail: AES 对称加密工具类
  * @author Ttt
  * <pre>
- *      Advanced Encryption Standard 高级数据加密标准(对称加密算法)
- *      AES 算法可以有效抵制针对 DES 的攻击算法
+ *     Advanced Encryption Standard 高级数据加密标准(对称加密算法)
+ *     AES 算法可以有效抵制针对 DES 的攻击算法
  * </pre>
  */
 public final class AESUtils {

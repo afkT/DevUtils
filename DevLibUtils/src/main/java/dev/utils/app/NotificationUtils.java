@@ -16,8 +16,8 @@ import dev.utils.LogPrintUtils;
  * detail: 通知栏管理工具类
  * @author Ttt
  * <pre>
- *      @see <a href="https://blog.csdn.net/hss01248/article/details/55096553"/>
- *      @see <a href="https://www.jianshu.com/p/cf5f6c30019d"/>
+ *     @see <a href="https://blog.csdn.net/hss01248/article/details/55096553"/>
+ *     @see <a href="https://www.jianshu.com/p/cf5f6c30019d"/>
  * </pre>
  */
 public final class NotificationUtils {
@@ -247,7 +247,7 @@ public final class NotificationUtils {
      * detail: 设置通知栏 Led 灯参数实体类
      * @author Ttt
      * <pre>
-     *      手机处于锁屏状态时, LED灯就会不停地闪烁, 提醒用户去查看手机, 下面是绿色的灯光一闪一闪的效果
+     *     手机处于锁屏状态时, LED灯就会不停地闪烁, 提醒用户去查看手机, 下面是绿色的灯光一闪一闪的效果
      * </pre>
      */
     public static class LightPattern {
@@ -278,8 +278,8 @@ public final class NotificationUtils {
      * detail: 设置通知栏震动参数实体类
      * @author Ttt
      * <pre>
-     *      vibrate 属性是一个长整型的数组, 用于设置手机静止和震动的时长, 以毫秒为单位
-     *      参数中下标为0的值表示手机静止的时长, 下标为1的值表示手机震动的时长, 下标为2的值又表示手机静止的时长, 以此类推
+     *     vibrate 属性是一个长整型的数组, 用于设置手机静止和震动的时长, 以毫秒为单位
+     *     参数中下标为0的值表示手机静止的时长, 下标为1的值表示手机震动的时长, 下标为2的值又表示手机静止的时长, 以此类推
      * </pre>
      */
     public static class VibratePattern {

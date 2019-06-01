@@ -33,7 +33,7 @@ public final class JSONObjectUtils {
     /**
      * 转换为 JSON 格式字符串
      * <pre>
-     *      @TODO 不支持 实体类 转 JSON字符串
+     *     @TODO 不支持 实体类 转 JSON字符串
      * </pre>
      * @param object
      * @return
@@ -45,7 +45,7 @@ public final class JSONObjectUtils {
     /**
      * 转换为 JSON 格式字符串
      * <pre>
-     *      @TODO 不支持 实体类 转 JSON字符串
+     *     @TODO 不支持 实体类 转 JSON字符串
      * </pre>
      * @param object
      * @param jsonIndent
@@ -117,9 +117,9 @@ public final class JSONObjectUtils {
     /**
      * Object 转换 JSON 对象
      * <pre>
-     *      fromJson(xx, JSONObject.class);
-     *      fromJson(xx, JSONArray.class);
-     *      fromJson(xx, JSONTokener.class);
+     *     fromJson(xx, JSONObject.class);
+     *     fromJson(xx, JSONArray.class);
+     *     fromJson(xx, JSONTokener.class);
      * </pre>
      * @param object
      * @param type   JSONObject.class || JSONArray.class || JSONTokener.class

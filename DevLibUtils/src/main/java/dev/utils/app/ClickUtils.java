@@ -230,9 +230,9 @@ public final class ClickUtils {
      * detail: 点击(双击)辅助类
      * @author Ttt
      * <pre>
-     *      ps: 该辅助类, 主要避免全局共用一个双击控制类, 容易出现冲突, 方便控制某个 Activity/功能模块 双击处理
-     *      使用 Key(Tag-Object) 获取指定的 {@link ClickAssist}, 能够实现不同 Activity/功能模块 单独使用 {@link ClickAssist}
-     *      并且可以进行销毁处理
+     *     ps: 该辅助类, 主要避免全局共用一个双击控制类, 容易出现冲突, 方便控制某个 Activity/功能模块 双击处理
+     *     使用 Key(Tag-Object) 获取指定的 {@link ClickAssist}, 能够实现不同 Activity/功能模块 单独使用 {@link ClickAssist}
+     *     并且可以进行销毁处理
      * </pre>
      */
     public static class ClickAssist {

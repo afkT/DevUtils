@@ -25,9 +25,9 @@ import dev.utils.LogPrintUtils;
  * detail: Acitivty 工具类
  * @author Ttt
  * <pre>
- *      转场动画:
- *      @see <a href="https://www.cnblogs.com/tianzhijiexian/p/4087917.html"/>
- *      ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
+ *     转场动画:
+ *     @see <a href="https://www.cnblogs.com/tianzhijiexian/p/4087917.html"/>
+ *     ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
  * </pre>
  */
 public final class ActivityUtils {
@@ -119,7 +119,7 @@ public final class ActivityUtils {
 
     /**
      * 获取 launcher activity
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getLauncherActivity(@NonNull final String packageName) {
@@ -205,7 +205,7 @@ public final class ActivityUtils {
 
     /**
      * 获取对应包名应用启动 Activity
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getActivityToLauncher(final String packageName) {

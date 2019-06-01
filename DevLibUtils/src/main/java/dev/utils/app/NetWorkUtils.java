@@ -38,7 +38,7 @@ import static android.Manifest.permission.MODIFY_PHONE_STATE;
  * detail: 网络管理工具类
  * @author Ttt
  * <pre>
- *      @see <a href="https://blog.csdn.net/Clear_ws/article/details/78204150"/>
+ *     @see <a href="https://blog.csdn.net/Clear_ws/article/details/78204150"/>
  * </pre>
  */
 public final class NetWorkUtils {
@@ -480,7 +480,7 @@ public final class NetWorkUtils {
      * @param networkType {@link TelephonyManager#getNetworkType}
      * @return 0 = 未知, 1 = 2G, 2 = 3G, 3 = 4G
      * <pre>
-     *      {@link TelephonyManager#getNetworkClass} hide 方法
+     *     {@link TelephonyManager#getNetworkClass} hide 方法
      * </pre>
      */
     public static int getNetworkClass(final int networkType) {

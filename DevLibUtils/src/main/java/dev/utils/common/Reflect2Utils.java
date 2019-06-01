@@ -186,7 +186,7 @@ public final class Reflect2Utils {
     /**
      * 通过反射获取全部字段
      * <pre>
-     *      如: (char[]) getDeclaredField(String, "value")
+     *     如: (char[]) getDeclaredField(String, "value")
      * </pre>
      * @param object 对象
      * @param name   属性名
@@ -319,9 +319,9 @@ public final class Reflect2Utils {
     /**
      * 获取 Object 对象
      * <pre>
-     *      例: 获取父类中的变量
-     *      Object obj = 对象;
-     *      getObject(getDeclaredFieldParent(obj, "父类中变量名"), obj);
+     *     例: 获取父类中的变量
+     *     Object obj = 对象;
+     *     getObject(getDeclaredFieldParent(obj, "父类中变量名"), obj);
      * </pre>
      * @param field  {@link Field}
      * @param object 对象

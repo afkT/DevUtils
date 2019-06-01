@@ -336,14 +336,14 @@ public final class ResourceUtils {
      * @return 资源 id
      */
     public static int getIdentifier(final String resName, final String defType) {
-        return getIdentifier(resName, defType, AppUtils.getAppPackageName());
+        return getIdentifier(resName, defType, DevUtils.getContext().getPackageName());
     }
 
     /**
      * 获取资源 id
      * @param resName     资源名
      * @param defType     资源类型
-     * @param packageName 包名
+     * @param packageName 应用包名
      * @return 资源 id
      */
     public static int getIdentifier(final String resName, final String defType, final String packageName) {

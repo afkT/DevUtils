@@ -13,8 +13,8 @@ import dev.DevUtils;
  * detail: 锁屏管理工具类(锁屏、禁用锁屏, 判断是否锁屏)
  * @author Ttt
  * <pre>
- *      需要的权限:
- *      <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+ *     需要的权限:
+ *     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
  * </pre>
  */
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

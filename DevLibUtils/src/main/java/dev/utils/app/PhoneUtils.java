@@ -48,8 +48,8 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
  * detail: 手机相关工具类
  * @author Ttt
  * <pre>
- *      双卡双待系统IMEI和IMSI方案
- *      @see <a href="http://benson37.iteye.com/blog/1923946"/>
+ *     双卡双待系统IMEI和IMSI方案
+ *     @see <a href="http://benson37.iteye.com/blog/1923946"/>
  * </pre>
  */
 public final class PhoneUtils {
@@ -194,13 +194,13 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return IMEI 码
      * <pre>
-     *      IMEI 是International Mobile Equipment Identity (国际移动设备标识)的简称
-     *      IMEI 由 15 位数字组成的 ”电子串号”, 它与每台手机一一对应, 而且该码是全世界唯一的
-     *      其组成为:
-     *      1. 前6位数(TAC)是 ”型号核准号码”, 一般代表机型
-     *      2. 接着的2位数(FAC)是 ”最后装配号”, 一般代表产地
-     *      3. 之后的6位数(SNR)是 ”串号”, 一般代表生产顺序号
-     *      4. 最后1位数(SP)通常是”0″, 为检验码, 目前暂备用
+     *     IMEI 是International Mobile Equipment Identity (国际移动设备标识)的简称
+     *     IMEI 由 15 位数字组成的 ”电子串号”, 它与每台手机一一对应, 而且该码是全世界唯一的
+     *     其组成为:
+     *     1. 前6位数(TAC)是 ”型号核准号码”, 一般代表机型
+     *     2. 接着的2位数(FAC)是 ”最后装配号”, 一般代表产地
+     *     3. 之后的6位数(SNR)是 ”串号”, 一般代表生产顺序号
+     *     4. 最后1位数(SP)通常是”0″, 为检验码, 目前暂备用
      * </pre>
      */
     @SuppressLint({"HardwareIds"})
@@ -263,17 +263,17 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return IMSI 码
      * <pre>
-     *      IMSI是国际移动用户识别码的简称(International Mobile Subscriber Identity)
-     *      IMSI共有15位, 其结构如下:
-     *      MCC+MNC+MIN
-     *      MCC: Mobile Country Code, 移动国家码, 共3位, 中国为460;
-     *      MNC: Mobile NetworkCode, 移动网络码, 共2位
-     *      在中国, 移动的代码为电00和02, 联通的代码为01, 电信的代码为03
-     *      合起来就是(也是Android手机中APN配置文件中的代码):
-     *      中国移动: 46000 46002
-     *      中国联通: 46001
-     *      中国电信: 46003
-     *      举例, 一个典型的IMSI号码为460030912121001
+     *     IMSI是国际移动用户识别码的简称(International Mobile Subscriber Identity)
+     *     IMSI共有15位, 其结构如下:
+     *     MCC+MNC+MIN
+     *     MCC: Mobile Country Code, 移动国家码, 共3位, 中国为460;
+     *     MNC: Mobile NetworkCode, 移动网络码, 共2位
+     *     在中国, 移动的代码为电00和02, 联通的代码为01, 电信的代码为03
+     *     合起来就是(也是 Android 手机中 APN 配置文件中的代码):
+     *     中国移动: 46000 46002
+     *     中国联通: 46001
+     *     中国电信: 46003
+     *     举例, 一个典型的IMSI号码为460030912121001
      * </pre>
      */
     @SuppressLint({"HardwareIds"})
@@ -309,10 +309,10 @@ public final class PhoneUtils {
     /**
      * 获取移动终端类型
      * <pre>
-     *      {@link TelephonyManager#PHONE_TYPE_NONE } : 0 手机制式未知
-     *      {@link TelephonyManager#PHONE_TYPE_GSM  } : 1 手机制式为 GSM, 移动和联通
-     *      {@link TelephonyManager#PHONE_TYPE_CDMA } : 2 手机制式为 CDMA, 电信
-     *      {@link TelephonyManager#PHONE_TYPE_SIP  } : 3
+     *     {@link TelephonyManager#PHONE_TYPE_NONE } : 0 手机制式未知
+     *     {@link TelephonyManager#PHONE_TYPE_GSM  } : 1 手机制式为 GSM, 移动和联通
+     *     {@link TelephonyManager#PHONE_TYPE_CDMA } : 2 手机制式为 CDMA, 电信
+     *     {@link TelephonyManager#PHONE_TYPE_SIP  } : 3
      * </pre>
      * @return 手机制式
      */
@@ -449,21 +449,21 @@ public final class PhoneUtils {
      * 获取手机状态信息
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * <pre>
-     *      DeviceId(IMEI) = 99000311726612
-     *      DeviceSoftwareVersion = 00
-     *      Line1Number =
-     *      NetworkCountryIso = cn
-     *      NetworkOperator = 46003
-     *      NetworkOperatorName = 中国电信
-     *      NetworkType = 6
-     *      PhoneType = 2
-     *      SimCountryIso = cn
-     *      SimOperator = 46003
-     *      SimOperatorName = 中国电信
-     *      SimSerialNumber = 89860315045710604022
-     *      SimState = 5
-     *      SubscriberId(IMSI) = 460030419724900
-     *      VoiceMailNumber = *86
+     *     DeviceId(IMEI) = 99000311726612
+     *     DeviceSoftwareVersion = 00
+     *     Line1Number =
+     *     NetworkCountryIso = cn
+     *     NetworkOperator = 46003
+     *     NetworkOperatorName = 中国电信
+     *     NetworkType = 6
+     *     PhoneType = 2
+     *     SimCountryIso = cn
+     *     SimOperator = 46003
+     *     SimOperatorName = 中国电信
+     *     SimSerialNumber = 89860315045710604022
+     *     SimState = 5
+     *     SubscriberId(IMSI) = 460030419724900
+     *     VoiceMailNumber = *86
      * </pre>
      * @return
      */
@@ -768,7 +768,7 @@ public final class PhoneUtils {
     /**
      * detail: 双卡双待神机 IMSI、IMSI、PhoneType 信息实体类
      * <pre>
-     *      <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+     *     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
      * </pre>
      * @author Ttt
      */

@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
  * detail: 本应用数据清除管理工具类
  * @author Ttt
  * <pre>
- *      主要功能有清除内/外缓存, 清除数据库, 清除sharedPreference, 清除files和清除自定义目录
+ *     主要功能有清除内/外缓存, 清除数据库, 清除sharedPreference, 清除files和清除自定义目录
  * </pre>
  */
 public final class CleanUtils {

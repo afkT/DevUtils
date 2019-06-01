@@ -13,7 +13,7 @@ import android.os.Build;
  * detail: Activity 无操作定时辅助类
  * @author Ttt
  * <pre>
- *      需要注意的是, 需要在对应的生命周期内, 调用对应的 onPause/onResume/onDestroy 方法
+ *     需要注意的是, 需要在对应的生命周期内, 调用对应的 onPause/onResume/onDestroy 方法
  * </pre>
  */
 public final class InactivityTimerAssist {
@@ -60,7 +60,7 @@ public final class InactivityTimerAssist {
     /**
      * 暂停检测
      * <pre>
-     *      Activity 生命周期 onPause 调用
+     *     Activity 生命周期 onPause 调用
      * </pre>
      */
     public synchronized void onPause() {
@@ -76,7 +76,7 @@ public final class InactivityTimerAssist {
     /**
      * 回到 Activity 处理
      * <pre>
-     *      Activity 生命周期 onResume 调用
+     *     Activity 生命周期 onResume 调用
      * </pre>
      */
     public synchronized void onResume() {
@@ -92,7 +92,7 @@ public final class InactivityTimerAssist {
     /**
      * Activity 销毁处理
      * <pre>
-     *      Activity 生命周期 onDestroy 调用
+     *     Activity 生命周期 onDestroy 调用
      * </pre>
      */
     public synchronized void onDestroy() {

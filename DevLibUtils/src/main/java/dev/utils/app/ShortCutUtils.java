@@ -14,9 +14,9 @@ import dev.utils.LogPrintUtils;
  * detail: 创建删除快捷图标工具类
  * @author Ttt
  * <pre>
- *      需要的权限:
- *      <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
- *      <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+ *     需要的权限:
+ *     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+ *     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
  * </pre>
  */
 public final class ShortCutUtils {

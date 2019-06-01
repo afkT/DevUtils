@@ -47,15 +47,15 @@ public final class BitmapExtendUtils {
     /**
      * 图片压缩处理(使用Options的方法)
      * <pre>
-     *      说明 使用方法:
-     *      首先你要将Options的inJustDecodeBounds属性设置为 true, BitmapFactory.decode一次图片
-     *      然后将Options连同期望的宽度和高度一起传递到到本方法中
-     *      之后再使用本方法的返回值做参数调用 BitmapFactory.decode 创建图片
-     *      <p></p>
-     *      说明 BitmapFactory创建bitmap会尝试为已经构建的bitmap分配内存
-     *      这时就会很容易导致OOM出现, 为此每一种创建方法都提供了一个可选的Options参数
-     *      将这个参数的inJustDecodeBounds属性设置为 true就可以让解析方法禁止为bitmap分配内存
-     *      返回值也不再是一个Bitmap对象, 而是 null, 虽然 Bitmap 是 null 了, 但是Options的outWidth、outHeight和outMimeType属性都会被赋值
+     *     说明 使用方法:
+     *     首先你要将Options的inJustDecodeBounds属性设置为 true, BitmapFactory.decode一次图片
+     *     然后将Options连同期望的宽度和高度一起传递到到本方法中
+     *     之后再使用本方法的返回值做参数调用 BitmapFactory.decode 创建图片
+     *     <p></p>
+     *     说明 BitmapFactory创建bitmap会尝试为已经构建的bitmap分配内存
+     *     这时就会很容易导致OOM出现, 为此每一种创建方法都提供了一个可选的Options参数
+     *     将这个参数的inJustDecodeBounds属性设置为 true就可以让解析方法禁止为bitmap分配内存
+     *     返回值也不再是一个Bitmap对象, 而是 null, 虽然 Bitmap 是 null 了, 但是Options的outWidth、outHeight和outMimeType属性都会被赋值
      * </pre>
      * @param options
      * @param targetWidth  目标宽度, 这里的宽高只是阀值, 实际显示的图片将小于等于这个值

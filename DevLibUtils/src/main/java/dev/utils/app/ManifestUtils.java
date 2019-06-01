@@ -39,7 +39,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Application Meta Data
-     * @param packageName
+     * @param packageName 应用包名
      * @param metaKey
      * @return
      */
@@ -88,7 +88,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Activity Meta Data
-     * @param packageName
+     * @param packageName 应用包名
      * @param name        完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
@@ -139,7 +139,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Service Meta Data
-     * @param packageName
+     * @param packageName 应用包名
      * @param name        完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
@@ -190,7 +190,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Receiver Meta Data
-     * @param packageName
+     * @param packageName 应用包名
      * @param name        完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
@@ -241,7 +241,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 ContentProvider Meta Data
-     * @param packageName
+     * @param packageName 应用包名
      * @param name        完整路径名 package.name => class.getCanonicalName()
      * @param metaKey
      * @return
@@ -318,7 +318,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 App 版本号 - 内部判断
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static int getAppVersionCode(final String packageName) {
@@ -335,7 +335,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 App 版本名 - 对外显示
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getAppVersionName(final String packageName) {

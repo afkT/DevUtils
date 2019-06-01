@@ -24,9 +24,9 @@ import dev.utils.common.FileUtils;
  * detail: Intent(意图)相关工具类
  * @author Ttt
  * <pre>
- *      7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
- *      查看链接:
- *      @see <a href="https://developer.android.com/reference/android/support/v4/content/FileProvider.html"/>
+ *     7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
+ *     查看链接:
+ *     @see <a href="https://developer.android.com/reference/android/support/v4/content/FileProvider.html"/>
  * </pre>
  */
 public final class IntentUtils {
@@ -107,7 +107,7 @@ public final class IntentUtils {
 
     /**
      * 获取卸载 App 的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @return 卸载 App 的意图
      */
     public static Intent getUninstallAppIntent(final String packageName) {
@@ -116,7 +116,7 @@ public final class IntentUtils {
 
     /**
      * 获取卸载 App 的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @param isNewTask   是否开启新的任务栈
      * @return 卸载 App 的意图
      */
@@ -133,7 +133,7 @@ public final class IntentUtils {
 
     /**
      * 获取打开 App 的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @return 打开 App 的意图
      */
     public static Intent getLaunchAppIntent(final String packageName) {
@@ -142,7 +142,7 @@ public final class IntentUtils {
 
     /**
      * 获取打开 App 的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @param isNewTask   是否开启新的任务栈
      * @return 打开 App 的意图
      */
@@ -159,7 +159,7 @@ public final class IntentUtils {
 
     /**
      * 获取 App 具体设置的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @return App 具体设置的意图
      */
     public static Intent getLaunchAppDetailsSettingsIntent(final String packageName) {
@@ -168,7 +168,7 @@ public final class IntentUtils {
 
     /**
      * 获取 App 具体设置的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @param isNewTask   是否开启新的任务栈
      * @return App 具体设置的意图
      */
@@ -185,7 +185,7 @@ public final class IntentUtils {
 
     /**
      * 获取到应用商店 APP 详情界面的意图
-     * @param packageName 目标 App 的包名
+     * @param packageName 应用包名
      * @param marketPkg   应用商店包名, 如果为 "" 则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
      * @return {@link Intent} 意图
      */
@@ -195,7 +195,7 @@ public final class IntentUtils {
 
     /**
      * 获取到应用商店 APP 详情界面的意图
-     * @param packageName 目标App的包名
+     * @param packageName 应用包名
      * @param marketPkg   应用商店包名, 如果为 "" 则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
      * @param isNewTask   是否开启新的任务栈
      * @return {@link Intent} 意图
@@ -330,7 +330,7 @@ public final class IntentUtils {
 
     /**
      * 获取其他应用组件的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @param className   全类名
      * @return 其他应用组件的意图
      */
@@ -340,7 +340,7 @@ public final class IntentUtils {
 
     /**
      * 获取其他应用组件的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @param className   全类名
      * @param isNewTask   是否开启新的任务栈
      * @return 其他应用组件的意图
@@ -351,7 +351,7 @@ public final class IntentUtils {
 
     /**
      * 获取其他应用组件的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @param className   全类名
      * @param bundle
      * @return 其他应用组件的意图
@@ -362,7 +362,7 @@ public final class IntentUtils {
 
     /**
      * 获取其他应用组件的意图
-     * @param packageName
+     * @param packageName 应用包名
      * @param className   全类名
      * @param bundle
      * @param isNewTask   是否开启新的任务栈

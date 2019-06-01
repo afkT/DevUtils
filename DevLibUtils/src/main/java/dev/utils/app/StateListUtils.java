@@ -16,8 +16,8 @@ import dev.utils.LogPrintUtils;
  * detail: 颜色状态列表工具类
  * @author Ttt
  * <pre>
- *      @see <a href="https://blog.csdn.net/wuqilianga/article/details/72964884"/>
- *      @see <a href="https://blog.csdn.net/CrazyMo_/article/details/53456541"/>
+ *     @see <a href="https://blog.csdn.net/wuqilianga/article/details/72964884"/>
+ *     @see <a href="https://blog.csdn.net/CrazyMo_/article/details/53456541"/>
  * </pre>
  */
 public final class StateListUtils {

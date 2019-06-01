@@ -15,8 +15,8 @@ import dev.utils.LogPrintUtils;
  * detail: 摄像头自动获取焦点辅助类
  * @author Ttt
  * <pre>
- *      对焦模式
- *      @see <a href="https://blog.csdn.net/fulinwsuafcie/article/details/49558001"/>
+ *     对焦模式
+ *     @see <a href="https://blog.csdn.net/fulinwsuafcie/article/details/49558001"/>
  * </pre>
  */
 public final class AutoFocusAssist implements Camera.AutoFocusCallback {

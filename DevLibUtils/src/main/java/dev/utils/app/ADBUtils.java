@@ -20,20 +20,20 @@ import dev.utils.common.DevCommonUtils;
  * detail: ADB shell 工具类
  * @author Ttt
  * <pre>
- *      Awesome Adb——一份超全超详细的 ADB 用法大全
- *      @see <a href="https://github.com/mzlogin/awesome-adb"/>
- *      <p></p>
- *      Process.waitFor()的返回值含义
- *      @see <a href="https://blog.csdn.net/qq_35661171/article/details/79096786"/>
- *      <p></p>
- *      adb shell input
- *      @see <a href="https://blog.csdn.net/soslinken/article/details/49587497"/>
- *      <p></p>
- *      android 上发送adb 指令, 不需要加 adb shell
- *      @see <a href="https://www.imooc.com/qadetail/198264"/>
- *      <p></p>
- *      grep 是 linux 下的命令, windows 用 findstr
- *      开启 Thread 执行, 非主线程, 否则无响应并无效
+ *     Awesome Adb——一份超全超详细的 ADB 用法大全
+ *     @see <a href="https://github.com/mzlogin/awesome-adb"/>
+ *     <p></p>
+ *     Process.waitFor()的返回值含义
+ *     @see <a href="https://blog.csdn.net/qq_35661171/article/details/79096786"/>
+ *     <p></p>
+ *     adb shell input
+ *     @see <a href="https://blog.csdn.net/soslinken/article/details/49587497"/>
+ *     <p></p>
+ *     android 上发送adb 指令, 不需要加 adb shell
+ *     @see <a href="https://www.imooc.com/qadetail/198264"/>
+ *     <p></p>
+ *     grep 是 linux 下的命令, windows 用 findstr
+ *     开启 Thread 执行, 非主线程, 否则无响应并无效
  * </pre>
  */
 public final class ADBUtils {
@@ -91,7 +91,7 @@ public final class ADBUtils {
     /**
      * 获取 App 列表(包名)
      * <pre>
-     *      @see <a href="https://blog.csdn.net/henni_719/article/details/62222439"/>
+     *     @see <a href="https://blog.csdn.net/henni_719/article/details/62222439"/>
      * </pre>
      * @param type
      * @return
@@ -164,7 +164,7 @@ public final class ADBUtils {
 
     /**
      * 判断是否安装应用
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static boolean isInstalledApp(final String packageName) {
@@ -176,7 +176,7 @@ public final class ADBUtils {
 
     /**
      * 查看应用安装路径
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getAppInstallPath(final String packageName) {
@@ -191,7 +191,7 @@ public final class ADBUtils {
 
     /**
      * 清除应用数据与缓存 - 相当于在设置里的应用信息界面点击了「清除缓存」和「清除数据」
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static boolean clearAppDataCache(final String packageName) {
@@ -210,7 +210,7 @@ public final class ADBUtils {
     /**
      * 查看应用详细信息
      * 输出中包含很多信息, 包括 Activity Resolver Table、Registered ContentProviders、包名、userId、安装后的文件资源代码等路径、版本信息、权限信息和授予状态、签名版本信息等
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getAppMessage(final String packageName) {
@@ -225,7 +225,7 @@ public final class ADBUtils {
 
     /**
      * 获取 App versionCode
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static int getVersionCode(final String packageName) {
@@ -257,7 +257,7 @@ public final class ADBUtils {
 
     /**
      * 获取 App versionName
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getVersionName(final String packageName) {
@@ -383,7 +383,7 @@ public final class ADBUtils {
 
     /**
      * 卸载 App
-     * @param packageName
+     * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final String packageName) {
@@ -392,7 +392,7 @@ public final class ADBUtils {
 
     /**
      * 卸载 App
-     * @param packageName
+     * @param packageName 应用包名
      * @param isKeepData  -k 参数可选, 表示卸载应用但保留数据和缓存目录
      * @return {@code true} success, {@code false} fail
      */
@@ -413,7 +413,7 @@ public final class ADBUtils {
 
     /**
      * 静默卸载 App
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static boolean uninstallAppSilent(final String packageName) {
@@ -422,7 +422,7 @@ public final class ADBUtils {
 
     /**
      * 静默卸载 App
-     * @param packageName
+     * @param packageName 应用包名
      * @param isKeepData
      * @return
      */
@@ -432,7 +432,7 @@ public final class ADBUtils {
 
     /**
      * 静默卸载 App
-     * @param packageName
+     * @param packageName 应用包名
      * @param isKeepData
      * @param isRooted
      * @return
@@ -451,7 +451,7 @@ public final class ADBUtils {
     /**
      * 获取对应包名应用启动 Activity
      * android.intent.category.LAUNCHER (android.intent.action.MAIN)
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getActivityToLauncher(final String packageName) {
@@ -581,7 +581,7 @@ public final class ADBUtils {
 
     /**
      * 获取对应包名 显示的 Window
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getWindowCurrentToPackage(final String packageName) {
@@ -699,7 +699,7 @@ public final class ADBUtils {
 
     /**
      * 获取对应包名的 Activity 栈
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getActivitysToPackage(final String packageName) {
@@ -711,7 +711,7 @@ public final class ADBUtils {
 
     /**
      * 获取对应包名的 Activity 栈 (处理成 List), 最新的 Activity 越靠后
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static List<String> getActivitysToPackageLists(final String packageName) {
@@ -776,7 +776,7 @@ public final class ADBUtils {
 
     /**
      * 判断 Activity 栈顶 是否重复
-     * @param packageName
+     * @param packageName 应用包名
      * @param activity
      * @return
      */
@@ -812,7 +812,7 @@ public final class ADBUtils {
 
     /**
      * 判断 Activity 栈顶 是否重复
-     * @param packageName
+     * @param packageName 应用包名
      * @param activitys
      * @return
      */
@@ -853,7 +853,7 @@ public final class ADBUtils {
 
     /**
      * 获取 Activity 栈顶 重复总数
-     * @param packageName
+     * @param packageName 应用包名
      * @param activity
      * @return
      */
@@ -893,7 +893,7 @@ public final class ADBUtils {
 
     /**
      * 获取 Activity 栈顶 重复总数
-     * @param packageName
+     * @param packageName 应用包名
      * @param activitys
      * @return
      */
@@ -951,7 +951,7 @@ public final class ADBUtils {
 
     /**
      * 查看正在运行的 Services
-     * @param packageName 参数不是必须的, 指定 <packagename> 表示查看与某个包名相关的 Services, 不指定表示查看所有 Services
+     * @param packageName 应用包名, 参数不是必须的, 指定 <packagename> 表示查看与某个包名相关的 Services, 不指定表示查看所有 Services
      *                    <packagename> 不一定要给出完整的包名, 比如运行 adb shell dumpsys activity services org.mazhuang
      *                    那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来
      * @return
@@ -985,7 +985,7 @@ public final class ADBUtils {
     public static boolean startSelfApp(final boolean closeActivity) {
         try {
             // 获取包名
-            String packageName = AppUtils.getAppPackageName();
+            String packageName = DevUtils.getContext().getPackageName();
             // 获取 Launcher Activity
             String activity = ActivityUtils.getLauncherActivity();
             // 跳转应用启动页(启动应用)
@@ -1154,7 +1154,7 @@ public final class ADBUtils {
 
     /**
      * 销毁进程
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static boolean kill(final String packageName) {

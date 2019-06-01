@@ -23,8 +23,8 @@ import java.util.Random;
  * detail: 随机概率采样算法
  * @author Keith Schwarz
  * <pre>
- *      @see <a href="http://www.keithschwarz.com/interesting/"/>
- *      @see <a href="http://www.keithschwarz.com/darts-dice-coins/"/>
+ *     @see <a href="http://www.keithschwarz.com/interesting/"/>
+ *     @see <a href="http://www.keithschwarz.com/darts-dice-coins/"/>
  * </pre>
  */
 public final class AliasMethod {

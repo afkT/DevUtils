@@ -69,7 +69,7 @@ public final class AppInfoUtils {
     /**
      * 通过包名 获取 PackageInfo
      * <pre>
-     *      @see <a href="https://blog.csdn.net/sljjyy/article/details/17370665"/>
+     *     @see <a href="https://blog.csdn.net/sljjyy/article/details/17370665"/>
      * </pre>
      * @param packageName 应用包名
      * @return {@link PackageInfo}
@@ -261,7 +261,7 @@ public final class AppInfoUtils {
     /**
      * 打印 APK 注册的权限
      * <pre>
-     *      @see <a href="https://www.cnblogs.com/leaven/p/5485864.html"/>
+     *     @see <a href="https://www.cnblogs.com/leaven/p/5485864.html"/>
      * </pre>
      * @param packageName 应用包名
      */

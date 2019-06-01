@@ -17,22 +17,22 @@ import java.util.concurrent.TimeoutException;
  * detail: 线程池(构建类)
  * @author Ttt
  * <pre>
- *      @see <a href="https://www.jianshu.com/p/4d4634c92253"/>
- *      <p></p>
- *      创建线程池(参数)
- *      1.线程池里面管理多少个线程
- *      2.如果排队满了, 额外的开的线程数
- *      3.如果线程池没有要执行的任务存活多久
- *      4.时间的单位
- *      5.如果 线程池里管理的线程都已经用了, 剩下的任务临时存到 LinkedBlockingQueue 对象中排队
- *      public ThreadPoolExecutor(int corePoolSize,
- *                               int maximumPoolSize,
- *                               long keepAliveTime,
- *                               TimeUnit unit,
- *                               BlockingQueue<Runnable> workQueue) {
- *          this (corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
- *                 Executors.defaultThreadFactory(), defaultHandler);
- *      }
+ *     @see <a href="https://www.jianshu.com/p/4d4634c92253"/>
+ *     <p></p>
+ *     创建线程池(参数)
+ *     1.线程池里面管理多少个线程
+ *     2.如果排队满了, 额外的开的线程数
+ *     3.如果线程池没有要执行的任务存活多久
+ *     4.时间的单位
+ *     5.如果 线程池里管理的线程都已经用了, 剩下的任务临时存到 LinkedBlockingQueue 对象中排队
+ *     public ThreadPoolExecutor(int corePoolSize,
+ *                              int maximumPoolSize,
+ *                              long keepAliveTime,
+ *                              TimeUnit unit,
+ *                              BlockingQueue<Runnable> workQueue) {
+ *         this (corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+ *                Executors.defaultThreadFactory(), defaultHandler);
+ *     }
  * </pre>
  */
 public final class DevThreadPool {

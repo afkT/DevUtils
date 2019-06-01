@@ -20,30 +20,30 @@ import dev.utils.LogPrintUtils;
  * detail: TextView 工具类
  * @author Ttt
  * <pre>
- *      获取字体信息 Paint.FontMetrics
- *      @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
- *      @see <a href="http://www.cnblogs.com/tianzhijiexian/p/4297664.html"/>
- *      将字画在矩形背景的正中位置
- *      @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
- *      TextView 设置行间距、行高, 以及字间距
- *      @see <a href="https://blog.csdn.net/shanshan_1117/article/details/79564271"/>
- *      <p></p>
- *      设置文字水平间距: {@link TextViewUtils#setLetterSpacing(View, float)}
- *      android:letterSpacing
- *      设置文字行间距(行高): {@link TextViewUtils#setLineSpacing(View, float)}、{@link TextViewUtils#setLineSpacingAndMultiplier(View, float, float)}
- *      android:lineSpacingExtra
- *      android:lineSpacingMultiplier
- *      <p></p>
- *      setPaintFlags:
- *      Paint.ANTI_ALIAS_FLAG 抗锯齿标志
- *      Paint.FILTER_BITMAP_FLAG 使位图过滤的位掩码标志
- *      Paint.DITHER_FLAG 使位图进行有利的抖动的位掩码标志
- *      Paint.UNDERLINE_TEXT_FLAG 下划线
- *      Paint.STRIKE_THRU_TEXT_FLAG 中划线
- *      Paint.FAKE_BOLD_TEXT_FLAG 加粗
- *      Paint.LINEAR_TEXT_FLAG 使文本平滑线性扩展的油漆标志
- *      Paint.SUBPIXEL_TEXT_FLAG 使文本的亚像素定位的绘图标志
- *      Paint.EMBEDDED_BITMAP_TEXT_FLAG 绘制文本时允许使用位图字体的绘图标志
+ *     获取字体信息 Paint.FontMetrics
+ *     @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
+ *     @see <a href="http://www.cnblogs.com/tianzhijiexian/p/4297664.html"/>
+ *     将字画在矩形背景的正中位置
+ *     @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
+ *     TextView 设置行间距、行高, 以及字间距
+ *     @see <a href="https://blog.csdn.net/shanshan_1117/article/details/79564271"/>
+ *     <p></p>
+ *     设置文字水平间距: {@link TextViewUtils#setLetterSpacing(View, float)}
+ *     android:letterSpacing
+ *     设置文字行间距(行高): {@link TextViewUtils#setLineSpacing(View, float)}、{@link TextViewUtils#setLineSpacingAndMultiplier(View, float, float)}
+ *     android:lineSpacingExtra
+ *     android:lineSpacingMultiplier
+ *     <p></p>
+ *     setPaintFlags:
+ *     Paint.ANTI_ALIAS_FLAG 抗锯齿标志
+ *     Paint.FILTER_BITMAP_FLAG 使位图过滤的位掩码标志
+ *     Paint.DITHER_FLAG 使位图进行有利的抖动的位掩码标志
+ *     Paint.UNDERLINE_TEXT_FLAG 下划线
+ *     Paint.STRIKE_THRU_TEXT_FLAG 中划线
+ *     Paint.FAKE_BOLD_TEXT_FLAG 加粗
+ *     Paint.LINEAR_TEXT_FLAG 使文本平滑线性扩展的油漆标志
+ *     Paint.SUBPIXEL_TEXT_FLAG 使文本的亚像素定位的绘图标志
+ *     Paint.EMBEDDED_BITMAP_TEXT_FLAG 绘制文本时允许使用位图字体的绘图标志
  * </pre>
  */
 public final class TextViewUtils {
@@ -624,7 +624,7 @@ public final class TextViewUtils {
     /**
      * 设置文字水平间距
      * <pre>
-     *      android:letterSpacing
+     *     android:letterSpacing
      * </pre>
      * @param view          {@link TextView}
      * @param letterSpacing 文字水平间距值
@@ -698,7 +698,7 @@ public final class TextViewUtils {
     /**
      * 设置字体水平方向的缩放
      * <pre>
-     *      android:textScaleX
+     *     android:textScaleX
      * </pre>
      * @param view {@link TextView}
      * @param size 缩放比例
@@ -725,8 +725,8 @@ public final class TextViewUtils {
     /**
      * 设置是否保留字体留白间隙区域
      * <pre>
-     *      android:includeFontPadding
-     *      https://blog.csdn.net/bdmh/article/details/78110557
+     *     android:includeFontPadding
+     *     https://blog.csdn.net/bdmh/article/details/78110557
      * </pre>
      * @param view       {@link TextView}
      * @param includepad 是否保留字体留白间隙区域

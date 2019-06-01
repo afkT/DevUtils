@@ -383,10 +383,10 @@ public final class ColorUtils {
     /**
      * 解析颜色字符串, 返回对应的颜色值
      * <pre>
-     *      支持的格式:
-     *      #RRGGBB
-     *      #AARRGGBB
-     *      'red', 'blue', 'green', 'black', 'white', 'gray', 'cyan', 'magenta', 'yellow', 'lightgray', 'darkgray'
+     *     支持的格式:
+     *     #RRGGBB
+     *     #AARRGGBB
+     *     'red', 'blue', 'green', 'black', 'white', 'gray', 'cyan', 'magenta', 'yellow', 'lightgray', 'darkgray'
      * </pre>
      * @param colorStr argb/rgb color String
      * @return argb/rgb 颜色值

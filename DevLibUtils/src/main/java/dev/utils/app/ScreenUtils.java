@@ -31,12 +31,12 @@ import dev.utils.LogPrintUtils;
  * detail: 屏幕相关工具类
  * @author Ttt
  * <pre>
- *      计算屏幕尺寸
- *      @see <a href="https://blog.csdn.net/lincyang/article/details/42679589"/>
- *      <p></p>
- *      截图
- *      @see <a href="https://www.cnblogs.com/angel88/p/7933437.html"/>
- *      @see <a href="https://github.com/weizongwei5/AndroidScreenShot_SysApi"/>
+ *     计算屏幕尺寸
+ *     @see <a href="https://blog.csdn.net/lincyang/article/details/42679589"/>
+ *     <p></p>
+ *     截图
+ *     @see <a href="https://www.cnblogs.com/angel88/p/7933437.html"/>
+ *     @see <a href="https://github.com/weizongwei5/AndroidScreenShot_SysApi"/>
  * </pre>
  */
 public final class ScreenUtils {
@@ -633,7 +633,7 @@ public final class ScreenUtils {
     /**
      * 检测是否具有底部导航栏
      * <pre>
-     *      一加手机上判断不准确
+     *     一加手机上判断不准确
      * </pre>
      * @return
      */

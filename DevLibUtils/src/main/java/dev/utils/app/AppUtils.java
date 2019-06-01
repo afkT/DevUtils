@@ -297,7 +297,7 @@ public final class AppUtils {
 
     /**
      * 获取 App 的图标
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static Drawable getAppIcon(final String packageName) {
@@ -330,7 +330,7 @@ public final class AppUtils {
 
     /**
      * 获取 App 应用名
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getAppName(final String packageName) {
@@ -355,7 +355,7 @@ public final class AppUtils {
 
     /**
      * 获取 App 版本名 - 对外显示
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getAppVersionName(final String packageName) {
@@ -379,7 +379,7 @@ public final class AppUtils {
 
     /**
      * 获取 App 版本号 - 内部判断
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static int getAppVersionCode(final String packageName) {
@@ -513,7 +513,7 @@ public final class AppUtils {
 
     /**
      * 卸载 App
-     * @param packageName
+     * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final String packageName) {
@@ -530,7 +530,7 @@ public final class AppUtils {
     /**
      * 卸载 App
      * @param activity
-     * @param packageName
+     * @param packageName 应用包名
      * @param requestCode
      * @return {@code true} success, {@code false} fail
      */
@@ -547,7 +547,7 @@ public final class AppUtils {
 
     /**
      * 静默卸载 App
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static boolean uninstallAppSilent(final String packageName) {
@@ -556,7 +556,7 @@ public final class AppUtils {
 
     /**
      * 静默卸载 App
-     * @param packageName
+     * @param packageName 应用包名
      * @param isKeepData
      * @return
      */
@@ -566,7 +566,7 @@ public final class AppUtils {
 
     /**
      * 静默卸载 App
-     * @param packageName
+     * @param packageName 应用包名
      * @param isKeepData
      * @param isRooted
      * @return
@@ -601,7 +601,7 @@ public final class AppUtils {
 
     /**
      * 判断是否安装了应用
-     * @param packageName
+     * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppInstalled(@NonNull final String packageName) {
@@ -610,7 +610,7 @@ public final class AppUtils {
 
     /**
      * 判断是否安装指定包名的 App
-     * @param packageName 包路径
+     * @param packageName 应用包名
      * @return
      */
     @SuppressWarnings("unused")
@@ -645,7 +645,7 @@ public final class AppUtils {
 
     /**
      * 判断是否 App 是否debug模式
-     * @param packageName
+     * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppDebug(final String packageName) {
@@ -669,7 +669,7 @@ public final class AppUtils {
 
     /**
      * 判断 App 是否系统app
-     * @param packageName
+     * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppSystem(final String packageName) {
@@ -706,7 +706,7 @@ public final class AppUtils {
     /**
      * 判断 App 是否在前台
      * <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     @RequiresPermission(Manifest.permission.PACKAGE_USAGE_STATS)
@@ -716,7 +716,7 @@ public final class AppUtils {
 
     /**
      * 打开 App
-     * @param packageName
+     * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchApp(final String packageName) {
@@ -733,7 +733,7 @@ public final class AppUtils {
     /**
      * 打开 App, 并且回传
      * @param activity
-     * @param packageName
+     * @param packageName 应用包名
      * @param requestCode
      * @return {@code true} success, {@code false} fail
      */
@@ -758,7 +758,7 @@ public final class AppUtils {
 
     /**
      * 跳转到 专门的 App 设置详情页面
-     * @param packageName
+     * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings(final String packageName) {
@@ -783,7 +783,7 @@ public final class AppUtils {
 
     /**
      * 跳转到 专门的 App 应用商城详情页面
-     * @param packageName
+     * @param packageName 应用包名
      * @param marketPkg
      * @return
      */
@@ -808,7 +808,7 @@ public final class AppUtils {
 
     /**
      * 获取 App 路径 /data/data/包名/.apk
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getAppPath(final String packageName) {
@@ -835,7 +835,7 @@ public final class AppUtils {
 
     /**
      * 获取 App 签名
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static Signature[] getAppSignature(final String packageName) {
@@ -861,7 +861,7 @@ public final class AppUtils {
 
     /**
      * 获取 App sha1值
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getAppSignatureSHA1(@NonNull final String packageName) {
@@ -878,7 +878,7 @@ public final class AppUtils {
 
     /**
      * 获取应用签名的的 SHA256 值
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getAppSignatureSHA256(final String packageName) {
@@ -895,7 +895,7 @@ public final class AppUtils {
 
     /**
      * 获取应用签名 MD5 值
-     * @param packageName
+     * @param packageName 应用包名
      * @return
      */
     public static String getAppSignatureMD5(final String packageName) {
@@ -904,7 +904,7 @@ public final class AppUtils {
 
     /**
      * 获取应用签名 Hash 值
-     * @param packageName
+     * @param packageName 应用包名
      * @param algorithm
      * @return
      */

@@ -14,16 +14,16 @@ import dev.utils.LogPrintUtils;
  * detail: 定时器工具类
  * @author Ttt
  * <pre>
- *      主要是为了控制整个项目的定时器, 防止定时器混乱, 或者忘记关闭等情况, 以及减少初始化等操作代码
- *      主要实现是 AbsTimer、TimerTask 这两个类
- *      AbsTimer => 定时器抽象类, 对外提供该类对象以及内部方法便于内部实现方法的隐藏, 以达到对定时器任务的控制处理
- *      TimerTask => 内部私有类, 实现了具体的定时器操作以及代码控制等, 防止外部直接 new 导致定时器混乱
- *      <p></p>
- *      如果外部想要实现定时器, 但是通过内部 ArrayList 控制, 也可以通过实现 AbsTimer 接口, 内部的 startTimer()、closeTimer() 进行了对 AbsTimer 的保存、标记等操作
- *      需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer() => 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
- *      <p></p>
- *      startTimer() => 主要进行添加到 ArrayList, 并且标记不需要回收
- *      closeTimer() => 不直接操作 remove, 防止出现 ConcurrentModificationException 异常, 而是做一个标记, 便于后续回收
+ *     主要是为了控制整个项目的定时器, 防止定时器混乱, 或者忘记关闭等情况, 以及减少初始化等操作代码
+ *     主要实现是 AbsTimer、TimerTask 这两个类
+ *     AbsTimer => 定时器抽象类, 对外提供该类对象以及内部方法便于内部实现方法的隐藏, 以达到对定时器任务的控制处理
+ *     TimerTask => 内部私有类, 实现了具体的定时器操作以及代码控制等, 防止外部直接 new 导致定时器混乱
+ *     <p></p>
+ *     如果外部想要实现定时器, 但是通过内部 ArrayList 控制, 也可以通过实现 AbsTimer 接口, 内部的 startTimer()、closeTimer() 进行了对 AbsTimer 的保存、标记等操作
+ *     需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer() => 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
+ *     <p></p>
+ *     startTimer() => 主要进行添加到 ArrayList, 并且标记不需要回收
+ *     closeTimer() => 不直接操作 remove, 防止出现 ConcurrentModificationException 异常, 而是做一个标记, 便于后续回收
  * </pre>
  */
 public final class TimerManager {
@@ -345,8 +345,8 @@ public final class TimerManager {
      * detail: 定时器抽象类, 主要对内部 Timer 参数进行控制, 以及防止外部直接 new TimerTask, 照成不必要的失误
      * @author Ttt
      * <pre>
-     *      @TODO 推荐使用 {@link TimerManager#createTimer} 创建定时任务, 如果需要自己实现 AbsTimer, 则参考 {@link TimerManager.TimerTask} 实现
-     *      @TODO {@link TimerManager.AbsTimer} 只是提供了常见的方法, 以及变量等, 便于定时任务控制, 具体实现在 {@link TimerManager.TimerTask}
+     *     @TODO 推荐使用 {@link TimerManager#createTimer} 创建定时任务, 如果需要自己实现 AbsTimer, 则参考 {@link TimerManager.TimerTask} 实现
+     *     @TODO {@link TimerManager.AbsTimer} 只是提供了常见的方法, 以及变量等, 便于定时任务控制, 具体实现在 {@link TimerManager.TimerTask}
      * </pre>
      */
     public static abstract class AbsTimer {
@@ -403,7 +403,7 @@ public final class TimerManager {
         /**
          * 运行定时器
          * <pre>
-         *      如果外部通过了 createTimer 或者直接 new AbsTimer 初始化了对象, 没有调用 startTimer, 都不会保存到 mTimerLists 并不影响对定时器的控制
+         *     如果外部通过了 createTimer 或者直接 new AbsTimer 初始化了对象, 没有调用 startTimer, 都不会保存到 mTimerLists 并不影响对定时器的控制
          * </pre>
          */
         public void startTimer() {
@@ -500,7 +500,7 @@ public final class TimerManager {
      * detail: 定时器内部封装类(定时器任务类)
      * @author Ttt
      * <pre>
-     *      便于快捷使用, 并且防止外部 new 从而达到对整个项目定时器的控制
+     *     便于快捷使用, 并且防止外部 new 从而达到对整个项目定时器的控制
      * </pre>
      */
     private static final class TimerTask extends AbsTimer {
