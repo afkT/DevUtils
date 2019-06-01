@@ -166,7 +166,7 @@ public class WifiHotUtils {
                 public void onFailed(int reason) {
                     super.onFailed(reason);
                     // 打印信息
-                    LogPrintUtils.eTag(TAG, "Android 8.0 onFailed wifiAp, reason : " + reason);
+                    LogPrintUtils.eTag(TAG, "Android 8.0 onFailed wifiAp, reason: " + reason);
                     // 触发回调
                     if (mWifiAPListener != null) {
                         mWifiAPListener.onFailed(reason);

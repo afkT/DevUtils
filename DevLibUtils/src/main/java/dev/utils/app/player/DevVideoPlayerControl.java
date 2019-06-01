@@ -327,7 +327,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
                 try {
                     return DevMediaManager.getInstance().isPlaying();
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "isPlaying - uri : " + uri);
+                    LogPrintUtils.eTag(TAG, e, "isPlaying - uri: " + uri);
                 }
             }
         }

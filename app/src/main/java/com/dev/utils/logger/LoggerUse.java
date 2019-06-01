@@ -91,7 +91,7 @@ public final class LoggerUse {
         long sTime = System.currentTimeMillis();
         // 开始遍历
         for (int i = 0; i < count; i++) {
-            Log.d(tag, "A:" + (i + 1));
+            Log.d(tag, "A: " + (i + 1));
         }
         // 拼接时间信息
         DevCommonUtils.timeRecord(buffer, "正常系统Log耗时记录", sTime, System.currentTimeMillis());
@@ -101,8 +101,8 @@ public final class LoggerUse {
         sTime = System.currentTimeMillis();
         // 开始遍历
         for (int i = 0; i < count; i++) {
-            // DevLogger.d("B:" + (i + 1));
-            DevLogger.dTag(tag, "B:" + (i + 1));
+            // DevLogger.d("B: " + (i + 1));
+            DevLogger.dTag(tag, "B: " + (i + 1));
         }
         // 拼接时间信息
         DevCommonUtils.timeRecord(buffer, "Logger耗时记录", sTime, System.currentTimeMillis());
@@ -120,7 +120,7 @@ public final class LoggerUse {
         sTime = System.currentTimeMillis();
         // 开始遍历
         for (int i = 0; i < count; i++) {
-            DevLogger.other(logConfig).dTag(tag, "C:" + (i + 1));
+            DevLogger.other(logConfig).dTag(tag, "C: " + (i + 1));
         }
         // 拼接时间信息
         DevCommonUtils.timeRecord(buffer, "Logger耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());

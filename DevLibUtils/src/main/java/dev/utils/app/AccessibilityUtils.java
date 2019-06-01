@@ -64,7 +64,7 @@ public final class AccessibilityUtils {
     /**
      * 检查是否开启无障碍功能
      * <pre>
-     *     未开启则跳转到无障碍设置页面
+     *     未开启则跳转至辅助功能设置页面
      * </pre>
      * @return {@code true} open, {@code false} close
      */
@@ -75,7 +75,7 @@ public final class AccessibilityUtils {
     /**
      * 检查是否开启无障碍功能
      * <pre>
-     *     未开启则跳转到无障碍设置页面
+     *     未开启则跳转至辅助功能设置页面
      * </pre>
      * @param packageName 应用包名
      * @return {@code true} open, {@code false} close
@@ -84,7 +84,7 @@ public final class AccessibilityUtils {
         if (packageName == null) return false;
         // 判断辅助功能是否开启
         if (!AccessibilityUtils.isAccessibilitySettingsOn(packageName)) {
-            // 引导至辅助功能设置页面
+            // 跳转至辅助功能设置页面
             DevUtils.getContext().startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             return false;
         }
@@ -98,7 +98,7 @@ public final class AccessibilityUtils {
      */
     public static boolean isAccessibilitySettingsOn(final String packageName) {
         if (packageName == null) return false;
-
+        // 无障碍功能开启状态
         int accessibilityEnabled = 0;
         try {
             accessibilityEnabled = Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
@@ -119,12 +119,12 @@ public final class AccessibilityUtils {
     }
 
     // ============
-    // = 快捷方法 =
+    // = 打印方法 =
     // ============
 
     /**
      * 打印 AccessibilityEvent 信息日志
-     * @param event
+     * @param event {@link AccessibilityEvent}
      */
     public static void printAccessibilityEvent(final AccessibilityEvent event) {
         printAccessibilityEvent(event, TAG);
@@ -132,8 +132,8 @@ public final class AccessibilityUtils {
 
     /**
      * 打印 AccessibilityEvent 信息日志
-     * @param event
-     * @param tag
+     * @param event {@link AccessibilityEvent}
+     * @param tag   日志 TAG
      */
     public static void printAccessibilityEvent(final AccessibilityEvent event, final String tag) {
         if (event == null || !LogPrintUtils.isPrintLog()) return;
@@ -143,16 +143,16 @@ public final class AccessibilityUtils {
         buffer.append(NEW_LINE_STR);
 
         int eventType = event.getEventType(); // 事件类型
-        buffer.append("packageName:" + event.getPackageName() + ""); // 响应事件的包名, 也就是哪个应用才响应了这个事件
+        buffer.append("packageName: " + event.getPackageName() + ""); // 响应事件的应用包名
         buffer.append(NEW_LINE_STR);
 
-        buffer.append("source:" + event.getSource() + ""); // 事件源信息
+        buffer.append("source: " + event.getSource() + ""); // 事件源信息
         buffer.append(NEW_LINE_STR);
 
-        buffer.append("source class:" + event.getClassName() + ""); // 事件源的类名, 比如 android.widget.TextView
+        buffer.append("source class: " + event.getClassName() + ""); // 事件源的类名, 如 android.widget.TextView
         buffer.append(NEW_LINE_STR);
 
-        buffer.append("event type(int):" + eventType + "");
+        buffer.append("event type(int): " + eventType + "");
         buffer.append(NEW_LINE_STR);
 
         switch (eventType) {
@@ -191,7 +191,7 @@ public final class AccessibilityUtils {
 
         for (CharSequence txt : event.getText()) {
             // 输出当前事件包含的文本信息
-            buffer.append("text:" + txt);
+            buffer.append("text: " + txt);
             buffer.append(NEW_LINE_STR);
         }
         buffer.append("=========================");
@@ -201,13 +201,81 @@ public final class AccessibilityUtils {
     }
 
     // ============
-    // = 其他处理 =
+    // = 节点获取 =
     // ============
 
     /**
      * 查找符合条件的节点
-     * @param text
-     * @return
+     * @param focus 焦点类型
+     * @return 拥有特定焦点类型的节点
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static AccessibilityNodeInfo findFocus(final int focus) {
+        return findFocus(sService, focus);
+    }
+
+    /**
+     * 查找符合条件的节点
+     * @param service {@link AccessibilityService}
+     * @param focus   焦点类型
+     * @return 拥有特定焦点类型的节点
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static AccessibilityNodeInfo findFocus(final AccessibilityService service, final int focus) {
+        if (service == null) return null;
+        // 获取根节点
+        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        // 取得当前激活窗体的根节点
+        if (nodeInfo == null) return null;
+        // 通过指定的焦点类型找到当前的节点
+        return nodeInfo.findFocus(focus);
+    }
+
+    // =
+
+    /**
+     * 查找符合条件的节点
+     * @param focus     焦点类型
+     * @param className 节点所属的类, 类名
+     * @return 拥有特定焦点类型的节点
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static AccessibilityNodeInfo findFocus(final int focus, final String className) {
+        return findFocus(sService, focus, className);
+    }
+
+    /**
+     * 查找符合条件的节点
+     * @param service   {@link AccessibilityService}
+     * @param focus     焦点类型
+     * @param className 节点所属的类, 类名
+     * @return 拥有特定焦点类型的节点
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static AccessibilityNodeInfo findFocus(final AccessibilityService service, final int focus, final String className) {
+        if (service == null || className == null) return null;
+        // 获取根节点
+        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        // 取得当前激活窗体的根节点
+        if (nodeInfo == null) return null;
+        // 通过指定的焦点类型找到当前的节点
+        AccessibilityNodeInfo node = nodeInfo.findFocus(focus);
+        // 防止为 null
+        if (node != null) {
+            // 判断是否符合的类型
+            if (node.getClassName().equals(className) && node.isEnabled()) {
+                return node;
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 查找符合条件的节点
+     * @param text 文本内容(搜索包含该文本内容的节点)
+     * @return 包含该文本内容的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final String text) {
@@ -216,9 +284,9 @@ public final class AccessibilityUtils {
 
     /**
      * 查找符合条件的节点
-     * @param service
-     * @param text
-     * @return
+     * @param service {@link AccessibilityService}
+     * @param text    文本内容(搜索包含该文本内容的节点)
+     * @return 包含该文本内容的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final AccessibilityService service, final String text) {
@@ -226,45 +294,18 @@ public final class AccessibilityUtils {
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
         // 取得当前激活窗体的根节点
-        if (nodeInfo == null)
-            return null;
+        if (nodeInfo == null) return null;
         // 通过文字找到当前的节点
         return nodeInfo.findAccessibilityNodeInfosByText(text);
     }
 
-    /**
-     * 查找符合条件的节点
-     * @param id
-     * @return
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final String id) {
-        return findAccessibilityNodeInfosByViewId(sService, id);
-    }
+    // =
 
     /**
      * 查找符合条件的节点
-     * @param service
-     * @param id
-     * @return
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final AccessibilityService service, final String id) {
-        if (service == null || id == null) return null;
-        // 获取根节点
-        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
-        // 取得当前激活窗体的根节点
-        if (nodeInfo == null)
-            return null;
-        // 通过文字找到当前的节点
-        return nodeInfo.findAccessibilityNodeInfosByViewId(id);
-    }
-
-    /**
-     * 查找符合条件的节点
-     * @param text
-     * @param className
-     * @return
+     * @param text      文本内容(搜索包含该文本内容的节点)
+     * @param className 节点所属的类, 类名
+     * @return 包含该文本内容, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final String text, final String className) {
@@ -273,10 +314,10 @@ public final class AccessibilityUtils {
 
     /**
      * 查找符合条件的节点
-     * @param service
-     * @param text
-     * @param className
-     * @return
+     * @param service   {@link AccessibilityService}
+     * @param text      文本内容(搜索包含该文本内容的节点)
+     * @param className 节点所属的类, 类名
+     * @return 包含该文本内容, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final AccessibilityService service, final String text, final String className) {
@@ -285,10 +326,79 @@ public final class AccessibilityUtils {
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
         // 取得当前激活窗体的根节点
-        if (nodeInfo == null)
-            return lists;
+        if (nodeInfo == null) return lists;
         // 通过文字找到当前的节点
         List<AccessibilityNodeInfo> nodes = nodeInfo.findAccessibilityNodeInfosByText(text);
+        for (int i = 0; i < nodes.size(); i++) {
+            AccessibilityNodeInfo node = nodes.get(i);
+            // 判断是否符合的类型
+            if (node.getClassName().equals(className) && node.isEnabled()) {
+                // 保存符合条件
+                lists.add(node);
+            }
+        }
+        return lists;
+    }
+
+    // =
+
+    /**
+     * 查找符合条件的节点
+     * @param id viewId
+     * @return 等于 viewId 的节点集合
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final String id) {
+        return findAccessibilityNodeInfosByViewId(sService, id);
+    }
+
+    /**
+     * 查找符合条件的节点
+     * @param service {@link AccessibilityService}
+     * @param id      viewId
+     * @return 等于 viewId 的节点集合
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final AccessibilityService service, final String id) {
+        if (service == null || id == null) return null;
+        // 获取根节点
+        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        // 取得当前激活窗体的根节点
+        if (nodeInfo == null) return null;
+        // 通过 id 找到当前的节点
+        return nodeInfo.findAccessibilityNodeInfosByViewId(id);
+    }
+
+    // =
+
+    /**
+     * 查找符合条件的节点
+     * @param id        viewId
+     * @param className 节点所属的类, 类名
+     * @return 等于 viewId, 且属于指定类的节点集合
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final String id, final String className) {
+        return findAccessibilityNodeInfosByViewId(sService, id, className);
+    }
+
+    /**
+     * 查找符合条件的节点
+     * @param service   {@link AccessibilityService}
+     * @param id        viewId
+     * @param className 节点所属的类, 类名
+     * @return 等于 viewId, 且属于指定类的节点集合
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final AccessibilityService service, final String id, final String className) {
+        if (service == null || id == null || className == null) return null;
+        List<AccessibilityNodeInfo> lists = new ArrayList<>();
+        // 获取根节点
+        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        // 取得当前激活窗体的根节点
+        if (nodeInfo == null) return lists;
+        // 通过 id 找到当前的节点
+        List<AccessibilityNodeInfo> nodes = nodeInfo.findAccessibilityNodeInfosByViewId(id);
         for (int i = 0; i < nodes.size(); i++) {
             AccessibilityNodeInfo node = nodes.get(i);
             // 判断是否符合的类型
@@ -306,7 +416,7 @@ public final class AccessibilityUtils {
 
     /**
      * 点击指定的节点
-     * @param nodeInfo
+     * @param nodeInfo {@link AccessibilityNodeInfo}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean performClick(final AccessibilityNodeInfo nodeInfo) {
@@ -318,8 +428,7 @@ public final class AccessibilityUtils {
 
     /**
      * 点击指定的节点
-     * 如果当前节点不可点击, 可以尝试往上追溯, 点击父节点, 直到该节点可以点击为止
-     * @param nodeInfo
+     * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      */
     public static void performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
@@ -328,10 +437,9 @@ public final class AccessibilityUtils {
 
     /**
      * 点击指定的节点
-     * 如果当前节点不可点击, 可以尝试往上追溯, 点击父节点, 直到该节点可以点击为止
-     * @param nodeInfo
+     * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-     * @param clickAll    判断是否点击全部
+     * @param clickAll    判断是否点击全部节点
      */
     public static void performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
         if (nodeInfo == null) return;
@@ -342,7 +450,6 @@ public final class AccessibilityUtils {
                 AccessibilityNodeInfo parent = nodeInfo.getParent();
                 while (parent != null) {
                     if (performClick(parent)) {
-                        // 如果
                         if (!clickAll) {
                             return;
                         }
@@ -359,7 +466,7 @@ public final class AccessibilityUtils {
 
     /**
      * 长按指定的节点
-     * @param nodeInfo
+     * @param nodeInfo {@link AccessibilityNodeInfo}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo) {
@@ -371,8 +478,7 @@ public final class AccessibilityUtils {
 
     /**
      * 长按指定的节点
-     * 如果当前节点不可点击, 可以尝试往上追溯, 点击父节点, 直到该节点可以点击为止
-     * @param nodeInfo
+     * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      */
     public static void performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
@@ -381,10 +487,9 @@ public final class AccessibilityUtils {
 
     /**
      * 长按指定的节点
-     * 如果当前节点不可点击, 可以尝试往上追溯, 点击父节点, 直到该节点可以点击为止
-     * @param nodeInfo
+     * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-     * @param clickAll    判断是否点击全部
+     * @param clickAll    判断是否点击全部节点
      */
     public static void performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
         if (nodeInfo == null) return;
@@ -395,7 +500,6 @@ public final class AccessibilityUtils {
                 AccessibilityNodeInfo parent = nodeInfo.getParent();
                 while (parent != null) {
                     if (performLongClick(parent)) {
-                        // 如果
                         if (!clickAll) {
                             return;
                         }
@@ -412,7 +516,7 @@ public final class AccessibilityUtils {
 
     /**
      * 触发返回键
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionBack() {
@@ -421,8 +525,8 @@ public final class AccessibilityUtils {
 
     /**
      * 触发返回键
-     * @param service
-     * @return
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionBack(final AccessibilityService service) {
@@ -430,8 +534,8 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 触发Home键
-     * @return
+     * 触发 Home 键
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionHome() {
@@ -439,9 +543,9 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 触发Home键
-     * @param service
-     * @return
+     * 触发 Home 键
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionHome(final AccessibilityService service) {
@@ -450,7 +554,7 @@ public final class AccessibilityUtils {
 
     /**
      * 启动长按电源按钮 Dialog
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionPowerDialog() {
@@ -459,8 +563,8 @@ public final class AccessibilityUtils {
 
     /**
      * 启动长按电源按钮 Dialog
-     * @param service
-     * @return
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionPowerDialog(final AccessibilityService service) {
@@ -469,7 +573,7 @@ public final class AccessibilityUtils {
 
     /**
      * 锁定屏幕(非锁屏)
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionLockScreen() {
@@ -478,8 +582,8 @@ public final class AccessibilityUtils {
 
     /**
      * 锁定屏幕(非锁屏)
-     * @param service
-     * @return
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionLockScreen(final AccessibilityService service) {
@@ -487,8 +591,8 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 截图
-     * @return
+     * 截屏
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionTakeScreenshot() {
@@ -496,9 +600,9 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 截图
-     * @param service
-     * @return
+     * 截屏
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionTakeScreenshot(final AccessibilityService service) {
@@ -507,7 +611,7 @@ public final class AccessibilityUtils {
 
     /**
      * 打开通知栏
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionNotifications() {
@@ -516,8 +620,8 @@ public final class AccessibilityUtils {
 
     /**
      * 打开通知栏
-     * @param service
-     * @return
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionNotifications(final AccessibilityService service) {
@@ -526,7 +630,7 @@ public final class AccessibilityUtils {
 
     /**
      * 最近打开应用列表
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionRecents() {
@@ -535,8 +639,8 @@ public final class AccessibilityUtils {
 
     /**
      * 最近打开应用列表
-     * @param service
-     * @return
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionRecents(final AccessibilityService service) {
@@ -545,7 +649,7 @@ public final class AccessibilityUtils {
 
     /**
      * 打开设置
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionQuickSettings() {
@@ -554,8 +658,8 @@ public final class AccessibilityUtils {
 
     /**
      * 打开设置
-     * @param service
-     * @return
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionQuickSettings(final AccessibilityService service) {
@@ -564,7 +668,7 @@ public final class AccessibilityUtils {
 
     /**
      * 分屏
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionSplitScreen() {
@@ -573,8 +677,8 @@ public final class AccessibilityUtils {
 
     /**
      * 分屏
-     * @param service
-     * @return
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean preformActionSplitScreen(final AccessibilityService service) {
@@ -587,8 +691,8 @@ public final class AccessibilityUtils {
 
     /**
      * 模拟对应 Action 操作
-     * @param nodeInfo
-     * @param action
+     * @param nodeInfo {@link AccessibilityNodeInfo}
+     * @param action   操作意图
      * @return {@code true} success, {@code false} fail
      */
     public static boolean preformAction(final AccessibilityNodeInfo nodeInfo, final int action) {
@@ -600,9 +704,9 @@ public final class AccessibilityUtils {
 
     /**
      * 模拟全局对应 Action 操作
-     * @param service
-     * @param action
-     * @return
+     * @param service {@link AccessibilityService}
+     * @param action  操作意图
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean performGlobalAction(final AccessibilityService service, final int action) {
@@ -614,9 +718,9 @@ public final class AccessibilityUtils {
 
 //    // 获取根节点
 //    AccessibilityNodeInfo rootNode = getRootInActiveWindow();
-//    // 匹配Text获取节点
+//    // 匹配 Text 获取节点
 //    List<AccessibilityNodeInfo> list1 = rootNode.findAccessibilityNodeInfosByText("match_text");
-//    // 匹配id获取节点
+//    // 匹配 id 获取节点
 //    List<AccessibilityNodeInfo> list2 = rootNode.findAccessibilityNodeInfosByViewId("match_id");
 //    // 获取子节点
 //    AccessibilityNodeInfo infoNode = rootNode.getChild(index);
@@ -630,14 +734,14 @@ public final class AccessibilityUtils {
 //    // 向上滑动
 //    performGlobalAction(service, AccessibilityService.GESTURE_SWIPE_UP);
 
-//    disableSelf()	禁用当前服务, 也就是在服务可以通过该方法停止运行
-//    getSystemService(String name)	获取系统服务
-//    onServiceConnected()	系统成功绑定该服务时被触发, 也就是当你在设置中开启相应的服务, 系统成功的绑定了该服务时会触发, 通常我们可以在这里做一些初始化操作
-//    getSeviceInfo()	获取当前服务的配置信息
-//    setServiceInfo(AccessibilityServiceInfo info)	设置当前服务的配置信息
-//    onAccessibilityEvent(AccessibilityEvent event)	有关AccessibilityEvent事件的回调函数, 系统通过sendAccessibiliyEvent()不断的发送AccessibilityEvent到此处
-//    performGlobalAction(int action)	执行全局操作, 比如回到主页、打开最近等操作
-//    findFoucs(int falg)	查找拥有特定焦点类型的控件
-//    getRootInActiveWindow()	如果配置能够获取窗口内容, 则会返回当前活动窗口的根结点
-//    onKeyEvent(KeyEvent event)	如果允许服务监听按键操作, 该方法是按键事件的回调, 需要注意, 这个过程发生了系统处理按键事件之前
+//    disableSelf()	// 禁用当前服务, 也就是在服务可以通过该方法停止运行
+//    getSystemService(String name)	// 获取系统服务
+//    onServiceConnected() // 系统成功绑定该服务时被触发, 也就是当你在设置中开启相应的服务, 系统成功的绑定了该服务时会触发, 通常我们可以在这里做一些初始化操作
+//    getSeviceInfo() // 获取当前服务的配置信息
+//    setServiceInfo(AccessibilityServiceInfo info) // 设置当前服务的配置信息
+//    onAccessibilityEvent(AccessibilityEvent event) // 有关 AccessibilityEvent 事件的回调函数, 系统通过 sendAccessibiliyEvent() 不断的发送 AccessibilityEvent 到此处
+//    performGlobalAction(int action) // 执行全局操作, 比如回到主页、打开最近等操作
+//    findFoucs(int falg) // 查找拥有特定焦点类型的控件
+//    getRootInActiveWindow() // 如果配置能够获取窗口内容, 则会返回当前活动窗口的根结点
+//    onKeyEvent(KeyEvent event) // 如果允许服务监听按键操作, 该方法是按键事件的回调, 需要注意, 这个过程发生了系统处理按键事件之前
 }

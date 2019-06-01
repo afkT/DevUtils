@@ -655,7 +655,7 @@ public final class WifiUtils {
                     // 断开之前的连接
                     boolean isDisConnect = mWifiManager.disconnect();
                     // 打印断开连接结果
-                    LogPrintUtils.dTag(TAG, "isDisConnect : " + isDisConnect + ", isDisable: " + isDisable);
+                    LogPrintUtils.dTag(TAG, "isDisConnect: " + isDisConnect + ", isDisable: " + isDisable);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + nId);
                 }
@@ -683,7 +683,7 @@ public final class WifiUtils {
                         // 断开之前的连接
                         boolean isDisConnect = mWifiManager.disconnect();
                         // 打印断开连接结果
-                        LogPrintUtils.dTag(TAG, "isDisConnect : " + isDisConnect + ", isDisable: " + isDisable);
+                        LogPrintUtils.dTag(TAG, "isDisConnect: " + isDisConnect + ", isDisable: " + isDisable);
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + nId);
                     }
@@ -700,7 +700,7 @@ public final class WifiUtils {
             // 保存 id
             connWifiConfig.networkId = nId;
             // 连接的 networkId
-            LogPrintUtils.dTag(TAG, "连接的 SSID - networkId : " + nId);
+            LogPrintUtils.dTag(TAG, "连接的 SSID - networkId: " + nId);
             // 返回连接的信息
             return connWifiConfig;
         } catch (Exception e) {
