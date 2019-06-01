@@ -50,7 +50,7 @@ public final class SignaturesUtils {
     }
 
     /**
-     * 返回 MD5
+     * 获取 MD5
      * @param signatures
      * @return
      */
@@ -69,7 +69,7 @@ public final class SignaturesUtils {
     }
 
     /**
-     * 返回 SHA1 加密字符串
+     * 获取 SHA1 加密字符串
      * @param signatures
      * @return
      */
@@ -88,7 +88,7 @@ public final class SignaturesUtils {
     }
 
     /**
-     * 返回 SHA256 加密字符串
+     * 获取 SHA256 加密字符串
      * @param signatures
      * @return
      */

@@ -13,7 +13,9 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: Activity 管理工具类(用于管理应用程序 Activity)
  * @author Ttt
+ * @deprecated 统一转移到 {@link dev.utils.app.ActivityUtils}, 防止该类名与 API ActivityManager 引用出错
  */
+@Deprecated
 public final class ActivityManager {
 
     private ActivityManager() {
