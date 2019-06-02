@@ -383,15 +383,15 @@ public final class FileRecordUtils {
         }
         // =
         // 错误信息
-        String eMsg = null;
+        String errorMessage;
         // 是否换行
         if (isNewLines) {
-            eMsg = getThrowableNewLinesMsg(errorArrays[1], ex);
+            errorMessage = getThrowableNewLinesMsg(errorArrays[1], ex);
         } else {
-            eMsg = getThrowableMsg(errorArrays[1], ex);
+            errorMessage = getThrowableMsg(errorArrays[1], ex);
         }
         // 保存异常信息
-        builder.append(eMsg);
+        builder.append(errorMessage);
         // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(bottom)) {
             builder.append(NEW_LINE_STR);
