@@ -212,20 +212,20 @@ final class LoggerPrinter implements IPrinter {
                 logHandle(logConfig, tag, Log.DEBUG, message);
             }
         } catch (Exception e) {
-            String eHint = "null";
+            String errorInfo = "null";
             if (e != null) {
                 Throwable throwable = e.getCause();
                 if (throwable != null) {
-                    eHint = throwable.getMessage();
+                    errorInfo = throwable.getMessage();
                 } else {
                     try {
-                        eHint = e.getMessage();
+                        errorInfo = e.getMessage();
                     } catch (Exception e1) {
-                        eHint = e1.getMessage();
+                        errorInfo = e1.getMessage();
                     }
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, eHint + "\n" + json);
+            logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + json);
         }
     }
 
@@ -260,20 +260,20 @@ final class LoggerPrinter implements IPrinter {
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
-            String eHint = "null";
+            String errorInfo = "null";
             if (e != null) {
                 Throwable throwable = e.getCause();
                 if (throwable != null) {
-                    eHint = throwable.getMessage();
+                    errorInfo = throwable.getMessage();
                 } else {
                     try {
-                        eHint = e.getMessage();
+                        errorInfo = e.getMessage();
                     } catch (Exception e1) {
-                        eHint = e1.getMessage();
+                        errorInfo = e1.getMessage();
                     }
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, eHint + "\n" + xml);
+            logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + xml);
         }
     }
 
@@ -417,20 +417,20 @@ final class LoggerPrinter implements IPrinter {
                 logHandle(logConfig, tag, Log.DEBUG, message);
             }
         } catch (Exception e) {
-            String eHint = "null";
+            String errorInfo = "null";
             if (e != null) {
                 Throwable throwable = e.getCause();
                 if (throwable != null) {
-                    eHint = throwable.getMessage();
+                    errorInfo = throwable.getMessage();
                 } else {
                     try {
-                        eHint = e.getMessage();
+                        errorInfo = e.getMessage();
                     } catch (Exception e1) {
-                        eHint = e1.getMessage();
+                        errorInfo = e1.getMessage();
                     }
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, eHint + "\n" + json);
+            logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + json);
         }
     }
 
@@ -464,20 +464,20 @@ final class LoggerPrinter implements IPrinter {
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
-            String eHint = "null";
+            String errorInfo = "null";
             if (e != null) {
                 Throwable throwable = e.getCause();
                 if (throwable != null) {
-                    eHint = throwable.getMessage();
+                    errorInfo = throwable.getMessage();
                 } else {
                     try {
-                        eHint = e.getMessage();
+                        errorInfo = e.getMessage();
                     } catch (Exception e1) {
-                        eHint = e1.getMessage();
+                        errorInfo = e1.getMessage();
                     }
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, eHint + "\n" + xml);
+            logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + xml);
         }
     }
 

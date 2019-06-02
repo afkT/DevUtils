@@ -430,7 +430,7 @@ public final class PhoneUtils {
     }
 
     /**
-     * 获取设备唯一id
+     * 获取设备唯一 UUID
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return
      */

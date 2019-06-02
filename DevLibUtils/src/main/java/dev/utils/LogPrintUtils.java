@@ -266,20 +266,20 @@ public final class LogPrintUtils {
                     printLog(Log.DEBUG, tag, message);
                 }
             } catch (Exception e) {
-                String eHint = "null";
+                String errorInfo = "null";
                 if (e != null) {
                     Throwable throwable = e.getCause();
                     if (throwable != null) {
-                        eHint = throwable.getMessage();
+                        errorInfo = throwable.getMessage();
                     } else {
                         try {
-                            eHint = e.getMessage();
+                            errorInfo = e.getMessage();
                         } catch (Exception e1) {
-                            eHint = e1.getMessage();
+                            errorInfo = e1.getMessage();
                         }
                     }
                 }
-                printLog(Log.ERROR, tag, eHint + "\n" + json);
+                printLog(Log.ERROR, tag, errorInfo + "\n" + json);
             }
         }
     }
@@ -303,20 +303,20 @@ public final class LogPrintUtils {
                 // 打印信息
                 printLog(Log.DEBUG, tag, message);
             } catch (Exception e) {
-                String eHint = "null";
+                String errorInfo = "null";
                 if (e != null) {
                     Throwable throwable = e.getCause();
                     if (throwable != null) {
-                        eHint = throwable.getMessage();
+                        errorInfo = throwable.getMessage();
                     } else {
                         try {
-                            eHint = e.getMessage();
+                            errorInfo = e.getMessage();
                         } catch (Exception e1) {
-                            eHint = e1.getMessage();
+                            errorInfo = e1.getMessage();
                         }
                     }
                 }
-                printLog(Log.ERROR, tag, eHint + "\n" + xml);
+                printLog(Log.ERROR, tag, errorInfo + "\n" + xml);
             }
         }
     }

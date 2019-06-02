@@ -65,11 +65,11 @@ public final class ErrorUtils {
 
     /**
      * 获取错误信息(无换行)
-     * @param eHint 获取失败提示
-     * @param ex    错误信息
+     * @param errorInfo 获取失败, 返回信息
+     * @param ex        错误信息
      * @return 错误信息字符串
      */
-    public static String getThrowableMsg(final String eHint, final Throwable ex) {
+    public static String getThrowableMsg(final String errorInfo, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
@@ -89,7 +89,7 @@ public final class ErrorUtils {
                 printWriter.close();
             }
         }
-        return eHint;
+        return errorInfo;
     }
 
     /**
@@ -103,11 +103,11 @@ public final class ErrorUtils {
 
     /**
      * 获取错误信息(有换行)
-     * @param eHint 获取失败提示
-     * @param ex    错误信息
+     * @param errorInfo 获取失败, 返回信息
+     * @param ex        错误信息
      * @return 错误信息字符串
      */
-    public static String getThrowableNewLinesMsg(final String eHint, final Throwable ex) {
+    public static String getThrowableNewLinesMsg(final String errorInfo, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
@@ -138,6 +138,6 @@ public final class ErrorUtils {
                 }
             }
         }
-        return eHint;
+        return errorInfo;
     }
 }

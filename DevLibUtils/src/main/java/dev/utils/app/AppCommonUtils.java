@@ -23,9 +23,9 @@ public final class AppCommonUtils {
     private static final String TAG = AppCommonUtils.class.getSimpleName();
 
     /**
-     * 获取设备唯一id
+     * 获取设备唯一 UUID
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-     * @return
+     * @return 设备唯一 UUID
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getUUID() {
@@ -33,8 +33,8 @@ public final class AppCommonUtils {
     }
 
     /**
-     * 获取随机数 唯一id
-     * @return
+     * 获取随机唯一数
+     * @return 随机唯一数
      */
     public static String getRandomUUID() {
         // 获取随机数
@@ -43,16 +43,16 @@ public final class AppCommonUtils {
         String random2 = (900000 + new Random().nextInt(10000)) + "";
         // 获取当前时间
         String cTime = System.currentTimeMillis() + random1 + random2;
-        // 生成唯一随机uuid  cTime.hashCode(), random1.hashCode() | random2.hashCode()
+        // 生成唯一随机 uuid  cTime.hashCode(), random1.hashCode() | random2.hashCode()
         UUID randomUUID = new UUID(cTime.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
-        // 获取uid
+        // 获取 uuid
         return randomUUID.toString();
     }
 
     /**
      * 获取 R.string 资源的格式化字符串
-     * @param resId
-     * @param objs
+     * @param resId R.string.id
+     * @param objs  格式化参数
      * @return 格式化后的字符串
      */
     public static String getFormatRes(final int resId, final Object... objs) {
@@ -62,8 +62,8 @@ public final class AppCommonUtils {
     /**
      * 获取 R.string 资源的格式化字符串
      * @param errorMsg 是否设置异常信息
-     * @param resId
-     * @param objs
+     * @param resId    R.string.id
+     * @param objs     格式化参数
      * @return 格式化后的字符串
      */
     public static String getFormatRes(final boolean errorMsg, final int resId, final Object... objs) {
@@ -88,161 +88,161 @@ public final class AppCommonUtils {
     // ================
 
     /**
-     * 是否在2.2版本及以上
-     * @return 是否在2.2版本及以上
+     * 是否在 2.2 版本及以上
+     * @return 是否在 2.2 版本及以上
      */
     public static boolean isFroyo() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO;
     }
 
     /**
-     * 是否在2.3版本及以上
-     * @return 是否在2.3版本及以上
+     * 是否在 2.3 版本及以上
+     * @return 是否在 2.3 版本及以上
      */
     public static boolean isGingerbread() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
     }
 
     /**
-     * 是否在2.3.3版本及以上
-     * @return 是否在2.3.3版本及以上
+     * 是否在 2.3.3 版本及以上
+     * @return 是否在 2.3.3 版本及以上
      */
     public static boolean isGingerbreadMR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD_MR1;
     }
 
     /**
-     * 是否在3.0版本及以上
-     * @return 是否在3.0版本及以上
+     * 是否在 3.0 版本及以上
+     * @return 是否在 3.0 版本及以上
      */
     public static boolean isHoneycomb() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
     }
 
     /**
-     * 是否在3.1版本及以上
-     * @return 是否在3.1版本及以上
+     * 是否在 3.1 版本及以上
+     * @return 是否在 3.1 版本及以上
      */
     public static boolean isHoneycombMR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1;
     }
 
     /**
-     * 是否在4.0版本及以上
-     * @return 是否在4.0版本及以上
+     * 是否在 4.0 版本及以上
+     * @return 是否在 4.0 版本及以上
      */
     public static boolean isIceCreamSandwich() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
     }
 
     /**
-     * 是否在4.0.3版本及以上
-     * @return 是否在4.0.3版本及以上
+     * 是否在 4.0.3 版本及以上
+     * @return 是否在 4.0.3 版本及以上
      */
     public static boolean isIceCreamSandwichMR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1;
     }
 
     /**
-     * 是否在4.1版本及以上
-     * @return 是否在4.1版本及以上
+     * 是否在 4.1 版本及以上
+     * @return 是否在 4.1 版本及以上
      */
     public static boolean isJellyBean() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
     }
 
     /**
-     * 是否在4.2版本及以上
-     * @return 是否在4.2版本及以上
+     * 是否在 4.2 版本及以上
+     * @return 是否在 4.2 版本及以上
      */
     public static boolean isJellyBeanMR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1;
     }
 
     /**
-     * 是否在4.3版本及以上
-     * @return 是否在4.3版本及以上
+     * 是否在 4.3 版本及以上
+     * @return 是否在 4.3 版本及以上
      */
     public static boolean isJellyBeanMR2() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2;
     }
 
     /**
-     * 是否在4.4.2版本及以上
-     * @return 是否在4.4.2版本及以上
+     * 是否在 4.4.2 版本及以上
+     * @return 是否在 4.4.2 版本及以上
      */
     public static boolean isKitkat() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
     }
 
     /**
-     * 是否在5.0.1版本及以上
-     * @return 是否在5.0.1版本及以上
+     * 是否在 5.0.1 版本及以上
+     * @return 是否在 5.0.1 版本及以上
      */
     public static boolean isLollipop() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
     /**
-     * 是否在6.0版本及以上
-     * @return 是否在6.0版本及以上
+     * 是否在 6.0 版本及以上
+     * @return 是否在 6.0 版本及以上
      */
     public static boolean isM() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
 
     /**
-     * 是否在7.0版本及以上
-     * @return 是否在7.0版本及以上
+     * 是否在 7.0 版本及以上
+     * @return 是否在 7.0 版本及以上
      */
     public static boolean isN() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
     }
 
     /**
-     * 是否在7.1.1版本及以上
-     * @return 是否在7.1.1版本及以上
+     * 是否在 7.1.1 版本及以上
+     * @return 是否在 7.1.1 版本及以上
      */
     public static boolean isN_MR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1;
     }
 
     /**
-     * 是否在8.0版本及以上
-     * @return 是否在8.0版本及以上
+     * 是否在 8.0 版本及以上
+     * @return 是否在 8.0 版本及以上
      */
     public static boolean isO() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     }
 
     /**
-     * 是否在8.1版本及以上
-     * @return 是否在8.1版本及以上
+     * 是否在 8.1 版本及以上
+     * @return 是否在 8.1 版本及以上
      */
     public static boolean isO_MR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1;
     }
 
     /**
-     * 是否在9.0版本及以上
-     * @return 是否在9.0版本及以上
+     * 是否在 9.0 版本及以上
+     * @return 是否在 9.0 版本及以上
      */
     public static boolean isP() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.P;
     }
 
     /**
-     * 转换SDK版本 (convertSDKVersion(14) => Android 4.0.0-2)
-     * @return
+     * 转换 SDK 版本 convertSDKVersion(14) => Android 4.0.0-2
+     * @return SDK 版本
      */
     public static String convertSDKVersion() {
         return convertSDKVersion(Build.VERSION.SDK_INT);
     }
 
     /**
-     * 转换SDK版本 (convertSDKVersion(14) => Android 4.0.0-2)
-     * @param sdkVersion
-     * @return
+     * 转换 SDK 版本 convertSDKVersion(14) => Android 4.0.0-2
+     * @param sdkVersion SDK 版本
+     * @return SDK 版本
      */
     public static String convertSDKVersion(final int sdkVersion) {
         switch (sdkVersion) {

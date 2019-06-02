@@ -33,6 +33,7 @@ import static android.Manifest.permission.EXPAND_STATUS_BAR;
 
 /**
  * detail: 状态栏相关工具类
+ * @author Blankj
  * @author Ttt
  */
 public final class BarUtils {

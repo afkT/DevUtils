@@ -176,7 +176,7 @@ public final class DevCommonUtils {
     }
 
     // ==============
-    // = 获取唯一ID =
+    // = 获取唯一数 =
     // ==============
 
     /**

@@ -75,9 +75,9 @@ public final class DeviceUtils {
 
     /**
      * 获取设备信息
-     * @param dInfoMaps 传入设备信息传出HashMap
+     * @param deviceInfoMap 设备信息 Map
      */
-    public static void getDeviceInfo(final Map<String, String> dInfoMaps) {
+    public static void getDeviceInfo(final Map<String, String> deviceInfoMap) {
         // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -93,7 +93,7 @@ public final class DeviceUtils {
                         if (object instanceof String[]) {
                             if (object != null) {
                                 // 获取类型对应字段的数据, 并保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
-                                dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
+                                deviceInfoMap.put(field.getName(), Arrays.toString((String[]) object));
                             }
                             continue;
                         }
@@ -101,7 +101,7 @@ public final class DeviceUtils {
                     }
                 }
                 // 获取类型对应字段的数据, 并保存
-                dInfoMaps.put(field.getName(), field.get(null).toString());
+                deviceInfoMap.put(field.getName(), field.get(null).toString());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
             }
@@ -110,16 +110,16 @@ public final class DeviceUtils {
 
     /**
      * 处理设备信息
-     * @param dInfoMaps 设备信息
-     * @param eHint     错误提示, 如获取设备信息失败
+     * @param deviceInfoMap 设备信息 Map
+     * @param errorInfo     错误提示信息, 如获取设备信息失败
      * @return 拼接后的设备信息字符串
      */
-    public static String handlerDeviceInfo(final Map<String, String> dInfoMaps, final String eHint) {
+    public static String handlerDeviceInfo(final Map<String, String> deviceInfoMap, final String errorInfo) {
         try {
-            // 初始化StringBuilder, 拼接字符串
+            // 初始化 StringBuilder, 拼接字符串
             StringBuilder builder = new StringBuilder();
             // 获取设备信息
-            Iterator<Map.Entry<String, String>> mapIter = dInfoMaps.entrySet().iterator();
+            Iterator<Map.Entry<String, String>> mapIter = deviceInfoMap.entrySet().iterator();
             // 遍历设备信息
             while (mapIter.hasNext()) {
                 // 获取对应的 key - value
@@ -136,7 +136,7 @@ public final class DeviceUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "handlerDeviceInfo");
         }
-        return eHint;
+        return errorInfo;
     }
 
     /**

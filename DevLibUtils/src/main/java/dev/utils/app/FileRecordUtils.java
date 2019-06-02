@@ -45,7 +45,7 @@ public final class FileRecordUtils {
     private static String APP_VERSION_CODE = "";
     // 设备信息
     private static String DEVICE_INFO_STR = null;
-    // 用来存储设备信息
+    // 设备信息存储 Map
     private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
@@ -79,9 +79,9 @@ public final class FileRecordUtils {
 
     /**
      * 获取设备信息
-     * @param dInfoMaps 传入设备信息传出HashMap
+     * @param deviceInfoMap 设备信息 Map
      */
-    private static void getDeviceInfo(final Map<String, String> dInfoMaps) {
+    private static void getDeviceInfo(final Map<String, String> deviceInfoMap) {
         // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -97,7 +97,7 @@ public final class FileRecordUtils {
                         if (object instanceof String[]) {
                             if (object != null) {
                                 // 获取类型对应字段的数据, 并保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
-                                dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
+                                deviceInfoMap.put(field.getName(), Arrays.toString((String[]) object));
                             }
                             continue;
                         }
@@ -105,7 +105,7 @@ public final class FileRecordUtils {
                     }
                 }
                 // 获取类型对应字段的数据, 并保存
-                dInfoMaps.put(field.getName(), field.get(null).toString());
+                deviceInfoMap.put(field.getName(), field.get(null).toString());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
             }
@@ -114,10 +114,10 @@ public final class FileRecordUtils {
 
     /**
      * 处理设备信息
-     * @param eHint 错误提示, 如获取设备信息失败
+     * @param errorInfo 错误提示信息, 如获取设备信息失败
      * @return 拼接后的设备信息字符串
      */
-    private static String handlerDeviceInfo(final String eHint) {
+    private static String handlerDeviceInfo(final String errorInfo) {
         try {
             // 如果不为 null, 则直接返回之前的信息
             if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
@@ -145,7 +145,7 @@ public final class FileRecordUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "handlerDeviceInfo");
         }
-        return eHint;
+        return errorInfo;
     }
 
     // ==============
@@ -219,11 +219,11 @@ public final class FileRecordUtils {
 
     /**
      * 获取错误信息(无换行)
-     * @param eHint 获取失败提示
-     * @param ex    错误信息
+     * @param errorInfo 获取失败, 返回信息
+     * @param ex        错误信息
      * @return 错误信息字符串
      */
-    private static String getThrowableMsg(final String eHint, final Throwable ex) {
+    private static String getThrowableMsg(final String errorInfo, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
@@ -243,16 +243,16 @@ public final class FileRecordUtils {
                 printWriter.close();
             }
         }
-        return eHint;
+        return errorInfo;
     }
 
     /**
      * 获取错误信息(有换行)
-     * @param eHint 获取失败提示
-     * @param ex    错误信息
+     * @param errorInfo 获取失败, 返回信息
+     * @param ex        错误信息
      * @return 错误信息字符串
      */
-    private static String getThrowableNewLinesMsg(final String eHint, final Throwable ex) {
+    private static String getThrowableNewLinesMsg(final String errorInfo, final Throwable ex) {
         PrintWriter printWriter = null;
         try {
             if (ex != null) {
@@ -284,7 +284,7 @@ public final class FileRecordUtils {
                 }
             }
         }
-        return eHint;
+        return errorInfo;
     }
 
     // ================
@@ -326,12 +326,12 @@ public final class FileRecordUtils {
      * @param fileName    文件名(含后缀)
      * @param isNewLines  是否换行
      * @param printDevice 是否打印设备信息
-     * @param eHint       错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos  错误提示(无设备信息、失败信息获取失败)
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName, final boolean isNewLines,
-                                       final boolean printDevice, final String... eHint) {
-        return saveErrorLog(ex, null, null, filePath, fileName, isNewLines, printDevice, eHint);
+                                       final boolean printDevice, final String... errorInfos) {
+        return saveErrorLog(ex, null, null, filePath, fileName, isNewLines, printDevice, errorInfos);
     }
 
     /**
@@ -343,19 +343,19 @@ public final class FileRecordUtils {
      * @param fileName    文件名(含后缀)
      * @param isNewLines  是否换行
      * @param printDevice 是否打印设备信息
-     * @param eHint       错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos  错误提示(无设备信息、失败信息获取失败)
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName,
-                                       final boolean isNewLines, final boolean printDevice, final String... eHint) {
+                                       final boolean isNewLines, final boolean printDevice, final String... errorInfos) {
         // 处理可变参数(错误提示)
-        String[] errorHints = handlerVariable(2, eHint);
+        String[] errorArrays = handlerVariable(2, errorInfos);
         // 日志拼接
         StringBuilder builder = new StringBuilder();
         // 防止文件夹不存在
         createFile(filePath);
         // 设备信息
-        String deviceInfo = handlerDeviceInfo(errorHints[0]);
+        String deviceInfo = handlerDeviceInfo(errorArrays[0]);
         // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(head)) {
             builder.append(head);
@@ -386,9 +386,9 @@ public final class FileRecordUtils {
         String eMsg = null;
         // 是否换行
         if (isNewLines) {
-            eMsg = getThrowableNewLinesMsg(errorHints[1], ex);
+            eMsg = getThrowableNewLinesMsg(errorArrays[1], ex);
         } else {
-            eMsg = getThrowableMsg(errorHints[1], ex);
+            eMsg = getThrowableMsg(errorArrays[1], ex);
         }
         // 保存异常信息
         builder.append(eMsg);
@@ -409,11 +409,11 @@ public final class FileRecordUtils {
      * @param filePath    保存路径
      * @param fileName    文件名(含后缀)
      * @param printDevice 是否打印设备信息
-     * @param eHint       错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos  错误提示(无设备信息、失败信息获取失败)
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLog(final String log, final String filePath, final String fileName, final boolean printDevice, final String... eHint) {
-        return saveLog(log, null, null, filePath, fileName, printDevice, eHint);
+    public static boolean saveLog(final String log, final String filePath, final String fileName, final boolean printDevice, final String... errorInfos) {
+        return saveLog(log, null, null, filePath, fileName, printDevice, errorInfos);
     }
 
     /**
@@ -424,19 +424,19 @@ public final class FileRecordUtils {
      * @param filePath    保存路径
      * @param fileName    文件名(含后缀)
      * @param printDevice 是否打印设备信息
-     * @param eHint       错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos  错误提示(无设备信息、失败信息获取失败)
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveLog(final String log, final String head, final String bottom, final String filePath,
-                                  final String fileName, final boolean printDevice, final String... eHint) {
+                                  final String fileName, final boolean printDevice, final String... errorInfos) {
         // 处理可变参数(错误提示)
-        String[] errorHints = handlerVariable(2, eHint);
+        String[] errorArrays = handlerVariable(2, errorInfos);
         // 日志拼接
         StringBuilder builder = new StringBuilder();
         // 防止文件夹不存在
         createFile(filePath);
         // 设备信息
-        String deviceInfo = handlerDeviceInfo(errorHints[0]);
+        String deviceInfo = handlerDeviceInfo(errorArrays[0]);
         // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(head)) {
             builder.append(head);

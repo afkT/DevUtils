@@ -27,7 +27,7 @@ import java.util.Map;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 分析记录工具类
+ * detail: 日志记录分析工具类
  * @author Ttt
  */
 public final class AnalysisRecordUtils {
@@ -75,11 +75,11 @@ public final class AnalysisRecordUtils {
 
     /**
      * 日志记录
-     * @param fileInfo
-     * @param args
-     * @return log 直接打印
+     * @param fileInfo {@link FileInfo}
+     * @param logs     日志内容数组
+     * @return 日志内容
      */
-    public static String record(final FileInfo fileInfo, final String... args) {
+    public static String record(final FileInfo fileInfo, final String... logs) {
         // 如果不处理, 则直接跳过
         if (!sIsHandler) {
             return "record not handler";
@@ -88,8 +88,8 @@ public final class AnalysisRecordUtils {
             if (!fileInfo.isHandler()) {
                 return "file record not handler";
             }
-            if (args != null && args.length != 0) {
-                return saveLogRecord(fileInfo, args);
+            if (logs != null && logs.length != 0) {
+                return saveLogRecord(fileInfo, logs);
             }
             // 无数据记录
             return "no data record";
@@ -99,8 +99,8 @@ public final class AnalysisRecordUtils {
     }
 
     /**
-     * 是否处理日志记录
-     * @return
+     * 判断是否处理日志记录
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isHandler() {
         return sIsHandler;
@@ -108,15 +108,15 @@ public final class AnalysisRecordUtils {
 
     /**
      * 设置是否处理日志记录
-     * @param handler
+     * @param handler 是否处理日志
      */
     public static void setHandler(final boolean handler) {
         AnalysisRecordUtils.sIsHandler = handler;
     }
 
     /**
-     * 是否追加空格
-     * @return
+     * 判断是否追加空格
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppendSpace() {
         return sAppendSpace;
@@ -124,15 +124,15 @@ public final class AnalysisRecordUtils {
 
     /**
      * 设置是否追加空格
-     * @param appendSpace
+     * @param appendSpace 是否追加空格
      */
     public static void setAppendSpace(final boolean appendSpace) {
         AnalysisRecordUtils.sAppendSpace = appendSpace;
     }
 
     /**
-     * 获取文件日志名
-     * @return
+     * 获取日志文件名
+     * @return 日志文件名
      */
     public static String getLogFolderName() {
         return sLogFolderName;
@@ -140,7 +140,7 @@ public final class AnalysisRecordUtils {
 
     /**
      * 设置日志文件夹名
-     * @param logFolderName
+     * @param logFolderName 日志文件夹名
      */
     public static void setLogFolderName(final String logFolderName) {
         AnalysisRecordUtils.sLogFolderName = logFolderName;
@@ -148,7 +148,7 @@ public final class AnalysisRecordUtils {
 
     /**
      * 获取日志存储路径
-     * @return
+     * @return 日志存储路径
      */
     public static String getLogStoragePath() {
         return sLogStoragePath;
@@ -156,7 +156,7 @@ public final class AnalysisRecordUtils {
 
     /**
      * 设置日志存储路径
-     * @param logStoragePath
+     * @param logStoragePath 日志存储路径
      */
     public static void setLogStoragePath(final String logStoragePath) {
         AnalysisRecordUtils.sLogStoragePath = logStoragePath;
@@ -168,11 +168,11 @@ public final class AnalysisRecordUtils {
 
     /**
      * 最终保存方法
-     * @param fileInfo
-     * @param args
+     * @param fileInfo {@link FileInfo}
+     * @param logs     日志内容数组
      * @return 拼接后的日志内容
      */
-    private static String saveLogRecord(final FileInfo fileInfo, final String... args) {
+    private static String saveLogRecord(final FileInfo fileInfo, final String... logs) {
         // 如果不处理, 则直接跳过
         if (!sIsHandler) {
             return "record not handler";
@@ -192,7 +192,7 @@ public final class AnalysisRecordUtils {
         String fileHint = fileInfo.getFileFunction();
         try {
             // 获取处理的日志
-            String logContent = splitLog(args);
+            String logContent = splitLog(logs);
             // 日志保存路径
             String logPath = fileInfo.getLogPath();
             // 获取日志地址
@@ -250,10 +250,10 @@ public final class AnalysisRecordUtils {
 
     /**
      * 拼接日志
-     * @param args
-     * @return
+     * @param logs 日志内容数组
+     * @return 拼接后的日志内容
      */
-    private static String splitLog(final String... args) {
+    private static String splitLog(final String... logs) {
         // 判断是否追加空格
         boolean isSpace = sAppendSpace;
         // =
@@ -263,15 +263,15 @@ public final class AnalysisRecordUtils {
         buffer.append(NEW_LINE_STR);
         // 获取保存时间
         buffer.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        // 追加个边距
+        // 追加边距
         buffer.append(" => ");
         // 循环追加内容
-        for (int i = 0, len = args.length; i < len; i++) {
+        for (int i = 0, len = logs.length; i < len; i++) {
             if (isSpace) { // 判断是否追加空格
                 buffer.append(SPACE_STR);
             }
             // 追加保存内容
-            buffer.append(args[i]);
+            buffer.append(logs[i]);
         }
         return buffer.toString();
     }
@@ -284,14 +284,14 @@ public final class AnalysisRecordUtils {
     private static String APP_INFO_STR = null;
     // 设备信息
     private static String DEVICE_INFO_STR = null;
-    // 用来存储设备信息
+    // 设备信息存储 Map
     private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 获取设备信息
-     * @return
+     * @return 设备信息
      */
     private static String getDeviceInfo() {
         if (DEVICE_INFO_STR != null) {
@@ -307,9 +307,9 @@ public final class AnalysisRecordUtils {
 
     /**
      * 获取设备信息
-     * @param dInfoMaps 传入设备信息传出HashMap
+     * @param deviceInfoMap 设备信息 Map
      */
-    private static void getDeviceInfo(final Map<String, String> dInfoMaps) {
+    private static void getDeviceInfo(final Map<String, String> deviceInfoMap) {
         // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -325,7 +325,7 @@ public final class AnalysisRecordUtils {
                         if (object instanceof String[]) {
                             if (object != null) {
                                 // 获取类型对应字段的数据, 并保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
-                                dInfoMaps.put(field.getName(), Arrays.toString((String[]) object));
+                                deviceInfoMap.put(field.getName(), Arrays.toString((String[]) object));
                             }
                             continue;
                         }
@@ -333,7 +333,7 @@ public final class AnalysisRecordUtils {
                     }
                 }
                 // 获取类型对应字段的数据, 并保存
-                dInfoMaps.put(field.getName(), field.get(null).toString());
+                deviceInfoMap.put(field.getName(), field.get(null).toString());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
             }
@@ -342,10 +342,10 @@ public final class AnalysisRecordUtils {
 
     /**
      * 处理设备信息
-     * @param eHint 错误提示, 如获取设备信息失败
+     * @param errorInfo 错误提示信息, 如获取设备信息失败
      * @return 拼接后的设备信息字符串
      */
-    private static String handlerDeviceInfo(final String eHint) {
+    private static String handlerDeviceInfo(final String errorInfo) {
         try {
             // 如果不为 null, 则直接返回之前的信息
             if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
@@ -373,12 +373,12 @@ public final class AnalysisRecordUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "handlerDeviceInfo");
         }
-        return eHint;
+        return errorInfo;
     }
 
     /**
      * 获取 App 信息
-     * @return
+     * @return App 信息
      */
     private static String getAppInfo() {
         // 如果不为 null, 则直接返回之前的信息
@@ -396,8 +396,8 @@ public final class AnalysisRecordUtils {
                 // 保存版本信息
                 buffer.append("versionName: " + versionName);
                 buffer.append("\nversionCode: " + versionCode);
-                // 保存其他信息
-                buffer.append("\npackageName: " + pi.packageName); // 保存包名
+                // 保存包名
+                buffer.append("\npackageName: " + pi.packageName);
                 // 赋值版本信息
                 APP_INFO_STR = buffer.toString();
             }
@@ -420,7 +420,6 @@ public final class AnalysisRecordUtils {
     // 秒
     public static final int SS = 3;
 
-    // 声明构造器 用 @IntDef "包住" 常量, @Retention 定义策略
     @IntDef({DEFAULT, HH, MM, SS})
     @Retention(RetentionPolicy.SOURCE)
     public @interface TIME {
@@ -445,15 +444,24 @@ public final class AnalysisRecordUtils {
         private String fileFunction;
 
         // 文件记录间隔时间 如: HH
-        private int fileIntervalTime = DEFAULT;
+        private int fileIntervalTime;
 
         // 是否处理日志记录
-        private boolean handler = true;
+        private boolean handler;
 
         // ============
         // = 构造函数 =
         // ============
 
+        /**
+         * 构造函数
+         * @param storagePath      存储路径
+         * @param folderName       文件夹名
+         * @param fileName         文件名
+         * @param fileFunction     文件记录的功能
+         * @param fileIntervalTime 文件记录间隔时间
+         * @param handler          是否处理日志记录
+         */
         private FileInfo(final String storagePath, final String folderName, final String fileName, final String fileFunction, @TIME final int fileIntervalTime, final boolean handler) {
             this.storagePath = storagePath;
             this.folderName = folderName;
@@ -469,7 +477,7 @@ public final class AnalysisRecordUtils {
 
         /**
          * 获取存储路径
-         * @return
+         * @return 存储路径
          */
         public String getStoragePath() {
             if (TextUtils.isEmpty(storagePath)) {
@@ -480,15 +488,15 @@ public final class AnalysisRecordUtils {
 
         /**
          * 获取日志文件名
-         * @return
+         * @return 日志文件名
          */
         public String getFileName() {
             return fileName;
         }
 
         /**
-         * 获取日志文件记录的功能
-         * @return
+         * 获取日志文件记录功能
+         * @return 日志文件记录功能
          */
         public String getFileFunction() {
             return fileFunction;
@@ -496,7 +504,7 @@ public final class AnalysisRecordUtils {
 
         /**
          * 获取日志文件记录间隔时间
-         * @return
+         * @return 日志文件记录间隔时间
          */
         public int getFileIntervalTime() {
             return fileIntervalTime;
@@ -504,7 +512,7 @@ public final class AnalysisRecordUtils {
 
         /**
          * 获取日志文件夹名
-         * @return
+         * @return 日志文件夹名
          */
         public String getFolderName() {
             if (TextUtils.isEmpty(folderName)) {
@@ -514,33 +522,33 @@ public final class AnalysisRecordUtils {
         }
 
         /**
-         * 获取记录分析文件信息
+         * 获取日志记录分析文件对象
          * @param fileName     文件名
-         * @param fileFunction
-         * @return
+         * @param fileFunction 日志文件记录功能
+         * @return {@link FileInfo}
          */
         public static FileInfo obtain(final String fileName, final String fileFunction) {
             return new FileInfo(null, null, fileName, fileFunction, DEFAULT, true);
         }
 
         /**
-         * 获取记录分析文件信息
-         * @param folderName
+         * 获取日志记录分析文件对象
+         * @param folderName   日志文件名
          * @param fileName     文件名
-         * @param fileFunction
-         * @return
+         * @param fileFunction 日志文件记录功能
+         * @return {@link FileInfo}
          */
         public static FileInfo obtain(final String folderName, final String fileName, final String fileFunction) {
             return new FileInfo(null, folderName, fileName, fileFunction, DEFAULT, true);
         }
 
         /**
-         * 获取记录分析文件信息
-         * @param storagePath
-         * @param folderName
+         * 获取日志记录分析文件对象
+         * @param storagePath  存储路径
+         * @param folderName   日志文件名
          * @param fileName     文件名
-         * @param fileFunction
-         * @return
+         * @param fileFunction 日志文件记录功能
+         * @return {@link FileInfo}
          */
         public static FileInfo obtain(final String storagePath, final String folderName, final String fileName, final String fileFunction) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, DEFAULT, true);
@@ -549,50 +557,50 @@ public final class AnalysisRecordUtils {
         // =
 
         /**
-         * 获取记录分析文件信息
+         * 获取日志记录分析文件对象
          * @param fileName         文件名
-         * @param fileFunction
-         * @param fileIntervalTime
-         * @return
+         * @param fileFunction     日志文件记录功能
+         * @param fileIntervalTime 日志文件记录间隔时间
+         * @return {@link FileInfo}
          */
         public static FileInfo obtain(final String fileName, final String fileFunction, @TIME final int fileIntervalTime) {
             return new FileInfo(null, null, fileName, fileFunction, fileIntervalTime, true);
         }
 
         /**
-         * 获取记录分析文件信息
-         * @param folderName
+         * 获取日志记录分析文件对象
+         * @param folderName       日志文件名
          * @param fileName         文件名
-         * @param fileFunction
-         * @param fileIntervalTime
-         * @return
+         * @param fileFunction     日志文件记录功能
+         * @param fileIntervalTime 日志文件记录间隔时间
+         * @return {@link FileInfo}
          */
         public static FileInfo obtain(final String folderName, final String fileName, final String fileFunction, @TIME final int fileIntervalTime) {
             return new FileInfo(null, folderName, fileName, fileFunction, fileIntervalTime, true);
         }
 
         /**
-         * 获取记录分析文件信息
-         * @param storagePath
-         * @param folderName
+         * 获取日志记录分析文件对象
+         * @param storagePath      存储路径
+         * @param folderName       日志文件名
          * @param fileName         文件名
-         * @param fileFunction
-         * @param fileIntervalTime
-         * @return
+         * @param fileFunction     日志文件记录功能
+         * @param fileIntervalTime 日志文件记录间隔时间
+         * @return {@link FileInfo}
          */
         public static FileInfo obtain(final String storagePath, final String folderName, final String fileName, final String fileFunction, @TIME final int fileIntervalTime) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, true);
         }
 
         /**
-         * 获取记录分析文件信息
-         * @param storagePath
-         * @param folderName
+         * 获取日志记录分析文件对象
+         * @param storagePath      存储路径
+         * @param folderName       日志文件名
          * @param fileName         文件名
-         * @param fileFunction
-         * @param fileIntervalTime
-         * @param isHandler
-         * @return
+         * @param fileFunction     日志文件记录功能
+         * @param fileIntervalTime 日志文件记录间隔时间
+         * @param isHandler        是否处理日志记录
+         * @return {@link FileInfo}
          */
         public static FileInfo obtain(final String storagePath, final String folderName, final String fileName, final String fileFunction, @TIME final int fileIntervalTime, final boolean isHandler) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, isHandler);
@@ -603,8 +611,8 @@ public final class AnalysisRecordUtils {
         // ================
 
         /**
-         * 获取日志地址
-         * @return
+         * 获取日志文件地址
+         * @return 日志文件地址
          */
         public String getLogPath() {
             // 返回拼接后的路径
@@ -612,8 +620,8 @@ public final class AnalysisRecordUtils {
         }
 
         /**
-         * 获取时间间隔 - 文件夹
-         * @return
+         * 获取时间间隔所属的文件夹
+         * @return 时间间隔所属的文件夹
          */
         public String getIntervalTimeFolder() {
             // 文件夹
@@ -653,8 +661,8 @@ public final class AnalysisRecordUtils {
         }
 
         /**
-         * 是否处理日志记录
-         * @return
+         * 判断是否处理日志记录
+         * @return {@code true} yes, {@code false} no
          */
         public boolean isHandler() {
             return handler;
@@ -662,8 +670,8 @@ public final class AnalysisRecordUtils {
 
         /**
          * 设置是否处理日志记录
-         * @param handler
-         * @return
+         * @param handler 是否处理日志记录
+         * @return {@link FileInfo}
          */
         public FileInfo setHandler(final boolean handler) {
             this.handler = handler;
@@ -691,7 +699,7 @@ public final class AnalysisRecordUtils {
          * 获取保存地址
          * @param storagePath 存储路径
          * @param filePath    文件路径
-         * @return
+         * @return 保存地址
          */
         private String getSavePath(final String storagePath, final String filePath) {
             // 获取保存地址
@@ -705,11 +713,11 @@ public final class AnalysisRecordUtils {
         /**
          * 获取缓存地址
          * @param context {@link Context}
-         * @return
+         * @return 缓存地址
          */
         private static String getDiskCacheDir(final Context context) {
             String cachePath;
-            // 判断SDCard是否挂载
+            // 判断 SDCard 是否挂载
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 cachePath = context.getExternalCacheDir().getPath();
             } else {
@@ -723,7 +731,7 @@ public final class AnalysisRecordUtils {
 
         /**
          * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
-         * @param file 文件夹路径 (无文件名字.后缀)
+         * @param file 文件夹路径(无文件名字.后缀)
          * @return {@code true} success, {@code false} fail
          */
         private static boolean createFolder(final File file) {
@@ -733,8 +741,6 @@ public final class AnalysisRecordUtils {
                     if (!file.exists()) {
                         // 允许创建多级目录
                         return file.mkdirs();
-                        // 这个无法创建多级目录
-                        // rootFile.mkdir();
                     }
                     return true;
                 } catch (Exception e) {
@@ -750,23 +756,22 @@ public final class AnalysisRecordUtils {
     // ================
 
     /**
-     * 追加文件: 使用FileWriter
+     * 追加文件(使用 FileWriter)
      * @param filePath 文件路径
-     * @param text     追加内容
+     * @param content  追加内容
      */
-    private static void appendFile(final String filePath, final String text) {
-        if (filePath == null || text == null) {
+    private static void appendFile(final String filePath, final String content) {
+        if (filePath == null || content == null) {
             return;
         }
         File file = new File(filePath);
-        if (!file.exists()) { // 如果文件不存在, 则跳过
-            return;
-        }
+        // 如果文件不存在, 则跳过
+        if (!file.exists()) return;
         FileWriter writer = null;
         try {
-            // 打开一个写文件器, 构造函数中的第二个参数true表示以追加形式写文件
+            // 打开一个写文件器, 构造函数中的第二个参数 true 表示以追加形式写文件
             writer = new FileWriter(file, true);
-            writer.write(text);
+            writer.write(content);
         } catch (IOException e) {
             LogPrintUtils.eTag(TAG, e, "appendFile");
         } finally {
@@ -815,8 +820,6 @@ public final class AnalysisRecordUtils {
             if (!file.exists()) {
                 // 允许创建多级目录
                 file.mkdirs();
-                // 这个无法创建多级目录
-                // rootFile.mkdir();
             }
             return file;
         } catch (Exception e) {

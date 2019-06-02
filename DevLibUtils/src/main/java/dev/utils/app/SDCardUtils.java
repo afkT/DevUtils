@@ -291,7 +291,7 @@ public final class SDCardUtils {
      */
     public static String getDiskCacheDir() {
         String cachePath;
-        if (isSDCardEnable()) { // 判断SDCard是否挂载
+        if (isSDCardEnable()) { // 判断 SDCard 是否挂载
             cachePath = DevUtils.getContext().getExternalCacheDir().getPath();
         } else {
             cachePath = DevUtils.getContext().getCacheDir().getPath();
