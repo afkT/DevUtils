@@ -138,66 +138,66 @@ public final class AccessibilityUtils {
     public static void printAccessibilityEvent(final AccessibilityEvent event, final String tag) {
         if (event == null || !LogPrintUtils.isPrintLog()) return;
 
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("=========================");
-        buffer.append(NEW_LINE_STR);
+        StringBuilder builder = new StringBuilder();
+        builder.append("=========================");
+        builder.append(NEW_LINE_STR);
 
         int eventType = event.getEventType(); // 事件类型
-        buffer.append("packageName: " + event.getPackageName() + ""); // 响应事件的应用包名
-        buffer.append(NEW_LINE_STR);
+        builder.append("packageName: " + event.getPackageName() + ""); // 响应事件的应用包名
+        builder.append(NEW_LINE_STR);
 
-        buffer.append("source: " + event.getSource() + ""); // 事件源信息
-        buffer.append(NEW_LINE_STR);
+        builder.append("source: " + event.getSource() + ""); // 事件源信息
+        builder.append(NEW_LINE_STR);
 
-        buffer.append("source class: " + event.getClassName() + ""); // 事件源的类名, 如 android.widget.TextView
-        buffer.append(NEW_LINE_STR);
+        builder.append("source class: " + event.getClassName() + ""); // 事件源的类名, 如 android.widget.TextView
+        builder.append(NEW_LINE_STR);
 
-        buffer.append("event type(int): " + eventType + "");
-        buffer.append(NEW_LINE_STR);
+        builder.append("event type(int): " + eventType + "");
+        builder.append(NEW_LINE_STR);
 
         switch (eventType) {
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:// 通知栏事件
-                buffer.append("event type:TYPE_NOTIFICATION_STATE_CHANGED");
+                builder.append("event type:TYPE_NOTIFICATION_STATE_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED: // 窗体状态改变
-                buffer.append("event type:TYPE_WINDOW_STATE_CHANGED");
+                builder.append("event type:TYPE_WINDOW_STATE_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED: // View 获取到焦点
-                buffer.append("event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
+                builder.append("event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
-                buffer.append("event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
+                builder.append("event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_END:
-                buffer.append("event type:TYPE_GESTURE_DETECTION_END");
+                builder.append("event type:TYPE_GESTURE_DETECTION_END");
                 break;
             case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:
-                buffer.append("event type:TYPE_WINDOW_CONTENT_CHANGED");
+                builder.append("event type:TYPE_WINDOW_CONTENT_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_CLICKED:
-                buffer.append("event type:TYPE_VIEW_CLICKED");
+                builder.append("event type:TYPE_VIEW_CLICKED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED:
-                buffer.append("event type:TYPE_VIEW_TEXT_CHANGED");
+                builder.append("event type:TYPE_VIEW_TEXT_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_SCROLLED:
-                buffer.append("event type:TYPE_VIEW_SCROLLED");
+                builder.append("event type:TYPE_VIEW_SCROLLED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED:
-                buffer.append("event type:TYPE_VIEW_TEXT_SELECTION_CHANGED");
+                builder.append("event type:TYPE_VIEW_TEXT_SELECTION_CHANGED");
                 break;
         }
-        buffer.append(NEW_LINE_STR);
+        builder.append(NEW_LINE_STR);
 
         for (CharSequence txt : event.getText()) {
             // 输出当前事件包含的文本信息
-            buffer.append("text: " + txt);
-            buffer.append(NEW_LINE_STR);
+            builder.append("text: " + txt);
+            builder.append(NEW_LINE_STR);
         }
-        buffer.append("=========================");
+        builder.append("=========================");
 
         // 打印日志
-        LogPrintUtils.dTag(tag, buffer.toString());
+        LogPrintUtils.dTag(tag, builder.toString());
     }
 
     // ============

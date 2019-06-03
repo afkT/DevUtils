@@ -270,17 +270,17 @@ public final class DevCommonUtils {
             if (length <= start) {
                 return str;
             } else { // 大于 start 位
-                StringBuffer buffer = new StringBuffer();
-                buffer.append(str.substring(0, start));
+                StringBuilder builder = new StringBuilder();
+                builder.append(str.substring(0, start));
                 int len = length - start;
                 // 进行平分
                 len /= 2;
                 // 进行遍历保存
                 for (int i = 0; i < len; i++) {
-                    buffer.append(symbol);
+                    builder.append(symbol);
                 }
-                buffer.append(str.substring(start + len, length));
-                return buffer.toString();
+                builder.append(str.substring(start + len, length));
+                return builder.toString();
             }
         }
         return "";
@@ -329,8 +329,8 @@ public final class DevCommonUtils {
             if (length <= start) {
                 return str;
             } else { // 大于 start 位
-                StringBuffer buffer = new StringBuffer();
-                buffer.append(str.substring(0, start));
+                StringBuilder builder = new StringBuilder();
+                builder.append(str.substring(0, start));
                 int len = length - start - symbolNumber;
                 // 如果超出总长度, 则进行控制
                 if (len <= 0) { // 表示后面的全部转换
@@ -340,10 +340,10 @@ public final class DevCommonUtils {
                 }
                 // 进行遍历保存
                 for (int i = 0; i < len; i++) {
-                    buffer.append(symbol);
+                    builder.append(symbol);
                 }
-                buffer.append(str.substring(start + len, length));
-                return buffer.toString();
+                builder.append(str.substring(start + len, length));
+                return builder.toString();
             }
         }
         return "";
@@ -423,25 +423,25 @@ public final class DevCommonUtils {
                 return str;
             // 获取编辑内容长度
             int kLength = suffix.length();
-            // 保存新的 Buffer 中, 减少内存开销
-            StringBuffer buffer = new StringBuffer(str);
+            // 保存新的 Builder 中, 减少内存开销
+            StringBuilder builder = new StringBuilder(str);
             // 判断是否在最头部
-            if (buffer.indexOf(suffix) == 0) {
-                buffer.delete(0, kLength);
+            if (builder.indexOf(suffix) == 0) {
+                builder.delete(0, kLength);
                 // 追加内容
-                buffer.insert(0, value);
+                builder.insert(0, value);
             }
             // 获取尾部的位置
             int lastIndexOf = -1;
             // 数据长度
             int bufLength = -1;
             // 判断是否在最尾部
-            if ((lastIndexOf = buffer.lastIndexOf(suffix)) == ((bufLength = buffer.length()) - kLength)) {
-                buffer.delete(lastIndexOf, bufLength);
+            if ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - kLength)) {
+                builder.delete(lastIndexOf, bufLength);
                 // 追加内容
-                buffer.insert(lastIndexOf, value);
+                builder.insert(lastIndexOf, value);
             }
-            return buffer.toString();
+            return builder.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toReplaceSEWith");
         }
@@ -525,21 +525,21 @@ public final class DevCommonUtils {
         try {
             // 获取编辑内容长度
             int kLength = suffix.length();
-            // 保存新的 Buffer 中, 减少内存开销
-            StringBuffer buffer = new StringBuffer(str);
+            // 保存新的 Builder 中, 减少内存开销
+            StringBuilder builder = new StringBuilder(str);
             // 进行循环判断 - 属于最前面的, 才进行处理
-            while (buffer.indexOf(suffix) == 0) {
-                buffer.delete(0, kLength);
+            while (builder.indexOf(suffix) == 0) {
+                builder.delete(0, kLength);
             }
             // 获取尾部的位置
             int lastIndexOf = -1;
             // 数据长度
             int bufLength = -1;
             // 进行循环判断 - 属于最后面的, 才进行处理
-            while ((lastIndexOf = buffer.lastIndexOf(suffix)) == ((bufLength = buffer.length()) - kLength)) {
-                buffer.delete(lastIndexOf, bufLength);
+            while ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - kLength)) {
+                builder.delete(lastIndexOf, bufLength);
             }
-            return buffer.toString();
+            return builder.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toClearSEWiths");
         }
@@ -559,13 +559,13 @@ public final class DevCommonUtils {
         try {
             // 获取编辑内容长度
             int kLength = suffix.length();
-            // 保存新的 Buffer 中, 减少内存开销
-            StringBuffer buffer = new StringBuffer(str);
+            // 保存新的 Builder 中, 减少内存开销
+            StringBuilder builder = new StringBuilder(str);
             // 进行循环判断 - 属于最前面的, 才进行处理
-            while (buffer.indexOf(suffix) == 0) {
-                buffer.delete(0, kLength);
+            while (builder.indexOf(suffix) == 0) {
+                builder.delete(0, kLength);
             }
-            return buffer.toString();
+            return builder.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toClearStartsWith");
         }
@@ -585,15 +585,15 @@ public final class DevCommonUtils {
         try {
             // 获取编辑内容长度
             int kLength = suffix.length();
-            // 保存新的 Buffer 中, 减少内存开销
-            StringBuffer buffer = new StringBuffer(str);
+            // 保存新的 Builder 中, 减少内存开销
+            StringBuilder builder = new StringBuilder(str);
             // 获取最后一位位置
             int sLength = 0;
             // 进行循环判断 - 属于最前面的, 才进行处理
-            while (buffer.lastIndexOf(suffix) == ((sLength = buffer.length()) - kLength)) {
-                buffer.delete(sLength - kLength, sLength);
+            while (builder.lastIndexOf(suffix) == ((sLength = builder.length()) - kLength)) {
+                builder.delete(sLength - kLength, sLength);
             }
-            return buffer.toString();
+            return builder.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toClearEndsWith");
         }
@@ -1835,13 +1835,13 @@ public final class DevCommonUtils {
      * @return 指定数量的空格字符串
      */
     public static String appendSpace(final int number) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
-                buffer.append(" ");
+                builder.append(" ");
             }
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     /**
@@ -1850,13 +1850,13 @@ public final class DevCommonUtils {
      * @return 指定数量的 Tab 字符串
      */
     public static String appendTab(final int number) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
-                buffer.append("\t");
+                builder.append("\t");
             }
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     /**
@@ -1865,13 +1865,13 @@ public final class DevCommonUtils {
      * @return 指定数量的换行字符串
      */
     public static String appendLine(final int number) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
-                buffer.append(NEW_LINE_STR);
+                builder.append(NEW_LINE_STR);
             }
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     // =
@@ -2014,14 +2014,14 @@ public final class DevCommonUtils {
         if (args != null && args.length != 0) {
             try {
                 int length = args.length;
-                StringBuffer buffer = new StringBuffer();
-                buffer.append("%s");
+                StringBuilder builder = new StringBuilder();
+                builder.append("%s");
                 if (length > 1) {
                     for (int i = 1; i < length; i++) {
-                        buffer.append(" %s");
+                        builder.append(" %s");
                     }
                 }
-                return String.format(buffer.toString(), args);
+                return String.format(builder.toString(), args);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getAutoFormatString");
             }
@@ -2038,14 +2038,14 @@ public final class DevCommonUtils {
         if (args != null && args.length != 0) {
             try {
                 int length = args.length;
-                StringBuffer buffer = new StringBuffer();
-                buffer.append("【%s】");
+                StringBuilder builder = new StringBuilder();
+                builder.append("【%s】");
                 if (length > 1) {
                     for (int i = 1; i < length; i++) {
-                        buffer.append(" %s");
+                        builder.append(" %s");
                     }
                 }
-                return String.format(buffer.toString(), args);
+                return String.format(builder.toString(), args);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getAutoFormatString2");
             }

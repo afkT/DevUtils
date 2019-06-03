@@ -1445,20 +1445,20 @@ public final class ADBUtils {
     public static boolean screenrecord(final String path, final String size, final int bitRate, final int time) {
         if (isSpace(path)) return false;
         try {
-            StringBuffer buffer = new StringBuffer();
-            buffer.append("screenrecord");
+            StringBuilder builder = new StringBuilder();
+            builder.append("screenrecord");
             if (!isSpace(size)) {
-                buffer.append(" --size " + size);
+                builder.append(" --size " + size);
             }
             if (bitRate > 0) {
-                buffer.append(" --bit-rate " + bitRate);
+                builder.append(" --bit-rate " + bitRate);
             }
             if (time > 0) {
-                buffer.append(" --time-limit " + time);
+                builder.append(" --time-limit " + time);
             }
-            buffer.append(" " + path);
+            builder.append(" " + path);
             // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(buffer.toString(), true);
+            ShellUtils.CommandResult result = ShellUtils.execCmd(builder.toString(), true);
             return result.isSuccess2();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "screenrecord");
@@ -1869,25 +1869,25 @@ public final class ADBUtils {
             if (result.isSuccess3()) {
                 try {
                     int index = 0;
-                    StringBuffer buffer = new StringBuffer();
+                    StringBuilder builder = new StringBuilder();
                     String subStr = result.successMsg.replaceAll("\\.", "");
                     subStr = subStr.substring(subStr.indexOf("'") + 1, subStr.indexOf("')"));
                     // 添加数据
-                    buffer.append(subStr.substring(0, subStr.indexOf("'")));
+                    builder.append(subStr.substring(0, subStr.indexOf("'")));
                     // 从指定索引开始
-                    index = subStr.indexOf("'", buffer.toString().length() + 1);
+                    index = subStr.indexOf("'", builder.toString().length() + 1);
                     // 再次裁剪
                     subStr = subStr.substring(index + 1);
                     // 添加数据
-                    buffer.append(subStr.substring(0, subStr.indexOf("'")));
+                    builder.append(subStr.substring(0, subStr.indexOf("'")));
                     // 从指定索引开始
-                    index = subStr.indexOf("'", buffer.toString().length() + 1);
+                    index = subStr.indexOf("'", builder.toString().length() + 1);
                     // 再次裁剪
                     subStr = subStr.substring(index + 1);
                     // 最后进行添加
-                    buffer.append(subStr.split(SPACE_STR)[0]);
+                    builder.append(subStr.split(SPACE_STR)[0]);
                     // 返回对应的数据
-                    return buffer.toString();
+                    return builder.toString();
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "getIMEI");
                 }

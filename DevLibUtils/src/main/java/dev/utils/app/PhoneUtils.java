@@ -473,23 +473,23 @@ public final class PhoneUtils {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             if (telephonyManager == null) return "";
-            StringBuffer buffer = new StringBuffer();
-            buffer.append("DeviceId(IMEI) = " + telephonyManager.getDeviceId() + "\n");
-            buffer.append("DeviceSoftwareVersion = " + telephonyManager.getDeviceSoftwareVersion() + "\n");
-            buffer.append("Line1Number = " + telephonyManager.getLine1Number() + "\n");
-            buffer.append("NetworkCountryIso = " + telephonyManager.getNetworkCountryIso() + "\n");
-            buffer.append("NetworkOperator = " + telephonyManager.getNetworkOperator() + "\n");
-            buffer.append("NetworkOperatorName = " + telephonyManager.getNetworkOperatorName() + "\n");
-            buffer.append("NetworkType = " + telephonyManager.getNetworkType() + "\n");
-            buffer.append("PhoneType = " + telephonyManager.getPhoneType() + "\n");
-            buffer.append("SimCountryIso = " + telephonyManager.getSimCountryIso() + "\n");
-            buffer.append("SimOperator = " + telephonyManager.getSimOperator() + "\n");
-            buffer.append("SimOperatorName = " + telephonyManager.getSimOperatorName() + "\n");
-            buffer.append("SimSerialNumber = " + telephonyManager.getSimSerialNumber() + "\n");
-            buffer.append("SimState = " + telephonyManager.getSimState() + "\n");
-            buffer.append("SubscriberId(IMSI) = " + telephonyManager.getSubscriberId() + "(" + getIMSIIDName(telephonyManager.getSubscriberId()) + ")\n");
-            buffer.append("VoiceMailNumber = " + telephonyManager.getVoiceMailNumber() + "\n");
-            return buffer.toString();
+            StringBuilder builder = new StringBuilder();
+            builder.append("DeviceId(IMEI) = " + telephonyManager.getDeviceId() + "\n");
+            builder.append("DeviceSoftwareVersion = " + telephonyManager.getDeviceSoftwareVersion() + "\n");
+            builder.append("Line1Number = " + telephonyManager.getLine1Number() + "\n");
+            builder.append("NetworkCountryIso = " + telephonyManager.getNetworkCountryIso() + "\n");
+            builder.append("NetworkOperator = " + telephonyManager.getNetworkOperator() + "\n");
+            builder.append("NetworkOperatorName = " + telephonyManager.getNetworkOperatorName() + "\n");
+            builder.append("NetworkType = " + telephonyManager.getNetworkType() + "\n");
+            builder.append("PhoneType = " + telephonyManager.getPhoneType() + "\n");
+            builder.append("SimCountryIso = " + telephonyManager.getSimCountryIso() + "\n");
+            builder.append("SimOperator = " + telephonyManager.getSimOperator() + "\n");
+            builder.append("SimOperatorName = " + telephonyManager.getSimOperatorName() + "\n");
+            builder.append("SimSerialNumber = " + telephonyManager.getSimSerialNumber() + "\n");
+            builder.append("SimState = " + telephonyManager.getSimState() + "\n");
+            builder.append("SubscriberId(IMSI) = " + telephonyManager.getSubscriberId() + "(" + getIMSIIDName(telephonyManager.getSubscriberId()) + ")\n");
+            builder.append("VoiceMailNumber = " + telephonyManager.getVoiceMailNumber() + "\n");
+            return builder.toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPhoneStatus");
         }

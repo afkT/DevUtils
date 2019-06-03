@@ -518,13 +518,13 @@ public final class StringUtils {
      * @return 指定数量的空格字符串
      */
     public static String appendSpace(final int number) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
-                buffer.append(" ");
+                builder.append(" ");
             }
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     /**
@@ -533,13 +533,13 @@ public final class StringUtils {
      * @return 指定数量的 Tab 字符串
      */
     public static String appendTab(final int number) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
-                buffer.append("\t");
+                builder.append("\t");
             }
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     /**
@@ -548,13 +548,13 @@ public final class StringUtils {
      * @return 指定数量的换行字符串
      */
     public static String appendLine(final int number) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
-                buffer.append(NEW_LINE_STR);
+                builder.append(NEW_LINE_STR);
             }
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     // =
@@ -697,14 +697,14 @@ public final class StringUtils {
         if (args != null && args.length != 0) {
             try {
                 int length = args.length;
-                StringBuffer buffer = new StringBuffer();
-                buffer.append("%s");
+                StringBuilder builder = new StringBuilder();
+                builder.append("%s");
                 if (length > 1) {
                     for (int i = 1; i < length; i++) {
-                        buffer.append(" %s");
+                        builder.append(" %s");
                     }
                 }
-                return String.format(buffer.toString(), args);
+                return String.format(builder.toString(), args);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getAutoFormatString");
             }
@@ -721,14 +721,14 @@ public final class StringUtils {
         if (args != null && args.length != 0) {
             try {
                 int length = args.length;
-                StringBuffer buffer = new StringBuffer();
-                buffer.append("【%s】");
+                StringBuilder builder = new StringBuilder();
+                builder.append("【%s】");
                 if (length > 1) {
                     for (int i = 1; i < length; i++) {
-                        buffer.append(" %s");
+                        builder.append(" %s");
                     }
                 }
-                return String.format(buffer.toString(), args);
+                return String.format(builder.toString(), args);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getAutoFormatString2");
             }
@@ -820,12 +820,12 @@ public final class StringUtils {
     public static String toASCII(final String str) {
         if (isEmpty(str)) return str;
         try {
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder builder = new StringBuilder();
             byte[] bytes = str.getBytes();
             for (int i = 0, len = bytes.length; i < len; i++) {
-                buffer.append(Integer.toHexString(bytes[i] & 0xff));
+                builder.append(Integer.toHexString(bytes[i] & 0xff));
             }
-            return buffer.toString();
+            return builder.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toASCII");
         }
@@ -840,12 +840,12 @@ public final class StringUtils {
     public static String toUnicode(final String str) {
         if (isEmpty(str)) return str;
         try {
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder builder = new StringBuilder();
             char[] chars = str.toCharArray();
             for (int i = 0, len = chars.length; i < len; i++) {
-                buffer.append("\\u").append(Integer.toHexString(chars[i]));
+                builder.append("\\u").append(Integer.toHexString(chars[i]));
             }
-            return buffer.toString();
+            return builder.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toUnicode");
         }
@@ -860,11 +860,11 @@ public final class StringUtils {
     public static String toUnicodeString(final char[] chars) {
         if (chars == null) return null;
         try {
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder builder = new StringBuilder();
             for (int i = 0, len = chars.length; i < len; i++) {
-                buffer.append("\\u").append(Integer.toHexString(chars[i]));
+                builder.append("\\u").append(Integer.toHexString(chars[i]));
             }
-            return buffer.toString();
+            return builder.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toUnicodeString");
         }

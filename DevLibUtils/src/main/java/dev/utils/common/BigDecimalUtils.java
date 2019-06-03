@@ -550,26 +550,26 @@ public final class BigDecimalUtils {
             // 防止出现负数
             int number = Math.max(splitNumber, 0);
             // 格式化数据 - 拼接处理
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder builder = new StringBuilder();
             // 进行处理小数点前的数值
             for (int len = values[0].length() - 1, i = len, splitPos = 1; i >= 0; i--) {
                 // 获取数据
                 char ch = values[0].charAt(i);
-                buffer.append(ch); // 保存数据
+                builder.append(ch); // 保存数据
                 // 判断是否需要追加符号
                 if (number > 0 && splitPos % number == 0 && i != 0) {
-                    buffer.append(symbol);
+                    builder.append(symbol);
                 }
                 splitPos++;
             }
             // 倒序处理
-            buffer.reverse();
+            builder.reverse();
             // 存在小数点, 则进行拼接
             if (isDecimal) {
-                buffer.append(".").append(values[1]);
+                builder.append(".").append(values[1]);
             }
             // 判断是否负数
-            return isNegative ? "-" + buffer.toString() : buffer.toString();
+            return isNegative ? "-" + builder.toString() : builder.toString();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "formatMoney");
         }

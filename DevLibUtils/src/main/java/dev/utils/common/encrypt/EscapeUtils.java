@@ -16,30 +16,30 @@ public final class EscapeUtils {
      */
     public static String escape(final String data) {
         if (data == null) return null;
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         for (int i = 0, len = data.length(); i < len; i++) {
             int ch = data.charAt(i);
             if ('A' <= ch && ch <= 'Z') {
-                buffer.append((char) ch);
+                builder.append((char) ch);
             } else if ('a' <= ch && ch <= 'z') {
-                buffer.append((char) ch);
+                builder.append((char) ch);
             } else if ('0' <= ch && ch <= '9') {
-                buffer.append((char) ch);
+                builder.append((char) ch);
             } else if (ch == '-' || ch == '_' || ch == '.' || ch == '!'
                     || ch == '~' || ch == '*' || ch == '\'' || ch == '('
                     || ch == ')') {
-                buffer.append((char) ch);
+                builder.append((char) ch);
             } else if (ch <= 0x007F) {
-                buffer.append('%');
-                buffer.append(HEX[ch]);
+                builder.append('%');
+                builder.append(HEX[ch]);
             } else {
-                buffer.append('%');
-                buffer.append('u');
-                buffer.append(HEX[(ch >>> 8)]);
-                buffer.append(HEX[(0x00FF & ch)]);
+                builder.append('%');
+                builder.append('u');
+                builder.append(HEX[(ch >>> 8)]);
+                builder.append(HEX[(0x00FF & ch)]);
             }
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     /**
@@ -49,21 +49,21 @@ public final class EscapeUtils {
      */
     public static String unescape(final String data) {
         if (data == null) return null;
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         int i = 0;
         int len = data.length();
         while (i < len) {
             int ch = data.charAt(i);
             if ('A' <= ch && ch <= 'Z') {
-                buffer.append((char) ch);
+                builder.append((char) ch);
             } else if ('a' <= ch && ch <= 'z') {
-                buffer.append((char) ch);
+                builder.append((char) ch);
             } else if ('0' <= ch && ch <= '9') {
-                buffer.append((char) ch);
+                builder.append((char) ch);
             } else if (ch == '-' || ch == '_' || ch == '.' || ch == '!'
                     || ch == '~' || ch == '*' || ch == '\'' || ch == '('
                     || ch == ')') {
-                buffer.append((char) ch);
+                builder.append((char) ch);
             } else if (ch == '%') {
                 int cint = 0;
                 if ('u' != data.charAt(i + 1)) {
@@ -77,13 +77,13 @@ public final class EscapeUtils {
                     cint = (cint << 4) | BYTE_VALUES[data.charAt(i + 5)];
                     i += 5;
                 }
-                buffer.append((char) cint);
+                builder.append((char) cint);
             } else {
-                buffer.append((char) ch);
+                builder.append((char) ch);
             }
             i++;
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     // =

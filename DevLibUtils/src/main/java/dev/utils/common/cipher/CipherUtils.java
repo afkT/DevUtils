@@ -2,11 +2,11 @@ package dev.utils.common.cipher;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import dev.utils.JCLogUtils;
-import dev.utils.common.ConvertUtils;
 
 /**
  * detail: 加密工具类
@@ -75,21 +75,21 @@ public final class CipherUtils {
     // ================
 
     // 用于建立十六进制字符的输出的小写字符数组
-    public static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * 将 byte[] 转换 十六进制字符串
      * @param data byte[]
      * @return 十六进制字符串
      */
-    public static String toHexString(final byte[] data) {
+    private static String toHexString(final byte[] data) {
         return toHexString(data, HEX_DIGITS);
     }
 
     /**
      * 将 byte[] 转换 十六进制字符串
      * @param data      byte[]
-     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}、{@link ConvertUtils#HEX_DIGITS_UPPER}
+     * @param hexDigits {@link CipherUtils#HEX_DIGITS}
      * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {
@@ -114,7 +114,7 @@ public final class CipherUtils {
      * @param data 十六进制 char[]
      * @return 十六进制转(解)码后的数据
      */
-    public static byte[] decodeHex(final char[] data) {
+    private static byte[] decodeHex(final char[] data) {
         if (data == null) return null;
         try {
             int len = data.length;
@@ -154,7 +154,7 @@ public final class CipherUtils {
      * @param bytes byte[]
      * @return {@link Object}
      */
-    public static Object bytesToObject(final byte[] bytes) {
+    private static Object bytesToObject(final byte[] bytes) {
         if (bytes != null) {
             ObjectInputStream ois = null;
             try {
@@ -163,12 +163,7 @@ public final class CipherUtils {
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "bytesToObject");
             } finally {
-                if (ois != null) {
-                    try {
-                        ois.close();
-                    } catch (Exception e) {
-                    }
-                }
+                closeIOQuietly(ois);
             }
         }
         return null;
@@ -179,7 +174,7 @@ public final class CipherUtils {
      * @param object Object
      * @return byte[]
      */
-    public static byte[] objectToBytes(final Object object) {
+    private static byte[] objectToBytes(final Object object) {
         if (object != null) {
             ObjectOutputStream oos = null;
             try {
@@ -190,14 +185,29 @@ public final class CipherUtils {
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "objectToBytes");
             } finally {
-                if (oos != null) {
-                    try {
-                        oos.close();
-                    } catch (Exception e) {
-                    }
-                }
+                closeIOQuietly(oos);
             }
         }
         return null;
+    }
+
+    // ==============
+    // = CloseUtils =
+    // ==============
+
+    /**
+     * 安静关闭 IO
+     * @param closeables Closeable[]
+     */
+    private static void closeIOQuietly(final Closeable... closeables) {
+        if (closeables == null) return;
+        for (Closeable closeable : closeables) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (Exception ignore) {
+                }
+            }
+        }
     }
 }

@@ -135,8 +135,9 @@ public final class MD5Utils {
      */
     public static String getFileMD5(final String filePath) {
         if (filePath == null) return null;
+        InputStream is = null;
         try {
-            InputStream is = new FileInputStream(filePath);
+            is = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
             MessageDigest digest = MessageDigest.getInstance("MD5");
             int numRead;
@@ -147,6 +148,13 @@ public final class MD5Utils {
             return toHexString(digest.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5");
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception e) {
+                }
+            }
         }
         return null;
     }

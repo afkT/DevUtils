@@ -267,7 +267,7 @@ public final class AppInfoUtils {
      */
     public static void printApkPermission(final String packageName) {
         try {
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder builder = new StringBuilder();
             // =
             PackageManager packageManager = DevUtils.getContext().getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
@@ -276,8 +276,8 @@ public final class AppInfoUtils {
                 // 获取每个权限的名字, 如: android.permission.INTERNET
                 String usesPermissionName = usesPermissionsArray[i];
                 // 拼接日志
-                buffer.append("usesPermissionName = " + usesPermissionName);
-                buffer.append(NEW_LINE_STR);
+                builder.append("usesPermissionName = " + usesPermissionName);
+                builder.append(NEW_LINE_STR);
 
                 // 通过 usesPermissionName 获取该权限的详细信息
                 PermissionInfo permissionInfo = packageManager.getPermissionInfo(usesPermissionName, 0);
@@ -285,24 +285,24 @@ public final class AppInfoUtils {
                 // 获取该权限属于哪个权限组, 如: 网络通信
                 PermissionGroupInfo permissionGroupInfo = packageManager.getPermissionGroupInfo(permissionInfo.group, 0);
                 // 拼接日志
-                buffer.append("permissionGroup = " + permissionGroupInfo.loadLabel(packageManager).toString());
-                buffer.append(NEW_LINE_STR);
+                builder.append("permissionGroup = " + permissionGroupInfo.loadLabel(packageManager).toString());
+                builder.append(NEW_LINE_STR);
 
                 // 获取该权限的标签信息, 比如: 完全的网络访问权限
                 String permissionLabel = permissionInfo.loadLabel(packageManager).toString();
                 // 拼接日志
-                buffer.append("permissionLabel = " + permissionLabel);
-                buffer.append(NEW_LINE_STR);
+                builder.append("permissionLabel = " + permissionLabel);
+                builder.append(NEW_LINE_STR);
 
                 // 获取该权限的详细描述信息, 比如: 允许该应用创建网络套接字和使用自定义网络协议
                 // 浏览器和其他某些应用提供了向互联网发送数据的途径, 因此应用无需该权限即可向互联网发送数据
                 String permissionDescription = permissionInfo.loadDescription(packageManager).toString();
                 // 拼接日志
-                buffer.append("permissionDescription = " + permissionDescription);
-                buffer.append(NEW_LINE_STR);
+                builder.append("permissionDescription = " + permissionDescription);
+                builder.append(NEW_LINE_STR);
             }
             // 打印日志
-            LogPrintUtils.dTag(TAG, buffer.toString());
+            LogPrintUtils.dTag(TAG, builder.toString());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printApkPermission");
         }

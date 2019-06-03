@@ -72,14 +72,14 @@ public final class MemoryUtils {
         try {
             FileReader fileReader = new FileReader(MEM_INFO_PATH);
             BufferedReader br = new BufferedReader(fileReader, 4 * 1024);
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder builder = new StringBuilder();
             String str;
             while ((str = br.readLine()) != null) {
                 // 追加保存内容
-                buffer.append(str);
+                builder.append(str);
             }
             br.close();
-            return buffer.toString();
+            return builder.toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printMemoryInfo");
         }

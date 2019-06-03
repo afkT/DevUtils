@@ -205,38 +205,38 @@ public final class AnalysisRecordUtils {
                 appendFile(logFile, logContent);
             } else {
                 // = 首次则保存设备、App 信息 =
-                StringBuffer buffer = new StringBuffer();
-                buffer.append("【设备信息】");
-                buffer.append(NEW_LINE_STR);
-                buffer.append("===========================");
-                buffer.append(NEW_LINE_STR);
-                buffer.append(getDeviceInfo());
-                buffer.append("===========================");
-                buffer.append(NEW_LINE_STR);
+                StringBuilder builder = new StringBuilder();
+                builder.append("【设备信息】");
+                builder.append(NEW_LINE_STR);
+                builder.append("===========================");
+                builder.append(NEW_LINE_STR);
+                builder.append(getDeviceInfo());
+                builder.append("===========================");
+                builder.append(NEW_LINE_STR);
 
-                buffer.append(NEW_LINE_STR);
-                buffer.append(NEW_LINE_STR);
-                buffer.append("【版本信息】");
-                buffer.append(NEW_LINE_STR);
-                buffer.append("===========================");
-                buffer.append(NEW_LINE_STR);
-                buffer.append(getAppInfo());
-                buffer.append(NEW_LINE_STR);
-                buffer.append("===========================");
-                buffer.append(NEW_LINE_STR);
+                builder.append(NEW_LINE_STR);
+                builder.append(NEW_LINE_STR);
+                builder.append("【版本信息】");
+                builder.append(NEW_LINE_STR);
+                builder.append("===========================");
+                builder.append(NEW_LINE_STR);
+                builder.append(getAppInfo());
+                builder.append(NEW_LINE_STR);
+                builder.append("===========================");
+                builder.append(NEW_LINE_STR);
 
-                buffer.append(NEW_LINE_STR);
-                buffer.append(NEW_LINE_STR);
-                buffer.append("【文件信息】");
-                buffer.append(NEW_LINE_STR);
-                buffer.append("===========================");
-                buffer.append(NEW_LINE_STR);
-                buffer.append(fileHint);
-                buffer.append(NEW_LINE_STR);
-                buffer.append("===========================");
-                buffer.append(NEW_LINE_STR);
+                builder.append(NEW_LINE_STR);
+                builder.append(NEW_LINE_STR);
+                builder.append("【文件信息】");
+                builder.append(NEW_LINE_STR);
+                builder.append("===========================");
+                builder.append(NEW_LINE_STR);
+                builder.append(fileHint);
+                builder.append(NEW_LINE_STR);
+                builder.append("===========================");
+                builder.append(NEW_LINE_STR);
                 // 创建文件夹, 并且进行处理
-                saveFile(buffer.toString(), logPath, fileName);
+                saveFile(builder.toString(), logPath, fileName);
                 // 追加内容
                 appendFile(logFile, logContent);
             }
@@ -257,23 +257,23 @@ public final class AnalysisRecordUtils {
         // 判断是否追加空格
         boolean isSpace = sAppendSpace;
         // =
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         // 增加换行
-        buffer.append(NEW_LINE_STR);
-        buffer.append(NEW_LINE_STR);
+        builder.append(NEW_LINE_STR);
+        builder.append(NEW_LINE_STR);
         // 获取保存时间
-        buffer.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        builder.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         // 追加边距
-        buffer.append(" => ");
+        builder.append(" => ");
         // 循环追加内容
         for (int i = 0, len = logs.length; i < len; i++) {
             if (isSpace) { // 判断是否追加空格
-                buffer.append(SPACE_STR);
+                builder.append(SPACE_STR);
             }
             // 追加保存内容
-            buffer.append(logs[i]);
+            builder.append(logs[i]);
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     // ================
@@ -351,7 +351,7 @@ public final class AnalysisRecordUtils {
             if (!TextUtils.isEmpty(DEVICE_INFO_STR)) {
                 return DEVICE_INFO_STR;
             }
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder builder = new StringBuilder();
             // 获取设备信息
             Iterator<Map.Entry<String, String>> mapIter = DEVICE_INFO_MAPS.entrySet().iterator();
             // 遍历设备信息
@@ -361,13 +361,13 @@ public final class AnalysisRecordUtils {
                 String rnKey = rnEntry.getKey(); // key
                 String rnValue = rnEntry.getValue(); // value
                 // 保存设备信息
-                buffer.append(rnKey);
-                buffer.append(" = ");
-                buffer.append(rnValue);
-                buffer.append(NEW_LINE_STR);
+                builder.append(rnKey);
+                builder.append(" = ");
+                builder.append(rnValue);
+                builder.append(NEW_LINE_STR);
             }
             // 保存设备信息
-            DEVICE_INFO_STR = buffer.toString();
+            DEVICE_INFO_STR = builder.toString();
             // 返回设备信息
             return DEVICE_INFO_STR;
         } catch (Exception e) {
@@ -386,7 +386,7 @@ public final class AnalysisRecordUtils {
             return APP_INFO_STR;
         }
         try {
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder builder = new StringBuilder();
             // =
             PackageManager pm = sContext.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(sContext.getPackageName(), PackageManager.GET_SIGNATURES);
@@ -394,12 +394,12 @@ public final class AnalysisRecordUtils {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
                 // 保存版本信息
-                buffer.append("versionName: " + versionName);
-                buffer.append("\nversionCode: " + versionCode);
+                builder.append("versionName: " + versionName);
+                builder.append("\nversionCode: " + versionCode);
                 // 保存包名
-                buffer.append("\npackageName: " + pi.packageName);
+                builder.append("\npackageName: " + pi.packageName);
                 // 赋值版本信息
-                APP_INFO_STR = buffer.toString();
+                APP_INFO_STR = builder.toString();
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppInfo");

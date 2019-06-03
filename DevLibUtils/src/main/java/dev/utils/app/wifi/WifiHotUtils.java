@@ -520,16 +520,16 @@ public class WifiHotUtils {
      * @return 转换后的 IP 地址
      */
     private String intToString(final int data) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         int b = (data >> 0) & 0xff;
-        buffer.append(b + ".");
+        builder.append(b + ".");
         b = (data >> 8) & 0xff;
-        buffer.append(b + ".");
+        builder.append(b + ".");
         b = (data >> 16) & 0xff;
-        buffer.append(b + ".");
+        builder.append(b + ".");
         b = (data >> 24) & 0xff;
-        buffer.append(b);
-        return buffer.toString();
+        builder.append(b);
+        return builder.toString();
     }
 
     // ====================

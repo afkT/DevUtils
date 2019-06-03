@@ -116,7 +116,7 @@ public final class DeviceUtils {
      */
     public static String handlerDeviceInfo(final Map<String, String> deviceInfoMap, final String errorInfo) {
         try {
-            // 初始化 StringBuilder, 拼接字符串
+            // 初始化 Builder, 拼接字符串
             StringBuilder builder = new StringBuilder();
             // 获取设备信息
             Iterator<Map.Entry<String, String>> mapIter = deviceInfoMap.entrySet().iterator();
