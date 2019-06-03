@@ -251,11 +251,13 @@ public final class DevCache {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(file));
-            String readString = "";
+            StringBuilder builder = new StringBuilder();
             String currentLine;
             while ((currentLine = br.readLine()) != null) {
-                readString += currentLine;
+                builder.append(currentLine);
             }
+            // 读取内容
+            String readString = builder.toString();
             if (!DevCacheUtils.isDue(readString)) {
                 return DevCacheUtils.clearDateInfo(readString);
             } else {

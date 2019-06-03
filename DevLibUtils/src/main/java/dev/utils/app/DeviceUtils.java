@@ -501,15 +501,16 @@ public final class DeviceUtils {
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr, 8 * 1024);
 
-            String result = "";
             String line;
+            StringBuilder builder = new StringBuilder();
             try {
                 while ((line = br.readLine()) != null) {
-                    result += line;
+                    builder.append(line);
                 }
             } catch (IOException e) {
                 LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver - readLine");
             }
+            String result = builder.toString();
             try {
                 if (result != "") {
                     String Keyword = "version ";
