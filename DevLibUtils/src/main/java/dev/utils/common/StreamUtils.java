@@ -2,6 +2,7 @@ package dev.utils.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -38,7 +39,7 @@ public final class StreamUtils {
             JCLogUtils.eTag(TAG, e, "inputToOutputStream");
             return null;
         } finally {
-            CloseUtils.closeIO(inputStream);
+            closeIO(inputStream);
         }
     }
 
@@ -118,7 +119,7 @@ public final class StreamUtils {
             JCLogUtils.eTag(TAG, e, "bytesToOutputStream");
             return null;
         } finally {
-            CloseUtils.closeIO(baos);
+            closeIO(baos);
         }
     }
 
@@ -186,7 +187,30 @@ public final class StreamUtils {
         }
     }
 
-    // =
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ==============
+    // = CloseUtils =
+    // ==============
+
+    /**
+     * 关闭 IO
+     * @param closeables Closeable[]
+     */
+    private static void closeIO(final Closeable... closeables) {
+        if (closeables == null) return;
+        for (Closeable closeable : closeables) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "closeIO");
+                }
+            }
+        }
+    }
 
     /**
      * 判断字符串是否为 null 或全为空白字符

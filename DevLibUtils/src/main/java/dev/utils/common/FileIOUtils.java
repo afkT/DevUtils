@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -98,7 +99,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromIS");
             return false;
         } finally {
-            CloseUtils.closeIO(inputStream, os);
+            closeIO(inputStream, os);
         }
     }
 
@@ -151,7 +152,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByStream");
             return false;
         } finally {
-            CloseUtils.closeIO(bos);
+            closeIO(bos);
         }
     }
 
@@ -210,7 +211,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByChannel");
             return false;
         } finally {
-            CloseUtils.closeIO(fc);
+            closeIO(fc);
         }
     }
 
@@ -269,7 +270,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByMap");
             return false;
         } finally {
-            CloseUtils.closeIO(fc);
+            closeIO(fc);
         }
     }
 
@@ -323,7 +324,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromString");
             return false;
         } finally {
-            CloseUtils.closeIO(bw);
+            closeIO(bw);
         }
     }
 
@@ -434,7 +435,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToList");
             return null;
         } finally {
-            CloseUtils.closeIO(br);
+            closeIO(br);
         }
     }
 
@@ -496,7 +497,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToString");
             return null;
         } finally {
-            CloseUtils.closeIO(br);
+            closeIO(br);
         }
     }
 
@@ -531,7 +532,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByStream");
             return null;
         } finally {
-            CloseUtils.closeIO(fis, baos);
+            closeIO(fis, baos);
         }
     }
 
@@ -563,7 +564,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByChannel");
             return null;
         } finally {
-            CloseUtils.closeIO(fc);
+            closeIO(fc);
         }
     }
 
@@ -595,11 +596,34 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByMap");
             return null;
         } finally {
-            CloseUtils.closeIO(fc);
+            closeIO(fc);
         }
     }
 
-    // =
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ==============
+    // = CloseUtils =
+    // ==============
+
+    /**
+     * 关闭 IO
+     * @param closeables Closeable[]
+     */
+    private static void closeIO(final Closeable... closeables) {
+        if (closeables == null) return;
+        for (Closeable closeable : closeables) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "closeIO");
+                }
+            }
+        }
+    }
 
     /**
      * 获取文件

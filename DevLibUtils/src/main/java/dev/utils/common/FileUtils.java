@@ -3,6 +3,7 @@ package dev.utils.common;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
@@ -562,7 +563,7 @@ public final class FileUtils {
         } catch (IOException e) {
             JCLogUtils.eTag(TAG, e, "getFileCharsetSimple");
         } finally {
-            CloseUtils.closeIO(is);
+            closeIO(is);
         }
         switch (pos) {
             case 0xefbb:
@@ -614,7 +615,7 @@ public final class FileUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileLines");
         } finally {
-            CloseUtils.closeIO(is);
+            closeIO(is);
         }
         return lineCount;
     }
@@ -939,7 +940,7 @@ public final class FileUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5");
         } finally {
-            CloseUtils.closeIO(dis);
+            closeIO(dis);
         }
         return null;
     }
@@ -1697,7 +1698,7 @@ public final class FileUtils {
         // 目标目录不存在返回 false
         if (!createOrExistsDir(destFile.getParentFile())) return false;
         try {
-            return FileIOUtils.writeFileFromIS(destFile, new FileInputStream(srcFile), false) && !(isMove && !deleteFile(srcFile));
+            return writeFileFromIS(destFile, new FileInputStream(srcFile), false) && !(isMove && !deleteFile(srcFile));
         } catch (FileNotFoundException e) {
             JCLogUtils.eTag(TAG, e, "copyOrMoveFile");
             return false;
@@ -2020,5 +2021,63 @@ public final class FileUtils {
          * @return {@code true} yes, {@code false} no
          */
         boolean onReplace();
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ==============
+    // = CloseUtils =
+    // ==============
+
+    /**
+     * 关闭 IO
+     * @param closeables Closeable[]
+     */
+    private static void closeIO(final Closeable... closeables) {
+        if (closeables == null) return;
+        for (Closeable closeable : closeables) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "closeIO");
+                }
+            }
+        }
+    }
+
+    // ===============
+    // = FileIOUtils =
+    // ===============
+
+    // 缓存大小
+    private static final int sBufferSize = 8192;
+
+    /**
+     * 通过输入流写入文件
+     * @param file        文件
+     * @param inputStream {@link InputStream}
+     * @param append      是否追加到结尾
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean writeFileFromIS(final File file, final InputStream inputStream, final boolean append) {
+        if (!createOrExistsFile(file) || inputStream == null) return false;
+        OutputStream os = null;
+        try {
+            os = new BufferedOutputStream(new FileOutputStream(file, append));
+            byte[] data = new byte[sBufferSize];
+            int len;
+            while ((len = inputStream.read(data, 0, sBufferSize)) != -1) {
+                os.write(data, 0, len);
+            }
+            return true;
+        } catch (IOException e) {
+            JCLogUtils.eTag(TAG, e, "writeFileFromIS");
+            return false;
+        } finally {
+            closeIO(inputStream, os);
+        }
     }
 }

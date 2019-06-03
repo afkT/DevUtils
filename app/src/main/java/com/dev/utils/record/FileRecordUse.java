@@ -6,10 +6,10 @@ import java.io.File;
 
 import dev.utils.app.AnalysisRecordUtils;
 import dev.utils.app.AppUtils;
-import dev.utils.common.ErrorUtils;
 import dev.utils.app.FileRecordUtils;
 import dev.utils.app.SDCardUtils;
 import dev.utils.app.logger.DevLoggerUtils;
+import dev.utils.common.ThrowableUtils;
 
 /**
  * detail: 日志、异常文件记录保存使用方法
@@ -99,7 +99,7 @@ public final class FileRecordUse {
         // 保存错误信息
         NullPointerException nullPointerException = new NullPointerException("报错啦, null 异常啊");
         // 记录日志
-        AnalysisRecordUtils.record(fileInfo, ErrorUtils.getThrowable(nullPointerException));
+        AnalysisRecordUtils.record(fileInfo, ThrowableUtils.getThrowable(nullPointerException));
     }
 
     /**

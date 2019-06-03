@@ -1,13 +1,14 @@
 package dev.utils.common;
 
 import java.lang.reflect.Array;
+import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
 import dev.utils.JCLogUtils;
-import dev.utils.common.encrypt.MD5Utils;
 
 /**
  * detail: 开发常用方法工具类
@@ -54,8 +55,8 @@ public final class DevCommonUtils {
             buffer.append(title);
         }
         // 计算时间
-        buffer.append(NEW_LINE_STR + "开始时间: " + DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss));
-        buffer.append(NEW_LINE_STR + "结束时间: " + DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
+        buffer.append(NEW_LINE_STR + "开始时间: " + formatTime(startTime, yyyyMMddHHmmss));
+        buffer.append(NEW_LINE_STR + "结束时间: " + formatTime(endTime, yyyyMMddHHmmss));
         buffer.append(NEW_LINE_STR + "所用时间(毫秒): " + diffTime);
         buffer.append(NEW_LINE_STR + "所用时间(秒): " + (diffTime / 1000));
     }
@@ -82,7 +83,7 @@ public final class DevCommonUtils {
         // 大于 2 才处理
         if (randomTime >= 2) {
             // 随机时间
-            random = RandomUtils.getRandom(randomTime);
+            random = getRandom(randomTime);
         }
         // 返回操作时间
         return Math.max(0, operateTime) + random;
@@ -148,12 +149,12 @@ public final class DevCommonUtils {
                     if (saltLen >= i) {
                         String salt = salts[i];
                         if (salt != null) {
-                            dataTemp = MD5Utils.md5Upper(dataTemp + salt);
+                            dataTemp = md5Upper(dataTemp + salt);
                         } else {
-                            dataTemp = MD5Utils.md5Upper(dataTemp);
+                            dataTemp = md5Upper(dataTemp);
                         }
                     } else {
-                        dataTemp = MD5Utils.md5Upper(dataTemp);
+                        dataTemp = md5Upper(dataTemp);
                     }
                 }
             } else {
@@ -162,12 +163,12 @@ public final class DevCommonUtils {
                     if (saltLen >= i) {
                         String salt = salts[i];
                         if (salt != null) {
-                            dataTemp = MD5Utils.md5(dataTemp + salt);
+                            dataTemp = md5(dataTemp + salt);
                         } else {
-                            dataTemp = MD5Utils.md5(dataTemp);
+                            dataTemp = md5(dataTemp);
                         }
                     } else {
-                        dataTemp = MD5Utils.md5(dataTemp);
+                        dataTemp = md5(dataTemp);
                     }
                 }
             }
@@ -668,9 +669,171 @@ public final class DevCommonUtils {
         return null;
     }
 
-    // =====================================================================================
-    // = 其他工具类已实现(ArrayUtils、CollectionUtils、MapUtils、StringUtils、ObjectUtils) =
-    // =====================================================================================
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ================
+    // = ConvertUtils =
+    // ================
+
+    /**
+     * 获取 0 - 最大随机数之间的随机数
+     * @param max 最大随机数
+     * @return 随机介于 [0, max) 的区间值
+     */
+    public static int getRandom(final int max) {
+        return getRandom(0, max);
+    }
+
+    /**
+     * 获取两个数之间的随机数(不含最大随机数, 需要 + 1)
+     * @param min 最小随机数
+     * @param max 最大随机数
+     * @return 随机介于 [min, max) 的区间值
+     */
+    public static int getRandom(final int min, final int max) {
+        if (min > max) {
+            return 0;
+        } else if (min == max) {
+            return min;
+        }
+        return min + new Random().nextInt(max - min);
+    }
+
+    // =============
+    // = DateUtils =
+    // =============
+
+    public static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
+
+    /**
+     * 将时间戳转换日期字符串
+     * @param time   时间戳
+     * @param format 日期格式
+     * @return 按照指定格式的日期字符串
+     */
+    public static String formatTime(final long time, final String format) {
+        if (format == null) return null;
+        try {
+            return new SimpleDateFormat(format).format(time);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "formatTime");
+        }
+        return null;
+    }
+
+    // ============
+    // = MD5Utils =
+    // ============
+
+    // 用于建立十六进制字符的输出的小写字符数组
+    public static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    // 用于建立十六进制字符的输出的大写字符数组
+    public static final char[] HEX_DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+    /**
+     * 加密内容 - 32 位 MD5 - 小写
+     * @param data 待加密数据
+     * @return MD5 加密后的字符串
+     */
+    public static String md5(final String data) {
+        if (data == null) return null;
+        try {
+            return md5(data.getBytes());
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "md5");
+        }
+        return null;
+    }
+
+    /**
+     * 加密内容 - 32 位 MD5 - 小写
+     * @param data 待加密数据
+     * @return MD5 加密后的字符串
+     */
+    public static String md5(final byte[] data) {
+        if (data == null) return null;
+        try {
+            // 获取 MD5 摘要算法的 MessageDigest 对象
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            // 使用指定的字节更新摘要
+            digest.update(data);
+            // 获取密文
+            byte[] bytes = digest.digest();
+            return toHexString(bytes, HEX_DIGITS);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "md5");
+        }
+        return null;
+    }
+
+    /**
+     * 加密内容 - 32 位 MD5 - 大写
+     * @param data 待加密数据
+     * @return MD5 加密后的字符串
+     */
+    public static String md5Upper(final String data) {
+        if (data == null) return null;
+        try {
+            return md5Upper(data.getBytes());
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "md5Upper");
+        }
+        return null;
+    }
+
+    /**
+     * 加密内容 - 32 位 MD5 - 大写
+     * @param data 待加密数据
+     * @return MD5 加密后的字符串
+     */
+    public static String md5Upper(final byte[] data) {
+        if (data == null) return null;
+        try {
+            // 获取 MD5 摘要算法的 MessageDigest 对象
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            // 使用指定的字节更新摘要
+            digest.update(data);
+            // 获取密文
+            byte[] bytes = digest.digest();
+            return toHexString(bytes, HEX_DIGITS_UPPER);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "md5Upper");
+        }
+        return null;
+    }
+
+    /**
+     * 将 byte[] 转换 十六进制字符串
+     * @param data 待加密数据
+     * @return 十六进制字符串
+     */
+    public static String toHexString(final byte[] data) {
+        return toHexString(data, HEX_DIGITS);
+    }
+
+    /**
+     * 将 byte[] 转换 十六进制字符串
+     * @param data      待加密数据
+     * @param hexDigits {@link DevCommonUtils#HEX_DIGITS}、{@link DevCommonUtils#HEX_DIGITS_UPPER}
+     * @return 十六进制字符串
+     */
+    public static String toHexString(final byte[] data, final char[] hexDigits) {
+        if (data == null || hexDigits == null) return null;
+        try {
+            int len = data.length;
+            StringBuilder builder = new StringBuilder(len);
+            for (int i = 0; i < len; i++) {
+                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+                builder.append(hexDigits[data[i] & 0x0f]);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
+        }
+        return null;
+    }
 
     // ==============
     // = ArrayUtils =

@@ -608,7 +608,7 @@ public final class DateUtils {
     public static List<String> getListToHH() {
         List<String> lists = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
-            lists.add(DateUtils.convertTime(i, true));
+            lists.add(convertTime(i, true));
         }
         return lists;
     }
@@ -629,7 +629,7 @@ public final class DateUtils {
     public static List<String> getListToMM() {
         List<String> lists = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
-            lists.add(DateUtils.convertTime(i, true));
+            lists.add(convertTime(i, true));
         }
         return lists;
     }
@@ -658,21 +658,21 @@ public final class DateUtils {
         switch (type) {
             case 0:
                 for (int i = 0; i < 24; i++) {
-                    lists.add(DateUtils.convertTime(i, true) + ":00");
+                    lists.add(convertTime(i, true) + ":00");
                 }
                 break;
             case 1:
                 for (int i = 0; i < 96; i++) { // 00 15 30 45 = 4 => 24 * 4
                     if (i % 2 == 0) { // 判断是否偶数 00、30
                         // 小时数
-                        String hour = DateUtils.convertTime(i / 4, true);
+                        String hour = convertTime(i / 4, true);
                         // 分钟数
                         String minute = i % 4 == 0 ? "00" : "30";
                         // 累加时间
                         lists.add(hour + ":" + minute);
                     } else { // 15、45
                         // 小时数
-                        String hour = DateUtils.convertTime(i / 4, true);
+                        String hour = convertTime(i / 4, true);
                         // 分钟数
                         String minute = (i - 1) % 4 == 0 ? "15" : "45";
                         // 累加时间
@@ -686,9 +686,9 @@ public final class DateUtils {
                     int hour = i / 2;
                     // 属于偶数
                     if (i % 2 == 0) {
-                        lists.add(DateUtils.convertTime(hour, true) + ":00");
+                        lists.add(convertTime(hour, true) + ":00");
                     } else {
-                        lists.add(DateUtils.convertTime(hour, true) + ":30");
+                        lists.add(convertTime(hour, true) + ":30");
                     }
                 }
                 break;
@@ -926,7 +926,7 @@ public final class DateUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTimeHHmm(final String startTime, final String endTime) {
-        return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmm), startTime, endTime, HHmm);
+        return isInTime(formatTime(System.currentTimeMillis(), HHmm), startTime, endTime, HHmm);
     }
 
     /**
@@ -947,7 +947,7 @@ public final class DateUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTimeHHmmss(final String startTime, final String endTime) {
-        return isInTime(DateUtils.formatTime(System.currentTimeMillis(), HHmmss), startTime, endTime, HHmmss);
+        return isInTime(formatTime(System.currentTimeMillis(), HHmmss), startTime, endTime, HHmmss);
     }
 
     /**
@@ -1082,7 +1082,7 @@ public final class DateUtils {
             // 判断格式是否加了秒
             boolean isSecond = format.endsWith(":ss");
             // 获取开始时间
-            String start = DateUtils.formatTime(startTime, format);
+            String start = formatTime(startTime, format);
             // 转换时间
             int startNumber = Integer.parseInt(start.replace(":", ""));
             // 获取结束时间转换
@@ -1096,11 +1096,11 @@ public final class DateUtils {
                 calendar.add(Calendar.DATE, 1); // 当前日期加一天
             }
             // 获取天数时间
-            String yyyyMMdd = DateUtils.formatDate(calendar.getTime(), DateUtils.yyyyMMdd);
+            String yyyyMMddDate = formatDate(calendar.getTime(), yyyyMMdd);
             // 累加时间
-            String yyyyMMddHHmmss = yyyyMMdd + " " + endTime + (isSecond ? "" : ":00");
+            String yyyyMMddHHmmssDate = yyyyMMddDate + " " + endTime + (isSecond ? "" : ":00");
             // 返回转换后的时间
-            return DateUtils.parseLong(yyyyMMddHHmmss, DateUtils.yyyyMMddHHmmss);
+            return parseLong(yyyyMMddHHmmssDate, yyyyMMddHHmmss);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
         }

@@ -22,7 +22,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import dev.utils.JCLogUtils;
-import dev.utils.common.ConvertUtils;
 import dev.utils.common.cipher.Base64;
 
 /**
@@ -1031,7 +1030,7 @@ public final class EncryptUtils {
     /**
      * 将 byte[] 转换 十六进制字符串
      * @param data      待加密数据
-     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}、{@link ConvertUtils#HEX_DIGITS_UPPER}
+     * @param hexDigits {@link EncryptUtils#HEX_DIGITS}
      * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {

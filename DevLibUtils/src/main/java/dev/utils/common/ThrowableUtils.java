@@ -8,16 +8,16 @@ import java.io.Writer;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 错误信息处理工具类
+ * detail: 异常处理工具类
  * @author Ttt
  */
-public final class ErrorUtils {
+public final class ThrowableUtils {
 
-    private ErrorUtils() {
+    private ThrowableUtils() {
     }
 
     // 日志 TAG
-    private static final String TAG = ErrorUtils.class.getSimpleName();
+    private static final String TAG = ThrowableUtils.class.getSimpleName();
 
     /**
      * 获取异常信息
@@ -54,7 +54,7 @@ public final class ErrorUtils {
      * @param throwable 异常
      * @return 异常栈信息字符串
      */
-    public static String getThrowableStackTrace(final Throwable throwable){
+    public static String getThrowableStackTrace(final Throwable throwable) {
         return getThrowableStackTrace(throwable, "error(null)");
     }
 
@@ -64,8 +64,8 @@ public final class ErrorUtils {
      * @param errorInfo 获取失败返回字符串
      * @return 异常栈信息字符串
      */
-    public static String getThrowableStackTrace(final Throwable throwable, final String errorInfo){
-        if (throwable != null){
+    public static String getThrowableStackTrace(final Throwable throwable, final String errorInfo) {
+        if (throwable != null) {
             Writer writer = null;
             PrintWriter printWriter = null;
             try {

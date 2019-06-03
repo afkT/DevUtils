@@ -2,6 +2,7 @@ package dev.utils.common;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -62,7 +63,7 @@ public final class ZipUtils {
         } finally {
             if (zos != null) {
                 zos.finish();
-                CloseUtils.closeIO(zos);
+                closeIO(zos);
             }
         }
     }
@@ -98,7 +99,7 @@ public final class ZipUtils {
         } finally {
             if (zos != null) {
                 zos.finish();
-                CloseUtils.closeIO(zos);
+                closeIO(zos);
             }
         }
     }
@@ -153,7 +154,7 @@ public final class ZipUtils {
             return zipFile(resFile, "", zos, comment);
         } finally {
             if (zos != null) {
-                CloseUtils.closeIO(zos);
+                closeIO(zos);
             }
         }
     }
@@ -198,7 +199,7 @@ public final class ZipUtils {
                 }
                 zos.closeEntry();
             } finally {
-                CloseUtils.closeIO(is);
+                closeIO(is);
             }
         }
         return true;
@@ -306,7 +307,7 @@ public final class ZipUtils {
                     os.write(buffer, 0, len);
                 }
             } finally {
-                CloseUtils.closeIO(is, os);
+                closeIO(is, os);
             }
         }
         return true;
@@ -371,7 +372,30 @@ public final class ZipUtils {
         return comments;
     }
 
-    // =
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ==============
+    // = CloseUtils =
+    // ==============
+
+    /**
+     * 关闭 IO
+     * @param closeables Closeable[]
+     */
+    private static void closeIO(final Closeable... closeables) {
+        if (closeables == null) return;
+        for (Closeable closeable : closeables) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "closeIO");
+                }
+            }
+        }
+    }
 
     /**
      * 判断目录是否存在, 不存在则判断是否创建成功
