@@ -534,7 +534,7 @@ public final class ReflectUtils {
 
     /**
      * 根据类, 代理创建并返回对象
-     * @param proxyType
+     * @param proxyType 注解类
      * @param <P>       泛型
      * @return 代理的对象
      */
