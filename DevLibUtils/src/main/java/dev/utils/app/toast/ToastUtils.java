@@ -460,7 +460,7 @@ public final class ToastUtils {
                     sToast = null;
                 }
                 // 解决 MIUI 会显示应用名称问题
-                sToast = Toast.makeText(context, null, duration);
+                sToast = Toast.makeText(context, "", duration);
                 sToast.setText(toastText);
                 // 判断是否使用配置
                 if (sUseConfig) {
@@ -480,7 +480,7 @@ public final class ToastUtils {
             Toast toast = null;
             try {
                 // 解决 MIUI 会显示应用名称问题
-                toast = Toast.makeText(context, null, duration);
+                toast = Toast.makeText(context, "", duration);
                 toast.setText(toastText);
                 // 判断是否使用配置
                 if (sUseConfig) {
