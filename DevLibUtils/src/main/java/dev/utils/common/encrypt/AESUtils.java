@@ -51,8 +51,7 @@ public final class AESUtils {
             SecretKey secretKey = new SecretKeySpec(key, "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            byte[] bytes = cipher.doFinal(data);
-            return bytes;
+            return cipher.doFinal(data);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "encrypt");
         }
@@ -71,8 +70,7 @@ public final class AESUtils {
             SecretKey secretKey = new SecretKeySpec(key, "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            byte[] bytes = cipher.doFinal(data);
-            return bytes;
+            return cipher.doFinal(data);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "decrypt");
         }

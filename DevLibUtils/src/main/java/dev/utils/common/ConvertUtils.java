@@ -1584,7 +1584,7 @@ public final class ConvertUtils {
     /**
      * 将 byte[] 转换为 十六进制 char[]
      * @param data      byte[]
-     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}、{@link ConvertUtils#HEX_DIGITS_UPPER}
+     * @param hexDigits {@link #HEX_DIGITS}、{@link #HEX_DIGITS_UPPER}
      * @return 十六进制 char[]
      */
     private static char[] toHexChars(final byte[] data, final char[] hexDigits) {
@@ -1601,7 +1601,7 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换 十六进制字符串
-     * @param str String
+     * @param str 待转换数据
      * @return 十六进制字符串
      */
     public static String toHexString(final String str) {
@@ -1610,7 +1610,7 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换 十六进制字符串
-     * @param str         String
+     * @param str         待转换数据
      * @param toLowerCase {@code true} 小写格式, {@code false} 大写格式
      * @return 十六进制字符串
      */
@@ -1622,7 +1622,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data byte[]
+     * @param data 待转换数据
      * @return 十六进制字符串
      */
     public static String toHexString(final byte[] data) {
@@ -1631,7 +1631,7 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data        byte[]
+     * @param data        待转换数据
      * @param toLowerCase {@code true} 小写格式, {@code false} 大写格式
      * @return 十六进制字符串
      */
@@ -1641,8 +1641,8 @@ public final class ConvertUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data      byte[]
-     * @param hexDigits {@link ConvertUtils#HEX_DIGITS}、{@link ConvertUtils#HEX_DIGITS_UPPER}
+     * @param data      待转换数据
+     * @param hexDigits {@link #HEX_DIGITS}、{@link #HEX_DIGITS_UPPER}
      * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {

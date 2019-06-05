@@ -50,8 +50,7 @@ public final class TripleDESUtils {
             SecretKey secretKey = new SecretKeySpec(key, "DESede");
             Cipher cipher = Cipher.getInstance("DESede/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            byte[] cipherBytes = cipher.doFinal(data);
-            return cipherBytes;
+            return cipher.doFinal(data);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "encrypt");
         }
@@ -70,8 +69,7 @@ public final class TripleDESUtils {
             SecretKey secretKey = new SecretKeySpec(key, "DESede");
             Cipher cipher = Cipher.getInstance("DESede/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            byte[] plainBytes = cipher.doFinal(data);
-            return plainBytes;
+            return cipher.doFinal(data);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "decrypt");
         }

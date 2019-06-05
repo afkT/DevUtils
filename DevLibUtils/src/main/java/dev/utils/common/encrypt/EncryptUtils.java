@@ -1020,7 +1020,7 @@ public final class EncryptUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data 待加密数据
+     * @param data 待转换数据
      * @return 十六进制 String
      */
     private static String toHexString(final byte[] data) {
@@ -1029,8 +1029,8 @@ public final class EncryptUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data      待加密数据
-     * @param hexDigits {@link EncryptUtils#HEX_DIGITS}
+     * @param data      待转换数据
+     * @param hexDigits {@link #HEX_DIGITS}
      * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {

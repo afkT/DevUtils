@@ -17,8 +17,6 @@ public final class SHAUtils {
 
     // 日志 TAG
     private static final String TAG = SHAUtils.class.getSimpleName();
-    // 用于建立十六进制字符的输出的小写字符数组
-    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * 加密内容 SHA1
@@ -117,28 +115,44 @@ public final class SHAUtils {
      */
     public static String getFileSHA(final String filePath, final String algorithm) {
         if (filePath == null || algorithm == null) return null;
+        InputStream is = null;
         try {
-            InputStream is = new FileInputStream(filePath);
+            is = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
             MessageDigest digest = MessageDigest.getInstance(algorithm);
             int numRead = 0;
             while ((numRead = is.read(buffer)) > 0) {
                 digest.update(buffer, 0, numRead);
             }
-            is.close();
             return toHexString(digest.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileSHA");
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception e) {
+                }
+            }
         }
         return null;
     }
 
-    // =
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ================
+    // = ConvertUtils =
+    // ================
+
+    // 用于建立十六进制字符的输出的小写字符数组
+    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data      待加密数据
-     * @param hexDigits {@link SHAUtils#HEX_DIGITS}
+     * @param data      待转换数据
+     * @param hexDigits {@link #HEX_DIGITS}
      * @return 十六进制字符串
      */
     private static String toHexString(final byte[] data, final char[] hexDigits) {

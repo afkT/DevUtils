@@ -54,8 +54,7 @@ public final class DESUtils {
             SecretKey secretKey = new SecretKeySpec(key, "DES");
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            byte[] bytes = cipher.doFinal(data);
-            return bytes;
+            return cipher.doFinal(data);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "encrypt");
         }
@@ -74,8 +73,7 @@ public final class DESUtils {
             SecretKey secretKey = new SecretKeySpec(key, "DES");
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            byte[] bytes = cipher.doFinal(data);
-            return bytes;
+            return cipher.doFinal(data);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "decrypt");
         }

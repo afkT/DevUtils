@@ -760,8 +760,7 @@ public final class DevCommonUtils {
             // 使用指定的字节更新摘要
             digest.update(data);
             // 获取密文
-            byte[] bytes = digest.digest();
-            return toHexString(bytes, HEX_DIGITS);
+            return toHexString(digest.digest(), HEX_DIGITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "md5");
         }
@@ -796,8 +795,7 @@ public final class DevCommonUtils {
             // 使用指定的字节更新摘要
             digest.update(data);
             // 获取密文
-            byte[] bytes = digest.digest();
-            return toHexString(bytes, HEX_DIGITS_UPPER);
+            return toHexString(digest.digest(), HEX_DIGITS_UPPER);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "md5Upper");
         }
@@ -806,7 +804,7 @@ public final class DevCommonUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data 待加密数据
+     * @param data 待转换数据
      * @return 十六进制字符串
      */
     public static String toHexString(final byte[] data) {
@@ -815,8 +813,8 @@ public final class DevCommonUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data      待加密数据
-     * @param hexDigits {@link DevCommonUtils#HEX_DIGITS}、{@link DevCommonUtils#HEX_DIGITS_UPPER}
+     * @param data      待转换数据
+     * @param hexDigits {@link #HEX_DIGITS}、{@link #HEX_DIGITS_UPPER}
      * @return 十六进制字符串
      */
     public static String toHexString(final byte[] data, final char[] hexDigits) {
