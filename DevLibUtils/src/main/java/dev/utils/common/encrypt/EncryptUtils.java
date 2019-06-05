@@ -179,11 +179,11 @@ public final class EncryptUtils {
             JCLogUtils.eTag(TAG, e, "encryptMD5File");
             return null;
         } finally {
-            try {
-                if (fis != null) {
+            if (fis != null) {
+                try {
                     fis.close();
+                } catch (Exception e) {
                 }
-            } catch (IOException e) {
             }
         }
     }

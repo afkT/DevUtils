@@ -782,7 +782,6 @@ public final class CollectionUtils {
                     // 判断值是否一样
                     if (equals(t, value)) {
                         iterator.remove();
-
                     }
                 }
             } catch (Exception e) {
@@ -806,7 +805,6 @@ public final class CollectionUtils {
                     // 判断值是否不一样(保留不一样的)
                     if (!equals(t, value)) {
                         iterator.remove();
-
                     }
                 }
             } catch (Exception e) {
@@ -835,7 +833,7 @@ public final class CollectionUtils {
      * @param collection {@link Collection}
      * @param <T>        泛型
      */
-    private static <T> void clearNull(final Collection<T> collection) {
+    public static <T> void clearNull(final Collection<T> collection) {
         clear(collection, null);
     }
 

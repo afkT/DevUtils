@@ -15,10 +15,6 @@ public final class NumberUtils {
 
     // 日志 TAG
     private static final String TAG = NumberUtils.class.getSimpleName();
-    // 正则表达式: 验证数字
-    private static final String REGEX_NUMBER = "^[0-9]*$";
-    // 正则表达式: 验证数字或包含小数点
-    private static final String REGEX_NUMBER_OR_DECIMAL = "^[0-9]*[.]?[0-9]*$";
 
     /**
      * 计算百分比值 (最大 100%)
@@ -26,7 +22,61 @@ public final class NumberUtils {
      * @param max   最大值
      * @return 百分比值
      */
-    public static double percent(final int value, final int max) {
+    public static double percentD(final int value, final int max) {
+        if (max <= 0) return 0.0d;
+        if (value <= 0) return 0.0d;
+        if (value >= max) return 1.0d;
+        return (double) value / (double) max;
+    }
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static double percentD(final float value, final float max) {
+        if (max <= 0) return 0.0d;
+        if (value <= 0) return 0.0d;
+        if (value >= max) return 1.0d;
+        return value / max;
+    }
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static double percentD(final long value, final long max) {
+        if (max <= 0) return 0.0d;
+        if (value <= 0) return 0.0d;
+        if (value >= max) return 1.0d;
+        return value / max;
+    }
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static double percentD(final double value, final double max) {
+        if (max <= 0) return 0.0d;
+        if (value <= 0) return 0.0d;
+        if (value >= max) return 1.0d;
+        return value / max;
+    }
+
+    // =
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static float percentF(final int value, final int max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -39,7 +89,7 @@ public final class NumberUtils {
      * @param max   最大值
      * @return 百分比值
      */
-    public static double percent(final float value, final float max) {
+    public static float percentF(final float value, final float max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -52,7 +102,7 @@ public final class NumberUtils {
      * @param max   最大值
      * @return 百分比值
      */
-    public static double percent(final long value, final long max) {
+    public static float percentF(final long value, final long max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
@@ -65,10 +115,114 @@ public final class NumberUtils {
      * @param max   最大值
      * @return 百分比值
      */
-    public static double percent(final double value, final double max) {
+    public static float percentF(final double value, final double max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
+        return (float) (value / max);
+    }
+
+    // =
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static long percentL(final int value, final int max) {
+        if (max <= 0) return 0L;
+        if (value <= 0) return 0L;
+        if (value >= max) return 1L;
+        return (long) value / (long) max;
+    }
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static long percentL(final float value, final float max) {
+        if (max <= 0) return 0L;
+        if (value <= 0) return 0L;
+        if (value >= max) return 1L;
+        return (long) value / (long) max;
+    }
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static long percentL(final long value, final long max) {
+        if (max <= 0) return 0L;
+        if (value <= 0) return 0L;
+        if (value >= max) return 1L;
+        return value / max;
+    }
+
+    /**
+     * 计算百分比值 (最大 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static long percentL(final double value, final double max) {
+        if (max <= 0) return 0L;
+        if (value <= 0) return 0L;
+        if (value >= max) return 1L;
+        return (long) (value / max);
+    }
+
+    // =
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static double percentD2(final int value, final int max) {
+        if (max <= 0) return 0.0d;
+        if (value <= 0) return 0.0d;
+        return (double) value / (double) max;
+    }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static double percentD2(final float value, final float max) {
+        if (max <= 0) return 0.0d;
+        if (value <= 0) return 0.0d;
+        return value / max;
+    }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static double percentD2(final long value, final long max) {
+        if (max <= 0) return 0.0d;
+        if (value <= 0) return 0.0d;
+        return value / max;
+    }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static double percentD2(final double value, final double max) {
+        if (max <= 0) return 0.0d;
+        if (value <= 0) return 0.0d;
         return value / max;
     }
 
@@ -78,9 +232,9 @@ public final class NumberUtils {
      * 计算百分比值 (可超出 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 比例值
+     * @return 百分比值
      */
-    public static double percent2(final int value, final int max) {
+    public static float percentF2(final int value, final int max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         return (float) value / (float) max;
@@ -90,9 +244,9 @@ public final class NumberUtils {
      * 计算百分比值 (可超出 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 比例值
+     * @return 百分比值
      */
-    public static double percent2(final float value, final float max) {
+    public static float percentF2(final float value, final float max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         return value / max;
@@ -102,9 +256,9 @@ public final class NumberUtils {
      * 计算百分比值 (可超出 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 比例值
+     * @return 百分比值
      */
-    public static double percent2(final long value, final long max) {
+    public static float percentF2(final long value, final long max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         return value / max;
@@ -114,12 +268,62 @@ public final class NumberUtils {
      * 计算百分比值 (可超出 100%)
      * @param value 指定值
      * @param max   最大值
-     * @return 比例值
+     * @return 百分比值
      */
-    public static double percent2(final double value, final double max) {
+    public static float percentF2(final double value, final double max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
+        return (float) (value / max);
+    }
+
+    // =
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static long percentL2(final int value, final int max) {
+        if (max <= 0) return 0L;
+        if (value <= 0) return 0L;
+        return (long) value / (long) max;
+    }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static long percentL2(final float value, final float max) {
+        if (max <= 0) return 0L;
+        if (value <= 0) return 0L;
+        return (long) value / (long) max;
+    }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static long percentL2(final long value, final long max) {
+        if (max <= 0) return 0L;
+        if (value <= 0) return 0L;
         return value / max;
+    }
+
+    /**
+     * 计算百分比值 (可超出 100%)
+     * @param value 指定值
+     * @param max   最大值
+     * @return 百分比值
+     */
+    public static long percentL2(final double value, final double max) {
+        if (max <= 0) return 0L;
+        if (value <= 0) return 0L;
+        return (long) (value / max);
     }
 
     // =
@@ -170,6 +374,32 @@ public final class NumberUtils {
 
     // =
 
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null
+     * @param str 待校验的字符串
+     * @return {@code true} is null, {@code false} not null
+     */
+    private static boolean isEmpty(final String str) {
+        return (str == null || str.length() == 0);
+    }
+
+    // ==================
+    // = ValidatorUtils =
+    // ==================
+
+    // 正则表达式: 验证数字
+    private static final String REGEX_NUMBER = "^[0-9]*$";
+    // 正则表达式: 验证数字或包含小数点
+    private static final String REGEX_NUMBER_OR_DECIMAL = "^[0-9]*[.]?[0-9]*$";
+
     /**
      * 检验数字
      * @param str 待校验的字符串
@@ -186,17 +416,6 @@ public final class NumberUtils {
      */
     public static boolean isNumberDecimal(final String str) {
         return match(REGEX_NUMBER_OR_DECIMAL, str);
-    }
-
-    // =
-
-    /**
-     * 判断是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
     }
 
     /**

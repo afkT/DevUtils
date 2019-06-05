@@ -629,7 +629,6 @@ public final class BigDecimalUtils {
                 // 调整顺序
                 for (int j = 0, k = tempA.length - 1; j < numOfIntPart && (k >= 0); j++, k--) {
                     tempA1[j] = tempA[k];
-
                 }
                 // 小数部分精度大于或等于指定的精度
                 if (numOfDecimalPart <= array[1].length()) {
@@ -741,7 +740,6 @@ public final class BigDecimalUtils {
                 if (numOfDecimalPart <= array[1].length()) {
                     for (int i = 0; i < numOfDecimalPart; i++) {
                         tempB[i] = array[1].charAt(i);
-
                     }
                 }
                 if (numOfDecimalPart == 0) {

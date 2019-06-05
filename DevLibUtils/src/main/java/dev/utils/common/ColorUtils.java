@@ -120,7 +120,7 @@ public final class ColorUtils {
      * @return alpha 百分比值
      */
     public static float alphaPercent(final int color) {
-        return percent(alpha(color), 255);
+        return percentF(alpha(color), 255);
     }
 
     // =
@@ -140,7 +140,7 @@ public final class ColorUtils {
      * @return red 百分比值
      */
     public static float redPercent(final int color) {
-        return percent(red(color), 255);
+        return percentF(red(color), 255);
     }
 
     // =
@@ -160,7 +160,7 @@ public final class ColorUtils {
      * @return green 百分比值
      */
     public static float greenPercent(final int color) {
-        return percent(green(color), 255);
+        return percentF(green(color), 255);
     }
 
     // =
@@ -180,7 +180,7 @@ public final class ColorUtils {
      * @return blue 百分比值
      */
     public static float bluePercent(final int color) {
-        return percent(blue(color), 255);
+        return percentF(blue(color), 255);
     }
 
     // =
@@ -636,7 +636,13 @@ public final class ColorUtils {
         sColorNameMaps.put("teal", 0xFF008080);
     }
 
-    // =
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = NumberUtils =
+    // ===============
 
     /**
      * 计算百分比值 (最大 100%)
@@ -644,7 +650,7 @@ public final class ColorUtils {
      * @param max   最大值
      * @return 百分比值
      */
-    private static float percent(final int value, final int max) {
+    private static float percentF(final int value, final int max) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;

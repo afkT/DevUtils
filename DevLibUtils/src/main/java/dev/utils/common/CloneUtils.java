@@ -2,7 +2,6 @@ package dev.utils.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -55,31 +54,7 @@ public final class CloneUtils {
             if (oos != null) {
                 try {
                     oos.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-    }
-
-    /**
-     * 通过 byte[] 生成 Object 对象
-     * @param data byte[]
-     * @return {@link Object}
-     */
-    public static Object bytesToObject(final byte[] data) {
-        if (data == null) return null;
-        ObjectInputStream ois = null;
-        try {
-            ois = new ObjectInputStream(new ByteArrayInputStream(data));
-            return ois.readObject();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "bytesToObject");
-            return null;
-        } finally {
-            if (ois != null) {
-                try {
-                    ois.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                 }
             }
         }
@@ -136,5 +111,38 @@ public final class CloneUtils {
                 }
             }
         }
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ================
+    // = ConvertUtils =
+    // ================
+
+    /**
+     * byte[] 转为 Object
+     * @param bytes byte[]
+     * @return {@link Object}
+     */
+    private static Object bytesToObject(final byte[] bytes) {
+        if (bytes != null) {
+            ObjectInputStream ois = null;
+            try {
+                ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
+                return ois.readObject();
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "bytesToObject");
+            } finally {
+                if (ois != null) {
+                    try {
+                        ois.close();
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
