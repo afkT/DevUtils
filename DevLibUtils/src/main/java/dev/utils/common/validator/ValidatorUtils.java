@@ -23,7 +23,7 @@ public final class ValidatorUtils {
     public static final String REGEX_NUMBER = "^[0-9]*$";
 
     // 正则表达式: 验证数字或包含小数点
-    private static final String REGEX_NUMBER_OR_DECIMAL = "^[0-9]*[.]?[0-9]*$";
+    public static final String REGEX_NUMBER_OR_DECIMAL = "^[0-9]*[.]?[0-9]*$";
 
     // 正则表达式: 验证是否包含数字
     public static final String REGEX_CONTAIN_NUMBER = ".*\\d+.*";
@@ -63,15 +63,6 @@ public final class ValidatorUtils {
 
 //    // 正则表达式: 验证 IP 地址
 //    public static final String REGEX_IP_ADDR2 = "\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\b";
-
-    /**
-     * 判断是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    public static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
-    }
 
     /**
      * 通用匹配函数
@@ -275,5 +266,22 @@ public final class ValidatorUtils {
             }
         }
         return false;
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null
+     * @param str 待校验的字符串
+     * @return {@code true} is null, {@code false} not null
+     */
+    private static boolean isEmpty(final String str) {
+        return (str == null || str.length() == 0);
     }
 }

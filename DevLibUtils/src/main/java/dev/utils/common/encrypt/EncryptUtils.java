@@ -36,8 +36,6 @@ public final class EncryptUtils {
 
     // 日志 TAG
     private static final String TAG = EncryptUtils.class.getSimpleName();
-    // 用于建立十六进制字符的输出的小写字符数组
-    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * MD2 加密
@@ -947,18 +945,18 @@ public final class EncryptUtils {
             int count = dataLength / maxLen;
             if (count > 0) {
                 byte[] ret = new byte[0];
-                byte[] buff = new byte[maxLen];
+                byte[] buffer = new byte[maxLen];
                 int index = 0;
                 for (int i = 0; i < count; i++) {
-                    System.arraycopy(data, index, buff, 0, maxLen);
-                    ret = arraycopy(ret, cipher.doFinal(buff));
+                    System.arraycopy(data, index, buffer, 0, maxLen);
+                    ret = arraycopy(ret, cipher.doFinal(buffer));
                     index += maxLen;
                 }
                 if (index != dataLength) {
                     int restLen = dataLength - index;
-                    buff = new byte[restLen];
-                    System.arraycopy(data, index, buff, 0, restLen);
-                    ret = arraycopy(ret, cipher.doFinal(buff));
+                    buffer = new byte[restLen];
+                    System.arraycopy(data, index, buffer, 0, restLen);
+                    ret = arraycopy(ret, cipher.doFinal(buffer));
                 }
                 return ret;
             } else {
@@ -970,7 +968,9 @@ public final class EncryptUtils {
         return null;
     }
 
-    // =
+    // ============
+    // = 私有方法 =
+    // ============
 
     /**
      * Base64 编码
@@ -992,31 +992,16 @@ public final class EncryptUtils {
         return Base64.decode(input, Base64.NO_WRAP);
     }
 
-    /**
-     * 拼接数组
-     * @param prefix 第一个数组
-     * @param suffix 第二个数组
-     * @return 拼接后的数组
-     */
-    private static byte[] arraycopy(final byte[] prefix, final byte[] suffix) {
-        // 获取数据长度
-        int prefixLength = (prefix != null) ? prefix.length : 0;
-        int suffixLength = (suffix != null) ? suffix.length : 0;
-        // 数据都为 null, 则直接跳过
-        if (prefixLength + suffixLength == 0) return null;
-        // 创建 byte[]
-        byte[] bytes = new byte[prefixLength + suffixLength];
-        // 进行判断处理
-        if (prefixLength != 0) {
-            System.arraycopy(prefix, 0, bytes, 0, prefixLength);
-        }
-        if (suffixLength != 0) {
-            System.arraycopy(suffix, 0, bytes, prefixLength, suffixLength);
-        }
-        return bytes;
-    }
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
 
-    // =
+    // ================
+    // = ConvertUtils =
+    // ================
+
+    // 用于建立十六进制字符的输出的小写字符数组
+    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * 将 byte[] 转换 十六进制字符串
@@ -1098,11 +1083,41 @@ public final class EncryptUtils {
         return digit;
     }
 
-    // =
+    // ==============
+    // = ArrayUtils =
+    // ==============
 
     /**
-     * 判断是否为 null
-     * @param str 待校验字符串
+     * 拼接数组
+     * @param prefix 第一个数组
+     * @param suffix 第二个数组
+     * @return 拼接后的数组
+     */
+    private static byte[] arraycopy(final byte[] prefix, final byte[] suffix) {
+        // 获取数据长度
+        int prefixLength = (prefix != null) ? prefix.length : 0;
+        int suffixLength = (suffix != null) ? suffix.length : 0;
+        // 数据都为 null, 则直接跳过
+        if (prefixLength + suffixLength == 0) return null;
+        // 创建数组
+        byte[] arrays = new byte[prefixLength + suffixLength];
+        // 进行判断处理
+        if (prefixLength != 0) {
+            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
+        }
+        if (suffixLength != 0) {
+            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
+        }
+        return arrays;
+    }
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null
+     * @param str 待校验的字符串
      * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {

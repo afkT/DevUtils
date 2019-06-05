@@ -19,34 +19,6 @@ public final class ValiToPhoneUtils {
     private static final String TAG = ValiToPhoneUtils.class.getSimpleName();
 
     /**
-     * 判断是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
-    }
-
-    /**
-     * 通用匹配函数
-     * @param regex 正则表达式
-     * @param input 待校验的字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean match(final String regex, final String input) {
-        if (!isEmpty(input)) {
-            try {
-                return Pattern.matches(regex, input);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "match");
-            }
-        }
-        return false;
-    }
-
-    // =
-
-    /**
      * 中国手机号格式验证, 在输入可以调用该方法, 点击发送验证码, 使用 isPhone
      * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
@@ -213,5 +185,43 @@ public final class ValiToPhoneUtils {
          * @see <a href="http://www.cnblogs.com/zengxiangzhan/p/phone.html"/>
          */
         CHINA_PHONE_PATTERN = "^13[\\d]{9}$|^14[5,6,7,8,9]{1}\\d{8}$|^15[^4]{1}\\d{8}$|^16[6]{1}\\d{8}$|^17[0,1,2,3,4,5,6,7,8]{1}\\d{8}$|^18[\\d]{9}$|^19[8,9]{1}\\d{8}$";
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null
+     * @param str 待校验的字符串
+     * @return {@code true} is null, {@code false} not null
+     */
+    private static boolean isEmpty(final String str) {
+        return (str == null || str.length() == 0);
+    }
+
+    // ==================
+    // = ValidatorUtils =
+    // ==================
+
+    /**
+     * 通用匹配函数
+     * @param regex 正则表达式
+     * @param input 待校验的字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean match(final String regex, final String input) {
+        if (!isEmpty(input)) {
+            try {
+                return Pattern.matches(regex, input);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "match");
+            }
+        }
+        return false;
     }
 }

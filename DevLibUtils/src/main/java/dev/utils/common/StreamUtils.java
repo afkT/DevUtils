@@ -29,10 +29,10 @@ public final class StreamUtils {
         if (inputStream == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] b = new byte[1024];
+            byte[] buffer = new byte[1024];
             int len;
-            while ((len = inputStream.read(b, 0, 1024)) != -1) {
-                baos.write(b, 0, len);
+            while ((len = inputStream.read(buffer, 0, 1024)) != -1) {
+                baos.write(buffer, 0, len);
             }
             return baos;
         } catch (Exception e) {

@@ -528,14 +528,12 @@ public final class IDCardUtils {
         return sum;
     }
 
-    // =
-
     /**
      * 将 POWER 和值与 11 取模获取余数进行校验码判断
      * @param sum {@link IDCardUtils#getPowerSum}
      * @return 校验位
      */
-    private static String getCheckCode18(final int sum) {
+    public static String getCheckCode18(final int sum) {
         String code = "";
         switch (sum % 11) {
             case 10:
@@ -574,6 +572,10 @@ public final class IDCardUtils {
         }
         return code;
     }
+
+    // ============
+    // = 私有方法 =
+    // ============
 
     /**
      * 将字符数组转换成数字数组
@@ -639,14 +641,20 @@ public final class IDCardUtils {
         return !isEmpty(str) && str.matches("^[0-9]*$");
     }
 
-    // =
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = StringUtils =
+    // ===============
 
     /**
-     * 判断是否为 null
+     * 判断字符串是否为 null
      * @param str 待校验的字符串
      * @return {@code true} is null, {@code false} not null
      */
-    public static boolean isEmpty(final String str) {
+    private static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
     }
 }
