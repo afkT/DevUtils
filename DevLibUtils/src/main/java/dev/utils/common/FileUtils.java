@@ -931,7 +931,7 @@ public final class FileUtils {
             FileInputStream fis = new FileInputStream(file);
             MessageDigest digest = MessageDigest.getInstance("MD5");
             dis = new DigestInputStream(fis, digest);
-            byte[] buffer = new byte[1024 * 256];
+            byte[] buffer = new byte[256 * 1024];
             while (true) {
                 if (!(dis.read(buffer) > 0)) break;
             }
@@ -939,44 +939,10 @@ public final class FileUtils {
             return digest.digest();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5");
+            return null;
         } finally {
             closeIO(dis);
         }
-        return null;
-    }
-
-    // =
-
-    /**
-     * 获取文件 MD5 值 - 小写
-     * @param filePath 文件路径
-     * @return 文件 MD5 校验码
-     */
-    public static String getFileMD5ToString2(final String filePath) {
-        return getFileMD5ToString2(getFileByPath(filePath));
-    }
-
-    /**
-     * 获取文件 MD5 值 - 小写
-     * @param file 文件地址
-     * @return 文件 MD5 校验码
-     */
-    public static String getFileMD5ToString2(final File file) {
-        if (file == null || !file.exists()) return null;
-        try {
-            InputStream is = new FileInputStream(file);
-            byte[] buffer = new byte[1024];
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            int numRead = 0;
-            while ((numRead = is.read(buffer)) > 0) {
-                digest.update(buffer, 0, numRead);
-            }
-            is.close();
-            return toHexString(digest.digest(), HEX_DIGITS);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFileMD5ToString2");
-        }
-        return null;
     }
 
     // 用于建立十六进制字符的输出的小写字符数组

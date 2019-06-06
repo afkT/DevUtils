@@ -2,13 +2,10 @@ package dev.utils.common.encrypt;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.security.DigestInputStream;
-import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
@@ -128,7 +125,7 @@ public final class EncryptUtils {
     // =
 
     /**
-     * MD5 加密文件
+     * 获取文件 MD5 值
      * @param filePath 文件路径
      * @return 文件 MD5 值
      */
@@ -138,7 +135,7 @@ public final class EncryptUtils {
     }
 
     /**
-     * MD5 加密文件
+     * 获取文件 MD5 值
      * @param filePath 文件路径
      * @return 文件 MD5 值转十六进制字符串
      */
@@ -148,7 +145,7 @@ public final class EncryptUtils {
     }
 
     /**
-     * MD5 加密文件
+     * 获取文件 MD5 值
      * @param file 文件
      * @return 文件 MD5 值转十六进制字符串
      */
@@ -157,16 +154,15 @@ public final class EncryptUtils {
     }
 
     /**
-     * MD5 加密文件
+     * 获取文件 MD5 值
      * @param file 文件
      * @return 文件 MD5 值 byte[]
      */
     public static byte[] encryptMD5File(final File file) {
         if (file == null) return null;
-        FileInputStream fis = null;
-        DigestInputStream dis;
+        DigestInputStream dis = null;
         try {
-            fis = new FileInputStream(file);
+            FileInputStream fis = new FileInputStream(file);
             MessageDigest digest = MessageDigest.getInstance("MD5");
             dis = new DigestInputStream(fis, digest);
             byte[] buffer = new byte[256 * 1024];
@@ -175,13 +171,13 @@ public final class EncryptUtils {
             }
             digest = dis.getMessageDigest();
             return digest.digest();
-        } catch (NoSuchAlgorithmException | IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "encryptMD5File");
             return null;
         } finally {
-            if (fis != null) {
+            if (dis != null) {
                 try {
-                    fis.close();
+                    dis.close();
                 } catch (Exception e) {
                 }
             }
@@ -568,7 +564,7 @@ public final class EncryptUtils {
             Mac mac = Mac.getInstance(algorithm);
             mac.init(secretKey);
             return mac.doFinal(data);
-        } catch (InvalidKeyException | NoSuchAlgorithmException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "hmacTemplate");
             return null;
         }

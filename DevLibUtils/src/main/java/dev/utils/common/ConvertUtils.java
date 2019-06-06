@@ -1664,7 +1664,7 @@ public final class ConvertUtils {
     // =
 
     /**
-     * 判断是否为 null
+     * 判断字符串是否为 null
      * @param str 待校验的字符串
      * @return {@code true} is null, {@code false} not null
      */

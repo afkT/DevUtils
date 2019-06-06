@@ -1240,8 +1240,8 @@ public final class DialogUtils {
     // =
 
     /**
-     * 判断是否为 null
-     * @param str
+     * 判断字符串是否为 null
+     * @param str 待校验的字符串
      * @return {@code true} is null, {@code false} not null
      */
     private static boolean isEmpty(final String str) {

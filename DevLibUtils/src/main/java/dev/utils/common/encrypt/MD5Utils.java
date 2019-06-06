@@ -1,7 +1,8 @@
 package dev.utils.common.encrypt;
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
+import java.security.DigestInputStream;
 import java.security.MessageDigest;
 
 import dev.utils.JCLogUtils;
@@ -91,34 +92,66 @@ public final class MD5Utils {
         return null;
     }
 
+    // =
+
     /**
-     * 获取文件 MD5 值 - 小写
+     * 获取文件 MD5 值
      * @param filePath 文件路径
      * @return 文件 MD5 值
      */
-    public static String getFileMD5(final String filePath) {
-        if (filePath == null) return null;
-        InputStream is = null;
+    public static byte[] getFileMD5(final String filePath) {
+        File file = isSpace(filePath) ? null : new File(filePath);
+        return getFileMD5(file);
+    }
+
+    /**
+     * 获取文件 MD5 值 - 小写
+     * @param filePath 文件路径
+     * @return 文件 MD5 值转十六进制字符串
+     */
+    public static String getFileMD5ToHexString(final String filePath) {
+        File file = isSpace(filePath) ? null : new File(filePath);
+        return getFileMD5ToHexString(file);
+    }
+
+    /**
+     * 获取文件 MD5 值 - 小写
+     * @param file 文件
+     * @return 文件 MD5 值转十六进制字符串
+     */
+    public static String getFileMD5ToHexString(final File file) {
+        return toHexString(getFileMD5(file));
+    }
+
+    /**
+     * 获取文件 MD5 值
+     * @param file 文件
+     * @return 文件 MD5 值 byte[]
+     */
+    public static byte[] getFileMD5(final File file) {
+        if (file == null) return null;
+        DigestInputStream dis = null;
         try {
-            is = new FileInputStream(filePath);
-            byte[] buffer = new byte[1024];
+            FileInputStream fis = new FileInputStream(file);
             MessageDigest digest = MessageDigest.getInstance("MD5");
-            int numRead;
-            while ((numRead = is.read(buffer)) > 0) {
-                digest.update(buffer, 0, numRead);
+            dis = new DigestInputStream(fis, digest);
+            byte[] buffer = new byte[256 * 1024];
+            while (true) {
+                if (!(dis.read(buffer) > 0)) break;
             }
-            return toHexString(digest.digest(), HEX_DIGITS);
+            digest = dis.getMessageDigest();
+            return digest.digest();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileMD5");
+            return null;
         } finally {
-            if (is != null) {
+            if (dis != null) {
                 try {
-                    is.close();
+                    dis.close();
                 } catch (Exception e) {
                 }
             }
         }
-        return null;
     }
 
     // ======================
@@ -133,6 +166,15 @@ public final class MD5Utils {
     private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     // 用于建立十六进制字符的输出的大写字符数组
     private static final char[] HEX_DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+    /**
+     * 将 byte[] 转换 十六进制字符串
+     * @param data 待转换数据
+     * @return 十六进制 String
+     */
+    private static String toHexString(final byte[] data) {
+        return toHexString(data, HEX_DIGITS);
+    }
 
     /**
      * 将 byte[] 转换 十六进制字符串
@@ -154,5 +196,24 @@ public final class MD5Utils {
             JCLogUtils.eTag(TAG, e, "toHexString");
         }
         return null;
+    }
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

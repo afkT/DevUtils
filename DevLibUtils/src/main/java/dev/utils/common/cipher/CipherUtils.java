@@ -2,7 +2,6 @@ package dev.utils.common.cipher;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -163,7 +162,12 @@ public final class CipherUtils {
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "bytesToObject");
             } finally {
-                closeIOQuietly(ois);
+                if (ois != null) {
+                    try {
+                        ois.close();
+                    } catch (Exception e) {
+                    }
+                }
             }
         }
         return null;
@@ -185,29 +189,14 @@ public final class CipherUtils {
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "objectToBytes");
             } finally {
-                closeIOQuietly(oos);
-            }
-        }
-        return null;
-    }
-
-    // ==============
-    // = CloseUtils =
-    // ==============
-
-    /**
-     * 安静关闭 IO
-     * @param closeables Closeable[]
-     */
-    private static void closeIOQuietly(final Closeable... closeables) {
-        if (closeables == null) return;
-        for (Closeable closeable : closeables) {
-            if (closeable != null) {
-                try {
-                    closeable.close();
-                } catch (Exception ignore) {
+                if (oos != null) {
+                    try {
+                        oos.close();
+                    } catch (Exception e) {
+                    }
                 }
             }
         }
+        return null;
     }
 }

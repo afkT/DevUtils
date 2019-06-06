@@ -1,5 +1,6 @@
 package dev.utils.common.encrypt;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -71,7 +72,17 @@ public final class SHAUtils {
      * @return 文件 SHA1 字符串信息
      */
     public static String getFileSHA1(final String filePath) {
-        return getFileSHA(filePath, "SHA-1");
+        File file = isSpace(filePath) ? null : new File(filePath);
+        return getFileSHA(file, "SHA-1");
+    }
+
+    /**
+     * 获取文件 SHA1 值
+     * @param file 文件
+     * @return 文件 SHA1 字符串信息
+     */
+    public static String getFileSHA1(final File file) {
+        return getFileSHA(file, "SHA-1");
     }
 
     /**
@@ -80,7 +91,17 @@ public final class SHAUtils {
      * @return 文件 SHA256 字符串信息
      */
     public static String getFileSHA256(final String filePath) {
-        return getFileSHA(filePath, "SHA-256");
+        File file = isSpace(filePath) ? null : new File(filePath);
+        return getFileSHA(file, "SHA-256");
+    }
+
+    /**
+     * 获取文件 SHA256 值
+     * @param file 文件
+     * @return 文件 SHA256 字符串信息
+     */
+    public static String getFileSHA256(final File file) {
+        return getFileSHA(file, "SHA-256");
     }
 
     // =
@@ -109,15 +130,15 @@ public final class SHAUtils {
 
     /**
      * 获取文件 SHA 值
-     * @param filePath  文件路径
+     * @param file      文件
      * @param algorithm 算法
      * @return 文件指定 SHA 字符串信息
      */
-    public static String getFileSHA(final String filePath, final String algorithm) {
-        if (filePath == null || algorithm == null) return null;
+    public static String getFileSHA(final File file, final String algorithm) {
+        if (file == null || algorithm == null) return null;
         InputStream is = null;
         try {
-            is = new FileInputStream(filePath);
+            is = new FileInputStream(file);
             byte[] buffer = new byte[1024];
             MessageDigest digest = MessageDigest.getInstance(algorithm);
             int numRead = 0;
@@ -169,5 +190,28 @@ public final class SHAUtils {
             JCLogUtils.eTag(TAG, e, "toHexString");
         }
         return null;
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }
