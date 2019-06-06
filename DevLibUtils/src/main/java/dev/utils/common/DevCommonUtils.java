@@ -673,16 +673,16 @@ public final class DevCommonUtils {
     // = 其他工具类实现代码 =
     // ======================
 
-    // ================
-    // = ConvertUtils =
-    // ================
+    // ===============
+    // = RandomUtils =
+    // ===============
 
     /**
      * 获取 0 - 最大随机数之间的随机数
      * @param max 最大随机数
      * @return 随机介于 [0, max) 的区间值
      */
-    public static int getRandom(final int max) {
+    private static int getRandom(final int max) {
         return getRandom(0, max);
     }
 
@@ -692,7 +692,7 @@ public final class DevCommonUtils {
      * @param max 最大随机数
      * @return 随机介于 [min, max) 的区间值
      */
-    public static int getRandom(final int min, final int max) {
+    private static int getRandom(final int min, final int max) {
         if (min > max) {
             return 0;
         } else if (min == max) {
@@ -705,7 +705,7 @@ public final class DevCommonUtils {
     // = DateUtils =
     // =============
 
-    public static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
+    private static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
 
     /**
      * 将时间戳转换日期字符串
@@ -713,7 +713,7 @@ public final class DevCommonUtils {
      * @param format 日期格式
      * @return 按照指定格式的日期字符串
      */
-    public static String formatTime(final long time, final String format) {
+    private static String formatTime(final long time, final String format) {
         if (format == null) return null;
         try {
             return new SimpleDateFormat(format).format(time);
@@ -737,7 +737,7 @@ public final class DevCommonUtils {
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
-    public static String md5(final String data) {
+    private static String md5(final String data) {
         if (data == null) return null;
         try {
             return md5(data.getBytes());
@@ -752,7 +752,7 @@ public final class DevCommonUtils {
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
-    public static String md5(final byte[] data) {
+    private static String md5(final byte[] data) {
         if (data == null) return null;
         try {
             // 获取 MD5 摘要算法的 MessageDigest 对象
@@ -772,7 +772,7 @@ public final class DevCommonUtils {
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
-    public static String md5Upper(final String data) {
+    private static String md5Upper(final String data) {
         if (data == null) return null;
         try {
             return md5Upper(data.getBytes());
@@ -787,7 +787,7 @@ public final class DevCommonUtils {
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
-    public static String md5Upper(final byte[] data) {
+    private static String md5Upper(final byte[] data) {
         if (data == null) return null;
         try {
             // 获取 MD5 摘要算法的 MessageDigest 对象
@@ -800,15 +800,6 @@ public final class DevCommonUtils {
             JCLogUtils.eTag(TAG, e, "md5Upper");
         }
         return null;
-    }
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data 待转换数据
-     * @return 十六进制字符串
-     */
-    private static String toHexString(final byte[] data) {
-        return toHexString(data, HEX_DIGITS);
     }
 
     /**

@@ -99,7 +99,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromIS");
             return false;
         } finally {
-            closeIO(inputStream, os);
+            closeIOQuietly(inputStream, os);
         }
     }
 
@@ -152,7 +152,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByStream");
             return false;
         } finally {
-            closeIO(bos);
+            closeIOQuietly(bos);
         }
     }
 
@@ -211,7 +211,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByChannel");
             return false;
         } finally {
-            closeIO(fc);
+            closeIOQuietly(fc);
         }
     }
 
@@ -270,7 +270,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByMap");
             return false;
         } finally {
-            closeIO(fc);
+            closeIOQuietly(fc);
         }
     }
 
@@ -324,7 +324,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromString");
             return false;
         } finally {
-            closeIO(bw);
+            closeIOQuietly(bw);
         }
     }
 
@@ -435,7 +435,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToList");
             return null;
         } finally {
-            closeIO(br);
+            closeIOQuietly(br);
         }
     }
 
@@ -497,7 +497,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToString");
             return null;
         } finally {
-            closeIO(br);
+            closeIOQuietly(br);
         }
     }
 
@@ -532,7 +532,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByStream");
             return null;
         } finally {
-            closeIO(fis, baos);
+            closeIOQuietly(fis, baos);
         }
     }
 
@@ -564,7 +564,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByChannel");
             return null;
         } finally {
-            closeIO(fc);
+            closeIOQuietly(fc);
         }
     }
 
@@ -596,7 +596,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByMap");
             return null;
         } finally {
-            closeIO(fc);
+            closeIOQuietly(fc);
         }
     }
 
@@ -609,21 +609,24 @@ public final class FileIOUtils {
     // ==============
 
     /**
-     * 关闭 IO
+     * 安静关闭 IO
      * @param closeables Closeable[]
      */
-    private static void closeIO(final Closeable... closeables) {
+    private static void closeIOQuietly(final Closeable... closeables) {
         if (closeables == null) return;
         for (Closeable closeable : closeables) {
             if (closeable != null) {
                 try {
                     closeable.close();
-                } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "closeIO");
+                } catch (Exception ignore) {
                 }
             }
         }
     }
+
+    // ==============
+    // = FileUtils =
+    // ==============
 
     /**
      * 获取文件
@@ -681,6 +684,10 @@ public final class FileIOUtils {
     private static boolean isFileExists(final File file) {
         return file != null && file.exists();
     }
+
+    // ===============
+    // = StringUtils =
+    // ===============
 
     /**
      * 判断字符串是否为 null 或全为空白字符
