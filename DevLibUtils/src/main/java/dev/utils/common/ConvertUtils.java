@@ -39,9 +39,9 @@ public final class ConvertUtils {
     // 日志 TAG
     private static final String TAG = ConvertUtils.class.getSimpleName();
     // 用于建立十六进制字符的输出的小写字符数组
-    public static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     // 用于建立十六进制字符的输出的大写字符数组
-    public static final char[] HEX_DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    private static final char[] HEX_DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
      * char[] 转 String
@@ -657,38 +657,6 @@ public final class ConvertUtils {
 
     // =
 
-//    String data = "测试";
-//    // 转换二进制字符串
-//    String result = toBinaryString(data.getBytes());
-//    // 获取二进制数据
-//    byte[] bytes = result.getBytes();
-//    // 位移编码
-//    bytesEncrypt(bytes);
-//    // =
-//    // 位移解码
-//    bytesEncrypt(bytes);
-//    // 二进制数据解码
-//    byte[] byteResult = decodeBinary(new String(bytes));
-//    // 转换为原始数据
-//    String data1 = new String(byteResult);
-//    // 判断是否一直
-//    boolean equals = data.equals(data1);
-
-    /**
-     * 按位求补 byte[] 位移编解码(共用同一个方法)
-     * @param data byte[]
-     */
-    public static void bytesBitwiseAND(final byte[] data) {
-        if (data == null) return;
-        for (int i = 0, len = data.length; i < len; i++) {
-            int d = data[i];
-            d = ~d; // 按位补运算符 => 翻转操作数的每一位, 即 0 变成 1, 1 变成 0, 再通过反转后的二进制初始化回十六进制
-            data[i] = (byte) d;
-        }
-    }
-
-    // =
-
     /**
      * 将 short 转换成字节数组
      * @param data short
@@ -825,7 +793,163 @@ public final class ConvertUtils {
         return null;
     }
 
+    // ==============================================
+    // = (int、double、long、float)[] 转换 String[] =
+    // ==============================================
+
+    /**
+     * int[] 转换 string[]
+     * @param datas int[]
+     * @return String[]
+     */
+    public static String[] intsToStrings(final int[] datas) {
+        return intsToStrings(0, (datas != null) ? datas.length : 0, datas);
+    }
+
+    /**
+     * int[] 转换 string[]
+     * @param off   起始值
+     * @param datas int[]
+     * @return String[]
+     */
+    public static String[] intsToStrings(final int off, final int[] datas) {
+        return intsToStrings(off, (datas != null) ? datas.length : 0, datas);
+    }
+
+    /**
+     * int[] 转换 string[]
+     * @param off    起始值
+     * @param length 所需长度
+     * @param datas  int[]
+     * @return String[]
+     */
+    public static String[] intsToStrings(final int off, final int length, final int[] datas) {
+        if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
+            return null;
+        String[] strings = new String[length - off];
+        for (int i = 0, len = strings.length; i < len; i++) {
+            strings[i] = datas[off + i] + "";
+        }
+        return strings;
+    }
+
     // =
+
+    /**
+     * double[] 转换 string[]
+     * @param datas double[]
+     * @return String[]
+     */
+    public static String[] doublesToStrings(final double[] datas) {
+        return doublesToStrings(0, (datas != null) ? datas.length : 0, datas);
+    }
+
+    /**
+     * double[] 转换 string[]
+     * @param off   起始值
+     * @param datas double[]
+     * @return String[]
+     */
+    public static String[] doublesToStrings(final int off, final double[] datas) {
+        return doublesToStrings(off, (datas != null) ? datas.length : 0, datas);
+    }
+
+    /**
+     * double[] 转换 string[]
+     * @param off    起始值
+     * @param length 所需长度
+     * @param datas  double[]
+     * @return String[]
+     */
+    public static String[] doublesToStrings(final int off, final int length, final double[] datas) {
+        if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
+            return null;
+        String[] strings = new String[length - off];
+        for (int i = 0, len = strings.length; i < len; i++) {
+            strings[i] = datas[off + i] + "";
+        }
+        return strings;
+    }
+
+    // =
+
+    /**
+     * long[] 转换 string[]
+     * @param datas long[]
+     * @return String[]
+     */
+    public static String[] longsToStrings(final long[] datas) {
+        return longsToStrings(0, (datas != null) ? datas.length : 0, datas);
+    }
+
+    /**
+     * long[] 转换 string[]
+     * @param off   起始值
+     * @param datas long[]
+     * @return String[]
+     */
+    public static String[] longsToStrings(final int off, final long[] datas) {
+        return longsToStrings(off, (datas != null) ? datas.length : 0, datas);
+    }
+
+    /**
+     * long[] 转换 string[]
+     * @param off    起始值
+     * @param length 所需长度
+     * @param datas  long[]
+     * @return String[]
+     */
+    public static String[] longsToStrings(final int off, final int length, final long[] datas) {
+        if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
+            return null;
+        String[] strings = new String[length - off];
+        for (int i = 0, len = strings.length; i < len; i++) {
+            strings[i] = datas[off + i] + "";
+        }
+        return strings;
+    }
+
+    // =
+
+    /**
+     * float[] 转换 string[]
+     * @param datas float[]
+     * @return String[]
+     */
+    public static String[] floatsToStrings(final float[] datas) {
+        return floatsToStrings(0, (datas != null) ? datas.length : 0, datas);
+    }
+
+    /**
+     * float[] 转换 string[]
+     * @param off   起始值
+     * @param datas float[]
+     * @return String[]
+     */
+    public static String[] floatsToStrings(final int off, final float[] datas) {
+        return floatsToStrings(off, (datas != null) ? datas.length : 0, datas);
+    }
+
+    /**
+     * float[] 转换 string[]
+     * @param off    起始值
+     * @param length 所需长度
+     * @param datas  float[]
+     * @return String[]
+     */
+    public static String[] floatsToStrings(final int off, final int length, final float[] datas) {
+        if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
+            return null;
+        String[] strings = new String[length - off];
+        for (int i = 0, len = strings.length; i < len; i++) {
+            strings[i] = datas[off + i] + "";
+        }
+        return strings;
+    }
+
+    // ======================================
+    // = int[] 转换 (double、long、float)[] =
+    // ======================================
 
     /**
      * int[] 转换 double[]
@@ -939,45 +1063,9 @@ public final class ConvertUtils {
         return floats;
     }
 
-    // =
-
-    /**
-     * int[] 转换 string[]
-     * @param datas int[]
-     * @return String[]
-     */
-    public static String[] intsToStrings(final int[] datas) {
-        return intsToStrings(0, (datas != null) ? datas.length : 0, datas);
-    }
-
-    /**
-     * int[] 转换 string[]
-     * @param off   起始值
-     * @param datas int[]
-     * @return String[]
-     */
-    public static String[] intsToStrings(final int off, final int[] datas) {
-        return intsToStrings(off, (datas != null) ? datas.length : 0, datas);
-    }
-
-    /**
-     * int[] 转换 string[]
-     * @param off    起始值
-     * @param length 所需长度
-     * @param datas  int[]
-     * @return String[]
-     */
-    public static String[] intsToStrings(final int off, final int length, final int[] datas) {
-        if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
-            return null;
-        String[] strings = new String[length - off];
-        for (int i = 0, len = strings.length; i < len; i++) {
-            strings[i] = datas[off + i] + "";
-        }
-        return strings;
-    }
-
-    // =
+    // ==============================================
+    // = String[] 转换 (int、double、long、float)[] =
+    // ==============================================
 
     /**
      * string[] 转换 int[]
@@ -1193,7 +1281,9 @@ public final class ConvertUtils {
         return floats;
     }
 
-    // =
+    // ======================================
+    // = (double、long、float)[] 转换 int[] =
+    // ======================================
 
     /**
      * double[] 转换 int[]
@@ -1663,6 +1753,44 @@ public final class ConvertUtils {
 
     // =
 
+//    String data = "测试";
+//    // 转换二进制字符串
+//    String result = toBinaryString(data.getBytes());
+//    // 获取二进制数据
+//    byte[] bytes = result.getBytes();
+//    // 位移编码
+//    bytesEncrypt(bytes);
+//    // =
+//    // 位移解码
+//    bytesEncrypt(bytes);
+//    // 二进制数据解码
+//    byte[] byteResult = decodeBinary(new String(bytes));
+//    // 转换为原始数据
+//    String data1 = new String(byteResult);
+//    // 判断是否一直
+//    boolean equals = data.equals(data1);
+
+    /**
+     * 按位求补 byte[] 位移编解码(共用同一个方法)
+     * @param data byte[]
+     */
+    public static void bytesBitwiseAND(final byte[] data) {
+        if (data == null) return;
+        for (int i = 0, len = data.length; i < len; i++) {
+            int d = data[i];
+            d = ~d; // 按位补运算符 => 翻转操作数的每一位, 即 0 变成 1, 1 变成 0, 再通过反转后的二进制初始化回十六进制
+            data[i] = (byte) d;
+        }
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
     /**
      * 判断字符串是否为 null
      * @param str 待校验的字符串
@@ -1672,10 +1800,14 @@ public final class ConvertUtils {
         return (str == null || str.length() == 0);
     }
 
+    // ==============
+    // = ArrayUtils =
+    // ==============
+
     /**
      * 获取数组长度
-     * @param objects Object[]
-     * @return array[].length
+     * @param objects object[]
+     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     private static int length(final Object... objects) {
         return objects != null ? objects.length : 0;

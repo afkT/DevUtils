@@ -115,7 +115,7 @@ public final class IDCardUtils {
      */
     public static boolean validateIdCard15(final String idCard) {
         // 属于数字, 并且长度为 15 位数
-        if (isNum(idCard) && idCard.length() == CHINA_ID_MIN_LENGTH) {
+        if (isNumber(idCard) && idCard.length() == CHINA_ID_MIN_LENGTH) {
             // 获取省份编码
             String provinceCode = idCard.substring(0, 2);
             if (sCityCodeMaps.get(provinceCode) == null) return false;
@@ -149,7 +149,7 @@ public final class IDCardUtils {
             // 第 18 位
             String code18 = idCard.substring(17, CHINA_ID_MAX_LENGTH);
             // 判断前 17 位是否数字
-            if (isNum(code17)) {
+            if (isNumber(code17)) {
                 try {
                     int[] cardArys = converCharToInt(code17.toCharArray());
                     int sum17 = getPowerSum(cardArys);
@@ -174,7 +174,7 @@ public final class IDCardUtils {
      */
     public static String convert15CardTo18(final String idCard) {
         // 属于数字, 并且长度为 15 位数
-        if (isNum(idCard) && idCard.length() == CHINA_ID_MIN_LENGTH) {
+        if (isNumber(idCard) && idCard.length() == CHINA_ID_MIN_LENGTH) {
             String idCard18;
             Date birthDate = null;
             // 获取出生日期
@@ -633,11 +633,11 @@ public final class IDCardUtils {
     }
 
     /**
-     * 判断是否数字
+     * 检验数字
      * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean isNum(final String str) {
+    private static boolean isNumber(final String str) {
         return !isEmpty(str) && str.matches("^[0-9]*$");
     }
 

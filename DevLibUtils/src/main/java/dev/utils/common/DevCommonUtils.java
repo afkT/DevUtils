@@ -728,9 +728,9 @@ public final class DevCommonUtils {
     // ============
 
     // 用于建立十六进制字符的输出的小写字符数组
-    public static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     // 用于建立十六进制字符的输出的大写字符数组
-    public static final char[] HEX_DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    private static final char[] HEX_DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
      * 加密内容 - 32 位 MD5 - 小写
@@ -807,7 +807,7 @@ public final class DevCommonUtils {
      * @param data 待转换数据
      * @return 十六进制字符串
      */
-    public static String toHexString(final byte[] data) {
+    private static String toHexString(final byte[] data) {
         return toHexString(data, HEX_DIGITS);
     }
 
@@ -817,7 +817,7 @@ public final class DevCommonUtils {
      * @param hexDigits {@link #HEX_DIGITS}、{@link #HEX_DIGITS_UPPER}
      * @return 十六进制字符串
      */
-    public static String toHexString(final byte[] data, final char[] hexDigits) {
+    private static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
         try {
             int len = data.length;

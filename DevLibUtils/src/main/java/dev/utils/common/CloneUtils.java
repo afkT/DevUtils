@@ -41,10 +41,10 @@ public final class CloneUtils {
      */
     public static byte[] serializableToBytes(final Serializable serializable) {
         if (serializable == null) return null;
-        ByteArrayOutputStream baos;
         ObjectOutputStream oos = null;
         try {
-            oos = new ObjectOutputStream(baos = new ByteArrayOutputStream());
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(baos);
             oos.writeObject(serializable);
             return baos.toByteArray();
         } catch (Exception e) {
