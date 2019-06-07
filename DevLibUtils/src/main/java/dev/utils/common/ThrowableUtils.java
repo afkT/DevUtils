@@ -1,6 +1,5 @@
 package dev.utils.common;
 
-import java.io.Closeable;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -66,10 +65,9 @@ public final class ThrowableUtils {
      */
     public static String getThrowableStackTrace(final Throwable throwable, final String errorInfo) {
         if (throwable != null) {
-            Writer writer = null;
             PrintWriter printWriter = null;
             try {
-                writer = new StringWriter();
+                Writer writer = new StringWriter();
                 printWriter = new PrintWriter(writer);
                 throwable.printStackTrace(printWriter);
 //                // 获取错误栈信息
@@ -88,33 +86,14 @@ public final class ThrowableUtils {
                 JCLogUtils.eTag(TAG, e, "getThrowableStackTrace");
                 return e.toString();
             } finally {
-                closeIOQuietly(writer, printWriter);
-            }
-        }
-        return errorInfo;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ==============
-    // = CloseUtils =
-    // ==============
-
-    /**
-     * 安静关闭 IO
-     * @param closeables Closeable[]
-     */
-    private static void closeIOQuietly(final Closeable... closeables) {
-        if (closeables == null) return;
-        for (Closeable closeable : closeables) {
-            if (closeable != null) {
-                try {
-                    closeable.close();
-                } catch (Exception ignore) {
+                if (printWriter != null) {
+                    try {
+                        printWriter.close();
+                    } catch (Exception e) {
+                    }
                 }
             }
         }
+        return errorInfo;
     }
 }

@@ -30,7 +30,7 @@ public final class ZipUtils {
     // 日志 TAG
     private static final String TAG = ZipUtils.class.getSimpleName();
     // 缓存大小
-    public static final int BUFFER_LEN = 8192;
+    private static final int BUFFER_LEN = 8192;
 
     /**
      * 批量压缩文件
@@ -63,7 +63,7 @@ public final class ZipUtils {
         } finally {
             if (zos != null) {
                 zos.finish();
-                closeIO(zos);
+                closeIOQuietly(zos);
             }
         }
     }
@@ -99,7 +99,7 @@ public final class ZipUtils {
         } finally {
             if (zos != null) {
                 zos.finish();
-                closeIO(zos);
+                closeIOQuietly(zos);
             }
         }
     }
@@ -154,7 +154,7 @@ public final class ZipUtils {
             return zipFile(resFile, "", zos, comment);
         } finally {
             if (zos != null) {
-                closeIO(zos);
+                closeIOQuietly(zos);
             }
         }
     }
@@ -199,7 +199,7 @@ public final class ZipUtils {
                 }
                 zos.closeEntry();
             } finally {
-                closeIO(is);
+                closeIOQuietly(is);
             }
         }
         return true;
@@ -307,7 +307,7 @@ public final class ZipUtils {
                     os.write(buffer, 0, len);
                 }
             } finally {
-                closeIO(is, os);
+                closeIOQuietly(is, os);
             }
         }
         return true;
@@ -381,20 +381,32 @@ public final class ZipUtils {
     // ==============
 
     /**
-     * 关闭 IO
+     * 安静关闭 IO
      * @param closeables Closeable[]
      */
-    private static void closeIO(final Closeable... closeables) {
+    private static void closeIOQuietly(final Closeable... closeables) {
         if (closeables == null) return;
         for (Closeable closeable : closeables) {
             if (closeable != null) {
                 try {
                     closeable.close();
-                } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "closeIO");
+                } catch (Exception ignore) {
                 }
             }
         }
+    }
+
+    // ==============
+    // = FileUtils =
+    // ==============
+
+    /**
+     * 获取文件
+     * @param filePath 文件路径
+     * @return 文件 {@link File}
+     */
+    private static File getFileByPath(final String filePath) {
+        return filePath != null ? new File(filePath) : null;
     }
 
     /**
@@ -422,18 +434,14 @@ public final class ZipUtils {
             // 存在, 则返回新的路径
             return file.createNewFile();
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "createOrExistsFile");
             return false;
         }
     }
 
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
+    // ===============
+    // = StringUtils =
+    // ===============
 
     /**
      * 判断字符串是否为 null 或全为空白字符

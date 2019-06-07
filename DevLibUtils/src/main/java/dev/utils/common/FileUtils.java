@@ -38,9 +38,7 @@ public final class FileUtils {
     // 日志 TAG
     private static final String TAG = FileUtils.class.getSimpleName();
     // 换行字符串
-    public static final String NEW_LINE_STR = System.getProperty("line.separator");
-    // 换行字符串 - 两行
-    public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     // ============
     // = 私有方法 =
@@ -239,7 +237,7 @@ public final class FileUtils {
         try {
             // 存在, 则返回新的路径
             return file.createNewFile();
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "createOrExistsFile");
             return false;
         }

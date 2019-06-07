@@ -660,7 +660,7 @@ public final class FileIOUtils {
         try {
             // 存在, 则返回新的路径
             return file.createNewFile();
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "createOrExistsFile");
             return false;
         }
