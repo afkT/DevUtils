@@ -40,36 +40,6 @@ public final class FileUtils {
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
-    // ============
-    // = 私有方法 =
-    // ============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
-    }
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    // =
-
     /**
      * 获取文件
      * @param filePath 文件路径
@@ -561,7 +531,7 @@ public final class FileUtils {
         } catch (IOException e) {
             JCLogUtils.eTag(TAG, e, "getFileCharsetSimple");
         } finally {
-            closeIO(is);
+            closeIOQuietly(is);
         }
         switch (pos) {
             case 0xefbb:
@@ -613,7 +583,7 @@ public final class FileUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileLines");
         } finally {
-            closeIO(is);
+            closeIOQuietly(is);
         }
         return lineCount;
     }
@@ -878,94 +848,6 @@ public final class FileUtils {
         } else {
             return String.format("%." + number + "fTB", byteSize / 1099511627776d);
         }
-    }
-
-    // ===================
-    // = 获取文件 MD5 值 =
-    // ===================
-
-    /**
-     * 获取文件的 MD5 校验码
-     * @param filePath 文件路径
-     * @return 文件 MD5 校验码
-     */
-    public static String getFileMD5ToString(final String filePath) {
-        return getFileMD5ToString(getFileByPath(filePath));
-    }
-
-    /**
-     * 获取文件的 MD5 校验码
-     * @param file 文件
-     * @return 文件 MD5 校验码
-     */
-    public static String getFileMD5ToString(final File file) {
-        if (file == null || !file.exists()) return null;
-        try {
-            return toHexString(getFileMD5(file), HEX_DIGITS);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFileMD5ToString");
-        }
-        return null;
-    }
-
-    /**
-     * 获取文件的 MD5 校验码
-     * @param filePath 文件路径
-     * @return 文件 MD5 校验码
-     */
-    public static byte[] getFileMD5(final String filePath) {
-        return getFileMD5(getFileByPath(filePath));
-    }
-
-    /**
-     * 获取文件的 MD5 校验码
-     * @param file 文件
-     * @return 文件 MD5 校验码
-     */
-    public static byte[] getFileMD5(final File file) {
-        if (file == null || !file.exists()) return null;
-        DigestInputStream dis = null;
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            dis = new DigestInputStream(fis, digest);
-            byte[] buffer = new byte[256 * 1024];
-            while (true) {
-                if (!(dis.read(buffer) > 0)) break;
-            }
-            digest = dis.getMessageDigest();
-            return digest.digest();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFileMD5");
-            return null;
-        } finally {
-            closeIO(dis);
-        }
-    }
-
-    // 用于建立十六进制字符的输出的小写字符数组
-    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data      待转换数据
-     * @param hexDigits {@link #HEX_DIGITS}
-     * @return 十六进制字符串
-     */
-    private static String toHexString(final byte[] data, final char[] hexDigits) {
-        if (data == null || hexDigits == null) return null;
-        try {
-            int len = data.length;
-            StringBuilder builder = new StringBuilder(len);
-            for (int i = 0; i < len; i++) {
-                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-                builder.append(hexDigits[data[i] & 0x0f]);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toHexString");
-        }
-        return null;
     }
 
     // ============
@@ -1991,22 +1873,123 @@ public final class FileUtils {
     // = 其他工具类实现代码 =
     // ======================
 
+    // ============
+    // = MD5Utils =
+    // ============
+
+    /**
+     * 获取文件 MD5 值
+     * @param filePath 文件路径
+     * @return 文件 MD5 值
+     */
+    public static byte[] getFileMD5(final String filePath) {
+        File file = isSpace(filePath) ? null : new File(filePath);
+        return getFileMD5(file);
+    }
+
+    /**
+     * 获取文件 MD5 值 - 小写
+     * @param filePath 文件路径
+     * @return 文件 MD5 值转十六进制字符串
+     */
+    public static String getFileMD5ToHexString(final String filePath) {
+        File file = isSpace(filePath) ? null : new File(filePath);
+        return getFileMD5ToHexString(file);
+    }
+
+    /**
+     * 获取文件 MD5 值 - 小写
+     * @param file 文件
+     * @return 文件 MD5 值转十六进制字符串
+     */
+    public static String getFileMD5ToHexString(final File file) {
+        return toHexString(getFileMD5(file));
+    }
+
+    /**
+     * 获取文件 MD5 值
+     * @param file 文件
+     * @return 文件 MD5 值 byte[]
+     */
+    public static byte[] getFileMD5(final File file) {
+        if (file == null) return null;
+        DigestInputStream dis = null;
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            dis = new DigestInputStream(fis, digest);
+            byte[] buffer = new byte[256 * 1024];
+            while (true) {
+                if (!(dis.read(buffer) > 0)) break;
+            }
+            digest = dis.getMessageDigest();
+            return digest.digest();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getFileMD5");
+            return null;
+        } finally {
+            if (dis != null) {
+                try {
+                    dis.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    // ================
+    // = ConvertUtils =
+    // ================
+
+    // 用于建立十六进制字符的输出的小写字符数组
+    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
+    /**
+     * 将 byte[] 转换 十六进制字符串
+     * @param data 待转换数据
+     * @return 十六进制 String
+     */
+    private static String toHexString(final byte[] data) {
+        return toHexString(data, HEX_DIGITS);
+    }
+
+    /**
+     * 将 byte[] 转换 十六进制字符串
+     * @param data      待转换数据
+     * @param hexDigits {@link #HEX_DIGITS}
+     * @return 十六进制字符串
+     */
+    private static String toHexString(final byte[] data, final char[] hexDigits) {
+        if (data == null || hexDigits == null) return null;
+        try {
+            int len = data.length;
+            StringBuilder builder = new StringBuilder(len);
+            for (int i = 0; i < len; i++) {
+                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
+                builder.append(hexDigits[data[i] & 0x0f]);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toHexString");
+        }
+        return null;
+    }
+
     // ==============
     // = CloseUtils =
     // ==============
 
     /**
-     * 关闭 IO
+     * 安静关闭 IO
      * @param closeables Closeable[]
      */
-    private static void closeIO(final Closeable... closeables) {
+    private static void closeIOQuietly(final Closeable... closeables) {
         if (closeables == null) return;
         for (Closeable closeable : closeables) {
             if (closeable != null) {
                 try {
                     closeable.close();
-                } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "closeIO");
+                } catch (Exception ignore) {
                 }
             }
         }
@@ -2026,7 +2009,7 @@ public final class FileUtils {
      * @param append      是否追加到结尾
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromIS(final File file, final InputStream inputStream, final boolean append) {
+    private static boolean writeFileFromIS(final File file, final InputStream inputStream, final boolean append) {
         if (!createOrExistsFile(file) || inputStream == null) return false;
         OutputStream os = null;
         try {
@@ -2041,7 +2024,35 @@ public final class FileUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromIS");
             return false;
         } finally {
-            closeIO(inputStream, os);
+            closeIOQuietly(inputStream, os);
         }
+    }
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null
+     * @param str 待校验的字符串
+     * @return {@code true} is null, {@code false} not null
+     */
+    private static boolean isEmpty(final String str) {
+        return (str == null || str.length() == 0);
+    }
+
+    /**
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

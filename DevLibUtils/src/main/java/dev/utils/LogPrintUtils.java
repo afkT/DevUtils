@@ -270,12 +270,12 @@ public final class LogPrintUtils {
                 if (e != null) {
                     Throwable throwable = e.getCause();
                     if (throwable != null) {
-                        errorInfo = throwable.getMessage();
+                        errorInfo = throwable.toString();
                     } else {
                         try {
-                            errorInfo = e.getMessage();
+                            errorInfo = e.toString();
                         } catch (Exception e1) {
-                            errorInfo = e1.getMessage();
+                            errorInfo = e1.toString();
                         }
                     }
                 }
@@ -307,12 +307,12 @@ public final class LogPrintUtils {
                 if (e != null) {
                     Throwable throwable = e.getCause();
                     if (throwable != null) {
-                        errorInfo = throwable.getMessage();
+                        errorInfo = throwable.toString();
                     } else {
                         try {
-                            errorInfo = e.getMessage();
+                            errorInfo = e.toString();
                         } catch (Exception e1) {
-                            errorInfo = e1.getMessage();
+                            errorInfo = e1.toString();
                         }
                     }
                 }
