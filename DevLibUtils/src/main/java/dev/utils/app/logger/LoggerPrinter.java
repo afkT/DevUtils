@@ -210,6 +210,9 @@ final class LoggerPrinter implements IPrinter {
                 String message = jsonArray.toString(LogConstants.JSON_INDENT);
                 // 打印信息
                 logHandle(logConfig, tag, Log.DEBUG, message);
+            } else {
+                // 打印信息
+                logHandle(logConfig, tag, Log.DEBUG, "json content format error");
             }
         } catch (Exception e) {
             String errorInfo = "null";
@@ -415,6 +418,9 @@ final class LoggerPrinter implements IPrinter {
                 String message = jsonArray.toString(LogConstants.JSON_INDENT);
                 // 打印信息
                 logHandle(logConfig, tag, Log.DEBUG, message);
+            } else {
+                // 打印信息
+                logHandle(logConfig, tag, Log.DEBUG, "json content format error");
             }
         } catch (Exception e) {
             String errorInfo = "null";

@@ -168,7 +168,7 @@ public final class CameraAssist {
      * @return {@link Camera.Size} 预览分辨率
      */
     public Camera.Size getPreviewSize() {
-        if (null != mCamera && null != mCamera.getParameters()) {
+        if (mCamera != null && mCamera.getParameters() != null) {
             return mCamera.getParameters().getPreviewSize();
         }
         return null;
@@ -238,9 +238,13 @@ public final class CameraAssist {
         this.mAutoInterval = autoInterval;
     }
 
-    // ================================
-    // = FlashlightUtils - 闪光灯相关 =
-    // ================================
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===================
+    // = FlashlightUtils =
+    // ===================
 
     /**
      * 打开闪光灯

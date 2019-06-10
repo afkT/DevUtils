@@ -11,8 +11,6 @@ import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.media.MediaPlayer.OnVideoSizeChangedListener;
 import android.support.annotation.RawRes;
 
-import java.io.IOException;
-
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
@@ -161,7 +159,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                         if (file != null) {
                             try {
                                 file.close();
-                            } catch (IOException e) {
+                            } catch (Exception e) {
                             }
                         }
                     }
@@ -220,7 +218,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                         if (file != null) {
                             try {
                                 file.close();
-                            } catch (IOException e) {
+                            } catch (Exception e) {
                             }
                         }
                     }

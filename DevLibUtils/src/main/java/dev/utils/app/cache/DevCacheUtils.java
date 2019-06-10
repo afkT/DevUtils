@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 缓存检查(时间)工具类
+ * detail: 缓存内部工具类
  * @author 杨福海(michael) www.yangfuhai.com
  * @author Ttt (重写、规范注释、逻辑判断等)
  */

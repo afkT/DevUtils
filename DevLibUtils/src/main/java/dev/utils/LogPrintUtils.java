@@ -264,6 +264,9 @@ public final class LogPrintUtils {
                     String message = jsonArray.toString(JSON_INDENT);
                     // 打印信息
                     printLog(Log.DEBUG, tag, message);
+                } else {
+                    // 打印信息
+                    printLog(Log.DEBUG, tag, "json content format error");
                 }
             } catch (Exception e) {
                 String errorInfo = "null";
