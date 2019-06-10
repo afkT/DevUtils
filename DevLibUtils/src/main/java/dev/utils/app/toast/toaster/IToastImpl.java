@@ -517,7 +517,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param style    Toast 样式 {@link IToast.Style}
      * @param view     Toast 显示的 View
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
-     * @return
+     * @return {@link Toast}
      */
     private Toast newToastView(final IToast.Style style, final View view, final int duration) {
         if (style == null) {

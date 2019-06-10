@@ -186,7 +186,7 @@ public final class SDCardUtils {
     /**
      * 返回对应路径的空间大小信息
      * @param path 路径
-     * @return 返回数据, 0 = 总空间大小, 1 = 空闲控件大小, 2 = 已使用空间大小
+     * @return 数据, 0 = 总空间大小, 1 = 空闲控件大小, 2 = 已使用空间大小
      */
     public static long[] getBlockSizeInfos(final String path) {
         try {

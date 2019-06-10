@@ -160,7 +160,7 @@ final class DevCacheManager {
 
     /**
      * 移除旧的文件
-     * @return 返回移除的文件大小
+     * @return 移除的文件大小
      */
     private long removeNext() {
         if (mLastUsageDateMaps.isEmpty()) {

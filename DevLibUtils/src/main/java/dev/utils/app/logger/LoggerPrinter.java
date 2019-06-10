@@ -801,7 +801,7 @@ final class LoggerPrinter implements IPrinter {
      * 处理信息
      * @param message 日志信息
      * @param args    占位符替换
-     * @return 返回处理(格式化)后准备打印的日志信息
+     * @return 处理(格式化)后准备打印的日志信息
      */
     private String createMessage(final String message, final Object... args) {
         if (message != null) {

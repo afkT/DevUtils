@@ -104,7 +104,7 @@ public final class JCLogUtils {
      * 处理信息
      * @param message 日志信息
      * @param args    占位符替换
-     * @return 返回处理(格式化)后准备打印的日志信息
+     * @return 处理(格式化)后准备打印的日志信息
      */
     private static String createMessage(final String message, final Object... args) {
         String result;
@@ -133,7 +133,7 @@ public final class JCLogUtils {
      * @param throwable 错误异常
      * @param message   需要打印的消息
      * @param args      动态参数
-     * @return 返回处理(格式化)后准备打印的日志信息
+     * @return 处理(格式化)后准备打印的日志信息
      */
     private static String splitErrorMessage(final Throwable throwable, final String message, final Object... args) {
         String result;

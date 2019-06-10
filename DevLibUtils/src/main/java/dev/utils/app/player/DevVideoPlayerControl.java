@@ -1,5 +1,6 @@
 package dev.utils.app.player;
 
+import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.text.TextUtils;
 import android.view.SurfaceHolder;
@@ -83,10 +84,10 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * Surface 改变通知
-     * @param holder
-     * @param format
-     * @param width
-     * @param height
+     * @param holder {@link SurfaceHolder}
+     * @param format {@link PixelFormat} 像素格式
+     * @param width  宽度
+     * @param height 高度
      */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
@@ -95,7 +96,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * Surface 创建
-     * @param holder
+     * @param holder {@link SurfaceHolder}
      */
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -112,7 +113,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * Surface 销毁
-     * @param holder
+     * @param holder {@link SurfaceHolder}
      */
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {

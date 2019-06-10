@@ -465,7 +465,7 @@ final class Utils {
      * 处理可变参数
      * @param length    保留长度
      * @param strArrays 可变参数数组
-     * @return
+     * @return 对应长度的参数数组
      */
     public static String[] handlerVariable(final int length, final String[] strArrays) {
         // 处理后的数据

@@ -107,7 +107,7 @@ public final class HtmlUtils {
      * @param source      给定的字符串
      * @param keyword     给定的关键字
      * @param replacement 替换的内容
-     * @return 返回的是带Html标签的字符串, 在使用时要通过Html.fromHtml() 转换为Spanned对象再传递给TextView对象
+     * @return 带 HTML 标签的字符串, 在使用时要通过 Html.fromHtml() 转换为 Spanned 对象再传递给 TextView 对象
      */
     public static String keywordReplaceAll(final String source, final String keyword, final String replacement) {
         try {

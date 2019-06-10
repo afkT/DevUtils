@@ -611,7 +611,7 @@ public final class BitmapUtils {
      * 计算视频宽高大小, 视频比例xxx*xxx按屏幕比例放大或者缩小
      * @param width  高度比例
      * @param height 宽度比例
-     * @return 返回宽高 0 = 宽, 1 = 高
+     * @return 宽高, 0 = 宽, 1 = 高
      */
     public static int[] reckonVideoWidthHeight(final float width, final float height) {
         try {

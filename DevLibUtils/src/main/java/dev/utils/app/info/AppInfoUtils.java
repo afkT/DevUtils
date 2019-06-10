@@ -187,7 +187,7 @@ public final class AppInfoUtils {
 
     /**
      * 获取全部 App 列表
-     * @return 返回 App 列表
+     * @return App 列表
      */
     public static List<AppInfoBean> getAppLists() {
         return getAppLists(AppInfoBean.AppType.ALL);
@@ -196,7 +196,7 @@ public final class AppInfoUtils {
     /**
      * 获取 App 列表
      * @param appType App 类型
-     * @return 返回 App 列表
+     * @return App 列表
      */
     public static List<AppInfoBean> getAppLists(final AppInfoBean.AppType appType) {
         // App 信息

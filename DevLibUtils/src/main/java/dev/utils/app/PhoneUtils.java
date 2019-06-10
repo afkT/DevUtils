@@ -79,8 +79,8 @@ public final class PhoneUtils {
     }
 
     /**
-     * 获取Sim卡所属地区, 非国内地区暂不支持播放
-     * @return 返回SIM的地区码
+     * 获取 SIM 卡所属地区, 非国内地区暂不支持播放
+     * @return SIM 卡的地区码
      */
     public static String getUserCountry() {
         try {
