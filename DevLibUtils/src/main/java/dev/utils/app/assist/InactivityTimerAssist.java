@@ -33,7 +33,7 @@ public final class InactivityTimerAssist {
 
     /**
      * 构造函数
-     * @param activity
+     * @param activity {@link Activity}
      */
     public InactivityTimerAssist(final Activity activity) {
         this(activity, 300000L); // 5 * 60 * 1000L

@@ -51,7 +51,7 @@ public final class BeepVibrateAssist implements Closeable {
     /**
      * 构造函数
      * @param activity {@link Activity}
-     * @param filePath 本地资源路径
+     * @param filePath 文件路径
      */
     public BeepVibrateAssist(final Activity activity, final String filePath) {
         this.mActivity = activity;
@@ -226,7 +226,10 @@ public final class BeepVibrateAssist implements Closeable {
             try {
                 mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
             } finally {
-                file.close();
+                try {
+                    file.close();
+                } catch (Exception e) {
+                }
             }
             mediaPlayer.setVolume(beepVolume, beepVolume);
             mediaPlayer.prepare();
@@ -242,7 +245,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 创建 MediaPlayer 对象
-     * @param filePath 本地资源路径
+     * @param filePath 文件路径
      * @return {@link MediaPlayer}
      */
     public static MediaPlayer buildMediaPlayer(final String filePath) {
@@ -251,7 +254,7 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 创建 MediaPlayer 对象
-     * @param filePath   本地资源路径
+     * @param filePath   文件路径
      * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */
