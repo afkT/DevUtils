@@ -65,7 +65,7 @@ public final class ActivityUtils {
      * @param view {@link View}
      * @return {@link Activity}
      */
-    public static Activity getActivityByView(final View view) {
+    public static Activity getActivity(final View view) {
         if (view != null) {
             try {
                 Context context = view.getContext();
@@ -76,7 +76,7 @@ public final class ActivityUtils {
                     context = ((ContextWrapper) context).getBaseContext();
                 }
             } catch (Exception e) {
-                LogPrintUtils.e(TAG, e, "getActivityByView");
+                LogPrintUtils.e(TAG, e, "getActivity");
             }
         }
         return null;
@@ -417,7 +417,7 @@ public final class ActivityUtils {
      * @param exitAnim  退出动画
      * @return {@link Bundle}
      */
-    private static Bundle getOptionsBundle(final Context context, final int enterAnim, final int exitAnim) {
+    public static Bundle getOptionsBundle(final Context context, final int enterAnim, final int exitAnim) {
         try {
             return ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle();
         } catch (Exception e) {
@@ -432,7 +432,7 @@ public final class ActivityUtils {
      * @param sharedElements 转场动画 View
      * @return {@link Bundle}
      */
-    private static Bundle getOptionsBundle(final Activity activity, final View[] sharedElements) {
+    public static Bundle getOptionsBundle(final Activity activity, final View[] sharedElements) {
         if (activity == null) return null;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

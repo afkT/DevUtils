@@ -157,34 +157,34 @@ public final class AccessibilityUtils {
 
         switch (eventType) {
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:// 通知栏事件
-                builder.append("event type:TYPE_NOTIFICATION_STATE_CHANGED");
+                builder.append("event type: TYPE_NOTIFICATION_STATE_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED: // 窗体状态改变
-                builder.append("event type:TYPE_WINDOW_STATE_CHANGED");
+                builder.append("event type: TYPE_WINDOW_STATE_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED: // View 获取到焦点
-                builder.append("event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
+                builder.append("event type: TYPE_VIEW_ACCESSIBILITY_FOCUSED");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
-                builder.append("event type:TYPE_VIEW_ACCESSIBILITY_FOCUSED");
+                builder.append("event type: TYPE_VIEW_ACCESSIBILITY_FOCUSED");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_END:
-                builder.append("event type:TYPE_GESTURE_DETECTION_END");
+                builder.append("event type: TYPE_GESTURE_DETECTION_END");
                 break;
             case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:
-                builder.append("event type:TYPE_WINDOW_CONTENT_CHANGED");
+                builder.append("event type: TYPE_WINDOW_CONTENT_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_CLICKED:
-                builder.append("event type:TYPE_VIEW_CLICKED");
+                builder.append("event type: TYPE_VIEW_CLICKED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED:
-                builder.append("event type:TYPE_VIEW_TEXT_CHANGED");
+                builder.append("event type: TYPE_VIEW_TEXT_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_SCROLLED:
-                builder.append("event type:TYPE_VIEW_SCROLLED");
+                builder.append("event type: TYPE_VIEW_SCROLLED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED:
-                builder.append("event type:TYPE_VIEW_TEXT_SELECTION_CHANGED");
+                builder.append("event type: TYPE_VIEW_TEXT_SELECTION_CHANGED");
                 break;
         }
         builder.append(NEW_LINE_STR);
@@ -236,7 +236,7 @@ public final class AccessibilityUtils {
     /**
      * 查找符合条件的节点
      * @param focus     焦点类型
-     * @param className 节点所属的类, 类名
+     * @param className 节点所属的类(类名)
      * @return 拥有特定焦点类型的节点
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -248,7 +248,7 @@ public final class AccessibilityUtils {
      * 查找符合条件的节点
      * @param service   {@link AccessibilityService}
      * @param focus     焦点类型
-     * @param className 节点所属的类, 类名
+     * @param className 节点所属的类(类名)
      * @return 拥有特定焦点类型的节点
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -304,7 +304,7 @@ public final class AccessibilityUtils {
     /**
      * 查找符合条件的节点
      * @param text      文本内容(搜索包含该文本内容的节点)
-     * @param className 节点所属的类, 类名
+     * @param className 节点所属的类(类名)
      * @return 包含该文本内容, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -316,7 +316,7 @@ public final class AccessibilityUtils {
      * 查找符合条件的节点
      * @param service   {@link AccessibilityService}
      * @param text      文本内容(搜索包含该文本内容的节点)
-     * @param className 节点所属的类, 类名
+     * @param className 节点所属的类(类名)
      * @return 包含该文本内容, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -374,7 +374,7 @@ public final class AccessibilityUtils {
     /**
      * 查找符合条件的节点
      * @param id        viewId
-     * @param className 节点所属的类, 类名
+     * @param className 节点所属的类(类名)
      * @return 等于 viewId, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -386,7 +386,7 @@ public final class AccessibilityUtils {
      * 查找符合条件的节点
      * @param service   {@link AccessibilityService}
      * @param id        viewId
-     * @param className 节点所属的类, 类名
+     * @param className 节点所属的类(类名)
      * @return 等于 viewId, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -686,7 +686,7 @@ public final class AccessibilityUtils {
     }
 
     // ============
-    // = 内部封装 =
+    // = 统一调用 =
     // ============
 
     /**

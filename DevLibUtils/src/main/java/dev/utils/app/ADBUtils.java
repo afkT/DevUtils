@@ -2250,13 +2250,17 @@ public final class ADBUtils {
         return result.isSuccess2();
     }
 
-    // ============
-    // = 内部方法 =
-    // ============
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // =============
+    // = FileUtils =
+    // =============
 
     /**
      * 检查是否存在某个文件
-     * @param file 文件路径
+     * @param file 文件
      * @return {@code true} yes, {@code false} no
      */
     private static boolean isFileExists(final File file) {
@@ -2271,6 +2275,10 @@ public final class ADBUtils {
     private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;
     }
+
+    // ===============
+    // = StringUtils =
+    // ===============
 
     /**
      * 判断字符串是否为 null 或全为空白字符
