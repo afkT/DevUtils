@@ -206,12 +206,20 @@ final class DevCacheUtils {
      */
     public static byte[] bitmapToBytes(final Bitmap bitmap) {
         if (bitmap == null) return null;
+        ByteArrayOutputStream baos = null;
         try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
             return baos.toByteArray();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bitmapToBytes");
+        } finally {
+            if (baos != null) {
+                try {
+                    baos.close();
+                } catch (Exception e) {
+                }
+            }
         }
         return null;
     }
@@ -277,7 +285,13 @@ final class DevCacheUtils {
         return null;
     }
 
-    // =
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ==============
+    // = ArrayUtils =
+    // ==============
 
     /**
      * 拼接数组

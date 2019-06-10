@@ -215,8 +215,13 @@ public final class DevCache {
             if (bw != null) {
                 try {
                     bw.flush();
+                } catch (Exception e) {
+                }
+            }
+            if (bw != null) {
+                try {
                     bw.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                 }
             }
             mCache.put(file);
@@ -272,7 +277,7 @@ public final class DevCache {
             if (br != null) {
                 try {
                     br.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                 }
             }
             if (removeFile)
@@ -408,8 +413,13 @@ public final class DevCache {
             if (fos != null) {
                 try {
                     fos.flush();
+                } catch (Exception e) {
+                }
+            }
+            if (fos != null) {
+                try {
                     fos.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                 }
             }
             mCache.put(file);
@@ -460,15 +470,15 @@ public final class DevCache {
      * @return byte[]
      */
     public byte[] getAsBinary(final String key) {
-        RandomAccessFile RAFile = null;
+        RandomAccessFile raFile = null;
         boolean removeFile = false;
         try {
             File file = mCache.get(key);
             if (!file.exists())
                 return null;
-            RAFile = new RandomAccessFile(file, "r");
-            byte[] byteArray = new byte[(int) RAFile.length()];
-            RAFile.read(byteArray);
+            raFile = new RandomAccessFile(file, "r");
+            byte[] byteArray = new byte[(int) raFile.length()];
+            raFile.read(byteArray);
             if (!DevCacheUtils.isDue(byteArray)) {
                 return DevCacheUtils.clearDateInfo(byteArray);
             } else {
@@ -480,10 +490,10 @@ public final class DevCache {
             LogPrintUtils.eTag(TAG, e, "getAsBinary");
             return null;
         } finally {
-            if (RAFile != null) {
+            if (raFile != null) {
                 try {
-                    RAFile.close();
-                } catch (IOException e) {
+                    raFile.close();
+                } catch (Exception e) {
                 }
             }
             if (removeFile)
@@ -511,10 +521,9 @@ public final class DevCache {
      * @param saveTime 保存的时间, 单位:秒
      */
     public void put(final String key, final Serializable value, final int saveTime) {
-        ByteArrayOutputStream baos = null;
         ObjectOutputStream oos = null;
         try {
-            baos = new ByteArrayOutputStream();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             oos = new ObjectOutputStream(baos);
             oos.writeObject(value);
             byte[] data = baos.toByteArray();
@@ -526,16 +535,10 @@ public final class DevCache {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put");
         } finally {
-            if (baos != null) {
-                try {
-                    baos.close();
-                } catch (IOException e) {
-                }
-            }
             if (oos != null) {
                 try {
                     oos.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                 }
             }
         }
@@ -549,27 +552,18 @@ public final class DevCache {
     public Object getAsObject(final String key) {
         byte[] data = getAsBinary(key);
         if (data != null) {
-            ByteArrayInputStream bais = null;
             ObjectInputStream ois = null;
             try {
-                bais = new ByteArrayInputStream(data);
-                ois = new ObjectInputStream(bais);
-                Object reObject = ois.readObject();
-                return reObject;
+                ois = new ObjectInputStream(new ByteArrayInputStream(data));
+                return ois.readObject();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getAsObject");
                 return null;
             } finally {
-                if (bais != null) {
-                    try {
-                        bais.close();
-                    } catch (IOException e) {
-                    }
-                }
                 if (ois != null) {
                     try {
                         ois.close();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                     }
                 }
             }
