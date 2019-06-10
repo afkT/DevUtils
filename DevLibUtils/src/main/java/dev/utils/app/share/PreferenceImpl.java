@@ -68,7 +68,6 @@ final class PreferenceImpl implements IPreference {
      * @param key    保存的 key
      * @param object 保存的 value
      */
-    @SuppressWarnings("unchecked")
     private void put(final SharedPreferences.Editor editor, final String key, final Object object) {
         // key 不为 null 时再存入, 否则不存储
         if (key != null && object != null) {

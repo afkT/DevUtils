@@ -313,7 +313,7 @@ public final class WifiUtils {
      * @param data 待检验数据
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isHex(final String data) {
+    private static boolean isHex(final String data) {
         if (data == null) return false;
         // 获取数据长度
         int len = data.length();
@@ -404,10 +404,8 @@ public final class WifiUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isConnNull(final String ssid) {
-        // <unknown ssid>
-        if (ssid == null) {
-            return true;
-        } else return ssid.indexOf("unknown") != -1;
+        if (ssid == null) return true;
+        return ssid.indexOf("unknown") != -1; // <unknown ssid>
     }
 
     /**
@@ -483,7 +481,7 @@ public final class WifiUtils {
      * @param wifiConfig wifi 配置信息
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isExsitsPwd(final WifiConfiguration wifiConfig) {
+    public static boolean isExistsPwd(final WifiConfiguration wifiConfig) {
         if (wifiConfig == null) return false;
         int wifiSecurity = getSecurity(wifiConfig);
         // 判断是否加密
@@ -495,7 +493,7 @@ public final class WifiUtils {
      * @param ssid wifi ssid
      * @return {@link WifiConfiguration}
      */
-    public WifiConfiguration isExsits(final String ssid) {
+    public WifiConfiguration isExists(final String ssid) {
         if (ssid == null) return null;
         // 获取 wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
@@ -518,7 +516,7 @@ public final class WifiUtils {
      * @param networkId network id
      * @return {@link WifiConfiguration}
      */
-    public WifiConfiguration isExsits(final int networkId) {
+    public WifiConfiguration isExists(final int networkId) {
         // 获取 wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
         // 防止为 null
@@ -631,7 +629,7 @@ public final class WifiUtils {
                 LogPrintUtils.dTag(TAG, "属于正常方式连接(DHCP)");
             }
             // 判断当前准备连接的 wifi, 是否存在配置文件
-            WifiConfiguration preWifiConfig = this.isExsits(ssid);
+            WifiConfiguration preWifiConfig = this.isExists(ssid);
             // =
             if (preWifiConfig != null) {
                 // 存在则删除

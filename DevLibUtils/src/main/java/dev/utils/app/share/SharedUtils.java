@@ -20,7 +20,7 @@ public final class SharedUtils {
     private static Context sContext;
 
     /**
-     * 初始化操作
+     * 初始化操作 (内部已调用)
      * @param context {@link Context}
      */
     public static void init(final Context context) {

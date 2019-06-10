@@ -11,7 +11,6 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -155,7 +154,7 @@ final class Utils {
      * @param view     {@link View}
      * @param drawable 背景 {@link Drawable}
      */
-    public static void setBackground(@NonNull final View view, final Drawable drawable) {
+    public static void setBackground(final View view, final Drawable drawable) {
         if (view != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                 view.setBackground(drawable);
@@ -183,7 +182,7 @@ final class Utils {
      * @param tintColor R.color.id
      * @return {@link Drawable}
      */
-    public static Drawable tintIcon(@NonNull final Drawable drawable, @ColorInt final int tintColor) {
+    public static Drawable tintIcon(final Drawable drawable, @ColorInt final int tintColor) {
         if (drawable != null) {
             try {
                 drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
