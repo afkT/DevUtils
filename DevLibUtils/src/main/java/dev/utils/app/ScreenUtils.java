@@ -12,7 +12,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.RequiresPermission;
 import android.util.DisplayMetrics;
@@ -371,7 +370,7 @@ public final class ScreenUtils {
      * 设置屏幕为全屏
      * @param activity
      */
-    public static void setFullScreen(@NonNull final Activity activity) {
+    public static void setFullScreen(final Activity activity) {
         try {
             activity.requestWindowFeature(Window.FEATURE_NO_TITLE); // 隐藏标题
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -392,7 +391,7 @@ public final class ScreenUtils {
      * 切屏不会重新调用各个生命周期, 只会执行 onConfigurationChanged 方法
      * @param activity
      */
-    public static void setLandscape(@NonNull final Activity activity) {
+    public static void setLandscape(final Activity activity) {
         try {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } catch (Exception e) {
@@ -404,7 +403,7 @@ public final class ScreenUtils {
      * 设置屏幕为竖屏
      * @param activity
      */
-    public static void setPortrait(@NonNull final Activity activity) {
+    public static void setPortrait(final Activity activity) {
         try {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         } catch (Exception e) {
@@ -443,7 +442,7 @@ public final class ScreenUtils {
      * @param activity
      * @return 屏幕旋转角度
      */
-    public static int getScreenRotation(@NonNull final Activity activity) {
+    public static int getScreenRotation(final Activity activity) {
         try {
             switch (activity.getWindowManager().getDefaultDisplay().getRotation()) {
                 case Surface.ROTATION_0:

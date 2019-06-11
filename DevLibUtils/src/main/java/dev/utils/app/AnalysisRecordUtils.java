@@ -263,11 +263,15 @@ public final class AnalysisRecordUtils {
         builder.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         // 追加边距
         builder.append(" => ");
+        // 是否添加空格(第一位不添加空格)
+        boolean isAdd = false;
         // 循环追加内容
         for (int i = 0, len = logs.length; i < len; i++) {
-            if (isSpace) { // 判断是否追加空格
+            if (isSpace && isAdd) { // 判断是否追加空格
                 builder.append(" ");
             }
+            // 标记添加空格(第一位不添加空格)
+            isAdd = true;
             // 追加保存内容
             builder.append(logs[i]);
         }

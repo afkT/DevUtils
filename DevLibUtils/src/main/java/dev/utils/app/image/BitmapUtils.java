@@ -15,7 +15,6 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -115,7 +114,7 @@ public final class BitmapUtils {
      * @param view
      * @param drawable
      */
-    public static void setBackground(@NonNull final View view, final Drawable drawable) {
+    public static void setBackground(final View view, final Drawable drawable) {
         if (view != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                 view.setBackground(drawable);

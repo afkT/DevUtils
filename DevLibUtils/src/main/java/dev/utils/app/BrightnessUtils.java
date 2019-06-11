@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
 import android.view.Window;
 import android.view.WindowManager;
@@ -118,7 +117,7 @@ public final class BrightnessUtils {
      * @param window     窗口
      * @param brightness 亮度值
      */
-    public static void setWindowBrightness(@NonNull final Window window, @IntRange(from = 0, to = 255) final int brightness) {
+    public static void setWindowBrightness(final Window window, @IntRange(from = 0, to = 255) final int brightness) {
         if (window == null) return;
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.screenBrightness = brightness / 255f;

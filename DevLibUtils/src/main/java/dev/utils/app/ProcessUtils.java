@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
 import android.text.TextUtils;
 
@@ -298,7 +297,7 @@ public final class ProcessUtils {
      * @return {@code true} 杀死成功, {@code false} 杀死失败
      */
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
-    public static boolean killBackgroundProcesses(@NonNull final String packageName) {
+    public static boolean killBackgroundProcesses(final String packageName) {
         try {
             ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
             if (activityManager == null) return false;

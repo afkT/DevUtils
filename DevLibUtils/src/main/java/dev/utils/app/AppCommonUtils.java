@@ -68,6 +68,16 @@ public final class AppCommonUtils {
     // ================
 
     /**
+     * 获取 SDK 版本
+     * @return SDK 版本
+     */
+    public static int getSDKVersion(){
+        return Build.VERSION.SDK_INT;
+    }
+
+    // =
+
+    /**
      * 是否在 2.2 版本及以上
      * @return 是否在 2.2 版本及以上
      */

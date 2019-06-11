@@ -19,7 +19,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
@@ -586,7 +585,7 @@ public final class AppUtils {
      * @param category
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isAppInstalled(@NonNull final String action, @NonNull final String category) {
+    public static boolean isAppInstalled(final String action, final String category) {
         try {
             Intent intent = new Intent(action);
             intent.addCategory(category);
@@ -604,7 +603,7 @@ public final class AppUtils {
      * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isAppInstalled(@NonNull final String packageName) {
+    public static boolean isAppInstalled(final String packageName) {
         return !isSpace(packageName) && IntentUtils.getLaunchAppIntent(packageName) != null;
     }
 
@@ -710,7 +709,7 @@ public final class AppUtils {
      * @return
      */
     @RequiresPermission(Manifest.permission.PACKAGE_USAGE_STATS)
-    public static boolean isAppForeground(@NonNull final String packageName) {
+    public static boolean isAppForeground(final String packageName) {
         return !isSpace(packageName) && packageName.equals(ProcessUtils.getForegroundProcessName());
     }
 
@@ -864,7 +863,7 @@ public final class AppUtils {
      * @param packageName 应用包名
      * @return
      */
-    public static String getAppSignatureSHA1(@NonNull final String packageName) {
+    public static String getAppSignatureSHA1(final String packageName) {
         return getAppSignatureHash(packageName, "SHA1");
     }
 
