@@ -292,7 +292,7 @@ public final class FileRecordUtils {
     // ================
 
     /**
-     * 初始化调用方法
+     * 初始化调用方法 (内部已调用)
      */
     public static void init() {
         // 如果版本信息为 null, 才进行处理

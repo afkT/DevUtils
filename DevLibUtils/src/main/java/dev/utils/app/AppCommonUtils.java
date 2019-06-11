@@ -4,9 +4,6 @@ import android.Manifest;
 import android.os.Build;
 import android.support.annotation.RequiresPermission;
 
-import java.util.Random;
-import java.util.UUID;
-
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
@@ -30,23 +27,6 @@ public final class AppCommonUtils {
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getUUID() {
         return PhoneUtils.getUUID();
-    }
-
-    /**
-     * 获取随机唯一数
-     * @return 随机唯一数
-     */
-    public static String getRandomUUID() {
-        // 获取随机数
-        String random1 = (900000 + new Random().nextInt(10000)) + "";
-        // 获取随机数
-        String random2 = (900000 + new Random().nextInt(10000)) + "";
-        // 获取当前时间
-        String cTime = System.currentTimeMillis() + random1 + random2;
-        // 生成唯一随机 uuid  cTime.hashCode(), random1.hashCode() | random2.hashCode()
-        UUID randomUUID = new UUID(cTime.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
-        // 获取 uuid
-        return randomUUID.toString();
     }
 
     /**

@@ -20,7 +20,7 @@ public final class DevLoggerUtils {
     private static final String TAG = DevLoggerUtils.class.getSimpleName();
 
     /**
-     * 初始化调用方法(获取版本号)
+     * 初始化调用方法 (内部已调用)
      * @param context {@link Context}
      */
     public static void init(final Context context) {
