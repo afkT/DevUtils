@@ -10,11 +10,15 @@ import android.support.annotation.RequiresApi;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: AlarmManager(全局定时器/闹钟)工具类
+ * detail: AlarmManager(全局定时器、闹钟)工具类
  * @author Ttt
  * <pre>
  *     指定时长或以周期形式执行某项操作
  *     @see <a href="https://www.cnblogs.com/zyw-205520/p/4040923.html"/>
+ *     关于使用 AlarmManager 的注意事项
+ *     @see <a href="https://www.jianshu.com/p/d69a90bc44c0"/>
+ *     关于闹钟设置 AlarmManager 类方法参数解释
+ *     @see <a href="https://www.cnblogs.com/crazywenza/p/3823774.html"/>
  * </pre>
  */
 public final class AlarmUtils {
@@ -25,30 +29,55 @@ public final class AlarmUtils {
     // 日志 TAG
     private static final String TAG = AlarmUtils.class.getSimpleName();
 
+    // ============
+    // = 开启闹钟 =
+    // ============
+
     /**
-     * 开启定时器
+     * 开启一次性闹钟
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param pendingIntent   {@link PendingIntent} 响应动作
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startAlarmIntent(final Context context, final long triggerAtMillis, final PendingIntent pendingIntent) {
+        startAlarmIntent(context, AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+    }
+
+    /**
+     * 开启一次性闹钟
+     * @param context         {@link Context}
+     * @param type            闹钟类型, 常用的有5个值：
+     *                        AlarmManager.ELAPSED_REALTIME、
+     *                        AlarmManager.ELAPSED_REALTIME_WAKEUP、
+     *                        AlarmManager.RTC、
+     *                        AlarmManager.RTC_WAKEUP、
+     *                        AlarmManager.POWER_OFF_WAKEUP
+     * @param triggerAtMillis 执行时间
+     * @param pendingIntent   {@link PendingIntent} 响应动作
+     */
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
+    public static void startAlarmIntent(final Context context, final int type, final long triggerAtMillis, final PendingIntent pendingIntent) {
         try {
             AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+                manager.setExactAndAllowWhileIdle(type, triggerAtMillis, pendingIntent);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                manager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+                manager.setExact(type, triggerAtMillis, pendingIntent);
             } else {
-                manager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+                manager.set(type, triggerAtMillis, pendingIntent);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmIntent");
         }
     }
 
+    // ============
+    // = 关闭闹钟 =
+    // ============
+
     /**
-     * 关闭定时器
+     * 关闭闹钟
      * @param context       {@link Context}
      * @param pendingIntent {@link PendingIntent} 响应动作
      */
@@ -62,8 +91,12 @@ public final class AlarmUtils {
         }
     }
 
+    // ================
+    // = Service 闹钟 =
+    // ================
+
     /**
-     * 开启轮询服务
+     * 开启 Service 闹钟
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param clazz           Class
@@ -74,6 +107,21 @@ public final class AlarmUtils {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
+            startAlarmService(context, triggerAtMillis, intent);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startAlarmService");
+        }
+    }
+
+    /**
+     * 开启 Service 闹钟
+     * @param context         {@link Context}
+     * @param triggerAtMillis 执行时间
+     * @param intent          {@link Intent}
+     */
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
+    public static void startAlarmService(final Context context, final long triggerAtMillis, final Intent intent) {
+        try {
             PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             startAlarmIntent(context, triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -81,8 +129,10 @@ public final class AlarmUtils {
         }
     }
 
+    // =
+
     /**
-     * 停止轮询服务
+     * 关闭 Service 闹钟
      * @param context {@link Context}
      * @param clazz   Class
      * @param action  Intent Action
@@ -92,6 +142,20 @@ public final class AlarmUtils {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
+            stopAlarmService(context, intent);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "stopAlarmService");
+        }
+    }
+
+    /**
+     * 关闭 Service 闹钟
+     * @param context {@link Context}
+     * @param intent  {@link Intent}
+     */
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
+    public static void stopAlarmService(final Context context, final Intent intent) {
+        try {
             PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             stopAlarmIntent(context, pendingIntent);
         } catch (Exception e) {
@@ -99,11 +163,87 @@ public final class AlarmUtils {
         }
     }
 
+    // =====================
+    // = ForegroundService =
+    // =====================
+
     /**
-     * 开启轮询广播
+     * 开启 ForegroundService 闹钟
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
-     * @param intent          Intent Action
+     * @param clazz           Class
+     * @param action          Intent Action
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static void startAlarmForegroundService(final Context context, final long triggerAtMillis, final Class<?> clazz, final String action) {
+        try {
+            Intent intent = new Intent(context, clazz);
+            intent.setAction(action);
+            startAlarmForegroundService(context, triggerAtMillis, intent);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startAlarmForegroundService");
+        }
+    }
+
+    /**
+     * 开启 ForegroundService 闹钟
+     * @param context         {@link Context}
+     * @param triggerAtMillis 执行时间
+     * @param intent          {@link Intent}
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static void startAlarmForegroundService(final Context context, final long triggerAtMillis, final Intent intent) {
+        try {
+            PendingIntent pendingIntent = PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            startAlarmIntent(context, triggerAtMillis, pendingIntent);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startAlarmForegroundService");
+        }
+    }
+
+    // =
+
+    /**
+     * 关闭 ForegroundService 闹钟
+     * @param context {@link Context}
+     * @param clazz   Class
+     * @param action  Intent Action
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static void stopAlarmForegroundService(final Context context, final Class<?> clazz, final String action) {
+        try {
+            Intent intent = new Intent(context, clazz);
+            intent.setAction(action);
+            stopAlarmForegroundService(context, intent);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "stopAlarmForegroundService");
+        }
+    }
+
+    /**
+     * 关闭 ForegroundService 闹钟
+     * @param context {@link Context}
+     * @param intent  {@link Intent}
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static void stopAlarmForegroundService(final Context context, final Intent intent) {
+        try {
+            PendingIntent pendingIntent = PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            stopAlarmIntent(context, pendingIntent);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "stopAlarmForegroundService");
+        }
+    }
+
+    // ===========================
+    // = Broadcast Receiver 闹钟 =
+    // ===========================
+
+    /**
+     * 开启 Receiver 闹钟
+     * @param context         {@link Context}
+     * @param triggerAtMillis 执行时间
+     * @param intent          {@link Intent}
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static void startAlarmBroadcast(final Context context, final long triggerAtMillis, final Intent intent) {
@@ -115,8 +255,10 @@ public final class AlarmUtils {
         }
     }
 
+    // =
+
     /**
-     * 停止轮询广播
+     * 关闭 Receiver 闹钟
      * @param context {@link Context}
      * @param intent  {@link Intent}
      */
@@ -130,8 +272,12 @@ public final class AlarmUtils {
         }
     }
 
+    // =================
+    // = Activity 闹钟 =
+    // =================
+
     /**
-     * 开启轮询 Activity
+     * 开启 Activity 闹钟
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param intent          {@link Intent}
@@ -147,7 +293,7 @@ public final class AlarmUtils {
     }
 
     /**
-     * 停止轮询 Activity
+     * 关闭 Activity 闹钟
      * @param context {@link Context}
      * @param intent  {@link Intent}
      */
