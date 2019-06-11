@@ -43,8 +43,8 @@ public final class ADBUtils {
 
     // 日志 TAG
     private static final String TAG = ADBUtils.class.getSimpleName();
-    // 正则 - 空格
-    private static final String SPACE_STR = "\\s";
+    // 正则表达式: 空格
+    private static final String REGEX_SPACE = "\\s";
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
@@ -237,7 +237,7 @@ public final class ADBUtils {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
             if (result.isSuccess3()) {
-                String[] arrays = result.successMsg.split(SPACE_STR);
+                String[] arrays = result.successMsg.split(REGEX_SPACE);
                 for (String str : arrays) {
                     if (!TextUtils.isEmpty(str)) {
                         try {
@@ -269,7 +269,7 @@ public final class ADBUtils {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
             if (result.isSuccess3()) {
-                String[] arrays = result.successMsg.split(SPACE_STR);
+                String[] arrays = result.successMsg.split(REGEX_SPACE);
                 for (String str : arrays) {
                     if (!TextUtils.isEmpty(str)) {
                         try {
@@ -480,7 +480,7 @@ public final class ADBUtils {
                         if (!TextUtils.isEmpty(str)) {
                             // 存在包名才处理
                             if (str.indexOf(packageName) != -1) {
-                                String[] splitArys = str.split(SPACE_STR);
+                                String[] splitArys = str.split(REGEX_SPACE);
                                 for (String strData : splitArys) {
                                     if (!TextUtils.isEmpty(strData)) {
                                         // 属于 包名/ 前缀的
@@ -560,7 +560,7 @@ public final class ADBUtils {
                 String[] arrays = result.successMsg.split(NEW_LINE_STR);
                 for (String str : arrays) {
                     if (!TextUtils.isEmpty(str)) {
-                        String[] splitArys = str.split(SPACE_STR);
+                        String[] splitArys = str.split(REGEX_SPACE);
                         if (splitArys != null && splitArys.length != 0) {
                             for (String splitStr : splitArys) {
                                 if (!TextUtils.isEmpty(splitStr)) {
@@ -604,7 +604,7 @@ public final class ADBUtils {
                 String[] arrays = result.successMsg.split(NEW_LINE_STR);
                 for (String str : arrays) {
                     if (!TextUtils.isEmpty(str)) {
-                        String[] splitArys = str.split(SPACE_STR);
+                        String[] splitArys = str.split(REGEX_SPACE);
                         if (splitArys != null && splitArys.length != 0) {
                             for (String splitStr : splitArys) {
                                 if (!TextUtils.isEmpty(splitStr)) {
@@ -653,7 +653,7 @@ public final class ADBUtils {
                 String[] arrays = result.successMsg.split(NEW_LINE_STR);
                 for (String str : arrays) {
                     if (!TextUtils.isEmpty(str)) {
-                        String[] splitArys = str.split(SPACE_STR);
+                        String[] splitArys = str.split(REGEX_SPACE);
                         if (splitArys != null && splitArys.length != 0) {
                             for (String splitStr : splitArys) {
                                 if (!TextUtils.isEmpty(splitStr)) {
@@ -753,7 +753,7 @@ public final class ADBUtils {
                 String[] activityArys = activities.split("ActivityRecord");
                 for (String data : activityArys) {
                     try {
-                        String[] splitArys = data.split(SPACE_STR);
+                        String[] splitArys = data.split(REGEX_SPACE);
                         if (splitArys != null && splitArys.length != 0) {
                             for (String splitStr : splitArys) {
                                 int start = splitStr.indexOf(packageName + "/");
@@ -1885,7 +1885,7 @@ public final class ADBUtils {
                     // 再次裁剪
                     subStr = subStr.substring(index + 1);
                     // 最后进行添加
-                    builder.append(subStr.split(SPACE_STR)[0]);
+                    builder.append(subStr.split(REGEX_SPACE)[0]);
                     // 返回对应的数据
                     return builder.toString();
                 } catch (Exception e) {
@@ -1902,7 +1902,7 @@ public final class ADBUtils {
                         if (!TextUtils.isEmpty(str)) {
                             if (str.toLowerCase().indexOf("device") != -1) {
                                 // 进行拆分
-                                String[] arrays = str.split(SPACE_STR);
+                                String[] arrays = str.split(REGEX_SPACE);
                                 return arrays[arrays.length - 1];
                             }
                         }

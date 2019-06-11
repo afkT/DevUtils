@@ -47,8 +47,6 @@ public final class AnalysisRecordUtils {
     private static boolean sIsHandler = true;
     // 判断是否加空格
     private static boolean sAppendSpace = true;
-    // 正则 - 空格
-    private static final String SPACE_STR = "\\s";
 
     /**
      * 初始化操作 (内部已调用)
@@ -236,7 +234,7 @@ public final class AnalysisRecordUtils {
                 builder.append("===========================");
                 builder.append(NEW_LINE_STR);
                 // 创建文件夹, 并且进行处理
-                saveFile(builder.toString(), logPath, fileName);
+                saveFile(logPath, fileName, builder.toString());
                 // 追加内容
                 appendFile(logFile, logContent);
             }
@@ -268,7 +266,7 @@ public final class AnalysisRecordUtils {
         // 循环追加内容
         for (int i = 0, len = logs.length; i < len; i++) {
             if (isSpace) { // 判断是否追加空格
-                builder.append(SPACE_STR);
+                builder.append(" ");
             }
             // 追加保存内容
             builder.append(logs[i]);
@@ -724,36 +722,19 @@ public final class AnalysisRecordUtils {
                 cachePath = context.getCacheDir().getPath();
             }
             // 防止不存在目录文件, 自动创建
-            createFolder(new File(cachePath));
+            createFolder(cachePath);
             // 返回文件存储地址
             return cachePath;
         }
-
-        /**
-         * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
-         * @param file 文件夹路径(无文件名字.后缀)
-         * @return {@code true} success, {@code false} fail
-         */
-        private static boolean createFolder(final File file) {
-            if (file != null) {
-                try {
-                    // 当这个文件夹不存在的时候则创建文件夹
-                    if (!file.exists()) {
-                        // 允许创建多级目录
-                        return file.mkdirs();
-                    }
-                    return true;
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "createFolder");
-                }
-            }
-            return false;
-        }
     }
 
-    // ================
-    // = 内部处理方法 =
-    // ================
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // =============
+    // = FileUtils =
+    // =============
 
     /**
      * 追加文件(使用 FileWriter)
@@ -761,9 +742,7 @@ public final class AnalysisRecordUtils {
      * @param content  追加内容
      */
     private static void appendFile(final String filePath, final String content) {
-        if (filePath == null || content == null) {
-            return;
-        }
+        if (filePath == null || content == null) return;
         File file = new File(filePath);
         // 如果文件不存在, 则跳过
         if (!file.exists()) return;
@@ -772,7 +751,7 @@ public final class AnalysisRecordUtils {
             // 打开一个写文件器, 构造函数中的第二个参数 true 表示以追加形式写文件
             writer = new FileWriter(file, true);
             writer.write(content);
-        } catch (IOException e) {
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "appendFile");
         } finally {
             if (writer != null) {
@@ -786,45 +765,68 @@ public final class AnalysisRecordUtils {
 
     /**
      * 保存文件
-     * @param txt      保存内容
      * @param filePath 保存路径
      * @param fileName 文件名.后缀
-     * @return {@code true} 保存成功, {@code false} 保存失败
+     * @param content  保存内容
+     * @return {@code true} success, {@code false} fail
      */
-    private static boolean saveFile(final String txt, final String filePath, final String fileName) {
-        try {
-            // 防止文件没创建
-            createFile(filePath);
-            // 保存路径
-            File file = new File(filePath, fileName);
-            // 保存内容到一个文件
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(txt.getBytes());
-            fos.close();
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "saveFile");
+    private static boolean saveFile(final String filePath, final String fileName, final String content) {
+        if (filePath != null && fileName != null && content != null) {
+            try {
+                // 防止文件没创建
+                createFolder(filePath);
+                // 保存路径
+                File file = new File(filePath, fileName);
+                // 保存内容到一个文件
+                FileOutputStream fos = new FileOutputStream(file);
+                fos.write(content.getBytes());
+                fos.close();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "saveFile");
+            }
         }
         return false;
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
+     * 获取文件
      * @param filePath 文件路径
      * @return 文件 {@link File}
      */
-    private static File createFile(final String filePath) {
-        try {
-            File file = new File(filePath);
-            // 当这个文件夹不存在的时候则创建文件夹
-            if (!file.exists()) {
-                // 允许创建多级目录
-                file.mkdirs();
+    private static File getFileByPath(final String filePath) {
+        return filePath != null ? new File(filePath) : null;
+    }
+
+    /**
+     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
+     * @param dirPath 文件夹路径(无文件名字.后缀)
+     * @return {@code true} success, {@code false} fail
+     */
+    private static boolean createFolder(final String dirPath) {
+        return createFolder(getFileByPath(dirPath));
+    }
+
+    /**
+     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
+     * @param file 文件夹路径(无文件名字.后缀)
+     * @return {@code true} success, {@code false} fail
+     */
+    private static boolean createFolder(final File file) {
+        if (file != null) {
+            try {
+                // 当这个文件夹不存在的时候则创建文件夹
+                if (!file.exists()) {
+                    // 允许创建多级目录
+                    return file.mkdirs();
+                    // 这个无法创建多级目录
+                    // rootFile.mkdir();
+                }
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "createFolder");
             }
-            return file;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "createFile");
         }
-        return null;
+        return false;
     }
 }
