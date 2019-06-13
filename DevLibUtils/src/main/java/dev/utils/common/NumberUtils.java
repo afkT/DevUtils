@@ -587,11 +587,11 @@ public final class NumberUtils {
         if (number.doubleValue() < 1) return chnUnits[ZERO];
 
         StringBuilder builder = new StringBuilder();
-        // 记录当前数字单位(补零)
-        int numberPos = 0;
+        // 索引记录
+        int unitIndex = 0; // 当前数字单位
+        int beforeUnitIndex = 0; // 之前的数字单位
         // 循环处理
         for (int i = NUMBER_UNITS.length - 1; i > 0; i--) {
-            //if (number.compareTo(BigDecimal.valueOf(NUMBER_UNITS[i])) >= 0) {
             if (number.doubleValue() >= NUMBER_UNITS[i]) {
                 final int multiple = (int) (number.doubleValue() / NUMBER_UNITS[i]); // 倍数
                 number = number.subtract(BigDecimal.valueOf(multiple * NUMBER_UNITS[i])); // 递减
@@ -601,34 +601,47 @@ public final class NumberUtils {
                     builder.append(numberToCHNNumber(new BigDecimal(multiple), chnUnits));
                     builder.append(chnUnits[i]); // 数字单位
                     // 判断是否需要补零
-                    if (numberPos > i && numberPos != 0) {
+                    if (unitIndex > i && unitIndex != 0) {
                         builder.append(chnUnits[ZERO]); // 补零
                     }
                 } else {
                     // 判断 兆级与亿级、亿级与万级 补零操作
-                    if ((i == 14 && numberPos == 15) || (i == 13 && numberPos == 14)) {
+                    if ((i == 14 && unitIndex == 15) || (i == 13 && unitIndex == 14)) {
                         if (multiple < 1000) {
                             builder.append(chnUnits[ZERO]); // 补零
                         }
-                    } else if (numberPos > i && numberPos != 0) { // 跨单位处理
+                    } else if (unitIndex > i && unitIndex != 0) { // 跨数字单位处理
                         builder.append(chnUnits[ZERO]); // 补零
                     }
                     // 拼接数值
                     builder.append(thousandConvertCHN(multiple, chnUnits));
                     builder.append(chnUnits[i]); // 数字单位
                 }
+                // 保存旧的数字单位索引
+                beforeUnitIndex = unitIndex;
                 // 保存新的数字单位索引
-                numberPos = i;
+                unitIndex = i;
             }
 
             double numberValue = number.doubleValue();
             // 如果位数小于万位(属于千位), 则进行处理
             if (numberValue < 10000) {
                 // 判断是否需要补零
-                if (numberPos >= (TEN_POS + 3)) {
-                    // 当前数字单位属于万级, 并且数字小于千, 才补零
-                    if (numberValue <= 1000 && numberValue >= 1) {
-                        builder.append(chnUnits[ZERO]); // 补零
+                if (unitIndex >= (TEN_POS + 3)) {
+                    // 是否大于 1 (结尾零, 则不补充数字单位)
+                    if (numberValue >= 1) {
+                        if (beforeUnitIndex == 0) {
+                            beforeUnitIndex = unitIndex;
+                        }
+                        // 如果旧的索引, 大于当前索引, 则补零
+                        if (unitIndex != 13 && (beforeUnitIndex == 14 || beforeUnitIndex == 15)
+                                && beforeUnitIndex >= unitIndex) { // 属于亿、兆级别, 都需要补零
+                            builder.append(chnUnits[ZERO]); // 补零
+                        } else { // 当前数字单位属于万级
+                            if (numberValue < 1000) {
+                                builder.append(chnUnits[ZERO]); // 补零
+                            }
+                        }
                     }
                 }
                 // 拼接数值
