@@ -530,7 +530,7 @@ public final class NumberUtils {
      */
     public static String numberToCHN(final double number, final boolean isUpper) {
         try {
-            return numberToCHNNumber(BigDecimal.valueOf(number), isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS, false);
+            return numberToCHNNumber(BigDecimal.valueOf(number), isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "numberToCHN");
         }
@@ -546,7 +546,7 @@ public final class NumberUtils {
     public static String numberToCHN(final String number, final boolean isUpper) {
         if (number != null) {
             try {
-                return numberToCHNNumber(new BigDecimal(number), isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS, false);
+                return numberToCHNNumber(new BigDecimal(number), isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "numberToCHN");
             }
@@ -561,7 +561,7 @@ public final class NumberUtils {
      * @return 数字中文化字符串
      */
     public static String numberToCHN(final BigDecimal number, final boolean isUpper) {
-        return numberToCHNNumber(number, isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS, false);
+        return numberToCHNNumber(number, isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS);
     }
 
     // ============
@@ -574,12 +574,11 @@ public final class NumberUtils {
 
     /**
      * 数字转中文数值
-     * @param bigDecimal  数值
-     * @param chnUnits    中文数字单位数组
-     * @param isRecursion 是否递归处理(倍数超过万位才递归)
+     * @param bigDecimal 数值
+     * @param chnUnits   中文数字单位数组
      * @return 数字中文化字符串
      */
-    private static String numberToCHNNumber(final BigDecimal bigDecimal, final String[] chnUnits, final boolean isRecursion) {
+    private static String numberToCHNNumber(final BigDecimal bigDecimal, final String[] chnUnits) {
         // 防止为 null
         if (bigDecimal == null) return null;
         // 去除小数点
@@ -598,20 +597,23 @@ public final class NumberUtils {
                 number = number.subtract(BigDecimal.valueOf(multiple * NUMBER_UNITS[i])); // 递减
                 // 如果倍数大于万倍, 则直接递归
                 if (multiple >= 10000) {
-                    builder.append(numberToCHNNumber(new BigDecimal(multiple), chnUnits, true));
+                    // 拼接数值
+                    builder.append(numberToCHNNumber(new BigDecimal(multiple), chnUnits));
                     builder.append(chnUnits[i]); // 数字单位
                     // 判断是否需要补零
                     if (numberPos > i && numberPos != 0) {
                         builder.append(chnUnits[ZERO]); // 补零
                     }
                 } else {
-                    // 判断是否少一个数字单位
-                    if (i == 13 && numberPos == 14) { // 判断亿级与万级, 补零操作
-                        // 判断是否不属于千万级
+                    // 判断 兆级与亿级、亿级与万级 补零操作
+                    if ((i == 14 && numberPos == 15) || (i == 13 && numberPos == 14)) {
                         if (multiple < 1000) {
                             builder.append(chnUnits[ZERO]); // 补零
                         }
+                    } else if (numberPos > i && numberPos != 0) { // 跨单位处理
+                        builder.append(chnUnits[ZERO]); // 补零
                     }
+                    // 拼接数值
                     builder.append(thousandConvertCHN(multiple, chnUnits));
                     builder.append(chnUnits[i]); // 数字单位
                 }
@@ -619,16 +621,18 @@ public final class NumberUtils {
                 numberPos = i;
             }
 
+            double numberValue = number.doubleValue();
             // 如果位数小于万位(属于千位), 则进行处理
-            if (number.doubleValue() < 10000) {
-                // 判断是否需要补零(不属于递归的)
-                if (!isRecursion && numberPos >= (TEN_POS + 3)) {
+            if (numberValue < 10000) {
+                // 判断是否需要补零
+                if (numberPos >= (TEN_POS + 3)) {
                     // 当前数字单位属于万级, 并且数字小于千, 才补零
-                    if (numberPos == (TEN_POS + 3) && number.doubleValue() < 1000) {
+                    if (numberValue <= 1000 && numberValue >= 1) {
                         builder.append(chnUnits[ZERO]); // 补零
                     }
                 }
-                builder.append(thousandConvertCHN((int) number.doubleValue(), chnUnits));
+                // 拼接数值
+                builder.append(thousandConvertCHN((int) numberValue, chnUnits));
                 return builder.toString();
             }
         }
@@ -662,17 +666,18 @@ public final class NumberUtils {
                 zeros[i] = false;
             }
             // 补零判断处理
-            if (number > 1 && zeros[i]) {
-                if (i == 1) { // 属于百位, 特殊处理(防止出现 1001 直接个数清空)
-                    if (number > 10) {
+            if (number >= 1 && zeros[i]) {
+                if (i == 1) { // 属于百位
+                    builder.append(chnUnits[ZERO]); // 补零
+                } else { // 属于十位
+                    // 如果百位, 补零了, 个位数则不用补零
+                    if (!zeros[i + 1]) {
                         builder.append(chnUnits[ZERO]); // 补零
                     }
-                } else {
-                    builder.append(chnUnits[ZERO]); // 补零
                 }
             }
         }
-        // 判断最后值, 是否大于 1 (结尾零, 则不补充单位)
+        // 判断最后值, 是否大于 1 (结尾零, 则不补充数字单位)
         if (number >= 1) {
             builder.append(chnUnits[number]);
         }
