@@ -231,13 +231,32 @@ public final class EditTextUtils {
         return editText;
     }
 
-    // =
+    // =========================
+    // = Key Listener 快捷处理 =
+    // =========================
+
+    // 0123456789
+    private static final char[] NUMBERS = new char[]{48, 49, 50, 51, 52, 53, 54, 55, 56, 57};
+
+    // abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+    private static final char[] LETTERS = new char[]{97, 98, 99, 100, 101,
+            102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114,
+            115, 116, 117, 118, 119, 120, 121, 122, 65, 66, 67, 68, 69, 70, 71,
+            72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88,
+            89, 90};
+
+    // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+    private static final char[] NUMBERS_AND_LETTERS = new char[]{48, 49, 50,
+            51, 52, 53, 54, 55, 56, 57, 97, 98, 99, 100, 101, 102, 103, 104,
+            105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117,
+            118, 119, 120, 121, 122, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
+            75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90};
 
     /**
-     * 设置输入限制
-     * @param editText
-     * @param keyListener
-     * @return
+     * 设置 KeyListener
+     * @param editText    {@link EditText}
+     * @param keyListener {@link KeyListener}
+     * @return {@link EditText}
      */
     public static EditText setKeyListener(final EditText editText, final KeyListener keyListener) {
         if (editText != null) {
@@ -247,69 +266,120 @@ public final class EditTextUtils {
     }
 
     /**
-     * 设置输入限制
-     * @param editText
-     * @param digits   只能输入的内容, 1234567890
-     * @return
+     * 设置 KeyListener
+     * @param editText {@link EditText}
+     * @param accepted 允许输入的内容, 如: 0123456789
+     * @return {@link EditText}
      */
-    public static EditText setKeyListener(final EditText editText, final String digits) {
+    public static EditText setKeyListener(final EditText editText, final String accepted) {
         if (editText != null) {
-            if (TextUtils.isEmpty(digits)) {
-                editText.setKeyListener(null);
-            } else {
-                editText.setKeyListener(DigitsKeyListener.getInstance(digits));
-            }
+            // editText.setKeyListener(DigitsKeyListener.getInstance(accepted));
+            editText.setKeyListener(createDigitsKeyListener(-1, accepted));
         }
         return editText;
     }
 
-    // ===============================
-    // = 输入法Key Listener 快捷处理 =
-    // ===============================
-
     /**
-     * 限制只能输入字母和数字, 默认弹出英文输入法
-     * @return
+     * 设置 KeyListener
+     * @param editText {@link EditText}
+     * @param accepted 允许输入的内容
+     * @return {@link EditText}
      */
-    public static DigitsKeyListener getNumberAndEnglishKeyListener() {
-        // 限制只能输入字母和数字, 默认弹出英文输入法
-        DigitsKeyListener digitsKeyListener = new DigitsKeyListener() {
-            @Override
-            public int getInputType() {
-                return InputType.TYPE_TEXT_VARIATION_PASSWORD;
-            }
-
-            @Override
-            protected char[] getAcceptedChars() {
-                char[] data = "qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM1234567890".toCharArray();
-                return data;
-            }
-        };
-        return digitsKeyListener;
-    }
-
-    /**
-     * 限制只能输入数字, 默认弹出数字列表
-     * @return
-     */
-    public static DigitsKeyListener getNumberKeyListener() {
-        // 限制只能输入数字, 默认弹出数字列表
-        DigitsKeyListener digitsKeyListener = new DigitsKeyListener() {
-            @Override
-            public int getInputType() {
-                return InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL;
-            }
-
-            @Override
-            protected char[] getAcceptedChars() {
-                char[] data = "1234567890".toCharArray();
-                return data;
-            }
-        };
-        return digitsKeyListener;
+    public static EditText setKeyListener(final EditText editText, final char[] accepted) {
+        if (editText != null) {
+            editText.setKeyListener(createDigitsKeyListener(-1, accepted));
+        }
+        return editText;
     }
 
     // =
+
+    /**
+     * 获取 DigitsKeyListener (限制只能输入字母, 默认弹出英文输入法)
+     * @return {@link DigitsKeyListener}
+     */
+    public static DigitsKeyListener getLettersKeyListener() {
+        return createDigitsKeyListener((InputType.TYPE_TEXT_VARIATION_PASSWORD), LETTERS);
+    }
+
+    /**
+     * 获取 DigitsKeyListener (限制只能输入字母和数字, 默认弹出英文输入法)
+     * @return {@link DigitsKeyListener}
+     */
+    public static DigitsKeyListener getNumberAndLettersKeyListener() {
+        return createDigitsKeyListener((InputType.TYPE_TEXT_VARIATION_PASSWORD), NUMBERS_AND_LETTERS);
+    }
+
+    /**
+     * 获取 DigitsKeyListener (限制只能输入数字, 默认弹出数字列表)
+     * @return {@link DigitsKeyListener}
+     */
+    public static DigitsKeyListener getNumberKeyListener() {
+        return createDigitsKeyListener((InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL), NUMBERS);
+    }
+
+    // =
+
+    /**
+     * 创建 DigitsKeyListener
+     * @param accepted 允许输入的内容 (可以传入 "", 这样无法输入内容)
+     * @return {@link DigitsKeyListener}
+     */
+    public static DigitsKeyListener createDigitsKeyListener(final String accepted) {
+        return createDigitsKeyListener(-1, (accepted == null) ? null : accepted.toCharArray());
+    }
+
+    /**
+     * 创建 DigitsKeyListener
+     * @param inputType 输入类型
+     * @param accepted  允许输入的内容 (可以传入 "", 这样无法输入内容)
+     * @return {@link DigitsKeyListener}
+     */
+    public static DigitsKeyListener createDigitsKeyListener(final int inputType, final String accepted) {
+        return createDigitsKeyListener(inputType, (accepted == null) ? null : accepted.toCharArray());
+    }
+
+    // =
+
+    /**
+     * 创建 DigitsKeyListener
+     * @param accepted 允许输入的内容
+     * @return {@link DigitsKeyListener}
+     */
+    public static DigitsKeyListener createDigitsKeyListener(final char[] accepted) {
+        return createDigitsKeyListener(-1, accepted);
+    }
+
+    /**
+     * 创建 DigitsKeyListener
+     * @param inputType 输入类型
+     * @param accepted  允许输入的内容
+     * @return {@link DigitsKeyListener}
+     */
+    public static DigitsKeyListener createDigitsKeyListener(final int inputType, final char[] accepted) {
+        DigitsKeyListener digitsKeyListener = new DigitsKeyListener() {
+            @Override
+            protected char[] getAcceptedChars() {
+                if (accepted != null) {
+                    return accepted;
+                }
+                return super.getAcceptedChars();
+            }
+
+            @Override
+            public int getInputType() {
+                if (inputType != -1) {
+                    return inputType;
+                }
+                return super.getInputType();
+            }
+        };
+        return digitsKeyListener;
+    }
+
+    // ===============
+    // = TextWatcher =
+    // ===============
 
     /**
      * detail: 开发输入监听抽象类
@@ -327,15 +397,30 @@ public final class EditTextUtils {
         private boolean operate = false;
         // 标记状态, 特殊需求处理
         private int operateState = -1;
+        // 类型
+        private int type = -1;
 
+        /**
+         * 构造函数
+         */
         public DevTextWatcher() {
             // 初始化id
             this.markId = UUID.randomUUID().hashCode();
         }
 
         /**
-         * 获取标记id
-         * @return
+         * 构造函数
+         * @param type 类型
+         */
+        public DevTextWatcher(int type) {
+            this.type = type;
+            // 初始化id
+            this.markId = UUID.randomUUID().hashCode();
+        }
+
+        /**
+         * 获取标记 id
+         * @return 标记 id
          */
         public final int getMarkId() {
             return markId;
@@ -343,7 +428,7 @@ public final class EditTextUtils {
 
         /**
          * 判断是否操作中
-         * @return
+         * @return {@code true} yes, {@code false} no
          */
         public final boolean isOperate() {
             return operate;
@@ -351,7 +436,7 @@ public final class EditTextUtils {
 
         /**
          * 设置是否操作中
-         * @param operate
+         * @param operate {@code true} yes, {@code false} no
          */
         public final void setOperate(boolean operate) {
             this.operate = operate;
@@ -359,7 +444,7 @@ public final class EditTextUtils {
 
         /**
          * 获取操作状态
-         * @return
+         * @return 操作状态
          */
         public final int getOperateState() {
             return operateState;
@@ -367,10 +452,26 @@ public final class EditTextUtils {
 
         /**
          * 设置操作状态
-         * @param operateState
+         * @param operateState 操作状态
          */
         public final void setOperateState(int operateState) {
             this.operateState = operateState;
+        }
+
+        /**
+         * 获取类型
+         * @return 类型
+         */
+        public int getType() {
+            return type;
+        }
+
+        /**
+         * 设置类型
+         * @param type 类型
+         */
+        public void setType(int type) {
+            this.type = type;
         }
 
         // ============
