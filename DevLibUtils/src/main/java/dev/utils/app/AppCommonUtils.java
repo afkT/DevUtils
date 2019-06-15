@@ -71,7 +71,7 @@ public final class AppCommonUtils {
      * 获取 SDK 版本
      * @return SDK 版本
      */
-    public static int getSDKVersion(){
+    public static int getSDKVersion() {
         return Build.VERSION.SDK_INT;
     }
 

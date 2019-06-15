@@ -19,6 +19,17 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: Uri 工具类
  * @author Ttt
+ * <pre>
+ *     <provider
+ *          android:name="android.support.v4.content.FileProvider"
+ *          android:authorities="${applicationId}.fileProvider"
+ *          android:exported="false"
+ *          android:grantUriPermissions="true">
+ *          <meta-data
+ *              android:name="android.support.FILE_PROVIDER_PATHS"
+ *              android:resource="@xml/file_paths" />
+ *     </provider>
+ * </pre>
  */
 public final class UriUtils {
 
@@ -28,57 +39,72 @@ public final class UriUtils {
     // 日志 TAG
     private static final String TAG = UriUtils.class.getSimpleName();
 
-    /**
-     <provider
-     android:name="android.support.v4.content.FileProvider"
-     android:authorities="${applicationId}.fileProvider"
-     android:exported="false"
-     android:grantUriPermissions="true">
-     <meta-data
-     android:name="android.support.FILE_PROVIDER_PATHS"
-     android:resource="@xml/file_paths" />
-     </provider>
-     */
+    // ================
+    // = FileProvider =
+    // ================
 
     /**
-     * 返回处理后的Uri, 单独传递名字, 自动添加包名 ${applicationId}
-     * @param file
-     * @param name
-     * @return getUriForFileToName(file, " fileProvider ");
-     * getUriForFile(file, "包名.fileProvider");
+     * 获取文件 Uri (自动添加包名 ${applicationId})
+     * @param file         文件
+     * @param fileProvider android:authorities => ${applicationId}.fileProvider
+     * @return 指定文件 {@link Uri}
      */
-    public static Uri getUriForFileToName(final File file, final String name) {
+    public static Uri getUriForFileToName(final File file, final String fileProvider) {
+        if (file == null || fileProvider == null) return null;
         try {
-            String authority = DevUtils.getContext().getPackageName() + "." + name;
+            String authority = DevUtils.getContext().getPackageName() + "." + fileProvider;
             return getUriForFile(file, authority);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getUriForFileToName");
+            return null;
         }
-        return null;
     }
 
     /**
-     * Return a content URI for a given file
-     * @param file
-     * @param authority
-     * @return
+     * 获取文件 Uri
+     * @param file      文件
+     * @param authority android:authorities
+     * @return 指定文件 {@link Uri}
      */
     public static Uri getUriForFile(final File file, final String authority) {
-        if (file == null) return null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return FileProvider.getUriForFile(DevUtils.getContext(), authority, file);
-        } else {
-            return Uri.fromFile(file);
+        if (file == null || authority == null) return null;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                return FileProvider.getUriForFile(DevUtils.getContext(), authority, file);
+            } else {
+                return Uri.fromFile(file);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getUriForFile");
+            return null;
+        }
+    }
+
+    // =
+
+    /**
+     * 通过 Uri 获取文件路径
+     * @param uri {@link Uri}
+     * @return 文件路径
+     */
+    public static String getFilePathByUri(final Uri uri) {
+        try {
+            return getFilePathByUri(DevUtils.getContext(), uri);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getFilePathByUri");
+            return null;
         }
     }
 
     /**
-     * 通过 Uri 获取 文件路径
+     * 通过 Uri 获取文件路径
      * @param context {@link Context}
-     * @param uri
-     * @return
+     * @param uri     {@link Uri}
+     * @return 文件路径
      */
-    public static String getFilePathByUri(final Context context, final Uri uri) {
+    private static String getFilePathByUri(final Context context, final Uri uri) {
+        if (context == null || uri == null) return null;
+        // 文件路径
         String path = null;
         // 以 file:// 开头的
         if (ContentResolver.SCHEME_FILE.equals(uri.getScheme())) {
@@ -99,7 +125,7 @@ public final class UriUtils {
             }
             return path;
         }
-        // 4.4及之后的 是以 content:// 开头的, 比如 content://com.android.providers.media.documents/document/image%3A235700
+        // 4.4 及之后的, 是以 content:// 开头的, 比如 content://com.android.providers.media.documents/document/image%3A235700
         if (ContentResolver.SCHEME_CONTENT.equals(uri.getScheme()) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (DocumentsContract.isDocumentUri(context, uri)) {
                 if (isExternalStorageDocument(uri)) {
@@ -142,12 +168,12 @@ public final class UriUtils {
     }
 
     /**
-     * 获取此 Uri Cursor 对应条件的数据行 data 字段
-     * @param context
-     * @param uri
-     * @param selection
-     * @param selectionArgs
-     * @return
+     * 获取 Uri Cursor 对应条件的数据行 data 字段
+     * @param context       {@link Context}
+     * @param uri           {@link Uri}
+     * @param selection     WHERE clause
+     * @param selectionArgs 对应的字段绑定
+     * @return 对应条件的数据行 data 字段
      */
     private static String getDataColumn(final Context context, final Uri uri, final String selection, final String[] selectionArgs) {
         Cursor cursor = null;
@@ -167,27 +193,27 @@ public final class UriUtils {
     }
 
     /**
-     * 判读 Uri authority  是否为 ExternalStorage Provider
+     * 判读 Uri authority 是否为 ExternalStorage Provider
      * @param uri {@link Uri}
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean isExternalStorageDocument(final Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
     /**
-     * 判读 Uri authority  是否为 Downloads Provider
+     * 判读 Uri authority 是否为 Downloads Provider
      * @param uri {@link Uri}
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean isDownloadsDocument(final Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
     /**
-     * 判读 Uri authority  是否为 Media Provider
+     * 判读 Uri authority 是否为 Media Provider
      * @param uri {@link Uri}
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean isMediaDocument(final Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
