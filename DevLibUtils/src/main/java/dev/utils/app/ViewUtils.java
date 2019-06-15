@@ -46,21 +46,23 @@ public final class ViewUtils {
     }
 
     /**
-     * 获取 View 的 Context (Activity)
+     * 获取 View context 所属的 Activity
      * @param view {@link View}
      * @return {@link Activity}
      */
     public static Activity getActivity(final View view) {
-        try {
-            Context context = view.getContext();
-            while (context instanceof ContextWrapper) {
-                if (context instanceof Activity) {
-                    return (Activity) context;
+        if (view != null) {
+            try {
+                Context context = view.getContext();
+                while (context instanceof ContextWrapper) {
+                    if (context instanceof Activity) {
+                        return (Activity) context;
+                    }
+                    context = ((ContextWrapper) context).getBaseContext();
                 }
-                context = ((ContextWrapper) context).getBaseContext();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getActivity");
             }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getActivity");
         }
         return null;
     }
@@ -72,8 +74,8 @@ public final class ViewUtils {
      * @param resource R.layout.id
      * @return {@link View}
      */
-    public static View getView(@LayoutRes final int resource) {
-        return getView(resource, null);
+    public static View inflate(@LayoutRes final int resource) {
+        return inflate(resource, null);
     }
 
     /**
@@ -82,16 +84,33 @@ public final class ViewUtils {
      * @param root     {@link ViewGroup}
      * @return {@link View}
      */
-    public static View getView(@LayoutRes final int resource, final ViewGroup root) {
+    public static View inflate(@LayoutRes final int resource, final ViewGroup root) {
         try {
             return ((LayoutInflater) DevUtils.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, root);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getView");
+            LogPrintUtils.eTag(TAG, e, "inflate");
         }
         return null;
     }
 
-    // =
+    /**
+     * 转换 View
+     * @param view {@link View}
+     * @param <T>  泛型
+     * @return {@link View}
+     */
+    public static <T extends View> T convertView(final View view) {
+        try {
+            return (T) view;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "convertView");
+        }
+        return null;
+    }
+
+    // =============
+    // = View 判空 =
+    // =============
 
     /**
      * 判断 View 是否为 null
@@ -121,6 +140,37 @@ public final class ViewUtils {
     }
 
     /**
+     * 判断 View 是否不为 null
+     * @param view {@link View}
+     * @return {@code true} not null, {@code false} is null
+     */
+    public static boolean isNotEmpty(final View view) {
+        return view != null;
+    }
+
+    /**
+     * 判断 View 是否不为 null
+     * @param views View[]
+     * @return {@code true} not null, {@code false} is null
+     */
+    public static boolean isNotEmpty(final View... views) {
+        if (views != null && views.length != 0) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view == null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =================
+    // = View 显示状态 =
+    // =================
+
+    /**
      * 判断 View 是否显示
      * @param view {@link View}
      * @return {@code true} yes, {@code false} no
@@ -143,7 +193,7 @@ public final class ViewUtils {
     }
 
     /**
-     * 判断 View 是否都显示显示
+     * 判断 View 是否都显示
      * @param views View[]
      * @return {@code true} yes, {@code false} no
      */
@@ -151,8 +201,7 @@ public final class ViewUtils {
         if (views != null && views.length != 0) {
             for (int i = 0, len = views.length; i < len; i++) {
                 View view = views[i];
-                if (view != null && view.getVisibility() == View.VISIBLE) {
-                } else {
+                if (view == null || view.getVisibility() != View.VISIBLE) {
                     return false;
                 }
             }
@@ -160,6 +209,8 @@ public final class ViewUtils {
         }
         return false;
     }
+
+    // =
 
     /**
      * 判断 View 是否隐藏占位
@@ -184,6 +235,26 @@ public final class ViewUtils {
     }
 
     /**
+     * 判断 View 是否都隐藏占位
+     * @param views View[]
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isVisibilityINs(final View... views) {
+        if (views != null && views.length != 0) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view == null || view.getVisibility() != View.INVISIBLE) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =
+
+    /**
      * 判断 View 是否隐藏
      * @param view {@link View}
      * @return {@code true} yes, {@code false} no
@@ -203,6 +274,24 @@ public final class ViewUtils {
             return (view.getVisibility() == View.GONE);
         }
         return defaultValue;
+    }
+
+    /**
+     * 判断 View 是否都隐藏
+     * @param views View[]
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isVisibilityGones(final View... views) {
+        if (views != null && views.length != 0) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view == null || view.getVisibility() != View.GONE) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     // =
@@ -266,13 +355,13 @@ public final class ViewUtils {
     }
 
     /**
-     * 设置View 显示的状态
+     * 设置 View 显示的状态
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param views        View[]
      * @return isVisibility 是否传入 {@link View#VISIBLE}
      */
     public static boolean setVisibilitys(final int isVisibility, final View... views) {
-        if (views != null && views.length != 0) {
+        if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 View view = views[i];
                 if (view != null) {
@@ -313,7 +402,7 @@ public final class ViewUtils {
      * @param views    View[]
      */
     public static void toggleVisibilitys(final int status, final View[] viewArys, final View... views) {
-        // 默认前面显示
+        // 默认显示
         setVisibilitys(View.VISIBLE, viewArys);
         // 根据状态处理
         setVisibilitys(status, views);
@@ -383,6 +472,25 @@ public final class ViewUtils {
         return isChange;
     }
 
+    /**
+     * 切换 View 状态
+     * @param isChange     是否改变
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return isChange
+     */
+    public static boolean toogleViews(final boolean isChange, final int isVisibility, final View... views) {
+        if (isChange && views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view != null) {
+                    view.setVisibility(isVisibility);
+                }
+            }
+        }
+        return isChange;
+    }
+
     // =
 
     /**
@@ -401,7 +509,7 @@ public final class ViewUtils {
      * @param views        View[]
      */
     public static void setViewImageRes(final int draw, final int isVisibility, final ImageView... views) {
-        if (views != null && views.length != 0) {
+        if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 ImageView view = views[i];
                 if (view != null) {
@@ -476,10 +584,14 @@ public final class ViewUtils {
      */
     public static void removeSelfFromParent(final View view) {
         if (view != null) {
-            ViewParent parent = view.getParent();
-            if (parent != null && parent instanceof ViewGroup) {
-                ViewGroup group = (ViewGroup) parent;
-                group.removeView(view);
+            try {
+                ViewParent parent = view.getParent();
+                if (parent != null && parent instanceof ViewGroup) {
+                    ViewGroup group = (ViewGroup) parent;
+                    group.removeView(view);
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "removeSelfFromParent");
             }
         }
     }
@@ -491,29 +603,34 @@ public final class ViewUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isTouchInView(final MotionEvent ev, final View view) {
-        int[] vLoc = new int[2];
-        view.getLocationOnScreen(vLoc);
-        float motionX = ev.getRawX();
-        float motionY = ev.getRawY();
-        return motionX >= vLoc[0] && motionX <= (vLoc[0] + view.getWidth())
-                && motionY >= vLoc[1] && motionY <= (vLoc[1] + view.getHeight());
+        if (ev != null && view != null) {
+            int[] vLoc = new int[2];
+            view.getLocationOnScreen(vLoc);
+            float motionX = ev.getRawX();
+            float motionY = ev.getRawY();
+            return motionX >= vLoc[0] && motionX <= (vLoc[0] + view.getWidth())
+                    && motionY >= vLoc[1] && motionY <= (vLoc[1] + view.getHeight());
+        }
+        return false;
     }
 
     /**
-     * View 改变请求
-     * @param view  {@link View}
-     * @param isAll 是否全部父布局 View 都请求
+     * View 请求更新
+     * @param view      {@link View}
+     * @param allParent 是否全部父布局 View 都请求
      */
-    public static void requestLayoutParent(final View view, final boolean isAll) {
-        ViewParent parent = view.getParent();
-        while (parent != null && parent instanceof View) {
-            if (!parent.isLayoutRequested()) {
-                parent.requestLayout();
-                if (!isAll) {
-                    break;
+    public static void requestLayoutParent(final View view, final boolean allParent) {
+        if (view != null) {
+            ViewParent parent = view.getParent();
+            while (parent != null && parent instanceof View) {
+                if (!parent.isLayoutRequested()) {
+                    parent.requestLayout();
+                    if (!allParent) {
+                        break;
+                    }
                 }
+                parent = parent.getParent();
             }
-            parent = parent.getParent();
         }
     }
 
@@ -522,22 +639,24 @@ public final class ViewUtils {
      * @param view {@link View}
      */
     public static void measureView(final View view) {
-        try {
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            if (layoutParams == null) {
-                layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (view != null) {
+            try {
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams == null) {
+                    layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
+                int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
+                int height = layoutParams.height;
+                int heightSpec;
+                if (height > 0) {
+                    heightSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+                } else {
+                    heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+                }
+                view.measure(widthSpec, heightSpec);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "measureView");
             }
-            int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
-            int lpHeight = layoutParams.height;
-            int heightSpec;
-            if (lpHeight > 0) {
-                heightSpec = View.MeasureSpec.makeMeasureSpec(lpHeight, View.MeasureSpec.EXACTLY);
-            } else {
-                heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-            }
-            view.measure(widthSpec, heightSpec);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "measureView");
         }
     }
 
@@ -546,9 +665,12 @@ public final class ViewUtils {
      * @param view {@link View}
      * @return View 的宽度
      */
-    public static int getViewWidth(final View view) {
-        measureView(view);
-        return view.getMeasuredWidth();
+    public static int getMeasuredWidth(final View view) {
+        if (view != null) {
+            measureView(view);
+            return view.getMeasuredWidth();
+        }
+        return -1;
     }
 
     /**
@@ -556,9 +678,12 @@ public final class ViewUtils {
      * @param view {@link View}
      * @return View 的高度
      */
-    public static int getViewHeight(final View view) {
-        measureView(view);
-        return view.getMeasuredHeight();
+    public static int getMeasuredHeight(final View view) {
+        if (view != null) {
+            measureView(view);
+            return view.getMeasuredHeight();
+        }
+        return -1;
     }
 
     // ===============
@@ -666,7 +791,7 @@ public final class ViewUtils {
      * @param bottom Bottom Margin
      */
     public static void setMargin(final View[] views, final int left, final int top, final int right, final int bottom) {
-        if (views != null && views.length != 0) {
+        if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 setMargin(views[i], left, top, right, bottom);
             }
@@ -766,7 +891,7 @@ public final class ViewUtils {
      * @param bottom Bottom Padding
      */
     public static void setPadding(final View[] views, final int left, final int top, final int right, final int bottom) {
-        if (views != null && views.length != 0) {
+        if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 setPadding(views[i], left, top, right, bottom);
             }
@@ -788,11 +913,11 @@ public final class ViewUtils {
 
     /**
      * 计算 ListView Item 高度
-     * @param listView {@link ListView}
-     * @param isSet    是否 setLayoutParams
+     * @param listView  {@link ListView}
+     * @param setParams 是否 setLayoutParams
      * @return ListView Item 高度
      */
-    public static int calcListViewItemHeight(final ListView listView, final boolean isSet) {
+    public static int calcListViewItemHeight(final ListView listView, final boolean setParams) {
         // 获取 Adapter
         ListAdapter listAdapter = listView.getAdapter();
         // 防止为 null
@@ -812,7 +937,7 @@ public final class ViewUtils {
         // 累加分割线高度
         totalHeight += (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         // 判断是否需要设置高度
-        if (isSet) {
+        if (setParams) {
             ViewGroup.LayoutParams params = listView.getLayoutParams();
             params.height = totalHeight;
             listView.setLayoutParams(params);
@@ -840,11 +965,11 @@ public final class ViewUtils {
      * 计算 GridView Item 高度
      * @param gridView   {@link GridView}
      * @param numColumns GridView 行数
-     * @param isSet      是否 setLayoutParams
+     * @param setParams  是否 setLayoutParams
      * @return GridView Item 高度
      */
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static int calcGridViewItemHeight(final GridView gridView, final int numColumns, final boolean isSet) {
+    public static int calcGridViewItemHeight(final GridView gridView, final int numColumns, final boolean setParams) {
         // 获取 Adapter
         ListAdapter listAdapter = gridView.getAdapter();
         // 防止为 null
@@ -887,7 +1012,7 @@ public final class ViewUtils {
         // 最后获取整个 GridView 完整显示需要的高度
         totalHeight += (vSpace * (count - 1));
         // 判断是否需要设置高度
-        if (isSet) {
+        if (setParams) {
             ViewGroup.LayoutParams params = gridView.getLayoutParams();
             params.height = totalHeight;
             gridView.setLayoutParams(params);
@@ -905,10 +1030,7 @@ public final class ViewUtils {
      * @return Item 高度
      */
     public static int getItemHeighet(final AbsListView absViews, final int pos) {
-        if (absViews != null) {
-            return getItemHeighet(absViews.getAdapter(), absViews, pos, 0);
-        }
-        return 0;
+        return getItemHeighet(absViews, pos, 0);
     }
 
     /**

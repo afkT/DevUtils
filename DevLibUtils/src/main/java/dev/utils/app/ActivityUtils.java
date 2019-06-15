@@ -76,7 +76,7 @@ public final class ActivityUtils {
                     context = ((ContextWrapper) context).getBaseContext();
                 }
             } catch (Exception e) {
-                LogPrintUtils.e(TAG, e, "getActivity");
+                LogPrintUtils.eTag(TAG, e, "getActivity");
             }
         }
         return null;
