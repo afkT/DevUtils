@@ -701,10 +701,10 @@ public final class PhoneUtils {
     @RequiresPermission(allOf = {WRITE_EXTERNAL_STORAGE, READ_SMS})
     public static void getAllSMS() {
         // 1.获取短信
-        // 1.1获取内容解析者
+        // 1.1 获取内容解析者
         ContentResolver resolver = DevUtils.getContext().getContentResolver();
-        // 1.2获取内容提供者地址   sms,sms表的地址:null  不写
-        // 1.3获取查询路径
+        // 1.2 获取内容提供者地址 sms, sms 表的地址 null 不写
+        // 1.3 获取查询路径
         Uri uri = Uri.parse("content://sms");
         // 1.4.查询操作
         // projection : 查询的字段

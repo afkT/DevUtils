@@ -92,6 +92,64 @@ public final class ViewUtils {
         return null;
     }
 
+    // ======================
+    // = 初始化 View 操作等 =
+    // ======================
+
+    /**
+     * 初始化 View
+     * @param view {@link View}
+     * @param id   R.id.viewId
+     * @param <T>  泛型
+     * @return {@link View}
+     */
+    public static <T extends View> T findViewById(final View view, final int id) {
+        if (view != null) {
+            try {
+                return view.findViewById(id);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "findViewById");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 初始化 View
+     * @param window {@link Window}
+     * @param id     R.id.viewId
+     * @param <T>    泛型
+     * @return {@link View}
+     */
+    public static <T extends View> T findViewById(final Window window, final int id) {
+        if (window != null) {
+            try {
+                return window.findViewById(id);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "findViewById");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 初始化 View
+     * @param activity {@link Activity}
+     * @param id       R.id.viewId
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends View> T findViewById(final Activity activity, final int id) {
+        if (activity != null) {
+            try {
+                return activity.findViewById(id);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "findViewById");
+            }
+        }
+        return null;
+    }
+
     /**
      * 转换 View
      * @param view {@link View}
@@ -490,60 +548,7 @@ public final class ViewUtils {
         return isChange;
     }
 
-    // ======================
-    // = 初始化 View 操作等 =
-    // ======================
-
-    /**
-     * 初始化 View
-     * @param view {@link View}
-     * @param id   R.id.viewId
-     * @param <T>  泛型
-     * @return {@link View}
-     */
-    public static <T extends View> T findViewById(final View view, final int id) {
-        if (view == null) return null;
-        try {
-            return view.findViewById(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "findViewById");
-        }
-        return null;
-    }
-
-    /**
-     * 初始化 View
-     * @param window {@link Window}
-     * @param id     R.id.viewId
-     * @param <T>    泛型
-     * @return {@link View}
-     */
-    public static <T extends View> T findViewById(final Window window, final int id) {
-        if (window == null) return null;
-        try {
-            return window.findViewById(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "findViewById");
-        }
-        return null;
-    }
-
-    /**
-     * 初始化 View
-     * @param activity {@link Activity}
-     * @param id       R.id.viewId
-     * @param <T>      泛型
-     * @return {@link View}
-     */
-    public static <T extends View> T findViewById(final Activity activity, final int id) {
-        if (activity == null) return null;
-        try {
-            return activity.findViewById(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "findViewById");
-        }
-        return null;
-    }
+    // =
 
     /**
      * 把自身从父 View 中移除
@@ -571,12 +576,12 @@ public final class ViewUtils {
      */
     public static boolean isTouchInView(final MotionEvent ev, final View view) {
         if (ev != null && view != null) {
-            int[] vLoc = new int[2];
-            view.getLocationOnScreen(vLoc);
+            int[] locations = new int[2];
+            view.getLocationOnScreen(locations);
             float motionX = ev.getRawX();
             float motionY = ev.getRawY();
-            return motionX >= vLoc[0] && motionX <= (vLoc[0] + view.getWidth())
-                    && motionY >= vLoc[1] && motionY <= (vLoc[1] + view.getHeight());
+            return motionX >= locations[0] && motionX <= (locations[0] + view.getWidth())
+                    && motionY >= locations[1] && motionY <= (locations[1] + view.getHeight());
         }
         return false;
     }

@@ -18,6 +18,18 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     @see <a href="https://blog.csdn.net/wuqilianga/article/details/72964884"/>
  *     @see <a href="https://blog.csdn.net/CrazyMo_/article/details/53456541"/>
+ *     <p></p>
+ *     android:state_active	        是否处于激活状态
+ *     android:state_checkable	    是否可勾选
+ *     android:state_checked	    是否已勾选
+ *     android:state_enabled	    是否可用
+ *     android:state_first	        是否开始状态
+ *     android:state_focused	    是否已获取焦点
+ *     android:state_last	        是否处于结束
+ *     android:state_middle	        是否处于中间
+ *     android:state_pressed	    是否处于按下状态
+ *     android:state_selected	    是否处于选中状态
+ *     android:state_window_focused	是否窗口已获取焦点
  * </pre>
  */
 public final class StateListUtils {
@@ -27,18 +39,6 @@ public final class StateListUtils {
 
     // 日志 TAG
     private static final String TAG = StateListUtils.class.getSimpleName();
-
-//    android:state_active	是否处于激活状态
-//    android:state_checkable	是否可勾选
-//    android:state_checked	是否已勾选
-//    android:state_enabled	是否可用
-//    android:state_first	是否开始状态
-//    android:state_focused	是否已获取焦点
-//    android:state_last	是否处于结束
-//    android:state_middle	是否处于中间
-//    android:state_pressed	是否处于按下状态 .
-//    android:state_selected	是否处于选中状态
-//    android:state_window_focused	是否窗口已获取焦点
 
     /**
      * 通过 Context 获取 ColorStateList

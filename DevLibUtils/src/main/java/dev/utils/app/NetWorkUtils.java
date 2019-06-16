@@ -540,7 +540,7 @@ public final class NetWorkUtils {
 
     /**
      * 获取域名 IP 地址
-     * @param domain 域名  www.baidu.com  不需要加上http
+     * @param domain 域名 www.baidu.com 不需要加上 http
      * @return IP 地址
      */
     public static String getDomainAddress(final String domain) {

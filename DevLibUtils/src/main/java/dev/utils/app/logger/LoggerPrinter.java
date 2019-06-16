@@ -509,8 +509,8 @@ final class LoggerPrinter implements IPrinter {
             case DEBUG: // 调试级别 v, d - 全部打印
                 isPrint = true;
                 break;
-            case INFO: // 正常级别  i
-            case WARN: // 警告级别  w
+            case INFO: // 正常级别 i
+            case WARN: // 警告级别 w
             case ERROR: // 异常级别 e, wtf
                 isPrint = checkLogLevel(logLevel, logType);
                 break;

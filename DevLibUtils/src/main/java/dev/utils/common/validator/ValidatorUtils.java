@@ -34,13 +34,13 @@ public final class ValidatorUtils {
     // 正则表达式: 验证是否全是字母
     public static final String REGEX_LETTER = "^[A-Za-z]+$";
 
-    // 正则表达式: 不能输入特殊字符   ^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$
+    // 正则表达式: 不能输入特殊字符 ^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$
     public static final String REGEX_SPECIAL = "^[\\u4E00-\\u9FA5A-Za-z0-9]+$";
 
-    // 正则表达式: 验证微信号  ^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$
+    // 正则表达式: 验证微信号 ^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$
     public static final String REGEX_WX = "^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$";
 
-    // 正则表达式: 验证真实姓名  ^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$
+    // 正则表达式: 验证真实姓名 ^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$
     public static final String REGEX_REALNAME = "^[\\u4e00-\\u9fa5]+(•[\\u4e00-\\u9fa5]*)*$|^[\\u4e00-\\u9fa5]+(·[\\u4e00-\\u9fa5]*)*$";
 
     // 正则表达式: 验证昵称

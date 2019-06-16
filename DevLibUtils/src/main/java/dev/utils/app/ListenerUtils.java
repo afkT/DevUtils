@@ -119,54 +119,60 @@ public final class ListenerUtils {
         }
     }
 
-    // ====================
-    // = 初始化View操作等 =
-    // ====================
+    // ======================
+    // = 初始化 View 操作等 =
+    // ======================
 
     /**
-     * 初始化View
-     * @param view
-     * @param id
+     * 初始化 View
+     * @param view {@link View}
+     * @param id   R.id.viewId
      * @param <T>  泛型
-     * @return
+     * @return {@link View}
      */
     private static <T extends View> T findViewById(final View view, final int id) {
-        try {
-            return view.findViewById(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "findViewById");
+        if (view != null) {
+            try {
+                return view.findViewById(id);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "findViewById");
+            }
         }
         return null;
     }
 
     /**
-     * 初始化View
-     * @param window
-     * @param id
+     * 初始化 View
+     * @param window {@link Window}
+     * @param id     R.id.viewId
      * @param <T>    泛型
-     * @return
+     * @return {@link View}
      */
     private static <T extends View> T findViewById(final Window window, final int id) {
-        try {
-            return window.findViewById(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "findViewById");
+        if (window != null) {
+            try {
+                return window.findViewById(id);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "findViewById");
+            }
         }
         return null;
     }
 
     /**
-     * 初始化View
-     * @param activity
-     * @param id
+     * 初始化 View
+     * @param activity {@link Activity}
+     * @param id       R.id.viewId
      * @param <T>      泛型
-     * @return
+     * @return {@link View}
      */
     private static <T extends View> T findViewById(final Activity activity, final int id) {
-        try {
-            return activity.findViewById(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "findViewById");
+        if (activity != null) {
+            try {
+                return activity.findViewById(id);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "findViewById");
+            }
         }
         return null;
     }
