@@ -178,7 +178,7 @@ public class WifiHotUtils {
             boolean setResult = setWifiApConfiguration(wifiConfig);
             // 打印日志
             LogPrintUtils.dTag(TAG, "设置 wifi 热点信息是否成功: " + setResult);
-            // https://www.cnblogs.com/bluestorm/p/3665555.html
+            // 跳转到便携式热点设置页面
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_MAIN);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

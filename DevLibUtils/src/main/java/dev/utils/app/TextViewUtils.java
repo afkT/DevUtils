@@ -945,7 +945,7 @@ public final class TextViewUtils {
      * 设置是否保留字体留白间隙区域
      * <pre>
      *     android:includeFontPadding
-     *     https://blog.csdn.net/bdmh/article/details/78110557
+     *     @see <a href="https://blog.csdn.net/bdmh/article/details/78110557"/>
      * </pre>
      * @param textView   {@link TextView}
      * @param includepad 是否保留字体留白间隙区域

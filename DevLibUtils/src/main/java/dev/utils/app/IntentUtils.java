@@ -57,7 +57,6 @@ public final class IntentUtils {
      * <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
      * @param filePath
      * @param authority 7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
-     *                  <br>参看 https://developer.android.com/reference/android/support/v4/content/FileProvider.html
      * @return 安装 App(支持 8.0)的意图
      */
     public static Intent getInstallAppIntent(final String filePath, final String authority) {
@@ -69,7 +68,6 @@ public final class IntentUtils {
      * <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
      * @param file
      * @param authority 7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
-     *                  <br>参看 https://developer.android.com/reference/android/support/v4/content/FileProvider.html
      * @return 安装 App(支持 8.0)的意图
      */
     public static Intent getInstallAppIntent(final File file, final String authority) {
@@ -81,7 +79,6 @@ public final class IntentUtils {
      * <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
      * @param file
      * @param authority 7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
-     *                  <br>参看 https://developer.android.com/reference/android/support/v4/content/FileProvider.html
      * @param isNewTask 是否开启新的任务栈
      * @return 安装 App(支持 8.0)的意图
      */

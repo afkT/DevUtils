@@ -21,6 +21,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.R;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.SignaturesUtils;
+import dev.utils.common.ConvertUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -90,7 +91,7 @@ public final class ApkInfoItem {
         // 获取 Context
         Context context = DevUtils.getContext();
         // 格式化日期
-        SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         // =
         // 获取 App 信息
         appInfoBean = new AppInfoBean(packageInfo);
@@ -127,9 +128,9 @@ public final class ApkInfoItem {
             notAfter = cert.getNotAfter();
             // 设置有效期
             StringBuilder builder = new StringBuilder();
-            builder.append(dFormat.format(notBefore));
+            builder.append(sdf.format(notBefore));
             builder.append(" " + context.getString(R.string.dev_str_to) + " "); // 至
-            builder.append(dFormat.format(notAfter));
+            builder.append(sdf.format(notAfter));
             builder.append("\n\n");
             builder.append(notBefore);
             builder.append(" " + context.getString(R.string.dev_str_to) + " ");
@@ -159,7 +160,7 @@ public final class ApkInfoItem {
             certSerialnumber = cert.getSerialNumber().toString();
             try {
                 // 证书 DER 编码
-                certDercode = SignaturesUtils.toHexString(cert.getTBSCertificate());
+                certDercode = ConvertUtils.toHexString(cert.getTBSCertificate());
             } catch (CertificateEncodingException e) {
             }
             // 证书有效期

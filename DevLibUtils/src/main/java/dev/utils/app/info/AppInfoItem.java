@@ -19,6 +19,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.R;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.SignaturesUtils;
+import dev.utils.common.ConvertUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -88,7 +89,7 @@ public final class AppInfoItem {
         // 获取 Context
         Context context = DevUtils.getContext();
         // 格式化日期
-        SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         // =
         // 获取 App 信息
         appInfoBean = new AppInfoBean(packageInfo);
@@ -115,9 +116,9 @@ public final class AppInfoItem {
         notAfter = cert.getNotAfter();
         // 设置有效期
         StringBuilder builder = new StringBuilder();
-        builder.append(dFormat.format(notBefore));
+        builder.append(sdf.format(notBefore));
         builder.append(" " + context.getString(R.string.dev_str_to) + " "); // 至
-        builder.append(dFormat.format(notAfter));
+        builder.append(sdf.format(notAfter));
         builder.append("\n\n");
         builder.append(notBefore);
         builder.append(" " + context.getString(R.string.dev_str_to) + " ");
@@ -147,7 +148,7 @@ public final class AppInfoItem {
         certSerialnumber = cert.getSerialNumber().toString();
         try {
             // 证书 DER 编码
-            certDercode = SignaturesUtils.toHexString(cert.getTBSCertificate());
+            certDercode = ConvertUtils.toHexString(cert.getTBSCertificate());
         } catch (CertificateEncodingException e) {
         }
 
@@ -166,9 +167,9 @@ public final class AppInfoItem {
         // App SHA256
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha256, appSHA256));
         // App 首次安装时间
-        listKeyValues.add(KeyValueBean.get(R.string.dev_str_first_install_time, dFormat.format(packageInfo.firstInstallTime)));
+        listKeyValues.add(KeyValueBean.get(R.string.dev_str_first_install_time, sdf.format(packageInfo.firstInstallTime)));
         // 获取最后一次更新时间
-        listKeyValues.add(KeyValueBean.get(R.string.dev_str_last_update_time, dFormat.format(packageInfo.lastUpdateTime)));
+        listKeyValues.add(KeyValueBean.get(R.string.dev_str_last_update_time, sdf.format(packageInfo.lastUpdateTime)));
         // App 最低支持 Android SDK 版本
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(minSdkVersion) + "+ )"));
         // App 兼容 SDK 版本
