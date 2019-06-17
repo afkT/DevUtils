@@ -41,11 +41,11 @@ public final class StateListUtils {
     private static final String TAG = StateListUtils.class.getSimpleName();
 
     /**
-     * 通过 Context 获取 ColorStateList
-     * @param id
-     * @return
+     * 获取 ColorStateList
+     * @param id R.xxx.selector
+     * @return {@link ColorStateList}
      */
-    public static ColorStateList getColorStateList(final int id) {
+    public static ColorStateList getColorStateList(@ColorRes final int id) {
         try {
             return ContextCompat.getColorStateList(DevUtils.getContext(), id);
         } catch (Exception e) {
@@ -63,65 +63,65 @@ public final class StateListUtils {
     // ==============
 
     /**
-     * 创建 颜色状态列表 => createColorStateList("#ffffffff", "#ff44e6ff")
-     * @param pressed
-     * @param normal
-     * @return
+     * 创建 ColorStateList => createColorStateList("#ffffffff", "#ff44e6ff")
+     * @param pressed 按下状态
+     * @param normal  默认状态
+     * @return {@link ColorStateList}
      */
     public static ColorStateList createColorStateList(final String pressed, final String normal) {
         // 颜色值
         int[] colors = new int[]{Color.parseColor(pressed), Color.parseColor(normal)};
         // 状态值
         int[][] states = new int[2][];
-        states[0] = new int[]{android.R.attr.state_pressed}; // 选中颜色
-        states[1] = new int[]{}; // 默认颜色
-        // 生成对应的List对象
-        ColorStateList colorList = new ColorStateList(states, colors);
-        return colorList;
+        states[0] = new int[]{android.R.attr.state_pressed}; // 选中状态
+        states[1] = new int[]{}; // 默认状态
+        // 生成 ColorStateList
+        return new ColorStateList(states, colors);
     }
 
     /**
-     * 创建 颜色状态列表
-     * @param selected
-     * @param pressed
-     * @param normal
-     * @return
+     * 创建 ColorStateList
+     * @param selected 选中状态
+     * @param pressed  按下状态
+     * @param normal   默认状态
+     * @return {@link ColorStateList}
      */
     public static ColorStateList createColorStateList(final String selected, final String pressed, final String normal) {
         // 颜色值
         int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(normal)};
         // 状态值
         int[][] states = new int[3][];
-        states[0] = new int[]{android.R.attr.state_selected}; // 选中颜色
-        states[1] = new int[]{android.R.attr.state_pressed}; // 点击颜色
-        states[2] = new int[]{}; // 默认颜色
-        // 生成对应的List对象
-        ColorStateList colorList = new ColorStateList(states, colors);
-        return colorList;
+        states[0] = new int[]{android.R.attr.state_selected}; // 选中状态
+        states[1] = new int[]{android.R.attr.state_pressed}; // 点击状态
+        states[2] = new int[]{}; // 默认状态
+        // 生成 ColorStateList
+        return new ColorStateList(states, colors);
     }
 
     /**
-     * 创建 颜色状态列表
-     * @param selected
-     * @param pressed
-     * @param focused
-     * @param checked
-     * @param normal
-     * @return
+     * 创建 ColorStateList
+     * @param selected 选中状态
+     * @param pressed  按下状态
+     * @param focused  获取焦点状态
+     * @param checked  已勾选状态
+     * @param normal   默认状态
+     * @return {@link ColorStateList}
      */
-    public static ColorStateList createColorStateList(final String selected, final String pressed, final String focused, final String checked, final String normal) {
+    public static ColorStateList createColorStateList(final String selected, final String pressed,
+                                                      final String focused, final String checked,
+                                                      final String normal) {
         // 颜色值
-        int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(focused), Color.parseColor(checked), Color.parseColor(normal)};
+        int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed),
+                Color.parseColor(focused), Color.parseColor(checked), Color.parseColor(normal)};
         // 状态值
         int[][] states = new int[5][];
-        states[0] = new int[]{android.R.attr.state_selected}; // 选中颜色
-        states[1] = new int[]{android.R.attr.state_pressed}; // 点击颜色
-        states[2] = new int[]{android.R.attr.state_focused}; // 获取焦点
-        states[3] = new int[]{android.R.attr.state_checked}; // 选中
-        states[4] = new int[]{}; // 默认颜色
-        // 生成对应的List对象
-        ColorStateList colorList = new ColorStateList(states, colors);
-        return colorList;
+        states[0] = new int[]{android.R.attr.state_selected}; // 选中状态
+        states[1] = new int[]{android.R.attr.state_pressed}; // 点击状态
+        states[2] = new int[]{android.R.attr.state_focused}; // 获取焦点状态
+        states[3] = new int[]{android.R.attr.state_checked}; // 选中状态
+        states[4] = new int[]{}; // 默认状态
+        // 生成 ColorStateList
+        return new ColorStateList(states, colors);
     }
 
     // =======
@@ -129,10 +129,10 @@ public final class StateListUtils {
     // =======
 
     /**
-     * 创建 颜色状态列表 => createColorStateList(R.color.whilte, R.color.black)
-     * @param pressed
-     * @param normal
-     * @return
+     * 创建 ColorStateList => createColorStateList(R.color.whilte, R.color.black)
+     * @param pressed 按下状态
+     * @param normal  默认状态
+     * @return {@link ColorStateList}
      */
     public static ColorStateList createColorStateList(@ColorRes final int pressed, @ColorRes final int normal) {
         Context context = DevUtils.getContext();
@@ -142,19 +142,18 @@ public final class StateListUtils {
         colors[1] = ContextCompat.getColor(context, normal);
         // 状态值
         int[][] states = new int[2][];
-        states[0] = new int[]{android.R.attr.state_pressed}; // 选中颜色
-        states[1] = new int[]{}; // 默认颜色
-        // 生成对应的List对象
-        ColorStateList colorList = new ColorStateList(states, colors);
-        return colorList;
+        states[0] = new int[]{android.R.attr.state_pressed};
+        states[1] = new int[]{};
+        // 生成 ColorStateList
+        return new ColorStateList(states, colors);
     }
 
     /**
-     * 创建 颜色状态列表
-     * @param selected
-     * @param pressed
-     * @param normal
-     * @return
+     * 创建 ColorStateList
+     * @param selected 选中状态
+     * @param pressed  按下状态
+     * @param normal   默认状态
+     * @return {@link ColorStateList}
      */
     public static ColorStateList createColorStateList(@ColorRes final int selected, @ColorRes final int pressed, @ColorRes final int normal) {
         Context context = DevUtils.getContext();
@@ -165,24 +164,25 @@ public final class StateListUtils {
         colors[2] = ContextCompat.getColor(context, normal);
         // 状态值
         int[][] states = new int[3][];
-        states[0] = new int[]{android.R.attr.state_selected}; // 选中颜色
-        states[1] = new int[]{android.R.attr.state_pressed}; // 点击颜色
-        states[2] = new int[]{}; // 默认颜色
-        // 生成对应的List对象
-        ColorStateList colorList = new ColorStateList(states, colors);
-        return colorList;
+        states[0] = new int[]{android.R.attr.state_selected};
+        states[1] = new int[]{android.R.attr.state_pressed};
+        states[2] = new int[]{};
+        // 生成 ColorStateList
+        return new ColorStateList(states, colors);
     }
 
     /**
-     * 创建 颜色状态列表
-     * @param selected
-     * @param pressed
-     * @param focused
-     * @param checked
-     * @param normal
-     * @return
+     * 创建 ColorStateList
+     * @param selected 选中状态
+     * @param pressed  按下状态
+     * @param focused  获取焦点状态
+     * @param checked  已勾选状态
+     * @param normal   默认状态
+     * @return {@link ColorStateList}
      */
-    public static ColorStateList createColorStateList(@ColorRes final int selected, @ColorRes final int pressed, @ColorRes final int focused, @ColorRes final int checked, @ColorRes final int normal) {
+    public static ColorStateList createColorStateList(@ColorRes final int selected, @ColorRes final int pressed,
+                                                      @ColorRes final int focused, @ColorRes final int checked,
+                                                      @ColorRes final int normal) {
         Context context = DevUtils.getContext();
         // 颜色值
         int[] colors = new int[5];
@@ -193,14 +193,13 @@ public final class StateListUtils {
         colors[4] = ContextCompat.getColor(context, normal);
         // 状态值
         int[][] states = new int[5][];
-        states[0] = new int[]{android.R.attr.state_selected}; // 选中颜色
-        states[1] = new int[]{android.R.attr.state_pressed}; // 点击颜色
-        states[2] = new int[]{android.R.attr.state_focused}; // 获取焦点
-        states[3] = new int[]{android.R.attr.state_checked}; // 选中
-        states[4] = new int[]{}; // 默认颜色
-        // 生成对应的List对象
-        ColorStateList colorList = new ColorStateList(states, colors);
-        return colorList;
+        states[0] = new int[]{android.R.attr.state_selected};
+        states[1] = new int[]{android.R.attr.state_pressed};
+        states[2] = new int[]{android.R.attr.state_focused};
+        states[3] = new int[]{android.R.attr.state_checked};
+        states[4] = new int[]{};
+        // 生成 ColorStateList
+        return new ColorStateList(states, colors);
     }
 
     // =========================
@@ -208,17 +207,17 @@ public final class StateListUtils {
     // =========================
 
     /**
-     * 创建 Drawable选择切换 list => view.setBackground(Drawable)
-     * @param pressed
-     * @param normal
-     * @return
+     * 创建 StateListDrawable => view.setBackground(Drawable)
+     * @param pressed 按下状态
+     * @param normal  默认状态
+     * @return {@link StateListDrawable}
      */
     public static StateListDrawable newSelector(@DrawableRes final int pressed, @DrawableRes final int normal) {
         Context context = DevUtils.getContext();
-        // = 获取 Drawable =
+        // 获取 Drawable
         Drawable pressedDraw = ContextCompat.getDrawable(context, pressed);
         Drawable normalDraw = ContextCompat.getDrawable(context, normal);
-        // 默认初始化
+        // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDraw);
         stateListDrawable.addState(new int[]{}, normalDraw);
@@ -226,19 +225,19 @@ public final class StateListUtils {
     }
 
     /**
-     * 创建 Drawable选择切换 list
-     * @param selected
-     * @param pressed
-     * @param normal
-     * @return
+     * 创建 StateListDrawable
+     * @param selected 选中状态
+     * @param pressed  按下状态
+     * @param normal   默认状态
+     * @return {@link StateListDrawable}
      */
     public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed, @DrawableRes final int normal) {
         Context context = DevUtils.getContext();
-        // = 获取 Drawable =
+        // 获取 Drawable
         Drawable selectedDraw = ContextCompat.getDrawable(context, selected);
         Drawable pressedDraw = ContextCompat.getDrawable(context, pressed);
         Drawable normalDraw = ContextCompat.getDrawable(context, normal);
-        // 默认初始化
+        // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selectedDraw);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDraw);
@@ -247,23 +246,25 @@ public final class StateListUtils {
     }
 
     /**
-     * 创建 Drawable选择切换 list
-     * @param selected
-     * @param pressed
-     * @param focused
-     * @param checked
-     * @param normal
-     * @return
+     * 创建 StateListDrawable
+     * @param selected 选中状态
+     * @param pressed  按下状态
+     * @param focused  获取焦点状态
+     * @param checked  已勾选状态
+     * @param normal   默认状态
+     * @return {@link StateListDrawable}
      */
-    public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed, @DrawableRes final int focused, @DrawableRes final int checked, @DrawableRes final int normal) {
+    public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed,
+                                                @DrawableRes final int focused, @DrawableRes final int checked,
+                                                @DrawableRes final int normal) {
         Context context = DevUtils.getContext();
-        // = 获取 Drawable =
+        // 获取 Drawable
         Drawable selectedDraw = ContextCompat.getDrawable(context, selected);
         Drawable pressedDraw = ContextCompat.getDrawable(context, pressed);
         Drawable focusedDraw = ContextCompat.getDrawable(context, focused);
         Drawable checkedDraw = ContextCompat.getDrawable(context, checked);
         Drawable normalDraw = ContextCompat.getDrawable(context, normal);
-        // 默认初始化
+        // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selectedDraw);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDraw);
@@ -278,13 +279,13 @@ public final class StateListUtils {
     // =========================
 
     /**
-     * 创建 Drawable选择切换 list => view.setBackground(Drawable)
-     * @param pressed
-     * @param normal
-     * @return
+     * 创建 StateListDrawable => view.setBackground(Drawable)
+     * @param pressed 按下状态
+     * @param normal  默认状态
+     * @return {@link StateListDrawable}
      */
     public static StateListDrawable newSelector(final Drawable pressed, final Drawable normal) {
-        // 默认初始化
+        // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);
         stateListDrawable.addState(new int[]{}, normal);
@@ -292,14 +293,14 @@ public final class StateListUtils {
     }
 
     /**
-     * 创建 Drawable选择切换 list
-     * @param selected
-     * @param pressed
-     * @param normal
-     * @return
+     * 创建 StateListDrawable
+     * @param selected 选中状态
+     * @param pressed  按下状态
+     * @param normal   默认状态
+     * @return {@link StateListDrawable}
      */
     public static StateListDrawable newSelector(final Drawable selected, final Drawable pressed, final Drawable normal) {
-        // 默认初始化
+        // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selected);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);
@@ -308,16 +309,18 @@ public final class StateListUtils {
     }
 
     /**
-     * 创建 Drawable选择切换 list
-     * @param selected
-     * @param pressed
-     * @param focused
-     * @param checked
-     * @param normal
-     * @return
+     * 创建 StateListDrawable
+     * @param selected 选中状态
+     * @param pressed  按下状态
+     * @param focused  获取焦点状态
+     * @param checked  已勾选状态
+     * @param normal   默认状态
+     * @return {@link StateListDrawable}
      */
-    public static StateListDrawable newSelector(final Drawable selected, final Drawable pressed, final Drawable focused, final Drawable checked, final Drawable normal) {
-        // 默认初始化
+    public static StateListDrawable newSelector(final Drawable selected, final Drawable pressed,
+                                                final Drawable focused, final Drawable checked,
+                                                final Drawable normal) {
+        // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selected);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);

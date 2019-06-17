@@ -17,9 +17,9 @@ public final class Config {
 
     // 项目名
     public static final String BASE_NAME = "DevUtils";
-    // 缩写标识  - 小写
+    // 缩写标识 - 小写
     public static final String BASE_NAME_SHORT = "dev";
-    // 缩写标识  - 大写
+    // 缩写标识 - 大写
     public static final String BASE_NAME_SHORT_CAP = "DEV";
     // Bugly 项目标示
     public static final String BUGLY_PRONAME_MARK = "DevUtils_Android";

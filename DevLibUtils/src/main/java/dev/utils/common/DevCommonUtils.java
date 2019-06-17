@@ -400,7 +400,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换(删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
-     * * 如 _____a_a_a_a________  传入 _ 等于 ____a_a_a_a____
+     * * 如 _____a_a_a_a________ 传入 _ 等于 ____a_a_a_a____
      * @param str    待处理字符串
      * @param suffix 替换符号字符串
      * @return 处理后的字符串
@@ -411,7 +411,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串中符合 特定标记字符的 startsWith - endsWith
-     * 如 _____a_a_a_a________  传入 _, c 等于 c____a_a_a_a____c
+     * 如 _____a_a_a_a________ 传入 _, c 等于 c____a_a_a_a____c
      * @param str    待处理字符串
      * @param suffix 替换匹配内容
      * @param value  需要替换的内容
@@ -514,7 +514,7 @@ public final class DevCommonUtils {
 
     /**
      * (这个方法功能主要把字符符合标记的 头部和尾部都替换成 "")
-     * 如 _____a_a_a_a________  传入 _ 等于 a_a_a_a
+     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a
      * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
@@ -548,7 +548,7 @@ public final class DevCommonUtils {
 
     /**
      * 清空属于特定字符串开头的字段
-     * 如 _____a_a_a_a________  传入 _ 等于 a_a_a_a_____
+     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a_____
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
@@ -574,7 +574,7 @@ public final class DevCommonUtils {
 
     /**
      * 清空属于特定字符串结尾的字段
-     * 如 _____a_a_a_a________  传入 _ 等于 _____a_a_a_a
+     * 如 _____a_a_a_a________ 传入 _ 等于 _____a_a_a_a
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
