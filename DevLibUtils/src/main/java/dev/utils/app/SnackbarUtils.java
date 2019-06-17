@@ -41,6 +41,10 @@ public final class SnackbarUtils {
     // 样式构造对象
     private StyleBuilder mStyleBuilder = new StyleBuilder();
 
+    /**
+     * 构造函数
+     * @param view {@link View}
+     */
     private SnackbarUtils(final View view) {
         if (view != null) {
             try {
@@ -56,8 +60,8 @@ public final class SnackbarUtils {
 
     /**
      * 获取 SnackbarUtils 对象
-     * @param activity
-     * @return
+     * @param activity {@link Activity}
+     * @return {@link SnackbarUtils}
      */
     public static SnackbarUtils with(final Activity activity) {
         View view = null;
@@ -69,8 +73,8 @@ public final class SnackbarUtils {
 
     /**
      * 获取 SnackbarUtils 对象
-     * @param fragment
-     * @return
+     * @param fragment {@link Fragment}
+     * @return {@link SnackbarUtils}
      */
     public static SnackbarUtils with(final Fragment fragment) {
         return new SnackbarUtils((fragment != null) ? fragment.getView() : null);
@@ -78,8 +82,8 @@ public final class SnackbarUtils {
 
     /**
      * 获取 SnackbarUtils 对象
-     * @param window
-     * @return
+     * @param window {@link Window}
+     * @return {@link SnackbarUtils}
      */
     public static SnackbarUtils with(final Window window) {
         return new SnackbarUtils((window != null) ? window.getDecorView() : null);
@@ -87,8 +91,8 @@ public final class SnackbarUtils {
 
     /**
      * 获取 SnackbarUtils 对象
-     * @param view
-     * @return
+     * @param view {@link View}
+     * @return {@link SnackbarUtils}
      */
     public static SnackbarUtils with(final View view) {
         return new SnackbarUtils(view);
@@ -100,7 +104,7 @@ public final class SnackbarUtils {
 
     /**
      * 获取样式
-     * @return
+     * @return {@link StyleBuilder}
      */
     public StyleBuilder getStyle() {
         return mStyleBuilder;
@@ -108,8 +112,8 @@ public final class SnackbarUtils {
 
     /**
      * 设置样式
-     * @param style
-     * @return
+     * @param style {@link SnackbarUtils.Style}
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setStyle(final Style style) {
         this.mStyleBuilder = new StyleBuilder(style);
@@ -122,7 +126,7 @@ public final class SnackbarUtils {
 
     /**
      * 获取 Snackbar
-     * @return
+     * @return {@link Snackbar}
      */
     public Snackbar getSnackbar() {
         return (sSnackbarReference != null) ? sSnackbarReference.get() : null;
@@ -130,7 +134,7 @@ public final class SnackbarUtils {
 
     /**
      * 获取 Snackbar View
-     * @return
+     * @return {@link Snackbar#getView()}
      */
     public View getSnackbarView() {
         Snackbar snackbar = getSnackbar();
@@ -142,7 +146,7 @@ public final class SnackbarUtils {
 
     /**
      * 获取 Snackbar TextView(snackbar_text)
-     * @return
+     * @return Snackbar {@link TextView}
      */
     public TextView getTextView() {
         View view = getSnackbarView();
@@ -154,8 +158,10 @@ public final class SnackbarUtils {
 
     /**
      * 获取 Snackbar Action Button(snackbar_action)
-     * 右边按钮(如: 撤销)
-     * @return
+     * <pre>
+     *     右边按钮(如: 撤销)
+     * </pre>
+     * @return Snackbar {@link Button}
      */
     public Button getActionButton() {
         View view = getSnackbarView();
@@ -166,18 +172,18 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 向 Snackbar 布局中添加View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
+     * 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
      * @param layoutId R.layout.id
-     * @param index
-     * @return
+     * @param index    添加索引
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils addView(final int layoutId, final int index) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
             try {
-                // 加载布局文件新建View
-                View addView = LayoutInflater.from(snackbar.getView().getContext()).inflate(layoutId, null);
-                return addView(addView, index);
+                // 加载布局文件新建 View
+                View view = LayoutInflater.from(snackbar.getView().getContext()).inflate(layoutId, null);
+                return addView(view, index);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "addView");
             }
@@ -186,10 +192,10 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 向 Snackbar 布局中添加View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
-     * @param view
-     * @param index
-     * @return
+     * 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
+     * @param view  {@link View}
+     * @param index 添加索引
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils addView(final View view, final int index) {
         Snackbar snackbar = getSnackbar();
@@ -209,14 +215,14 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 设置 Snackbar 展示完成 及 隐藏完成 的监听
-     * @param setCallback
-     * @return
+     * 设置 Snackbar 展示完成、隐藏完成 的监听
+     * @param callback {@link Snackbar.Callback}
+     * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setCallback(final Snackbar.Callback setCallback) {
+    public SnackbarUtils setCallback(final Snackbar.Callback callback) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
-            snackbar.addCallback(setCallback);
+            snackbar.addCallback(callback);
         }
         return this;
     }
@@ -224,21 +230,21 @@ public final class SnackbarUtils {
     // =
 
     /**
-     * 设置 Action 按钮文字内容 及 点击监听
-     * @param resId
-     * @param objs
-     * @return
+     * 设置 Action 按钮文字内容及点击监听
+     * @param resId R.string.id
+     * @param objs  格式化参数
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setAction(final int resId, final Object... objs) {
         return setAction(null, resId, objs);
     }
 
     /**
-     * 设置 Action 按钮文字内容 及 点击监听
-     * @param listener
-     * @param resId
-     * @param objs
-     * @return 格式化后的字符串
+     * 设置 Action 按钮文字内容及点击监听
+     * @param listener 按钮点击事件
+     * @param resId    R.string.id
+     * @param objs     格式化参数
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setAction(final View.OnClickListener listener, final int resId, final Object... objs) {
         Snackbar snackbar = getSnackbar();
@@ -252,21 +258,21 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 设置 Action 按钮文字内容 及 点击监听
-     * @param text
-     * @param objs
-     * @return
+     * 设置 Action 按钮文字内容及点击监听
+     * @param text 按钮文本
+     * @param objs 格式化参数
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setAction(final String text, final Object... objs) {
         return setAction(null, text, objs);
     }
 
     /**
-     * 设置 Action 按钮文字内容 及 点击监听
-     * @param listener
-     * @param text
-     * @param objs
-     * @return
+     * 设置 Action 按钮文字内容及点击监听
+     * @param listener 按钮点击事件
+     * @param text     按钮文本
+     * @param objs     格式化参数
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setAction(final View.OnClickListener listener, final String text, final Object... objs) {
         Snackbar snackbar = getSnackbar();
@@ -279,6 +285,8 @@ public final class SnackbarUtils {
         return this;
     }
 
+    // =
+
     /**
      * 关闭 Snackbar
      */
@@ -288,7 +296,7 @@ public final class SnackbarUtils {
 
     /**
      * 关闭 Snackbar
-     * @param setNull
+     * @param setNull 是否设置 null
      */
     public void dismiss(final boolean setNull) {
         Snackbar snackbar = getSnackbar();
@@ -305,8 +313,8 @@ public final class SnackbarUtils {
 
     /**
      * 显示 Short Snackbar
-     * @param resId
-     * @param objs
+     * @param resId R.string.id
+     * @param objs  格式化参数
      */
     public void showShort(final int resId, final Object... objs) {
         priShow(getFormatRes(resId, objs), Snackbar.LENGTH_SHORT);
@@ -314,8 +322,8 @@ public final class SnackbarUtils {
 
     /**
      * 显示 Long Snackbar
-     * @param resId
-     * @param objs
+     * @param resId R.string.id
+     * @param objs  格式化参数
      */
     public void showLong(final int resId, final Object... objs) {
         priShow(getFormatRes(resId, objs), Snackbar.LENGTH_LONG);
@@ -323,8 +331,8 @@ public final class SnackbarUtils {
 
     /**
      * 显示 Indefinite Snackbar (无限时, 一直显示)
-     * @param resId
-     * @param objs
+     * @param resId R.string.id
+     * @param objs  格式化参数
      */
     public void showIndefinite(final int resId, final Object... objs) {
         priShow(getFormatRes(resId, objs), Snackbar.LENGTH_INDEFINITE);
@@ -334,8 +342,8 @@ public final class SnackbarUtils {
 
     /**
      * 显示 Short Snackbar
-     * @param text
-     * @param objs
+     * @param text 显示文本
+     * @param objs 格式化参数
      */
     public void showShort(final String text, final Object... objs) {
         priShow(getFormatString(text, objs), Snackbar.LENGTH_SHORT);
@@ -343,8 +351,8 @@ public final class SnackbarUtils {
 
     /**
      * 显示 Long Snackbar
-     * @param text
-     * @param objs
+     * @param text 显示文本
+     * @param objs 格式化参数
      */
     public void showLong(final String text, final Object... objs) {
         priShow(getFormatString(text, objs), Snackbar.LENGTH_LONG);
@@ -352,8 +360,8 @@ public final class SnackbarUtils {
 
     /**
      * 显示 Indefinite Snackbar (无限时, 一直显示)
-     * @param text
-     * @param objs
+     * @param text 显示文本
+     * @param objs 格式化参数
      */
     public void showIndefinite(final String text, final Object... objs) {
         priShow(getFormatString(text, objs), Snackbar.LENGTH_INDEFINITE);
@@ -365,79 +373,25 @@ public final class SnackbarUtils {
 
     /**
      * 内部显示方法
-     * @param text
-     * @param duration
+     * @param text     显示文本
+     * @param duration 显示时长 {@link Snackbar#LENGTH_SHORT}、{@link Snackbar#LENGTH_LONG}、{@link Snackbar#LENGTH_INDEFINITE}
      */
     private void priShow(final String text, final int duration) {
         Snackbar snackbar = getSnackbar();
-        if (snackbar != null) {
-            if (!snackbar.isShownOrQueued()) {
-                // 防止内容为 null
-                if (!TextUtils.isEmpty(text)) {
-                    setSnackbarStyle(snackbar);
-                    if (snackbar != null) {
-                        // 设置坐标位置
-                        setSnackbarLocation(snackbar);
-                        // 显示 SnackBar
-                        snackbar.setText(text).setDuration(duration).show();
-                    }
+        if (snackbar != null && !snackbar.isShownOrQueued()) {
+            // 防止内容为 null
+            if (!TextUtils.isEmpty(text)) {
+                // 设置样式
+                setSnackbarStyle(snackbar);
+                try {
+                    // 设置坐标位置
+                    setSnackbarLocation(snackbar);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "priShow - setSnackbarLocation");
                 }
+                // 显示 SnackBar
+                snackbar.setText(text).setDuration(duration).show();
             }
-        }
-    }
-
-    // =
-
-    /**
-     * 获取格式化字符串
-     * @param format
-     * @param args
-     * @return
-     */
-    private String getFormatString(final String format, final Object... args) {
-        try {
-            if (args != null && args.length != 0) {
-                return String.format(format, args);
-            } else {
-                return format;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getFormatString");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 R.string 资源的格式化字符串
-     * @param resId
-     * @param objs
-     * @return 格式化后的字符串
-     */
-    private String getFormatRes(final int resId, final Object... objs) {
-        try {
-            // 获取字符串并且进行格式化
-            if (objs != null && objs.length != 0) {
-                return DevUtils.getContext().getString(resId, objs);
-            } else {
-                return DevUtils.getContext().getString(resId);
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getFormatRes");
-        }
-        return null;
-    }
-
-    /**
-     * 设置背景
-     * @param view
-     * @param drawable
-     */
-    private void setBackground(final View view, final Drawable drawable) {
-        if (view != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                view.setBackground(drawable);
-            else
-                view.setBackgroundDrawable(drawable);
         }
     }
 
@@ -506,11 +460,19 @@ public final class SnackbarUtils {
 
         // =
 
+        /**
+         * 构造函数
+         */
         public StyleBuilder() {
         }
 
+        /**
+         * 构造函数
+         * @param style {@link SnackbarUtils.Style}
+         */
         public StyleBuilder(final SnackbarUtils.Style style) {
             if (style != null) {
+
                 // ============
                 // = RootView =
                 // ============
@@ -578,7 +540,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 RootView 的重心
-         * @return
+         * @return RootView 的重心
          */
         @Override
         public int getRootGravity() {
@@ -587,8 +549,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 RootView 的重心
-         * @param rootGravity
-         * @return
+         * @param rootGravity RootView 的重心
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setRootGravity(int rootGravity) {
             this.rootGravity = rootGravity;
@@ -597,7 +559,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 RootView 背景圆角大小
-         * @return
+         * @return RootView 背景圆角大小
          */
         @Override
         public float getRootCornerRadius() {
@@ -606,8 +568,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 RootView 背景圆角大小
-         * @param rootCornerRadius
-         * @return
+         * @param rootCornerRadius RootView 背景圆角大小
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setRootCornerRadius(float rootCornerRadius) {
             this.rootCornerRadius = rootCornerRadius;
@@ -616,7 +578,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 RootView 背景着色颜色
-         * @return
+         * @return RootView 背景着色颜色
          */
         @Override
         public int getRootBackgroundTintColor() {
@@ -625,8 +587,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 RootView 背景着色颜色
-         * @param rootBackgroundTintColor
-         * @return
+         * @param rootBackgroundTintColor RootView 背景着色颜色
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setRootBackgroundTintColor(int rootBackgroundTintColor) {
             this.rootBackgroundTintColor = rootBackgroundTintColor;
@@ -635,7 +597,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 RootView 背景图片
-         * @return
+         * @return {@link Drawable}
          */
         @Override
         public Drawable getRootBackground() {
@@ -644,8 +606,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 RootView 背景图片
-         * @param rootBackground
-         * @return
+         * @param rootBackground {@link Drawable}
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setRootBackground(Drawable rootBackground) {
             this.rootBackground = rootBackground;
@@ -654,7 +616,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 RootView margin 边距 - new int[] { left, top, right, bottom }
-         * @return
+         * @return RootView margin[]
          */
         @Override
         public int[] getRootMargin() {
@@ -663,8 +625,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 RootView margin 边距
-         * @param rootMargin
-         * @return
+         * @param rootMargin margin[]
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setRootMargin(int[] rootMargin) {
             this.rootMargin = rootMargin;
@@ -673,7 +635,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 RootView 透明度
-         * @return
+         * @return RootView 透明度
          */
         @Override
         public float getRootAlpha() {
@@ -682,10 +644,12 @@ public final class SnackbarUtils {
 
         /**
          * 设置 RootView 透明度
-         * @param rootAlpha
+         * @param rootAlpha RootView 透明度
+         * @return {@link StyleBuilder}
          */
-        public void setRootAlpha(float rootAlpha) {
+        public StyleBuilder setRootAlpha(float rootAlpha) {
             this.rootAlpha = rootAlpha;
+            return this;
         }
 
         // ===============================
@@ -694,7 +658,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 TextView 的重心
-         * @return
+         * @return TextView 的重心
          */
         @Override
         public int getTextGravity() {
@@ -703,8 +667,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 TextView 的重心
-         * @param textGravity
-         * @return
+         * @param textGravity TextView 的重心
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setTextGravity(int textGravity) {
             this.textGravity = textGravity;
@@ -713,7 +677,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 TextView 文本颜色
-         * @return
+         * @return TextView 文本颜色
          */
         @Override
         public int getTextColor() {
@@ -722,8 +686,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 TextView 文本颜色
-         * @param textColor
-         * @return
+         * @param textColor TextView 文本颜色
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setTextColor(int textColor) {
             this.textColor = textColor;
@@ -732,7 +696,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 TextView 字体大小
-         * @return
+         * @return TextView 字体大小
          */
         @Override
         public float getTextSize() {
@@ -741,8 +705,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 TextView 字体大小
-         * @param textSize
-         * @return
+         * @param textSize TextView 字体大小
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setTextSize(float textSize) {
             this.textSize = textSize;
@@ -751,7 +715,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 TextView 最大行数
-         * @return
+         * @return TextView 最大行数
          */
         @Override
         public int getTextMaxLines() {
@@ -760,8 +724,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 TextView 最大行数
-         * @param textMaxLines
-         * @return
+         * @param textMaxLines TextView 最大行数
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setTextMaxLines(int textMaxLines) {
             this.textMaxLines = textMaxLines;
@@ -770,7 +734,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 TextView Ellipsize 效果
-         * @return
+         * @return {@link TextUtils.TruncateAt}
          */
         @Override
         public TextUtils.TruncateAt getTextEllipsize() {
@@ -779,8 +743,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 TextView Ellipsize 效果
-         * @param textEllipsize
-         * @return
+         * @param textEllipsize {@link TextUtils.TruncateAt} Ellipsize
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setTextEllipsize(TextUtils.TruncateAt textEllipsize) {
             this.textEllipsize = textEllipsize;
@@ -789,7 +753,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 TextView 字体样式
-         * @return
+         * @return {@link Typeface}
          */
         @Override
         public Typeface getTextTypeface() {
@@ -798,8 +762,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 TextView 字体样式
-         * @param textTypeface
-         * @return
+         * @param textTypeface {@link Typeface}
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setTextTypeface(Typeface textTypeface) {
             this.textTypeface = textTypeface;
@@ -808,7 +772,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 TextView padding 边距 - new int[] { left, top, right, bottom }
-         * @return
+         * @return TextView padding[]
          */
         @Override
         public int[] getTextPadding() {
@@ -816,9 +780,9 @@ public final class SnackbarUtils {
         }
 
         /**
-         * 设置 TextView padding 边距 - new int[] { left, top, right, bottom }
-         * @param textPadding
-         * @return
+         * 设置 TextView padding 边距
+         * @param textPadding TextView padding[]
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setTextPadding(int[] textPadding) {
             this.textPadding = textPadding;
@@ -831,7 +795,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 Action Button 的重心
-         * @return
+         * @return Action Button 的重心
          */
         @Override
         public int getActionGravity() {
@@ -840,8 +804,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 Action Button 的重心
-         * @param actionGravity
-         * @return
+         * @param actionGravity Action Button 的重心
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setActionGravity(int actionGravity) {
             this.actionGravity = actionGravity;
@@ -850,7 +814,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 Action Button 文本颜色
-         * @return
+         * @return Action Button 文本颜色
          */
         @Override
         public int getActionColor() {
@@ -859,8 +823,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 Action Button 文本颜色
-         * @param actionColor
-         * @return
+         * @param actionColor Action Button 文本颜色
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setActionColor(int actionColor) {
             this.actionColor = actionColor;
@@ -869,7 +833,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 Action Button 字体大小
-         * @return
+         * @return Action Button 字体大小
          */
         @Override
         public float getActionSize() {
@@ -878,8 +842,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 Action Button 字体大小
-         * @param actionSize
-         * @return
+         * @param actionSize Action Button 字体大小
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setActionSize(float actionSize) {
             this.actionSize = actionSize;
@@ -888,7 +852,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 Action Button padding 边距 - new int[] { left, top, right, bottom }
-         * @return
+         * @return Action Button padding[]
          */
         @Override
         public int[] getActionPadding() {
@@ -896,9 +860,9 @@ public final class SnackbarUtils {
         }
 
         /**
-         * 设置 Action Button padding 边距 - new int[] { left, top, right, bottom }
-         * @param actionPadding
-         * @return
+         * 设置 Action Button padding 边距
+         * @param actionPadding Action Button padding[]
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setActionPadding(int[] actionPadding) {
             this.actionPadding = actionPadding;
@@ -907,7 +871,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 Action Button 背景圆角大小
-         * @return
+         * @return Action Button 背景圆角大小
          */
         @Override
         public float getActionCornerRadius() {
@@ -916,8 +880,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 Action Button 背景圆角大小
-         * @param actionCornerRadius
-         * @return
+         * @param actionCornerRadius Action Button 背景圆角大小
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setActionCornerRadius(float actionCornerRadius) {
             this.actionCornerRadius = actionCornerRadius;
@@ -926,7 +890,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 Action Button 背景着色颜色
-         * @return
+         * @return Action Button 背景着色颜色
          */
         @Override
         public int getActionBackgroundTintColor() {
@@ -935,8 +899,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 Action Button 背景着色颜色
-         * @param actionBackgroundTintColor
-         * @return
+         * @param actionBackgroundTintColor Action Button 背景着色颜色
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setActionBackgroundTintColor(int actionBackgroundTintColor) {
             this.actionBackgroundTintColor = actionBackgroundTintColor;
@@ -945,7 +909,7 @@ public final class SnackbarUtils {
 
         /**
          * 获取 Action Button 背景图片
-         * @return
+         * @return {@link Drawable}
          */
         @Override
         public Drawable getActionBackground() {
@@ -954,8 +918,8 @@ public final class SnackbarUtils {
 
         /**
          * 设置 Action Button 背景图片
-         * @param actionBackground
-         * @return
+         * @param actionBackground {@link Drawable}
+         * @return {@link StyleBuilder}
          */
         public StyleBuilder setActionBackground(Drawable actionBackground) {
             this.actionBackground = actionBackground;
@@ -978,48 +942,48 @@ public final class SnackbarUtils {
         // ============
 
         /**
-         * RootView 的重心
-         * @return
+         * 获取 RootView 的重心
+         * @return RootView 的重心
          */
         public int getRootGravity() {
             return 0;
         }
 
         /**
-         * RootView 背景圆角大小
-         * @return
+         * 获取 RootView 背景圆角大小
+         * @return RootView 背景圆角大小
          */
         public float getRootCornerRadius() {
             return 0f;
         }
 
         /**
-         * RootView 背景着色颜色
-         * @return
+         * 获取 RootView 背景着色颜色
+         * @return RootView 背景着色颜色
          */
         public int getRootBackgroundTintColor() {
             return 0;
         }
 
         /**
-         * RootView 背景图片
-         * @return
+         * 获取 RootView 背景图片
+         * @return {@link Drawable}
          */
         public Drawable getRootBackground() {
             return null;
         }
 
         /**
-         * RootView margin 边距 - new int[] { left, top, right, bottom }
-         * @return
+         * 获取 RootView margin 边距 - new int[] { left, top, right, bottom }
+         * @return RootView margin[]
          */
         public int[] getRootMargin() {
             return null;
         }
 
         /**
-         * RootView 透明度
-         * @return
+         * 获取 RootView 透明度
+         * @return RootView 透明度
          */
         public float getRootAlpha() {
             return 1.0f;
@@ -1030,56 +994,56 @@ public final class SnackbarUtils {
         // ===============================
 
         /**
-         * TextView 的重心
-         * @return
+         * 获取 TextView 的重心
+         * @return TextView 的重心
          */
         public int getTextGravity() {
             return 0;
         }
 
         /**
-         * TextView 文本颜色
-         * @return
+         * 获取 TextView 文本颜色
+         * @return TextView 文本颜色
          */
         public int getTextColor() {
             return 0;
         }
 
         /**
-         * TextView 字体大小
-         * @return
+         * 获取 TextView 字体大小
+         * @return TextView 字体大小
          */
         public float getTextSize() {
             return 0f;
         }
 
         /**
-         * TextView 最大行数
-         * @return
+         * 获取 TextView 最大行数
+         * @return TextView 最大行数
          */
         public int getTextMaxLines() {
             return 0;
         }
 
         /**
-         * TextView Ellipsize 效果
-         * @return
+         * 获取 TextView Ellipsize 效果
+         * @return {@link TextUtils.TruncateAt}
          */
         public TextUtils.TruncateAt getTextEllipsize() {
             return null;
         }
 
         /**
-         * TextView 字体样式
-         * @return
+         * 获取 TextView 字体样式
+         * @return {@link Typeface}
          */
         public Typeface getTextTypeface() {
             return null;
         }
 
         /**
-         * TextView padding 边距 - new int[] { left, top, right, bottom }
-         * @return
+         * 获取 TextView padding 边距 - new int[] { left, top, right, bottom }
+         * @return TextView padding[]
          */
         public int[] getTextPadding() {
             return null;
@@ -1090,56 +1054,56 @@ public final class SnackbarUtils {
         // ===============================
 
         /**
-         * Action Button 的重心
-         * @return
+         * 获取 Action Button 的重心
+         * @return Action Button 的重心
          */
         public int getActionGravity() {
             return 0;
         }
 
         /**
-         * Action Button 文本颜色
-         * @return
+         * 获取 Action Button 文本颜色
+         * @return Action Button 文本颜色
          */
         public int getActionColor() {
             return 0;
         }
 
         /**
-         * Action Button 字体大小
-         * @return
+         * 获取 Action Button 字体大小
+         * @return Action Button 字体大小
          */
         public float getActionSize() {
             return 0f;
         }
 
         /**
-         * Action Button padding 边距 - new int[] { left, top, right, bottom }
-         * @return
+         * 获取 Action Button padding 边距 - new int[] { left, top, right, bottom }
+         * @return Action Button padding[]
          */
         public int[] getActionPadding() {
             return null;
         }
 
         /**
-         * Action Button 背景圆角大小
-         * @return
+         * 获取 Action Button 背景圆角大小
+         * @return Action Button 背景圆角大小
          */
         public float getActionCornerRadius() {
             return 0f;
         }
 
         /**
-         * Action Button 背景着色颜色
-         * @return
+         * 获取 Action Button 背景着色颜色
+         * @return Action Button 背景着色颜色
          */
         public int getActionBackgroundTintColor() {
             return 0;
         }
 
         /**
-         * Action Button 背景图片
-         * @return
+         * 获取 Action Button 背景图片
+         * @return {@link Drawable}
          */
         public Drawable getActionBackground() {
             return null;
@@ -1152,8 +1116,8 @@ public final class SnackbarUtils {
 
     /**
      * 设置 Snackbar 样式配置
-     * @param snackbar
-     * @return
+     * @param snackbar {@link Snackbar}
+     * @return {@link Snackbar}
      */
     public Snackbar setSnackbarStyle(final Snackbar snackbar) {
         return setSnackbarStyle(snackbar, mStyleBuilder);
@@ -1161,17 +1125,15 @@ public final class SnackbarUtils {
 
     /**
      * 设置 Snackbar 样式配置
-     * @param snackbar
-     * @param style
-     * @return
+     * @param snackbar {@link Snackbar}
+     * @param style    {@link SnackbarUtils.Style}
+     * @return {@link Snackbar}
      */
     public Snackbar setSnackbarStyle(final Snackbar snackbar, final SnackbarUtils.Style style) {
-        if (snackbar == null) { // 防止 Snackbar 为 null
-            return snackbar;
-        } else if (style == null) { // 防止 Style 为 null
+        if (snackbar == null || style == null) {
             return snackbar;
         }
-        // 获取显示的View
+        // 获取显示的 View
         View rootView = snackbar.getView();
         if (rootView != null) {
 
@@ -1346,7 +1308,7 @@ public final class SnackbarUtils {
 
     /**
      * 获取阴影边距
-     * @return
+     * @return 阴影边距
      */
     public int getShadowMargin() {
         return mShadowMargin;
@@ -1354,8 +1316,8 @@ public final class SnackbarUtils {
 
     /**
      * 设置阴影边距
-     * @param shadowMargin
-     * @return
+     * @param shadowMargin 阴影边距
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setShadowMargin(final int shadowMargin) {
         this.mShadowMargin = shadowMargin;
@@ -1364,7 +1326,7 @@ public final class SnackbarUtils {
 
     /**
      * 判断是否自动计算边距 (如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示)
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isAutoCalc() {
         return mAutoCalc;
@@ -1372,8 +1334,8 @@ public final class SnackbarUtils {
 
     /**
      * 设置是否自动计算边距 (如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示)
-     * @param autoCalc
-     * @return
+     * @param autoCalc 是否自动计算边距
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setAutoCalc(final boolean autoCalc) {
         this.mAutoCalc = autoCalc;
@@ -1393,9 +1355,9 @@ public final class SnackbarUtils {
 
     /**
      * 设置 Snackbar 显示在指定 View 的上方
-     * @param targetView
+     * @param targetView      目标 View
      * @param appendTopMargin 追加边距(如: 状态栏高度) {@link ScreenUtils#getStatusBarHeight}
-     * @return
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils above(final View targetView, final int appendTopMargin) {
         // 清空重置处理
@@ -1413,9 +1375,9 @@ public final class SnackbarUtils {
 
     /**
      * 设置 Snackbar 显示在指定 View 的下方
-     * @param targetView
+     * @param targetView      目标 View
      * @param appendTopMargin 追加边距(如: 状态栏高度) {@link ScreenUtils#getStatusBarHeight}
-     * @return
+     * @return {@link SnackbarUtils}
      */
     public SnackbarUtils bellow(final View targetView, final int appendTopMargin) {
         // 清空重置处理
@@ -1433,10 +1395,11 @@ public final class SnackbarUtils {
 
     /**
      * 设置 Snackbar 显示的坐标位置
-     * @param snackbar
+     * @param snackbar {@link Snackbar}
      */
     private void setSnackbarLocation(final Snackbar snackbar) {
-        // 获取显示的View
+        if (snackbar == null) return;
+        // 获取显示的 View
         View rootView = snackbar.getView();
         if (rootView != null) {
             // = 特殊处理 =
@@ -1457,7 +1420,7 @@ public final class SnackbarUtils {
                 // 获取 View 上方距离
                 int mViewTop = mViewLocations[1];
                 // 获取屏幕高度
-                int screenHeight = getScreenHeight(DevUtils.getContext());
+                int screenHeight = getScreenHeight();
                 // 防止等于 0
                 if (screenHeight != 0) {
                     // 获取测量高度(不一定准确)
@@ -1466,9 +1429,9 @@ public final class SnackbarUtils {
                     if (mViewGravity == Gravity.TOP) {
                         // 判断是否超出可显示高度
                         if (mViewTop - mShadowMargin - mAppendTopMargin >= measuredHeight) {
-                            // 思路: 没有超出高度, 则正常显示在指定View 上方
+                            // 思路: 没有超出高度, 则正常显示在指定 View 上方
                             // 改为布局居下(相反方向), 然后设置 bottomMargin 为 屏幕高度 - view mWindowTop + 阴影大小
-                            // 这样的思路, 主要是只用知道 view 的 Y 轴位置, 然后用屏幕高度减去 y 得到的就是需要向下的边距, 不需要计算 Snackbar View 高度
+                            // 这样的思路, 主要是只用知道 view 的 Y 轴位置, 然后用屏幕高度减去 Y 得到的就是需要向下的边距, 不需要计算 Snackbar View 高度
                             try {
                                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(rootView.getLayoutParams().width, rootView.getLayoutParams().height);
                                 params.gravity = Gravity.BOTTOM;
@@ -1484,7 +1447,7 @@ public final class SnackbarUtils {
                         } else { // 超出可视范围
                             // 判断是否自动计算处理
                             if (mAutoCalc) {
-                                // 思路如上: 超出高度后, 则直接设置居上, 计算边距则 view mWindowTop - 追加边距(状态栏高度) + view height, 设置到View 的下方
+                                // 思路如上: 超出高度后, 则直接设置居上, 计算边距则 view mWindowTop - 追加边距(状态栏高度) + view height, 设置到 View 的下方
                                 // 计算处理主要是, 只需要知道 view Y 轴位置 + view height - 追加边距(状态栏高度) = 需要的边距
                                 // 为什么需要减 状态栏高度, 是因为 view Y (view mWindowTop) 就包含状态栏的高度信息
                                 try {
@@ -1504,7 +1467,7 @@ public final class SnackbarUtils {
                     } else { // 在指定坐标下方
                         // 判断是否超出可显示高度
                         if (screenHeight - (mViewTop + mShadowMargin + mAppendTopMargin + mViewHeight) >= measuredHeight) {
-                            // 思路: 没有超出高度, 则正常显示在指定View 下方
+                            // 思路: 没有超出高度, 则正常显示在指定 View 下方
                             // 并且改为布局居上, 然后设置 topMargin 为 view mWindowTop - (阴影大小 + 追加边距(状态栏高度))
                             // 这样的思路, 主要是不居下, 不用知道 Snackbar view 高度, 导致向下边距计算错误, 转换思路从上处理
                             try {
@@ -1546,16 +1509,23 @@ public final class SnackbarUtils {
         clearLocations();
     }
 
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = ScreenUtils =
+    // ===============
+
     /**
      * 获取屏幕的高度(单位 px)
-     * @param context {@link Context}
-     * @return 屏幕高
+     * @return 屏幕高度
      */
-    private int getScreenHeight(final Context context) {
+    private int getScreenHeight() {
         try {
-            WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
             if (windowManager == null) {
-                return context.getResources().getDisplayMetrics().heightPixels;
+                return DevUtils.getContext().getResources().getDisplayMetrics().heightPixels;
             }
             Point point = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -1565,42 +1535,113 @@ public final class SnackbarUtils {
             }
             return point.y;
         } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getScreenHeight");
         }
         return 0;
     }
 
+    // =============
+    // = ViewUtils =
+    // =============
+
     /**
-     * 测量视图尺寸
-     * @param view 视图
-     * @return arr[0]: 视图宽度, arr[1]: 视图高度
+     * 测量 View
+     * @param view {@link View}
+     * @return int[] 0 = 宽度, 1 = 高度
      */
     private int[] measureView(final View view) {
-        try {
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            if (layoutParams == null) {
-                layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (view != null) {
+            try {
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams == null) {
+                    layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
+                int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
+                int height = layoutParams.height;
+                int heightSpec;
+                if (height > 0) {
+                    heightSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+                } else {
+                    heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+                }
+                view.measure(widthSpec, heightSpec);
+                return new int[]{view.getMeasuredWidth(), view.getMeasuredHeight()};
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "measureView");
             }
-            int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
-            int lpHeight = layoutParams.height;
-            int heightSpec;
-            if (lpHeight > 0) {
-                heightSpec = View.MeasureSpec.makeMeasureSpec(lpHeight, View.MeasureSpec.EXACTLY);
-            } else {
-                heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-            }
-            view.measure(widthSpec, heightSpec);
-            return new int[]{view.getMeasuredWidth(), view.getMeasuredHeight()};
-        } catch (Exception e) {
-            return new int[]{0, 0};
         }
+        return new int[]{0, 0};
     }
 
     /**
-     * 获取测量视图高度
-     * @param view 视图
-     * @return 视图高度
+     * 获取 View 的高度
+     * @param view {@link View}
+     * @return View 的高度
      */
     private int getMeasuredHeight(final View view) {
-        return measureView(view)[1];
+        if (view != null) {
+            measureView(view);
+            return view.getMeasuredHeight();
+        }
+        return -1;
+    }
+
+    // ==================
+    // = 数据格式化处理 =
+    // ==================
+
+    /**
+     * 获取格式化后的字符串
+     * @param format 待格式化字符串
+     * @param args   格式化参数
+     * @return 格式化后的字符串
+     */
+    private String getFormatString(final String format, final Object... args) {
+        if (format == null) return null;
+        try {
+            if (args != null && args.length != 0) {
+                return String.format(format, args);
+            } else {
+                return format;
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getFormatString");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 R.string 资源的格式化字符串
+     * @param resId R.string.id
+     * @param objs  格式化参数
+     * @return 格式化后的字符串
+     */
+    private String getFormatRes(final int resId, final Object... objs) {
+        try {
+            if (objs != null && objs.length != 0) {
+                return DevUtils.getContext().getString(resId, objs);
+            } else {
+                return DevUtils.getContext().getString(resId);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getFormatRes");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 设置背景
+     * @param view     {@link View}
+     * @param drawable 背景 {@link Drawable}
+     */
+    private void setBackground(final View view, final Drawable drawable) {
+        if (view != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                view.setBackground(drawable);
+            else
+                view.setBackgroundDrawable(drawable);
+        }
     }
 }

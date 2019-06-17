@@ -66,7 +66,7 @@ public final class ScreenUtils {
 
     /**
      * 获取屏幕的宽度(单位 px)
-     * @return 屏幕宽
+     * @return 屏幕宽度
      */
     public static int getScreenWidth() {
         try {
@@ -89,7 +89,7 @@ public final class ScreenUtils {
 
     /**
      * 获取屏幕的高度(单位 px)
-     * @return 屏幕高
+     * @return 屏幕高度
      */
     public static int getScreenHeight() {
         try {

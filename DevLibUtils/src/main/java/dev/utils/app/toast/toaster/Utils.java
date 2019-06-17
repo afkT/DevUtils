@@ -62,7 +62,6 @@ final class Utils {
      */
     public static String getFormatRes(final int resId, final Object... objs) {
         try {
-            // 获取字符串并且进行格式化
             if (objs != null && objs.length != 0) {
                 return DevUtils.getContext().getString(resId, objs);
             } else {

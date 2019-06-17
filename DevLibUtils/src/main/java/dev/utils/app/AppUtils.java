@@ -74,7 +74,7 @@ public final class AppUtils {
     }
 
     /**
-     * 获取View
+     * 获取 View
      * @param resource
      * @param root
      * @return

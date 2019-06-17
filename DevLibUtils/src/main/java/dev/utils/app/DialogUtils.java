@@ -1087,9 +1087,9 @@ public final class DialogUtils {
         return null;
     }
 
-    // ===================
-    // = 设置View Dialog =
-    // ===================
+    // ====================
+    // = 设置 View Dialog =
+    // ====================
 
     /**
      * detail: 自定义 View Dialog 事件

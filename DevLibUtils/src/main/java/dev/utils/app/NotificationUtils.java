@@ -111,7 +111,7 @@ public final class NotificationUtils {
 
 //    // 使用自定义 View
 //    RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.xxx);
-//    // 设置View
+//    // 设置 View
 //    Notification.builder.setContent(remoteViews);
 
     /**

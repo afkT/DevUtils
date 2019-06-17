@@ -52,7 +52,7 @@ public final class ResourceUtils {
     }
 
     /**
-     * 获取View
+     * 获取 View
      * @param resource
      * @param root
      * @return

@@ -37,9 +37,9 @@
 | getSnackbarView | 获取 Snackbar View |
 | getTextView | 获取 Snackbar TextView(snackbar_text) |
 | getActionButton | 获取 Snackbar Action Button(snackbar_action) |
-| addView | 向 Snackbar 布局中添加View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示) |
+| addView | 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示) |
 | setCallback | 设置 Snackbar 展示完成 及 隐藏完成 的监听 |
-| setAction | 设置 Action 按钮文字内容 及 点击监听 |
+| setAction | 设置 Action 按钮文字内容及点击监听 |
 | dismiss | 关闭 Snackbar |
 | showShort | 显示 Short Snackbar |
 | showLong | 显示 Long Snackbar |
@@ -216,10 +216,10 @@ SnackbarUtils.with(view).above(targetView, 20);
 // 设置 Snackbar 显示在指定 View 的下方, 并且向下边距 5
 SnackbarUtils.with(view).bellow(targetView, 5);
 
-// 向 Snackbar 布局中添加View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
+// 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
 SnackbarUtils.with(view).addView(newTextView, 0);
 
-// 向 Snackbar 布局中添加View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
+// 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
 SnackbarUtils.with(view).addView(viewId, 1);
 
 // = 结合使用 =

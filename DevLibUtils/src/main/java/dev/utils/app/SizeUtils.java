@@ -271,51 +271,59 @@ public final class SizeUtils {
         void onGetSize(View view);
     }
 
-    // =
-
     /**
-     * 测量视图尺寸
-     * @param view 视图
-     * @return arr[0]: 视图宽度, arr[1]: 视图高度
+     * 测量 View
+     * @param view {@link View}
+     * @return int[] 0 = 宽度, 1 = 高度
      */
     public static int[] measureView(final View view) {
-        try {
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            if (layoutParams == null) {
-                layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (view != null) {
+            try {
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams == null) {
+                    layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
+                int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
+                int height = layoutParams.height;
+                int heightSpec;
+                if (height > 0) {
+                    heightSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+                } else {
+                    heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+                }
+                view.measure(widthSpec, heightSpec);
+                return new int[]{view.getMeasuredWidth(), view.getMeasuredHeight()};
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "measureView");
             }
-            int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
-            int lpHeight = layoutParams.height;
-            int heightSpec;
-            if (lpHeight > 0) {
-                heightSpec = View.MeasureSpec.makeMeasureSpec(lpHeight, View.MeasureSpec.EXACTLY);
-            } else {
-                heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-            }
-            view.measure(widthSpec, heightSpec);
-            return new int[]{view.getMeasuredWidth(), view.getMeasuredHeight()};
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "measureView");
         }
         return new int[]{0, 0};
     }
 
     /**
-     * 获取测量视图宽度
-     * @param view 视图
-     * @return 视图宽度
+     * 获取 View 的宽度
+     * @param view {@link View}
+     * @return View 的宽度
      */
     public static int getMeasuredWidth(final View view) {
-        return measureView(view)[0];
+        if (view != null) {
+            measureView(view);
+            return view.getMeasuredWidth();
+        }
+        return -1;
     }
 
     /**
-     * 获取测量视图高度
-     * @param view 视图
-     * @return 视图高度
+     * 获取 View 的高度
+     * @param view {@link View}
+     * @return View 的高度
      */
     public static int getMeasuredHeight(final View view) {
-        return measureView(view)[1];
+        if (view != null) {
+            measureView(view);
+            return view.getMeasuredHeight();
+        }
+        return -1;
     }
 }
 

@@ -889,9 +889,9 @@ public final class ToastTintUtils {
      */
     public static void custom(final boolean isSingle, final Context context, final ToastTintUtils.Style style, final String text, final int duration,
                               final Drawable icon) {
-        // 获取View
+        // 获取 View
         View view = inflaterView(context, style, text, icon);
-        // 显示Toast
+        // 显示 Toast
         showToastView(isSingle, context, view, duration);
     }
 

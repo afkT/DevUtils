@@ -385,7 +385,7 @@ public final class KeyBoardUtils {
     // ===============================
 
     /**
-     * 某个View里面的子View的View判断
+     * 某个 View 里面的子 View 的 View 判断
      * @param view
      * @param activity
      */
@@ -432,7 +432,7 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 计算View的宽度高度
+     * 计算 View 的宽度高度
      * @param activity
      * @return
      */
@@ -455,7 +455,7 @@ public final class KeyBoardUtils {
      */
     public static void registerSoftInputChangedListener(final Activity activity, final OnSoftInputChangedListener listener) {
         try {
-            // 获取根View
+            // 获取根 View
             final View contentView = activity.findViewById(android.R.id.content);
             // 添加事件
             contentView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

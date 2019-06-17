@@ -48,7 +48,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
  * detail: 手机相关工具类
  * @author Ttt
  * <pre>
- *     双卡双待系统IMEI和IMSI方案
+ *     双卡双待系统 IMEI 和 IMSI 方案
  *     @see <a href="http://benson37.iteye.com/blog/1923946"/>
  * </pre>
  */
@@ -61,7 +61,7 @@ public final class PhoneUtils {
     private static final String TAG = PhoneUtils.class.getSimpleName();
 
     /**
-     * 判断是否装载sim卡
+     * 判断是否装载 SIM 卡
      * @return
      */
     public static boolean isSimReady() {
@@ -105,27 +105,27 @@ public final class PhoneUtils {
 
     /**
      * 判断地区, 是否属于国内
-     * @return 状态码 1 属于国内(中国), 2 属于 国外, 3 属于无SIM卡
+     * @return 状态码 1 属于国内(中国), 2 属于 国外, 3 属于无 SIM 卡
      */
     public static int judgeArea() {
-        // 默认属于无sim卡
+        // 默认属于无 SIM 卡
         int state = 3;
         try {
             String countryCode = getUserCountry();
-            // 不等于 null, 表示属于存在SIM卡
+            // 不等于 null, 表示属于存在 SIM 卡
             if (countryCode != null) {
                 // zh_CN Locale.SIMPLIFIED_CHINESE
-                // 截取前面两位属于zh表示属于中国
+                // 截取前面两位属于 zh 表示属于中国
                 String country = countryCode.substring(0, 2);
-                // 如果属于ch开头表示属于中国
+                // 如果属于 ch 开头表示属于中国
                 if (country.toLowerCase().equals("cn")) {
                     state = 1;
                 } else {
                     state = 2;
                 }
-            } else { // 不存在sim卡
+            } else { // 不存在 SIM 卡
                 String localCountry = Locale.getDefault().getCountry();
-                // 如果属于ch开头表示属于中国
+                // 如果属于 ch 开头表示属于中国
                 if (localCountry.toLowerCase().equals("cn")) {
                     return 1;
                 } else {
@@ -194,13 +194,13 @@ public final class PhoneUtils {
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return IMEI 码
      * <pre>
-     *     IMEI 是International Mobile Equipment Identity (国际移动设备标识)的简称
+     *     IMEI 是 International Mobile Equipment Identity (国际移动设备标识)的简称
      *     IMEI 由 15 位数字组成的 ”电子串号”, 它与每台手机一一对应, 而且该码是全世界唯一的
      *     其组成为:
-     *     1. 前6位数(TAC)是 ”型号核准号码”, 一般代表机型
-     *     2. 接着的2位数(FAC)是 ”最后装配号”, 一般代表产地
-     *     3. 之后的6位数(SNR)是 ”串号”, 一般代表生产顺序号
-     *     4. 最后1位数(SP)通常是”0″, 为检验码, 目前暂备用
+     *     1. 前 6 位数(TAC)是“型号核准号码”, 一般代表机型
+     *     2. 接着的 2 位数(FAC)是“最后装配号”, 一般代表产地
+     *     3. 之后的 6 位数(SNR)是“串号”, 一般代表生产顺序号
+     *     4. 最后 1 位数(SP)通常是“0”, 为检验码, 目前暂备用
      * </pre>
      */
     @SuppressLint({"HardwareIds"})

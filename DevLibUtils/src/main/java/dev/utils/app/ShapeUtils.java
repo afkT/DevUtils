@@ -334,7 +334,7 @@ public final class ShapeUtils {
 //            android:startColor  颜色值 起始颜色
 //            android:endColor    颜色值 结束颜色
 //            android:centerColor 整型 渐变中间颜色, 即开始颜色与结束颜色之间的颜色
-//            android:angle       整型 渐变角度(PS: 当angle=0时, 渐变色是从左向右, 然后逆时针方向转, 当angle=90时为从下往上, angle 必须为 45 的整数倍)
+//            android:angle       整型 渐变角度(PS: 当 angle=0 时, 渐变色是从左向右, 然后逆时针方向转, 当 angle=90 时为从下往上, angle 必须为 45 的整数倍)
 //
 //            android:type ["linear" | "radial" | "sweep"] 渐变类型(取值: linear、radial、sweep)
 //            linear 线性渐变, 这是默认设置
@@ -346,8 +346,8 @@ public final class ShapeUtils {
 //            android:gradientRadius 整型
 //            渐变色半径, 当 android:type="radial" 时才使用, 单独使用 android:type="radial" 会报错
 //
-//            android:centerX 整型 渐变中心X点坐标的相对位置
-//            android:centerY 整型 渐变中心Y点坐标的相对位置
+//            android:centerX 整型 渐变中心 X 点坐标的相对位置
+//            android:centerY 整型 渐变中心 Y 点坐标的相对位置
 //        -->
 //        <gradient
 //            android:startColor="@android:color/white"

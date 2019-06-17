@@ -126,7 +126,7 @@ public final class BarUtils {
     }
 
     /**
-     * 添加状态栏同等高度到View的顶部
+     * 添加状态栏同等高度到 View 的顶部
      * @param view The view.
      */
     public static void addMarginTopEqualStatusBarHeight(@NonNull final View view) {
@@ -140,7 +140,7 @@ public final class BarUtils {
     }
 
     /**
-     * 添加状态栏同等高度到View的顶部
+     * 添加状态栏同等高度到 View 的顶部
      * @param view The view.
      */
     public static void subtractMarginTopEqualStatusBarHeight(@NonNull final View view) {
@@ -418,7 +418,7 @@ public final class BarUtils {
     }
 
     /**
-     * 隐藏颜色View
+     * 隐藏颜色 View
      * @param activity
      */
     private static void hideColorView(final Activity activity) {
@@ -434,7 +434,7 @@ public final class BarUtils {
     }
 
     /**
-     * 隐藏颜色View
+     * 隐藏颜色 View
      * @param window
      */
     private static void hideColorView(final Window window) {
@@ -496,7 +496,7 @@ public final class BarUtils {
     }
 
     /**
-     * 创建对应颜色的状态栏View
+     * 创建对应颜色的状态栏 View
      * @param context {@link Context}
      * @param color
      * @param alpha
@@ -511,7 +511,7 @@ public final class BarUtils {
     }
 
     /**
-     * 创建对应透明度的状态栏View
+     * 创建对应透明度的状态栏 View
      * @param context {@link Context}
      * @param alpha
      * @return

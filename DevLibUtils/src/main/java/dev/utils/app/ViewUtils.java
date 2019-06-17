@@ -609,8 +609,9 @@ public final class ViewUtils {
     /**
      * 测量 View
      * @param view {@link View}
+     * @return int[] 0 = 宽度, 1 = 高度
      */
-    public static void measureView(final View view) {
+    public static int[] measureView(final View view) {
         if (view != null) {
             try {
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
@@ -626,10 +627,12 @@ public final class ViewUtils {
                     heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
                 }
                 view.measure(widthSpec, heightSpec);
+                return new int[]{view.getMeasuredWidth(), view.getMeasuredHeight()};
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "measureView");
             }
         }
+        return new int[]{0, 0};
     }
 
     /**

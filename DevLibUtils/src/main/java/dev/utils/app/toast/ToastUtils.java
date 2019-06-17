@@ -665,7 +665,6 @@ public final class ToastUtils {
         if (context != null) {
             String text = null;
             try {
-                // 获取字符串并且进行格式化
                 if (objs != null && objs.length != 0) {
                     text = context.getString(resId, objs);
                 } else {

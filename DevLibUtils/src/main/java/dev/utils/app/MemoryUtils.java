@@ -134,7 +134,7 @@ public final class MemoryUtils {
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static String getAvailMemory() {
         try {
-            // 获取android 当前可用内存大小
+            // 获取 android 当前可用内存大小
             ActivityManager am = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
             ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
             am.getMemoryInfo(mi); // mi.availMem; 当前系统的可用内存

@@ -527,7 +527,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 通过View, 获取背景转换Bitmap
+     * 通过 View, 获取背景转换 Bitmap
      * @param view
      * @return
      */
@@ -551,7 +551,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 通过 View 获取 Bitmap, 绘制整个View
+     * 通过 View 获取 Bitmap, 绘制整个 View
      * @param view
      * @return
      */
@@ -570,7 +570,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 把一个View的对象转换成bitmap
+     * 把一个 View 的对象转换成 bitmap
      * @param view
      * @return
      */
