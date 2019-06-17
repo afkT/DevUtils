@@ -645,7 +645,7 @@ public final class ViewUtils {
             measureView(view);
             return view.getMeasuredWidth();
         }
-        return -1;
+        return 0;
     }
 
     /**
@@ -658,7 +658,7 @@ public final class ViewUtils {
             measureView(view);
             return view.getMeasuredHeight();
         }
-        return -1;
+        return 0;
     }
 
     // ===============

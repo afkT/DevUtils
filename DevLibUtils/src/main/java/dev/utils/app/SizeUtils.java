@@ -21,29 +21,22 @@ public final class SizeUtils {
     private static final String TAG = SizeUtils.class.getSimpleName();
 
     /**
-     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
-     * @param dpValue
-     * @return
+     * dp 转 px
+     * @param dpValue 待转换值
+     * @return 转换后的值
      */
     public static int dipConvertPx(final float dpValue) {
-        try {
-            float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
-            return (int) (dpValue * scale + 0.5f);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "dipConvertPx");
-        }
-        return 0;
+        return (int) dipConvertPxf(dpValue);
     }
 
     /**
-     * 根据手机的分辨率从 dp 的单位 转成为 px(像素) - float
-     * @param dpValue
-     * @return
+     * dp 转 px (float)
+     * @param dpValue 待转换值
+     * @return 转换后的值
      */
     public static float dipConvertPxf(final float dpValue) {
         try {
-            float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
-            return (dpValue * scale + 0.5f);
+            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, DevUtils.getContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "dipConvertPxf");
         }
@@ -53,29 +46,23 @@ public final class SizeUtils {
     // =
 
     /**
-     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
-     * @param pxValue
-     * @return
+     * px 转 dp
+     * @param pxValue 待转换值
+     * @return 转换后的值
      */
     public static int pxConvertDip(final float pxValue) {
-        try {
-            float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
-            return (int) (pxValue / scale + 0.5f);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "pxConvertDip");
-        }
-        return 0;
+        return (int) pxConvertDipf(pxValue);
     }
 
     /**
-     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp - float
-     * @param pxValue
-     * @return
+     * px 转 dp (float)
+     * @param pxValue 待转换值
+     * @return 转换后的值
      */
     public static float pxConvertDipf(final float pxValue) {
         try {
             float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
-            return (pxValue / scale + 0.5f);
+            return (pxValue / scale);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "pxConvertDipf");
         }
@@ -85,61 +72,22 @@ public final class SizeUtils {
     // =
 
     /**
-     * 根据手机的分辨率从 px(像素) 的单位 转成为 sp
-     * @param pxValue
-     * @return
-     */
-    public static int pxConvertSp(final float pxValue) {
-        try {
-            float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
-            return (int) (pxValue / scale + 0.5f);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "pxConvertSp");
-        }
-        return 0;
-    }
-
-    /**
-     * 根据手机的分辨率从 px(像素) 的单位 转成为 sp - float
-     * @param pxValue
-     * @return
-     */
-    public static float pxConvertSpf(final float pxValue) {
-        try {
-            float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
-            return (pxValue / scale + 0.5f);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "pxConvertSpf");
-        }
-        return 0f;
-    }
-
-    // =
-
-    /**
-     * 根据手机的分辨率从 sp 的单位 转成为 px
-     * @param spValue
-     * @return
+     * sp 转 px
+     * @param spValue 待转换值
+     * @return 转换后的值
      */
     public static int spConvertPx(final float spValue) {
-        try {
-            float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
-            return (int) (spValue * scale + 0.5f);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "spConvertPx");
-        }
-        return 0;
+        return (int) spConvertPxf(spValue);
     }
 
     /**
-     * 根据手机的分辨率从 sp 的单位 转成为 px - float
-     * @param spValue
-     * @return
+     * sp 转 px (float)
+     * @param spValue 待转换值
+     * @return 转换后的值
      */
     public static float spConvertPxf(final float spValue) {
         try {
-            float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
-            return (spValue * scale + 0.5f);
+            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, DevUtils.getContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "spConvertPxf");
         }
@@ -149,29 +97,25 @@ public final class SizeUtils {
     // =
 
     /**
-     * 根据手机的分辨率从 dp 的单位 转成为 px(像素) 第二种
-     * @param dpValue
-     * @return
+     * px 转 sp
+     * @param pxValue 待转换值
+     * @return 转换后的值
      */
-    public static int dipConvertPx2(final float dpValue) {
-        try {
-            return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, DevUtils.getContext().getResources().getDisplayMetrics());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "dipConvertPx2");
-        }
-        return 0;
+    public static int pxConvertSp(final float pxValue) {
+        return (int) pxConvertSpf(pxValue);
     }
 
     /**
-     * 根据手机的分辨率从 dp 的单位 转成为 px(像素) 第二种 - float
-     * @param dpValue
-     * @return
+     * px 转 sp (float)
+     * @param pxValue 待转换值
+     * @return 转换后的值
      */
-    public static float dipConvertPx2f(final float dpValue) {
+    public static float pxConvertSpf(final float pxValue) {
         try {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, DevUtils.getContext().getResources().getDisplayMetrics());
+            float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
+            return (pxValue / scale);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "dipConvertPx2f");
+            LogPrintUtils.eTag(TAG, e, "pxConvertSpf");
         }
         return 0f;
     }
@@ -179,97 +123,84 @@ public final class SizeUtils {
     // =
 
     /**
-     * 根据手机的分辨率从 sp 的单位 转成为 px 第二种
-     * @param spValue
-     * @return
+     * 各种单位转换 - 该方法存在于 TypedValue.applyDimension
+     * @param unit  单位
+     * @param value 值
+     * @return 转换后的值
      */
-    public static int spConvertPx2(final float spValue) {
+    public static float applyDimension(final int unit, final float value) {
         try {
-            return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, DevUtils.getContext().getResources().getDisplayMetrics());
+            return applyDimension(unit, value, DevUtils.getContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "spConvertPx2");
-        }
-        return 0;
-    }
-
-    /**
-     * 根据手机的分辨率从 sp 的单位 转成为 px 第二种 - float
-     * @param spValue
-     * @return
-     */
-    public static float spConvertPx2f(final float spValue) {
-        try {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, DevUtils.getContext().getResources().getDisplayMetrics());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "spConvertPx2f");
+            LogPrintUtils.eTag(TAG, e, "applyDimension");
         }
         return 0f;
     }
 
-    // =
-
     /**
-     * 各种单位转换 - 该方法存在于 TypedValue
+     * 各种单位转换 - 该方法存在于 TypedValue.applyDimension
      * @param unit    单位
      * @param value   值
-     * @param metrics DisplayMetrics
-     * @return 转换结果
+     * @param metrics {@link DisplayMetrics}
+     * @return 转换后的值
      */
     public static float applyDimension(final int unit, final float value, final DisplayMetrics metrics) {
-        switch (unit) {
-            case TypedValue.COMPLEX_UNIT_PX:
-                return value;
-            case TypedValue.COMPLEX_UNIT_DIP:
-                return value * metrics.density;
-            case TypedValue.COMPLEX_UNIT_SP:
-                return value * metrics.scaledDensity;
-            case TypedValue.COMPLEX_UNIT_PT:
-                return value * metrics.xdpi * (1.0f / 72);
-            case TypedValue.COMPLEX_UNIT_IN:
-                return value * metrics.xdpi;
-            case TypedValue.COMPLEX_UNIT_MM:
-                return value * metrics.xdpi * (1.0f / 25.4f);
+        if (metrics != null) {
+            return TypedValue.applyDimension(unit, value, metrics);
         }
-        return 0;
+        return 0f;
     }
 
     // =
 
     /**
-     * 在 onCreate 中获取视图的尺寸 - 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 view 宽高
-     * 用法示例如下所示
-     * SizeUtils.forceGetViewSize(view, new SizeUtils.onGetSizeListener() {
-     * Override
-     * public void onGetSize(final View view) {
-     * view.getWidth();
-     * }
-     * });
-     * @param view     视图
-     * @param listener 监听器
+     * 在 onCreate 中获取视图的尺寸 - 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 View 宽高
+     * <pre>
+     *     用法示例如下所示:
+     *     <p></p>
+     *     SizeUtils.forceGetViewSize(view, new SizeUtils.onGetSizeListener() {
+     *          Override
+     *          public void onGetSize(final View view) {
+     *              view.getWidth();
+     *          }
+     *     });
+     * </pre>
+     * @param view     {@link View}
+     * @param listener {@link onGetSizeListener}
      */
     public static void forceGetViewSize(final View view, final onGetSizeListener listener) {
-        view.post(new Runnable() {
-            @Override
-            public void run() {
-                if (listener != null) {
-                    listener.onGetSize(view);
+        if (view != null) {
+            view.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (listener != null) {
+                        listener.onGetSize(view);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     /**
-     * detail: 获取到 View 尺寸的监听
+     * detail: 获取 View 宽高监听
      * @author Ttt
      */
     public interface onGetSizeListener {
 
         /**
-         * 获取到 View 尺寸 通知
-         * @param view
+         * 获取到 View 宽高监听通知
+         * @param view {@link View}
          */
         void onGetSize(View view);
     }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // =============
+    // = ViewUtils =
+    // =============
 
     /**
      * 测量 View
@@ -310,7 +241,7 @@ public final class SizeUtils {
             measureView(view);
             return view.getMeasuredWidth();
         }
-        return -1;
+        return 0;
     }
 
     /**
@@ -323,7 +254,7 @@ public final class SizeUtils {
             measureView(view);
             return view.getMeasuredHeight();
         }
-        return -1;
+        return 0;
     }
 }
 

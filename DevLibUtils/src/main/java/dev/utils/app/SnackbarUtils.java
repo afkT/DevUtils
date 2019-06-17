@@ -1583,7 +1583,7 @@ public final class SnackbarUtils {
             measureView(view);
             return view.getMeasuredHeight();
         }
-        return -1;
+        return 0;
     }
 
     // ==================
