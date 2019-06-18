@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +8,12 @@ import android.content.Intent.ShortcutIconResource;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
 import android.database.Cursor;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
+import android.os.Build;
 
 import java.util.List;
 
@@ -23,9 +28,14 @@ import dev.utils.LogPrintUtils;
  *     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
  *     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
  *     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
- *     <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
+ *     <uses-permission android:name="com.android.launcher2.permission.READ_SETTINGS"/>
+ *     <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS"/>
  *     <p></p>
  *     READ_SETTINGS 用于判断是否存在快捷图标
+ *     <p></p>
+ *     @see <a href="https://www.jianshu.com/p/18be986553db"/>
+ *     @see <a href="https://blog.csdn.net/m0_37218227/article/details/84071043"/>
+ *     @see <a href="https://developer.android.google.cn/reference/kotlin/androidx/core/content/pm/ShortcutManagerCompat"/>
  * </pre>
  */
 public final class ShortCutUtils {
@@ -35,6 +45,10 @@ public final class ShortCutUtils {
 
     // 日志 TAG
     private static final String TAG = ShortCutUtils.class.getSimpleName();
+
+    // ========================
+    // = 检测是否存在快捷方式 =
+    // ========================
 
     /**
      * 检测是否存在桌面快捷方式
@@ -68,6 +82,40 @@ public final class ShortCutUtils {
     // ====================
     // = 创建桌面快捷方式 =
     // ====================
+
+    /**
+     * 获取桌面快捷方式点击 Intent
+     * @param clazz 快捷方式点击 Intent className(class.getName())
+     * @return {@link Intent}
+     */
+    public static Intent getShortCutIntent(final Class clazz) {
+        if (clazz != null) {
+            return getShortCutIntent(clazz.getName());
+        }
+        return null;
+    }
+
+    /**
+     * 获取桌面快捷方式点击 Intent
+     * @param className 快捷方式点击 Intent className(class.getName())
+     * @return {@link Intent}
+     */
+    public static Intent getShortCutIntent(final String className) {
+        if (className != null) {
+            try {
+                // 快捷方式点击 Intent 跳转
+                Intent shortcutIntent = new Intent(Intent.ACTION_MAIN);
+                shortcutIntent.setClassName(DevUtils.getContext(), className);
+                shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                return shortcutIntent;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getShortCutIntent");
+            }
+        }
+        return null;
+    }
+
+    // =
 
     /**
      * 创建桌面快捷方式
@@ -108,21 +156,58 @@ public final class ShortCutUtils {
      * @param icon           快捷方式图标
      */
     public static void addShortcut(final Intent shortcutIntent, final String name, final int icon) {
+        addShortcut(shortcutIntent, name, icon, null);
+    }
+
+    /**
+     * 创建桌面快捷方式
+     * @param shortcutIntent 快捷方式点击 Intent 跳转
+     * @param name           快捷方式名称
+     * @param icon           快捷方式图标
+     * @param pendingIntent  创建结果通知 (Android 8.0)
+     */
+    public static void addShortcut(final Intent shortcutIntent, final String name, final int icon, final PendingIntent pendingIntent) {
         if (shortcutIntent != null && name != null) {
-            try {
-                Context context = DevUtils.getContext();
-                // 快捷方式图标
-                ShortcutIconResource iconRes = ShortcutIconResource.fromContext(context, icon);
-                // 创建快捷方式 Intent
-                Intent shortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
-                shortcut.putExtra("duplicate", false); // 不允许重复创建
-                shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name); // 快捷方式名称
-                shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent); // 快捷方式点击跳转
-                shortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconRes);
-                // 发送广播, 创建快捷方式
-                context.sendBroadcast(shortcut);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "addShortcut");
+            // Android 8.0 之前
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                try {
+                    Context context = DevUtils.getContext();
+                    // 快捷方式图标
+                    ShortcutIconResource iconRes = ShortcutIconResource.fromContext(context, icon);
+                    // 创建快捷方式 Intent
+                    Intent shortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
+                    shortcut.putExtra("duplicate", false); // 不允许重复创建
+                    shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name); // 快捷方式名称
+                    shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent); // 快捷方式点击跳转
+                    shortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconRes);
+                    // 发送广播, 创建快捷方式
+                    context.sendBroadcast(shortcut);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "addShortcut");
+                }
+            } else { // Android 8.0 之后
+                try {
+                    Context context = DevUtils.getContext();
+                    // 获取 ShortcutManager
+                    ShortcutManager shortcutManager = (ShortcutManager) context.getSystemService(Context.SHORTCUT_SERVICE);
+                    // 如果默认桌面支持 requestPinShortcut(ShortcutInfo、IntentSender) 方法
+                    if (shortcutManager != null && shortcutManager.isRequestPinShortcutSupported()) {
+                        // 快捷方式创建相关信息
+                        ShortcutInfo shortcutInfo = new ShortcutInfo.Builder(context, name.hashCode() + "")
+                                .setIcon(Icon.createWithResource(context, icon)) // 快捷方式图标
+                                .setShortLabel(name) // 快捷方式名字
+                                .setIntent(shortcutIntent) // 快捷方式跳转 Intent
+                                .build();
+                        // 创建快捷方式
+                        if (pendingIntent != null) {
+                            shortcutManager.requestPinShortcut(shortcutInfo, pendingIntent.getIntentSender());
+                        } else {
+                            shortcutManager.requestPinShortcut(shortcutInfo, null);
+                        }
+                    }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "addShortcut");
+                }
             }
         }
     }
@@ -144,6 +229,9 @@ public final class ShortCutUtils {
 
     /**
      * 删除桌面快捷方式
+     * <pre>
+     *     Android 6.0 以后因存在安全隐患 Google 移除了 UninstallShortcutReceiver 无法进行删除桌面快捷
+     * </pre>
      * @param className 快捷方式点击 Intent className(class.getName())
      * @param name      快捷方式名称
      */
@@ -156,7 +244,6 @@ public final class ShortCutUtils {
                 shortcutIntent.setClassName(context, className);
                 // 删除快捷方式 Intent
                 Intent shortcut = new Intent("com.android.launcher.action.UNINSTALL_SHORTCUT");
-                shortcut.putExtra("duplicate", false);
                 shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name); // 快捷方式名称
                 shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
                 context.sendBroadcast(shortcut);
