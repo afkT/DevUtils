@@ -89,7 +89,7 @@ public final class ContentResolverUtils {
     public static boolean insertIntoMediaStore(final File file, final long createTime, final boolean isVideo, final String mimeType) {
         if (file != null && !TextUtils.isEmpty(mimeType)) {
             try {
-                ContentResolver mContentResolver = DevUtils.getContext().getContentResolver();
+                ContentResolver resolver = DevUtils.getContext().getContentResolver();
                 // 插入时间
                 long insertTime = createTime;
                 // 防止创建时间为 null
@@ -112,7 +112,7 @@ public final class ContentResolverUtils {
                 // 文件类型
                 values.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
                 // 生成所属的URI资源
-                Uri uri = mContentResolver.insert(isVideo ? MediaStore.Video.Media.EXTERNAL_CONTENT_URI : MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                Uri uri = resolver.insert(isVideo ? MediaStore.Video.Media.EXTERNAL_CONTENT_URI : MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                 // 最后通知图库更新
                 DevUtils.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
                 // 表示成功

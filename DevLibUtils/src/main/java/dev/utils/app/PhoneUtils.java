@@ -682,8 +682,8 @@ public final class PhoneUtils {
 //                Uri uri = data.getData();
 //                String num = null;
 //                // 创建内容解析者
-//                ContentResolver contentResolver = getContentResolver();
-//                Cursor cursor = contentResolver.query(uri, null, null, null, null);
+//                ContentResolver resolver = getContentResolver();
+//                Cursor cursor = resolver.query(uri, null, null, null, null);
 //                while (cursor.moveToNext()) {
 //                    num = cursor.getString(cursor.getColumnIndex("data1"));
 //                }
