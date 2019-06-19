@@ -26,29 +26,13 @@ public final class ServiceUtils {
     // 日志 TAG
     private static final String TAG = ServiceUtils.class.getSimpleName();
 
-    /**
-     * 判断服务是否运行
-     * @param className 完整包名的服务类名
-     * @return {@code true} 是, {@code false} 否
-     */
-    public static boolean isServiceRunning(final String className) {
-        try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-            if (activityManager == null) return false;
-            List<RunningServiceInfo> listInfos = activityManager.getRunningServices(0x7FFFFFFF);
-            if (listInfos == null || listInfos.size() == 0) return false;
-            for (RunningServiceInfo rInfo : listInfos) {
-                if (className.equals(rInfo.service.getClassName())) return true;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isServiceRunning");
-        }
-        return false;
-    }
+    // ====================
+    // = 判断服务是否运行 =
+    // ====================
 
     /**
      * 判断服务是否运行
-     * @param clazz
+     * @param clazz {@link Class}
      * @return {@code true} 是, {@code false} 否
      */
     public static boolean isServiceRunning(final Class<?> clazz) {
@@ -61,6 +45,28 @@ public final class ServiceUtils {
     }
 
     /**
+     * 判断服务是否运行
+     * @param className package.ServiceClassName - class.getName()
+     * @return {@code true} 是, {@code false} 否
+     */
+    public static boolean isServiceRunning(final String className) {
+        try {
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            if (activityManager == null) return false;
+            List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
+            if (lists == null || lists.size() == 0) return false;
+            for (RunningServiceInfo info : lists) {
+                if (className.equals(info.service.getClassName())) return true;
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isServiceRunning");
+        }
+        return false;
+    }
+
+    // =
+
+    /**
      * 获取所有运行的服务
      * @return 服务名集合
      */
@@ -68,11 +74,11 @@ public final class ServiceUtils {
         try {
             ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
             if (activityManager == null) return Collections.emptySet();
-            List<RunningServiceInfo> listInfos = activityManager.getRunningServices(0x7FFFFFFF);
-            if (listInfos == null || listInfos.size() == 0) return null;
+            List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
+            if (lists == null || lists.size() == 0) return null;
             Set<String> names = new HashSet<>();
-            for (RunningServiceInfo rInfo : listInfos) {
-                names.add(rInfo.service.getClassName());
+            for (RunningServiceInfo info : lists) {
+                names.add(info.service.getClassName());
             }
             return names;
         } catch (Exception e) {
@@ -81,9 +87,13 @@ public final class ServiceUtils {
         return Collections.emptySet();
     }
 
+    // ============
+    // = 启动服务 =
+    // ============
+
     /**
      * 启动服务
-     * @param className 完整包名的服务类名
+     * @param className package.ServiceClassName - class.getName()
      */
     public static void startService(final String className) {
         try {
@@ -95,7 +105,7 @@ public final class ServiceUtils {
 
     /**
      * 启动服务
-     * @param clazz 服务类
+     * @param clazz {@link Class}
      */
     public static void startService(final Class<?> clazz) {
         try {
@@ -106,10 +116,14 @@ public final class ServiceUtils {
         }
     }
 
+    // ============
+    // = 停止服务 =
+    // ============
+
     /**
      * 停止服务
-     * @param className 完整包名的服务类名
-     * @return {@code true} 停止成功, {@code false} 停止失败
+     * @param className package.ServiceClassName - class.getName()
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean stopService(final String className) {
         try {
@@ -122,8 +136,8 @@ public final class ServiceUtils {
 
     /**
      * 停止服务
-     * @param clazz 服务类
-     * @return {@code true} 停止成功, {@code false} 停止失败
+     * @param clazz {@link Class}
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean stopService(final Class<?> clazz) {
         try {
@@ -135,10 +149,14 @@ public final class ServiceUtils {
         }
     }
 
+    // ============
+    // = 绑定服务 =
+    // ============
+
     /**
      * 绑定服务
-     * @param className 完整包名的服务类名
-     * @param conn      服务连接对象
+     * @param className package.ServiceClassName - class.getName()
+     * @param conn      {@link ServiceConnection}
      * @param flags     绑定选项
      *                  {@link Context#BIND_AUTO_CREATE}
      *                  {@link Context#BIND_DEBUG_UNBIND}
@@ -157,8 +175,8 @@ public final class ServiceUtils {
 
     /**
      * 绑定服务
-     * @param clazz 服务类
-     * @param conn  服务连接对象
+     * @param clazz {@link Class}
+     * @param conn  {@link ServiceConnection}
      * @param flags 绑定选项
      *              {@link Context#BIND_AUTO_CREATE}
      *              {@link Context#BIND_DEBUG_UNBIND}
@@ -176,9 +194,13 @@ public final class ServiceUtils {
         }
     }
 
+    // ============
+    // = 解绑服务 =
+    // ============
+
     /**
      * 解绑服务
-     * @param conn 服务连接对象
+     * @param conn {@link ServiceConnection}
      */
     public static void unbindService(final ServiceConnection conn) {
         try {

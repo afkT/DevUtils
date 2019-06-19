@@ -357,7 +357,7 @@ public final class FileIOUtils {
      * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final File file) {
-        return readFileToList(file, 0, 0x7FFFFFFF, null);
+        return readFileToList(file, 0, Integer.MAX_VALUE, null);
     }
 
     /**
@@ -367,7 +367,7 @@ public final class FileIOUtils {
      * @return 换行{@link List<String>}
      */
     public static List<String> readFileToList(final File file, final String charsetName) {
-        return readFileToList(file, 0, 0x7FFFFFFF, charsetName);
+        return readFileToList(file, 0, Integer.MAX_VALUE, charsetName);
     }
 
     /**

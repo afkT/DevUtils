@@ -439,6 +439,31 @@ public final class ShapeUtils {
 
     /**
      * 创建新的 Shape Builder 对象
+     * @param radius 圆角大小
+     * @param color  背景色
+     * @return {@link ShapeUtils.Builder}
+     */
+    public static Builder newBuilder(final float radius, final String color) {
+        return new Builder().setRadius(radius).setColor(color);
+    }
+
+    // =
+
+    /**
+     * 创建新的 Shape Builder 对象
+     * <pre>
+     *     leftTop、leftBottom 圆角大小 + 背景色
+     * </pre>
+     * @param left  leftTop、leftBottom 圆角大小
+     * @param color 背景色
+     * @return {@link ShapeUtils.Builder}
+     */
+    public static Builder newBuilderToLeft(final float left, final String color) {
+        return new Builder().setRadiusLeft(left).setColor(color);
+    }
+
+    /**
+     * 创建新的 Shape Builder 对象
      * <pre>
      *     leftTop、leftBottom 圆角大小 + 背景色
      * </pre>
@@ -448,6 +473,21 @@ public final class ShapeUtils {
      */
     public static Builder newBuilderToLeft(final float left, @ColorRes final int color) {
         return new Builder().setRadiusLeft(left).setColor(color);
+    }
+
+    // =
+
+    /**
+     * 创建新的 Shape Builder 对象
+     * <pre>
+     *     rightTop、rightBottom 圆角大小 + 背景色
+     * </pre>
+     * @param right rightTop、rightBottom 圆角大小
+     * @param color 背景色
+     * @return {@link ShapeUtils.Builder}
+     */
+    public static Builder newBuilderToRight(final float right, final String color) {
+        return new Builder().setRadiusRight(right).setColor(color);
     }
 
     /**
@@ -462,6 +502,8 @@ public final class ShapeUtils {
     public static Builder newBuilderToRight(final float right, @ColorRes final int color) {
         return new Builder().setRadiusRight(right).setColor(color);
     }
+
+    // =
 
     /**
      * 创建渐变的 Shape Builder 对象
