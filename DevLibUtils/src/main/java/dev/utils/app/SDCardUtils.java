@@ -31,27 +31,28 @@ public final class SDCardUtils {
     // 日志 TAG
     private static final String TAG = SDCardUtils.class.getSimpleName();
 
-    // =
-
     /**
-     * 判断SDCard是否正常挂载
-     * @return
+     * 判断内置 SDCard 是否正常挂载
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isSDCardEnable() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
     /**
-     * 获取SD卡路径(File对象)
-     * @return
+     * 获取内置 SDCard File
+     * @return {@link File}
      */
     public static File getSDCardFile() {
         return Environment.getExternalStorageDirectory();
     }
 
     /**
-     * 获取SD卡路径(无添加 File.separator)
-     * @return
+     * 获取内置 SDCard 绝对路径
+     * <pre>
+     *     结尾无添加 File.separator
+     * </pre>
+     * @return 内置 SDCard 绝对路径
      */
     public static String getSDCardPath() {
         return Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -60,17 +61,36 @@ public final class SDCardUtils {
     // =
 
     /**
-     * 判断 SD 卡是否可用
-     * @return {@code true} 可用, {@code false} 不可用
+     * 判断 SDCard 是否可用
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isSDCardEnablePath() {
         return !getSDCardPaths().isEmpty();
     }
 
     /**
-     * 获取 SD 卡路径
-     * @param removable true : 外置 SD 卡, {@code false} 内置 SD 卡
-     * @return SD 卡路径
+     * 获取 SDCard 路径
+     * @return SDCard 路径
+     */
+    @SuppressWarnings("TryWithIdenticalCatches")
+    public static List<String> getSDCardPaths() {
+        List<String> listPaths = new ArrayList<>();
+        try {
+            StorageManager storageManager = (StorageManager) DevUtils.getContext().getSystemService(Context.STORAGE_SERVICE);
+            Method getVolumePathsMethod = StorageManager.class.getMethod("getVolumePaths");
+            getVolumePathsMethod.setAccessible(true);
+            Object invoke = getVolumePathsMethod.invoke(storageManager);
+            listPaths = Arrays.asList((String[]) invoke);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSDCardPaths");
+        }
+        return listPaths;
+    }
+
+    /**
+     * 获取 SDCard 路径
+     * @param removable {@code true} 外置 SDCard, {@code false} 内置 SDCard
+     * @return SDCard 路径
      */
     @SuppressWarnings("TryWithIdenticalCatches")
     public static List<String> getSDCardPaths(final boolean removable) {
@@ -97,31 +117,12 @@ public final class SDCardUtils {
         return listPaths;
     }
 
-    /**
-     * 获取 SD 卡路径
-     * @return SD 卡路径
-     */
-    @SuppressWarnings("TryWithIdenticalCatches")
-    public static List<String> getSDCardPaths() {
-        List<String> listPaths = new ArrayList<>();
-        try {
-            StorageManager storageManager = (StorageManager) DevUtils.getContext().getSystemService(Context.STORAGE_SERVICE);
-            Method getVolumePathsMethod = StorageManager.class.getMethod("getVolumePaths");
-            getVolumePathsMethod.setAccessible(true);
-            Object invoke = getVolumePathsMethod.invoke(storageManager);
-            listPaths = Arrays.asList((String[]) invoke);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSDCardPaths");
-        }
-        return listPaths;
-    }
-
     // =
 
     /**
-     * 返回对应路径的空间总大小
-     * @param path
-     * @return
+     * 获取对应路径的空间总大小
+     * @param path 路径
+     * @return 对应路径的空间总大小
      */
     public static long getAllBlockSize(final String path) {
         try {
@@ -140,9 +141,9 @@ public final class SDCardUtils {
     }
 
     /**
-     * 返回对应路径的空闲空间(byte 字节大小)
-     * @param path
-     * @return
+     * 获取对应路径的空闲空间大小
+     * @param path 路径
+     * @return 对应路径的空闲空间大小
      */
     public static long getAvailableBlocks(final String path) {
         try {
@@ -161,9 +162,9 @@ public final class SDCardUtils {
     }
 
     /**
-     * 返回对应路径, 已使用的空间大小
-     * @param path
-     * @return
+     * 获取对应路径已使用的空间大小
+     * @param path 路径
+     * @return 对应路径已使用的空间大小
      */
     public static long getAlreadyBlock(final String path) {
         try {
@@ -186,7 +187,7 @@ public final class SDCardUtils {
     /**
      * 返回对应路径的空间大小信息
      * @param path 路径
-     * @return 数据, 0 = 总空间大小, 1 = 空闲控件大小, 2 = 已使用空间大小
+     * @return long[], 0 = 总空间大小, 1 = 空闲空间大小, 2 = 已使用空间大小
      */
     public static long[] getBlockSizeInfos(final String path) {
         try {
@@ -198,12 +199,12 @@ public final class SDCardUtils {
             long blockCount = statFs.getBlockCount();
             // 空闲的数据块的数量
             long freeBlocks = statFs.getAvailableBlocks();
-            // 计算空间大小信息
+            // 计算空间信息
             long[] blocks = new long[3];
             blocks[0] = blockSize * blockCount;
             blocks[1] = blockSize * freeBlocks;
             blocks[2] = ((blockCount - freeBlocks) * blockSize);
-            // 返回空间大小信息
+            // 返回空间信息
             return blocks;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBlockSizeInfos");
@@ -212,7 +213,7 @@ public final class SDCardUtils {
     }
 
     /**
-     * 获取 SD 卡总大小
+     * 获取 SDCard 总大小
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -230,7 +231,7 @@ public final class SDCardUtils {
     }
 
     /**
-     * 获取 SD 卡剩余容量, 即可用大小
+     * 获取 SDCard 剩余容量, 即可用大小
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
