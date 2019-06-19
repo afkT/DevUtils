@@ -21,7 +21,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 创建删除快捷图标工具类
+ * detail: 快捷方式工具类
  * @author Ttt
  * <pre>
  *     需要的权限:
