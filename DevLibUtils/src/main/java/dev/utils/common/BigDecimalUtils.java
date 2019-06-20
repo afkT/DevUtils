@@ -22,8 +22,6 @@ public final class BigDecimalUtils {
     // 默认保留位数
     private static final int DEF_DIV_SCALE = 10;
 
-    // =
-
     /**
      * 提供精确的加法运算
      * @param v1 被加数

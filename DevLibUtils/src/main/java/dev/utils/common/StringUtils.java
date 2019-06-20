@@ -659,29 +659,13 @@ public final class StringUtils {
     public static String getFormatString(final String format, final Object... args) {
         if (format == null) return null;
         try {
-            return String.format(format, args);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFormatString");
-        }
-        return null;
-    }
-
-    /**
-     * 获取格式化后的字符串
-     * @param format 待格式化字符串
-     * @param args   格式化参数
-     * @return 格式化后的字符串
-     */
-    public static String getFormatString2(final String format, final Object... args) {
-        if (format == null) return null;
-        try {
             if (args != null && args.length != 0) {
                 return String.format(format, args);
             } else {
                 return format;
             }
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFormatString2");
+            JCLogUtils.eTag(TAG, e, "getFormatString");
         }
         return null;
     }
@@ -734,6 +718,68 @@ public final class StringUtils {
             }
         }
         return null;
+    }
+
+    // =
+
+    /**
+     * StringBuilder 拼接处理
+     * @param args 拼接数据源
+     * @return {@link StringBuilder}
+     */
+    public static StringBuilder appends(final Object... args) {
+        return appends(new StringBuilder(), null, false, args);
+    }
+
+
+    /**
+     * StringBuilder 拼接处理
+     * @param split 追加间隔
+     * @param args  拼接数据源
+     * @return {@link StringBuilder}
+     */
+    public static StringBuilder appends(final String split, final Object... args) {
+        return appends(new StringBuilder(), split, false, args);
+    }
+
+
+    /**
+     * StringBuilder 拼接处理
+     * @param builder 拼接 Builder
+     * @param split   追加间隔
+     * @param args    拼接数据源
+     * @return {@link StringBuilder}
+     */
+    public static StringBuilder appends(final StringBuilder builder, final String split, final Object... args) {
+        return appends(builder, split, false, args);
+    }
+
+    /**
+     * StringBuilder 拼接处理
+     * @param builder 拼接 Builder
+     * @param split   追加间隔
+     * @param end     结尾是否追加
+     * @param args    拼接数据源
+     * @return {@link StringBuilder}
+     */
+    public static StringBuilder appends(final StringBuilder builder, final String split, final boolean end, final Object... args) {
+        if (builder != null && args != null) {
+            // 获取间隔字符串, 优化循环判断
+            String str = isEmpty(split) ? "" : split;
+            // 循环处理
+            for (int i = 0, len = args.length; i < len; i++) {
+                builder.append(args[i]); // 拼接数据
+                // 判断是否结尾
+                if (len - i == 1) {
+                    // 判断结尾是否追加
+                    if (end) builder.append(str); // 间隔追加
+                } else {
+                    builder.append(str); // 间隔追加
+                }
+            }
+            return builder;
+        }
+        return builder;
     }
 
     // ============
