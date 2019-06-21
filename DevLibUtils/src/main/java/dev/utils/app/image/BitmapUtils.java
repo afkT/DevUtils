@@ -30,7 +30,7 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.app.AppUtils;
+import dev.utils.app.ResourceUtils;
 import dev.utils.app.ScreenUtils;
 
 /**
@@ -331,7 +331,7 @@ public final class BitmapUtils {
      */
     public static Drawable bitmapToDrawable(final Bitmap bitmap) {
         try {
-            return bitmap == null ? null : new BitmapDrawable(AppUtils.getResources(), bitmap);
+            return bitmap == null ? null : new BitmapDrawable(ResourceUtils.getResources(), bitmap);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bitmapToDrawable");
         }

@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -12,20 +11,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.Signature;
-import android.content.res.AssetManager;
-import android.content.res.ColorStateList;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.RequiresPermission;
-import android.support.annotation.StringRes;
-import android.support.v4.content.ContextCompat;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import java.io.File;
@@ -49,171 +37,13 @@ public final class AppUtils {
 
     /**
      * 获取 WindowManager
-     * @return
+     * @return {@link WindowManager}
      */
     public static WindowManager getWindowManager() {
         try {
             return (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getWindowManager");
-        }
-        return null;
-    }
-
-    // ================
-    // = 快捷获取方法 =
-    // ================
-
-    /**
-     * 获取 View
-     * @param resource
-     * @return
-     */
-    public static View getView(@LayoutRes final int resource) {
-        return getView(resource, null);
-    }
-
-    /**
-     * 获取 View
-     * @param resource
-     * @param root
-     * @return
-     */
-    public static View getView(@LayoutRes final int resource, final ViewGroup root) {
-        try {
-            return ((LayoutInflater) DevUtils.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, root);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getView");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 Resources
-     * @return
-     */
-    public static Resources getResources() {
-        try {
-            return DevUtils.getContext().getResources();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getResources");
-        }
-        return null;
-    }
-
-    // =
-
-    /**
-     * 获取 String
-     * @param id R.string.id
-     * @return
-     */
-    public static String getString(@StringRes final int id) {
-        try {
-            return DevUtils.getContext().getResources().getString(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getString");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 String
-     * @param id         R.string.id
-     * @param formatArgs 格式化参数
-     * @return
-     */
-    public static String getString(@StringRes final int id, final Object... formatArgs) {
-        try {
-            return DevUtils.getContext().getResources().getString(id, formatArgs);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getString");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 Color
-     * @param colorId 颜色id
-     * @return 颜色
-     */
-    public static int getColor(final int colorId) {
-        try {
-            return DevUtils.getContext().getResources().getColor(colorId);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getColor");
-        }
-        return -1;
-    }
-
-    /**
-     * 获取 Drawable
-     * @param drawableId Drawable的id
-     * @return
-     */
-    public static Drawable getDrawable(final int drawableId) {
-        try {
-            return DevUtils.getContext().getResources().getDrawable(drawableId);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDrawable");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 Dimen 资源
-     * @param id
-     * @return
-     */
-    public static float getDimension(final int id) {
-        try {
-            return DevUtils.getContext().getResources().getDimension(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDimension");
-        }
-        return 0f;
-    }
-
-    // =
-
-    /**
-     * 获取 Resources.Theme
-     * @return
-     */
-    public static Resources.Theme getTheme() {
-        try {
-            return DevUtils.getContext().getTheme();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getTheme");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 AssetManager
-     * @return
-     */
-    public static AssetManager getAssets() {
-        try {
-            return DevUtils.getContext().getAssets();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAssets");
-        }
-        return null;
-    }
-
-    // =
-
-    /**
-     * 获取 ColorStateList
-     * @param id
-     * @return
-     */
-    public static ColorStateList getColorStateList(final int id) {
-        try {
-            return ContextCompat.getColorStateList(DevUtils.getContext(), id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getColorStateList");
         }
         return null;
     }
@@ -247,44 +77,7 @@ public final class AppUtils {
         return null;
     }
 
-    /**
-     * 获取 Configuration
-     * @return
-     */
-    public static Configuration getConfiguration() {
-        try {
-            return DevUtils.getContext().getResources().getConfiguration();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getConfiguration");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 DisplayMetrics
-     * @return
-     */
-    public static DisplayMetrics getDisplayMetrics() {
-        try {
-            return DevUtils.getContext().getResources().getDisplayMetrics();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDisplayMetrics");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 ContentResolver
-     * @return
-     */
-    public static ContentResolver getContentResolver() {
-        try {
-            return DevUtils.getContext().getContentResolver();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getContentResolver");
-        }
-        return null;
-    }
+    // =
 
     /**
      * 获取 App 的图标

@@ -1,23 +1,19 @@
 package dev.utils.app;
 
-import android.content.Context;
+import android.content.ContentResolver;
 import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.DisplayMetrics;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -43,32 +39,8 @@ public final class ResourceUtils {
     // ================
 
     /**
-     * 获取 View
-     * @param resource
-     * @return
-     */
-    public static View getView(@LayoutRes final int resource) {
-        return getView(resource, null);
-    }
-
-    /**
-     * 获取 View
-     * @param resource
-     * @param root
-     * @return
-     */
-    public static View getView(@LayoutRes final int resource, final ViewGroup root) {
-        try {
-            return ((LayoutInflater) DevUtils.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, root);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getView");
-        }
-        return null;
-    }
-
-    /**
      * 获取 Resources
-     * @return
+     * @return {@link Resources}
      */
     public static Resources getResources() {
         try {
@@ -81,7 +53,7 @@ public final class ResourceUtils {
 
     /**
      * 获取 Resources.Theme
-     * @return
+     * @return {@link Resources.Theme}
      */
     public static Resources.Theme getTheme() {
         try {
@@ -94,7 +66,7 @@ public final class ResourceUtils {
 
     /**
      * 获取 AssetManager
-     * @return
+     * @return {@link AssetManager}
      */
     public static AssetManager getAssets() {
         try {
@@ -106,9 +78,48 @@ public final class ResourceUtils {
     }
 
     /**
+     * 获取 ContentResolver
+     * @return {@link ContentResolver}
+     */
+    public static ContentResolver getContentResolver() {
+        try {
+            return DevUtils.getContext().getContentResolver();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getContentResolver");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 DisplayMetrics
+     * @return {@link DisplayMetrics}
+     */
+    public static DisplayMetrics getDisplayMetrics() {
+        try {
+            return DevUtils.getContext().getResources().getDisplayMetrics();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getDisplayMetrics");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Configuration
+     * @return {@link Configuration}
+     */
+    public static Configuration getConfiguration() {
+        try {
+            return DevUtils.getContext().getResources().getConfiguration();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getConfiguration");
+        }
+        return null;
+    }
+
+    /**
      * 获取 ColorStateList
-     * @param id
-     * @return
+     * @param id resource identifier of a {@link ColorStateList}
+     * @return {@link ColorStateList}
      */
     public static ColorStateList getColorStateList(final int id) {
         try {
@@ -119,27 +130,25 @@ public final class ResourceUtils {
         return null;
     }
 
-    // =
-
     /**
-     * 获取字符串
-     * @param strId R.string.id
-     * @return 字符串
+     * 获取 String
+     * @param id R.string.id
+     * @return String
      */
-    public static String getString(final int strId) {
+    public static String getString(@StringRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getString(strId);
+            return DevUtils.getContext().getResources().getString(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getString");
         }
-        return "";
+        return null;
     }
 
     /**
      * 获取 String
      * @param id         R.string.id
      * @param formatArgs 格式化参数
-     * @return
+     * @return String
      */
     public static String getString(@StringRes final int id, final Object... formatArgs) {
         try {
@@ -152,12 +161,12 @@ public final class ResourceUtils {
 
     /**
      * 获取 Color
-     * @param colorId 颜色id
-     * @return 颜色
+     * @param colorId R.color.id
+     * @return Color
      */
     public static int getColor(final int colorId) {
         try {
-            return DevUtils.getContext().getResources().getColor(colorId);
+            return ContextCompat.getColor(DevUtils.getContext(), colorId);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getColor");
         }
@@ -166,12 +175,12 @@ public final class ResourceUtils {
 
     /**
      * 获取 Drawable
-     * @param drawableId Drawable 的 id
-     * @return
+     * @param drawableId R.drawable.id
+     * @return {@link Drawable}
      */
     public static Drawable getDrawable(final int drawableId) {
         try {
-            return DevUtils.getContext().getResources().getDrawable(drawableId);
+            return ContextCompat.getDrawable(DevUtils.getContext(), drawableId);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDrawable");
         }
@@ -179,9 +188,9 @@ public final class ResourceUtils {
     }
 
     /**
-     * 获取 Dimen 资源
-     * @param id
-     * @return
+     * 获取 Dimension
+     * @param id resource identifier
+     * @return Dimension
      */
     public static float getDimension(final int id) {
         try {
@@ -196,8 +205,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 layout id
-     * @param resName layout xml 的文件名
-     * @return layout
+     * @param resName layout xml fileName
+     * @return layout id
      */
     public static int getLayoutId(final String resName) {
         return getIdentifier(resName, "layout");
@@ -205,8 +214,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 drawable id
-     * @param resName drawable 的名称
-     * @return
+     * @param resName drawable name
+     * @return drawable id
      */
     public static int getDrawableId(final String resName) {
         return getIdentifier(resName, "drawable");
@@ -214,8 +223,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 mipmap id
-     * @param resName
-     * @return
+     * @param resName mipmap name
+     * @return mipmap id
      */
     public static int getMipmapId(final String resName) {
         return getIdentifier(resName, "mipmap");
@@ -223,8 +232,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 menu id
-     * @param resName menu 名称
-     * @return
+     * @param resName menu name
+     * @return menu id
      */
     public static int getMenuId(final String resName) {
         return getIdentifier(resName, "menu");
@@ -232,8 +241,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 raw id
-     * @param resName raw 名称
-     * @return
+     * @param resName raw name
+     * @return raw id
      */
     public static int getRawId(final String resName) {
         return getIdentifier(resName, "raw");
@@ -241,8 +250,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 anim id
-     * @param resName anim xml 文件名称
-     * @return anim
+     * @param resName anim xml fileName
+     * @return anim id
      */
     public static int getAnimId(final String resName) {
         return getIdentifier(resName, "anim");
@@ -250,8 +259,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 color id
-     * @param resName color 名称
-     * @return
+     * @param resName color name
+     * @return color id
      */
     public static int getColorId(final String resName) {
         return getIdentifier(resName, "color");
@@ -259,8 +268,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 dimen id
-     * @param resName dimen 名称
-     * @return
+     * @param resName dimen name
+     * @return dimen id
      */
     public static int getDimenId(final String resName) {
         return getIdentifier(resName, "dimen");
@@ -268,8 +277,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 attr id
-     * @param resName attr 名称
-     * @return
+     * @param resName attr name
+     * @return attr id
      */
     public static int getAttrId(final String resName) {
         return getIdentifier(resName, "attr");
@@ -277,8 +286,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 style id
-     * @param resName style的名称
-     * @return style
+     * @param resName style name
+     * @return style id
      */
     public static int getStyleId(final String resName) {
         return getIdentifier(resName, "style");
@@ -286,17 +295,17 @@ public final class ResourceUtils {
 
     /**
      * 获取 styleable id
-     * @param resName styleable 的名称
-     * @return styleable
+     * @param resName styleable name
+     * @return styleable id
      */
-    public static Object getStyleableId(final String resName) {
+    public static int getStyleableId(final String resName) {
         return getIdentifier(resName, "styleable");
     }
 
     /**
      * 获取 id
-     * @param resName id 的名称
-     * @return
+     * @param resName id name
+     * @return id
      */
     public static int getId(final String resName) {
         return getIdentifier(resName, "id");
@@ -304,8 +313,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 string id
-     * @param resName string name的名称
-     * @return
+     * @param resName string name
+     * @return string id
      */
     public static int getStringId(final String resName) {
         return getIdentifier(resName, "string");
@@ -313,8 +322,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 bool id
-     * @param resName bool 名称
-     * @return
+     * @param resName bool name
+     * @return bool id
      */
     public static int getBoolId(final String resName) {
         return getIdentifier(resName, "bool");
@@ -322,8 +331,8 @@ public final class ResourceUtils {
 
     /**
      * 获取 integer id
-     * @param resName integer 名称
-     * @return
+     * @param resName integer name
+     * @return integer id
      */
     public static int getIntegerId(final String resName) {
         return getIdentifier(resName, "integer");
@@ -336,7 +345,12 @@ public final class ResourceUtils {
      * @return 资源 id
      */
     public static int getIdentifier(final String resName, final String defType) {
-        return getIdentifier(resName, defType, DevUtils.getContext().getPackageName());
+        try {
+            return getIdentifier(resName, defType, DevUtils.getContext().getPackageName());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getIdentifier - " + resName + ": " + defType);
+        }
+        return 0;
     }
 
     /**
@@ -355,32 +369,36 @@ public final class ResourceUtils {
         return 0;
     }
 
-    // =
+    // ================
+    // = 读取资源文件 =
+    // ================
 
     /**
      * 获取 Assets 资源文件数据
-     * @param fileName 资源文件名, 可分成, 如根目录, a.txt 或者子目录 /www/a.html
-     * @return
+     * <pre>
+     *     直接传入文件名、文件夹/文件名 等
+     *     根目录 a.txt
+     *     子目录 /www/a.html
+     * </pre>
+     * @param fileName 文件名
+     * @return 文件 byte[] 数据
      */
     public static byte[] readBytesFromAssets(final String fileName) {
-        if (DevUtils.getContext() != null && !TextUtils.isEmpty(fileName)) {
-            InputStream is = null;
-            try {
-                is = DevUtils.getContext().getResources().getAssets().open(fileName);
-                int length = is.available();
-                byte[] buffer = new byte[length];
-                is.read(buffer);
-                is.close();
-                is = null;
-                return buffer;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "readBytesFromAssets");
-            } finally {
-                if (is != null) {
-                    try {
-                        is.close();
-                    } catch (Exception e) {
-                    }
+        InputStream is = null;
+        try {
+            is = DevUtils.getContext().getResources().getAssets().open(fileName);
+            int length = is.available();
+            byte[] buffer = new byte[length];
+            is.read(buffer);
+            is.close();
+            return buffer;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "readBytesFromAssets");
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception e) {
                 }
             }
         }
@@ -388,9 +406,9 @@ public final class ResourceUtils {
     }
 
     /**
-     * 读取字符串 来自 Assets文件
+     * 获取 Assets 资源文件数据
      * @param fileName 文件名
-     * @return
+     * @return 文件字符串内容
      */
     public static String readStringFromAssets(final String fileName) {
         try {
@@ -401,30 +419,29 @@ public final class ResourceUtils {
         return null;
     }
 
+    // =
+
     /**
-     * 从res/raw 中获取内容
-     * @param resId 资源id
-     * @return
+     * 获取 Raw 资源文件数据
+     * @param resId 资源 id
+     * @return 文件 byte[] 数据
      */
     public static byte[] readBytesFromRaw(final int resId) {
-        if (DevUtils.getContext() != null) {
-            InputStream is = null;
-            try {
-                is = DevUtils.getContext().getResources().openRawResource(resId);
-                int length = is.available();
-                byte[] buffer = new byte[length];
-                is.read(buffer);
-                is.close();
-                is = null;
-                return buffer;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "readBytesFromRaw");
-            } finally {
-                if (is != null) {
-                    try {
-                        is.close();
-                    } catch (Exception e) {
-                    }
+        InputStream is = null;
+        try {
+            is = DevUtils.getContext().getResources().openRawResource(resId);
+            int length = is.available();
+            byte[] buffer = new byte[length];
+            is.read(buffer);
+            is.close();
+            return buffer;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "readBytesFromRaw");
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception e) {
                 }
             }
         }
@@ -432,9 +449,9 @@ public final class ResourceUtils {
     }
 
     /**
-     * 读取字符串 来自Raw 文件
-     * @param resId
-     * @return
+     * 获取 Raw 资源文件数据
+     * @param resId 资源 id
+     * @return 文件字符串内容
      */
     public static String readStringFromRaw(final int resId) {
         try {
@@ -448,32 +465,35 @@ public final class ResourceUtils {
     // =
 
     /**
-     * 获取 Assets 资源文件数据(返回List<String> 一行的全部内容属于一个索引)
-     * @param fileName 资源文件名, 可分成, 如根目录, a.txt 或者子目录 /www/a.html
-     * @return
+     * 获取 Assets 资源文件数据(返回 List<String> 一行的全部内容属于一个索引)
+     * @param fileName 文件名
+     * @return {@link List<String>}
      */
     public static List<String> geFileToListFromAssets(final String fileName) {
-        if (DevUtils.getContext() != null && !TextUtils.isEmpty(fileName)) {
-            InputStream is = null;
-            InputStreamReader isr = null;
-            BufferedReader br = null;
-            try {
-                is = DevUtils.getContext().getResources().getAssets().open(fileName);
-                isr = new InputStreamReader(is);
-                br = new BufferedReader(isr);
-                List<String> fileContent = new ArrayList<>();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    fileContent.add(line);
+        InputStream is = null;
+        BufferedReader br = null;
+        try {
+            is = DevUtils.getContext().getResources().getAssets().open(fileName);
+            br = new BufferedReader(new InputStreamReader(is));
+
+            List<String> lists = new ArrayList<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                lists.add(line);
+            }
+            return lists;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "geFileToListFromAssets");
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception e) {
                 }
-                return fileContent;
-            } catch (IOException e) {
-                LogPrintUtils.eTag(TAG, e, "geFileToListFromAssets");
-            } finally {
+            }
+            if (br != null) {
                 try {
                     br.close();
-                    isr.close();
-                    is.close();
                 } catch (Exception e) {
                 }
             }
@@ -482,32 +502,35 @@ public final class ResourceUtils {
     }
 
     /**
-     * 从res/raw 中获取内容(返回List<String>一行的全部内容属于一个索引)
-     * @param resId 资源id
-     * @return
+     * 获取 Raw 资源文件数据(返回 List<String> 一行的全部内容属于一个索引)
+     * @param resId 资源 id
+     * @return {@link List<String>}
      */
     public static List<String> geFileToListFromRaw(final int resId) {
-        if (DevUtils.getContext() != null) {
-            InputStream is = null;
-            InputStreamReader isr = null;
-            BufferedReader br = null;
-            try {
-                is = DevUtils.getContext().getResources().openRawResource(resId);
-                isr = new InputStreamReader(is);
-                br = new BufferedReader(isr);
-                List<String> fileContent = new ArrayList<>();
-                String line = null;
-                while ((line = br.readLine()) != null) {
-                    fileContent.add(line);
+        InputStream is = null;
+        BufferedReader br = null;
+        try {
+            is = DevUtils.getContext().getResources().openRawResource(resId);
+            br = new BufferedReader(new InputStreamReader(is));
+
+            List<String> lists = new ArrayList<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                lists.add(line);
+            }
+            return lists;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "geFileToListFromRaw");
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception e) {
                 }
-                return fileContent;
-            } catch (IOException e) {
-                LogPrintUtils.eTag(TAG, e, "geFileToListFromRaw");
-            } finally {
+            }
+            if (br != null) {
                 try {
                     br.close();
-                    isr.close();
-                    is.close();
                 } catch (Exception e) {
                 }
             }
@@ -518,79 +541,75 @@ public final class ResourceUtils {
     // =
 
     /**
-     * 从Assets 资源中获取内容并保存到本地
-     * @param fileName 资源文件名, 可分成, 如根目录, a.txt 或者子目录 /www/a.html
-     * @param file     保存地址
-     * @return 是否保存成功
+     * 获取 Assets 资源文件数据并保存到本地
+     * @param fileName 文件名
+     * @param file     文件保存地址
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean saveAssetsFormFile(final String fileName, final File file) {
-        if (DevUtils.getContext() != null) {
-            try {
-                // 获取 Assets 文件
-                InputStream is = DevUtils.getContext().getResources().getAssets().open(fileName);
-                // 存入SDCard
-                FileOutputStream fos = new FileOutputStream(file);
-                // 设置数据缓冲
-                byte[] buffer = new byte[1024];
-                // 创建输入输出流
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                int len = 0;
-                while ((len = is.read(buffer)) != -1) {
-                    baos.write(buffer, 0, len);
-                }
-                // 保存数据
-                byte[] bytes = baos.toByteArray();
-                // 写入保存的文件
-                fos.write(bytes);
-                // 关闭流
-                baos.close();
-                is.close();
-                // =
-                fos.flush();
-                fos.close();
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "saveAssetsFormFile");
+        try {
+            // 获取 Assets 文件
+            InputStream is = DevUtils.getContext().getResources().getAssets().open(fileName);
+            // 存入 SDCard
+            FileOutputStream fos = new FileOutputStream(file);
+            // 设置数据缓冲
+            byte[] buffer = new byte[1024];
+            // 创建输入输出流
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int len;
+            while ((len = is.read(buffer)) != -1) {
+                baos.write(buffer, 0, len);
             }
+            // 保存数据
+            byte[] bytes = baos.toByteArray();
+            // 写入保存的文件
+            fos.write(bytes);
+            // 关闭流
+            baos.close();
+            is.close();
+            // =
+            fos.flush();
+            fos.close();
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "saveAssetsFormFile");
         }
         return false;
     }
 
     /**
-     * 从res/raw 中获取内容并保存到本地
-     * @param resId 资源id
-     * @param file  保存地址
-     * @return 是否保存成功
+     * 获取 Raw 资源文件数据并保存到本地
+     * @param resId 资源 id
+     * @param file  文件保存地址
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean saveRawFormFile(final int resId, final File file) {
-        if (DevUtils.getContext() != null) {
-            try {
-                // 获取raw 文件
-                InputStream is = DevUtils.getContext().getResources().openRawResource(resId);
-                // 存入SDCard
-                FileOutputStream fos = new FileOutputStream(file);
-                // 设置数据缓冲
-                byte[] buffer = new byte[1024];
-                // 创建输入输出流
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                int len = 0;
-                while ((len = is.read(buffer)) != -1) {
-                    baos.write(buffer, 0, len);
-                }
-                // 保存数据
-                byte[] bytes = baos.toByteArray();
-                // 写入保存的文件
-                fos.write(bytes);
-                // 关闭流
-                baos.close();
-                is.close();
-                // =
-                fos.flush();
-                fos.close();
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "saveRawFormFile");
+        try {
+            // 获取 raw 文件
+            InputStream is = DevUtils.getContext().getResources().openRawResource(resId);
+            // 存入 SDCard
+            FileOutputStream fos = new FileOutputStream(file);
+            // 设置数据缓冲
+            byte[] buffer = new byte[1024];
+            // 创建输入输出流
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int len;
+            while ((len = is.read(buffer)) != -1) {
+                baos.write(buffer, 0, len);
             }
+            // 保存数据
+            byte[] bytes = baos.toByteArray();
+            // 写入保存的文件
+            fos.write(bytes);
+            // 关闭流
+            baos.close();
+            is.close();
+            // =
+            fos.flush();
+            fos.close();
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "saveRawFormFile");
         }
         return false;
     }

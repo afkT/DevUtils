@@ -42,7 +42,7 @@ public final class StateListUtils {
 
     /**
      * 获取 ColorStateList
-     * @param id R.xxx.selector
+     * @param id resource identifier of a {@link ColorStateList}
      * @return {@link ColorStateList}
      */
     public static ColorStateList getColorStateList(@ColorRes final int id) {
