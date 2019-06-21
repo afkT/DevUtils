@@ -1133,7 +1133,7 @@ public final class ImageUtils {
     /**
      * 根据文件名判断文件是否为图片
      * @param file
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isImage(final File file) {
         return file != null && isImage(file.getPath());
@@ -1142,7 +1142,7 @@ public final class ImageUtils {
     /**
      * 根据文件名判断文件是否为图片
      * @param filePath
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isImage(final String filePath) {
         String path = filePath.toUpperCase();
@@ -1249,7 +1249,7 @@ public final class ImageUtils {
     /**
      * 判断 bitmap 对象是否为空
      * @param src 源图片
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean isEmptyBitmap(final Bitmap src) {
         return src == null || src.getWidth() == 0 || src.getHeight() == 0;

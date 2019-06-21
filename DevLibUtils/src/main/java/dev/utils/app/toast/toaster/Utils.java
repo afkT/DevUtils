@@ -33,8 +33,6 @@ final class Utils {
     // 日志 TAG
     private static final String TAG = Utils.class.getSimpleName();
 
-    // =
-
     /**
      * 获取格式化字符串
      * @param format 待格式化字符串

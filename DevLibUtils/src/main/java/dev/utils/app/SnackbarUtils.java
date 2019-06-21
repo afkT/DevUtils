@@ -1518,7 +1518,7 @@ public final class SnackbarUtils {
     // ===============
 
     /**
-     * 获取屏幕的高度(单位 px)
+     * 获取屏幕高度
      * @return 屏幕高度
      */
     private int getScreenHeight() {

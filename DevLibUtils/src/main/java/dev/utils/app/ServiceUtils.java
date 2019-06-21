@@ -33,7 +33,7 @@ public final class ServiceUtils {
     /**
      * 判断服务是否运行
      * @param clazz {@link Class}
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isServiceRunning(final Class<?> clazz) {
         try {
@@ -47,7 +47,7 @@ public final class ServiceUtils {
     /**
      * 判断服务是否运行
      * @param className package.ServiceClassName - class.getName()
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isServiceRunning(final String className) {
         try {

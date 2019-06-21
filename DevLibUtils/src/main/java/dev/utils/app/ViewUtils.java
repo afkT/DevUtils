@@ -522,7 +522,7 @@ public final class ViewUtils {
      * @param view         {@link View}
      * @return isChange
      */
-    public static boolean toogleView(final boolean isChange, final int isVisibility, final View view) {
+    public static boolean toggleView(final boolean isChange, final int isVisibility, final View view) {
         if (isChange && view != null) {
             view.setVisibility(isVisibility);
         }
@@ -536,7 +536,7 @@ public final class ViewUtils {
      * @param views        View[]
      * @return isChange
      */
-    public static boolean toogleViews(final boolean isChange, final int isVisibility, final View... views) {
+    public static boolean toggleViews(final boolean isChange, final int isVisibility, final View... views) {
         if (isChange && views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 View view = views[i];

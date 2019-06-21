@@ -29,7 +29,7 @@ public final class BrightnessUtils {
 
     /**
      * 判断是否开启自动调节亮度
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isAutoBrightnessEnabled() {
         try {

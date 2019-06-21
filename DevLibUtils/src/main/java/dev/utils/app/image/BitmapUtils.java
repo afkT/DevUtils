@@ -432,7 +432,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * 保存图片到SD卡 - JPEG
+     * 保存图片到 SDCard - JPEG
      * @param bitmap  需要保存的数据
      * @param path    保存路径
      * @param quality 压缩比例
@@ -443,7 +443,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 保存图片到SD卡 - PNG
+     * 保存图片到 SDCard - PNG
      * @param bitmap 需要保存的数据
      * @param path   保存路径
      * @return {@link Bitmap}
@@ -453,7 +453,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 保存图片到SD卡 - PNG
+     * 保存图片到 SDCard - PNG
      * @param bitmap  需要保存的数据
      * @param path    保存路径
      * @param quality 压缩比例
@@ -464,7 +464,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 保存图片到SD卡 - PNG
+     * 保存图片到 SDCard - PNG
      * @param bitmap  需要保存的数据
      * @param path    保存路径
      * @param quality 压缩比例
@@ -475,7 +475,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 保存图片到SD卡
+     * 保存图片到 SDCard
      * @param bitmap   图片资源
      * @param filePath 保存路径
      * @param format   如 Bitmap.CompressFormat.PNG

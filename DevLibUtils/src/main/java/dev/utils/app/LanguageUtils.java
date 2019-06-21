@@ -67,10 +67,10 @@ public class LanguageUtils {
                 } else {
                     // updateConfiguration
                     // 获取屏幕参数: 主要是分辨率, 像素等
-                    DisplayMetrics dm = resources.getDisplayMetrics();
+                    DisplayMetrics displayMetrics = resources.getDisplayMetrics();
                     config.locale = locale;
                     // 更新语言
-                    resources.updateConfiguration(config, dm);
+                    resources.updateConfiguration(config, displayMetrics);
                 }
                 return true;
             } catch (Exception e) {

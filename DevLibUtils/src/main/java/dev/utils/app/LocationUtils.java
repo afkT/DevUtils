@@ -85,7 +85,7 @@ public final class LocationUtils {
 
     /**
      * 判断Gps是否可用
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isGpsEnabled() {
         try {
@@ -99,7 +99,7 @@ public final class LocationUtils {
 
     /**
      * 判断定位是否可用
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isLocationEnabled() {
         try {
@@ -253,7 +253,7 @@ public final class LocationUtils {
      * 是否更好的位置
      * @param newLocation
      * @param currentBestLocation
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isBetterLocation(final Location newLocation, final Location currentBestLocation) {
         if (newLocation == null || currentBestLocation == null) {
@@ -294,7 +294,7 @@ public final class LocationUtils {
      * 是否相同的提供者
      * @param provider0 提供者1
      * @param provider1 提供者2
-     * @return {@code true} 是, {@code false} 否
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isSameProvider(final String provider0, final String provider1) {
         if (provider0 == null) {

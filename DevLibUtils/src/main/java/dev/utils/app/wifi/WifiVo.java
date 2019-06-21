@@ -27,8 +27,6 @@ public class WifiVo implements Parcelable {
     @Keep // wifi 信号等级
     public int wLevel = 0;
 
-    // =
-
     public WifiVo() {
     }
 
