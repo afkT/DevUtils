@@ -178,7 +178,8 @@ public final class DevCache {
      * its contents will be registered in the cache
      */
     class xFileOutputStream extends FileOutputStream {
-        File file;
+
+        private File file;
 
         public xFileOutputStream(File file) throws FileNotFoundException {
             super(file);
