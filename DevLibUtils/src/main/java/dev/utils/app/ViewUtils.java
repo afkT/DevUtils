@@ -228,7 +228,7 @@ public final class ViewUtils {
     /**
      * 设置 View 是否可以获取焦点
      * @param focusable {@code true} 可获取, {@code false} 不可获取
-     * @param views View[]
+     * @param views     View[]
      * @return {@code true} 可获取, {@code false} 不可获取
      */
     public static boolean setFocusable(final boolean focusable, final View... views) {
@@ -246,7 +246,7 @@ public final class ViewUtils {
     /**
      * 设置 View 是否选中
      * @param selected {@code true} 选中, {@code false} 非选中
-     * @param views View[]
+     * @param views    View[]
      * @return {@code true} 选中, {@code false} 非选中
      */
     public static boolean setSelected(final boolean selected, final View... views) {
@@ -264,7 +264,7 @@ public final class ViewUtils {
     /**
      * 设置 View 是否启用
      * @param enabled {@code true} 启用, {@code false} 禁用
-     * @param views View[]
+     * @param views   View[]
      * @return {@code true} 启用, {@code false} 禁用
      */
     public static boolean setEnabled(final boolean enabled, final View... views) {
@@ -282,7 +282,7 @@ public final class ViewUtils {
     /**
      * 设置 View 是否可以点击
      * @param clickable {@code true} 可点击, {@code false} 不可点击
-     * @param views View[]
+     * @param views     View[]
      * @return {@code true} 可点击, {@code false} 不可点击
      */
     public static boolean setClickable(final boolean clickable, final View... views) {
@@ -300,7 +300,7 @@ public final class ViewUtils {
     /**
      * 设置 View 是否可以长按
      * @param longClickable {@code true} 可长按, {@code false} 不可长按
-     * @param views View[]
+     * @param views         View[]
      * @return {@code true} 可长按, {@code false} 不可长按
      */
     public static boolean setLongClickable(final boolean longClickable, final View... views) {

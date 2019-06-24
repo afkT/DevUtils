@@ -63,10 +63,10 @@ public final class PhoneUtils {
      * 获取 TelephonyManager
      * @return {@link TelephonyManager}
      */
-    public static TelephonyManager getTelephonyManager(){
+    public static TelephonyManager getTelephonyManager() {
         try {
             return (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getTelephonyManager");
         }
         return null;
@@ -104,7 +104,7 @@ public final class PhoneUtils {
             // 判断 SIM 卡运营商的国家代码
             if (simCountry != null && simCountry.trim().length() != 0) {
                 return simCountry.trim();
-            } else if (networkCountry != null && networkCountry.trim().length() != 0){
+            } else if (networkCountry != null && networkCountry.trim().length() != 0) {
                 return networkCountry.trim();
             }
         } catch (Exception e) {
@@ -384,8 +384,8 @@ public final class PhoneUtils {
      * @param simOperator SIM 卡运营商 MCC + MNC
      * @return SIM 卡中国运营商简称
      */
-    public static String getSimOperator_ChinaOperator(final String simOperator){
-        if (simOperator != null){
+    public static String getSimOperator_ChinaOperator(final String simOperator) {
+        if (simOperator != null) {
             if (simOperator.equals("46000") || simOperator.equals("46002") || simOperator.equals("46007")) {
                 return "中国移动";
             } else if (simOperator.equals("46001") || simOperator.equals("46006")) {

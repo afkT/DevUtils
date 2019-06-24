@@ -33,9 +33,9 @@ public final class Reflect2Utils {
 
     /**
      * 设置某个对象变量值(可设置静态变量)
-     * @param object 对象
-     * @param fieldName   字段名
-     * @param value  字段值
+     * @param object    对象
+     * @param fieldName 字段名
+     * @param value     字段值
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setProperty(final Object object, final String fieldName, final Object value) {
@@ -53,7 +53,7 @@ public final class Reflect2Utils {
 
     /**
      * 获取某个对象的变量(可获取静态变量)
-     * @param object     对象
+     * @param object    对象
      * @param fieldName 属性名
      * @param <T>       泛型
      * @return 该变量对象
@@ -124,7 +124,7 @@ public final class Reflect2Utils {
 
     /**
      * 执行某个对象方法(可执行静态方法)
-     * @param object      对象
+     * @param object     对象
      * @param methodName 方法名
      * @param <T>        泛型
      * @return 执行方法返回的结果
@@ -135,7 +135,7 @@ public final class Reflect2Utils {
 
     /**
      * 执行某个对象方法(可执行静态方法)
-     * @param object      对象
+     * @param object     对象
      * @param methodName 方法名
      * @param args       参数
      * @param <T>        泛型
@@ -147,7 +147,7 @@ public final class Reflect2Utils {
 
     /**
      * 执行某个对象方法(可执行静态方法)
-     * @param object      对象
+     * @param object     对象
      * @param methodName 方法名
      * @param args       参数
      * @param argsClass  参数类型
@@ -158,15 +158,15 @@ public final class Reflect2Utils {
         if (object == null || methodName == null) return null;
         try {
             Class clazz = object.getClass();
-            if (argsClass != null && args != null) { // 参数类型、参数不为 null, 并且数量相等
-                if (argsClass.length == args.length && argsClass.length != 0) {
+            if (args != null && argsClass != null) { // 参数、参数类型不为 null, 并且数量相等
+                if (args.length == argsClass.length && args.length != 0) {
                     Method method = clazz.getDeclaredMethod(methodName, argsClass);
                     method.setAccessible(true);
                     return (T) method.invoke(object, args);
                 }
             } else {
-                // 无参数类型、参数, 才执行
-                if (argsClass == null && args == null) {
+                // 无参数、参数类型, 才执行
+                if (args == null && argsClass == null) {
                     Method method = clazz.getDeclaredMethod(methodName);
                     method.setAccessible(true);
                     return (T) method.invoke(object);
@@ -302,15 +302,15 @@ public final class Reflect2Utils {
         if (className == null || methodName == null) return null;
         try {
             Class clazz = Class.forName(className);
-            if (argsClass != null && args != null) { // 参数类型、参数不为 null, 并且数量相等
-                if (argsClass.length == args.length && argsClass.length != 0) {
+            if (args != null && argsClass != null) { // 参数、参数类型不为 null, 并且数量相等
+                if (args.length == argsClass.length && args.length != 0) {
                     Method method = clazz.getDeclaredMethod(methodName, argsClass);
                     method.setAccessible(true);
                     return (T) method.invoke(clazz, args);
                 }
             } else {
-                // 无参数类型、参数, 才执行
-                if (argsClass == null && args == null) {
+                // 无参数、参数类型, 才执行
+                if (args == null && argsClass == null) {
                     Method method = clazz.getDeclaredMethod(methodName);
                     method.setAccessible(true);
                     return (T) method.invoke(clazz);
@@ -329,7 +329,7 @@ public final class Reflect2Utils {
     /**
      * 新建实例(构造函数创建)
      * @param object 对象
-     * @param <T>        泛型
+     * @param <T>    泛型
      * @return 新建的实例
      */
     public static <T> T newInstance(final Object object) {
@@ -340,8 +340,8 @@ public final class Reflect2Utils {
     /**
      * 新建实例(构造函数创建)
      * @param object 对象
-     * @param args      参数
-     * @param <T>        泛型
+     * @param args   参数
+     * @param <T>    泛型
      * @return 新建的实例
      */
     public static <T> T newInstance(final Object object, final Object[] args) {
@@ -351,10 +351,10 @@ public final class Reflect2Utils {
 
     /**
      * 新建实例(构造函数创建)
-     * @param object 对象
+     * @param object    对象
      * @param args      参数
-     * @param argsClass  参数类型
-     * @param <T>        泛型
+     * @param argsClass 参数类型
+     * @param <T>       泛型
      * @return 新建的实例
      */
     public static <T> T newInstance(final Object object, final Object[] args, final Class[] argsClass) {
@@ -367,7 +367,7 @@ public final class Reflect2Utils {
     /**
      * 新建实例(构造函数创建)
      * @param clazz 类
-     * @param <T>        泛型
+     * @param <T>   泛型
      * @return 新建的实例
      */
     public static <T> T newInstance(final Class clazz) {
@@ -378,8 +378,8 @@ public final class Reflect2Utils {
     /**
      * 新建实例(构造函数创建)
      * @param clazz 类
-     * @param args      参数
-     * @param <T>        泛型
+     * @param args  参数
+     * @param <T>   泛型
      * @return 新建的实例
      */
     public static <T> T newInstance(final Class clazz, final Object[] args) {
@@ -389,10 +389,10 @@ public final class Reflect2Utils {
 
     /**
      * 新建实例(构造函数创建)
-     * @param clazz 类
+     * @param clazz     类
      * @param args      参数
-     * @param argsClass  参数类型
-     * @param <T>        泛型
+     * @param argsClass 参数类型
+     * @param <T>       泛型
      * @return 新建的实例
      */
     public static <T> T newInstance(final Class clazz, final Object[] args, final Class[] argsClass) {
@@ -405,7 +405,7 @@ public final class Reflect2Utils {
     /**
      * 新建实例(构造函数创建)
      * @param className 类名
-     * @param <T>        泛型
+     * @param <T>       泛型
      * @return 新建的实例
      */
     public static <T> T newInstance(final String className) {
@@ -417,7 +417,7 @@ public final class Reflect2Utils {
      * 新建实例(构造函数创建)
      * @param className 类名
      * @param args      参数
-     * @param <T>        泛型
+     * @param <T>       泛型
      * @return 新建的实例
      */
     public static <T> T newInstance(final String className, final Object[] args) {
@@ -429,8 +429,8 @@ public final class Reflect2Utils {
      * 新建实例(构造函数创建)
      * @param className 类名
      * @param args      参数
-     * @param argsClass  参数类型
-     * @param <T>        泛型
+     * @param argsClass 参数类型
+     * @param <T>       泛型
      * @return 新建的实例
      */
     public static <T> T newInstance(final String className, final Object[] args, final Class[] argsClass) {
@@ -467,27 +467,47 @@ public final class Reflect2Utils {
         return false;
     }
 
+    /**
+     * 获取参数类型
+     * @param args 参数
+     * @return 参数类型数组
+     */
+    public static Class[] getArgsClass(final Object... args) {
+        if (args != null) {
+            try {
+                Class[] argsClass = new Class[args.length];
+                for (int i = 0, len = args.length; i < len; i++) {
+                    argsClass[i] = args[i].getClass();
+                }
+                return argsClass;
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getArgsClass");
+            }
+        }
+        return new Class[0];
+    }
+
     // =
 
     /**
-     * 获取对象
+     * 获取某个对象的变量
      * <pre>
      *     例: 获取父类中的变量
      *     Object obj = 对象;
      *     getObject(getDeclaredFieldParent(obj, "父类中变量名"), obj);
      * </pre>
-     * @param field  {@link Field}
      * @param object 对象
-     * @param <T>       泛型
-     * @return 对象
+     * @param field  {@link Field}
+     * @param <T>    泛型
+     * @return 该变量对象
      */
-    public static <T> T getObject(final Field field, final Object object) {
-        if (field == null || object == null) return null;
+    public static <T> T getProperty(final Object object, final Field field) {
+        if (object == null || field == null) return null;
         try {
             field.setAccessible(true);
             return (T) field.get(object);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getObject");
+            JCLogUtils.eTag(TAG, e, "getProperty");
         }
         return null;
     }
@@ -496,22 +516,22 @@ public final class Reflect2Utils {
      * 获取父类中的变量对象
      * @param object    子类对象
      * @param fieldName 父类中的属性名
+     * @param <T>       泛型
      * @return 父类中的变量对象
      */
-    public static Object getDeclaredFieldParentObj(final Object object, final String fieldName) {
+    public static <T> T getPropertyByObject(final Object object, final String fieldName) {
         if (object == null || fieldName == null) return null;
         try {
             Field field = getDeclaredFieldParent(object, fieldName);
-            field.setAccessible(true);
-            return field.get(object);
+            return getProperty(object, field);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getDeclaredFieldParentObj");
+            JCLogUtils.eTag(TAG, e, "getPropertyByObject");
         }
         return null;
     }
 
     /**
-     * 循环向上转型, 获取对象的 DeclaredField
+     * 获取父类中的变量对象(循环向上转型, 获取对象的 DeclaredField)
      * @param object    对象
      * @param fieldName 属性名
      * @return {@link Field}
@@ -521,7 +541,7 @@ public final class Reflect2Utils {
     }
 
     /**
-     * 循环向上转型, 获取对象的 DeclaredField
+     * 获取父类中的变量对象(循环向上转型, 获取对象的 DeclaredField)
      * @param object      子类对象
      * @param fieldName   父类中的属性名
      * @param fieldNumber 字段出现次数, 如果父类还有父类, 并且有相同变量名, 设置负数 一直会跟到最后的变量
@@ -557,25 +577,5 @@ public final class Reflect2Utils {
             JCLogUtils.eTag(TAG, e, "getDeclaredFieldParent");
         }
         return null;
-    }
-
-    /**
-     * 获取参数类型
-     * @param args 参数
-     * @return 参数类型数组
-     */
-    public static Class[] getArgsClass(final Object... args) {
-        if (args != null) {
-            try {
-                Class[] argsClass = new Class[args.length];
-                for (int i = 0, len = args.length; i < len; i++) {
-                    argsClass[i] = args[i].getClass();
-                }
-                return argsClass;
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "getArgsClass");
-            }
-        }
-        return new Class[0];
     }
 }
