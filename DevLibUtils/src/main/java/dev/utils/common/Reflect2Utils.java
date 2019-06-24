@@ -1,6 +1,5 @@
 package dev.utils.common;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -10,6 +9,15 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 反射相关工具类
  * @author Ttt
+ * <pre>
+ *     有两个方法: getMethod, getDeclaredMethod
+ *     <p></p>
+ *     getDeclaredMethod() 获取的是类自身声明的所有方法, 包含 public、protected 和 private 方法
+ *     getMethod() 获取的是类的所有共有方法, 这就包括自身的所有 public 方法, 和从基类继承的、从接口实现的所有 public 方法
+ *     <p></p>
+ *     getMethod 只能调用 public 声明的方法, 而 getDeclaredMethod 基本可以调用任何类型声明的方法
+ *     反射多用 getDeclaredMethod, 尽量少用 getMethod
+ * </pre>
  */
 public final class Reflect2Utils {
 
@@ -19,135 +27,429 @@ public final class Reflect2Utils {
     // 日志 TAG
     private static final String TAG = Reflect2Utils.class.getSimpleName();
 
+    // ============
+    // = 对象变量 =
+    // ============
+
     /**
-     * 获取某个对象的公共属性
-     * @param owner     对象
-     * @param fieldName 属性名
-     * @return 该属性对象
+     * 设置某个对象变量值(可设置静态变量)
+     * @param object 对象
+     * @param fieldName   字段名
+     * @param value  字段值
+     * @return {@code true} success, {@code false} fail
      */
-    public static Object getProperty(final Object owner, final String fieldName) {
-        if (owner == null || fieldName == null) return null;
+    public static boolean setProperty(final Object object, final String fieldName, final Object value) {
+        if (object == null || fieldName == null) return false;
         try {
-            Class ownerClass = owner.getClass();
-            Field field = ownerClass.getField(fieldName);
-            Object property = field.get(owner);
-            return property;
+            Field field = object.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(object, value);
+            return true;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "setProperty");
+        }
+        return false;
+    }
+
+    /**
+     * 获取某个对象的变量(可获取静态变量)
+     * @param object     对象
+     * @param fieldName 属性名
+     * @param <T>       泛型
+     * @return 该变量对象
+     */
+    public static <T> T getProperty(final Object object, final String fieldName) {
+        if (object == null || fieldName == null) return null;
+        try {
+            Field field = object.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return (T) field.get(object);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getProperty");
         }
         return null;
     }
 
+    // ========================
+    // = 获取某个类的静态变量 =
+    // ========================
+
     /**
-     * 获取某类的静态公共属性
+     * 获取某个类的静态变量(只能获取静态变量)
+     * @param object    对象
+     * @param fieldName 属性名
+     * @param <T>       泛型
+     * @return 该变量对象
+     */
+    public static <T> T getStaticProperty(final Object object, final String fieldName) {
+        if (object == null) return null;
+        return getStaticProperty(object.getClass().getName(), fieldName);
+    }
+
+    /**
+     * 获取某个类的静态变量(只能获取静态变量)
+     * @param clazz     类
+     * @param fieldName 属性名
+     * @param <T>       泛型
+     * @return 该变量对象
+     */
+    public static <T> T getStaticProperty(final Class clazz, final String fieldName) {
+        if (clazz == null) return null;
+        return getStaticProperty(clazz.getName(), fieldName);
+    }
+
+    /**
+     * 获取某个类的静态变量(只能获取静态变量)
      * @param className 类名
      * @param fieldName 属性名
-     * @return 该属性对象
+     * @param <T>       泛型
+     * @return 该变量对象
      */
-    public static Object getStaticProperty(final String className, final String fieldName) {
+    public static <T> T getStaticProperty(final String className, final String fieldName) {
         if (className == null || fieldName == null) return null;
         try {
-            Class ownerClass = Class.forName(className);
-            Field field = ownerClass.getField(fieldName);
-            Object property = field.get(ownerClass);
-            return property;
+            Class clazz = Class.forName(className);
+            Field field = clazz.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return (T) field.get(clazz);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getStaticProperty");
         }
         return null;
     }
 
+    // ====================
+    // = 执行某个对象方法 =
+    // ====================
+
     /**
-     * 执行某对象方法
-     * @param owner      对象
+     * 执行某个对象方法(可执行静态方法)
+     * @param object      对象
      * @param methodName 方法名
-     * @return 方法返回值
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
      */
-    public static Object invokeMethod(final Object owner, final String methodName) {
-        return invokeMethod(owner, methodName, new Object[0]);
+    public static <T> T invokeMethod(final Object object, final String methodName) {
+        return invokeMethod(object, methodName, null, null);
     }
 
     /**
-     * 执行某对象方法
-     * @param owner      对象
+     * 执行某个对象方法(可执行静态方法)
+     * @param object      对象
      * @param methodName 方法名
      * @param args       参数
-     * @return 方法返回值
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
      */
-    public static Object invokeMethod(final Object owner, final String methodName, final Object[] args) {
-        if (owner == null || methodName == null) return null;
+    public static <T> T invokeMethod(final Object object, final String methodName, final Object[] args) {
+        return invokeMethod(object, methodName, args, getArgsClass(args));
+    }
+
+    /**
+     * 执行某个对象方法(可执行静态方法)
+     * @param object      对象
+     * @param methodName 方法名
+     * @param args       参数
+     * @param argsClass  参数类型
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
+     */
+    public static <T> T invokeMethod(final Object object, final String methodName, final Object[] args, final Class[] argsClass) {
+        if (object == null || methodName == null) return null;
         try {
-            Class ownerClass = owner.getClass();
-            Class[] argsClass = new Class[args.length];
-            for (int i = 0, len = args.length; i < len; i++) {
-                argsClass[i] = args[i].getClass();
+            Class clazz = object.getClass();
+            if (argsClass != null && args != null) { // 参数类型、参数不为 null, 并且数量相等
+                if (argsClass.length == args.length && argsClass.length != 0) {
+                    Method method = clazz.getDeclaredMethod(methodName, argsClass);
+                    method.setAccessible(true);
+                    return (T) method.invoke(object, args);
+                }
+            } else {
+                // 无参数类型、参数, 才执行
+                if (argsClass == null && args == null) {
+                    Method method = clazz.getDeclaredMethod(methodName);
+                    method.setAccessible(true);
+                    return (T) method.invoke(object);
+                }
             }
-            Method method = ownerClass.getMethod(methodName, argsClass);
-            return method.invoke(owner, args);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "invokeMethod");
         }
         return null;
     }
 
+    // ========================
+    // = 执行某个类的静态方法 =
+    // ========================
+
     /**
-     * 执行某类的静态方法
-     * @param className  类名
+     * 执行某个类的静态方法(只能执行静态方法)
+     * @param object     对象
      * @param methodName 方法名
+     * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static Object invokeStaticMethod(final String className, final String methodName) {
-        return invokeStaticMethod(className, methodName, new Object[0]);
+    public static <T> T invokeStaticMethod(final Object object, final String methodName) {
+        if (object == null) return null;
+        return invokeStaticMethod(object.getClass().getName(), methodName, null, null);
     }
 
     /**
-     * 执行某类的静态方法
+     * 执行某个类的静态方法(只能执行静态方法)
+     * @param object     对象
+     * @param methodName 方法名
+     * @param args       参数数组
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
+     */
+    public static <T> T invokeStaticMethod(final Object object, final String methodName, final Object[] args) {
+        if (object == null) return null;
+        return invokeStaticMethod(object.getClass().getName(), methodName, args, getArgsClass(args));
+    }
+
+    /**
+     * 执行某个类的静态方法(只能执行静态方法)
+     * @param object     对象
+     * @param methodName 方法名
+     * @param args       参数数组
+     * @param argsClass  参数类型
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
+     */
+    public static <T> T invokeStaticMethod(final Object object, final String methodName, final Object[] args, final Class[] argsClass) {
+        if (object == null) return null;
+        return invokeStaticMethod(object.getClass().getName(), methodName, args, argsClass);
+    }
+
+    // =
+
+    /**
+     * 执行某个类的静态方法(只能执行静态方法)
+     * @param clazz      类
+     * @param methodName 方法名
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
+     */
+    public static <T> T invokeStaticMethod(final Class clazz, final String methodName) {
+        if (clazz == null) return null;
+        return invokeStaticMethod(clazz.getName(), methodName, null, null);
+    }
+
+    /**
+     * 执行某个类的静态方法(只能执行静态方法)
+     * @param clazz      类
+     * @param methodName 方法名
+     * @param args       参数数组
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
+     */
+    public static <T> T invokeStaticMethod(final Class clazz, final String methodName, final Object[] args) {
+        if (clazz == null) return null;
+        return invokeStaticMethod(clazz.getName(), methodName, args, getArgsClass(args));
+    }
+
+    /**
+     * 执行某个类的静态方法(只能执行静态方法)
+     * @param clazz      类
+     * @param methodName 方法名
+     * @param args       参数数组
+     * @param argsClass  参数类型
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
+     */
+    public static <T> T invokeStaticMethod(final Class clazz, final String methodName, final Object[] args, final Class[] argsClass) {
+        if (clazz == null) return null;
+        return invokeStaticMethod(clazz.getName(), methodName, args, argsClass);
+    }
+
+    // =
+
+    /**
+     * 执行某个类的静态方法(只能执行静态方法)
+     * @param className  类名
+     * @param methodName 方法名
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
+     */
+    public static <T> T invokeStaticMethod(final String className, final String methodName) {
+        if (className == null) return null;
+        return invokeStaticMethod(className, methodName, null, null);
+    }
+
+    /**
+     * 执行某个类的静态方法(只能执行静态方法)
      * @param className  类名
      * @param methodName 方法名
      * @param args       参数数组
+     * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static Object invokeStaticMethod(final String className, final String methodName, final Object[] args) {
+    public static <T> T invokeStaticMethod(final String className, final String methodName, final Object[] args) {
+        if (className == null) return null;
+        return invokeStaticMethod(className, methodName, args, getArgsClass(args));
+    }
+
+    /**
+     * 执行某个类的静态方法(只能执行静态方法)
+     * @param className  类名
+     * @param methodName 方法名
+     * @param args       参数数组
+     * @param argsClass  参数类型
+     * @param <T>        泛型
+     * @return 执行方法返回的结果
+     */
+    public static <T> T invokeStaticMethod(final String className, final String methodName, final Object[] args, final Class[] argsClass) {
         if (className == null || methodName == null) return null;
         try {
-            Class ownerClass = Class.forName(className);
-            Class[] argsClass = new Class[args.length];
-            for (int i = 0, len = args.length; i < len; i++) {
-                argsClass[i] = args[i].getClass();
+            Class clazz = Class.forName(className);
+            if (argsClass != null && args != null) { // 参数类型、参数不为 null, 并且数量相等
+                if (argsClass.length == args.length && argsClass.length != 0) {
+                    Method method = clazz.getDeclaredMethod(methodName, argsClass);
+                    method.setAccessible(true);
+                    return (T) method.invoke(clazz, args);
+                }
+            } else {
+                // 无参数类型、参数, 才执行
+                if (argsClass == null && args == null) {
+                    Method method = clazz.getDeclaredMethod(methodName);
+                    method.setAccessible(true);
+                    return (T) method.invoke(clazz);
+                }
             }
-            // getDeclaredMethod() 获取的是类自身声明的所有方法, 包含 public、protected 和 private 方法
-            // getMethod() 获取的是类的所有共有方法, 这就包括自身的所有 public 方法, 和从基类继承的、从接口实现的所有 public 方法
-            Method method = ownerClass.getDeclaredMethod(methodName, argsClass);
-            if (!method.isAccessible()) method.setAccessible(true);
-            return method.invoke(null, args);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "invokeStaticMethod");
         }
         return null;
     }
 
+    // ==========================
+    // = 新建实例(构造函数创建) =
+    // ==========================
+
     /**
-     * 新建实例
-     * @param className 类名
-     * @param args      构造函数的参数 如果无构造参数, args 填写为 null
-     * @param argsType  参数类型
+     * 新建实例(构造函数创建)
+     * @param object 对象
+     * @param <T>        泛型
      * @return 新建的实例
      */
-    public static Object newInstance(final String className, final Object[] args, final Class[] argsType) {
+    public static <T> T newInstance(final Object object) {
+        if (object == null) return null;
+        return newInstance(object.getClass().getName(), null, null);
+    }
+
+    /**
+     * 新建实例(构造函数创建)
+     * @param object 对象
+     * @param args      参数
+     * @param <T>        泛型
+     * @return 新建的实例
+     */
+    public static <T> T newInstance(final Object object, final Object[] args) {
+        if (object == null) return null;
+        return newInstance(object.getClass().getName(), args, getArgsClass(args));
+    }
+
+    /**
+     * 新建实例(构造函数创建)
+     * @param object 对象
+     * @param args      参数
+     * @param argsClass  参数类型
+     * @param <T>        泛型
+     * @return 新建的实例
+     */
+    public static <T> T newInstance(final Object object, final Object[] args, final Class[] argsClass) {
+        if (object == null) return null;
+        return newInstance(object.getClass().getName(), args, argsClass);
+    }
+
+    // =
+
+    /**
+     * 新建实例(构造函数创建)
+     * @param clazz 类
+     * @param <T>        泛型
+     * @return 新建的实例
+     */
+    public static <T> T newInstance(final Class clazz) {
+        if (clazz == null) return null;
+        return newInstance(clazz.getName(), null, null);
+    }
+
+    /**
+     * 新建实例(构造函数创建)
+     * @param clazz 类
+     * @param args      参数
+     * @param <T>        泛型
+     * @return 新建的实例
+     */
+    public static <T> T newInstance(final Class clazz, final Object[] args) {
+        if (clazz == null) return null;
+        return newInstance(clazz.getName(), args, getArgsClass(args));
+    }
+
+    /**
+     * 新建实例(构造函数创建)
+     * @param clazz 类
+     * @param args      参数
+     * @param argsClass  参数类型
+     * @param <T>        泛型
+     * @return 新建的实例
+     */
+    public static <T> T newInstance(final Class clazz, final Object[] args, final Class[] argsClass) {
+        if (clazz == null) return null;
+        return newInstance(clazz.getName(), args, argsClass);
+    }
+
+    // =
+
+    /**
+     * 新建实例(构造函数创建)
+     * @param className 类名
+     * @param <T>        泛型
+     * @return 新建的实例
+     */
+    public static <T> T newInstance(final String className) {
+        if (className == null) return null;
+        return newInstance(className, null, null);
+    }
+
+    /**
+     * 新建实例(构造函数创建)
+     * @param className 类名
+     * @param args      参数
+     * @param <T>        泛型
+     * @return 新建的实例
+     */
+    public static <T> T newInstance(final String className, final Object[] args) {
+        if (className == null) return null;
+        return newInstance(className, args, getArgsClass(args));
+    }
+
+    /**
+     * 新建实例(构造函数创建)
+     * @param className 类名
+     * @param args      参数
+     * @param argsClass  参数类型
+     * @param <T>        泛型
+     * @return 新建的实例
+     */
+    public static <T> T newInstance(final String className, final Object[] args, final Class[] argsClass) {
         if (className == null) return null;
         try {
             Class newoneClass = Class.forName(className);
             if (args == null) {
-                return newoneClass.newInstance();
+                return (T) newoneClass.newInstance();
             } else {
-                Constructor cons = newoneClass.getConstructor(argsType);
-                return cons.newInstance(args);
+                Constructor cons = newoneClass.getConstructor(argsClass);
+                return (T) cons.newInstance(args);
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "newInstance");
         }
         return null;
     }
+
+    // =
 
     /**
      * 是不是某个类的实例
@@ -165,41 +467,27 @@ public final class Reflect2Utils {
         return false;
     }
 
-    /**
-     * 获取数组中的某个元素
-     * @param array 数组
-     * @param index 索引
-     * @return 指定数组对象中索引组件的值
-     */
-    public static Object getByArray(final Object array, final int index) {
-        if (array == null || index < 0) return null;
-        try {
-            return Array.get(array, index);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getByArray");
-        }
-        return null;
-    }
-
     // =
 
     /**
-     * 通过反射获取全部字段
+     * 获取对象
      * <pre>
-     *     如: (char[]) getDeclaredField(String, "value")
+     *     例: 获取父类中的变量
+     *     Object obj = 对象;
+     *     getObject(getDeclaredFieldParent(obj, "父类中变量名"), obj);
      * </pre>
+     * @param field  {@link Field}
      * @param object 对象
-     * @param name   属性名
-     * @return 字段所属对象
+     * @param <T>       泛型
+     * @return 对象
      */
-    public static Object getDeclaredField(final Object object, final String name) {
-        if (object == null || name == null) return null;
+    public static <T> T getObject(final Field field, final Object object) {
+        if (field == null || object == null) return null;
         try {
-            Field field = object.getClass().getDeclaredField(name);
             field.setAccessible(true);
-            return field.get(object);
+            return (T) field.get(object);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getDeclaredField");
+            JCLogUtils.eTag(TAG, e, "getObject");
         }
         return null;
     }
@@ -272,69 +560,22 @@ public final class Reflect2Utils {
     }
 
     /**
-     * 设置反射的方法
-     * @param object 对象
-     * @param name   方法名
-     * @param args   方法需要的参数
-     * @return {@code true} success, {@code false} fail
+     * 获取参数类型
+     * @param args 参数
+     * @return 参数类型数组
      */
-    public static boolean setFieldMethod(final Object object, final String name, final Object... args) {
-        if (object == null || name == null) return false;
-        try {
-            Method method = object.getClass().getDeclaredMethod(name);
-            method.setAccessible(true);
-            // 如果不为 null, 则不放参数
-            if (args != null && args.length != 0) {
-                method.invoke(object, args);
-            } else {
-                method.invoke(object);
+    public static Class[] getArgsClass(final Object... args) {
+        if (args != null) {
+            try {
+                Class[] argsClass = new Class[args.length];
+                for (int i = 0, len = args.length; i < len; i++) {
+                    argsClass[i] = args[i].getClass();
+                }
+                return argsClass;
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getArgsClass");
             }
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "setFieldMethod");
         }
-        return false;
-    }
-
-    /**
-     * 设置反射的字段
-     * @param object 对象
-     * @param name   字段名
-     * @param value  字段值
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean setFieldValue(final Object object, final String name, final Object value) {
-        if (object == null || name == null) return false;
-        try {
-            Field field = object.getClass().getDeclaredField(name);
-            field.setAccessible(true);
-            field.set(object, value);
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "setFieldValue");
-        }
-        return false;
-    }
-
-    /**
-     * 获取 Object 对象
-     * <pre>
-     *     例: 获取父类中的变量
-     *     Object obj = 对象;
-     *     getObject(getDeclaredFieldParent(obj, "父类中变量名"), obj);
-     * </pre>
-     * @param field  {@link Field}
-     * @param object 对象
-     * @return Object
-     */
-    public static Object getObject(final Field field, final Object object) {
-        if (field == null || object == null) return false;
-        try {
-            field.setAccessible(true);
-            return field.get(object);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getObject");
-        }
-        return null;
+        return new Class[0];
     }
 }

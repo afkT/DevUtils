@@ -1,5 +1,6 @@
 package dev.utils.common;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -458,6 +459,23 @@ public final class ArrayUtils {
     // ============
     // = 数据获取 =
     // ============
+
+    /**
+     * 获取数组对应索引数据
+     * @param array 数组
+     * @param pos   索引
+     * @param <T>   泛型
+     * @return 数组指定索引的值
+     */
+    public static <T> T get(final Object array, final int pos) {
+        if (array == null || pos < 0) return null;
+        try {
+            return (T) Array.get(array, pos);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getByArray");
+        }
+        return null;
+    }
 
     /**
      * 获取数组对应索引数据

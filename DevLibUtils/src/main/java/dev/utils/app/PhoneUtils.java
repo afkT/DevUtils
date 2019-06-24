@@ -29,7 +29,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -61,15 +60,28 @@ public final class PhoneUtils {
     private static final String TAG = PhoneUtils.class.getSimpleName();
 
     /**
+     * 获取 TelephonyManager
+     * @return {@link TelephonyManager}
+     */
+    public static TelephonyManager getTelephonyManager(){
+        try {
+            return (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "getTelephonyManager");
+        }
+        return null;
+    }
+
+    /**
      * 判断是否装载 SIM 卡
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isSimReady() {
         try {
             // 获取电话管理类
-            TelephonyManager tpManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             // 是否准备完毕
-            if (tpManager != null && tpManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
+            if (telephonyManager != null && telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
                 return true;
             }
         } catch (Exception e) {
@@ -79,61 +91,51 @@ public final class PhoneUtils {
     }
 
     /**
-     * 获取 SIM 卡所属地区, 非国内地区暂不支持播放
-     * @return SIM 卡的地区码
+     * 获取 SIM 卡运营商的国家代码
+     * @return SIM 卡运营商的国家代码
      */
-    public static String getUserCountry() {
+    public static String getSimCountry() {
         try {
-            TelephonyManager tpManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-            String simCountry = tpManager.getSimCountryIso();
-            if (simCountry != null && simCountry.length() == 2) {
-                // SIM country code is available
-                return simCountry.toLowerCase(Locale.CHINA);
-            } else if (tpManager.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) {
-                // device is not 3G (would be unreliable)
-                String networkCountry = tpManager.getNetworkCountryIso();
-                if (networkCountry != null && networkCountry.length() == 2) {
-                    // network country code is available
-                    return networkCountry.toLowerCase(Locale.CHINESE);
-                }
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            // SIM 卡运营商的国家代码
+            String simCountry = telephonyManager.getSimCountryIso();
+            // 注册的网络运营商的国家代码
+            String networkCountry = telephonyManager.getNetworkCountryIso();
+            // 判断 SIM 卡运营商的国家代码
+            if (simCountry != null && simCountry.trim().length() != 0) {
+                return simCountry.trim();
+            } else if (networkCountry != null && networkCountry.trim().length() != 0){
+                return networkCountry.trim();
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getUserCountry");
+            LogPrintUtils.eTag(TAG, e, "getSimCountry");
         }
         return null;
     }
 
     /**
-     * 判断地区, 是否属于国内
-     * @return 状态码 1 属于国内(中国), 2 属于 国外, 3 属于无 SIM 卡
+     * 判断 SIM 卡运营商是否国内
+     * @return 状态码 1 属于国内(中国), 2 属于国外, 3 属于无 SIM 卡
      */
-    public static int judgeArea() {
+    public static int checkSimCountry() {
         // 默认属于无 SIM 卡
         int state = 3;
         try {
-            String countryCode = getUserCountry();
+            String countryCode = getSimCountry();
             // 不等于 null, 表示属于存在 SIM 卡
             if (countryCode != null) {
                 // zh_CN Locale.SIMPLIFIED_CHINESE
                 // 截取前面两位属于 zh 表示属于中国
                 String country = countryCode.substring(0, 2);
-                // 如果属于 ch 开头表示属于中国
+                // 如果属于 ch 表示属于国内
                 if (country.toLowerCase().equals("cn")) {
                     state = 1;
                 } else {
                     state = 2;
                 }
-            } else { // 不存在 SIM 卡
-                String localCountry = Locale.getDefault().getCountry();
-                // 如果属于 ch 开头表示属于中国
-                if (localCountry.toLowerCase().equals("cn")) {
-                    return 1;
-                } else {
-                    return 2;
-                }
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "judgeArea");
+            LogPrintUtils.eTag(TAG, e, "checkSimCountry");
         }
         return state;
     }
@@ -152,10 +154,14 @@ public final class PhoneUtils {
         return false;
     }
 
+    // =
+
     /**
      * 获取 MEID 移动设备识别码
-     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+     * </pre>
+     * @return MEID 移动设备识别码
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getMEID() {
@@ -172,16 +178,18 @@ public final class PhoneUtils {
 
     /**
      * 获取 MEID 移动设备识别码
-     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-     * @param slotId
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+     * </pre>
+     * @param slotIndex 卡槽索引( sim 卡 1, sim 卡 2 等)
+     * @return MEID 移动设备识别码
      */
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
-    public static String getMEID(final int slotId) {
+    public static String getMEID(final int slotIndex) {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                return telephonyManager.getMeid(slotId);
+                return telephonyManager.getMeid(slotIndex);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMEID");
@@ -189,19 +197,22 @@ public final class PhoneUtils {
         return null;
     }
 
+    // =
+
     /**
      * 获取 IMEI 码
-     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-     * @return IMEI 码
      * <pre>
-     *     IMEI 是 International Mobile Equipment Identity (国际移动设备标识)的简称
-     *     IMEI 由 15 位数字组成的 ”电子串号”, 它与每台手机一一对应, 而且该码是全世界唯一的
+     *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+     *     <p></p>
+     *     IMEI 是 International Mobile Equipment Identity (国际移动设备标识) 的简称
+     *     IMEI 由 15 位数字组成的“电子串号”, 它与每台手机一一对应, 而且该码是全世界唯一的
      *     其组成为:
-     *     1. 前 6 位数(TAC)是“型号核准号码”, 一般代表机型
-     *     2. 接着的 2 位数(FAC)是“最后装配号”, 一般代表产地
-     *     3. 之后的 6 位数(SNR)是“串号”, 一般代表生产顺序号
-     *     4. 最后 1 位数(SP)通常是“0”, 为检验码, 目前暂备用
+     *     1. 前 6 位数 (TAC) 是“型号核准号码”, 一般代表机型
+     *     2. 接着的 2 位数 (FAC) 是“最后装配号”, 一般代表产地
+     *     3. 之后的 6 位数 (SNR) 是“串号”, 一般代表生产顺序号
+     *     4. 最后 1 位数 (SP) 通常是“0”, 为检验码, 目前暂备用
      * </pre>
+     * @return IMEI 码
      */
     @SuppressLint({"HardwareIds"})
     @RequiresPermission(READ_PHONE_STATE)
@@ -211,15 +222,12 @@ public final class PhoneUtils {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 return telephonyManager.getImei();
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                try {
-                    Class clazz = telephonyManager.getClass();
-                    Method getImeiMethod = clazz.getDeclaredMethod("getImei");
-                    getImeiMethod.setAccessible(true);
-                    String imei = (String) getImeiMethod.invoke(telephonyManager);
-                    if (imei != null) return imei;
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "getIMEI");
-                }
+                // 反射调用方法
+                Class clazz = telephonyManager.getClass();
+                Method method = clazz.getDeclaredMethod("getImei");
+                method.setAccessible(true);
+                String imei = (String) method.invoke(telephonyManager);
+                if (imei != null) return imei;
             }
             return telephonyManager.getDeviceId();
         } catch (Exception e) {
@@ -230,51 +238,51 @@ public final class PhoneUtils {
 
     /**
      * 获取 IMEI 码
-     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-     * @param slotId
+     * <pre>
+     *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+     * </pre>
+     * @param slotIndex 卡槽索引( sim 卡 1, sim 卡 2 等)
      * @return IMEI 码
      */
     @SuppressLint({"HardwareIds"})
     @RequiresPermission(READ_PHONE_STATE)
-    public static String getIMEI(final int slotId) {
+    public static String getIMEI(final int slotIndex) {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                return telephonyManager.getImei(slotId);
+                return telephonyManager.getImei(slotIndex);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                try {
-                    Class clazz = telephonyManager.getClass();
-                    Method getImeiMethod = clazz.getDeclaredMethod("getImei");
-                    getImeiMethod.setAccessible(true);
-                    String imei = (String) getImeiMethod.invoke(telephonyManager, slotId);
-                    if (imei != null) return imei;
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "getIMEI");
-                }
+                // 反射调用方法
+                Class clazz = telephonyManager.getClass();
+                Method method = clazz.getDeclaredMethod("getImei");
+                method.setAccessible(true);
+                String imei = (String) method.invoke(telephonyManager, slotIndex);
+                if (imei != null) return imei;
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIMEI");
         }
-        return getIMEI();
+        return null;
     }
 
     /**
      * 获取 IMSI 码
-     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-     * @return IMSI 码
      * <pre>
-     *     IMSI是国际移动用户识别码的简称(International Mobile Subscriber Identity)
-     *     IMSI共有15位, 其结构如下:
-     *     MCC+MNC+MIN
-     *     MCC: Mobile Country Code, 移动国家码, 共3位, 中国为460;
-     *     MNC: Mobile NetworkCode, 移动网络码, 共2位
-     *     在中国, 移动的代码为电00和02, 联通的代码为01, 电信的代码为03
-     *     合起来就是(也是 Android 手机中 APN 配置文件中的代码):
-     *     中国移动: 46000 46002
-     *     中国联通: 46001
-     *     中国电信: 46003
-     *     举例, 一个典型的IMSI号码为460030912121001
+     *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+     *     <p></p>
+     *     IMSI 是国际移动用户识别码的简称 (International Mobile Subscriber Identity)
+     *     IMSI 共有 15 位, 其结构如下:
+     *     MCC + MNC + MIN
+     *     MCC: Mobile Country Code, 移动国家码, 共 3 位, 中国为 460
+     *     MNC: Mobile NetworkCode, 移动网络码, 共 2 位
+     *     在中国, 移动的代码为 00 和 02, 联通的代码为 01, 电信的代码为 03
+     *     合起来就是 (Android 手机中 APN 配置文件中的代码)
+     *     中国移动: 46000 46002 46007
+     *     中国联通: 46001 46006
+     *     中国电信: 46003 46005 46011
+     *     举例, 一个典型的 IMSI 号码为 460030912121001
      * </pre>
+     * @return IMSI 码
      */
     @SuppressLint({"HardwareIds"})
     @RequiresPermission(READ_PHONE_STATE)
@@ -289,60 +297,50 @@ public final class PhoneUtils {
     }
 
     /**
-     * 获取IMSI处理过后的简称
-     * @param IMSI
-     * @return
+     * 获取 IMSI 码
+     * @param slotIndex 卡槽索引( sim 卡 1, sim 卡 2 等)
+     * @return IMSI 码
      */
-    public static String getIMSIIDName(final String IMSI) {
+    @SuppressLint({"HardwareIds"})
+    @RequiresPermission(READ_PHONE_STATE)
+    public static String getIMSI(final int slotIndex) {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            // 反射调用方法
+            Class clazz = telephonyManager.getClass();
+            Method method = clazz.getDeclaredMethod("getSubscriberId");
+            method.setAccessible(true);
+            String imsi = (String) method.invoke(telephonyManager, slotIndex);
+            if (imsi != null) return imsi;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getIMSI");
+        }
+        return null;
+    }
+
+    /**
+     * 通过 IMSI 获取中国运营商简称
+     * @param IMSI IMSI 码
+     * @return 中国运营商简称
+     */
+    public static String getIMSI_ChinaOperator(final String IMSI) {
         if (IMSI != null) {
-            if (IMSI.startsWith("46000") || IMSI.startsWith("46002")) {
+            if (IMSI.startsWith("46000") || IMSI.startsWith("46002") || IMSI.startsWith("46007")) {
                 return "中国移动";
-            } else if (IMSI.startsWith("46001")) {
+            } else if (IMSI.startsWith("46001") || IMSI.startsWith("46006")) {
                 return "中国联通";
-            } else if (IMSI.startsWith("46003")) {
+            } else if (IMSI.startsWith("46003") || IMSI.startsWith("46005") || IMSI.startsWith("46011")) {
                 return "中国电信";
             }
         }
         return null;
     }
 
-    /**
-     * 获取移动终端类型
-     * <pre>
-     *     {@link TelephonyManager#PHONE_TYPE_NONE } : 0 手机制式未知
-     *     {@link TelephonyManager#PHONE_TYPE_GSM  } : 1 手机制式为 GSM, 移动和联通
-     *     {@link TelephonyManager#PHONE_TYPE_CDMA } : 2 手机制式为 CDMA, 电信
-     *     {@link TelephonyManager#PHONE_TYPE_SIP  } : 3
-     * </pre>
-     * @return 手机制式
-     */
-    public static int getPhoneType() {
-        try {
-            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-            return telephonyManager != null ? telephonyManager.getPhoneType() : -1;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getPhoneType");
-        }
-        return 0;
-    }
+    // =
 
     /**
-     * 判断 sim 卡是否准备好
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isSimCardReady() {
-        try {
-            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-            return telephonyManager != null && telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isSimCardReady");
-        }
-        return false;
-    }
-
-    /**
-     * 获取 Sim 卡运营商名称 => 中国移动、如中国联通、中国电信
-     * @return sim 卡运营商名称
+     * 获取 SIM 卡运营商名称 (如: 中国移动、如中国联通、中国电信)
+     * @return SIM 卡运营商名称
      */
     public static String getSimOperatorName() {
         try {
@@ -355,30 +353,70 @@ public final class PhoneUtils {
     }
 
     /**
-     * 获取 Sim 卡运营商名称 => 中国移动、如中国联通、中国电信
-     * @return 移动网络运营商名称
+     * 获取 SIM 卡运营商 MCC + MNC
+     * @return SIM 卡运营商 MCC + MNC
      */
-    public static String getSimOperatorByMnc() {
+    public static String getSimOperator() {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-            String operator = telephonyManager != null ? telephonyManager.getSimOperator() : null;
-            if (operator == null) return null;
-            switch (operator) {
-                case "46000":
-                case "46002":
-                case "46007":
-                    return "中国移动";
-                case "46001":
-                    return "中国联通";
-                case "46003":
-                    return "中国电信";
-                default:
-                    return operator;
-            }
+            return telephonyManager != null ? telephonyManager.getSimOperator() : null;
+//            if (operator == null) return null;
+//            switch (operator) {
+//                case "46000":
+//                case "46002":
+//                case "46007":
+//                    return "中国移动";
+//                case "46001":
+//                    return "中国联通";
+//                case "46003":
+//                    return "中国电信";
+//                default:
+//                    return operator;
+//            }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimOperatorByMnc");
         }
         return null;
+    }
+
+    /**
+     * 获取 SIM 卡中国运营商简称
+     * @param simOperator SIM 卡运营商 MCC + MNC
+     * @return SIM 卡中国运营商简称
+     */
+    public static String getSimOperator_ChinaOperator(final String simOperator){
+        if (simOperator != null){
+            if (simOperator.equals("46000") || simOperator.equals("46002") || simOperator.equals("46007")) {
+                return "中国移动";
+            } else if (simOperator.equals("46001") || simOperator.equals("46006")) {
+                return "中国联通";
+            } else if (simOperator.equals("46003") || simOperator.equals("46005") || simOperator.equals("46011")) {
+                return "中国电信";
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取手机类型
+     * <pre>
+     *     {@link TelephonyManager#PHONE_TYPE_NONE} 0 手机制式未知
+     *     {@link TelephonyManager#PHONE_TYPE_GSM} 1 手机制式为 GSM, 移动和联通
+     *     {@link TelephonyManager#PHONE_TYPE_CDMA} 2 手机制式为 CDMA, 电信
+     *     {@link TelephonyManager#PHONE_TYPE_SIP} 3 手机制式为 SIP
+     * </pre>
+     * @return 手机类型
+     */
+    public static int getPhoneType() {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            return telephonyManager != null ? telephonyManager.getPhoneType() : TelephonyManager.PHONE_TYPE_NONE;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPhoneType");
+        }
+        return 0;
     }
 
     /**
@@ -487,7 +525,7 @@ public final class PhoneUtils {
             builder.append("SimOperatorName = " + telephonyManager.getSimOperatorName() + "\n");
             builder.append("SimSerialNumber = " + telephonyManager.getSimSerialNumber() + "\n");
             builder.append("SimState = " + telephonyManager.getSimState() + "\n");
-            builder.append("SubscriberId(IMSI) = " + telephonyManager.getSubscriberId() + "(" + getIMSIIDName(telephonyManager.getSubscriberId()) + ")\n");
+            builder.append("SubscriberId(IMSI) = " + telephonyManager.getSubscriberId() + "(" + getIMSI_ChinaOperator(telephonyManager.getSubscriberId()) + ")\n");
             builder.append("VoiceMailNumber = " + telephonyManager.getVoiceMailNumber() + "\n");
             return builder.toString();
         } catch (Exception e) {
@@ -813,23 +851,23 @@ public final class PhoneUtils {
             fields2.setAccessible(true);
             int simId_2 = (Integer) fields2.get(null);
 
-            TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             Method getSubscriberIdGemini = TelephonyManager.class.getDeclaredMethod("getSubscriberIdGemini", int.class);
-            String imsi_1 = (String) getSubscriberIdGemini.invoke(tm, simId_1);
-            String imsi_2 = (String) getSubscriberIdGemini.invoke(tm, simId_2);
+            String imsi_1 = (String) getSubscriberIdGemini.invoke(telephonyManager, simId_1);
+            String imsi_2 = (String) getSubscriberIdGemini.invoke(telephonyManager, simId_2);
             teleInfo.imsi_1 = imsi_1;
             teleInfo.imsi_2 = imsi_2;
 
             Method getDeviceIdGemini = TelephonyManager.class.getDeclaredMethod("getDeviceIdGemini", int.class);
-            String imei_1 = (String) getDeviceIdGemini.invoke(tm, simId_1);
-            String imei_2 = (String) getDeviceIdGemini.invoke(tm, simId_2);
+            String imei_1 = (String) getDeviceIdGemini.invoke(telephonyManager, simId_1);
+            String imei_2 = (String) getDeviceIdGemini.invoke(telephonyManager, simId_2);
 
             teleInfo.imei_1 = imei_1;
             teleInfo.imei_2 = imei_2;
 
             Method getPhoneTypeGemini = TelephonyManager.class.getDeclaredMethod("getPhoneTypeGemini", int.class);
-            int phoneType_1 = (Integer) getPhoneTypeGemini.invoke(tm, simId_1);
-            int phoneType_2 = (Integer) getPhoneTypeGemini.invoke(tm, simId_2);
+            int phoneType_1 = (Integer) getPhoneTypeGemini.invoke(telephonyManager, simId_1);
+            int phoneType_2 = (Integer) getPhoneTypeGemini.invoke(telephonyManager, simId_2);
             teleInfo.phoneType_1 = phoneType_1;
             teleInfo.phoneType_2 = phoneType_2;
         } catch (Exception e) {
@@ -887,7 +925,7 @@ public final class PhoneUtils {
     public static TeleInfo getQualcommTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             Class<?> simTMclass = Class.forName("android.telephony.MSimTelephonyManager");
             Object sim = DevUtils.getContext().getSystemService("phone_msim");
             int simId_1 = 0;
@@ -906,7 +944,7 @@ public final class PhoneUtils {
             teleInfo.imei_2 = imei_2;
 
             Method getDataState = simTMclass.getMethod("getDataState");
-            int phoneType_1 = tm.getDataState();
+            int phoneType_1 = telephonyManager.getDataState();
             int phoneType_2 = (Integer) getDataState.invoke(sim);
             teleInfo.phoneType_1 = phoneType_1;
             teleInfo.phoneType_2 = phoneType_2;

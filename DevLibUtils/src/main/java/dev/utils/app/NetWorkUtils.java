@@ -66,11 +66,11 @@ public final class NetWorkUtils {
                 // 调用方法, 获取状态
                 mState = (Boolean) method.invoke(cManager);
             } else {
-                TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
                 // 反射获取方法
-                Method method = tm.getClass().getDeclaredMethod("getDataEnabled");
+                Method method = telephonyManager.getClass().getDeclaredMethod("getDataEnabled");
                 // 调用方法, 获取状态
-                mState = (Boolean) method.invoke(tm);
+                mState = (Boolean) method.invoke(telephonyManager);
             }
             // 返回移动网络开关状态
             return mState;
@@ -98,11 +98,11 @@ public final class NetWorkUtils {
                 // 设置移动网络
                 mMethod.invoke(cManager, isOpen);
             } else { // 需要 android.Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 App 无法获取
-                TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
                 // 通过反射设置移动网络
-                Method mMethod = tm.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
+                Method mMethod = telephonyManager.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
                 // 设置移动网络
-                mMethod.invoke(tm, isOpen);
+                mMethod.invoke(telephonyManager, isOpen);
             }
         } catch (Exception e) { // 开启移动网络失败
             LogPrintUtils.eTag(TAG, e, "setMobileDataEnabled");
@@ -351,8 +351,8 @@ public final class NetWorkUtils {
      */
     public static String getNetworkOperatorName() {
         try {
-            TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-            return tm != null ? tm.getNetworkOperatorName() : null;
+            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            return telephonyManager != null ? telephonyManager.getNetworkOperatorName() : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getNetworkOperatorName");
         }
