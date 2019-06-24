@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -545,7 +544,7 @@ public final class ScreenUtils {
      * </pre>
      * @param duration 时长
      */
-    @RequiresPermission(Manifest.permission.WRITE_SETTINGS)
+    @RequiresPermission(android.Manifest.permission.WRITE_SETTINGS)
     public static void setSleepDuration(final int duration) {
         try {
             Settings.System.putInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);

@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -30,9 +29,6 @@ import java.util.concurrent.Future;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-
-import static android.Manifest.permission.ACCESS_WIFI_STATE;
-import static android.Manifest.permission.MODIFY_PHONE_STATE;
 
 /**
  * detail: 网络管理工具类
@@ -86,7 +82,7 @@ public final class NetWorkUtils {
      * @param isOpen 是否打开移动网络
      * @return 是否执行正常
      */
-    @RequiresPermission(MODIFY_PHONE_STATE)
+    @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
     public static boolean setMobileDataEnabled(final boolean isOpen) {
         try {
             // 属于5.0以下的使用
@@ -233,7 +229,7 @@ public final class NetWorkUtils {
      * @return {@code true} 可用, {@code false} 不可用
      */
     @Deprecated
-    @RequiresPermission(anyOf = {android.Manifest.permission.ACCESS_NETWORK_STATE, android.Manifest.permission.INTERNET})
+    @RequiresPermission(allOf = {android.Manifest.permission.ACCESS_NETWORK_STATE, android.Manifest.permission.INTERNET})
     public static boolean isAvailable() {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             NetworkInfo info = getActiveNetworkInfo();
@@ -248,7 +244,7 @@ public final class NetWorkUtils {
      * <uses-permission android:name="android.permission.INTERNET" />
      * @return
      */
-    @RequiresPermission(Manifest.permission.INTERNET)
+    @RequiresPermission(android.Manifest.permission.INTERNET)
     public static boolean isAvailableByPing() {
         return isAvailableByPing(null);
     }
@@ -258,7 +254,7 @@ public final class NetWorkUtils {
      * @param ip IP 地址
      * @return
      */
-    @RequiresPermission(Manifest.permission.INTERNET)
+    @RequiresPermission(android.Manifest.permission.INTERNET)
     public static boolean isAvailableByPing(String ip) {
         if (ip == null || ip.length() <= 0) {
             ip = "223.5.5.5"; // 默认阿里巴巴 DNS
@@ -324,9 +320,9 @@ public final class NetWorkUtils {
      * 判断wifi是否打开
      * @return
      */
-    @SuppressLint("WifiManagerLeak")
     public static boolean getWifiEnabled() {
         try {
+            @SuppressLint("WifiManagerLeak")
             WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
             return wifiManager.isWifiEnabled();
         } catch (Exception e) {
@@ -605,7 +601,7 @@ public final class NetWorkUtils {
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      * @return
      */
-    @RequiresPermission(ACCESS_WIFI_STATE)
+    @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
     public static String getIpAddressByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -622,7 +618,7 @@ public final class NetWorkUtils {
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      * @return
      */
-    @RequiresPermission(ACCESS_WIFI_STATE)
+    @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
     public static String getGatewayByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -639,7 +635,7 @@ public final class NetWorkUtils {
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      * @return
      */
-    @RequiresPermission(ACCESS_WIFI_STATE)
+    @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
     public static String getNetMaskByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -656,7 +652,7 @@ public final class NetWorkUtils {
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      * @return
      */
-    @RequiresPermission(ACCESS_WIFI_STATE)
+    @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
     public static String getServerAddressByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")

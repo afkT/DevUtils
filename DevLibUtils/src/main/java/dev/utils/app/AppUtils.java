@@ -1,7 +1,5 @@
 package dev.utils.app;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -501,7 +499,7 @@ public final class AppUtils {
      * @param packageName 应用包名
      * @return
      */
-    @RequiresPermission(Manifest.permission.PACKAGE_USAGE_STATS)
+    @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
     public static boolean isAppForeground(final String packageName) {
         return !isSpace(packageName) && packageName.equals(ProcessUtils.getForegroundProcessName());
     }
@@ -634,7 +632,6 @@ public final class AppUtils {
         if (isSpace(packageName)) return null;
         try {
             PackageManager pm = DevUtils.getContext().getPackageManager();
-            @SuppressLint("PackageManagerGetSignatures")
             PackageInfo pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return pi == null ? null : pi.signatures;
         } catch (Exception e) {

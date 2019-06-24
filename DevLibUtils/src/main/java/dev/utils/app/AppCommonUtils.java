@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.Manifest;
 import android.os.Build;
 import android.support.annotation.RequiresPermission;
 
@@ -24,7 +23,7 @@ public final class AppCommonUtils {
      * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return 设备唯一 UUID
      */
-    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
+    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getUUID() {
         return PhoneUtils.getUUID();
     }

@@ -29,9 +29,6 @@ import java.util.Map;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
-import static android.Manifest.permission.ACCESS_WIFI_STATE;
-import static android.Manifest.permission.INTERNET;
-
 /**
  * detail: 设备相关工具类
  * @author Ttt
@@ -229,7 +226,7 @@ public final class DeviceUtils {
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
      * @return
      */
-    @RequiresPermission(allOf = {INTERNET, ACCESS_WIFI_STATE})
+    @RequiresPermission(allOf = {android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_WIFI_STATE})
     public static String getMacAddress() {
         String macAddress = getMacAddressByWifiInfo();
         if (!CUSTOM_MAC.equals(macAddress)) {
@@ -256,8 +253,7 @@ public final class DeviceUtils {
      * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
      * @return
      */
-    @SuppressLint({"HardwareIds"})
-    @RequiresPermission(ACCESS_WIFI_STATE)
+    @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
     private static String getMacAddressByWifiInfo() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -277,7 +273,7 @@ public final class DeviceUtils {
      * <uses-permission android:name="android.permission.INTERNET" />
      * @return
      */
-    @RequiresPermission(INTERNET)
+    @RequiresPermission(android.Manifest.permission.INTERNET)
     private static String getMacAddressByNetworkInterface() {
         try {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();

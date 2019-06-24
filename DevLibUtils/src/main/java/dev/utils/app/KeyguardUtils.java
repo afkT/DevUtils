@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.Manifest;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.os.Build;
@@ -104,7 +103,7 @@ public final class KeyguardUtils {
      * 利用 disableKeyguard 解锁, 解锁并不是真正的解锁, 只是把锁屏的界面隐藏掉而已
      * <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
      */
-    @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
+    @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
     public void disableKeyguard() {
         mKeyguardLock.disableKeyguard();
     }
@@ -113,7 +112,7 @@ public final class KeyguardUtils {
      * 使能显示锁屏界面, 如果你之前调用了disableKeyguard()方法取消锁屏界面, 那么会马上显示锁屏界面
      * <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
      */
-    @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
+    @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
     public void reenableKeyguard() {
         mKeyguardLock.reenableKeyguard();
     }
@@ -122,7 +121,7 @@ public final class KeyguardUtils {
      * 释放资源
      * <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
      */
-    @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
+    @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
     public void release() {
         if (mKeyguardLock != null) {
             // 禁用显示键盘锁定

@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -159,7 +158,6 @@ public final class FileRecordUtils {
      * 获取当前日期的字符串
      * @return 当前日期 yyyy-MM-dd HH:mm:ss 格式字符串
      */
-    @SuppressLint("SimpleDateFormat")
     private static String getDateNow() {
         try {
             Calendar calendar = Calendar.getInstance();

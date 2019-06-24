@@ -22,9 +22,6 @@ import java.util.Set;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
-import static android.Manifest.permission.KILL_BACKGROUND_PROCESSES;
-import static android.Manifest.permission.PACKAGE_USAGE_STATS;
-
 /**
  * detail: 进程相关工具类
  * @author Ttt
@@ -183,7 +180,7 @@ public final class ProcessUtils {
      * </pre>
      * @return 前台应用包名
      */
-    @RequiresPermission(PACKAGE_USAGE_STATS)
+    @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
     public static String getForegroundProcessName() {
         try {
             ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
@@ -239,7 +236,7 @@ public final class ProcessUtils {
      * </pre>
      * @return 后台服务进程
      */
-    @RequiresPermission(KILL_BACKGROUND_PROCESSES)
+    @RequiresPermission(android.Manifest.permission.KILL_BACKGROUND_PROCESSES)
     public static Set<String> getAllBackgroundProcesses() {
         try {
             ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
@@ -265,7 +262,7 @@ public final class ProcessUtils {
      * </pre>
      * @return 被暂时杀死的服务集合
      */
-    @RequiresPermission(KILL_BACKGROUND_PROCESSES)
+    @RequiresPermission(android.Manifest.permission.KILL_BACKGROUND_PROCESSES)
     public static Set<String> killAllBackgroundProcesses() {
         try {
             ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
@@ -299,7 +296,7 @@ public final class ProcessUtils {
      * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresPermission(KILL_BACKGROUND_PROCESSES)
+    @RequiresPermission(android.Manifest.permission.KILL_BACKGROUND_PROCESSES)
     public static boolean killBackgroundProcesses(final String packageName) {
         try {
             ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);

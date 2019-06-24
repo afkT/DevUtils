@@ -29,8 +29,6 @@ import java.lang.reflect.Method;
 
 import dev.DevUtils;
 
-import static android.Manifest.permission.EXPAND_STATUS_BAR;
-
 /**
  * detail: 状态栏相关工具类
  * @author Blankj
@@ -566,7 +564,7 @@ public final class BarUtils {
      * <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
      * @param isVisible
      */
-    @RequiresPermission(EXPAND_STATUS_BAR)
+    @RequiresPermission(android.Manifest.permission.EXPAND_STATUS_BAR)
     public static void setNotificationBarVisibility(final boolean isVisible) {
         String methodName;
         if (isVisible) {

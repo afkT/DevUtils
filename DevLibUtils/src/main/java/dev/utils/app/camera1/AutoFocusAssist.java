@@ -1,6 +1,5 @@
 package dev.utils.app.camera1;
 
-import android.annotation.SuppressLint;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -140,7 +139,6 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     /**
      * 再次自动对焦
      */
-    @SuppressLint("NewApi")
     private synchronized void autoFocusAgainLater() {
         // 不属于停止, 并且任务等于 null 才处理
         if (!mStopped && mOutstandingTask == null) {

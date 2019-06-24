@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -39,8 +38,8 @@ public final class IntentUtils {
 
     /**
      * 判断 Intent 是否可用
-     * @param intent
-     * @return
+     * @param intent {@link Intent}
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isIntentAvailable(final Intent intent) {
         if (intent == null) return false;
@@ -434,7 +433,7 @@ public final class IntentUtils {
      * @param phoneNumber 电话号码
      * @return 拨打电话意图
      */
-    @RequiresPermission(Manifest.permission.CALL_PHONE)
+    @RequiresPermission(android.Manifest.permission.CALL_PHONE)
     public static Intent getCallIntent(final String phoneNumber) {
         return getCallIntent(phoneNumber, false);
     }
@@ -446,7 +445,7 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 拨打电话意图
      */
-    @RequiresPermission(Manifest.permission.CALL_PHONE)
+    @RequiresPermission(android.Manifest.permission.CALL_PHONE)
     public static Intent getCallIntent(final String phoneNumber, final boolean isNewTask) {
         try {
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));

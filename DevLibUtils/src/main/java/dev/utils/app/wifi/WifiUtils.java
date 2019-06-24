@@ -1,6 +1,5 @@
 package dev.utils.app.wifi;
 
-import android.Manifest;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -415,7 +414,7 @@ public final class WifiUtils {
      * </pre>
      * @return wifi 热点 SSID
      */
-    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
+    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static String isConnectAphot() {
         try {
             // 连接管理
