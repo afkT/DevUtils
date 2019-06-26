@@ -51,7 +51,7 @@ public final class TextCalcUse {
      */
     private void printInfo(TextView textView) {
         StringBuilder builder = new StringBuilder();
-        builder.append("\n内容: " + textView.getText().toString());
+        builder.append("内容: " + textView.getText().toString());
         builder.append("\n高度: " + TextViewUtils.getTextHeight(textView));
         builder.append("\n偏移高度: " + TextViewUtils.getTextTopOffsetHeight(textView));
         builder.append("\n宽度: " + TextViewUtils.getTextWidth(textView));

@@ -92,6 +92,49 @@ public final class ViewUtils {
         return null;
     }
 
+    // =
+
+    /**
+     * 获取指定索引 View
+     * @param viewGroup {@link ViewGroup}
+     * @param <T>       泛型
+     * @return View
+     */
+    public static <T extends View> T getChildAt(final ViewGroup viewGroup) {
+        return getChildAt(viewGroup, 0);
+    }
+
+    /**
+     * 获取指定索引 View
+     * @param viewGroup {@link ViewGroup}
+     * @param index     索引
+     * @param <T>       泛型
+     * @return View
+     */
+    public static <T extends View> T getChildAt(final ViewGroup viewGroup, final int index) {
+        if (viewGroup != null && index >= 0) {
+            try {
+                return (T) viewGroup.getChildAt(index);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getChildAt");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 移除全部子 View
+     * @param viewGroup {@link ViewGroup}
+     * @param <T>       泛型
+     * @return 传入 View
+     */
+    public static <T extends ViewGroup> T removeAllViews(final T viewGroup) {
+        if (viewGroup != null) {
+            viewGroup.removeAllViews();
+        }
+        return viewGroup;
+    }
+
     // ======================
     // = 初始化 View 操作等 =
     // ======================
