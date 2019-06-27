@@ -185,8 +185,6 @@ public final class PhoneUtils {
      * @return 状态码 1 属于国内(中国), 2 属于国外, 3 属于无 SIM 卡
      */
     public static int checkSimCountry() {
-        // 默认属于无 SIM 卡
-        int state = 3;
         try {
             String countryCode = getSimCountry();
             // 不等于 null, 表示属于存在 SIM 卡
@@ -196,15 +194,15 @@ public final class PhoneUtils {
                 String country = countryCode.substring(0, 2);
                 // 如果属于 ch 表示属于国内
                 if (country.toLowerCase().equals("cn")) {
-                    state = 1;
+                    return 1;
                 } else {
-                    state = 2;
+                    return 2;
                 }
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "checkSimCountry");
         }
-        return state;
+        return 3;
     }
 
     /**
@@ -516,7 +514,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getPhoneStatus() {
         try {
-            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = getTelephonyManager();
             if (telephonyManager == null) return "";
             StringBuilder builder = new StringBuilder();
             builder.append("DeviceId(IMEI) = " + telephonyManager.getDeviceId());
@@ -858,7 +856,7 @@ public final class PhoneUtils {
             fields2.setAccessible(true);
             int simId_2 = (Integer) fields2.get(null);
 
-            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = getTelephonyManager();
             Method getSubscriberIdGemini = TelephonyManager.class.getDeclaredMethod("getSubscriberIdGemini", int.class);
             String imsi_1 = (String) getSubscriberIdGemini.invoke(telephonyManager, simId_1);
             String imsi_2 = (String) getSubscriberIdGemini.invoke(telephonyManager, simId_2);
@@ -891,7 +889,7 @@ public final class PhoneUtils {
     public static TeleInfo getMtkTeleInfo2() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager tm = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager tm = getTelephonyManager();
             Class<?> phone = Class.forName("com.android.internal.telephony.Phone");
             Field fields1 = phone.getField("GEMINI_SIM_1");
             fields1.setAccessible(true);
@@ -931,8 +929,9 @@ public final class PhoneUtils {
     public static TeleInfo getQualcommTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = getTelephonyManager();
             Class<?> simTMclass = Class.forName("android.telephony.MSimTelephonyManager");
+            @SuppressWarnings("WrongConstant")
             Object sim = DevUtils.getContext().getSystemService("phone_msim");
             int simId_1 = 0;
             int simId_2 = 1;
@@ -968,7 +967,7 @@ public final class PhoneUtils {
     public static TeleInfo getSpreadtrumTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager tm1 = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager tm1 = getTelephonyManager();
             String imsi_1 = tm1.getSubscriberId();
             String imei_1 = tm1.getDeviceId();
             int phoneType_1 = tm1.getPhoneType();
