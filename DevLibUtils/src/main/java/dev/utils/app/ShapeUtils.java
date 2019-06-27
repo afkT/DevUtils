@@ -237,7 +237,7 @@ public final class ShapeUtils {
          *          android:width      整型 描边的宽度
          *          android:color      颜色值 描边的颜色
          *          android:dashWidth  整型 表示描边的样式是虚线的宽度, 值为 0 时, 表示为实线, 值大于 0 则为虚线
-         *          android:dashGap    整型 表示描边为虚线时, 虚线之间的间隔 即“ - - - - ”
+         *          android:dashGap    整型 表示描边为虚线时, 虚线之间的间隔 即「 - - - - 」
          *          />
          * </pre>
          * @param width 描边的宽度

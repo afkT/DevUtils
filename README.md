@@ -76,7 +76,7 @@ public class BaseApplication extends Application {
 
 ## Other
 
-> [DevQuickUtils](https://github.com/afkT/DevQuickUtils) 是一个 基于 [DevUtils](https://github.com/afkT/DevUtils) 二次封装的快捷开发实现库，封装多数逻辑判断代码，内含 Http、ImageLoader、Log 等兼容 Engine 框架， 封装 Activity、Fragment、Bean 基类以及 ReqInfoAssist(请求信息辅助类)、PageInfoAssist(分页辅助类)、MultiSelectListAssist、MultiSelectMapAssist(多选辅助类) 等，便于开发人员，基于 [DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils) 快速熟练开发 Android 项目
+> [DevQuickUtils](https://github.com/afkT/DevQuickUtils) 是一个 基于 [DevUtils](https://github.com/afkT/DevUtils) 二次封装的快捷开发实现库，封装多数逻辑判断代码，内含 Http、ImageLoader、Log 等兼容 Engine 框架，封装 Activity、Fragment、Bean 基类以及 ReqInfoAssist(请求信息辅助类)、PageInfoAssist(分页辅助类)、MultiSelectListAssist、MultiSelectMapAssist(多选辅助类) 等，便于开发人员，基于 [DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils) 快速熟练开发 Android 项目
 
 > [DevQuickUtils - app module](https://github.com/afkT/DevQuickUtils/tree/master/app/src/main/java/demo/pro) 基于 ([DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils)) 库基础上实现常见功能、UI效果等，并持续增加比较火的框架使用、二次封装等，以及部分架构设计思路、使用等综合示范项目
 
