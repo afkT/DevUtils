@@ -257,7 +257,7 @@ public final class ZipUtils {
                 ZipEntry entry = ((ZipEntry) entries.nextElement());
                 String entryName = entry.getName();
                 if (entryName.contains("../")) {
-                    JCLogUtils.dTag(TAG, ("entryName: " + entryName + " is dangerous!"));
+                    JCLogUtils.dTag(TAG, "entryName: %s is dangerous!", entryName);
                     continue;
                 }
                 if (!unzipChildFile(destDir, files, zip, entry, entryName)) return files;
@@ -267,7 +267,7 @@ public final class ZipUtils {
                 ZipEntry entry = ((ZipEntry) entries.nextElement());
                 String entryName = entry.getName();
                 if (entryName.contains("../")) {
-                    JCLogUtils.dTag(TAG, ("entryName: " + entryName + " is dangerous!"));
+                    JCLogUtils.dTag(TAG, "entryName: %s is dangerous!", entryName);
                     continue;
                 }
                 if (entryName.contains(keyword)) {
@@ -336,7 +336,7 @@ public final class ZipUtils {
         while (entries.hasMoreElements()) {
             String entryName = ((ZipEntry) entries.nextElement()).getName();
             if (entryName.contains("../")) {
-                JCLogUtils.dTag(TAG, ("entryName: " + entryName + " is dangerous!"));
+                JCLogUtils.dTag(TAG, "entryName: %s is dangerous!", entryName);
                 paths.add(entryName);
             } else {
                 paths.add(entryName);

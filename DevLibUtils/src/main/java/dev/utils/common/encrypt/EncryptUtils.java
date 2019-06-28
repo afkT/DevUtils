@@ -1074,7 +1074,7 @@ public final class EncryptUtils {
     private static int toDigit(final char ch, final int index) throws Exception {
         int digit = Character.digit(ch, 16);
         if (digit == -1) {
-            throw new Exception("Illegal hexadecimal character " + ch + " at index " + index);
+            throw new Exception(String.format("Illegal hexadecimal character %s at index %s", ch, index));
         }
         return digit;
     }
