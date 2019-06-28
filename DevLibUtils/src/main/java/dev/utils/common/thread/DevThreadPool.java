@@ -102,10 +102,12 @@ public final class DevThreadPool {
     /**
      * detail: 线程池初始化枚举类型
      * @author Ttt
-     * @see <a href="http://blog.csdn.net/a369414641/article/details/48342253"/>
-     * @see <a href="http://blog.csdn.net/vking_wang/article/details/9619137"/>
-     * @see <a href="http://ifeve.com/java8-concurrency-tutorial-thread-executor-examples/"/>
-     * @see <a href="http://blog.csdn.net/sadfishsc/article/details/16980213"/>
+     * <pre>
+     *     @see <a href="http://blog.csdn.net/a369414641/article/details/48342253"/>
+     *     @see <a href="http://blog.csdn.net/vking_wang/article/details/9619137"/>
+     *     @see <a href="http://ifeve.com/java8-concurrency-tutorial-thread-executor-examples/"/>
+     *     @see <a href="http://blog.csdn.net/sadfishsc/article/details/16980213"/>
+     * </pre>
      */
     public enum DevThreadPoolType {
 

@@ -12,8 +12,10 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 集合工具类 (Collection - List、Set、Queue) 等
  * @author Ttt
- * @see <a href="https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ"/>
- * @see <a href="https://www.cnblogs.com/mr-wuxiansheng/p/7500560.html"/>
+ * <pre>
+ *     @see <a href="https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ"/>
+ *     @see <a href="https://www.cnblogs.com/mr-wuxiansheng/p/7500560.html"/>
+ * </pre>
  */
 public final class CollectionUtils {
 

@@ -7,8 +7,10 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 检验联系(手机号, 座机)工具类
  * @author Ttt
- * @see <a href="http://blog.csdn.net/linbilin_/article/details/49796617"/>
- * @see <a href="http://www.cnblogs.com/zengxiangzhan/p/phone.html"/>
+ * <pre>
+ *     @see <a href="http://blog.csdn.net/linbilin_/article/details/49796617"/>
+ *     @see <a href="http://www.cnblogs.com/zengxiangzhan/p/phone.html"/>
+ * </pre>
  */
 public final class ValiToPhoneUtils {
 
