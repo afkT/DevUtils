@@ -12,16 +12,16 @@ public class TimeAverager {
     private Averager mAverager = new Averager();
 
     /**
-     * 开始计时(毫秒)
-     * @return 开始时间(毫秒)
+     * 开始计时 ( 毫秒 )
+     * @return 开始时间 ( 毫秒 )
      */
     public long start() {
         return mTimeCounter.start();
     }
 
     /**
-     * 结束计时(毫秒)
-     * @return 结束时间(毫秒)
+     * 结束计时 ( 毫秒 )
+     * @return 结束时间 ( 毫秒 )
      */
     public long end() {
         long time = mTimeCounter.duration();
@@ -31,7 +31,7 @@ public class TimeAverager {
 
     /**
      * 结束计时, 并重新启动新的计时
-     * @return 距离上次计时的时间差(毫秒)
+     * @return 距离上次计时的时间差 ( 毫秒 )
      */
     public long endAndRestart() {
         long time = mTimeCounter.durationRestart();

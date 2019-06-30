@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 文件广度优先搜索算法(多线程 + 队列, 搜索某个目录下的全部文件)
+ * detail: 文件广度优先搜索算法 ( 多线程 + 队列, 搜索某个目录下的全部文件 )
  * @author Ttt
  */
 public final class FileBreadthFirstSearchUtils {
@@ -183,7 +183,7 @@ public final class FileBreadthFirstSearchUtils {
 
     /**
      * 是否搜索中
-     * @return {@code true} 搜索/运行中, {@code false} 非搜索/运行中
+     * @return {@code true} 搜索 / 运行中, {@code false} 非搜索 / 运行中
      */
     public boolean isRunning() {
         return mIsRunning;
@@ -205,32 +205,32 @@ public final class FileBreadthFirstSearchUtils {
     }
 
     /**
-     * 获取开始搜索时间(毫秒)
-     * @return 开始搜索时间(毫秒)
+     * 获取开始搜索时间 ( 毫秒 )
+     * @return 开始搜索时间 ( 毫秒 )
      */
     public long getStartTime() {
         return mStartTime;
     }
 
     /**
-     * 获取结束搜索时间(毫秒)
-     * @return 结束搜索时间(毫秒)
+     * 获取结束搜索时间 ( 毫秒 )
+     * @return 结束搜索时间 ( 毫秒 )
      */
     public long getEndTime() {
         return mEndTime;
     }
 
     /**
-     * 获取延迟校验时间(毫秒)
-     * @return 延迟线程校验时间(毫秒)
+     * 获取延迟校验时间 ( 毫秒 )
+     * @return 延迟线程校验时间 ( 毫秒 )
      */
     public long getDelayTime() {
         return mDelayTime;
     }
 
     /**
-     * 设置延迟校验时间(毫秒)
-     * @param delayTimeMillis 延迟校验时间(毫秒)
+     * 设置延迟校验时间 ( 毫秒 )
+     * @param delayTimeMillis 延迟校验时间 ( 毫秒 )
      */
     public void setDelayTime(final long delayTimeMillis) {
         this.mDelayTime = delayTimeMillis;
@@ -317,7 +317,7 @@ public final class FileBreadthFirstSearchUtils {
     /**
      * 搜索文件
      * @param file     文件
-     * @param fileItem 所在文件夹信息对象(上一级目录)
+     * @param fileItem 所在文件夹信息对象 ( 上一级目录 )
      */
     private void queryFile(final File file, final FileItem fileItem) {
         try {

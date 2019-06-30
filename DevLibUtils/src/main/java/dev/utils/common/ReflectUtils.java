@@ -445,7 +445,7 @@ public final class ReflectUtils {
             }
             type = type.getSuperclass();
         } while (type != null);
-        throw new ReflectException("No similar method " + name + " with params " + Arrays.toString(types) + " could be found on type " + type() + ".");
+        throw new ReflectException(String.format("No similar method %s with params %s could be found on type %s", name, Arrays.toString(types), type()));
     }
 
     /**

@@ -7,7 +7,7 @@ import java.util.List;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 文件深度优先搜索算法(递归搜索某个目录下的全部文件)
+ * detail: 文件深度优先搜索算法 ( 递归搜索某个目录下的全部文件 )
  * @author Ttt
  */
 public final class FileDepthFirstSearchUtils {
@@ -123,7 +123,7 @@ public final class FileDepthFirstSearchUtils {
 
     /**
      * 是否搜索中
-     * @return {@code true} 搜索/运行中, {@code false} 非搜索/运行中
+     * @return {@code true} 搜索 / 运行中, {@code false} 非搜索 / 运行中
      */
     public boolean isRunning() {
         return mIsRunning;
@@ -145,16 +145,16 @@ public final class FileDepthFirstSearchUtils {
     }
 
     /**
-     * 获取开始搜索时间(毫秒)
-     * @return 开始搜索时间(毫秒)
+     * 获取开始搜索时间 ( 毫秒 )
+     * @return 开始搜索时间 ( 毫秒 )
      */
     public long getStartTime() {
         return mStartTime;
     }
 
     /**
-     * 获取结束搜索时间(毫秒)
-     * @return 结束搜索时间(毫秒)
+     * 获取结束搜索时间 ( 毫秒 )
+     * @return 结束搜索时间 ( 毫秒 )
      */
     public long getEndTime() {
         return mEndTime;
