@@ -48,7 +48,7 @@ public final class DevUtils {
     private static boolean sDebug = false;
 
     /**
-     * 初始化方法(必须调用)
+     * 初始化方法 ( 必须调用 )
      * @param context {@link Context}
      */
     public static void init(final Context context) {
@@ -109,7 +109,7 @@ public final class DevUtils {
     }
 
     /**
-     * 获取 Context (判断 null, 视情况返回全局 Context)
+     * 获取 Context ( 判断 null, 视情况返回全局 Context)
      * @param context {@link Context}
      * @return {@link Context}
      */
@@ -183,7 +183,7 @@ public final class DevUtils {
     /**
      * 执行 UI 线程任务 - 延时执行
      * @param runnable    线程任务
-     * @param delayMillis 延时执行时间(毫秒)
+     * @param delayMillis 延时执行时间 ( 毫秒 )
      */
     public static void runOnUiThread(final Runnable runnable, final long delayMillis) {
         HandlerUtils.postRunnable(runnable, delayMillis);
@@ -485,7 +485,7 @@ public final class DevUtils {
         // =============================
 
         /**
-         * 获取最顶部 (当前或最后一个显示) Activity
+         * 获取最顶部 ( 当前或最后一个显示 ) Activity
          * @return {@link Activity}
          */
         @Override
@@ -534,7 +534,7 @@ public final class DevUtils {
         }
 
         /**
-         * 判断应用是否在后台(不可见)
+         * 判断应用是否在后台 ( 不可见 )
          * @return {@code true} yes, {@code false} no
          */
         @Override
@@ -646,7 +646,7 @@ public final class DevUtils {
         }
 
         /**
-         * 通知 Activity 销毁, 并且消费(移除)监听事件
+         * 通知 Activity 销毁, 并且消费 ( 移除 ) 监听事件
          * @param activity {@link Activity}
          */
         private void consumeOnActivityDestroyedListener(final Activity activity) {
@@ -673,7 +673,7 @@ public final class DevUtils {
     public interface ActivityLifecycleGet {
 
         /**
-         * 获取最顶部 (当前或最后一个显示) Activity
+         * 获取最顶部 ( 当前或最后一个显示 ) Activity
          * @return {@link Activity}
          */
         Activity getTopActivity();
@@ -693,7 +693,7 @@ public final class DevUtils {
         boolean isTopActivity(Class clazz);
 
         /**
-         * 判断应用是否在后台(不可见)
+         * 判断应用是否在后台 ( 不可见 )
          * @return {@code true} yes, {@code false} no
          */
         boolean isBackground();
@@ -712,7 +712,7 @@ public final class DevUtils {
     public interface ActivityLifecycleFilter {
 
         /**
-         * 判断是否过滤该类(不进行添加等操作)
+         * 判断是否过滤该类 ( 不进行添加等操作 )
          * @param activity {@link Activity}
          * @return {@code true} yes, {@code false} no
          */
@@ -804,7 +804,7 @@ public final class DevUtils {
         public boolean filter(Activity activity) {
             if (activity != null) {
                 if (PERMISSION_ACTIVITY_CLASS_NAME.equals(activity.getClass().getName())) {
-                    // 如果相同则不处理(该页面为内部权限框架, 申请权限页面)
+                    // 如果相同则不处理 ( 该页面为内部权限框架, 申请权限页面 )
                     return true;
                 } else {
                     if (sActivityLifecycleFilter != null) {

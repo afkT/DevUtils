@@ -16,7 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- * detail: Android 日志打印工具类(简化版) - 项目内部使用(主要打印 Android 日志)
+ * detail: Android 日志打印工具类 ( 简化版 ) - 项目内部使用 ( 主要打印 Android 日志 )
  * @author Ttt
  */
 public final class LogPrintUtils {
@@ -26,7 +26,7 @@ public final class LogPrintUtils {
 
     // JSON 格式内容缩进
     private static final int JSON_INDENT = 4;
-    // 是否打印日志 线上(release) = false, 开发(debug) = true
+    // 是否打印日志 线上 (release) = false, 开发 (debug) = true
     private static boolean JUDGE_PRINT_LOG = false;
     // 默认 DEFAULT_TAG
     private static final String DEFAULT_TAG = LogPrintUtils.class.getSimpleName();
@@ -59,7 +59,7 @@ public final class LogPrintUtils {
     // =
 
     /**
-     * 最终打印日志方法(全部调用此方法)
+     * 最终打印日志方法 ( 全部调用此方法 )
      * @param logType 打印日志类型
      * @param tag     打印 Tag
      * @param message 日志信息
@@ -97,7 +97,7 @@ public final class LogPrintUtils {
      * 处理信息
      * @param message 日志信息
      * @param args    占位符替换
-     * @return 处理(格式化)后准备打印的日志信息
+     * @return 处理 ( 格式化 ) 后准备打印的日志信息
      */
     private static String createMessage(final String message, final Object... args) {
         String result;
@@ -126,7 +126,7 @@ public final class LogPrintUtils {
      * @param throwable 错误异常
      * @param message   需要打印的消息
      * @param args      动态参数
-     * @return 处理(格式化)后准备打印的日志信息
+     * @return 处理 ( 格式化 ) 后准备打印的日志信息
      */
     private static String splitErrorMessage(final Throwable throwable, final String message, final Object... args) {
         String result;
@@ -146,9 +146,9 @@ public final class LogPrintUtils {
         return result;
     }
 
-    // ==============================
-    // = 对外公开方法 - 使用默认TAG =
-    // ==============================
+    // ===============================
+    // = 对外公开方法 - 使用默认 TAG =
+    // ===============================
 
     public static void d(final String message, final Object... args) {
         dTag(DEFAULT_TAG, message, args);
