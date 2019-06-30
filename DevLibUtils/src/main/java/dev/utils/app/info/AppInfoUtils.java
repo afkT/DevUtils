@@ -77,7 +77,7 @@ public final class AppInfoUtils {
     public static PackageInfo getPackageInfo(final String packageName) {
         try {
             PackageManager packageManager = DevUtils.getContext().getPackageManager();
-            // 获取对应的 PackageInfo (原始的 PackageInfo 获取 signatures 等于 null, 需要这样获取)
+            // 获取对应的 PackageInfo ( 原始的 PackageInfo 获取 signatures 等于 null, 需要这样获取 )
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             // 返回 App 信息
             return packageInfo;

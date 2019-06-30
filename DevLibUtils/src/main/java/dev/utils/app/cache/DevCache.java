@@ -32,7 +32,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 缓存工具类
- * @author 杨福海(michael) www.yangfuhai.com
+ * @author 杨福海 (michael) www.yangfuhai.com
  * @author Ttt ( 重写、规范注释、逻辑判断等 )
  */
 public final class DevCache {
@@ -44,7 +44,7 @@ public final class DevCache {
     private static final String TAG = DevCache.class.getSimpleName();
     // 缓存文件名
     private static final String DEF_FILE_NAME = DevCache.class.getSimpleName();
-    // 过期小时(单位秒) = 1 小时
+    // 过期小时 ( 单位秒 ) = 1 小时
     public static final int TIME_HOUR = 60 * 60;
     // 一天 24 小时
     public static final int TIME_DAY = TIME_HOUR * 24;
@@ -68,7 +68,7 @@ public final class DevCache {
         if (context != null) {
             return context;
         } else {
-            // 设置全局Context
+            // 设置全局 Context
             return DevUtils.getContext();
         }
     }
@@ -233,7 +233,7 @@ public final class DevCache {
      * 保存 String 数据到缓存中
      * @param key      保存的 key
      * @param value    保存的 String 数据
-     * @param saveTime 保存的时间, 单位:秒
+     * @param saveTime 保存的时间, 单位: 秒
      */
     public void put(final String key, final String value, final int saveTime) {
         if (key != null && value != null) {
@@ -309,7 +309,7 @@ public final class DevCache {
      * 保存 JSONObject 数据到缓存中
      * @param key      保存的 key
      * @param value    保存的 JSONObject 数据
-     * @param saveTime 保存的时间, 单位:秒
+     * @param saveTime 保存的时间, 单位: 秒
      */
     public void put(final String key, final JSONObject value, final int saveTime) {
         if (value != null) {
@@ -361,7 +361,7 @@ public final class DevCache {
      * 保存 JSONArray 数据到缓存中
      * @param key      保存的 key
      * @param value    保存的 JSONArray 数据
-     * @param saveTime 保存的时间, 单位:秒
+     * @param saveTime 保存的时间, 单位: 秒
      */
     public void put(final String key, final JSONArray value, final int saveTime) {
         if (value != null) {
@@ -459,7 +459,7 @@ public final class DevCache {
      * 保存 byte 数据到缓存中
      * @param key      保存的 key
      * @param data     保存的数据
-     * @param saveTime 保存的时间, 单位:秒
+     * @param saveTime 保存的时间, 单位: 秒
      */
     public void put(final String key, final byte[] data, final int saveTime) {
         put(key, DevCacheUtils.newByteArrayWithDateInfo(saveTime, data));
@@ -519,7 +519,7 @@ public final class DevCache {
      * 保存 Serializable 数据到缓存中
      * @param key      保存的 key
      * @param value    保存的 value
-     * @param saveTime 保存的时间, 单位:秒
+     * @param saveTime 保存的时间, 单位: 秒
      */
     public void put(final String key, final Serializable value, final int saveTime) {
         ObjectOutputStream oos = null;
@@ -589,7 +589,7 @@ public final class DevCache {
      * 保存 Bitmap 到缓存中
      * @param key      保存的 key
      * @param value    保存的 bitmap 数据
-     * @param saveTime 保存的时间, 单位:秒
+     * @param saveTime 保存的时间, 单位: 秒
      */
     public void put(final String key, final Bitmap value, final int saveTime) {
         put(key, DevCacheUtils.bitmapToBytes(value), saveTime);
@@ -623,7 +623,7 @@ public final class DevCache {
      * 保存 Drawable 到缓存中
      * @param key      保存的 key
      * @param value    保存的 drawable 数据
-     * @param saveTime 保存的时间, 单位:秒
+     * @param saveTime 保存的时间, 单位: 秒
      */
     public void put(final String key, final Drawable value, final int saveTime) {
         put(key, DevCacheUtils.drawableToBitmap(value), saveTime);

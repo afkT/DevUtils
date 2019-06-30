@@ -13,7 +13,7 @@ import dev.utils.LogPrintUtils;
 
 /**
  * detail: 缓存内部工具类
- * @author 杨福海(michael) www.yangfuhai.com
+ * @author 杨福海 (michael) www.yangfuhai.com
  * @author Ttt ( 重写、规范注释、逻辑判断等 )
  */
 final class DevCacheUtils {
@@ -65,7 +65,7 @@ final class DevCacheUtils {
 
     /**
      * 保存数据, 创建时间信息
-     * @param second  时间(秒)
+     * @param second  时间 ( 秒 )
      * @param strInfo 字符串信息
      * @return 字符串, 包含创建时间、存储数据等
      */
@@ -75,7 +75,7 @@ final class DevCacheUtils {
 
     /**
      * 保存数据, 创建时间信息
-     * @param second 时间(秒)
+     * @param second 时间 ( 秒 )
      * @param data   待存储数据
      * @return byte[], 包含创建时间、存储数据等
      */
@@ -95,7 +95,7 @@ final class DevCacheUtils {
 
     /**
      * 创建时间信息
-     * @param second 时间(秒)
+     * @param second 时间 ( 秒 )
      * @return 时间信息字符串
      */
     private static String createDateInfo(final int second) {
