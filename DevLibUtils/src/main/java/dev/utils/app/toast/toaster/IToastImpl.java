@@ -17,7 +17,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Toast 接口实现方法(处理方法)
+ * detail: Toast 接口实现方法 ( 处理方法 )
  * @author Ttt
  */
 final class IToastImpl implements IToast.Operate, IToast.Filter {

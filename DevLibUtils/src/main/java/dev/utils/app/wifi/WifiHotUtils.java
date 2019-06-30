@@ -68,7 +68,7 @@ public class WifiHotUtils {
     // =============
 
     /**
-     * 创建 wifi 热点配置(支持 无密码/WPA2 PSK)
+     * 创建 wifi 热点配置 ( 支持 无密码 /WPA2 PSK)
      * @param ssid wifi ssid
      * @return {@link WifiConfiguration} 热点配置
      */
@@ -77,9 +77,9 @@ public class WifiHotUtils {
     }
 
     /**
-     * 创建 wifi 热点配置(支持 无密码/WPA2 PSK)
+     * 创建 wifi 热点配置 ( 支持 无密码 /WPA2 PSK)
      * @param ssid wifi ssid
-     * @param pwd  密码(需要大于等于 8 位)
+     * @param pwd  密码 ( 需要大于等于 8 位 )
      * @return {@link WifiConfiguration}
      */
     public static WifiConfiguration createWifiConfigToAp(final String ssid, final String pwd) {
@@ -131,7 +131,7 @@ public class WifiHotUtils {
             }
             // 清空信息
             mAPWifiSSID = mAPWifiPwd = null;
-            // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行创建, 无法进行控制(App 关闭后, 热点自动关闭)
+            // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行创建, 无法进行控制 (App 关闭后, 热点自动关闭 )
             // 必须有定位权限
             mWifiManager.startLocalOnlyHotspot(new WifiManager.LocalOnlyHotspotCallback() {
                 @Override
@@ -327,7 +327,7 @@ public class WifiHotUtils {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isOpenWifiAp() {
-        // 判断是否开启热点(默认未打开)
+        // 判断是否开启热点 ( 默认未打开 )
         boolean isOpen = false;
         // 获取当前 wifi 热点状态
         int wifiApState = getWifiApState();
@@ -348,12 +348,12 @@ public class WifiHotUtils {
     }
 
     /**
-     * 关闭 wifi 热点(判断当前状态)
+     * 关闭 wifi 热点 ( 判断当前状态 )
      * @param isExecute 是否执行关闭
      * @return {@code true} success, {@code false} fail
      */
     public boolean closeWifiApCheck(final boolean isExecute) {
-        // 判断是否开启热点(默认是)
+        // 判断是否开启热点 ( 默认是 )
         boolean isOpen = true;
         // 判断是否执行关闭
         boolean isExecuteClose = isExecute;
@@ -392,7 +392,7 @@ public class WifiHotUtils {
                 String[] splitted = line.split(" +");
                 if (splitted != null && splitted.length >= 4) {
                     String ipAddress = splitted[0]; // IP 地址
-                    // 防止地址为 null, 并且需要以.拆分存在 4 个长度 255.255.255.255
+                    // 防止地址为 null, 并且需要以. 拆分存在 4 个长度 255.255.255.255
                     if (ipAddress != null && ipAddress.split("\\.").length >= 3) {
                         return true;
                     }
@@ -421,7 +421,7 @@ public class WifiHotUtils {
     }
 
     /**
-     * 获取连接上的子网关热点 IP (一个)
+     * 获取连接上的子网关热点 IP ( 一个 )
      * @return 连接上的子网关热点 IP
      */
     public String getHotspotAllotIp() {
@@ -432,7 +432,7 @@ public class WifiHotUtils {
                 String[] splitted = line.split(" +");
                 if (splitted != null && splitted.length >= 4) {
                     String ipAddress = splitted[0]; // IP 地址
-                    // 防止地址为 null, 并且需要以.拆分存在 4 个长度 255.255.255.255
+                    // 防止地址为 null, 并且需要以. 拆分存在 4 个长度 255.255.255.255
                     if (ipAddress != null && ipAddress.split("\\.").length >= 3) {
                         return ipAddress;
                     }
@@ -610,7 +610,7 @@ public class WifiHotUtils {
 
         /**
          * 失败回调
-         * @param reason 失败原因(错误码)
+         * @param reason 失败原因 ( 错误码 )
          */
         void onFailed(int reason);
     }

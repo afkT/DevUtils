@@ -101,7 +101,7 @@ public final class WifiUtils {
      * 关闭 wifi
      */
     public void closeWifi() {
-        // 如果已经打开了wifi, 才进行关闭
+        // 如果已经打开了 wifi, 才进行关闭
         if (isOpenWifi()) {
             mWifiManager.setWifiEnabled(false);
         }
@@ -144,8 +144,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取已配置(连接过)的 wifi 配置
-     * @return {@link List<WifiConfiguration>} 已配置(连接过)的 wifi 配置
+     * 获取已配置 ( 连接过 ) 的 wifi 配置
+     * @return {@link List<WifiConfiguration>} 已配置 ( 连接过 ) 的 wifi 配置
      */
     public List<WifiConfiguration> getConfiguration() {
         return mWifiManager.getConfiguredNetworks();
@@ -428,7 +428,7 @@ public final class WifiUtils {
                     return getSSID();
                 }
             } else {
-                // 获取当前活跃的网络(连接的网络信息)
+                // 获取当前活跃的网络 ( 连接的网络信息 )
                 Network network = cManager.getActiveNetwork();
                 if (network != null) {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
@@ -488,7 +488,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取指定的 ssid 网络配置 (需连接保存过, 才存在)
+     * 获取指定的 ssid 网络配置 ( 需连接保存过, 才存在 )
      * @param ssid wifi ssid
      * @return {@link WifiConfiguration}
      */
@@ -511,7 +511,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取指定的 network id 网络配置 (需连接保存过, 才存在)
+     * 获取指定的 network id 网络配置 ( 需连接保存过, 才存在 )
      * @param networkId network id
      * @return {@link WifiConfiguration}
      */
@@ -573,7 +573,7 @@ public final class WifiUtils {
     // =
 
     /**
-     * 快速连接 wifi (不使用静态 IP 方式)
+     * 快速连接 wifi ( 不使用静态 IP 方式 )
      * @param ssid wifi ssid
      * @param pwd  wifi 密码
      * @param type wifi 加密类型
@@ -594,13 +594,13 @@ public final class WifiUtils {
      */
     public WifiConfiguration quickConnWifi(final String ssid, final String pwd, final int type, final boolean isStatic, final String ip) {
         // 步骤:
-        // 1.创建 wifi 静态 IP 连接配置
-        // 2.创建正常 wifi 连接配置
-        // 3.查询准备连接的 wifi SSID 是否存在配置文件, 准备进行删除
-        // 4.查询当前连接的 wifi SSID 准备进行断开
-        // 5.同步进行断开, 删除操作, 并且进行保存
-        // 6.调用连接方法
-        // 7.返回连接的配置信息
+        // 1. 创建 wifi 静态 IP 连接配置
+        // 2. 创建正常 wifi 连接配置
+        // 3. 查询准备连接的 wifi SSID 是否存在配置文件, 准备进行删除
+        // 4. 查询当前连接的 wifi SSID 准备进行断开
+        // 5. 同步进行断开, 删除操作, 并且进行保存
+        // 6. 调用连接方法
+        // 7. 返回连接的配置信息
         // =
         try {
             // 正常的 wifi 连接配置
@@ -614,7 +614,7 @@ public final class WifiUtils {
                     // 创建正常的配置信息
                     connWifiConfig = createWifiConfig(ssid, pwd, type, true);
                     // =
-                    LogPrintUtils.dTag(TAG, "属于正常方式连接(DHCP)");
+                    LogPrintUtils.dTag(TAG, "属于正常方式连接 (DHCP)");
                 } else {
                     // 设置静态信息
                     connWifiConfig = staticWifiConfig;
@@ -625,7 +625,7 @@ public final class WifiUtils {
                 // 创建正常的配置信息
                 connWifiConfig = createWifiConfig(ssid, pwd, type, true);
                 // =
-                LogPrintUtils.dTag(TAG, "属于正常方式连接(DHCP)");
+                LogPrintUtils.dTag(TAG, "属于正常方式连接 (DHCP)");
             }
             // 判断当前准备连接的 wifi, 是否存在配置文件
             WifiConfiguration preWifiConfig = this.isExists(ssid);
@@ -960,7 +960,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 设置 IP 地址、网关、DNS (5.0 之后)
+     * 设置 IP 地址、网关、DNS (5.0 之后 )
      * @param ip           静态 IP
      * @param gateway      网关
      * @param dns          DNS

@@ -339,7 +339,7 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      */
     public static void normal(final boolean isSingle, final String text) {
@@ -348,7 +348,7 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
@@ -358,7 +358,7 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param icon     Toast icon Drawable
      */
@@ -368,7 +368,7 @@ public final class ToastTintUtils {
 
     /**
      * normal 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      * @param icon     Toast icon Drawable
@@ -421,7 +421,7 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      */
     public static void info(final boolean isSingle, final String text) {
@@ -430,7 +430,7 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
@@ -440,7 +440,7 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param icon     Toast icon Drawable
      */
@@ -450,7 +450,7 @@ public final class ToastTintUtils {
 
     /**
      * info 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      * @param icon     Toast icon Drawable
@@ -503,7 +503,7 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      */
     public static void warning(final boolean isSingle, final String text) {
@@ -512,7 +512,7 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
@@ -522,7 +522,7 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param icon     Toast icon Drawable
      */
@@ -532,7 +532,7 @@ public final class ToastTintUtils {
 
     /**
      * warning 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      * @param icon     Toast icon Drawable
@@ -585,7 +585,7 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      */
     public static void error(final boolean isSingle, final String text) {
@@ -594,7 +594,7 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
@@ -604,7 +604,7 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param icon     Toast icon Drawable
      */
@@ -614,7 +614,7 @@ public final class ToastTintUtils {
 
     /**
      * error 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      * @param icon     Toast icon Drawable
@@ -667,7 +667,7 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      */
     public static void success(final boolean isSingle, final String text) {
@@ -676,7 +676,7 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
@@ -686,7 +686,7 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param icon     Toast icon Drawable
      */
@@ -696,7 +696,7 @@ public final class ToastTintUtils {
 
     /**
      * success 样式 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      * @param icon     Toast icon Drawable
@@ -753,7 +753,7 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param style    Toast 样式 {@link ToastTintUtils.Style}
      * @param text     Toast 提示文本
      */
@@ -763,7 +763,7 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param style    Toast 样式 {@link ToastTintUtils.Style}
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
@@ -774,7 +774,7 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param style    Toast 样式 {@link ToastTintUtils.Style}
      * @param text     Toast 提示文本
      * @param icon     Toast icon Drawable
@@ -785,7 +785,7 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param style    Toast 样式 {@link ToastTintUtils.Style}
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
@@ -845,7 +845,7 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param style    Toast 样式 {@link ToastTintUtils.Style}
      * @param text     Toast 提示文本
@@ -856,7 +856,7 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param style    Toast 样式 {@link ToastTintUtils.Style}
      * @param text     Toast 提示文本
@@ -868,7 +868,7 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param style    Toast 样式 {@link ToastTintUtils.Style}
      * @param text     Toast 提示文本
@@ -880,7 +880,7 @@ public final class ToastTintUtils {
 
     /**
      * custom Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param style    Toast 样式 {@link ToastTintUtils.Style}
      * @param text     Toast 提示文本
@@ -901,7 +901,7 @@ public final class ToastTintUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param view     Toast 显示的 View
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
@@ -936,7 +936,7 @@ public final class ToastTintUtils {
 
     /**
      * 获取一个新的 View Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param view     Toast 显示的 View
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}

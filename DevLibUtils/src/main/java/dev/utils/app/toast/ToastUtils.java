@@ -15,7 +15,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Simple Toast 工具类(简单的 Toast 工具类, 支持子线程弹出 Toast)
+ * detail: Simple Toast 工具类 ( 简单的 Toast 工具类, 支持子线程弹出 Toast)
  * @author Ttt
  * <pre>
  *     支持子线程弹出 Toast, 可通过开关配置
@@ -391,7 +391,7 @@ public final class ToastUtils {
 
     /**
      * 内部私有方法, 最终显示 Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
@@ -425,7 +425,7 @@ public final class ToastUtils {
 
     /**
      * 获取一个新的 Text Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
@@ -522,7 +522,7 @@ public final class ToastUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param view     Toast 显示的 View
      */
     public static void showToastView(final boolean isSingle, final View view) {
@@ -531,7 +531,7 @@ public final class ToastUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param view     Toast 显示的 View
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
@@ -541,7 +541,7 @@ public final class ToastUtils {
 
     /**
      * 显示 View Toast 方法
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param view     Toast 显示的 View
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
@@ -576,7 +576,7 @@ public final class ToastUtils {
 
     /**
      * 获取一个新的 View Toast
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param view     Toast 显示的 View
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
@@ -652,7 +652,7 @@ public final class ToastUtils {
 
     /**
      * 处理 R.string 资源 Toast 的格式化
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param resId    R.string.id
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG} {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
@@ -679,7 +679,7 @@ public final class ToastUtils {
 
     /**
      * 处理字符串 Toast 的格式化
-     * @param isSingle 是否单例 Toast (全局共用 Toast)
+     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
      * @param context  {@link Context}
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
