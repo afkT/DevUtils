@@ -91,7 +91,7 @@ final class PreferenceImpl implements IPreference {
      * 根据 key 和 数据类型 取出数据
      * @param key  保存的 key
      * @param type 数据类型 {@link DataType}
-     * @return 指定 key 存储的数据(传入的 type 类型)
+     * @return 指定 key 存储的数据 ( 传入的 type 类型 )
      */
     private Object getValue(final String key, final DataType type) {
         switch (type) {
@@ -141,7 +141,7 @@ final class PreferenceImpl implements IPreference {
     }
 
     /**
-     * 保存 Map 集合(只能是 Integer、Long、Boolean、Float、String、Set)
+     * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
      * @param map {@link Map}
      * @param <T> 泛型
      */

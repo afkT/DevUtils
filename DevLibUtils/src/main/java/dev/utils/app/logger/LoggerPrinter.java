@@ -17,7 +17,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- * detail: 日志输出类(处理方法)
+ * detail: 日志输出类 ( 处理方法 )
  * @author Ttt
  */
 final class LoggerPrinter implements IPrinter {
@@ -54,7 +54,7 @@ final class LoggerPrinter implements IPrinter {
     }
 
     /**
-     * 初始化日志配置信息(使用默认配置)
+     * 初始化日志配置信息 ( 使用默认配置 )
      * @return {@link LogConfig} 日志配置
      */
     @Override
@@ -79,9 +79,9 @@ final class LoggerPrinter implements IPrinter {
         init();
     }
 
-    // ==============================
-    // = 使用默认TAG - 日志打印方法 =
-    // ==============================
+    // ===============================
+    // = 使用默认 TAG - 日志打印方法 =
+    // ===============================
 
     /**
      * 打印 Log.DEBUG
@@ -184,7 +184,7 @@ final class LoggerPrinter implements IPrinter {
     public void json(final String json) {
         // 获取当前线程日志配置信息
         LogConfig logConfig = getThreadLogConfig();
-        // 判断是否打印日志(日志级别)
+        // 判断是否打印日志 ( 日志级别 )
         if (!isPrintLog(logConfig, Log.DEBUG)) {
             return;
         }
@@ -240,7 +240,7 @@ final class LoggerPrinter implements IPrinter {
     public void xml(final String xml) {
         // 获取当前线程日志配置信息
         LogConfig logConfig = getThreadLogConfig();
-        // 判断是否打印日志(日志级别)
+        // 判断是否打印日志 ( 日志级别 )
         if (!isPrintLog(logConfig, Log.DEBUG)) {
             return;
         }
@@ -280,9 +280,9 @@ final class LoggerPrinter implements IPrinter {
         }
     }
 
-    // ================================
-    // = 使用自定义TAG - 日志打印方法 =
-    // ================================
+    // =================================
+    // = 使用自定义 TAG - 日志打印方法 =
+    // =================================
 
     /**
      * 打印 Log.DEBUG
@@ -394,7 +394,7 @@ final class LoggerPrinter implements IPrinter {
     public void jsonTag(final String tag, final String json) {
         // 获取当前线程日志配置信息
         LogConfig logConfig = getThreadLogConfig();
-        // 判断是否打印日志(日志级别)
+        // 判断是否打印日志 ( 日志级别 )
         if (!isPrintLog(logConfig, Log.DEBUG)) {
             return;
         }
@@ -449,7 +449,7 @@ final class LoggerPrinter implements IPrinter {
     public void xmlTag(final String tag, final String xml) {
         // 获取当前线程日志配置信息
         LogConfig logConfig = getThreadLogConfig();
-        // 判断是否打印日志(日志级别)
+        // 判断是否打印日志 ( 日志级别 )
         if (!isPrintLog(logConfig, Log.DEBUG)) {
             return;
         }
@@ -624,7 +624,7 @@ final class LoggerPrinter implements IPrinter {
             // 获取当前线程日志配置信息
             logConfig = getThreadLogConfig();
         }
-        // 判断是否打印日志(日志级别)
+        // 判断是否打印日志 ( 日志级别 )
         if (!isPrintLog(logConfig, logType)) {
             return;
         }
@@ -639,7 +639,7 @@ final class LoggerPrinter implements IPrinter {
                 logTag = LogConstants.DEFAULT_LOG_TAG;
             }
         }
-        // 判断是否显示排序后的日志(如果不排序, 则显示默认)
+        // 判断是否显示排序后的日志 ( 如果不排序, 则显示默认 )
         if (!logConfig.sortLog) {
             finalLogPrinter(logType, logTag, createMessage(msg, args));
             return;
@@ -665,7 +665,7 @@ final class LoggerPrinter implements IPrinter {
         logTopBorder(logType, logTag);
         // 打印头部线程信息
         logHeaderContent(logConfig, logType, logTag, methodCount, methodOffset);
-        // 获取系统的默认字符集的信息字节(UTF-8)
+        // 获取系统的默认字符集的信息字节 (UTF-8)
         byte[] bytes = message.getBytes();
         // 获取字节总数
         int length = bytes.length;
@@ -688,7 +688,7 @@ final class LoggerPrinter implements IPrinter {
         // 因为超过系统打印字节总数, 遍历打印
         for (int i = 0; i < length; i += LogConstants.CHUNK_SIZE) {
             int count = Math.min(length - i, LogConstants.CHUNK_SIZE);
-            // 创建系统的默认字符集的一个新的字符串(UTF-8), 并打印日志内容
+            // 创建系统的默认字符集的一个新的字符串 (UTF-8), 并打印日志内容
             logContent(logType, logTag, new String(bytes, i, count));
         }
         // 打印结尾
@@ -711,7 +711,7 @@ final class LoggerPrinter implements IPrinter {
         StackTraceElement[] trace = Thread.currentThread().getStackTrace();
         // 判断是否显示日志线程信息
         if (logConfig.displayThreadInfo) {
-            // 打印线程信息(线程名)
+            // 打印线程信息 ( 线程名 )
             finalLogPrinter(logType, tag, LogConstants.HORIZONTAL_DOUBLE_LINE + " Thread: " + Thread.currentThread().getName());
             // 进行换行
             logDivider(logType, tag);
@@ -740,7 +740,7 @@ final class LoggerPrinter implements IPrinter {
             // 如果打印数小于等于 0, 则直接跳过
             return;
         }
-        // 遍历打印的方法数量(类名、行数、操作的方法名)
+        // 遍历打印的方法数量 ( 类名、行数、操作的方法名 )
         for (int i = methodCount; i > 0; i--) {
             int stackIndex = i + stackOffset;
             if (stackIndex >= traceCount) {
@@ -807,7 +807,7 @@ final class LoggerPrinter implements IPrinter {
      * 处理信息
      * @param message 日志信息
      * @param args    占位符替换
-     * @return 处理(格式化)后准备打印的日志信息
+     * @return 处理 ( 格式化 ) 后准备打印的日志信息
      */
     private String createMessage(final String message, final Object... args) {
         if (message != null) {

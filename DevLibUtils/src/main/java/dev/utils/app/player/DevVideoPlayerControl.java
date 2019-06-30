@@ -158,7 +158,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     }
 
     /**
-     * 播放完成/结束
+     * 播放完成 / 结束
      */
     @Override
     public void onCompletion() {

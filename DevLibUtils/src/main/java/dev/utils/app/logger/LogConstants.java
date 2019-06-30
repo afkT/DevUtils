@@ -41,7 +41,7 @@ final class LogConstants {
     public static final int DEFAULT_LOG_METHOD_OFFSET = 0;
 
     /**
-     * 默认日志级别 - 异常级别(只有 e, wtf 才进行显示)
+     * 默认日志级别 - 异常级别 ( 只有 e, wtf 才进行显示 )
      */
     public static final LogLevel DEFAULT_LOG_LEVEL = LogLevel.ERROR;
 

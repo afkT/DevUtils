@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * detail: SPUtils 工具类(单独使用)
+ * detail: SPUtils 工具类 ( 单独使用 )
  * @author Ttt
  */
 public final class SharedUtils {
@@ -20,7 +20,7 @@ public final class SharedUtils {
     private static Context sContext;
 
     /**
-     * 初始化操作 (内部已调用)
+     * 初始化操作 ( 内部已调用 )
      * @param context {@link Context}
      */
     public static void init(final Context context) {
@@ -43,7 +43,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 保存 Map 集合(只能是 Integer、Long、Boolean、Float、String、Set)
+     * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
      * @param map {@link Map}
      * @param <T> 泛型
      */

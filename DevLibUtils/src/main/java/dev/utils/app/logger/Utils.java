@@ -23,7 +23,7 @@ import java.util.Map;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 内部快捷操作工具类(便于单独提取 Logger, 不依赖其他工具类)
+ * detail: 内部快捷操作工具类 ( 便于单独提取 Logger, 不依赖其他工具类 )
  * @author Ttt
  */
 final class Utils {
@@ -38,7 +38,7 @@ final class Utils {
     // = 配置信息 =
     // ============
 
-    // App 版本(如 1.0.01) 显示给用户看的
+    // App 版本 ( 如 1.0.01) 显示给用户看的
     private static String APP_VERSION_NAME = "";
     // android:versionCode 整数值, 代表应用程序代码的相对版本
     private static String APP_VERSION_CODE = "";
@@ -174,7 +174,7 @@ final class Utils {
     // ============
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建(不能加入文件名)
+     * 判断某个文件夹是否创建, 未创建则创建 ( 不能加入文件名 )
      * @param filePath 文件路径
      * @return 文件 {@link File}
      */
@@ -196,7 +196,7 @@ final class Utils {
     /**
      * 保存文件
      * @param txt      保存内容
-     * @param filePath 保存路径(包含文件名.后缀)
+     * @param filePath 保存路径 ( 包含文件名. 后缀 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     private static boolean saveFile(final String txt, final String filePath) {
@@ -217,7 +217,7 @@ final class Utils {
     // ================
 
     /**
-     * 获取错误信息(无换行)
+     * 获取错误信息 ( 无换行 )
      * @param errorInfo 获取失败, 返回信息
      * @param ex        错误信息
      * @return 错误信息字符串
@@ -246,7 +246,7 @@ final class Utils {
     }
 
     /**
-     * 获取错误信息(有换行)
+     * 获取错误信息 ( 有换行 )
      * @param errorInfo 获取失败, 返回信息
      * @param ex        错误信息
      * @return 错误信息字符串
@@ -317,9 +317,9 @@ final class Utils {
      * 保存 App 错误日志
      * @param ex         错误信息
      * @param filePath   保存路径
-     * @param fileName   文件名(含后缀)
+     * @param fileName   文件名 ( 含后缀 )
      * @param isNewLines 是否换行
-     * @param errorInfos 错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName, final boolean isNewLines, final String... errorInfos) {
@@ -332,13 +332,13 @@ final class Utils {
      * @param head       顶部标题
      * @param bottom     底部内容
      * @param filePath   保存路径
-     * @param fileName   文件名(含后缀)
+     * @param fileName   文件名 ( 含后缀 )
      * @param isNewLines 是否换行
-     * @param errorInfos 错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName, final boolean isNewLines, final String... errorInfos) {
-        // 处理可变参数(错误提示)
+        // 处理可变参数 ( 错误提示 )
         String[] errorArrays = handlerVariable(2, errorInfos);
         // 日志拼接
         StringBuilder builder = new StringBuilder();
@@ -394,8 +394,8 @@ final class Utils {
      * 保存 App 日志
      * @param log        日志信息
      * @param filePath   保存路径
-     * @param fileName   文件名(含后缀)
-     * @param errorInfos 错误提示(无设备信息、失败信息获取失败)
+     * @param fileName   文件名 ( 含后缀 )
+     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveLog(final String log, final String filePath, final String fileName, final String... errorInfos) {
@@ -408,12 +408,12 @@ final class Utils {
      * @param head       顶部标题
      * @param bottom     底部内容
      * @param filePath   保存路径
-     * @param fileName   文件名(含后缀)
-     * @param errorInfos 错误提示(无设备信息、失败信息获取失败)
+     * @param fileName   文件名 ( 含后缀 )
+     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveLog(final String log, final String head, final String bottom, final String filePath, final String fileName, final String... errorInfos) {
-        // 处理可变参数(错误提示)
+        // 处理可变参数 ( 错误提示 )
         String[] errorArrays = handlerVariable(2, errorInfos);
         // 日志拼接
         StringBuilder builder = new StringBuilder();

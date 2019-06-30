@@ -15,7 +15,7 @@ import java.util.Set;
 public interface IPreference {
 
     /**
-     * detail: 存储/取出 数据类型
+     * detail: 存储 / 取出 数据类型
      * @author Ttt
      */
     enum DataType {
@@ -33,7 +33,7 @@ public interface IPreference {
     <T> void put(String key, T value);
 
     /**
-     * 保存 Map 集合(只能是 Integer、Long、Boolean、Float、String、Set)
+     * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
      * @param map {@link Map}
      * @param <T> 泛型
      */

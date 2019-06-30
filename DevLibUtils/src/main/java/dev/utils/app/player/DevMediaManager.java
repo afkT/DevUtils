@@ -285,7 +285,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     // ================
 
     /**
-     * 预加载播放(最终调用方法) - 加载成功触发 onPrepared, 该方法内调用 mMediaPlayer.start()
+     * 预加载播放 ( 最终调用方法 ) - 加载成功触发 onPrepared, 该方法内调用 mMediaPlayer.start()
      * @param mediaSet 播放设置
      * @return {@code true} 执行成功, {@code false} 执行失败
      */
@@ -537,7 +537,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         }
 
         /**
-         * 获取播放音量(设置) - 默认使用全局统一音量
+         * 获取播放音量 ( 设置 ) - 默认使用全局统一音量
          * @return 播放音量
          */
         public float getVolume() {
@@ -620,7 +620,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     private int mStreamType = AudioManager.STREAM_MUSIC;
     // 本地资源
     private int mPlayRawId = -1;
-    // 播放路径/地址
+    // 播放路径 / 地址
     private String mPlayUri = null;
     // 视频宽度
     private int mVideoWidth = 0;

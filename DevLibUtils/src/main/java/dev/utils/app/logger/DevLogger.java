@@ -1,7 +1,7 @@
 package dev.utils.app.logger;
 
 /**
- * detail: 日志操作类(对外公开直接调用)
+ * detail: 日志操作类 ( 对外公开直接调用 )
  * @author Ttt
  */
 public final class DevLogger {
@@ -34,7 +34,7 @@ public final class DevLogger {
     }
 
     /**
-     * 初始化日志配置信息(使用默认配置)
+     * 初始化日志配置信息 ( 使用默认配置 )
      * @return {@link LogConfig} 日志配置
      */
     public static LogConfig init() {
@@ -49,9 +49,9 @@ public final class DevLogger {
         sPrinter.init(logConfig);
     }
 
-    // ==============================
-    // = 使用默认TAG - 日志打印方法 =
-    // ==============================
+    // ===============================
+    // = 使用默认 TAG - 日志打印方法 =
+    // ===============================
 
     /**
      * 打印 Log.DEBUG
@@ -143,9 +143,9 @@ public final class DevLogger {
         sPrinter.xml(xml);
     }
 
-    // ================================
-    // = 使用自定义TAG - 日志打印方法 =
-    // ================================
+    // =================================
+    // = 使用自定义 TAG - 日志打印方法 =
+    // =================================
 
     /**
      * 打印 Log.DEBUG
