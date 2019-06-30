@@ -2037,7 +2037,6 @@ public final class DevCommonUtils {
         return appends(new StringBuilder(), null, false, args);
     }
 
-
     /**
      * StringBuilder 拼接处理
      * @param split 追加间隔
@@ -2047,7 +2046,6 @@ public final class DevCommonUtils {
     public static StringBuilder appends(final String split, final Object... args) {
         return appends(new StringBuilder(), split, false, args);
     }
-
 
     /**
      * StringBuilder 拼接处理
