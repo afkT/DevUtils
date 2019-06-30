@@ -236,7 +236,7 @@ public final class AccessibilityUtils {
     /**
      * 查找符合条件的节点
      * @param focus     焦点类型
-     * @param className 节点所属的类(类名)
+     * @param className 节点所属的类 ( 类名 )
      * @return 拥有特定焦点类型的节点
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -248,7 +248,7 @@ public final class AccessibilityUtils {
      * 查找符合条件的节点
      * @param service   {@link AccessibilityService}
      * @param focus     焦点类型
-     * @param className 节点所属的类(类名)
+     * @param className 节点所属的类 ( 类名 )
      * @return 拥有特定焦点类型的节点
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -274,7 +274,7 @@ public final class AccessibilityUtils {
 
     /**
      * 查找符合条件的节点
-     * @param text 文本内容(搜索包含该文本内容的节点)
+     * @param text 文本内容 ( 搜索包含该文本内容的节点 )
      * @return 包含该文本内容的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -285,7 +285,7 @@ public final class AccessibilityUtils {
     /**
      * 查找符合条件的节点
      * @param service {@link AccessibilityService}
-     * @param text    文本内容(搜索包含该文本内容的节点)
+     * @param text    文本内容 ( 搜索包含该文本内容的节点 )
      * @return 包含该文本内容的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -303,8 +303,8 @@ public final class AccessibilityUtils {
 
     /**
      * 查找符合条件的节点
-     * @param text      文本内容(搜索包含该文本内容的节点)
-     * @param className 节点所属的类(类名)
+     * @param text      文本内容 ( 搜索包含该文本内容的节点 )
+     * @param className 节点所属的类 ( 类名 )
      * @return 包含该文本内容, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -315,8 +315,8 @@ public final class AccessibilityUtils {
     /**
      * 查找符合条件的节点
      * @param service   {@link AccessibilityService}
-     * @param text      文本内容(搜索包含该文本内容的节点)
-     * @param className 节点所属的类(类名)
+     * @param text      文本内容 ( 搜索包含该文本内容的节点 )
+     * @param className 节点所属的类 ( 类名 )
      * @return 包含该文本内容, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -374,7 +374,7 @@ public final class AccessibilityUtils {
     /**
      * 查找符合条件的节点
      * @param id        viewId
-     * @param className 节点所属的类(类名)
+     * @param className 节点所属的类 ( 类名 )
      * @return 等于 viewId, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -386,7 +386,7 @@ public final class AccessibilityUtils {
      * 查找符合条件的节点
      * @param service   {@link AccessibilityService}
      * @param id        viewId
-     * @param className 节点所属的类(类名)
+     * @param className 节点所属的类 ( 类名 )
      * @return 等于 viewId, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -572,7 +572,7 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 锁定屏幕(非锁屏)
+     * 锁定屏幕 ( 非锁屏 )
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -581,7 +581,7 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 锁定屏幕(非锁屏)
+     * 锁定屏幕 ( 非锁屏 )
      * @param service {@link AccessibilityService}
      * @return {@code true} success, {@code false} fail
      */
