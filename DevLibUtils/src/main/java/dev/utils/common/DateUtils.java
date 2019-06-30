@@ -238,9 +238,9 @@ public final class DateUtils {
     }
 
     /**
-     * 获取时间差 - (传入时间 - 当前时间)
+     * 获取时间差 - ( 传入时间 - 当前时间 )
      * @param time 毫秒
-     * @return 与当前时间的时间差(毫秒)
+     * @return 与当前时间的时间差 ( 毫秒 )
      */
     public static long getTimeDiff(final long time) {
         return time - System.currentTimeMillis();
@@ -250,7 +250,7 @@ public final class DateUtils {
      * 获取时间差
      * @param time1 时间 yyyy-MM-dd HH:mm:ss 格式
      * @param time2 对比时间 yyyy-MM-dd HH:mm:ss 格式
-     * @return 时间差(毫秒)
+     * @return 时间差 ( 毫秒 )
      */
     public static long getTimeDiff(final String time1, final String time2) {
         long timeLong1 = parseLong(time1);
@@ -267,7 +267,7 @@ public final class DateUtils {
      * @param timeFormat1 时间格式
      * @param time2       对比时间
      * @param timeFormat2 对比时间格式
-     * @return 时间差(毫秒)
+     * @return 时间差 ( 毫秒 )
      */
     public static long getTimeDiff(final String time1, final String timeFormat1, final String time2, final String timeFormat2) {
         long timeLong1 = parseLong(time1, timeFormat1);
@@ -524,7 +524,7 @@ public final class DateUtils {
     }
 
     /**
-     * 根据年份、月份, 获取对应的天数 (完整天数, 无判断是否属于未来日期)
+     * 根据年份、月份, 获取对应的天数 ( 完整天数, 无判断是否属于未来日期 )
      * @param year  年数
      * @param month 月份
      * @return 指定年份所属的月份的天数
@@ -745,7 +745,7 @@ public final class DateUtils {
                             }
                         } else if (type == 2) { // 30 分钟一个间隔
                             // 大于等于 30, 表示属于基数
-                            if (minute >= 30) { // 属于奇数(30), 需要加 1
+                            if (minute >= 30) { // 属于奇数 (30), 需要加 1
                                 return hour * 2 + 1;
                             } else {
                                 return hour * 2;
@@ -761,19 +761,19 @@ public final class DateUtils {
     // =
 
     /**
-     * 传入时间, 获取时间(00:00:00 格式) - 不处理大于一天
-     * @param time 时间(秒为单位)
-     * @return 转换 (00:00:00 格式) 时间字符串
+     * 传入时间, 获取时间 (00:00:00 格式 ) - 不处理大于一天
+     * @param time 时间 ( 秒为单位 )
+     * @return 转换 (00:00:00 格式 ) 时间字符串
      */
     public static String secToTimeRetain(final int time) {
         return secToTimeRetain(time, false);
     }
 
     /**
-     * 传入时间, 获取时间(00:00:00 格式)
-     * @param time          时间(秒为单位)
+     * 传入时间, 获取时间 (00:00:00 格式 )
+     * @param time          时间 ( 秒为单位 )
      * @param isHandlerMDay 是否处理大于一天的时间
-     * @return 转换 (00:00:00 格式) 时间字符串
+     * @return 转换 (00:00:00 格式 ) 时间字符串
      */
     public static String secToTimeRetain(final int time, final boolean isHandlerMDay) {
         try {
@@ -819,9 +819,9 @@ public final class DateUtils {
     }
 
     /**
-     * 传入时间, 时间参数(小时、分钟、秒)
-     * @param time 时间(秒为单位)
-     * @return int[] {小时、分钟、秒}
+     * 传入时间, 时间参数 ( 小时、分钟、秒 )
+     * @param time 时间 ( 秒为单位 )
+     * @return int[] { 小时、分钟、秒 }
      */
     public static int[] convertTimeArys(final int time) {
         try {
@@ -898,7 +898,7 @@ public final class DateUtils {
     /**
      * 转换时间为数组
      * @param millis 时间毫秒
-     * @return int[5] {天, 小时, 分钟, 秒, 毫秒}
+     * @return int[5] { 天, 小时, 分钟, 秒, 毫秒 }
      */
     public static int[] millisToTimeArys(final long millis) {
         if (millis <= 0) return null;
@@ -1036,7 +1036,7 @@ public final class DateUtils {
     // =
 
     /**
-     * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
+     * 获取指定时间距离该时间第二天的指定时段的时间 ( 判断凌晨情况 )
      * @param endTime 结束时间 HH:mm
      * @return 距离指定结束时间还有多少毫秒
      */
@@ -1045,7 +1045,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取指定时间距离该时间第二天的指定时段的时间 (判断凌晨情况)
+     * 获取指定时间距离该时间第二天的指定时段的时间 ( 判断凌晨情况 )
      * @param startTime 开始时间
      * @param endTime   结束时间 HH:mm
      * @return 距离指定结束时间还有多少毫秒
@@ -1055,7 +1055,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
+     * 获取指定时间距离该时间第二天的指定时段的时间差 ( 判断凌晨情况 )
      * @param endTime 结束时间
      * @param format  格式 如: HH:mm
      * @return 距离指定结束时间还有多少毫秒
@@ -1065,11 +1065,11 @@ public final class DateUtils {
     }
 
     /**
-     * 获取指定时间距离该时间第二天的指定时段的时间差 (判断凌晨情况)
+     * 获取指定时间距离该时间第二天的指定时段的时间差 ( 判断凌晨情况 )
      * <pre>
      *     如当前时间 2018-12-07 15:27:23, 判断距离 14:39:20 (endTime) 有多久
-     *     如果过了这个时间段, 则返回 2018-12-08 14:39:20 (明天的这个时间段时间)
-     *     如果没有过这个时间段(如: 17:39:20) 则返回当天时间段 2018-12-07 17:39:20 (2018-12-07 + endTime)
+     *     如果过了这个时间段, 则返回 2018-12-08 14:39:20 ( 明天的这个时间段时间 )
+     *     如果没有过这个时间段 ( 如: 17:39:20) 则返回当天时间段 2018-12-07 17:39:20 (2018-12-07 + endTime)
      * </pre>
      * @param startTime 开始时间
      * @param endTime   结束时间

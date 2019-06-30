@@ -23,7 +23,7 @@ import java.util.List;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 文件(IO流)工具类
+ * detail: 文件 (IO 流 ) 工具类
  * @author Ttt
  */
 public final class FileIOUtils {
@@ -335,7 +335,7 @@ public final class FileIOUtils {
     /**
      * 读取文件内容, 返回换行 List
      * @param filePath 文件路径
-     * @return 换行{@link List<String>}
+     * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final String filePath) {
         return readFileToList(getFileByPath(filePath), null);
@@ -345,7 +345,7 @@ public final class FileIOUtils {
      * 读取文件内容, 返回换行 List
      * @param filePath    文件路径
      * @param charsetName 字符编码
-     * @return 换行{@link List<String>}
+     * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final String filePath, final String charsetName) {
         return readFileToList(getFileByPath(filePath), charsetName);
@@ -354,7 +354,7 @@ public final class FileIOUtils {
     /**
      * 读取文件内容, 返回换行 List
      * @param file 文件
-     * @return 换行{@link List<String>}
+     * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final File file) {
         return readFileToList(file, 0, Integer.MAX_VALUE, null);
@@ -364,7 +364,7 @@ public final class FileIOUtils {
      * 读取文件内容, 返回换行 List
      * @param file        文件
      * @param charsetName 字符编码
-     * @return 换行{@link List<String>}
+     * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final File file, final String charsetName) {
         return readFileToList(file, 0, Integer.MAX_VALUE, charsetName);
@@ -375,7 +375,7 @@ public final class FileIOUtils {
      * @param filePath 文件路径
      * @param start    开始位置
      * @param end      结束位置
-     * @return 换行{@link List<String>}
+     * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final String filePath, final int start, final int end) {
         return readFileToList(getFileByPath(filePath), start, end, null);
@@ -387,7 +387,7 @@ public final class FileIOUtils {
      * @param start       开始位置
      * @param end         结束位置
      * @param charsetName 字符编码
-     * @return 换行{@link List<String>}
+     * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final String filePath, final int start, final int end, final String charsetName) {
         return readFileToList(getFileByPath(filePath), start, end, charsetName);
@@ -398,7 +398,7 @@ public final class FileIOUtils {
      * @param file  文件
      * @param start 开始位置
      * @param end   结束位置
-     * @return 换行{@link List<String>}
+     * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final File file, final int start, final int end) {
         return readFileToList(file, start, end, null);
@@ -410,7 +410,7 @@ public final class FileIOUtils {
      * @param start       开始位置
      * @param end         结束位置
      * @param charsetName 字符编码
-     * @return 换行{@link List<String>}
+     * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final File file, final int start, final int end, final String charsetName) {
         if (!isFileExists(file)) return null;

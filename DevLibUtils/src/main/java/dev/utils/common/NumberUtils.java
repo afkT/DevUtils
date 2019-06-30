@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 数字(计算)工具类
+ * detail: 数字 ( 计算 ) 工具类
  * @author Ttt
  */
 public final class NumberUtils {
@@ -22,7 +22,7 @@ public final class NumberUtils {
     // =======
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -35,7 +35,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -48,7 +48,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -61,7 +61,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -78,7 +78,7 @@ public final class NumberUtils {
     // ==========
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -91,7 +91,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -104,7 +104,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -117,7 +117,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -134,7 +134,7 @@ public final class NumberUtils {
     // ========
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -147,7 +147,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -160,7 +160,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -173,7 +173,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -190,7 +190,7 @@ public final class NumberUtils {
     // =========
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -203,7 +203,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -216,7 +216,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -229,7 +229,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -241,16 +241,16 @@ public final class NumberUtils {
         return (float) (value / max);
     }
 
-    // ==============================
-    // = 计算百分比值 (可超出 100%) =
-    // ==============================
+    // ===============================
+    // = 计算百分比值 ( 可超出 100%) =
+    // ===============================
 
     // ========
     // = int =
     // =======
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -262,7 +262,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -274,7 +274,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -286,7 +286,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -302,7 +302,7 @@ public final class NumberUtils {
     // ==========
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -314,7 +314,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -326,7 +326,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -338,7 +338,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -354,7 +354,7 @@ public final class NumberUtils {
     // ========
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -366,7 +366,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -378,7 +378,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -390,7 +390,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -406,7 +406,7 @@ public final class NumberUtils {
     // =========
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -418,7 +418,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -430,7 +430,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -442,7 +442,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 计算百分比值 (可超出 100%)
+     * 计算百分比值 ( 可超出 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -507,9 +507,9 @@ public final class NumberUtils {
     private static final int ZERO = 0;
     // 十位数索引
     private static final int TEN_POS = 10;
-    // 中文(数字单位)
+    // 中文 ( 数字单位 )
     private static final String[] CHN_NUMBER_UNITS = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "百", "千", "万", "亿", "兆"};
-    // 中文大写(数字单位)
+    // 中文大写 ( 数字单位 )
     private static final String[] CHN_NUMBER_UPPER_UNITS = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖", "拾", "佰", "仟", "万", "亿", "兆"};
     // 数字单位对应数值
     private static final double[] NUMBER_UNITS = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1000, 10000, 100000000, 1000000000000d};
@@ -624,11 +624,11 @@ public final class NumberUtils {
             }
 
             double numberValue = number.doubleValue();
-            // 如果位数小于万位(属于千位), 则进行处理
+            // 如果位数小于万位 ( 属于千位 ), 则进行处理
             if (numberValue < 10000) {
                 // 判断是否需要补零
                 if (unitIndex >= (TEN_POS + 3)) {
-                    // 是否大于 1 (结尾零, 则不补充数字单位)
+                    // 是否大于 1 ( 结尾零, 则不补充数字单位 )
                     if (numberValue >= 1) {
                         if (beforeUnitIndex == 0) {
                             beforeUnitIndex = unitIndex;
@@ -653,7 +653,7 @@ public final class NumberUtils {
     }
 
     /**
-     * 万位以下(千位)级别转换
+     * 万位以下 ( 千位 ) 级别转换
      * @param number   数值
      * @param chnUnits 中文数字单位数组
      * @return 数字中文化字符串
@@ -690,7 +690,7 @@ public final class NumberUtils {
                 }
             }
         }
-        // 判断最后值, 是否大于 1 (结尾零, 则不补充数字单位)
+        // 判断最后值, 是否大于 1 ( 结尾零, 则不补充数字单位 )
         if (number >= 1) {
             builder.append(chnUnits[number]);
         }

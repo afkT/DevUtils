@@ -82,8 +82,8 @@ public final class FileUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
-     * @param dirPath 文件夹路径(无文件名字.后缀)
+     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
+     * @param dirPath 文件夹路径 ( 无文件名字. 后缀 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean createFolder(final String dirPath) {
@@ -91,8 +91,8 @@ public final class FileUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
-     * @param file 文件夹路径(无文件名字.后缀)
+     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
+     * @param file 文件夹路径 ( 无文件名字. 后缀 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean createFolder(final File file) {
@@ -290,18 +290,18 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件后缀名(无. 单独后缀)
+     * 获取文件后缀名 ( 无 "." 单独后缀 )
      * @param file 文件
-     * @return 文件后缀名(无. 单独后缀)
+     * @return 文件后缀名 ( 无 "." 单独后缀 )
      */
     public static String getFileSuffix(final File file) {
         return getFileSuffix(getAbsolutePath(file));
     }
 
     /**
-     * 获取文件后缀(无 "." 单独后缀)
+     * 获取文件后缀名 ( 无 "." 单独后缀 )
      * @param filePath 文件路径或文件名
-     * @return 文件后缀(无 " . " 单独后缀)
+     * @return 文件后缀名 ( 无 "." 单独后缀 )
      */
     public static String getFileSuffix(final String filePath) {
         // 获取最后的索引
@@ -318,27 +318,27 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件名(无后缀)
+     * 获取文件名 ( 无后缀 )
      * @param file 文件
-     * @return 文件名(无后缀)
+     * @return 文件名 ( 无后缀 )
      */
     public static String getFileNotSuffix(final File file) {
         return getFileNotSuffix(getName(file));
     }
 
     /**
-     * 获取文件名(无后缀)
+     * 获取文件名 ( 无后缀 )
      * @param filePath 文件路径
-     * @return 文件名(无后缀)
+     * @return 文件名 ( 无后缀 )
      */
     public static String getFileNotSuffixToPath(final String filePath) {
         return getFileNotSuffix(getName(filePath));
     }
 
     /**
-     * 获取文件名(无后缀)
+     * 获取文件名 ( 无后缀 )
      * @param fileName 文件名
-     * @return 文件名(无后缀)
+     * @return 文件名 ( 无后缀 )
      */
     public static String getFileNotSuffix(final String fileName) {
         if (fileName != null) {
@@ -555,7 +555,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件行数(比 readLine 要快很多)
+     * 获取文件行数 ( 比 readLine 要快很多 )
      * @param file 文件
      * @return 文件行数
      */
@@ -969,7 +969,7 @@ public final class FileUtils {
     /**
      * 保存文件
      * @param filePath 保存路径
-     * @param fileName 文件名.后缀
+     * @param fileName 文件名. 后缀
      * @param data     保存内容
      * @return {@code true} success, {@code false} fail
      */
@@ -997,7 +997,7 @@ public final class FileUtils {
     /**
      * 保存文件
      * @param filePath 保存路径
-     * @param fileName 文件名.后缀
+     * @param fileName 文件名. 后缀
      * @param content  保存内容
      * @return {@code true} success, {@code false} fail
      */
@@ -1023,7 +1023,7 @@ public final class FileUtils {
     /**
      * 保存文件
      * @param filePath 保存路径
-     * @param fileName 文件名.后缀
+     * @param fileName 文件名. 后缀
      * @param content  保存内容
      * @param coding   编码格式
      * @return {@code true} success, {@code false} fail
@@ -1055,7 +1055,7 @@ public final class FileUtils {
     }
 
     /**
-     * 追加文件(使用 FileWriter)
+     * 追加文件 ( 使用 FileWriter)
      * @param filePath 文件路径
      * @param content  追加内容
      */
@@ -1218,7 +1218,7 @@ public final class FileUtils {
 
     /**
      * 复制单个文件
-     * @param inputStream  文件流(被复制)
+     * @param inputStream  文件流 ( 被复制 )
      * @param destFilePath 目标文件地址
      * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
@@ -1418,7 +1418,7 @@ public final class FileUtils {
     // =
 
     /**
-     * 移动(剪切)文件
+     * 移动 ( 剪切 ) 文件
      * @param srcFilePath  待移动的文件地址
      * @param destFilePath 目标文件地址
      * @param overlay      如果目标文件存在, 是否覆盖
@@ -1434,7 +1434,7 @@ public final class FileUtils {
     }
 
     /**
-     * 移动(剪切)文件夹
+     * 移动 ( 剪切 ) 文件夹
      * @param srcFilePath  待移动的文件夹地址
      * @param destFilePath 目标文件夹地址
      * @param overlay      如果目标文件存在, 是否覆盖
@@ -1857,13 +1857,13 @@ public final class FileUtils {
     }
 
     /**
-     * detail: 覆盖/替换事件
+     * detail: 覆盖 / 替换事件
      * @author Ttt
      */
     public interface OnReplaceListener {
 
         /**
-         * 是否覆盖/替换文件
+         * 是否覆盖 / 替换文件
          * @return {@code true} yes, {@code false} no
          */
         boolean onReplace();

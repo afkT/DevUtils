@@ -65,7 +65,7 @@ public final class DevCommonUtils {
 
     /**
      * 获取操作时间
-     * @param operateTime 操作时间(毫秒)
+     * @param operateTime 操作时间 ( 毫秒 )
      * @return 操作时间
      */
     public static long getOperateTime(final long operateTime) {
@@ -74,8 +74,8 @@ public final class DevCommonUtils {
 
     /**
      * 获取操作时间
-     * @param operateTime 操作时间(毫秒)
-     * @param randomTime  随机时间范围(毫秒)
+     * @param operateTime 操作时间 ( 毫秒 )
+     * @param randomTime  随机时间范围 ( 毫秒 )
      * @return 操作时间
      */
     public static long getOperateTime(final long operateTime, final int randomTime) {
@@ -91,7 +91,7 @@ public final class DevCommonUtils {
 
     /**
      * 堵塞操作
-     * @param sleepTime 堵塞时间(毫秒)
+     * @param sleepTime 堵塞时间 ( 毫秒 )
      */
     public static void sleepOperate(final long sleepTime) {
         sleepOperate(sleepTime, -1);
@@ -99,8 +99,8 @@ public final class DevCommonUtils {
 
     /**
      * 堵塞操作
-     * @param sleepTime  堵塞时间(毫秒)
-     * @param randomTime 随机时间范围(毫秒)
+     * @param sleepTime  堵塞时间 ( 毫秒 )
+     * @param randomTime 随机时间范围 ( 毫秒 )
      */
     public static void sleepOperate(final long sleepTime, final int randomTime) {
         long time = getOperateTime(sleepTime, randomTime);
@@ -289,7 +289,7 @@ public final class DevCommonUtils {
     // =
 
     /**
-     * 裁剪超出的内容, 并且追加符号(如 ...)
+     * 裁剪超出的内容, 并且追加符号 ( 如 ...)
      * @param maxLength 允许最大的长度
      * @param str       待处理字符串
      * @param symbol    转换符号
@@ -349,9 +349,9 @@ public final class DevCommonUtils {
         return "";
     }
 
-    // =================
-    // = 替换/截取操作 =
-    // =================
+    // ==================
+    // = 替换、截取操作 =
+    // ==================
 
     /**
      * 裁剪字符串
@@ -399,7 +399,7 @@ public final class DevCommonUtils {
     // =
 
     /**
-     * 替换(删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
+     * 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
      * * 如 _____a_a_a_a________ 传入 _ 等于 ____a_a_a_a____
      * @param str    待处理字符串
      * @param suffix 替换符号字符串
@@ -513,7 +513,7 @@ public final class DevCommonUtils {
     // =
 
     /**
-     * (这个方法功能主要把字符符合标记的 头部和尾部都替换成 "")
+     * 这个方法功能主要把字符符合标记的 头部和尾部都替换成 ""
      * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a
      * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf)
      * @param str    待处理字符串
@@ -687,7 +687,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 获取两个数之间的随机数(不含最大随机数, 需要 + 1)
+     * 获取两个数之间的随机数 ( 不含最大随机数, 需要 + 1)
      * @param min 最小随机数
      * @param max 最大随机数
      * @return 随机介于 [min, max) 的区间值
@@ -1614,7 +1614,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断一堆值中, 是否存在符合该条件的(包含)
+     * 判断一堆值中, 是否存在符合该条件的 ( 包含 )
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -1624,7 +1624,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 判断一堆值中, 是否存在符合该条件的(包含)
+     * 判断一堆值中, 是否存在符合该条件的 ( 包含 )
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
      * @param strs     待校验的字符串数组
@@ -1928,7 +1928,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 检查字符串 - 多个值(删除前后空格对比判断)
+     * 检查字符串 - 多个值 ( 删除前后空格对比判断 )
      * @param defaultStr 默认字符串
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
@@ -1979,7 +1979,7 @@ public final class DevCommonUtils {
     // =
 
     /**
-     * 获取自动数量格式化后的字符串(可变参数)
+     * 获取自动数量格式化后的字符串 ( 可变参数 )
      * @param args 格式化参数
      * @return 格式化后的字符串
      */
@@ -2003,7 +2003,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 获取自动数量格式化后的字符串(可变参数)
+     * 获取自动数量格式化后的字符串 ( 可变参数 )
      * @param args 格式化参数
      * @return 格式化后的字符串
      */

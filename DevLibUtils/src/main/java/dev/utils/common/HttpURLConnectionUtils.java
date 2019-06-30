@@ -192,7 +192,7 @@ public final class HttpURLConnectionUtils {
 
         /**
          * 请求响应回调
-         * @param time 响应时间(毫秒)
+         * @param time 响应时间 ( 毫秒 )
          */
         void onResponse(long time);
 
@@ -226,7 +226,7 @@ public final class HttpURLConnectionUtils {
     }
 
     /**
-     * 请求网络时间(内部私有)
+     * 请求网络时间 ( 内部私有 )
      * @param urlStr       请求地址
      * @param timeCallBack 请求时间回调接口
      */

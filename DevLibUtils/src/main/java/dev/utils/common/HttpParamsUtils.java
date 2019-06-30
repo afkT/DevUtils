@@ -197,11 +197,11 @@ public final class HttpParamsUtils {
     // objStr[key] => sex%3D%E7%94%B7%26name%3DTtt
 
     /**
-     * 进行转换对象处理(请求发送对象)
+     * 进行转换对象处理 ( 请求发送对象 )
      * @param mapParams Map 请求参数
      * @param objStr    数组名
      * @param key       数组 key
-     * @param value     数组[key] 保存值
+     * @param value     数组 [key] 保存值
      */
     public static void toConvertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
         if (mapParams != null) {
@@ -216,11 +216,11 @@ public final class HttpParamsUtils {
     }
 
     /**
-     * 进行转换对象处理(请求发送对象)
+     * 进行转换对象处理 ( 请求发送对象 )
      * @param mapParams Map 请求参数
      * @param objStr    数组名
      * @param key       数组 key
-     * @param value     数组[key] 保存值
+     * @param value     数组 [key] 保存值
      */
     public static void toConvertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
         if (mapParams != null) {

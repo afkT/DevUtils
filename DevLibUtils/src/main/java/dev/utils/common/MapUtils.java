@@ -204,7 +204,7 @@ public final class MapUtils {
     }
 
     /**
-     * 通过 value 获取 key 集合 (返回等于 value 的 key 集合)
+     * 通过 value 获取 key 集合 ( 返回等于 value 的 key 集合 )
      * @param map   {@link Map}
      * @param value Value
      * @param <K>   key
@@ -894,8 +894,8 @@ public final class MapUtils {
     /**
      * 切换保存状态
      * <pre>
-     *     1.如果存在, 则删除
-     *     2.如果不存在, 则保存
+     *     1. 如果存在, 则删除
+     *     2. 如果不存在, 则保存
      * </pre>
      * @param map   {@link Map}
      * @param key   key
@@ -994,7 +994,7 @@ public final class MapUtils {
      * @param map   {@link Map}
      * @param key   key
      * @param value value, add to list
-     * @param isNew 当指定(key)的 value 为 null, 是否创建
+     * @param isNew 当指定 (key) 的 value 为 null, 是否创建
      * @param <K>   key
      * @param <T>   value type
      * @return {@code true} success, {@code false} fail
