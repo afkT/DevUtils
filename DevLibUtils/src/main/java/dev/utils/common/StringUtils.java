@@ -308,7 +308,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断一堆值中, 是否存在符合该条件的(包含)
+     * 判断一堆值中, 是否存在符合该条件的 ( 包含 )
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -318,7 +318,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断一堆值中, 是否存在符合该条件的(包含)
+     * 判断一堆值中, 是否存在符合该条件的 ( 包含 )
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
      * @param strs     待校验的字符串数组
@@ -622,7 +622,7 @@ public final class StringUtils {
     }
 
     /**
-     * 检查字符串 - 多个值(删除前后空格对比判断)
+     * 检查字符串 - 多个值 ( 删除前后空格对比判断 )
      * @param defaultStr 默认字符串
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
@@ -673,7 +673,7 @@ public final class StringUtils {
     // =
 
     /**
-     * 获取自动数量格式化后的字符串(可变参数)
+     * 获取自动数量格式化后的字符串 ( 可变参数 )
      * @param args 格式化参数
      * @return 格式化后的字符串
      */
@@ -697,7 +697,7 @@ public final class StringUtils {
     }
 
     /**
-     * 获取自动数量格式化后的字符串(可变参数)
+     * 获取自动数量格式化后的字符串 ( 可变参数 )
      * @param args 格式化参数
      * @return 格式化后的字符串
      */

@@ -283,7 +283,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 获取两个数之间的随机数(不含最大随机数, 需要 + 1)
+     * 获取两个数之间的随机数 ( 不含最大随机数, 需要 + 1)
      * @param min 最小随机数
      * @param max 最大随机数
      * @return 随机介于 [min, max) 的区间值
@@ -303,7 +303,7 @@ public final class RandomUtils {
     // java.util.Collections.shuffle(List<?> list);
 
     /**
-     * 洗牌算法(第一种), 随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
+     * 洗牌算法 ( 第一种 ), 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
      * @param objects 随机数据源
      * @return {@code true} success, {@code false} fail
      */
@@ -313,7 +313,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 洗牌算法(第一种), 随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
+     * 洗牌算法 ( 第一种 ), 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
      * @param objects      随机数据源
      * @param shuffleCount 洗牌次数
      * @return {@code true} success, {@code false} fail
@@ -333,7 +333,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 洗牌算法(第一种), 随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
+     * 洗牌算法 ( 第一种 ), 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
      * @param ints 随机数据源
      * @return 随机 int[]
      */
@@ -343,7 +343,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 洗牌算法(第一种), 随机置换指定的数组使用的默认源的随机性(随机数据源小于三个, 则无效)
+     * 洗牌算法 ( 第一种 ), 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
      * @param ints         随机数据源
      * @param shuffleCount 洗牌次数
      * @return 随机 int[]
@@ -367,7 +367,7 @@ public final class RandomUtils {
     // =
 
     /**
-     * 洗牌算法(第二种), 随机置换指定的数组使用的默认源的随机性
+     * 洗牌算法 ( 第二种 ), 随机置换指定的数组使用的默认源的随机性
      * @param objects 随机数据源
      * @return {@code true} success, {@code false} fail
      */
@@ -469,7 +469,7 @@ public final class RandomUtils {
      * 获取随机 int[]
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
-     * @param randomNumberBound  结束值(最大值范围)
+     * @param randomNumberBound  结束值 ( 最大值范围 )
      * @return 指定范围随机 int[]
      */
     public static int[] ints(final int streamSize, final int randomNumberOrigin, final int randomNumberBound) {
@@ -499,7 +499,7 @@ public final class RandomUtils {
      * 获取随机 long[]
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
-     * @param randomNumberBound  结束值(最大值范围)
+     * @param randomNumberBound  结束值 ( 最大值范围 )
      * @return 指定范围随机 long[]
      */
     public static long[] longs(final int streamSize, final long randomNumberOrigin, final long randomNumberBound) {
@@ -529,7 +529,7 @@ public final class RandomUtils {
      * 获取随机 double[]
      * @param streamSize         数组长度
      * @param randomNumberOrigin 开始值
-     * @param randomNumberBound  结束值(最大值范围)
+     * @param randomNumberBound  结束值 ( 最大值范围 )
      * @return 指定范围随机 double[]
      */
     public static double[] doubles(final int streamSize, final double randomNumberOrigin, final double randomNumberBound) {

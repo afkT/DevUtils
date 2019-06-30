@@ -23,7 +23,7 @@ public final class ScaleUtils {
      * @param targetWidth   需要的最终宽度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return int[] {宽度, 高度}
+     * @return int[] { 宽度, 高度 }
      */
     public static int[] calcScaleToWidth(final int targetWidth, final int currentWidth, final int currentHeight) {
         try {
@@ -47,7 +47,7 @@ public final class ScaleUtils {
      * @param targetHeight  需要的最终高度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return int[] {宽度, 高度}
+     * @return int[] { 宽度, 高度 }
      */
     public static int[] calcScaleToHeight(final int targetHeight, final int currentWidth, final int currentHeight) {
         try {
@@ -72,7 +72,7 @@ public final class ScaleUtils {
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return int[] {宽度, 高度}
+     * @return int[] { 宽度, 高度 }
      */
     public static int[] calcWidthHeightToScale(final int width, final int height, final float widthScale, final float heightScale) {
         try {
@@ -103,7 +103,7 @@ public final class ScaleUtils {
      * @param width       宽度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return int[] {宽度, 高度}
+     * @return int[] { 宽度, 高度 }
      */
     public static int[] calcWidthToScale(final int width, final float widthScale, final float heightScale) {
         try {
@@ -124,7 +124,7 @@ public final class ScaleUtils {
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return int[] {宽度, 高度}
+     * @return int[] { 宽度, 高度 }
      */
     public static int[] calcHeightToScale(final int height, final float widthScale, final float heightScale) {
         try {
@@ -149,7 +149,7 @@ public final class ScaleUtils {
      * @param targetWidth   需要的最终宽度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return double[] {宽度, 高度}
+     * @return double[] { 宽度, 高度 }
      */
     public static double[] calcScaleToWidth(final double targetWidth, final double currentWidth, final double currentHeight) {
         try {
@@ -173,7 +173,7 @@ public final class ScaleUtils {
      * @param targetHeight  需要的最终高度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return double[] {宽度, 高度}
+     * @return double[] { 宽度, 高度 }
      */
     public static double[] calcScaleToHeight(final double targetHeight, final double currentWidth, final double currentHeight) {
         try {
@@ -198,7 +198,7 @@ public final class ScaleUtils {
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return double[] {宽度, 高度}
+     * @return double[] { 宽度, 高度 }
      */
     public static double[] calcWidthHeightToScale(final double width, final double height, final double widthScale, final double heightScale) {
         try {
@@ -229,7 +229,7 @@ public final class ScaleUtils {
      * @param width       宽度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return double[] {宽度, 高度}
+     * @return double[] { 宽度, 高度 }
      */
     public static double[] calcWidthToScale(final double width, final double widthScale, final double heightScale) {
         try {
@@ -250,7 +250,7 @@ public final class ScaleUtils {
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return double[] {宽度, 高度}
+     * @return double[] { 宽度, 高度 }
      */
     public static double[] calcHeightToScale(final double height, final double widthScale, final double heightScale) {
         try {
@@ -275,7 +275,7 @@ public final class ScaleUtils {
      * @param targetWidth   需要的最终宽度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return long[] {宽度, 高度}
+     * @return long[] { 宽度, 高度 }
      */
     public static long[] calcScaleToWidth(final long targetWidth, final long currentWidth, final long currentHeight) {
         try {
@@ -299,7 +299,7 @@ public final class ScaleUtils {
      * @param targetHeight  需要的最终高度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return long[] {宽度, 高度}
+     * @return long[] { 宽度, 高度 }
      */
     public static long[] calcScaleToHeight(final long targetHeight, final long currentWidth, final long currentHeight) {
         try {
@@ -324,7 +324,7 @@ public final class ScaleUtils {
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return long[] {宽度, 高度}
+     * @return long[] { 宽度, 高度 }
      */
     public static long[] calcWidthHeightToScale(final long width, final long height, final long widthScale, final long heightScale) {
         try {
@@ -355,7 +355,7 @@ public final class ScaleUtils {
      * @param width       宽度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return long[] {宽度, 高度}
+     * @return long[] { 宽度, 高度 }
      */
     public static long[] calcWidthToScale(final long width, final long widthScale, final long heightScale) {
         try {
@@ -376,7 +376,7 @@ public final class ScaleUtils {
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return long[] {宽度, 高度}
+     * @return long[] { 宽度, 高度 }
      */
     public static long[] calcHeightToScale(final long height, final long widthScale, final long heightScale) {
         try {
@@ -401,7 +401,7 @@ public final class ScaleUtils {
      * @param targetWidth   需要的最终宽度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return float[] {宽度, 高度}
+     * @return float[] { 宽度, 高度 }
      */
     public static float[] calcScaleToWidth(final float targetWidth, final float currentWidth, final float currentHeight) {
         try {
@@ -425,7 +425,7 @@ public final class ScaleUtils {
      * @param targetHeight  需要的最终高度
      * @param currentWidth  当前宽度
      * @param currentHeight 当前高度
-     * @return float[] {宽度, 高度}
+     * @return float[] { 宽度, 高度 }
      */
     public static float[] calcScaleToHeight(final float targetHeight, final float currentWidth, final float currentHeight) {
         try {
@@ -450,7 +450,7 @@ public final class ScaleUtils {
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return float[] {宽度, 高度}
+     * @return float[] { 宽度, 高度 }
      */
     public static float[] calcWidthHeightToScale(final float width, final float height, final float widthScale, final float heightScale) {
         try {
@@ -481,7 +481,7 @@ public final class ScaleUtils {
      * @param width       宽度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return float[] {宽度, 高度}
+     * @return float[] { 宽度, 高度 }
      */
     public static float[] calcWidthToScale(final float width, final float widthScale, final float heightScale) {
         try {
@@ -502,7 +502,7 @@ public final class ScaleUtils {
      * @param height      高度
      * @param widthScale  宽度比例
      * @param heightScale 高度比例
-     * @return float[] {宽度, 高度}
+     * @return float[] { 宽度, 高度 }
      */
     public static float[] calcHeightToScale(final float height, final float widthScale, final float heightScale) {
         try {
