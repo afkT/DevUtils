@@ -261,7 +261,7 @@ public final class BigDecimalUtils {
     // =
 
     /**
-     * 提供(相对)精确的除法运算
+     * 提供 ( 相对 ) 精确的除法运算
      * 当发生除不尽的情况时, 精确到小数点以后 10 位, 以后的数字四舍五入
      * @param v1 被除数
      * @param v2 除数
@@ -272,7 +272,7 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 提供(相对)精确的除法运算
+     * 提供 ( 相对 ) 精确的除法运算
      * 当发生除不尽的情况时, 由 scale 参数指定精度, 以后的数字四舍五入
      * @param v1    被除数
      * @param v2    除数
@@ -295,7 +295,7 @@ public final class BigDecimalUtils {
     }
 
     /**
-     * 提供(相对)精确的除法运算
+     * 提供 ( 相对 ) 精确的除法运算
      * 当发生除不尽的情况时, 由 scale 参数指定精度, 以后的数字四舍五入
      * @param v1    被除数
      * @param v2    除数
@@ -474,7 +474,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割, 四舍五入金额
-     * @param value 金额/数值
+     * @param value 金额数值
      * @return 指定格式处理的字符串
      */
     public static String formatMoney(final BigDecimal value) {
@@ -483,7 +483,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割, 四舍五入金额
-     * @param value 金额/数值
+     * @param value 金额数值
      * @param scale 小数点后保留几位
      * @return 指定格式处理的字符串
      */
@@ -493,7 +493,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割, 四舍五入金额
-     * @param value 金额/数值
+     * @param value 金额数值
      * @param scale 小数点后保留几位
      * @param mode  处理模式
      * @return 指定格式处理的字符串
@@ -504,7 +504,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割, 四舍五入金额
-     * @param value       金额/数值
+     * @param value       金额数值
      * @param scale       小数点后保留几位
      * @param mode        处理模式
      * @param splitNumber 拆分位数
@@ -516,7 +516,7 @@ public final class BigDecimalUtils {
 
     /**
      * 金额分割, 四舍五入金额
-     * @param value       金额/数值
+     * @param value       金额数值
      * @param scale       小数点后保留几位
      * @param mode        处理模式
      * @param splitNumber 拆分位数
@@ -590,7 +590,7 @@ public final class BigDecimalUtils {
             String[] array = value.split("\\.");
             char[] tempA = new char[numOfIntPart];
             char[] tempB = new char[numOfDecimalPart];
-            // 整数部分满足精度要求(情况1)
+            // 整数部分满足精度要求 ( 情况 1)
             if (array[0].length() == numOfIntPart) {
                 // 直接获取整数部分长度字符
                 for (int i = 0; i < array[0].length(); i++) {
@@ -617,7 +617,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA) + "." + String.valueOf(tempB);
             }
-            // 整数部分位数大于精度要求(情况2)
+            // 整数部分位数大于精度要求 ( 情况 2)
             if (array[0].length() > numOfIntPart) {
                 // 先倒序获取指定位数的整数
                 for (int i = array[0].length() - 1, j = 0; (i >= array[0].length() - numOfIntPart) && (j < numOfIntPart); i--, j++) {
@@ -646,7 +646,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA1) + "." + String.valueOf(tempB);
             }
-            // 整数部分满足精度要求(情况3)
+            // 整数部分满足精度要求 ( 情况 3)
             if (array[0].length() == numOfIntPart) {
                 // 直接获取整数部分长度字符
                 for (int i = 0; i < array[0].length(); i++) {
@@ -673,7 +673,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA) + "." + String.valueOf(tempB);
             }
-            // 整数部分大于精度要求(情况4)
+            // 整数部分大于精度要求 ( 情况 4)
             if (array[0].length() > numOfIntPart) {
                 // 先倒序获取指定位数的整数
                 for (int i = array[0].length() - 1, j = 0; (i >= array[0].length() - numOfIntPart + 1) && (j < numOfIntPart); i--, j++) {
@@ -706,7 +706,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA1) + "." + String.valueOf(tempB);
             }
-            // 整数部分小于精度要求(情况5)
+            // 整数部分小于精度要求 ( 情况 5)
             if (array[0].length() < numOfIntPart) {
                 // 先倒序获取指定位数的整数
                 char[] tempA1 = new char[numOfIntPart];
@@ -745,7 +745,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA2) + "." + String.valueOf(tempB);
             }
-            // 情况(6)
+            // ( 情况 6)
             if ((array[0].length() < numOfIntPart) && (array[1].length() < numOfDecimalPart)) {
                 String data = value;
                 for (int i = 0; i < numOfIntPart - array[0].length(); i++) {

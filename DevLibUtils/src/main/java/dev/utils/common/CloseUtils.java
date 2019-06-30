@@ -5,7 +5,7 @@ import java.io.Closeable;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 关闭(IO流)工具类
+ * detail: 关闭 (IO 流 ) 工具类
  * @author Ttt
  */
 public final class CloseUtils {

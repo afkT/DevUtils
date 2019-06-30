@@ -6,7 +6,7 @@ import java.util.Locale;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 颜色工具类(包括常用的色值)
+ * detail: 颜色工具类 ( 包括常用的色值 )
  * @author Ttt
  */
 public final class ColorUtils {
@@ -90,7 +90,7 @@ public final class ColorUtils {
     /**
      * 获取十六进制透明度字符串
      * @param alpha 0-255
-     * @return 透明度(十六进制)值
+     * @return 透明度 ( 十六进制 ) 值
      */
     public static String toHexAlpha(final int alpha) {
         try {
@@ -106,7 +106,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 返回一个颜色中的透明度值(返回十进制)
+     * 返回一个颜色中的透明度值 ( 返回十进制 )
      * @param color argb color
      * @return alpha 值
      */
@@ -126,7 +126,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 返回一个颜色中红色的色值(返回十进制)
+     * 返回一个颜色中红色的色值 ( 返回十进制 )
      * @param color argb/rgb color
      * @return red 值
      */
@@ -146,7 +146,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 返回一个颜色中绿色的色值(返回十进制)
+     * 返回一个颜色中绿色的色值 ( 返回十进制 )
      * @param color argb/rgb color
      * @return green 百分比值
      */
@@ -166,7 +166,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 返回一个颜色中蓝色的色值(返回十进制)
+     * 返回一个颜色中蓝色的色值 ( 返回十进制 )
      * @param color argb/rgb color
      * @return blue 百分比值
      */
@@ -213,7 +213,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 根据对应的 alpha、red、green、blue 生成一个颜色值 (含透明度)
+     * 根据对应的 alpha、red、green、blue 生成一个颜色值 ( 含透明度 )
      * @param alpha 透明度 [0-255]
      * @param red   红色值 [0-255]
      * @param green 绿色值 [0-255]
@@ -225,7 +225,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 根据对应的 alpha、red、green、blue 生成一个颜色值 (含透明度)
+     * 根据对应的 alpha、red、green、blue 生成一个颜色值 ( 含透明度 )
      * @param alpha 透明度 [0-255]
      * @param red   红色值 [0-255]
      * @param green 绿色值 [0-255]
@@ -473,7 +473,7 @@ public final class ColorUtils {
     // =
 
     /**
-     * 颜色加深(单独修改 RGB 值, 不变动透明度)
+     * 颜色加深 ( 单独修改 RGB 值, 不变动透明度 )
      * @param colorStr  color String
      * @param darkValue 加深值
      * @return 加深后的颜色值
@@ -485,7 +485,7 @@ public final class ColorUtils {
     }
 
     /**
-     * 颜色加深(单独修改 RGB 值, 不变动透明度)
+     * 颜色加深 ( 单独修改 RGB 值, 不变动透明度 )
      * @param color     int color
      * @param darkValue 加深值
      * @return 加深后的颜色值
@@ -494,7 +494,7 @@ public final class ColorUtils {
         int red = red(color);
         int green = green(color);
         int blue = blue(color);
-        // 进行加深(累减)
+        // 进行加深 ( 累减 )
         red -= darkValue;
         green -= darkValue;
         blue -= darkValue;
@@ -508,10 +508,10 @@ public final class ColorUtils {
     }
 
     /**
-     * 颜色变浅, 变亮(单独修改 RGB 值, 不变动透明度)
+     * 颜色变浅, 变亮 ( 单独修改 RGB 值, 不变动透明度 )
      * @param colorStr   color String
-     * @param lightValue 变亮(变浅)值
-     * @return 变亮(变浅)后的颜色值
+     * @param lightValue 变亮 ( 变浅 ) 值
+     * @return 变亮 ( 变浅 ) 后的颜色值
      */
     public static int setLight(final String colorStr, final int lightValue) {
         int color = parseColor(colorStr);
@@ -520,16 +520,16 @@ public final class ColorUtils {
     }
 
     /**
-     * 颜色变浅, 变亮(单独修改 RGB 值, 不变动透明度)
+     * 颜色变浅, 变亮 ( 单独修改 RGB 值, 不变动透明度 )
      * @param color      int color
-     * @param lightValue 变亮(变浅)值
-     * @return 变亮(变浅)后的颜色值
+     * @param lightValue 变亮 ( 变浅 ) 值
+     * @return 变亮 ( 变浅 ) 后的颜色值
      */
     public static int setLight(final int color, final int lightValue) {
         int red = red(color);
         int green = green(color);
         int blue = blue(color);
-        // 进行变浅, 变亮(累加)
+        // 进行变浅, 变亮 ( 累加 )
         red += lightValue;
         green += lightValue;
         blue += lightValue;
@@ -645,7 +645,7 @@ public final class ColorUtils {
     // ===============
 
     /**
-     * 计算百分比值 (最大 100%)
+     * 计算百分比值 ( 最大 100%)
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值

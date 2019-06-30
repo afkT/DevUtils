@@ -9,12 +9,12 @@ import java.util.Arrays;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 转换工具类(Byte、Hex 等)
+ * detail: 转换工具类 (Byte、Hex 等 )
  * @author Ttt
  * <pre>
  *     byte 是字节数据类型、有符号型的、占 1 个字节、大小范围为 [ -128 - 127]
  *     当大于 127 时则开始缩进 127 = 127, 128 = -128, 129 = -127
- *     char 是字符数据类型、无符号型的、占 2 个字节(unicode 码)、大小范围为 [0 - 65535]
+ *     char 是字符数据类型、无符号型的、占 2 个字节 (unicode 码 )、大小范围为 [0 - 65535]
  *     <p></p>
  *     48 - 57 = 0-9
  *     58 - 64 = :;<=>?@
@@ -22,10 +22,10 @@ import dev.utils.JCLogUtils;
  *     91 - 96 = [\]^_`
  *     97 - 122 = a-z
  *     <p></p>
- *     Binary(二进制) toBinaryString
- *     Oct(八进制)
- *     Dec(十进制)
- *     Hex(十六进制) 以 0x 开始的数据表示十六进制
+ *     Binary( 二进制 ) toBinaryString
+ *     Oct( 八进制 )
+ *     Dec( 十进制 )
+ *     Hex( 十六进制 ) 以 0x 开始的数据表示十六进制
  *     <p></p>
  *     位移加密: bytesEncrypt(byte[] bytes)
  *     @see <a href="http://www.runoob.com/java/java-operators.html"/>
@@ -549,7 +549,7 @@ public final class ConvertUtils {
     // ========
 
     /**
-     * 字符串 获取 char (默认第一位)
+     * 字符串 获取 char ( 默认第一位 )
      * @param str          String
      * @param defaultValue 默认值
      * @return 第一位值, 如果获取失败则返回 defaultValue
@@ -1494,7 +1494,7 @@ public final class ConvertUtils {
     /**
      * 将十六进制字节数组解码
      * @param data 十六进制 byte[]
-     * @return 十六进制转(解)码后的数据
+     * @return 十六进制转 ( 解 ) 码后的数据
      */
     public static byte[] decodeHex(final byte[] data) {
         return decodeHex((length(data) == 0) ? null : bytesToChars(data));
@@ -1503,7 +1503,7 @@ public final class ConvertUtils {
     /**
      * 将十六进制字符串解码
      * @param str 十六进制 String
-     * @return 十六进制转(解)码后的数据
+     * @return 十六进制转 ( 解 ) 码后的数据
      */
     public static byte[] decodeHex(final String str) {
         return decodeHex(isEmpty(str) ? null : str.toCharArray());
@@ -1512,7 +1512,7 @@ public final class ConvertUtils {
     /**
      * 将十六进制字符数组解码
      * @param data 十六进制 char[]
-     * @return 十六进制转(解)码后的数据
+     * @return 十六进制转 ( 解 ) 码后的数据
      */
     public static byte[] decodeHex(final char[] data) {
         if (data == null) return null;
@@ -1537,7 +1537,7 @@ public final class ConvertUtils {
     /**
      * 十六进制 char 转换 int
      * @param hexChar 十六进制 char
-     * @return 十六进制转(解)码后的整数
+     * @return 十六进制转 ( 解 ) 码后的整数
      */
     public static int hexToInt(final char hexChar) {
         if (hexChar >= '0' && hexChar <= '9') {
@@ -1771,7 +1771,7 @@ public final class ConvertUtils {
 //    boolean equals = data.equals(data1);
 
     /**
-     * 按位求补 byte[] 位移编解码(共用同一个方法)
+     * 按位求补 byte[] 位移编解码 ( 共用同一个方法 )
      * @param data byte[]
      */
     public static void bytesBitwiseAND(final byte[] data) {

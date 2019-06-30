@@ -945,7 +945,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array   数组
      * @param value   值
-     * @param number  符合条件次数(从 0 开始, 0 = 1)
+     * @param number  符合条件次数 ( 从 0 开始, 0 = 1)
      * @param notNull 是否不允许值为 null
      * @param offset  偏移量
      * @param <T>     泛型
@@ -981,7 +981,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array   数组
      * @param value   值
-     * @param number  符合条件次数(从 0 开始, 0 = 1)
+     * @param number  符合条件次数 ( 从 0 开始, 0 = 1)
      * @param notNull 是否不允许值为 null
      * @param offset  偏移量
      * @param <T>     泛型
@@ -1030,7 +1030,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>    泛型
      * @return 对应索引的值
      */
@@ -1054,7 +1054,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值
      * @param array   数组
      * @param value   值
-     * @param number  符合条件次数(从 0 开始, 0 = 1)
+     * @param number  符合条件次数 ( 从 0 开始, 0 = 1)
      * @param notNull 是否不允许值为 null
      * @param <T>     泛型
      * @return 对应索引的值
@@ -1080,7 +1080,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值, 不允许值为 null
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>    泛型
      * @return 对应索引的值
      */
@@ -1105,7 +1105,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>    泛型
      * @return 对应的索引
      */
@@ -1129,7 +1129,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取索引
      * @param array   数组
      * @param value   值
-     * @param number  符合条件次数(从 0 开始, 0 = 1)
+     * @param number  符合条件次数 ( 从 0 开始, 0 = 1)
      * @param notNull 是否不允许值为 null
      * @param <T>     泛型
      * @return 对应的索引
@@ -1155,7 +1155,7 @@ public final class ArrayUtils {
      * 根据指定 value 获取索引, 不允许值为 null
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>    泛型
      * @return 对应的索引
      */
@@ -1169,7 +1169,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1200,7 +1200,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1233,7 +1233,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1264,7 +1264,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1297,7 +1297,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1328,7 +1328,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1361,7 +1361,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1392,7 +1392,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1425,7 +1425,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1456,7 +1456,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1489,7 +1489,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1520,7 +1520,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1553,7 +1553,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1584,7 +1584,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -1617,7 +1617,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应索引的值
      */
@@ -1648,7 +1648,7 @@ public final class ArrayUtils {
      * 根据指定值获取 value 所在位置 + 偏移量的索引
      * @param array  数组
      * @param value  值
-     * @param number 符合条件次数(从 0 开始, 0 = 1)
+     * @param number 符合条件次数 ( 从 0 开始, 0 = 1)
      * @param offset 偏移量
      * @return 对应的索引
      */
@@ -2025,9 +2025,9 @@ public final class ArrayUtils {
         return null;
     }
 
-    // ============
-    // = 转换List =
-    // ============
+    // =============
+    // = 转换 List =
+    // =============
 
     /**
      * 转换数组为集合

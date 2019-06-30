@@ -186,7 +186,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param notNull    是否不允许值为 null
      * @param offset     偏移量
      * @param <T>        泛型
@@ -224,7 +224,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的索引
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param notNull    是否不允许值为 null
      * @param offset     偏移量
      * @param <T>        泛型
@@ -275,7 +275,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取索引
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>        泛型
      * @return 对应的索引
      */
@@ -299,7 +299,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取索引
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param notNull    是否不允许值为 null
      * @param <T>        泛型
      * @return 对应的索引
@@ -325,7 +325,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取索引, 不允许值为 null
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>        泛型
      * @return 对应的索引
      */
@@ -350,7 +350,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的下一个值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>        泛型
      * @return 对应索引的值
      */
@@ -374,7 +374,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的下一个值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param notNull    是否不允许值为 null
      * @param <T>        泛型
      * @return 对应索引的值
@@ -400,7 +400,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的下一个值, 不允许值为 null
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>        泛型
      * @return 对应索引的值
      */
@@ -425,7 +425,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的上一个值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>        泛型
      * @return 对应索引的值
      */
@@ -449,7 +449,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的上一个值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param notNull    是否不允许值为 null
      * @param <T>        泛型
      * @return 对应索引的值
@@ -475,7 +475,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的上一个值, 不允许值为 null
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数(从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
      * @param <T>        泛型
      * @return 对应索引的值
      */
@@ -543,7 +543,7 @@ public final class CollectionUtils {
     /**
      * 添加集合数据
      * @param collection {@link Collection}
-     * @param values     准备添加的值(集合)
+     * @param values     准备添加的值 ( 集合 )
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
@@ -554,7 +554,7 @@ public final class CollectionUtils {
     /**
      * 添加集合数据
      * @param collection {@link Collection}
-     * @param values     准备添加的值(集合)
+     * @param values     准备添加的值 ( 集合 )
      * @param notNull    是否不允许添加 null 值
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
@@ -586,7 +586,7 @@ public final class CollectionUtils {
     /**
      * 添加集合数据 - values 内的值不允许为 null
      * @param collection {@link Collection}
-     * @param values     准备添加的值(集合)
+     * @param values     准备添加的值 ( 集合 )
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
@@ -594,9 +594,9 @@ public final class CollectionUtils {
         return addAll(collection, values, true);
     }
 
-    // ===============================
-    // = 添加数据 - 到指定索引(List) =
-    // ===============================
+    // ================================
+    // = 添加数据 - 到指定索引 (List) =
+    // ================================
 
     /**
      * 添加一条数据到指定索引后
@@ -654,7 +654,7 @@ public final class CollectionUtils {
      * 添加集合数据到指定索引后
      * @param index  索引
      * @param list   集合
-     * @param values 准备添加的值(集合)
+     * @param values 准备添加的值 ( 集合 )
      * @param <T>    泛型
      */
     public static <T> void addAll(final int index, final List<T> list, final List<T> values) {
@@ -665,7 +665,7 @@ public final class CollectionUtils {
      * 添加集合数据到指定索引后
      * @param index   索引
      * @param list    集合
-     * @param values  准备添加的值(集合)
+     * @param values  准备添加的值 ( 集合 )
      * @param notNull 是否不允许添加 null 值
      * @param <T>     泛型
      */
@@ -698,7 +698,7 @@ public final class CollectionUtils {
      * 添加集合数据到指定索引后 - values 内的值不允许为 null
      * @param index  索引
      * @param list   集合
-     * @param values 准备添加的值(集合)
+     * @param values 准备添加的值 ( 集合 )
      * @param <T>    泛型
      */
     public static <T> void addAllNotNull(final int index, final List<T> list, final List<T> values) {
@@ -804,7 +804,7 @@ public final class CollectionUtils {
                 Iterator<T> iterator = collection.iterator();
                 while (iterator.hasNext()) {
                     T t = iterator.next();
-                    // 判断值是否不一样(保留不一样的)
+                    // 判断值是否不一样 ( 保留不一样的 )
                     if (!equals(t, value)) {
                         iterator.remove();
                     }
@@ -1058,11 +1058,11 @@ public final class CollectionUtils {
     }
 
     /**
-     * 两个集合差集(扣除)处理
+     * 两个集合差集 ( 扣除 ) 处理
      * @param collection1 第一个集合
      * @param collection2 第二个集合
      * @param <T>         泛型
-     * @return 差集(扣除)集合
+     * @return 差集 ( 扣除 ) 集合
      */
     public static <T> Collection<T> subtract(final Collection<T> collection1, final Collection<T> collection2) {
         try {
