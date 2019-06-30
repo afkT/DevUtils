@@ -13,7 +13,7 @@ public final class DevThreadManager {
     private DevThreadManager() {
     }
 
-    // 默认通用线程池(通过 CPU 自动处理)
+    // 默认通用线程池 ( 通过 CPU 自动处理 )
     private static final DevThreadPool sDevThreadPool = new DevThreadPool(DevThreadPool.DevThreadPoolType.CALC_CPU);
     // 线程池数据
     private static final LinkedHashMap<String, DevThreadPool> sThreadMaps = new LinkedHashMap<>();

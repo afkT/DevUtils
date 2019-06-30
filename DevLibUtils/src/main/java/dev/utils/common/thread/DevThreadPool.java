@@ -14,17 +14,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * detail: 线程池(构建类)
+ * detail: 线程池 ( 构建类 )
  * @author Ttt
  * <pre>
  *     @see <a href="https://www.jianshu.com/p/4d4634c92253"/>
  *     <p></p>
- *     创建线程池(参数)
- *     1.线程池里面管理多少个线程
- *     2.如果排队满了, 额外的开的线程数
- *     3.如果线程池没有要执行的任务存活多久
- *     4.时间的单位
- *     5.如果 线程池里管理的线程都已经用了, 剩下的任务临时存到 LinkedBlockingQueue 对象中排队
+ *     创建线程池 ( 参数 )
+ *     1. 线程池里面管理多少个线程
+ *     2. 如果排队满了, 额外的开的线程数
+ *     3. 如果线程池没有要执行的任务存活多久
+ *     4. 时间的单位
+ *     5. 如果 线程池里管理的线程都已经用了, 剩下的任务临时存到 LinkedBlockingQueue 对象中排队
  *     public ThreadPoolExecutor(int corePoolSize,
  *                              int maximumPoolSize,
  *                              long keepAliveTime,
@@ -114,7 +114,7 @@ public final class DevThreadPool {
         // 如果当前线程意外终止, 会创建一个新线程继续执行任务, 这和我们直接创建线程不同, 也和 newFixedThreadPool(1) 不同
         SINGLE, // newSingleThreadExecutor 获取的是一个单个的线程, 这个线程会保证你的任务执行完成
 
-        AUTO_CPU, // 根据 CPU 来创建(自定义创建)
+        AUTO_CPU, // 根据 CPU 来创建 ( 自定义创建 )
 
         CALC_CPU, // 手动计算 CPU 来创建
 
@@ -123,7 +123,7 @@ public final class DevThreadPool {
 //        1 newCachedThreadPool: 创建一个可缓存线程池, 如果线程池长度超过处理需要, 可灵活回收空闲线程, 若无可回收, 则新建线程
 //        2 newFixedThreadPool: 创建一个固定数目的、可重用的线程池
 //        3 newScheduledThreadPool: 创建一个定长线程池, 支持定时及周期性任务执行
-//        4 newSingleThreadExecutor: 创建一个单线程化的线程池, 它只会用唯一的工作线程来执行任务, 保证所有任务按照指定顺序(FIFO、LIFO) 优先级执行
+//        4 newSingleThreadExecutor: 创建一个单线程化的线程池, 它只会用唯一的工作线程来执行任务, 保证所有任务按照指定顺序 (FIFO、LIFO) 优先级执行
 //        5 newSingleThreadScheduledExcutor: 创建一个单例线程池, 定期或延时执行任务
 //        6 newWorkStealingPool: 创建持有足够线程的线程池来支持给定的并行级别, 并通过使用多个队列, 减少竞争
 //                               它需要穿一个并行级别的参数, 如果不传, 则被设定为默认的 CPU 数量
@@ -219,7 +219,7 @@ public final class DevThreadPool {
     }
 
     /**
-     * shutdownNow 会尝试中断正在执行的任务(其主要是中断一些指定方法如 sleep 方法), 并且停止执行等待队列中提交的任务
+     * shutdownNow 会尝试中断正在执行的任务 ( 其主要是中断一些指定方法如 sleep 方法 ), 并且停止执行等待队列中提交的任务
      * 试图停止所有正在执行的活动任务, 暂停处理正在等待的任务, 并返回等待执行的任务列表
      * 无法保证能够停止正在处理的活动执行任务, 但是会尽力尝试
      * @return {@link List<Runnable>}
@@ -331,7 +331,7 @@ public final class DevThreadPool {
 
     /**
      * 执行给定的任务
-     * 当所有任务完成或超时期满时(无论哪个首先发生), 返回保持任务状态和结果的 Future 列表
+     * 当所有任务完成或超时期满时 ( 无论哪个首先发生 ), 返回保持任务状态和结果的 Future 列表
      * 返回列表的所有元素的 {@link Future#isDone} 为 {@code true}
      * 一旦返回后, 即取消尚未完成的任务
      * 注意, 可以正常地或通过抛出异常来终止已完成任务
@@ -354,7 +354,7 @@ public final class DevThreadPool {
 
     /**
      * 执行给定的任务
-     * 如果某个任务已成功完成(也就是未抛出异常), 则返回其结果
+     * 如果某个任务已成功完成 ( 也就是未抛出异常 ), 则返回其结果
      * 一旦正常或异常返回后, 则取消尚未完成的任务
      * 如果此操作正在进行时修改了给定的 collection, 则此方法的结果是不确定的
      * @param tasks 任务集合
@@ -372,7 +372,7 @@ public final class DevThreadPool {
 
     /**
      * 执行给定的任务
-     * 如果在给定的超时期满前某个任务已成功完成(也就是未抛出异常), 则返回其结果
+     * 如果在给定的超时期满前某个任务已成功完成 ( 也就是未抛出异常 ), 则返回其结果
      * 一旦正常或异常返回后, 则取消尚未完成的任务
      * 如果此操作正在进行时修改了给定的 collection, 则此方法的结果是不确定的
      * @param tasks   任务集合

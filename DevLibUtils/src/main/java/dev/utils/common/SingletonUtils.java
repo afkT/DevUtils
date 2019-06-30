@@ -2,8 +2,8 @@ package dev.utils.common;
 
 /**
  * detail: 单例工具类
- * @author Ttt
  * @param <T> 泛型
+ * @author Ttt
  */
 public abstract class SingletonUtils<T> {
 

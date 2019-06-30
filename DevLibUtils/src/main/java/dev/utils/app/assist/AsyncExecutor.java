@@ -146,8 +146,8 @@ public class AsyncExecutor {
 
     /**
      * detail: 任务
-     * @author Ttt
      * @param <T> 泛型
+     * @author Ttt
      */
     public abstract class Worker<T> {
 
