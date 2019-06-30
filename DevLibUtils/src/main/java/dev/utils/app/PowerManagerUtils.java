@@ -55,7 +55,7 @@ public final class PowerManagerUtils {
     }
 
     /**
-     * 屏幕是否打开(亮屏)
+     * 屏幕是否打开 ( 亮屏 )
      * @return {@code true} yes, {@code false} no
      */
     public boolean isScreenOn() {
@@ -73,7 +73,7 @@ public final class PowerManagerUtils {
     }
 
     /**
-     * 唤醒/点亮 屏幕
+     * 唤醒 / 点亮 屏幕
      */
     public void turnScreenOn() {
         if (mWakeLock != null && !mWakeLock.isHeld()) {

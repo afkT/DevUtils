@@ -376,7 +376,7 @@ public final class ResourceUtils {
     /**
      * 获取 Assets 资源文件数据
      * <pre>
-     *     直接传入文件名、文件夹/文件名 等
+     *     直接传入文件名、文件夹 / 文件名 等
      *     根目录 a.txt
      *     子目录 /www/a.html
      * </pre>
@@ -465,7 +465,7 @@ public final class ResourceUtils {
     // =
 
     /**
-     * 获取 Assets 资源文件数据(返回 List<String> 一行的全部内容属于一个索引)
+     * 获取 Assets 资源文件数据 ( 返回 List<String> 一行的全部内容属于一个索引 )
      * @param fileName 文件名
      * @return {@link List<String>}
      */
@@ -502,7 +502,7 @@ public final class ResourceUtils {
     }
 
     /**
-     * 获取 Raw 资源文件数据(返回 List<String> 一行的全部内容属于一个索引)
+     * 获取 Raw 资源文件数据 ( 返回 List<String> 一行的全部内容属于一个索引 )
      * @param resId 资源 id
      * @return {@link List<String>}
      */

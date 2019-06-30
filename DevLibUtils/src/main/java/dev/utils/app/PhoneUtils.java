@@ -182,7 +182,7 @@ public final class PhoneUtils {
 
     /**
      * 判断 SIM 卡运营商是否国内
-     * @return 状态码 1 属于国内(中国), 2 属于国外, 3 属于无 SIM 卡
+     * @return 状态码 1 属于国内 ( 中国 ), 2 属于国外, 3 属于无 SIM 卡
      */
     public static int checkSimCountry() {
         try {
@@ -244,7 +244,7 @@ public final class PhoneUtils {
     /**
      * 获取 IMEI 码
      * <pre>
-     *     IMEI 是 International Mobile Equipment Identity (国际移动设备标识) 的简称
+     *     IMEI 是 International Mobile Equipment Identity ( 国际移动设备标识 ) 的简称
      *     IMEI 由 15 位数字组成的「电子串号」它与每台手机一一对应, 而且该码是全世界唯一的
      *     其组成为:
      *     1. 前 6 位数 (TAC) 是「型号核准号码」一般代表机型
@@ -284,7 +284,7 @@ public final class PhoneUtils {
      *     MCC: Mobile Country Code, 移动国家码, 共 3 位, 中国为 460
      *     MNC: Mobile NetworkCode, 移动网络码, 共 2 位
      *     在中国, 移动的代码为 00 和 02, 联通的代码为 01, 电信的代码为 03
-     *     合起来就是 (Android 手机中 APN 配置文件中的代码)
+     *     合起来就是 Android 手机中 APN 配置文件中的代码
      *     中国移动: 46000 46002 46007
      *     中国联通: 46001 46006
      *     中国电信: 46003 46005 46011
@@ -303,7 +303,7 @@ public final class PhoneUtils {
     }
 
     /**
-     * 获取 SIM 卡运营商名称 (如: 中国移动、如中国联通、中国电信)
+     * 获取 SIM 卡运营商名称 ( 如: 中国移动、如中国联通、中国电信 )
      * @return SIM 卡运营商名称
      */
     public static String getSimOperatorName() {
@@ -646,26 +646,26 @@ public final class PhoneUtils {
         // 游标
         Cursor cursor = null;
         try {
-            // 1.获取内容解析者
+            // 1. 获取内容解析者
             ContentResolver resolver = DevUtils.getContext().getContentResolver();
-            // 2.获取内容提供者的地址 com.android.contacts
+            // 2. 获取内容提供者的地址 com.android.contacts
             // raw_contacts 表的地址 raw_contacts
             // view_data 表的地址 data
-            // 3.生成查询地址
+            // 3. 生成查询地址
             Uri raw_uri = Uri.parse("content://com.android.contacts/raw_contacts");
             Uri date_uri = Uri.parse("content://com.android.contacts/data");
-            // 4.查询操作, 先查询 raw_contacts, 查询 contact_id
+            // 4. 查询操作, 先查询 raw_contacts, 查询 contact_id
             // projection 查询的字段
             cursor = resolver.query(raw_uri, new String[]{"contact_id"}, null, null, null);
-            // 5.解析 cursor
+            // 5. 解析 cursor
             if (cursor != null) {
                 while (cursor.moveToNext()) {
-                    // 6.获取查询的数据
+                    // 6. 获取查询的数据
                     String contact_id = cursor.getString(0);
                     // cursor.getString(cursor.getColumnIndex("contact_id"));
                     // 判断 contact_id 是否为空
                     if (!TextUtils.isEmpty(contact_id)) {
-                        // 7.根据 contact_id 查询 view_data 表中的数据
+                        // 7. 根据 contact_id 查询 view_data 表中的数据
                         // selection 查询条件
                         // selectionArgs 查询条件的参数
                         // sortOrder 排序
@@ -673,13 +673,13 @@ public final class PhoneUtils {
                         Cursor c = resolver.query(date_uri, new String[]{"data1", "mimetype"},
                                 "raw_contact_id=?", new String[]{contact_id}, null);
                         Map<String, String> map = new HashMap<>();
-                        // 8.解析 c
+                        // 8. 解析 c
                         if (c != null) {
                             while (c.moveToNext()) {
-                                // 9.获取数据
+                                // 9. 获取数据
                                 String data1 = c.getString(0);
                                 String mimetype = c.getString(1);
-                                // 10.根据类型去判断获取的 data1 数据并保存
+                                // 10. 根据类型去判断获取的 data1 数据并保存
                                 if (mimetype.equals("vnd.android.cursor.item/phone_v2")) {
                                     map.put("phone", data1); // 电话
                                 } else if (mimetype.equals("vnd.android.cursor.item/name")) {
@@ -687,9 +687,9 @@ public final class PhoneUtils {
                                 }
                             }
                         }
-                        // 11.添加到集合中数据
+                        // 11. 添加到集合中数据
                         list.add(map);
-                        // 12.关闭 cursor
+                        // 12. 关闭 cursor
                         if (c != null) {
                             c.close();
                         }
@@ -744,7 +744,7 @@ public final class PhoneUtils {
         // 游标
         Cursor cursor = null;
         try {
-            // 1.获取短信
+            // 1. 获取短信
             // 1.1 获取内容解析者
             ContentResolver resolver = DevUtils.getContext().getContentResolver();
             // 1.2 获取内容提供者地址 sms, sms 表的地址 null 不写
@@ -758,7 +758,7 @@ public final class PhoneUtils {
             cursor = resolver.query(uri, new String[]{"address", "date", "type", "body"}, null, null, null);
             // 设置最大进度
             int count = cursor.getCount(); // 获取短信的个数
-            // 2.备份短信
+            // 2. 备份短信
             // 2.1 获取 xml 序列器
             XmlSerializer xmlSerializer = Xml.newSerializer();
             // 2.2 设置 xml 文件保存的路径

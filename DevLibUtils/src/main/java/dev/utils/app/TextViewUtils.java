@@ -32,7 +32,7 @@ import dev.utils.LogPrintUtils;
  *     <p></p>
  *     设置文字水平间距: {@link TextViewUtils#setLetterSpacing(View, float)}
  *     android:letterSpacing
- *     设置文字行间距(行高): {@link TextViewUtils#setLineSpacing(View, float)}、{@link TextViewUtils#setLineSpacingAndMultiplier(View, float, float)}
+ *     设置文字行间距 ( 行高 ): {@link TextViewUtils#setLineSpacing(View, float)}、{@link TextViewUtils#setLineSpacingAndMultiplier(View, float, float)}
  *     android:lineSpacingExtra
  *     android:lineSpacingMultiplier
  *     <p></p>
@@ -664,7 +664,7 @@ public final class TextViewUtils {
      * 获取 TextView 字体大小 - px
      * @param textView {@link TextView}
      * @param <T>      范型
-     * @return 字体大小(px)
+     * @return 字体大小 (px)
      */
     public static <T extends TextView> float getTextSize(final T textView) {
         if (textView != null) {
@@ -676,7 +676,7 @@ public final class TextViewUtils {
     /**
      * 获取 TextView 字体大小 - px
      * @param view {@link TextView}
-     * @return 字体大小(px)
+     * @return 字体大小 (px)
      */
     public static float getTextSize(final View view) {
         return getTextSize(getTextView(view));
@@ -870,9 +870,9 @@ public final class TextViewUtils {
     // =
 
     /**
-     * 设置文字行间距(行高)
+     * 设置文字行间距 ( 行高 )
      * @param textView    {@link TextView}
-     * @param lineSpacing 文字行间距(行高), android:lineSpacingExtra
+     * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @param <T>         范型
      */
     public static <T extends TextView> void setLineSpacing(final T textView, final float lineSpacing) {
@@ -880,9 +880,9 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置文字行间距(行高)、行间距倍数
+     * 设置文字行间距 ( 行高 )、行间距倍数
      * @param textView    {@link TextView}
-     * @param lineSpacing 文字行间距(行高), android:lineSpacingExtra
+     * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @param multiplier  行间距倍数, android:lineSpacingMultiplier
      * @param <T>         范型
      */
@@ -895,18 +895,18 @@ public final class TextViewUtils {
     // =
 
     /**
-     * 设置文字行间距(行高)
+     * 设置文字行间距 ( 行高 )
      * @param view        {@link TextView}
-     * @param lineSpacing 文字行间距(行高), android:lineSpacingExtra
+     * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      */
     public static void setLineSpacing(final View view, final float lineSpacing) {
         setLineSpacingAndMultiplier(getTextView(view), lineSpacing, 1.0f);
     }
 
     /**
-     * 设置文字行间距(行高)、行间距倍数
+     * 设置文字行间距 ( 行高 )、行间距倍数
      * @param view        {@link TextView}
-     * @param lineSpacing 文字行间距(行高), android:lineSpacingExtra
+     * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @param multiplier  行间距倍数, android:lineSpacingMultiplier
      */
     public static void setLineSpacingAndMultiplier(final View view, final float lineSpacing, final float multiplier) {
@@ -1022,7 +1022,7 @@ public final class TextViewUtils {
         if (paint != null) {
             // 获取字体高度
             Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
-            // 计算字体偏差(顶部偏差)
+            // 计算字体偏差 ( 顶部偏差 )
             int baseLine = (int) Math.ceil(Math.abs(fontMetrics.top) - Math.abs(fontMetrics.ascent));
             // 返回顶部偏差
             return baseLine;

@@ -24,7 +24,7 @@ public final class VibrationUtils {
      * <pre>
      *     <uses-permission android:name="android.permission.VIBRATE" />
      * </pre>
-     * @param milliseconds 震动时长(毫秒)
+     * @param milliseconds 震动时长 ( 毫秒 )
      */
     @RequiresPermission(android.Manifest.permission.VIBRATE)
     public static void vibrate(final long milliseconds) {

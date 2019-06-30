@@ -57,7 +57,7 @@ public final class ShellUtils {
      * 执行 shell 命令
      * @param command         待执行命令
      * @param isRoot          是否以 root 权限执行
-     * @param isNeedResultMsg 是否需要返回结果消息(error、success message)
+     * @param isNeedResultMsg 是否需要返回结果消息 (error、success message)
      * @return {@link CommandResult}
      */
     public static CommandResult execCmd(final String command, final boolean isRoot, final boolean isNeedResultMsg) {
@@ -68,7 +68,7 @@ public final class ShellUtils {
      * 执行 shell 命令
      * @param commands        多条待执行命令
      * @param isRoot          是否以 root 权限执行
-     * @param isNeedResultMsg 是否需要结果消息(error、success message)
+     * @param isNeedResultMsg 是否需要结果消息 (error、success message)
      * @return {@link CommandResult}
      */
     public static CommandResult execCmd(final List<String> commands, final boolean isRoot, final boolean isNeedResultMsg) {
@@ -79,7 +79,7 @@ public final class ShellUtils {
      * 执行 shell 命令
      * @param commands        多条待执行命令
      * @param isRoot          是否以 root 权限执行
-     * @param isNeedResultMsg 是否需要结果消息(error、success message)
+     * @param isNeedResultMsg 是否需要结果消息 (error、success message)
      * @return {@link CommandResult}
      */
     public static CommandResult execCmd(final String[] commands, final boolean isRoot, final boolean isNeedResultMsg) {
@@ -195,7 +195,7 @@ public final class ShellUtils {
         }
 
         /**
-         * 判断是否执行成功(判断 errorMsg)
+         * 判断是否执行成功 ( 判断 errorMsg)
          * @return {@code true} yes, {@code false} no
          */
         public boolean isSuccess2() {
@@ -203,7 +203,7 @@ public final class ShellUtils {
         }
 
         /**
-         * 判断是否执行成功(判断 successMsg)
+         * 判断是否执行成功 ( 判断 successMsg)
          * @return {@code true} yes, {@code false} no
          */
         public boolean isSuccess3() {
@@ -211,7 +211,7 @@ public final class ShellUtils {
         }
 
         /**
-         * 判断是否执行成功(判断 successMsg), 并且 successMsg 是否包含某个字符串
+         * 判断是否执行成功 ( 判断 successMsg), 并且 successMsg 是否包含某个字符串
          * @param contains 待校验包含字符串
          * @return {@code true} yes, {@code false} no
          */

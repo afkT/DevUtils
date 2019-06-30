@@ -159,7 +159,7 @@ public final class SnackbarUtils {
     /**
      * 获取 Snackbar Action Button(snackbar_action)
      * <pre>
-     *     右边按钮(如: 撤销)
+     *     右边按钮 ( 如: 撤销 )
      * </pre>
      * @return Snackbar {@link Button}
      */
@@ -172,7 +172,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
+     * 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
      * @param layoutId R.layout.id
      * @param index    添加索引
      * @return {@link SnackbarUtils}
@@ -192,7 +192,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
+     * 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
      * @param view  {@link View}
      * @param index 添加索引
      * @return {@link SnackbarUtils}
@@ -330,7 +330,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 显示 Indefinite Snackbar (无限时, 一直显示)
+     * 显示 Indefinite Snackbar ( 无限时, 一直显示 )
      * @param resId R.string.id
      * @param objs  格式化参数
      */
@@ -359,7 +359,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 显示 Indefinite Snackbar (无限时, 一直显示)
+     * 显示 Indefinite Snackbar ( 无限时, 一直显示 )
      * @param text 显示文本
      * @param objs 格式化参数
      */
@@ -1297,13 +1297,13 @@ public final class SnackbarUtils {
     private int[] mViewLocations = null;
     // View 高度
     private int mViewHeight = 0;
-    // 指定 View 坐标, 显示的重心方向 (只有 TOP、BOTTOM)
+    // 指定 View 坐标, 显示的重心方向 ( 只有 TOP、BOTTOM)
     private int mViewGravity = -1;
-    // 追加向上边距 (如: 状态栏高度)
+    // 追加向上边距 ( 如: 状态栏高度 )
     private int mAppendTopMargin = 0;
     // View 阴影
     private int mShadowMargin = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ? 2 : 0;
-    // 判断是否自动计算 (如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示)
+    // 判断是否自动计算 ( 如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示 )
     private boolean mAutoCalc = true;
 
     /**
@@ -1325,7 +1325,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 判断是否自动计算边距 (如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示)
+     * 判断是否自动计算边距 ( 如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示 )
      * @return {@code true} yes, {@code false} no
      */
     public boolean isAutoCalc() {
@@ -1333,7 +1333,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 设置是否自动计算边距 (如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示)
+     * 设置是否自动计算边距 ( 如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示 )
      * @param autoCalc 是否自动计算边距
      * @return {@link SnackbarUtils}
      */
@@ -1356,7 +1356,7 @@ public final class SnackbarUtils {
     /**
      * 设置 Snackbar 显示在指定 View 的上方
      * @param targetView      目标 View
-     * @param appendTopMargin 追加边距(如: 状态栏高度) {@link ScreenUtils#getStatusBarHeight}
+     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link ScreenUtils#getStatusBarHeight}
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils above(final View targetView, final int appendTopMargin) {
@@ -1376,7 +1376,7 @@ public final class SnackbarUtils {
     /**
      * 设置 Snackbar 显示在指定 View 的下方
      * @param targetView      目标 View
-     * @param appendTopMargin 追加边距(如: 状态栏高度) {@link ScreenUtils#getStatusBarHeight}
+     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link ScreenUtils#getStatusBarHeight}
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils bellow(final View targetView, final int appendTopMargin) {
@@ -1405,7 +1405,7 @@ public final class SnackbarUtils {
             // = 特殊处理 =
             // 属于显示在指定 View 坐标, 对应重心方向
             if (mViewLocations != null && mViewGravity != -1 && mViewHeight > 0) {
-                // View (坐标)边距
+                // View ( 坐标 ) 边距
                 int[] margin = new int[4];
                 // 判断 Style 是否为 null
                 if (mStyleBuilder != null) {
@@ -1423,14 +1423,14 @@ public final class SnackbarUtils {
                 int screenHeight = getScreenHeight();
                 // 防止等于 0
                 if (screenHeight != 0) {
-                    // 获取测量高度(不一定准确)
+                    // 获取测量高度 ( 不一定准确 )
                     int measuredHeight = getMeasuredHeight(rootView);
                     // 判断方向, 在指定坐标上方, 判断是否够空间
                     if (mViewGravity == Gravity.TOP) {
                         // 判断是否超出可显示高度
                         if (mViewTop - mShadowMargin - mAppendTopMargin >= measuredHeight) {
                             // 思路: 没有超出高度, 则正常显示在指定 View 上方
-                            // 改为布局居下(相反方向), 然后设置 bottomMargin 为 屏幕高度 - view mWindowTop + 阴影大小
+                            // 改为布局居下 ( 相反方向 ), 然后设置 bottomMargin 为 屏幕高度 - view mWindowTop + 阴影大小
                             // 这样的思路, 主要是只用知道 view 的 Y 轴位置, 然后用屏幕高度减去 Y 得到的就是需要向下的边距, 不需要计算 Snackbar View 高度
                             try {
                                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(rootView.getLayoutParams().width, rootView.getLayoutParams().height);
@@ -1447,8 +1447,8 @@ public final class SnackbarUtils {
                         } else { // 超出可视范围
                             // 判断是否自动计算处理
                             if (mAutoCalc) {
-                                // 思路如上: 超出高度后, 则直接设置居上, 计算边距则 view mWindowTop - 追加边距(状态栏高度) + view height, 设置到 View 的下方
-                                // 计算处理主要是, 只需要知道 view Y 轴位置 + view height - 追加边距(状态栏高度) = 需要的边距
+                                // 思路如上: 超出高度后, 则直接设置居上, 计算边距则 view mWindowTop - 追加边距 ( 状态栏高度 ) + view height, 设置到 View 的下方
+                                // 计算处理主要是, 只需要知道 view Y 轴位置 + view height - 追加边距 ( 状态栏高度 ) = 需要的边距
                                 // 为什么需要减 状态栏高度, 是因为 view Y (view mWindowTop) 就包含状态栏的高度信息
                                 try {
                                     FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(rootView.getLayoutParams().width, rootView.getLayoutParams().height);
@@ -1468,7 +1468,7 @@ public final class SnackbarUtils {
                         // 判断是否超出可显示高度
                         if (screenHeight - (mViewTop + mShadowMargin + mAppendTopMargin + mViewHeight) >= measuredHeight) {
                             // 思路: 没有超出高度, 则正常显示在指定 View 下方
-                            // 并且改为布局居上, 然后设置 topMargin 为 view mWindowTop - (阴影大小 + 追加边距(状态栏高度))
+                            // 并且改为布局居上, 然后设置 topMargin 为 view mWindowTop - ( 阴影大小 + 追加边距 ( 状态栏高度 ))
                             // 这样的思路, 主要是不居下, 不用知道 Snackbar view 高度, 导致向下边距计算错误, 转换思路从上处理
                             try {
                                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(rootView.getLayoutParams().width, rootView.getLayoutParams().height);

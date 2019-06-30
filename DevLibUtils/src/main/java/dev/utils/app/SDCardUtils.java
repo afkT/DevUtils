@@ -418,8 +418,8 @@ public final class SDCardUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
-     * @param dirPath 文件夹路径(无文件名字.后缀)
+     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
+     * @param dirPath 文件夹路径 ( 无文件名字. 后缀 )
      * @return {@code true} success, {@code false} fail
      */
     private static boolean createFolder(final String dirPath) {
@@ -427,8 +427,8 @@ public final class SDCardUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
-     * @param file 文件夹路径(无文件名字.后缀)
+     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
+     * @param file 文件夹路径 ( 无文件名字. 后缀 )
      * @return {@code true} success, {@code false} fail
      */
     private static boolean createFolder(final File file) {
@@ -449,4 +449,3 @@ public final class SDCardUtils {
         return false;
     }
 }
-

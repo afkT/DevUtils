@@ -163,7 +163,7 @@ public final class ShapeUtils {
         // ================
 
         /**
-         * 设置圆角(统一处理方法)
+         * 设置圆角 ( 统一处理方法 )
          * <pre>
          *     <corners
          *          android:bottomLeftRadius="8dp"
@@ -186,12 +186,12 @@ public final class ShapeUtils {
             return this;
         }
 
-        // ====================
-        // = 设置背景色(填充) =
-        // ====================
+        // =======================
+        // = 设置背景色 ( 填充 ) =
+        // =======================
 
         /**
-         * 设置背景色(填充铺满)
+         * 设置背景色 ( 填充铺满 )
          * <pre>
          *     <solid android:color="#DFDFE0" />
          * </pre>
@@ -210,7 +210,7 @@ public final class ShapeUtils {
         }
 
         /**
-         * 设置背景色(填充铺满)
+         * 设置背景色 ( 填充铺满 )
          * @param color R.color.id
          * @return {@link ShapeUtils.Builder}
          */
@@ -381,8 +381,8 @@ public final class ShapeUtils {
          *          android:startColor      颜色值 起始颜色
          *          android:endColor        颜色值 结束颜色
          *          android:centerColor     整型 渐变中间颜色, 即开始颜色与结束颜色之间的颜色
-         *          android:angle           整型 渐变角度(当 angle = 0 时, 渐变色是从左向右, 然后逆时针方向转, 当 angle = 90 时为从下往上, angle 必须为 45 的整数倍)
-         *          android:type            渐变类型(取值: linear、radial、sweep)
+         *          android:angle           整型 渐变角度 ( 当 angle = 0 时, 渐变色是从左向右, 然后逆时针方向转, 当 angle = 90 时为从下往上, angle 必须为 45 的整数倍 )
+         *          android:type            渐变类型 ( 取值: linear、radial、sweep)
          *          =
          *          linear                  线性渐变, 这是默认设置
          *          radial                  放射性渐变, 以开始色为中心

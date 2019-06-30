@@ -508,7 +508,7 @@ public final class ScreenUtils {
     // =
 
     /**
-     * 获取状态栏的高度(无关 android:theme 获取状态栏高度)
+     * 获取状态栏的高度 ( 无关 android:theme 获取状态栏高度 )
      * @return 状态栏的高度
      */
     public static int getStatusHeight() {
@@ -522,7 +522,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * 获取应用区域 TitleBar 高度 (顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示)
+     * 获取应用区域 TitleBar 高度 ( 顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示 )
      * @param activity {@link Activity}
      * @return 应用区域 TitleBar 高度
      */
@@ -571,7 +571,7 @@ public final class ScreenUtils {
     // ========
 
     /**
-     * 获取当前屏幕截图, 包含状态栏(顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示)
+     * 获取当前屏幕截图, 包含状态栏 ( 顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示 )
      * @param activity {@link Activity}
      * @return 当前屏幕截图, 包含状态栏
      */
@@ -596,7 +596,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * 获取当前屏幕截图, 不包含状态栏(如果 android:theme 全屏, 则截图无状态栏)
+     * 获取当前屏幕截图, 不包含状态栏 ( 如果 android:theme 全屏, 则截图无状态栏 )
      * @param activity {@link Activity}
      * @return 当前屏幕截图, 不包含状态栏
      */
@@ -678,4 +678,3 @@ public final class ScreenUtils {
         return hasNavigationBar;
     }
 }
-
