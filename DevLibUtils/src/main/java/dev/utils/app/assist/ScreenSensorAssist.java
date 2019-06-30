@@ -11,7 +11,7 @@ import android.os.Message;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 屏幕传感器辅助类(监听是否横竖屏)
+ * detail: 屏幕传感器辅助类 ( 监听是否横竖屏 )
  * @author Ttt
  */
 public final class ScreenSensorAssist {
@@ -30,13 +30,13 @@ public final class ScreenSensorAssist {
     // 重力传感器监听事件
     private OrientationSensorListener mListener;
 
-    // ================================================
-    // = 重力传感器监听对象(改变方向后, 判断参数不同) =
-    // ================================================
+    // ===================================================
+    // = 重力传感器监听对象 ( 改变方向后, 判断参数不同 ) =
+    // ===================================================
 
-    // 传感器管理对象(切屏后)
+    // 传感器管理对象 ( 切屏后 )
     private SensorManager mSensorManagerChange;
-    // 重力传感器监听事件(切屏后)
+    // 重力传感器监听事件 ( 切屏后 )
     private OrientationSensorChangeListener mListenerChange;
 
     // ========
@@ -147,7 +147,7 @@ public final class ScreenSensorAssist {
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mListener = new OrientationSensorListener();
 
-        // 根据 旋转之后/点击全屏之后 两者方向一致, 激活 SensorManager
+        // 根据 旋转之后、点击全屏之后 两者方向一致, 激活 SensorManager
         mSensorManagerChange = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mListenerChange = new OrientationSensorChangeListener();
     }
@@ -243,7 +243,7 @@ public final class ScreenSensorAssist {
     }
 
     /**
-     * detail: 重力传感器监听事件(切屏后)
+     * detail: 重力传感器监听事件 ( 切屏后 )
      * @author Ttt
      */
     class OrientationSensorChangeListener implements SensorEventListener {

@@ -18,11 +18,11 @@ import android.os.Build;
  */
 public final class InactivityTimerAssist {
 
-    // 无操作时间(到时间自动关闭) - 默认五分钟
+    // 无操作时间 ( 到时间自动关闭 ) - 默认五分钟
     private long mInactivityTime;
     // 对应的页面
     private Activity mActivity;
-    // 电池广播(充电中, 则不处理, 主要是为了省电)
+    // 电池广播 ( 充电中, 则不处理, 主要是为了省电 )
     private BroadcastReceiver mPowerStatusReceiver;
     // 检查任务
     private AsyncTask<Object, Object, Object> mInactivityTask;
@@ -42,7 +42,7 @@ public final class InactivityTimerAssist {
     /**
      * 构造函数
      * @param activity       {@link Activity}
-     * @param inactivityTime 无操作时间间隔(毫秒)
+     * @param inactivityTime 无操作时间间隔 ( 毫秒 )
      */
     public InactivityTimerAssist(final Activity activity, final long inactivityTime) {
         this.mActivity = activity;
@@ -153,7 +153,7 @@ public final class InactivityTimerAssist {
     }
 
     /**
-     * detail: 定时检测任务(无操作检测)
+     * detail: 定时检测任务 ( 无操作检测 )
      * @author Ttt
      */
     private class InactivityAsyncTask extends AsyncTask<Object, Object, Object> {

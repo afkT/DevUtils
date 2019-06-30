@@ -593,7 +593,7 @@ public final class AnimationUtils {
     }
 
     /**
-     * 获取一个视图摇晃动画(摇晃幅度为 10)
+     * 获取一个视图摇晃动画 ( 摇晃幅度为 10)
      * @param cycles         动画周期 {@link CycleInterpolator}
      * @param durationMillis 动画持续时间
      * @return 一个视图摇晃动画
@@ -604,7 +604,7 @@ public final class AnimationUtils {
     }
 
     /**
-     * 获取一个视图摇晃动画(摇晃幅度为 10、持续 700 毫秒)
+     * 获取一个视图摇晃动画 ( 摇晃幅度为 10、持续 700 毫秒 )
      * @param cycles 动画周期 {@link CycleInterpolator}
      * @return 一个视图摇晃动画
      */
@@ -614,7 +614,7 @@ public final class AnimationUtils {
     }
 
     /**
-     * 获取一个视图摇晃动画(摇晃幅度为 10、重复 7 次)
+     * 获取一个视图摇晃动画 ( 摇晃幅度为 10、重复 7 次 )
      * @param durationMillis 动画持续时间
      * @return 一个视图摇晃动画
      */
@@ -623,7 +623,7 @@ public final class AnimationUtils {
     }
 
     /**
-     * 获取一个视图摇晃动画((摇晃幅度为 10、重复 7 次、持续 700 毫秒)
+     * 获取一个视图摇晃动画 ( 摇晃幅度为 10、重复 7 次、持续 700 毫秒 )
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation() {

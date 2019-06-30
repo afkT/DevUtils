@@ -20,7 +20,7 @@ import dev.utils.LogPrintUtils;
  *     TimerTask => 内部私有类, 实现了具体的定时器操作以及代码控制等, 防止外部直接 new 导致定时器混乱
  *     <p></p>
  *     如果外部想要实现定时器, 但是通过内部 ArrayList 控制, 也可以通过实现 AbsTimer 接口, 内部的 startTimer()、closeTimer() 进行了对 AbsTimer 的保存、标记等操作
- *     需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer() => 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
+ *     需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer() => 内部 ArrayList 进行了操作, 而不对外开放 ( 不需要主动调用 )
  *     <p></p>
  *     startTimer() => 主要进行添加到 ArrayList, 并且标记不需要回收
  *     closeTimer() => 不直接操作 remove, 防止出现 ConcurrentModificationException 异常, 而是做一个标记, 便于后续回收
@@ -76,9 +76,9 @@ public final class TimerManager {
     // =
 
     /**
-     * 获取属于对应字符串标记的定时器任务(优先获取符合的)
+     * 获取属于对应字符串标记的定时器任务 ( 优先获取符合的 )
      * @param markStr 判断 {@link AbsTimer#getMarkStr()}
-     * @return 属于对应字符串标记的定时器任务(优先获取符合的) {@link AbsTimer}
+     * @return 属于对应字符串标记的定时器任务 ( 优先获取符合的 ) {@link AbsTimer}
      */
     public static AbsTimer getTimer(final String markStr) {
         if (markStr != null) {
@@ -98,9 +98,9 @@ public final class TimerManager {
     }
 
     /**
-     * 获取属于标记 id 的定时器任务(优先获取符合的)
+     * 获取属于标记 id 的定时器任务 ( 优先获取符合的 )
      * @param markId 判断 {@link AbsTimer#getMarkId()}
-     * @return 属于标记 id 的定时器任务(优先获取符合的) {@link AbsTimer}
+     * @return 属于标记 id 的定时器任务 ( 优先获取符合的 ) {@link AbsTimer}
      */
     public static AbsTimer getTimer(final int markId) {
         try {
@@ -253,9 +253,9 @@ public final class TimerManager {
         }
     }
 
-    // =============================================================
-    // = 对外公开初始化 AbsTimer 方法(内部控制对 TimerTask 的创建) =
-    // =============================================================
+    // ================================================================
+    // = 对外公开初始化 AbsTimer 方法 ( 内部控制对 TimerTask 的创建 ) =
+    // ================================================================
 
     /**
      * 创建定时器 => 立即执行、无限循环、通知默认 what
@@ -282,7 +282,7 @@ public final class TimerManager {
      * 创建定时器 => 立即执行、通知默认 what
      * @param handler      通知的 Handler
      * @param period       循环时间 - 每隔多少秒执行一次
-     * @param triggerLimit 触发次数上限(-1 表示无限循环)
+     * @param triggerLimit 触发次数上限 (-1 表示无限循环 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long period, final int triggerLimit) {
@@ -317,7 +317,7 @@ public final class TimerManager {
      * @param handler      通知的 Handler
      * @param what         通知的 what
      * @param period       循环时间 - 每隔多少秒执行一次
-     * @param triggerLimit 触发次数上限(-1 表示无限循环)
+     * @param triggerLimit 触发次数上限 (-1 表示无限循环 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long period, final int triggerLimit) {
@@ -330,7 +330,7 @@ public final class TimerManager {
      * @param what         通知的 what
      * @param delay        延迟时间 - 多少毫秒后开始执行
      * @param period       循环时间 - 每隔多少秒执行一次
-     * @param triggerLimit 触发次数上限(-1 表示无限循环)
+     * @param triggerLimit 触发次数上限 (-1 表示无限循环 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long delay, final long period, final int triggerLimit) {
@@ -444,7 +444,7 @@ public final class TimerManager {
         public abstract int getTriggerLimit();
 
         /**
-         * 是否触发结束(到达最大次数)
+         * 是否触发结束 ( 到达最大次数 )
          * @return {@code true} yes, {@code false} no
          */
         public abstract boolean isTriggerEnd();
@@ -492,12 +492,12 @@ public final class TimerManager {
         public abstract AbsTimer setTriggerLimit(int triggerLimit);
     }
 
-    // =================================
-    // = 定时器 具体实现类(不对外开放) =
-    // =================================
+    // ====================================
+    // = 定时器 具体实现类 ( 不对外开放 ) =
+    // ====================================
 
     /**
-     * detail: 定时器内部封装类(定时器任务类)
+     * detail: 定时器内部封装类 ( 定时器任务类 )
      * @author Ttt
      * <pre>
      *     便于快捷使用, 并且防止外部 new 从而达到对整个项目定时器的控制
@@ -650,7 +650,7 @@ public final class TimerManager {
         }
 
         /**
-         * 是否触发结束(到达最大次数)
+         * 是否触发结束 ( 到达最大次数 )
          * @return {@code true} yes, {@code false} no
          */
         @Override

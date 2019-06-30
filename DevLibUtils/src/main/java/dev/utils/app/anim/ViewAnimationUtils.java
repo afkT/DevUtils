@@ -9,7 +9,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 
 /**
- * detail: 视图动画工具类(AnimationUtils 基础上封装), 提供简单的控制视图的动画的工具方法
+ * detail: 视图动画工具类 (AnimationUtils 基础上封装 ), 提供简单的控制视图的动画的工具方法
  * @author Ttt
  */
 public final class ViewAnimationUtils {
@@ -462,7 +462,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为 10、重复 7 次)
+     * 视图摇晃 ( 摇晃幅度为 10、重复 7 次 )
      * @param view           待摇晃的视图
      * @param cycles         动画周期 {@link CycleInterpolator}
      * @param durationMillis 动画持续时间
@@ -473,7 +473,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为 10、持续 700 毫秒)
+     * 视图摇晃 ( 摇晃幅度为 10、持续 700 毫秒 )
      * @param view       待摇晃的视图
      * @param cycles     动画周期 {@link CycleInterpolator}
      * @param isBanClick 在执行动画的过程中是否禁止点击
@@ -483,7 +483,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为 10)
+     * 视图摇晃 ( 摇晃幅度为 10)
      * @param view           待摇晃的视图
      * @param cycles         动画周期 {@link CycleInterpolator}
      * @param durationMillis 动画持续时间
@@ -493,7 +493,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为 10、重复 7 次)
+     * 视图摇晃 ( 摇晃幅度为 10、重复 7 次 )
      * @param view           待摇晃的视图
      * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
@@ -503,7 +503,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为 10、持续 700 毫秒)
+     * 视图摇晃 ( 摇晃幅度为 10、持续 700 毫秒 )
      * @param view   待摇晃的视图
      * @param cycles 动画周期 {@link CycleInterpolator}
      */
@@ -512,7 +512,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为 10、重复 7 次)
+     * 视图摇晃 ( 摇晃幅度为 10、重复 7 次 )
      * @param view           待摇晃的视图
      * @param durationMillis 动画持续时间
      */
@@ -523,7 +523,7 @@ public final class ViewAnimationUtils {
     // =
 
     /**
-     * 视图摇晃(摇晃幅度为 10、重复 7 次、持续 700 毫秒)
+     * 视图摇晃 ( 摇晃幅度为 10、重复 7 次、持续 700 毫秒 )
      * @param view       待摇晃的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      */
@@ -532,11 +532,10 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 视图摇晃(摇晃幅度为 10、重复 7 次、持续 700 毫秒)
+     * 视图摇晃 ( 摇晃幅度为 10、重复 7 次、持续 700 毫秒 )
      * @param view 待摇晃的视图
      */
     public static void shake(final View view) {
         translate(view, 0.0f, 10.0f, 0.0f, 0.0f, 7, 700, false);
     }
 }
-
