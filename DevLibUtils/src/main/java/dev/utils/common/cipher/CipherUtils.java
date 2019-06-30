@@ -110,7 +110,7 @@ public final class CipherUtils {
     /**
      * 将十六进制字符数组解码
      * @param data 十六进制 char[]
-     * @return 十六进制转(解)码后的数据
+     * @return 十六进制转 ( 解 ) 码后的数据
      */
     private static byte[] decodeHex(final char[] data) {
         if (data == null) return null;

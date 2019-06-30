@@ -1,13 +1,13 @@
 package dev.utils.common.encrypt;
 
 /**
- * detail: 异或(加密)工具类
+ * detail: 异或 ( 加密 ) 工具类
  * @author Ttt
  * <pre>
  *     位运算可以实现很多高级、高效的运算
  *     可用于 IM 二进制数据包加密
- *     1.能够实现加密
- *     2.采用异或加密算法不会改变二进制数据的长度这对二进制数据包封包起到不小的好处
+ *     1. 能够实现加密
+ *     2. 采用异或加密算法不会改变二进制数据的长度这对二进制数据包封包起到不小的好处
  *     也可用于记事本等场景
  *     <p></p>
  *     参考链接:
@@ -20,7 +20,7 @@ public final class XorUtils {
     }
 
     /**
-     * 加解密 (固定 Key 方式) - 这种方式 加解密 方法共用
+     * 加解密 ( 固定 Key 方式 ) - 这种方式 加解密 方法共用
      * <pre>
      *     加密: byte[] bytes = encryptAsFix("123".getBytes());
      *     解密: String str = new String(encryptAsFix(bytes));
@@ -42,7 +42,7 @@ public final class XorUtils {
     // =
 
     /**
-     * 加密 (非固定 Key 方式)
+     * 加密 ( 非固定 Key 方式 )
      * @param data 待加密数据
      * @return 加密后的数据 byte[]
      */
@@ -59,7 +59,7 @@ public final class XorUtils {
     }
 
     /**
-     * 解密 (非固定 Key 方式)
+     * 解密 ( 非固定 Key 方式 )
      * @param data 待解密数据
      * @return 解密后的数据 byte[]
      */

@@ -24,7 +24,7 @@ import dev.utils.common.cipher.Base64;
 /**
  * detail: 加解密通用工具类
  * @author Blankj
- * @author Ttt (重写、规范注释、逻辑判断等)
+ * @author Ttt ( 重写、规范注释、逻辑判断等 )
  */
 public final class EncryptUtils {
 
@@ -1033,7 +1033,7 @@ public final class EncryptUtils {
     /**
      * 将十六进制字符串解码
      * @param hex 十六进制字符串
-     * @return 十六进制转(解)码后的数据
+     * @return 十六进制转 ( 解 ) 码后的数据
      */
     private static byte[] decodeHex(final String hex) {
         return decodeHex(isEmpty(hex) ? null : hex.toCharArray());
@@ -1042,7 +1042,7 @@ public final class EncryptUtils {
     /**
      * 将十六进制字符数组解码
      * @param data 待加密数据 十六进制 char[]
-     * @return 十六进制转(解)码后的数据
+     * @return 十六进制转 ( 解 ) 码后的数据
      */
     private static byte[] decodeHex(final char[] data) {
         if (data == null) return null;
