@@ -46,10 +46,10 @@ public final class ValidatorUtils {
     // 正则表达式: 验证昵称
     public static final String REGEX_NICKNAME = "^[\\u4E00-\\u9FA5A-Za-z0-9_]+$";
 
-    // 正则表达式: 验证用户名 (不包含中文和特殊字符) 如果用户名使用手机号码或邮箱 则结合手机号验证和邮箱验证
+    // 正则表达式: 验证用户名 ( 不包含中文和特殊字符 ) 如果用户名使用手机号码或邮箱 则结合手机号验证和邮箱验证
     public static final String REGEX_USERNAME = "^[a-zA-Z]\\w{5,17}$";
 
-    // 正则表达式: 验证密码 (不包含特殊字符)
+    // 正则表达式: 验证密码 ( 不包含特殊字符 )
     public static final String REGEX_PASSWORD = "^[a-zA-Z0-9]{6,18}$";
 
     // 正则表达式: 验证邮箱
@@ -215,18 +215,18 @@ public final class ValidatorUtils {
     // =
 
 //     // http://blog.csdn.net/myfuturein/article/details/6885216
-//    [\\u0391-\\uFFE5] 匹配双字节字符(汉字 + 符号)
+//    [\\u0391-\\uFFE5] 匹配双字节字符 ( 汉字 + 符号 )
 //    [\\u4e00-\\u9fa5] 注意只匹配汉字, 不匹配双字节字符
 
     // 正则表达式: 验证汉字
     public static final String REGEX_CHINESE = "^[\u4e00-\u9fa5]+$";
-    // 正则表达式: 验证汉字(含双角符号)
+    // 正则表达式: 验证汉字 ( 含双角符号 )
     public static final String REGEX_CHINESE_ALL = "^[\u0391-\uFFE5]+$";
-    // 正则表达式: 验证汉字(含双角符号)
+    // 正则表达式: 验证汉字 ( 含双角符号 )
     public static final String REGEX_CHINESE_ALL2 = "[\u0391-\uFFE5]";
 
     /**
-     * 校验汉字(无符号, 纯汉字)
+     * 校验汉字 ( 无符号, 纯汉字 )
      * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */

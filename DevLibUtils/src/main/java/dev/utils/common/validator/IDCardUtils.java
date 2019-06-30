@@ -12,7 +12,7 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 居民身份证工具类
  * @author AbrahamCaiJin
- * @author Ttt (重写、规范注释、逻辑判断等)
+ * @author Ttt ( 重写、规范注释、逻辑判断等 )
  */
 public final class IDCardUtils {
 
@@ -187,9 +187,9 @@ public final class IDCardUtils {
             Calendar calendar = Calendar.getInstance();
             if (birthDate != null) calendar.setTime(birthDate);
             try {
-                // 获取出生年(完全表现形式, 如: 2010)
+                // 获取出生年 ( 完全表现形式, 如: 2010)
                 String year = String.valueOf(calendar.get(Calendar.YEAR));
-                // 保存省市区信息 + 年 + 月日 + 后续信息(顺序位、性别等)
+                // 保存省市区信息 + 年 + 月日 + 后续信息 ( 顺序位、性别等 )
                 idCard18 = idCard.substring(0, 6) + year + idCard.substring(8);
                 // 转换字符数组
                 int[] cardArys = converCharToInt(idCard18.toCharArray());
@@ -234,7 +234,7 @@ public final class IDCardUtils {
     }
 
     /**
-     * 验证香港身份证号码(部份特殊身份证无法检查)
+     * 验证香港身份证号码 ( 部份特殊身份证无法检查 )
      * 身份证前 2 位为英文字符, 如果只出现一个英文字符则表示第一位是空格, 对应数字 58 前 2 位英文字符 A-Z 分别对应数字 10-35
      * 最后一位校验码为 0-9 的数字加上字符 "A", "A" 代表 10
      * 将身份证号码全部转换为数字, 分别对应乘 9-1 相加的总和, 整除 11 则证件号码有效
@@ -362,7 +362,7 @@ public final class IDCardUtils {
     /**
      * 根据身份编号获取生日
      * @param idCard 身份编号
-     * @return 生日(yyyyMMdd)
+     * @return 生日 (yyyyMMdd)
      */
     public static String getBirthByIdCard(final String idCard) {
         if (isEmpty(idCard)) return null;
@@ -385,7 +385,7 @@ public final class IDCardUtils {
     /**
      * 根据身份编号获取生日
      * @param idCard 身份编号
-     * @return 生日(yyyyMMdd)
+     * @return 生日 (yyyyMMdd)
      */
     public static String getBirthdayByIdCard(final String idCard) {
         // 获取生日
@@ -404,7 +404,7 @@ public final class IDCardUtils {
     /**
      * 根据身份编号获取生日 - 年份
      * @param idCard 身份编号
-     * @return 生日(yyyy)
+     * @return 生日 (yyyy)
      */
     public static String getYearByIdCard(final String idCard) {
         // 获取生日
@@ -423,7 +423,7 @@ public final class IDCardUtils {
     /**
      * 根据身份编号获取生日 - 月份
      * @param idCard 身份编号
-     * @return 生日(MM)
+     * @return 生日 (MM)
      */
     public static String getMonthByIdCard(final String idCard) {
         // 获取生日
@@ -442,7 +442,7 @@ public final class IDCardUtils {
     /**
      * 根据身份编号获取生日 - 天数
      * @param idCard 身份编号
-     * @return 生日(dd)
+     * @return 生日 (dd)
      */
     public static String getDateByIdCard(final String idCard) {
         // 获取生日
@@ -461,7 +461,7 @@ public final class IDCardUtils {
     /**
      * 根据身份编号获取性别
      * @param idCard 身份编号
-     * @return 性别 男(M)、女(F)、未知(N)
+     * @return 性别 男 (M)、女 (F)、未知 (N)
      */
     public static String getGenderByIdCard(final String idCard) {
         if (isEmpty(idCard)) return null;
@@ -600,9 +600,9 @@ public final class IDCardUtils {
 
     /**
      * 验证小于当前日期 是否有效
-     * @param yearData  待校验的日期(年)
-     * @param monthData 待校验的日期(月 1-12)
-     * @param dayData   待校验的日期(日)
+     * @param yearData  待校验的日期 ( 年 )
+     * @param monthData 待校验的日期 ( 月 1-12)
+     * @param dayData   待校验的日期 ( 日 )
      * @return {@code true} yes, {@code false} no
      */
     private static boolean validateDateSmllerThenNow(final int yearData, final int monthData, final int dayData) {
