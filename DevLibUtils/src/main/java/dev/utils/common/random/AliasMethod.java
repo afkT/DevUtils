@@ -1,6 +1,6 @@
 package dev.utils.common.random;
 
-/******************************************************************************
+/**
  * File: AliasMethod.java
  * Author: Keith Schwarz (htiek@cs.stanford.edu)
  * An implementation of the alias method implemented using Vose's algorithm.
@@ -10,7 +10,7 @@ package dev.utils.common.random;
  * For a complete writeup on the alias method, including the intuition and
  * important proofs, please see the article "Darts, Dice, and Coins: Smpling
  * from a Discrete Distribution" at
- *                 http://www.keithschwarz.com/darts-dice-coins/
+ * http://www.keithschwarz.com/darts-dice-coins/
  */
 
 import java.util.ArrayDeque;
@@ -141,7 +141,7 @@ public final class AliasMethod {
     }
 
     /**
-     * 获取随机索引(对应几率索引)
+     * 获取随机索引 ( 对应几率索引 )
      * Samples a value from the underlying distribution.
      * @return A random value sampled from the underlying distribution.
      */
