@@ -23,7 +23,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Activity 工具类(包含 Activity 控制管理)
+ * detail: Activity 工具类 ( 包含 Activity 控制管理 )
  * @author Ttt
  * <pre>
  *     转场动画:
@@ -178,7 +178,7 @@ public final class ActivityUtils {
     // =====================
 
     /**
-     * 回到桌面 (同点击 Home 键效果)
+     * 回到桌面 ( 同点击 Home 键效果 )
      */
     public static void startHomeActivity() {
         try {
@@ -392,7 +392,7 @@ public final class ActivityUtils {
             if (res.activityInfo.packageName.equals("android")) {
                 return null;
             } else {
-                // 判断是否.开头
+                // 判断是否. 开头
                 String name = res.activityInfo.name;
                 if (name != null) {
                     // 判断是否 . 开头
@@ -470,7 +470,7 @@ public final class ActivityUtils {
     // = Activity 栈处理 =
     // ===================
 
-    // Activity 栈(后进先出)
+    // Activity 栈 ( 后进先出 )
     private final Stack<Activity> mActivityStacks = new Stack<>();
 
     /**
@@ -529,15 +529,15 @@ public final class ActivityUtils {
     }
 
     /**
-     * 获取最后一个(当前) Activity
-     * @return 最后一个(当前) {@link Activity}
+     * 获取最后一个 ( 当前 ) Activity
+     * @return 最后一个 ( 当前 ) {@link Activity}
      */
     public Activity currentActivity() {
         return mActivityStacks.lastElement();
     }
 
     /**
-     * 关闭最后一个(当前) Activity
+     * 关闭最后一个 ( 当前 ) Activity
      */
     public void finishActivity() {
         finishActivity(mActivityStacks.lastElement());
@@ -822,7 +822,7 @@ public final class ActivityUtils {
     public void appExit() {
         try {
             finishAllActivity();
-            // 退出 JVM (Java 虚拟机) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
+            // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
             System.exit(0);
             // 从操作系统中结束掉当前程序的进程
             android.os.Process.killProcess(android.os.Process.myPid());

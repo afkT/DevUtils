@@ -2,7 +2,7 @@
 <resources>
 
     <!-- android:theme="Theme.Light.NoTitleBar" 白色背景并无标题栏 -->
-    <!-- android:theme="Theme.Translucent.NoTitleBar"  透明背景并无标题 -->
+    <!-- android:theme="Theme.Translucent.NoTitleBar" 透明背景并无标题 -->
 
     <!-- 白色 背景 无标题样式 -->
     <style name="DevNoTitleTheme" parent="android:Theme.Light.NoTitleBar"></style>

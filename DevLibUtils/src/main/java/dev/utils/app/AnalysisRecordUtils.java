@@ -39,7 +39,7 @@ public final class AnalysisRecordUtils {
     private static final String TAG = AnalysisRecordUtils.class.getSimpleName();
     // Context
     private static Context sContext;
-    // 日志文件夹名字(目录名)
+    // 日志文件夹名字 ( 目录名 )
     private static String sLogFolderName = "LogRecord";
     // 日志存储路径
     private static String sLogStoragePath;
@@ -49,7 +49,7 @@ public final class AnalysisRecordUtils {
     private static boolean sAppendSpace = true;
 
     /**
-     * 初始化操作 (内部已调用)
+     * 初始化操作 ( 内部已调用 )
      * @param context {@link Context}
      */
     public static void init(final Context context) {
@@ -263,14 +263,14 @@ public final class AnalysisRecordUtils {
         builder.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         // 追加边距
         builder.append(" => ");
-        // 是否添加空格(第一位不添加空格)
+        // 是否添加空格 ( 第一位不添加空格 )
         boolean isAdd = false;
         // 循环追加内容
         for (int i = 0, len = logs.length; i < len; i++) {
             if (isSpace && isAdd) { // 判断是否追加空格
                 builder.append(" ");
             }
-            // 标记添加空格(第一位不添加空格)
+            // 标记添加空格 ( 第一位不添加空格 )
             isAdd = true;
             // 追加保存内容
             builder.append(logs[i]);
@@ -741,7 +741,7 @@ public final class AnalysisRecordUtils {
     // =============
 
     /**
-     * 追加文件(使用 FileWriter)
+     * 追加文件 ( 使用 FileWriter)
      * @param filePath 文件路径
      * @param content  追加内容
      */
@@ -770,7 +770,7 @@ public final class AnalysisRecordUtils {
     /**
      * 保存文件
      * @param filePath 保存路径
-     * @param fileName 文件名.后缀
+     * @param fileName 文件名. 后缀
      * @param content  保存内容
      * @return {@code true} success, {@code false} fail
      */
@@ -803,8 +803,8 @@ public final class AnalysisRecordUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
-     * @param dirPath 文件夹路径(无文件名字.后缀)
+     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
+     * @param dirPath 文件夹路径 ( 无文件名字. 后缀 )
      * @return {@code true} success, {@code false} fail
      */
     private static boolean createFolder(final String dirPath) {
@@ -812,8 +812,8 @@ public final class AnalysisRecordUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建(纯路径 - 无文件名)
-     * @param file 文件夹路径(无文件名字.后缀)
+     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
+     * @param file 文件夹路径 ( 无文件名字. 后缀 )
      * @return {@code true} success, {@code false} fail
      */
     private static boolean createFolder(final File file) {

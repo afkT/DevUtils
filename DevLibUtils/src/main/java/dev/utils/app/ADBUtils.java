@@ -89,7 +89,7 @@ public final class ADBUtils {
     // ============
 
     /**
-     * 获取 App 列表(包名)
+     * 获取 App 列表 ( 包名 )
      * <pre>
      *     @see <a href="https://blog.csdn.net/henni_719/article/details/62222439"/>
      * </pre>
@@ -113,40 +113,40 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取 App 安装列表(包名)
-     * @return App 安装列表(包名)
+     * 获取 App 安装列表 ( 包名 )
+     * @return App 安装列表 ( 包名 )
      */
     public static List<String> getInstallAppList() {
         return getAppList(null);
     }
 
     /**
-     * 获取用户安装的应用列表(包名)
-     * @return 用户安装的应用列表(包名)
+     * 获取用户安装的应用列表 ( 包名 )
+     * @return 用户安装的应用列表 ( 包名 )
      */
     public static List<String> getUserAppList() {
         return getAppList("-3");
     }
 
     /**
-     * 获取系统应用列表(包名)
-     * @return 系统应用列表(包名)
+     * 获取系统应用列表 ( 包名 )
+     * @return 系统应用列表 ( 包名 )
      */
     public static List<String> getSystemAppList() {
         return getAppList("-s");
     }
 
     /**
-     * 获取启用的应用列表(包名)
-     * @return 启用的应用列表(包名)
+     * 获取启用的应用列表 ( 包名 )
+     * @return 启用的应用列表 ( 包名 )
      */
     public static List<String> getEnableAppList() {
         return getAppList("-e");
     }
 
     /**
-     * 获取禁用的应用列表(包名)
-     * @return 禁用的应用列表(包名)
+     * 获取禁用的应用列表 ( 包名 )
+     * @return 禁用的应用列表 ( 包名 )
      */
     public static List<String> getDisableAppList() {
         return getAppList("-d");
@@ -290,9 +290,9 @@ public final class ADBUtils {
         return null;
     }
 
-    // =============
-    // = 安装/卸载 =
-    // =============
+    // ==============
+    // = 安装、卸载 =
+    // ==============
 
     /**
      * 安装应用
@@ -313,7 +313,7 @@ public final class ADBUtils {
      *     -d 允许降级覆盖安装
      *     -g 授予所有运行时权限
      *     <p></p>
-     *     android:testOnly="true"(ide 绿色三角运行)
+     *     android:testOnly="true"(ide 绿色三角运行 )
      *     @see <a href="https://blog.csdn.net/lihenhao/article/details/79146211"/>
      * </pre>
      * @param filePath /sdcard/xxx/x.apk
@@ -483,11 +483,11 @@ public final class ADBUtils {
                                 String[] splitArys = str.split(REGEX_SPACE);
                                 for (String strData : splitArys) {
                                     if (!TextUtils.isEmpty(strData)) {
-                                        // 属于 包名/ 前缀的
+                                        // 属于 包名 / 前缀的
                                         if (strData.indexOf(packageName + "/") != -1) {
-                                            // 防止属于 包名/.xx.Main_Activity
+                                            // 防止属于 包名 /.xx.Main_Activity
                                             if (strData.indexOf("/.") != -1) {
-                                                // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
+                                                // 包名 /.xx.Main_Activity => 包名 / 包名.xx.Main_Activity
                                                 strData = strData.replace("/", "/" + packageName);
                                             }
                                             return strData;
@@ -569,9 +569,9 @@ public final class ADBUtils {
                                     if (start != -1 && lastIndex != -1) {
                                         // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
-                                        // 防止属于 包名/.xx.Main_Activity
+                                        // 防止属于 包名 /.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
-                                            // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
+                                            // 包名 /.xx.Main_Activity => 包名 / 包名.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                         }
                                         return strData;
@@ -613,9 +613,9 @@ public final class ADBUtils {
                                     if (start != -1 && lastIndex != -1 && splitStr.indexOf(packageName) == 0) {
                                         // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
-                                        // 防止属于 包名/.xx.Main_Activity
+                                        // 防止属于 包名 /.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
-                                            // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
+                                            // 包名 /.xx.Main_Activity => 包名 / 包名.xx.Main_Activity
                                             strData = strData.replace("/", "/" + packageName);
                                         }
                                         return strData;
@@ -661,9 +661,9 @@ public final class ADBUtils {
                                     if (start != -1) {
                                         // 获取裁剪数据
                                         String strData = splitStr;
-                                        // 防止属于 包名/.xx.Main_Activity
+                                        // 防止属于 包名 /.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
-                                            // 包名/.xx.Main_Activity => 包名/包名.xx.Main_Activity
+                                            // 包名 /.xx.Main_Activity => 包名 / 包名.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                         }
                                         return strData;
@@ -719,7 +719,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取对应包名的 Activity 栈(处理成 List) - 最新的 Activity 越靠后
+     * 获取对应包名的 Activity 栈 ( 处理成 List) - 最新的 Activity 越靠后
      * @param packageName 应用包名
      * @return 对应包名的 Activity 栈信息集合
      */
@@ -760,9 +760,9 @@ public final class ADBUtils {
                                 if (start != -1) {
                                     // 获取裁剪数据
                                     String strData = splitStr;
-                                    // 防止属于 包名/.xx.XxxActivity
+                                    // 防止属于 包名 /.xx.XxxActivity
                                     if (strData.indexOf("/.") != -1) {
-                                        // 包名/.xx.XxxActivity => 包名/包名.xx.XxxActivity
+                                        // 包名 /.xx.XxxActivity => 包名 / 包名.xx.XxxActivity
                                         strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                     }
                                     // 保存数据
@@ -998,7 +998,7 @@ public final class ADBUtils {
             String packageName = DevUtils.getContext().getPackageName();
             // 获取 Launcher Activity
             String activity = ActivityUtils.getLauncherActivity();
-            // 跳转应用启动页(启动应用)
+            // 跳转应用启动页 ( 启动应用 )
             startActivity(packageName + "/" + activity, closeActivity);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSelfApp");
@@ -1117,7 +1117,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 发送广播(向所有组件发送)
+     * 发送广播 ( 向所有组件发送 )
      * <pre>
      *     向所有组件广播 BOOT_COMPLETED
      *     adb shell am broadcast -a android.intent.action.BOOT_COMPLETED
@@ -1269,7 +1269,7 @@ public final class ADBUtils {
     public static boolean tap(final float x, final float y) {
         try {
             // input [touchscreen|touchpad|touchnavigation] tap <x> <y>
-            // input [屏幕、触摸板、导航键] tap
+            // input [ 屏幕、触摸板、导航键 ] tap
             String cmd = "input touchscreen tap %s %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, (int) x, (int) y), true);
@@ -1285,7 +1285,7 @@ public final class ADBUtils {
     // ====================
 
     /**
-     * 按压某个区域(点击)
+     * 按压某个区域 ( 点击 )
      * @param x X 轴坐标
      * @param y Y 轴坐标
      * @return {@code true} success, {@code false} fail
@@ -1311,7 +1311,7 @@ public final class ADBUtils {
      * @param y    Y 轴坐标
      * @param toX  滑动到 X 轴坐标
      * @param toY  滑动到 Y 轴坐标
-     * @param time 滑动时间(毫秒)
+     * @param time 滑动时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean swipe(final float x, final float y, final float toX, final float toY, final long time) {
@@ -1356,7 +1356,7 @@ public final class ADBUtils {
 
     /**
      * 触发某些按键
-     * @param keyCode KeyEvent.xxx => KeyEvent.KEYCODE_BACK(返回键)
+     * @param keyCode KeyEvent.xxx => KeyEvent.KEYCODE_BACK ( 返回键 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean keyevent(final int keyCode) {
@@ -1388,7 +1388,7 @@ public final class ADBUtils {
     /**
      * 屏幕截图
      * @param path      保存路径 /sdcard/xxx/x.png
-     * @param displayId -d display-id 指定截图的显示屏编号(有多显示屏的情况下) 默认 0
+     * @param displayId -d display-id 指定截图的显示屏编号 ( 有多显示屏的情况下 ) 默认 0
      * @return {@code true} success, {@code false} fail
      */
     public static boolean screencap(final String path, final int displayId) {
@@ -1405,7 +1405,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 录制屏幕(以 mp4 格式保存到 /sdcard)
+     * 录制屏幕 ( 以 mp4 格式保存到 /sdcard)
      * @param path 保存路径 /sdcard/xxx/x.mp4
      * @return {@code true} success, {@code false} fail
      */
@@ -1414,9 +1414,9 @@ public final class ADBUtils {
     }
 
     /**
-     * 录制屏幕(以 mp4 格式保存到 /sdcard)
+     * 录制屏幕 ( 以 mp4 格式保存到 /sdcard)
      * @param path 保存路径 /sdcard/xxx/x.mp4
-     * @param time 录制时长, 单位秒(默认/最长 180秒)
+     * @param time 录制时长, 单位秒 ( 默认 / 最长 180 秒 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean screenrecord(final String path, final int time) {
@@ -1424,10 +1424,10 @@ public final class ADBUtils {
     }
 
     /**
-     * 录制屏幕(以 mp4 格式保存到 /sdcard)
+     * 录制屏幕 ( 以 mp4 格式保存到 /sdcard)
      * @param path 保存路径 /sdcard/xxx/x.mp4
      * @param size 视频的尺寸, 比如 1280x720, 默认是屏幕分辨率
-     * @param time 录制时长, 单位秒(默认/最长 180秒)
+     * @param time 录制时长, 单位秒 ( 默认 / 最长 180 秒 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean screenrecord(final String path, final String size, final int time) {
@@ -1435,11 +1435,11 @@ public final class ADBUtils {
     }
 
     /**
-     * 录制屏幕(以 mp4 格式保存到 /sdcard)
+     * 录制屏幕 ( 以 mp4 格式保存到 /sdcard)
      * @param path    保存路径 /sdcard/xxx/x.mp4
      * @param size    视频的尺寸, 比如 1280x720, 默认是屏幕分辨率
      * @param bitRate 视频的比特率, 默认是 4Mbps
-     * @param time    录制时长, 单位秒(默认/最长 180秒)
+     * @param time    录制时长, 单位秒 ( 默认 / 最长 180 秒 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean screenrecord(final String path, final String size, final int bitRate, final int time) {
@@ -1485,7 +1485,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 开启/关闭 Wifi
+     * 开启 / 关闭 Wifi
      * @param open 是否开启
      * @return {@code true} success, {@code false} fail
      */
@@ -1557,7 +1557,7 @@ public final class ADBUtils {
     // ================
 
     /**
-     * 关机(需要 root 权限)
+     * 关机 ( 需要 root 权限 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean shutdown() {
@@ -1574,7 +1574,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 重启设备(需要 root 权限)
+     * 重启设备 ( 需要 root 权限 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean reboot() {
@@ -1593,8 +1593,8 @@ public final class ADBUtils {
     }
 
     /**
-     * 重启设备(需要 root 权限) - 并进行特殊的引导模式 (recovery、Fastboot)
-     * @param reason 传递给内核来请求特殊的引导模式, 如"recovery"
+     * 重启设备 ( 需要 root 权限 ) - 并进行特殊的引导模式 (recovery、Fastboot)
+     * @param reason 传递给内核来请求特殊的引导模式, 如 "recovery"
      *               重启到 Fastboot 模式 bootloader
      */
     public static void reboot(final String reason) {
@@ -1610,7 +1610,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 重启引导到 recovery (需要 root 权限)
+     * 重启引导到 recovery ( 需要 root 权限 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean rebootToRecovery() {
@@ -1619,7 +1619,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 重启引导到 bootloader (需要 root 权限)
+     * 重启引导到 bootloader ( 需要 root 权限 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean rebootToBootloader() {
@@ -1645,13 +1645,13 @@ public final class ADBUtils {
         lists.add("sendevent /dev/input/event1 3 57 109");
         lists.add("sendevent /dev/input/event1 3 53 " + x);
         lists.add("sendevent /dev/input/event1 3 54 " + y);
-        // 发送 touch 事件(必须使用 0 0 0 配对)
+        // 发送 touch 事件 ( 必须使用 0 0 0 配对 )
         lists.add("sendevent /dev/input/event1 1 330 1");
         lists.add("sendevent /dev/input/event1 0 0 0");
 
-        // 判断方向(手势是否从左到右) - View 往左滑, 手势操作往右滑
+        // 判断方向 ( 手势是否从左到右 ) - View 往左滑, 手势操作往右滑
         boolean isLeftToRight = toX > x;
-        // 判断方向(手势是否从上到下) - View 往上滑, 手势操作往下滑
+        // 判断方向 ( 手势是否从上到下 ) - View 往上滑, 手势操作往下滑
         boolean isTopToBottom = toY > y;
 
         // 计算差数
@@ -1697,7 +1697,7 @@ public final class ADBUtils {
         }
         // = 结尾 =
         lists.add("sendevent /dev/input/event1 3 57 4294967295");
-        // 释放 touch 事件(必须使用 0 0 0 配对)
+        // 释放 touch 事件 ( 必须使用 0 0 0 配对 )
         lists.add("sendevent /dev/input/event1 1 330 0");
         lists.add("sendevent /dev/input/event1 0 0 0");
 
@@ -2024,7 +2024,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 显示区域 (设置留白边距)
+     * 显示区域 ( 设置留白边距 )
      * @param left   left padding
      * @param top    top padding
      * @param right  right padding
@@ -2049,7 +2049,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取亮度是否为自动获取 (自动调节亮度)
+     * 获取亮度是否为自动获取 ( 自动调节亮度 )
      * @return 1 开启、0 未开启、-1 未知
      */
     public static int getScreenBrightnessMode() {
@@ -2065,7 +2065,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 设置亮度是否为自动获取 (自动调节亮度)
+     * 设置亮度是否为自动获取 ( 自动调节亮度 )
      * @param isAuto 是否自动调节
      * @return {@code true} success, {@code false} fail
      */
@@ -2096,7 +2096,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 更改屏幕亮度值 (亮度值在 0-255 之间)
+     * 更改屏幕亮度值 ( 亮度值在 0-255 之间 )
      * @param brightness 亮度值
      * @return {@code true} success, {@code false} fail
      */
@@ -2112,7 +2112,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取自动锁屏休眠时间 (单位毫秒)
+     * 获取自动锁屏休眠时间 ( 单位毫秒 )
      * @return 自动锁屏休眠时间
      */
     public static String getScreenOffTimeout() {
@@ -2125,11 +2125,11 @@ public final class ADBUtils {
     }
 
     /**
-     * 设置自动锁屏休眠时间 (单位毫秒)
+     * 设置自动锁屏休眠时间 ( 单位毫秒 )
      * <pre>
      *     设置永不休眠 Integer.MAX_VALUE
      * </pre>
-     * @param time 休眠时间 (单位毫秒)
+     * @param time 休眠时间 ( 单位毫秒 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setScreenOffTimeout(final long time) {

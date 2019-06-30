@@ -10,7 +10,7 @@ import android.support.annotation.RequiresApi;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: AlarmManager(全局定时器、闹钟)工具类
+ * detail: AlarmManager( 全局定时器、闹钟 ) 工具类
  * @author Ttt
  * <pre>
  *     指定时长或以周期形式执行某项操作
@@ -47,7 +47,7 @@ public final class AlarmUtils {
     /**
      * 开启一次性闹钟
      * @param context         {@link Context}
-     * @param type            闹钟类型, 常用的有5个值：
+     * @param type            闹钟类型, 常用的有 5 个值:
      *                        AlarmManager.ELAPSED_REALTIME、
      *                        AlarmManager.ELAPSED_REALTIME_WAKEUP、
      *                        AlarmManager.RTC、
