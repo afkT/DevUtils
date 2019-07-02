@@ -2618,4 +2618,225 @@ public final class ArrayUtils {
         }
         return null;
     }
+
+    // =
+
+    /**
+     * 追加数组内容字符串
+     * @param data 数组
+     * @param <T>  泛型
+     * @return 追加数组内容字符串
+     */
+    public static <T> String appendToString(final T[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len != 0) {
+                if (len == 1) {
+                    return "\"" + ((data[0] == null) ? "null" : data[0].toString()) + "\"";
+                } else {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < len - 1; i++) {
+                        T t = data[i];
+                        builder.append("\"").append(((t == null) ? "null" : t.toString())).append("\",");
+                    }
+                    T end = data[len - 1];
+                    builder.append("\"" + ((end == null) ? "null" : end.toString()) + "\"");
+                    return builder.toString();
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 追加数组内容字符串
+     * @param data 数组
+     * @return 追加数组内容字符串
+     */
+    public static String appendToString(final int[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len != 0) {
+                if (len == 1) {
+                    return "\"" + data[0] + "\"";
+                } else {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < len - 1; i++) {
+                        builder.append("\"").append(data[i]).append("\",");
+                    }
+                    builder.append("\"" + data[len - 1] + "\"");
+                    return builder.toString();
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 追加数组内容字符串
+     * @param data 数组
+     * @return 追加数组内容字符串
+     */
+    public static String appendToString(final byte[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len != 0) {
+                if (len == 1) {
+                    return "\"" + data[0] + "\"";
+                } else {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < len - 1; i++) {
+                        builder.append("\"").append(data[i]).append("\",");
+                    }
+                    builder.append("\"" + data[len - 1] + "\"");
+                    return builder.toString();
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 追加数组内容字符串
+     * @param data 数组
+     * @return 追加数组内容字符串
+     */
+    public static String appendToString(final char[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len != 0) {
+                if (len == 1) {
+                    return "\"" + data[0] + "\"";
+                } else {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < len - 1; i++) {
+                        builder.append("\"").append(data[i]).append("\",");
+                    }
+                    builder.append("\"" + data[len - 1] + "\"");
+                    return builder.toString();
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 追加数组内容字符串
+     * @param data 数组
+     * @return 追加数组内容字符串
+     */
+    public static String appendToString(final short[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len != 0) {
+                if (len == 1) {
+                    return "\"" + data[0] + "\"";
+                } else {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < len - 1; i++) {
+                        builder.append("\"").append(data[i]).append("\",");
+                    }
+                    builder.append("\"" + data[len - 1] + "\"");
+                    return builder.toString();
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 追加数组内容字符串
+     * @param data 数组
+     * @return 追加数组内容字符串
+     */
+    public static String appendToString(final long[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len != 0) {
+                if (len == 1) {
+                    return "\"" + data[0] + "\"";
+                } else {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < len - 1; i++) {
+                        builder.append("\"").append(data[i]).append("\",");
+                    }
+                    builder.append("\"" + data[len - 1] + "\"");
+                    return builder.toString();
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 追加数组内容字符串
+     * @param data 数组
+     * @return 追加数组内容字符串
+     */
+    public static String appendToString(final float[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len != 0) {
+                if (len == 1) {
+                    return "\"" + data[0] + "\"";
+                } else {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < len - 1; i++) {
+                        builder.append("\"").append(data[i]).append("\",");
+                    }
+                    builder.append("\"" + data[len - 1] + "\"");
+                    return builder.toString();
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 追加数组内容字符串
+     * @param data 数组
+     * @return 追加数组内容字符串
+     */
+    public static String appendToString(final double[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len != 0) {
+                if (len == 1) {
+                    return "\"" + data[0] + "\"";
+                } else {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < len - 1; i++) {
+                        builder.append("\"").append(data[i]).append("\",");
+                    }
+                    builder.append("\"" + data[len - 1] + "\"");
+                    return builder.toString();
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 追加数组内容字符串
+     * @param data 数组
+     * @return 追加数组内容字符串
+     */
+    public static String appendToString(final boolean[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len != 0) {
+                if (len == 1) {
+                    return "\"" + data[0] + "\"";
+                } else {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < len - 1; i++) {
+                        builder.append("\"").append(data[i]).append("\",");
+                    }
+                    builder.append("\"" + data[len - 1] + "\"");
+                    return builder.toString();
+                }
+            }
+        }
+        return "";
+    }
 }
