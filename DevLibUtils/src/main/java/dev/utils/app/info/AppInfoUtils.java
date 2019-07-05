@@ -8,7 +8,10 @@ import android.content.pm.PermissionInfo;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -235,37 +238,62 @@ public final class AppInfoUtils {
     // =
 
     /**
-     * 获取 APK 注册的权限
-     * @return APK 注册的权限数组
+     * 获取 APP 注册的权限
+     * @return APP 注册的权限
      */
-    public static String[] getApkPermission() {
-        return getApkPermission(DevUtils.getContext().getPackageName());
+    public static List<String> getAppPermissionToList() {
+        return new ArrayList<>(getAppPermissionToSet());
     }
 
     /**
-     * 获取 APK 注册的权限
-     * @param packageName 应用包名
-     * @return APK 注册的权限数组
+     * 获取 APP 注册的权限
+     * @return APP 注册的权限
      */
-    public static String[] getApkPermission(final String packageName) {
+    public static Set<String> getAppPermissionToSet() {
+        String[] permissions = getAppPermission();
+        // 防止数据为 null
+        if (permissions != null && permissions.length != 0) {
+            Set<String> permissionSets = new HashSet<>();
+            for (String permission : permissions) {
+                permissionSets.add(permission);
+            }
+            return permissionSets;
+        }
+        return Collections.emptySet();
+    }
+
+    /**
+     * 获取 APP 注册的权限
+     * @return APP 注册的权限数组
+     */
+    public static String[] getAppPermission() {
+        return getAppPermission(DevUtils.getContext().getPackageName());
+    }
+
+    /**
+     * 获取 APP 注册的权限
+     * @param packageName 应用包名
+     * @return APP 注册的权限数组
+     */
+    public static String[] getAppPermission(final String packageName) {
         try {
             PackageManager packageManager = DevUtils.getContext().getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             return packageInfo.requestedPermissions;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getApkPermission");
+            LogPrintUtils.eTag(TAG, e, "getAppPermission");
         }
         return null;
     }
 
     /**
-     * 打印 APK 注册的权限
+     * 打印 APP 注册的权限
      * <pre>
      *     @see <a href="https://www.cnblogs.com/leaven/p/5485864.html"/>
      * </pre>
      * @param packageName 应用包名
      */
-    public static void printApkPermission(final String packageName) {
+    public static void printAppPermission(final String packageName) {
         try {
             StringBuilder builder = new StringBuilder();
             // =
@@ -304,7 +332,7 @@ public final class AppInfoUtils {
             // 打印日志
             LogPrintUtils.dTag(TAG, builder.toString());
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "printApkPermission");
+            LogPrintUtils.eTag(TAG, e, "printAppPermission");
         }
     }
 

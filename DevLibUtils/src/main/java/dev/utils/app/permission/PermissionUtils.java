@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,11 +19,13 @@ import android.support.v4.content.ContextCompat;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import dev.DevUtils;
+import dev.utils.LogPrintUtils;
 
 /**
  * detail: 权限请求工具类
@@ -56,19 +59,21 @@ import dev.DevUtils;
  */
 public final class PermissionUtils {
 
-    // 全部权限
-    private static final Set<String> sAllPermissionSets = new HashSet<>(1);
-    // 申请的权限
-    private List<String> mPermissionLists = new ArrayList<>();
+    // 日志 TAG
+    private static final String TAG = PermissionUtils.class.getSimpleName();
+    // App 注册的权限
+    public static final Set<String> sAppPermissionSets = getAppPermissionToSet();
+    // 申请未通过的权限 - 永久拒绝
+    private static final List<String> sPermissionsDeniedForeverLists = new ArrayList<>();
+    // 申请的权限 - 传入的权限参数
+    private Set<String> mPermissionSets = new HashSet<>();
     // 准备请求的权限
     private List<String> mPermissionsRequestLists = new ArrayList<>();
     // 申请通过的权限
     private List<String> mPermissionsGrantedLists = new ArrayList<>();
     // 申请未通过的权限
     private List<String> mPermissionsDeniedLists = new ArrayList<>();
-    // 申请未通过的权限 - 永久拒绝
-    private List<String> mPermissionsDeniedForeverLists = new ArrayList<>();
-    // 查询不到的权限
+    // 查询不到的权限 ( 包含未注册 )
     private List<String> mPermissionsNotFoundLists = new ArrayList<>();
     // 操作回调
     private PermissionCallBack mCallBack;
@@ -77,51 +82,31 @@ public final class PermissionUtils {
     // 判断是否请求过
     private boolean mIsRequest = false;
     // Permission 请求 Code
-    public static final int P_REQUEST_CODE = 100;
-
-    static {
-        // 初始化权限数据
-        initializePermissionsMap();
-    }
-
-    /**
-     * 初始化遍历保存全部权限
-     */
-    private static synchronized void initializePermissionsMap() {
-        Field[] fields = Manifest.permission.class.getFields();
-        for (Field field : fields) {
-            String name = null;
-            try {
-                name = (String) field.get("");
-            } catch (IllegalAccessException e) {
-            }
-            sAllPermissionSets.add(name);
-        }
-    }
-
-    // =
+    public static final int P_REQUEST_CODE = 101101;
 
     /**
      * 构造函数
-     * @param permissions
+     * @param permissions 待申请权限
      */
     private PermissionUtils(final String... permissions) {
-        mPermissionLists.clear();
+        mPermissionSets.clear();
         // 防止数据为 null
         if (permissions != null && permissions.length != 0) {
             // 遍历全部需要申请的权限
             for (String permission : permissions) {
-                mPermissionLists.add(permission);
+                mPermissionSets.add(permission);
             }
         }
     }
 
-    // =
+    // ============
+    // = 对外公开 =
+    // ============
 
     /**
      * 判断是否授予了权限
-     * @param permissions
-     * @return
+     * @param permissions 待判断权限
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isGranted(final String... permissions) {
         // 防止数据为 null
@@ -132,25 +117,27 @@ public final class PermissionUtils {
                     return false;
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
      * 判断是否授予了权限
      * @param context    {@link Context}
-     * @param permission
-     * @return
+     * @param permission 待判断权限
+     * @return {@code true} yes, {@code false} no
      */
     private static boolean isGranted(final Context context, final String permission) {
+        if (context == null || permission == null) return false;
         // SDK 版本小于 23 则表示直接通过 || 检查是否通过权限
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(context, permission);
     }
 
     /**
      * 是否拒绝了权限 - 拒绝过一次, 再次申请时, 弹出选择不再提醒并拒绝才会触发 true
-     * @param activity
-     * @param permission
+     * @param activity {@link Activity}
+     * @param permission 待判断权限
      * @return
      */
     public static boolean shouldShowRequestPermissionRationale(final Activity activity, final String permission) {
@@ -195,13 +182,13 @@ public final class PermissionUtils {
         // 如果 SDK 版本小于 23 则直接通过
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // 表示全部权限都通过
-            mPermissionsGrantedLists.addAll(mPermissionLists);
+            mPermissionsGrantedLists.addAll(mPermissionSets);
             // 处理请求回调
             requestCallback();
         } else {
-            for (String permission : mPermissionLists) {
+            for (String permission : mPermissionSets) {
                 // 首先判断是否存在
-                if (sAllPermissionSets.contains(permission)) {
+                if (sAppPermissionSets.contains(permission)) {
                     // 判断是否通过请求
                     if (isGranted(DevUtils.getContext(), permission)) {
                         mPermissionsGrantedLists.add(permission); // 权限允许通过
@@ -355,7 +342,7 @@ public final class PermissionUtils {
     private void requestCallback() {
         if (mCallBack != null) {
             // 判断是否允许全部权限
-            boolean isGrantedAll = (mPermissionLists.size() == mPermissionsGrantedLists.size());
+            boolean isGrantedAll = (mPermissionSets.size() == mPermissionsGrantedLists.size());
             // 允许则触发回调
             if (isGrantedAll) {
                 new Handler(mLooper).post(new Runnable() {
@@ -400,7 +387,7 @@ public final class PermissionUtils {
                 mPermissionsDeniedLists.add(permission);
                 // 拒绝权限
                 if (!shouldShowRequestPermissionRationale(activity, permission)) {
-                    mPermissionsDeniedForeverLists.add(permission);
+                    sPermissionsDeniedForeverLists.add(permission);
                 }
             }
         }
@@ -419,5 +406,91 @@ public final class PermissionUtils {
             // 触发回调
             sInstance.onRequestPermissionsResultCommon(activity);
         }
+    }
+
+    // ============
+    // = 静态方法 =
+    // ============
+
+    /**
+     * 获取全部权限
+     * @return {@link Set} 全部权限
+     */
+    public static Set<String> getAllPermissionToSet() {
+        Set<String> permissionSets = new HashSet<>();
+        Field[] fields = Manifest.permission.class.getFields();
+        for (Field field : fields) {
+            try {
+                String name = (String) field.get("");
+                permissionSets.add(name);
+            } catch (Exception e) {
+            }
+        }
+        return permissionSets;
+    }
+
+    /**
+     * 获取全部权限
+     * @return {@link List} 全部权限
+     */
+    public static List<String> getAllPermissionToList() {
+        return new ArrayList<>(getAllPermissionToSet());
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ================
+    // = AppInfoUtils =
+    // ================
+
+    /**
+     * 获取 APP 注册的权限
+     * @return APP 注册的权限
+     */
+    public static List<String> getAppPermissionToList() {
+        return new ArrayList<>(getAppPermissionToSet());
+    }
+
+    /**
+     * 获取 APP 注册的权限
+     * @return APP 注册的权限
+     */
+    public static Set<String> getAppPermissionToSet() {
+        String[] permissions = getAppPermission();
+        // 防止数据为 null
+        if (permissions != null && permissions.length != 0) {
+            Set<String> permissionSets = new HashSet<>();
+            for (String permission : permissions) {
+                permissionSets.add(permission);
+            }
+            return permissionSets;
+        }
+        return Collections.emptySet();
+    }
+
+    /**
+     * 获取 APP 注册的权限
+     * @return APP 注册的权限数组
+     */
+    public static String[] getAppPermission() {
+        return getAppPermission(DevUtils.getContext().getPackageName());
+    }
+
+    /**
+     * 获取 APP 注册的权限
+     * @param packageName 应用包名
+     * @return APP 注册的权限数组
+     */
+    public static String[] getAppPermission(final String packageName) {
+        try {
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            return packageInfo.requestedPermissions;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAppPermission");
+        }
+        return null;
     }
 }
