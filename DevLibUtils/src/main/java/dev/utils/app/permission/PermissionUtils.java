@@ -46,12 +46,12 @@ import dev.DevUtils;
  *     第二种请求方式 - 需要在 onRequestPermissionsResult 中通知调用
  *     PermissionUtils.permission("").callBack(null).request(Activity);
  *     <p></p>
- *     注意事项: 需要注意在onResume 中调用
- *     不管是第一种方式, 跳自定义的Activity, 还是第二种 系统内部跳转授权页面, 都会多次触发onResume
+ *     注意事项: 需要注意在 onResume 中调用
+ *     不管是第一种方式, 跳自定义的 Activity, 还是第二种 系统内部跳转授权页面, 都会多次触发 onResume
  *     @see <a href="https://www.aliyun.com/jiaocheng/8030.html"/>
- *     尽量避免在 onResume中调用
- *     com.anthonycr.grant:permissions:1.0 也是会触发onResume 只是 通过 Set<String> mPendingRequests 来控制请求过的权限
- *     拒绝后在onResume 方法内再次请求, 直接触发授权成功, 如果需要清空通过调用 notifyPermissionsChange 通知改变, 否则一直调用获取权限, 拒绝过后, 都会认为是请求通过
+ *     尽量避免在 onResume 中调用
+ *     com.anthonycr.grant:permissions 也是会触发 onResume 只是 通过 Set<String> mPendingRequests 来控制请求过的权限
+ *     拒绝后在 onResume 方法内再次请求, 直接触发授权成功, 如果需要清空通过调用 notifyPermissionsChange 通知改变, 否则一直调用获取权限, 拒绝过后, 都会认为是请求通过
  * </pre>
  */
 public final class PermissionUtils {
@@ -76,7 +76,7 @@ public final class PermissionUtils {
     private Looper mLooper = Looper.getMainLooper();
     // 判断是否请求过
     private boolean mIsRequest = false;
-    // Permission 请求Code
+    // Permission 请求 Code
     public static final int P_REQUEST_CODE = 100;
 
     static {
@@ -238,7 +238,7 @@ public final class PermissionUtils {
             // 如果 SDK 版本大于 23 才请求
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                 sInstance = this;
-                // 自定义Activity
+                // 自定义 Activity
                 PermissionUtils.PermissionActivity.start(DevUtils.getContext());
             }
         }
@@ -253,7 +253,7 @@ public final class PermissionUtils {
     }
 
     /**
-     * 请求权限 - 需要在Activity 的 onRequestPermissionsResult 回调中 调用 PermissionUtils.onRequestPermissionsResult(this);
+     * 请求权限 - 需要在 Activity 的 onRequestPermissionsResult 回调中 调用 PermissionUtils.onRequestPermissionsResult(this);
      * @param activity    {@link Fragment#getActivity()}
      * @param requestCode
      */
@@ -292,9 +292,9 @@ public final class PermissionUtils {
         void onDenied(PermissionUtils permissionUtils);
     }
 
-    // ================
-    // = 内部Activity =
-    // ================
+    // =================
+    // = 内部 Activity =
+    // =================
 
     // 内部持有对象
     private static PermissionUtils sInstance;
@@ -303,7 +303,7 @@ public final class PermissionUtils {
      * detail: 请求权限 Activity
      * @author Ttt
      * <pre>
-     *     实现Activity的透明效果
+     *     实现 Activity 的透明效果
      *     @see <a href="https://blog.csdn.net/u014434080/article/details/52260407"/>
      * </pre>
      */
@@ -406,9 +406,9 @@ public final class PermissionUtils {
         }
     }
 
-    // =========================
-    // = 通过传入Activity 方式 =
-    // =========================
+    // ==========================
+    // = 通过传入 Activity 方式 =
+    // ==========================
 
     /**
      * 请求权限回调 - 需要在 onRequestPermissionsResult 回调里面调用
