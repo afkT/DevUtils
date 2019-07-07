@@ -243,7 +243,7 @@ public final class DevUtils {
     // Activity 过滤判断接口
     private static ActivityLifecycleFilter sActivityLifecycleFilter;
     // 权限 Activity.class name
-    public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.PermissionUtils$PermissionActivity";
+    public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.permission.PermissionUtils$PermissionActivity";
 
     /**
      * 注册绑定 Activity 生命周期事件处理
