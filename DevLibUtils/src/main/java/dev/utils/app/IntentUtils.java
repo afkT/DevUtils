@@ -538,7 +538,7 @@ public final class IntentUtils {
     /**
      * 跳转到系统设置页面
      * @param activity
-     * @param requestCode 回传请求code
+     * @param requestCode 请求 code
      */
     public static void startSysSetting(final Activity activity, final int requestCode) {
         try {

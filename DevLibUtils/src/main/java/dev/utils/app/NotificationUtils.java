@@ -31,76 +31,97 @@ public final class NotificationUtils {
     private static NotificationManager sNotificationManager = null;
 
     /**
-     * 获取通知栏管理类
-     * @return
+     * 获取通知栏管理对象
+     * @return {@link NotificationManager}
      */
     public static NotificationManager getNotificationManager() {
         if (sNotificationManager == null) {
             try {
                 sNotificationManager = (NotificationManager) DevUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
             } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getNotificationManager");
             }
         }
         return sNotificationManager;
     }
 
     /**
-     * 移除通知 - 移除所有通知(只是针对当前Context下的Notification)
+     * 移除通知 - 移除所有通知 ( 只是针对当前 Context 下的 Notification)
      */
     public static void cancelAll() {
         if (getNotificationManager() != null) {
-            sNotificationManager.cancelAll();
-        }
-    }
-
-    /**
-     * 移除通知 - 移除标记为id的通知 (只是针对当前Context下的所有Notification)
-     * @param args
-     */
-    public static void cancel(final int... args) {
-        if (getNotificationManager() != null && args != null) {
-            for (int id : args) {
-                sNotificationManager.cancel(id);
+            try {
+                sNotificationManager.cancelAll();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "cancelAll");
             }
         }
     }
 
     /**
-     * 移除通知 - 移除标记为id的通知 (只是针对当前Context下的所有Notification)
-     * @param tag
-     * @param id
+     * 移除通知 - 移除标记为 id 的通知 ( 只是针对当前 Context 下的所有 Notification)
+     * @param args 消息 id 集合
+     */
+    public static void cancel(final int... args) {
+        if (getNotificationManager() != null && args != null) {
+            for (int id : args) {
+                try {
+                    sNotificationManager.cancel(id);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "cancel - id: " + id);
+                }
+            }
+        }
+    }
+
+    /**
+     * 移除通知 - 移除标记为 id 的通知 ( 只是针对当前 Context 下的所有 Notification)
+     * @param tag 标记 TAG
+     * @param id  消息 id
      */
     public static void cancel(final String tag, final int id) {
         if (getNotificationManager() != null && tag != null) {
-            sNotificationManager.cancel(tag, id);
+            try {
+                sNotificationManager.cancel(tag, id);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "cancel - id: " + id + ", tag: " + tag);
+            }
         }
     }
 
     /**
      * 进行通知
-     * @param id
-     * @param notification
-     * @return
+     * @param id           消息 id
+     * @param notification {@link Notification}
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean notify(final int id, final Notification notification) {
         if (getNotificationManager() != null && notification != null) {
-            sNotificationManager.notify(id, notification);
-            return true;
+            try {
+                sNotificationManager.notify(id, notification);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "notify - id: " + id);
+            }
         }
         return false;
     }
 
     /**
      * 进行通知
-     * @param tag
-     * @param id
-     * @param notification
-     * @return
+     * @param tag          标记 TAG
+     * @param id           消息 id
+     * @param notification {@link Notification}
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean notify(final String tag, final int id, final Notification notification) {
         if (getNotificationManager() != null && tag != null && notification != null) {
-            sNotificationManager.notify(tag, id, notification);
-            return true;
+            try {
+                sNotificationManager.notify(tag, id, notification);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "notify - id: " + id + ", tag: " + tag);
+            }
         }
         return false;
     }
@@ -115,16 +136,16 @@ public final class NotificationUtils {
 //    Notification.builder.setContent(remoteViews);
 
     /**
-     * 获取跳转id
-     * @param intent
-     * @param id
-     * @return
+     * 获取 PendingIntent
+     * @param intent      {@link Intent}
+     * @param requestCode 请求 code
+     * @return {@link PendingIntent}
      */
-    public static PendingIntent createPendingIntent(final Intent intent, final int id) {
+    public static PendingIntent createPendingIntent(final Intent intent, final int requestCode) {
         try {
-            // 跳转Intent
-            PendingIntent pIntent = PendingIntent.getActivity(DevUtils.getContext(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            return pIntent;
+            // 跳转 Intent
+            PendingIntent pendingIntent = PendingIntent.getActivity(DevUtils.getContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            return pendingIntent;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "createPendingIntent");
         }
@@ -133,51 +154,54 @@ public final class NotificationUtils {
 
     /**
      * 创建通知栏对象
-     * @param icon
-     * @param title
-     * @param msg
-     * @return
+     * @param icon  图标
+     * @param title 通知栏标题
+     * @param msg   通知栏内容
+     * @return {@link Notification}
      */
     public static Notification createNotification(final int icon, final String title, final String msg) {
-        return createNotification(null, icon, title, title, msg, true, VibratePattern.obtain(0, 100, 300), LightPattern.obtain(Color.WHITE, 1000, 1000));
+        return createNotification(null, icon, title, title, msg, true, VibratePattern.obtain(0, 100, 300),
+                LightPattern.obtain(Color.WHITE, 1000, 1000));
     }
 
     /**
      * 创建通知栏对象
-     * @param icon
-     * @param title
-     * @param msg
-     * @param vibratePattern
-     * @param lightPattern
-     * @return
+     * @param icon           图标
+     * @param title          通知栏标题
+     * @param msg            通知栏内容
+     * @param vibratePattern 震动频率
+     * @param lightPattern   Led 闪灯参数
+     * @return {@link Notification}
      */
-    public static Notification createNotification(final int icon, final String title, final String msg, final VibratePattern vibratePattern, final LightPattern lightPattern) {
+    public static Notification createNotification(final int icon, final String title, final String msg,
+                                                  final VibratePattern vibratePattern, final LightPattern lightPattern) {
         return createNotification(null, icon, title, title, msg, true, vibratePattern, lightPattern);
     }
 
     /**
      * 创建通知栏对象
-     * @param pendingIntent
-     * @param icon
-     * @param ticker
-     * @param title
-     * @param msg
-     * @param isAutoCancel
-     * @param vibratePattern
-     * @param lightPattern
-     * @return
+     * @param pendingIntent  {@link PendingIntent}
+     * @param icon           图标
+     * @param ticker         状态栏通知文案
+     * @param title          通知栏标题
+     * @param msg            通知栏内容
+     * @param isAutoCancel   点击是否自动关闭
+     * @param vibratePattern 震动频率
+     * @param lightPattern   Led 闪灯参数
+     * @return {@link Notification}
      */
-    public static Notification createNotification(final PendingIntent pendingIntent, final int icon, final String ticker, final String title, final String msg, final boolean isAutoCancel,
+    public static Notification createNotification(final PendingIntent pendingIntent, final int icon, final String ticker,
+                                                  final String title, final String msg, final boolean isAutoCancel,
                                                   final VibratePattern vibratePattern, final LightPattern lightPattern) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             Notification.Builder builder = new Notification.Builder(DevUtils.getContext());
-            // 点击通知执行intent
+            // 点击通知执行 intent
             builder.setContentIntent(pendingIntent);
             // 设置图标
             builder.setSmallIcon(icon);
             // 设置图标
             builder.setLargeIcon(BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon));
-            // 指定通知的ticker内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
+            // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
             builder.setTicker(ticker);
             // 设置标题
             builder.setContentTitle(title);
@@ -185,7 +209,7 @@ public final class NotificationUtils {
             builder.setContentText(msg);
             // 设置消息提醒, 震动 | 声音
             builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND);
-            // 将AutoCancel设为 true 后, 当你点击通知栏的notification后, 它会自动被取消消失
+            // 将 AutoCancel 设为 true 后, 当你点击通知栏的 notification 后, 它会自动被取消消失
             builder.setAutoCancel(isAutoCancel);
             // 设置时间
             builder.setWhen(System.currentTimeMillis());
@@ -212,7 +236,7 @@ public final class NotificationUtils {
 //            notification.icon = icon;
 //            // 设置图标
 //            notification.largeIcon = BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon);
-//            // 指定通知的ticker内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
+//            // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
 //            notification.tickerText = title;
 //            // 设置时间
 //            notification.when = System.currentTimeMillis();
@@ -236,7 +260,7 @@ public final class NotificationUtils {
 //                } catch (Exception e) {
 //                }
 //            }
-//            // 设置标题内容等 - 已经移除, 现在都是支持 4.0以上, 不需要兼容处理
+//            // 设置标题内容等 - 已经移除, 现在都是支持 4.0 以上, 不需要兼容处理
 //            notification.setLatestEventInfo(DevUtils.getContext(), title, msg, pendingIntent);
 //            return notification;
         }
@@ -247,7 +271,7 @@ public final class NotificationUtils {
      * detail: 设置通知栏 Led 灯参数实体类
      * @author Ttt
      * <pre>
-     *     手机处于锁屏状态时, LED灯就会不停地闪烁, 提醒用户去查看手机, 下面是绿色的灯光一闪一闪的效果
+     *     手机处于锁屏状态时, LED 灯就会不停地闪烁, 提醒用户去查看手机, 下面是绿色的灯光一闪一闪的效果
      * </pre>
      */
     public static class LightPattern {
@@ -256,6 +280,12 @@ public final class NotificationUtils {
         private int startOffMS = 0; // 指定 LED 灯暗去的时长, 也是以毫秒为单位
         private int durationMS = 0; // 指定 LED 灯亮起的时长, 以毫秒为单位
 
+        /**
+         * 构造函数
+         * @param argb       颜色值
+         * @param startOffMS 开始时间
+         * @param durationMS 持续时间
+         */
         private LightPattern(int argb, int startOffMS, int durationMS) {
             this.argb = argb;
             this.startOffMS = startOffMS;
@@ -264,10 +294,10 @@ public final class NotificationUtils {
 
         /**
          * 获取 Led 配置参数
-         * @param argb       颜色
+         * @param argb       颜色值
          * @param startOffMS 开始时间
          * @param durationMS 持续时间
-         * @return
+         * @return {@link LightPattern}
          */
         public static LightPattern obtain(final int argb, final int startOffMS, final int durationMS) {
             return new LightPattern(argb, startOffMS, durationMS);
@@ -279,7 +309,7 @@ public final class NotificationUtils {
      * @author Ttt
      * <pre>
      *     vibrate 属性是一个长整型的数组, 用于设置手机静止和震动的时长, 以毫秒为单位
-     *     参数中下标为0的值表示手机静止的时长, 下标为1的值表示手机震动的时长, 下标为2的值又表示手机静止的时长, 以此类推
+     *     参数中下标为 0 的值表示手机静止的时长, 下标为 1 的值表示手机震动的时长, 下标为 2 的值又表示手机静止的时长, 以此类推
      * </pre>
      */
     public static class VibratePattern {
@@ -287,6 +317,10 @@ public final class NotificationUtils {
         // long[] vibrates = { 0, 1000, 1000, 1000 };
         private long[] vibrates = null;
 
+        /**
+         * 构造函数
+         * @param vibrates 震动时间数组
+         */
         private VibratePattern(long[] vibrates) {
             this.vibrates = vibrates;
         }
@@ -296,20 +330,16 @@ public final class NotificationUtils {
          * @return {@code true} is null, {@code false} not null
          */
         public boolean isEmpty() {
-            if (vibrates != null) {
-                return vibrates.length == 0;
-            }
-            return true;
+            return (vibrates == null || vibrates.length == 0);
         }
 
         /**
          * 获取 震动时间 配置参数
-         * @param args
-         * @return
+         * @param times 震动时间数组
+         * @return {@link VibratePattern}
          */
-        public static VibratePattern obtain(final long... args) {
-            return new VibratePattern(args);
+        public static VibratePattern obtain(final long... times) {
+            return new VibratePattern(times);
         }
     }
-
 }
