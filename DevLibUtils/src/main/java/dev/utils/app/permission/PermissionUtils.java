@@ -48,13 +48,6 @@ import dev.utils.LogPrintUtils;
  *     PermissionUtils.permission("").callBack(null).request(Activity);
  *     第二种请求方式 - 需要在 onRequestPermissionsResult 中通知调用
  *     PermissionUtils.permission("").callBack(null).setRequestPermissionsResult(true).request(Activity);
- *     <p></p>
- *     注意事项: 需要注意在 onResume 中调用
- *     不管是第一种方式, 跳自定义的 Activity, 还是第二种 系统内部跳转授权页面, 都会多次触发 onResume
- *     @see <a href="https://www.aliyun.com/jiaocheng/8030.html"/>
- *     尽量避免在 onResume 中调用
- *     com.anthonycr.grant:permissions 也是会触发 onResume 只是 通过 Set<String> mPendingRequests 来控制请求过的权限
- *     拒绝后在 onResume 方法内再次请求, 直接触发授权成功, 如果需要清空通过调用 notifyPermissionsChange 通知改变, 否则一直调用获取权限, 拒绝过后, 都会认为是请求通过
  * </pre>
  */
 public final class PermissionUtils {
@@ -62,7 +55,7 @@ public final class PermissionUtils {
     // 日志 TAG
     private static final String TAG = PermissionUtils.class.getSimpleName();
     // App 注册的权限
-    public static final Set<String> sAppPermissionSets = getAppPermissionToSet();
+    private static final Set<String> sAppPermissionSets = getAppPermissionToSet();
     // 申请未通过的权限 - 永久拒绝
     private static final List<String> sPermissionsDeniedForeverLists = new ArrayList<>();
     // 申请的权限 - 传入的权限参数
@@ -163,7 +156,7 @@ public final class PermissionUtils {
                     // 请求权限
                     ActivityCompat.requestPermissions(activity, permissions, requestCode);
                 } else {
-                    // 自定义权限Activity
+                    // 自定义权限 Activity
                     PermissionUtils.PermissionActivity.start(activity);
                 }
             }
@@ -187,8 +180,8 @@ public final class PermissionUtils {
 
         /**
          * 授权未通过权限回调
-         * @param grantedList 申请通过的权限
-         * @param deniedList 申请未通过的权限
+         * @param grantedList  申请通过的权限
+         * @param deniedList   申请未通过的权限
          * @param notFoundList 查询不到的权限 ( 包含未注册 )
          */
         void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList);
@@ -236,8 +229,8 @@ public final class PermissionUtils {
 
         /**
          * 请求权限回调
-         * @param requestCode 请求 code
-         * @param permissions 请求权限
+         * @param requestCode  请求 code
+         * @param permissions  请求权限
          * @param grantResults 权限授权结果
          */
         @Override
@@ -258,9 +251,7 @@ public final class PermissionUtils {
         requestCallback();
     }
 
-    // =====================================
-    // = isRequestPermissionsResult = true =
-    // =====================================
+    // =
 
     /**
      * 请求权限回调 - 需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this);
@@ -273,6 +264,12 @@ public final class PermissionUtils {
         }
     }
 
+    /**
+     * 刷新权限改变处理 ( 清空已拒绝的权限记录 )
+     */
+    public static void notifyPermissionsChange() {
+        sPermissionsDeniedForeverLists.clear();
+    }
 
     // ============
     // = 判断方法 =
@@ -311,7 +308,7 @@ public final class PermissionUtils {
 
     /**
      * 是否拒绝了权限 - 拒绝过一次, 再次申请时, 弹出选择不再提醒并拒绝才会触发 true
-     * @param activity {@link Activity}
+     * @param activity   {@link Activity}
      * @param permission 待判断权限
      * @return {@code true} yes, {@code false} no
      */
@@ -327,8 +324,7 @@ public final class PermissionUtils {
     /**
      * 权限判断处理
      * @param activity {@link Activity}
-     * @return -1 已经请求(中)过, 0 = 不处理(通知回调), 1 = 需要请求
-     *
+     * @return -1 已经请求 ( 中 ) 过, 0 = 不处理 ( 通知回调 ), 1 = 需要请求
      */
     private int checkPermissions(final Activity activity) {
         if (activity == null) {
@@ -338,7 +334,7 @@ public final class PermissionUtils {
             return 0;
         }
         if (mIsRequest) {
-            return -1; // 已经请求(中)过
+            return -1; // 已经请求 ( 中 ) 过
         }
         mIsRequest = true;
         // 如果 SDK 版本小于 23 则直接通过
@@ -356,7 +352,7 @@ public final class PermissionUtils {
                         mPermissionsGrantedLists.add(permission); // 权限允许通过
                     } else {
                         // 判断是否已拒绝
-                        if (!sPermissionsDeniedForeverLists.contains(permission)){ // 不存在, 则进行保存
+                        if (!sPermissionsDeniedForeverLists.contains(permission)) { // 不存在, 则进行保存
                             mPermissionsRequestLists.add(permission); // 准备请求权限
                         }
                     }
