@@ -46,14 +46,14 @@ public final class NetWorkUtils {
     private static final String TAG = NetWorkUtils.class.getSimpleName();
 
     /**
-     * 获取移动网络打开状态(默认属于未打开)
-     * @return
+     * 获取移动网络打开状态 ( 默认属于未打开 )
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean getMobileDataEnabled() {
         try {
             // 移动网络开关状态
             boolean mState;
-            // 属于5.0以下的使用
+            // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
                 ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -77,15 +77,17 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 设置移动网络开关(无判断是否已开启移动网络) - 实际无效果, 非系统应用无权限
-     * <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
+     * 设置移动网络开关 ( 无判断是否已开启移动网络 ) - 实际无效果, 非系统应用无权限
+     * <pre>
+     *     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
+     * </pre>
      * @param isOpen 是否打开移动网络
-     * @return 是否执行正常
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
     public static boolean setMobileDataEnabled(final boolean isOpen) {
         try {
-            // 属于5.0以下的使用
+            // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
                 ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -109,12 +111,14 @@ public final class NetWorkUtils {
 
     /**
      * 判断是否连接了网络
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isConnect() {
-        // 获取手机所有连接管理对象(包括对wi-fi,net等连接的管理)
+        // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
             ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             // 版本兼容处理
@@ -129,7 +133,7 @@ public final class NetWorkUtils {
                     }
                 }
             } else {
-                // 获取当前活跃的网络(连接的网络信息)
+                // 获取当前活跃的网络 ( 连接的网络信息 )
                 Network network = cManager.getActiveNetwork();
                 // 判断是否为 null
                 if (network != null) {
@@ -144,18 +148,20 @@ public final class NetWorkUtils {
 
     /**
      * 获取连接的网络类型
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
      * @return -1 = 等于未知, 1 = Wifi, 2 = 移动网络
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static int getConnectType() {
-        // 获取手机所有连接管理对象(包括对wi-fi,net等连接的管理)
+        // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
             // 获取网络连接状态
             ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                // 判断连接的是否wifi
+                // 判断连接的是否 wifi
                 State wifiState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
                 // 判断是否连接上
                 if (wifiState == State.CONNECTED || wifiState == State.CONNECTING) {
@@ -169,7 +175,7 @@ public final class NetWorkUtils {
                     }
                 }
             } else {
-                // 获取当前活跃的网络(连接的网络信息)
+                // 获取当前活跃的网络 ( 连接的网络信息 )
                 Network network = cManager.getActiveNetwork();
                 if (network != null) {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
@@ -189,9 +195,11 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 判断是否连接Wifi(连接上、连接中)
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return
+     * 判断是否连接 Wifi( 连接上、连接中 )
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
+     * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isConnWifi() {
@@ -199,9 +207,11 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 判断是否连接移动网络(连接上、连接中)
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return
+     * 判断是否连接移动网络 ( 连接上、连接中 )
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
+     * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isConnMobileData() {
@@ -225,7 +235,9 @@ public final class NetWorkUtils {
 
     /**
      * 判断网络是否可用
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
      * @return {@code true} 可用, {@code false} 不可用
      */
     @Deprecated
@@ -241,8 +253,10 @@ public final class NetWorkUtils {
 
     /**
      * 使用 ping ip 方式判断网络是否可用
-     * <uses-permission android:name="android.permission.INTERNET" />
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.INTERNET" />
+     * </pre>
+     * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.INTERNET)
     public static boolean isAvailableByPing() {
@@ -252,7 +266,7 @@ public final class NetWorkUtils {
     /**
      * 使用 ping ip 方式判断网络是否可用
      * @param ip IP 地址
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.INTERNET)
     public static boolean isAvailableByPing(String ip) {
@@ -274,12 +288,14 @@ public final class NetWorkUtils {
 
     /**
      * 获取活动网络信息
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
+     * @return {@link NetworkInfo}
      */
     @Deprecated
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
-    private static NetworkInfo getActiveNetworkInfo() {
+    public static NetworkInfo getActiveNetworkInfo() {
         try {
             return ((ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
         } catch (Exception e) {
@@ -290,12 +306,14 @@ public final class NetWorkUtils {
 
     /**
      * 获取活动网络信息
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
+     * @return {@link Network}
      */
     @RequiresApi(Build.VERSION_CODES.M)
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
-    private static Network getActiveNetwork() {
+    public static Network getActiveNetwork() {
         try {
             return ((ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetwork();
         } catch (Exception e) {
@@ -307,9 +325,11 @@ public final class NetWorkUtils {
     // =
 
     /**
-     * 判断是否4G网络
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return
+     * 判断是否 4G 网络
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
+     * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean is4G() {
@@ -317,8 +337,8 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 判断wifi是否打开
-     * @return
+     * 判断 wifi 是否打开
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean getWifiEnabled() {
         try {
@@ -332,11 +352,13 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 判断wifi数据是否可用
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return
+     * 判断 wifi 数据是否可用
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
+     * @return {@code true} yes, {@code false} no
      */
-    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
+    @RequiresPermission(allOf = {android.Manifest.permission.ACCESS_NETWORK_STATE, android.Manifest.permission.INTERNET})
     public static boolean isWifiAvailable() {
         return getWifiEnabled() && isAvailable();
     }
@@ -359,8 +381,10 @@ public final class NetWorkUtils {
 
     /**
      * 获取当前网络类型
-     * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     * </pre>
+     * @return {@link NetworkType}
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static NetworkType getNetworkType() {
@@ -376,12 +400,12 @@ public final class NetWorkUtils {
                 netType = NetworkType.NETWORK_UNKNOWN;
                 // 获取类型
                 switch (networkInfo.getType()) {
-                    case ConnectivityManager.TYPE_WIFI: // 属于Wifi
+                    case ConnectivityManager.TYPE_WIFI: // 属于 Wifi
                         netType = NetworkType.NETWORK_WIFI;
                         break;
                     case ConnectivityManager.TYPE_MOBILE: // 属于手机网络
                         switch (networkInfo.getSubtype()) {
-                            // = 2G网络 =
+                            // = 2G 网络 =
                             case TelephonyManager.NETWORK_TYPE_GSM:
                             case TelephonyManager.NETWORK_TYPE_GPRS:
                             case TelephonyManager.NETWORK_TYPE_CDMA:
@@ -390,7 +414,7 @@ public final class NetWorkUtils {
                             case TelephonyManager.NETWORK_TYPE_IDEN:
                                 netType = NetworkType.NETWORK_2G;
                                 break;
-                            // = 3G网络 =
+                            // = 3G 网络 =
                             case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
                             case TelephonyManager.NETWORK_TYPE_EVDO_A:
                             case TelephonyManager.NETWORK_TYPE_UMTS:
@@ -403,7 +427,7 @@ public final class NetWorkUtils {
                             case TelephonyManager.NETWORK_TYPE_HSPAP:
                                 netType = NetworkType.NETWORK_3G;
                                 break;
-                            // = 4G网络 =
+                            // = 4G 网络 =
                             case TelephonyManager.NETWORK_TYPE_LTE:
                             case TelephonyManager.NETWORK_TYPE_IWLAN:
                                 // case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
@@ -435,7 +459,7 @@ public final class NetWorkUtils {
             try {
                 // 获取网络连接状态
                 ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-                // 获取当前活跃的网络(连接的网络信息)
+                // 获取当前活跃的网络 ( 连接的网络信息 )
                 Network network = cManager.getActiveNetwork();
                 // 防止为 null
                 if (network != null) {
@@ -473,11 +497,11 @@ public final class NetWorkUtils {
 
     /**
      * 获取移动网络连接类型
-     * @param networkType {@link TelephonyManager#getNetworkType}
-     * @return 0 = 未知, 1 = 2G, 2 = 3G, 3 = 4G
      * <pre>
      *     {@link TelephonyManager#getNetworkClass} hide 方法
      * </pre>
+     * @param networkType {@link TelephonyManager#getNetworkType}
+     * @return 0 = 未知, 1 = 2G, 2 = 3G, 3 = 4G
      */
     public static int getNetworkClass(final int networkType) {
         switch (networkType) {
@@ -511,7 +535,7 @@ public final class NetWorkUtils {
 
     /**
      * 获取广播 IP 地址
-     * @return
+     * @return 广播 IP 地址
      */
     public static String getBroadcastIpAddress() {
         try {
@@ -537,7 +561,7 @@ public final class NetWorkUtils {
     /**
      * 获取域名 IP 地址
      * @param domain 域名 www.baidu.com 不需要加上 http
-     * @return IP 地址
+     * @return 域名 IP 地址
      */
     public static String getDomainAddress(final String domain) {
         try {
@@ -572,7 +596,7 @@ public final class NetWorkUtils {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
             while (nis.hasMoreElements()) {
                 NetworkInterface ni = nis.nextElement();
-                // 防止小米手机返回10.0.2.15
+                // 防止小米手机返回 10.0.2.15
                 if (!ni.isUp()) continue;
                 for (Enumeration<InetAddress> addresses = ni.getInetAddresses(); addresses.hasMoreElements(); ) {
                     InetAddress inetAddress = addresses.nextElement();
@@ -598,8 +622,10 @@ public final class NetWorkUtils {
 
     /**
      * 根据 Wifi 获取网络 IP 地址
-     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+     * </pre>
+     * @return 网络 IP 地址
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
     public static String getIpAddressByWifi() {
@@ -615,8 +641,10 @@ public final class NetWorkUtils {
 
     /**
      * 根据 Wifi 获取网关 IP 地址
-     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+     * </pre>
+     * @return 网关 IP 地址
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
     public static String getGatewayByWifi() {
@@ -632,8 +660,10 @@ public final class NetWorkUtils {
 
     /**
      * 根据 Wifi 获取子网掩码 IP 地址
-     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+     * </pre>
+     * @return 子网掩码 IP 地址
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
     public static String getNetMaskByWifi() {
@@ -649,8 +679,10 @@ public final class NetWorkUtils {
 
     /**
      * 根据 Wifi 获取服务端 IP 地址
-     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     * @return
+     * <pre>
+     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+     * </pre>
+     * @return 服务端 IP 地址
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
     public static String getServerAddressByWifi() {
