@@ -127,7 +127,7 @@ public final class PermissionUtils {
      */
     public PermissionUtils setRequestPermissionsResult(final boolean requestPermissionsResult) {
         if (mIsRequest) return this;
-        isRequestPermissionsResult = requestPermissionsResult;
+        this.isRequestPermissionsResult = requestPermissionsResult;
         return this;
     }
 
@@ -152,7 +152,7 @@ public final class PermissionUtils {
                 // 请求权限
                 String[] permissions = mPermissionsRequestLists.toArray(new String[mPermissionsRequestLists.size()]);
                 // 判断请求方式
-                if (isRequestPermissionsResult) {
+                if (this.isRequestPermissionsResult) {
                     // 请求权限
                     ActivityCompat.requestPermissions(activity, permissions, requestCode);
                 } else {
