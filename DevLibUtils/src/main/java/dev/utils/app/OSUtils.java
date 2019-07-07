@@ -15,7 +15,7 @@ import dev.utils.LogPrintUtils;
  * detail: OS 系统相关工具类
  * @author Ttt
  * <pre>
- *     由于国内定制系统的泛滥, 不同定制系统的一些功能或实现方法会有所不同, 如果需要做到足够好的适配工作, 需要 对不同的定制系统做一些专门的适配
+ *     由于国内定制系统的泛滥, 不同定制系统的一些功能或实现方法会有所不同, 如果需要做到足够好的适配工作, 需要对不同的定制系统做一些专门的适配
  * </pre>
  */
 public final class OSUtils {
@@ -28,7 +28,9 @@ public final class OSUtils {
     // ROM 类型
     private static final ROM ROM_TYPE = initRomType();
 
-    // =
+    // ================
+    // = ROM 标识信息 =
+    // ================
 
     private static final String KEY_DISPLAY_ID = "ro.build.display.id";
     private static final String KEY_BASE_OS_VERSION = "ro.build.version.base_os";
@@ -77,7 +79,7 @@ public final class OSUtils {
     // 乐视 : eui
     private static final String KEY_EUI_VERSION = "ro.letv.release.version"; // "5.9.023S"
     private static final String KEY_EUI_VERSION_DATE = "ro.letv.release.version_date"; // "5.9.023S_03111"
-    private static final String KEY_EUI_NAME = "ro.product.letv_name"; // "乐1s"
+    private static final String KEY_EUI_NAME = "ro.product.letv_name"; // " 乐 1s"
     private static final String KEY_EUI_MODEL = "ro.product.letv_model"; // "Letv X500"
 
     // 金立 : amigo
@@ -107,9 +109,11 @@ public final class OSUtils {
     private static final String KEY_LENOVO_ADB = "ro.lenovo.adb"; // "apkctl, speedup"
     private static final String VALUE_LENOVO_CLIENT_ID_BASE = "android-lenovo";
 
+    // =
+
     /**
      * 获取 ROM 类型
-     * @return ROM
+     * @return {@link ROM}
      */
     public static ROM getRomType() {
         return ROM_TYPE;
@@ -117,7 +121,7 @@ public final class OSUtils {
 
     /**
      * 初始化 ROM 类型
-     * @return ROM
+     * @return {@link ROM}
      */
     private static ROM initRomType() {
         ROM rom = ROM.Other;
@@ -322,19 +326,15 @@ public final class OSUtils {
      * @author Ttt
      */
     public enum ROM {
+
         MIUI, // 小米
         Flyme, // 魅族
         EMUI, // 华为
         ColorOS, // OPPO
         FuntouchOS, // vivo
-        SmartisanOS, // 锤子
         EUI, // 乐视
         Sense, // HTC
         AmigoOS, // 金立
-        _360OS, // 奇酷360
-        NubiaUI, // 努比亚
-        H2OS, // 一加
-        YunOS, // 阿里巴巴
         YuLong, // 酷派
 
         SamSung, // 三星
@@ -343,42 +343,53 @@ public final class OSUtils {
         LG, // LG
 
         Google, // 原生
+        _360OS, // 奇酷 360
+        NubiaUI, // 努比亚
+        H2OS, // 一加
+        YunOS, // 阿里巴巴
+        SmartisanOS, // 锤子
 
-        Other; // CyanogenMod, Lewa OS, 百度云OS, Tencent OS, 深度OS, IUNI OS, Tapas OS, Mokee
+        Other; // CyanogenMod, Lewa OS, 百度云 OS, Tencent OS, 深度 OS, IUNI OS, Tapas OS, Mokee
 
-        private int baseVersion = -1;
+        // ========
+        // = 信息 =
+        // ========
+
+        // ROM 具体版本号
         private String version;
+        // ROM 版本
+        private int baseVersion = -1;
 
         /**
-         * 设置 Rom 具体版本号
-         * @param version
+         * 获取 ROM 具体版本号, 如 MIUI 9 8.4.26 获取的是 8.4.26
+         * @return ROM 具体版本号
+         */
+        public String getVersion() {
+            return version;
+        }
+
+        /**
+         * 设置 ROM 具体版本号
+         * @param version ROM 具体版本号
          */
         void setVersion(final String version) {
             this.version = version;
         }
 
         /**
-         * 设置 Rom 版本
-         * @param baseVersion
-         */
-        void setBaseVersion(final int baseVersion) {
-            this.baseVersion = baseVersion;
-        }
-
-        /**
-         * 获取 Rom 版本, 如 MIUI 9 获取的是 9
-         * @return
+         * 获取 ROM 版本, 如 MIUI 9 获取的是 9
+         * @return ROM 版本
          */
         public int getBaseVersion() {
             return baseVersion;
         }
 
         /**
-         * 获取 Rom 具体版本号, 如 MIUI 9 8.4.26 获取的是 8.4.26
-         * @return
+         * 设置 ROM 版本
+         * @param baseVersion ROM 版本
          */
-        public String getVersion() {
-            return version;
+        void setBaseVersion(final int baseVersion) {
+            this.baseVersion = baseVersion;
         }
     }
 }
