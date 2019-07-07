@@ -72,7 +72,7 @@ public final class PathUtils {
 
     /**
      * 获取内存应用数据库路径 - path /data/data/package/databases/name
-     * @param name
+     * @param name 数据库路径 + 名称
      * @return /data/data/package/databases/name
      */
     public static String getInternalAppDbPath(final String name) {
@@ -111,7 +111,7 @@ public final class PathUtils {
      * @return /storage/emulated/0
      */
     public static String getExternalStoragePath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStorageDirectory());
     }
 
@@ -120,7 +120,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Music
      */
     public static String getExternalMusicPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC));
     }
 
@@ -129,7 +129,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Podcasts
      */
     public static String getExternalPodcastsPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PODCASTS));
     }
 
@@ -138,7 +138,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Ringtones
      */
     public static String getExternalRingtonesPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES));
     }
 
@@ -147,7 +147,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Alarms
      */
     public static String getExternalAlarmsPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_ALARMS));
     }
 
@@ -156,7 +156,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Notifications
      */
     public static String getExternalNotificationsPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_NOTIFICATIONS));
     }
 
@@ -165,7 +165,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Pictures
      */
     public static String getExternalPicturesPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
     }
 
@@ -174,7 +174,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Movies
      */
     public static String getExternalMoviesPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES));
     }
 
@@ -183,7 +183,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Download
      */
     public static String getExternalDownloadsPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
     }
 
@@ -192,7 +192,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/DCIM
      */
     public static String getExternalDcimPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM));
     }
 
@@ -201,7 +201,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Documents
      */
     public static String getExternalDocumentsPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return getAbsolutePath(Environment.getExternalStorageDirectory()) + "/Documents";
         }
@@ -213,7 +213,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package
      */
     public static String getExternalAppDataPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalCacheDir().getParentFile());
     }
 
@@ -222,7 +222,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/cache
      */
     public static String getExternalAppCachePath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalCacheDir());
     }
 
@@ -231,7 +231,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files
      */
     public static String getExternalAppFilesPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(null));
     }
 
@@ -240,7 +240,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files/Music
      */
     public static String getExternalAppMusicPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(Environment.DIRECTORY_MUSIC));
     }
 
@@ -249,7 +249,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files/Podcasts
      */
     public static String getExternalAppPodcastsPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(Environment.DIRECTORY_PODCASTS));
     }
 
@@ -258,7 +258,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files/Ringtones
      */
     public static String getExternalAppRingtonesPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(Environment.DIRECTORY_RINGTONES));
     }
 
@@ -267,7 +267,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files/Alarms
      */
     public static String getExternalAppAlarmsPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(Environment.DIRECTORY_ALARMS));
     }
 
@@ -276,7 +276,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files/Notifications
      */
     public static String getExternalAppNotificationsPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(Environment.DIRECTORY_NOTIFICATIONS));
     }
 
@@ -285,7 +285,7 @@ public final class PathUtils {
      * @return path /storage/emulated/0/Android/data/package/files/Pictures
      */
     public static String getExternalAppPicturesPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES));
     }
 
@@ -294,7 +294,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files/Movies
      */
     public static String getExternalAppMoviesPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(Environment.DIRECTORY_MOVIES));
     }
 
@@ -303,7 +303,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files/Download
      */
     public static String getExternalAppDownloadPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS));
     }
 
@@ -312,7 +312,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files/DCIM
      */
     public static String getExternalAppDcimPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(Environment.DIRECTORY_DCIM));
     }
 
@@ -321,7 +321,7 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/data/package/files/Documents
      */
     public static String getExternalAppDocumentsPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return getAbsolutePath(DevUtils.getContext().getExternalFilesDir(null)) + "/Documents";
         }
@@ -333,25 +333,36 @@ public final class PathUtils {
      * @return /storage/emulated/0/Android/obb/package
      */
     public static String getExternalAppObbPath() {
-        if (isExternalStorageDisable()) return "";
+        if (!isSDCardEnable()) return "";
         return getAbsolutePath(DevUtils.getContext().getObbDir());
     }
 
-    /**
-     * 判断SDCard是否正常挂载
-     * @return
-     */
-    private static boolean isExternalStorageDisable() {
-        return !Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
-    }
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = SDCardUtils =
+    // ===============
 
     /**
-     * 获取 getAbsolutePath 路径, 防止 File 为 null
-     * @param file
-     * @return
+     * 判断内置 SDCard 是否正常挂载
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSDCardEnable() {
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+    }
+
+    // =============
+    // = FileUtils =
+    // =============
+
+    /**
+     * 获取文件绝对路径
+     * @param file 文件
+     * @return 文件绝对路径
      */
     private static String getAbsolutePath(final File file) {
-        if (file == null) return null;
-        return file.getAbsolutePath();
+        return file != null ? file.getAbsolutePath() : null;
     }
 }
