@@ -24,9 +24,9 @@ public final class ManifestUtils {
     private static final String TAG = ManifestUtils.class.getSimpleName();
 
     /**
-     * 获取 Application Meta Data
-     * @param metaKey
-     * @return
+     * 获取 Application meta Data
+     * @param metaKey meta Key
+     * @return Application meta Data
      */
     public static String getMetaData(final String metaKey) {
         try {
@@ -38,16 +38,15 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 Application Meta Data
+     * 获取 Application meta Data
      * @param packageName 应用包名
-     * @param metaKey
-     * @return
+     * @param metaKey     meta Key
+     * @return Application meta Data
      */
     public static String getMetaData(final String packageName, final String metaKey) {
         try {
             ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-            String data = appInfo.metaData.getString(metaKey);
-            return data;
+            return appInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaData");
         }
@@ -57,10 +56,10 @@ public final class ManifestUtils {
     // =
 
     /**
-     * 获取 Activity Meta Data
-     * @param clazz
-     * @param metaKey
-     * @return
+     * 获取 Activity meta Data
+     * @param clazz   Activity.class
+     * @param metaKey meta Key
+     * @return Activity meta Data
      */
     public static String getMetaDataInActivity(final Class<?> clazz, final String metaKey) {
         try {
@@ -72,10 +71,10 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 Activity Meta Data
+     * 获取 Activity meta Data
      * @param name    完整路径名 package.name => class.getCanonicalName()
-     * @param metaKey
-     * @return
+     * @param metaKey meta Key
+     * @return Activity meta Data
      */
     public static String getMetaDataInActivity(final String name, final String metaKey) {
         try {
@@ -87,18 +86,17 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 Activity Meta Data
+     * 获取 Activity meta Data
      * @param packageName 应用包名
      * @param name        完整路径名 package.name => class.getCanonicalName()
-     * @param metaKey
-     * @return
+     * @param metaKey     meta Key
+     * @return Activity meta Data
      */
     public static String getMetaDataInActivity(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ActivityInfo activityInfo = DevUtils.getContext().getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
-            String data = activityInfo.metaData.getString(metaKey);
-            return data;
+            return activityInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
         }
@@ -108,10 +106,10 @@ public final class ManifestUtils {
     // =
 
     /**
-     * 获取 Service Meta Data
-     * @param clazz
-     * @param metaKey
-     * @return
+     * 获取 Service meta Data
+     * @param clazz   Service.class
+     * @param metaKey meta Key
+     * @return Service meta Data
      */
     public static String getMetaDataInService(final Class<?> clazz, final String metaKey) {
         try {
@@ -123,10 +121,10 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 Service Meta Data
+     * 获取 Service meta Data
      * @param name    完整路径名 package.name => class.getCanonicalName()
-     * @param metaKey
-     * @return
+     * @param metaKey meta Key
+     * @return Service meta Data
      */
     public static String getMetaDataInService(final String name, final String metaKey) {
         try {
@@ -138,18 +136,17 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 Service Meta Data
+     * 获取 Service meta Data
      * @param packageName 应用包名
      * @param name        完整路径名 package.name => class.getCanonicalName()
-     * @param metaKey
-     * @return
+     * @param metaKey     meta Key
+     * @return Service meta Data
      */
     public static String getMetaDataInService(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ServiceInfo serviceInfo = DevUtils.getContext().getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
-            String data = serviceInfo.metaData.getString(metaKey);
-            return data;
+            return serviceInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
         }
@@ -159,10 +156,10 @@ public final class ManifestUtils {
     // =
 
     /**
-     * 获取 Receiver Meta Data
-     * @param clazz
-     * @param metaKey
-     * @return
+     * 获取 Receiver meta Data
+     * @param clazz   Receiver.class
+     * @param metaKey meta Key
+     * @return Receiver meta Data
      */
     public static String getMetaDataInReceiver(final Class<?> clazz, final String metaKey) {
         try {
@@ -174,10 +171,10 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 Receiver Meta Data
+     * 获取 Receiver meta Data
      * @param name    完整路径名 package.name => class.getCanonicalName()
-     * @param metaKey
-     * @return
+     * @param metaKey meta Key
+     * @return Receiver meta Data
      */
     public static String getMetaDataInReceiver(final String name, final String metaKey) {
         try {
@@ -189,18 +186,17 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 Receiver Meta Data
+     * 获取 Receiver meta Data
      * @param packageName 应用包名
      * @param name        完整路径名 package.name => class.getCanonicalName()
-     * @param metaKey
-     * @return
+     * @param metaKey     meta Key
+     * @return Receiver meta Data
      */
     public static String getMetaDataInReceiver(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ActivityInfo receiverInfo = DevUtils.getContext().getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
-            String data = receiverInfo.metaData.getString(metaKey);
-            return data;
+            return receiverInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
         }
@@ -210,10 +206,10 @@ public final class ManifestUtils {
     // =
 
     /**
-     * 获取 ContentProvider Meta Data
-     * @param clazz
-     * @param metaKey
-     * @return
+     * 获取 ContentProvider meta Data
+     * @param clazz   ContentProvider.class
+     * @param metaKey meta Key
+     * @return ContentProvider meta Data
      */
     public static String getMetaDataInProvider(final Class<?> clazz, final String metaKey) {
         try {
@@ -225,10 +221,10 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 ContentProvider Meta Data
+     * 获取 ContentProvider meta Data
      * @param name    完整路径名 package.name => class.getCanonicalName()
-     * @param metaKey
-     * @return
+     * @param metaKey meta Key
+     * @return ContentProvider meta Data
      */
     public static String getMetaDataInProvider(final String name, final String metaKey) {
         try {
@@ -240,18 +236,17 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 ContentProvider Meta Data
+     * 获取 ContentProvider meta Data
      * @param packageName 应用包名
      * @param name        完整路径名 package.name => class.getCanonicalName()
-     * @param metaKey
-     * @return
+     * @param metaKey     meta Key
+     * @return ContentProvider meta Data
      */
     public static String getMetaDataInProvider(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ProviderInfo providerInfo = DevUtils.getContext().getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
-            String data = providerInfo.metaData.getString(metaKey);
-            return data;
+            return providerInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
         }
@@ -271,7 +266,6 @@ public final class ManifestUtils {
             if (pi != null) {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
-
                 return new String[]{versionName, versionCode};
             }
         } catch (Exception e) {
@@ -281,8 +275,8 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 App 版本号
-     * @return 当前版本Code
+     * 获取 App versionCode
+     * @return App versionCode
      */
     public static int getAppVersionCode() {
         try {
@@ -298,8 +292,8 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 App 版本信息
-     * @return 当前版本信息
+     * 获取 App versionName
+     * @return App versionName
      */
     public static String getAppVersionName() {
         try {
@@ -317,9 +311,9 @@ public final class ManifestUtils {
     // =
 
     /**
-     * 获取 App 版本号 - 内部判断
+     * 获取 App versionCode
      * @param packageName 应用包名
-     * @return
+     * @return App versionCode
      */
     public static int getAppVersionCode(final String packageName) {
         if (isSpace(packageName)) return -1;
@@ -327,16 +321,16 @@ public final class ManifestUtils {
             PackageManager pm = DevUtils.getContext().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return pi == null ? -1 : pi.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAppVersionCode - " + packageName);
             return -1;
         }
     }
 
     /**
-     * 获取 App 版本名 - 对外显示
+     * 获取 App versionName
      * @param packageName 应用包名
-     * @return
+     * @return App versionName
      */
     public static String getAppVersionName(final String packageName) {
         if (isSpace(packageName)) return null;
@@ -344,13 +338,19 @@ public final class ManifestUtils {
             PackageManager pm = DevUtils.getContext().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return pi == null ? null : pi.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            LogPrintUtils.eTag(TAG, e, "getAppVersionName");
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAppVersionName - " + packageName);
             return null;
         }
     }
 
-    // =
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = StringUtils =
+    // ===============
 
     /**
      * 判断字符串是否为 null 或全为空白字符

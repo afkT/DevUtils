@@ -95,23 +95,6 @@ public final class MemoryUtils {
      * @return 内存信息
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static ActivityManager.MemoryInfo getMemoryInfo() {
-        try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-            activityManager.getMemoryInfo(memoryInfo);
-            return memoryInfo;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMemoryInfo");
-        }
-        return null;
-    }
-
-    /**
-     * 获取内存信息
-     * @return 内存信息
-     */
-    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static String printMemoryInfo2() {
         try {
             ActivityManager.MemoryInfo memoryInfo = getMemoryInfo();
@@ -131,38 +114,86 @@ public final class MemoryUtils {
     }
 
     /**
+     * 获取内存信息
+     * @return 内存信息
+     */
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
+    public static ActivityManager.MemoryInfo getMemoryInfo() {
+        try {
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+            activityManager.getMemoryInfo(memoryInfo);
+            return memoryInfo;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMemoryInfo");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * 获取可用内存信息
      * @return 可用内存信息
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static String getAvailMemory() {
+    public static long getAvailMemory() {
         try {
             // 获取 android 当前可用内存大小
             ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-            activityManager.getMemoryInfo(memoryInfo); // memoryInfo.availMem; 当前系统的可用内存
-            // 将获取的内存大小规格化
-            return Formatter.formatFileSize(DevUtils.getContext(), memoryInfo.availMem);
+            activityManager.getMemoryInfo(memoryInfo);
+            // 当前系统的可用内存
+            return memoryInfo.availMem;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAvailMemory");
         }
-        return null;
+        return 0l;
     }
+
+    /**
+     * 获取可用内存信息 ( 格式化 )
+     * @return 可用内存信息
+     */
+    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
+    public static String getAvailMemoryFormat() {
+        return Formatter.formatFileSize(DevUtils.getContext(), getAvailMemory());
+    }
+
+    // =
 
     /**
      * 获取总内存大小
      * @return 总内存大小
      */
-    public static String getTotalMemory() {
+    public static long getTotalMemory() {
         return getMemInfoIype(MEMTOTAL);
     }
+
+    /**
+     * 获取总内存大小 ( 格式化 )
+     * @return 总内存大小
+     */
+    public static String getTotalMemoryFormat() {
+        return Formatter.formatFileSize(DevUtils.getContext(), getTotalMemory());
+    }
+
+    // =
 
     /**
      * 获取可用内存大小
      * @return 可用内存大小
      */
-    public static String getMemoryAvailable() {
+    public static long getMemoryAvailable() {
         return getMemInfoIype(MEMAVAILABLE);
+    }
+
+    /**
+     * 获取可用内存大小 ( 格式化 )
+     * @return 可用内存大小
+     */
+    public static String getMemoryAvailableFormat() {
+        return Formatter.formatFileSize(DevUtils.getContext(), getMemoryAvailable());
     }
 
     /**
@@ -170,7 +201,7 @@ public final class MemoryUtils {
      * @param type 内存类型
      * @return 对应 type 内存信息
      */
-    public static String getMemInfoIype(final String type) {
+    public static long getMemInfoIype(final String type) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
             String str;
@@ -183,11 +214,10 @@ public final class MemoryUtils {
             // 拆分空格、回车、换行等空白符
             String[] array = str.split("\\s+");
             // 获取系统总内存, 单位是 KB, 乘以 1024 转换为 Byte
-            long length = Long.valueOf(array[1]).longValue() * 1024;
-            return android.text.format.Formatter.formatFileSize(DevUtils.getContext(), length);
+            return Long.valueOf(array[1]).longValue() * 1024;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMemInfoIype");
+            LogPrintUtils.eTag(TAG, e, "getMemInfoIype - " + type);
         }
-        return "unknown";
+        return 0l;
     }
 }

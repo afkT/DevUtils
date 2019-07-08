@@ -60,20 +60,18 @@ public final class FileRecordUtils {
      * @return 0 = versionName, 1 = versionCode
      */
     private static String[] getAppVersion() {
-        String[] versions = null;
         try {
             PackageManager pm = DevUtils.getContext().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
             if (pi != null) {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
                 String versionCode = pi.versionCode + "";
-                // =
-                versions = new String[]{versionName, versionCode};
+                return new String[]{versionName, versionCode};
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersion");
         }
-        return versions;
+        return null;
     }
 
     /**
