@@ -27,7 +27,7 @@ public class LanguageUtils {
 
     /**
      * 获取系统语言
-     * @return Locale
+     * @return Locale Language
      */
     public static String getSystemLanguage() {
         return getSystemPreferredLanguage().getLanguage();
@@ -35,7 +35,7 @@ public class LanguageUtils {
 
     /**
      * 获取系统首选语言
-     * @return Locale
+     * @return {@link Locale}
      */
     public static Locale getSystemPreferredLanguage() {
         Locale locale;
@@ -48,15 +48,15 @@ public class LanguageUtils {
     }
 
     /**
-     * 修改系统语言 (App 多语言, 单独改变 App 语言)
+     * 修改系统语言 (App 多语言, 单独改变 App 语言 )
      * @param context {@link Context}
-     * @param locale
-     * @return
+     * @param locale  {@link Locale}
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean applyLanguage(final Context context, final Locale locale) {
         if (context != null && locale != null) {
             try {
-                // 获取res资源对象
+                // 获取 res 资源对象
                 Resources resources = context.getResources();
                 // 获取设置对象
                 Configuration config = resources.getConfiguration();
@@ -81,10 +81,10 @@ public class LanguageUtils {
     }
 
     /**
-     * 修改系统语言 (App 多语言, 单独改变 App 语言)
+     * 修改系统语言 (App 多语言, 单独改变 App 语言 )
      * @param context  {@link Context}
-     * @param language
-     * @return
+     * @param language 语言
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean applyLanguage(final Context context, final String language) {
         Locale locale = getSupportLanguage(language);
@@ -149,7 +149,7 @@ public class LanguageUtils {
 
     /**
      * 获取支持的语言
-     * @return
+     * @return {@link Map} 支持的语言
      */
     public static Map<String, Locale> getSupportLanguages() {
         return new HashMap<>(sSupportLanguageMaps);
@@ -157,8 +157,8 @@ public class LanguageUtils {
 
     /**
      * 添加支持的语言
-     * @param language
-     * @param locale
+     * @param language 语言
+     * @param locale   {@link Locale}
      */
     public static void putSupportLanguage(final String language, final Locale locale) {
         sSupportLanguageMaps.put(language, locale);
@@ -166,7 +166,7 @@ public class LanguageUtils {
 
     /**
      * 移除支持的语言
-     * @param language
+     * @param language 语言
      */
     public static void removeSupportLanguage(final String language) {
         sSupportLanguageMaps.remove(language);
@@ -174,7 +174,7 @@ public class LanguageUtils {
 
     /**
      * 是否支持此语言
-     * @param language
+     * @param language 语言
      * @return {@code true} 支持, {@code false} 不支持
      */
     public static boolean isSupportLanguage(final String language) {
@@ -183,8 +183,8 @@ public class LanguageUtils {
 
     /**
      * 获取支持语言
-     * @param language
-     * @return 支持返回支持语言, 不支持返回系统首选语言
+     * @param language 语言
+     * @return {@link Locale}
      */
     public static Locale getSupportLanguage(final String language) {
         if (isSupportLanguage(language)) {
