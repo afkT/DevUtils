@@ -479,8 +479,8 @@ public final class AppUtils {
      */
     public static boolean isAppForeground() {
         try {
-            ActivityManager manager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-            List<ActivityManager.RunningAppProcessInfo> info = manager.getRunningAppProcesses();
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningAppProcessInfo> info = activityManager.getRunningAppProcesses();
             if (info == null || info.size() == 0) return false;
             for (ActivityManager.RunningAppProcessInfo aInfo : info) {
                 if (aInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {

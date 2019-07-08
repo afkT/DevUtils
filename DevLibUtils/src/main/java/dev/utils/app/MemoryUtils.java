@@ -23,6 +23,12 @@ public final class MemoryUtils {
 
     // 日志 TAG
     private static final String TAG = MemoryUtils.class.getSimpleName();
+    // 内存信息文件地址
+    private static final String MEM_INFO_PATH = "/proc/meminfo";
+    // 获取内存总大小
+    private static final String MEMTOTAL = "MemTotal";
+    // 获取可用内存
+    private static final String MEMAVAILABLE = "MemAvailable";
 
     /**
      * 获取内存信息
@@ -70,12 +76,10 @@ public final class MemoryUtils {
      */
     public static String printMemoryInfo() {
         try {
-            FileReader fileReader = new FileReader(MEM_INFO_PATH);
-            BufferedReader br = new BufferedReader(fileReader, 4 * 1024);
+            BufferedReader br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
             StringBuilder builder = new StringBuilder();
             String str;
             while ((str = br.readLine()) != null) {
-                // 追加保存内容
                 builder.append(str);
             }
             br.close();
@@ -88,15 +92,15 @@ public final class MemoryUtils {
 
     /**
      * 获取内存信息
-     * @return
+     * @return 内存信息
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo getMemoryInfo() {
         try {
-            ActivityManager am = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-            ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-            am.getMemoryInfo(mi);
-            return mi;
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+            activityManager.getMemoryInfo(memoryInfo);
+            return memoryInfo;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMemoryInfo");
         }
@@ -104,21 +108,21 @@ public final class MemoryUtils {
     }
 
     /**
-     * 返回内存信息
-     * @return
+     * 获取内存信息
+     * @return 内存信息
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static String printMemoryInfo2() {
         try {
-            ActivityManager.MemoryInfo mi = getMemoryInfo();
+            ActivityManager.MemoryInfo memoryInfo = getMemoryInfo();
             StringBuilder builder = new StringBuilder();
             builder.append("Memory: ");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                builder.append("\ntotalMem: ").append(mi.totalMem);
+                builder.append("\ntotalMem: ").append(memoryInfo.totalMem);
             }
-            builder.append("\navailMem: ").append(mi.availMem);
-            builder.append("\nlowMemory: ").append(mi.lowMemory);
-            builder.append("\nthreshold: ").append(mi.threshold);
+            builder.append("\navailMem: ").append(memoryInfo.availMem);
+            builder.append("\nlowMemory: ").append(memoryInfo.lowMemory);
+            builder.append("\nthreshold: ").append(memoryInfo.threshold);
             return builder.toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printMemoryInfo2");
@@ -128,34 +132,26 @@ public final class MemoryUtils {
 
     /**
      * 获取可用内存信息
-     * Get available memory info.
-     * @return
+     * @return 可用内存信息
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static String getAvailMemory() {
         try {
             // 获取 android 当前可用内存大小
-            ActivityManager am = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-            ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-            am.getMemoryInfo(mi); // mi.availMem; 当前系统的可用内存
+            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+            activityManager.getMemoryInfo(memoryInfo); // memoryInfo.availMem; 当前系统的可用内存
             // 将获取的内存大小规格化
-            return Formatter.formatFileSize(DevUtils.getContext(), mi.availMem);
+            return Formatter.formatFileSize(DevUtils.getContext(), memoryInfo.availMem);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAvailMemory");
         }
         return null;
     }
 
-    // 内存信息文件地址
-    public static final String MEM_INFO_PATH = "/proc/meminfo";
-    // 获取内存总大小
-    public static final String MEMTOTAL = "MemTotal";
-    // 获取可用内存
-    public static final String MEMAVAILABLE = "MemAvailable";
-
     /**
      * 获取总内存大小
-     * @return
+     * @return 总内存大小
      */
     public static String getTotalMemory() {
         return getMemInfoIype(MEMTOTAL);
@@ -163,7 +159,7 @@ public final class MemoryUtils {
 
     /**
      * 获取可用内存大小
-     * @return
+     * @return 可用内存大小
      */
     public static String getMemoryAvailable() {
         return getMemInfoIype(MEMAVAILABLE);
@@ -171,14 +167,13 @@ public final class MemoryUtils {
 
     /**
      * 通过不同 type 获取对应的内存信息
-     * @param type
-     * @return
+     * @param type 内存类型
+     * @return 对应 type 内存信息
      */
     public static String getMemInfoIype(final String type) {
         try {
-            FileReader fileReader = new FileReader(MEM_INFO_PATH);
-            BufferedReader br = new BufferedReader(fileReader, 4 * 1024);
-            String str = null;
+            BufferedReader br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
+            String str;
             while ((str = br.readLine()) != null) {
                 if (str.contains(type)) {
                     break;
@@ -187,7 +182,7 @@ public final class MemoryUtils {
             br.close();
             // 拆分空格、回车、换行等空白符
             String[] array = str.split("\\s+");
-            // 获取系统总内存, 单位是KB, 乘以 1024 转换为 Byte
+            // 获取系统总内存, 单位是 KB, 乘以 1024 转换为 Byte
             long length = Long.valueOf(array[1]).longValue() * 1024;
             return android.text.format.Formatter.formatFileSize(DevUtils.getContext(), length);
         } catch (Exception e) {
