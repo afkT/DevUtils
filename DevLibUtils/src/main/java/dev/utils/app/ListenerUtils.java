@@ -2,7 +2,6 @@ package dev.utils.app;
 
 import android.app.Activity;
 import android.view.View;
-import android.view.Window;
 
 import java.lang.reflect.Field;
 
@@ -21,18 +20,18 @@ public final class ListenerUtils {
     private static final String TAG = ListenerUtils.class.getSimpleName();
 
     /**
-     * 获取 View 设置的 OnTouchListener
-     * @param view
-     * @return
+     * 获取 View 设置的 OnTouchListener 事件对象
+     * @param view {@link View}
+     * @return {@link View.OnTouchListener}
      */
     public static View.OnTouchListener getTouchListener(final View view) {
         return (View.OnTouchListener) getListenerInfoListener(view, "mOnTouchListener");
     }
 
     /**
-     * 获取 View ListenerInfo 对象(内部类)
-     * @param view
-     * @return
+     * 获取 View ListenerInfo 对象 ( 内部类 )
+     * @param view {@link View}
+     * @return ListenerInfo
      */
     public static Object getListenerInfo(final View view) {
         try {
@@ -48,9 +47,9 @@ public final class ListenerUtils {
 
     /**
      * 获取 View ListenerInfo 对象内部事件对象
-     * @param view
-     * @param listener
-     * @return
+     * @param view     {@link View}
+     * @param listener 事件名
+     * @return 指定事件名事件对象
      */
     public static Object getListenerInfoListener(final View view, final String listener) {
         try {
@@ -72,9 +71,9 @@ public final class ListenerUtils {
 
     /**
      * 设置点击事件
-     * @param view
-     * @param onClickListener
-     * @param viewIds
+     * @param view            {@link View}
+     * @param onClickListener {@link View.OnClickListener}
+     * @param viewIds         View id 数组
      */
     public static void setOnClicks(final View view, final View.OnClickListener onClickListener, final int... viewIds) {
         if (view != null && onClickListener != null && viewIds != null) {
@@ -89,9 +88,9 @@ public final class ListenerUtils {
 
     /**
      * 设置点击事件
-     * @param activity
-     * @param onClickListener
-     * @param viewIds
+     * @param activity        {@link Activity}
+     * @param onClickListener {@link View.OnClickListener}
+     * @param viewIds         View id 数组
      */
     public static void setOnClicks(final Activity activity, final View.OnClickListener onClickListener, final int... viewIds) {
         if (activity != null && onClickListener != null && viewIds != null) {
@@ -106,8 +105,8 @@ public final class ListenerUtils {
 
     /**
      * 设置点击事件
-     * @param onClickListener
-     * @param views
+     * @param onClickListener {@link View.OnClickListener}
+     * @param views           View 数组
      */
     public static void setOnClicks(final View.OnClickListener onClickListener, final View... views) {
         if (onClickListener != null && views != null) {
@@ -120,8 +119,12 @@ public final class ListenerUtils {
     }
 
     // ======================
-    // = 初始化 View 操作等 =
+    // = 其他工具类实现代码 =
     // ======================
+
+    // =============
+    // = ViewUtils =
+    // =============
 
     /**
      * 初始化 View
@@ -134,24 +137,6 @@ public final class ListenerUtils {
         if (view != null) {
             try {
                 return view.findViewById(id);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "findViewById");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 初始化 View
-     * @param window {@link Window}
-     * @param id     R.id.viewId
-     * @param <T>    泛型
-     * @return {@link View}
-     */
-    private static <T extends View> T findViewById(final Window window, final int id) {
-        if (window != null) {
-            try {
-                return window.findViewById(id);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "findViewById");
             }
