@@ -55,6 +55,18 @@ public final class HandlerUtils {
      * @param interval    轮询时间
      */
     public static void postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval) {
+        postRunnable(runnable, delayMillis, number, interval, null);
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable      可执行的任务
+     * @param delayMillis   延迟时间
+     * @param number        轮询次数
+     * @param interval      轮询时间
+     * @param onEndListener 结束通知
+     */
+    public static void postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval, final OnEndListener onEndListener) {
         if (runnable != null) {
             Runnable loop = new Runnable() {
                 private int mNumber;
@@ -62,15 +74,25 @@ public final class HandlerUtils {
                 @Override
                 public void run() {
                     if (mNumber < number) {
+                        mNumber++;
                         if (runnable != null) {
                             try {
                                 runnable.run();
                             } catch (Exception e) {
                             }
                         }
-                        getMainHandler().postDelayed(this, interval);
+                        // 判断是否超过次数
+                        if (mNumber < number) {
+                            getMainHandler().postDelayed(this, interval);
+                        }
                     }
-                    mNumber++;
+
+                    // 判断是否超过次数
+                    if (mNumber >= number) {
+                        if (onEndListener != null) {
+                            onEndListener.onEnd(delayMillis, number, interval);
+                        }
+                    }
                 }
             };
             getMainHandler().postDelayed(loop, delayMillis);
@@ -85,5 +107,22 @@ public final class HandlerUtils {
         if (runnable != null) {
             getMainHandler().removeCallbacks(runnable);
         }
+    }
+
+    // =
+
+    /**
+     * detail:  结束回调事件
+     * @author Ttt
+     */
+    public interface OnEndListener {
+
+        /**
+         * 结束通知
+         * @param delayMillis 延迟时间
+         * @param number      轮询次数
+         * @param interval    轮询时间
+         */
+        void onEnd(long delayMillis, int number, int interval);
     }
 }

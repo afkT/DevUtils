@@ -578,15 +578,15 @@ public class WifiHotUtils {
     // =
 
     // wifi 热点监听
-    private onWifiAPListener mWifiAPListener;
+    private OnWifiAPListener mWifiAPListener;
 
     /**
      * 设置 wifi 热点监听事件
-     * @param wifiAPListener {@link onWifiAPListener}
+     * @param wifiAPListener {@link OnWifiAPListener}
      * @return {@link WifiHotUtils}
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public WifiHotUtils setOnWifiAPListener(final onWifiAPListener wifiAPListener) {
+    public WifiHotUtils setOnWifiAPListener(final OnWifiAPListener wifiAPListener) {
         this.mWifiAPListener = wifiAPListener;
         return this;
     }
@@ -595,7 +595,7 @@ public class WifiHotUtils {
      * detail: Android Wifi 热点监听
      * @author Ttt
      */
-    public interface onWifiAPListener {
+    public interface OnWifiAPListener {
 
         /**
          * 开启热点回调
