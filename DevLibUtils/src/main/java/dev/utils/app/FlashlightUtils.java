@@ -9,9 +9,6 @@ import java.io.IOException;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
-import static android.hardware.Camera.Parameters.FLASH_MODE_OFF;
-import static android.hardware.Camera.Parameters.FLASH_MODE_TORCH;
-
 /**
  * detail: 手电筒工具类
  * @author Ttt
@@ -28,20 +25,18 @@ public final class FlashlightUtils {
 
     /**
      * 获取 FlashlightUtils 实例
-     * @return
+     * @return {@link FlashlightUtils}
      */
     public static FlashlightUtils getInstance() {
         return INSTANCE;
     }
-
-    // =
 
     // Camera 对象
     private Camera mCamera;
 
     /**
      * 注册摄像头
-     * @return
+     * @return {@code true} success, {@code false} fail
      */
     public boolean register() {
         try {
@@ -49,9 +44,7 @@ public final class FlashlightUtils {
         } catch (Throwable t) {
             return false;
         }
-        if (mCamera == null) {
-            return false;
-        }
+        if (mCamera == null) return false;
         try {
             mCamera.setPreviewTexture(new SurfaceTexture(0));
             mCamera.startPreview();
@@ -75,12 +68,10 @@ public final class FlashlightUtils {
      * 打开闪光灯
      */
     public void setFlashlightOn() {
-        if (mCamera == null) {
-            return;
-        }
+        if (mCamera == null) return;
         Camera.Parameters parameters = mCamera.getParameters();
-        if (!FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
-            parameters.setFlashMode(FLASH_MODE_TORCH);
+        if (!Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             mCamera.setParameters(parameters);
         }
     }
@@ -89,41 +80,42 @@ public final class FlashlightUtils {
      * 关闭闪光灯
      */
     public void setFlashlightOff() {
-        if (mCamera == null) {
-            return;
-        }
+        if (mCamera == null) return;
         Camera.Parameters parameters = mCamera.getParameters();
-        if (FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
-            parameters.setFlashMode(FLASH_MODE_OFF);
+        if (Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             mCamera.setParameters(parameters);
         }
     }
 
     /**
      * 是否打开闪光灯
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isFlashlightOn() {
-        if (mCamera == null) {
-            return false;
-        }
+        if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
-        return FLASH_MODE_TORCH.equals(parameters.getFlashMode());
+        return Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
     }
 
     /**
      * 是否支持手机闪光灯
-     * @return
+     * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFlashlightEnable() {
-        return DevUtils.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+    public boolean isFlashlightEnable() {
+        try {
+            return DevUtils.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isFlashlightEnable");
+        }
+        return false;
     }
 
     // =
 
     /**
      * 打开闪光灯
-     * @param camera
+     * @param camera {@link android.graphics.Camera}
      */
     public void setFlashlightOn(final Camera camera) {
         if (camera != null) {
@@ -139,7 +131,7 @@ public final class FlashlightUtils {
 
     /**
      * 关闭闪光灯
-     * @param camera
+     * @param camera {@link android.graphics.Camera}
      */
     public void setFlashlightOff(final Camera camera) {
         if (camera != null) {
@@ -154,15 +146,15 @@ public final class FlashlightUtils {
     }
 
     /**
-     * 是否打开了摄像头
-     * @param camera
-     * @return
+     * 是否打开闪光灯
+     * @param camera {@link android.graphics.Camera}
+     * @return {@code true} yes, {@code false} no
      */
     public boolean isFlashlightOn(final Camera camera) {
         if (camera != null) {
             try {
                 Camera.Parameters parameters = camera.getParameters();
-                return FLASH_MODE_TORCH.equals(parameters.getFlashMode());
+                return Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isFlashlightOn");
             }
