@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 /**
- * detail: Handler 工具类(默认开启一个 Handler, 方便在各个地方随时执行主线程任务)
+ * detail: Handler 工具类 ( 默认开启一个 Handler, 方便在各个地方随时执行主线程任务 )
  * @author Ttt
  */
 public final class HandlerUtils {
@@ -51,17 +51,17 @@ public final class HandlerUtils {
      * 在主线程 Handler 中执行延迟任务
      * @param runnable    可执行的任务
      * @param delayMillis 延迟时间
-     * @param times       轮询次数
+     * @param number      轮询次数
      * @param interval    轮询时间
      */
-    public static void postRunnable(final Runnable runnable, final long delayMillis, final int times, final int interval) {
+    public static void postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval) {
         if (runnable != null) {
             Runnable loop = new Runnable() {
-                private int mTimes;
+                private int mNumber;
 
                 @Override
                 public void run() {
-                    if (mTimes < times) {
+                    if (mNumber < number) {
                         if (runnable != null) {
                             try {
                                 runnable.run();
@@ -70,7 +70,7 @@ public final class HandlerUtils {
                         }
                         getMainHandler().postDelayed(this, interval);
                     }
-                    mTimes++;
+                    mNumber++;
                 }
             };
             getMainHandler().postDelayed(loop, delayMillis);
