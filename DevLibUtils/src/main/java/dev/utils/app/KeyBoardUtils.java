@@ -33,7 +33,7 @@ public final class KeyBoardUtils {
 
     // 日志 TAG
     private static final String TAG = KeyBoardUtils.class.getSimpleName();
-    // 默认延迟时间
+    // 默认延迟时间 ( 毫秒 )
     private static int DELAY_MILLIS = 300;
     // 键盘显示
     public static final int KEYBOARD_DISPLAY = 930;
@@ -42,7 +42,7 @@ public final class KeyBoardUtils {
 
     /**
      * 设置延迟时间
-     * @param delayMillis
+     * @param delayMillis 延迟时间 ( 毫秒 )
      */
     public static void setDelayMillis(final int delayMillis) {
         DELAY_MILLIS = delayMillis;
@@ -54,7 +54,7 @@ public final class KeyBoardUtils {
 
     /**
      * 打开软键盘
-     * @param editText 输入框
+     * @param editText {@link EditText}
      */
     public static void openKeyboard(final EditText editText) {
         if (editText != null) {
@@ -70,8 +70,8 @@ public final class KeyBoardUtils {
 
     /**
      * 打开软键盘
-     * @param editText
-     * @param handler
+     * @param editText {@link EditText}
+     * @param handler  {@link Handler}
      */
     public static void openKeyboard(final EditText editText, final Handler handler) {
         openKeyboard(editText, handler, DELAY_MILLIS);
@@ -79,13 +79,12 @@ public final class KeyBoardUtils {
 
     /**
      * 打开软键盘
-     * @param editText
-     * @param handler
-     * @param delayMillis
+     * @param editText    {@link EditText}
+     * @param handler     {@link Handler}
+     * @param delayMillis 延迟时间 ( 毫秒 )
      */
     public static void openKeyboard(final EditText editText, final Handler handler, final int delayMillis) {
-        if (handler != null && editText != null) {
-            // 延迟打开
+        if (editText != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -116,7 +115,7 @@ public final class KeyBoardUtils {
 
     /**
      * 打开软键盘
-     * @param handler
+     * @param handler {@link Handler}
      */
     public static void openKeyboard(final Handler handler) {
         openKeyboard(handler, DELAY_MILLIS);
@@ -124,12 +123,11 @@ public final class KeyBoardUtils {
 
     /**
      * 打开软键盘
-     * @param handler
-     * @param delayMillis
+     * @param handler     {@link Handler}
+     * @param delayMillis 延迟时间 ( 毫秒 )
      */
     public static void openKeyboard(final Handler handler, final int delayMillis) {
-        if (handler != null && DevUtils.getContext() != null) {
-            // 延迟打开
+        if (DevUtils.getContext() != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -145,7 +143,7 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param editText 输入框
+     * @param editText {@link EditText}
      */
     public static void closeKeyboard(final EditText editText) {
         if (editText != null) {
@@ -174,14 +172,13 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param activity
+     * @param activity {@link Activity}
      */
     public static void closeKeyboard(final Activity activity) {
         if (activity != null) {
             try {
                 InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(activity.getWindow().peekDecorView().getWindowToken(), 0);
-                // imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeKeyboard");
             }
@@ -189,15 +186,14 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 关闭dialog中打开的键盘
-     * @param dialog
+     * 关闭 dialog 中打开的键盘
+     * @param dialog {@link Dialog}
      */
     public static void closeKeyboard(final Dialog dialog) {
         if (dialog != null) {
             try {
                 InputMethodManager imm = (InputMethodManager) dialog.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(dialog.getWindow().peekDecorView().getWindowToken(), 0);
-                // imm.hideSoftInputFromWindow(dialog.getCurrentFocus().getWindowToken(), 0);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeKeyboard");
             }
@@ -208,8 +204,8 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘 - 特殊处理
-     * @param editText
-     * @param dialog
+     * @param editText {@link EditText}
+     * @param dialog   {@link Dialog}
      */
     public static void closeKeyBoardSpecial(final EditText editText, final Dialog dialog) {
         try {
@@ -226,24 +222,23 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘 - 特殊处理
-     * @param editText
-     * @param dialog
-     * @param handler
+     * @param editText {@link EditText}
+     * @param dialog   {@link Dialog}
+     * @param handler  {@link Handler}
      */
     public static void closeKeyBoardSpecial(final EditText editText, final Dialog dialog, final Handler handler) {
         closeKeyBoardSpecial(editText, dialog, handler, DELAY_MILLIS);
     }
 
     /**
-     * 关闭软键盘 - 特殊处理(两个都关闭)
-     * @param editText
-     * @param dialog
-     * @param handler
-     * @param delayMillis
+     * 关闭软键盘 - 特殊处理 ( 两个都关闭 )
+     * @param editText    {@link EditText}
+     * @param dialog      {@link Dialog}
+     * @param handler     {@link Handler}
+     * @param delayMillis 延迟时间 ( 毫秒 )
      */
     public static void closeKeyBoardSpecial(final EditText editText, final Dialog dialog, final Handler handler, final int delayMillis) {
         if (handler != null) {
-            // 延迟打开
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -257,8 +252,8 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param editText
-     * @param handler
+     * @param editText {@link EditText}
+     * @param handler  {@link Handler}
      */
     public static void closeKeyboard(final EditText editText, final Handler handler) {
         closeKeyboard(editText, handler, DELAY_MILLIS);
@@ -266,13 +261,12 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param editText
-     * @param handler
-     * @param delayMillis
+     * @param editText    {@link EditText}
+     * @param handler     {@link Handler}
+     * @param delayMillis 延迟时间 ( 毫秒 )
      */
     public static void closeKeyboard(final EditText editText, final Handler handler, final int delayMillis) {
-        if (handler != null && editText != null) {
-            // 延迟打开
+        if (editText != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -284,7 +278,7 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param handler
+     * @param handler {@link Handler}
      */
     public static void closeKeyboard(final Handler handler) {
         closeKeyboard(handler, DELAY_MILLIS);
@@ -292,12 +286,11 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param handler
-     * @param delayMillis
+     * @param handler     {@link Handler}
+     * @param delayMillis 延迟时间 ( 毫秒 )
      */
     public static void closeKeyboard(final Handler handler, final int delayMillis) {
-        if (handler != null && DevUtils.getContext() != null) {
-            // 延迟打开
+        if (DevUtils.getContext() != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -309,8 +302,8 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param activity
-     * @param handler
+     * @param activity {@link Activity}
+     * @param handler  {@link Handler}
      */
     public static void closeKeyboard(final Activity activity, final Handler handler) {
         closeKeyboard(activity, handler, DELAY_MILLIS);
@@ -318,13 +311,12 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param activity
-     * @param handler
-     * @param delayMillis
+     * @param activity    {@link Activity}
+     * @param handler     {@link Handler}
+     * @param delayMillis 延迟时间 ( 毫秒 )
      */
     public static void closeKeyboard(final Activity activity, final Handler handler, final int delayMillis) {
-        if (handler != null && activity != null) {
-            // 延迟打开
+        if (activity != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -336,8 +328,8 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param dialog
-     * @param handler
+     * @param dialog  {@link Dialog}
+     * @param handler {@link Handler}
      */
     public static void closeKeyboard(final Dialog dialog, final Handler handler) {
         closeKeyboard(dialog, handler, DELAY_MILLIS);
@@ -345,13 +337,12 @@ public final class KeyBoardUtils {
 
     /**
      * 关闭软键盘
-     * @param dialog
-     * @param handler
-     * @param delayMillis
+     * @param dialog      {@link Dialog}
+     * @param handler     {@link Handler}
+     * @param delayMillis 延迟时间 ( 毫秒 )
      */
     public static void closeKeyboard(final Dialog dialog, final Handler handler, final int delayMillis) {
-        if (handler != null && dialog != null) {
-            // 延迟打开
+        if (dialog != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -364,14 +355,13 @@ public final class KeyBoardUtils {
     // =
 
     // 下面暂时无法使用, 缺少判断键盘是否显示, 否则和自动切换无区别
-    // InputMethodManager.isActive() (无法获取)
-    // Activity.getWindow().getAttributes().softInputMode (有些版本可以, 不适用)
+    // InputMethodManager.isActive() ( 无法获取 )
+    // Activity.getWindow().getAttributes().softInputMode ( 有些版本可以, 不适用 )
 
     /**
      * 自动切换键盘状态, 如果键盘显示了则隐藏, 隐藏着显示
      */
     public static void toggleKeyboard() {
-        // 程序启动后, 自动弹出软键盘, 可以通过设置一个时间函数来实现, 不能再onCreate里写
         try {
             InputMethodManager imm = (InputMethodManager) DevUtils.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
@@ -380,14 +370,14 @@ public final class KeyBoardUtils {
         }
     }
 
-    // ===============================
-    // = 点击非EditText 则隐藏输入法 =
-    // ===============================
+    // ================================
+    // = 点击非 EditText 则隐藏输入法 =
+    // ================================
 
     /**
-     * 某个 View 里面的子 View 的 View 判断
-     * @param view
-     * @param activity
+     * 设置某个 View 内所有非 EditText 的子 View OnTouchListener 事件
+     * @param view     {@link View}
+     * @param activity {@link Activity}
      */
     public static void judgeView(final View view, final Activity activity) {
         if (view == null || activity == null) return;
@@ -401,9 +391,12 @@ public final class KeyBoardUtils {
         }
         // =
         if (view instanceof ViewGroup) {
-            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
-                View innerView = ((ViewGroup) view).getChildAt(i);
-                judgeView(innerView, activity);
+            ViewGroup viewGroup = (ViewGroup) view;
+            if (viewGroup != null) {
+                for (int i = 0, len = viewGroup.getChildCount(); i < len; i++) {
+                    View innerView = viewGroup.getChildAt(i);
+                    judgeView(innerView, activity);
+                }
             }
         }
     }
@@ -414,7 +407,7 @@ public final class KeyBoardUtils {
 
     /**
      * 判断软键盘是否可见
-     * @param activity
+     * @param activity {@link Activity}
      * @return {@code true} 可见, {@code false} 不可见
      */
     public static boolean isSoftInputVisible(final Activity activity) {
@@ -423,7 +416,7 @@ public final class KeyBoardUtils {
 
     /**
      * 判断软键盘是否可见
-     * @param activity
+     * @param activity             {@link Activity}
      * @param minHeightOfSoftInput 软键盘最小高度
      * @return {@code true} 可见, {@code false} 不可见
      */
@@ -432,9 +425,9 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 计算 View 的宽度高度
-     * @param activity
-     * @return
+     * 计算 Activity content View 高度
+     * @param activity {@link Activity}
+     * @return View 的高度
      */
     private static int getContentViewInvisibleHeight(final Activity activity) {
         try {
@@ -449,9 +442,9 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 注册软键盘改变监听器
-     * @param activity
-     * @param listener
+     * 注册软键盘改变监听
+     * @param activity {@link Activity}
+     * @param listener {@link OnSoftInputChangedListener}
      */
     public static void registerSoftInputChangedListener(final Activity activity, final OnSoftInputChangedListener listener) {
         try {
@@ -475,9 +468,9 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 注册软键盘改变监听器
-     * @param activity
-     * @param listener
+     * 注册软键盘改变监听
+     * @param activity {@link Activity}
+     * @param listener {@link OnSoftInputChangedListener}
      */
     public static void registerSoftInputChangedListener2(final Activity activity, final OnSoftInputChangedListener listener) {
         final View decorView = activity.getWindow().getDecorView();
@@ -495,7 +488,7 @@ public final class KeyBoardUtils {
                         // 获取键盘高度
                         int keyboardHeight = hight - displayHight;
                         // 计算一定比例
-                        boolean visible = (double) displayHight / hight < 0.8;
+                        boolean visible = ((double) displayHight / (double) hight) < 0.8d;
                         // 判断是否显示
                         listener.onSoftInputChanged(visible, keyboardHeight);
                     } catch (Exception e) {
@@ -514,8 +507,8 @@ public final class KeyBoardUtils {
 
         /**
          * 输入法弹出、隐藏改变通知
-         * @param visible
-         * @param height
+         * @param visible 是否显示了输入法
+         * @param height  输入法高度
          */
         void onSoftInputChanged(boolean visible, int height);
     }

@@ -46,7 +46,6 @@ public final class KeyguardUtils {
      */
     private KeyguardUtils() {
         try {
-            // 获取系统服务
             mKeyguardManager = (KeyguardManager) DevUtils.getContext().getSystemService(Context.KEYGUARD_SERVICE);
             // 初始化锁
             mKeyguardLock = mKeyguardManager.newKeyguardLock(TAG);
@@ -134,20 +133,11 @@ public final class KeyguardUtils {
     @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
     public void release() {
         if (mKeyguardLock != null) {
-            // 禁用显示键盘锁定
             mKeyguardLock.reenableKeyguard();
         }
     }
 
-    /**
-     * 生成一个新的 KeyguardLock, 并且设置 TAG
-     * @param tag TAG
-     */
-    public void newKeyguardLock(final String tag) {
-        if (mKeyguardManager != null && tag != null) {
-            this.mKeyguardLock = mKeyguardManager.newKeyguardLock(tag);
-        }
-    }
+    // =
 
     /**
      * 获取 KeyguardManager.KeyguardLock
@@ -163,5 +153,15 @@ public final class KeyguardUtils {
      */
     public void setKeyguardLock(final KeyguardManager.KeyguardLock keyguardLock) {
         this.mKeyguardLock = keyguardLock;
+    }
+
+    /**
+     * 设置 KeyguardManager.KeyguardLock ( 通过 TAG 生成 )
+     * @param tag TAG
+     */
+    public void setKeyguardLock(final String tag) {
+        if (mKeyguardManager != null && tag != null) {
+            this.mKeyguardLock = mKeyguardManager.newKeyguardLock(tag);
+        }
     }
 }
