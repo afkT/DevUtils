@@ -33,10 +33,10 @@ public final class JSONObjectUtils {
     /**
      * 转换为 JSON 格式字符串
      * <pre>
-     *     @TODO 不支持 实体类 转 JSON字符串
+     *     @TODO 不支持 实体类 转 JSON 字符串
      * </pre>
-     * @param object
-     * @return
+     * @param object Object
+     * @return JSON String
      */
     public static String toJson(final Object object) {
         return toJson(object, -1);
@@ -45,11 +45,11 @@ public final class JSONObjectUtils {
     /**
      * 转换为 JSON 格式字符串
      * <pre>
-     *     @TODO 不支持 实体类 转 JSON字符串
+     *     @TODO 不支持 实体类 转 JSON 字符串
      * </pre>
-     * @param object
-     * @param jsonIndent
-     * @return
+     * @param object     Object
+     * @param jsonIndent JSON 缩进间隔
+     * @return JSON String
      */
     public static String toJson(final Object object, final int jsonIndent) {
         if (object == null) return null;
@@ -121,10 +121,10 @@ public final class JSONObjectUtils {
      *     fromJson(xx, JSONArray.class);
      *     fromJson(xx, JSONTokener.class);
      * </pre>
-     * @param object
+     * @param object Object
      * @param type   JSONObject.class || JSONArray.class || JSONTokener.class
      * @param <T>    泛型
-     * @return
+     * @return 指定 type JSON 对象
      */
     public static <T> T fromJson(final Object object, final Class<T> type) {
         if (object == null || type == null) return null;
@@ -180,8 +180,8 @@ public final class JSONObjectUtils {
 
     /**
      * 包装转换 Object - {@link JSONObject#wrap(Object)}
-     * @param object
-     * @return
+     * @param object Object
+     * @return 转换后的 Object
      */
     public static Object wrap(final Object object) {
         if (object == null) return null;
@@ -229,8 +229,8 @@ public final class JSONObjectUtils {
 
     /**
      * 字符串 JSON 转义处理
-     * @param str
-     * @return
+     * @param str 字符串
+     * @return 转义后的 JSON 字符串
      */
     public static String stringJSONEscape(final String str) {
         if (str == null) return "";
