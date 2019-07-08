@@ -38,7 +38,7 @@ public final class FileRecordUtils {
     // = 配置信息 =
     // ============
 
-    // App 版本(如 1.0.01) 显示给用户看的
+    // App 版本 ( 如 1.0.01) 显示给用户看的
     private static String APP_VERSION_NAME = "";
     // android:versionCode 整数值, 代表应用程序代码的相对版本
     private static String APP_VERSION_CODE = "";
@@ -171,7 +171,7 @@ public final class FileRecordUtils {
     // ============
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建(不能加入文件名)
+     * 判断某个文件夹是否创建, 未创建则创建 ( 不能加入文件名 )
      * @param filePath 文件路径
      * @return 文件 {@link File}
      */
@@ -192,14 +192,14 @@ public final class FileRecordUtils {
 
     /**
      * 保存文件
-     * @param txt  保存内容
-     * @param fUrl 保存路径(包含文件名.后缀)
+     * @param txt      保存内容
+     * @param filePath 保存路径 ( 包含文件名. 后缀 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    private static boolean saveFile(final String txt, final String fUrl) {
+    private static boolean saveFile(final String txt, final String filePath) {
         try {
             // 保存内容到一个文件
-            FileOutputStream fos = new FileOutputStream(fUrl);
+            FileOutputStream fos = new FileOutputStream(filePath);
             fos.write(txt.getBytes());
             fos.close();
         } catch (Exception e) {
@@ -214,69 +214,28 @@ public final class FileRecordUtils {
     // ================
 
     /**
-     * 获取错误信息(无换行)
-     * @param errorInfo 获取失败, 返回信息
-     * @param ex        错误信息
-     * @return 错误信息字符串
+     * 获取异常栈信息
+     * @param throwable 异常
+     * @param errorInfo 获取失败返回字符串
+     * @return 异常栈信息字符串
      */
-    private static String getThrowableMsg(final String errorInfo, final Throwable ex) {
-        PrintWriter printWriter = null;
-        try {
-            if (ex != null) {
-                // 初始化 Writer、PrintWriter 打印流
+    private static String getThrowableStackTrace(final Throwable throwable, final String errorInfo) {
+        if (throwable != null) {
+            PrintWriter printWriter = null;
+            try {
                 Writer writer = new StringWriter();
                 printWriter = new PrintWriter(writer);
-                // 写入错误栈信息
-                ex.printStackTrace(printWriter);
-                // 关闭流
-                printWriter.close();
+                throwable.printStackTrace(printWriter);
                 return writer.toString();
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getThrowableMsg");
-        } finally {
-            if (printWriter != null) {
-                printWriter.close();
-            }
-        }
-        return errorInfo;
-    }
-
-    /**
-     * 获取错误信息(有换行)
-     * @param errorInfo 获取失败, 返回信息
-     * @param ex        错误信息
-     * @return 错误信息字符串
-     */
-    private static String getThrowableNewLinesMsg(final String errorInfo, final Throwable ex) {
-        PrintWriter printWriter = null;
-        try {
-            if (ex != null) {
-                // 初始化 Writer、PrintWriter 打印流
-                Writer writer = new StringWriter();
-                printWriter = new PrintWriter(writer);
-                // 获取错误栈信息
-                StackTraceElement[] stElement = ex.getStackTrace();
-                // 标题, 提示属于什么异常
-                printWriter.append(ex.toString());
-                printWriter.append(NEW_LINE_STR);
-                // 遍历错误栈信息, 并且进行换行缩进
-                for (StackTraceElement st : stElement) {
-                    printWriter.append("\tat ");
-                    printWriter.append(st.toString());
-                    printWriter.append(NEW_LINE_STR);
-                }
-                // 关闭流
-                printWriter.close();
-                return writer.toString();
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getThrowableNewLinesMsg");
-        } finally {
-            if (printWriter != null) {
-                try {
-                    printWriter.close();
-                } catch (Exception e) {
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getThrowableStackTrace");
+                return e.toString();
+            } finally {
+                if (printWriter != null) {
+                    try {
+                        printWriter.close();
+                    } catch (Exception e) {
+                    }
                 }
             }
         }
@@ -288,7 +247,7 @@ public final class FileRecordUtils {
     // ================
 
     /**
-     * 初始化调用方法 (内部已调用)
+     * 初始化调用方法 ( 内部已调用 )
      */
     public static void init() {
         // 如果版本信息为 null, 才进行处理
@@ -312,39 +271,37 @@ public final class FileRecordUtils {
     }
 
     // ====================
-    // = 保存错误日志信息 =
+    // = 保存异常日志信息 =
     // ====================
 
     /**
-     * 保存 App 错误日志
+     * 保存异常日志
      * @param ex          错误信息
      * @param filePath    保存路径
-     * @param fileName    文件名(含后缀)
-     * @param isNewLines  是否换行
+     * @param fileName    文件名 ( 含后缀 )
      * @param printDevice 是否打印设备信息
-     * @param errorInfos  错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos  错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName, final boolean isNewLines,
+    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName,
                                        final boolean printDevice, final String... errorInfos) {
-        return saveErrorLog(ex, null, null, filePath, fileName, isNewLines, printDevice, errorInfos);
+        return saveErrorLog(ex, null, null, filePath, fileName, printDevice, errorInfos);
     }
 
     /**
-     * 保存 App 错误日志
+     * 保存异常日志
      * @param ex          错误信息
      * @param head        顶部标题
      * @param bottom      底部内容
      * @param filePath    保存路径
-     * @param fileName    文件名(含后缀)
-     * @param isNewLines  是否换行
+     * @param fileName    文件名 ( 含后缀 )
      * @param printDevice 是否打印设备信息
-     * @param errorInfos  错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos  错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName,
-                                       final boolean isNewLines, final boolean printDevice, final String... errorInfos) {
-        // 处理可变参数(错误提示)
+    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath,
+                                       final String fileName, final boolean printDevice, final String... errorInfos) {
+        // 处理可变参数 ( 错误提示 )
         String[] errorArrays = handlerVariable(2, errorInfos);
         // 日志拼接
         StringBuilder builder = new StringBuilder();
@@ -379,13 +336,7 @@ public final class FileRecordUtils {
         }
         // =
         // 错误信息
-        String errorMessage;
-        // 是否换行
-        if (isNewLines) {
-            errorMessage = getThrowableNewLinesMsg(errorArrays[1], ex);
-        } else {
-            errorMessage = getThrowableMsg(errorArrays[1], ex);
-        }
+        String errorMessage = getThrowableStackTrace(ex, errorArrays[1]);
         // 保存异常信息
         builder.append(errorMessage);
         // 如果存在顶部内容, 则进行添加
@@ -399,13 +350,15 @@ public final class FileRecordUtils {
         return saveFile(builder.toString(), filePath + File.separator + fileName);
     }
 
+    // =
+
     /**
-     * 保存 App 日志
+     * 保存日志
      * @param log         日志信息
      * @param filePath    保存路径
-     * @param fileName    文件名(含后缀)
+     * @param fileName    文件名 ( 含后缀 )
      * @param printDevice 是否打印设备信息
-     * @param errorInfos  错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos  错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveLog(final String log, final String filePath, final String fileName, final boolean printDevice, final String... errorInfos) {
@@ -413,19 +366,19 @@ public final class FileRecordUtils {
     }
 
     /**
-     * 保存 App 日志
+     * 保存日志
      * @param log         日志信息
      * @param head        顶部标题
      * @param bottom      底部内容
      * @param filePath    保存路径
-     * @param fileName    文件名(含后缀)
+     * @param fileName    文件名 ( 含后缀 )
      * @param printDevice 是否打印设备信息
-     * @param errorInfos  错误提示(无设备信息、失败信息获取失败)
+     * @param errorInfos  错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveLog(final String log, final String head, final String bottom, final String filePath,
                                   final String fileName, final boolean printDevice, final String... errorInfos) {
-        // 处理可变参数(错误提示)
+        // 处理可变参数 ( 错误提示 )
         String[] errorArrays = handlerVariable(2, errorInfos);
         // 日志拼接
         StringBuilder builder = new StringBuilder();
@@ -476,36 +429,36 @@ public final class FileRecordUtils {
 
     /**
      * 处理可变参数
-     * @param length  保留长度
-     * @param strings 可变参数数组
-     * @return
+     * @param length    保留长度
+     * @param strArrays 可变参数数组
+     * @return 对应长度的参数数组
      */
-    public static String[] handlerVariable(final int length, final String[] strings) {
+    private static String[] handlerVariable(final int length, final String[] strArrays) {
         // 处理后的数据
         String[] hArrays = new String[length];
         // 是否统一处理
         boolean isUnifiedHandler = true;
         try {
-            if (strings != null) {
+            if (strArrays != null) {
                 // 获取可变参数数组长度
-                int vLength = strings.length;
+                int vLength = strArrays.length;
                 // 如果长度超出预留长度
                 if (vLength >= length) {
                     for (int i = 0; i < length; i++) {
-                        if (strings[i] == null) {
+                        if (strArrays[i] == null) {
                             hArrays[i] = "";
                         } else {
-                            hArrays[i] = strings[i];
+                            hArrays[i] = strArrays[i];
                         }
                     }
                     // 但可变参数长度, 超过预留长度时, 已经处理完毕, 不需要再次处理, 节省遍历资源
                     isUnifiedHandler = false;
                 } else {
                     for (int i = 0; i < vLength; i++) {
-                        if (strings[i] == null) {
+                        if (strArrays[i] == null) {
                             hArrays[i] = "";
                         } else {
-                            hArrays[i] = strings[i];
+                            hArrays[i] = strArrays[i];
                         }
                     }
                 }

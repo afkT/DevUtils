@@ -132,28 +132,48 @@ public final class DevLoggerUtils {
     // ================
 
     /**
-     * 保存 App 错误日志
-     * @param ex         错误信息
-     * @param filePath   保存路径 + 文件名 ( 含后缀 )
-     * @param isNewLines 是否换行
-     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
+     * 保存异常日志
+     * @param ex       错误信息
+     * @param filePath 保存路径 + 文件名 ( 含后缀 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String filePath, final boolean isNewLines, final String... errorInfos) {
-        return saveErrorLog(ex, null, null, filePath, isNewLines, errorInfos);
+    public static boolean saveErrorLog(final Throwable ex, final String filePath) {
+        return saveErrorLog(ex, filePath, null);
     }
 
     /**
-     * 保存 App 错误日志
+     * 保存异常日志
+     * @param ex         错误信息
+     * @param filePath   保存路径 + 文件名 ( 含后缀 )
+     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String[] errorInfos) {
+        return saveErrorLog(ex, null, null, filePath, errorInfos);
+    }
+
+    /**
+     * 保存异常日志
+     * @param ex       错误信息
+     * @param head     顶部标题
+     * @param bottom   底部内容
+     * @param filePath 保存路径 + 文件名 ( 含后缀 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath) {
+        return saveErrorLog(ex, head, bottom, filePath, (String[]) null);
+    }
+
+    /**
+     * 保存异常日志
      * @param ex         错误信息
      * @param head       顶部标题
      * @param bottom     底部内容
      * @param filePath   保存路径 + 文件名 ( 含后缀 )
-     * @param isNewLines 是否换行
      * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final boolean isNewLines, final String... errorInfos) {
+    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String[] errorInfos) {
         if (TextUtils.isEmpty(filePath)) return false;
         try {
             File file = new File(filePath);
@@ -164,10 +184,10 @@ public final class DevLoggerUtils {
                 // 重新裁剪
                 String tempPath = filePath.substring(0, filePath.length() - fileName.length());
                 // 进行保存
-                return saveErrorLog(ex, head, bottom, tempPath, fileName, isNewLines, errorInfos);
+                return saveErrorLog(ex, head, bottom, tempPath, fileName, errorInfos);
             } else {
                 // 进行保存
-                return saveErrorLog(ex, head, bottom, filePath, filePath, isNewLines, errorInfos);
+                return saveErrorLog(ex, head, bottom, filePath, filePath, errorInfos);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "saveErrorLog");
@@ -176,27 +196,42 @@ public final class DevLoggerUtils {
     }
 
     /**
-     * 保存 App 错误日志
+     * 保存异常日志
+     * @param ex       错误信息
+     * @param head     顶部标题
+     * @param bottom   底部内容
+     * @param filePath 保存路径
+     * @param fileName 文件名 ( 含后缀 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName) {
+        return saveErrorLog(ex, head, bottom, filePath, fileName, null);
+    }
+
+    /**
+     * 保存异常日志
      * @param ex         错误信息
      * @param head       顶部标题
      * @param bottom     底部内容
      * @param filePath   保存路径
      * @param fileName   文件名 ( 含后缀 )
-     * @param isNewLines 是否换行
      * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName, final boolean isNewLines, final String... errorInfos) {
+    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom,
+                                       final String filePath, final String fileName, final String[] errorInfos) {
         if (TextUtils.isEmpty(filePath)) {
             return false;
         } else if (TextUtils.isEmpty(fileName)) {
             return false;
         }
-        return Utils.saveErrorLog(ex, head, bottom, filePath, fileName, isNewLines, errorInfos);
+        return Utils.saveErrorLog(ex, head, bottom, filePath, fileName, errorInfos);
     }
 
+    // =
+
     /**
-     * 保存 App 日志
+     * 保存日志
      * @param log        日志信息
      * @param filePath   保存路径
      * @param fileName   文件名 ( 含后缀 )
@@ -208,7 +243,7 @@ public final class DevLoggerUtils {
     }
 
     /**
-     * 保存 App 日志 - 包含头部、底部信息
+     * 保存日志 - 包含头部、底部信息
      * @param log        日志信息
      * @param head       顶部标题
      * @param bottom     底部内容
@@ -217,7 +252,8 @@ public final class DevLoggerUtils {
      * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLogHeadBottom(final String log, final String head, final String bottom, final String filePath, final String fileName, final String... errorInfos) {
+    public static boolean saveLogHeadBottom(final String log, final String head, final String bottom,
+                                            final String filePath, final String fileName, final String... errorInfos) {
         if (TextUtils.isEmpty(filePath)) {
             return false;
         } else if (TextUtils.isEmpty(fileName)) {

@@ -217,67 +217,29 @@ final class Utils {
     // ================
 
     /**
-     * 获取错误信息 ( 无换行 )
-     * @param errorInfo 获取失败, 返回信息
-     * @param ex        错误信息
-     * @return 错误信息字符串
+     * 获取异常栈信息
+     * @param throwable 异常
+     * @param errorInfo 获取失败返回字符串
+     * @return 异常栈信息字符串
      */
-    private static String getThrowableMsg(final String errorInfo, final Throwable ex) {
-        PrintWriter printWriter = null;
-        try {
-            if (ex != null) {
-                // 初始化 Writer、PrintWriter 打印流
+    private static String getThrowableStackTrace(final Throwable throwable, final String errorInfo) {
+        if (throwable != null) {
+            PrintWriter printWriter = null;
+            try {
                 Writer writer = new StringWriter();
                 printWriter = new PrintWriter(writer);
-                // 写入错误栈信息
-                ex.printStackTrace(printWriter);
-                // 关闭流
-                printWriter.close();
+                throwable.printStackTrace(printWriter);
                 return writer.toString();
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getThrowableMsg");
-        } finally {
-            if (printWriter != null) {
-                printWriter.close();
-            }
-        }
-        return errorInfo;
-    }
-
-    /**
-     * 获取错误信息 ( 有换行 )
-     * @param errorInfo 获取失败, 返回信息
-     * @param ex        错误信息
-     * @return 错误信息字符串
-     */
-    private static String getThrowableNewLinesMsg(final String errorInfo, final Throwable ex) {
-        PrintWriter printWriter = null;
-        try {
-            if (ex != null) {
-                // 初始化 Writer、PrintWriter 打印流
-                Writer writer = new StringWriter();
-                printWriter = new PrintWriter(writer);
-                // 获取错误栈信息
-                StackTraceElement[] stElement = ex.getStackTrace();
-                // 标题, 提示属于什么异常
-                printWriter.append(ex.toString());
-                printWriter.append(NEW_LINE_STR);
-                // 遍历错误栈信息, 并且进行换行缩进
-                for (StackTraceElement st : stElement) {
-                    printWriter.append("\tat ");
-                    printWriter.append(st.toString());
-                    printWriter.append(NEW_LINE_STR);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getThrowableStackTrace");
+                return e.toString();
+            } finally {
+                if (printWriter != null) {
+                    try {
+                        printWriter.close();
+                    } catch (Exception e) {
+                    }
                 }
-                // 关闭流
-                printWriter.close();
-                return writer.toString();
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getThrowableNewLinesMsg");
-        } finally {
-            if (printWriter != null) {
-                printWriter.close();
             }
         }
         return errorInfo;
@@ -310,34 +272,33 @@ final class Utils {
     }
 
     // ====================
-    // = 保存错误日志信息 =
+    // = 保存异常日志信息 =
     // ====================
 
     /**
-     * 保存 App 错误日志
+     * 保存异常日志
      * @param ex         错误信息
      * @param filePath   保存路径
      * @param fileName   文件名 ( 含后缀 )
-     * @param isNewLines 是否换行
      * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName, final boolean isNewLines, final String... errorInfos) {
-        return saveErrorLog(ex, null, null, filePath, fileName, isNewLines, errorInfos);
+    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName, final String... errorInfos) {
+        return saveErrorLog(ex, null, null, filePath, fileName, errorInfos);
     }
 
     /**
-     * 保存 App 错误日志
+     * 保存异常日志
      * @param ex         错误信息
      * @param head       顶部标题
      * @param bottom     底部内容
      * @param filePath   保存路径
      * @param fileName   文件名 ( 含后缀 )
-     * @param isNewLines 是否换行
      * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName, final boolean isNewLines, final String... errorInfos) {
+    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom,
+                                       final String filePath, final String fileName, final String... errorInfos) {
         // 处理可变参数 ( 错误提示 )
         String[] errorArrays = handlerVariable(2, errorInfos);
         // 日志拼接
@@ -370,13 +331,7 @@ final class Utils {
         builder.append(NEW_LINE_STR_X2);
         // =
         // 错误信息
-        String errorMessage;
-        // 是否换行
-        if (isNewLines) {
-            errorMessage = getThrowableNewLinesMsg(errorArrays[1], ex);
-        } else {
-            errorMessage = getThrowableMsg(errorArrays[1], ex);
-        }
+        String errorMessage = getThrowableStackTrace(ex, errorArrays[1]);
         // 保存异常信息
         builder.append(errorMessage);
         // 如果存在顶部内容, 则进行添加
@@ -390,8 +345,10 @@ final class Utils {
         return saveFile(builder.toString(), filePath + File.separator + fileName);
     }
 
+    // =
+
     /**
-     * 保存 App 日志
+     * 保存日志
      * @param log        日志信息
      * @param filePath   保存路径
      * @param fileName   文件名 ( 含后缀 )
@@ -403,7 +360,7 @@ final class Utils {
     }
 
     /**
-     * 保存 App 日志
+     * 保存日志
      * @param log        日志信息
      * @param head       顶部标题
      * @param bottom     底部内容
@@ -412,7 +369,8 @@ final class Utils {
      * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLog(final String log, final String head, final String bottom, final String filePath, final String fileName, final String... errorInfos) {
+    public static boolean saveLog(final String log, final String head, final String bottom,
+                                  final String filePath, final String fileName, final String... errorInfos) {
         // 处理可变参数 ( 错误提示 )
         String[] errorArrays = handlerVariable(2, errorInfos);
         // 日志拼接
@@ -465,7 +423,7 @@ final class Utils {
      * @param strArrays 可变参数数组
      * @return 对应长度的参数数组
      */
-    public static String[] handlerVariable(final int length, final String[] strArrays) {
+    private static String[] handlerVariable(final int length, final String[] strArrays) {
         // 处理后的数据
         String[] hArrays = new String[length];
         // 是否统一处理

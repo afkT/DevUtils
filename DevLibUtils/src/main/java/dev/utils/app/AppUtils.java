@@ -876,8 +876,6 @@ public final class AppUtils {
         return false;
     }
 
-
-
     /**
      * 跳转到系统设置页面
      * @param activity {@link Activity}
