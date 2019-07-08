@@ -278,18 +278,6 @@ final class Utils {
     /**
      * 保存异常日志
      * @param ex         错误信息
-     * @param filePath   保存路径
-     * @param fileName   文件名 ( 含后缀 )
-     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
-     * @return {@code true} 保存成功, {@code false} 保存失败
-     */
-    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName, final String... errorInfos) {
-        return saveErrorLog(ex, null, null, filePath, fileName, errorInfos);
-    }
-
-    /**
-     * 保存异常日志
-     * @param ex         错误信息
      * @param head       顶部标题
      * @param bottom     底部内容
      * @param filePath   保存路径
@@ -346,18 +334,6 @@ final class Utils {
     }
 
     // =
-
-    /**
-     * 保存日志
-     * @param log        日志信息
-     * @param filePath   保存路径
-     * @param fileName   文件名 ( 含后缀 )
-     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
-     * @return {@code true} 保存成功, {@code false} 保存失败
-     */
-    public static boolean saveLog(final String log, final String filePath, final String fileName, final String... errorInfos) {
-        return saveLog(log, null, null, filePath, fileName, errorInfos);
-    }
 
     /**
      * 保存日志
