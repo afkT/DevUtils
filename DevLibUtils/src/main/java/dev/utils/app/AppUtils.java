@@ -11,6 +11,8 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.RequiresPermission;
 import android.view.WindowManager;
 
@@ -188,7 +190,7 @@ public final class AppUtils {
     /**
      * 安装 App(支持 8.0)的意图
      * @param filePath  文件路径
-     * @param authority 7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
+     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
      * @return 是否可以跳转
      */
     public static boolean installApp(final String filePath, final String authority) {
@@ -198,7 +200,7 @@ public final class AppUtils {
     /**
      * 安装 App(支持 8.0)的意图
      * @param file      文件
-     * @param authority 7.0 及以上安装需要传入清单文件中的<provider>}的 authorities 属性
+     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
      * @return 是否可以跳转
      */
     public static boolean installApp(final File file, final String authority) {
@@ -872,5 +874,55 @@ public final class AppUtils {
             LogPrintUtils.eTag(TAG, e, "openOfficeByWPS");
         }
         return false;
+    }
+
+
+
+    /**
+     * 跳转到系统设置页面
+     * @param activity {@link Activity}
+     */
+    public static void startSysSetting(final Activity activity) {
+//        // 跳转到 无线和网络 设置页面 ( 可以设置移动网络, sim 卡 1, 2 的移动网络 )
+//        Intent intent =  new Intent(Settings.ACTION_AIRPLANE_MODE_SETTINGS);
+//        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+        try {
+            if (activity != null) {
+                Intent intent = new Intent(Settings.ACTION_SETTINGS);
+                activity.startActivity(intent);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startSysSetting");
+        }
+    }
+
+    /**
+     * 跳转到系统设置页面
+     * @param activity
+     * @param requestCode 请求 code
+     */
+    public static void startSysSetting(final Activity activity, final int requestCode) {
+        try {
+            Intent intent = new Intent(Settings.ACTION_SETTINGS);
+            activity.startActivityForResult(intent, requestCode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startSysSetting");
+        }
+    }
+
+    /**
+     * 打开网络设置界面 - 3.0 以下打开设置界面
+     * @param activity
+     */
+    public static void openWirelessSettings(final Activity activity) {
+        try {
+            if (Build.VERSION.SDK_INT > 10) {
+                activity.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            } else {
+                activity.startActivity(new Intent(Settings.ACTION_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
+        }
     }
 }
