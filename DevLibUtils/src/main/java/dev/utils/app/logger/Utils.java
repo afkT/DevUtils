@@ -44,6 +44,8 @@ final class Utils {
     private static String APP_VERSION_NAME = "";
     // android:versionCode 整数值, 代表应用程序代码的相对版本
     private static String APP_VERSION_CODE = "";
+    // 应用包名
+    private static String PACKAGE_NAME = "";
     // 设备信息
     private static String DEVICE_INFO_STR = null;
     // 设备信息存储 Map
@@ -72,6 +74,13 @@ final class Utils {
                 APP_VERSION_CODE = versions[1];
             }
         }
+        // 获取包名
+        if (TextUtils.isEmpty(PACKAGE_NAME)) {
+            try {
+                PACKAGE_NAME = DevUtils.getContext().getPackageName();
+            } catch (Exception e) {
+            }
+        }
         // 判断是否存在设备信息
         if (DEVICE_INFO_MAPS.size() == 0) {
             // 获取设备信息
@@ -81,9 +90,36 @@ final class Utils {
         }
     }
 
-    // ================
-    // = 保存日志信息 =
-    // ================
+    // ============
+    // = 异常日志 =
+    // ============
+
+    /**
+     * 保存异常日志
+     * @param ex       错误信息
+     * @param filePath 保存路径
+     * @param fileName 文件名 ( 含后缀 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName) {
+        return saveErrorLog(ex, null, null, filePath, fileName, true);
+    }
+
+    /**
+     * 保存异常日志
+     * @param ex       错误信息
+     * @param head     顶部标题
+     * @param bottom   底部内容
+     * @param filePath 保存路径
+     * @param fileName 文件名 ( 含后缀 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom,
+                                       final String filePath, final String fileName) {
+        return saveErrorLog(ex, head, bottom, filePath, fileName, true);
+    }
+
+    // =
 
     /**
      * 保存异常日志
@@ -111,6 +147,35 @@ final class Utils {
                                        final String filePath, final String fileName, final boolean printDevice) {
         return saveLog(getThrowableStackTrace(ex, "failed to get exception information"),
                 head, bottom, filePath, fileName, printDevice);
+    }
+
+    // ============
+    // = 正常日志 =
+    // ============
+
+    /**
+     * 保存日志
+     * @param log      日志信息
+     * @param filePath 保存路径
+     * @param fileName 文件名 ( 含后缀 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveLog(final String log, final String filePath, final String fileName) {
+        return saveLog(log, null, null, filePath, fileName, true);
+    }
+
+    /**
+     * 保存日志
+     * @param log      日志信息
+     * @param head     顶部标题
+     * @param bottom   底部内容
+     * @param filePath 保存路径
+     * @param fileName 文件名 ( 含后缀 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveLog(final String log, final String head, final String bottom,
+                                  final String filePath, final String fileName) {
+        return saveLog(log, head, bottom, filePath, fileName, true);
     }
 
     // =
@@ -154,6 +219,8 @@ final class Utils {
         builder.append("versionName: " + APP_VERSION_NAME);
         builder.append(NEW_LINE_STR);
         builder.append("versionCode: " + APP_VERSION_CODE);
+        builder.append(NEW_LINE_STR);
+        builder.append("package:" + PACKAGE_NAME);
         builder.append(NEW_LINE_STR_X2);
         builder.append("============================");
         builder.append(NEW_LINE_STR_X2);
