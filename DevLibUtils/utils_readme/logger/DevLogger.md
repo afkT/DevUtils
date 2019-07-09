@@ -18,7 +18,7 @@
 
 * 日志级别（[LogLevel](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LogLevel.java)）：该类主要控制日志级别
 
-* 日志内部工具类（[Utils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/Utils.java)）：内部快捷操作工具类(获取应用信息、设备信息、存储文件等)
+* 日志内部工具类（[Utils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/Utils.java)）：内部快捷操作工具类(获取应用信息、设备信息、存储日志等)
 
 
 #### 框架亮点
