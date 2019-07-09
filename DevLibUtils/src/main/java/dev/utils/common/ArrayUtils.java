@@ -2453,6 +2453,7 @@ public final class ArrayUtils {
      * 创建指定长度数组
      * @param length 保留长度
      * @param data   待处理数组
+     * @param <T>    泛型
      * @return 指定长度数组
      */
     public static <T> T[] newarray(final int length, final T[] data) {

@@ -135,10 +135,9 @@ public final class FileRecordUse {
 
             // = FileRecordUtils 使用方法 =
 
-            FileRecordUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true, "xaskdjaslkd");
+            FileRecordUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
 
-            FileRecordUtils.saveLog("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true, "qqqqweqweqwe");
+            FileRecordUtils.saveLog("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
         }
     }
-
 }
