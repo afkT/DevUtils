@@ -2229,14 +2229,14 @@ public final class ArrayUtils {
      * @param <T>    泛型
      * @return 拼接后的数组集合
      */
-    public static <T> ArrayList<T> arraycopy(final T[] prefix, final T[] suffix) {
+    public static <T> T[] arraycopy(final T[] prefix, final T[] suffix) {
         // 获取数据长度
         int prefixLength = (prefix != null) ? prefix.length : 0;
         int suffixLength = (suffix != null) ? suffix.length : 0;
         // 数据都为 null, 则直接跳过
         if (prefixLength + suffixLength == 0) return null;
         // 创建集合
-        ArrayList<T> lists = new ArrayList<>(prefixLength + suffixLength);
+        List<T> lists = new ArrayList<>(prefixLength + suffixLength);
         // 进行判断处理
         if (prefixLength != 0) {
             for (int i = 0; i < prefixLength; i++) {
@@ -2248,7 +2248,11 @@ public final class ArrayUtils {
                 lists.add(suffix[i]);
             }
         }
-        return lists;
+        if (prefix != null) {
+            return (T[]) Arrays.copyOf(lists.toArray(), lists.size(), prefix.getClass());
+        } else {
+            return (T[]) Arrays.copyOf(lists.toArray(), lists.size(), suffix.getClass());
+        }
     }
 
     /**
@@ -2446,6 +2450,247 @@ public final class ArrayUtils {
     // =
 
     /**
+     * 创建指定长度数组
+     * @param length 保留长度
+     * @param data   待处理数组
+     * @return 指定长度数组
+     */
+    public static <T> T[] newarray(final int length, final T[] data) {
+        if (data != null && length > 0) {
+            List<T> lists = new ArrayList<>();
+            // 获取数据长度
+            int dataLength = data.length;
+            // 判断是否超过需要的长度
+            if (dataLength >= length) {
+                for (int i = 0; i < length; i++) {
+                    lists.add(data[i]);
+                }
+            } else {
+                for (int i = 0; i < dataLength; i++) {
+                    lists.add(data[i]);
+                }
+                // 补充长度
+                for (int i = 0, len = length - dataLength; i < len; i++) {
+                    lists.add(null);
+                }
+            }
+            // 返回数据
+            return (T[]) Arrays.copyOf(lists.toArray(), length, data.getClass());
+        }
+        return null;
+    }
+
+    /**
+     * 创建指定长度数组
+     * @param length 保留长度
+     * @param data   待处理数组
+     * @return 指定长度数组
+     */
+    public static int[] newarray(final int length, final int[] data) {
+        if (data != null && length > 0) {
+            int[] arrays = new int[length];
+            // 获取数据长度
+            int dataLength = data.length;
+            // 判断是否超过需要的长度
+            if (dataLength >= length) {
+                for (int i = 0; i < length; i++) {
+                    arrays[i] = data[i];
+                }
+            } else {
+                for (int i = 0; i < dataLength; i++) {
+                    arrays[i] = data[i];
+                }
+            }
+            return arrays;
+        }
+        return null;
+    }
+
+    /**
+     * 创建指定长度数组
+     * @param length 保留长度
+     * @param data   待处理数组
+     * @return 指定长度数组
+     */
+    public static byte[] newarray(final int length, final byte[] data) {
+        if (data != null && length > 0) {
+            byte[] arrays = new byte[length];
+            // 获取数据长度
+            int dataLength = data.length;
+            // 判断是否超过需要的长度
+            if (dataLength >= length) {
+                for (int i = 0; i < length; i++) {
+                    arrays[i] = data[i];
+                }
+            } else {
+                for (int i = 0; i < dataLength; i++) {
+                    arrays[i] = data[i];
+                }
+            }
+            return arrays;
+        }
+        return null;
+    }
+
+    /**
+     * 创建指定长度数组
+     * @param length 保留长度
+     * @param data   待处理数组
+     * @return 指定长度数组
+     */
+    public static char[] newarray(final int length, final char[] data) {
+        if (data != null && length > 0) {
+            char[] arrays = new char[length];
+            // 获取数据长度
+            int dataLength = data.length;
+            // 判断是否超过需要的长度
+            if (dataLength >= length) {
+                for (int i = 0; i < length; i++) {
+                    arrays[i] = data[i];
+                }
+            } else {
+                for (int i = 0; i < dataLength; i++) {
+                    arrays[i] = data[i];
+                }
+            }
+            return arrays;
+        }
+        return null;
+    }
+
+    /**
+     * 创建指定长度数组
+     * @param length 保留长度
+     * @param data   待处理数组
+     * @return 指定长度数组
+     */
+    public static short[] newarray(final int length, final short[] data) {
+        if (data != null && length > 0) {
+            short[] arrays = new short[length];
+            // 获取数据长度
+            int dataLength = data.length;
+            // 判断是否超过需要的长度
+            if (dataLength >= length) {
+                for (int i = 0; i < length; i++) {
+                    arrays[i] = data[i];
+                }
+            } else {
+                for (int i = 0; i < dataLength; i++) {
+                    arrays[i] = data[i];
+                }
+            }
+            return arrays;
+        }
+        return null;
+    }
+
+    /**
+     * 创建指定长度数组
+     * @param length 保留长度
+     * @param data   待处理数组
+     * @return 指定长度数组
+     */
+    public static long[] newarray(final int length, final long[] data) {
+        if (data != null && length > 0) {
+            long[] arrays = new long[length];
+            // 获取数据长度
+            int dataLength = data.length;
+            // 判断是否超过需要的长度
+            if (dataLength >= length) {
+                for (int i = 0; i < length; i++) {
+                    arrays[i] = data[i];
+                }
+            } else {
+                for (int i = 0; i < dataLength; i++) {
+                    arrays[i] = data[i];
+                }
+            }
+            return arrays;
+        }
+        return null;
+    }
+
+    /**
+     * 创建指定长度数组
+     * @param length 保留长度
+     * @param data   待处理数组
+     * @return 指定长度数组
+     */
+    public static float[] newarray(final int length, final float[] data) {
+        if (data != null && length > 0) {
+            float[] arrays = new float[length];
+            // 获取数据长度
+            int dataLength = data.length;
+            // 判断是否超过需要的长度
+            if (dataLength >= length) {
+                for (int i = 0; i < length; i++) {
+                    arrays[i] = data[i];
+                }
+            } else {
+                for (int i = 0; i < dataLength; i++) {
+                    arrays[i] = data[i];
+                }
+            }
+            return arrays;
+        }
+        return null;
+    }
+
+    /**
+     * 创建指定长度数组
+     * @param length 保留长度
+     * @param data   待处理数组
+     * @return 指定长度数组
+     */
+    public static double[] newarray(final int length, final double[] data) {
+        if (data != null && length > 0) {
+            double[] arrays = new double[length];
+            // 获取数据长度
+            int dataLength = data.length;
+            // 判断是否超过需要的长度
+            if (dataLength >= length) {
+                for (int i = 0; i < length; i++) {
+                    arrays[i] = data[i];
+                }
+            } else {
+                for (int i = 0; i < dataLength; i++) {
+                    arrays[i] = data[i];
+                }
+            }
+            return arrays;
+        }
+        return null;
+    }
+
+    /**
+     * 创建指定长度数组
+     * @param length 保留长度
+     * @param data   待处理数组
+     * @return 指定长度数组
+     */
+    public static boolean[] newarray(final int length, final boolean[] data) {
+        if (data != null && length > 0) {
+            boolean[] arrays = new boolean[length];
+            // 获取数据长度
+            int dataLength = data.length;
+            // 判断是否超过需要的长度
+            if (dataLength >= length) {
+                for (int i = 0; i < length; i++) {
+                    arrays[i] = data[i];
+                }
+            } else {
+                for (int i = 0; i < dataLength; i++) {
+                    arrays[i] = data[i];
+                }
+            }
+            return arrays;
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * 从数组上截取一段
      * @param data   数组
      * @param off    起始值
@@ -2453,14 +2698,14 @@ public final class ArrayUtils {
      * @param <T>    泛型
      * @return 裁剪后的数组
      */
-    public static <T> ArrayList<T> subarray(final T[] data, final int off, final int length) {
+    public static <T> T[] subarray(final T[] data, final int off, final int length) {
         if (data == null || off < 0 || length < 0) return null;
         try {
-            ArrayList<T> lists = new ArrayList<>(length);
+            List<T> lists = new ArrayList<>(length);
             for (int i = off; i < off + length; i++) {
                 lists.add(data[i]);
             }
-            return lists;
+            return (T[]) Arrays.copyOf(lists.toArray(), length, data.getClass());
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "subarray");
         }
