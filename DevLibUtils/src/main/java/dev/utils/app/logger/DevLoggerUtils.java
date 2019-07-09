@@ -1,6 +1,5 @@
 package dev.utils.app.logger;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -21,9 +20,8 @@ public final class DevLoggerUtils {
 
     /**
      * 初始化调用方法 ( 内部已调用 )
-     * @param context {@link Context}
      */
-    public static void init(final Context context) {
+    public static void init() {
         // 保存 App 版本信息
         Utils.init();
     }

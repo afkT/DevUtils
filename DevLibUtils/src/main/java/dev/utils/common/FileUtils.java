@@ -82,6 +82,21 @@ public final class FileUtils {
     }
 
     /**
+     * 获取路径, 并且进行创建目录
+     * @param filePath 保存目录
+     * @param fileName 文件名
+     * @return 文件 {@link File}
+     */
+    public static String getFilePathCreateFolder(final String filePath, final String fileName) {
+        // 防止不存在目录文件, 自动创建
+        createFolder(filePath);
+        // 返回处理过后的 File
+        File file = getFile(filePath, fileName);
+        // 返回文件路径
+        return getAbsolutePath(file);
+    }
+
+    /**
      * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
      * @param dirPath 文件夹路径 ( 无文件名字. 后缀 )
      * @return {@code true} success, {@code false} fail

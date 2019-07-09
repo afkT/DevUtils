@@ -71,6 +71,7 @@ public final class FileRecordUtils {
                 APP_VERSION_CODE = versions[1];
             }
         }
+
         // 获取包名
         if (TextUtils.isEmpty(PACKAGE_NAME)) {
             try {
@@ -78,6 +79,7 @@ public final class FileRecordUtils {
             } catch (Exception e) {
             }
         }
+
         // 判断是否存在设备信息
         if (DEVICE_INFO_MAPS.size() == 0) {
             // 获取设备信息
@@ -207,7 +209,7 @@ public final class FileRecordUtils {
         if (!TextUtils.isEmpty(head)) {
             builder.append(head);
             builder.append(NEW_LINE_STR_X2);
-            builder.append("============================");
+            builder.append("===========================");
             builder.append(NEW_LINE_STR_X2);
         }
         // 保存 App 信息
@@ -217,9 +219,9 @@ public final class FileRecordUtils {
         builder.append(NEW_LINE_STR);
         builder.append("versionCode: " + APP_VERSION_CODE);
         builder.append(NEW_LINE_STR);
-        builder.append("package:" + PACKAGE_NAME);
+        builder.append("package: " + PACKAGE_NAME);
         builder.append(NEW_LINE_STR_X2);
-        builder.append("============================");
+        builder.append("===========================");
         builder.append(NEW_LINE_STR_X2);
         // 如果需要打印设备信息
         if (printDevice) {
@@ -228,7 +230,7 @@ public final class FileRecordUtils {
             // 保存设备信息
             builder.append(deviceInfo);
             builder.append(NEW_LINE_STR);
-            builder.append("============================");
+            builder.append("===========================");
             builder.append(NEW_LINE_STR_X2);
         }
         // 保存日志信息
@@ -236,7 +238,7 @@ public final class FileRecordUtils {
         // 如果存在顶部内容, 则进行添加
         if (!TextUtils.isEmpty(bottom)) {
             builder.append(NEW_LINE_STR_X2);
-            builder.append("============================");
+            builder.append("===========================");
             builder.append(NEW_LINE_STR_X2);
             builder.append(bottom);
         }

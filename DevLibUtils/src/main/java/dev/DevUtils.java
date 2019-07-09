@@ -70,9 +70,9 @@ public final class DevUtils {
         // 初始化 File Record
         FileRecordUtils.init();
         // 初始化 Record
-        AnalysisRecordUtils.init(context);
+        AnalysisRecordUtils.init();
         // 初始化 DevLogger
-        DevLoggerUtils.init(context);
+        DevLoggerUtils.init();
         // 初始化 Toast
         DevToast.init(sApplication);
     }
