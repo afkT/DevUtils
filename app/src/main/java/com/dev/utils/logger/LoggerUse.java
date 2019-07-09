@@ -147,12 +147,10 @@ public final class LoggerUse {
             // 保存自定义头部、底部信息
             DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
             // =
-            // 自定义(无设备信息、失败信息获取失败) - 正常不会出现, 所以其实这个可以不用
-            String[] errorArrays = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
             // 保存的路径
             fileName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
             // 保存日志信息
-            DevLoggerUtils.saveErrorLog(e, fileName, errorArrays);
+            DevLoggerUtils.saveErrorLog(e, fileName);
         }
     }
 
@@ -163,16 +161,14 @@ public final class LoggerUse {
         // = 保存日志 =
         // 保存文件名
         String fileName = System.currentTimeMillis() + ".log";
-        // 自定义(无设备信息、失败信息获取失败) - 正常不会出现, 所以其实这个可以不用
-        String[] errorArrays = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
         // 保存日志
-        DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fileName, errorArrays);
+        DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fileName);
 
         // = 保存日志, 包含头部信息、底部信息 =
         // 保存文件名
         fileName = System.currentTimeMillis() + ".log";
         // 保存日志
-        DevLoggerUtils.saveLogHeadBottom("保存自定义信息日志", "头部", "底部", LOG_SD_PATH, fileName, errorArrays);
+        DevLoggerUtils.saveLog("保存自定义信息日志", "头部", "底部", LOG_SD_PATH, fileName);
     }
 
     /**

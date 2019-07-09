@@ -27,7 +27,6 @@
 | getLogConfig | 获取 Log 配置 |
 | saveErrorLog | 保存异常日志 |
 | saveLog | 保存日志 |
-| saveLogHeadBottom | 保存日志 - 包含头部、底部信息 |
 
 * **App 文件记录工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/FileRecordUtils.java)
 
@@ -78,17 +77,15 @@ try {
     // 保存自定义头部、底部信息
     DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
     // =
-    // 自定义(无设备信息、失败信息获取失败) - 正常不会出现, 所以其实这个可以不用
-    String[] errorArrays = new String[]{"DeviceInfo = 获取设备信息失败", "获取失败"};
     // 保存的路径
     fileName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
     // 保存日志信息
-    DevLoggerUtils.saveErrorLog(e, fileName, errorArrays);
+    DevLoggerUtils.saveErrorLog(e, fileName);
 
     // 保存日志信息
     DevLoggerUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log");
     // 保存日志信息
-    DevLoggerUtils.saveLogHeadBottom("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
+    DevLoggerUtils.saveLog("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
 
     // = FileRecordUtils 使用方法 =
 

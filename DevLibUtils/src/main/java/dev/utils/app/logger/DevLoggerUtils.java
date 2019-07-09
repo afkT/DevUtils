@@ -25,7 +25,7 @@ public final class DevLoggerUtils {
      */
     public static void init(final Context context) {
         // 保存 App 版本信息
-        Utils.init(context);
+        Utils.init();
     }
 
     // ========================
@@ -138,18 +138,7 @@ public final class DevLoggerUtils {
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveErrorLog(final Throwable ex, final String filePath) {
-        return saveErrorLog(ex, filePath, null);
-    }
-
-    /**
-     * 保存异常日志
-     * @param ex         错误信息
-     * @param filePath   保存路径 + 文件名 ( 含后缀 )
-     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
-     * @return {@code true} 保存成功, {@code false} 保存失败
-     */
-    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String[] errorInfos) {
-        return saveErrorLog(ex, null, null, filePath, errorInfos);
+        return saveErrorLog(ex, null, null, filePath);
     }
 
     /**
@@ -161,38 +150,38 @@ public final class DevLoggerUtils {
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath) {
-        return saveErrorLog(ex, head, bottom, filePath, (String[]) null);
-    }
-
-    /**
-     * 保存异常日志
-     * @param ex         错误信息
-     * @param head       顶部标题
-     * @param bottom     底部内容
-     * @param filePath   保存路径 + 文件名 ( 含后缀 )
-     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
-     * @return {@code true} 保存成功, {@code false} 保存失败
-     */
-    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String[] errorInfos) {
         if (TextUtils.isEmpty(filePath)) return false;
         try {
             File file = new File(filePath);
-            // 获取文件名
-            String fileName = file.getName();
-            // 判断是否这个文件名结尾
-            if (filePath.endsWith(fileName)) {
+            // 判断是否属于文件夹
+            if (file.isDirectory()) {
+                // 进行保存
+                return saveErrorLog(ex, head, bottom, filePath, System.currentTimeMillis() + ".log");
+            } else {
+                // 获取文件名
+                String fileName = file.getName();
                 // 重新裁剪
                 String tempPath = filePath.substring(0, filePath.length() - fileName.length());
                 // 进行保存
-                return saveErrorLog(ex, head, bottom, tempPath, fileName, errorInfos);
-            } else {
-                // 进行保存
-                return saveErrorLog(ex, head, bottom, filePath, filePath, errorInfos);
+                return saveErrorLog(ex, head, bottom, tempPath, fileName);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "saveErrorLog");
         }
         return false;
+    }
+
+    // =
+
+    /**
+     * 保存异常日志
+     * @param ex       错误信息
+     * @param filePath 保存路径
+     * @param fileName 文件名 ( 含后缀 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName) {
+        return saveErrorLog(ex, null, null, filePath, fileName);
     }
 
     /**
@@ -205,60 +194,87 @@ public final class DevLoggerUtils {
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
     public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom, final String filePath, final String fileName) {
-        return saveErrorLog(ex, head, bottom, filePath, fileName, null);
-    }
-
-    /**
-     * 保存异常日志
-     * @param ex         错误信息
-     * @param head       顶部标题
-     * @param bottom     底部内容
-     * @param filePath   保存路径
-     * @param fileName   文件名 ( 含后缀 )
-     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
-     * @return {@code true} 保存成功, {@code false} 保存失败
-     */
-    public static boolean saveErrorLog(final Throwable ex, final String head, final String bottom,
-                                       final String filePath, final String fileName, final String[] errorInfos) {
         if (TextUtils.isEmpty(filePath)) {
             return false;
         } else if (TextUtils.isEmpty(fileName)) {
             return false;
         }
-        return Utils.saveErrorLog(ex, head, bottom, filePath, fileName, errorInfos);
+        return Utils.saveErrorLog(ex, head, bottom, filePath, fileName, true);
+    }
+
+    // ============
+    // = 日志处理 =
+    // ============
+
+    /**
+     * 保存日志
+     * @param log      日志信息
+     * @param filePath 保存路径 + 文件名 ( 含后缀 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveLog(final String log, final String filePath) {
+        return saveLog(log, null, null, filePath);
+    }
+
+    /**
+     * 保存日志
+     * @param log      日志信息
+     * @param head     顶部标题
+     * @param bottom   底部内容
+     * @param filePath 保存路径 + 文件名 ( 含后缀 )
+     * @return {@code true} 保存成功, {@code false} 保存失败
+     */
+    public static boolean saveLog(final String log, final String head, final String bottom, final String filePath) {
+        if (TextUtils.isEmpty(filePath)) return false;
+        try {
+            File file = new File(filePath);
+            // 判断是否属于文件夹
+            if (file.isDirectory()) {
+                // 进行保存
+                return saveLog(log, head, bottom, filePath, System.currentTimeMillis() + ".log");
+            } else {
+                // 获取文件名
+                String fileName = file.getName();
+                // 重新裁剪
+                String tempPath = filePath.substring(0, filePath.length() - fileName.length());
+                // 进行保存
+                return saveLog(log, head, bottom, tempPath, fileName);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "saveLog");
+        }
+        return false;
     }
 
     // =
 
     /**
      * 保存日志
-     * @param log        日志信息
-     * @param filePath   保存路径
-     * @param fileName   文件名 ( 含后缀 )
-     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
+     * @param log      日志信息
+     * @param filePath 保存路径
+     * @param fileName 文件名 ( 含后缀 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLog(final String log, final String filePath, final String fileName, final String... errorInfos) {
-        return saveLogHeadBottom(log, null, null, filePath, fileName, errorInfos);
+    public static boolean saveLog(final String log, final String filePath, final String fileName) {
+        return saveLog(log, null, null, filePath, fileName);
     }
 
     /**
-     * 保存日志 - 包含头部、底部信息
-     * @param log        日志信息
-     * @param head       顶部标题
-     * @param bottom     底部内容
-     * @param filePath   保存路径
-     * @param fileName   文件名 ( 含后缀 )
-     * @param errorInfos 错误提示 ( 无设备信息、失败信息获取失败 )
+     * 保存日志
+     * @param log      日志信息
+     * @param head     顶部标题
+     * @param bottom   底部内容
+     * @param filePath 保存路径
+     * @param fileName 文件名 ( 含后缀 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLogHeadBottom(final String log, final String head, final String bottom,
-                                            final String filePath, final String fileName, final String... errorInfos) {
+    public static boolean saveLog(final String log, final String head, final String bottom,
+                                  final String filePath, final String fileName) {
         if (TextUtils.isEmpty(filePath)) {
             return false;
         } else if (TextUtils.isEmpty(fileName)) {
             return false;
         }
-        return Utils.saveLog(log, head, bottom, filePath, fileName, errorInfos);
+        return Utils.saveLog(log, head, bottom, filePath, fileName, true);
     }
 }
