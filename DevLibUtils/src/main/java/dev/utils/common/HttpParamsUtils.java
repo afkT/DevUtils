@@ -192,9 +192,9 @@ public final class HttpParamsUtils {
     // ============================================
 
     // 正常数据
-    // objStr[key] => sex=男&name=Ttt
+    // objStr[key] => sex=1&name=Ttt
     // 方法会进行 URL 编码
-    // objStr[key] => sex%3D%E7%94%B7%26name%3DTtt
+    // objStr[key] => sex%3d1%26name%3dTtt
 
     /**
      * 进行转换对象处理 ( 请求发送对象 )
@@ -245,7 +245,7 @@ public final class HttpParamsUtils {
     /**
      * 进行 URL 编码, 默认 UTF-8
      * @param str 待处理字符串
-     * @return 字符串 UTF-8 编码后, 再进行 URL 编码后的字符串
+     * @return UTF-8 编码格式 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str) {
         return toUrlEncode(str, "UTF-8");
@@ -255,7 +255,7 @@ public final class HttpParamsUtils {
      * 进行 URL 编码
      * @param str 待处理字符串
      * @param enc 编码格式
-     * @return 指定编码格式编码后, 再进行 URL 编码后的字符串
+     * @return 指定编码格式 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str, final String enc) {
         if (str == null || enc == null) return null;

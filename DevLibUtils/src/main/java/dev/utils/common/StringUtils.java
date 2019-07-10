@@ -1,5 +1,6 @@
 package dev.utils.common;
 
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -832,7 +833,7 @@ public final class StringUtils {
     /**
      * 进行 URL 编码, 默认 UTF-8
      * @param str 待处理字符串
-     * @return 字符串 UTF-8 编码后, 再进行 URL 编码后的字符串
+     * @return UTF-8 编码格式 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str) {
         return toUrlEncode(str, "UTF-8");
@@ -842,7 +843,7 @@ public final class StringUtils {
      * 进行 URL 编码
      * @param str 待处理字符串
      * @param enc 编码格式
-     * @return 指定编码格式编码后, 再进行 URL 编码后的字符串
+     * @return 指定编码格式 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str, final String enc) {
         if (str == null || enc == null) return null;
@@ -850,6 +851,33 @@ public final class StringUtils {
             return URLEncoder.encode(str, enc);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toUrlEncode");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 进行 URL 解码, 默认 UTF-8
+     * @param str 待处理字符串
+     * @return UTF-8 编码格式 URL 解码后的字符串
+     */
+    public static String toUrlDecode(final String str) {
+        return toUrlDecode(str, "UTF-8");
+    }
+
+    /**
+     * 进行 URL 解码
+     * @param str 待处理字符串
+     * @param enc 解码格式
+     * @return 指定编码格式 URL 解码后的字符串
+     */
+    public static String toUrlDecode(final String str, final String enc) {
+        if (str == null || enc == null) return null;
+        try {
+            return URLDecoder.decode(str, enc);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toUrlDecode");
         }
         return null;
     }
