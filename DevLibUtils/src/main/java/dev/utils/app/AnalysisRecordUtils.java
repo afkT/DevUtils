@@ -390,74 +390,6 @@ public final class AnalysisRecordUtils {
             this.handler = handler;
         }
 
-        // ================
-        // = get/set 方法 =
-        // ================
-
-        /**
-         * 获取存储路径
-         * @return 存储路径
-         */
-        public String getStoragePath() {
-            if (TextUtils.isEmpty(storagePath)) {
-                return storagePath = getLogStoragePath();
-            }
-            return storagePath;
-        }
-
-        /**
-         * 获取日志文件名
-         * @return 日志文件名
-         */
-        public String getFileName() {
-            return fileName;
-        }
-
-        /**
-         * 获取日志文件记录功能
-         * @return 日志文件记录功能
-         */
-        public String getFileFunction() {
-            return fileFunction;
-        }
-
-        /**
-         * 获取日志文件记录间隔时间
-         * @return 日志文件记录间隔时间
-         */
-        public int getFileIntervalTime() {
-            return fileIntervalTime;
-        }
-
-        /**
-         * 获取日志文件夹名
-         * @return 日志文件夹名
-         */
-        public String getFolderName() {
-            if (TextUtils.isEmpty(folderName)) {
-                return folderName = getLogFolderName();
-            }
-            return folderName;
-        }
-
-        /**
-         * 判断是否处理日志记录
-         * @return {@code true} yes, {@code false} no
-         */
-        public boolean isHandler() {
-            return handler;
-        }
-
-        /**
-         * 设置是否处理日志记录
-         * @param handler 是否处理日志记录
-         * @return {@link FileInfo}
-         */
-        public FileInfo setHandler(final boolean handler) {
-            this.handler = handler;
-            return this;
-        }
-
         // =
 
         /**
@@ -545,6 +477,74 @@ public final class AnalysisRecordUtils {
         public static FileInfo obtain(final String storagePath, final String folderName, final String fileName, final String fileFunction,
                                       @TIME final int fileIntervalTime, final boolean isHandler) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, isHandler);
+        }
+
+        // ================
+        // = get/set 方法 =
+        // ================
+
+        /**
+         * 获取存储路径
+         * @return 存储路径
+         */
+        public String getStoragePath() {
+            if (TextUtils.isEmpty(storagePath)) {
+                return storagePath = getLogStoragePath();
+            }
+            return storagePath;
+        }
+
+        /**
+         * 获取日志文件名
+         * @return 日志文件名
+         */
+        public String getFileName() {
+            return fileName;
+        }
+
+        /**
+         * 获取日志文件记录功能
+         * @return 日志文件记录功能
+         */
+        public String getFileFunction() {
+            return fileFunction;
+        }
+
+        /**
+         * 获取日志文件记录间隔时间
+         * @return 日志文件记录间隔时间
+         */
+        public int getFileIntervalTime() {
+            return fileIntervalTime;
+        }
+
+        /**
+         * 获取日志文件夹名
+         * @return 日志文件夹名
+         */
+        public String getFolderName() {
+            if (TextUtils.isEmpty(folderName)) {
+                return folderName = getLogFolderName();
+            }
+            return folderName;
+        }
+
+        /**
+         * 判断是否处理日志记录
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isHandler() {
+            return handler;
+        }
+
+        /**
+         * 设置是否处理日志记录
+         * @param handler 是否处理日志记录
+         * @return {@link FileInfo}
+         */
+        public FileInfo setHandler(final boolean handler) {
+            this.handler = handler;
+            return this;
         }
 
         // ================

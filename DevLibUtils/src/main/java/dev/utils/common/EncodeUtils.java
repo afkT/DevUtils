@@ -1,4 +1,4 @@
-package dev.utils.app;
+package dev.utils.common;
 
 import android.os.Build;
 import android.text.Html;

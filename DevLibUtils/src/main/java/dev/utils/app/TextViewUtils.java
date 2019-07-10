@@ -318,7 +318,11 @@ public final class TextViewUtils {
      */
     public static <T extends TextView> void setHtmlText(final T textView, final String content) {
         if (textView != null && content != null) {
-            textView.setText(Html.fromHtml(content));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                textView.setText(Html.fromHtml(content, Html.FROM_HTML_MODE_LEGACY));
+            } else {
+                textView.setText(Html.fromHtml(content));
+            }
         }
     }
 
