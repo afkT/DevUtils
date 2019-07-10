@@ -17,7 +17,23 @@ import dev.utils.LogPrintUtils;
  * detail: EditText 工具类
  * @author Ttt
  * <pre>
+ *     Android EditText 属性大全 ( 不局限于仅仅是 EditText)
+ *     @see <a href="https://my.oschina.net/xsjayz/blog/121685"/>
+ *     <p></p>
+ *     Android EditText 多行显示及所有属性
+ *     @see <a href="https://www.cnblogs.com/zhujiabin/p/5736470.html"/>
+ *     <p></p>
+ *     EditText 设置不自动获取焦点, 点击后才获取, 并弹出软键盘
+ *     @see <a href="https://blog.csdn.net/juvary/article/details/80151358"/>
+ *     <p></p>
+ *     EditText 点击无反应解决办法
+ *     @see <a href="https://blog.csdn.net/cccheer/article/details/79218143"/>
+ *     <p></p>
+ *     EditText 限制输入的 4 种方法
  *     @see <a href="https://blog.csdn.net/zhoujn90/article/details/44983905"/>
+ *     <p></p>
+ *     Android 自定义 EditText 光标和下划线颜色
+ *     @see <a href="https://segmentfault.com/a/1190000009507919"/>
  * </pre>
  */
 public final class EditTextUtils {
@@ -30,41 +46,47 @@ public final class EditTextUtils {
 
     /**
      * 设置是否显示光标
-     * @param editText
-     * @param visible
-     * @return
+     * @param editText {@link EditText}
+     * @param visible 是否显示光标
+     * @return {@link EditText}
      */
-    public static EditText setCursorVisible(final EditText editText, final boolean visible) {
+    public static <T extends EditText> T setCursorVisible(final T editText, final boolean visible) {
         if (editText != null) {
             editText.setCursorVisible(visible);
         }
         return editText;
     }
 
-    // =
+    /**
+     * 获取光标位置
+     * @param editText {@link EditText}
+     * @return 光标位置
+     */
+    public static int getSelectionStart(final EditText editText) {
+        if (editText != null) {
+            return editText.getSelectionStart();
+        }
+        return 0;
+    }
 
     /**
      * 设置长度限制, 并且设置内容
-     * @param editText
-     * @param content
-     * @param maxLength
-     * @return
+     * @param editText  {@link EditText}
+     * @param content 文本内容
+     * @param maxLength 长度限制
+     * @return {@link EditText}
      */
-    public static EditText setMaxLengthAnText(final EditText editText, final String content, final int maxLength) {
-        if (editText != null) {
-            // 设置长度限制, 并且设置内容
-            setText(setMaxLength(editText, maxLength), content);
-        }
-        return editText;
+    public static <T extends EditText> T setMaxLengthAndText(final T editText, final String content, final int maxLength) {
+        return setText(setMaxLength(editText, maxLength), content);
     }
 
     /**
      * 设置长度限制
-     * @param editText
-     * @param maxLength
-     * @return
+     * @param editText  {@link EditText}
+     * @param maxLength 长度限制
+     * @return {@link EditText}
      */
-    public static EditText setMaxLength(final EditText editText, final int maxLength) {
+    public static <T extends EditText> T setMaxLength(final T editText, final int maxLength) {
         if (editText != null) {
             if (maxLength > 0) {
                 // 设置最大长度限制
@@ -76,20 +98,8 @@ public final class EditTextUtils {
     }
 
     /**
-     * 获取光标位置
-     * @param editText
-     * @return
-     */
-    public static int getSelectionStart(final EditText editText) {
-        if (editText != null) {
-            return editText.getSelectionStart();
-        }
-        return 0;
-    }
-
-    /**
      * 获取输入的内容
-     * @param editText
+     * @param editText {@link EditText}
      * @return
      */
     public static String getText(final EditText editText) {
@@ -101,7 +111,7 @@ public final class EditTextUtils {
 
     /**
      * 获取输入的内容长度
-     * @param editText
+     * @param editText {@link EditText}
      * @return
      */
     public static int getTextLength(final EditText editText) {
@@ -112,22 +122,22 @@ public final class EditTextUtils {
 
     /**
      * 设置内容
-     * @param editText
+     * @param editText {@link EditText}
      * @param content
      * @return {@link EditText}
      */
-    public static EditText setText(final EditText editText, final String content) {
+    public static <T extends EditText> T setText(final T editText, final String content) {
         return setText(editText, content, true);
     }
 
     /**
      * 设置内容
-     * @param editText
+     * @param editText {@link EditText}
      * @param content
      * @param isSelect 是否设置光标
      * @return {@link EditText}
      */
-    public static EditText setText(final EditText editText, final String content, final boolean isSelect) {
+    public static <T extends EditText> T setText(final T editText, final String content, final boolean isSelect) {
         if (editText != null) {
             if (content != null) {
                 // 设置文本
@@ -143,12 +153,12 @@ public final class EditTextUtils {
 
     /**
      * 追加内容 - 当前光标位置追加
-     * @param editText
+     * @param editText {@link EditText}
      * @param content
      * @param isSelect
      * @return
      */
-    public static EditText insert(final EditText editText, final String content, final boolean isSelect) {
+    public static <T extends EditText> T insert(final T editText, final String content, final boolean isSelect) {
         if (editText != null) {
             return insert(editText, content, editText.getSelectionStart(), isSelect);
         }
@@ -157,13 +167,13 @@ public final class EditTextUtils {
 
     /**
      * 追加内容
-     * @param editText
+     * @param editText {@link EditText}
      * @param content
      * @param start    开始添加的位置
      * @param isSelect
      * @return
      */
-    public static EditText insert(final EditText editText, final String content, final int start, final boolean isSelect) {
+    public static <T extends EditText> T insert(final T editText, final String content, final int start, final boolean isSelect) {
         if (editText != null) {
             if (!TextUtils.isEmpty(content)) {
                 try {
@@ -187,19 +197,19 @@ public final class EditTextUtils {
 
     /**
      * 设置光标在第一位
-     * @param editText
+     * @param editText {@link EditText}
      * @return
      */
-    public static EditText setSelectTop(final EditText editText) {
+    public static <T extends EditText> T setSelectTop(final T editText) {
         return setSelect(editText, 0);
     }
 
     /**
      * 设置光标在最后一位
-     * @param editText
+     * @param editText {@link EditText}
      * @return
      */
-    public static EditText setSelectBottom(final EditText editText) {
+    public static <T extends EditText> T setSelectBottom(final T editText) {
         if (editText != null) {
             // 设置光标
             editText.setSelection(editText.getText().toString().length());
@@ -209,11 +219,11 @@ public final class EditTextUtils {
 
     /**
      * 设置光标位置
-     * @param editText
+     * @param editText {@link EditText}
      * @param select
      * @return
      */
-    public static EditText setSelect(final EditText editText, final int select) {
+    public static <T extends EditText> T setSelect(final T editText, final int select) {
         if (editText != null) {
             if (select >= 0) {
                 // 判断是否超过限制
@@ -258,7 +268,7 @@ public final class EditTextUtils {
      * @param keyListener {@link KeyListener}
      * @return {@link EditText}
      */
-    public static EditText setKeyListener(final EditText editText, final KeyListener keyListener) {
+    public static <T extends EditText> T setKeyListener(final T editText, final KeyListener keyListener) {
         if (editText != null) {
             editText.setKeyListener(keyListener);
         }
@@ -271,7 +281,7 @@ public final class EditTextUtils {
      * @param accepted 允许输入的内容, 如: 0123456789
      * @return {@link EditText}
      */
-    public static EditText setKeyListener(final EditText editText, final String accepted) {
+    public static <T extends EditText> T setKeyListener(final T editText, final String accepted) {
         if (editText != null) {
             // editText.setKeyListener(DigitsKeyListener.getInstance(accepted));
             editText.setKeyListener(createDigitsKeyListener(-1, accepted));
@@ -285,7 +295,7 @@ public final class EditTextUtils {
      * @param accepted 允许输入的内容
      * @return {@link EditText}
      */
-    public static EditText setKeyListener(final EditText editText, final char[] accepted) {
+    public static <T extends EditText> T setKeyListener(final T editText, final char[] accepted) {
         if (editText != null) {
             editText.setKeyListener(createDigitsKeyListener(-1, accepted));
         }
@@ -295,7 +305,7 @@ public final class EditTextUtils {
     // =
 
     /**
-     * 获取 DigitsKeyListener (限制只能输入字母, 默认弹出英文输入法)
+     * 获取 DigitsKeyListener ( 限制只能输入字母, 默认弹出英文输入法 )
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener getLettersKeyListener() {
@@ -303,7 +313,7 @@ public final class EditTextUtils {
     }
 
     /**
-     * 获取 DigitsKeyListener (限制只能输入字母和数字, 默认弹出英文输入法)
+     * 获取 DigitsKeyListener ( 限制只能输入字母和数字, 默认弹出英文输入法 )
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener getNumberAndLettersKeyListener() {
@@ -311,7 +321,7 @@ public final class EditTextUtils {
     }
 
     /**
-     * 获取 DigitsKeyListener (限制只能输入数字, 默认弹出数字列表)
+     * 获取 DigitsKeyListener ( 限制只能输入数字, 默认弹出数字列表 )
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener getNumberKeyListener() {
@@ -322,7 +332,7 @@ public final class EditTextUtils {
 
     /**
      * 创建 DigitsKeyListener
-     * @param accepted 允许输入的内容 (可以传入 "", 这样无法输入内容)
+     * @param accepted 允许输入的内容 ( 可以传入 "", 这样无法输入内容 )
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener createDigitsKeyListener(final String accepted) {
@@ -332,7 +342,7 @@ public final class EditTextUtils {
     /**
      * 创建 DigitsKeyListener
      * @param inputType 输入类型
-     * @param accepted  允许输入的内容 (可以传入 "", 这样无法输入内容)
+     * @param accepted  允许输入的内容 ( 可以传入 "", 这样无法输入内容 )
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener createDigitsKeyListener(final int inputType, final String accepted) {
@@ -391,7 +401,7 @@ public final class EditTextUtils {
      */
     public static abstract class DevTextWatcher implements TextWatcher {
 
-        // 标记id - 一定程度上唯一
+        // 标记 id - 一定程度上唯一
         private final int markId;
         // 判断是否操作中
         private boolean operate = false;
@@ -404,7 +414,7 @@ public final class EditTextUtils {
          * 构造函数
          */
         public DevTextWatcher() {
-            // 初始化id
+            // 初始化 id
             this.markId = UUID.randomUUID().hashCode();
         }
 
@@ -414,7 +424,7 @@ public final class EditTextUtils {
          */
         public DevTextWatcher(int type) {
             this.type = type;
-            // 初始化id
+            // 初始化 id
             this.markId = UUID.randomUUID().hashCode();
         }
 
