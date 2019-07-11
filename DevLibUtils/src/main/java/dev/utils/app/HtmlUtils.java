@@ -22,7 +22,7 @@ public final class HtmlUtils {
      * 设置 Html 内容
      * @param textView {@link TextView}
      * @param content  Html content
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setHtmlText(final T textView, final String content) {
         if (textView != null && content != null) {

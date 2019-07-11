@@ -63,7 +63,7 @@ public final class TextViewUtils {
     /**
      * 获取 TextView
      * @param view {@link View}
-     * @param <T>  范型
+     * @param <T>  泛型
      * @return {@link TextView}
      */
     public static <T extends TextView> T getTextView(final View view) {
@@ -81,7 +81,7 @@ public final class TextViewUtils {
      * 获取 TextView
      * @param view {@link View}
      * @param id   R.id.viewId
-     * @param <T>  范型
+     * @param <T>  泛型
      * @return {@link TextView}
      */
     public static <T extends TextView> T getTextView(final View view, final int id) {
@@ -99,7 +99,7 @@ public final class TextViewUtils {
      * 获取 TextView
      * @param window {@link Window}
      * @param id     R.id.viewId
-     * @param <T>    范型
+     * @param <T>    泛型
      * @return {@link TextView}
      */
     public static <T extends TextView> T getTextView(final Window window, final int id) {
@@ -117,7 +117,7 @@ public final class TextViewUtils {
      * 获取 TextView
      * @param activity {@link Activity}
      * @param id       R.id.viewId
-     * @param <T>      范型
+     * @param <T>      泛型
      * @return {@link TextView}
      */
     public static <T extends TextView> T getTextView(final Activity activity, final int id) {
@@ -138,7 +138,7 @@ public final class TextViewUtils {
     /**
      * 获取文本
      * @param textView {@link TextView}
-     * @param <T>      范型
+     * @param <T>      泛型
      * @return {@link TextView#getText()}
      */
     public static <T extends TextView> String getText(final T textView) {
@@ -210,7 +210,7 @@ public final class TextViewUtils {
     /**
      * 获取多个 TextView 文本
      * @param views TextView[]
-     * @param <T>   范型
+     * @param <T>   泛型
      * @return {@link List<String>} 多个 TextView 文本
      */
     public static <T extends TextView> List<String> getTexts(final T... views) {
@@ -232,7 +232,7 @@ public final class TextViewUtils {
      * 设置文本
      * @param textView {@link TextView}
      * @param text     TextView text
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setText(final T textView, final String text) {
         if (textView != null) {
@@ -298,7 +298,7 @@ public final class TextViewUtils {
      * 设置多个 TextView 文本
      * @param text  TextView text
      * @param views TextView[]
-     * @param <T>   范型
+     * @param <T>   泛型
      */
     public static <T extends TextView> void setTexts(final String text, final T... views) {
         if (views != null) {
@@ -314,7 +314,7 @@ public final class TextViewUtils {
      * 设置 Html 内容
      * @param textView {@link TextView}
      * @param content  Html content
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setHtmlText(final T textView, final String content) {
         if (textView != null && content != null) {
@@ -384,7 +384,7 @@ public final class TextViewUtils {
      * 设置多个 TextView Html 内容
      * @param content Html content
      * @param views   TextView[]
-     * @param <T>     范型
+     * @param <T>     泛型
      */
     public static <T extends TextView> void setHtmlTexts(final String content, final T... views) {
         if (content != null && views != null) {
@@ -402,7 +402,7 @@ public final class TextViewUtils {
      * 设置字体颜色
      * @param textView {@link TextView}
      * @param color    R.color.id
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setTextColor(final T textView, @ColorInt final int color) {
         if (textView != null) {
@@ -468,7 +468,7 @@ public final class TextViewUtils {
      * 设置多个 TextView 字体颜色
      * @param color R.color.id
      * @param views TextView[]
-     * @param <T>   范型
+     * @param <T>   泛型
      */
     public static <T extends TextView> void setTextColors(@ColorInt final int color, final T... views) {
         if (views != null) {
@@ -486,7 +486,7 @@ public final class TextViewUtils {
      * 设置字体
      * @param textView {@link TextView}
      * @param typeface {@link Typeface} 字体样式
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setTypeface(final T textView, final Typeface typeface) {
         if (textView != null && typeface != null) {
@@ -499,7 +499,7 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param typeface {@link Typeface} 字体样式
      * @param style    样式
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setTypeface(final T textView, final Typeface typeface, final int style) {
         if (textView != null && typeface != null) {
@@ -532,7 +532,7 @@ public final class TextViewUtils {
      * 设置字体大小 - px 像素
      * @param textView {@link TextView}
      * @param size     字体大小
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setTextSizeByPx(final T textView, final float size) {
         setTextSize(textView, TypedValue.COMPLEX_UNIT_PX, size);
@@ -542,7 +542,7 @@ public final class TextViewUtils {
      * 设置字体大小 - sp 缩放像素
      * @param textView {@link TextView}
      * @param size     字体大小
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setTextSizeBySp(final T textView, final float size) {
         setTextSize(textView, TypedValue.COMPLEX_UNIT_SP, size);
@@ -552,7 +552,7 @@ public final class TextViewUtils {
      * 设置字体大小 - dp 与设备无关的像素
      * @param textView {@link TextView}
      * @param size     字体大小
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setTextSizeByDp(final T textView, final float size) {
         setTextSize(textView, TypedValue.COMPLEX_UNIT_DIP, size);
@@ -562,7 +562,7 @@ public final class TextViewUtils {
      * 设置字体大小 - inches 英寸
      * @param textView {@link TextView}
      * @param size     字体大小
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setTextSizeByIn(final T textView, final float size) {
         setTextSize(textView, TypedValue.COMPLEX_UNIT_IN, size);
@@ -613,7 +613,7 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param unit     字体参数类型
      * @param size     字体大小
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setTextSize(final T textView, final int unit, final float size) {
         if (textView != null) {
@@ -652,7 +652,7 @@ public final class TextViewUtils {
      * @param views TextView[]
      * @param unit  参数类型
      * @param size  字体大小
-     * @param <T>   范型
+     * @param <T>   泛型
      */
     public static <T extends TextView> void setTextSizes(final T[] views, final int unit, final float size) {
         if (views != null) {
@@ -667,7 +667,7 @@ public final class TextViewUtils {
     /**
      * 获取 TextView 字体大小 - px
      * @param textView {@link TextView}
-     * @param <T>      范型
+     * @param <T>      泛型
      * @return 字体大小 (px)
      */
     public static <T extends TextView> float getTextSize(final T textView) {
@@ -691,7 +691,7 @@ public final class TextViewUtils {
     /**
      * 清空 flags
      * @param textView {@link TextView}
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void clearFlags(final T textView) {
         if (textView != null) {
@@ -713,7 +713,7 @@ public final class TextViewUtils {
      * 设置 TextView 是否加粗
      * @param textView {@link TextView}
      * @param isBold   {@code true} yes, {@code false} no
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setBold(final T textView, final boolean isBold) {
         if (textView != null) {
@@ -726,7 +726,7 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param typeface {@link Typeface} 字体样式
      * @param isBold   {@code true} yes, {@code false} no
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setBold(final T textView, final Typeface typeface, final boolean isBold) {
         if (textView != null && typeface != null) {
@@ -758,7 +758,7 @@ public final class TextViewUtils {
     /**
      * 设置下划线
      * @param textView {@link TextView}
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setUnderlineText(final T textView) {
         setUnderlineText(textView, true);
@@ -768,7 +768,7 @@ public final class TextViewUtils {
      * 设置下划线并加清晰
      * @param textView    {@link TextView}
      * @param isAntiAlias 是否消除锯齿
-     * @param <T>         范型
+     * @param <T>         泛型
      */
     public static <T extends TextView> void setUnderlineText(final T textView, final boolean isAntiAlias) {
         if (textView != null) {
@@ -803,7 +803,7 @@ public final class TextViewUtils {
     /**
      * 设置中划线
      * @param textView {@link TextView}
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setStrikeThruText(final T textView) {
         setStrikeThruText(textView, true);
@@ -813,7 +813,7 @@ public final class TextViewUtils {
      * 设置中划线并加清晰
      * @param textView    {@link TextView}
      * @param isAntiAlias 是否消除锯齿
-     * @param <T>         范型
+     * @param <T>         泛型
      */
     public static <T extends TextView> void setStrikeThruText(final T textView, final boolean isAntiAlias) {
         if (textView != null) {
@@ -852,7 +852,7 @@ public final class TextViewUtils {
      * </pre>
      * @param textView      {@link TextView}
      * @param letterSpacing 文字水平间距值
-     * @param <T>           范型
+     * @param <T>           泛型
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static <T extends TextView> void setLetterSpacing(final T textView, final float letterSpacing) {
@@ -877,7 +877,7 @@ public final class TextViewUtils {
      * 设置文字行间距 ( 行高 )
      * @param textView    {@link TextView}
      * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
-     * @param <T>         范型
+     * @param <T>         泛型
      */
     public static <T extends TextView> void setLineSpacing(final T textView, final float lineSpacing) {
         setLineSpacingAndMultiplier(textView, lineSpacing, 1.0f);
@@ -888,7 +888,7 @@ public final class TextViewUtils {
      * @param textView    {@link TextView}
      * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @param multiplier  行间距倍数, android:lineSpacingMultiplier
-     * @param <T>         范型
+     * @param <T>         泛型
      */
     public static <T extends TextView> void setLineSpacingAndMultiplier(final T textView, final float lineSpacing, final float multiplier) {
         if (textView != null) {
@@ -926,7 +926,7 @@ public final class TextViewUtils {
      * </pre>
      * @param textView {@link TextView}
      * @param size     缩放比例
-     * @param <T>      范型
+     * @param <T>      泛型
      */
     public static <T extends TextView> void setTextScaleX(final T textView, final float size) {
         if (textView != null) {
@@ -953,7 +953,7 @@ public final class TextViewUtils {
      * </pre>
      * @param textView   {@link TextView}
      * @param includepad 是否保留字体留白间隙区域
-     * @param <T>        范型
+     * @param <T>        泛型
      */
     public static <T extends TextView> void setIncludeFontPadding(final T textView, final boolean includepad) {
         if (textView != null) {
@@ -975,7 +975,7 @@ public final class TextViewUtils {
     /**
      * 获取字体高度
      * @param textView {@link TextView}
-     * @param <T>      范型
+     * @param <T>      泛型
      * @return 字体高度
      */
     public static <T extends TextView> int getTextHeight(final T textView) {
@@ -1007,7 +1007,7 @@ public final class TextViewUtils {
     /**
      * 获取字体顶部偏移高度
      * @param textView {@link TextView}
-     * @param <T>      范型
+     * @param <T>      泛型
      * @return 字体顶部偏移高度
      */
     public static <T extends TextView> int getTextTopOffsetHeight(final T textView) {
@@ -1040,7 +1040,7 @@ public final class TextViewUtils {
      * 计算字体宽度
      * @param textView {@link TextView}
      * @param text     待计算的文本
-     * @param <T>      范型
+     * @param <T>      泛型
      * @return 字体宽度
      */
     public static <T extends TextView> float getTextWidth(final T textView, final String text) {
@@ -1053,7 +1053,7 @@ public final class TextViewUtils {
     /**
      * 计算字体宽度
      * @param textView {@link TextView}
-     * @param <T>      范型
+     * @param <T>      泛型
      * @return 字体宽度
      */
     public static <T extends TextView> float getTextWidth(final T textView) {
@@ -1128,7 +1128,7 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param text     待计算的文本
      * @param width    指定的宽度
-     * @param <T>      范型
+     * @param <T>      泛型
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static <T extends TextView> int calcTextWidth(final T textView, final String text, final float width) {
@@ -1142,7 +1142,7 @@ public final class TextViewUtils {
      * 计算第几位超过宽度
      * @param textView {@link TextView}
      * @param width    指定的宽度
-     * @param <T>      范型
+     * @param <T>      泛型
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static <T extends TextView> int calcTextWidth(final T textView, final float width) {

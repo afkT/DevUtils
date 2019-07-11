@@ -17,10 +17,10 @@ import dev.utils.LogPrintUtils;
  * detail: EditText 工具类
  * @author Ttt
  * <pre>
- *     Android EditText 属性大全 ( 不局限于仅仅是 EditText)
+ *     EditText 属性大全 ( 不局限于仅仅是 EditText)
  *     @see <a href="https://my.oschina.net/xsjayz/blog/121685"/>
  *     <p></p>
- *     Android EditText 多行显示及所有属性
+ *     EditText 多行显示及所有属性
  *     @see <a href="https://www.cnblogs.com/zhujiabin/p/5736470.html"/>
  *     <p></p>
  *     EditText 设置不自动获取焦点, 点击后才获取, 并弹出软键盘
@@ -32,7 +32,7 @@ import dev.utils.LogPrintUtils;
  *     EditText 限制输入的 4 种方法
  *     @see <a href="https://blog.csdn.net/zhoujn90/article/details/44983905"/>
  *     <p></p>
- *     Android 自定义 EditText 光标和下划线颜色
+ *     自定义 EditText 光标和下划线颜色
  *     @see <a href="https://segmentfault.com/a/1190000009507919"/>
  * </pre>
  */
@@ -45,9 +45,140 @@ public final class EditTextUtils {
     private static final String TAG = EditTextUtils.class.getSimpleName();
 
     /**
+     * 获取输入的内容
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> String getText(final T editText) {
+        if (editText != null) {
+            return editText.getText().toString();
+        }
+        return "";
+    }
+
+    /**
+     * 获取输入的内容长度
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> int getTextLength(final T editText) {
+        return getText(editText).length();
+    }
+
+    // =
+
+    /**
+     * 设置内容
+     * @param editText {@link EditText}
+     * @param content  文本内容
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T setText(final T editText, final String content) {
+        return setText(editText, content, true);
+    }
+
+    /**
+     * 设置内容
+     * @param editText {@link EditText}
+     * @param content  文本内容
+     * @param isSelect 是否设置光标
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T setText(final T editText, final String content, final boolean isSelect) {
+        if (editText != null && content != null) {
+            editText.setText(content);
+            // 设置光标
+            if (isSelect) {
+                editText.setSelection(editText.getText().toString().length());
+            }
+        }
+        return editText;
+    }
+
+    /**
+     * 追加内容 ( 当前光标位置追加 )
+     * @param editText {@link EditText}
+     * @param content  文本内容
+     * @param isSelect 是否设置光标
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T insert(final T editText, final String content, final boolean isSelect) {
+        if (editText != null) {
+            return insert(editText, content, editText.getSelectionStart(), isSelect);
+        }
+        return editText;
+    }
+
+    /**
+     * 追加内容
+     * @param editText {@link EditText}
+     * @param content  文本内容
+     * @param start    开始添加的位置
+     * @param isSelect 是否设置光标
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T insert(final T editText, final String content, final int start, final boolean isSelect) {
+        if (editText != null && !TextUtils.isEmpty(content)) {
+            try {
+                Editable editable = editText.getText();
+                // 在指定位置 追加内容
+                editable.insert(start, content);
+                // 设置光标
+                if (isSelect) {
+                    editText.setSelection(editText.getText().toString().length());
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "insert");
+            }
+        }
+        return editText;
+    }
+
+    // =
+
+    /**
+     * 设置长度限制
+     * @param editText  {@link EditText}
+     * @param maxLength 长度限制
+     * @param <T>       泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T setMaxLength(final T editText, final int maxLength) {
+        if (editText != null && maxLength > 0) {
+            // 设置最大长度限制
+            InputFilter[] filters = {new InputFilter.LengthFilter(maxLength)};
+            editText.setFilters(filters);
+        }
+        return editText;
+    }
+
+    /**
+     * 设置长度限制, 并且设置内容
+     * @param editText  {@link EditText}
+     * @param content   文本内容
+     * @param maxLength 长度限制
+     * @param <T>       泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T setMaxLengthAndText(final T editText, final String content, final int maxLength) {
+        return setText(setMaxLength(editText, maxLength), content);
+    }
+
+    // ========
+    // = 光标 =
+    // ========
+
+    /**
      * 设置是否显示光标
      * @param editText {@link EditText}
-     * @param visible 是否显示光标
+     * @param visible  是否显示光标
+     * @param <T>      泛型
      * @return {@link EditText}
      */
     public static <T extends EditText> T setCursorVisible(final T editText, final boolean visible) {
@@ -60,9 +191,10 @@ public final class EditTextUtils {
     /**
      * 获取光标位置
      * @param editText {@link EditText}
+     * @param <T>      泛型
      * @return 光标位置
      */
-    public static int getSelectionStart(final EditText editText) {
+    public static <T extends EditText> int getSelectionStart(final T editText) {
         if (editText != null) {
             return editText.getSelectionStart();
         }
@@ -70,173 +202,38 @@ public final class EditTextUtils {
     }
 
     /**
-     * 设置长度限制, 并且设置内容
-     * @param editText  {@link EditText}
-     * @param content 文本内容
-     * @param maxLength 长度限制
-     * @return {@link EditText}
-     */
-    public static <T extends EditText> T setMaxLengthAndText(final T editText, final String content, final int maxLength) {
-        return setText(setMaxLength(editText, maxLength), content);
-    }
-
-    /**
-     * 设置长度限制
-     * @param editText  {@link EditText}
-     * @param maxLength 长度限制
-     * @return {@link EditText}
-     */
-    public static <T extends EditText> T setMaxLength(final T editText, final int maxLength) {
-        if (editText != null) {
-            if (maxLength > 0) {
-                // 设置最大长度限制
-                InputFilter[] filters = {new InputFilter.LengthFilter(maxLength)};
-                editText.setFilters(filters);
-            }
-        }
-        return editText;
-    }
-
-    /**
-     * 获取输入的内容
-     * @param editText {@link EditText}
-     * @return
-     */
-    public static String getText(final EditText editText) {
-        if (editText != null) {
-            return editText.getText().toString();
-        }
-        return "";
-    }
-
-    /**
-     * 获取输入的内容长度
-     * @param editText {@link EditText}
-     * @return
-     */
-    public static int getTextLength(final EditText editText) {
-        return getText(editText).length();
-    }
-
-    // =
-
-    /**
-     * 设置内容
-     * @param editText {@link EditText}
-     * @param content
-     * @return {@link EditText}
-     */
-    public static <T extends EditText> T setText(final T editText, final String content) {
-        return setText(editText, content, true);
-    }
-
-    /**
-     * 设置内容
-     * @param editText {@link EditText}
-     * @param content
-     * @param isSelect 是否设置光标
-     * @return {@link EditText}
-     */
-    public static <T extends EditText> T setText(final T editText, final String content, final boolean isSelect) {
-        if (editText != null) {
-            if (content != null) {
-                // 设置文本
-                editText.setText(content);
-                if (isSelect) {
-                    // 设置光标
-                    editText.setSelection(editText.getText().toString().length());
-                }
-            }
-        }
-        return editText;
-    }
-
-    /**
-     * 追加内容 - 当前光标位置追加
-     * @param editText {@link EditText}
-     * @param content
-     * @param isSelect
-     * @return
-     */
-    public static <T extends EditText> T insert(final T editText, final String content, final boolean isSelect) {
-        if (editText != null) {
-            return insert(editText, content, editText.getSelectionStart(), isSelect);
-        }
-        return editText;
-    }
-
-    /**
-     * 追加内容
-     * @param editText {@link EditText}
-     * @param content
-     * @param start    开始添加的位置
-     * @param isSelect
-     * @return
-     */
-    public static <T extends EditText> T insert(final T editText, final String content, final int start, final boolean isSelect) {
-        if (editText != null) {
-            if (!TextUtils.isEmpty(content)) {
-                try {
-                    Editable editable = editText.getText();
-                    // 在指定位置 追加内容
-                    editable.insert(start, content);
-                    // 判断是否选中
-                    if (isSelect) {
-                        // 设置光标
-                        editText.setSelection(editText.getText().toString().length());
-                    }
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "insert");
-                }
-            }
-        }
-        return editText;
-    }
-
-    // =
-
-    /**
      * 设置光标在第一位
      * @param editText {@link EditText}
-     * @return
+     * @param <T>      泛型
+     * @return {@link EditText}
      */
-    public static <T extends EditText> T setSelectTop(final T editText) {
-        return setSelect(editText, 0);
+    public static <T extends EditText> T setSelectionToTop(final T editText) {
+        return setSelection(editText, 0);
     }
 
     /**
      * 设置光标在最后一位
      * @param editText {@link EditText}
-     * @return
+     * @param <T>      泛型
+     * @return {@link EditText}
      */
-    public static <T extends EditText> T setSelectBottom(final T editText) {
-        if (editText != null) {
-            // 设置光标
-            editText.setSelection(editText.getText().toString().length());
-        }
-        return editText;
+    public static <T extends EditText> T setSelectionToBottom(final T editText) {
+        return setSelection(editText, getTextLength(editText));
     }
 
     /**
      * 设置光标位置
      * @param editText {@link EditText}
-     * @param select
-     * @return
+     * @param index    光标位置
+     * @param <T>      泛型
+     * @return {@link EditText}
      */
-    public static <T extends EditText> T setSelect(final T editText, final int select) {
-        if (editText != null) {
-            if (select >= 0) {
-                // 判断是否超过限制
-                int length = editText.getText().toString().length();
-                // 如果超过长度, 则设置最后
-                if (select > length) {
-                    // 设置光标
-                    editText.setSelection(length);
-                } else {
-                    // 设置光标
-                    editText.setSelection(select);
-                }
-            }
+    public static <T extends EditText> T setSelection(final T editText, final int index) {
+        if (editText != null && index >= 0) {
+            // 获取数据长度
+            int length = editText.getText().toString().length();
+            // 设置光标
+            editText.setSelection((index > length) ? length : index);
         }
         return editText;
     }
@@ -266,6 +263,7 @@ public final class EditTextUtils {
      * 设置 KeyListener
      * @param editText    {@link EditText}
      * @param keyListener {@link KeyListener}
+     * @param <T>         泛型
      * @return {@link EditText}
      */
     public static <T extends EditText> T setKeyListener(final T editText, final KeyListener keyListener) {
@@ -279,6 +277,7 @@ public final class EditTextUtils {
      * 设置 KeyListener
      * @param editText {@link EditText}
      * @param accepted 允许输入的内容, 如: 0123456789
+     * @param <T>      泛型
      * @return {@link EditText}
      */
     public static <T extends EditText> T setKeyListener(final T editText, final String accepted) {
@@ -293,6 +292,7 @@ public final class EditTextUtils {
      * 设置 KeyListener
      * @param editText {@link EditText}
      * @param accepted 允许输入的内容
+     * @param <T>      泛型
      * @return {@link EditText}
      */
     public static <T extends EditText> T setKeyListener(final T editText, final char[] accepted) {
@@ -447,9 +447,11 @@ public final class EditTextUtils {
         /**
          * 设置是否操作中
          * @param operate {@code true} yes, {@code false} no
+         * @return {@link DevTextWatcher}
          */
-        public final void setOperate(boolean operate) {
+        public final DevTextWatcher setOperate(boolean operate) {
             this.operate = operate;
+            return this;
         }
 
         /**
@@ -463,9 +465,11 @@ public final class EditTextUtils {
         /**
          * 设置操作状态
          * @param operateState 操作状态
+         * @return {@link DevTextWatcher}
          */
-        public final void setOperateState(int operateState) {
+        public final DevTextWatcher setOperateState(int operateState) {
             this.operateState = operateState;
+            return this;
         }
 
         /**
@@ -479,9 +483,11 @@ public final class EditTextUtils {
         /**
          * 设置类型
          * @param type 类型
+         * @return {@link DevTextWatcher}
          */
-        public void setType(int type) {
+        public DevTextWatcher setType(int type) {
             this.type = type;
+            return this;
         }
 
         // ============
@@ -490,10 +496,10 @@ public final class EditTextUtils {
 
         /**
          * 在文本变化前调用
-         * @param s
-         * @param start
-         * @param count
-         * @param after
+         * @param s     修改之前的文字
+         * @param start 字符串中即将发生修改的位置
+         * @param count 字符串中即将被修改的文字的长度, 如果是新增的话则为 0
+         * @param after 被修改的文字修改之后的长度, 如果是删除的话则为 0
          */
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -501,10 +507,10 @@ public final class EditTextUtils {
 
         /**
          * 在文本变化后调用
-         * @param s
-         * @param start
-         * @param before
-         * @param count
+         * @param s      改变后的字符串
+         * @param start  有变动的字符串的位置
+         * @param before 被改变的字符串长度, 如果是新增则为 0
+         * @param count  添加的字符串长度, 如果是删除则为 0
          */
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -512,7 +518,7 @@ public final class EditTextUtils {
 
         /**
          * 在文本变化后调用
-         * @param s
+         * @param s 修改后的文字
          */
         @Override
         public void afterTextChanged(Editable s) {
