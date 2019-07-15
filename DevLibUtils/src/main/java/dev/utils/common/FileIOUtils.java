@@ -678,7 +678,7 @@ public final class FileIOUtils {
 
     /**
      * 检查是否存在某个文件
-     * @param file 文件路径
+     * @param file 文件
      * @return {@code true} yes, {@code false} no
      */
     private static boolean isFileExists(final File file) {

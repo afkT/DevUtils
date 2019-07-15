@@ -30,15 +30,14 @@ public final class ContentResolverUtils {
 
     /**
      * 通知刷新本地资源
-     * @param file
-     * @return
+     * @param file 文件
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean notifyMediaStore(final File file) {
         if (file != null) {
             try {
-                // 最后通知图库扫描更新
+                // 通知图库扫描更新
                 DevUtils.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-                // 通知成功
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
@@ -48,20 +47,20 @@ public final class ContentResolverUtils {
     }
 
     /**
-     * 添加图片到系统相册(包含原图、相册图, 会存在两张) - 想要一张, 直接调用 notifyMediaStore()
+     * 添加图片到系统相册 ( 包含原图、相册图, 会存在两张 ) - 想要一张, 直接调用 notifyMediaStore()
      * @param file     文件
      * @param fileName 文件名
-     * @param isNotify
-     * @return
+     * @param isNotify 是否广播通知图库扫描
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean insertImageIntoMediaStore(final File file, final String fileName, final boolean isNotify) {
         if (file != null) {
             try {
                 // 添加到相册
-                MediaStore.Images.Media.insertImage(DevUtils.getContext().getContentResolver(), file.getAbsolutePath(), TextUtils.isEmpty(fileName) ? file.getName() : fileName, null);
-                if (isNotify) {
-                    notifyMediaStore(file);
-                }
+                MediaStore.Images.Media.insertImage(DevUtils.getContext().getContentResolver(),
+                        file.getAbsolutePath(), TextUtils.isEmpty(fileName) ? file.getName() : fileName, null);
+                // 通知图库扫描更新
+                if (isNotify) notifyMediaStore(file);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "insertImageIntoMediaStore");
             }
@@ -69,9 +68,11 @@ public final class ContentResolverUtils {
         return false;
     }
 
+    // =
+
     /**
      * 添加视频到系统相册
-     * @param file
+     * @param file 文件
      * @return {@code true} success, {@code false} fail
      */
     public static boolean insertVideoIntoMediaStore(final File file) {
@@ -80,10 +81,10 @@ public final class ContentResolverUtils {
 
     /**
      * 保存到系统相册
-     * @param file
-     * @param createTime
-     * @param isVideo
-     * @param mimeType
+     * @param file       文件
+     * @param createTime 创建时间
+     * @param isVideo    是否视频
+     * @param mimeType   资源类型
      * @return {@code true} success, {@code false} fail
      */
     public static boolean insertIntoMediaStore(final File file, final long createTime, final boolean isVideo, final String mimeType) {
@@ -111,11 +112,10 @@ public final class ContentResolverUtils {
                 values.put(MediaStore.MediaColumns.SIZE, file.length());
                 // 文件类型
                 values.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
-                // 生成所属的URI资源
+                // 生成所属的 URI 资源
                 Uri uri = resolver.insert(isVideo ? MediaStore.Video.Media.EXTERNAL_CONTENT_URI : MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                 // 最后通知图库更新
                 DevUtils.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
-                // 表示成功
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "insertIntoMediaStore");
