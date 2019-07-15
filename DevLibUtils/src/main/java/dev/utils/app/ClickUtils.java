@@ -10,7 +10,7 @@ import java.util.Map;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 点击(双击)工具类
+ * detail: 点击 ( 双击 ) 工具类
  * @author Ttt
  */
 public final class ClickUtils {
@@ -106,7 +106,7 @@ public final class ClickUtils {
     // ======================
 
     /**
-     * 判断是否双击(无效点击 - 短时间内多次点击)
+     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isFastDoubleClick() {
@@ -114,7 +114,7 @@ public final class ClickUtils {
     }
 
     /**
-     * 判断是否双击(无效点击 - 短时间内多次点击)
+     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
      * @param tagId id
      * @return {@code true} yes, {@code false} no
      */
@@ -123,9 +123,9 @@ public final class ClickUtils {
     }
 
     /**
-     * 判断是否双击(无效点击 - 短时间内多次点击)
+     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
      * @param tagId        id
-     * @param intervalTime 时间间隔
+     * @param intervalTime 双击时间间隔
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isFastDoubleClick(final int tagId, final long intervalTime) {
@@ -135,7 +135,7 @@ public final class ClickUtils {
     // =
 
     /**
-     * 判断是否双击(无效点击 - 短时间内多次点击)
+     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
      * @param object    key by Object
      * @param configKey 时间间隔配置 Key
      * @return {@code true} yes, {@code false} no
@@ -145,9 +145,9 @@ public final class ClickUtils {
     }
 
     /**
-     * 判断是否双击(无效点击 - 短时间内多次点击)
+     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
      * @param object       key by Object
-     * @param intervalTime 时间间隔
+     * @param intervalTime 双击时间间隔
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isFastDoubleClick(final Object object, final long intervalTime) {
@@ -211,7 +211,7 @@ public final class ClickUtils {
 
     /**
      * 设置默认点击时间间隔
-     * @param intervalTime 时间间隔
+     * @param intervalTime 双击时间间隔
      */
     public static void setIntervalTime(final long intervalTime) {
         sGlobalClickAssist.setIntervalTime(intervalTime);
@@ -227,17 +227,17 @@ public final class ClickUtils {
     // =
 
     /**
-     * detail: 点击(双击)辅助类
+     * detail: 点击 ( 双击 ) 辅助类
      * @author Ttt
      * <pre>
-     *     ps: 该辅助类, 主要避免全局共用一个双击控制类, 容易出现冲突, 方便控制某个 Activity/功能模块 双击处理
-     *     使用 Key(Tag-Object) 获取指定的 {@link ClickAssist}, 能够实现不同 Activity/功能模块 单独使用 {@link ClickAssist}
+     *     ps: 该辅助类, 主要避免全局共用一个双击控制类, 容易出现冲突, 方便控制某个 Activity 或功能模块 双击处理
+     *     使用 Key(Tag-Object) 获取指定的 {@link ClickAssist}, 能够实现不同 Activity 或功能模块 单独使用 {@link ClickAssist}
      *     并且可以进行销毁处理
      * </pre>
      */
     public static class ClickAssist {
 
-        // 最后一次点击的标识id
+        // 最后一次点击的标识 id
         private int mLastTagId = -1;
         // 最后一次点击时间
         private long mLastClickTime = 0L;
@@ -253,7 +253,7 @@ public final class ClickUtils {
 
         /**
          * 构造函数
-         * @param intervalTime 时间间隔
+         * @param intervalTime 双击间隔时间
          */
         public ClickAssist(final long intervalTime) {
             this.mIntervalTime = intervalTime;
@@ -262,7 +262,7 @@ public final class ClickUtils {
         // =
 
         /**
-         * 判断是否双击(无效点击 - 短时间内多次点击)
+         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
          * @return {@code true} yes, {@code false} no
          */
         public boolean isFastDoubleClick() {
@@ -270,7 +270,7 @@ public final class ClickUtils {
         }
 
         /**
-         * 判断是否双击(无效点击 - 短时间内多次点击)
+         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
          * @param tagId id
          * @return {@code true} yes, {@code false} no
          */
@@ -279,9 +279,9 @@ public final class ClickUtils {
         }
 
         /**
-         * 判断是否双击(无效点击 - 短时间内多次点击)
+         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
          * @param tagId        id
-         * @param intervalTime 时间间隔
+         * @param intervalTime 双击间隔时间
          * @return {@code true} yes, {@code false} no
          */
         public boolean isFastDoubleClick(final int tagId, final long intervalTime) {
@@ -301,7 +301,7 @@ public final class ClickUtils {
         // =
 
         /**
-         * 判断是否双击(无效点击 - 短时间内多次点击)
+         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
          * @param object    key by Object
          * @param configKey 时间间隔配置 Key
          * @return {@code true} yes, {@code false} no
@@ -311,13 +311,13 @@ public final class ClickUtils {
         }
 
         /**
-         * 判断是否双击(无效点击 - 短时间内多次点击)
+         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
          * @param object       key by Object
-         * @param intervalTime 时间间隔
+         * @param intervalTime 双击时间间隔
          * @return {@code true} yes, {@code false} no
          */
         public boolean isFastDoubleClick(final Object object, final long intervalTime) {
-            // 获取TAG
+            // 获取 TAG
             String tag = ((object != null) ? ("obj_" + object.hashCode()) : "obj_null");
             // 获取上次点击的时间
             Long lastTime = mRecordMaps.get(tag);
@@ -399,7 +399,7 @@ public final class ClickUtils {
 
         /**
          * 设置默认点击时间间隔
-         * @param intervalTime 时间间隔
+         * @param intervalTime 双击时间间隔
          */
         public void setIntervalTime(final long intervalTime) {
             this.mIntervalTime = intervalTime;
@@ -409,7 +409,7 @@ public final class ClickUtils {
          * 重置处理
          */
         public void reset() {
-            // 重置最后一次点击的标识id
+            // 重置最后一次点击的标识 id
             mLastTagId = -1;
             // 重置最后一次点击时间
             mLastClickTime = 0L;
