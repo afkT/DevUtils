@@ -47,7 +47,7 @@ public final class BarUtils {
 
     /**
      * 获取状态栏高度
-     * @return the status bar's height
+     * @return 状态栏高度
      */
     public static int getStatusBarHeight() {
         Resources resources = Resources.getSystem();
@@ -57,7 +57,7 @@ public final class BarUtils {
 
     /**
      * 设置状态栏是否显示
-     * @param activity  The activity.
+     * @param activity  {@link Activity}
      * @param isVisible True to set status bar visible, false otherwise.
      */
     public static void setStatusBarVisibility(@NonNull final Activity activity, final boolean isVisible) {
@@ -66,7 +66,7 @@ public final class BarUtils {
 
     /**
      * 设置状态栏是否显示
-     * @param window    The window.
+     * @param window    {@link Window}
      * @param isVisible True to set status bar visible, false otherwise.
      */
     public static void setStatusBarVisibility(@NonNull final Window window, final boolean isVisible) {
@@ -85,7 +85,7 @@ public final class BarUtils {
 
     /**
      * 判断状态栏是否显示
-     * @param activity The activity.
+     * @param activity {@link Activity}
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isStatusBarVisible(@NonNull final Activity activity) {
@@ -95,7 +95,7 @@ public final class BarUtils {
 
     /**
      * 设置状态是否高亮模式
-     * @param activity    The activity.
+     * @param activity    {@link Activity}
      * @param isLightMode True to set status bar light mode, false otherwise.
      */
     public static void setStatusBarLightMode(@NonNull final Activity activity, final boolean isLightMode) {
@@ -104,7 +104,7 @@ public final class BarUtils {
 
     /**
      * 设置状态是否高亮模式
-     * @param window      The window.
+     * @param window      {@link Window}
      * @param isLightMode True to set status bar light mode, false otherwise.
      */
     public static void setStatusBarLightMode(@NonNull final Window window, final boolean isLightMode) {
@@ -125,7 +125,7 @@ public final class BarUtils {
 
     /**
      * 添加状态栏同等高度到 View 的顶部
-     * @param view The view.
+     * @param view {@link View}
      */
     public static void addMarginTopEqualStatusBarHeight(@NonNull final View view) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
@@ -139,7 +139,7 @@ public final class BarUtils {
 
     /**
      * 添加状态栏同等高度到 View 的顶部
-     * @param view The view.
+     * @param view {@link View}
      */
     public static void subtractMarginTopEqualStatusBarHeight(@NonNull final View view) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
@@ -152,7 +152,7 @@ public final class BarUtils {
 
     /**
      * 为 view 增加 MarginTop 为状态栏高度
-     * @param window
+     * @param window {@link Window}
      */
     private static void addMarginTopEqualStatusBarHeight(final Window window) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
@@ -163,7 +163,7 @@ public final class BarUtils {
 
     /**
      * 为 view 减少 MarginTop 为状态栏高度
-     * @param window
+     * @param window {@link Window}
      */
     private static void subtractMarginTopEqualStatusBarHeight(final Window window) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
@@ -174,8 +174,8 @@ public final class BarUtils {
 
     /**
      * 设置状态栏颜色
-     * @param activity The activity.
-     * @param color    The status bar's color.
+     * @param activity {@link Activity}
+     * @param color    状态栏颜色
      */
     public static void setStatusBarColor(@NonNull final Activity activity, @ColorInt final int color) {
         setStatusBarColor(activity, color, DEFAULT_ALPHA, false);
@@ -183,9 +183,9 @@ public final class BarUtils {
 
     /**
      * 设置状态栏颜色
-     * @param activity The activity.
-     * @param color    The status bar's color.
-     * @param alpha    The status bar's alpha which isn't the same as alpha in the color.
+     * @param activity {@link Activity}
+     * @param color    状态栏颜色
+     * @param alpha    状态栏透明度
      */
     public static void setStatusBarColor(@NonNull final Activity activity, @ColorInt final int color, @IntRange(from = 0, to = 255) final int alpha) {
         setStatusBarColor(activity, color, alpha, false);
@@ -193,9 +193,9 @@ public final class BarUtils {
 
     /**
      * 设置状态栏颜色
-     * @param activity The activity.
-     * @param color    The status bar's color.
-     * @param alpha    The status bar's alpha which isn't the same as alpha in the color.
+     * @param activity {@link Activity}
+     * @param color    状态栏颜色
+     * @param alpha    状态栏透明度
      * @param isDecor  True to add fake status bar in DecorView,
      *                 false to add fake status bar in ContentView.
      */
@@ -209,7 +209,7 @@ public final class BarUtils {
     /**
      * 设置状态栏颜色
      * @param fakeStatusBar The fake status bar view.
-     * @param color         The status bar's color.
+     * @param color         状态栏颜色
      */
     public static void setStatusBarColor(@NonNull final View fakeStatusBar, @ColorInt final int color) {
         setStatusBarColor(fakeStatusBar, color, DEFAULT_ALPHA);
@@ -218,8 +218,8 @@ public final class BarUtils {
     /**
      * 设置状态栏颜色
      * @param fakeStatusBar The fake status bar view.
-     * @param color         The status bar's color.
-     * @param alpha         The status bar's alpha which isn't the same as alpha in the color.
+     * @param color         状态栏颜色
+     * @param alpha         状态栏透明度
      */
     public static void setStatusBarColor(@NonNull final View fakeStatusBar, @ColorInt final int color, @IntRange(from = 0, to = 255) final int alpha) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
@@ -233,7 +233,7 @@ public final class BarUtils {
 
     /**
      * 设置状态栏透明度
-     * @param activity The activity.
+     * @param activity {@link Activity}
      */
     public static void setStatusBarAlpha(@NonNull final Activity activity) {
         setStatusBarAlpha(activity, DEFAULT_ALPHA, false);
@@ -241,8 +241,8 @@ public final class BarUtils {
 
     /**
      * 设置状态栏透明度
-     * @param activity The activity.
-     * @param alpha    The status bar's alpha.
+     * @param activity {@link Activity}
+     * @param alpha    状态栏透明度
      */
     public static void setStatusBarAlpha(@NonNull final Activity activity, @IntRange(from = 0, to = 255) final int alpha) {
         setStatusBarAlpha(activity, alpha, false);
@@ -250,8 +250,8 @@ public final class BarUtils {
 
     /**
      * 设置状态栏透明度
-     * @param activity The activity.
-     * @param alpha    The status bar's alpha.
+     * @param activity {@link Activity}
+     * @param alpha    状态栏透明度
      * @param isDecor  True to add fake status bar in DecorView,
      *                 false to add fake status bar in ContentView.
      */
@@ -273,7 +273,7 @@ public final class BarUtils {
     /**
      * 设置状态栏透明度
      * @param fakeStatusBar The fake status bar view.
-     * @param alpha         The status bar's alpha.
+     * @param alpha         状态栏透明度
      */
     public static void setStatusBarAlpha(@NonNull final View fakeStatusBar, @IntRange(from = 0, to = 255) final int alpha) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
@@ -301,10 +301,10 @@ public final class BarUtils {
     /**
      * 设置状态栏的颜色
      * DrawLayout must add android:fitsSystemWindows="true"
-     * @param activity      The activity.
+     * @param activity      {@link Activity}
      * @param drawer        The DrawLayout.
      * @param fakeStatusBar The fake status bar view.
-     * @param color         The status bar's color.
+     * @param color         状态栏颜色
      * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
      */
     public static void setStatusBarColor4Drawer(@NonNull final Activity activity, @NonNull final DrawerLayout drawer,
@@ -315,11 +315,11 @@ public final class BarUtils {
     /**
      * 设置状态栏的颜色
      * DrawLayout must add android:fitsSystemWindows="true"
-     * @param activity      The activity.
+     * @param activity      {@link Activity}
      * @param drawer        The DrawLayout.
      * @param fakeStatusBar The fake status bar view.
-     * @param color         The status bar's color.
-     * @param alpha         The status bar's alpha which isn't the same as alpha in the color.
+     * @param color         状态栏颜色
+     * @param alpha         状态栏透明度
      * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
      */
     public static void setStatusBarColor4Drawer(@NonNull final Activity activity, @NonNull final DrawerLayout drawer,
@@ -341,7 +341,7 @@ public final class BarUtils {
     /**
      * 设置状态栏透明度
      * DrawLayout must add android:fitsSystemWindows="true"
-     * @param activity      The activity.
+     * @param activity      {@link Activity}
      * @param drawer        drawerLayout
      * @param fakeStatusBar The fake status bar view.
      * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
@@ -354,10 +354,10 @@ public final class BarUtils {
     /**
      * 设置状态栏透明度
      * DrawLayout must add android:fitsSystemWindows="true"
-     * @param activity      The activity.
+     * @param activity      {@link Activity}
      * @param drawer        drawerLayout
      * @param fakeStatusBar The fake status bar view.
-     * @param alpha         The status bar's alpha.
+     * @param alpha         状态栏透明度
      * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
      */
     public static void setStatusBarAlpha4Drawer(@NonNull final Activity activity, @NonNull final DrawerLayout drawer, @NonNull final View fakeStatusBar,
@@ -378,10 +378,11 @@ public final class BarUtils {
 
     /**
      * 设置状态栏颜色
-     * @param activity
-     * @param color
-     * @param alpha
-     * @param isDecor
+     * @param activity {@link Activity}
+     * @param color    状态栏颜色
+     * @param alpha    状态栏透明度
+     * @param isDecor  True to add fake status bar in DecorView,
+     *                 false to add fake status bar in ContentView.
      */
     private static void addStatusBarColor(final Activity activity, final int color, final int alpha, final boolean isDecor) {
         ViewGroup parent = isDecor ? (ViewGroup) activity.getWindow().getDecorView() : (ViewGroup) activity.findViewById(android.R.id.content);
@@ -398,9 +399,10 @@ public final class BarUtils {
 
     /**
      * 设置状态栏透明度
-     * @param activity
-     * @param alpha
-     * @param isDecor
+     * @param activity {@link Activity}
+     * @param alpha    状态栏透明度
+     * @param isDecor  True to add fake status bar in DecorView,
+     *                 false to add fake status bar in ContentView.
      */
     private static void addStatusBarAlpha(final Activity activity, final int alpha, final boolean isDecor) {
         ViewGroup parent = isDecor ? (ViewGroup) activity.getWindow().getDecorView() : (ViewGroup) activity.findViewById(android.R.id.content);
@@ -417,7 +419,7 @@ public final class BarUtils {
 
     /**
      * 隐藏颜色 View
-     * @param activity
+     * @param activity {@link Activity}
      */
     private static void hideColorView(final Activity activity) {
         hideColorView(activity.getWindow());
@@ -425,7 +427,7 @@ public final class BarUtils {
 
     /**
      * 隐藏 透明度 View
-     * @param activity
+     * @param activity {@link Activity}
      */
     private static void hideAlphaView(final Activity activity) {
         hideAlphaView(activity.getWindow());
@@ -433,7 +435,7 @@ public final class BarUtils {
 
     /**
      * 隐藏颜色 View
-     * @param window
+     * @param window {@link Window}
      */
     private static void hideColorView(final Window window) {
         ViewGroup decorView = (ViewGroup) window.getDecorView();
@@ -444,7 +446,7 @@ public final class BarUtils {
 
     /**
      * 隐藏 透明度 View
-     * @param window
+     * @param window {@link Window}
      */
     private static void hideAlphaView(final Window window) {
         ViewGroup decorView = (ViewGroup) window.getDecorView();
@@ -455,7 +457,7 @@ public final class BarUtils {
 
     /**
      * 显示 View 颜色
-     * @param window
+     * @param window {@link Window}
      */
     private static void showColorView(final Window window) {
         ViewGroup decorView = (ViewGroup) window.getDecorView();
@@ -466,7 +468,7 @@ public final class BarUtils {
 
     /**
      * 显示 View 透明度
-     * @param window
+     * @param window {@link Window}
      */
     private static void showAlphaView(final Window window) {
         ViewGroup decorView = (ViewGroup) window.getDecorView();
@@ -476,10 +478,10 @@ public final class BarUtils {
     }
 
     /**
-     * 获取状态栏颜色 = (传入颜色等, 进行生成)
-     * @param color
-     * @param alpha
-     * @return
+     * 获取状态栏颜色 ( 传入颜色等, 进行生成 )
+     * @param color 状态栏颜色值
+     * @param alpha 状态栏透明度
+     * @return 状态栏颜色
      */
     private static int getStatusBarColor(final int color, final int alpha) {
         if (alpha == 0) return color;
@@ -496,9 +498,9 @@ public final class BarUtils {
     /**
      * 创建对应颜色的状态栏 View
      * @param context {@link Context}
-     * @param color
-     * @param alpha
-     * @return
+     * @param color   状态栏颜色值
+     * @param alpha   状态栏透明度
+     * @return 对应颜色的状态栏 View
      */
     private static View createColorStatusBarView(final Context context, final int color, final int alpha) {
         View statusBarView = new View(context);
@@ -511,8 +513,8 @@ public final class BarUtils {
     /**
      * 创建对应透明度的状态栏 View
      * @param context {@link Context}
-     * @param alpha
-     * @return
+     * @param alpha   状态栏透明度
+     * @return 对应透明度的状态栏 View
      */
     private static View createAlphaStatusBarView(final Context context, final int alpha) {
         View statusBarView = new View(context);
@@ -524,7 +526,7 @@ public final class BarUtils {
 
     /**
      * 设置透明的状态栏
-     * @param activity
+     * @param activity {@link Activity}
      */
     private static void transparentStatusBar(final Activity activity) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
@@ -562,7 +564,7 @@ public final class BarUtils {
     /**
      * 设置通知栏是否显示
      * <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
-     * @param isVisible
+     * @param isVisible 是否显示通知栏
      */
     @RequiresPermission(android.Manifest.permission.EXPAND_STATUS_BAR)
     public static void setNotificationBarVisibility(final boolean isVisible) {
@@ -577,7 +579,7 @@ public final class BarUtils {
 
     /**
      * 反射调用面板
-     * @param methodName
+     * @param methodName 方法名
      */
     private static void invokePanels(final String methodName) {
         try {
@@ -610,8 +612,8 @@ public final class BarUtils {
     }
 
     /**
-     * 设置导航栏是否可见(图标显示)
-     * @param activity  The activity.
+     * 设置导航栏是否可见 ( 图标显示 )
+     * @param activity  {@link Activity}
      * @param isVisible True to set navigation bar visible, false otherwise.
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -620,8 +622,8 @@ public final class BarUtils {
     }
 
     /**
-     * 设置导航栏是否可见(图标显示)
-     * @param window    The window.
+     * 设置导航栏是否可见 ( 图标显示 )
+     * @param window    {@link Window}
      * @param isVisible True to set navigation bar visible, false otherwise.
      */
     @RequiresApi(Build.VERSION_CODES.KITKAT)
@@ -638,7 +640,7 @@ public final class BarUtils {
 
     /**
      * 判断导航栏是否可见
-     * @param activity The activity.
+     * @param activity {@link Activity}
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNavBarVisible(@NonNull final Activity activity) {
@@ -647,7 +649,7 @@ public final class BarUtils {
 
     /**
      * 判断导航栏是否可见
-     * @param window The window.
+     * @param window {@link Window}
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNavBarVisible(@NonNull final Window window) {
@@ -658,7 +660,7 @@ public final class BarUtils {
 
     /**
      * 设置导航栏颜色
-     * @param activity The activity.
+     * @param activity {@link Activity}
      * @param color    The navigation bar's color.
      */
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -668,7 +670,7 @@ public final class BarUtils {
 
     /**
      * 设置导航栏颜色
-     * @param window The window.
+     * @param window {@link Window}
      * @param color  The navigation bar's color.
      */
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -678,7 +680,7 @@ public final class BarUtils {
 
     /**
      * 设置导航栏颜色
-     * @param activity The activity.
+     * @param activity {@link Activity}
      * @return the color of navigation bar
      */
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -688,7 +690,7 @@ public final class BarUtils {
 
     /**
      * 获取导航栏颜色
-     * @param window The window.
+     * @param window {@link Window}
      * @return the color of navigation bar
      */
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
