@@ -23,7 +23,7 @@ public final class ClipboardUtils {
 
     /**
      * 复制文本到剪贴板
-     * @param text
+     * @param text 文本
      */
     public static void copyText(final CharSequence text) {
         try {
@@ -38,8 +38,8 @@ public final class ClipboardUtils {
     }
 
     /**
-     * 获取剪贴板的文本
-     * @return 剪贴板的文本
+     * 获取剪贴板文本
+     * @return 剪贴板文本
      */
     public static CharSequence getText() {
         try {
@@ -55,8 +55,8 @@ public final class ClipboardUtils {
     }
 
     /**
-     * 复制uri到剪贴板
-     * @param uri
+     * 复制 URI 到剪贴板
+     * @param uri {@link Uri}
      */
     public static void copyUri(final Uri uri) {
         try {
@@ -71,8 +71,8 @@ public final class ClipboardUtils {
     }
 
     /**
-     * 获取剪贴板的uri
-     * @return 剪贴板的uri
+     * 获取剪贴板 URI
+     * @return 剪贴板 URI
      */
     public static Uri getUri() {
         try {
@@ -104,8 +104,8 @@ public final class ClipboardUtils {
     }
 
     /**
-     * 获取剪贴板的意图
-     * @return 剪贴板的意图
+     * 获取剪贴板意图
+     * @return 剪贴板意图
      */
     public static Intent getIntent() {
         try {
