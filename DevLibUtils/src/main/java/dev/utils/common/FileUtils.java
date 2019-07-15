@@ -893,7 +893,7 @@ public final class FileUtils {
 
     /**
      * 删除多个文件
-     * @param filePaths 文件数组
+     * @param filePaths 文件路径数组
      */
     public static void deleteFiles(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {

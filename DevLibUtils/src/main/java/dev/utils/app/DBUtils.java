@@ -23,7 +23,7 @@ public final class DBUtils {
     /**
      * 导出数据库
      * @param targetFile 目标文件
-     * @param dbName     数据库文件名
+     * @param dbName     数据库名
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startExportDatabase(final String targetFile, final String dbName) {
