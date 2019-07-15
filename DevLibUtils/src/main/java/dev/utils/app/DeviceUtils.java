@@ -37,27 +37,27 @@ import dev.utils.LogPrintUtils;
  *     android.os.Build.BOARD: 获取设备基板名称
  *     android.os.Build.BOOTLOADER: 获取设备引导程序版本号
  *     android.os.Build.BRAND: 获取设备品牌
- *     android.os.Build.CPU_ABI: 获取设备指令集名称(CPU的类型)
+ *     android.os.Build.CPU_ABI: 获取设备指令集名称 (CPU 的类型 )
  *     android.os.Build.CPU_ABI2: 获取第二个指令集名称
  *     android.os.Build.DEVICE: 获取设备驱动名称
- *     android.os.Build.DISPLAY: 获取设备显示的版本包(在系统设置中显示为版本号)和ID一样
+ *     android.os.Build.DISPLAY: 获取设备显示的版本包 ( 在系统设置中显示为版本号 ) 和 ID 一样
  *     android.os.Build.FINGERPRINT: 设备的唯一标识, 由设备的多个信息拼接合成
- *     android.os.Build.HARDWARE: 设备硬件名称, 一般和基板名称一样(BOARD)
+ *     android.os.Build.HARDWARE: 设备硬件名称, 一般和基板名称一样 (BOARD)
  *     android.os.Build.HOST: 设备主机地址
  *     android.os.Build.ID: 设备版本号
  *     android.os.Build.MODEL : 获取手机的型号 设备名称
- *     android.os.Build.MANUFACTURER:获取设备制造商
+ *     android.os.Build.MANUFACTURER: 获取设备制造商
  *     android:os.Build.PRODUCT: 整个产品的名称
- *     android:os.Build.RADIO: 无线电固件版本号, 通常是不可用的 显示unknown
- *     android.os.Build.TAGS: 设备标签, 如release-keys 或测试的 test-keys
+ *     android:os.Build.RADIO: 无线电固件版本号, 通常是不可用的 显示 unknown
+ *     android.os.Build.TAGS: 设备标签, 如 release-keys 或测试的 test-keys
  *     android.os.Build.TIME: 时间
- *     android.os.Build.TYPE: 设备版本类型 主要为 "user" 或"eng".
- *     android.os.Build.USER: 设备用户名 基本上都为android-build
- *     android.os.Build.VERSION.RELEASE: 获取系统版本字符串, 如4.1.2 或2.2 或2.3等
- *     android.os.Build.VERSION.CODENAME: 设备当前的系统开发代号, 一般使用REL代替
- *     android.os.Build.VERSION.INCREMENTAL: 系统源代码控制值, 一个数字或者git hash值
- *     android.os.Build.VERSION.SDK: 系统的API级别 一般使用下面大的SDK_INT 来查看
- *     android.os.Build.VERSION.SDK_INT: 系统的API级别 数字表示
+ *     android.os.Build.TYPE: 设备版本类型 主要为 "user" 或 "eng".
+ *     android.os.Build.USER: 设备用户名 基本上都为 android-build
+ *     android.os.Build.VERSION.RELEASE: 获取系统版本字符串, 如 4.1.2 或 2.2 或 2.3 等
+ *     android.os.Build.VERSION.CODENAME: 设备当前的系统开发代号, 一般使用 REL 代替
+ *     android.os.Build.VERSION.INCREMENTAL: 系统源代码控制值, 一个数字或者 git hash 值
+ *     android.os.Build.VERSION.SDK: 系统的 API 级别 一般使用下面大的 SDK_INT 来查看
+ *     android.os.Build.VERSION.SDK_INT: 系统的 API 级别 数字表示
  * </pre>
  */
 public final class DeviceUtils {
@@ -136,73 +136,51 @@ public final class DeviceUtils {
         return errorInfo;
     }
 
+    // =
+
     /**
-     * 获取设备系统版本号
-     * @return 设备系统版本号
+     * 获取设备基板名称
+     * @return 设备基板名称
      */
-    public static String getSDKVersionName() {
-        return Build.VERSION.RELEASE;
+    public static String getBoard() {
+        return Build.BOARD;
     }
 
     /**
-     * 获取当前SDK 版本号
-     * @return
+     * 获取设备引导程序版本号
+     * @return 设备引导程序版本号
      */
-    public static int getSDKVersion() {
-        return Build.VERSION.SDK_INT;
+    public static String getBootloader() {
+        return Build.BOOTLOADER;
     }
 
     /**
-     * 获取Android id
-     * <pre>
-     *     在设备首次启动时, 系统会随机生成一个64位的数字, 并把这个数字以十六进制字符串的形式保存下来, 这个十六进制的字符串就是ANDROID_ID, 当设备被wipe后该值会被重置
-     * </pre>
-     * @return
+     * 获取设备品牌
+     * @return 设备品牌
      */
-    public static String getAndroidId() {
-        // Android id 默认为 null
-        String androidId = null;
-        try {
-            androidId = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAndroidId");
-        }
-        return androidId;
+    public static String getBrand() {
+        return Build.BRAND;
     }
 
     /**
-     * 判断设备是否 root
-     * @return
+     * 获取支持的第一个指令集
+     * @return 支持的第一个指令集
      */
-    public static boolean isDeviceRooted() {
-        String su = "su";
-        String[] locations = {"/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
-                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
-        for (String location : locations) {
-            if (new File(location + su).exists()) {
-                return true;
-            }
-        }
-        return false;
+    public static String getCPU_ABI() {
+        return Build.CPU_ABI;
     }
 
     /**
-     * 返回是否启用了 ADB
-     * @return
+     * 获取支持的第二个指令集
+     * @return 支持的第二个指令集
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean isAdbEnabled() {
-        try {
-            return Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isAdbEnabled");
-        }
-        return false;
+    public static String getCPU_ABI2() {
+        return Build.CPU_ABI2;
     }
 
     /**
      * 获取支持的指令集 如: [arm64-v8a, armeabi-v7a, armeabi]
-     * @return
+     * @return 支持的指令集
      */
     public static String[] getABIs() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -215,167 +193,74 @@ public final class DeviceUtils {
         }
     }
 
-    // =
-
-    // 特殊mac地址用于判断是否获取失败
-    private static final String CUSTOM_MAC = "02:00:00:00:00:00";
-
     /**
-     * 获取设备 MAC 地址
-     * <uses-permission android:name="android.permission.INTERNET" />
-     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-     * @return
+     * 获取支持的 32 位指令集
+     * @return 支持的 32 位指令集
      */
-    @RequiresPermission(allOf = {android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_WIFI_STATE})
-    public static String getMacAddress() {
-        String macAddress = getMacAddressByWifiInfo();
-        if (!CUSTOM_MAC.equals(macAddress)) {
-            return macAddress;
-        }
-        macAddress = getMacAddressByNetworkInterface();
-        if (!CUSTOM_MAC.equals(macAddress)) {
-            return macAddress;
-        }
-        macAddress = getMacAddressByInetAddress();
-        if (!CUSTOM_MAC.equals(macAddress)) {
-            return macAddress;
-        }
-        macAddress = getMacAddressByFile();
-        if (!CUSTOM_MAC.equals(macAddress)) {
-            return macAddress;
-        }
-        // 没有打开wifi, 获取 WLAN MAC 地址失败
-        return null;
-    }
-
-    /**
-     * 获取设备 MAC 地址
-     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-     * @return
-     */
-    @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
-    private static String getMacAddressByWifiInfo() {
-        try {
-            @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
-            if (wifiManager != null) {
-                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-                if (wifiInfo != null) return wifiInfo.getMacAddress();
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMacAddressByWifiInfo");
-        }
-        return CUSTOM_MAC;
-    }
-
-    /**
-     * 获取设备 MAC 地址
-     * <uses-permission android:name="android.permission.INTERNET" />
-     * @return
-     */
-    @RequiresPermission(android.Manifest.permission.INTERNET)
-    private static String getMacAddressByNetworkInterface() {
-        try {
-            Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
-            while (nis.hasMoreElements()) {
-                NetworkInterface ni = nis.nextElement();
-                if (ni == null || !ni.getName().equalsIgnoreCase("wlan0")) continue;
-                byte[] macBytes = ni.getHardwareAddress();
-                if (macBytes != null && macBytes.length > 0) {
-                    StringBuilder builder = new StringBuilder();
-                    for (byte b : macBytes) {
-                        builder.append(String.format("%02x:", b));
-                    }
-                    return builder.substring(0, builder.length() - 1);
-                }
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMacAddressByNetworkInterface");
-        }
-        return CUSTOM_MAC;
-    }
-
-    /**
-     * 通过 InetAddress 获取 Mac 地址
-     * @return Mac 地址
-     */
-    private static String getMacAddressByInetAddress() {
-        try {
-            InetAddress inetAddress = getInetAddress();
-            if (inetAddress != null) {
-                NetworkInterface ni = NetworkInterface.getByInetAddress(inetAddress);
-                if (ni != null) {
-                    byte[] macBytes = ni.getHardwareAddress();
-                    if (macBytes != null && macBytes.length > 0) {
-                        StringBuilder builder = new StringBuilder();
-                        for (byte b : macBytes) {
-                            builder.append(String.format("%02x:", b));
-                        }
-                        return builder.substring(0, builder.length() - 1);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMacAddressByInetAddress");
-        }
-        return "02:00:00:00:00:00";
-    }
-
-    /**
-     * 获取 InetAddress
-     * @return
-     */
-    private static InetAddress getInetAddress() {
-        try {
-            Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
-            while (nis.hasMoreElements()) {
-                NetworkInterface ni = nis.nextElement();
-                // To prevent phone of xiaomi return "10.0.2.15"
-                if (!ni.isUp()) continue;
-                Enumeration<InetAddress> addresses = ni.getInetAddresses();
-                while (addresses.hasMoreElements()) {
-                    InetAddress inetAddress = addresses.nextElement();
-                    if (!inetAddress.isLoopbackAddress()) {
-                        String hostAddress = inetAddress.getHostAddress();
-                        if (hostAddress.indexOf(':') < 0) return inetAddress;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getInetAddress");
+    public static String[] getSUPPORTED_32_BIT_ABIS() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return Build.SUPPORTED_32_BIT_ABIS;
         }
         return null;
     }
 
     /**
-     * 获取设备 MAC 地址
-     * @return
+     * 获取支持的 64 位指令集
+     * @return 支持的 64 位指令集
      */
-    private static String getMacAddressByFile() {
-        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop wifi.interface", false);
-        if (result.isSuccess()) {
-            String name = result.successMsg;
-            if (name != null) {
-                result = ShellUtils.execCmd("cat /sys/class/net/" + name + "/address", false);
-                if (result.result == 0) {
-                    String address = result.successMsg;
-                    if (address != null && address.length() > 0) {
-                        return address;
-                    }
-                }
-            }
+    public static String[] getSUPPORTED_64_BIT_ABIS() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return Build.SUPPORTED_64_BIT_ABIS;
         }
-        return CUSTOM_MAC;
+        return null;
     }
 
-    // =
+    /**
+     * 获取设备驱动名称
+     * @return 设备驱动名称
+     */
+    public static String getDevice() {
+        return Build.DEVICE;
+    }
 
     /**
-     * 获取设备厂商 如 Xiaomi
-     * @return 设备厂商
+     * 获取设备显示的版本包 ( 在系统设置中显示为版本号 ) 和 ID 一样
+     * @return 设备显示的版本包
      */
-    public static String getManufacturer() {
-        return Build.MANUFACTURER;
+    public static String getDisplay() {
+        return Build.DISPLAY;
+    }
+
+    /**
+     * 获取设备的唯一标识, 由设备的多个信息拼接合成
+     * @return 设备的唯一标识, 由设备的多个信息拼接合成
+     */
+    public static String getFingerprint() {
+        return Build.FINGERPRINT;
+    }
+
+    /**
+     * 获取设备硬件名称, 一般和基板名称一样 (BOARD)
+     * @return 设备硬件名称, 一般和基板名称一样 (BOARD)
+     */
+    public static String getHardware() {
+        return Build.HARDWARE;
+    }
+
+    /**
+     * 获取设备主机地址
+     * @return 设备主机地址
+     */
+    public static String getHost() {
+        return Build.HOST;
+    }
+
+    /**
+     * 获取设备版本号
+     * @return 设备版本号
+     */
+    public static String getID() {
+        return Build.ID;
     }
 
     /**
@@ -393,78 +278,116 @@ public final class DeviceUtils {
     }
 
     /**
-     * 关机(需要 root 权限)
-     * @return
+     * 获取设备厂商 如 Xiaomi
+     * @return 设备厂商
      */
-    public static boolean shutdown() {
+    public static String getManufacturer() {
+        return Build.MANUFACTURER;
+    }
+
+    /**
+     * 获取整个产品的名称
+     * @return 整个产品的名称
+     */
+    public static String getProduct() {
+        return Build.PRODUCT;
+    }
+
+    /**
+     * 获取无线电固件版本号, 通常是不可用的 显示 unknown
+     * @return 无线电固件版本号
+     */
+    public static String getRadio() {
+        return Build.RADIO;
+    }
+
+    /**
+     * 获取设备标签, 如 release-keys 或测试的 test-keys
+     * @return 设备标签
+     */
+    public static String getTags() {
+        return Build.TAGS;
+    }
+
+    /**
+     * 获取设备时间
+     * @return 设备时间
+     */
+    public static long getTime() {
+        return Build.TIME;
+    }
+
+    /**
+     * 获取设备版本类型 主要为 "user" 或 "eng".
+     * @return 设备版本类型
+     */
+    public static String getType() {
+        return Build.TYPE;
+    }
+
+    /**
+     * 获取设备用户名 基本上都为 android-build
+     * @return 设备用户名
+     */
+    public static String getUser() {
+        return Build.USER;
+    }
+
+    // =
+
+    /**
+     * 获取 SDK 版本号
+     * @return SDK 版本号
+     */
+    public static int getSDKVersion() {
+        return Build.VERSION.SDK_INT;
+    }
+
+    /**
+     * 获取系统版本号, 如 4.1.2 或 2.2 或 2.3 等
+     * @return 系统版本号
+     */
+    public static String getRelease() {
+        return Build.VERSION.RELEASE;
+    }
+
+    /**
+     * 获取设备当前的系统开发代号, 一般使用 REL 代替
+     * @return 设备当前的系统开发代号
+     */
+    public static String getCodename() {
+        return Build.VERSION.CODENAME;
+    }
+
+    /**
+     * 获取系统源代码控制值, 一个数字或者 git hash 值
+     * @return 系统源代码控制值
+     */
+    public static String getIncremental() {
+        return Build.VERSION.INCREMENTAL;
+    }
+
+    /**
+     * 获取 Android id
+     * <pre>
+     *     在设备首次启动时, 系统会随机生成一个 64 位的数字, 并把这个数字以十六进制字符串的形式保存下来,
+     *     这个十六进制的字符串就是 ANDROID_ID, 当设备被 wipe 后该值会被重置
+     * </pre>
+     * @return Android id
+     */
+    public static String getAndroidId() {
+        String androidId = null;
         try {
-            ShellUtils.execCmd("reboot -p", true);
-            Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
-            intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            return true;
+            androidId = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "shutdown");
+            LogPrintUtils.eTag(TAG, e, "getAndroidId");
         }
-        return false;
+        return androidId;
     }
 
     /**
-     * 重启设备(需要 root 权限)
-     * @return
-     */
-    public static boolean reboot() {
-        try {
-            ShellUtils.execCmd("reboot", true);
-            Intent intent = new Intent(Intent.ACTION_REBOOT);
-            intent.putExtra("nowait", 1);
-            intent.putExtra("interval", 1);
-            intent.putExtra("window", 0);
-            DevUtils.getContext().sendBroadcast(intent);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "reboot");
-        }
-        return false;
-    }
-
-    /**
-     * 重启设备(需要 root 权限) - 并进行特殊的引导模式 (recovery、Fastboot)
-     * @param reason 传递给内核来请求特殊的引导模式, 如"recovery"
-     *               重启到 Fastboot 模式 bootloader
-     */
-    public static void reboot(final String reason) {
-        try {
-            PowerManager mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
-            if (mPowerManager == null)
-                return;
-            mPowerManager.reboot(reason);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "reboot");
-        }
-    }
-
-    /**
-     * 重启引导到 recovery (需要 root 权限)
-     * @return
-     */
-    public static boolean rebootToRecovery() {
-        ShellUtils.CommandResult result = ShellUtils.execCmd("reboot recovery", true);
-        return result.isSuccess2();
-    }
-
-    /**
-     * 重启引导到 bootloader (需要 root 权限)
-     * @return
-     */
-    public static boolean rebootToBootloader() {
-        ShellUtils.CommandResult result = ShellUtils.execCmd("reboot bootloader", true);
-        return result.isSuccess2();
-    }
-
-    /**
-     * 获取 基带版本 BASEBAND-VER
-     * @return
+     * 获取基带版本 BASEBAND-VER
+     * @return 基带版本 BASEBAND-VER
      */
     public static String getBaseband_Ver() {
         String Version = "";
@@ -481,8 +404,8 @@ public final class DeviceUtils {
     }
 
     /**
-     * 获取 内核版本 CORE-VER
-     * @return
+     * 获取内核版本 CORE-VER
+     * @return 内核版本 CORE-VER
      */
     public static String getLinuxCore_Ver() {
         String kernelVersion = "";
@@ -522,5 +445,257 @@ public final class DeviceUtils {
             LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver");
         }
         return kernelVersion;
+    }
+
+    // =
+
+    /**
+     * 判断设备是否 root
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isDeviceRooted() {
+        String su = "su";
+        String[] locations = {"/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
+                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
+        for (String location : locations) {
+            if (new File(location + su).exists()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 获取是否启用 ADB
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isAdbEnabled() {
+        try {
+            return Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isAdbEnabled");
+        }
+        return false;
+    }
+
+    // =
+
+    // Default MAC address reported to a client that does not have the android.permission.LOCAL_MAC_ADDRESS permission.
+    private static final String DEFAULT_MAC_ADDRESS = "02:00:00:00:00:00";
+
+    /**
+     * 获取设备 MAC 地址
+     * <pre>
+     *     没有打开 wifi, 则获取 WLAN MAC 地址失败
+     *     <uses-permission android:name="android.permission.INTERNET" />
+     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+     * </pre>
+     * @return 设备 MAC 地址
+     */
+    @RequiresPermission(allOf = {android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_WIFI_STATE})
+    public static String getMacAddress() {
+        String macAddress = getMacAddressByWifiInfo();
+        if (!DEFAULT_MAC_ADDRESS.equals(macAddress)) {
+            return macAddress;
+        }
+        macAddress = getMacAddressByNetworkInterface();
+        if (!DEFAULT_MAC_ADDRESS.equals(macAddress)) {
+            return macAddress;
+        }
+        macAddress = getMacAddressByInetAddress();
+        if (!DEFAULT_MAC_ADDRESS.equals(macAddress)) {
+            return macAddress;
+        }
+        macAddress = getMacAddressByFile();
+        if (!DEFAULT_MAC_ADDRESS.equals(macAddress)) {
+            return macAddress;
+        }
+        return null;
+    }
+
+    /**
+     * 获取 MAC 地址
+     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+     * @return MAC 地址
+     */
+    @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
+    private static String getMacAddressByWifiInfo() {
+        try {
+            @SuppressLint("WifiManagerLeak")
+            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            if (wifiManager != null) {
+                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                if (wifiInfo != null) return wifiInfo.getMacAddress();
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMacAddressByWifiInfo");
+        }
+        return DEFAULT_MAC_ADDRESS;
+    }
+
+    /**
+     * 获取 MAC 地址
+     * <uses-permission android:name="android.permission.INTERNET" />
+     * @return MAC 地址
+     */
+    @RequiresPermission(android.Manifest.permission.INTERNET)
+    private static String getMacAddressByNetworkInterface() {
+        try {
+            Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
+            while (nis.hasMoreElements()) {
+                NetworkInterface ni = nis.nextElement();
+                if (ni == null || !ni.getName().equalsIgnoreCase("wlan0")) continue;
+                byte[] macBytes = ni.getHardwareAddress();
+                if (macBytes != null && macBytes.length > 0) {
+                    StringBuilder builder = new StringBuilder();
+                    for (byte b : macBytes) {
+                        builder.append(String.format("%02x:", b));
+                    }
+                    return builder.substring(0, builder.length() - 1);
+                }
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMacAddressByNetworkInterface");
+        }
+        return DEFAULT_MAC_ADDRESS;
+    }
+
+    /**
+     * 通过 InetAddress 获取 Mac 地址
+     * @return Mac 地址
+     */
+    private static String getMacAddressByInetAddress() {
+        try {
+            InetAddress inetAddress = getInetAddress();
+            if (inetAddress != null) {
+                NetworkInterface ni = NetworkInterface.getByInetAddress(inetAddress);
+                if (ni != null) {
+                    byte[] macBytes = ni.getHardwareAddress();
+                    if (macBytes != null && macBytes.length > 0) {
+                        StringBuilder builder = new StringBuilder();
+                        for (byte b : macBytes) {
+                            builder.append(String.format("%02x:", b));
+                        }
+                        return builder.substring(0, builder.length() - 1);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMacAddressByInetAddress");
+        }
+        return DEFAULT_MAC_ADDRESS;
+    }
+
+    /**
+     * 获取 InetAddress
+     * @return {@link InetAddress}
+     */
+    private static InetAddress getInetAddress() {
+        try {
+            Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
+            while (nis.hasMoreElements()) {
+                NetworkInterface ni = nis.nextElement();
+                // To prevent phone of xiaomi return "10.0.2.15"
+                if (!ni.isUp()) continue;
+                Enumeration<InetAddress> addresses = ni.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress inetAddress = addresses.nextElement();
+                    if (!inetAddress.isLoopbackAddress()) {
+                        String hostAddress = inetAddress.getHostAddress();
+                        if (hostAddress.indexOf(':') < 0) return inetAddress;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getInetAddress");
+        }
+        return null;
+    }
+
+    /**
+     * 获取设备 MAC 地址
+     * @return MAC 地址
+     */
+    private static String getMacAddressByFile() {
+        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop wifi.interface", false);
+        if (result.isSuccess()) {
+            String name = result.successMsg;
+            if (name != null) {
+                result = ShellUtils.execCmd("cat /sys/class/net/" + name + "/address", false);
+                if (result.result == 0) {
+                    String address = result.successMsg;
+                    if (address != null && address.length() > 0) {
+                        return address;
+                    }
+                }
+            }
+        }
+        return DEFAULT_MAC_ADDRESS;
+    }
+
+    // =
+
+    /**
+     * 关机 ( 需要 root 权限 )
+     */
+    public static void shutdown() {
+        try {
+            ShellUtils.execCmd("reboot -p", true);
+            Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
+            intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
+            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "shutdown");
+        }
+    }
+
+    /**
+     * 重启设备 ( 需要 root 权限 )
+     */
+    public static void reboot() {
+        try {
+            ShellUtils.execCmd("reboot", true);
+            Intent intent = new Intent(Intent.ACTION_REBOOT);
+            intent.putExtra("nowait", 1);
+            intent.putExtra("interval", 1);
+            intent.putExtra("window", 0);
+            DevUtils.getContext().sendBroadcast(intent);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "reboot");
+        }
+    }
+
+    /**
+     * 重启设备 ( 需要 root 权限 ) - 并进行特殊的引导模式 (recovery、Fastboot)
+     * @param reason 传递给内核来请求特殊的引导模式, 如 "recovery"
+     *               重启到 Fastboot 模式 bootloader
+     */
+    public static void reboot(final String reason) {
+        try {
+            PowerManager mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
+            if (mPowerManager == null) return;
+            mPowerManager.reboot(reason);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "reboot");
+        }
+    }
+
+    /**
+     * 重启引导到 recovery ( 需要 root 权限 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean rebootToRecovery() {
+        ShellUtils.CommandResult result = ShellUtils.execCmd("reboot recovery", true);
+        return result.isSuccess2();
+    }
+
+    /**
+     * 重启引导到 bootloader ( 需要 root 权限 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean rebootToBootloader() {
+        ShellUtils.CommandResult result = ShellUtils.execCmd("reboot bootloader", true);
+        return result.isSuccess2();
     }
 }
