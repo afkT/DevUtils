@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
@@ -37,10 +36,10 @@ public final class CPUUtils {
 
     /**
      * 获取手机 CPU 序列号
-     * @return cpu 序列号(16位) 读取失败为"0000000000000000"
+     * @return CPU 序列号 (16 位 ) 读取失败为 "0000000000000000"
      */
     public static String getSysCPUSerialNum() {
-        String str = "", strCPU = "", cpuSerialNum = "0000000000000000";
+        String str, cpuSerialNum = "0000000000000000";
         try {
             // 读取 CPU 信息
             Process pp = Runtime.getRuntime().exec("cat/proc/cpuinfo");
@@ -53,9 +52,7 @@ public final class CPUUtils {
                     // 查找到序列号所在行
                     if (str.indexOf("Serial") > -1) {
                         // 提取序列号
-                        strCPU = str.substring(str.indexOf(":") + 1);
-                        // 去空格
-                        cpuSerialNum = strCPU.trim();
+                        cpuSerialNum = str.substring(str.indexOf(":") + 1).trim();
                         break;
                     }
                 } else {
@@ -69,8 +66,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取CPU 信息
-     * @return
+     * 获取 CPU 信息
+     * @return CPU 信息
      */
     public static String getCpuInfo() {
         try {
@@ -84,8 +81,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取CPU 型号
-     * @return
+     * 获取 CPU 型号
+     * @return CPU 型号
      */
     public static String getCpuModel() {
         try {
@@ -101,8 +98,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取 CPU 最大频率(单位KHZ)
-     * @return
+     * 获取 CPU 最大频率 ( 单位 KHZ)
+     * @return CPU 最大频率 ( 单位 KHZ)
      */
     public static String getMaxCpuFreq() {
         String result = "";
@@ -126,7 +123,7 @@ public final class CPUUtils {
             if (is != null) {
                 try {
                     is.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                 }
             }
         }
@@ -134,8 +131,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取 CPU 最小频率(单位KHZ)
-     * @return
+     * 获取 CPU 最小频率 ( 单位 KHZ)
+     * @return CPU 最小频率 ( 单位 KHZ)
      */
     public static String getMinCpuFreq() {
         String result = "";
@@ -159,7 +156,7 @@ public final class CPUUtils {
             if (is != null) {
                 try {
                     is.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                 }
             }
         }
@@ -167,8 +164,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 实时获取 CPU 当前频率(单位KHZ)
-     * @return
+     * 获取 CPU 当前频率 ( 单位 KHZ)
+     * @return CPU 当前频率 ( 单位 KHZ)
      */
     public static String getCurCpuFreq() {
         String result = "";
@@ -185,8 +182,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取 CPU 几核
-     * @return
+     * 获取 CPU 核心数
+     * @return CPU 核心数
      */
     public static int getCoresNumbers() {
         // Private Class to display only CPU devices in the directory listing
@@ -219,8 +216,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取CPU名字
-     * @return
+     * 获取 CPU 名字
+     * @return CPU 名字
      */
     public static String getCpuName() {
         try {
@@ -239,8 +236,8 @@ public final class CPUUtils {
 
     /**
      * 获取 CMD 指令回调数据
-     * @param strings
-     * @return
+     * @param strings 指令集
+     * @return 执行结果
      */
     public static String getCMDOutputString(final String[] strings) {
         InputStream is = null;
@@ -257,13 +254,13 @@ public final class CPUUtils {
             is.close();
             process.destroy();
             return builder.toString();
-        } catch (IOException e) {
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCMDOutputString");
         } finally {
             if (is != null) {
                 try {
                     is.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                 }
             }
         }

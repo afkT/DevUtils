@@ -614,7 +614,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 获取设备 MAC 地址
+     * 获取 MAC 地址
      * @return MAC 地址
      */
     private static String getMacAddressByFile() {
