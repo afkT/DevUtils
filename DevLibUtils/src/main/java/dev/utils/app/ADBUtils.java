@@ -483,11 +483,11 @@ public final class ADBUtils {
                                 String[] splitArys = str.split(REGEX_SPACE);
                                 for (String strData : splitArys) {
                                     if (!TextUtils.isEmpty(strData)) {
-                                        // 属于 包名 / 前缀的
+                                        // 属于 packageName/ 前缀的
                                         if (strData.indexOf(packageName + "/") != -1) {
-                                            // 防止属于 包名 /.xx.Main_Activity
+                                            // 防止属于 packageName/.xx.Main_Activity
                                             if (strData.indexOf("/.") != -1) {
-                                                // 包名 /.xx.Main_Activity => 包名 / 包名.xx.Main_Activity
+                                                // packageName/.xx.Main_Activity => packageName/packageName.xx.Main_Activity
                                                 strData = strData.replace("/", "/" + packageName);
                                             }
                                             return strData;
@@ -569,9 +569,9 @@ public final class ADBUtils {
                                     if (start != -1 && lastIndex != -1) {
                                         // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
-                                        // 防止属于 包名 /.xx.Main_Activity
+                                        // 防止属于 packageName/.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
-                                            // 包名 /.xx.Main_Activity => 包名 / 包名.xx.Main_Activity
+                                            // packageName/.xx.Main_Activity => packageName/packageName.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                         }
                                         return strData;
@@ -613,9 +613,9 @@ public final class ADBUtils {
                                     if (start != -1 && lastIndex != -1 && splitStr.indexOf(packageName) == 0) {
                                         // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
-                                        // 防止属于 包名 /.xx.Main_Activity
+                                        // 防止属于 packageName/.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
-                                            // 包名 /.xx.Main_Activity => 包名 / 包名.xx.Main_Activity
+                                            // packageName/.xx.Main_Activity => packageName/packageName.xx.Main_Activity
                                             strData = strData.replace("/", "/" + packageName);
                                         }
                                         return strData;
@@ -661,9 +661,9 @@ public final class ADBUtils {
                                     if (start != -1) {
                                         // 获取裁剪数据
                                         String strData = splitStr;
-                                        // 防止属于 包名 /.xx.Main_Activity
+                                        // 防止属于 packageName/.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
-                                            // 包名 /.xx.Main_Activity => 包名 / 包名.xx.Main_Activity
+                                            // packageName/.xx.Main_Activity => packageName/packageName.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                         }
                                         return strData;
@@ -760,9 +760,9 @@ public final class ADBUtils {
                                 if (start != -1) {
                                     // 获取裁剪数据
                                     String strData = splitStr;
-                                    // 防止属于 包名 /.xx.XxxActivity
+                                    // 防止属于 packageName/.xx.XxxActivity
                                     if (strData.indexOf("/.") != -1) {
-                                        // 包名 /.xx.XxxActivity => 包名 / 包名.xx.XxxActivity
+                                        // packageName/.xx.XxxActivity => packageName/packageName.xx.XxxActivity
                                         strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                     }
                                     // 保存数据
