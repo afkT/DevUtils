@@ -22,7 +22,6 @@ import java.security.MessageDigest;
 import java.util.List;
 
 import dev.DevUtils;
-import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -1088,7 +1087,7 @@ public final class AppUtils {
             digest.update(data);
             return digest.digest();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "hashTemplate");
+            LogPrintUtils.eTag(TAG, e, "hashTemplate");
             return null;
         }
     }
