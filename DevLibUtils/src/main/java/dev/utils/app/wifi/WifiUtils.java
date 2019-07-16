@@ -861,7 +861,7 @@ public final class WifiUtils {
             }
             // 设置 InetAddress
             InetAddress intetAddress = InetAddress.getByName(ip);
-            if (Build.VERSION.SDK_INT <= 20) { // 旧的版本, 5.0 之前
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT_WATCH) { // 旧的版本, 5.0 之前
                 // 设置 IP 分配方式, 静态 IP
                 setEnumField(wifiConfig, "STATIC", "ipAssignment");
                 // 设置不用代理

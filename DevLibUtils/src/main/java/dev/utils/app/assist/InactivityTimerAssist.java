@@ -112,7 +112,7 @@ public final class InactivityTimerAssist {
         // 注册任务
         mInactivityTask = new InactivityAsyncTask();
         // 开启任务
-        if (Build.VERSION.SDK_INT >= 11) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             mInactivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             mInactivityTask.execute();

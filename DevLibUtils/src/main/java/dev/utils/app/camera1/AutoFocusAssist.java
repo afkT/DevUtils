@@ -145,7 +145,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
             // 初始化任务
             AutoFocusTask newTask = new AutoFocusTask();
             try {
-                if (Build.VERSION.SDK_INT >= 11) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                     // 默认使用异步任务
                     newTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 } else {

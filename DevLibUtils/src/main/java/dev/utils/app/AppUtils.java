@@ -438,8 +438,8 @@ public final class AppUtils {
         try {
             Intent intent = new Intent(action);
             intent.addCategory(category);
-            ResolveInfo info = DevUtils.getContext().getPackageManager().resolveActivity(intent, 0);
-            return info != null;
+            ResolveInfo resolveinfo = DevUtils.getContext().getPackageManager().resolveActivity(intent, 0);
+            return resolveinfo != null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");
             return false;

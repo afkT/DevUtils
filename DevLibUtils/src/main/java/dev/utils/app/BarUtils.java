@@ -570,9 +570,9 @@ public final class BarUtils {
     public static void setNotificationBarVisibility(final boolean isVisible) {
         String methodName;
         if (isVisible) {
-            methodName = (Build.VERSION.SDK_INT <= 16) ? "expand" : "expandNotificationsPanel";
+            methodName = (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) ? "expand" : "expandNotificationsPanel";
         } else {
-            methodName = (Build.VERSION.SDK_INT <= 16) ? "collapse" : "collapsePanels";
+            methodName = (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) ? "collapse" : "collapsePanels";
         }
         invokePanels(methodName);
     }
