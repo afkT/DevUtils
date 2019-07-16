@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.RequiresPermission;
+import android.support.v4.content.FileProvider;
 import android.view.WindowManager;
 
 import java.io.File;
@@ -27,6 +28,10 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: APP (Android) 工具类
  * @author Ttt
+ * <pre>
+ *     MimeType
+ *     @see <a href="https://www.jianshu.com/p/f3fcf033be5c"/>
+ * </pre>
  */
 public final class AppUtils {
 
@@ -106,9 +111,9 @@ public final class AppUtils {
     public static Drawable getAppIcon(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(packageName, 0);
-            return pi == null ? null : pi.applicationInfo.loadIcon(pm);
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
+            return packageInfo == null ? null : packageInfo.applicationInfo.loadIcon(packageManager);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppIcon");
             return null;
@@ -131,9 +136,9 @@ public final class AppUtils {
     public static String getAppName(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(packageName, 0);
-            return pi == null ? null : pi.applicationInfo.loadLabel(pm).toString();
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
+            return packageInfo == null ? null : packageInfo.applicationInfo.loadLabel(packageManager).toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppName");
             return null;
@@ -156,8 +161,8 @@ public final class AppUtils {
     public static String getAppVersionName(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageInfo pi = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            return pi == null ? null : pi.versionName;
+            PackageInfo packageInfo = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            return packageInfo == null ? null : packageInfo.versionName;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName");
             return null;
@@ -180,8 +185,8 @@ public final class AppUtils {
     public static int getAppVersionCode(final String packageName) {
         if (isSpace(packageName)) return -1;
         try {
-            PackageInfo pi = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            return pi == null ? -1 : pi.versionCode;
+            PackageInfo packageInfo = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            return packageInfo == null ? -1 : packageInfo.versionCode;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
             return -1;
@@ -204,9 +209,9 @@ public final class AppUtils {
     public static String getAppPath(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(packageName, 0);
-            return pi == null ? null : pi.applicationInfo.sourceDir;
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
+            return packageInfo == null ? null : packageInfo.applicationInfo.sourceDir;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppPath");
             return null;
@@ -231,9 +236,9 @@ public final class AppUtils {
     public static Signature[] getAppSignature(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            return pi == null ? null : pi.signatures;
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            return packageInfo == null ? null : packageInfo.signatures;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppSignature");
             return null;
@@ -329,8 +334,8 @@ public final class AppUtils {
     public static boolean isAppDebug(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo ai = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
-            return ai != null && (ai.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
+            return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppDebug");
             return false;
@@ -353,8 +358,8 @@ public final class AppUtils {
     public static boolean isAppRelease(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo ai = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
-            return !(ai != null && (ai.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
+            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
+            return !(appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppRelease");
             return false;
@@ -379,8 +384,8 @@ public final class AppUtils {
     public static boolean isAppSystem(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo ai = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
-            return ai != null && (ai.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
+            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
+            return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppSystem");
             return false;
@@ -424,7 +429,7 @@ public final class AppUtils {
     // =
 
     /**
-     * 判断是否安装了 App
+     * 判断是否安装了 APP
      * @param action   Action
      * @param category Category
      * @return {@code true} yes, {@code false} no
@@ -433,8 +438,7 @@ public final class AppUtils {
         try {
             Intent intent = new Intent(action);
             intent.addCategory(category);
-            PackageManager pm = DevUtils.getContext().getPackageManager();
-            ResolveInfo info = pm.resolveActivity(intent, 0);
+            ResolveInfo info = DevUtils.getContext().getPackageManager().resolveActivity(intent, 0);
             return info != null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");
@@ -443,7 +447,7 @@ public final class AppUtils {
     }
 
     /**
-     * 判断是否安装了 App
+     * 判断是否安装了 APP
      * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
@@ -451,16 +455,16 @@ public final class AppUtils {
     public static boolean isInstalledApp(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo info = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
+            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
             return true;
-        } catch (Exception e) {
+        } catch (Exception e) { // 未安装, 则会抛出异常
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");
             return false;
         }
     }
 
     /**
-     * 判断是否安装了 App
+     * 判断是否安装了 APP
      * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
@@ -468,25 +472,25 @@ public final class AppUtils {
         return !isSpace(packageName) && IntentUtils.getLaunchAppIntent(packageName) != null;
     }
 
-    // ============
-    // = 操作相关 =
-    // ============
+    // ==============
+    // = 安装、卸载 =
+    // ==============
 
     /**
-     * 安装 App( 支持 8.0) 的意图
+     * 安装 APP( 支持 8.0) 的意图
      * @param filePath  文件路径
      * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
-     * @return {@code true} yes, {@code false} no
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean installApp(final String filePath, final String authority) {
         return installApp(getFileByPath(filePath), authority);
     }
 
     /**
-     * 安装 App( 支持 8.0) 的意图
+     * 安装 APP( 支持 8.0) 的意图
      * @param file      文件
      * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
-     * @return {@code true} yes, {@code false} no
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean installApp(final File file, final String authority) {
         if (!isFileExists(file)) return false;
@@ -500,24 +504,24 @@ public final class AppUtils {
     }
 
     /**
-     * 安装 App( 支持 8.0) 的意图 - 回传
+     * 安装 APP( 支持 8.0) 的意图
      * @param activity    {@link Activity}
      * @param filePath    文件路径
      * @param authority   7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
      * @param requestCode 请求 code
-     * @return {@code true} yes, {@code false} no
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean installApp(final Activity activity, final String filePath, final String authority, final int requestCode) {
         return installApp(activity, getFileByPath(filePath), authority, requestCode);
     }
 
     /**
-     * 安装 App( 支持 8.0) 的意图 - 回传
+     * 安装 APP( 支持 8.0) 的意图
      * @param activity    {@link Activity}
      * @param file        文件
      * @param authority   7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
      * @param requestCode 请求 code
-     * @return
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean installApp(final Activity activity, final File file, final String authority, final int requestCode) {
         if (!isFileExists(file)) return false;
@@ -534,8 +538,8 @@ public final class AppUtils {
 
     /**
      * 静默安装应用
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean installAppSilent(final String filePath) {
         return installAppSilent(filePath, null);
@@ -543,8 +547,8 @@ public final class AppUtils {
 
     /**
      * 静默安装应用
-     * @param file
-     * @return
+     * @param file 文件
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean installAppSilent(final File file) {
         return installAppSilent(file, null);
@@ -552,9 +556,9 @@ public final class AppUtils {
 
     /**
      * 静默安装应用
-     * @param filePath
-     * @param params
-     * @return
+     * @param filePath 文件路径
+     * @param params   安装参数
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean installAppSilent(final String filePath, final String params) {
         return installAppSilent(getFileByPath(filePath), params, isDeviceRooted());
@@ -562,9 +566,9 @@ public final class AppUtils {
 
     /**
      * 静默安装应用
-     * @param file
-     * @param params
-     * @return
+     * @param file   文件
+     * @param params 安装参数
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean installAppSilent(final File file, final String params) {
         return installAppSilent(file, params, isDeviceRooted());
@@ -573,10 +577,10 @@ public final class AppUtils {
     /**
      * 静默安装应用
      * <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
-     * @param file
-     * @param params
-     * @param isRooted
-     * @return
+     * @param file     文件
+     * @param params   安装参数
+     * @param isRooted 是否 root
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean installAppSilent(final File file, final String params, final boolean isRooted) {
         if (!isFileExists(file)) return false;
@@ -591,7 +595,7 @@ public final class AppUtils {
     /**
      * 卸载应用
      * @param packageName 应用包名
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean uninstallApp(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -606,10 +610,10 @@ public final class AppUtils {
 
     /**
      * 卸载应用
-     * @param activity
+     * @param activity    {@link Activity}
      * @param packageName 应用包名
      * @param requestCode 请求 code
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean uninstallApp(final Activity activity, final String packageName, final int requestCode) {
         if (isSpace(packageName)) return false;
@@ -625,7 +629,7 @@ public final class AppUtils {
     /**
      * 静默卸载应用
      * @param packageName 应用包名
-     * @return
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean uninstallAppSilent(final String packageName) {
         return uninstallAppSilent(packageName, false, isDeviceRooted());
@@ -634,8 +638,8 @@ public final class AppUtils {
     /**
      * 静默卸载应用
      * @param packageName 应用包名
-     * @param isKeepData
-     * @return
+     * @param isKeepData  true 表示卸载应用但保留数据和缓存目录
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData) {
         return uninstallAppSilent(packageName, isKeepData, isDeviceRooted());
@@ -644,9 +648,9 @@ public final class AppUtils {
     /**
      * 静默卸载应用
      * @param packageName 应用包名
-     * @param isKeepData
-     * @param isRooted
-     * @return
+     * @param isKeepData  true 表示卸载应用但保留数据和缓存目录
+     * @param isRooted    是否 root
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
         if (isSpace(packageName)) return false;
@@ -655,12 +659,14 @@ public final class AppUtils {
         return result.isSuccess4("success");
     }
 
-    // =
+    // ============
+    // = 操作相关 =
+    // ============
 
     /**
-     * 打开 App
+     * 打开 APP
      * @param packageName 应用包名
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean launchApp(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -674,11 +680,11 @@ public final class AppUtils {
     }
 
     /**
-     * 打开 App, 并且回传
-     * @param activity
+     * 打开 APP
+     * @param activity    {@link Activity}
      * @param packageName 应用包名
      * @param requestCode 请求 code
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean launchApp(final Activity activity, final String packageName, final int requestCode) {
         if (isSpace(packageName)) return false;
@@ -691,18 +697,20 @@ public final class AppUtils {
         return false;
     }
 
+    // =
+
     /**
-     * 跳转到 专门的 APP 设置详情页面
-     * @return {@code true} success, {@code false} fail
+     * 跳转到 APP 设置详情页面
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean launchAppDetailsSettings() {
         return launchAppDetailsSettings(DevUtils.getContext().getPackageName());
     }
 
     /**
-     * 跳转到 专门的 APP 设置详情页面
+     * 跳转到 APP 设置详情页面
      * @param packageName 应用包名
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean launchAppDetailsSettings(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -716,19 +724,19 @@ public final class AppUtils {
     }
 
     /**
-     * 跳转到 专门的 APP 应用商城详情页面
-     * @param marketPkg
-     * @return
+     * 跳转到 APP 应用商城详情页面
+     * @param marketPkg 应用商店包名, 如果为 ""  则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean launchAppDetails(final String marketPkg) {
         return launchAppDetails(DevUtils.getContext().getPackageName(), marketPkg);
     }
 
     /**
-     * 跳转到 专门的 APP 应用商城详情页面
+     * 跳转到 APP 应用商城详情页面
      * @param packageName 应用包名
-     * @param marketPkg
-     * @return
+     * @param marketPkg   应用商店包名, 如果为 ""  则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean launchAppDetails(final String packageName, final String marketPkg) {
         if (isSpace(packageName)) return false;
@@ -746,90 +754,153 @@ public final class AppUtils {
     // ============
 
     /**
-     * 启动本地应用打开 PDF
-     * @param filePath 文件路径
-     * @return {@code true} success, {@code false} fail
+     * 打开文件
+     * @param filePath  文件路径
+     * @param dataType  数据类型
+     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean openPDFFile(final String filePath) {
+    public static boolean openFile(final String filePath, final String dataType, final String authority) {
+        return openFile(getFileByPath(filePath), dataType, authority);
+    }
+
+    /**
+     * 打开文件
+     * @param file      文件
+     * @param dataType  数据类型
+     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @return {@code true} operation successfully, {@code false} operation failed
+     */
+    public static boolean openFile(final File file, final String dataType, final String authority) {
+        if (!isFileExists(file)) return false;
         try {
-            File file = new File(filePath);
-            if (file.exists()) {
-                Uri path = Uri.fromFile(file);
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(path, "application/pdf");
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                DevUtils.getContext().startActivity(intent);
-                return true;
-            }
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // 临时授权 ( 必须 )
+            intent.setDataAndType(getUriForFile(file, authority), dataType);
+            DevUtils.getContext().startActivity(intent);
+            return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openPDFFile");
+            LogPrintUtils.eTag(TAG, e, "openFile");
         }
         return false;
     }
 
+    // =
+
     /**
-     * 启动本地应用打开 Word
-     * @param filePath 文件路径
-     * @return {@code true} success, {@code false} fail
+     * 打开文件 - 指定应用
+     * @param filePath    文件路径
+     * @param packageName 应用包名
+     * @param className   Activity.class.getCanonicalName()
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean openWordFile(final String filePath) {
+    public static boolean openFileByApp(final String filePath, final String packageName, final String className) {
+        return openFileByApp(getFileByPath(filePath), packageName, className);
+    }
+
+    /**
+     * 打开文件 - 指定应用
+     * @param file        文件
+     * @param packageName 应用包名
+     * @param className   Activity.class.getCanonicalName()
+     * @return {@code true} operation successfully, {@code false} operation failed
+     */
+    public static boolean openFileByApp(final File file, final String packageName, final String className) {
+        if (!isFileExists(file)) return false;
         try {
-            File file = new File(filePath);
-            if (file.exists()) {
-                Uri path = Uri.fromFile(file);
-                Intent intent = new Intent("android.intent.action.VIEW");
-                intent.addCategory("android.intent.category.DEFAULT");
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setDataAndType(path, "application/msword");
-                DevUtils.getContext().startActivity(intent);
-                return true;
-            }
+            Intent intent = new Intent();
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setData(Uri.fromFile(file));
+            intent.setClassName(packageName, className);
+            DevUtils.getContext().startActivity(intent);
+            return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openWordFile");
+            LogPrintUtils.eTag(TAG, e, "openFile");
         }
         return false;
     }
+
+    // =
+
+    /**
+     * 打开 PDF 文件
+     * @param filePath  文件路径
+     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @return {@code true} operation successfully, {@code false} operation failed
+     */
+    public static boolean openPDFFile(final String filePath, final String authority) {
+        return openPDFFile(getFileByPath(filePath), authority);
+    }
+
+    /**
+     * 打开 PDF 文件
+     * @param file      文件
+     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @return {@code true} operation successfully, {@code false} operation failed
+     */
+    public static boolean openPDFFile(final File file, final String authority) {
+        return openFile(file, "application/pdf", authority);
+    }
+
+    // =
+
+    /**
+     * 打开 Word 文件
+     * @param filePath  文件路径
+     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @return {@code true} operation successfully, {@code false} operation failed
+     */
+    public static boolean openWordFile(final String filePath, final String authority) {
+        return openWordFile(getFileByPath(filePath), authority);
+    }
+
+    /**
+     * 打开 Word 文件
+     * @param file      文件
+     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @return {@code true} operation successfully, {@code false} operation failed
+     */
+    public static boolean openWordFile(final File file, final String authority) {
+        return openFile(file, "application/msword", authority);
+    }
+
+    // =
 
     /**
      * 调用 WPS 打开 office 文档
      * @param filePath 文件路径
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean openOfficeByWPS(final String filePath) {
-        try {
-            // 检查是否安装 WPS
-            String wpsPackageEng = "cn.wps.moffice_eng"; // 普通版与英文版一样
-            // String wpsActivity = "cn.wps.moffice.documentmanager.PreStartActivity";
-            String wpsActivity2 = "cn.wps.moffice.documentmanager.PreStartActivity2"; // 默认第三方程序启动
-
-            Intent intent = new Intent();
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addCategory(Intent.CATEGORY_DEFAULT);
-            intent.setClassName(wpsPackageEng, wpsActivity2);
-
-            Uri uri = Uri.fromFile(new File(filePath));
-            intent.setData(uri);
-            DevUtils.getContext().startActivity(intent);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openOfficeByWPS");
-        }
-        return false;
+        return openOfficeByWPS(getFileByPath(filePath));
     }
 
     /**
-     * 跳转到系统设置页面
-     * @param activity {@link Activity}
+     * 调用 WPS 打开 office 文档
+     * @param file 文件
+     * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static void startSysSetting(final Activity activity) {
-//        // 跳转到 无线和网络 设置页面 ( 可以设置移动网络, sim 卡 1, 2 的移动网络 )
-//        Intent intent =  new Intent(Settings.ACTION_AIRPLANE_MODE_SETTINGS);
-//        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+    public static boolean openOfficeByWPS(final File file) {
+        String wpsPackage = "cn.wps.moffice_eng"; // 普通版与英文版一样
+        // String wpsActivity = "cn.wps.moffice.documentmanager.PreStartActivity";
+        String wpsActivity2 = "cn.wps.moffice.documentmanager.PreStartActivity2";
+        // 打开文件
+        return openFileByApp(file, wpsPackage, wpsActivity2);
+    }
+
+    // ============
+    // = 系统页面 =
+    // ============
+
+    /**
+     * 跳转到系统设置页面
+     */
+    public static void startSysSetting() {
         try {
-            if (activity != null) {
-                Intent intent = new Intent(Settings.ACTION_SETTINGS);
-                activity.startActivity(intent);
-            }
+            DevUtils.getContext().startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_SETTINGS), true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSysSetting");
         }
@@ -837,7 +908,7 @@ public final class AppUtils {
 
     /**
      * 跳转到系统设置页面
-     * @param activity
+     * @param activity    {@link Activity}
      * @param requestCode 请求 code
      */
     public static void startSysSetting(final Activity activity, final int requestCode) {
@@ -850,18 +921,38 @@ public final class AppUtils {
     }
 
     /**
-     * 打开网络设置界面 - 3.0 以下打开设置界面
-     * @param activity
+     * 打开网络设置界面
      */
-    public static void openWirelessSettings(final Activity activity) {
+    public static void openWirelessSettings() {
         try {
-            if (Build.VERSION.SDK_INT > 10) {
-                activity.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            } else {
-                activity.startActivity(new Intent(Settings.ACTION_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            }
+            DevUtils.getContext().startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS), true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
+        }
+    }
+
+    /**
+     * 打开网络设置界面
+     * @param activity    {@link Activity}
+     * @param requestCode 请求 code
+     */
+    public static void openWirelessSettings(final Activity activity, final int requestCode) {
+        try {
+            Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+            activity.startActivityForResult(intent, requestCode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
+        }
+    }
+
+    /**
+     * 打开 GPS 设置界面
+     */
+    public static void openGpsSettings() {
+        try {
+            DevUtils.getContext().startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), true));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openGpsSettings");
         }
     }
 
@@ -960,15 +1051,6 @@ public final class AppUtils {
 
     /**
      * 将 byte[] 转换 十六进制字符串
-     * @param data 待转换数据
-     * @return 十六进制 String
-     */
-    private static String toHexString(final byte[] data) {
-        return toHexString(data, HEX_DIGITS);
-    }
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
      * @param data      待转换数据
      * @param hexDigits {@link #HEX_DIGITS}
      * @return 十六进制字符串
@@ -1007,6 +1089,30 @@ public final class AppUtils {
             return digest.digest();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "hashTemplate");
+            return null;
+        }
+    }
+
+    // ============
+    // = UriUtils =
+    // ============
+
+    /**
+     * 获取文件 Uri
+     * @param file      文件
+     * @param authority android:authorities
+     * @return 指定文件 {@link Uri}
+     */
+    private static Uri getUriForFile(final File file, final String authority) {
+        if (file == null || authority == null) return null;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                return FileProvider.getUriForFile(DevUtils.getContext(), authority, file);
+            } else {
+                return Uri.fromFile(file);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getUriForFile");
             return null;
         }
     }

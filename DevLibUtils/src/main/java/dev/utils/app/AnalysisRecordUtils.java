@@ -926,11 +926,11 @@ public final class AnalysisRecordUtils {
      */
     private static String[] getAppVersion() {
         try {
-            PackageManager pm = DevUtils.getContext().getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
-            if (pi != null) {
-                String versionName = pi.versionName == null ? "null" : pi.versionName;
-                String versionCode = pi.versionCode + "";
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
+            if (packageInfo != null) {
+                String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
+                String versionCode = packageInfo.versionCode + "";
                 return new String[]{versionName, versionCode};
             }
         } catch (Exception e) {

@@ -64,34 +64,34 @@ public final class IntentUtils {
     }
 
     /**
-     * 获取安装 App( 支持 8.0) 的意图
+     * 获取安装 APP( 支持 8.0) 的意图
      * <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
      * @param filePath  文件路径
      * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
-     * @return 安装 App( 支持 8.0) 的意图
+     * @return 安装 APP( 支持 8.0) 的意图
      */
     public static Intent getInstallAppIntent(final String filePath, final String authority) {
         return getInstallAppIntent(getFileByPath(filePath), authority);
     }
 
     /**
-     * 获取安装 App( 支持 8.0) 的意图
+     * 获取安装 APP( 支持 8.0) 的意图
      * <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
      * @param file      文件
      * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
-     * @return 安装 App( 支持 8.0) 的意图
+     * @return 安装 APP( 支持 8.0) 的意图
      */
     public static Intent getInstallAppIntent(final File file, final String authority) {
         return getInstallAppIntent(file, authority, false);
     }
 
     /**
-     * 获取安装 App( 支持 8.0) 的意图
+     * 获取安装 APP( 支持 8.0) 的意图
      * <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
      * @param file      文件
      * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
      * @param isNewTask 是否开启新的任务栈
-     * @return 安装 App( 支持 8.0) 的意图
+     * @return 安装 APP( 支持 8.0) 的意图
      */
     public static Intent getInstallAppIntent(final File file, final String authority, final boolean isNewTask) {
         if (file == null) return null;
@@ -208,7 +208,7 @@ public final class IntentUtils {
     /**
      * 获取到应用商店 APP 详情界面的意图
      * @param packageName 应用包名
-     * @param marketPkg   应用商店包名, 如果为 "" 则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
+     * @param marketPkg   应用商店包名, 如果为 ""  则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
      * @return 到应用商店 APP 详情界面的意图
      */
     public static Intent getLaunchAppDetailIntent(final String packageName, final String marketPkg) {
@@ -218,7 +218,7 @@ public final class IntentUtils {
     /**
      * 获取到应用商店 APP 详情界面的意图
      * @param packageName 应用包名
-     * @param marketPkg   应用商店包名, 如果为 "" 则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
+     * @param marketPkg   应用商店包名, 如果为 ""  则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
      * @param isNewTask   是否开启新的任务栈
      * @return 到应用商店 APP 详情界面的意图
      */

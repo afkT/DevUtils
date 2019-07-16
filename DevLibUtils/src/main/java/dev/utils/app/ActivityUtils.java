@@ -215,8 +215,8 @@ public final class ActivityUtils {
             Intent intent = new Intent(Intent.ACTION_MAIN, null);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            PackageManager pm = DevUtils.getContext().getPackageManager();
-            List<ResolveInfo> lists = pm.queryIntentActivities(intent, 0);
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            List<ResolveInfo> lists = packageManager.queryIntentActivities(intent, 0);
             for (ResolveInfo resolveinfo : lists) {
                 if (resolveinfo != null && resolveinfo.activityInfo != null) {
                     if (resolveinfo.activityInfo.packageName.equals(packageName)) {
@@ -301,9 +301,9 @@ public final class ActivityUtils {
     public static String getActivityToLauncher(final String packageName) {
         if (packageName == null) return null;
         try {
-            PackageManager pm = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
             // 获取对应的 PackageInfo
-            PackageInfo packageInfo = pm.getPackageInfo(packageName, 0);
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
 
             if (packageInfo == null) return null;
 
@@ -313,7 +313,7 @@ public final class ActivityUtils {
             resolveIntent.setPackage(packageInfo.packageName);
 
             // 通过 getPackageManager() 的 queryIntentActivities 方法遍历
-            List<ResolveInfo> lists = pm.queryIntentActivities(resolveIntent, 0);
+            List<ResolveInfo> lists = packageManager.queryIntentActivities(resolveIntent, 0);
             // 循环返回
             for (ResolveInfo resolveinfo : lists) {
                 if (resolveinfo != null && resolveinfo.activityInfo != null) {
@@ -834,7 +834,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 重启 App
+     * 重启 APP
      */
     public void restartApplication() {
         try {

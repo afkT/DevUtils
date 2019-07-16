@@ -177,11 +177,11 @@ public class AppInfoBean {
      */
     public enum AppType {
 
-        USER, // 用户 App
+        USER, // 用户 APP
 
-        SYSTEM, // 系统 App
+        SYSTEM, // 系统 APP
 
-        ALL // 全部 App
+        ALL // 全部 APP
     }
 
     /**
