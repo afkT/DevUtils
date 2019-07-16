@@ -35,7 +35,7 @@ import dev.utils.LogPrintUtils;
  *     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
  * </pre>
  */
-public class WifiHotUtils {
+public final class WifiHotUtils {
 
     // 日志 TAG
     private static final String TAG = WifiHotUtils.class.getSimpleName();
