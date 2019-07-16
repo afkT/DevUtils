@@ -17,7 +17,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: App 信息获取工具类
+ * detail: APP 信息获取工具类
  * @author Ttt
  */
 public final class AppInfoUtils {
@@ -82,7 +82,7 @@ public final class AppInfoUtils {
             PackageManager packageManager = DevUtils.getContext().getPackageManager();
             // 获取对应的 PackageInfo ( 原始的 PackageInfo 获取 signatures 等于 null, 需要这样获取 )
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            // 返回 App 信息
+            // 返回 APP 信息
             return packageInfo;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPackageInfo");
@@ -160,7 +160,7 @@ public final class AppInfoUtils {
     // =
 
     /**
-     * 获取 App 详细信息
+     * 获取 APP 详细信息
      * @return {@link AppInfoItem}
      */
     public static AppInfoItem getAppInfoItem() {
@@ -173,7 +173,7 @@ public final class AppInfoUtils {
     }
 
     /**
-     * 获取 App 详细信息
+     * 获取 APP 详细信息
      * @param packageName 应用包名
      * @return {@link AppInfoItem}
      */
@@ -189,20 +189,20 @@ public final class AppInfoUtils {
     // =
 
     /**
-     * 获取全部 App 列表
-     * @return App 列表
+     * 获取全部 APP 列表
+     * @return APP 列表
      */
     public static List<AppInfoBean> getAppLists() {
         return getAppLists(AppInfoBean.AppType.ALL);
     }
 
     /**
-     * 获取 App 列表
-     * @param appType App 类型
-     * @return App 列表
+     * 获取 APP 列表
+     * @param appType APP 类型
+     * @return APP 列表
      */
     public static List<AppInfoBean> getAppLists(final AppInfoBean.AppType appType) {
-        // App 信息
+        // APP 信息
         ArrayList<AppInfoBean> listApps = new ArrayList<>();
         // 防止为 null
         if (appType != null) {
@@ -212,21 +212,21 @@ public final class AppInfoUtils {
             List<PackageInfo> packlist = packageManager.getInstalledPackages(0);
             // 判断是否属于添加全部
             if (appType == AppInfoBean.AppType.ALL) {
-                // 遍历 App 列表
+                // 遍历 APP 列表
                 for (int i = 0, len = packlist.size(); i < len; i++) {
                     PackageInfo packageInfo = packlist.get(i);
-                    // 添加符合条件的 App 应用信息
+                    // 添加符合条件的 APP 应用信息
                     listApps.add(new AppInfoBean(packageInfo, packageManager));
                 }
             } else {
-                // 遍历 App 列表
+                // 遍历 APP 列表
                 for (int i = 0, len = packlist.size(); i < len; i++) {
                     PackageInfo packageInfo = packlist.get(i);
-                    // 获取 App 类型
+                    // 获取 APP 类型
                     AppInfoBean.AppType cAppType = AppInfoBean.getAppType(packageInfo);
                     // 判断类型
                     if (appType == cAppType) {
-                        // 添加符合条件的 App 应用信息
+                        // 添加符合条件的 APP 应用信息
                         listApps.add(new AppInfoBean(packageInfo, packageManager));
                     }
                 }

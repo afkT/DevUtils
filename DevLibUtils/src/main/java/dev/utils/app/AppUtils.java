@@ -25,7 +25,7 @@ import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: App (Android) 工具类
+ * detail: APP (Android) 工具类
  * @author Ttt
  */
 public final class AppUtils {
@@ -83,15 +83,15 @@ public final class AppUtils {
     // ============
 
     /**
-     * 获取 App 包名
-     * @return App 包名
+     * 获取 APP 包名
+     * @return APP 包名
      */
     public static String getAppPackageName() {
         return DevUtils.getContext().getPackageName();
     }
 
     /**
-     * 获取 App 图标
+     * 获取 APP 图标
      * @return {@link Drawable}
      */
     public static Drawable getAppIcon() {
@@ -99,7 +99,7 @@ public final class AppUtils {
     }
 
     /**
-     * 获取 App 图标
+     * 获取 APP 图标
      * @param packageName 应用包名
      * @return {@link Drawable}
      */
@@ -116,17 +116,17 @@ public final class AppUtils {
     }
 
     /**
-     * 获取 App 应用名
-     * @return App 应用名
+     * 获取 APP 应用名
+     * @return APP 应用名
      */
     public static String getAppName() {
         return getAppName(DevUtils.getContext().getPackageName());
     }
 
     /**
-     * 获取 App 应用名
+     * 获取 APP 应用名
      * @param packageName 应用包名
-     * @return App 应用名
+     * @return APP 应用名
      */
     public static String getAppName(final String packageName) {
         if (isSpace(packageName)) return null;
@@ -141,17 +141,17 @@ public final class AppUtils {
     }
 
     /**
-     * 获取 App versionName
-     * @return App versionName
+     * 获取 APP versionName
+     * @return APP versionName
      */
     public static String getAppVersionName() {
         return getAppVersionName(DevUtils.getContext().getPackageName());
     }
 
     /**
-     * 获取 App versionName
+     * 获取 APP versionName
      * @param packageName 应用包名
-     * @return App versionName
+     * @return APP versionName
      */
     public static String getAppVersionName(final String packageName) {
         if (isSpace(packageName)) return null;
@@ -165,17 +165,17 @@ public final class AppUtils {
     }
 
     /**
-     * 获取 App versionCode
-     * @return App versionCode
+     * 获取 APP versionCode
+     * @return APP versionCode
      */
     public static int getAppVersionCode() {
         return getAppVersionCode(DevUtils.getContext().getPackageName());
     }
 
     /**
-     * 获取 App versionCode
+     * 获取 APP versionCode
      * @param packageName 应用包名
-     * @return App versionCode
+     * @return APP versionCode
      */
     public static int getAppVersionCode(final String packageName) {
         if (isSpace(packageName)) return -1;
@@ -189,17 +189,17 @@ public final class AppUtils {
     }
 
     /**
-     * 获取 App 安装包路径 /data/data/packageName/.apk
-     * @return App 安装包路径
+     * 获取 APP 安装包路径 /data/data/packageName/.apk
+     * @return APP 安装包路径
      */
     public static String getAppPath() {
         return getAppPath(DevUtils.getContext().getPackageName());
     }
 
     /**
-     * 获取 App 安装包路径 /data/data/packageName/.apk
+     * 获取 APP 安装包路径 /data/data/packageName/.apk
      * @param packageName 应用包名
-     * @return App 安装包路径
+     * @return APP 安装包路径
      */
     public static String getAppPath(final String packageName) {
         if (isSpace(packageName)) return null;
@@ -216,7 +216,7 @@ public final class AppUtils {
     // =
 
     /**
-     * 获取 App Signature
+     * 获取 APP Signature
      * @return {@link Signature} 数组
      */
     public static Signature[] getAppSignature() {
@@ -224,7 +224,7 @@ public final class AppUtils {
     }
 
     /**
-     * 获取 App Signature
+     * 获取 APP Signature
      * @param packageName 应用包名
      * @return {@link Signature} 数组
      */
@@ -243,17 +243,34 @@ public final class AppUtils {
     // =
 
     /**
-     * 获取 App 签名 SHA1 值
-     * @return App 签名 SHA1 值
+     * 获取 APP 签名 MD5 值
+     * @return APP 签名 MD5 值
+     */
+    public static String getAppSignatureMD5() {
+        return getAppSignatureMD5(DevUtils.getContext().getPackageName());
+    }
+
+    /**
+     * 获取 APP 签名 MD5 值
+     * @param packageName 应用包名
+     * @return APP 签名 MD5 值
+     */
+    public static String getAppSignatureMD5(final String packageName) {
+        return getAppSignatureHash(packageName, "MD5");
+    }
+
+    /**
+     * 获取 APP 签名 SHA1 值
+     * @return APP 签名 SHA1 值
      */
     public static String getAppSignatureSHA1() {
         return getAppSignatureSHA1(DevUtils.getContext().getPackageName());
     }
 
     /**
-     * 获取 App 签名 SHA1 值
+     * 获取 APP 签名 SHA1 值
      * @param packageName 应用包名
-     * @return App 签名 SHA1 值
+     * @return APP 签名 SHA1 值
      */
     public static String getAppSignatureSHA1(final String packageName) {
         return getAppSignatureHash(packageName, "SHA1");
@@ -277,35 +294,17 @@ public final class AppUtils {
     }
 
     /**
-     * 获取 APP 签名 MD5 值
-     * @return APP 签名 MD5 值
-     */
-    public static String getAppSignatureMD5() {
-        return getAppSignatureMD5(DevUtils.getContext().getPackageName());
-    }
-
-    /**
-     * 获取 APP 签名 MD5 值
-     * @param packageName 应用包名
-     * @return APP 签名 MD5 值
-     */
-    public static String getAppSignatureMD5(final String packageName) {
-        return getAppSignatureHash(packageName, "MD5");
-    }
-
-    /**
      * 获取应用签名 Hash 值
      * @param packageName 应用包名
      * @param algorithm   算法
-     * @return
+     * @return 对应算法处理后的签名信息
      */
     private static String getAppSignatureHash(final String packageName, final String algorithm) {
         if (isSpace(packageName)) return null;
         try {
             Signature[] signature = getAppSignature(packageName);
             if (signature == null || signature.length == 0) return null;
-            return toHexString(hashTemplate(signature[0].toByteArray(), algorithm), HEX_DIGITS)
-                    .replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
+            return colonSplit(toHexString(hashTemplate(signature[0].toByteArray(), algorithm), HEX_DIGITS));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppSignatureHash - packageName: " + packageName + ", algorithm: " + algorithm);
             return null;
@@ -315,7 +314,7 @@ public final class AppUtils {
     // =
 
     /**
-     * 判断 App 是否 debug 模式
+     * 判断 APP 是否 debug 模式
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppDebug() {
@@ -323,7 +322,7 @@ public final class AppUtils {
     }
 
     /**
-     * 判断 App 是否 debug 模式
+     * 判断 APP 是否 debug 模式
      * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
@@ -339,7 +338,33 @@ public final class AppUtils {
     }
 
     /**
-     * 判断 App 是否系统 app
+     * 判断 APP 是否 release 模式
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAppRelease() {
+        return isAppRelease(DevUtils.getContext().getPackageName());
+    }
+
+    /**
+     * 判断 APP 是否 release 模式
+     * @param packageName 应用包名
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAppRelease(final String packageName) {
+        if (isSpace(packageName)) return false;
+        try {
+            ApplicationInfo ai = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
+            return !(ai != null && (ai.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isAppRelease");
+            return false;
+        }
+    }
+
+    // =
+
+    /**
+     * 判断 APP 是否系统 app
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppSystem() {
@@ -347,7 +372,7 @@ public final class AppUtils {
     }
 
     /**
-     * 判断 App 是否系统 app
+     * 判断 APP 是否系统 app
      * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
@@ -363,7 +388,7 @@ public final class AppUtils {
     }
 
     /**
-     * 判断 App 是否在前台
+     * 判断 APP 是否在前台
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
@@ -372,7 +397,7 @@ public final class AppUtils {
     }
 
     /**
-     * 判断 App 是否在前台
+     * 判断 APP 是否在前台
      * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
@@ -667,7 +692,7 @@ public final class AppUtils {
     }
 
     /**
-     * 跳转到 专门的 App 设置详情页面
+     * 跳转到 专门的 APP 设置详情页面
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings() {
@@ -675,7 +700,7 @@ public final class AppUtils {
     }
 
     /**
-     * 跳转到 专门的 App 设置详情页面
+     * 跳转到 专门的 APP 设置详情页面
      * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */
@@ -691,7 +716,7 @@ public final class AppUtils {
     }
 
     /**
-     * 跳转到 专门的 App 应用商城详情页面
+     * 跳转到 专门的 APP 应用商城详情页面
      * @param marketPkg
      * @return
      */
@@ -700,7 +725,7 @@ public final class AppUtils {
     }
 
     /**
-     * 跳转到 专门的 App 应用商城详情页面
+     * 跳转到 专门的 APP 应用商城详情页面
      * @param packageName 应用包名
      * @param marketPkg
      * @return
@@ -892,6 +917,18 @@ public final class AppUtils {
             }
         }
         return true;
+    }
+
+    /**
+     * 冒号分割处理
+     * @param str 待处理字符串
+     * @return 冒号分割后的字符串
+     */
+    private static String colonSplit(final String str) {
+        if (!isEmpty(str)) {
+            return str.replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
+        }
+        return str;
     }
 
     // ===============

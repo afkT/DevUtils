@@ -48,7 +48,7 @@ public class LanguageUtils {
     }
 
     /**
-     * 修改系统语言 (App 多语言, 单独改变 App 语言 )
+     * 修改系统语言 (APP 多语言, 单独改变 APP 语言 )
      * @param context {@link Context}
      * @param locale  {@link Locale}
      * @return {@code true} success, {@code false} fail
@@ -81,7 +81,7 @@ public class LanguageUtils {
     }
 
     /**
-     * 修改系统语言 (App 多语言, 单独改变 App 语言 )
+     * 修改系统语言 (APP 多语言, 单独改变 APP 语言 )
      * @param context  {@link Context}
      * @param language 语言
      * @return {@code true} success, {@code false} fail

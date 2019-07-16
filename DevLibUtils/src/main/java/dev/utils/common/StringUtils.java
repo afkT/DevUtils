@@ -558,6 +558,18 @@ public final class StringUtils {
         return builder.toString();
     }
 
+    /**
+     * 冒号分割处理
+     * @param str 待处理字符串
+     * @return 冒号分割后的字符串
+     */
+    public static String colonSplit(final String str) {
+        if (!isEmpty(str)) {
+            return str.replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
+        }
+        return str;
+    }
+
     // =
 
     /**

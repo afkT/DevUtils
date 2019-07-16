@@ -25,7 +25,7 @@ import javax.security.auth.x500.X500Principal;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 签名工具类 ( 获取 App 签名信息 )
+ * detail: 签名工具类 ( 获取 APP 签名信息 )
  * @author Ttt
  * <pre>
  *     Android 的 APK 应用签名机制以及读取签名的方法

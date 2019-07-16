@@ -32,19 +32,19 @@ public final class ApkInfoItem {
 
     // 日志 TAG
     private static final String TAG = ApkInfoItem.class.getSimpleName();
-    @Keep // App 基本信息实体类
+    @Keep // APP 基本信息实体类
     private AppInfoBean appInfoBean;
-    @Keep // App MD5 签名
+    @Keep // APP MD5 签名
     private String appMD5;
-    @Keep // App SHA1 签名
+    @Keep // APP SHA1 签名
     private String appSHA1;
-    @Keep // App SHA256 签名
+    @Keep // APP SHA256 签名
     private String appSHA256;
-    @Keep // App 最低支持 Android SDK 版本
+    @Keep // APP 最低支持 Android SDK 版本
     private int minSdkVersion = -1;
-    @Keep // App 兼容 SDK 版本
+    @Keep // APP 兼容 SDK 版本
     private int targetSdkVersion = -1;
-    @Keep // App 安装包大小
+    @Keep // APP 安装包大小
     private String apkLength;
     @Keep // 证书对象
     private X509Certificate cert;
@@ -66,7 +66,7 @@ public final class ApkInfoItem {
     private String certSerialnumber;
     @Keep // 证书 DER 编码
     private String certDercode;
-    @Keep // App 参数集
+    @Keep // APP 参数集
     private List<KeyValueBean> listKeyValues = new ArrayList<>();
 
     /**
@@ -93,25 +93,25 @@ public final class ApkInfoItem {
         // 格式化日期
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         // =
-        // 获取 App 信息
+        // 获取 APP 信息
         appInfoBean = new AppInfoBean(packageInfo);
         // 获取签名信息
         Signature[] signatures = SignaturesUtils.getSignaturesFromApk(new File(appInfoBean.getSourceDir()));
         // =
-        // App MD5 签名
+        // APP MD5 签名
         appMD5 = SignaturesUtils.signatureMD5(signatures);
-        // App SHA1
+        // APP SHA1
         appSHA1 = SignaturesUtils.signatureSHA1(signatures);
-        // App SHA256
+        // APP SHA256
         appSHA256 = SignaturesUtils.signatureSHA256(signatures);
         // 属于 7.0 以上才有的方法
         if (AppCommonUtils.isN()) {
-            // App 最低支持 Android SDK 版本
+            // APP 最低支持 Android SDK 版本
             minSdkVersion = packageInfo.applicationInfo.minSdkVersion;
         }
-        // App 兼容 SDK 版本
+        // APP 兼容 SDK 版本
         targetSdkVersion = packageInfo.applicationInfo.targetSdkVersion;
-        // App 安装包大小
+        // APP 安装包大小
         apkLength = Formatter.formatFileSize(DevUtils.getContext(), FileUtils.getFileLength(appInfoBean.getSourceDir()));
 
         // 是否保存
@@ -186,29 +186,29 @@ public final class ApkInfoItem {
 
         // = 保存集合 =
 
-        // App 包名
+        // APP 包名
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_packname, appInfoBean.getAppPackName()));
         // 没报错才存储 MD5 信息
         if (!isError) {
-            // App MD5 签名
+            // APP MD5 签名
             listKeyValues.add(KeyValueBean.get(R.string.dev_str_md5, appMD5));
         }
-        // App 版本号 - 主要用于 App 内部版本判断 int 类型
+        // APP 版本号 - 主要用于 APP 内部版本判断 int 类型
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_code, appInfoBean.getVersionCode() + ""));
-        // App 版本名 - 主要用于对用户显示版本信息
+        // APP 版本名 - 主要用于对用户显示版本信息
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_name, appInfoBean.getVersionName()));
         // 安装包地址
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_apk_uri, appInfoBean.getSourceDir()));
         // 没报错才存储 SHA 信息
         if (!isError) {
-            // App SHA1
+            // APP SHA1
             listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha1, appSHA1));
-            // App SHA256
+            // APP SHA256
             listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha256, appSHA256));
         }
-        // App 最低支持 Android SDK 版本
+        // APP 最低支持 Android SDK 版本
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(minSdkVersion) + "+ )"));
-        // App 兼容 SDK 版本
+        // APP 兼容 SDK 版本
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
         // 获取 APK 大小
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_apk_length, apkLength));
@@ -228,55 +228,55 @@ public final class ApkInfoItem {
 
     /**
      * 获取 List 信息键对值集合
-     * @return App 信息键对值集合
+     * @return APP 信息键对值集合
      */
     public List<KeyValueBean> getListKeyValues() {
         return listKeyValues;
     }
 
     /**
-     * 获取 App MD5 签名
-     * @return App MD5 签名
+     * 获取 APP MD5 签名
+     * @return APP MD5 签名
      */
     public String getAppMD5() {
         return appMD5;
     }
 
     /**
-     * 获取 App SHA1 签名
-     * @return App SHA1 签名
+     * 获取 APP SHA1 签名
+     * @return APP SHA1 签名
      */
     public String getAppSHA1() {
         return appSHA1;
     }
 
     /**
-     * 获取 App SHA256 签名
-     * @return App SHA256 签名
+     * 获取 APP SHA256 签名
+     * @return APP SHA256 签名
      */
     public String getAppSHA256() {
         return appSHA256;
     }
 
     /**
-     * 获取 App 最低支持 Android SDK 版本
-     * @return App 最低支持 Android SDK 版本
+     * 获取 APP 最低支持 Android SDK 版本
+     * @return APP 最低支持 Android SDK 版本
      */
     public int getMinSdkVersion() {
         return minSdkVersion;
     }
 
     /**
-     * 获取 App 兼容 SDK 版本
-     * @return App 兼容 SDK 版本
+     * 获取 APP 兼容 SDK 版本
+     * @return APP 兼容 SDK 版本
      */
     public int getTargetSdkVersion() {
         return targetSdkVersion;
     }
 
     /**
-     * 获取 App 安装包大小
-     * @return App 安装包大小
+     * 获取 APP 安装包大小
+     * @return APP 安装包大小
      */
     public String getApkLength() {
         return apkLength;

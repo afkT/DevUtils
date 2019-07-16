@@ -72,7 +72,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 判断 App 是否授权 Root 权限
+     * 判断 APP 是否授权 Root 权限
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isGrantedRoot() {
@@ -89,7 +89,7 @@ public final class ADBUtils {
     // ============
 
     /**
-     * 获取 App 列表 ( 包名 )
+     * 获取 APP 列表 ( 包名 )
      * <pre>
      *     @see <a href="https://blog.csdn.net/henni_719/article/details/62222439"/>
      * </pre>
@@ -113,8 +113,8 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取 App 安装列表 ( 包名 )
-     * @return App 安装列表 ( 包名 )
+     * 获取 APP 安装列表 ( 包名 )
+     * @return APP 安装列表 ( 包名 )
      */
     public static List<String> getInstallAppList() {
         return getAppList(null);
@@ -227,7 +227,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取 App versionCode
+     * 获取 APP versionCode
      * @param packageName 应用包名
      * @return versionCode
      */
@@ -259,7 +259,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取 App versionName
+     * 获取 APP versionName
      * @param packageName 应用包名
      * @return versionName
      */
@@ -989,7 +989,7 @@ public final class ADBUtils {
 
     /**
      * 启动自身应用
-     * @param closeActivity 是否关闭 Activity 所属的 App 进程后再启动 Activity
+     * @param closeActivity 是否关闭 Activity 所属的 APP 进程后再启动 Activity
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startSelfApp(final boolean closeActivity) {
@@ -1009,7 +1009,7 @@ public final class ADBUtils {
     /**
      * 跳转页面 Activity
      * @param packageAndLauncher package/package.xx.Activity.className
-     * @param closeActivity      是否关闭 Activity 所属的 App 进程后再启动 Activity
+     * @param closeActivity      是否关闭 Activity 所属的 APP 进程后再启动 Activity
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startActivity(final String packageAndLauncher, final boolean closeActivity) {
@@ -1020,7 +1020,7 @@ public final class ADBUtils {
      * 跳转页面 Activity
      * @param packageAndLauncher package/package.xx.Activity.className
      * @param append             追加的信息, 例如传递参数等
-     * @param closeActivity      是否关闭 Activity 所属的 App 进程后再启动 Activity
+     * @param closeActivity      是否关闭 Activity 所属的 APP 进程后再启动 Activity
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startActivity(final String packageAndLauncher, final String append, final boolean closeActivity) {

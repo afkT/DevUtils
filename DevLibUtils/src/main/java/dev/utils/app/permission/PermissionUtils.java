@@ -54,7 +54,7 @@ public final class PermissionUtils {
 
     // 日志 TAG
     private static final String TAG = PermissionUtils.class.getSimpleName();
-    // App 注册的权限
+    // APP 注册的权限
     private static final Set<String> sAppPermissionSets = getAppPermissionToSet();
     // 申请未通过的权限 - 永久拒绝
     private static final List<String> sPermissionsDeniedForeverLists = new ArrayList<>();

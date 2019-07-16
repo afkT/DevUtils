@@ -351,8 +351,8 @@ public final class SDCardUtils {
     // =
 
     /**
-     * 获取 App Cache 文件夹地址
-     * @return App Cache 文件夹地址
+     * 获取 APP Cache 文件夹地址
+     * @return APP Cache 文件夹地址
      */
     public static String getDiskCacheDir() {
         String cachePath;
@@ -368,18 +368,18 @@ public final class SDCardUtils {
     }
 
     /**
-     * 获取 App Cache 路径 File
+     * 获取 APP Cache 路径 File
      * @param filePath 文件路径
-     * @return App Cache 路径 File
+     * @return APP Cache 路径 File
      */
     public static File getCacheFile(final String filePath) {
         return getFile(getCachePath(filePath));
     }
 
     /**
-     * 获取 App Cache 路径
+     * 获取 APP Cache 路径
      * @param filePath 文件路径
-     * @return App Cache 路径
+     * @return APP Cache 路径
      */
     public static String getCachePath(final String filePath) {
         if (filePath == null) return null;

@@ -7,7 +7,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: App 通用工具类
+ * detail: APP 通用工具类
  * @author Ttt
  */
 public final class AppCommonUtils {

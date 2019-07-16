@@ -256,7 +256,7 @@ public final class ManifestUtils {
     // =
 
     /**
-     * 获取 App 版本信息
+     * 获取 APP 版本信息
      * @return 0 = versionName, 1 = versionCode
      */
     public static String[] getAppVersion() {
@@ -275,8 +275,8 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 App versionCode
-     * @return App versionCode
+     * 获取 APP versionCode
+     * @return APP versionCode
      */
     public static int getAppVersionCode() {
         try {
@@ -292,8 +292,8 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 App versionName
-     * @return App versionName
+     * 获取 APP versionName
+     * @return APP versionName
      */
     public static String getAppVersionName() {
         try {
@@ -311,9 +311,9 @@ public final class ManifestUtils {
     // =
 
     /**
-     * 获取 App versionCode
+     * 获取 APP versionCode
      * @param packageName 应用包名
-     * @return App versionCode
+     * @return APP versionCode
      */
     public static int getAppVersionCode(final String packageName) {
         if (isSpace(packageName)) return -1;
@@ -328,9 +328,9 @@ public final class ManifestUtils {
     }
 
     /**
-     * 获取 App versionName
+     * 获取 APP versionName
      * @param packageName 应用包名
-     * @return App versionName
+     * @return APP versionName
      */
     public static String getAppVersionName(final String packageName) {
         if (isSpace(packageName)) return null;

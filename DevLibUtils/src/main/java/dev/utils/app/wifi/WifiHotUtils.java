@@ -131,7 +131,7 @@ public class WifiHotUtils {
             }
             // 清空信息
             mAPWifiSSID = mAPWifiPwd = null;
-            // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行创建, 无法进行控制 (App 关闭后, 热点自动关闭 )
+            // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行创建, 无法进行控制 (APP 关闭后, 热点自动关闭 )
             // 必须有定位权限
             mWifiManager.startLocalOnlyHotspot(new WifiManager.LocalOnlyHotspotCallback() {
                 @Override

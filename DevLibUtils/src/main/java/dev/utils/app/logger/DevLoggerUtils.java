@@ -22,7 +22,7 @@ public final class DevLoggerUtils {
      * 初始化调用方法 ( 内部已调用 )
      */
     public static void init() {
-        // 保存 App 版本信息
+        // 保存 APP 版本信息
         Utils.init();
     }
 

@@ -113,19 +113,19 @@ public final class IntentUtils {
     }
 
     /**
-     * 获取卸载 App 的意图
+     * 获取卸载 APP 的意图
      * @param packageName 应用包名
-     * @return 卸载 App 的意图
+     * @return 卸载 APP 的意图
      */
     public static Intent getUninstallAppIntent(final String packageName) {
         return getUninstallAppIntent(packageName, false);
     }
 
     /**
-     * 获取卸载 App 的意图
+     * 获取卸载 APP 的意图
      * @param packageName 应用包名
      * @param isNewTask   是否开启新的任务栈
-     * @return 卸载 App 的意图
+     * @return 卸载 APP 的意图
      */
     public static Intent getUninstallAppIntent(final String packageName, final boolean isNewTask) {
         try {
@@ -139,19 +139,19 @@ public final class IntentUtils {
     }
 
     /**
-     * 获取打开 App 的意图
+     * 获取打开 APP 的意图
      * @param packageName 应用包名
-     * @return 打开 App 的意图
+     * @return 打开 APP 的意图
      */
     public static Intent getLaunchAppIntent(final String packageName) {
         return getLaunchAppIntent(packageName, false);
     }
 
     /**
-     * 获取打开 App 的意图
+     * 获取打开 APP 的意图
      * @param packageName 应用包名
      * @param isNewTask   是否开启新的任务栈
-     * @return 打开 App 的意图
+     * @return 打开 APP 的意图
      */
     public static Intent getLaunchAppIntent(final String packageName, final boolean isNewTask) {
         try {
@@ -180,19 +180,19 @@ public final class IntentUtils {
     }
 
     /**
-     * 获取 App 具体设置的意图
+     * 获取 APP 具体设置的意图
      * @param packageName 应用包名
-     * @return App 具体设置的意图
+     * @return APP 具体设置的意图
      */
     public static Intent getLaunchAppDetailsSettingsIntent(final String packageName) {
         return getLaunchAppDetailsSettingsIntent(packageName, false);
     }
 
     /**
-     * 获取 App 具体设置的意图
+     * 获取 APP 具体设置的意图
      * @param packageName 应用包名
      * @param isNewTask   是否开启新的任务栈
-     * @return App 具体设置的意图
+     * @return APP 具体设置的意图
      */
     public static Intent getLaunchAppDetailsSettingsIntent(final String packageName, final boolean isNewTask) {
         try {

@@ -52,7 +52,7 @@ public final class AnalysisRecordUtils {
     // = 配置信息 =
     // ============
 
-    // App 版本 ( 如 1.0.01) 显示给用户看的
+    // APP 版本 ( 如 1.0.01) 显示给用户看的
     private static String APP_VERSION_NAME = "";
     // android:versionCode 整数值, 代表应用程序代码的相对版本
     private static String APP_VERSION_CODE = "";
@@ -79,11 +79,11 @@ public final class AnalysisRecordUtils {
 
         // 如果版本信息为 null, 才进行处理
         if (TextUtils.isEmpty(APP_VERSION_CODE) || TextUtils.isEmpty(APP_VERSION_NAME)) {
-            // 获取 App 版本信息
+            // 获取 APP 版本信息
             String[] versions = getAppVersion();
             // 防止为 null
             if (versions != null && versions.length == 2) {
-                // 保存 App 版本信息
+                // 保存 APP 版本信息
                 APP_VERSION_NAME = versions[0];
                 APP_VERSION_CODE = versions[1];
             }
@@ -237,7 +237,7 @@ public final class AnalysisRecordUtils {
             if (file.exists()) {
                 appendFile(logFile, logContent);
             } else {
-                // = 首次则保存设备、App 信息 =
+                // = 首次则保存设备、APP 信息 =
                 StringBuilder builder = new StringBuilder();
                 builder.append(NEW_LINE_STR_X2);
                 builder.append("【设备信息】");
@@ -646,8 +646,8 @@ public final class AnalysisRecordUtils {
     }
 
     /**
-     * 获取 App Cache 文件夹地址
-     * @return App Cache 文件夹地址
+     * 获取 APP Cache 文件夹地址
+     * @return APP Cache 文件夹地址
      */
     private static String getDiskCacheDir() {
         String cachePath;
@@ -921,7 +921,7 @@ public final class AnalysisRecordUtils {
     // =================
 
     /**
-     * 获取 App 版本信息
+     * 获取 APP 版本信息
      * @return 0 = versionName, 1 = versionCode
      */
     private static String[] getAppVersion() {

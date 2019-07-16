@@ -329,7 +329,7 @@ public final class DevUtils {
 
         // 保存未销毁的 Activity
         private final LinkedList<Activity> mActivityLists = new LinkedList<>();
-        // App 状态改变事件
+        // APP 状态改变事件
         private final Map<Object, OnAppStatusChangedListener> mStatusListenerMaps = new ConcurrentHashMap<>();
         // Activity 销毁事件
         private final Map<Activity, Set<OnActivityDestroyedListener>> mDestroyedListenerMaps = new ConcurrentHashMap<>();
@@ -556,9 +556,9 @@ public final class DevUtils {
         // ===========================
 
         /**
-         * 添加 App 状态改变事件监听
+         * 添加 APP 状态改变事件监听
          * @param object   key
-         * @param listener App 状态改变监听事件
+         * @param listener APP 状态改变监听事件
          */
         @Override
         public void addOnAppStatusChangedListener(final Object object, final OnAppStatusChangedListener listener) {
@@ -566,7 +566,7 @@ public final class DevUtils {
         }
 
         /**
-         * 移除 App 状态改变事件监听
+         * 移除 APP 状态改变事件监听
          * @param object key
          */
         @Override
@@ -575,7 +575,7 @@ public final class DevUtils {
         }
 
         /**
-         * 移除全部 App 状态改变事件监听
+         * 移除全部 APP 状态改变事件监听
          */
         @Override
         public void removeAllOnAppStatusChangedListener() {
@@ -726,20 +726,20 @@ public final class DevUtils {
     public interface ActivityLifecycleNotify {
 
         /**
-         * 添加 App 状态改变事件监听
+         * 添加 APP 状态改变事件监听
          * @param object   key
-         * @param listener App 状态改变监听事件
+         * @param listener APP 状态改变监听事件
          */
         void addOnAppStatusChangedListener(Object object, OnAppStatusChangedListener listener);
 
         /**
-         * 移除 App 状态改变事件监听
+         * 移除 APP 状态改变事件监听
          * @param object key
          */
         void removeOnAppStatusChangedListener(Object object);
 
         /**
-         * 移除全部 App 状态改变事件监听
+         * 移除全部 APP 状态改变事件监听
          */
         void removeAllOnAppStatusChangedListener();
 
@@ -765,7 +765,7 @@ public final class DevUtils {
     }
 
     /**
-     * detail: App 状态改变事件
+     * detail: APP 状态改变事件
      * @author Ttt
      */
     public interface OnAppStatusChangedListener {
