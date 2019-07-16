@@ -654,12 +654,14 @@ public final class NumberUtils {
 
     /**
      * 万位以下 ( 千位 ) 级别转换
-     * @param number   数值
+     * @param value   数值
      * @param chnUnits 中文数字单位数组
      * @return 数字中文化字符串
      */
-    private static String thousandConvertCHN(int number, final String[] chnUnits) {
+    private static String thousandConvertCHN(final int value, final String[] chnUnits) {
         StringBuilder builder = new StringBuilder();
+        // 转换数字
+        int number = value;
         // 对应数值
         int[] units = {10, 100, 1000};
         // 判断是否需要补零

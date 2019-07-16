@@ -1125,7 +1125,8 @@ public final class MapUtils {
      * @param <K>             key
      * @param <T>             value type
      */
-    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap, final boolean removeEmpty, final boolean isNullRemoveAll) {
+    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap,
+                                          final boolean removeEmpty, final boolean isNullRemoveAll) {
         if (map != null && removeMap != null) {
             Iterator<Map.Entry<K, ArrayList<T>>> iterator = removeMap.entrySet().iterator();
             while (iterator.hasNext()) {
