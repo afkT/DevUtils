@@ -1,7 +1,7 @@
 
 [![Cocoapods](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Cocoapods](https://img.shields.io/badge/DevUtils-1.7.3-brightgreen.svg)](https://github.com/afkT/DevUtils)
+[![Cocoapods](https://img.shields.io/badge/DevUtils-1.7.4-brightgreen.svg)](https://github.com/afkT/DevUtils)
 [![](https://jitpack.io/v/afkT/DevUtils.svg)](https://jitpack.io/#afkT/DevUtils)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Cocoapods](https://img.shields.io/badge/utils-100+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/README.md)
@@ -26,7 +26,7 @@ Step 2. Add the dependency
 ```
 dependencies {
 	// 因为内含 res 文件, 使用 aar 方式调用
-	implementation 'com.github.afkT:DevUtils:1.7.3@aar'
+	implementation 'com.github.afkT:DevUtils:1.7.4@aar'
 }
 ```
 
@@ -36,7 +36,7 @@ dependencies {
 
 - [Use and Config](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/USE_CONFIG.md)
 
-- [JavaDoc - API](https://javadoc.jitpack.io/com/github/afkT/DevUtils/1.7.3/javadoc/)
+- [JavaDoc - API](https://javadoc.jitpack.io/com/github/afkT/DevUtils/1.7.4/javadoc/)
 
 
 ## Use
