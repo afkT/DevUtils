@@ -25,7 +25,7 @@ import dev.utils.LogPrintUtils;
  * detail: 内部快捷操作工具类 ( 便于单独提取 Logger, 不依赖其他工具类 )
  * @author Ttt
  * <pre>
- *     代码与 FileRecordUtils (文件记录工具类) 完全一致
+ *     代码与 FileRecordUtils ( 文件记录工具类 ) 完全一致
  * </pre>
  */
 final class Utils {
