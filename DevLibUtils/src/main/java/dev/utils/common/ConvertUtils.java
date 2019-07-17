@@ -703,19 +703,18 @@ public final class ConvertUtils {
      * @return {@link Object}
      */
     public static Object bytesToObject(final byte[] bytes) {
-        if (bytes != null) {
-            ObjectInputStream ois = null;
-            try {
-                ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
-                return ois.readObject();
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "bytesToObject");
-            } finally {
-                if (ois != null) {
-                    try {
-                        ois.close();
-                    } catch (Exception e) {
-                    }
+        if (bytes == null) return null;
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
+            return ois.readObject();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "bytesToObject");
+        } finally {
+            if (ois != null) {
+                try {
+                    ois.close();
+                } catch (Exception e) {
                 }
             }
         }
@@ -728,21 +727,20 @@ public final class ConvertUtils {
      * @return byte[]
      */
     public static byte[] objectToBytes(final Object object) {
-        if (object != null) {
-            ObjectOutputStream oos = null;
-            try {
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                oos = new ObjectOutputStream(baos);
-                oos.writeObject(object);
-                return baos.toByteArray();
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "objectToBytes");
-            } finally {
-                if (oos != null) {
-                    try {
-                        oos.close();
-                    } catch (Exception e) {
-                    }
+        if (object == null) return null;
+        ObjectOutputStream oos = null;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(baos);
+            oos.writeObject(object);
+            return baos.toByteArray();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "objectToBytes");
+        } finally {
+            if (oos != null) {
+                try {
+                    oos.close();
+                } catch (Exception e) {
                 }
             }
         }

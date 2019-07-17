@@ -192,36 +192,34 @@ public final class FileDepthFirstSearchUtils {
         try {
             // 获取根目录 File
             final File file = new File(path);
-            if (file != null) {
-                // 判断是否文件
-                if (file.isFile()) {
-                    List<FileItem> lists = new ArrayList<>();
-                    lists.add(new FileItem(file));
-                    // 触发结束回调
-                    mEndTime = System.currentTimeMillis();
-                    mInsideHandler.OnEndListener(lists, mStartTime, mEndTime);
-                    return;
-                }
-                // 获取文件夹全部子文件
-                String[] fileArys = file.list();
-                // 获取文件总数
-                if (fileArys != null && fileArys.length != 0) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            List<FileItem> lists = new ArrayList<>();
-                            // 查询文件
-                            queryFile(file, lists, isRelation);
-                            // 触发结束回调
-                            mEndTime = System.currentTimeMillis();
-                            mInsideHandler.OnEndListener(lists, mStartTime, mEndTime);
-                        }
-                    }).start();
-                } else {
-                    // 触发结束回调
-                    mEndTime = System.currentTimeMillis();
-                    mInsideHandler.OnEndListener(null, mStartTime, mEndTime);
-                }
+            // 判断是否文件
+            if (file.isFile()) {
+                List<FileItem> lists = new ArrayList<>();
+                lists.add(new FileItem(file));
+                // 触发结束回调
+                mEndTime = System.currentTimeMillis();
+                mInsideHandler.OnEndListener(lists, mStartTime, mEndTime);
+                return;
+            }
+            // 获取文件夹全部子文件
+            String[] fileArys = file.list();
+            // 获取文件总数
+            if (fileArys != null && fileArys.length != 0) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<FileItem> lists = new ArrayList<>();
+                        // 查询文件
+                        queryFile(file, lists, isRelation);
+                        // 触发结束回调
+                        mEndTime = System.currentTimeMillis();
+                        mInsideHandler.OnEndListener(lists, mStartTime, mEndTime);
+                    }
+                }).start();
+            } else {
+                // 触发结束回调
+                mEndTime = System.currentTimeMillis();
+                mInsideHandler.OnEndListener(null, mStartTime, mEndTime);
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "query");

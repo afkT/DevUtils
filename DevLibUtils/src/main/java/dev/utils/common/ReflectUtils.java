@@ -533,13 +533,11 @@ public final class ReflectUtils {
      * @param <P>       泛型
      * @return 代理的对象
      */
-    @SuppressWarnings("unchecked")
     public <P> P proxy(final Class<P> proxyType) {
         if (proxyType == null || mObject == null) return null;
         final boolean isMap = (mObject instanceof Map);
         final InvocationHandler handler = new InvocationHandler() {
             @Override
-            @SuppressWarnings("null")
             public Object invoke(Object proxy, Method method, Object[] args) {
                 String name = method.getName();
                 try {
@@ -629,7 +627,6 @@ public final class ReflectUtils {
      * @param <T> 泛型
      * @return 反射想要获取的
      */
-    @SuppressWarnings("unchecked")
     public <T> T get() {
         return (T) mObject;
     }

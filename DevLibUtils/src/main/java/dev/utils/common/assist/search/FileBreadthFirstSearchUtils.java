@@ -277,34 +277,32 @@ public final class FileBreadthFirstSearchUtils {
         try {
             // 获取根目录 File
             File file = new File(path);
-            if (file != null) {
-                // 初始化根目录
-                mRootFileItem = new FileItem(file);
-                // 判断是否文件
-                if (file.isFile()) {
-                    // 触发结束回调
-                    mEndTime = System.currentTimeMillis();
-                    mInsideHandler.OnEndListener(mRootFileItem, mStartTime, mEndTime);
-                    return;
-                }
-                // 获取文件夹全部子文件
-                String[] fileArys = file.list();
-                // 获取文件总数
-                if (fileArys != null && fileArys.length != 0) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // 查询文件
-                            queryFile(mRootFileItem.file, mRootFileItem);
-                            // 循环队列
-                            whileQueue();
-                        }
-                    }).start();
-                } else {
-                    // 触发结束回调
-                    mEndTime = System.currentTimeMillis();
-                    mInsideHandler.OnEndListener(mRootFileItem, mStartTime, mEndTime);
-                }
+            // 初始化根目录
+            mRootFileItem = new FileItem(file);
+            // 判断是否文件
+            if (file.isFile()) {
+                // 触发结束回调
+                mEndTime = System.currentTimeMillis();
+                mInsideHandler.OnEndListener(mRootFileItem, mStartTime, mEndTime);
+                return;
+            }
+            // 获取文件夹全部子文件
+            String[] fileArys = file.list();
+            // 获取文件总数
+            if (fileArys != null && fileArys.length != 0) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // 查询文件
+                        queryFile(mRootFileItem.file, mRootFileItem);
+                        // 循环队列
+                        whileQueue();
+                    }
+                }).start();
+            } else {
+                // 触发结束回调
+                mEndTime = System.currentTimeMillis();
+                mInsideHandler.OnEndListener(mRootFileItem, mStartTime, mEndTime);
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "query");
@@ -376,9 +374,7 @@ public final class FileBreadthFirstSearchUtils {
         boolean isEmpty = mTaskQueue.isEmpty();
         // 循环则不处理
         while (!isEmpty) {
-            if (mIsStop) {
-                break;
-            }
+            if (mIsStop) break;
             // 获取线程活动数量
             int threadCount = ((ThreadPoolExecutor) mExecutor).getActiveCount();
             // 判断是否超过
@@ -389,7 +385,6 @@ public final class FileBreadthFirstSearchUtils {
             final FileQueue fileQueue = mTaskQueue.poll();
             // 判断是否为 null
             if (fileQueue != null) {
-                // 后台运行
                 mExecutor.execute(new Runnable() {
                     @Override
                     public void run() {
@@ -401,9 +396,7 @@ public final class FileBreadthFirstSearchUtils {
             // 判断是否存在队列数据
             isEmpty = (mTaskQueue.isEmpty() && threadCount == 0);
             if (isEmpty) { // 如果不存在, 防止搜索过快, 延迟再次判断
-                if (mIsStop) {
-                    break;
-                }
+                if (mIsStop) break;
                 try {
                     Thread.sleep(mDelayTime);
                 } catch (Exception e) {
