@@ -1476,7 +1476,7 @@ public final class FileUtils {
      * @param isMove      是否移动
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
-    private static boolean copyOrMoveDir(final String srcDirPath, final String destDirPath, final OnReplaceListener listener, final boolean isMove) {
+    public static boolean copyOrMoveDir(final String srcDirPath, final String destDirPath, final OnReplaceListener listener, final boolean isMove) {
         return copyOrMoveDir(getFileByPath(srcDirPath), getFileByPath(destDirPath), listener, isMove);
     }
 
@@ -1488,7 +1488,7 @@ public final class FileUtils {
      * @param isMove   是否移动
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
-    private static boolean copyOrMoveDir(final File srcDir, final File destDir, final OnReplaceListener listener, final boolean isMove) {
+    public static boolean copyOrMoveDir(final File srcDir, final File destDir, final OnReplaceListener listener, final boolean isMove) {
         if (srcDir == null || destDir == null || listener == null) return false;
         // 为防止以上这种情况出现出现误判, 须分别在后面加个路径分隔符
         String srcPath = srcDir.getPath() + File.separator;
@@ -1529,7 +1529,7 @@ public final class FileUtils {
      * @param isMove       是否移动
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
-    private static boolean copyOrMoveFile(final String srcFilePath, final String destFilePath, final OnReplaceListener listener, final boolean isMove) {
+    public static boolean copyOrMoveFile(final String srcFilePath, final String destFilePath, final OnReplaceListener listener, final boolean isMove) {
         return copyOrMoveFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), listener, isMove);
     }
 
@@ -1541,7 +1541,7 @@ public final class FileUtils {
      * @param isMove   是否移动
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
-    private static boolean copyOrMoveFile(final File srcFile, final File destFile, final OnReplaceListener listener, final boolean isMove) {
+    public static boolean copyOrMoveFile(final File srcFile, final File destFile, final OnReplaceListener listener, final boolean isMove) {
         if (srcFile == null || destFile == null || listener == null) return false;
         // 如果源文件和目标文件相同则返回 false
         if (srcFile.equals(destFile)) return false;
