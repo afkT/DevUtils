@@ -7,9 +7,6 @@ import android.view.SurfaceHolder;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
-import static android.hardware.Camera.Parameters.FLASH_MODE_OFF;
-import static android.hardware.Camera.Parameters.FLASH_MODE_TORCH;
-
 /**
  * detail: 摄像头辅助类
  * @author Ttt
@@ -254,8 +251,8 @@ public final class CameraAssist {
             return;
         }
         Camera.Parameters parameters = mCamera.getParameters();
-        if (!FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
-            parameters.setFlashMode(FLASH_MODE_TORCH);
+        if (!Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             mCamera.setParameters(parameters);
         }
     }
@@ -268,8 +265,8 @@ public final class CameraAssist {
             return;
         }
         Camera.Parameters parameters = mCamera.getParameters();
-        if (FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
-            parameters.setFlashMode(FLASH_MODE_OFF);
+        if (Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             mCamera.setParameters(parameters);
         }
     }
@@ -283,7 +280,7 @@ public final class CameraAssist {
             return false;
         }
         Camera.Parameters parameters = mCamera.getParameters();
-        return FLASH_MODE_TORCH.equals(parameters.getFlashMode());
+        return Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
     }
 
     /**
