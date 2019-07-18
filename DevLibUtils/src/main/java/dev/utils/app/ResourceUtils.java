@@ -6,9 +6,13 @@ import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.AnyRes;
+import android.support.annotation.ArrayRes;
+import android.support.annotation.BoolRes;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IntegerRes;
 import android.support.annotation.RawRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
@@ -203,6 +207,90 @@ public final class ResourceUtils {
             LogPrintUtils.eTag(TAG, e, "getDimension");
         }
         return 0f;
+    }
+
+    /**
+     * 获取 Boolean
+     * @param id resource identifier
+     * @return Boolean
+     */
+    public static boolean getBoolean(@BoolRes int id) {
+        try {
+            return DevUtils.getContext().getResources().getBoolean(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBoolean");
+        }
+        return false;
+    }
+
+    /**
+     * 获取 Integer
+     * @param id resource identifier
+     * @return Integer
+     */
+    public static int getInteger(@IntegerRes int id) {
+        try {
+            return DevUtils.getContext().getResources().getInteger(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getInteger");
+        }
+        return -1;
+    }
+
+    /**
+     * 获取给定资源标识符的全名
+     * @param id resource identifier
+     * @return Integer
+     */
+    public static String getResourceName(@AnyRes int id) {
+        try {
+            return DevUtils.getContext().getResources().getResourceName(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getResourceName");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 int[]
+     * @param id resource identifier
+     * @return int[]
+     */
+    public static int[] getIntArray(@ArrayRes int id) {
+        try {
+            return DevUtils.getContext().getResources().getIntArray(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getIntArray");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 String[]
+     * @param id resource identifier
+     * @return String[]
+     */
+    public static String[] getStringArray(@ArrayRes int id) {
+        try {
+            return DevUtils.getContext().getResources().getStringArray(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getStringArray");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 CharSequence[]
+     * @param id resource identifier
+     * @return CharSequence[]
+     */
+    public static CharSequence[] getTextArray(@ArrayRes int id) {
+        try {
+            return DevUtils.getContext().getResources().getTextArray(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getTextArray");
+        }
+        return null;
     }
 
     // =
