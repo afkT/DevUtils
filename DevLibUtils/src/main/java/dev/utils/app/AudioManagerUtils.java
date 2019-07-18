@@ -58,7 +58,9 @@ public final class AudioManagerUtils {
         return null;
     }
 
-    // =
+    // ============
+    // = 音量大小 =
+    // ============
 
     /**
      * 获取指定声音流最大音量大小
@@ -95,14 +97,32 @@ public final class AudioManagerUtils {
     }
 
     /**
-     * 控制手机音量调小一个单位
+     * 设置指定声音流音量大小
+     * @param streamType 流类型
+     * @param index      音量大小
+     */
+    public static void setStreamVolume(final int streamType, final int index) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.setStreamVolume(streamType, index, 0);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setStreamVolume");
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * 控制手机音量, 调小一个单位
      */
     public static void adjustVolumeLower() {
         adjustVolume(AudioManager.ADJUST_LOWER);
     }
 
     /**
-     * 控制手机音量调大一个单位
+     * 控制手机音量, 调大一个单位
      */
     public static void adjustVolumeRaise() {
         adjustVolume(AudioManager.ADJUST_RAISE);
@@ -128,6 +148,46 @@ public final class AudioManagerUtils {
     }
 
     // =
+
+    /**
+     * 控制指定声音流音量, 调小一个单位
+     * @param streamType 流类型
+     */
+    public static void adjustStreamVolumeLower(final int streamType) {
+        adjustStreamVolume(streamType, AudioManager.ADJUST_LOWER);
+    }
+
+    /**
+     * 控制指定声音流音量, 调大一个单位
+     * @param streamType 流类型
+     */
+    public static void adjustStreamVolumeRaise(final int streamType) {
+        adjustStreamVolume(streamType, AudioManager.ADJUST_RAISE);
+    }
+
+    /**
+     * 控制指定声音流音量, 调大或者调小一个单位
+     * <pre>
+     *     AudioManager.ADJUST_LOWER 可调小一个单位
+     *     AudioManager.ADJUST_RAISE 可调大一个单位
+     * </pre>
+     * @param streamType 流类型
+     * @param direction  音量方向 ( 调大、调小 )
+     */
+    public static void adjustStreamVolume(final int streamType, final int direction) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.adjustStreamVolume(streamType, direction, 0);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "adjustStreamVolume");
+            }
+        }
+    }
+
+    // ============
+    // = 静音状态 =
+    // ============
 
     /**
      * 设置媒体声音静音状态
@@ -193,54 +253,134 @@ public final class AudioManagerUtils {
         }
     }
 
+    // ========
+    // = 模式 =
+    // ========
+
+    /**
+     * 获取当前的音频模式
+     * <pre>
+     *     返回值有下述几种模式:
+     *     MODE_NORMAL( 普通 )
+     *     MODE_RINGTONE( 铃声 )
+     *     MODE_IN_CALL( 打电话 )
+     *     MODE_IN_COMMUNICATION( 通话 )
+     * </pre>
+     * @return 当前的音频模式
+     */
+    public static int getMode() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.getMode();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getMode");
+            }
+        }
+        return AudioManager.MODE_NORMAL;
+    }
+
+    /**
+     * 设置当前的音频模式
+     * <pre>
+     *     有下述几种模式:
+     *     MODE_NORMAL( 普通 )
+     *     MODE_RINGTONE( 铃声 )
+     *     MODE_IN_CALL( 打电话 )
+     *     MODE_IN_COMMUNICATION( 通话 )
+     * </pre>
+     * @param mode 音频模式
+     */
+    public static void setMode(final int mode) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.setMode(mode);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setMode");
+            }
+        }
+    }
+
+    // ============
+    // = 铃声模式 =
+    // ============
+
+    /**
+     * 获取当前的铃声模式
+     * <pre>
+     *     返回值有下述几种模式:
+     *     RINGER_MODE_NORMAL（普通）
+     *     RINGER_MODE_SILENT（静音）
+     *     RINGER_MODE_VIBRATE（震动）
+     * </pre>
+     * @return 当前的铃声模式
+     */
+    public static int getRingerMode() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.getRingerMode();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getRingerMode");
+            }
+        }
+        return AudioManager.RINGER_MODE_NORMAL;
+    }
+
+    /**
+     * 获取当前的铃声模式
+     * @param ringerMode 铃声模式
+     */
+    public static void setRingerMode(final int ringerMode) {
+        setRingerMode(ringerMode, true);
+    }
+
+    /**
+     * 获取当前的铃声模式
+     * <pre>
+     *     有下述几种模式:
+     *     RINGER_MODE_NORMAL（普通）
+     *     RINGER_MODE_SILENT（静音）
+     *     RINGER_MODE_VIBRATE（震动）
+     * </pre>
+     * @param ringerMode 铃声模式
+     * @param setting    如果没授权, 是否跳转到设置页面
+     */
+    public static void setRingerMode(final int ringerMode, final boolean setting) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                if (isDoNotDisturb(setting)) {
+                    audioManager.setRingerMode(ringerMode);
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setRingerMode");
+            }
+        }
+    }
+
     // =
 
     /**
      * 设置静音模式 ( 静音, 且无振动 )
      */
     public static void ringerSilent() {
-        AudioManager audioManager = getAudioManager();
-        if (audioManager != null) {
-            try {
-                if (isDoNotDisturb(true)) {
-                    audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "ringerSilent");
-            }
-        }
+        setRingerMode(AudioManager.RINGER_MODE_SILENT);
     }
 
     /**
-     * 设置静音模式 ( 静音, 但有振动 )
+     * 设置震动模式 ( 静音, 但有振动 )
      */
     public static void ringerVibrate() {
-        AudioManager audioManager = getAudioManager();
-        if (audioManager != null) {
-            try {
-                if (isDoNotDisturb(true)) {
-                    audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "ringerVibrate");
-            }
-        }
+        setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
     }
 
     /**
      * 设置正常模式 ( 正常声音, 振动开关由 setVibrateSetting 决定 )
      */
     public static void ringerNormal() {
-        AudioManager audioManager = getAudioManager();
-        if (audioManager != null) {
-            try {
-                if (isDoNotDisturb(true)) {
-                    audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "ringerNormal");
-            }
-        }
+        setRingerMode(AudioManager.RINGER_MODE_NORMAL);
     }
 
     // =
@@ -248,9 +388,9 @@ public final class AudioManagerUtils {
     /**
      * 判断是否授权 Do not disturb 权限
      * <pre>
-     *     存在 Do not disturb 权限, 才可进行音量操作
+     *     授权 Do not disturb 权限, 才可进行音量操作
      * </pre>
-     * @param setting 如果不存在, 是否跳转到设置页面
+     * @param setting 如果没授权, 是否跳转到设置页面
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isDoNotDisturb(final boolean setting) {
@@ -272,5 +412,313 @@ public final class AudioManagerUtils {
             LogPrintUtils.eTag(TAG, e, "isDoNotDisturb");
         }
         return false;
+    }
+
+    // =
+
+    /**
+     * 设置是否打开扩音器 ( 扬声器 )
+     * @param on {@code true} yes, {@code false} no
+     */
+    public static void setSpeakerphoneOn(final boolean on) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.setSpeakerphoneOn(on);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setSpeakerphoneOn");
+            }
+        }
+    }
+
+    /**
+     * 设置是否让麦克风静音
+     * @param on {@code true} yes, {@code false} no
+     */
+    public static void setMicrophoneMute(final boolean on) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.setMicrophoneMute(on);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setMicrophoneMute");
+            }
+        }
+    }
+
+    /**
+     * 判断是否打开扩音器 ( 扬声器 )
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSpeakerphoneOn() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.isSpeakerphoneOn();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isSpeakerphoneOn");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断麦克风是否静音
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMicrophoneMute() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.isMicrophoneMute();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isMicrophoneMute");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否有音乐处于活跃状态
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMusicActive() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.isMusicActive();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isMusicActive");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否插入了耳机
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isWiredHeadsetOn() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.isWiredHeadsetOn();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isWiredHeadsetOn");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 检查蓝牙 A2DP 音频外设是否已连接
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isBluetoothA2dpOn() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.isBluetoothA2dpOn();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isBluetoothA2dpOn");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 检查当前平台是否支持使用 SCO 的关闭调用用例
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isBluetoothScoAvailableOffCall() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.isBluetoothScoAvailableOffCall();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isBluetoothScoAvailableOffCall");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 检查通信是否使用蓝牙 SCO
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isBluetoothScoOn() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.isBluetoothScoOn();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isBluetoothScoOn");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置是否使用蓝牙 SCO 耳机进行通讯
+     * @param on {@code true} yes, {@code false} no
+     */
+    public static void setBluetoothScoOn(final boolean on) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.setBluetoothScoOn(on);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setBluetoothScoOn");
+            }
+        }
+    }
+
+    /**
+     * 启动蓝牙 SCO 音频连接
+     */
+    public static void startBluetoothSco() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.startBluetoothSco();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startBluetoothSco");
+            }
+        }
+    }
+
+    /**
+     * 停止蓝牙 SCO 音频连接
+     */
+    public static void stopBluetoothSco() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.stopBluetoothSco();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "stopBluetoothSco");
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * 加载音效
+     */
+    public static void loadSoundEffects() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.loadSoundEffects();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "loadSoundEffects");
+            }
+        }
+    }
+
+    /**
+     * 卸载音效
+     */
+    public static void unloadSoundEffects() {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.unloadSoundEffects();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "unloadSoundEffects");
+            }
+        }
+    }
+
+    /**
+     * 播放音效
+     * @param effectType {@link AudioManager#FX_KEY_CLICK},
+     *                   {@link AudioManager#FX_FOCUS_NAVIGATION_UP},
+     *                   {@link AudioManager#FX_FOCUS_NAVIGATION_DOWN},
+     *                   {@link AudioManager#FX_FOCUS_NAVIGATION_LEFT},
+     *                   {@link AudioManager#FX_FOCUS_NAVIGATION_RIGHT},
+     *                   {@link AudioManager#FX_KEYPRESS_STANDARD},
+     *                   {@link AudioManager#FX_KEYPRESS_SPACEBAR},
+     *                   {@link AudioManager#FX_KEYPRESS_DELETE},
+     *                   {@link AudioManager#FX_KEYPRESS_RETURN},
+     *                   {@link AudioManager#FX_KEYPRESS_INVALID},
+     * @param volume     音量大小
+     */
+    public static void playSoundEffect(final int effectType, final float volume) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.playSoundEffect(effectType, volume);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "playSoundEffect");
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * 放弃音频焦点, 使上一个焦点所有者（如果有）接收焦点
+     * @param listener 焦点监听事件
+     */
+    public static void abandonAudioFocus(final AudioManager.OnAudioFocusChangeListener listener) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.abandonAudioFocus(listener);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "abandonAudioFocus");
+            }
+        }
+    }
+
+    /**
+     * 调整最相关的流的音量，或者给定的回退流
+     * @param direction 调整参数
+     */
+    public static void adjustSuggestedStreamVolume(final int direction) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                audioManager.adjustSuggestedStreamVolume(direction, AudioManager.USE_DEFAULT_STREAM_TYPE, 0);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "adjustSuggestedStreamVolume");
+            }
+        }
+    }
+
+    /**
+     * 获取音频硬件指定 key 的参数值
+     * @param keys Key
+     * @return 音频硬件指定 key 的参数值
+     */
+    public static String getParameters(final String keys) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.getParameters(keys);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getParameters");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取用户对振动类型的振动设置
+     * @param vibrateType {@link AudioManager#VIBRATE_TYPE_NOTIFICATION} or {@link AudioManager#VIBRATE_TYPE_RINGER}
+     * @return {@link AudioManager#VIBRATE_SETTING_ON}, {@link AudioManager#VIBRATE_SETTING_OFF}, {@link AudioManager#VIBRATE_SETTING_ONLY_SILENT}
+     */
+    public static int getVibrateSetting(final int vibrateType) {
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null) {
+            try {
+                return audioManager.getVibrateSetting(vibrateType);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getVibrateSetting");
+            }
+        }
+        return -1;
     }
 }

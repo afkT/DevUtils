@@ -48,6 +48,9 @@ import dev.utils.LogPrintUtils;
  *     PermissionUtils.permission("").callBack(null).request(Activity);
  *     第二种请求方式 - 需要在 onRequestPermissionsResult 中通知调用
  *     PermissionUtils.permission("").callBack(null).setRequestPermissionsResult(true).request(Activity);
+ *     <p></p>
+ *     刷新权限改变处理 ( 清空已拒绝的权限记录 )
+ *     notifyPermissionsChange()
  * </pre>
  */
 public final class PermissionUtils {
