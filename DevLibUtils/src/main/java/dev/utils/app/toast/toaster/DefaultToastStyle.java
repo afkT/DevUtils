@@ -3,6 +3,7 @@ package dev.utils.app.toast.toaster;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.text.TextUtils;
 
 /**
@@ -78,6 +79,7 @@ public class DefaultToastStyle implements IToast.Style {
      * 获取背景着色颜色
      * @return 背景着色颜色
      */
+    @ColorInt
     @Override
     public int getBackgroundTintColor() {
         return 0xB2000000;
@@ -100,6 +102,7 @@ public class DefaultToastStyle implements IToast.Style {
      * 获取文本颜色
      * @return 文本颜色
      */
+    @ColorInt
     @Override
     public int getTextColor() {
         return Color.WHITE;

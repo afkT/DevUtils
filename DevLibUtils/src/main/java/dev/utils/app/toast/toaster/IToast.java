@@ -3,6 +3,9 @@ package dev.utils.app.toast.toaster;
 import android.app.Application;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
@@ -98,7 +101,7 @@ public final class IToast {
          * 设置 Toast 显示的 View
          * @param layoutId R.layout.id
          */
-        void setView(int layoutId);
+        void setView(@LayoutRes int layoutId);
 
         // ============
         // = 操作方法 =
@@ -116,7 +119,7 @@ public final class IToast {
          * @param resId R.string.id
          * @param objs  格式化参数
          */
-        void show(int resId, Object... objs);
+        void show(@StringRes int resId, Object... objs);
 
         // =
 
@@ -197,6 +200,7 @@ public final class IToast {
          * 获取背景着色颜色
          * @return 背景着色颜色
          */
+        @ColorInt
         int getBackgroundTintColor();
 
         /**
@@ -213,6 +217,7 @@ public final class IToast {
          * 获取文本颜色
          * @return 文本颜色
          */
+        @ColorInt
         int getTextColor();
 
         /**

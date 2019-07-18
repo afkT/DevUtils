@@ -1,6 +1,8 @@
 package dev.utils.app.toast.toaster;
 
 import android.app.Application;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Toast;
 
@@ -121,7 +123,7 @@ public final class DevToast {
      * 设置 Toast 显示的 View
      * @param layoutId R.layout.id
      */
-    public static void setView(final int layoutId) {
+    public static void setView(@LayoutRes final int layoutId) {
         sToast.setView(layoutId);
     }
 
@@ -143,7 +145,7 @@ public final class DevToast {
      * @param resId R.string.id
      * @param objs  格式化参数
      */
-    public static void show(final int resId, final Object... objs) {
+    public static void show(@StringRes final int resId, final Object... objs) {
         sToast.show(resId, objs);
     }
 

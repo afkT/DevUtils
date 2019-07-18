@@ -6,6 +6,8 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
@@ -185,7 +187,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param layoutId R.layout.id
      */
     @Override
-    public void setView(final int layoutId) {
+    public void setView(@LayoutRes final int layoutId) {
         if (mConfigToast != null) {
             try {
                 setView(View.inflate(mConfigToast.getView().getContext().getApplicationContext(), layoutId, null));
@@ -222,7 +224,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      * @param objs  格式化参数
      */
     @Override
-    public void show(final int resId, final Object... objs) {
+    public void show(@StringRes final int resId, final Object... objs) {
         String context = Utils.getFormatRes(resId, objs);
         if (filter(context)) {
             // 获取处理的内容

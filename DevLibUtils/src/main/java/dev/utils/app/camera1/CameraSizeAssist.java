@@ -15,11 +15,11 @@ import dev.utils.app.ScreenUtils;
  * detail: 摄像头 ( 预览、输出大小 ) 辅助类
  * @author Ttt
  * <pre>
+ *     正常只需要摄像头权限
  *     所需权限:
  *     <uses-permission android:name="android.permission.CAMERA" /> 摄像头
  *     <uses-permission android:name="android.permission.VIBRATE" /> 震动
  *     <uses-permission android:name="android.permission.FLASHLIGHT" /> 手电筒
- *     正常只需要摄像头权限
  * </pre>
  */
 public final class CameraSizeAssist {

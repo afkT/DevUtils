@@ -409,9 +409,6 @@ public final class WifiUtils {
 
     /**
      * 获取连接的 wifi 热点 SSID
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return wifi 热点 SSID
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)

@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
@@ -151,7 +152,7 @@ public final class ToastUtils {
      * @param resId R.string.id
      * @param objs  格式化参数
      */
-    public static void showShort(final int resId, final Object... objs) {
+    public static void showShort(@StringRes final int resId, final Object... objs) {
         showShort(null, resId, objs);
     }
 
@@ -161,7 +162,7 @@ public final class ToastUtils {
      * @param resId   R.string.id
      * @param objs    格式化参数
      */
-    public static void showShort(final Context context, final int resId, final Object... objs) {
+    public static void showShort(final Context context, @StringRes final int resId, final Object... objs) {
         handlerToastRes(true, context, resId, Toast.LENGTH_SHORT, objs);
     }
 
@@ -195,7 +196,7 @@ public final class ToastUtils {
      * @param resId R.string.id
      * @param objs  格式化参数
      */
-    public static void showLong(final int resId, final Object... objs) {
+    public static void showLong(@StringRes final int resId, final Object... objs) {
         showLong(null, resId, objs);
     }
 
@@ -205,7 +206,7 @@ public final class ToastUtils {
      * @param resId   R.string.id
      * @param objs    格式化参数
      */
-    public static void showLong(final Context context, final int resId, final Object... objs) {
+    public static void showLong(final Context context, @StringRes final int resId, final Object... objs) {
         handlerToastRes(true, context, resId, Toast.LENGTH_LONG, objs);
     }
 
@@ -218,7 +219,7 @@ public final class ToastUtils {
      * @param resId    R.string.id
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
-    public static void showToast(final int resId, final int duration) {
+    public static void showToast(@StringRes final int resId, final int duration) {
         showToast(null, resId, duration);
     }
 
@@ -228,7 +229,7 @@ public final class ToastUtils {
      * @param resId    R.string.id
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
-    public static void showToast(final Context context, final int resId, final int duration) {
+    public static void showToast(final Context context, @StringRes final int resId, final int duration) {
         handlerToastRes(true, context, resId, duration);
     }
 
@@ -285,7 +286,7 @@ public final class ToastUtils {
      * @param resId R.string.id
      * @param objs  格式化参数
      */
-    public static void showShortNew(final int resId, final Object... objs) {
+    public static void showShortNew(@StringRes final int resId, final Object... objs) {
         showShortNew(null, resId, objs);
     }
 
@@ -295,7 +296,7 @@ public final class ToastUtils {
      * @param resId   R.string.id
      * @param objs    格式化参数
      */
-    public static void showShortNew(final Context context, final int resId, final Object... objs) {
+    public static void showShortNew(final Context context, @StringRes final int resId, final Object... objs) {
         handlerToastRes(false, context, resId, Toast.LENGTH_SHORT, objs);
     }
 
@@ -329,7 +330,7 @@ public final class ToastUtils {
      * @param resId R.string.id
      * @param objs  格式化参数
      */
-    public static void showLongNew(final int resId, final Object... objs) {
+    public static void showLongNew(@StringRes final int resId, final Object... objs) {
         showLongNew(null, resId, objs);
     }
 
@@ -339,7 +340,7 @@ public final class ToastUtils {
      * @param resId   R.string.id
      * @param objs    格式化参数
      */
-    public static void showLongNew(final Context context, final int resId, final Object... objs) {
+    public static void showLongNew(final Context context, @StringRes final int resId, final Object... objs) {
         handlerToastRes(false, context, resId, Toast.LENGTH_LONG, objs);
     }
 
@@ -352,7 +353,7 @@ public final class ToastUtils {
      * @param resId    R.string.id
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
-    public static void showToastNew(final int resId, final int duration) {
+    public static void showToastNew(@StringRes final int resId, final int duration) {
         showToastNew(null, resId, duration);
     }
 
@@ -362,7 +363,7 @@ public final class ToastUtils {
      * @param resId    R.string.id
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
-    public static void showToastNew(final Context context, final int resId, final int duration) {
+    public static void showToastNew(final Context context, @StringRes final int resId, final int duration) {
         handlerToastRes(false, context, resId, duration);
     }
 
@@ -658,7 +659,7 @@ public final class ToastUtils {
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG} {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      * @param objs     格式化参数
      */
-    private static void handlerToastRes(final boolean isSingle, Context context, final int resId, final int duration, final Object... objs) {
+    private static void handlerToastRes(final boolean isSingle, Context context, @StringRes final int resId, final int duration, final Object... objs) {
         if (context == null) {
             context = DevUtils.getContext();
         }

@@ -11,6 +11,7 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -58,7 +59,7 @@ final class Utils {
      * @param objs  格式化参数
      * @return 格式化后的字符串
      */
-    public static String getFormatRes(final int resId, final Object... objs) {
+    public static String getFormatRes(@StringRes final int resId, final Object... objs) {
         try {
             if (objs != null && objs.length != 0) {
                 return DevUtils.getContext().getString(resId, objs);
