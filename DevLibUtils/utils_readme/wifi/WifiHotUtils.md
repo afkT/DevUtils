@@ -35,7 +35,7 @@
 
 #### 使用方法
 ```java
-// 需要的权限:
+// 所需权限:
 // <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 // <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 // <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

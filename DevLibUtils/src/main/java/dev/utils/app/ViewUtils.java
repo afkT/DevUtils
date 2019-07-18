@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Build;
+import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
@@ -146,7 +147,7 @@ public final class ViewUtils {
      * @param <T>  泛型
      * @return {@link View}
      */
-    public static <T extends View> T findViewById(final View view, final int id) {
+    public static <T extends View> T findViewById(final View view, @IdRes final int id) {
         if (view != null) {
             try {
                 return view.findViewById(id);
@@ -164,7 +165,7 @@ public final class ViewUtils {
      * @param <T>    泛型
      * @return {@link View}
      */
-    public static <T extends View> T findViewById(final Window window, final int id) {
+    public static <T extends View> T findViewById(final Window window, @IdRes final int id) {
         if (window != null) {
             try {
                 return window.findViewById(id);
@@ -182,7 +183,7 @@ public final class ViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends View> T findViewById(final Activity activity, final int id) {
+    public static <T extends View> T findViewById(final Activity activity, @IdRes final int id) {
         if (activity != null) {
             try {
                 return activity.findViewById(id);

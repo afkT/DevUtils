@@ -35,6 +35,9 @@ import dev.utils.LogPrintUtils;
  *     截图:
  *     @see <a href="https://www.cnblogs.com/angel88/p/7933437.html"/>
  *     @see <a href="https://github.com/weizongwei5/AndroidScreenShot_SysApi"/>
+ *     <p></p>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
  * </pre>
  */
 public final class ScreenUtils {
@@ -539,9 +542,6 @@ public final class ScreenUtils {
 
     /**
      * 设置进入休眠时长
-     * <pre>
-     *     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-     * </pre>
      * @param duration 时长
      */
     @RequiresPermission(android.Manifest.permission.WRITE_SETTINGS)

@@ -289,17 +289,17 @@ public final class SignaturesUtils {
     /**
      * 加载文件, 获取签名信息
      * @param jarFile    {@link JarFile}
-     * @param je         {@link JarEntry}
+     * @param jarEntry   {@link JarEntry}
      * @param readBuffer 文件 Buffer
      * @return {@link Certificate}[]
      */
-    private static Certificate[] loadCertificates(final JarFile jarFile, final JarEntry je, final byte[] readBuffer) {
+    private static Certificate[] loadCertificates(final JarFile jarFile, final JarEntry jarEntry, final byte[] readBuffer) {
         try {
-            InputStream is = jarFile.getInputStream(je);
+            InputStream is = jarFile.getInputStream(jarEntry);
             while (is.read(readBuffer, 0, readBuffer.length) != -1) {
             }
             is.close();
-            return je != null ? je.getCertificates() : null;
+            return jarEntry != null ? jarEntry.getCertificates() : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "loadCertificates");
         }

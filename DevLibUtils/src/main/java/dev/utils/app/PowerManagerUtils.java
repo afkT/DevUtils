@@ -14,7 +14,7 @@ import dev.utils.LogPrintUtils;
  * detail: 电源管理工具类
  * @author Ttt
  * <pre>
- *     需要的权限:
+ *     所需权限:
  *     <uses-permission android:name="android.permission.WAKE_LOCK"/>
  * </pre>
  */

@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.annotation.IdRes;
 import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.util.TypedValue;
@@ -84,7 +85,7 @@ public final class TextViewUtils {
      * @param <T>  泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T getTextView(final View view, final int id) {
+    public static <T extends TextView> T getTextView(final View view, @IdRes final int id) {
         if (view != null) {
             try {
                 return view.findViewById(id);
@@ -102,7 +103,7 @@ public final class TextViewUtils {
      * @param <T>    泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T getTextView(final Window window, final int id) {
+    public static <T extends TextView> T getTextView(final Window window, @IdRes final int id) {
         if (window != null) {
             try {
                 return window.findViewById(id);
@@ -120,7 +121,7 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T getTextView(final Activity activity, final int id) {
+    public static <T extends TextView> T getTextView(final Activity activity, @IdRes final int id) {
         if (activity != null) {
             try {
                 return activity.findViewById(id);
@@ -163,7 +164,7 @@ public final class TextViewUtils {
      * @param id   R.id.viewId
      * @return {@link TextView#getText()}
      */
-    public static String getText(final View view, final int id) {
+    public static String getText(final View view, @IdRes final int id) {
         return getText(getTextView(view, id));
     }
 
@@ -173,7 +174,7 @@ public final class TextViewUtils {
      * @param id     R.id.viewId
      * @return {@link TextView#getText()}
      */
-    public static String getText(final Window window, final int id) {
+    public static String getText(final Window window, @IdRes final int id) {
         return getText(getTextView(window, id));
     }
 
@@ -183,7 +184,7 @@ public final class TextViewUtils {
      * @param id       R.id.viewId
      * @return {@link TextView#getText()}
      */
-    public static String getText(final Activity activity, final int id) {
+    public static String getText(final Activity activity, @IdRes final int id) {
         return getText(getTextView(activity, id));
     }
 
@@ -255,7 +256,7 @@ public final class TextViewUtils {
      * @param id   R.id.viewId
      * @param text TextView text
      */
-    public static void setText(final View view, final int id, final String text) {
+    public static void setText(final View view, @IdRes final int id, final String text) {
         setText(getTextView(view, id), text);
     }
 
@@ -265,7 +266,7 @@ public final class TextViewUtils {
      * @param id     R.id.viewId
      * @param text   TextView text
      */
-    public static void setText(final Window window, final int id, final String text) {
+    public static void setText(final Window window, @IdRes final int id, final String text) {
         setText(getTextView(window, id), text);
     }
 
@@ -275,7 +276,7 @@ public final class TextViewUtils {
      * @param id       R.id.viewId
      * @param text     TextView text
      */
-    public static void setText(final Activity activity, final int id, final String text) {
+    public static void setText(final Activity activity, @IdRes final int id, final String text) {
         setText(getTextView(activity, id), text);
     }
 
@@ -341,7 +342,7 @@ public final class TextViewUtils {
      * @param id      R.id.viewId
      * @param content Html content
      */
-    public static void setHtmlText(final View view, final int id, final String content) {
+    public static void setHtmlText(final View view, @IdRes final int id, final String content) {
         setHtmlText(getTextView(view, id), content);
     }
 
@@ -351,7 +352,7 @@ public final class TextViewUtils {
      * @param id      R.id.viewId
      * @param content Html content
      */
-    public static void setHtmlText(final Window window, final int id, final String content) {
+    public static void setHtmlText(final Window window, @IdRes final int id, final String content) {
         setHtmlText(getTextView(window, id), content);
     }
 
@@ -361,7 +362,7 @@ public final class TextViewUtils {
      * @param id       R.id.viewId
      * @param content  Html content
      */
-    public static void setHtmlText(final Activity activity, final int id, final String content) {
+    public static void setHtmlText(final Activity activity, @IdRes final int id, final String content) {
         setHtmlText(getTextView(activity, id), content);
     }
 
@@ -425,7 +426,7 @@ public final class TextViewUtils {
      * @param id    R.id.viewId
      * @param color R.color.id
      */
-    public static void setTextColor(final View view, final int id, @ColorInt final int color) {
+    public static void setTextColor(final View view, @IdRes final int id, @ColorInt final int color) {
         setTextColor(getTextView(view, id), color);
     }
 
@@ -435,7 +436,7 @@ public final class TextViewUtils {
      * @param id     R.id.viewId
      * @param color  R.color.id
      */
-    public static void setTextColor(final Window window, final int id, @ColorInt final int color) {
+    public static void setTextColor(final Window window, @IdRes final int id, @ColorInt final int color) {
         setTextColor(getTextView(window, id), color);
     }
 
@@ -445,7 +446,7 @@ public final class TextViewUtils {
      * @param id       R.id.viewId
      * @param color    R.color.id
      */
-    public static void setTextColor(final Activity activity, final int id, @ColorInt final int color) {
+    public static void setTextColor(final Activity activity, @IdRes final int id, @ColorInt final int color) {
         setTextColor(getTextView(activity, id), color);
     }
 

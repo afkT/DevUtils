@@ -6,6 +6,10 @@ import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DimenRes;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.RawRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
@@ -121,7 +125,7 @@ public final class ResourceUtils {
      * @param id resource identifier of a {@link ColorStateList}
      * @return {@link ColorStateList}
      */
-    public static ColorStateList getColorStateList(final int id) {
+    public static ColorStateList getColorStateList(@ColorRes final int id) {
         try {
             return ContextCompat.getColorStateList(DevUtils.getContext(), id);
         } catch (Exception e) {
@@ -164,7 +168,7 @@ public final class ResourceUtils {
      * @param colorId R.color.id
      * @return Color
      */
-    public static int getColor(final int colorId) {
+    public static int getColor(@ColorRes final int colorId) {
         try {
             return ContextCompat.getColor(DevUtils.getContext(), colorId);
         } catch (Exception e) {
@@ -178,7 +182,7 @@ public final class ResourceUtils {
      * @param drawableId R.drawable.id
      * @return {@link Drawable}
      */
-    public static Drawable getDrawable(final int drawableId) {
+    public static Drawable getDrawable(@DrawableRes final int drawableId) {
         try {
             return ContextCompat.getDrawable(DevUtils.getContext(), drawableId);
         } catch (Exception e) {
@@ -192,7 +196,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return Dimension
      */
-    public static float getDimension(final int id) {
+    public static float getDimension(@DimenRes final int id) {
         try {
             return DevUtils.getContext().getResources().getDimension(id);
         } catch (Exception e) {
@@ -426,7 +430,7 @@ public final class ResourceUtils {
      * @param resId 资源 id
      * @return 文件 byte[] 数据
      */
-    public static byte[] readBytesFromRaw(final int resId) {
+    public static byte[] readBytesFromRaw(@RawRes final int resId) {
         InputStream is = null;
         try {
             is = DevUtils.getContext().getResources().openRawResource(resId);
@@ -453,7 +457,7 @@ public final class ResourceUtils {
      * @param resId 资源 id
      * @return 文件字符串内容
      */
-    public static String readStringFromRaw(final int resId) {
+    public static String readStringFromRaw(@RawRes final int resId) {
         try {
             return new String(readBytesFromRaw(resId), "UTF-8");
         } catch (Exception e) {
@@ -506,7 +510,7 @@ public final class ResourceUtils {
      * @param resId 资源 id
      * @return {@link List<String>}
      */
-    public static List<String> geFileToListFromRaw(final int resId) {
+    public static List<String> geFileToListFromRaw(@RawRes final int resId) {
         InputStream is = null;
         BufferedReader br = null;
         try {
@@ -583,7 +587,7 @@ public final class ResourceUtils {
      * @param file  文件保存地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveRawFormFile(final int resId, final File file) {
+    public static boolean saveRawFormFile(@RawRes final int resId, final File file) {
         try {
             // 获取 raw 文件
             InputStream is = DevUtils.getContext().getResources().openRawResource(resId);

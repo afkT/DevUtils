@@ -10,6 +10,10 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 震动相关工具类
  * @author Ttt
+ * <pre>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.VIBRATE" />
+ * </pre>
  */
 public final class VibrationUtils {
 
@@ -21,9 +25,6 @@ public final class VibrationUtils {
 
     /**
      * 震动
-     * <pre>
-     *     <uses-permission android:name="android.permission.VIBRATE" />
-     * </pre>
      * @param milliseconds 震动时长 ( 毫秒 )
      */
     @RequiresPermission(android.Manifest.permission.VIBRATE)
@@ -38,9 +39,6 @@ public final class VibrationUtils {
 
     /**
      * pattern 模式震动
-     * <pre>
-     *     <uses-permission android:name="android.permission.VIBRATE" />
-     * </pre>
      * @param pattern new long[]{400, 800, 1200, 1600}, 就是指定在 400ms、800ms、1200ms、1600ms 这些时间点交替启动、关闭手机震动器
      * @param repeat  指定 pattern 数组的索引, 指定 pattern 数组中从 repeat 索引开始的震动进行循环,
      *                -1 表示只震动一次, 非 -1 表示从 pattern 数组指定下标开始重复震动
@@ -58,9 +56,6 @@ public final class VibrationUtils {
 
     /**
      * 取消震动
-     * <pre>
-     *     <uses-permission android:name="android.permission.VIBRATE" />
-     * </pre>
      */
     @RequiresPermission(android.Manifest.permission.VIBRATE)
     public static void cancel() {

@@ -7,6 +7,9 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.support.annotation.ColorInt;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -177,7 +180,7 @@ public final class SnackbarUtils {
      * @param index    添加索引
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils addView(final int layoutId, final int index) {
+    public SnackbarUtils addView(@LayoutRes final int layoutId, final int index) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
             try {
@@ -235,7 +238,7 @@ public final class SnackbarUtils {
      * @param objs  格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(final int resId, final Object... objs) {
+    public SnackbarUtils setAction(@StringRes final int resId, final Object... objs) {
         return setAction(null, resId, objs);
     }
 
@@ -246,7 +249,7 @@ public final class SnackbarUtils {
      * @param objs     格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(final View.OnClickListener listener, final int resId, final Object... objs) {
+    public SnackbarUtils setAction(final View.OnClickListener listener, @StringRes final int resId, final Object... objs) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
             String content = getFormatRes(resId, objs);
@@ -316,7 +319,7 @@ public final class SnackbarUtils {
      * @param resId R.string.id
      * @param objs  格式化参数
      */
-    public void showShort(final int resId, final Object... objs) {
+    public void showShort(@StringRes final int resId, final Object... objs) {
         priShow(getFormatRes(resId, objs), Snackbar.LENGTH_SHORT);
     }
 
@@ -325,7 +328,7 @@ public final class SnackbarUtils {
      * @param resId R.string.id
      * @param objs  格式化参数
      */
-    public void showLong(final int resId, final Object... objs) {
+    public void showLong(@StringRes final int resId, final Object... objs) {
         priShow(getFormatRes(resId, objs), Snackbar.LENGTH_LONG);
     }
 
@@ -334,7 +337,7 @@ public final class SnackbarUtils {
      * @param resId R.string.id
      * @param objs  格式化参数
      */
-    public void showIndefinite(final int resId, final Object... objs) {
+    public void showIndefinite(@StringRes final int resId, final Object... objs) {
         priShow(getFormatRes(resId, objs), Snackbar.LENGTH_INDEFINITE);
     }
 
@@ -411,7 +414,7 @@ public final class SnackbarUtils {
         private int rootGravity;
         // RootView 背景圆角大小
         private float rootCornerRadius;
-        // RootView 背景着色颜色
+        @ColorInt // RootView 背景着色颜色
         private int rootBackgroundTintColor;
         // RootView 背景图片
         private Drawable rootBackground;
@@ -426,7 +429,7 @@ public final class SnackbarUtils {
 
         // TextView 的重心
         private int textGravity;
-        // TextView 文本颜色
+        @ColorInt // TextView 文本颜色
         private int textColor;
         // TextView 字体大小
         private float textSize;
@@ -445,7 +448,7 @@ public final class SnackbarUtils {
 
         // Action Button 的重心
         private int actionGravity;
-        // Action Button 文本颜色
+        @ColorInt // Action Button 文本颜色
         private int actionColor;
         // Action Button 字体大小
         private float actionSize;
@@ -453,7 +456,7 @@ public final class SnackbarUtils {
         private int[] actionPadding;
         // RootView 背景圆角大小
         private float actionCornerRadius;
-        // RootView 背景着色颜色
+        @ColorInt // RootView 背景着色颜色
         private int actionBackgroundTintColor;
         // RootView 背景图片
         private Drawable actionBackground;
@@ -580,6 +583,7 @@ public final class SnackbarUtils {
          * 获取 RootView 背景着色颜色
          * @return RootView 背景着色颜色
          */
+        @ColorInt
         @Override
         public int getRootBackgroundTintColor() {
             return rootBackgroundTintColor;
@@ -590,7 +594,7 @@ public final class SnackbarUtils {
          * @param rootBackgroundTintColor RootView 背景着色颜色
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setRootBackgroundTintColor(int rootBackgroundTintColor) {
+        public StyleBuilder setRootBackgroundTintColor(@ColorInt int rootBackgroundTintColor) {
             this.rootBackgroundTintColor = rootBackgroundTintColor;
             return this;
         }
@@ -679,6 +683,7 @@ public final class SnackbarUtils {
          * 获取 TextView 文本颜色
          * @return TextView 文本颜色
          */
+        @ColorInt
         @Override
         public int getTextColor() {
             return textColor;
@@ -689,7 +694,7 @@ public final class SnackbarUtils {
          * @param textColor TextView 文本颜色
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setTextColor(int textColor) {
+        public StyleBuilder setTextColor(@ColorInt int textColor) {
             this.textColor = textColor;
             return this;
         }
@@ -816,6 +821,7 @@ public final class SnackbarUtils {
          * 获取 Action Button 文本颜色
          * @return Action Button 文本颜色
          */
+        @ColorInt
         @Override
         public int getActionColor() {
             return actionColor;
@@ -826,7 +832,7 @@ public final class SnackbarUtils {
          * @param actionColor Action Button 文本颜色
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setActionColor(int actionColor) {
+        public StyleBuilder setActionColor(@ColorInt int actionColor) {
             this.actionColor = actionColor;
             return this;
         }
@@ -892,6 +898,7 @@ public final class SnackbarUtils {
          * 获取 Action Button 背景着色颜色
          * @return Action Button 背景着色颜色
          */
+        @ColorInt
         @Override
         public int getActionBackgroundTintColor() {
             return actionBackgroundTintColor;
@@ -902,7 +909,7 @@ public final class SnackbarUtils {
          * @param actionBackgroundTintColor Action Button 背景着色颜色
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setActionBackgroundTintColor(int actionBackgroundTintColor) {
+        public StyleBuilder setActionBackgroundTintColor(@ColorInt int actionBackgroundTintColor) {
             this.actionBackgroundTintColor = actionBackgroundTintColor;
             return this;
         }
@@ -961,6 +968,7 @@ public final class SnackbarUtils {
          * 获取 RootView 背景着色颜色
          * @return RootView 背景着色颜色
          */
+        @ColorInt
         public int getRootBackgroundTintColor() {
             return 0;
         }
@@ -1005,6 +1013,7 @@ public final class SnackbarUtils {
          * 获取 TextView 文本颜色
          * @return TextView 文本颜色
          */
+        @ColorInt
         public int getTextColor() {
             return 0;
         }
@@ -1065,6 +1074,7 @@ public final class SnackbarUtils {
          * 获取 Action Button 文本颜色
          * @return Action Button 文本颜色
          */
+        @ColorInt
         public int getActionColor() {
             return 0;
         }
@@ -1097,6 +1107,7 @@ public final class SnackbarUtils {
          * 获取 Action Button 背景着色颜色
          * @return Action Button 背景着色颜色
          */
+        @ColorInt
         public int getActionBackgroundTintColor() {
             return 0;
         }
@@ -1616,7 +1627,7 @@ public final class SnackbarUtils {
      * @param objs  格式化参数
      * @return 格式化后的字符串
      */
-    private String getFormatRes(final int resId, final Object... objs) {
+    private String getFormatRes(@StringRes final int resId, final Object... objs) {
         try {
             if (objs != null && objs.length != 0) {
                 return DevUtils.getContext().getString(resId, objs);

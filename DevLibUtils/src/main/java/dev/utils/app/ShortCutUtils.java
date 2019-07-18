@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.AnyRes;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ import dev.utils.LogPrintUtils;
  * detail: 快捷方式工具类
  * @author Ttt
  * <pre>
- *     需要的权限:
+ *     所需权限:
  *     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
  *     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
  *     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
@@ -123,7 +124,7 @@ public final class ShortCutUtils {
      * @param name  快捷方式名称
      * @param icon  快捷方式图标
      */
-    public static void addShortcut(final Class clazz, final String name, final int icon) {
+    public static void addShortcut(final Class clazz, final String name, @AnyRes final int icon) {
         if (clazz != null) {
             addShortcut(clazz.getName(), name, icon);
         }
@@ -135,7 +136,7 @@ public final class ShortCutUtils {
      * @param name      快捷方式名称
      * @param icon      快捷方式图标
      */
-    public static void addShortcut(final String className, final String name, final int icon) {
+    public static void addShortcut(final String className, final String name, @AnyRes final int icon) {
         if (className != null && name != null) {
             try {
                 // 快捷方式点击 Intent 跳转
@@ -155,7 +156,7 @@ public final class ShortCutUtils {
      * @param name           快捷方式名称
      * @param icon           快捷方式图标
      */
-    public static void addShortcut(final Intent shortcutIntent, final String name, final int icon) {
+    public static void addShortcut(final Intent shortcutIntent, final String name, @AnyRes final int icon) {
         addShortcut(shortcutIntent, name, icon, null);
     }
 
@@ -166,7 +167,7 @@ public final class ShortCutUtils {
      * @param icon           快捷方式图标
      * @param pendingIntent  创建结果通知 (Android 8.0)
      */
-    public static void addShortcut(final Intent shortcutIntent, final String name, final int icon, final PendingIntent pendingIntent) {
+    public static void addShortcut(final Intent shortcutIntent, final String name, @AnyRes final int icon, final PendingIntent pendingIntent) {
         if (shortcutIntent != null && name != null) {
             // Android 8.0 之前
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {

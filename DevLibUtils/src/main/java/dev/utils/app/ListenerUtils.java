@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import android.app.Activity;
+import android.support.annotation.IdRes;
 import android.view.View;
 
 import java.lang.reflect.Field;
@@ -133,7 +134,7 @@ public final class ListenerUtils {
      * @param <T>  泛型
      * @return {@link View}
      */
-    private static <T extends View> T findViewById(final View view, final int id) {
+    private static <T extends View> T findViewById(final View view, @IdRes final int id) {
         if (view != null) {
             try {
                 return view.findViewById(id);
@@ -151,7 +152,7 @@ public final class ListenerUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    private static <T extends View> T findViewById(final Activity activity, final int id) {
+    private static <T extends View> T findViewById(final Activity activity, @IdRes final int id) {
         if (activity != null) {
             try {
                 return activity.findViewById(id);
