@@ -25,6 +25,11 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 进程相关工具类
  * @author Ttt
+ * <pre>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+ *     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+ * </pre>
  */
 public final class ProcessUtils {
 
@@ -175,9 +180,6 @@ public final class ProcessUtils {
 
     /**
      * 获取前台线程包名
-     * <pre>
-     *     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
-     * </pre>
      * @return 前台应用包名
      */
     @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
@@ -231,9 +233,6 @@ public final class ProcessUtils {
 
     /**
      * 获取后台服务进程
-     * <pre>
-     *     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
-     * </pre>
      * @return 后台服务进程
      */
     @RequiresPermission(android.Manifest.permission.KILL_BACKGROUND_PROCESSES)
@@ -257,9 +256,6 @@ public final class ProcessUtils {
 
     /**
      * 杀死所有的后台服务进程
-     * <pre>
-     *     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
-     * </pre>
      * @return 被暂时杀死的服务集合
      */
     @RequiresPermission(android.Manifest.permission.KILL_BACKGROUND_PROCESSES)
@@ -290,9 +286,6 @@ public final class ProcessUtils {
 
     /**
      * 杀死后台服务进程
-     * <pre>
-     *     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
-     * </pre>
      * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */

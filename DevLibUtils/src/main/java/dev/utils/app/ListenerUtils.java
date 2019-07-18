@@ -76,7 +76,7 @@ public final class ListenerUtils {
      * @param onClickListener {@link View.OnClickListener}
      * @param viewIds         View id 数组
      */
-    public static void setOnClicks(final View view, final View.OnClickListener onClickListener, final int... viewIds) {
+    public static void setOnClicks(final View view, final View.OnClickListener onClickListener, @IdRes final int... viewIds) {
         if (view != null && onClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(view, viewIds[i]);
@@ -93,7 +93,7 @@ public final class ListenerUtils {
      * @param onClickListener {@link View.OnClickListener}
      * @param viewIds         View id 数组
      */
-    public static void setOnClicks(final Activity activity, final View.OnClickListener onClickListener, final int... viewIds) {
+    public static void setOnClicks(final Activity activity, final View.OnClickListener onClickListener, @IdRes final int... viewIds) {
         if (activity != null && onClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(activity, viewIds[i]);

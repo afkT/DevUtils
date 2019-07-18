@@ -22,6 +22,12 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 定位相关工具类
  * @author Ttt
+ * <pre>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.INTERNET" />
+ *     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+ *     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+ * </pre>
  */
 public final class LocationUtils {
 
@@ -41,7 +47,6 @@ public final class LocationUtils {
 
     /**
      * 获取位置, 需要先判断是否开启了定位
-     * <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
      * @param listener {@link LocationListener}
      * @param time     间隔时间
      * @param distance 间隔距离
@@ -123,10 +128,9 @@ public final class LocationUtils {
 
     /**
      * 注册 - 使用完记得调用 {@link #unregister()}
-     * <uses-permission android:name="android.permission.INTERNET" />
-     * <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-     * <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-     * 如果 minDistance 为 0, 则通过 minTime 来定时更新, minDistance 不为 0, 则以 minDistance 为准, 两者都为 0, 则随时刷新
+     * <pre>
+     *     如果 minDistance 为 0, 则通过 minTime 来定时更新, minDistance 不为 0, 则以 minDistance 为准, 两者都为 0, 则随时刷新
+     * </pre>
      * @param minTime     位置信息更新周期 ( 单位: 毫秒 )
      * @param minDistance 位置变化最小距离: 当位置距离变化超过此值时, 将更新位置信息 ( 单位: 米 )
      * @param listener    位置刷新的回调接口

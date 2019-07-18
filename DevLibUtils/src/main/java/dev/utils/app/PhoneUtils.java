@@ -40,6 +40,7 @@ import dev.utils.LogPrintUtils;
  *     双卡双待系统 IMEI 和 IMSI 方案
  *     @see <a href="http://benson37.iteye.com/blog/1923946"/>
  *     <p></p>
+ *     所需权限:
  *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
  * </pre>
  */
@@ -491,7 +492,6 @@ public final class PhoneUtils {
 
     /**
      * 获取手机状态信息
-     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * <pre>
      *     DeviceId(IMEI) = 99000311726612
      *     DeviceSoftwareVersion = 00
@@ -811,9 +811,6 @@ public final class PhoneUtils {
     /**
      * detail: 双卡双待神机 IMSI、IMSI、PhoneType 信息实体类
      * @author Ttt
-     * <pre>
-     *     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-     * </pre>
      */
     public static class TeleInfo {
         public String imsi_1;

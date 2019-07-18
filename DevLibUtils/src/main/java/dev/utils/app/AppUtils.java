@@ -30,6 +30,9 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     MimeType
  *     @see <a href="https://www.jianshu.com/p/f3fcf033be5c"/>
+ *     <p></p>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
  * </pre>
  */
 public final class AppUtils {
@@ -575,7 +578,6 @@ public final class AppUtils {
 
     /**
      * 静默安装应用
-     * <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
      * @param file     文件
      * @param params   安装参数
      * @param isRooted 是否 root

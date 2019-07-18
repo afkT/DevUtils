@@ -33,6 +33,10 @@ import dev.DevUtils;
  * detail: 状态栏相关工具类
  * @author Blankj
  * @author Ttt
+ * <pre>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+ * </pre>
  */
 public final class BarUtils {
 
@@ -323,7 +327,8 @@ public final class BarUtils {
      * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
      */
     public static void setStatusBarColor4Drawer(@NonNull final Activity activity, @NonNull final DrawerLayout drawer,
-                                                @NonNull final View fakeStatusBar, @ColorInt final int color, @IntRange(from = 0, to = 255) final int alpha, final boolean isTop) {
+                                                @NonNull final View fakeStatusBar, @ColorInt final int color,
+                                                @IntRange(from = 0, to = 255) final int alpha, final boolean isTop) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
         drawer.setFitsSystemWindows(false);
         transparentStatusBar(activity);
@@ -384,7 +389,7 @@ public final class BarUtils {
      * @param isDecor  True to add fake status bar in DecorView,
      *                 false to add fake status bar in ContentView.
      */
-    private static void addStatusBarColor(final Activity activity, final int color, final int alpha, final boolean isDecor) {
+    private static void addStatusBarColor(final Activity activity, @ColorInt final int color, @IntRange(from = 0, to = 255) final int alpha, final boolean isDecor) {
         ViewGroup parent = isDecor ? (ViewGroup) activity.getWindow().getDecorView() : (ViewGroup) activity.findViewById(android.R.id.content);
         View fakeStatusBarView = parent.findViewWithTag(TAG_COLOR);
         if (fakeStatusBarView != null) {
@@ -404,7 +409,7 @@ public final class BarUtils {
      * @param isDecor  True to add fake status bar in DecorView,
      *                 false to add fake status bar in ContentView.
      */
-    private static void addStatusBarAlpha(final Activity activity, final int alpha, final boolean isDecor) {
+    private static void addStatusBarAlpha(final Activity activity, @IntRange(from = 0, to = 255) final int alpha, final boolean isDecor) {
         ViewGroup parent = isDecor ? (ViewGroup) activity.getWindow().getDecorView() : (ViewGroup) activity.findViewById(android.R.id.content);
         View fakeStatusBarView = parent.findViewWithTag(TAG_ALPHA);
         if (fakeStatusBarView != null) {
@@ -483,7 +488,7 @@ public final class BarUtils {
      * @param alpha 状态栏透明度
      * @return 状态栏颜色
      */
-    private static int getStatusBarColor(final int color, final int alpha) {
+    private static int getStatusBarColor(@ColorInt final int color, @IntRange(from = 0, to = 255) final int alpha) {
         if (alpha == 0) return color;
         float a = 1 - alpha / 255f;
         int red = (color >> 16) & 0xff;
@@ -502,7 +507,7 @@ public final class BarUtils {
      * @param alpha   状态栏透明度
      * @return 对应颜色的状态栏 View
      */
-    private static View createColorStatusBarView(final Context context, final int color, final int alpha) {
+    private static View createColorStatusBarView(final Context context, @ColorInt final int color, @IntRange(from = 0, to = 255) final int alpha) {
         View statusBarView = new View(context);
         statusBarView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()));
         statusBarView.setBackgroundColor(getStatusBarColor(color, alpha));
@@ -516,7 +521,7 @@ public final class BarUtils {
      * @param alpha   状态栏透明度
      * @return 对应透明度的状态栏 View
      */
-    private static View createAlphaStatusBarView(final Context context, final int alpha) {
+    private static View createAlphaStatusBarView(final Context context, @IntRange(from = 0, to = 255) final int alpha) {
         View statusBarView = new View(context);
         statusBarView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()));
         statusBarView.setBackgroundColor(Color.argb(alpha, 0, 0, 0));
@@ -563,7 +568,6 @@ public final class BarUtils {
 
     /**
      * 设置通知栏是否显示
-     * <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
      * @param isVisible 是否显示通知栏
      */
     @RequiresPermission(android.Manifest.permission.EXPAND_STATUS_BAR)

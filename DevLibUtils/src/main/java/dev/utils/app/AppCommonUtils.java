@@ -2,6 +2,7 @@ package dev.utils.app;
 
 import android.os.Build;
 import android.support.annotation.RequiresPermission;
+import android.support.annotation.StringRes;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -9,6 +10,10 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: APP 通用工具类
  * @author Ttt
+ * <pre>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+ * </pre>
  */
 public final class AppCommonUtils {
 
@@ -20,7 +25,6 @@ public final class AppCommonUtils {
 
     /**
      * 获取设备唯一 UUID
-     * <uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @return 设备唯一 UUID
      */
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
@@ -34,7 +38,7 @@ public final class AppCommonUtils {
      * @param objs  格式化参数
      * @return 格式化后的字符串
      */
-    public static String getFormatRes(final int resId, final Object... objs) {
+    public static String getFormatRes(@StringRes final int resId, final Object... objs) {
         return getFormatRes(false, resId, objs);
     }
 
@@ -45,7 +49,7 @@ public final class AppCommonUtils {
      * @param objs     格式化参数
      * @return 格式化后的字符串
      */
-    public static String getFormatRes(final boolean errorMsg, final int resId, final Object... objs) {
+    public static String getFormatRes(final boolean errorMsg, @StringRes final int resId, final Object... objs) {
         try {
             if (objs != null && objs.length != 0) {
                 return DevUtils.getContext().getString(resId, objs);

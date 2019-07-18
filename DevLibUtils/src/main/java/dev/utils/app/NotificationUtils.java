@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -159,7 +160,7 @@ public final class NotificationUtils {
      * @param msg   通知栏内容
      * @return {@link Notification}
      */
-    public static Notification createNotification(final int icon, final String title, final String msg) {
+    public static Notification createNotification(@DrawableRes final int icon, final String title, final String msg) {
         return createNotification(null, icon, title, title, msg, true, VibratePattern.obtain(0, 100, 300),
                 LightPattern.obtain(Color.WHITE, 1000, 1000));
     }
@@ -173,7 +174,7 @@ public final class NotificationUtils {
      * @param lightPattern   Led 闪灯参数
      * @return {@link Notification}
      */
-    public static Notification createNotification(final int icon, final String title, final String msg,
+    public static Notification createNotification(@DrawableRes final int icon, final String title, final String msg,
                                                   final VibratePattern vibratePattern, final LightPattern lightPattern) {
         return createNotification(null, icon, title, title, msg, true, vibratePattern, lightPattern);
     }
@@ -190,7 +191,7 @@ public final class NotificationUtils {
      * @param lightPattern   Led 闪灯参数
      * @return {@link Notification}
      */
-    public static Notification createNotification(final PendingIntent pendingIntent, final int icon, final String ticker,
+    public static Notification createNotification(final PendingIntent pendingIntent, @DrawableRes final int icon, final String ticker,
                                                   final String title, final String msg, final boolean isAutoCancel,
                                                   final VibratePattern vibratePattern, final LightPattern lightPattern) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.PowerManager;
+import android.support.annotation.IntRange;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -2100,7 +2101,7 @@ public final class ADBUtils {
      * @param brightness 亮度值
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setScreenBrightness(final int brightness) {
+    public static boolean setScreenBrightness(@IntRange(from = 0, to = 255) final int brightness) {
         if (brightness < 0) {
             return false;
         } else if (brightness > 255) {

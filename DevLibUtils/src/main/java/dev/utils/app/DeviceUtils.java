@@ -58,6 +58,10 @@ import dev.utils.LogPrintUtils;
  *     android.os.Build.VERSION.INCREMENTAL: 系统源代码控制值, 一个数字或者 git hash 值
  *     android.os.Build.VERSION.SDK: 系统的 API 级别 一般使用下面大的 SDK_INT 来查看
  *     android.os.Build.VERSION.SDK_INT: 系统的 API 级别 数字表示
+ *     <p></p>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.INTERNET" />
+ *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
  * </pre>
  */
 public final class DeviceUtils {
@@ -488,8 +492,6 @@ public final class DeviceUtils {
      * 获取设备 MAC 地址
      * <pre>
      *     没有打开 wifi, 则获取 WLAN MAC 地址失败
-     *     <uses-permission android:name="android.permission.INTERNET" />
-     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
      * </pre>
      * @return 设备 MAC 地址
      */
@@ -516,7 +518,6 @@ public final class DeviceUtils {
 
     /**
      * 获取 MAC 地址
-     * <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
      * @return MAC 地址
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
@@ -536,7 +537,6 @@ public final class DeviceUtils {
 
     /**
      * 获取 MAC 地址
-     * <uses-permission android:name="android.permission.INTERNET" />
      * @return MAC 地址
      */
     @RequiresPermission(android.Manifest.permission.INTERNET)

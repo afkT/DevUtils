@@ -16,6 +16,10 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 亮度相关工具类
  * @author Ttt
+ * <pre>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+ * </pre>
  */
 public final class BrightnessUtils {
 
@@ -41,7 +45,6 @@ public final class BrightnessUtils {
 
     /**
      * 设置是否开启自动调节亮度
-     * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
      * @param enabled {@code true} 打开, {@code false} 关闭
      * @return {@code true} success, {@code false} fail
      */
@@ -82,7 +85,6 @@ public final class BrightnessUtils {
 
     /**
      * 设置屏幕亮度
-     * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
      * @param brightness 亮度值
      * @return {@code true} success, {@code false} fail
      */

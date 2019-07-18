@@ -35,6 +35,11 @@ import dev.utils.LogPrintUtils;
  * @author Ttt
  * <pre>
  *     @see <a href="https://blog.csdn.net/Clear_ws/article/details/78204150"/>
+ *     所需权限:
+ *     <uses-permission android:name="android.permission.INTERNET" />
+ *     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
+ *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+ *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
  * </pre>
  */
 public final class NetWorkUtils {
@@ -78,9 +83,6 @@ public final class NetWorkUtils {
 
     /**
      * 设置移动网络开关 ( 无判断是否已开启移动网络 ) - 实际无效果, 非系统应用无权限
-     * <pre>
-     *     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
-     * </pre>
      * @param isOpen 是否打开移动网络
      * @return {@code true} success, {@code false} fail
      */
@@ -111,9 +113,6 @@ public final class NetWorkUtils {
 
     /**
      * 判断是否连接了网络
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -148,9 +147,6 @@ public final class NetWorkUtils {
 
     /**
      * 获取连接的网络类型
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return -1 = 等于未知, 1 = Wifi, 2 = 移动网络
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -196,9 +192,6 @@ public final class NetWorkUtils {
 
     /**
      * 判断是否连接 Wifi( 连接上、连接中 )
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -208,9 +201,6 @@ public final class NetWorkUtils {
 
     /**
      * 判断是否连接移动网络 ( 连接上、连接中 )
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -235,9 +225,6 @@ public final class NetWorkUtils {
 
     /**
      * 判断网络是否可用
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return {@code true} 可用, {@code false} 不可用
      */
     @Deprecated
@@ -254,7 +241,6 @@ public final class NetWorkUtils {
     /**
      * 使用 ping ip 方式判断网络是否可用
      * <pre>
-     *     <uses-permission android:name="android.permission.INTERNET" />
      * </pre>
      * @return {@code true} yes, {@code false} no
      */
@@ -288,9 +274,6 @@ public final class NetWorkUtils {
 
     /**
      * 获取活动网络信息
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return {@link NetworkInfo}
      */
     @Deprecated
@@ -306,9 +289,6 @@ public final class NetWorkUtils {
 
     /**
      * 获取活动网络信息
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return {@link Network}
      */
     @RequiresApi(Build.VERSION_CODES.M)
@@ -326,9 +306,6 @@ public final class NetWorkUtils {
 
     /**
      * 判断是否 4G 网络
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -353,9 +330,6 @@ public final class NetWorkUtils {
 
     /**
      * 判断 wifi 数据是否可用
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(allOf = {android.Manifest.permission.ACCESS_NETWORK_STATE, android.Manifest.permission.INTERNET})
@@ -381,9 +355,6 @@ public final class NetWorkUtils {
 
     /**
      * 获取当前网络类型
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-     * </pre>
      * @return {@link NetworkType}
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
@@ -622,9 +593,6 @@ public final class NetWorkUtils {
 
     /**
      * 根据 Wifi 获取网络 IP 地址
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     * </pre>
      * @return 网络 IP 地址
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
@@ -641,9 +609,6 @@ public final class NetWorkUtils {
 
     /**
      * 根据 Wifi 获取网关 IP 地址
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     * </pre>
      * @return 网关 IP 地址
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
@@ -660,9 +625,6 @@ public final class NetWorkUtils {
 
     /**
      * 根据 Wifi 获取子网掩码 IP 地址
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     * </pre>
      * @return 子网掩码 IP 地址
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
@@ -679,9 +641,6 @@ public final class NetWorkUtils {
 
     /**
      * 根据 Wifi 获取服务端 IP 地址
-     * <pre>
-     *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     * </pre>
      * @return 服务端 IP 地址
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
