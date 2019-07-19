@@ -5,7 +5,10 @@ import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.AnimRes;
+import android.support.annotation.AnimatorRes;
 import android.support.annotation.AnyRes;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.BoolRes;
@@ -235,6 +238,20 @@ public final class ResourceUtils {
             LogPrintUtils.eTag(TAG, e, "getInteger");
         }
         return -1;
+    }
+
+    /**
+     * 获取 Animation
+     * @param id resource identifier
+     * @return XmlResourceParser
+     */
+    public static XmlResourceParser getAnimation(@AnimatorRes @AnimRes int id) {
+        try {
+            return DevUtils.getContext().getResources().getAnimation(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAnimation");
+        }
+        return null;
     }
 
     /**

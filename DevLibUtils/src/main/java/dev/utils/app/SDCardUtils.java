@@ -70,6 +70,28 @@ public final class SDCardUtils {
     // =
 
     /**
+     * 获取内置 SDCard 中指定文件路径
+     * @param filePath 文件路径
+     * @return 内置 SDCard 中指定文件路径
+     */
+    public static File getSDCardFile(final String filePath) {
+        if (filePath == null) return null;
+        return new File(getSDCardPath(), filePath);
+    }
+
+    /**
+     * 获取内置 SDCard 中指定文件路径
+     * @param filePath 文件路径
+     * @return 内置 SDCard 中指定文件路径
+     */
+    public static String getSDCardPath(final String filePath) {
+        if (filePath == null) return null;
+        return new File(getSDCardPath(), filePath).getAbsolutePath();
+    }
+
+    // =
+
+    /**
      * 判断 SDCard 是否可用
      * @return {@code true} yes, {@code false} no
      */
