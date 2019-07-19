@@ -217,7 +217,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return Boolean
      */
-    public static boolean getBoolean(@BoolRes int id) {
+    public static boolean getBoolean(@BoolRes final int id) {
         try {
             return DevUtils.getContext().getResources().getBoolean(id);
         } catch (Exception e) {
@@ -231,7 +231,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return Integer
      */
-    public static int getInteger(@IntegerRes int id) {
+    public static int getInteger(@IntegerRes final int id) {
         try {
             return DevUtils.getContext().getResources().getInteger(id);
         } catch (Exception e) {
@@ -245,7 +245,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return XmlResourceParser
      */
-    public static XmlResourceParser getAnimation(@AnimatorRes @AnimRes int id) {
+    public static XmlResourceParser getAnimation(@AnimatorRes @AnimRes final int id) {
         try {
             return DevUtils.getContext().getResources().getAnimation(id);
         } catch (Exception e) {
@@ -259,7 +259,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return Integer
      */
-    public static String getResourceName(@AnyRes int id) {
+    public static String getResourceName(@AnyRes final int id) {
         try {
             return DevUtils.getContext().getResources().getResourceName(id);
         } catch (Exception e) {
@@ -273,7 +273,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return int[]
      */
-    public static int[] getIntArray(@ArrayRes int id) {
+    public static int[] getIntArray(@ArrayRes final int id) {
         try {
             return DevUtils.getContext().getResources().getIntArray(id);
         } catch (Exception e) {
@@ -287,7 +287,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return String[]
      */
-    public static String[] getStringArray(@ArrayRes int id) {
+    public static String[] getStringArray(@ArrayRes final int id) {
         try {
             return DevUtils.getContext().getResources().getStringArray(id);
         } catch (Exception e) {
@@ -301,7 +301,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return CharSequence[]
      */
-    public static CharSequence[] getTextArray(@ArrayRes int id) {
+    public static CharSequence[] getTextArray(@ArrayRes final int id) {
         try {
             return DevUtils.getContext().getResources().getTextArray(id);
         } catch (Exception e) {
