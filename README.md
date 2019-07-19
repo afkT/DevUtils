@@ -6,12 +6,12 @@
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Cocoapods](https://img.shields.io/badge/utils-100+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/README.md)
 
-![module](https://raw.githubusercontent.com/afkT/DevUtils/master/file/DevUtils.png)
-
 # About (持续更新，目前含100+工具类)
 
 > DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用
 > <p>该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目，以及内置部分常用的资源文件，如 color.xml、toast_layout.xml 等
+
+![module](https://raw.githubusercontent.com/afkT/DevUtils/master/file/DevUtils.png)
 
 # Gradle
 
