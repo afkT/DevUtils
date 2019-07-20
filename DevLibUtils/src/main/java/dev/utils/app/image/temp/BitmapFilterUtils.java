@@ -1,4 +1,4 @@
-package dev.utils.app.image;
+package dev.utils.app.image.temp;
 
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -26,6 +26,10 @@ public final class BitmapFilterUtils {
 
     // ========
     // = 效果 =
+    // ========
+
+    // ========
+    // = 模糊 =
     // ========
 
     /**
@@ -77,7 +81,7 @@ public final class BitmapFilterUtils {
      * @param radius 模糊度 (0-25)
      * @return 模糊后的图片
      */
-    public static Bitmap blurFast(final Bitmap bitmap, @IntRange(from = 0, to = 25) final int radius) {
+    public static Bitmap fastBlur(final Bitmap bitmap, @IntRange(from = 0, to = 25) final int radius) {
         if (bitmap == null) return null;
         // 如果 Bitmap 不允许编辑, 则返回 null
         if (!bitmap.isMutable()) return null;
@@ -273,11 +277,16 @@ public final class BitmapFilterUtils {
         try {
             bitmap.setPixels(pix, 0, width, 0, 0, width, height);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "blurFast");
+            LogPrintUtils.eTag(TAG, e, "fastBlur");
             return null;
         }
         return bitmap;
     }
+
+    // ========
+    // = 模糊 =
+    // ========
+
 
     // ======================
     // = 其他工具类实现代码 =
