@@ -55,5 +55,26 @@ public final class ImageUtils {
     // = Bitmap、Drawable 等获取 =
     // ===========================
 
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
 
+    // ===============
+    // = BitmapUtils =
+    // ===============
+
+    /**
+     * 复制 Bitmap
+     * @param bitmap    {@link Bitmap}
+     * @param newBitmap 是否创建新的 Bitmap
+     * @return {@link Bitmap}
+     */
+    private static Bitmap copyBitmap(final Bitmap bitmap, final boolean newBitmap) {
+        if (bitmap == null) return null;
+        // 需要创建新的 Bitmap 或 原 Bitmap 无法修改
+        if (newBitmap || !bitmap.isMutable()) { // 则复制新的
+            return bitmap.copy(bitmap.getConfig(), true);
+        }
+        return bitmap;
+    }
 }

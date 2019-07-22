@@ -343,8 +343,8 @@ public final class BitmapFilterUtils {
     /**
      * 光照效果处理
      * @param bitmap  待处理原图
-     * @param centerX 光源在X轴的位置
-     * @param centerY 光源在Y轴的位置
+     * @param centerX 光源在 X 轴的位置
+     * @param centerY 光源在 Y 轴的位置
      * @return 光照效果处理后的图片
      */
     public static Bitmap sunshine(final Bitmap bitmap, final int centerX, final int centerY) {
@@ -416,7 +416,7 @@ public final class BitmapFilterUtils {
     public static Bitmap film(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
-            // RGBA的最大值
+            // ARGB 的最大值
             final int MAX_VALUE = 255;
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
@@ -473,7 +473,7 @@ public final class BitmapFilterUtils {
      * @param delta  图片的亮暗程度值, 越小图片会越亮
      * @return 柔化效果处理后的图片
      */
-    public static Bitmap soften(final Bitmap bitmap, @IntRange(from = 1, to = 24) int delta) {
+    public static Bitmap soften(final Bitmap bitmap, @IntRange(from = 1, to = 24) final int delta) {
         if (bitmap == null) return null;
         if (delta > 24 || delta <= 0) return null;
         try {
@@ -660,7 +660,7 @@ public final class BitmapFilterUtils {
 //    /**
 //     * 将彩色图转换为灰度图
 //     * @param bitmap 待处理原图
-//     * @return {@link Bitmap}
+//     * @return 灰度图
 //     */
 //    public static Bitmap toGray(final Bitmap bitmap) {
 //        if (bitmap == null) return null;
@@ -670,7 +670,7 @@ public final class BitmapFilterUtils {
 //            int[] pixels = new int[width * height]; // 通过位图的大小创建像素点数组
 //            bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
 //
-//            int alpha = 0xFF << 24; // 默认将bitmap当成24色图片
+//            int alpha = 0xFF << 24; // 默认将 bitmap 当成 24 色图片
 //            for (int i = 0; i < height; i++) {
 //                for (int j = 0; j < width; j++) {
 //                    int grey = pixels[width * i + j];
@@ -684,9 +684,9 @@ public final class BitmapFilterUtils {
 //                    pixels[width * i + j] = grey;
 //                }
 //            }
-//            Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-//            result.setPixels(pixels, 0, width, 0, 0, width, height);
-//            return result;
+//            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+//            newBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+//            return newBitmap;
 //        } catch (Exception e) {
 //            LogPrintUtils.eTag(TAG, e, "toGray");
 //        }
@@ -856,28 +856,5 @@ public final class BitmapFilterUtils {
             LogPrintUtils.eTag(TAG, e, "lumHueSaturation");
         }
         return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = BitmapUtils =
-    // ===============
-
-    /**
-     * 复制 Bitmap
-     * @param bitmap    {@link Bitmap}
-     * @param newBitmap 是否创建新的 Bitmap
-     * @return {@link Bitmap}
-     */
-    private static Bitmap copyBitmap(final Bitmap bitmap, final boolean newBitmap) {
-        if (bitmap == null) return null;
-        // 需要创建新的 Bitmap 或 原 Bitmap 无法修改
-        if (newBitmap || !bitmap.isMutable()) { // 则复制新的
-            return bitmap.copy(bitmap.getConfig(), true);
-        }
-        return bitmap;
     }
 }
