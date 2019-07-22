@@ -18,16 +18,16 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Bitmap 滤镜、效果工具类
+ * detail: 图片 ( 滤镜、效果 ) 工具类
  * @author Ttt
  */
-public final class BitmapFilterUtils {
+public final class ImageFilterUtils {
 
-    private BitmapFilterUtils() {
+    private ImageFilterUtils() {
     }
 
     // 日志 TAG
-    private static final String TAG = BitmapFilterUtils.class.getSimpleName();
+    private static final String TAG = ImageFilterUtils.class.getSimpleName();
 
     // ========
     // = 效果 =
