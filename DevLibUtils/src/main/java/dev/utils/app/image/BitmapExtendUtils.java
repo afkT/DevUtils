@@ -14,7 +14,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.text.TextUtils;
 
@@ -23,7 +22,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 
 import dev.DevUtils;
@@ -144,33 +142,6 @@ public final class BitmapExtendUtils {
     }
 
     // =
-
-    /**
-     * Stream 转换成 byte[]
-     * @param is
-     * @return
-     */
-    public static byte[] getBytesFromStream(final InputStream is) {
-        if (is == null) return null;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
-        try {
-            int len;
-            byte[] buffer = new byte[1024];
-            while ((len = is.read(buffer)) >= 0) {
-                baos.write(buffer, 0, len);
-            }
-        } catch (IOException e) {
-            LogPrintUtils.eTag(TAG, e, "getBytesFromStream");
-        } finally {
-            if (baos != null) {
-                try {
-                    baos.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-        return baos.toByteArray();
-    }
 
     /**
      * 获取一个指定大小的bitmap
@@ -593,19 +564,6 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 旋转图片
-     * @param bitmap 要旋转的图片
-     * @param angle  旋转角度
-     * @return {@link Bitmap}
-     */
-    public static Bitmap rotate(final Bitmap bitmap, final int angle) {
-        if (bitmap == null) return null;
-        Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-    }
-
-    /**
      * 水平翻转处理
      * @param bitmap 原图
      * @return {@link Bitmap}
@@ -627,37 +585,6 @@ public final class BitmapExtendUtils {
         Matrix matrix = new Matrix();
         matrix.preScale(1, -1);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-    }
-
-    /**
-     * 读取图片属性 图片被旋转的角度
-     * @param filePath 图片绝对路径
-     * @return 旋转的角度
-     */
-    public static int getImageDegree(final String filePath) {
-        if (TextUtils.isEmpty(filePath)) return 0;
-        File file = new File(filePath);
-        if (file.isDirectory() || !file.exists()) return 0;
-
-        int degree = 0;
-        try {
-            ExifInterface exifInterface = new ExifInterface(filePath);
-            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-            switch (orientation) {
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    degree = 90;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    degree = 180;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    degree = 270;
-                    break;
-            }
-        } catch (IOException e) {
-            LogPrintUtils.eTag(TAG, e, "getImageDegree");
-        }
-        return degree;
     }
 
 
@@ -712,5 +639,207 @@ public final class BitmapExtendUtils {
         // 设置好缩放比例后, 加载图片进内容
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeStream(new BufferedInputStream(resolver.openInputStream(uri), 16 * 1024), null, options);
+    }
+
+
+    // =================
+
+//    /**
+//     * 缩放处理
+//     * @param scaling 缩放比例
+//     * @return 缩放后的图片
+//     */
+//    public Bitmap scale(final Bitmap bitmap, final float scaling) {
+//        Matrix matrix = new Matrix();
+//        matrix.postScale(scaling, scaling);
+//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+//    }
+//
+//    /**
+//     * 缩放处理
+//     * @param newWidth 新的宽度
+//     * @return
+//     */
+//    public Bitmap scaleByWidth(final Bitmap bitmap, final int newWidth) {
+//        return scale(bitmap,(float) newWidth / bitmap.getWidth());
+//    }
+//
+//    /**
+//     * 缩放处理
+//     * @param newHeight 新的高度
+//     * @return
+//     */
+//    public Bitmap scaleByHeight(final Bitmap bitmap, final int newHeight) {
+//        return scale(bitmap,(float) newHeight / bitmap.getHeight());
+//    }
+//
+//    /**
+//     * 水平翻转处理
+//     * @param bitmap 原图
+//     * @return 水平翻转后的图片
+//     */
+//    public Bitmap reverseByHorizontal(final Bitmap bitmap) {
+//        Matrix matrix = new Matrix();
+//        matrix.preScale(-1, 1);
+//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
+//    }
+//
+//    /**
+//     * 垂直翻转处理
+//     * @param bitmap 原图
+//     * @return 垂直翻转后的图片
+//     */
+//    public Bitmap reverseByVertical(final Bitmap bitmap) {
+//        Matrix matrix = new Matrix();
+//        matrix.preScale(1, -1);
+//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
+//    }
+//
+//    /**
+//     * 将给定资源ID的Drawable转换成Bitmap
+//     * @param context {@link Context}
+//     * @param resId   Drawable资源文件的ID
+//     * @return 新的Bitmap
+//     */
+//    public Bitmap drawableToBitmap(final Context context, final int resId) {
+//        BitmapFactory.Options opt = new BitmapFactory.Options();
+//        opt.inPreferredConfig = Bitmap.Config.RGB_565;
+//        opt.inPurgeable = true;
+//        opt.inInputShareable = true;
+//        InputStream is = context.getResources().openRawResource(resId);
+//        return BitmapFactory.decodeStream(is, null, opt);
+//    }
+//
+//    /**
+//     * 圆角处理
+//     * @param pixels 角度, 度数越大圆角越大
+//     * @return 转换成圆角后的图片
+//     */
+//    public Bitmap roundCorner(final Bitmap bitmap, final float pixels) {
+//        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+//        Canvas canvas = new Canvas(output);
+//        Paint paint = new Paint();
+//        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()); // 创建一个同原图一样大小的矩形, 用于把原图绘制到这个矩形上
+//        RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
+//        paint.setAntiAlias(true);
+//        canvas.drawARGB(0, 0, 0, 0); // 涂上黑色全透明的底色
+//        paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
+//        canvas.drawRoundRect(rectF, pixels, pixels, paint); // 用给给定的画笔把给定的矩形以给定的圆角的度数画到画布
+//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+//        canvas.drawBitmap(bitmap, rect, rect, paint); // 用画笔paint将原图bitmap根据新的矩形重新绘制
+//        return output;
+//    }
+//
+//    /**
+//     * 倒影处理
+//     * @param reflectionSpacing 原图与倒影之间的间距
+//     * @param reflectionHeight  倒影高度
+//     * @return 加上倒影后的图片
+//     */
+//    public Bitmap reflection(final Bitmap bitmap, final int reflectionSpacing, final int reflectionHeight) {
+//        int width = bitmap.getWidth();
+//        int height = bitmap.getHeight();
+//
+//        // 获取倒影图片, 并创建一张宽度与原图相同, 但高度等于原图的高度加上间距加上倒影的高度的图片, 并创建画布, 画布分为上中下三部分, 上: 是原图, 中: 是原图与倒影的间距, 下: 是倒影
+//        Bitmap reflectionImage = reverseByVertical(bitmap); //
+//        Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
+//        Canvas canvas = new Canvas(bitmapWithReflection);
+//
+//        // 将原图画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是原图的高度加上原图与倒影之间的间距
+//        canvas.drawBitmap(bitmap, 0, 0, null);
+//        canvas.drawBitmap(reflectionImage, 0, height + reflectionSpacing, null);
+//        reflectionImage.recycle();
+//
+//        // 将倒影改成半透明, 创建画笔, 并设置画笔的渐变从半透明的白色到全透明的白色, 然后再倒影上面画半透明效果
+//        Paint paint = new Paint();
+//        paint.setShader(new LinearGradient(0, bitmap.getHeight(), 0, bitmapWithReflection.getHeight() + reflectionSpacing, 0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP));
+//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+//        canvas.drawRect(0, height + reflectionSpacing, width, bitmapWithReflection.getHeight() + reflectionSpacing, paint);
+//
+//        return bitmapWithReflection;
+//    }
+//
+//    /**
+//     * 倒影处理
+//     * @return 加上倒影后的图片
+//     */
+//    public Bitmap reflection(final Bitmap bitmap) {
+//        return reflection(bitmap, 4, bitmap.getHeight() / 2);
+//    }
+
+    // =================
+
+
+
+    // = 裁剪图片, 裁剪中间部分, 防止全图压缩 =
+
+    /**
+     * 裁剪图片(默认比例16:9)
+     * @param filePath 保存路径
+     * @param bitmap   图片
+     */
+    public static void cropBitmap(final String filePath, final Bitmap bitmap) {
+        cropBitmap(filePath, bitmap, 16.0f, 9.0f);
+    }
+
+    /**
+     * 裁剪图片
+     * @param filePath    保存路径
+     * @param bitmap      图片
+     * @param widthScale  宽度比例
+     * @param heightScale 高度比例
+     */
+    public static void cropBitmap(final String filePath, final Bitmap bitmap, final float widthScale, final float heightScale) {
+        if (TextUtils.isEmpty(filePath)) return;
+        File file = new File(filePath);
+        if (file.isDirectory() || !file.exists()) return;
+
+        if (bitmap == null) {
+            return; // 防止图片为 null
+        }
+        // 裁剪处理后的图片
+        Bitmap cBitmap = null;
+        try {
+            // 获取图片宽度
+            int iWidth = bitmap.getWidth();
+            // 获取图片高度
+            int iHeight = bitmap.getHeight();
+            // 获取需要裁剪的高度
+            int rHeight = (int) ((iWidth * heightScale) / widthScale);
+            // 判断需要裁剪的高度与偏移差距
+            int dHeight = iHeight - rHeight;
+            // =
+            // 判断裁剪方式
+            if (dHeight >= 0) { // 属于宽度 * 对应比例 >= 高度, 以高度做偏移
+                // 计算偏移的y轴
+                int offsetY = dHeight / 2;
+                // 创建图片
+                cBitmap = Bitmap.createBitmap(bitmap, 0, offsetY, iWidth, rHeight, null, false);
+            } else { // 以宽度做偏移
+                // 获取需要裁剪的宽度
+                int rWidth = (int) ((iHeight * widthScale) / heightScale);
+                // 判断需要裁剪的宽度与偏移差距
+                int dWidth = iWidth - rWidth;
+                // 计算偏移的X轴
+                int offsetX = dWidth / 2;
+                // 创建图片
+                cBitmap = Bitmap.createBitmap(bitmap, offsetX, 0, rWidth, iHeight, null, false);
+            }
+            if (cBitmap != null) {
+                // 保存图片
+                BitmapUtils.saveBitmapToSDCardPNG(cBitmap, filePath, 85);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "cropBitmap");
+        } finally {
+            // = 清空资源 =
+            try {
+                if (cBitmap != null && !cBitmap.isRecycled()) {
+                    cBitmap.recycle();
+                }
+            } catch (Exception e) {
+            }
+            cBitmap = null;
+        }
     }
 }

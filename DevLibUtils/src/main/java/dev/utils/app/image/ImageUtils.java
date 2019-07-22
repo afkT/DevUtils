@@ -6,8 +6,6 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -17,7 +15,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.media.ExifInterface;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
@@ -312,62 +309,6 @@ public final class ImageUtils {
         Bitmap ret = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
         if (recycle && !src.isRecycled() && ret != src) src.recycle();
         return ret;
-    }
-
-    /**
-     * 旋转图片
-     * @param src     源图片
-     * @param degrees 旋转角度
-     * @param px      旋转点横坐标
-     * @param py      旋转点纵坐标
-     * @return 旋转后的图片
-     */
-    public static Bitmap rotate(final Bitmap src, final int degrees, final float px, final float py) {
-        return rotate(src, degrees, px, py, false);
-    }
-
-    /**
-     * 旋转图片
-     * @param src     源图片
-     * @param degrees 旋转角度
-     * @param px      旋转点横坐标
-     * @param py      旋转点纵坐标
-     * @param recycle 是否回收
-     * @return 旋转后的图片
-     */
-    public static Bitmap rotate(final Bitmap src, final int degrees, final float px, final float py, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        if (degrees == 0) return src;
-        Matrix matrix = new Matrix();
-        matrix.setRotate(degrees, px, py);
-        Bitmap ret = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
-        if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
-    }
-
-    /**
-     * 获取图片旋转角度 - 返回 -1 表示异常
-     * @param filePath
-     * @return 旋转角度
-     */
-    public static int getRotateDegree(final String filePath) {
-        try {
-            ExifInterface exifInterface = new ExifInterface(filePath);
-            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-            switch (orientation) {
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    return 90;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    return 180;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    return 270;
-                default:
-                    return 0;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getRotateDegree");
-            return -1;
-        }
     }
 
     /**
