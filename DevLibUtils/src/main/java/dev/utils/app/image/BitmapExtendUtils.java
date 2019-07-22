@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -351,38 +350,6 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 将彩色图转换为灰度图
-     * @param bitmap 源Bitmap
-     * @return {@link Bitmap}
-     */
-    public static Bitmap convertGreyImg(final Bitmap bitmap) {
-        if (bitmap == null) return null;
-        int width = bitmap.getWidth(); // 获取位图的宽
-        int height = bitmap.getHeight(); // 获取位图的高
-
-        int[] pixels = new int[width * height]; // 通过位图的大小创建像素点数组
-
-        bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
-        int alpha = 0xFF << 24;
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                int grey = pixels[width * i + j];
-
-                int red = ((grey & 0x00FF0000) >> 16);
-                int green = ((grey & 0x0000FF00) >> 8);
-                int blue = (grey & 0x000000FF);
-
-                grey = (int) ((float) red * 0.3 + (float) green * 0.59 + (float) blue * 0.11);
-                grey = alpha | (grey << 16) | (grey << 8) | grey;
-                pixels[width * i + j] = grey;
-            }
-        }
-        Bitmap result = Bitmap.createBitmap(width, height, Config.RGB_565);
-        result.setPixels(pixels, 0, width, 0, 0, width, height);
-        return result;
-    }
-
-    /**
      * 转换图片成圆形
      * @param bitmap 传入Bitmap对象
      * @return {@link Bitmap}
@@ -660,97 +627,6 @@ public final class BitmapExtendUtils {
         Matrix matrix = new Matrix();
         matrix.preScale(1, -1);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-    }
-
-    /**
-     * 更改图片色系, 变亮或变暗
-     * @param src
-     * @param delta 图片的亮暗程度值, 越小图片会越亮, 取值范围(0,24)
-     * @return {@link Bitmap}
-     */
-    public static Bitmap adjustTone(final Bitmap src, final int delta) {
-        if (src == null) return null;
-        if (delta >= 24 || delta <= 0) {
-            return null;
-        }
-        // 设置高斯矩阵
-        int[] gauss = new int[]{1, 2, 1, 2, 4, 2, 1, 2, 1};
-        int width = src.getWidth();
-        int height = src.getHeight();
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Config.RGB_565);
-
-        int pixR = 0;
-        int pixG = 0;
-        int pixB = 0;
-        int pixColor = 0;
-        int newR = 0;
-        int newG = 0;
-        int newB = 0;
-        int idx = 0;
-        int[] pixels = new int[width * height];
-
-        src.getPixels(pixels, 0, width, 0, 0, width, height);
-        for (int i = 1, length = height - 1; i < length; i++) {
-            for (int k = 1, len = width - 1; k < len; k++) {
-                idx = 0;
-                for (int m = -1; m <= 1; m++) {
-                    for (int n = -1; n <= 1; n++) {
-                        pixColor = pixels[(i + m) * width + k + n];
-                        pixR = Color.red(pixColor);
-                        pixG = Color.green(pixColor);
-                        pixB = Color.blue(pixColor);
-
-                        newR += (pixR * gauss[idx]);
-                        newG += (pixG * gauss[idx]);
-                        newB += (pixB * gauss[idx]);
-                        idx++;
-                    }
-                }
-                newR /= delta;
-                newG /= delta;
-                newB /= delta;
-                newR = Math.min(255, Math.max(0, newR));
-                newG = Math.min(255, Math.max(0, newG));
-                newB = Math.min(255, Math.max(0, newB));
-                pixels[i * width + k] = Color.argb(255, newR, newG, newB);
-                newR = 0;
-                newG = 0;
-                newB = 0;
-            }
-        }
-        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
-        return bitmap;
-    }
-
-    /**
-     * 将彩色图转换为黑白图
-     * @param bitmap 位图
-     * @return {@link Bitmap}
-     */
-    public static Bitmap convertToBlackWhite(final Bitmap bitmap) {
-        if (bitmap == null) return null;
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        int[] pixels = new int[width * height];
-        bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
-
-        int alpha = 0xFF << 24; // 默认将bitmap当成24色图片
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                int grey = pixels[width * i + j];
-
-                int red = ((grey & 0x00FF0000) >> 16);
-                int green = ((grey & 0x0000FF00) >> 8);
-                int blue = (grey & 0x000000FF);
-
-                grey = (int) (red * 0.3 + green * 0.59 + blue * 0.11);
-                grey = alpha | (grey << 16) | (grey << 8) | grey;
-                pixels[width * i + j] = grey;
-            }
-        }
-        Bitmap newBmp = Bitmap.createBitmap(width, height, Config.RGB_565);
-        newBmp.setPixels(pixels, 0, width, 0, 0, width, height);
-        return newBmp;
     }
 
     /**

@@ -705,57 +705,6 @@ public final class ImageUtils {
     }
 
     /**
-     * 转为 alpha 位图
-     * @param src 源图片
-     * @return alpha 位图
-     */
-    public static Bitmap toAlpha(final Bitmap src) {
-        return toAlpha(src, false);
-    }
-
-    /**
-     * 转为 alpha 位图
-     * @param src     源图片
-     * @param recycle 是否回收
-     * @return alpha 位图
-     */
-    public static Bitmap toAlpha(final Bitmap src, final Boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        Bitmap ret = src.extractAlpha();
-        if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
-    }
-
-    /**
-     * 转为灰度图片
-     * @param src 源图片
-     * @return 灰度图
-     */
-    public static Bitmap toGray(final Bitmap src) {
-        return toGray(src, false);
-    }
-
-    /**
-     * 转为灰度图片
-     * @param src     源图片
-     * @param recycle 是否回收
-     * @return 灰度图
-     */
-    public static Bitmap toGray(final Bitmap src, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        Bitmap ret = Bitmap.createBitmap(src.getWidth(), src.getHeight(), src.getConfig());
-        Canvas canvas = new Canvas(ret);
-        Paint paint = new Paint();
-        ColorMatrix colorMatrix = new ColorMatrix();
-        colorMatrix.setSaturation(0);
-        ColorMatrixColorFilter colorMatrixColorFilter = new ColorMatrixColorFilter(colorMatrix);
-        paint.setColorFilter(colorMatrixColorFilter);
-        canvas.drawBitmap(src, 0, 0, paint);
-        if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
-    }
-
-    /**
      * 保存图片
      * @param src      源图片
      * @param filePath

@@ -306,7 +306,7 @@ public final class BitmapFilterUtils {
         try {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
-            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+
             int pixColor = 0;
             int pixR = 0;
             int pixG = 0;
@@ -330,6 +330,8 @@ public final class BitmapFilterUtils {
                     pixels[width * i + k] = newColor;
                 }
             }
+
+            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
             newBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
             return newBitmap;
         } catch (Exception e) {
@@ -350,7 +352,6 @@ public final class BitmapFilterUtils {
         try {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
-            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
 
             int pixR = 0;
             int pixG = 0;
@@ -398,6 +399,7 @@ public final class BitmapFilterUtils {
                 }
             }
 
+            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
             newBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
             return newBitmap;
         } catch (Exception e) {
@@ -418,7 +420,6 @@ public final class BitmapFilterUtils {
             final int MAX_VALUE = 255;
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
-            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
 
             int pixR = 0;
             int pixG = 0;
@@ -454,6 +455,7 @@ public final class BitmapFilterUtils {
                 }
             }
 
+            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
             newBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
             return newBitmap;
         } catch (Exception e) {
@@ -464,18 +466,22 @@ public final class BitmapFilterUtils {
 
     /**
      * 柔化效果处理
+     * <pre>
+     *     delta 取值范围只要大于等于 1 就可以, 但是避免太大, 导致变得很暗, 限制 1-24
+     * </pre>
      * @param bitmap 待处理原图
+     * @param delta  图片的亮暗程度值, 越小图片会越亮
      * @return 柔化效果处理后的图片
      */
-    public static Bitmap soften(final Bitmap bitmap) {
+    public static Bitmap soften(final Bitmap bitmap, @IntRange(from = 1, to = 24) int delta) {
         if (bitmap == null) return null;
+        if (delta > 24 || delta <= 0) return null;
         try {
             // 高斯矩阵
             int[] gauss = new int[]{1, 2, 1, 2, 4, 2, 1, 2, 1};
 
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
-            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
 
             int pixR = 0;
             int pixG = 0;
@@ -486,8 +492,6 @@ public final class BitmapFilterUtils {
             int newR = 0;
             int newG = 0;
             int newB = 0;
-
-            int delta = 16; // 值越小图片会越亮, 越大则越暗
 
             int idx = 0;
             int[] pixels = new int[width * height];
@@ -502,9 +506,9 @@ public final class BitmapFilterUtils {
                             pixG = Color.green(pixColor);
                             pixB = Color.blue(pixColor);
 
-                            newR = newR + (pixR * gauss[idx]);
-                            newG = newG + (pixG * gauss[idx]);
-                            newB = newB + (pixB * gauss[idx]);
+                            newR += (pixR * gauss[idx]);
+                            newG += (pixG * gauss[idx]);
+                            newB += (pixB * gauss[idx]);
                             idx++;
                         }
                     }
@@ -523,6 +527,8 @@ public final class BitmapFilterUtils {
                     newB = 0;
                 }
             }
+
+            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
             newBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
             return newBitmap;
         } catch (Exception e) {
@@ -544,7 +550,6 @@ public final class BitmapFilterUtils {
 
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
-            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
 
             int pixR = 0;
             int pixG = 0;
@@ -588,6 +593,7 @@ public final class BitmapFilterUtils {
                 }
             }
 
+            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
             newBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
             return newBitmap;
         } catch (Exception e) {
@@ -606,7 +612,6 @@ public final class BitmapFilterUtils {
         try {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
-            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
 
             int pixR = 0;
             int pixG = 0;
@@ -643,10 +648,70 @@ public final class BitmapFilterUtils {
                 }
             }
 
+            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
             newBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
             return newBitmap;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "emboss");
+        }
+        return null;
+    }
+
+//    /**
+//     * 将彩色图转换为灰度图
+//     * @param bitmap 待处理原图
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap toGray(final Bitmap bitmap) {
+//        if (bitmap == null) return null;
+//        try {
+//            int width = bitmap.getWidth(); // 获取位图的宽
+//            int height = bitmap.getHeight(); // 获取位图的高
+//            int[] pixels = new int[width * height]; // 通过位图的大小创建像素点数组
+//            bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
+//
+//            int alpha = 0xFF << 24; // 默认将bitmap当成24色图片
+//            for (int i = 0; i < height; i++) {
+//                for (int j = 0; j < width; j++) {
+//                    int grey = pixels[width * i + j];
+//
+//                    int red = ((grey & 0x00FF0000) >> 16);
+//                    int green = ((grey & 0x0000FF00) >> 8);
+//                    int blue = (grey & 0x000000FF);
+//
+//                    grey = (int) ((float) red * 0.3 + (float) green * 0.59 + (float) blue * 0.11);
+//                    grey = alpha | (grey << 16) | (grey << 8) | grey;
+//                    pixels[width * i + j] = grey;
+//                }
+//            }
+//            Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+//            result.setPixels(pixels, 0, width, 0, 0, width, height);
+//            return result;
+//        } catch (Exception e) {
+//            LogPrintUtils.eTag(TAG, e, "toGray");
+//        }
+//        return null;
+//    }
+
+    /**
+     * 转为灰度图片
+     * @param bitmap 待处理原图
+     * @return 灰度图
+     */
+    public static Bitmap toGray(final Bitmap bitmap) {
+        if (bitmap == null) return null;
+        try {
+            Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+            Canvas canvas = new Canvas(newBitmap);
+            Paint paint = new Paint();
+            ColorMatrix colorMatrix = new ColorMatrix();
+            colorMatrix.setSaturation(0);
+            ColorMatrixColorFilter colorMatrixColorFilter = new ColorMatrixColorFilter(colorMatrix);
+            paint.setColorFilter(colorMatrixColorFilter);
+            canvas.drawBitmap(bitmap, 0, 0, paint);
+            return newBitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "toGray");
         }
         return null;
     }
