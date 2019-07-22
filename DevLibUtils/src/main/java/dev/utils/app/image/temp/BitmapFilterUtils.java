@@ -658,7 +658,7 @@ public final class BitmapFilterUtils {
     }
 
 //    /**
-//     * 将彩色图转换为灰度图
+//     * 转为灰度图片
 //     * @param bitmap 待处理原图
 //     * @return 灰度图
 //     */
