@@ -8,12 +8,15 @@ import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.AnimRes;
 import android.support.annotation.AnimatorRes;
 import android.support.annotation.AnyRes;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.BoolRes;
+import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
@@ -196,6 +199,34 @@ public final class ResourceUtils {
             return ContextCompat.getDrawable(DevUtils.getContext(), drawableId);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDrawable");
+        }
+        return null;
+    }
+
+    /**
+     * 获取指定颜色 Drawable
+     * @param color 颜色值
+     * @return 指定颜色 Drawable
+     */
+    public static ColorDrawable getColorDrawable(@ColorInt int color){
+        try {
+            return new ColorDrawable(color);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getColorDrawable");
+        }
+        return null;
+    }
+
+    /**
+     * 获取十六进制颜色值 Drawable
+     * @param color 十六进制颜色值
+     * @return 十六进制颜色值 Drawable
+     */
+    public static ColorDrawable getColorDrawable(final String color){
+        try {
+            return new ColorDrawable(Color.parseColor(color));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getColorDrawable");
         }
         return null;
     }

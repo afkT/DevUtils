@@ -18,7 +18,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
@@ -874,38 +873,6 @@ public final class ImageUtils {
             }
         }
         return true;
-    }
-
-
-
-
-    /**
-     * 将十进制颜色(Int)转换为Drawable对象
-     * @param color
-     * @return
-     */
-    public static Drawable intToDrawable(final int color) {
-        try {
-            return new ColorDrawable(color);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "intToDrawable");
-        }
-        return null;
-    }
-
-    /**
-     * 将十六进制颜色(String)转化为Drawable对象
-     * @param color
-     * @return
-     */
-    public static Drawable stringToDrawable(final String color) {
-        if (TextUtils.isEmpty(color)) return null;
-        try {
-            return new ColorDrawable(Color.parseColor(color));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "stringToDrawable");
-        }
-        return null;
     }
 
     /**
