@@ -1,17 +1,22 @@
 package dev.utils.app.image.temp;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 
 import java.io.BufferedOutputStream;
 import java.io.Closeable;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -231,6 +236,163 @@ public final class ImageUtils {
     // = 本地获取 =
     // ============
 
+    /**
+     * 获取 Bitmap
+     * @param file 文件
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeFile(final File file) {
+        return decodeFile(getAbsolutePath(file), null);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param file 文件
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeFile(final File file, final BitmapFactory.Options options) {
+        return decodeFile(getAbsolutePath(file), options);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param filePath 文件路径
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeFile(final String filePath) {
+        return decodeFile(filePath, null);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param filePath 文件路径
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeFile(final String filePath, final BitmapFactory.Options options) {
+        if (filePath == null) return null;
+        return BitmapFactory.decodeFile(filePath, options);
+    }
+
+    // =
+
+    /**
+     * 获取 Bitmap
+     * @param resId resource identifier
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeResource(@DrawableRes final int resId) {
+        return decodeResource(resId, null);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param resId resource identifier
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeResource(@DrawableRes final int resId, final BitmapFactory.Options options) {
+        return BitmapFactory.decodeResource(getResources(), resId, options);
+    }
+
+    // =
+
+    /**
+     * 获取 Bitmap
+     * @param inputStream {@link InputStream}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeStream(final InputStream inputStream) {
+        return decodeStream(inputStream, null);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param inputStream {@link InputStream}
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeStream(final InputStream inputStream, final BitmapFactory.Options options) {
+        if (inputStream == null) return null;
+        return BitmapFactory.decodeStream(inputStream, null, options);
+    }
+
+    // =
+
+    /**
+     * 获取 Bitmap
+     * @param fd 文件描述
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeFileDescriptor(final FileDescriptor fd) {
+        return decodeFileDescriptor(fd, null);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param fd 文件描述
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeFileDescriptor(final FileDescriptor fd, final BitmapFactory.Options options) {
+        if (fd == null) return null;
+        return BitmapFactory.decodeFileDescriptor(fd, null, options);
+    }
+
+    // =
+
+    /**
+     * 获取 Bitmap
+     * @param data byte[]
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeByteArray(final byte[] data) {
+        return decodeByteArray(data, 0, (data == null) ? 0 : data.length, null);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param data byte[]
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeByteArray(final byte[] data, final BitmapFactory.Options options) {
+        return decodeByteArray(data, 0, (data == null) ? 0 : data.length, options);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param data byte[]
+     * @param offset 偏移量
+     * @param length 所需长度
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeByteArray(final byte[] data, final int offset, final int length) {
+        return decodeByteArray(data, offset, length, null);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param data byte[]
+     * @param offset 偏移量
+     * @param length 所需长度
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap decodeByteArray(final byte[] data, final int offset, final int length, final BitmapFactory.Options options) {
+        if (data == null) return null;
+        if ((offset | length) < 0 || data.length < offset + length) return null;
+        try {
+            return BitmapFactory.decodeByteArray(data, offset, length, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "decodeByteArray");
+            return null;
+        }
+    }
+
+    // =
+
 
 
     // ============
@@ -418,8 +580,6 @@ public final class ImageUtils {
     // = Bitmap、Drawable 转换 =
     // =========================
 
-
-
     // ======================
     // = 其他工具类实现代码 =
     // ======================
@@ -435,6 +595,15 @@ public final class ImageUtils {
      */
     private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;
+    }
+
+    /**
+     * 获取文件绝对路径
+     * @param file 文件
+     * @return 文件绝对路径
+     */
+    private static String getAbsolutePath(final File file) {
+        return file != null ? file.getAbsolutePath() : null;
     }
 
     /**
@@ -484,5 +653,22 @@ public final class ImageUtils {
                 }
             }
         }
+    }
+
+    // =================
+    // = ResourceUtils =
+    // =================
+
+    /**
+     * 获取 Resources
+     * @return {@link Resources}
+     */
+    private static Resources getResources() {
+        try {
+            return DevUtils.getContext().getResources();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getResources");
+        }
+        return null;
     }
 }

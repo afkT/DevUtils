@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import android.content.ContentResolver;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
@@ -208,7 +209,7 @@ public final class ResourceUtils {
      * @param color 颜色值
      * @return 指定颜色 Drawable
      */
-    public static ColorDrawable getColorDrawable(@ColorInt int color){
+    public static ColorDrawable getColorDrawable(@ColorInt final int color){
         try {
             return new ColorDrawable(color);
         } catch (Exception e) {
@@ -538,6 +539,50 @@ public final class ResourceUtils {
             LogPrintUtils.eTag(TAG, e, "getIdentifier - " + packageName + " " + resName + ": " + defType);
         }
         return 0;
+    }
+
+    // =
+
+    /**
+     * 获取 AssetManager 指定资源 InputStream
+     * @param fileName 文件名
+     * @return {@link InputStream}
+     */
+    public static InputStream openAssetsResource(final String fileName) {
+        try {
+            return DevUtils.getContext().getAssets().open(fileName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openAssetsResource");
+        }
+        return null;
+    }
+
+    /**
+     * 获取对应资源 InputStream
+     * @param id resource identifier
+     * @return {@link InputStream}
+     */
+    public static InputStream openRawResource(@RawRes final int id){
+        try {
+            return DevUtils.getContext().getResources().openRawResource(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openRawResource");
+        }
+        return null;
+    }
+
+    /**
+     * 获取对应资源 AssetFileDescriptor
+     * @param id resource identifier
+     * @return {@link AssetFileDescriptor}
+     */
+    public static AssetFileDescriptor openRawResourceFd(@RawRes final int id){
+        try {
+            return DevUtils.getContext().getResources().openRawResourceFd(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openRawResourceFd");
+        }
+        return null;
     }
 
     // ================

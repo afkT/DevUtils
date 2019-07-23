@@ -32,8 +32,6 @@ import android.view.View;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -52,15 +50,24 @@ public final class ImageUtils {
     // 日志 TAG
     private static final String TAG = ImageUtils.class.getSimpleName();
 
+    // = Drawable =
+
     /**
      * 获取 bitmap
-     * @param file
+     * @param resId 资源 id
      * @return
      */
-    public static Bitmap getBitmap(final File file) {
-        if (file == null) return null;
-        return BitmapFactory.decodeFile(file.getAbsolutePath());
+    public static Bitmap getBitmap(@DrawableRes final int resId) {
+        Drawable drawable = ContextCompat.getDrawable(DevUtils.getContext(), resId);
+        Canvas canvas = new Canvas();
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        canvas.setBitmap(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+        return bitmap;
     }
+
+    // =
 
     /**
      * 获取 bitmap
@@ -82,16 +89,6 @@ public final class ImageUtils {
     /**
      * 获取 bitmap
      * @param filePath
-     * @return
-     */
-    public static Bitmap getBitmap(final String filePath) {
-        if (isSpace(filePath)) return null;
-        return BitmapFactory.decodeFile(filePath);
-    }
-
-    /**
-     * 获取 bitmap
-     * @param filePath
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return
@@ -104,21 +101,6 @@ public final class ImageUtils {
         options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFile(filePath, options);
-    }
-
-    /**
-     * 获取 bitmap
-     * @param resId 资源 id
-     * @return
-     */
-    public static Bitmap getBitmap(@DrawableRes final int resId) {
-        Drawable drawable = ContextCompat.getDrawable(DevUtils.getContext(), resId);
-        Canvas canvas = new Canvas();
-        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        canvas.setBitmap(bitmap);
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        drawable.draw(canvas);
-        return bitmap;
     }
 
     /**
@@ -140,16 +122,6 @@ public final class ImageUtils {
 
     /**
      * 获取 bitmap
-     * @param fd 文件描述
-     * @return
-     */
-    public static Bitmap getBitmap(final FileDescriptor fd) {
-        if (fd == null) return null;
-        return BitmapFactory.decodeFileDescriptor(fd);
-    }
-
-    /**
-     * 获取 bitmap
      * @param fd        文件描述
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
@@ -164,6 +136,10 @@ public final class ImageUtils {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFileDescriptor(fd, null, options);
     }
+
+
+
+
 
     /**
      * 缩放图片
@@ -925,53 +901,6 @@ public final class ImageUtils {
                 return context.getResources().getDrawable(id);
         } catch (Resources.NotFoundException e) {
             LogPrintUtils.eTag(TAG, e, "getDrawable");
-        }
-        return null;
-    }
-
-    //=
-
-    /**
-     * 获取本地SDCard 图片
-     * @param filePath 文件路径
-     * @return
-     */
-    public static Bitmap getSDCardBitmapStream(final String filePath) {
-        try {
-            FileInputStream fis = new FileInputStream(new File(filePath)); // 文件输入流
-            Bitmap bmp = BitmapFactory.decodeStream(fis);
-            return bmp;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSDCardBitmapStream");
-        }
-        return null;
-    }
-
-    /**
-     * 获取本地SDCard 图片
-     * @param filePath 文件路径
-     * @return
-     */
-    public static Bitmap getSDCardBitmapFile(final String filePath) {
-        try {
-            return BitmapFactory.decodeFile(filePath);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSDCardBitmapFile");
-        }
-        return null;
-    }
-
-    /**
-     * 获取Bitmap
-     * @param is
-     * @return
-     */
-    public static Bitmap getBitmap(final InputStream is) {
-        if (is == null) return null;
-        try {
-            return BitmapFactory.decodeStream(is);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getBitmap");
         }
         return null;
     }
