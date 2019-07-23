@@ -3,10 +3,13 @@ package dev.utils.app.image.temp;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
+import java.io.BufferedOutputStream;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import dev.utils.LogPrintUtils;
 
@@ -223,6 +226,185 @@ public final class ImageUtils {
                 && data[8] == 'W' && (data[9] == 'E' || data[10] == 'B') && data[11] == 'P';
     }
 
+    // ============
+    // = 本地保存 =
+    // ============
+
+    /**
+     * 保存图片到 SDCard - JPEG
+     * @param bitmap   待保存图片
+     * @param filePath 保存路径
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final String filePath) {
+        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.JPEG, 80);
+    }
+
+    /**
+     * 保存图片到 SDCard - JPEG
+     * @param bitmap 待保存图片
+     * @param file   保存路径
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final File file) {
+        return saveBitmapToSDCard(bitmap, getAbsolutePath(file), Bitmap.CompressFormat.JPEG, 80);
+    }
+
+    // =
+
+    /**
+     * 保存图片到 SDCard - JPEG
+     * @param bitmap   待保存图片
+     * @param filePath 保存路径
+     * @param quality  压缩比例
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final String filePath, final int quality) {
+        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.JPEG, quality);
+    }
+
+    /**
+     * 保存图片到 SDCard - JPEG
+     * @param bitmap  待保存图片
+     * @param file    保存路径
+     * @param quality 压缩比例
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final File file, final int quality) {
+        return saveBitmapToSDCard(bitmap, getAbsolutePath(file), Bitmap.CompressFormat.JPEG, quality);
+    }
+
+    // =
+
+    /**
+     * 保存图片到 SDCard - PNG
+     * @param bitmap   待保存图片
+     * @param filePath 保存路径
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String filePath) {
+        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.PNG, 80);
+    }
+
+    /**
+     * 保存图片到 SDCard - PNG
+     * @param bitmap 待保存图片
+     * @param file   保存路径
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final File file) {
+        return saveBitmapToSDCard(bitmap, getAbsolutePath(file), Bitmap.CompressFormat.PNG, 80);
+    }
+
+    // =
+
+    /**
+     * 保存图片到 SDCard - PNG
+     * @param bitmap   待保存图片
+     * @param filePath 保存路径
+     * @param quality  压缩比例
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String filePath, final int quality) {
+        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.PNG, quality);
+    }
+
+    /**
+     * 保存图片到 SDCard - PNG
+     * @param bitmap  待保存图片
+     * @param file    保存路径
+     * @param quality 压缩比例
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final File file, final int quality) {
+        return saveBitmapToSDCard(bitmap, getAbsolutePath(file), Bitmap.CompressFormat.PNG, quality);
+    }
+
+    // =
+
+    /**
+     * 保存图片到 SDCard - WEBP
+     * @param bitmap   待保存图片
+     * @param filePath 保存路径
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final String filePath) {
+        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.WEBP, 80);
+    }
+
+    /**
+     * 保存图片到 SDCard - WEBP
+     * @param bitmap 待保存图片
+     * @param file   保存路径
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final File file) {
+        return saveBitmapToSDCard(bitmap, getAbsolutePath(file), Bitmap.CompressFormat.WEBP, 80);
+    }
+
+    // =
+
+    /**
+     * 保存图片到 SDCard - WEBP
+     * @param bitmap   待保存图片
+     * @param filePath 保存路径
+     * @param quality  压缩比例
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final String filePath, final int quality) {
+        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.WEBP, quality);
+    }
+
+    /**
+     * 保存图片到 SDCard - WEBP
+     * @param bitmap  待保存图片
+     * @param file    保存路径
+     * @param quality 压缩比例
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final File file, final int quality) {
+        return saveBitmapToSDCard(bitmap, getAbsolutePath(file), Bitmap.CompressFormat.WEBP, quality);
+    }
+
+    // =
+
+    /**
+     * 保存图片到 SDCard
+     * @param bitmap  待保存图片
+     * @param file    保存路径
+     * @param format  如 Bitmap.CompressFormat.PNG
+     * @param quality 保存的图片质量, 100 则完整质量不压缩
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final File file, final Bitmap.CompressFormat format, final int quality) {
+        return saveBitmapToSDCard(bitmap, getAbsolutePath(file), format, quality);
+    }
+
+    /**
+     * 保存图片到 SDCard
+     * @param bitmap   待保存图片
+     * @param filePath 保存路径
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @param quality  保存的图片质量, 100 则完整质量不压缩
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format, final int quality) {
+        if (bitmap == null || filePath == null || format == null || quality <= 0) return false;
+        OutputStream os = null;
+        try {
+            os = new BufferedOutputStream(new FileOutputStream(filePath));
+            if (os != null) {
+                bitmap.compress(format, quality, os);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "saveBitmapToSDCard");
+            return false;
+        } finally {
+            closeIOQuietly(os);
+        }
+        return true;
+    }
+
     // ======================
     // = 其他工具类实现代码 =
     // ======================
@@ -238,6 +420,15 @@ public final class ImageUtils {
      */
     private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;
+    }
+
+    /**
+     * 获取文件绝对路径
+     * @param file 文件
+     * @return 文件绝对路径
+     */
+    private static String getAbsolutePath(final File file) {
+        return file != null ? file.getAbsolutePath() : null;
     }
 
     // ==============

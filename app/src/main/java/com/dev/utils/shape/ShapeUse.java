@@ -8,9 +8,9 @@ import android.widget.Button;
 import com.dev.R;
 
 import dev.DevUtils;
+import dev.utils.app.ImageViewUtils;
 import dev.utils.app.ShapeUtils;
 import dev.utils.app.StateListUtils;
-import dev.utils.app.image.BitmapUtils;
 
 /**
  * detail: ShapeUtils 使用方法
@@ -24,13 +24,13 @@ class ShapeUse {
         // 默认就设置背景色
         ShapeUtils.Builder builder = new ShapeUtils.Builder();
         builder.setRadiusLeft(10f).setColor(R.color.black);
-        BitmapUtils.setBackground(vid_btn1, builder.build().getDrawable());
+        ImageViewUtils.setBackground(vid_btn1, builder.build().getDrawable());
 
         // 设置点击效果
         GradientDrawable drawable1 = ShapeUtils.newBuilder(10f, R.color.black).setStroke(5, R.color.green).build().getDrawable();
         GradientDrawable drawable2 = ShapeUtils.newBuilder(10f, R.color.sky_blue).setStroke(5, R.color.grey).build().getDrawable();
 
-        BitmapUtils.setBackground(vid_btn1, StateListUtils.newSelector(drawable2, drawable1)); // 设置点击 View 背景变色, 不用写 shape xml 文件
+        ImageViewUtils.setBackground(vid_btn1, StateListUtils.newSelector(drawable2, drawable1)); // 设置点击 View 背景变色, 不用写 shape xml 文件
         vid_btn1.setTextColor(StateListUtils.createColorStateList(R.color.red, R.color.white)); // 设置点击字体变色
 
         // 设置渐变
@@ -48,6 +48,6 @@ class ShapeUse {
         // drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT); // 线性渐变, 这是默认设置
         // drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT); // 放射性渐变, 以开始色为中心
         drawable.setGradientType(GradientDrawable.SWEEP_GRADIENT); // 扫描线式的渐变
-        BitmapUtils.setBackground(vid_view1, drawable);
+        ImageViewUtils.setBackground(vid_view1, drawable);
     }
 }

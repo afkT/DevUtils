@@ -21,8 +21,6 @@ import android.view.View;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 import dev.utils.LogPrintUtils;
@@ -106,20 +104,6 @@ public final class BitmapUtils {
     }
 
     /**
-     * 设置背景
-     * @param view
-     * @param drawable
-     */
-    public static void setBackground(final View view, final Drawable drawable) {
-        if (view != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                view.setBackground(drawable);
-            else
-                view.setBackgroundDrawable(drawable);
-        }
-    }
-
-    /**
      * 获取 Drawable
      * @param context {@link Context}
      * @param id
@@ -169,6 +153,8 @@ public final class BitmapUtils {
         }
         return null;
     }
+
+    //=
 
     /**
      * 获取本地SDCard 图片
@@ -423,81 +409,6 @@ public final class BitmapUtils {
             LogPrintUtils.eTag(TAG, e, "drawableToBitmap4");
         }
         return null;
-    }
-
-    // =
-
-    /**
-     * 保存图片到 SDCard - JPEG
-     * @param bitmap  需要保存的数据
-     * @param path    保存路径
-     * @param quality 压缩比例
-     * @return {@link Bitmap}
-     */
-    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final String path, final int quality) {
-        return saveBitmapToSDCard(bitmap, path, Bitmap.CompressFormat.JPEG, quality);
-    }
-
-    /**
-     * 保存图片到 SDCard - PNG
-     * @param bitmap 需要保存的数据
-     * @param path   保存路径
-     * @return {@link Bitmap}
-     */
-    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String path) {
-        return saveBitmapToSDCard(bitmap, path, Bitmap.CompressFormat.PNG, 80);
-    }
-
-    /**
-     * 保存图片到 SDCard - PNG
-     * @param bitmap  需要保存的数据
-     * @param path    保存路径
-     * @param quality 压缩比例
-     * @return {@link Bitmap}
-     */
-    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String path, final int quality) {
-        return saveBitmapToSDCard(bitmap, path, Bitmap.CompressFormat.PNG, quality);
-    }
-
-    /**
-     * 保存图片到 SDCard - PNG
-     * @param bitmap  需要保存的数据
-     * @param path    保存路径
-     * @param quality 压缩比例
-     * @return {@link Bitmap}
-     */
-    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String path, final int quality) {
-        return saveBitmapToSDCard(bitmap, path, Bitmap.CompressFormat.PNG, quality);
-    }
-
-    /**
-     * 保存图片到 SDCard
-     * @param bitmap   图片资源
-     * @param filePath 保存路径
-     * @param format   如 Bitmap.CompressFormat.PNG
-     * @param quality  保存的图片质量, 100 则完整质量不压缩保存
-     * @return 保存结果
-     */
-    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format, final int quality) {
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(filePath);
-            if (fos != null) {
-                bitmap.compress(format, quality, fos);
-                fos.close();
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "saveBitmapToSDCard");
-            return false;
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-        return true;
     }
 
     // =

@@ -21,18 +21,14 @@ import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 import android.support.v4.content.ContextCompat;
 
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.common.CloseUtils;
 
 /**
  * detail: 图片相关工具类
@@ -639,64 +635,6 @@ public final class ImageUtils {
             canvas.drawBitmap(watermark, x, y, paint);
         }
         if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
-    }
-
-    /**
-     * 保存图片
-     * @param src      源图片
-     * @param filePath
-     * @param format   格式
-     * @return {@code true} 成功, {@code false} 失败
-     */
-    public static boolean save(final Bitmap src, final String filePath, final CompressFormat format) {
-        return save(src, getFileByPath(filePath), format, false);
-    }
-
-    /**
-     * 保存图片
-     * @param src    源图片
-     * @param file
-     * @param format 格式
-     * @return {@code true} 成功, {@code false} 失败
-     */
-    public static boolean save(final Bitmap src, final File file, final CompressFormat format) {
-        return save(src, file, format, false);
-    }
-
-    /**
-     * 保存图片
-     * @param src      源图片
-     * @param filePath
-     * @param format   格式
-     * @param recycle  是否回收
-     * @return {@code true} 成功, {@code false} 失败
-     */
-    public static boolean save(final Bitmap src, final String filePath, final CompressFormat format, final boolean recycle) {
-        return save(src, getFileByPath(filePath), format, recycle);
-    }
-
-    /**
-     * 保存图片
-     * @param src     源图片
-     * @param file
-     * @param format  格式
-     * @param recycle 是否回收
-     * @return {@code true} 成功, {@code false} 失败
-     */
-    public static boolean save(final Bitmap src, final File file, final CompressFormat format, final boolean recycle) {
-        if (isEmptyBitmap(src) || !createFileByDeleteOldFile(file)) return false;
-        OutputStream os = null;
-        boolean ret = false;
-        try {
-            os = new BufferedOutputStream(new FileOutputStream(file));
-            ret = src.compress(format, 100, os);
-            if (recycle && !src.isRecycled()) src.recycle();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "save");
-        } finally {
-            CloseUtils.closeIO(os);
-        }
         return ret;
     }
 

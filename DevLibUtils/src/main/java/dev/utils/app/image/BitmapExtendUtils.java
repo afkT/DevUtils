@@ -26,6 +26,7 @@ import java.io.InputStream;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.image.temp.ImageUtils;
 
 /**
  * detail: Bitmap 工具类, 主要包括获取 Bitmap 和对 Bitmap 的操作
@@ -826,7 +827,7 @@ public final class BitmapExtendUtils {
             }
             if (cBitmap != null) {
                 // 保存图片
-                BitmapUtils.saveBitmapToSDCardPNG(cBitmap, filePath, 85);
+                ImageUtils.saveBitmapToSDCardPNG(cBitmap, filePath, 85);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cropBitmap");
