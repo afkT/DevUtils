@@ -6,7 +6,6 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -15,20 +14,17 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 import android.text.TextUtils;
-import android.view.View;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
 
 import dev.DevUtils;
-import dev.utils.LogPrintUtils;
 
 /**
  * detail: 图片相关工具类
@@ -824,84 +820,6 @@ public final class ImageUtils {
     }
 
     // =
-
-    /**
-     * 通过 View, 获取背景转换 Bitmap
-     * @param view
-     * @return
-     */
-    public static Bitmap bitmapToViewBackGround(final View view) {
-        if (view == null) return null;
-        try {
-            Bitmap ret = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(ret);
-            Drawable bgDrawable = view.getBackground();
-            if (bgDrawable != null) {
-                bgDrawable.draw(canvas);
-            } else {
-                canvas.drawColor(Color.WHITE);
-            }
-            view.draw(canvas);
-            return ret;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "bitmapToViewBackGround");
-        }
-        return null;
-    }
-
-    /**
-     * 通过 View 获取 Bitmap, 绘制整个 View
-     * @param view
-     * @return
-     */
-    public static Bitmap getBitmapFromView(final View view) {
-        if (view == null) return null;
-        try {
-            Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-            view.draw(canvas);
-            return bitmap;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getBitmapFromView");
-        }
-        return null;
-    }
-
-    /**
-     * 把一个 View 的对象转换成 bitmap
-     * @param view
-     * @return
-     */
-    public static Bitmap getBitmapFromView2(final View view) {
-        if (view == null) return null;
-        try {
-            view.clearFocus();
-            view.setPressed(false);
-            // 能画缓存就返回 false
-            boolean willNotCache = view.willNotCacheDrawing();
-            view.setWillNotCacheDrawing(false);
-            int color = view.getDrawingCacheBackgroundColor();
-            view.setDrawingCacheBackgroundColor(0);
-            if (color != 0) {
-                view.destroyDrawingCache();
-            }
-            view.buildDrawingCache();
-            Bitmap cacheBitmap = view.getDrawingCache();
-            if (cacheBitmap == null) {
-                return null;
-            }
-            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap);
-            // Restore the view
-            view.destroyDrawingCache();
-            view.setWillNotCacheDrawing(willNotCache);
-            view.setDrawingCacheBackgroundColor(color);
-            return bitmap;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getBitmapFromView2");
-        }
-        return null;
-    }
 
     /**
      * 根据需求的宽和高以及图片实际的宽和高计算SampleSize

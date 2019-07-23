@@ -588,24 +588,6 @@ public final class BitmapExtendUtils {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
     }
 
-
-    /**
-     * 将YUV格式的图片的源数据从横屏模式转为竖屏模式, 注: 将源图片的宽高互换一下就是新图片的宽高
-     * @param sourceData YUV格式的图片的源数据
-     * @param width      源图片的宽
-     * @param height     源图片的高
-     * @return
-     */
-    public static byte[] yuvLandscapeToPortrait(final byte[] sourceData, final int width, final int height) {
-        if (sourceData == null || sourceData.length == 0) return null;
-        byte[] rotatedData = new byte[sourceData.length];
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++)
-                rotatedData[x * height + height - y - 1] = sourceData[x + y * width];
-        }
-        return rotatedData;
-    }
-
     /**
      * 比较安全的 解码(decodeStream) 方法
      * rather than the one of {@link BitmapFactory}
@@ -694,21 +676,6 @@ public final class BitmapExtendUtils {
 //        Matrix matrix = new Matrix();
 //        matrix.preScale(1, -1);
 //        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-//    }
-//
-//    /**
-//     * 将给定资源ID的Drawable转换成Bitmap
-//     * @param context {@link Context}
-//     * @param resId   Drawable资源文件的ID
-//     * @return 新的Bitmap
-//     */
-//    public Bitmap drawableToBitmap(final Context context, final int resId) {
-//        BitmapFactory.Options opt = new BitmapFactory.Options();
-//        opt.inPreferredConfig = Bitmap.Config.RGB_565;
-//        opt.inPurgeable = true;
-//        opt.inInputShareable = true;
-//        InputStream is = context.getResources().openRawResource(resId);
-//        return BitmapFactory.decodeStream(is, null, opt);
 //    }
 //
 //    /**

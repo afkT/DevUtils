@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.view.View;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -36,6 +37,9 @@ import dev.utils.app.ResourceUtils;
  *     @see <a href="https://www.jianshu.com/p/45c0f85c47ed"/>
  *     @see <a href="https://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578220&idx=1&sn=bdc57c640427984e240b19d8b9e10a15&chksm=84b3b1ebb3c438fdcbd446e9f28abd2713e685246efedfc133eb453ca41d08730dbf297ba1a4&scene=4#wechat_redirect"/>
  *     @see <a href="https://developers.google.com/speed/webp/docs/riff_container"/>
+ *     <p></p>
+ *     View 转 Bitmap
+ *     @see <a href="https://www.jianshu.com/p/09e32f10b394"/>
  * </pre>
  */
 public final class ImageUtils {
@@ -662,6 +666,73 @@ public final class ImageUtils {
             }
         }
         return drawable;
+    }
+
+    // ==========
+    // = Bitmap =
+    // ==========
+
+    /**
+     * 通过 View 绘制为 Bitmap
+     * @param view {@link View}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmapFromView(final View view) {
+        if (view == null) return null;
+        try {
+            Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+            view.draw(canvas);
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmapFromView");
+        }
+        return null;
+    }
+
+    /**
+     * 通过 View Cache 绘制为 Bitmap
+     * @param view {@link View}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmapFromViewCache(final View view) {
+        if (view == null) return null;
+        try {
+            // 清除视图焦点
+            view.clearFocus();
+            // 将视图设为不可点击
+            view.setPressed(false);
+
+            // 获取视图是否可以保存画图缓存
+            boolean willNotCache = view.willNotCacheDrawing();
+            view.setWillNotCacheDrawing(false);
+
+            // 获取绘制缓存位图的背景颜色
+            int color = view.getDrawingCacheBackgroundColor();
+            // 设置绘图背景颜色
+            view.setDrawingCacheBackgroundColor(0);
+            if (color != 0) { // 获取的背景不是黑色的则释放以前的绘图缓存
+                view.destroyDrawingCache(); // 释放绘图资源所使用的缓存
+            }
+
+            // 重新创建绘图缓存, 此时的背景色是黑色
+            view.buildDrawingCache();
+            // 获取绘图缓存, 注意这里得到的只是一个图像的引用
+            Bitmap cacheBitmap = view.getDrawingCache();
+            if (cacheBitmap == null) return null;
+
+            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap);
+            // 释放位图内存
+            view.destroyDrawingCache();
+            // 回滚以前的缓存设置、缓存颜色设置
+            view.setWillNotCacheDrawing(willNotCache);
+            view.setDrawingCacheBackgroundColor(color);
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmapFromViewCache");
+        }
+        return null;
     }
 
     // =========================
