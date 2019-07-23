@@ -122,38 +122,6 @@ public final class BitmapUtils {
         return null;
     }
 
-    /**
-     * 通过Resources获取Bitmap
-     * @param context {@link Context}
-     * @param resId
-     * @return
-     */
-    public static Bitmap getBitmapFromResources(final Context context, final int resId) {
-        if (context == null) return null;
-        try {
-            return BitmapFactory.decodeResource(context.getResources(), resId);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getBitmapFromResources");
-        }
-        return null;
-    }
-
-    /**
-     * 通过Resources获取Drawable
-     * @param context {@link Context}
-     * @param resId
-     * @return
-     */
-    public static Drawable getDrawableFromResources(final Context context, final int resId) {
-        if (context == null) return null;
-        try {
-            return context.getResources().getDrawable(resId);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDrawableFromResources");
-        }
-        return null;
-    }
-
     //=
 
     /**

@@ -6,6 +6,8 @@ import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.AnimRes;
 import android.support.annotation.AnimatorRes;
@@ -194,6 +196,35 @@ public final class ResourceUtils {
             return ContextCompat.getDrawable(DevUtils.getContext(), drawableId);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDrawable");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param resId resource identifier
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmap(final int resId) {
+        try {
+            return BitmapFactory.decodeResource(DevUtils.getContext().getResources(), resId);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmap");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param resId resource identifier
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmap(final int resId, final BitmapFactory.Options options) {
+        try {
+            return BitmapFactory.decodeResource(DevUtils.getContext().getResources(), resId, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmap");
         }
         return null;
     }
