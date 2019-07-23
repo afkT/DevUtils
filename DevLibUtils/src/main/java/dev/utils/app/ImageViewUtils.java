@@ -12,6 +12,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -445,7 +446,7 @@ public final class ImageViewUtils {
 
     /**
      * 设置 ImageView 缩放类型
-     * @param view     {@link View}
+     * @param view      {@link View}
      * @param scaleType 缩放类型 {@link ImageView.ScaleType}
      */
     public static void setScaleType(final View view, final ImageView.ScaleType scaleType) {
@@ -453,7 +454,7 @@ public final class ImageViewUtils {
     }
 
     /**
-     * 设置 ImageView 着色模式
+     * 设置 ImageView 缩放类型
      * @param imageView {@link ImageView}
      * @param scaleType 缩放类型 {@link ImageView.ScaleType}
      * @param <T>       泛型
@@ -474,47 +475,324 @@ public final class ImageViewUtils {
     // = 获取 =
     // ========
 
+    /**
+     * 获取 View 背景 Drawable
+     * @param view {@link View}
+     * @return 背景 Drawable
+     */
+    public static Drawable getBackground(final View view) {
+        if (view != null) return view.getBackground();
+        return null;
+    }
+
+    /**
+     * 获取 View 背景着色颜色
+     * @param view {@link View}
+     * @return 背景着色颜色 {@link ColorStateList}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static ColorStateList getBackgroundTintList(final View view) {
+        if (view != null) return view.getBackgroundTintList();
+        return null;
+    }
+
+    /**
+     * 获取 View 背景着色模式
+     * @param view {@link View}
+     * @return 背景着色模式 {@link PorterDuff.Mode}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static PorterDuff.Mode getBackgroundTintMode(final View view) {
+        if (view != null) return view.getBackgroundTintMode();
+        return null;
+    }
+
     // =
 
     /**
+     * 获取 View 前景 Drawable
+     * @param view {@link View}
+     * @return 前景 Drawable
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static Drawable getForeground(final View view) {
+        if (view != null) return view.getForeground();
+        return null;
+    }
+
+    /**
+     * 获取 View 前景重心
+     * @param view {@link View}
+     * @return 前景重心 {@link Gravity}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static int getForegroundGravity(final View view) {
+        if (view != null) return view.getForegroundGravity();
+        return Gravity.FILL;
+    }
+
+    /**
+     * 获取 View 前景着色颜色
+     * @param view {@link View}
+     * @return 前景着色颜色 {@link ColorStateList}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static ColorStateList getForegroundTintList(final View view) {
+        if (view != null) return view.getForegroundTintList();
+        return null;
+    }
+
+    /**
+     * 获取 View 前景着色模式
+     * @param view {@link View}
+     * @return 前景着色模式 {@link PorterDuff.Mode}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static PorterDuff.Mode getForegroundTintMode(final View view) {
+        if (view != null) return view.getForegroundTintMode();
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 ImageView Matrix
+     * @param view {@link View}
+     * @return {@link Matrix}
+     */
+    public static Matrix getImageMatrix(final View view) {
+        return getImageMatrix(getImageView(view));
+    }
+
+    /**
+     * 获取 ImageView Matrix
+     * @param imageView {@link ImageView}
+     * @param <T>       泛型
+     * @return {@link Matrix}
+     */
+    public static <T extends ImageView> Matrix getImageMatrix(final T imageView) {
+        if (imageView != null) return imageView.getImageMatrix();
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 ImageView 着色颜色
+     * @param view {@link View}
+     * @return {@link ColorStateList}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static ColorStateList getImageTintList(final View view) {
+        return getImageTintList(getImageView(view));
+    }
+
+    /**
+     * 获取 ImageView 着色颜色
+     * @param imageView {@link ImageView}
+     * @param <T>       泛型
+     * @return {@link ColorStateList}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static <T extends ImageView> ColorStateList getImageTintList(final T imageView) {
+        if (imageView != null) return imageView.getImageTintList();
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 ImageView 着色模式
+     * @param view {@link View}
+     * @return {@link PorterDuff.Mode}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static PorterDuff.Mode getImageTintMode(final View view) {
+        return getImageTintMode(getImageView(view));
+    }
+
+    /**
+     * 获取 ImageView 着色模式
+     * @param imageView {@link ImageView}
+     * @param <T>       泛型
+     * @return {@link PorterDuff.Mode}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static <T extends ImageView> PorterDuff.Mode getImageTintMode(final T imageView) {
+        if (imageView != null) return imageView.getImageTintMode();
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 ImageView 缩放模式
+     * @param view {@link View}
+     * @return {@link ImageView.ScaleType}
+     */
+    public static ImageView.ScaleType getScaleType(final View view) {
+        return getScaleType(getImageView(view));
+    }
+
+    /**
+     * 获取 ImageView 缩放模式
+     * @param imageView {@link ImageView}
+     * @param <T>       泛型
+     * @return {@link ImageView.ScaleType}
+     */
+    public static <T extends ImageView> ImageView.ScaleType getScaleType(final T imageView) {
+        if (imageView != null) return imageView.getScaleType();
+        return null;
+    }
+
+    // ============
+    // = 多个操作 =
+    // ============
+
+    /**
      * 设置 View 图片资源
-     * @param draw  R.drawable.id
+     * @param resId resource identifier
      * @param views View[]
      */
-    public static void setViewImageRes(final int draw, final ImageView... views) {
-        setViewImageRes(draw, View.VISIBLE, views);
+    public static void setImageResources(@DrawableRes final int resId, final View... views) {
+        setImageResources(resId, View.VISIBLE, views);
     }
 
     /**
      * 设置 View 图片资源
-     * @param draw         R.drawable.id
+     * @param resId        resource identifier
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param views        View[]
      */
-    public static void setViewImageRes(final int draw, final int isVisibility, final ImageView... views) {
+    public static void setImageResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
-                ImageView view = views[i];
-                if (view != null) {
+                ImageView imageView = getImageView(views[i]);
+                if (imageView != null) {
                     try {
-                        // 设置背景
-                        view.setImageResource(draw);
-                        // 是否显示
-                        view.setVisibility(isVisibility);
+                        // 设置显示状态
+                        imageView.setVisibility(isVisibility);
+                        // 设置图片资源
+                        imageView.setImageResource(resId);
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "setViewImageRes");
+                        LogPrintUtils.eTag(TAG, e, "setImageResources");
                     }
                 }
             }
         }
     }
 
-    // = ImageView 相关 =
+    // =
+
+    /**
+     * 设置 View Bitmap
+     * @param bitmap {@link Bitmap}
+     * @param views  View[]
+     */
+    public static void setImageBitmaps(final Bitmap bitmap, final View... views) {
+        setImageBitmaps(bitmap, View.VISIBLE, views);
+    }
+
+    /**
+     * 设置 View Bitmap
+     * @param bitmap       {@link Bitmap}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     */
+    public static void setImageBitmaps(final Bitmap bitmap, final int isVisibility, final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                ImageView imageView = getImageView(views[i]);
+                if (imageView != null) {
+                    try {
+                        // 设置显示状态
+                        imageView.setVisibility(isVisibility);
+                        // 设置 Bitmap
+                        imageView.setImageBitmap(bitmap);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setImageBitmaps");
+                    }
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * 设置 View Drawable
+     * @param drawable {@link drawable}
+     * @param views    View[]
+     */
+    public static void setImageDrawables(final Drawable drawable, final View... views) {
+        setImageDrawables(drawable, View.VISIBLE, views);
+    }
+
+    /**
+     * 设置 View Drawable
+     * @param drawable     {@link drawable}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     */
+    public static void setImageDrawables(final Drawable drawable, final int isVisibility, final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                ImageView imageView = getImageView(views[i]);
+                if (imageView != null) {
+                    try {
+                        // 设置显示状态
+                        imageView.setVisibility(isVisibility);
+                        // 设置 Drawable
+                        imageView.setImageDrawable(drawable);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setImageDrawables");
+                    }
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * 设置 View 缩放模式
+     * @param scaleType {@link ImageView.ScaleType}
+     * @param views     View[]
+     */
+    public static void setScaleTypes(final ImageView.ScaleType scaleType, final View... views) {
+        setScaleTypes(scaleType, View.VISIBLE, views);
+    }
+
+    /**
+     * 设置 View 缩放模式
+     * @param scaleType    {@link ImageView.ScaleType}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     */
+    public static void setScaleTypes(final ImageView.ScaleType scaleType, final int isVisibility, final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                ImageView imageView = getImageView(views[i]);
+                if (imageView != null) {
+                    try {
+                        // 设置显示状态
+                        imageView.setVisibility(isVisibility);
+                        // 设置缩放模式
+                        imageView.setScaleType(scaleType);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setScaleTypes");
+                    }
+                }
+            }
+        }
+    }
+
+    // =
 
     /**
      * 根据 ImageView 获适当的压缩的宽和高
-     * @param imageView
-     * @return
+     * @param imageView 1
+     * @return 1
      */
     public static int[] getImageViewSize(final ImageView imageView) {
         int[] imgSize = new int[]{0, 0};
@@ -554,9 +832,9 @@ public final class ImageViewUtils {
 
     /**
      * 通过反射获取 imageView 的某个属性值
-     * @param object
-     * @param fieldName
-     * @return
+     * @param object    1
+     * @param fieldName 1
+     * @return 1
      */
     private static int getImageViewFieldValue(final Object object, final String fieldName) {
         int value = 0;
