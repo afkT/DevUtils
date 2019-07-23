@@ -34,7 +34,7 @@ public final class Reflect2Utils {
     /**
      * 设置某个对象变量值 ( 可设置静态变量 )
      * @param object    对象
-     * @param fieldName 字段名
+     * @param fieldName 属性名
      * @param value     字段值
      * @return {@code true} success, {@code false} fail
      */

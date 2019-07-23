@@ -163,7 +163,7 @@ public final class ImageViewUtils {
     }
 
     /**
-     * 设置背景着色
+     * 设置背景着色颜色
      * @param view {@link View}
      * @param tint 着色颜色
      */
@@ -231,7 +231,7 @@ public final class ImageViewUtils {
     }
 
     /**
-     * 设置前景着色
+     * 设置前景着色颜色
      * @param view {@link View}
      * @param tint 着色颜色
      */
@@ -383,7 +383,7 @@ public final class ImageViewUtils {
     // =
 
     /**
-     * 设置 ImageView 着色
+     * 设置 ImageView 着色颜色
      * @param view {@link View}
      * @param tint 着色颜色
      */
@@ -393,7 +393,7 @@ public final class ImageViewUtils {
     }
 
     /**
-     * 设置 ImageView 着色
+     * 设置 ImageView 着色颜色
      * @param imageView {@link ImageView}
      * @param tint      着色颜色
      * @param <T>       泛型
@@ -787,54 +787,63 @@ public final class ImageViewUtils {
         }
     }
 
-    // =
+    // ============
+    // = 信息获取 =
+    // ============
 
     /**
-     * 根据 ImageView 获适当的压缩的宽和高
-     * @param imageView 1
-     * @return 1
+     * 根据 ImageView 获适当的宽高
+     * @param imageView {@link ImageView}
+     * @return 宽高, 0 = 宽, 1 = 高
      */
     public static int[] getImageViewSize(final ImageView imageView) {
-        int[] imgSize = new int[]{0, 0};
-        if (imageView == null) return imgSize;
-        // =
-        DisplayMetrics displayMetrics = imageView.getContext().getResources().getDisplayMetrics();
-        ViewGroup.LayoutParams lp = imageView.getLayoutParams();
-        // 获取 imageView 的实际宽度
-        int width = imageView.getWidth();
-        if (width <= 0) {
-            width = lp.width; // 获取 imageView 在 layout 中声明的宽度
+        int[] imageSize = new int[]{0, 0};
+        try {
+            if (imageView == null) return imageSize;
+            // =
+            DisplayMetrics displayMetrics = imageView.getContext().getResources().getDisplayMetrics();
+            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+
+            // 获取 ImageView 的实际宽度
+            int width = imageView.getWidth();
+            if (width <= 0) {
+                width = layoutParams.width; // 获取 imageView 在 layout 中声明的宽度
+            }
+            if (width <= 0) {
+//                width = imageView.getMaxWidth(); // 检查最大值
+                width = getImageViewFieldValue(imageView, "mMaxWidth");
+            }
+            if (width <= 0) {
+                width = displayMetrics.widthPixels;
+            }
+
+            // 获取 ImageView 的实际高度
+            int height = imageView.getHeight();
+            if (height <= 0) {
+                height = layoutParams.height; // 获取 imageView 在 layout 中声明的高度
+            }
+            if (height <= 0) {
+//                height = imageView.getMaxHeight(); // 检查最大值
+                height = getImageViewFieldValue(imageView, "mMaxHeight"); // 检查最大值
+            }
+            if (height <= 0) {
+                height = displayMetrics.heightPixels;
+            }
+
+            // 填充宽高信息
+            imageSize[0] = width;
+            imageSize[1] = height;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getImageViewSize");
         }
-        if (width <= 0) {
-            // width = imageView.getMaxWidth(); // 检查最大值
-            width = getImageViewFieldValue(imageView, "mMaxWidth");
-        }
-        if (width <= 0) {
-            width = displayMetrics.widthPixels;
-        }
-        // =
-        // 获取 imageView 的实际高度
-        int height = imageView.getHeight();
-        if (height <= 0) {
-            height = lp.height; // 获取 imageView 在 layout 中声明的宽度
-        }
-        if (height <= 0) {
-            height = getImageViewFieldValue(imageView, "mMaxHeight"); // 检查最大值
-        }
-        if (height <= 0) {
-            height = displayMetrics.heightPixels;
-        }
-        // =
-        imgSize[0] = width;
-        imgSize[1] = height;
-        return imgSize;
+        return imageSize;
     }
 
     /**
-     * 通过反射获取 imageView 的某个属性值
-     * @param object    1
-     * @param fieldName 1
-     * @return 1
+     * 通过反射获取 ImageView 的属性值
+     * @param object    对象
+     * @param fieldName 属性名
+     * @return 指定属性的值
      */
     private static int getImageViewFieldValue(final Object object, final String fieldName) {
         int value = 0;

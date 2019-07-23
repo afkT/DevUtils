@@ -44,7 +44,7 @@ public final class BitmapUtils {
 
     /**
      * 复制 Bitmap
-     * @param bitmap    {@link Bitmap}
+     * @param bitmap {@link Bitmap}
      * @return {@link Bitmap}
      */
     public static Bitmap copy(final Bitmap bitmap) {
@@ -68,7 +68,7 @@ public final class BitmapUtils {
 
     /**
      * 旋转图片
-     * @param bitmap 待操作原图
+     * @param bitmap  待操作原图
      * @param degrees 旋转角度
      * @return 旋转后的图片
      */
@@ -81,10 +81,10 @@ public final class BitmapUtils {
 
     /**
      * 旋转图片
-     * @param bitmap 待操作原图
+     * @param bitmap  待操作原图
      * @param degrees 旋转角度
-     * @param px    旋转中心点在 X 轴的坐标
-     * @param py    旋转中心点在 Y 轴的坐标
+     * @param px      旋转中心点在 X 轴的坐标
+     * @param py      旋转中心点在 Y 轴的坐标
      * @return 旋转后的图片
      */
     public static Bitmap rotate(final Bitmap bitmap, final float degrees, final float px, final float py) {
