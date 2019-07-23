@@ -10,19 +10,16 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -32,8 +29,6 @@ import java.io.FileDescriptor;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.ScreenUtils;
 
 /**
  * detail: 图片相关工具类
@@ -46,23 +41,6 @@ public final class ImageUtils {
 
     // 日志 TAG
     private static final String TAG = ImageUtils.class.getSimpleName();
-
-    // = Drawable =
-
-    /**
-     * 获取 bitmap
-     * @param resId 资源 id
-     * @return
-     */
-    public static Bitmap getBitmap(@DrawableRes final int resId) {
-        Drawable drawable = ContextCompat.getDrawable(DevUtils.getContext(), resId);
-        Canvas canvas = new Canvas();
-        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        canvas.setBitmap(bitmap);
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        drawable.draw(canvas);
-        return bitmap;
-    }
 
     // =
 
@@ -848,236 +826,6 @@ public final class ImageUtils {
     // =
 
     /**
-     * Bitmay 转换成 byte[]
-     * @param bitmap
-     * @return
-     */
-    public static byte[] bitmapToByte(final Bitmap bitmap) {
-        return bitmapToByte(bitmap, 100, Bitmap.CompressFormat.PNG);
-    }
-
-    /**
-     * Bitmay 转换成 byte[]
-     * @param bitmap
-     * @param format
-     * @return
-     */
-    public static byte[] bitmapToByte(final Bitmap bitmap, final Bitmap.CompressFormat format) {
-        return bitmapToByte(bitmap, 100, format);
-    }
-
-    /**
-     * Bitmay 转换成 byte[]
-     * @param bitmap
-     * @param quality
-     * @param format
-     * @return
-     */
-    public static byte[] bitmapToByte(final Bitmap bitmap, final int quality, final Bitmap.CompressFormat format) {
-        if (bitmap == null || format == null) return null;
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(format, quality, baos);
-            return baos.toByteArray();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "bitmapToByte");
-        }
-        return null;
-    }
-
-    // =
-
-    /**
-     * Drawable 转换成 byte[]
-     * @param drawable
-     * @return
-     */
-    public static byte[] drawableToByte(final Drawable drawable) {
-        return bitmapToByte(drawableToBitmap(drawable));
-    }
-
-    /**
-     * Drawable 转换成 byte[]
-     * @param drawable
-     * @param format
-     * @return
-     */
-    public static byte[] drawableToByte(final Drawable drawable, final Bitmap.CompressFormat format) {
-        return bitmapToByte(drawableToBitmap(drawable), format);
-    }
-
-    /**
-     * Drawable 转换成 byte[]
-     * @param drawable
-     * @return
-     */
-    public static byte[] drawableToByte2(final Drawable drawable) {
-        return drawable == null ? null : bitmapToByte(drawableToBitmap2(drawable));
-    }
-
-    /**
-     * Drawable 转换成 byte[]
-     * @param drawable
-     * @param format
-     * @return
-     */
-    public static byte[] drawableToByte2(final Drawable drawable, final Bitmap.CompressFormat format) {
-        return drawable == null ? null : bitmapToByte(drawableToBitmap2(drawable), format);
-    }
-
-    // =
-
-    /**
-     * byte 数组转换为Bitmap
-     * @param bytes
-     * @return
-     */
-    public static Bitmap byteToBitmap(final byte[] bytes) {
-        try {
-            return (bytes == null || bytes.length == 0) ? null : BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "byteToBitmap");
-        }
-        return null;
-    }
-
-    /**
-     * Byte[] 转换成 Drawable
-     * @param bytes
-     * @return
-     */
-    public static Drawable byteToDrawable(final byte[] bytes) {
-        return bitmapToDrawable(byteToBitmap(bytes));
-    }
-
-    /**
-     * Bitmap 转换成 Drawable
-     * @param bitmap
-     * @return
-     */
-    public static Drawable bitmapToDrawable(final Bitmap bitmap) {
-        try {
-            return bitmap == null ? null : new BitmapDrawable(ResourceUtils.getResources(), bitmap);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "bitmapToDrawable");
-        }
-        return null;
-    }
-
-    // =
-
-    /**
-     * Drawable 转换成 Bitmap
-     * @param drawable
-     * @return
-     */
-    public static Bitmap drawableToBitmap(final Drawable drawable) {
-        try {
-            return drawable == null ? null : ((BitmapDrawable) drawable).getBitmap();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "drawableToBitmap");
-        }
-        return null;
-    }
-
-    /**
-     * Drawable 转换 Bitmap
-     * @param drawable
-     * @return
-     */
-    public static Bitmap drawableToBitmap2(final Drawable drawable) {
-        if (drawable == null) return null;
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if (bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
-            }
-        }
-        Bitmap bitmap;
-        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1,
-                    drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(),
-                    drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
-        }
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
-    }
-
-    /**
-     * Drawable 转换 Bitmap
-     * @param drawable
-     * @return
-     */
-    public static Bitmap drawableToBitmap3(final Drawable drawable) {
-        if (drawable == null) return null;
-        Bitmap bitmap;
-        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1,
-                    drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(),
-                    drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
-        }
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
-    }
-
-    /**
-     * Drawable 转 Bitmap
-     * @param drawable {@link Drawable}
-     * @return {@link Bitmap}
-     */
-    public static Bitmap drawableToBitmap4(final Drawable drawable) {
-        if (drawable == null) return null;
-        try {
-            // 取 drawable 的长宽
-            int width = drawable.getIntrinsicWidth();
-            int height = drawable.getIntrinsicHeight();
-            // 取 drawable 的颜色格式
-            Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
-            // 建立对应 bitmap
-            Bitmap bitmap = Bitmap.createBitmap(width, height, config);
-            // 建立对应 bitmap 的画布
-            Canvas canvas = new Canvas(bitmap);
-            drawable.setBounds(0, 0, width, height);
-            // 把 drawable 内容画到画布中
-            drawable.draw(canvas);
-            return bitmap;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "drawableToBitmap4");
-        }
-        return null;
-    }
-
-    // =
-
-    /**
-     * 将Drawable转化为Bitmap
-     * @param drawable
-     * @return
-     */
-    public static Bitmap getBitmapFromDrawable(final Drawable drawable) {
-        try {
-            int width = drawable.getIntrinsicWidth();
-            int height = drawable.getIntrinsicHeight();
-            Bitmap bitmap = Bitmap.createBitmap(width, height, drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
-            Canvas canvas = new Canvas(bitmap);
-            drawable.setBounds(0, 0, width, height);
-            drawable.draw(canvas);
-            return bitmap;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getBitmapFromDrawable");
-        }
-        return null;
-    }
-
-    /**
      * 通过 View, 获取背景转换 Bitmap
      * @param view
      * @return
@@ -1151,32 +899,6 @@ public final class ImageUtils {
             return bitmap;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBitmapFromView2");
-        }
-        return null;
-    }
-
-    // =
-
-    /**
-     * 计算视频宽高大小, 视频比例xxx*xxx按屏幕比例放大或者缩小
-     * @param width  高度比例
-     * @param height 宽度比例
-     * @return 宽高, 0 = 宽, 1 = 高
-     */
-    public static int[] reckonVideoWidthHeight(final float width, final float height) {
-        try {
-            // 获取屏幕宽度
-            int sWidth = ScreenUtils.getScreenWidth();
-            // 判断宽度比例
-            float wRatio = 0.0f;
-            // 计算比例
-            wRatio = (sWidth - width) / width;
-            // 等比缩放
-            int nWidth = sWidth;
-            int nHeight = (int) (height * (wRatio + 1));
-            return new int[]{nWidth, nHeight};
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "reckonVideoWidthHeight");
         }
         return null;
     }

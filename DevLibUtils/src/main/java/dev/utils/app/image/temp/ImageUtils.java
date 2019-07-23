@@ -3,14 +3,18 @@ package dev.utils.app.image.temp;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileDescriptor;
@@ -22,6 +26,7 @@ import java.io.OutputStream;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.ResourceUtils;
 
 /**
  * detail: Image ( Bitmap、Drawable 等 ) 工具类
@@ -421,7 +426,7 @@ public final class ImageUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final String filePath) {
-        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.JPEG, 80);
+        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.JPEG, 100);
     }
 
     /**
@@ -431,7 +436,7 @@ public final class ImageUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final File file) {
-        return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.JPEG, 80);
+        return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.JPEG, 100);
     }
 
     // =
@@ -467,7 +472,7 @@ public final class ImageUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String filePath) {
-        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.PNG, 80);
+        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.PNG, 100);
     }
 
     /**
@@ -477,7 +482,7 @@ public final class ImageUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final File file) {
-        return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.PNG, 80);
+        return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.PNG, 100);
     }
 
     // =
@@ -513,7 +518,7 @@ public final class ImageUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final String filePath) {
-        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.WEBP, 80);
+        return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.WEBP, 100);
     }
 
     /**
@@ -523,7 +528,7 @@ public final class ImageUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final File file) {
-        return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.WEBP, 80);
+        return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.WEBP, 100);
     }
 
     // =
@@ -662,6 +667,160 @@ public final class ImageUtils {
     // =========================
     // = Bitmap、Drawable 转换 =
     // =========================
+
+    // ===============
+    // = 转为 byte[] =
+    // ===============
+
+    /**
+     * Bitmap 转换成 byte[]
+     * @param bitmap 待转换图片
+     * @return byte[]
+     */
+    public static byte[] bitmapToByte(final Bitmap bitmap) {
+        return bitmapToByte(bitmap, 100, Bitmap.CompressFormat.PNG);
+    }
+
+    /**
+     * Bitmap 转换成 byte[]
+     * @param bitmap 待转换图片
+     * @param format 如 Bitmap.CompressFormat.PNG
+     * @return byte[]
+     */
+    public static byte[] bitmapToByte(final Bitmap bitmap, final Bitmap.CompressFormat format) {
+        return bitmapToByte(bitmap, 100, format);
+    }
+
+    /**
+     * Bitmap 转换成 byte[]
+     * @param bitmap  待转换图片
+     * @param quality 压缩质量
+     * @param format  如 Bitmap.CompressFormat.PNG
+     * @return byte[]
+     */
+    public static byte[] bitmapToByte(final Bitmap bitmap, final int quality, final Bitmap.CompressFormat format) {
+        if (bitmap == null || format == null) return null;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(format, quality, baos);
+            return baos.toByteArray();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "bitmapToByte");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * Drawable 转换成 byte[]
+     * @param drawable 待转换图片
+     * @return byte[]
+     */
+    public static byte[] drawableToByte(final Drawable drawable) {
+        return drawableToByte(drawable, 100, Bitmap.CompressFormat.PNG);
+    }
+
+    /**
+     * Drawable 转换成 byte[]
+     * @param drawable 待转换图片
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @return byte[]
+     */
+    public static byte[] drawableToByte(final Drawable drawable, final Bitmap.CompressFormat format) {
+        return drawableToByte(drawable, 100, format);
+    }
+
+    /**
+     * Drawable 转换成 byte[]
+     * @param drawable 待转换图片
+     * @param quality  压缩质量
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @return byte[]
+     */
+    public static byte[] drawableToByte(final Drawable drawable, final int quality, final Bitmap.CompressFormat format) {
+        if (drawable == null || format == null) return null;
+        return bitmapToByte(drawableToBitmap(drawable), quality, format);
+    }
+
+    // ==========
+    // = Bitmap =
+    // ==========
+
+    /**
+     * byte[] 转 Bitmap
+     * @param data byte[]
+     * @return {@link Bitmap}
+     */
+    public static Bitmap byteToBitmap(final byte[] data) {
+        return decodeByteArray(data);
+    }
+
+    /**
+     * Bitmap 转 Drawable
+     * @param bitmap 待转换图片
+     * @return {@link Drawable}
+     */
+    public static Drawable bitmapToDrawable(final Bitmap bitmap) {
+        if (bitmap == null) return null;
+        try {
+            return new BitmapDrawable(ResourceUtils.getResources(), bitmap);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "bitmapToDrawable");
+        }
+        return null;
+    }
+
+    // ============
+    // = Drawable =
+    // ============
+
+    /**
+     * byte[] 转 Drawable
+     * @param data byte[]
+     * @return {@link Drawable}
+     */
+    public static Drawable byteToDrawable(final byte[] data) {
+        return bitmapToDrawable(decodeByteArray(data));
+    }
+
+    /**
+     * Drawable 转 Bitmap
+     * @param drawable 待转换图片
+     * @return {@link Bitmap}
+     */
+    public static Bitmap drawableToBitmap(final Drawable drawable) {
+        if (drawable == null) return null;
+        // 属于 BitmapDrawable 直接转换
+        if (drawable instanceof BitmapDrawable) {
+            try {
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+                if (bitmapDrawable.getBitmap() != null) {
+                    return bitmapDrawable.getBitmap();
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "drawableToBitmap - BitmapDrawable");
+            }
+        }
+        try {
+            // 获取 drawable 的宽高
+            int width = drawable.getIntrinsicWidth();
+            int height = drawable.getIntrinsicHeight();
+            // 获取 drawable 的颜色格式
+            Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
+            // 创建 bitmap
+            Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+            // 创建 bitmap 画布
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, width, height);
+            // 把 drawable 内容画到画布中
+            drawable.draw(canvas);
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "drawableToBitmap");
+        }
+        return null;
+    }
 
     // ======================
     // = 其他工具类实现代码 =
