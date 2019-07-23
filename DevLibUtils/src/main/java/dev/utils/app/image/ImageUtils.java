@@ -20,8 +20,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 import android.support.v4.content.ContextCompat;
-import android.view.View;
-import android.widget.ImageView;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -975,40 +973,5 @@ public final class ImageUtils {
             }
         }
         return true;
-    }
-
-    // =
-
-    /**
-     * 设置 View 图片资源
-     * @param draw  R.drawable.id
-     * @param views View[]
-     */
-    public static void setViewImageRes(final int draw, final ImageView... views) {
-        setViewImageRes(draw, View.VISIBLE, views);
-    }
-
-    /**
-     * 设置 View 图片资源
-     * @param draw         R.drawable.id
-     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
-     * @param views        View[]
-     */
-    public static void setViewImageRes(final int draw, final int isVisibility, final ImageView... views) {
-        if (views != null) {
-            for (int i = 0, len = views.length; i < len; i++) {
-                ImageView view = views[i];
-                if (view != null) {
-                    try {
-                        // 设置背景
-                        view.setImageResource(draw);
-                        // 是否显示
-                        view.setVisibility(isVisibility);
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "setViewImageRes");
-                    }
-                }
-            }
-        }
     }
 }

@@ -16,10 +16,7 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -27,7 +24,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
@@ -650,70 +646,6 @@ public final class BitmapUtils {
             inSampleSize = Math.max(widthRadio, heightRadio);
         }
         return inSampleSize;
-    }
-
-    // = ImageView 相关 =
-
-    /**
-     * 根据ImageView获适当的压缩的宽和高
-     * @param imageView
-     * @return
-     */
-    public static int[] getImageViewSize(final ImageView imageView) {
-        int[] imgSize = new int[]{0, 0};
-        if (imageView == null) return imgSize;
-        // =
-        DisplayMetrics displayMetrics = imageView.getContext().getResources().getDisplayMetrics();
-        LayoutParams lp = imageView.getLayoutParams();
-        // 获取 imageView 的实际宽度
-        int width = imageView.getWidth();
-        if (width <= 0) {
-            width = lp.width; // 获取 imageView 在layout中声明的宽度
-        }
-        if (width <= 0) {
-            // width = imageView.getMaxWidth(); // 检查最大值
-            width = getImageViewFieldValue(imageView, "mMaxWidth");
-        }
-        if (width <= 0) {
-            width = displayMetrics.widthPixels;
-        }
-        // =
-        // 获取 imageView 的实际高度
-        int height = imageView.getHeight();
-        if (height <= 0) {
-            height = lp.height; // 获取 imageView 在layout中声明的宽度
-        }
-        if (height <= 0) {
-            height = getImageViewFieldValue(imageView, "mMaxHeight"); // 检查最大值
-        }
-        if (height <= 0) {
-            height = displayMetrics.heightPixels;
-        }
-        // =
-        imgSize[0] = width;
-        imgSize[1] = height;
-        return imgSize;
-    }
-
-    /**
-     * 通过反射获取 imageView 的某个属性值
-     * @param object
-     * @param fieldName
-     * @return
-     */
-    private static int getImageViewFieldValue(final Object object, final String fieldName) {
-        int value = 0;
-        try {
-            Field field = ImageView.class.getDeclaredField(fieldName);
-            field.setAccessible(true);
-            int fieldValue = field.getInt(object);
-            if (fieldValue > 0 && fieldValue < Integer.MAX_VALUE) {
-                value = fieldValue;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getImageViewFieldValue");
-        }
-        return value;
     }
 
     /**
