@@ -209,7 +209,7 @@ public final class ResourceUtils {
      * @param color 颜色值
      * @return 指定颜色 Drawable
      */
-    public static ColorDrawable getColorDrawable(@ColorInt final int color){
+    public static ColorDrawable getColorDrawable(@ColorInt final int color) {
         try {
             return new ColorDrawable(color);
         } catch (Exception e) {
@@ -223,7 +223,7 @@ public final class ResourceUtils {
      * @param color 十六进制颜色值
      * @return 十六进制颜色值 Drawable
      */
-    public static ColorDrawable getColorDrawable(final String color){
+    public static ColorDrawable getColorDrawable(final String color) {
         try {
             return new ColorDrawable(Color.parseColor(color));
         } catch (Exception e) {
@@ -248,7 +248,7 @@ public final class ResourceUtils {
 
     /**
      * 获取 Bitmap
-     * @param resId resource identifier
+     * @param resId   resource identifier
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
@@ -562,7 +562,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return {@link InputStream}
      */
-    public static InputStream openRawResource(@RawRes final int id){
+    public static InputStream openRawResource(@RawRes final int id) {
         try {
             return DevUtils.getContext().getResources().openRawResource(id);
         } catch (Exception e) {
@@ -576,7 +576,7 @@ public final class ResourceUtils {
      * @param id resource identifier
      * @return {@link AssetFileDescriptor}
      */
-    public static AssetFileDescriptor openRawResourceFd(@RawRes final int id){
+    public static AssetFileDescriptor openRawResourceFd(@RawRes final int id) {
         try {
             return DevUtils.getContext().getResources().openRawResourceFd(id);
         } catch (Exception e) {

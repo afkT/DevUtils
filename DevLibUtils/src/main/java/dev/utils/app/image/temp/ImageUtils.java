@@ -3,7 +3,11 @@ package dev.utils.app.image.temp;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 
 import java.io.BufferedOutputStream;
@@ -151,14 +155,14 @@ public final class ImageUtils {
 
     /**
      * 获取图片类型
-     * @param is 输入流
+     * @param inputStream 输入流
      * @return 图片类型
      */
-    public static String getImageType(final InputStream is) {
-        if (is == null) return null;
+    public static String getImageType(final InputStream inputStream) {
+        if (inputStream == null) return null;
         try {
             byte[] bytes = new byte[12];
-            return is.read(bytes, 0, 12) != -1 ? getImageType(bytes) : null;
+            return inputStream.read(bytes, 0, 12) != -1 ? getImageType(bytes) : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getImageType");
             return null;
@@ -247,7 +251,7 @@ public final class ImageUtils {
 
     /**
      * 获取 Bitmap
-     * @param file 文件
+     * @param file    文件
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
@@ -267,7 +271,7 @@ public final class ImageUtils {
     /**
      * 获取 Bitmap
      * @param filePath 文件路径
-     * @param options {@link BitmapFactory.Options}
+     * @param options  {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
     public static Bitmap decodeFile(final String filePath, final BitmapFactory.Options options) {
@@ -288,12 +292,17 @@ public final class ImageUtils {
 
     /**
      * 获取 Bitmap
-     * @param resId resource identifier
+     * @param resId   resource identifier
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
     public static Bitmap decodeResource(@DrawableRes final int resId, final BitmapFactory.Options options) {
-        return BitmapFactory.decodeResource(getResources(), resId, options);
+        try {
+            return BitmapFactory.decodeResource(getResources(), resId, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "decodeResource");
+            return null;
+        }
     }
 
     // =
@@ -310,12 +319,17 @@ public final class ImageUtils {
     /**
      * 获取 Bitmap
      * @param inputStream {@link InputStream}
-     * @param options {@link BitmapFactory.Options}
+     * @param options     {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
     public static Bitmap decodeStream(final InputStream inputStream, final BitmapFactory.Options options) {
         if (inputStream == null) return null;
-        return BitmapFactory.decodeStream(inputStream, null, options);
+        try {
+            return BitmapFactory.decodeStream(inputStream, null, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "decodeStream");
+            return null;
+        }
     }
 
     // =
@@ -331,13 +345,18 @@ public final class ImageUtils {
 
     /**
      * 获取 Bitmap
-     * @param fd 文件描述
+     * @param fd      文件描述
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
     public static Bitmap decodeFileDescriptor(final FileDescriptor fd, final BitmapFactory.Options options) {
         if (fd == null) return null;
-        return BitmapFactory.decodeFileDescriptor(fd, null, options);
+        try {
+            return BitmapFactory.decodeFileDescriptor(fd, null, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "decodeFileDescriptor");
+            return null;
+        }
     }
 
     // =
@@ -353,7 +372,7 @@ public final class ImageUtils {
 
     /**
      * 获取 Bitmap
-     * @param data byte[]
+     * @param data    byte[]
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
@@ -363,7 +382,7 @@ public final class ImageUtils {
 
     /**
      * 获取 Bitmap
-     * @param data byte[]
+     * @param data   byte[]
      * @param offset 偏移量
      * @param length 所需长度
      * @return {@link Bitmap}
@@ -374,9 +393,9 @@ public final class ImageUtils {
 
     /**
      * 获取 Bitmap
-     * @param data byte[]
-     * @param offset 偏移量
-     * @param length 所需长度
+     * @param data    byte[]
+     * @param offset  偏移量
+     * @param length  所需长度
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
@@ -390,10 +409,6 @@ public final class ImageUtils {
             return null;
         }
     }
-
-    // =
-
-
 
     // ============
     // = 本地保存 =
@@ -539,10 +554,10 @@ public final class ImageUtils {
 
     /**
      * 保存图片到 SDCard
-     * @param bitmap  待保存图片
-     * @param filePath    保存路径
-     * @param format  如 Bitmap.CompressFormat.PNG
-     * @param quality 保存的图片质量, 100 则完整质量不压缩
+     * @param bitmap   待保存图片
+     * @param filePath 保存路径
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @param quality  保存的图片质量, 100 则完整质量不压缩
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format, final int quality) {
@@ -551,10 +566,10 @@ public final class ImageUtils {
 
     /**
      * 保存图片到 SDCard
-     * @param bitmap   待保存图片
-     * @param file 保存路径
-     * @param format   如 Bitmap.CompressFormat.PNG
-     * @param quality  保存的图片质量, 100 则完整质量不压缩
+     * @param bitmap  待保存图片
+     * @param file    保存路径
+     * @param format  如 Bitmap.CompressFormat.PNG
+     * @param quality 保存的图片质量, 100 则完整质量不压缩
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveBitmapToSDCard(final Bitmap bitmap, final File file, final Bitmap.CompressFormat format, final int quality) {
@@ -574,6 +589,74 @@ public final class ImageUtils {
             closeIOQuietly(os);
         }
         return true;
+    }
+
+    // ============
+    // = Drawable =
+    // ============
+
+    /**
+     * 获取 .9 Drawable
+     * <pre>
+     *     .9 图片如果需要着色, 需要传入 NinePatchDrawable
+     *     setColorFilter(get9PatchDrawable(drawable), color);
+     * </pre>
+     * @param drawable {@link Drawable}
+     * @return .9 {@link NinePatchDrawable}
+     */
+    public static NinePatchDrawable get9PatchDrawable(final Drawable drawable) {
+        try {
+            return (NinePatchDrawable) drawable;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    /**
+     * 图片着色 - tint
+     * @param drawable {@link Drawable}
+     * @param color    颜色值
+     * @return 着色后的 {@link Drawable}
+     */
+    public static Drawable setColorFilter(final Drawable drawable, @ColorInt final int color) {
+        return setColorFilter(drawable, color, PorterDuff.Mode.SRC_IN);
+    }
+
+    /**
+     * 图片着色 - tint
+     * @param drawable {@link Drawable}
+     * @param color    颜色值
+     * @param mode     着色模式 {@link PorterDuff.Mode}
+     * @return 着色后的 {@link Drawable}
+     */
+    public static Drawable setColorFilter(final Drawable drawable, @ColorInt final int color, final PorterDuff.Mode mode) {
+        if (drawable != null && mode != null) {
+            try {
+                drawable.setColorFilter(color, mode);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setColorFilter");
+            }
+        }
+        return drawable;
+    }
+
+    // =
+
+    /**
+     * 图片着色 - tint
+     * @param drawable    {@link Drawable}
+     * @param colorFilter 颜色过滤 ( 效果 )
+     * @return 着色后的 {@link Drawable}
+     */
+    public static Drawable setColorFilter(final Drawable drawable, final ColorFilter colorFilter) {
+        if (drawable != null && colorFilter != null) {
+            try {
+                drawable.setColorFilter(colorFilter);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setColorFilter");
+            }
+        }
+        return drawable;
     }
 
     // =========================

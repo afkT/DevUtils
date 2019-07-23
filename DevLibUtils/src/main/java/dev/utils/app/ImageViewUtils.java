@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.app.Activity;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -645,6 +646,90 @@ public final class ImageViewUtils {
         return null;
     }
 
+    // =
+
+    /**
+     * 获取 ImageView Drawable
+     * @param view {@link View}
+     * @return {@link Drawable}
+     */
+    public static Drawable getDrawable(final View view) {
+        return getDrawable(getImageView(view));
+    }
+
+    /**
+     * 获取 ImageView Drawable
+     * @param imageView {@link ImageView}
+     * @param <T>       泛型
+     * @return {@link Drawable}
+     */
+    public static <T extends ImageView> Drawable getDrawable(final T imageView) {
+        if (imageView != null) return imageView.getDrawable();
+        return null;
+    }
+
+    // ============
+    // = 着色处理 =
+    // ============
+
+    /**
+     * ImageView 着色处理
+     * @param imageView {@link ImageView}
+     * @param color     颜色值
+     * @param <T>       泛型
+     * @return {@link ImageView}
+     */
+    public static <T extends ImageView> T setColorFilter(final T imageView, @ColorInt final int color) {
+        return setColorFilter(imageView, getDrawable(imageView), color);
+    }
+
+    /**
+     * ImageView 着色处理, 并且设置 Drawable
+     * @param imageView {@link ImageView}
+     * @param drawable  {@link Drawable}
+     * @param color     颜色值
+     * @param <T>       泛型
+     * @return {@link ImageView}
+     */
+    public static <T extends ImageView> T setColorFilter(final T imageView, final Drawable drawable, @ColorInt final int color) {
+        try {
+            setBackground(imageView, setColorFilter(drawable, color));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setColorFilter");
+        }
+        return imageView;
+    }
+
+    // =
+
+    /**
+     * ImageView 着色处理
+     * @param imageView   {@link ImageView}
+     * @param colorFilter 颜色过滤 ( 效果 )
+     * @param <T>         泛型
+     * @return {@link ImageView}
+     */
+    public static <T extends ImageView> T setColorFilter(final T imageView, final ColorFilter colorFilter) {
+        return setColorFilter(imageView, getDrawable(imageView), colorFilter);
+    }
+
+    /**
+     * ImageView 着色处理, 并且设置 Drawable
+     * @param imageView   {@link ImageView}
+     * @param drawable    {@link Drawable}
+     * @param colorFilter 颜色过滤 ( 效果 )
+     * @param <T>         泛型
+     * @return {@link ImageView}
+     */
+    public static <T extends ImageView> T setColorFilter(final T imageView, final Drawable drawable, final ColorFilter colorFilter) {
+        try {
+            setBackground(imageView, setColorFilter(drawable, colorFilter));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setColorFilter");
+        }
+        return imageView;
+    }
+
     // ============
     // = 多个操作 =
     // ============
@@ -858,5 +943,58 @@ public final class ImageViewUtils {
             LogPrintUtils.eTag(TAG, e, "getImageViewFieldValue");
         }
         return value;
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ==============
+    // = ImageUtils =
+    // ==============
+
+    /**
+     * 图片着色 - tint
+     * @param drawable {@link Drawable}
+     * @param color    颜色值
+     * @return 着色后的 {@link Drawable}
+     */
+    private static Drawable setColorFilter(final Drawable drawable, @ColorInt final int color) {
+        return setColorFilter(drawable, color, PorterDuff.Mode.SRC_IN);
+    }
+
+    /**
+     * 图片着色 - tint
+     * @param drawable {@link Drawable}
+     * @param color    颜色值
+     * @param mode     着色模式 {@link PorterDuff.Mode}
+     * @return 着色后的 {@link Drawable}
+     */
+    private static Drawable setColorFilter(final Drawable drawable, @ColorInt final int color, final PorterDuff.Mode mode) {
+        if (drawable != null && mode != null) {
+            try {
+                drawable.setColorFilter(color, mode);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setColorFilter");
+            }
+        }
+        return drawable;
+    }
+
+    /**
+     * 图片着色 - tint
+     * @param drawable    {@link Drawable}
+     * @param colorFilter 颜色过滤 ( 效果 )
+     * @return 着色后的 {@link Drawable}
+     */
+    private static Drawable setColorFilter(final Drawable drawable, final ColorFilter colorFilter) {
+        if (drawable != null && colorFilter != null) {
+            try {
+                drawable.setColorFilter(colorFilter);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setColorFilter");
+            }
+        }
+        return drawable;
     }
 }

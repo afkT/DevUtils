@@ -1,6 +1,5 @@
 package dev.utils.app.image;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -19,8 +18,6 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.NinePatchDrawable;
-import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
@@ -136,9 +133,6 @@ public final class ImageUtils {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFileDescriptor(fd, null, options);
     }
-
-
-
 
 
     /**
@@ -849,60 +843,6 @@ public final class ImageUtils {
             }
         }
         return true;
-    }
-
-    /**
-     * 图片着色
-     * @param drawable
-     * @param tintColor
-     * @return
-     */
-    public static Drawable tintIcon(final Drawable drawable, @ColorInt final int tintColor) {
-        if (drawable != null) {
-            try {
-                drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "tintIcon");
-            }
-        }
-        return drawable;
-    }
-
-    /**
-     * .9 图片着色
-     * @param context   {@link Context}
-     * @param tintColor
-     * @param id
-     * @return
-     */
-    public static Drawable tint9PatchDrawableFrame(final Context context, @ColorInt final int tintColor, @DrawableRes final int id) {
-        if (context == null) return null;
-        try {
-            final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, id);
-            return tintIcon(toastDrawable, tintColor);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "tint9PatchDrawableFrame");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 Drawable
-     * @param context {@link Context}
-     * @param id
-     * @return
-     */
-    public static Drawable getDrawable(final Context context, @DrawableRes final int id) {
-        if (context == null) return null;
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                return context.getDrawable(id);
-            else
-                return context.getResources().getDrawable(id);
-        } catch (Resources.NotFoundException e) {
-            LogPrintUtils.eTag(TAG, e, "getDrawable");
-        }
-        return null;
     }
 
     // =
