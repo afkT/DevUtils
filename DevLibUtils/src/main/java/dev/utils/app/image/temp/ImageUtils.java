@@ -199,7 +199,7 @@ public final class ImageUtils {
      * @param data 图片 byte[]
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean isPNG(final byte[] data) {
+    public static boolean isPNG(final byte[] data) {
         return data != null && data.length >= 8
                 && (data[0] == (byte) 137 && data[1] == (byte) 80
                 && data[2] == (byte) 78 && data[3] == (byte) 71
@@ -212,7 +212,7 @@ public final class ImageUtils {
      * @param data 图片 byte[]
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean isJPEG(final byte[] data) {
+    public static boolean isJPEG(final byte[] data) {
         return data != null && data.length >= 2 && (data[0] == (byte) 0xFF) && (data[1] == (byte) 0xD8);
     }
 
@@ -221,7 +221,7 @@ public final class ImageUtils {
      * @param data 图片 byte[]
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean isBMP(final byte[] data) {
+    public static boolean isBMP(final byte[] data) {
         return data != null && data.length >= 2 && (data[0] == 0x42) && (data[1] == 0x4d);
     }
 
@@ -230,7 +230,7 @@ public final class ImageUtils {
      * @param data 图片 byte[]
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean isGif(final byte[] data) {
+    public static boolean isGif(final byte[] data) {
         return data != null && data.length >= 6 && data[0] == 'G' && data[1] == 'I' && data[2] == 'F'
                 && data[3] == '8' && (data[4] == '7' || data[4] == '9') && data[5] == 'a';
     }
@@ -240,7 +240,7 @@ public final class ImageUtils {
      * @param data 图片 byte[]
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean isWEBP(final byte[] data) {
+    public static boolean isWEBP(final byte[] data) {
         return data != null && data.length >= 12 && data[0] == 'R' && data[1] == 'I' && data[2] == 'F' && data[3] == 'F'
                 && data[8] == 'W' && (data[9] == 'E' || data[10] == 'B') && data[11] == 'P';
     }

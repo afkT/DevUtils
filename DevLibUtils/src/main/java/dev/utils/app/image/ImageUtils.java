@@ -18,7 +18,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
-import android.text.TextUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -841,24 +840,5 @@ public final class ImageUtils {
             inSampleSize = Math.max(widthRadio, heightRadio);
         }
         return inSampleSize;
-    }
-
-    /**
-     * 获取图片宽度高度(不加载解析图片)
-     * @param filePath
-     * @return
-     */
-    public static int[] getImageWidthHeight(final String filePath) {
-        if (TextUtils.isEmpty(filePath)) return null;
-        File file = new File(filePath);
-        if (file.isDirectory() || !file.exists()) return null;
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        // 不解析图片信息
-        options.inJustDecodeBounds = true;
-        // 此时返回的bitmap为 null
-        Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
-        // options.outHeight为原始图片的高
-        return new int[]{options.outWidth, options.outHeight};
     }
 }

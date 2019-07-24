@@ -5,23 +5,16 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader.TileMode;
-import android.net.Uri;
 import android.text.TextUtils;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import dev.DevUtils;
@@ -198,10 +191,10 @@ public final class BitmapExtendUtils {
         int height = bgd.getHeight() < fg.getHeight() ? bgd.getHeight() : fg.getHeight();
 
         if (fg.getWidth() != width && fg.getHeight() != height) {
-            fg = zoom(fg, width, height);
+//            fg = zoom(fg, width, height);
         }
         if (bgd.getWidth() != width && bgd.getHeight() != height) {
-            bgd = zoom(bgd, width, height);
+//            bgd = zoom(bgd, width, height);
         }
 
         Bitmap bitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
@@ -213,91 +206,6 @@ public final class BitmapExtendUtils {
         canvas.drawBitmap(fg, 0, 0, paint);
 
         return bitmap;
-    }
-
-    /**
-     * 放大缩小图片
-     * @param bitmap 源Bitmap
-     * @param w      宽
-     * @param h      高
-     * @return {@link Bitmap}
-     */
-    public static Bitmap zoom(final Bitmap bitmap, final int w, final int h) {
-        if (bitmap == null) return null;
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        Matrix matrix = new Matrix();
-        float scaleWidht = ((float) w / width);
-        float scaleHeight = ((float) h / height);
-        matrix.postScale(scaleWidht, scaleHeight);
-        Bitmap newbmp = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
-        return newbmp;
-    }
-
-    /**
-     * 获取圆角图片的方法
-     * @param bitmap  源Bitmap
-     * @param roundPx 圆角大小
-     * @return {@link Bitmap}
-     */
-    public static Bitmap getRoundedCornerBitmap(final Bitmap bitmap, final float roundPx) {
-        if (bitmap == null) return null;
-
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-
-        final int color = 0xff424242;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        final RectF rectF = new RectF(rect);
-
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-
-        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
-
-        return output;
-    }
-
-    /**
-     * 获取带倒影的图片方法
-     * @param bitmap 源Bitmap
-     * @return {@link Bitmap}
-     */
-    public static Bitmap createReflectionBitmap(final Bitmap bitmap) {
-        if (bitmap == null) return null;
-
-        final int reflectionGap = 4;
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-
-        Matrix matrix = new Matrix();
-        matrix.preScale(1, -1);
-
-        Bitmap reflectionImage = Bitmap.createBitmap(bitmap, 0, height / 2, width, height / 2, matrix, false);
-
-        Bitmap bitmapWithReflection = Bitmap.createBitmap(width, (height + height / 2), Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(bitmapWithReflection);
-        canvas.drawBitmap(bitmap, 0, 0, null);
-        Paint deafalutPaint = new Paint();
-        canvas.drawRect(0, height, width, height + reflectionGap, deafalutPaint);
-
-        canvas.drawBitmap(reflectionImage, 0, height + reflectionGap, null);
-
-        Paint paint = new Paint();
-        LinearGradient shader = new LinearGradient(0, bitmap.getHeight(), 0,
-                bitmapWithReflection.getHeight() + reflectionGap, 0x70ffffff, 0x00ffffff, TileMode.CLAMP);
-        paint.setShader(shader);
-        // Set the Transfer mode to be porter duff and destination in
-        paint.setXfermode(new PorterDuffXfermode(Mode.DST_IN));
-        // Draw a rectangle using the paint with our linear gradient
-        canvas.drawRect(0, height, width, bitmapWithReflection.getHeight() + reflectionGap, paint);
-
-        return bitmapWithReflection;
     }
 
     /**
@@ -319,62 +227,6 @@ public final class BitmapExtendUtils {
         }
         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); // 把压缩后的数据baos存放到ByteArrayInputStream中
         return BitmapFactory.decodeStream(bais, null, null); // 把ByteArrayInputStream数据生成图片
-    }
-
-    /**
-     * 转换图片成圆形
-     * @param bitmap 传入Bitmap对象
-     * @return {@link Bitmap}
-     */
-    public static Bitmap getRoundBitmap(final Bitmap bitmap) {
-        if (bitmap == null) return null;
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        float roundPx;
-        float left, top, right, bottom, dst_left, dst_top, dst_right, dst_bottom;
-        if (width <= height) {
-            roundPx = width / 2;
-            top = 0;
-            bottom = width;
-            left = 0;
-            right = width;
-            height = width;
-            dst_left = 0;
-            dst_top = 0;
-            dst_right = width;
-            dst_bottom = width;
-        } else {
-            roundPx = height / 2;
-            float clip = (width - height) / 2;
-            left = clip;
-            right = width - clip;
-            top = 0;
-            bottom = height;
-            width = height;
-            dst_left = 0;
-            dst_top = 0;
-            dst_right = height;
-            dst_bottom = height;
-        }
-
-        Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-
-        final int color = 0xff424242;
-        final Paint paint = new Paint();
-        final Rect src = new Rect((int) left, (int) top, (int) right, (int) bottom);
-        final Rect dst = new Rect((int) dst_left, (int) dst_top, (int) dst_right, (int) dst_bottom);
-        final RectF rectF = new RectF(dst);
-
-        paint.setAntiAlias(true);
-
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-
-        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, src, dst, paint);
-        return output;
     }
 
     /**
@@ -464,21 +316,6 @@ public final class BitmapExtendUtils {
     }
 
     /**
-     * 重新编码Bitmap
-     * @param bitmap  需要重新编码的Bitmap
-     * @param format  编码后的格式(目前只支持png和jpeg这两种格式)
-     * @param quality 重新生成后的bitmap的质量
-     * @return {@link Bitmap}
-     */
-    public static Bitmap codec(final Bitmap bitmap, final Bitmap.CompressFormat format, final int quality) {
-        if (bitmap == null || format == null) return null;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(format, quality, baos);
-        byte[] array = baos.toByteArray();
-        return BitmapFactory.decodeByteArray(array, 0, array.length);
-    }
-
-    /**
      * 图片压缩方法(使用compress的方法)
      * 说明 如果bitmap本身的大小小于maxSize, 则不作处理
      * @param bitmap  要压缩的图片
@@ -500,133 +337,113 @@ public final class BitmapExtendUtils {
         if (i > 1) {
             // 缩放图片 此处用到平方根 将宽带和高度压缩掉对应的平方根倍
             // (保持宽高不变, 缩放后也达到了最大占用空间的大小)
-            return scale(bitmap, bitmap.getWidth() / Math.sqrt(i), bitmap.getHeight() / Math.sqrt(i));
+//            return scale(bitmap, bitmap.getWidth() / Math.sqrt(i), bitmap.getHeight() / Math.sqrt(i));
         }
         return null;
     }
 
+    // = 裁剪图片, 裁剪中间部分, 防止全图压缩 =
+
     /**
-     * 图片的缩放方法
-     * @param bitmap    源图片资源
-     * @param newWidth  缩放后宽度
-     * @param newHeight 缩放后高度
-     * @return {@link Bitmap}
+     * 裁剪图片(默认比例16:9)
+     * @param filePath 保存路径
+     * @param bitmap   图片
      */
-    public static Bitmap scale(final Bitmap bitmap, final double newWidth, final double newHeight) {
-        if (bitmap == null) return null;
-        // 记录src的宽高
-        float width = bitmap.getWidth();
-        float height = bitmap.getHeight();
-        // 创建一个matrix容器
-        Matrix matrix = new Matrix();
-        // 计算缩放比例
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
-        // 开始缩放
-        matrix.postScale(scaleWidth, scaleHeight);
-        // 创建缩放后的图片
-        return Bitmap.createBitmap(bitmap, 0, 0, (int) width, (int) height, matrix, true);
+    public static void cropBitmap(final String filePath, final Bitmap bitmap) {
+        cropBitmap(filePath, bitmap, 16.0f, 9.0f);
     }
 
     /**
-     * 图片的缩放方法
-     * @param bitmap      源图片资源
-     * @param scaleMatrix 缩放规则
-     * @return {@link Bitmap}
+     * 裁剪图片
+     * @param filePath    保存路径
+     * @param bitmap      图片
+     * @param widthScale  宽度比例
+     * @param heightScale 高度比例
      */
-    public static Bitmap scale(final Bitmap bitmap, final Matrix scaleMatrix) {
-        if (bitmap == null) return null;
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), scaleMatrix, true);
-    }
+    public static void cropBitmap(final String filePath, final Bitmap bitmap, final float widthScale, final float heightScale) {
+        if (TextUtils.isEmpty(filePath)) return;
+        File file = new File(filePath);
+        if (file.isDirectory() || !file.exists()) return;
 
-    /**
-     * 图片的缩放方法
-     * @param bitmap 源图片资源
-     * @param scaleX 横向缩放比例
-     * @param scaleY 纵向缩放比例
-     * @return {@link Bitmap}
-     */
-    public static Bitmap scale(final Bitmap bitmap, final float scaleX, final float scaleY) {
-        if (bitmap == null) return null;
-        Matrix matrix = new Matrix();
-        matrix.postScale(scaleX, scaleY);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-    }
-
-    /**
-     * 图片的缩放方法
-     * @param bitmap 源图片资源
-     * @param scale  缩放比例
-     * @return {@link Bitmap}
-     */
-    public static Bitmap scale(final Bitmap bitmap, final float scale) {
-        if (bitmap == null) return null;
-        return scale(bitmap, scale, scale);
-    }
-
-    /**
-     * 水平翻转处理
-     * @param bitmap 原图
-     * @return {@link Bitmap}
-     */
-    public static Bitmap reverseByHorizontal(final Bitmap bitmap) {
-        if (bitmap == null) return null;
-        Matrix matrix = new Matrix();
-        matrix.preScale(-1, 1);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-    }
-
-    /**
-     * 垂直翻转处理
-     * @param bitmap 原图
-     * @return 垂直翻转后的图片
-     */
-    public static Bitmap reverseByVertical(final Bitmap bitmap) {
-        if (bitmap == null) return null;
-        Matrix matrix = new Matrix();
-        matrix.preScale(1, -1);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-    }
-
-    /**
-     * 比较安全的 解码(decodeStream) 方法
-     * rather than the one of {@link BitmapFactory}
-     * which will be easy to get OutOfMemory Exception
-     * while loading a big image file.
-     * @param uri          压缩相册返回的照片
-     * @param targetWidth
-     * @param targetHeight
-     * @return
-     * @throws FileNotFoundException
-     */
-    public static Bitmap safeDecodeStream(final Uri uri, final int targetWidth, final int targetHeight) throws FileNotFoundException {
-        if (uri == null) return null;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        android.content.ContentResolver resolver = DevUtils.getContext().getContentResolver();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(new BufferedInputStream(resolver.openInputStream(uri), 16 * 1024), null, options);
-        // 获取图片的宽度、高度
-        float imgWidth = options.outWidth;
-        float imgHeight = options.outHeight;
-        // 分别计算图片宽度、高度与目标宽度、高度的比例, 取大于等于该比例的最小整数
-        int widthRatio = (int) Math.ceil(imgWidth / (float) targetWidth);
-        int heightRatio = (int) Math.ceil(imgHeight / (float) targetHeight);
-        options.inSampleSize = 1;
-        if (widthRatio > 1 || widthRatio > 1) {
-            if (widthRatio > heightRatio) {
-                options.inSampleSize = widthRatio;
-            } else {
-                options.inSampleSize = heightRatio;
-            }
+        if (bitmap == null) {
+            return; // 防止图片为 null
         }
-        // 设置好缩放比例后, 加载图片进内容
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeStream(new BufferedInputStream(resolver.openInputStream(uri), 16 * 1024), null, options);
+        // 裁剪处理后的图片
+        Bitmap newBitmap = null;
+        try {
+            // 获取图片宽度
+            int iWidth = bitmap.getWidth();
+            // 获取图片高度
+            int iHeight = bitmap.getHeight();
+            // 获取需要裁剪的高度
+            int rHeight = (int) ((iWidth * heightScale) / widthScale);
+            // 判断需要裁剪的高度与偏移差距
+            int dHeight = iHeight - rHeight;
+            // =
+            // 判断裁剪方式
+            if (dHeight >= 0) { // 属于宽度 * 对应比例 >= 高度, 以高度做偏移
+                // 计算偏移的y轴
+                int offsetY = dHeight / 2;
+                // 创建图片
+                newBitmap = Bitmap.createBitmap(bitmap, 0, offsetY, iWidth, rHeight, null, false);
+            } else { // 以宽度做偏移
+                // 获取需要裁剪的宽度
+                int rWidth = (int) ((iHeight * widthScale) / heightScale);
+                // 判断需要裁剪的宽度与偏移差距
+                int dWidth = iWidth - rWidth;
+                // 计算偏移的X轴
+                int offsetX = dWidth / 2;
+                // 创建图片
+                newBitmap = Bitmap.createBitmap(bitmap, offsetX, 0, rWidth, iHeight, null, false);
+            }
+            if (newBitmap != null) {
+                // 保存图片
+                ImageUtils.saveBitmapToSDCardPNG(newBitmap, filePath, 85);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "cropBitmap");
+        } finally {
+            // = 清空资源 =
+            try {
+                if (newBitmap != null && !newBitmap.isRecycled()) {
+                    newBitmap.recycle();
+                }
+            } catch (Exception e) {
+            }
+            newBitmap = null;
+        }
     }
 
 
-    // =================
 
+    // ============
+    // = 图片处理 =
+    // ============
+
+//    /**
+//     * 水平翻转处理
+//     * @param bitmap 原图
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap reverseByHorizontal(final Bitmap bitmap) {
+//        if (bitmap == null) return null;
+//        Matrix matrix = new Matrix();
+//        matrix.preScale(-1, 1);
+//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
+//    }
+//
+//    /**
+//     * 垂直翻转处理
+//     * @param bitmap 原图
+//     * @return 垂直翻转后的图片
+//     */
+//    public static Bitmap reverseByVertical(final Bitmap bitmap) {
+//        if (bitmap == null) return null;
+//        Matrix matrix = new Matrix();
+//        matrix.preScale(1, -1);
+//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
+//    }
+//
 //    /**
 //     * 缩放处理
 //     * @param scaling 缩放比例
@@ -734,79 +551,210 @@ public final class BitmapExtendUtils {
 //    public Bitmap reflection(final Bitmap bitmap) {
 //        return reflection(bitmap, 4, bitmap.getHeight() / 2);
 //    }
-
-    // =================
-
-
-    // = 裁剪图片, 裁剪中间部分, 防止全图压缩 =
-
-    /**
-     * 裁剪图片(默认比例16:9)
-     * @param filePath 保存路径
-     * @param bitmap   图片
-     */
-    public static void cropBitmap(final String filePath, final Bitmap bitmap) {
-        cropBitmap(filePath, bitmap, 16.0f, 9.0f);
-    }
-
-    /**
-     * 裁剪图片
-     * @param filePath    保存路径
-     * @param bitmap      图片
-     * @param widthScale  宽度比例
-     * @param heightScale 高度比例
-     */
-    public static void cropBitmap(final String filePath, final Bitmap bitmap, final float widthScale, final float heightScale) {
-        if (TextUtils.isEmpty(filePath)) return;
-        File file = new File(filePath);
-        if (file.isDirectory() || !file.exists()) return;
-
-        if (bitmap == null) {
-            return; // 防止图片为 null
-        }
-        // 裁剪处理后的图片
-        Bitmap newBitmap = null;
-        try {
-            // 获取图片宽度
-            int iWidth = bitmap.getWidth();
-            // 获取图片高度
-            int iHeight = bitmap.getHeight();
-            // 获取需要裁剪的高度
-            int rHeight = (int) ((iWidth * heightScale) / widthScale);
-            // 判断需要裁剪的高度与偏移差距
-            int dHeight = iHeight - rHeight;
-            // =
-            // 判断裁剪方式
-            if (dHeight >= 0) { // 属于宽度 * 对应比例 >= 高度, 以高度做偏移
-                // 计算偏移的y轴
-                int offsetY = dHeight / 2;
-                // 创建图片
-                newBitmap = Bitmap.createBitmap(bitmap, 0, offsetY, iWidth, rHeight, null, false);
-            } else { // 以宽度做偏移
-                // 获取需要裁剪的宽度
-                int rWidth = (int) ((iHeight * widthScale) / heightScale);
-                // 判断需要裁剪的宽度与偏移差距
-                int dWidth = iWidth - rWidth;
-                // 计算偏移的X轴
-                int offsetX = dWidth / 2;
-                // 创建图片
-                newBitmap = Bitmap.createBitmap(bitmap, offsetX, 0, rWidth, iHeight, null, false);
-            }
-            if (newBitmap != null) {
-                // 保存图片
-                ImageUtils.saveBitmapToSDCardPNG(newBitmap, filePath, 85);
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "cropBitmap");
-        } finally {
-            // = 清空资源 =
-            try {
-                if (newBitmap != null && !newBitmap.isRecycled()) {
-                    newBitmap.recycle();
-                }
-            } catch (Exception e) {
-            }
-            newBitmap = null;
-        }
-    }
+//
+//
+//
+//    /**
+//     * 图片的缩放方法
+//     * @param bitmap    源图片资源
+//     * @param newWidth  缩放后宽度
+//     * @param newHeight 缩放后高度
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap scale(final Bitmap bitmap, final double newWidth, final double newHeight) {
+//        if (bitmap == null) return null;
+//        // 记录src的宽高
+//        float width = bitmap.getWidth();
+//        float height = bitmap.getHeight();
+//        // 创建一个matrix容器
+//        Matrix matrix = new Matrix();
+//        // 计算缩放比例
+//        float scaleWidth = ((float) newWidth) / width;
+//        float scaleHeight = ((float) newHeight) / height;
+//        // 开始缩放
+//        matrix.postScale(scaleWidth, scaleHeight);
+//        // 创建缩放后的图片
+//        return Bitmap.createBitmap(bitmap, 0, 0, (int) width, (int) height, matrix, true);
+//    }
+//
+//    /**
+//     * 图片的缩放方法
+//     * @param bitmap      源图片资源
+//     * @param scaleMatrix 缩放规则
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap scale(final Bitmap bitmap, final Matrix scaleMatrix) {
+//        if (bitmap == null) return null;
+//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), scaleMatrix, true);
+//    }
+//
+//    /**
+//     * 图片的缩放方法
+//     * @param bitmap 源图片资源
+//     * @param scaleX 横向缩放比例
+//     * @param scaleY 纵向缩放比例
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap scale(final Bitmap bitmap, final float scaleX, final float scaleY) {
+//        if (bitmap == null) return null;
+//        Matrix matrix = new Matrix();
+//        matrix.postScale(scaleX, scaleY);
+//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+//    }
+//
+//    /**
+//     * 图片的缩放方法
+//     * @param bitmap 源图片资源
+//     * @param scale  缩放比例
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap scale(final Bitmap bitmap, final float scale) {
+//        if (bitmap == null) return null;
+//        return scale(bitmap, scale, scale);
+//    }
+//
+//
+//
+//    /**
+//     * 放大缩小图片
+//     * @param bitmap 源Bitmap
+//     * @param w      宽
+//     * @param h      高
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap zoom(final Bitmap bitmap, final int w, final int h) {
+//        if (bitmap == null) return null;
+//        int width = bitmap.getWidth();
+//        int height = bitmap.getHeight();
+//        Matrix matrix = new Matrix();
+//        float scaleWidht = ((float) w / width);
+//        float scaleHeight = ((float) h / height);
+//        matrix.postScale(scaleWidht, scaleHeight);
+//        Bitmap newbmp = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+//        return newbmp;
+//    }
+//
+//    /**
+//     * 获取圆角图片的方法
+//     * @param bitmap  源Bitmap
+//     * @param roundPx 圆角大小
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap getRoundedCornerBitmap(final Bitmap bitmap, final float roundPx) {
+//        if (bitmap == null) return null;
+//
+//        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
+//        Canvas canvas = new Canvas(output);
+//
+//        final int color = 0xff424242;
+//        final Paint paint = new Paint();
+//        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+//        final RectF rectF = new RectF(rect);
+//
+//        paint.setAntiAlias(true);
+//        canvas.drawARGB(0, 0, 0, 0);
+//        paint.setColor(color);
+//        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+//
+//        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+//        canvas.drawBitmap(bitmap, rect, rect, paint);
+//
+//        return output;
+//    }
+//
+//    /**
+//     * 获取带倒影的图片方法
+//     * @param bitmap 源Bitmap
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap createReflectionBitmap(final Bitmap bitmap) {
+//        if (bitmap == null) return null;
+//
+//        final int reflectionGap = 4;
+//        int width = bitmap.getWidth();
+//        int height = bitmap.getHeight();
+//
+//        Matrix matrix = new Matrix();
+//        matrix.preScale(1, -1);
+//
+//        Bitmap reflectionImage = Bitmap.createBitmap(bitmap, 0, height / 2, width, height / 2, matrix, false);
+//
+//        Bitmap bitmapWithReflection = Bitmap.createBitmap(width, (height + height / 2), Config.ARGB_8888);
+//
+//        Canvas canvas = new Canvas(bitmapWithReflection);
+//        canvas.drawBitmap(bitmap, 0, 0, null);
+//        Paint deafalutPaint = new Paint();
+//        canvas.drawRect(0, height, width, height + reflectionGap, deafalutPaint);
+//
+//        canvas.drawBitmap(reflectionImage, 0, height + reflectionGap, null);
+//
+//        Paint paint = new Paint();
+//        LinearGradient shader = new LinearGradient(0, bitmap.getHeight(), 0,
+//                bitmapWithReflection.getHeight() + reflectionGap, 0x70ffffff, 0x00ffffff, TileMode.CLAMP);
+//        paint.setShader(shader);
+//        // Set the Transfer mode to be porter duff and destination in
+//        paint.setXfermode(new PorterDuffXfermode(Mode.DST_IN));
+//        // Draw a rectangle using the paint with our linear gradient
+//        canvas.drawRect(0, height, width, bitmapWithReflection.getHeight() + reflectionGap, paint);
+//
+//        return bitmapWithReflection;
+//    }
+//
+//
+//
+//    /**
+//     * 转换图片成圆形
+//     * @param bitmap 传入Bitmap对象
+//     * @return {@link Bitmap}
+//     */
+//    public static Bitmap getRoundBitmap(final Bitmap bitmap) {
+//        if (bitmap == null) return null;
+//        int width = bitmap.getWidth();
+//        int height = bitmap.getHeight();
+//        float roundPx;
+//        float left, top, right, bottom, dst_left, dst_top, dst_right, dst_bottom;
+//        if (width <= height) {
+//            roundPx = width / 2;
+//            top = 0;
+//            bottom = width;
+//            left = 0;
+//            right = width;
+//            height = width;
+//            dst_left = 0;
+//            dst_top = 0;
+//            dst_right = width;
+//            dst_bottom = width;
+//        } else {
+//            roundPx = height / 2;
+//            float clip = (width - height) / 2;
+//            left = clip;
+//            right = width - clip;
+//            top = 0;
+//            bottom = height;
+//            width = height;
+//            dst_left = 0;
+//            dst_top = 0;
+//            dst_right = height;
+//            dst_bottom = height;
+//        }
+//
+//        Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);
+//        Canvas canvas = new Canvas(output);
+//
+//        final int color = 0xff424242;
+//        final Paint paint = new Paint();
+//        final Rect src = new Rect((int) left, (int) top, (int) right, (int) bottom);
+//        final Rect dst = new Rect((int) dst_left, (int) dst_top, (int) dst_right, (int) dst_bottom);
+//        final RectF rectF = new RectF(dst);
+//
+//        paint.setAntiAlias(true);
+//
+//        canvas.drawARGB(0, 0, 0, 0);
+//        paint.setColor(color);
+//        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+//
+//        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+//        canvas.drawBitmap(bitmap, src, dst, paint);
+//        return output;
+//    }
 }
