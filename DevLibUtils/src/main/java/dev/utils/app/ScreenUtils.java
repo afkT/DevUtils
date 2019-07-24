@@ -579,14 +579,19 @@ public final class ScreenUtils {
         try {
             View view = activity.getWindow().getDecorView();
             view.setDrawingCacheEnabled(true);
+            // 重新创建绘图缓存, 此时的背景色是黑色
             view.buildDrawingCache();
-            Bitmap bmp = view.getDrawingCache();
+            // 获取绘图缓存, 注意这里得到的只是一个图像的引用
+            Bitmap cacheBitmap = view.getDrawingCache();
+            if (cacheBitmap == null) return null;
+            // 获取屏幕宽度
             int[] widthHeight = getScreenWidthHeight();
 
             Rect frame = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
             // 创建新的图片
-            Bitmap bitmap = Bitmap.createBitmap(bmp, 0, 0, widthHeight[0], widthHeight[1]);
+            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap, 0, 0, widthHeight[0], widthHeight[1]);
+            // 释放绘图资源所使用的缓存
             view.destroyDrawingCache();
             return bitmap;
         } catch (Exception e) {
@@ -604,17 +609,21 @@ public final class ScreenUtils {
         try {
             View view = activity.getWindow().getDecorView();
             view.setDrawingCacheEnabled(true);
+            // 重新创建绘图缓存, 此时的背景色是黑色
             view.buildDrawingCache();
-            Bitmap bmp = view.getDrawingCache();
+            // 获取绘图缓存, 注意这里得到的只是一个图像的引用
+            Bitmap cacheBitmap = view.getDrawingCache();
+            if (cacheBitmap == null) return null;
+            // 获取屏幕宽度
             int[] widthHeight = getScreenWidthHeight();
-
             // 获取状态栏高度
             int statusBarHeight = getStatusBarHeight(activity);
 
             Rect frame = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
             // 创建新的图片
-            Bitmap bitmap = Bitmap.createBitmap(bmp, 0, statusBarHeight, widthHeight[0], widthHeight[1] - statusBarHeight);
+            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap, 0, statusBarHeight, widthHeight[0], widthHeight[1] - statusBarHeight);
+            // 释放绘图资源所使用的缓存
             view.destroyDrawingCache();
             return bitmap;
         } catch (Exception e) {

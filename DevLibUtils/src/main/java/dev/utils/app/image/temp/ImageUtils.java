@@ -116,13 +116,13 @@ public final class ImageUtils {
     /**
      * 根据文件名判断文件是否为图片
      * @param filePath    文件路径
-     * @param imageFormat 图片格式
+     * @param imageFormats 图片格式
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isImage(final String filePath, final String[] imageFormat) {
-        if (filePath == null || imageFormat == null || imageFormat.length == 0) return false;
+    public static boolean isImage(final String filePath, final String[] imageFormats) {
+        if (filePath == null || imageFormats == null || imageFormats.length == 0) return false;
         String path = filePath.toUpperCase();
-        for (String format : imageFormat) {
+        for (String format : imageFormats) {
             if (format != null) {
                 if (path.endsWith(format.toUpperCase())) {
                     return true;
@@ -617,6 +617,7 @@ public final class ImageUtils {
         try {
             return (NinePatchDrawable) drawable;
         } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "get9PatchDrawable");
         }
         return null;
     }

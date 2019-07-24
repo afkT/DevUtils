@@ -765,7 +765,7 @@ public final class BitmapExtendUtils {
             return; // 防止图片为 null
         }
         // 裁剪处理后的图片
-        Bitmap cBitmap = null;
+        Bitmap newBitmap = null;
         try {
             // 获取图片宽度
             int iWidth = bitmap.getWidth();
@@ -781,7 +781,7 @@ public final class BitmapExtendUtils {
                 // 计算偏移的y轴
                 int offsetY = dHeight / 2;
                 // 创建图片
-                cBitmap = Bitmap.createBitmap(bitmap, 0, offsetY, iWidth, rHeight, null, false);
+                newBitmap = Bitmap.createBitmap(bitmap, 0, offsetY, iWidth, rHeight, null, false);
             } else { // 以宽度做偏移
                 // 获取需要裁剪的宽度
                 int rWidth = (int) ((iHeight * widthScale) / heightScale);
@@ -790,23 +790,23 @@ public final class BitmapExtendUtils {
                 // 计算偏移的X轴
                 int offsetX = dWidth / 2;
                 // 创建图片
-                cBitmap = Bitmap.createBitmap(bitmap, offsetX, 0, rWidth, iHeight, null, false);
+                newBitmap = Bitmap.createBitmap(bitmap, offsetX, 0, rWidth, iHeight, null, false);
             }
-            if (cBitmap != null) {
+            if (newBitmap != null) {
                 // 保存图片
-                ImageUtils.saveBitmapToSDCardPNG(cBitmap, filePath, 85);
+                ImageUtils.saveBitmapToSDCardPNG(newBitmap, filePath, 85);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cropBitmap");
         } finally {
             // = 清空资源 =
             try {
-                if (cBitmap != null && !cBitmap.isRecycled()) {
-                    cBitmap.recycle();
+                if (newBitmap != null && !newBitmap.isRecycled()) {
+                    newBitmap.recycle();
                 }
             } catch (Exception e) {
             }
-            cBitmap = null;
+            newBitmap = null;
         }
     }
 }
