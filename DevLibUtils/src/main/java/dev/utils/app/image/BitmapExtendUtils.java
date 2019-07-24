@@ -7,9 +7,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.text.TextUtils;
 
 import java.io.ByteArrayInputStream;
@@ -415,47 +417,26 @@ public final class BitmapExtendUtils {
     }
 
 
-
     // ============
     // = 图片处理 =
     // ============
 
-//    /**
-//     * 圆角处理
-//     * @param pixels 角度, 度数越大圆角越大
-//     * @return 转换成圆角后的图片
-//     */
-//    public Bitmap roundCorner(final Bitmap bitmap, final float pixels) {
-//        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-//        Canvas canvas = new Canvas(output);
-//        Paint paint = new Paint();
-//        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()); // 创建一个同源图一样大小的矩形, 用于把源图绘制到这个矩形上
-//        RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
-//        paint.setAntiAlias(true);
-//        canvas.drawARGB(0, 0, 0, 0); // 涂上黑色全透明的底色
-//        paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
-//        canvas.drawRoundRect(rectF, pixels, pixels, paint); // 用给给定的画笔把给定的矩形以给定的圆角的度数画到画布
-//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-//        canvas.drawBitmap(bitmap, rect, rect, paint); // 用画笔paint将源图bitmap根据新的矩形重新绘制
-//        return output;
-//    }
-//
-//    /**
-//     * 倒影处理
-//     * @param reflectionSpacing 源图与倒影之间的间距
-//     * @param reflectionHeight  倒影高度
-//     * @return 加上倒影后的图片
-//     */
+    /**
+     //     * 倒影处理
+     //     * @param reflectionSpacing 源图片与倒影之间的间距
+     //     * @param reflectionHeight  倒影高度
+     //     * @return 加上倒影后的图片
+     //     */
 //    public Bitmap reflection(final Bitmap bitmap, final int reflectionSpacing, final int reflectionHeight) {
 //        int width = bitmap.getWidth();
 //        int height = bitmap.getHeight();
 //
-//        // 获取倒影图片, 并创建一张宽度与源图相同, 但高度等于源图的高度加上间距加上倒影的高度的图片, 并创建画布, 画布分为上中下三部分, 上: 是源图, 中: 是源图与倒影的间距, 下: 是倒影
+//        // 获取倒影图片, 并创建一张宽度与源图片相同, 但高度等于源图片的高度加上间距加上倒影的高度的图片, 并创建画布, 画布分为上中下三部分, 上: 是源图片, 中: 是源图片与倒影的间距, 下: 是倒影
 //        Bitmap reflectionImage = reverseByVertical(bitmap); //
 //        Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
 //        Canvas canvas = new Canvas(bitmapWithReflection);
 //
-//        // 将源图画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是源图的高度加上源图与倒影之间的间距
+//        // 将源图片画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是源图片的高度加上源图片与倒影之间的间距
 //        canvas.drawBitmap(bitmap, 0, 0, null);
 //        canvas.drawBitmap(reflectionImage, 0, height + reflectionSpacing, null);
 //        reflectionImage.recycle();
@@ -475,34 +456,6 @@ public final class BitmapExtendUtils {
 //     */
 //    public Bitmap reflection(final Bitmap bitmap) {
 //        return reflection(bitmap, 4, bitmap.getHeight() / 2);
-//    }
-//
-//    /**
-//     * 获取圆角图片的方法
-//     * @param bitmap  源Bitmap
-//     * @param roundPx 圆角大小
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap getRoundedCornerBitmap(final Bitmap bitmap, final float roundPx) {
-//        if (bitmap == null) return null;
-//
-//        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
-//        Canvas canvas = new Canvas(output);
-//
-//        final int color = 0xff424242;
-//        final Paint paint = new Paint();
-//        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-//        final RectF rectF = new RectF(rect);
-//
-//        paint.setAntiAlias(true);
-//        canvas.drawARGB(0, 0, 0, 0);
-//        paint.setColor(color);
-//        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-//
-//        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-//        canvas.drawBitmap(bitmap, rect, rect, paint);
-//
-//        return output;
 //    }
 //
 //    /**
@@ -542,62 +495,107 @@ public final class BitmapExtendUtils {
 //
 //        return bitmapWithReflection;
 //    }
-//
-//
-//
+
+
+    /**
+     * 转换图片成圆形
+     * @param bitmap 传入Bitmap对象
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getRoundBitmap(final Bitmap bitmap) {
+        if (bitmap == null) return null;
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        float roundPx;
+        float left, top, right, bottom, dst_left, dst_top, dst_right, dst_bottom;
+        if (width <= height) {
+            roundPx = width / 2;
+            top = 0;
+            bottom = width;
+            left = 0;
+            right = width;
+            height = width;
+            dst_left = 0;
+            dst_top = 0;
+            dst_right = width;
+            dst_bottom = width;
+        } else {
+            roundPx = height / 2;
+            float clip = (width - height) / 2;
+            left = clip;
+            right = width - clip;
+            top = 0;
+            bottom = height;
+            width = height;
+            dst_left = 0;
+            dst_top = 0;
+            dst_right = height;
+            dst_bottom = height;
+        }
+
+        Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect src = new Rect((int) left, (int) top, (int) right, (int) bottom);
+        final Rect dst = new Rect((int) dst_left, (int) dst_top, (int) dst_right, (int) dst_bottom);
+        final RectF rectF = new RectF(dst);
+
+        paint.setAntiAlias(true);
+
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, src, dst, paint);
+        return output;
+    }
+
+
+    /**
+     * 圆角处理
+     * @param pixels 角度, 度数越大圆角越大
+     * @return 转换成圆角后的图片
+     */
+    public static Bitmap roundCorner(final Bitmap bitmap, final float pixels) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+        Paint paint = new Paint();
+        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()); // 创建一个同源图片一样大小的矩形, 用于把源图片绘制到这个矩形上
+        RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0); // 涂上黑色全透明的底色
+        paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
+        canvas.drawRoundRect(rectF, pixels, pixels, paint); // 用给给定的画笔把给定的矩形以给定的圆角的度数画到画布
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint); // 用画笔paint将源图片bitmap根据新的矩形重新绘制
+        return output;
+    }
+
 //    /**
-//     * 转换图片成圆形
-//     * @param bitmap 传入Bitmap对象
+//     * 获取圆角图片的方法
+//     * @param bitmap  源Bitmap
+//     * @param roundPx 圆角大小
 //     * @return {@link Bitmap}
 //     */
-//    public static Bitmap getRoundBitmap(final Bitmap bitmap) {
-//        if (bitmap == null) return null;
-//        int width = bitmap.getWidth();
-//        int height = bitmap.getHeight();
-//        float roundPx;
-//        float left, top, right, bottom, dst_left, dst_top, dst_right, dst_bottom;
-//        if (width <= height) {
-//            roundPx = width / 2;
-//            top = 0;
-//            bottom = width;
-//            left = 0;
-//            right = width;
-//            height = width;
-//            dst_left = 0;
-//            dst_top = 0;
-//            dst_right = width;
-//            dst_bottom = width;
-//        } else {
-//            roundPx = height / 2;
-//            float clip = (width - height) / 2;
-//            left = clip;
-//            right = width - clip;
-//            top = 0;
-//            bottom = height;
-//            width = height;
-//            dst_left = 0;
-//            dst_top = 0;
-//            dst_right = height;
-//            dst_bottom = height;
-//        }
-//
-//        Bitmap output = Bitmap.createBitmap(width, height, Config.ARGB_8888);
+//    public static Bitmap getRoundedCornerBitmap(final Bitmap bitmap, final float roundPx) {
+//        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
 //        Canvas canvas = new Canvas(output);
-//
 //        final int color = 0xff424242;
 //        final Paint paint = new Paint();
-//        final Rect src = new Rect((int) left, (int) top, (int) right, (int) bottom);
-//        final Rect dst = new Rect((int) dst_left, (int) dst_top, (int) dst_right, (int) dst_bottom);
-//        final RectF rectF = new RectF(dst);
+//        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+//        final RectF rectF = new RectF(rect);
 //
 //        paint.setAntiAlias(true);
-//
 //        canvas.drawARGB(0, 0, 0, 0);
 //        paint.setColor(color);
 //        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
 //
 //        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-//        canvas.drawBitmap(bitmap, src, dst, paint);
+//        canvas.drawBitmap(bitmap, rect, rect, paint);
+//
 //        return output;
 //    }
 }

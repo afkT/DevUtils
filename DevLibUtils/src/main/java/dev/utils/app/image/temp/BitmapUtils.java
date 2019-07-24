@@ -101,7 +101,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * 获取 Alpha 位图 ( 获取源图的轮廓 rgb 为 0)
+     * 获取 Alpha 位图 ( 获取源图片的轮廓 rgb 为 0)
      * @param bitmap {@link Bitmap}
      * @return Alpha 位图
      */
@@ -155,7 +155,7 @@ public final class BitmapUtils {
 
     /**
      * 旋转图片
-     * @param bitmap  待操作源图
+     * @param bitmap  待操作源图片
      * @param degrees 旋转角度
      * @return 旋转后的图片
      */
@@ -168,7 +168,7 @@ public final class BitmapUtils {
 
     /**
      * 旋转图片
-     * @param bitmap  待操作源图
+     * @param bitmap  待操作源图片
      * @param degrees 旋转角度
      * @param px      旋转中心点在 X 轴的坐标
      * @param py      旋转中心点在 Y 轴的坐标
@@ -212,7 +212,7 @@ public final class BitmapUtils {
 
     /**
      * 水平翻转图片 ( 左右颠倒 )
-     * @param bitmap 待操作源图
+     * @param bitmap 待操作源图片
      * @return 翻转后的图片
      */
     public static Bitmap reverseByHorizontal(final Bitmap bitmap) {
@@ -221,7 +221,7 @@ public final class BitmapUtils {
 
     /**
      * 垂直翻转图片 ( 上下颠倒 )
-     * @param bitmap 待操作源图
+     * @param bitmap 待操作源图片
      * @return 翻转后的图片
      */
     public static Bitmap reverseByVertical(final Bitmap bitmap) {
@@ -230,7 +230,7 @@ public final class BitmapUtils {
 
     /**
      * 垂直翻转处理
-     * @param bitmap     待操作源图
+     * @param bitmap     待操作源图片
      * @param horizontal 是否水平翻转
      * @return 翻转后的图片
      */
@@ -251,7 +251,7 @@ public final class BitmapUtils {
 
     /**
      * 缩放图片 ( 指定所需宽高 )
-     * @param bitmap  待操作源图
+     * @param bitmap  待操作源图片
      * @param newSize 新尺寸 ( 宽高 )
      * @return 缩放后的图片
      */
@@ -262,7 +262,7 @@ public final class BitmapUtils {
 
     /**
      * 缩放图片 ( 指定所需宽高 )
-     * @param bitmap    待操作源图
+     * @param bitmap    待操作源图片
      * @param newWidth  新宽度
      * @param newHeight 新高度
      * @return 缩放后的图片
@@ -276,7 +276,7 @@ public final class BitmapUtils {
 
     /**
      * 缩放图片 ( 比例缩放 )
-     * @param bitmap 待操作源图
+     * @param bitmap 待操作源图片
      * @param scale  缩放倍数
      * @return 缩放后的图片
      */
@@ -286,7 +286,7 @@ public final class BitmapUtils {
 
     /**
      * 缩放图片 ( 比例缩放 )
-     * @param bitmap 待操作源图
+     * @param bitmap 待操作源图片
      * @param scaleX 横向缩放比例 ( 缩放宽度倍数 )
      * @param scaleY 纵向缩放比例 ( 缩放高度倍数 )
      * @return 缩放后的图片
@@ -295,6 +295,40 @@ public final class BitmapUtils {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         matrix.postScale(scaleX, scaleY);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+    // ========
+    // = 倾斜 =
+    // ========
+
+    /**
+     * 倾斜图片
+     * @param bitmap 待操作源图片
+     * @param kx     X 轴倾斜因子
+     * @param ky     Y 轴倾斜因子
+     * @return 倾斜后的图片
+     */
+    public static Bitmap skew(final Bitmap bitmap, final float kx, final float ky) {
+        return skew(bitmap, kx, ky, 0, 0);
+    }
+
+    /**
+     * 倾斜图片
+     * <pre>
+     *     倾斜因子 以小数点倾斜 如: 0.1 防止数值过大 Canvas: trying to draw too large
+     * </pre>
+     * @param bitmap 待操作源图片
+     * @param kx     X 轴倾斜因子
+     * @param ky     Y 轴倾斜因子
+     * @param px     X 轴轴心点
+     * @param py     Y 轴轴心点
+     * @return 倾斜后的图片
+     */
+    public static Bitmap skew(final Bitmap bitmap, final float kx, final float ky, final float px, final float py) {
+        if (isEmpty(bitmap)) return null;
+        Matrix matrix = new Matrix();
+        matrix.setSkew(kx, ky, px, py);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 

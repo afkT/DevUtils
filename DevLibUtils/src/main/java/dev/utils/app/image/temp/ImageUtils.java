@@ -115,7 +115,7 @@ public final class ImageUtils {
 
     /**
      * 根据文件名判断文件是否为图片
-     * @param filePath    文件路径
+     * @param filePath     文件路径
      * @param imageFormats 图片格式
      * @return {@code true} yes, {@code false} no
      */

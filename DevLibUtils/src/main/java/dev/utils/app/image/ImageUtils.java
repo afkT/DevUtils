@@ -137,60 +137,7 @@ public final class ImageUtils {
         return ret;
     }
 
-    /**
-     * 倾斜图片
-     * @param src 源图片
-     * @param kx  倾斜因子 x
-     * @param ky  倾斜因子 y
-     * @return 倾斜后的图片
-     */
-    public static Bitmap skew(final Bitmap src, final float kx, final float ky) {
-        return skew(src, kx, ky, 0, 0, false);
-    }
-
-    /**
-     * 倾斜图片
-     * @param src     源图片
-     * @param kx      倾斜因子 x
-     * @param ky      倾斜因子 y
-     * @param recycle 是否回收
-     * @return 倾斜后的图片
-     */
-    public static Bitmap skew(final Bitmap src, final float kx, final float ky, final boolean recycle) {
-        return skew(src, kx, ky, 0, 0, recycle);
-    }
-
-    /**
-     * 倾斜图片
-     * @param src 源图片
-     * @param kx  倾斜因子 x
-     * @param ky  倾斜因子 y
-     * @param px  平移因子 x
-     * @param py  平移因子 y
-     * @return 倾斜后的图片
-     */
-    public static Bitmap skew(final Bitmap src, final float kx, final float ky, final float px, final float py) {
-        return skew(src, kx, ky, px, py, false);
-    }
-
-    /**
-     * 倾斜图片
-     * @param src     源图片
-     * @param kx      倾斜因子 x
-     * @param ky      倾斜因子 y
-     * @param px      平移因子 x
-     * @param py      平移因子 y
-     * @param recycle 是否回收
-     * @return 倾斜后的图片
-     */
-    public static Bitmap skew(final Bitmap src, final float kx, final float ky, final float px, final float py, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        Matrix matrix = new Matrix();
-        matrix.setSkew(kx, ky, px, py);
-        Bitmap ret = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
-        if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
-    }
+    //=
 
     /**
      * 转为圆形图片
@@ -421,14 +368,14 @@ public final class ImageUtils {
 
     /**
      * 添加倒影
-     * @param src              源图片的
+     * @param src              源图片
      * @param reflectionHeight 倒影高度
      * @param recycle          是否回收
      * @return 带倒影图片
      */
     public static Bitmap addReflection(final Bitmap src, final int reflectionHeight, final boolean recycle) {
         if (isEmptyBitmap(src)) return null;
-        // 源图与倒影之间的间距
+        // 源图片与倒影之间的间距
         final int REFLECTION_GAP = 0;
         int srcWidth = src.getWidth();
         int srcHeight = src.getHeight();
