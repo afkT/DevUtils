@@ -8,6 +8,8 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
@@ -21,6 +23,8 @@ import java.io.File;
 import java.io.FileDescriptor;
 
 import dev.DevUtils;
+
+import static dev.utils.app.image.temp.BitmapUtils.zoom;
 
 /**
  * detail: 图片相关工具类
@@ -102,36 +106,6 @@ public final class ImageUtils {
         options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFileDescriptor(fd, null, options);
-    }
-
-    /**
-     * 裁剪图片
-     * @param src    源图片
-     * @param x      开始坐标 x
-     * @param y      开始坐标 y
-     * @param width  裁剪宽度
-     * @param height 裁剪高度
-     * @return 裁剪后的图片
-     */
-    public static Bitmap clip(final Bitmap src, final int x, final int y, final int width, final int height) {
-        return clip(src, x, y, width, height, false);
-    }
-
-    /**
-     * 裁剪图片
-     * @param src     源图片
-     * @param x       开始坐标 x
-     * @param y       开始坐标 y
-     * @param width   裁剪宽度
-     * @param height  裁剪高度
-     * @param recycle 是否回收
-     * @return 裁剪后的图片
-     */
-    public static Bitmap clip(final Bitmap src, final int x, final int y, final int width, final int height, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        Bitmap ret = Bitmap.createBitmap(src, x, y, width, height);
-        if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
     }
 
     //=
@@ -818,61 +792,59 @@ public final class ImageUtils {
 //        return BitmapFactory.decodeStream(is, outPadding, options);
 //    }
 //
-//    // =
-//
-//    /**
-//     * 合并Bitmap
-//     *
-//     * @param bgd 背景 Bitmap
-//     * @param fg  前景 Bitmap
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap combineImages(final Bitmap bgd, final Bitmap fg) {
-//        if (bgd == null || fg == null) return null;
-//
-//        int width = bgd.getWidth() > fg.getWidth() ? bgd.getWidth() : fg.getWidth();
-//        int height = bgd.getHeight() > fg.getHeight() ? bgd.getHeight() : fg.getHeight();
-//
-//        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-//        Paint paint = new Paint();
-//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-//
-//        Canvas canvas = new Canvas(bitmap);
-//        canvas.drawBitmap(bgd, 0, 0, null);
-//        canvas.drawBitmap(fg, 0, 0, paint);
-//        return bitmap;
-//    }
-//
-//    /**
-//     * 合并Bitmap
-//     *
-//     * @param bgd 后景Bitmap
-//     * @param fg  前景Bitmap
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap combineImagesToSameSize(Bitmap bgd, Bitmap fg) {
-//        if (bgd == null || fg == null) return null;
-//
-//        int width = bgd.getWidth() < fg.getWidth() ? bgd.getWidth() : fg.getWidth();
-//        int height = bgd.getHeight() < fg.getHeight() ? bgd.getHeight() : fg.getHeight();
-//
-//        if (fg.getWidth() != width && fg.getHeight() != height) {
-////            fg = zoom(fg, width, height);
-//        }
-//        if (bgd.getWidth() != width && bgd.getHeight() != height) {
-////            bgd = zoom(bgd, width, height);
-//        }
-//
-//        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-//        Paint paint = new Paint();
-//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-//
-//        Canvas canvas = new Canvas(bitmap);
-//        canvas.drawBitmap(bgd, 0, 0, null);
-//        canvas.drawBitmap(fg, 0, 0, paint);
-//
-//        return bitmap;
-//    }
+    /**
+     * 合并Bitmap
+     *
+     * @param bgd 背景 Bitmap
+     * @param fg  前景 Bitmap
+     * @return {@link Bitmap}
+     */
+    public static Bitmap combineImages(final Bitmap bgd, final Bitmap fg) {
+        if (bgd == null || fg == null) return null;
+
+        int width = bgd.getWidth() > fg.getWidth() ? bgd.getWidth() : fg.getWidth();
+        int height = bgd.getHeight() > fg.getHeight() ? bgd.getHeight() : fg.getHeight();
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Paint paint = new Paint();
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawBitmap(bgd, 0, 0, null);
+        canvas.drawBitmap(fg, 0, 0, paint);
+        return bitmap;
+    }
+
+    /**
+     * 合并Bitmap
+     *
+     * @param bgd 后景Bitmap
+     * @param fg  前景Bitmap
+     * @return {@link Bitmap}
+     */
+    public static Bitmap combineImagesToSameSize(Bitmap bgd, Bitmap fg) {
+        if (bgd == null || fg == null) return null;
+
+        int width = bgd.getWidth() < fg.getWidth() ? bgd.getWidth() : fg.getWidth();
+        int height = bgd.getHeight() < fg.getHeight() ? bgd.getHeight() : fg.getHeight();
+
+        if (fg.getWidth() != width && fg.getHeight() != height) {
+            fg = zoom(fg, width, height);
+        }
+        if (bgd.getWidth() != width && bgd.getHeight() != height) {
+            bgd = zoom(bgd, width, height);
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Paint paint = new Paint();
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawBitmap(bgd, 0, 0, null);
+        canvas.drawBitmap(fg, 0, 0, paint);
+
+        return bitmap;
+    }
 //
 //    /**
 //     * 压缩图片大小
@@ -894,94 +866,6 @@ public final class ImageUtils {
 //        }
 //        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); // 把压缩后的数据baos存放到ByteArrayInputStream中
 //        return BitmapFactory.decodeStream(bais, null, null); // 把ByteArrayInputStream数据生成图片
-//    }
-//
-//    /**
-//     * 创建图片缩略图
-//     *
-//     * @param bitmap
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap createThumbnailBitmap(final Bitmap bitmap) {
-//        if (bitmap == null) return null;
-//        int sIconWidth = -1;
-//        int sIconHeight = -1;
-//        sIconWidth = sIconHeight = (int) DevUtils.getContext().getResources().getDimension(android.R.dimen.app_icon_size);
-//
-//        final Paint sPaint = new Paint();
-//        final Rect sBounds = new Rect();
-//        final Rect sOldBounds = new Rect();
-//        Canvas sCanvas = new Canvas();
-//
-//        int width = sIconWidth;
-//        int height = sIconHeight;
-//
-//        sCanvas.setDrawFilter(new PaintFlagsDrawFilter(Paint.DITHER_FLAG, Paint.FILTER_BITMAP_FLAG));
-//
-//        final int bitmapWidth = bitmap.getWidth();
-//        final int bitmapHeight = bitmap.getHeight();
-//
-//        if (width > 0 && height > 0) {
-//            if (width < bitmapWidth || height < bitmapHeight) {
-//                final float ratio = (float) bitmapWidth / bitmapHeight;
-//
-//                if (bitmapWidth > bitmapHeight) {
-//                    height = (int) (width / ratio);
-//                } else if (bitmapHeight > bitmapWidth) {
-//                    width = (int) (height * ratio);
-//                }
-//
-//                final Bitmap.Config c = (width == sIconWidth && height == sIconHeight) ? bitmap.getConfig() : Bitmap.Config.ARGB_8888;
-//                final Bitmap thumb = Bitmap.createBitmap(sIconWidth, sIconHeight, c);
-//                final Canvas canvas = sCanvas;
-//                final Paint paint = sPaint;
-//                canvas.setBitmap(thumb);
-//                paint.setDither(false);
-//                paint.setFilterBitmap(true);
-//                sBounds.set((sIconWidth - width) / 2, (sIconHeight - height) / 2, width, height);
-//                sOldBounds.set(0, 0, bitmapWidth, bitmapHeight);
-//                canvas.drawBitmap(bitmap, sOldBounds, sBounds, paint);
-//                return thumb;
-//            } else if (bitmapWidth < width || bitmapHeight < height) {
-//                final Bitmap.Config c = Bitmap.Config.ARGB_8888;
-//                final Bitmap thumb = Bitmap.createBitmap(sIconWidth, sIconHeight, c);
-//                final Canvas canvas = sCanvas;
-//                final Paint paint = sPaint;
-//                canvas.setBitmap(thumb);
-//                paint.setDither(false);
-//                paint.setFilterBitmap(true);
-//                canvas.drawBitmap(bitmap, (sIconWidth - bitmapWidth) / 2, (sIconHeight - bitmapHeight) / 2, paint);
-//                return thumb;
-//            }
-//        }
-//        return bitmap;
-//    }
-//
-//    /**
-//     * 生成水印图片 水印在右下角
-//     *
-//     * @param src
-//     * @param watermark
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap createWatermarkBitmap(final Bitmap src, final Bitmap watermark) {
-//        if (src == null || watermark == null) return null;
-//        int width = src.getWidth();
-//        int height = src.getHeight();
-//        int ww = watermark.getWidth();
-//        int wh = watermark.getHeight();
-//        // create the new blank bitmap
-//        Bitmap newb = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888); // 创建一个新的和SRC长度宽度一样的位图
-//        Canvas cv = new Canvas(newb);
-//        // draw src into
-//        cv.drawBitmap(src, 0, 0, null); // 在 0, 0坐标开始画入src
-//        // draw watermark into
-//        cv.drawBitmap(watermark, width - ww + 5, height - wh + 5, null); // 在src的右下角画入水印
-//        // save all clip
-//        cv.save(); // 保存
-//        // store
-//        cv.restore(); // 存储
-//        return newb;
 //    }
 //
 //    /**

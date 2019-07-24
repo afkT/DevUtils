@@ -374,6 +374,41 @@ public final class BitmapUtils {
     }
 
     // ========
+    // = 裁剪 =
+    // ========
+
+    /**
+     * 裁剪图片
+     * @param src     待操作源图片
+     * @param width   裁剪宽度
+     * @param height  裁剪高度
+     * @return 裁剪后的图片
+     */
+    public static Bitmap clip(final Bitmap src, final int width, final int height) {
+        return clip(src, 0, 0, width, height);
+    }
+
+    /**
+     * 裁剪图片
+     * @param src     待操作源图片
+     * @param x       X 轴开始坐标
+     * @param y       Y 轴开始坐标
+     * @param width   裁剪宽度
+     * @param height  裁剪高度
+     * @return 裁剪后的图片
+     */
+    public static Bitmap clip(final Bitmap src, final int x, final int y, final int width, final int height) {
+        if (isEmpty(src)) return null;
+        return Bitmap.createBitmap(src, x, y, width, height);
+    }
+
+    // =============
+    // = 合并/叠加 =
+    // =============
+
+
+
+    // ========
     // = 倒影 =
     // ========
 
