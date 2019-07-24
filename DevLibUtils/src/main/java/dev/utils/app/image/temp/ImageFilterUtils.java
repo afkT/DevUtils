@@ -53,7 +53,7 @@ public final class ImageFilterUtils {
             // 创建 Allocation 对象的时候其实内存是空的, 需要使用 copyTo() 将数据填充进去
             Allocation input = Allocation.createFromBitmap(rs, bitmap, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);
             Allocation output = Allocation.createTyped(rs, input.getType());
-            // 创建一个模糊效果的 RenderScript 的工具对象，第二个参数 Element 相当于一种像素处理的算法，高斯模糊的话用这个就好
+            // 创建一个模糊效果的 RenderScript 的工具对象, 第二个参数 Element 相当于一种像素处理的算法, 高斯模糊的话用这个就好
             ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
 
             // 设置 blur 对象的输入内存

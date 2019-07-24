@@ -310,9 +310,9 @@ public final class AudioManagerUtils {
      * 获取当前的铃声模式
      * <pre>
      *     返回值有下述几种模式:
-     *     RINGER_MODE_NORMAL（普通）
-     *     RINGER_MODE_SILENT（静音）
-     *     RINGER_MODE_VIBRATE（震动）
+     *     RINGER_MODE_NORMAL( 普通 )
+     *     RINGER_MODE_SILENT( 静音 )
+     *     RINGER_MODE_VIBRATE( 震动 )
      * </pre>
      * @return 当前的铃声模式
      */
@@ -340,9 +340,9 @@ public final class AudioManagerUtils {
      * 获取当前的铃声模式
      * <pre>
      *     有下述几种模式:
-     *     RINGER_MODE_NORMAL（普通）
-     *     RINGER_MODE_SILENT（静音）
-     *     RINGER_MODE_VIBRATE（震动）
+     *     RINGER_MODE_NORMAL( 普通 )
+     *     RINGER_MODE_SILENT( 静音 )
+     *     RINGER_MODE_VIBRATE( 震动 )
      * </pre>
      * @param ringerMode 铃声模式
      * @param setting    如果没授权, 是否跳转到设置页面
@@ -659,7 +659,7 @@ public final class AudioManagerUtils {
     // =
 
     /**
-     * 放弃音频焦点, 使上一个焦点所有者（如果有）接收焦点
+     * 放弃音频焦点, 使上一个焦点所有者 ( 如果有 ) 接收焦点
      * @param listener 焦点监听事件
      */
     public static void abandonAudioFocus(final AudioManager.OnAudioFocusChangeListener listener) {
@@ -674,7 +674,7 @@ public final class AudioManagerUtils {
     }
 
     /**
-     * 调整最相关的流的音量，或者给定的回退流
+     * 调整最相关的流的音量, 或者给定的回退流
      * @param direction 调整参数
      */
     public static void adjustSuggestedStreamVolume(final int direction) {
