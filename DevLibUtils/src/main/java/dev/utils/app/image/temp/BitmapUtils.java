@@ -346,7 +346,7 @@ public final class BitmapUtils {
     // ========
 
     /**
-     * 圆角图片(非圆形)
+     * 圆角图片 ( 非圆形 )
      * <pre>
      *     以宽高中最小值设置为圆角尺寸, 如果宽高一致, 则处理为圆形图片
      * </pre>
@@ -359,7 +359,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 圆角图片(非圆形)
+     * 圆角图片 ( 非圆形 )
      * @param bitmap 待操作源图片
      * @param pixels 圆角大小
      * @return 圆角处理后的图片
@@ -378,7 +378,82 @@ public final class BitmapUtils {
         Canvas canvas = new Canvas(newBitmap);
         canvas.drawARGB(0, 0, 0, 0);
         canvas.drawRoundRect(rectF, pixels, pixels, paint);
-        // 绘制底圆后, 进行合并(交集处理)
+        // 绘制底圆后, 进行合并 ( 交集处理 )
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+        return newBitmap;
+    }
+
+    // =
+
+    /**
+     * 圆角图片 ( 非圆形 ) - 只有 leftTop、rightTop
+     * @param bitmap 待操作源图片
+     * @param pixels 圆角大小
+     * @return 圆角处理后的图片
+     */
+    public static Bitmap roundCornerTop(final Bitmap bitmap, final float pixels) {
+        return roundCorner(bitmap, pixels, new boolean[]{true, true, true, false});
+    }
+
+    /**
+     * 圆角图片 ( 非圆形 ) - 只有 leftBottom、rightBottom
+     * @param bitmap 待操作源图片
+     * @param pixels 圆角大小
+     * @return 圆角处理后的图片
+     */
+    public static Bitmap roundCornerBottom(final Bitmap bitmap, final float pixels) {
+        return roundCorner(bitmap, pixels, new boolean[]{true, false, true, true});
+    }
+
+    // =
+
+    /**
+     * 圆角图片 ( 非圆形 )
+     * <pre>
+     *     只要左上圆角: new boolean[] {true, true, false, false};
+     *     只要右上圆角: new boolean[] {false, true, true, false};
+     *     <p></p>
+     *     只要左下圆角: new boolean[] {true, false, false, true};
+     *     只要右下圆角: new boolean[] {false, false, true, true};
+     * </pre>
+     * @param bitmap     待操作源图片
+     * @param pixels     圆角大小
+     * @param directions 需要圆角的方向 [left, top, right, bottom]
+     * @return 圆角处理后的图片
+     */
+    public static Bitmap roundCorner(final Bitmap bitmap, final float pixels, final boolean[] directions) {
+        if (isEmpty(bitmap)) return null;
+        if (directions == null || directions.length != 4) return null;
+        // 创建一个同源图片一样大小的矩形, 用于把源图片绘制到这个矩形上
+        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
+
+        // ================
+        // = 圆角方向控制 =
+        // ================
+
+        if (!directions[0])
+            rectF.left -= pixels;
+
+        if (!directions[1])
+            rectF.top -= pixels;
+
+        if (!directions[2])
+            rectF.right += pixels;
+
+        if (!directions[3])
+            rectF.bottom += pixels;
+
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
+
+        Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(newBitmap);
+        canvas.drawARGB(0, 0, 0, 0);
+        canvas.drawRoundRect(rectF, pixels, pixels, paint);
+        // 绘制底圆后, 进行合并 ( 交集处理 )
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
         return newBitmap;
