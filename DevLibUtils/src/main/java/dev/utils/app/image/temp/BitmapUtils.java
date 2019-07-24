@@ -3,12 +3,14 @@ package dev.utils.app.image.temp;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.media.ExifInterface;
 
 import java.io.ByteArrayOutputStream;
@@ -57,7 +59,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * 获取 Bitmap 宽高 ( 不加载图片到内存中 )
+     * 获取 Bitmap 宽高
      * @param file 文件
      * @return int[] { 宽度, 高度 }
      */
@@ -66,12 +68,12 @@ public final class BitmapUtils {
     }
 
     /**
-     * 获取 Bitmap 宽高 ( 不加载图片到内存中 )
+     * 获取 Bitmap 宽高
      * @param filePath 文件路径
      * @return int[] { 宽度, 高度 }
      */
     public static int[] getBitmapWidthHeight(final String filePath) {
-        if (!isFileExists(filePath)) return null;
+        if (!isFileExists(filePath)) return new int[]{0, 0};
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
             // 只解析图片信息, 不加载到内存中
@@ -83,7 +85,37 @@ public final class BitmapUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBitmapWidthHeight");
         }
-        return null;
+        return new int[]{0, 0};
+    }
+
+    /**
+     * 获取 Bitmap 宽度
+     * @param bitmap 源图片
+     * @return Bitmap 宽度
+     */
+    public static int getBitmapWidth(final Bitmap bitmap) {
+        if (isEmpty(bitmap)) return 0;
+        return bitmap.getWidth();
+    }
+
+    /**
+     * 获取 Bitmap 高度
+     * @param bitmap 源图片
+     * @return Bitmap 高度
+     */
+    public static int getBitmapHeight(final Bitmap bitmap) {
+        if (isEmpty(bitmap)) return 0;
+        return bitmap.getHeight();
+    }
+
+    /**
+     * 获取 Bitmap 宽高
+     * @param bitmap 源图片
+     * @return int[] { 宽度, 高度 }
+     */
+    public static int[] getBitmapWidthHeight(final Bitmap bitmap) {
+        if (isEmpty(bitmap)) return new int[]{0, 0};
+        return new int[]{bitmap.getWidth(), bitmap.getHeight()};
     }
 
     // =
@@ -339,6 +371,68 @@ public final class BitmapUtils {
         Matrix matrix = new Matrix();
         matrix.setSkew(kx, ky, px, py);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+    // ========
+    // = 倒影 =
+    // ========
+
+    /**
+     * 倒影处理
+     * @param bitmap 待操作源图片
+     * @return 倒影处理后的图片
+     */
+    public static Bitmap reflection(final Bitmap bitmap) {
+        return reflection(bitmap, 0, getBitmapHeight(bitmap));
+    }
+
+    /**
+     * 倒影处理
+     * @param bitmap           待操作源图片
+     * @param reflectionHeight 倒影高度
+     * @return 倒影处理后的图片
+     */
+    public static Bitmap reflection(final Bitmap bitmap, final int reflectionHeight) {
+        return reflection(bitmap, 0, reflectionHeight);
+    }
+
+    /**
+     * 倒影处理
+     * @param bitmap            待操作源图片
+     * @param reflectionSpacing 源图片与倒影之间的间距
+     * @param reflectionHeight  倒影高度
+     * @return 倒影处理后的图片
+     */
+    public static Bitmap reflection(final Bitmap bitmap, final int reflectionSpacing, final int reflectionHeight) {
+        if (isEmpty(bitmap)) return null;
+        if (reflectionHeight <= 0) return null;
+        // 获取图片宽高
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        // 创建画布, 画布分为上中下三部分, 上: 是源图片, 中: 是源图片与倒影的间距, 下: 是倒影
+
+        // 创建倒影图片
+        Bitmap reflectionImage = reverseByVertical(bitmap); // 垂直翻转图片 ( 上下颠倒 )
+        // 创建一张宽度与源图片相同, 但高度等于 源图片的高度 + 间距 + 倒影的高度的图片
+        Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapWithReflection);
+
+        // 将源图片画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是源图片的高度加上源图片与倒影之间的间距
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        canvas.drawBitmap(reflectionImage, 0, height + reflectionSpacing, null);
+        reflectionImage.recycle();
+
+        // 边距负数处理
+        int spacing = Math.max(reflectionSpacing, 0);
+
+        // 将倒影改成半透明, 创建画笔, 并设置画笔的渐变从半透明的白色到全透明的白色, 然后再倒影上面画半透明效果
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setShader(new LinearGradient(0, bitmap.getHeight(), 0, bitmapWithReflection.getHeight() + spacing,
+                0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        canvas.drawRect(0, height + spacing, width, bitmapWithReflection.getHeight() + spacing, paint);
+        return bitmapWithReflection;
     }
 
     // ========
