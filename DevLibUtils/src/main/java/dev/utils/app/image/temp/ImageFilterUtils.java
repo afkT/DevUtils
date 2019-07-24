@@ -298,7 +298,7 @@ public final class ImageFilterUtils {
 
     /**
      * 怀旧效果处理
-     * @param bitmap 待处理原图
+     * @param bitmap 待处理源图
      * @return 怀旧效果处理后的图片
      */
     public static Bitmap nostalgic(final Bitmap bitmap) {
@@ -342,7 +342,7 @@ public final class ImageFilterUtils {
 
     /**
      * 光照效果处理
-     * @param bitmap  待处理原图
+     * @param bitmap  待处理源图
      * @param centerX 光源在 X 轴的位置
      * @param centerY 光源在 Y 轴的位置
      * @return 光照效果处理后的图片
@@ -410,7 +410,7 @@ public final class ImageFilterUtils {
 
     /**
      * 底片效果处理
-     * @param bitmap 待处理原图
+     * @param bitmap 待处理源图
      * @return 底片效果处理后的图片
      */
     public static Bitmap film(final Bitmap bitmap) {
@@ -469,7 +469,7 @@ public final class ImageFilterUtils {
      * <pre>
      *     delta 取值范围只要大于等于 1 就可以, 但是避免太大, 导致变得很暗, 限制 1-24
      * </pre>
-     * @param bitmap 待处理原图
+     * @param bitmap 待处理源图
      * @param delta  图片的亮暗程度值, 越小图片会越亮
      * @return 柔化效果处理后的图片
      */
@@ -539,7 +539,7 @@ public final class ImageFilterUtils {
 
     /**
      * 锐化效果处理
-     * @param bitmap 待处理原图
+     * @param bitmap 待处理源图
      * @return 锐化效果处理后的图片
      */
     public static Bitmap sharpen(final Bitmap bitmap) {
@@ -604,7 +604,7 @@ public final class ImageFilterUtils {
 
     /**
      * 浮雕效果处理
-     * @param bitmap 待处理原图
+     * @param bitmap 待处理源图
      * @return 浮雕效果处理后的图片
      */
     public static Bitmap emboss(final Bitmap bitmap) {
@@ -659,7 +659,7 @@ public final class ImageFilterUtils {
 
 //    /**
 //     * 转为灰度图片
-//     * @param bitmap 待处理原图
+//     * @param bitmap 待处理源图
 //     * @return 灰度图
 //     */
 //    public static Bitmap toGray(final Bitmap bitmap) {
@@ -695,7 +695,7 @@ public final class ImageFilterUtils {
 
     /**
      * 转为灰度图片
-     * @param bitmap 待处理原图
+     * @param bitmap 待处理源图
      * @return 灰度图
      */
     public static Bitmap toGray(final Bitmap bitmap) {
@@ -722,7 +722,7 @@ public final class ImageFilterUtils {
 
     /**
      * 饱和度处理
-     * @param bitmap          待处理原图
+     * @param bitmap          待处理源图
      * @param saturationValue 新的饱和度值
      * @return 改变了饱和度值之后的图片
      */
@@ -741,7 +741,7 @@ public final class ImageFilterUtils {
             // 创建一个新的图片并创建画布
             Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(newBitmap);
-            // 将原图使用给定的画笔画到画布上
+            // 将源图使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
         } catch (Exception e) {
@@ -752,7 +752,7 @@ public final class ImageFilterUtils {
 
     /**
      * 亮度处理
-     * @param bitmap   待处理原图
+     * @param bitmap   待处理源图
      * @param lumValue 新的亮度值
      * @return 改变了亮度值之后的图片
      */
@@ -771,7 +771,7 @@ public final class ImageFilterUtils {
             // 创建一个新的图片并创建画布
             Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(newBitmap);
-            // 将原图使用给定的画笔画到画布上
+            // 将源图使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
         } catch (Exception e) {
@@ -782,7 +782,7 @@ public final class ImageFilterUtils {
 
     /**
      * 色相处理
-     * @param bitmap   待处理原图
+     * @param bitmap   待处理源图
      * @param hueValue 新的色相值
      * @return 改变了色相值之后的图片
      */
@@ -805,7 +805,7 @@ public final class ImageFilterUtils {
             // 创建一个新的图片并创建画布
             Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(newBitmap);
-            // 将原图使用给定的画笔画到画布上
+            // 将源图使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
         } catch (Exception e) {
@@ -816,7 +816,7 @@ public final class ImageFilterUtils {
 
     /**
      * 亮度、色相、饱和度处理
-     * @param bitmap          待处理原图
+     * @param bitmap          待处理源图
      * @param lumValue        亮度值
      * @param hueValue        色相值
      * @param saturationValue 饱和度值
@@ -849,7 +849,7 @@ public final class ImageFilterUtils {
             // 创建一个新的图片并创建画布
             Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(newBitmap);
-            // 将原图使用给定的画笔画到画布上
+            // 将源图使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
         } catch (Exception e) {

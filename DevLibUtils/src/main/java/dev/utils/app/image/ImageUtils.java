@@ -107,61 +107,6 @@ public final class ImageUtils {
         return BitmapFactory.decodeFileDescriptor(fd, null, options);
     }
 
-
-    /**
-     * 缩放图片
-     * @param src       源图片
-     * @param newWidth  新宽度
-     * @param newHeight 新高度
-     * @return 缩放后的图片
-     */
-    public static Bitmap scale(final Bitmap src, final int newWidth, final int newHeight) {
-        return scale(src, newWidth, newHeight, false);
-    }
-
-    /**
-     * 缩放图片
-     * @param src       源图片
-     * @param newWidth  新宽度
-     * @param newHeight 新高度
-     * @param recycle   是否回收
-     * @return 缩放后的图片
-     */
-    public static Bitmap scale(final Bitmap src, final int newWidth, final int newHeight, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        Bitmap ret = Bitmap.createScaledBitmap(src, newWidth, newHeight, true);
-        if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
-    }
-
-    /**
-     * 缩放图片
-     * @param src         源图片
-     * @param scaleWidth  缩放宽度倍数
-     * @param scaleHeight 缩放高度倍数
-     * @return 缩放后的图片
-     */
-    public static Bitmap scale(final Bitmap src, final float scaleWidth, final float scaleHeight) {
-        return scale(src, scaleWidth, scaleHeight, false);
-    }
-
-    /**
-     * 缩放图片
-     * @param src         源图片
-     * @param scaleWidth  缩放宽度倍数
-     * @param scaleHeight 缩放高度倍数
-     * @param recycle     是否回收
-     * @return 缩放后的图片
-     */
-    public static Bitmap scale(final Bitmap src, final float scaleWidth, final float scaleHeight, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        Matrix matrix = new Matrix();
-        matrix.setScale(scaleWidth, scaleHeight);
-        Bitmap ret = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
-        if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
-    }
-
     /**
      * 裁剪图片
      * @param src    源图片
@@ -483,7 +428,7 @@ public final class ImageUtils {
      */
     public static Bitmap addReflection(final Bitmap src, final int reflectionHeight, final boolean recycle) {
         if (isEmptyBitmap(src)) return null;
-        // 原图与倒影之间的间距
+        // 源图与倒影之间的间距
         final int REFLECTION_GAP = 0;
         int srcWidth = src.getWidth();
         int srcHeight = src.getHeight();
@@ -592,51 +537,51 @@ public final class ImageUtils {
 
     // = 压缩有关 =
 
-    /**
-     * 按缩放压缩
-     * @param src       源图片
-     * @param newWidth  新宽度
-     * @param newHeight 新高度
-     * @return 缩放压缩后的图片
-     */
-    public static Bitmap compressByScale(final Bitmap src, final int newWidth, final int newHeight) {
-        return scale(src, newWidth, newHeight, false);
-    }
-
-    /**
-     * 按缩放压缩
-     * @param src       源图片
-     * @param newWidth  新宽度
-     * @param newHeight 新高度
-     * @param recycle   是否回收
-     * @return 缩放压缩后的图片
-     */
-    public static Bitmap compressByScale(final Bitmap src, final int newWidth, final int newHeight, final boolean recycle) {
-        return scale(src, newWidth, newHeight, recycle);
-    }
-
-    /**
-     * 按缩放压缩
-     * @param src         源图片
-     * @param scaleWidth  缩放宽度倍数
-     * @param scaleHeight 缩放高度倍数
-     * @return 缩放压缩后的图片
-     */
-    public static Bitmap compressByScale(final Bitmap src, final float scaleWidth, final float scaleHeight) {
-        return scale(src, scaleWidth, scaleHeight, false);
-    }
-
-    /**
-     * 按缩放压缩
-     * @param src         源图片
-     * @param scaleWidth  缩放宽度倍数
-     * @param scaleHeight 缩放高度倍数
-     * @param recycle     是否回收
-     * @return 缩放压缩后的图片
-     */
-    public static Bitmap compressByScale(final Bitmap src, final float scaleWidth, final float scaleHeight, final boolean recycle) {
-        return scale(src, scaleWidth, scaleHeight, recycle);
-    }
+//    /**
+//     * 按缩放压缩
+//     * @param src       源图片
+//     * @param newWidth  新宽度
+//     * @param newHeight 新高度
+//     * @return 缩放压缩后的图片
+//     */
+//    public static Bitmap compressByScale(final Bitmap src, final int newWidth, final int newHeight) {
+//        return scale(src, newWidth, newHeight, false);
+//    }
+//
+//    /**
+//     * 按缩放压缩
+//     * @param src       源图片
+//     * @param newWidth  新宽度
+//     * @param newHeight 新高度
+//     * @param recycle   是否回收
+//     * @return 缩放压缩后的图片
+//     */
+//    public static Bitmap compressByScale(final Bitmap src, final int newWidth, final int newHeight, final boolean recycle) {
+//        return scale(src, newWidth, newHeight, recycle);
+//    }
+//
+//    /**
+//     * 按缩放压缩
+//     * @param src         源图片
+//     * @param scaleWidth  缩放宽度倍数
+//     * @param scaleHeight 缩放高度倍数
+//     * @return 缩放压缩后的图片
+//     */
+//    public static Bitmap compressByScale(final Bitmap src, final float scaleWidth, final float scaleHeight) {
+//        return scale(src, scaleWidth, scaleHeight, false);
+//    }
+//
+//    /**
+//     * 按缩放压缩
+//     * @param src         源图片
+//     * @param scaleWidth  缩放宽度倍数
+//     * @param scaleHeight 缩放高度倍数
+//     * @param recycle     是否回收
+//     * @return 缩放压缩后的图片
+//     */
+//    public static Bitmap compressByScale(final Bitmap src, final float scaleWidth, final float scaleHeight, final boolean recycle) {
+//        return scale(src, scaleWidth, scaleHeight, recycle);
+//    }
 
     /**
      * 按质量压缩

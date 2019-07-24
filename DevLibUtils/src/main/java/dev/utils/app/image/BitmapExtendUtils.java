@@ -421,81 +421,6 @@ public final class BitmapExtendUtils {
     // ============
 
 //    /**
-//     * 水平翻转处理
-//     * @param bitmap 原图
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap reverseByHorizontal(final Bitmap bitmap) {
-//        if (bitmap == null) return null;
-//        Matrix matrix = new Matrix();
-//        matrix.preScale(-1, 1);
-//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-//    }
-//
-//    /**
-//     * 垂直翻转处理
-//     * @param bitmap 原图
-//     * @return 垂直翻转后的图片
-//     */
-//    public static Bitmap reverseByVertical(final Bitmap bitmap) {
-//        if (bitmap == null) return null;
-//        Matrix matrix = new Matrix();
-//        matrix.preScale(1, -1);
-//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-//    }
-//
-//    /**
-//     * 缩放处理
-//     * @param scaling 缩放比例
-//     * @return 缩放后的图片
-//     */
-//    public Bitmap scale(final Bitmap bitmap, final float scaling) {
-//        Matrix matrix = new Matrix();
-//        matrix.postScale(scaling, scaling);
-//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-//    }
-//
-//    /**
-//     * 缩放处理
-//     * @param newWidth 新的宽度
-//     * @return
-//     */
-//    public Bitmap scaleByWidth(final Bitmap bitmap, final int newWidth) {
-//        return scale(bitmap,(float) newWidth / bitmap.getWidth());
-//    }
-//
-//    /**
-//     * 缩放处理
-//     * @param newHeight 新的高度
-//     * @return
-//     */
-//    public Bitmap scaleByHeight(final Bitmap bitmap, final int newHeight) {
-//        return scale(bitmap,(float) newHeight / bitmap.getHeight());
-//    }
-//
-//    /**
-//     * 水平翻转处理
-//     * @param bitmap 原图
-//     * @return 水平翻转后的图片
-//     */
-//    public Bitmap reverseByHorizontal(final Bitmap bitmap) {
-//        Matrix matrix = new Matrix();
-//        matrix.preScale(-1, 1);
-//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-//    }
-//
-//    /**
-//     * 垂直翻转处理
-//     * @param bitmap 原图
-//     * @return 垂直翻转后的图片
-//     */
-//    public Bitmap reverseByVertical(final Bitmap bitmap) {
-//        Matrix matrix = new Matrix();
-//        matrix.preScale(1, -1);
-//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-//    }
-//
-//    /**
 //     * 圆角处理
 //     * @param pixels 角度, 度数越大圆角越大
 //     * @return 转换成圆角后的图片
@@ -504,20 +429,20 @@ public final class BitmapExtendUtils {
 //        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 //        Canvas canvas = new Canvas(output);
 //        Paint paint = new Paint();
-//        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()); // 创建一个同原图一样大小的矩形, 用于把原图绘制到这个矩形上
+//        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()); // 创建一个同源图一样大小的矩形, 用于把源图绘制到这个矩形上
 //        RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
 //        paint.setAntiAlias(true);
 //        canvas.drawARGB(0, 0, 0, 0); // 涂上黑色全透明的底色
 //        paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
 //        canvas.drawRoundRect(rectF, pixels, pixels, paint); // 用给给定的画笔把给定的矩形以给定的圆角的度数画到画布
 //        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-//        canvas.drawBitmap(bitmap, rect, rect, paint); // 用画笔paint将原图bitmap根据新的矩形重新绘制
+//        canvas.drawBitmap(bitmap, rect, rect, paint); // 用画笔paint将源图bitmap根据新的矩形重新绘制
 //        return output;
 //    }
 //
 //    /**
 //     * 倒影处理
-//     * @param reflectionSpacing 原图与倒影之间的间距
+//     * @param reflectionSpacing 源图与倒影之间的间距
 //     * @param reflectionHeight  倒影高度
 //     * @return 加上倒影后的图片
 //     */
@@ -525,12 +450,12 @@ public final class BitmapExtendUtils {
 //        int width = bitmap.getWidth();
 //        int height = bitmap.getHeight();
 //
-//        // 获取倒影图片, 并创建一张宽度与原图相同, 但高度等于原图的高度加上间距加上倒影的高度的图片, 并创建画布, 画布分为上中下三部分, 上: 是原图, 中: 是原图与倒影的间距, 下: 是倒影
+//        // 获取倒影图片, 并创建一张宽度与源图相同, 但高度等于源图的高度加上间距加上倒影的高度的图片, 并创建画布, 画布分为上中下三部分, 上: 是源图, 中: 是源图与倒影的间距, 下: 是倒影
 //        Bitmap reflectionImage = reverseByVertical(bitmap); //
 //        Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
 //        Canvas canvas = new Canvas(bitmapWithReflection);
 //
-//        // 将原图画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是原图的高度加上原图与倒影之间的间距
+//        // 将源图画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是源图的高度加上源图与倒影之间的间距
 //        canvas.drawBitmap(bitmap, 0, 0, null);
 //        canvas.drawBitmap(reflectionImage, 0, height + reflectionSpacing, null);
 //        reflectionImage.recycle();
@@ -550,88 +475,6 @@ public final class BitmapExtendUtils {
 //     */
 //    public Bitmap reflection(final Bitmap bitmap) {
 //        return reflection(bitmap, 4, bitmap.getHeight() / 2);
-//    }
-//
-//
-//
-//    /**
-//     * 图片的缩放方法
-//     * @param bitmap    源图片资源
-//     * @param newWidth  缩放后宽度
-//     * @param newHeight 缩放后高度
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap scale(final Bitmap bitmap, final double newWidth, final double newHeight) {
-//        if (bitmap == null) return null;
-//        // 记录src的宽高
-//        float width = bitmap.getWidth();
-//        float height = bitmap.getHeight();
-//        // 创建一个matrix容器
-//        Matrix matrix = new Matrix();
-//        // 计算缩放比例
-//        float scaleWidth = ((float) newWidth) / width;
-//        float scaleHeight = ((float) newHeight) / height;
-//        // 开始缩放
-//        matrix.postScale(scaleWidth, scaleHeight);
-//        // 创建缩放后的图片
-//        return Bitmap.createBitmap(bitmap, 0, 0, (int) width, (int) height, matrix, true);
-//    }
-//
-//    /**
-//     * 图片的缩放方法
-//     * @param bitmap      源图片资源
-//     * @param scaleMatrix 缩放规则
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap scale(final Bitmap bitmap, final Matrix scaleMatrix) {
-//        if (bitmap == null) return null;
-//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), scaleMatrix, true);
-//    }
-//
-//    /**
-//     * 图片的缩放方法
-//     * @param bitmap 源图片资源
-//     * @param scaleX 横向缩放比例
-//     * @param scaleY 纵向缩放比例
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap scale(final Bitmap bitmap, final float scaleX, final float scaleY) {
-//        if (bitmap == null) return null;
-//        Matrix matrix = new Matrix();
-//        matrix.postScale(scaleX, scaleY);
-//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-//    }
-//
-//    /**
-//     * 图片的缩放方法
-//     * @param bitmap 源图片资源
-//     * @param scale  缩放比例
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap scale(final Bitmap bitmap, final float scale) {
-//        if (bitmap == null) return null;
-//        return scale(bitmap, scale, scale);
-//    }
-//
-//
-//
-//    /**
-//     * 放大缩小图片
-//     * @param bitmap 源Bitmap
-//     * @param w      宽
-//     * @param h      高
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap zoom(final Bitmap bitmap, final int w, final int h) {
-//        if (bitmap == null) return null;
-//        int width = bitmap.getWidth();
-//        int height = bitmap.getHeight();
-//        Matrix matrix = new Matrix();
-//        float scaleWidht = ((float) w / width);
-//        float scaleHeight = ((float) h / height);
-//        matrix.postScale(scaleWidht, scaleHeight);
-//        Bitmap newbmp = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
-//        return newbmp;
 //    }
 //
 //    /**

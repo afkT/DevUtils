@@ -101,7 +101,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * 获取 Alpha 位图 ( 获取原图的轮廓 rgb 为 0)
+     * 获取 Alpha 位图 ( 获取源图的轮廓 rgb 为 0)
      * @param bitmap {@link Bitmap}
      * @return Alpha 位图
      */
@@ -130,13 +130,32 @@ public final class BitmapUtils {
         return null;
     }
 
+    /**
+     * Bitmap 通知回收
+     * @param bitmap 待回收图片
+     */
+    public static void recycle(final Bitmap bitmap) {
+        if (bitmap == null) return;
+        if (!bitmap.isRecycled()) {
+            try {
+                bitmap.recycle();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "recycle");
+            }
+        }
+    }
+
     // ===============
     // = Bitmap 操作 =
     // ===============
 
+    // ========
+    // = 旋转 =
+    // ========
+
     /**
      * 旋转图片
-     * @param bitmap  待操作原图
+     * @param bitmap  待操作源图
      * @param degrees 旋转角度
      * @return 旋转后的图片
      */
@@ -149,7 +168,7 @@ public final class BitmapUtils {
 
     /**
      * 旋转图片
-     * @param bitmap  待操作原图
+     * @param bitmap  待操作源图
      * @param degrees 旋转角度
      * @param px      旋转中心点在 X 轴的坐标
      * @param py      旋转中心点在 Y 轴的坐标
@@ -185,6 +204,98 @@ public final class BitmapUtils {
             LogPrintUtils.eTag(TAG, e, "getRotateDegree");
             return 0;
         }
+    }
+
+    // ========
+    // = 翻转 =
+    // ========
+
+    /**
+     * 水平翻转图片 ( 左右颠倒 )
+     * @param bitmap 待操作源图
+     * @return 翻转后的图片
+     */
+    public static Bitmap reverseByHorizontal(final Bitmap bitmap) {
+        return reverse(bitmap, true);
+    }
+
+    /**
+     * 垂直翻转图片 ( 上下颠倒 )
+     * @param bitmap 待操作源图
+     * @return 翻转后的图片
+     */
+    public static Bitmap reverseByVertical(final Bitmap bitmap) {
+        return reverse(bitmap, false);
+    }
+
+    /**
+     * 垂直翻转处理
+     * @param bitmap     待操作源图
+     * @param horizontal 是否水平翻转
+     * @return 翻转后的图片
+     */
+    public static Bitmap reverse(final Bitmap bitmap, final boolean horizontal) {
+        if (bitmap == null) return null;
+        Matrix matrix = new Matrix();
+        if (horizontal) {
+            matrix.preScale(-1, 1);
+        } else {
+            matrix.preScale(1, -1);
+        }
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
+    }
+
+    // ========
+    // = 缩放 =
+    // ========
+
+    /**
+     * 缩放图片 ( 指定所需宽高 )
+     * @param bitmap  待操作源图
+     * @param newSize 新尺寸 ( 宽高 )
+     * @return 缩放后的图片
+     */
+    public static Bitmap zoom(final Bitmap bitmap, final int newSize) {
+        if (isEmpty(bitmap)) return null;
+        return Bitmap.createScaledBitmap(bitmap, newSize, newSize, true);
+    }
+
+    /**
+     * 缩放图片 ( 指定所需宽高 )
+     * @param bitmap    待操作源图
+     * @param newWidth  新宽度
+     * @param newHeight 新高度
+     * @return 缩放后的图片
+     */
+    public static Bitmap zoom(final Bitmap bitmap, final int newWidth, final int newHeight) {
+        if (isEmpty(bitmap)) return null;
+        return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+    }
+
+    // =
+
+    /**
+     * 缩放图片 ( 比例缩放 )
+     * @param bitmap 待操作源图
+     * @param scale  缩放倍数
+     * @return 缩放后的图片
+     */
+    public static Bitmap scale(final Bitmap bitmap, final float scale) {
+        return scale(bitmap, scale, scale);
+    }
+
+    /**
+     * 缩放图片 ( 比例缩放 )
+     * @param bitmap 待操作源图
+     * @param scaleX 横向缩放比例 ( 缩放宽度倍数 )
+     * @param scaleY 纵向缩放比例 ( 缩放高度倍数 )
+     * @return 缩放后的图片
+     */
+    public static Bitmap scale(final Bitmap bitmap, final float scaleX, final float scaleY) {
+        if (isEmpty(bitmap)) return null;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleX, scaleY);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
     // ======================
