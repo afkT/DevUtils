@@ -2,6 +2,7 @@ package dev.utils.app.image.temp;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
@@ -13,6 +14,9 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.media.ExifInterface;
+import android.support.annotation.ColorInt;
+import android.support.annotation.FloatRange;
+import android.support.annotation.IntRange;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -272,7 +276,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 垂直翻转处理
+     * 翻转图片
      * @param bitmap     待操作源图片
      * @param horizontal 是否水平翻转
      * @return 翻转后的图片
@@ -553,7 +557,7 @@ public final class BitmapUtils {
     // ========
 
     /**
-     * 倒影处理
+     * 图片倒影处理
      * @param bitmap 待操作源图片
      * @return 倒影处理后的图片
      */
@@ -562,7 +566,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 倒影处理
+     * 图片倒影处理
      * @param bitmap           待操作源图片
      * @param reflectionHeight 倒影高度
      * @return 倒影处理后的图片
@@ -572,7 +576,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 倒影处理
+     * 图片倒影处理
      * @param bitmap            待操作源图片
      * @param reflectionSpacing 源图片与倒影之间的间距
      * @param reflectionHeight  倒影高度
@@ -615,7 +619,7 @@ public final class BitmapUtils {
     // ========
 
     /**
-     * 圆角图片 ( 非圆形 )
+     * 图片圆角处理 ( 非圆形 )
      * <pre>
      *     以宽高中最小值设置为圆角尺寸, 如果宽高一致, 则处理为圆形图片
      * </pre>
@@ -628,7 +632,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 圆角图片 ( 非圆形 )
+     * 图片圆角处理 ( 非圆形 )
      * @param bitmap 待操作源图片
      * @param pixels 圆角大小
      * @return 圆角处理后的图片
@@ -656,7 +660,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * 圆角图片 ( 非圆形 ) - 只有 leftTop、rightTop
+     * 图片圆角处理 ( 非圆形 ) - 只有 leftTop、rightTop
      * @param bitmap 待操作源图片
      * @param pixels 圆角大小
      * @return 圆角处理后的图片
@@ -666,7 +670,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 圆角图片 ( 非圆形 ) - 只有 leftBottom、rightBottom
+     * 图片圆角处理 ( 非圆形 ) - 只有 leftBottom、rightBottom
      * @param bitmap 待操作源图片
      * @param pixels 圆角大小
      * @return 圆角处理后的图片
@@ -678,7 +682,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * 圆角图片 ( 非圆形 )
+     * 图片圆角处理 ( 非圆形 )
      * <pre>
      *     只要左上圆角: new boolean[] {true, true, false, false};
      *     只要右上圆角: new boolean[] {false, true, true, false};
@@ -725,6 +729,123 @@ public final class BitmapUtils {
         // 绘制底圆后, 进行合并 ( 交集处理 )
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
+        return newBitmap;
+    }
+
+    // ========
+    // = 圆形 =
+    // ========
+
+    /**
+     * 图片圆形处理
+     * @param bitmap 待操作源图片
+     * @return 圆形处理后的图片
+     */
+    public static Bitmap round(final Bitmap bitmap) {
+        return round(bitmap, 0, 0);
+    }
+
+    /**
+     * 图片圆形处理
+     * @param bitmap      待操作源图片
+     * @param borderSize  边框尺寸
+     * @param borderColor 边框颜色
+     * @return 圆形处理后的图片
+     */
+    public static Bitmap round(final Bitmap bitmap, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor) {
+        if (isEmpty(bitmap)) return null;
+
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int size = Math.min(width, height);
+
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        float center = size / 2f;
+        RectF rectF = new RectF(0, 0, width, height);
+        rectF.inset((width - size) / 2f, (height - size) / 2f);
+
+        Matrix matrix = new Matrix();
+        matrix.setTranslate(rectF.left, rectF.top);
+        if (width != height) {
+            matrix.preScale((float) size / width, (float) size / height);
+        }
+        BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        shader.setLocalMatrix(matrix);
+        paint.setShader(shader);
+
+        Bitmap newBitmap = Bitmap.createBitmap(width, height, bitmap.getConfig());
+        Canvas canvas = new Canvas(newBitmap);
+        canvas.drawRoundRect(rectF, center, center, paint);
+
+        if (borderSize > 0) {
+            paint.setShader(null);
+            paint.setColor(borderColor);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(borderSize);
+            float radius = center - borderSize / 2f;
+            canvas.drawCircle(width / 2f, height / 2f, radius, paint);
+        }
+        return newBitmap;
+    }
+
+    // ==================
+    // = 圆角、圆形边框 =
+    // ==================
+
+    /**
+     * 添加圆角边框
+     * @param bitmap       源图片
+     * @param borderSize   边框尺寸
+     * @param color        边框颜色
+     * @param cornerRadius 圆角半径
+     * @return 圆角边框图
+     */
+    public static Bitmap addCornerBorder(final Bitmap bitmap, @IntRange(from = 1) final int borderSize, @ColorInt final int color,
+                                         @FloatRange(from = 0) final float cornerRadius) {
+        return addBorder(bitmap, borderSize, color, false, cornerRadius);
+    }
+
+    /**
+     * 添加圆形边框
+     * @param bitmap     源图片
+     * @param borderSize 边框尺寸
+     * @param color      边框颜色
+     * @return 圆形边框图
+     */
+    public static Bitmap addCircleBorder(final Bitmap bitmap, @IntRange(from = 1) final int borderSize, @ColorInt final int color) {
+        return addBorder(bitmap, borderSize, color, true, 0);
+    }
+
+    /**
+     * 添加边框
+     * @param bitmap       待操作源图片
+     * @param borderSize   边框尺寸
+     * @param color        边框颜色
+     * @param isCircle     是否画圆
+     * @param cornerRadius 圆角半径
+     * @return 添加边框后的图片
+     */
+    private static Bitmap addBorder(final Bitmap bitmap, @IntRange(from = 1) final int borderSize,
+                                    @ColorInt final int color, final boolean isCircle, final float cornerRadius) {
+        if (isEmpty(bitmap)) return null;
+
+        Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
+        int width = newBitmap.getWidth();
+        int height = newBitmap.getHeight();
+
+        Canvas canvas = new Canvas(newBitmap);
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(color);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(borderSize);
+        if (isCircle) {
+            float radius = Math.min(width, height) / 2f - borderSize / 2f;
+            canvas.drawCircle(width / 2f, height / 2f, radius, paint);
+        } else {
+            int halfBorderSize = borderSize >> 1;
+            RectF rectF = new RectF(halfBorderSize, halfBorderSize, width - halfBorderSize, height - halfBorderSize);
+            canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint);
+        }
         return newBitmap;
     }
 

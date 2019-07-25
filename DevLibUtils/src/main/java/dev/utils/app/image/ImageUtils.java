@@ -4,18 +4,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 
 import java.io.ByteArrayOutputStream;
@@ -23,8 +16,6 @@ import java.io.File;
 import java.io.FileDescriptor;
 
 import dev.DevUtils;
-
-import static dev.utils.app.image.temp.BitmapUtils.zoom;
 
 /**
  * detail: 图片相关工具类
@@ -106,225 +97,6 @@ public final class ImageUtils {
         options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFileDescriptor(fd, null, options);
-    }
-
-    //=
-
-    /**
-     * 转为圆形图片
-     * @param src 源图片
-     * @return 圆形图片
-     */
-    public static Bitmap toRound(final Bitmap src) {
-        return toRound(src, 0, 0, false);
-    }
-
-    /**
-     * 转为圆形图片
-     * @param src     源图片
-     * @param recycle 是否回收
-     * @return 圆形图片
-     */
-    public static Bitmap toRound(final Bitmap src, final boolean recycle) {
-        return toRound(src, 0, 0, recycle);
-    }
-
-    /**
-     * 转为圆形图片
-     * @param src         源图片
-     * @param borderSize  边框尺寸
-     * @param borderColor 边框颜色
-     * @return 圆形图片
-     */
-    public static Bitmap toRound(final Bitmap src, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor) {
-        return toRound(src, borderSize, borderColor, false);
-    }
-
-    /**
-     * 转为圆形图片
-     * @param src         源图片
-     * @param borderSize  边框尺寸
-     * @param borderColor 边框颜色
-     * @param recycle     是否回收
-     * @return 圆形图片
-     */
-    public static Bitmap toRound(final Bitmap src, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        int width = src.getWidth();
-        int height = src.getHeight();
-        int size = Math.min(width, height);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        Bitmap ret = Bitmap.createBitmap(width, height, src.getConfig());
-        float center = size / 2f;
-        RectF rectF = new RectF(0, 0, width, height);
-        rectF.inset((width - size) / 2f, (height - size) / 2f);
-        Matrix matrix = new Matrix();
-        matrix.setTranslate(rectF.left, rectF.top);
-        if (width != height) {
-            matrix.preScale((float) size / width, (float) size / height);
-        }
-        BitmapShader shader = new BitmapShader(src, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-        shader.setLocalMatrix(matrix);
-        paint.setShader(shader);
-        Canvas canvas = new Canvas(ret);
-        canvas.drawRoundRect(rectF, center, center, paint);
-        if (borderSize > 0) {
-            paint.setShader(null);
-            paint.setColor(borderColor);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(borderSize);
-            float radius = center - borderSize / 2f;
-            canvas.drawCircle(width / 2f, height / 2f, radius, paint);
-        }
-        if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
-    }
-
-    /**
-     * 转为圆角图片
-     * @param src    源图片
-     * @param radius 圆角的度数
-     * @return 圆角图片
-     */
-    public static Bitmap toRoundCorner(final Bitmap src, final float radius) {
-        return toRoundCorner(src, radius, 0, 0, false);
-    }
-
-    /**
-     * 转为圆角图片
-     * @param src     源图片
-     * @param radius  圆角的度数
-     * @param recycle 是否回收
-     * @return 圆角图片
-     */
-    public static Bitmap toRoundCorner(final Bitmap src, final float radius, final boolean recycle) {
-        return toRoundCorner(src, radius, 0, 0, recycle);
-    }
-
-    /**
-     * 转为圆角图片
-     * @param src         源图片
-     * @param radius      圆角的度数
-     * @param borderSize  边框尺寸
-     * @param borderColor 边框颜色
-     * @return 圆角图片
-     */
-    public static Bitmap toRoundCorner(final Bitmap src, final float radius, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor) {
-        return toRoundCorner(src, radius, borderSize, borderColor, false);
-    }
-
-    /**
-     * 转为圆角图片
-     * @param src         源图片
-     * @param radius      圆角的度数
-     * @param borderSize  边框尺寸
-     * @param borderColor 边框颜色
-     * @param recycle     是否回收
-     * @return 圆角图片
-     */
-    public static Bitmap toRoundCorner(final Bitmap src, final float radius, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        int width = src.getWidth();
-        int height = src.getHeight();
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        Bitmap ret = Bitmap.createBitmap(width, height, src.getConfig());
-        BitmapShader shader = new BitmapShader(src, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-        paint.setShader(shader);
-        Canvas canvas = new Canvas(ret);
-        RectF rectF = new RectF(0, 0, width, height);
-        float halfBorderSize = borderSize / 2f;
-        rectF.inset(halfBorderSize, halfBorderSize);
-        canvas.drawRoundRect(rectF, radius, radius, paint);
-        if (borderSize > 0) {
-            paint.setShader(null);
-            paint.setColor(borderColor);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(borderSize);
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            canvas.drawRoundRect(rectF, radius, radius, paint);
-        }
-        if (recycle && !src.isRecycled() && ret != src) src.recycle();
-        return ret;
-    }
-
-    /**
-     * 添加圆角边框
-     * @param src          源图片
-     * @param borderSize   边框尺寸
-     * @param color        边框颜色
-     * @param cornerRadius 圆角半径
-     * @return 圆角边框图
-     */
-    public static Bitmap addCornerBorder(final Bitmap src, @IntRange(from = 1) final int borderSize, @ColorInt final int color, @FloatRange(from = 0) final float cornerRadius) {
-        return addBorder(src, borderSize, color, false, cornerRadius, false);
-    }
-
-    /**
-     * 添加圆角边框
-     * @param src          源图片
-     * @param borderSize   边框尺寸
-     * @param color        边框颜色
-     * @param cornerRadius 圆角半径
-     * @param recycle      是否回收
-     * @return 圆角边框图
-     */
-    public static Bitmap addCornerBorder(final Bitmap src, @IntRange(from = 1) final int borderSize, @ColorInt final int color, @FloatRange(from = 0) final float cornerRadius, final boolean recycle) {
-        return addBorder(src, borderSize, color, false, cornerRadius, recycle);
-    }
-
-    /**
-     * 添加圆形边框
-     * @param src        源图片
-     * @param borderSize 边框尺寸
-     * @param color      边框颜色
-     * @return 圆形边框图
-     */
-    public static Bitmap addCircleBorder(final Bitmap src, @IntRange(from = 1) final int borderSize, @ColorInt final int color) {
-        return addBorder(src, borderSize, color, true, 0, false);
-    }
-
-    /**
-     * 添加圆形边框
-     * @param src        源图片
-     * @param borderSize 边框尺寸
-     * @param color      边框颜色
-     * @param recycle    是否回收
-     * @return 圆形边框图
-     */
-    public static Bitmap addCircleBorder(final Bitmap src, @IntRange(from = 1) final int borderSize, @ColorInt final int color, final boolean recycle) {
-        return addBorder(src, borderSize, color, true, 0, recycle);
-    }
-
-    /**
-     * 添加边框
-     * @param src          源图片
-     * @param borderSize   边框尺寸
-     * @param color        边框颜色
-     * @param isCircle     是否画圆
-     * @param cornerRadius 圆角半径
-     * @param recycle      是否回收
-     * @return 边框图
-     */
-    private static Bitmap addBorder(final Bitmap src, @IntRange(from = 1) final int borderSize, @ColorInt final int color,
-                                    final boolean isCircle, final float cornerRadius, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
-        Bitmap ret = recycle ? src : src.copy(src.getConfig(), true);
-        int width = ret.getWidth();
-        int height = ret.getHeight();
-        Canvas canvas = new Canvas(ret);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(color);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(borderSize);
-        if (isCircle) {
-            float radius = Math.min(width, height) / 2f - borderSize / 2f;
-            canvas.drawCircle(width / 2f, height / 2f, radius, paint);
-        } else {
-            int halfBorderSize = borderSize >> 1;
-            RectF rectF = new RectF(halfBorderSize, halfBorderSize, width - halfBorderSize, height - halfBorderSize);
-            canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint);
-        }
-        return ret;
     }
 
     /**
