@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IntRange;
 import android.view.View;
 
 import java.io.BufferedOutputStream;
@@ -449,10 +450,11 @@ public final class ImageUtils {
      * 保存图片到 SDCard - JPEG
      * @param bitmap   待保存图片
      * @param filePath 保存路径
-     * @param quality  压缩比例
+     * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final String filePath, final int quality) {
+    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final String filePath,
+                                                 @IntRange(from = 0, to = 100) final int quality) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.JPEG, quality);
     }
 
@@ -460,10 +462,11 @@ public final class ImageUtils {
      * 保存图片到 SDCard - JPEG
      * @param bitmap  待保存图片
      * @param file    保存路径
-     * @param quality 压缩比例
+     * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final File file, final int quality) {
+    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final File file,
+                                                 @IntRange(from = 0, to = 100) final int quality) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.JPEG, quality);
     }
 
@@ -495,10 +498,11 @@ public final class ImageUtils {
      * 保存图片到 SDCard - PNG
      * @param bitmap   待保存图片
      * @param filePath 保存路径
-     * @param quality  压缩比例
+     * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String filePath, final int quality) {
+    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String filePath,
+                                                @IntRange(from = 0, to = 100) final int quality) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.PNG, quality);
     }
 
@@ -506,10 +510,11 @@ public final class ImageUtils {
      * 保存图片到 SDCard - PNG
      * @param bitmap  待保存图片
      * @param file    保存路径
-     * @param quality 压缩比例
+     * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final File file, final int quality) {
+    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final File file,
+                                                @IntRange(from = 0, to = 100) final int quality) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.PNG, quality);
     }
 
@@ -541,10 +546,11 @@ public final class ImageUtils {
      * 保存图片到 SDCard - WEBP
      * @param bitmap   待保存图片
      * @param filePath 保存路径
-     * @param quality  压缩比例
+     * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final String filePath, final int quality) {
+    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final String filePath,
+                                                 @IntRange(from = 0, to = 100) final int quality) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.WEBP, quality);
     }
 
@@ -552,10 +558,11 @@ public final class ImageUtils {
      * 保存图片到 SDCard - WEBP
      * @param bitmap  待保存图片
      * @param file    保存路径
-     * @param quality 压缩比例
+     * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final File file, final int quality) {
+    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final File file,
+                                                 @IntRange(from = 0, to = 100) final int quality) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.WEBP, quality);
     }
 
@@ -566,10 +573,11 @@ public final class ImageUtils {
      * @param bitmap   待保存图片
      * @param filePath 保存路径
      * @param format   如 Bitmap.CompressFormat.PNG
-     * @param quality  保存的图片质量, 100 则完整质量不压缩
+     * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format, final int quality) {
+    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format,
+                                             @IntRange(from = 0, to = 100) final int quality) {
         return saveBitmapToSDCard(bitmap, getFileByPath(filePath), format, quality);
     }
 
@@ -578,11 +586,12 @@ public final class ImageUtils {
      * @param bitmap  待保存图片
      * @param file    保存路径
      * @param format  如 Bitmap.CompressFormat.PNG
-     * @param quality 保存的图片质量, 100 则完整质量不压缩
+     * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final File file, final Bitmap.CompressFormat format, final int quality) {
-        if (bitmap == null || file == null || format == null || quality <= 0) return false;
+    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final File file, final Bitmap.CompressFormat format,
+                                             @IntRange(from = 0, to = 100) final int quality) {
+        if (bitmap == null || file == null || format == null || quality < 0) return false;
         // 防止 Bitmap 为 null, 或者创建文件夹失败 ( 文件存在则删除 )
         if (isEmpty(bitmap) || !createFileByDeleteOldFile(file)) return false;
         OutputStream os = null;
@@ -766,11 +775,12 @@ public final class ImageUtils {
     /**
      * Bitmap 转换成 byte[]
      * @param bitmap  待转换图片
-     * @param quality 压缩质量
+     * @param quality 质量
      * @param format  如 Bitmap.CompressFormat.PNG
      * @return byte[]
      */
-    public static byte[] bitmapToByte(final Bitmap bitmap, final int quality, final Bitmap.CompressFormat format) {
+    public static byte[] bitmapToByte(final Bitmap bitmap, @IntRange(from = 0, to = 100) final int quality,
+                                      final Bitmap.CompressFormat format) {
         if (bitmap == null || format == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -806,11 +816,12 @@ public final class ImageUtils {
     /**
      * Drawable 转换成 byte[]
      * @param drawable 待转换图片
-     * @param quality  压缩质量
+     * @param quality  质量
      * @param format   如 Bitmap.CompressFormat.PNG
      * @return byte[]
      */
-    public static byte[] drawableToByte(final Drawable drawable, final int quality, final Bitmap.CompressFormat format) {
+    public static byte[] drawableToByte(final Drawable drawable, @IntRange(from = 0, to = 100) final int quality,
+                                        final Bitmap.CompressFormat format) {
         if (drawable == null || format == null) return null;
         return bitmapToByte(drawableToBitmap(drawable), quality, format);
     }
