@@ -4,10 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntRange;
 
@@ -28,6 +24,32 @@ public final class ImageUtils {
 
     // 日志 TAG
     private static final String TAG = ImageUtils.class.getSimpleName();
+
+    /**
+     * 判断 Bitmap 对象是否为 null
+     * @param bitmap {@link Bitmap}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isEmpty(final Bitmap bitmap) {
+        return bitmap == null || bitmap.getWidth() == 0 || bitmap.getHeight() == 0;
+    }
+
+    // =
+
+    /**
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     // =
 
@@ -99,15 +121,6 @@ public final class ImageUtils {
         return BitmapFactory.decodeFileDescriptor(fd, null, options);
     }
 
-    /**
-     * 判断 bitmap 对象是否为空
-     * @param src 源图片
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isEmptyBitmap(final Bitmap src) {
-        return src == null || src.getWidth() == 0 || src.getHeight() == 0;
-    }
-
     // = 压缩有关 =
 
 //    /**
@@ -174,7 +187,7 @@ public final class ImageUtils {
      * @return 质量压缩后的图片
      */
     public static Bitmap compressByQuality(final Bitmap src, @IntRange(from = 0, to = 100) final int quality, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
+        if (isEmpty(src)) return null;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         src.compress(CompressFormat.JPEG, quality, baos);
         byte[] bytes = baos.toByteArray();
@@ -200,7 +213,7 @@ public final class ImageUtils {
      * @return 质量压缩压缩过的图片
      */
     public static Bitmap compressByQuality(final Bitmap src, final long maxByteSize, final boolean recycle) {
-        if (isEmptyBitmap(src) || maxByteSize <= 0) return null;
+        if (isEmpty(src) || maxByteSize <= 0) return null;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         src.compress(CompressFormat.JPEG, 100, baos);
         byte[] bytes;
@@ -259,7 +272,7 @@ public final class ImageUtils {
      * @return 按采样率压缩后的图片
      */
     public static Bitmap compressBySampleSize(final Bitmap src, final int sampleSize, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
+        if (isEmpty(src)) return null;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = sampleSize;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -289,7 +302,7 @@ public final class ImageUtils {
      * @return 按采样率压缩后的图片
      */
     public static Bitmap compressBySampleSize(final Bitmap src, final int maxWidth, final int maxHeight, final boolean recycle) {
-        if (isEmptyBitmap(src)) return null;
+        if (isEmpty(src)) return null;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -317,23 +330,6 @@ public final class ImageUtils {
             inSampleSize <<= 1;
         }
         return inSampleSize;
-    }
-
-    // =
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 
     // =

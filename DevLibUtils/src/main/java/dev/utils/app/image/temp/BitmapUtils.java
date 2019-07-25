@@ -1,5 +1,6 @@
 package dev.utils.app.image.temp;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -15,12 +16,16 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.media.ExifInterface;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
+import java.io.InputStream;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -29,6 +34,7 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     Android PorterDuffXfermode 的正确使用方式
  *     @see <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0731/8318.html"/>
+ *     @see <a href="https://www.jianshu.com/p/d11892bbe055"/>
  * </pre>
  */
 public final class BitmapUtils {
@@ -59,6 +65,40 @@ public final class BitmapUtils {
      */
     public static boolean isNotEmpty(final Bitmap bitmap) {
         return bitmap != null && bitmap.getWidth() != 0 && bitmap.getHeight() != 0;
+    }
+
+    // ========
+    // = 宽高 =
+    // ========
+
+    /**
+     * 获取 Bitmap 宽度
+     * @param bitmap 源图片
+     * @return Bitmap 宽度
+     */
+    public static int getBitmapWidth(final Bitmap bitmap) {
+        if (isEmpty(bitmap)) return 0;
+        return bitmap.getWidth();
+    }
+
+    /**
+     * 获取 Bitmap 高度
+     * @param bitmap 源图片
+     * @return Bitmap 高度
+     */
+    public static int getBitmapHeight(final Bitmap bitmap) {
+        if (isEmpty(bitmap)) return 0;
+        return bitmap.getHeight();
+    }
+
+    /**
+     * 获取 Bitmap 宽高
+     * @param bitmap 源图片
+     * @return int[] { 宽度, 高度 }
+     */
+    public static int[] getBitmapWidthHeight(final Bitmap bitmap) {
+        if (isEmpty(bitmap)) return new int[]{0, 0};
+        return new int[]{bitmap.getWidth(), bitmap.getHeight()};
     }
 
     // =
@@ -93,34 +133,90 @@ public final class BitmapUtils {
         return new int[]{0, 0};
     }
 
-    /**
-     * 获取 Bitmap 宽度
-     * @param bitmap 源图片
-     * @return Bitmap 宽度
-     */
-    public static int getBitmapWidth(final Bitmap bitmap) {
-        if (isEmpty(bitmap)) return 0;
-        return bitmap.getWidth();
-    }
+    // =
 
     /**
-     * 获取 Bitmap 高度
-     * @param bitmap 源图片
-     * @return Bitmap 高度
+     * 获取 Bitmap 宽高
+     * @param resId resource identifier
+     * @return int[] { 宽度, 高度 }
      */
-    public static int getBitmapHeight(final Bitmap bitmap) {
-        if (isEmpty(bitmap)) return 0;
-        return bitmap.getHeight();
+    public static int[] getBitmapWidthHeight(@DrawableRes final int resId) {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            // 只解析图片信息, 不加载到内存中
+            options.inJustDecodeBounds = true;
+            // 返回的 bitmap 为 null
+            BitmapFactory.decodeResource(getResources(), resId, options);
+            // options.outHeight 为原始图片的高
+            return new int[]{options.outWidth, options.outHeight};
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmapWidthHeight");
+        }
+        return new int[]{0, 0};
+    }
+
+    // =
+
+    /**
+     * 获取 Bitmap 宽高
+     * @param inputStream {@link InputStream}
+     * @return int[] { 宽度, 高度 }
+     */
+    public static int[] getBitmapWidthHeight(final InputStream inputStream) {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            // 只解析图片信息, 不加载到内存中
+            options.inJustDecodeBounds = true;
+            // 返回的 bitmap 为 null
+            BitmapFactory.decodeStream(inputStream, null, options);
+            // options.outHeight 为原始图片的高
+            return new int[]{options.outWidth, options.outHeight};
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmapWidthHeight");
+        }
+        return new int[]{0, 0};
+    }
+
+    // =
+
+    /**
+     * 获取 Bitmap 宽高
+     * @param fd 文件描述
+     * @return int[] { 宽度, 高度 }
+     */
+    public static int[] getBitmapWidthHeight(final FileDescriptor fd) {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            // 只解析图片信息, 不加载到内存中
+            options.inJustDecodeBounds = true;
+            // 返回的 bitmap 为 null
+            BitmapFactory.decodeFileDescriptor(fd, null, options);
+            // options.outHeight 为原始图片的高
+            return new int[]{options.outWidth, options.outHeight};
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmapWidthHeight");
+        }
+        return new int[]{0, 0};
     }
 
     /**
      * 获取 Bitmap 宽高
-     * @param bitmap 源图片
+     * @param data byte[]
      * @return int[] { 宽度, 高度 }
      */
-    public static int[] getBitmapWidthHeight(final Bitmap bitmap) {
-        if (isEmpty(bitmap)) return new int[]{0, 0};
-        return new int[]{bitmap.getWidth(), bitmap.getHeight()};
+    public static int[] getBitmapWidthHeight(final byte[] data) {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            // 只解析图片信息, 不加载到内存中
+            options.inJustDecodeBounds = true;
+            // 返回的 bitmap 为 null
+            BitmapFactory.decodeByteArray(data, 0, data.length, options);
+            // options.outHeight 为原始图片的高
+            return new int[]{options.outWidth, options.outHeight};
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmapWidthHeight");
+        }
+        return new int[]{0, 0};
     }
 
     // =
@@ -943,5 +1039,22 @@ public final class BitmapUtils {
      */
     private static boolean isFileExists(final String filePath) {
         return isFileExists(getFileByPath(filePath));
+    }
+
+    // =================
+    // = ResourceUtils =
+    // =================
+
+    /**
+     * 获取 Resources
+     * @return {@link Resources}
+     */
+    private static Resources getResources() {
+        try {
+            return DevUtils.getContext().getResources();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getResources");
+        }
+        return null;
     }
 }
