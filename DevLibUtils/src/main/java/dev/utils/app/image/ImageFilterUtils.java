@@ -1,4 +1,4 @@
-package dev.utils.app.image.temp;
+package dev.utils.app.image;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
