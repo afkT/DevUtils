@@ -504,6 +504,52 @@ public final class BitmapUtils {
         return Bitmap.createBitmap(bitmap, x, y, width, height);
     }
 
+    // =
+
+    /**
+     * 裁剪图片 ( 返回指定比例图片 )
+     * @param bitmap 待操作源图片
+     * @return 裁剪指定比例的图片
+     */
+    public static Bitmap crop(final Bitmap bitmap) {
+        return crop(bitmap, 16.0f, 9.0f);
+    }
+
+    /**
+     * 裁剪图片 ( 返回指定比例图片 )
+     * @param bitmap      待操作源图片
+     * @param widthScale  宽度比例
+     * @param heightScale 高度比例
+     * @return 裁剪指定比例的图片
+     */
+    public static Bitmap crop(final Bitmap bitmap, final float widthScale, final float heightScale) {
+        if (bitmap == null) return null;
+        try {
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+
+            // 获取需要裁剪的高度
+            int reHeight = (int) ((width * heightScale) / widthScale);
+            // 判断需要裁剪的高度与偏移差距
+            int diffHeight = height - reHeight;
+
+            // 属于宽度 * 对应比例 >= 高度
+            if (diffHeight >= 0) { // 以高度做偏移
+                return Bitmap.createBitmap(bitmap, 0, diffHeight / 2, width, reHeight, null, false);
+            } else { // 以宽度做偏移
+                // 获取需要裁剪的宽度
+                int reWidth = (int) ((height * widthScale) / heightScale);
+                // 判断需要裁剪的宽度与偏移差距
+                int diffWidth = width - reWidth;
+                // 创建图片
+                return Bitmap.createBitmap(bitmap, diffWidth / 2, 0, reWidth, height, null, false);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "crop");
+        }
+        return null;
+    }
+
     // ===============
     // = 合并 / 叠加 =
     // ===============
@@ -1203,7 +1249,7 @@ public final class BitmapUtils {
      * <pre>
      *     最大宽高只是阀值, 实际算出来的图片将小于等于这个值
      * </pre>
-     * @param options   选项
+     * @param options   {@link BitmapFactory.Options}
      * @param maxWidth  最大宽度
      * @param maxHeight 最大高度
      * @return 采样大小

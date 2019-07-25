@@ -286,7 +286,12 @@ public final class ImageUtils {
      */
     public static Bitmap decodeFile(final String filePath, final BitmapFactory.Options options) {
         if (filePath == null) return null;
-        return BitmapFactory.decodeFile(filePath, options);
+        try {
+            return BitmapFactory.decodeFile(filePath, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "decodeFile");
+            return null;
+        }
     }
 
     // =
@@ -683,6 +688,129 @@ public final class ImageUtils {
     // ==========
 
     /**
+     * 获取 Bitmap
+     * @param file      文件
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmap(final File file, final int maxWidth, final int maxHeight) {
+        return getBitmap(getAbsolutePath(file), maxWidth, maxHeight);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param filePath  文件路径
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmap(final String filePath, final int maxWidth, final int maxHeight) {
+        if (filePath == null) return null;
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(filePath, options);
+            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inJustDecodeBounds = false;
+            return BitmapFactory.decodeFile(filePath, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmap");
+            return null;
+        }
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param resId     resource identifier
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmap(@DrawableRes final int resId, final int maxWidth, final int maxHeight) {
+        try {
+            Resources resources = getResources();
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeResource(resources, resId, options);
+            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inJustDecodeBounds = false;
+            return BitmapFactory.decodeResource(resources, resId, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmap");
+            return null;
+        }
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param inputStream {@link InputStream}
+     * @param maxWidth    最大宽度
+     * @param maxHeight   最大高度
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmap(final InputStream inputStream, final int maxWidth, final int maxHeight) {
+        if (inputStream == null) return null;
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(inputStream, null, options);
+            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inJustDecodeBounds = false;
+            return BitmapFactory.decodeStream(inputStream, null, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmap");
+            return null;
+        }
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param fd        文件描述
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmap(final FileDescriptor fd, final int maxWidth, final int maxHeight) {
+        if (fd == null) return null;
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFileDescriptor(fd, null, options);
+            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inJustDecodeBounds = false;
+            return BitmapFactory.decodeFileDescriptor(fd, null, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmap");
+            return null;
+        }
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param data      byte[]
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmap(final byte[] data, final int maxWidth, final int maxHeight) {
+        if (data == null) return null;
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeByteArray(data, 0, data.length, options);
+            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inJustDecodeBounds = false;
+            return BitmapFactory.decodeByteArray(data, 0, data.length, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmap");
+            return null;
+        }
+    }
+
+    // =
+
+    /**
      * 通过 View 绘制为 Bitmap
      * @param view {@link View}
      * @return {@link Bitmap}
@@ -995,5 +1123,33 @@ public final class ImageUtils {
             LogPrintUtils.eTag(TAG, e, "getResources");
         }
         return null;
+    }
+
+    // ===============
+    // = BitmapUtils =
+    // ===============
+
+    /**
+     * 计算采样大小
+     * <pre>
+     *     最大宽高只是阀值, 实际算出来的图片将小于等于这个值
+     * </pre>
+     * @param options   {@link BitmapFactory.Options}
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return 采样大小
+     */
+    private static int calculateInSampleSize(final BitmapFactory.Options options, final int maxWidth, final int maxHeight) {
+        if (options == null) return 0;
+
+        int height = options.outHeight;
+        int width = options.outWidth;
+        int inSampleSize = 1;
+        while (height > maxHeight || width > maxWidth) {
+            height >>= 1;
+            width >>= 1;
+            inSampleSize <<= 1;
+        }
+        return inSampleSize;
     }
 }
