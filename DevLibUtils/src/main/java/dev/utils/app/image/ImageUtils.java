@@ -792,60 +792,6 @@ public final class ImageUtils {
 //        return BitmapFactory.decodeStream(is, outPadding, options);
 //    }
 //
-    /**
-     * 合并Bitmap
-     *
-     * @param bgd 背景 Bitmap
-     * @param fg  前景 Bitmap
-     * @return {@link Bitmap}
-     */
-    public static Bitmap combineImages(final Bitmap bgd, final Bitmap fg) {
-        if (bgd == null || fg == null) return null;
-
-        int width = bgd.getWidth() > fg.getWidth() ? bgd.getWidth() : fg.getWidth();
-        int height = bgd.getHeight() > fg.getHeight() ? bgd.getHeight() : fg.getHeight();
-
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Paint paint = new Paint();
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-
-        Canvas canvas = new Canvas(bitmap);
-        canvas.drawBitmap(bgd, 0, 0, null);
-        canvas.drawBitmap(fg, 0, 0, paint);
-        return bitmap;
-    }
-
-    /**
-     * 合并Bitmap
-     *
-     * @param bgd 后景Bitmap
-     * @param fg  前景Bitmap
-     * @return {@link Bitmap}
-     */
-    public static Bitmap combineImagesToSameSize(Bitmap bgd, Bitmap fg) {
-        if (bgd == null || fg == null) return null;
-
-        int width = bgd.getWidth() < fg.getWidth() ? bgd.getWidth() : fg.getWidth();
-        int height = bgd.getHeight() < fg.getHeight() ? bgd.getHeight() : fg.getHeight();
-
-        if (fg.getWidth() != width && fg.getHeight() != height) {
-            fg = zoom(fg, width, height);
-        }
-        if (bgd.getWidth() != width && bgd.getHeight() != height) {
-            bgd = zoom(bgd, width, height);
-        }
-
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Paint paint = new Paint();
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-
-        Canvas canvas = new Canvas(bitmap);
-        canvas.drawBitmap(bgd, 0, 0, null);
-        canvas.drawBitmap(fg, 0, 0, paint);
-
-        return bitmap;
-    }
-//
 //    /**
 //     * 压缩图片大小
 //     *

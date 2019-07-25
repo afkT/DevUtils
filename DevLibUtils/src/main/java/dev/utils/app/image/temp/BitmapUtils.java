@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -379,34 +380,173 @@ public final class BitmapUtils {
 
     /**
      * 裁剪图片
-     * @param src     待操作源图片
-     * @param width   裁剪宽度
-     * @param height  裁剪高度
+     * @param bitmap 待操作源图片
+     * @param width  裁剪宽度
+     * @param height 裁剪高度
      * @return 裁剪后的图片
      */
-    public static Bitmap clip(final Bitmap src, final int width, final int height) {
-        return clip(src, 0, 0, width, height);
+    public static Bitmap clip(final Bitmap bitmap, final int width, final int height) {
+        return clip(bitmap, 0, 0, width, height);
     }
 
     /**
      * 裁剪图片
-     * @param src     待操作源图片
-     * @param x       X 轴开始坐标
-     * @param y       Y 轴开始坐标
-     * @param width   裁剪宽度
-     * @param height  裁剪高度
+     * @param bitmap 待操作源图片
+     * @param x      X 轴开始坐标
+     * @param y      Y 轴开始坐标
+     * @param width  裁剪宽度
+     * @param height 裁剪高度
      * @return 裁剪后的图片
      */
-    public static Bitmap clip(final Bitmap src, final int x, final int y, final int width, final int height) {
-        if (isEmpty(src)) return null;
-        return Bitmap.createBitmap(src, x, y, width, height);
+    public static Bitmap clip(final Bitmap bitmap, final int x, final int y, final int width, final int height) {
+        if (isEmpty(bitmap)) return null;
+        return Bitmap.createBitmap(bitmap, x, y, width, height);
     }
 
-    // =============
-    // = 合并/叠加 =
-    // =============
+    // ===============
+    // = 合并 / 叠加 =
+    // ===============
 
+    /**
+     * 合并图片
+     * @param bgd 后景 Bitmap
+     * @param fg  前景 Bitmap
+     * @return 合并后的图片
+     */
+    public static Bitmap combine(final Bitmap bgd, final Bitmap fg) {
+        return combine(bgd, fg, PorterDuff.Mode.SRC_ATOP, null, null);
+    }
 
+    /**
+     * 合并图片
+     * @param bgd  后景 Bitmap
+     * @param fg   前景 Bitmap
+     * @param mode 合并模式 {@link PorterDuff.Mode}
+     * @return 合并后的图片
+     */
+    public static Bitmap combine(final Bitmap bgd, final Bitmap fg, final PorterDuff.Mode mode) {
+        return combine(bgd, fg, mode, null, null);
+    }
+
+    /**
+     * 合并图片
+     * @param bgd      后景 Bitmap
+     * @param fg       前景 Bitmap
+     * @param mode     合并模式 {@link PorterDuff.Mode}
+     * @param bgdPoint 后景绘制 left、top 坐标
+     * @param fgPoint  前景绘制 left、top 坐标
+     * @return 合并后的图片
+     */
+    public static Bitmap combine(final Bitmap bgd, final Bitmap fg, final PorterDuff.Mode mode, final Point bgdPoint, final Point fgPoint) {
+        if (isEmpty(bgd) || isEmpty(fg)) return null;
+
+        int width = bgd.getWidth() > fg.getWidth() ? bgd.getWidth() : fg.getWidth();
+        int height = bgd.getHeight() > fg.getHeight() ? bgd.getHeight() : fg.getHeight();
+
+        Paint paint = new Paint();
+        if (mode != null) {
+            paint.setXfermode(new PorterDuffXfermode(mode));
+        }
+
+        Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(newBitmap);
+        canvas.drawBitmap(bgd, (bgdPoint != null) ? bgdPoint.x : 0, (bgdPoint != null) ? bgdPoint.y : 0, null);
+        canvas.drawBitmap(fg, (fgPoint != null) ? fgPoint.x : 0, (fgPoint != null) ? fgPoint.y : 0, paint);
+        return newBitmap;
+    }
+
+    // =
+
+    /**
+     * 合并图片 ( 居中 )
+     * @param bgd 后景 Bitmap
+     * @param fg  前景 Bitmap
+     * @return 合并后的图片
+     */
+    public static Bitmap combineToCenter(final Bitmap bgd, final Bitmap fg) {
+        return combineToCenter(bgd, fg, null);
+    }
+
+    /**
+     * 合并图片 ( 居中 )
+     * @param bgd  后景 Bitmap
+     * @param fg   前景 Bitmap
+     * @param mode 合并模式 {@link PorterDuff.Mode}
+     * @return 合并后的图片
+     */
+    public static Bitmap combineToCenter(Bitmap bgd, Bitmap fg, final PorterDuff.Mode mode) {
+        if (isEmpty(bgd) || isEmpty(fg)) return null;
+
+        // 绘制坐标点
+        Point bgdPoint = new Point();
+        Point fgPoint = new Point();
+
+        // 宽高信息
+        int bgdWidth = bgd.getWidth();
+        int bgdHeight = bgd.getHeight();
+
+        int fgWidth = fg.getWidth();
+        int fgHeight = fg.getHeight();
+
+        if (bgdWidth > fgWidth) {
+            fgPoint.x = (bgdWidth - fgWidth) / 2;
+        } else {
+            bgdPoint.x = (fgWidth - bgdWidth) / 2;
+        }
+
+        if (bgdHeight > fgHeight) {
+            fgPoint.y = (bgdHeight - fgHeight) / 2;
+        } else {
+            bgdPoint.y = (fgHeight - bgdHeight) / 2;
+        }
+
+        return combine(bgd, fg, mode, bgdPoint, fgPoint);
+    }
+
+    // =
+
+    /**
+     * 合并图片 ( 转为相同大小 )
+     * @param bgd 后景 Bitmap
+     * @param fg  前景 Bitmap
+     * @return 合并后的图片
+     */
+    public static Bitmap combineToSameSize(Bitmap bgd, Bitmap fg) {
+        return combineToSameSize(bgd, fg, PorterDuff.Mode.SRC_ATOP);
+    }
+
+    /**
+     * 合并图片 ( 转为相同大小 )
+     * @param bgd  后景 Bitmap
+     * @param fg   前景 Bitmap
+     * @param mode 合并模式 {@link PorterDuff.Mode}
+     * @return 合并后的图片
+     */
+    public static Bitmap combineToSameSize(Bitmap bgd, Bitmap fg, final PorterDuff.Mode mode) {
+        if (isEmpty(bgd) || isEmpty(fg)) return null;
+
+        int width = bgd.getWidth() < fg.getWidth() ? bgd.getWidth() : fg.getWidth();
+        int height = bgd.getHeight() < fg.getHeight() ? bgd.getHeight() : fg.getHeight();
+
+        if (fg.getWidth() != width && fg.getHeight() != height) {
+            fg = zoom(fg, width, height);
+        }
+
+        if (bgd.getWidth() != width && bgd.getHeight() != height) {
+            bgd = zoom(bgd, width, height);
+        }
+
+        Paint paint = new Paint();
+        if (mode != null) {
+            paint.setXfermode(new PorterDuffXfermode(mode));
+        }
+
+        Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(newBitmap);
+        canvas.drawBitmap(bgd, 0, 0, null);
+        canvas.drawBitmap(fg, 0, 0, paint);
+        return newBitmap;
+    }
 
     // ========
     // = 倒影 =
