@@ -591,7 +591,7 @@ public final class ImageUtils {
      */
     public static boolean saveBitmapToSDCard(final Bitmap bitmap, final File file, final Bitmap.CompressFormat format,
                                              @IntRange(from = 0, to = 100) final int quality) {
-        if (bitmap == null || file == null || format == null || quality < 0) return false;
+        if (bitmap == null || file == null || format == null) return false;
         // 防止 Bitmap 为 null, 或者创建文件夹失败 ( 文件存在则删除 )
         if (isEmpty(bitmap) || !createFileByDeleteOldFile(file)) return false;
         OutputStream os = null;

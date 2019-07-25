@@ -2,11 +2,9 @@ package dev.utils.app.image;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.support.annotation.DrawableRes;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
 
@@ -48,6 +46,30 @@ public final class ImageUtils {
             }
         }
         return true;
+    }
+
+    /**
+     * 计算采样大小
+     * <pre>
+     *     最大宽高只是阀值, 实际算出来的图片将小于等于这个值
+     * </pre>
+     * @param options   选项
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return 采样大小
+     */
+    public static int calculateInSampleSize(final BitmapFactory.Options options, final int maxWidth, final int maxHeight) {
+        if (options == null) return 0;
+
+        int height = options.outHeight;
+        int width = options.outWidth;
+        int inSampleSize = 1;
+        while (height > maxHeight || width > maxWidth) {
+            height >>= 1;
+            width >>= 1;
+            inSampleSize <<= 1;
+        }
+        return inSampleSize;
     }
 
     // =
@@ -119,288 +141,6 @@ public final class ImageUtils {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFileDescriptor(fd, null, options);
     }
-
-    // = 压缩有关 =
-
-    /**
-     * 按采样大小压缩
-     * @param src        源图片
-     * @param sampleSize 采样率大小
-     * @return 按采样率压缩后的图片
-     */
-
-    public static Bitmap compressBySampleSize(final Bitmap src, final int sampleSize) {
-        return compressBySampleSize(src, sampleSize, false);
-    }
-
-    /**
-     * 按采样大小压缩
-     * @param src        源图片
-     * @param sampleSize 采样率大小
-     * @param recycle    是否回收
-     * @return 按采样率压缩后的图片
-     */
-    public static Bitmap compressBySampleSize(final Bitmap src, final int sampleSize, final boolean recycle) {
-        if (isEmpty(src)) return null;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = sampleSize;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        src.compress(CompressFormat.JPEG, 100, baos);
-        byte[] bytes = baos.toByteArray();
-        if (recycle && !src.isRecycled()) src.recycle();
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-    }
-
-    /**
-     * 按采样大小压缩
-     * @param src       源图片
-     * @param maxWidth  最大宽度
-     * @param maxHeight 最大高度
-     * @return 按采样率压缩后的图片
-     */
-    public static Bitmap compressBySampleSize(final Bitmap src, final int maxWidth, final int maxHeight) {
-        return compressBySampleSize(src, maxWidth, maxHeight, false);
-    }
-
-    /**
-     * 按采样大小压缩
-     * @param src       源图片
-     * @param maxWidth  最大宽度
-     * @param maxHeight 最大高度
-     * @param recycle   是否回收
-     * @return 按采样率压缩后的图片
-     */
-    public static Bitmap compressBySampleSize(final Bitmap src, final int maxWidth, final int maxHeight, final boolean recycle) {
-        if (isEmpty(src)) return null;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        src.compress(CompressFormat.JPEG, 100, baos);
-        byte[] bytes = baos.toByteArray();
-        BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-        options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
-        options.inJustDecodeBounds = false;
-        if (recycle && !src.isRecycled()) src.recycle();
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-    }
-
-    /**
-     * 计算采样大小
-     * @param options   选项
-     * @param maxWidth  最大宽度
-     * @param maxHeight 最大高度
-     * @return 采样大小
-     */
-    private static int calculateInSampleSize(final BitmapFactory.Options options, final int maxWidth, final int maxHeight) {
-        int height = options.outHeight;
-        int width = options.outWidth;
-        int inSampleSize = 1;
-        while ((width >>= 1) >= maxWidth && (height >>= 1) >= maxHeight) {
-            inSampleSize <<= 1;
-        }
-        return inSampleSize;
-    }
-
-    // =
-
-    /**
-     * 根据需求的宽和高以及图片实际的宽和高计算SampleSize
-     * @param options
-     * @param targetWidth
-     * @param targetHeight
-     * @return
-     */
-    public static int caculateInSampleSize(final BitmapFactory.Options options, final int targetWidth, final int targetHeight) {
-        if (options == null) return 0;
-
-        int width = options.outWidth;
-        int height = options.outHeight;
-
-        int inSampleSize = 1;
-        if (width > targetWidth || height > targetHeight) {
-            int widthRadio = Math.round(width * 1.0f / targetWidth);
-            int heightRadio = Math.round(height * 1.0f / targetHeight);
-            inSampleSize = Math.max(widthRadio, heightRadio);
-        }
-        return inSampleSize;
-    }
-
-
-//    /**
-//     * 图片压缩处理(使用Options的方法)
-//     * <pre>
-//     *     说明 使用方法:
-//     *     首先你要将Options的inJustDecodeBounds属性设置为 true, BitmapFactory.decode一次图片
-//     *     然后将Options连同期望的宽度和高度一起传递到到本方法中
-//     *     之后再使用本方法的返回值做参数调用 BitmapFactory.decode 创建图片
-//     *     <p></p>
-//     *     说明 BitmapFactory创建bitmap会尝试为已经构建的bitmap分配内存
-//     *     这时就会很容易导致OOM出现, 为此每一种创建方法都提供了一个可选的Options参数
-//     *     将这个参数的inJustDecodeBounds属性设置为 true就可以让解析方法禁止为bitmap分配内存
-//     *     返回值也不再是一个Bitmap对象, 而是 null, 虽然 Bitmap 是 null 了, 但是Options的outWidth、outHeight和outMimeType属性都会被赋值
-//     * </pre>
-//     *
-//     * @param options
-//     * @param targetWidth  目标宽度, 这里的宽高只是阀值, 实际显示的图片将小于等于这个值
-//     * @param targetHeight 目标高度, 这里的宽高只是阀值, 实际显示的图片将小于等于这个值
-//     * @return
-//     */
-//    public static BitmapFactory.Options calculateInSampleSize(final BitmapFactory.Options options, final int targetWidth, final int targetHeight) {
-//        if (options == null) return null;
-//        // 源图片的高度和宽度
-//        final int height = options.outHeight;
-//        final int width = options.outWidth;
-//        int inSampleSize = 1;
-//        if (height > 400 || width > 450) {
-//            if (height > targetHeight || width > targetWidth) {
-//                // 计算出实际宽高和目标宽高的比率
-//                final int heightRatio = Math.round((float) height / (float) targetHeight);
-//                final int widthRatio = Math.round((float) width / (float) targetWidth);
-//                // 选择宽和高中最小的比率作为inSampleSize的值, 这样可以保证最终图片的宽和高
-//                // 一定都会大于等于目标的宽和高
-//                inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-//            }
-//        }
-//        // 设置压缩比例
-//        options.inSampleSize = inSampleSize;
-//        options.inJustDecodeBounds = false;
-//        return options;
-//    }
-//
-//    /**
-//     * 获取一个指定大小的bitmap
-//     *
-//     * @param res          Resources
-//     * @param resId        图片ID
-//     * @param targetWidth  目标宽度
-//     * @param targetHeight 目标高度
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap getBitmapFromResource(final Resources res, final int resId, final int targetWidth, final int targetHeight) {
-////        if (res == null) return null;
-////        BitmapFactory.Options options = new BitmapFactory.Options();
-////        options.inJustDecodeBounds = true;
-////        BitmapFactory.decodeResource(res, resId, options);
-////        options = BitmapHelper.calculateInSampleSize(options, targetWidth, targetHeight);
-////        return BitmapFactory.decodeResource(res, resId, options);
-//
-//        if (res == null) return null;
-//        // 通过JNI的形式读取本地图片达到节省内存的目的
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inPreferredConfig = Bitmap.Config.RGB_565;
-//        options.inPurgeable = true;
-//        options.inInputShareable = true;
-//        InputStream is = res.openRawResource(resId);
-//        return getBitmapFromStream(is, null, targetWidth, targetHeight);
-//    }
-//
-//    /**
-//     * 获取一个指定大小的bitmap
-//     *
-//     * @param filePath
-//     * @param targetWidth  目标宽度
-//     * @param targetHeight 目标高度
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap getBitmapFromFile(final String filePath, final int targetWidth, final int targetHeight) {
-//        if (TextUtils.isEmpty(filePath)) return null;
-//        File file = new File(filePath);
-//        if (file.isDirectory() || !file.exists()) return null;
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inJustDecodeBounds = true;
-//        BitmapFactory.decodeFile(filePath, options);
-//        options = calculateInSampleSize(options, targetWidth, targetHeight);
-//        return BitmapFactory.decodeFile(filePath, options);
-//    }
-//
-//    /**
-//     * 获取一个指定大小的bitmap
-//     *
-//     * @param data         Bitmap 的 byte[]
-//     * @param offset       image 从 byte[] 创建的起始位置
-//     * @param length       从offset处开始的长度
-//     * @param targetWidth  目标宽度
-//     * @param targetHeight 目标高度
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap getBitmapFromByteArray(final byte[] data, final int offset, final int length, final int targetWidth, final int targetHeight) {
-//        if (data == null || data.length == 0) return null;
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inJustDecodeBounds = true;
-//        BitmapFactory.decodeByteArray(data, offset, length, options);
-//        options = calculateInSampleSize(options, targetWidth, targetHeight);
-//        return BitmapFactory.decodeByteArray(data, offset, length, options);
-//    }
-//
-//    // =
-//
-//    /**
-//     * 获取一个指定大小的bitmap
-//     *
-//     * @param is           从输入流中读取Bitmap
-//     * @param outPadding
-//     * @param targetWidth  目标宽度
-//     * @param targetHeight 目标高度
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap getBitmapFromStream(final InputStream is, final Rect outPadding, final int targetWidth, final int targetHeight) {
-//        if (is == null) return null;
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inJustDecodeBounds = true;
-//        BitmapFactory.decodeStream(is, outPadding, options);
-//        options = calculateInSampleSize(options, targetWidth, targetHeight);
-//        return BitmapFactory.decodeStream(is, outPadding, options);
-//    }
-//
-//    /**
-//     * 压缩图片大小
-//     *
-//     * @param bitmap 源Bitmap
-//     * @param size   kb为单位, 大于xx大小, 则一直压缩
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap compressImage(final Bitmap bitmap, final long size) {
-//        if (bitmap == null) return null;
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // 质量压缩方法, 这里100表示不压缩, 把压缩后的数据存放到baos中
-//        int options = 100;
-//        while (baos.toByteArray().length / 1024 > size) { // 循环判断如果压缩后图片是否大于 100kb, 大于继续压缩
-//            baos.reset(); // 重置baos即清空baos
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos); // 这里压缩options%, 把压缩后的数据存放到baos中
-//            options -= 10; // 每次都减少10
-//        }
-//        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); // 把压缩后的数据baos存放到ByteArrayInputStream中
-//        return BitmapFactory.decodeStream(bais, null, null); // 把ByteArrayInputStream数据生成图片
-//    }
-//
-//    /**
-//     * 图片压缩方法(使用compress的方法)
-//     * 说明 如果bitmap本身的大小小于maxSize, 则不作处理
-//     *
-//     * @param bitmap  要压缩的图片
-//     * @param maxSize 压缩后的大小, 单位kb
-//     * @return {@link Bitmap}
-//     */
-//    public static Bitmap compress(final Bitmap bitmap, final double maxSize) {
-//        if (bitmap == null) return null;
-//        // 将bitmap放至数组中, 意在获取bitmap的大小(与实际读取的原文件要大)
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        // 格式、质量、输出流
-//        bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
-//        byte[] b = baos.toByteArray();
-//        // 将字节换成KB
-//        double mid = b.length / 1024;
-//        // 获取bitmap大小 是允许最大大小的多少倍
-//        double i = mid / maxSize;
-//        // 判断bitmap占用空间是否大于允许最大空间 如果大于则压缩 小于则不压缩
-//        if (i > 1) {
-//            // 缩放图片 此处用到平方根 将宽带和高度压缩掉对应的平方根倍
-//            // (保持宽高不变, 缩放后也达到了最大占用空间的大小)
-////            return scale(bitmap, bitmap.getWidth() / Math.sqrt(i), bitmap.getHeight() / Math.sqrt(i));
-//        }
-//        return null;
-//    }
 //
 //    // = 裁剪图片, 裁剪中间部分, 防止全图压缩 =
 //

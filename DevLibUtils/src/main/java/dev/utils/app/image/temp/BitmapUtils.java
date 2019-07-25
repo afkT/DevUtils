@@ -258,11 +258,11 @@ public final class BitmapUtils {
      * @param bitmap  需要重新编码的 bitmap
      * @param format  编码后的格式 如 Bitmap.CompressFormat.PNG
      * @param quality 质量
-     * @return {@link Bitmap}
+     * @return 重新编码后的图片
      */
     public static Bitmap recode(final Bitmap bitmap, final Bitmap.CompressFormat format,
                                 @IntRange(from = 0, to = 100) final int quality) {
-        if (bitmap == null || format == null || quality < 0) return null;
+        if (isEmpty(bitmap) || format == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(format, quality, baos);
@@ -1030,7 +1030,7 @@ public final class BitmapUtils {
      * 按质量压缩
      * @param bitmap  待操作源图片
      * @param quality 质量
-     * @return {@link Bitmap}
+     * @return 质量压缩过的图片
      */
     public static Bitmap compressByQuality(final Bitmap bitmap, @IntRange(from = 0, to = 100) final int quality) {
         return compressByQuality(bitmap, Bitmap.CompressFormat.JPEG, quality);
@@ -1045,7 +1045,7 @@ public final class BitmapUtils {
      */
     public static Bitmap compressByQuality(final Bitmap bitmap, final Bitmap.CompressFormat format,
                                            @IntRange(from = 0, to = 100) final int quality) {
-        if (bitmap == null || format == null || quality < 0) return null;
+        if (isEmpty(bitmap) || format == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(format, quality, baos);
@@ -1118,6 +1118,108 @@ public final class BitmapUtils {
             LogPrintUtils.eTag(TAG, e, "compressByByteSize");
         }
         return null;
+    }
+
+    // =
+
+    /**
+     * 按采样大小压缩
+     * @param bitmap     待操作源图片
+     * @param sampleSize 采样率大小
+     * @return 按采样率压缩后的图片
+     */
+    public static Bitmap compressBySampleSize(final Bitmap bitmap, final int sampleSize) {
+        return compressBySampleSize(bitmap, Bitmap.CompressFormat.JPEG, sampleSize);
+    }
+
+    /**
+     * 按采样大小压缩
+     * @param bitmap     待操作源图片
+     * @param format     图片压缩格式
+     * @param sampleSize 采样率大小
+     * @return 按采样率压缩后的图片
+     */
+    public static Bitmap compressBySampleSize(final Bitmap bitmap, final Bitmap.CompressFormat format, final int sampleSize) {
+        if (isEmpty(bitmap) || format == null) return null;
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = sampleSize;
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(format, 100, baos);
+            byte[] data = baos.toByteArray();
+            return BitmapFactory.decodeByteArray(data, 0, data.length, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "compressBySampleSize");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 按采样大小压缩
+     * @param bitmap    待操作源图片
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return 按采样率压缩后的图片
+     */
+    public static Bitmap compressBySampleSize(final Bitmap bitmap, final int maxWidth, final int maxHeight) {
+        return compressBySampleSize(bitmap, Bitmap.CompressFormat.JPEG, maxWidth, maxHeight);
+    }
+
+    /**
+     * 按采样大小压缩
+     * @param bitmap    待操作源图片
+     * @param format    图片压缩格式
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return 按采样率压缩后的图片
+     */
+    public static Bitmap compressBySampleSize(final Bitmap bitmap, final Bitmap.CompressFormat format, final int maxWidth, final int maxHeight) {
+        if (isEmpty(bitmap)) return null;
+        try {
+            // 获取宽高信息
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(format, 100, baos);
+
+            // 进行采样压缩
+            byte[] data = baos.toByteArray();
+            BitmapFactory.decodeByteArray(data, 0, data.length, options);
+            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inJustDecodeBounds = false;
+            return BitmapFactory.decodeByteArray(data, 0, data.length, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "compressBySampleSize");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 计算采样大小
+     * <pre>
+     *     最大宽高只是阀值, 实际算出来的图片将小于等于这个值
+     * </pre>
+     * @param options   选项
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return 采样大小
+     */
+    public static int calculateInSampleSize(final BitmapFactory.Options options, final int maxWidth, final int maxHeight) {
+        if (options == null) return 0;
+
+        int height = options.outHeight;
+        int width = options.outWidth;
+        int inSampleSize = 1;
+        while (height > maxHeight || width > maxWidth) {
+            height >>= 1;
+            width >>= 1;
+            inSampleSize <<= 1;
+        }
+        return inSampleSize;
     }
 
     // ======================
