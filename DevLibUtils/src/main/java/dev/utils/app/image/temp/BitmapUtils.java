@@ -849,6 +849,58 @@ public final class BitmapUtils {
         return newBitmap;
     }
 
+    // ========
+    // = 水印 =
+    // ========
+
+    /**
+     * 添加文字水印
+     * @param bitmap   待操作源图片
+     * @param content  水印文本
+     * @param textSize 水印字体大小 pixel
+     * @param color    水印字体颜色
+     * @param x        起始坐标 x
+     * @param y        起始坐标 y
+     * @return 添加文字水印后的图片
+     */
+    public static Bitmap addTextWatermark(final Bitmap bitmap, final String content, final float textSize,
+                                          @ColorInt final int color, final float x, final float y) {
+        if (isEmpty(bitmap) || content == null) return null;
+
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(color);
+        paint.setTextSize(textSize);
+        Rect bounds = new Rect();
+        paint.getTextBounds(content, 0, content.length(), bounds);
+
+        Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
+        Canvas canvas = new Canvas(newBitmap);
+        canvas.drawText(content, x, y + textSize, paint);
+        return newBitmap;
+    }
+
+    /**
+     * 添加图片水印
+     * @param bitmap    待操作源图片
+     * @param watermark 水印图片
+     * @param x         起始坐标 x
+     * @param y         起始坐标 y
+     * @param alpha     透明度
+     * @return 添加图片水印后的图片
+     */
+    public static Bitmap addImageWatermark(final Bitmap bitmap, final Bitmap watermark, final int x, final int y,
+                                           @IntRange(from = 0, to = 255) final int alpha) {
+        if (isEmpty(bitmap)) return null;
+        Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
+        if (!isEmpty(watermark)) {
+            Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            Canvas canvas = new Canvas(newBitmap);
+            paint.setAlpha(alpha);
+            canvas.drawBitmap(watermark, x, y, paint);
+        }
+        return newBitmap;
+    }
+
     // ======================
     // = 其他工具类实现代码 =
     // ======================
