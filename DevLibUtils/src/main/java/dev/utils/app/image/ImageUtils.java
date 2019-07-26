@@ -237,7 +237,7 @@ public final class ImageUtils {
     }
 
     /**
-     * 判断是否 webp 图片
+     * 判断是否 WEBP 图片
      * @param data 图片 byte[]
      * @return {@code true} yes, {@code false} no
      */

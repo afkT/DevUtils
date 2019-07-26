@@ -13,7 +13,7 @@
 
 ![module](https://raw.githubusercontent.com/afkT/DevUtils/master/file/DevUtils.png)
 
-# Gradle
+## Gradle
 
 Step 1. Add the JitPack repository to your build file
 ```
@@ -82,7 +82,7 @@ public class BaseApplication extends Application {
 
 > [DevQuickUtils - app module](https://github.com/afkT/DevQuickUtils/tree/master/app/src/main/java/demo/pro) 基于 ([DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils)) 库基础上实现常见功能、UI效果等，并持续增加比较火的框架使用、二次封装等，以及部分架构设计思路、使用等综合示范项目
 
-# Thanks
+## Thanks
 
 > 感谢以下开源项目的作者，本项目中有些功能受你们项目灵感的启发，有些功能也用到你们的代码完成
 
@@ -90,3 +90,20 @@ public class BaseApplication extends Application {
 - [Blankj/AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode)
 - [litesuits/android-common](https://github.com/litesuits/android-common)
 - [AbrahamCaiJin/CommonUtilLibrary](https://github.com/AbrahamCaiJin/CommonUtilLibrary)
+
+## License
+
+    Copyright 2018 afkT
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    
