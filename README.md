@@ -9,7 +9,8 @@
 # About (持续更新，目前含100+工具类)
 
 > DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用
-> <p>该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目，以及内置部分常用的资源文件，如 color.xml、toast_layout.xml 等
+>
+> 该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目，以及内置部分常用的资源文件，如 color.xml、toast_layout.xml 等
 
 ![module](https://raw.githubusercontent.com/afkT/DevUtils/master/file/DevUtils.png)
 
@@ -40,10 +41,13 @@ dependencies {
 
 - [JavaDoc - API](https://javadoc.jitpack.io/com/github/afkT/DevUtils/1.7.5/javadoc/)
 
+- [检测代码规范、注释内容排版, API 文档生成](https://github.com/afkT/JavaDoc)
+
 
 ## Use
 
-> 只需要在 Application 中调用 DevUtils.init() 进行初始化就行 <p>
+> 只需要在 Application 中调用 DevUtils.init() 进行初始化就行
+>
 > DevUtils.openLog() 是打开内部工具类 日志输出 [DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/DevLogger.md)，线上(release)版本则不调用此句
 
 ```java
