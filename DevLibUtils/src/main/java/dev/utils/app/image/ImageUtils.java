@@ -1033,6 +1033,53 @@ public final class ImageUtils {
         return null;
     }
 
+    // =
+
+    /**
+     * 设置 Drawable 绘制区域
+     * @param drawable {@link Drawable}
+     * @return {@link Drawable}
+     */
+    public static Drawable setBounds(final Drawable drawable) {
+        try {
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            return drawable;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setBounds");
+        }
+        return null;
+    }
+
+    /**
+     * 设置 Drawable 绘制区域
+     * @param drawable {@link Drawable}
+     * @param right    right 坐标
+     * @param bottom   bottom 坐标
+     * @return {@link Drawable}
+     */
+    public static Drawable setBounds(final Drawable drawable, final int right, final int bottom) {
+        return setBounds(drawable, 0, 0, right, bottom);
+    }
+
+    /**
+     * 设置 Drawable 绘制区域
+     * @param drawable {@link Drawable}
+     * @param left     left 坐标
+     * @param top      top 坐标
+     * @param right    right 坐标
+     * @param bottom   bottom 坐标
+     * @return {@link Drawable}
+     */
+    public static Drawable setBounds(final Drawable drawable, final int left, final int top, final int right, final int bottom) {
+        try {
+            drawable.setBounds(left, top, right, bottom);
+            return drawable;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setBounds");
+        }
+        return null;
+    }
+
     // ======================
     // = 其他工具类实现代码 =
     // ======================
