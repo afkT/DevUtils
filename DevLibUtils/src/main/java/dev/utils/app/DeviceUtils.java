@@ -59,7 +59,7 @@ import dev.utils.LogPrintUtils;
  *     android.os.Build.VERSION.SDK: 系统的 API 级别 一般使用下面大的 SDK_INT 来查看
  *     android.os.Build.VERSION.SDK_INT: 系统的 API 级别 数字表示
  *     <p></p>
- *     所需权限:
+ *     所需权限
  *     <uses-permission android:name="android.permission.INTERNET" />
  *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
  * </pre>

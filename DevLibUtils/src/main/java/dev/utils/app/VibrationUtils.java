@@ -11,7 +11,7 @@ import dev.utils.LogPrintUtils;
  * detail: 震动相关工具类
  * @author Ttt
  * <pre>
- *     所需权限:
+ *     所需权限
  *     <uses-permission android:name="android.permission.VIBRATE" />
  * </pre>
  */

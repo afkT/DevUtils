@@ -26,7 +26,7 @@ import dev.utils.LogPrintUtils;
  *     Android 7.1 系统以上不支持自动开启热点, 需要手动开启热点
  *     @see <a href="https://www.jianshu.com/p/9dbb02c3e21f"/>
  *     <p></p>
- *     所需权限:
+ *     所需权限
  *     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
  *     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
  *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

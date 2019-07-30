@@ -31,14 +31,14 @@ import dev.utils.LogPrintUtils;
  * detail: 权限请求工具类
  * @author Ttt
  * <pre>
- *     参考:
+ *     参考链接
  *     @see <a href="https://github.com/anthonycr/Grant"/>
  *     compile 'com.anthonycr.grant:permissions:1.0'
  *     <p></p>
  *     权限介绍
  *     @see <a href="https://www.cnblogs.com/mengdd/p/4892856.html"/>
  *     <p></p>
- *     第三方库:
+ *     第三方库
  *     @see <a href="https://github.com/hotchemi/PermissionsDispatcher">PermissionsDispatcher</a>
  *     @see <a href="https://github.com/tbruyelle/RxPermissions">RxPermissions</a>
  *     @see <a href="https://github.com/anthonycr/Grant">Grant</a>

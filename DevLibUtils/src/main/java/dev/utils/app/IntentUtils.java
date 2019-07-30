@@ -22,10 +22,9 @@ import dev.utils.LogPrintUtils;
  * @author Ttt
  * <pre>
  *     7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
- *     查看链接:
  *     @see <a href="https://developer.android.com/reference/android/support/v4/content/FileProvider.html"/>
  *     <p></p>
- *     所需权限:
+ *     所需权限
  *     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
  *     <uses-permission android:name="android.permission.SHUTDOWN" />
  *     <uses-permission android:name="android.permission.CALL_PHONE" />

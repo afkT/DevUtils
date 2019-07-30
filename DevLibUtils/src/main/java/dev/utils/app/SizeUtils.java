@@ -156,7 +156,7 @@ public final class SizeUtils {
     /**
      * 在 onCreate 中获取视图的尺寸 - 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 View 宽高
      * <pre>
-     *     用法示例如下所示:
+     *     用法示例如下所示
      *     <p></p>
      *     SizeUtils.forceGetViewSize(view, new SizeUtils.onGetSizeListener() {
      *          Override

@@ -40,7 +40,7 @@ import dev.utils.LogPrintUtils;
  *     双卡双待系统 IMEI 和 IMSI 方案
  *     @see <a href="http://benson37.iteye.com/blog/1923946"/>
  *     <p></p>
- *     所需权限:
+ *     所需权限
  *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
  * </pre>
  */

@@ -23,7 +23,7 @@ import dev.utils.LogPrintUtils;
  * detail: 定位相关工具类
  * @author Ttt
  * <pre>
- *     所需权限:
+ *     所需权限
  *     <uses-permission android:name="android.permission.INTERNET" />
  *     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
  *     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

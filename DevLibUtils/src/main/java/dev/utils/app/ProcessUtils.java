@@ -26,7 +26,7 @@ import dev.utils.LogPrintUtils;
  * detail: 进程相关工具类
  * @author Ttt
  * <pre>
- *     所需权限:
+ *     所需权限
  *     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
  *     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
  * </pre>

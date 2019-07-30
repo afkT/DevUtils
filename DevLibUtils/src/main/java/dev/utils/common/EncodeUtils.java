@@ -7,7 +7,7 @@ import dev.utils.common.cipher.Base64;
  * detail: 编码工具类
  * @author Ttt
  * <pre>
- *     Base64 flags:
+ *     Base64 flags
  *     <p></p>
  *     CRLF 这个参数看起来比较眼熟, 它就是 Win 风格的换行符, 意思就是使用 CR LF 这一对作为一行的结尾而不是 Unix 风格的 LF
  *     DEFAULT 这个参数是默认, 使用默认的方法来加密

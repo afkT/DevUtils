@@ -26,7 +26,7 @@ import dev.utils.LogPrintUtils;
  * detail: Activity 工具类 ( 包含 Activity 控制管理 )
  * @author Ttt
  * <pre>
- *     转场动画:
+ *     转场动画
  *     @see <a href="https://www.cnblogs.com/tianzhijiexian/p/4087917.html"/>
  *     ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
  *     @see <a href="https://www.jianshu.com/p/fa1c8deeaa57"/>

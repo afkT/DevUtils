@@ -24,6 +24,10 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: View 操作相关工具类
  * @author Ttt
+ * <pre>
+ *     组件设置 setCompoundDrawables 不生效解决办法
+ *     @see <a href="https://blog.csdn.net/qq_26971803/article/details/54347598"/>
+ * </pre>
  */
 public final class ViewUtils {
 
@@ -1008,6 +1012,10 @@ public final class ViewUtils {
             }
         }
     }
+
+    // ========================
+    // = setCompoundDrawables =
+    // ========================
 
     // ============
     // = ListView =

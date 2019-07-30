@@ -31,7 +31,7 @@ import dev.utils.LogPrintUtils;
  *     MimeType
  *     @see <a href="https://www.jianshu.com/p/f3fcf033be5c"/>
  *     <p></p>
- *     所需权限:
+ *     所需权限
  *     <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
  * </pre>
  */

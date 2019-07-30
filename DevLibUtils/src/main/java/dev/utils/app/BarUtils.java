@@ -34,7 +34,7 @@ import dev.DevUtils;
  * @author Blankj
  * @author Ttt
  * <pre>
- *     所需权限:
+ *     所需权限
  *     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
  * </pre>
  */
