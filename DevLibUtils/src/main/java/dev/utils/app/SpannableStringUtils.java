@@ -200,7 +200,7 @@ public final class SpannableStringUtils {
     }
 
     /**
-     * 构造函数
+     * 获取持有 TextView SpannableStringUtils
      * @param textView {@link TextView}
      * @return {@link SpannableStringUtils}
      */
