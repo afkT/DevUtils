@@ -519,13 +519,25 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 父类中的变量对象
      */
-    public static <T> T getPropertyByObject(final Object object, final String fieldName) {
+    public static <T> T getPropertyByParent(final Object object, final String fieldName) {
+        return getPropertyByParent(object, fieldName, 1);
+    }
+
+    /**
+     * 获取父类中的变量对象
+     * @param object    子类对象
+     * @param fieldName 父类中的属性名
+     * @param fieldNumber 字段出现次数, 如果父类还有父类, 并且有相同变量名, 设置负数 一直会跟到最后的变量
+     * @param <T>       泛型
+     * @return 父类中的变量对象
+     */
+    public static <T> T getPropertyByParent(final Object object, final String fieldName, final int fieldNumber) {
         if (object == null || fieldName == null) return null;
         try {
-            Field field = getDeclaredFieldParent(object, fieldName);
+            Field field = getDeclaredFieldParent(object, fieldName, fieldNumber);
             return getProperty(object, field);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getPropertyByObject");
+            JCLogUtils.eTag(TAG, e, "getPropertyByParent");
         }
         return null;
     }
@@ -550,6 +562,7 @@ public final class Reflect2Utils {
     public static Field getDeclaredFieldParent(final Object object, final String fieldName, final int fieldNumber) {
         if (object == null || fieldName == null) return null;
         try {
+            if (fieldNumber == 0) return null;
             // 获取当前出现次数
             int number = 0;
             // 限制值
@@ -560,13 +573,13 @@ public final class Reflect2Utils {
             for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
                 try {
                     field = clazz.getDeclaredField(fieldName);
-                    if (number >= limitNumber) {
-                        return field;
-                    }
                     number++;
                 } catch (Exception e) {
                     // 这里甚么都不要做, 并且这里的异常必须这样写, 不能抛出去
                     // 如果这里的异常打印或者往外抛, 则就不会执行 clazz = clazz.getSuperclass(), 最后就不会进入到父类中了
+                }
+                if (number >= limitNumber) {
+                    return field;
                 }
             }
             // 负数表示跟到最后
