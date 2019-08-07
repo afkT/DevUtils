@@ -1,1 +1,2 @@
 include ':app', ':DevLibUtils'
+project(':DevLibUtils').projectDir = new File('lib/DevLibUtils')
