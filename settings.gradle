@@ -1,2 +1,2 @@
-include ':app', ':DevLibUtils'
-project(':DevLibUtils').projectDir = new File('lib/DevLibUtils')
+include ':app', ':DevApp'
+project(':DevApp').projectDir = new File('lib/DevApp')

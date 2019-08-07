@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/lib/DevLibUtils/DevLibUtils.iml" filepath="$PROJECT_DIR$/lib/DevLibUtils/DevLibUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/DevApp/DevApp.iml" filepath="$PROJECT_DIR$/lib/DevApp/DevApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/DevLibUtils/DevLibUtils.iml" filepath="$PROJECT_DIR$/DevLibUtils/DevLibUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/DevUtils.iml" filepath="$PROJECT_DIR$/DevUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/DevUtils.iml" filepath="$PROJECT_DIR$/DevUtils.iml" />
