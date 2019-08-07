@@ -349,6 +349,39 @@ public final class DevCommonUtils {
         return "";
     }
 
+    /**
+     * 裁剪内容, 设置符号处理
+     * @param str               待处理字符串
+     * @param frontRetainLength 前面保留的长度
+     * @param rearRetainLength  后面保留的长度
+     * @param symbol            转换符号
+     * @return 处理后的字符串
+     */
+    public static String subSetSymbol(final String str, final int frontRetainLength, final int rearRetainLength, final String symbol) {
+        if (str != null) {
+            try {
+
+                // 截取前面需保留的内容
+                String startStr = str.substring(0, frontRetainLength);
+                // 截取后面需保留的内容
+                String endStr = str.substring(str.length() - rearRetainLength);
+                // 特殊符号长度
+                int symbolLength = str.length() - (frontRetainLength + rearRetainLength);
+                if (symbolLength >= 1) {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < symbolLength; i++) {
+                        builder.append(symbol);
+                    }
+                    return startStr + builder.toString() + endStr;
+                }
+                return startStr + endStr;
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "subSetSymbol");
+            }
+        }
+        return null;
+    }
+
     // ==================
     // = 替换、截取操作 =
     // ==================

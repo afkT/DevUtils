@@ -525,10 +525,10 @@ public final class Reflect2Utils {
 
     /**
      * 获取父类中的变量对象
-     * @param object    子类对象
-     * @param fieldName 父类中的属性名
+     * @param object      子类对象
+     * @param fieldName   父类中的属性名
      * @param fieldNumber 字段出现次数, 如果父类还有父类, 并且有相同变量名, 设置负数 一直会跟到最后的变量
-     * @param <T>       泛型
+     * @param <T>         泛型
      * @return 父类中的变量对象
      */
     public static <T> T getPropertyByParent(final Object object, final String fieldName, final int fieldNumber) {
