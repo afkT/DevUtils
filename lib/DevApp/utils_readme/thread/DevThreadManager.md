@@ -2,15 +2,15 @@
 
 #### 使用演示类 [ThreadUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/thread/ThreadUse.java) 介绍了配置参数及使用
 
-#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/DevLibUtils/src/main/java/dev/utils/common/thread)
+#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/lib/DevApp/src/main/java/dev/utils/common/thread)
 
-* 线程池管理 - 开发类（[DevThreadManager.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/common/thread/DevThreadManager.java)）：内部封装 DevThreadPool 配置处理, 方便直接使用
+* 线程池管理 - 开发类（[DevThreadManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadManager.java)）：内部封装 DevThreadPool 配置处理, 方便直接使用
 
-* 线程池 - 开发类（[DevThreadPool.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/common/thread/DevThreadPool.java)）：具体线程池操作方法、线程处理等
+* 线程池 - 开发类（[DevThreadPool.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadPool.java)）：具体线程池操作方法、线程处理等
 
 ## API 文档
 
-* **线程池管理 - 开发类 ->** [DevThreadManager.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/common/thread/DevThreadManager.java)
+* **线程池管理 - 开发类 ->** [DevThreadManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadManager.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -20,7 +20,7 @@
 | removeConfig | 移除配置信息 |
 
 
-* **线程池 - 开发类 ->** [DevThreadPool.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/common/thread/DevThreadPool.java)
+* **线程池 - 开发类 ->** [DevThreadPool.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadPool.java)
 
 | 方法 | 注释 |
 | :- | :- |

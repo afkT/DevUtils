@@ -2,23 +2,23 @@
 
 #### 使用演示类 [LoggerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/logger/LoggerUse.java) 介绍了配置参数及使用
 
-#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/DevLibUtils/src/main/java/dev/utils/app/logger)
+#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/lib/DevApp/src/main/java/dev/utils/app/logger)
 
-* 日志操作类（[DevLogger](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLogger.java)）：日志操作类(对外公开直接调用), 直接调用日志输入类方法
+* 日志操作类（[DevLogger](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLogger.java)）：日志操作类(对外公开直接调用), 直接调用日志输入类方法
 
-* 日志操作工具类（[DevLoggerUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)）：提供常用日志配置快捷获取方法、以及日志存储方法等
+* 日志操作工具类（[DevLoggerUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)）：提供常用日志配置快捷获取方法、以及日志存储方法等
 
-* 日志接口（[IPrinter](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/IPrinter.java)）：主要编写可以被外部调用接口, 以及可以操作的类型
+* 日志接口（[IPrinter](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/IPrinter.java)）：主要编写可以被外部调用接口, 以及可以操作的类型
 
-* 日志输出类（[LoggerPrinter](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LoggerPrinter.java)）：实现日志接口, 并且对对应的方法, 进行处理, 最终打印
+* 日志输出类（[LoggerPrinter](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LoggerPrinter.java)）：实现日志接口, 并且对对应的方法, 进行处理, 最终打印
 
-* 日志设置（[LogConfig](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LogConfig.java)）：该类主要控制日志输出方式, 以及是否输入日志, 堆栈方法等
+* 日志设置（[LogConfig](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogConfig.java)）：该类主要控制日志输出方式, 以及是否输入日志, 堆栈方法等
 
-* 日志配置（[LogConstants](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LogConstants.java)）：该类主要是常量配置信息
+* 日志配置（[LogConstants](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogConstants.java)）：该类主要是常量配置信息
 
-* 日志级别（[LogLevel](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/LogLevel.java)）：该类主要控制日志级别
+* 日志级别（[LogLevel](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogLevel.java)）：该类主要控制日志级别
 
-* 日志内部工具类（[Utils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/Utils.java)）：内部快捷操作工具类(获取应用信息、设备信息、存储日志等)
+* 日志内部工具类（[Utils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/Utils.java)）：内部快捷操作工具类(获取应用信息、设备信息、存储日志等)
 
 
 #### 框架亮点
@@ -213,20 +213,20 @@ DevLoggerUtils.saveLog("保存自定义信息日志", "头部", "底部", LOG_SD
 
 ***XML、JSON 格式化打印***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_xml_json.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_xml_json.png)
 
 ***打印堆栈信息***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_default.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_default.png)
 
 ***打印异常信息***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_error.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_error.png)
 
 ***正常打印***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_other.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_other.png)
 
 ***保存日志文件***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/logger/log_file_error.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_file_error.png)

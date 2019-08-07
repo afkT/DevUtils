@@ -7,7 +7,7 @@
 
 #### 项目类结构
 
-* Wifi 热点工具类（[WifiHotUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/wifi/WifiHotUtils.java)）：Wifi 热点工具类, 内部适配不同 Android 版本 api
+* Wifi 热点工具类（[WifiHotUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/wifi/WifiHotUtils.java)）：Wifi 热点工具类, 内部适配不同 Android 版本 api
 
 ## API 文档
 

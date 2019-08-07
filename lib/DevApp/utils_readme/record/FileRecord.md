@@ -8,15 +8,15 @@
 
 #### 项目类结构
 
-* 日志操作工具类（[DevLoggerUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)）：提供常用日志配置快捷获取方法、以及日志存储方法等
+* 日志操作工具类（[DevLoggerUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)）：提供常用日志配置快捷获取方法、以及日志存储方法等
 
-* 文件记录工具类（[FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/FileRecordUtils.java)）：同 DevLoggerUtils 一样, 专门用于信息存储工具类
+* 文件记录工具类（[FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/FileRecordUtils.java)）：同 DevLoggerUtils 一样, 专门用于信息存储工具类
 
-* 分析记录工具类（[AnalysisRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/AnalysisRecordUtils.java)）：专业记录信息, 并存储方便分析, 支持存储目录、时间段保存
+* 分析记录工具类（[AnalysisRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/AnalysisRecordUtils.java)）：专业记录信息, 并存储方便分析, 支持存储目录、时间段保存
 
 ## API 文档
 
-* **日志操作工具类 ->** [DevLoggerUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)
+* **日志操作工具类 ->** [DevLoggerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -28,7 +28,7 @@
 | saveErrorLog | 保存异常日志 |
 | saveLog | 保存日志 |
 
-* **文件记录工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/FileRecordUtils.java)
+* **文件记录工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/FileRecordUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -37,7 +37,7 @@
 | saveLog | 保存日志 |
 
 
-* **分析记录工具类 ->** [AnalysisRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/AnalysisRecordUtils.java)
+* **分析记录工具类 ->** [AnalysisRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/AnalysisRecordUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |

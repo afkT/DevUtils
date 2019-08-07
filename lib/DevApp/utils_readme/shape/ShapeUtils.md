@@ -10,7 +10,7 @@
 
 #### 项目类结构
 
-* Shape 工具类（[ShapeUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/ShapeUtils.java)）：Shape 效果工具类, 动态使用(圆角、渐变、描边) 等
+* Shape 工具类（[ShapeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ShapeUtils.java)）：Shape 效果工具类, 动态使用(圆角、渐变、描边) 等
 
 ## API 文档
 

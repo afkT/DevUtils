@@ -19,7 +19,7 @@
 
 #### 项目类结构
 
-* 定时器工具类（[TimerManager](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/assist/manager/TimerManager.java)）：定时器工具类
+* 定时器工具类（[TimerManager](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/manager/TimerManager.java)）：定时器工具类
 
 * TimerManager.AbsTimer：定时器抽象类, 对外提供该类对象以及内部方法, 便于内部实现方法的隐藏, 以及达到对定时器任务的控制处理
 

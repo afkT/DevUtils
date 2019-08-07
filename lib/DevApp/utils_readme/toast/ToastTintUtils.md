@@ -8,7 +8,7 @@
 
 #### 项目类结构
 
-* Toast 工具类（[ToastTintUtils](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/toast/ToastTintUtils.java)）：Toast 美化工具类
+* Toast 工具类（[ToastTintUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/ToastTintUtils.java)）：Toast 美化工具类
 
 
 #### 框架亮点
@@ -149,27 +149,27 @@ ToastTintUtils.custom(new TempStyle(), "Custom Style Toast", iconDrawable);
 
 ***Success 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/toast/toast_tint/success.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/success.png)
 
 ***Error 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/toast/toast_tint/error.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/error.png)
 
 ***Info 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/toast/toast_tint/info.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/info.png)
 
 ***Normal 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/toast/toast_tint/normal.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/normal.png)
 
 ***Warning 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/toast/toast_tint/warning.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/warning.png)
 
 ***Custom 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/utils_readme/toast/toast_tint/custom.png)
+![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/custom.png)
 
 
 #### 自定义样式

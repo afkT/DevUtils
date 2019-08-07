@@ -4,7 +4,7 @@
 
 #### 项目类结构
 
-* Snackbar 工具类（[SnackbarUtils.java](https://github.com/afkT/DevUtils/blob/master/DevLibUtils/src/main/java/dev/utils/app/SnackbarUtils.java)）：Snackbar 二次封装工具类
+* Snackbar 工具类（[SnackbarUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/SnackbarUtils.java)）：Snackbar 二次封装工具类
 
 * Snackbar Style 样式抽象类（SnackbarUtils.Style）：主要决定 Snackbar 显示效果样式, 可继承该抽象类, 重写需要的方法, 并通过 setStyle 设置
 
