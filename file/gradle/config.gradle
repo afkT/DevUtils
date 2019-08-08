@@ -33,7 +33,7 @@ ext {
             // 版本号
             dev_app_versionCode: 176,
             // 版本名
-            dev_app_versionName: '1.99.6',
+            dev_app_versionName: '1.7.6',
     ]
 
     deps = [
