@@ -1,5 +1,5 @@
 apply {
-    from rootProject.file(files.dev_lib_file)
+    from rootProject.file(files.app_lib_gradle)
 }
 
 android.defaultConfig {

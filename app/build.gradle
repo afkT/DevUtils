@@ -1,30 +1,13 @@
-apply plugin: 'com.android.application'
+apply {
+    from rootProject.file(files.app_gradle)
+}
 
 android {
-
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
-
     defaultConfig {
         applicationId "com.dev"
-        minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.android.appcompat_v7
-    implementation deps.android.support_v4
-    implementation deps.android.design
-
     implementation project(path: ':DevApp')
 }

@@ -1,8 +1,10 @@
 ext {
 
     files = [
+            // Android App 配置文件地址
+            app_gradle: 'file/gradle/app_build.gradle',
             // Android Lib 通用配置文件地址
-            dev_lib_file: 'file/app_lib_build.gradle'
+            app_lib_gradle: 'file/gradle/app_lib_build.gradle'
     ]
 
     versions = [
