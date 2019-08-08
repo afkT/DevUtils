@@ -1,0 +1,49 @@
+ext {
+
+    files = [
+            // Android Lib 通用配置文件地址
+            dev_lib_file: 'file/app_lib_build.gradle'
+    ]
+
+    versions = [
+
+            // 版本号
+            versionCode        : 1,
+            // 版本名
+            versionName        : '1.0.0',
+            // 支持最小的 SDK
+            minSdkVersion      : 14,
+            // 编译 SDK 版本
+            compileSdkVersion  : 28,
+            // 向前兼容 SDK 版本
+            targetSdkVersion   : 28,
+            // 编译工具版本
+            buildToolsVersion  : '28.0.3',
+            // support 包 Lib 版本
+            supportLibVersion  : '28.0.0',
+            // java 版本
+            javaVersion        : JavaVersion.VERSION_1_8,
+
+            // ===========
+            // = Dev Lib =
+            // ===========
+
+            // 版本号
+            dev_app_versionCode: 176,
+            // 版本名
+            dev_app_versionName: '1.99.6',
+    ]
+
+    deps = [
+            'android' : [
+                    appcompat_v7: "com.android.support:appcompat-v7:${versions.supportLibVersion}",
+                    support_v4  : "com.android.support:support-v4:${versions.supportLibVersion}",
+                    design      : "com.android.support:design:${versions.supportLibVersion}",
+                    multidex    : "com.android.support:multidex:1.0.2",
+                    constraint  : "com.android.support.constraint:constraint-layout:1.1.3",
+            ],
+            'androidx': [
+
+            ]
+    ]
+}
