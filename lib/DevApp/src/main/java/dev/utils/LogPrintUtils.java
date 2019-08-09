@@ -60,7 +60,7 @@ public final class LogPrintUtils {
 
     /**
      * 最终打印日志方法 ( 全部调用此方法 )
-     * @param logType 打印日志类型
+     * @param logType 日志类型
      * @param tag     打印 Tag
      * @param message 日志信息
      */

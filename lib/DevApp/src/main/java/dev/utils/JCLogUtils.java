@@ -31,11 +31,11 @@ public final class JCLogUtils {
     // ============
 
     // INFO 模式
-    private static final int INFO = 0;
+    public static final int INFO = 0;
     // DEBUG 模式
-    private static final int DEBUG = 1;
+    public static final int DEBUG = 1;
     // ERROR 模式
-    private static final int ERROR = 2;
+    public static final int ERROR = 2;
 
     /**
      * 判断是否打印日志
@@ -74,22 +74,15 @@ public final class JCLogUtils {
 
     /**
      * 最终打印日志方法 ( 全部调用此方法 )
-     * @param logType 打印日志类型
+     * @param logType 日志类型
      * @param tag     打印 Tag
      * @param message 日志信息
      */
     private static void printLog(final int logType, final String tag, final String message) {
-        switch (logType) {
-            case INFO:
-                LogPrintUtils.iTag(tag, message);
-            case ERROR:
-                LogPrintUtils.eTag(tag, message);
-                break;
-            case DEBUG:
-            default:
-                LogPrintUtils.dTag(tag, message);
-                break;
+        if (JCLogUtils.print != null) {
+            JCLogUtils.print.printLog(logType, tag, message);
         }
+
         if (JUDGE_CONTROL_PRINT_LOG) {
             // 打印信息
             if (isEmpty(tag)) {
@@ -250,5 +243,34 @@ public final class JCLogUtils {
                 printLog(ERROR, tag, errorInfo + "\n" + xml);
             }
         }
+    }
+
+    // ============
+    // = 通知输出 =
+    // ============
+
+    private static Print print;
+
+    /**
+     * 设置日志输出接口
+     * @param print 日志输出接口
+     */
+    public static void setPrint(final Print print) {
+        JCLogUtils.print = print;
+    }
+
+    /**
+     * detail: 日志输出接口
+     * @author Ttt
+     */
+    public interface Print {
+
+        /**
+         * 日志打印
+         * @param logType 日志类型
+         * @param tag     打印 Tag
+         * @param message 日志信息
+         */
+        void printLog(final int logType, final String tag, final String message);
     }
 }

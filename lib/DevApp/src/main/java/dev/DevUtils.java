@@ -75,6 +75,28 @@ public final class DevUtils {
         DevLoggerUtils.init();
         // 初始化 Toast
         DevToast.init(sApplication);
+
+        // ============
+        // = Java Log =
+        // ============
+
+        // 设置 Java 模块日志信息在 logcat 输出
+        JCLogUtils.setPrint(new JCLogUtils.Print() {
+            @Override
+            public void printLog(int logType, String tag, String message) {
+                switch (logType) {
+                    case JCLogUtils.INFO:
+                        LogPrintUtils.iTag(tag, message);
+                    case JCLogUtils.ERROR:
+                        LogPrintUtils.eTag(tag, message);
+                        break;
+                    case JCLogUtils.DEBUG:
+                    default:
+                        LogPrintUtils.dTag(tag, message);
+                        break;
+                }
+            }
+        });
     }
 
     /**

@@ -361,6 +361,19 @@ public final class ScreenUtils {
     // =
 
     /**
+     * 设置禁止截屏
+     * @param activity {@link Activity}
+     */
+    public static void setWindowSecure(final Activity activity) {
+        try {
+            // 禁止截屏
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setWindowSecure");
+        }
+    }
+
+    /**
      * 设置屏幕为全屏
      * @param activity {@link Activity}
      */
