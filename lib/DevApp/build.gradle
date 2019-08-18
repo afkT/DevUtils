@@ -1,6 +1,6 @@
 apply {
     from rootProject.file(files.app_lib_gradle)
-    from rootProject.file(files.app_bintray_upload)
+//    from rootProject.file(files.app_bintray_upload)
 }
 
 android.defaultConfig {
@@ -11,3 +11,6 @@ android.defaultConfig {
 dependencies {
     implementation deps.android.design
 }
+
+// gradlew bintrayUpload
+apply from : rootProject.file(files.app_bintray_upload)
