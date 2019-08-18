@@ -4,7 +4,9 @@ ext {
             // Android App 配置文件地址
             app_gradle    : 'file/gradle/app_build.gradle',
             // Android Lib 通用配置文件地址
-            app_lib_gradle: 'file/gradle/app_lib_build.gradle'
+            app_lib_gradle: 'file/gradle/app_lib_build.gradle',
+            // Bintray Upload
+            app_bintray_upload: 'file/bintray/bintrayUploadAndroid.gradle'
     ]
 
     versions = [
