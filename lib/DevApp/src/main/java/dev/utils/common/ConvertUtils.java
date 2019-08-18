@@ -27,7 +27,7 @@ import dev.utils.JCLogUtils;
  *     Dec( 十进制 )
  *     Hex( 十六进制 ) 以 0x 开始的数据表示十六进制
  *     <p></p>
- *     位移加密: bytesEncrypt(byte[] bytes)
+ *     位移加密: bytesBitwiseAND(byte[] bytes)
  *     @see <a href="http://www.runoob.com/java/java-operators.html"/>
  * </pre>
  */
@@ -1751,21 +1751,21 @@ public final class ConvertUtils {
 
     // =
 
-//    String data = "测试";
+//    String data = "test";
 //    // 转换二进制字符串
 //    String result = toBinaryString(data.getBytes());
 //    // 获取二进制数据
 //    byte[] bytes = result.getBytes();
 //    // 位移编码
-//    bytesEncrypt(bytes);
+//    bytesBitwiseAND(bytes);
 //    // =
 //    // 位移解码
-//    bytesEncrypt(bytes);
+//    bytesBitwiseAND(bytes);
 //    // 二进制数据解码
 //    byte[] byteResult = decodeBinary(new String(bytes));
 //    // 转换为原始数据
 //    String data1 = new String(byteResult);
-//    // 判断是否一直
+//    // 判断是否一致
 //    boolean equals = data.equals(data1);
 
     /**
