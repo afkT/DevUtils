@@ -142,6 +142,23 @@ public final class ViewUtils {
         return viewGroup;
     }
 
+    /**
+     * 获取 LayoutParams
+     * @param view {@link View}
+     * @param <T>  泛型
+     * @return LayoutParams
+     */
+    public static <T> T getLayoutParams(final View view) {
+        if (view != null) {
+            try {
+                return (T) view.getLayoutParams();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getLayoutParams");
+            }
+        }
+        return null;
+    }
+
     // ======================
     // = 初始化 View 操作等 =
     // ======================
@@ -803,6 +820,14 @@ public final class ViewUtils {
         return 0;
     }
 
+    // ==================
+    // = Layout Gravity =
+    // ==================
+
+//    public static int setLayoutGravity(final View view) {
+//
+//    }
+
     // ===============
     // = View Margin =
     // ===============
@@ -1130,6 +1155,42 @@ public final class ViewUtils {
     // ================
 
     /**
+     * 获取 View Left Padding
+     * @param view {@link View}
+     * @return Left Padding
+     */
+    public static int getPaddingLeft(final View view) {
+        return getPadding(view)[0];
+    }
+
+    /**
+     * 获取 View Top Padding
+     * @param view {@link View}
+     * @return Top Padding
+     */
+    public static int getPaddingTop(final View view) {
+        return getPadding(view)[1];
+    }
+
+    /**
+     * 获取 View Right Padding
+     * @param view {@link View}
+     * @return Right Padding
+     */
+    public static int getPaddingRight(final View view) {
+        return getPadding(view)[2];
+    }
+
+    /**
+     * 获取 View Bottom Padding
+     * @param view {@link View}
+     * @return Bottom Padding
+     */
+    public static int getPaddingBottom(final View view) {
+        return getPadding(view)[3];
+    }
+
+    /**
      * 获取 View Padding
      * @param view {@link View}
      * @return new int[] {left, top, right, bottom}
@@ -1146,6 +1207,150 @@ public final class ViewUtils {
     }
 
     // =
+
+    /**
+     * 设置 View Left Padding
+     * @param view        {@link View}
+     * @param leftPadding Left Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPaddingLeft(final View view, final int leftPadding) {
+        return setPaddingLeft(view, leftPadding, true);
+    }
+
+    /**
+     * 设置 View Left Padding
+     * @param view        {@link View}
+     * @param leftPadding Left Padding
+     * @param reset       是否重置清空其他 Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPaddingLeft(final View view, final int leftPadding, final boolean reset) {
+        if (view != null) {
+            if (reset) {
+                try {
+                    view.setPadding(leftPadding, 0, 0, 0);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "setPaddingLeft");
+                }
+            } else {
+                try {
+                    view.setPadding(leftPadding, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "setPaddingLeft");
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View Top Padding
+     * @param view       {@link View}
+     * @param topPadding Top Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPaddingTop(final View view, final int topPadding) {
+        return setPaddingTop(view, topPadding, true);
+    }
+
+    /**
+     * 设置 View Top Padding
+     * @param view       {@link View}
+     * @param topPadding Top Padding
+     * @param reset      是否重置清空其他 Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPaddingTop(final View view, final int topPadding, final boolean reset) {
+        if (view != null) {
+            if (reset) {
+                try {
+                    view.setPadding(0, topPadding, 0, 0);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "setPaddingTop");
+                }
+            } else {
+                try {
+                    view.setPadding(view.getPaddingLeft(), topPadding, view.getPaddingRight(), view.getPaddingBottom());
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "setPaddingTop");
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View Right Padding
+     * @param view         {@link View}
+     * @param rightPadding Right Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPaddingRight(final View view, final int rightPadding) {
+        return setPaddingRight(view, rightPadding, true);
+    }
+
+    /**
+     * 设置 View Right Padding
+     * @param view         {@link View}
+     * @param rightPadding Right Padding
+     * @param reset        是否重置清空其他 Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPaddingRight(final View view, final int rightPadding, final boolean reset) {
+        if (view != null) {
+            if (reset) {
+                try {
+                    view.setPadding(0, 0, rightPadding, 0);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "setPaddingRight");
+                }
+            } else {
+                try {
+                    view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), rightPadding, view.getPaddingBottom());
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "setPaddingRight");
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View Bottom Padding
+     * @param view          {@link View}
+     * @param bottomPadding Bottom Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPaddingBottom(final View view, final int bottomPadding) {
+        return setPaddingBottom(view, bottomPadding, true);
+    }
+
+    /**
+     * 设置 View Bottom Padding
+     * @param view          {@link View}
+     * @param bottomPadding Bottom Padding
+     * @param reset         是否重置清空其他 Padding
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setPaddingBottom(final View view, final int bottomPadding, final boolean reset) {
+        if (view != null) {
+            if (reset) {
+                try {
+                    view.setPadding(0, 0, 0, bottomPadding);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "setPaddingBottom");
+                }
+            } else {
+                try {
+                    view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), bottomPadding);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "setPaddingBottom");
+                }
+            }
+        }
+        return false;
+    }
 
     /**
      * 设置 Padding 边距
