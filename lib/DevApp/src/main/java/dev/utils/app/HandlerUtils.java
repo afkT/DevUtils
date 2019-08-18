@@ -112,7 +112,7 @@ public final class HandlerUtils {
     // =
 
     /**
-     * detail:  结束回调事件
+     * detail: 结束回调事件
      * @author Ttt
      */
     public interface OnEndListener {

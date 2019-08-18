@@ -8,6 +8,9 @@ import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,7 +18,9 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.Window;
 import android.widget.AbsListView;
+import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -142,6 +147,8 @@ public final class ViewUtils {
         return viewGroup;
     }
 
+    // =
+
     /**
      * 获取 LayoutParams
      * @param view {@link View}
@@ -157,6 +164,24 @@ public final class ViewUtils {
             }
         }
         return null;
+    }
+
+    /**
+     * 设置 View LayoutParams
+     * @param view   {@link View}
+     * @param params LayoutParams
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setLayoutParams(final View view, final ViewGroup.LayoutParams params) {
+        if (view != null) {
+            try {
+                view.setLayoutParams(params);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setLayoutParams");
+            }
+        }
+        return false;
     }
 
     // ======================
@@ -824,9 +849,65 @@ public final class ViewUtils {
     // = Layout Gravity =
     // ==================
 
-//    public static int setLayoutGravity(final View view) {
-//
-//    }
+    /**
+     * 获取 View Layout Gravity
+     * @param view {@link View}
+     * @return Layout Gravity
+     */
+    public static int getLayoutGravity(final View view) {
+        if (view != null) {
+            try {
+                if (view.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+                    return ((LinearLayout.LayoutParams) view.getLayoutParams()).gravity;
+                } else if (view.getLayoutParams() instanceof FrameLayout.LayoutParams) {
+                    return ((FrameLayout.LayoutParams) view.getLayoutParams()).gravity;
+                } else if (view.getLayoutParams() instanceof ViewPager.LayoutParams) {
+                    return ((ViewPager.LayoutParams) view.getLayoutParams()).gravity;
+                } else if (view.getLayoutParams() instanceof CoordinatorLayout.LayoutParams) {
+                    return ((CoordinatorLayout.LayoutParams) view.getLayoutParams()).gravity;
+                } else if (view.getLayoutParams() instanceof DrawerLayout.LayoutParams) {
+                    return ((DrawerLayout.LayoutParams) view.getLayoutParams()).gravity;
+                } else {
+                    // 抛出不支持的类型
+                    throw new Exception("layoutParams:" + view.getLayoutParams().toString());
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getLayoutGravity");
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 设置 View Layout Gravity
+     * @param view    {@link View}
+     * @param gravity Gravity
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setLayoutGravity(final View view, final int gravity) {
+        if (view != null) {
+            try {
+                if (view.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+                    ((LinearLayout.LayoutParams) view.getLayoutParams()).gravity = gravity;
+                } else if (view.getLayoutParams() instanceof FrameLayout.LayoutParams) {
+                    ((FrameLayout.LayoutParams) view.getLayoutParams()).gravity = gravity;
+                } else if (view.getLayoutParams() instanceof ViewPager.LayoutParams) {
+                    ((ViewPager.LayoutParams) view.getLayoutParams()).gravity = gravity;
+                } else if (view.getLayoutParams() instanceof CoordinatorLayout.LayoutParams) {
+                    ((CoordinatorLayout.LayoutParams) view.getLayoutParams()).gravity = gravity;
+                } else if (view.getLayoutParams() instanceof DrawerLayout.LayoutParams) {
+                    ((DrawerLayout.LayoutParams) view.getLayoutParams()).gravity = gravity;
+                } else {
+                    // 抛出不支持的类型
+                    throw new Exception("layoutParams:" + view.getLayoutParams().toString());
+                }
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setLayoutGravity");
+            }
+        }
+        return false;
+    }
 
     // ===============
     // = View Margin =
@@ -920,6 +1001,7 @@ public final class ViewUtils {
                 if (reset) {
                     try {
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(leftMargin, 0, 0, 0);
+                        return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginLeft");
                     }
@@ -930,6 +1012,7 @@ public final class ViewUtils {
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
                                 .setMargins(leftMargin, layoutParams.topMargin,
                                         layoutParams.rightMargin, layoutParams.bottomMargin);
+                        return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginLeft");
                     }
@@ -963,6 +1046,7 @@ public final class ViewUtils {
                 if (reset) {
                     try {
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(0, topMargin, 0, 0);
+                        return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginTop");
                     }
@@ -973,6 +1057,7 @@ public final class ViewUtils {
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
                                 .setMargins(layoutParams.leftMargin, topMargin,
                                         layoutParams.rightMargin, layoutParams.bottomMargin);
+                        return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginTop");
                     }
@@ -1006,6 +1091,7 @@ public final class ViewUtils {
                 if (reset) {
                     try {
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(0, 0, rightMargin, 0);
+                        return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginRight");
                     }
@@ -1016,6 +1102,7 @@ public final class ViewUtils {
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
                                 .setMargins(layoutParams.leftMargin, layoutParams.topMargin,
                                         rightMargin, layoutParams.bottomMargin);
+                        return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginRight");
                     }
@@ -1049,6 +1136,7 @@ public final class ViewUtils {
                 if (reset) {
                     try {
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(0, 0, 0, bottomMargin);
+                        return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginBottom");
                     }
@@ -1059,6 +1147,7 @@ public final class ViewUtils {
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
                                 .setMargins(layoutParams.leftMargin, layoutParams.topMargin,
                                         layoutParams.rightMargin, bottomMargin);
+                        return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginBottom");
                     }
@@ -1105,6 +1194,7 @@ public final class ViewUtils {
                 try {
                     // 设置边距
                     ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(left, top, right, bottom);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setMargin");
                 }
@@ -1230,12 +1320,14 @@ public final class ViewUtils {
             if (reset) {
                 try {
                     view.setPadding(leftPadding, 0, 0, 0);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setPaddingLeft");
                 }
             } else {
                 try {
                     view.setPadding(leftPadding, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setPaddingLeft");
                 }
@@ -1266,12 +1358,14 @@ public final class ViewUtils {
             if (reset) {
                 try {
                     view.setPadding(0, topPadding, 0, 0);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setPaddingTop");
                 }
             } else {
                 try {
                     view.setPadding(view.getPaddingLeft(), topPadding, view.getPaddingRight(), view.getPaddingBottom());
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setPaddingTop");
                 }
@@ -1302,12 +1396,14 @@ public final class ViewUtils {
             if (reset) {
                 try {
                     view.setPadding(0, 0, rightPadding, 0);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setPaddingRight");
                 }
             } else {
                 try {
                     view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), rightPadding, view.getPaddingBottom());
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setPaddingRight");
                 }
@@ -1338,12 +1434,14 @@ public final class ViewUtils {
             if (reset) {
                 try {
                     view.setPadding(0, 0, 0, bottomPadding);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setPaddingBottom");
                 }
             } else {
                 try {
                     view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), bottomPadding);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "setPaddingBottom");
                 }
@@ -1386,6 +1484,7 @@ public final class ViewUtils {
         if (view != null) {
             try {
                 view.setPadding(left, top, right, bottom);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setPadding");
             }
