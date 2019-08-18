@@ -808,9 +808,47 @@ public final class ViewUtils {
     // ===============
 
     /**
+     * 获取 View Left Margin
+     * @param view {@link View}
+     * @return Left Margin
+     */
+    public static int getMarginLeft(final View view) {
+        return getMargin(view)[0];
+    }
+
+    /**
+     * 获取 View Top Margin
+     * @param view {@link View}
+     * @return Top Margin
+     */
+    public static int getMarginTop(final View view) {
+        return getMargin(view)[1];
+    }
+
+    /**
+     * 获取 View Right Margin
+     * @param view {@link View}
+     * @return Right Margin
+     */
+    public static int getMarginRight(final View view) {
+        return getMargin(view)[2];
+    }
+
+    /**
+     * 获取 View Bottom Margin
+     * @param view {@link View}
+     * @return Bottom Margin
+     */
+    public static int getMarginBottom(final View view) {
+        return getMargin(view)[3];
+    }
+
+    // =
+
+    /**
      * 获取 View Margin
      * @param view {@link View}
-     * @return new int[] {left, top right, bottom}
+     * @return new int[] {left, top, right, bottom}
      */
     public static int[] getMargin(final View view) {
         int[] margins = new int[]{0, 0, 0, 0};
@@ -832,6 +870,178 @@ public final class ViewUtils {
     }
 
     // =
+
+    /**
+     * 设置 View Left Margin
+     * @param view       {@link View}
+     * @param leftMargin Left Margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMarginLeft(final View view, final int leftMargin) {
+        return setMarginLeft(view, leftMargin, true);
+    }
+
+    /**
+     * 设置 View Left Margin
+     * @param view       {@link View}
+     * @param leftMargin Left Margin
+     * @param reset      是否重置清空其他 margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMarginLeft(final View view, final int leftMargin, final boolean reset) {
+        if (view != null) {
+            // 判断是否属于 ViewGroup.MarginLayoutParams
+            if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                if (reset) {
+                    try {
+                        ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(leftMargin, 0, 0, 0);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setMarginLeft");
+                    }
+                } else {
+                    try {
+                        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+                        // 设置边距
+                        ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
+                                .setMargins(leftMargin, layoutParams.topMargin,
+                                        layoutParams.rightMargin, layoutParams.bottomMargin);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setMarginLeft");
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View Top Margin
+     * @param view      {@link View}
+     * @param topMargin Top Margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMarginTop(final View view, final int topMargin) {
+        return setMarginTop(view, topMargin, true);
+    }
+
+    /**
+     * 设置 View Top Margin
+     * @param view      {@link View}
+     * @param topMargin Top Margin
+     * @param reset     是否重置清空其他 margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMarginTop(final View view, final int topMargin, final boolean reset) {
+        if (view != null) {
+            // 判断是否属于 ViewGroup.MarginLayoutParams
+            if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                if (reset) {
+                    try {
+                        ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(0, topMargin, 0, 0);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setMarginTop");
+                    }
+                } else {
+                    try {
+                        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+                        // 设置边距
+                        ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
+                                .setMargins(layoutParams.leftMargin, topMargin,
+                                        layoutParams.rightMargin, layoutParams.bottomMargin);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setMarginTop");
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View Right Margin
+     * @param view        {@link View}
+     * @param rightMargin Right Margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMarginRight(final View view, final int rightMargin) {
+        return setMarginRight(view, rightMargin, true);
+    }
+
+    /**
+     * 设置 View Right Margin
+     * @param view        {@link View}
+     * @param rightMargin Right Margin
+     * @param reset       是否重置清空其他 margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMarginRight(final View view, final int rightMargin, final boolean reset) {
+        if (view != null) {
+            // 判断是否属于 ViewGroup.MarginLayoutParams
+            if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                if (reset) {
+                    try {
+                        ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(0, 0, rightMargin, 0);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setMarginRight");
+                    }
+                } else {
+                    try {
+                        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+                        // 设置边距
+                        ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
+                                .setMargins(layoutParams.leftMargin, layoutParams.topMargin,
+                                        rightMargin, layoutParams.bottomMargin);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setMarginRight");
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View Bottom Margin
+     * @param view         {@link View}
+     * @param bottomMargin Bottom Margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMarginBottom(final View view, final int bottomMargin) {
+        return setMarginBottom(view, bottomMargin, true);
+    }
+
+    /**
+     * 设置 View Bottom Margin
+     * @param view         {@link View}
+     * @param bottomMargin Bottom Margin
+     * @param reset        是否重置清空其他 margin
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setMarginBottom(final View view, final int bottomMargin, final boolean reset) {
+        if (view != null) {
+            // 判断是否属于 ViewGroup.MarginLayoutParams
+            if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                if (reset) {
+                    try {
+                        ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).setMargins(0, 0, 0, bottomMargin);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setMarginBottom");
+                    }
+                } else {
+                    try {
+                        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+                        // 设置边距
+                        ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
+                                .setMargins(layoutParams.leftMargin, layoutParams.topMargin,
+                                        layoutParams.rightMargin, bottomMargin);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setMarginBottom");
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
     /**
      * 设置 Margin 边距
@@ -922,7 +1132,7 @@ public final class ViewUtils {
     /**
      * 获取 View Padding
      * @param view {@link View}
-     * @return new int[] {left, top right, bottom}
+     * @return new int[] {left, top, right, bottom}
      */
     public static int[] getPadding(final View view) {
         int[] paddings = new int[]{0, 0, 0, 0};
