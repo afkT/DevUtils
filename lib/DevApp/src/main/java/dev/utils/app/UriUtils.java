@@ -46,7 +46,7 @@ public final class UriUtils {
     /**
      * 获取文件 Uri ( 自动添加包名 ${applicationId})
      * @param file         文件
-     * @param fileProvider android:authorities => ${applicationId}.fileProvider
+     * @param fileProvider android:authorities = ${applicationId}.fileProvider
      * @return 指定文件 {@link Uri}
      */
     public static Uri getUriForFileToName(final File file, final String fileProvider) {

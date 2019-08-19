@@ -480,24 +480,22 @@ public final class AppUtils {
 
     /**
      * 安装 APP( 支持 8.0) 的意图
-     * @param filePath  文件路径
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @param filePath 文件路径
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean installApp(final String filePath, final String authority) {
-        return installApp(getFileByPath(filePath), authority);
+    public static boolean installApp(final String filePath) {
+        return installApp(getFileByPath(filePath));
     }
 
     /**
      * 安装 APP( 支持 8.0) 的意图
-     * @param file      文件
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @param file 文件
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean installApp(final File file, final String authority) {
+    public static boolean installApp(final File file) {
         if (!isFileExists(file)) return false;
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getInstallAppIntent(file, authority, true));
+            DevUtils.getContext().startActivity(IntentUtils.getInstallAppIntent(file, true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "installApp");
             return false;
@@ -509,26 +507,24 @@ public final class AppUtils {
      * 安装 APP( 支持 8.0) 的意图
      * @param activity    {@link Activity}
      * @param filePath    文件路径
-     * @param authority   7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
      * @param requestCode 请求 code
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean installApp(final Activity activity, final String filePath, final String authority, final int requestCode) {
-        return installApp(activity, getFileByPath(filePath), authority, requestCode);
+    public static boolean installApp(final Activity activity, final String filePath, final int requestCode) {
+        return installApp(activity, getFileByPath(filePath), requestCode);
     }
 
     /**
      * 安装 APP( 支持 8.0) 的意图
      * @param activity    {@link Activity}
      * @param file        文件
-     * @param authority   7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
      * @param requestCode 请求 code
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean installApp(final Activity activity, final File file, final String authority, final int requestCode) {
+    public static boolean installApp(final Activity activity, final File file, final int requestCode) {
         if (!isFileExists(file)) return false;
         try {
-            activity.startActivityForResult(IntentUtils.getInstallAppIntent(file, authority), requestCode);
+            activity.startActivityForResult(IntentUtils.getInstallAppIntent(file), requestCode);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "installApp");
             return false;
@@ -756,30 +752,28 @@ public final class AppUtils {
 
     /**
      * 打开文件
-     * @param filePath  文件路径
-     * @param dataType  数据类型
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @param filePath 文件路径
+     * @param dataType 数据类型
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean openFile(final String filePath, final String dataType, final String authority) {
-        return openFile(getFileByPath(filePath), dataType, authority);
+    public static boolean openFile(final String filePath, final String dataType) {
+        return openFile(getFileByPath(filePath), dataType);
     }
 
     /**
      * 打开文件
-     * @param file      文件
-     * @param dataType  数据类型
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @param file     文件
+     * @param dataType 数据类型
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean openFile(final File file, final String dataType, final String authority) {
+    public static boolean openFile(final File file, final String dataType) {
         if (!isFileExists(file)) return false;
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // 临时授权 ( 必须 )
-            intent.setDataAndType(getUriForFile(file, authority), dataType);
+            intent.setDataAndType(getUriForFile(file, DevUtils.getAuthority()), dataType);
             DevUtils.getContext().startActivity(intent);
             return true;
         } catch (Exception e) {
@@ -828,44 +822,40 @@ public final class AppUtils {
 
     /**
      * 打开 PDF 文件
-     * @param filePath  文件路径
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @param filePath 文件路径
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean openPDFFile(final String filePath, final String authority) {
-        return openPDFFile(getFileByPath(filePath), authority);
+    public static boolean openPDFFile(final String filePath) {
+        return openPDFFile(getFileByPath(filePath));
     }
 
     /**
      * 打开 PDF 文件
-     * @param file      文件
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @param file 文件
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean openPDFFile(final File file, final String authority) {
-        return openFile(file, "application/pdf", authority);
+    public static boolean openPDFFile(final File file) {
+        return openFile(file, "application/pdf");
     }
 
     // =
 
     /**
      * 打开 Word 文件
-     * @param filePath  文件路径
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @param filePath 文件路径
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean openWordFile(final String filePath, final String authority) {
-        return openWordFile(getFileByPath(filePath), authority);
+    public static boolean openWordFile(final String filePath) {
+        return openWordFile(getFileByPath(filePath));
     }
 
     /**
      * 打开 Word 文件
-     * @param file      文件
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @param file 文件
      * @return {@code true} operation successfully, {@code false} operation failed
      */
-    public static boolean openWordFile(final File file, final String authority) {
-        return openFile(file, "application/msword", authority);
+    public static boolean openWordFile(final File file) {
+        return openFile(file, "application/msword");
     }
 
     // =

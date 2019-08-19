@@ -4,10 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -24,10 +27,12 @@ import dev.utils.app.AnalysisRecordUtils;
 import dev.utils.app.FileRecordUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
+import dev.utils.app.UriUtils;
 import dev.utils.app.cache.DevCache;
 import dev.utils.app.logger.DevLoggerUtils;
 import dev.utils.app.share.SharedUtils;
 import dev.utils.app.toast.toaster.DevToast;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: 开发工具类
@@ -884,5 +889,50 @@ public final class DevUtils {
         @Override
         public void onActivityDestroyed(Activity activity) {
         }
+    }
+
+    // ================
+    // = FileProvider =
+    // ================
+
+    // 获取 lib utils fileProvider
+    public static final String LIB_FILE_PROVIDER = "devapp.provider";
+
+    /**
+     * 获取 FileProvider Authority
+     * @return FileProvider Authority
+     */
+    public static String getAuthority() {
+        try {
+            return DevUtils.getContext().getPackageName() + "." + LIB_FILE_PROVIDER;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAuthority");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 FileProvider File Uri
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getUriForFile(final File file) {
+        return UriUtils.getUriForFile(file, getAuthority());
+    }
+
+    /**
+     * 获取 FileProvider File Path Uri
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getUriForPath(final String filePath) {
+        return getUriForFile(FileUtils.getFileByPath(filePath));
+    }
+
+    /**
+     * detail: FileProvider
+     * @author Ttt
+     */
+    public static final class FileProviderDevApp extends FileProvider {
     }
 }

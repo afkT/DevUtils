@@ -69,32 +69,29 @@ public final class IntentUtils {
 
     /**
      * 获取安装 APP( 支持 8.0) 的意图
-     * @param filePath  文件路径
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
+     * @param filePath 文件路径
      * @return 安装 APP( 支持 8.0) 的意图
      */
-    public static Intent getInstallAppIntent(final String filePath, final String authority) {
-        return getInstallAppIntent(getFileByPath(filePath), authority);
+    public static Intent getInstallAppIntent(final String filePath) {
+        return getInstallAppIntent(getFileByPath(filePath));
+    }
+
+    /**
+     * 获取安装 APP( 支持 8.0) 的意图
+     * @param file 文件
+     * @return 安装 APP( 支持 8.0) 的意图
+     */
+    public static Intent getInstallAppIntent(final File file) {
+        return getInstallAppIntent(file, false);
     }
 
     /**
      * 获取安装 APP( 支持 8.0) 的意图
      * @param file      文件
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
-     * @return 安装 APP( 支持 8.0) 的意图
-     */
-    public static Intent getInstallAppIntent(final File file, final String authority) {
-        return getInstallAppIntent(file, authority, false);
-    }
-
-    /**
-     * 获取安装 APP( 支持 8.0) 的意图
-     * @param file      文件
-     * @param authority 7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
      * @param isNewTask 是否开启新的任务栈
      * @return 安装 APP( 支持 8.0) 的意图
      */
-    public static Intent getInstallAppIntent(final File file, final String authority, final boolean isNewTask) {
+    public static Intent getInstallAppIntent(final File file, final boolean isNewTask) {
         if (file == null) return null;
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -102,7 +99,7 @@ public final class IntentUtils {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 data = Uri.fromFile(file);
             } else {
-                data = FileProvider.getUriForFile(DevUtils.getContext(), authority, file);
+                data = FileProvider.getUriForFile(DevUtils.getContext(), DevUtils.getAuthority(), file);
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             }
             intent.setDataAndType(data, "application/vnd.android.package-archive");
@@ -549,5 +546,29 @@ public final class IntentUtils {
      */
     private static File getFileByPath(final String filePath) {
         return filePath != null ? new File(filePath) : null;
+    }
+
+    // ============
+    // = UriUtils =
+    // ============
+
+    /**
+     * 获取文件 Uri
+     * @param file      文件
+     * @param authority android:authorities
+     * @return 指定文件 {@link Uri}
+     */
+    private static Uri getUriForFile(final File file, final String authority) {
+        if (file == null || authority == null) return null;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                return FileProvider.getUriForFile(DevUtils.getContext(), authority, file);
+            } else {
+                return Uri.fromFile(file);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getUriForFile");
+            return null;
+        }
     }
 }
