@@ -14,7 +14,7 @@ import dev.utils.LogPrintUtils;
  * @author Ttt
  * <pre>
  *     所需权限
- *     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+ *     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
  * </pre>
  */
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

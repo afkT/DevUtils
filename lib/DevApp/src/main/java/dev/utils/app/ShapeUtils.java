@@ -403,7 +403,7 @@ public final class ShapeUtils {
          *          android:type="radial"
          *          android:centerX="0"
          *          android:centerY="0"
-         *          android:gradientRadius="90"/>
+         *          android:gradientRadius="90" />
          * </pre>
          * @param colors 渐变颜色
          * @return {@link ShapeUtils.Builder}

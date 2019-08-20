@@ -37,9 +37,9 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://blog.csdn.net/Clear_ws/article/details/78204150"/>
  *     所需权限
  *     <uses-permission android:name="android.permission.INTERNET" />
- *     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
- *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
- *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+ *     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+ *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+ *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
  * </pre>
  */
 public final class NetWorkUtils {
