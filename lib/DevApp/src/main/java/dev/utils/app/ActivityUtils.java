@@ -317,7 +317,7 @@ public final class ActivityUtils {
             // 循环返回
             for (ResolveInfo resolveinfo : lists) {
                 if (resolveinfo != null && resolveinfo.activityInfo != null) {
-                    // resolveinfo.activityInfo.packageName; => packageName
+                    // resolveinfo.activityInfo.packageName; // packageName
                     // 这个就是该 APP 的 LAUNCHER 的 Activity [ 组织形式: packageName.mainActivityname ]
                     return resolveinfo.activityInfo.name;
                 }

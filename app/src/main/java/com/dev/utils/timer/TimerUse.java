@@ -32,7 +32,7 @@ public final class TimerUse {
 //            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, -1);
 //        }
 //
-//        // 创建定时器( 无限循环、通知默认 what )
+//        // 创建定时器 ( 无限循环、通知默认 what )
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long delay, long period) {
 //            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
 //        }

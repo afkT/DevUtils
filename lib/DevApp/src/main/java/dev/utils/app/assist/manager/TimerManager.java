@@ -268,7 +268,7 @@ public final class TimerManager {
     }
 
     /**
-     * 创建定时器( 无限循环、通知默认 what )
+     * 创建定时器 ( 无限循环、通知默认 what )
      * @param handler 通知的 Handler
      * @param delay   延迟时间 - 多少毫秒后开始执行
      * @param period  循环时间 - 每隔多少秒执行一次
