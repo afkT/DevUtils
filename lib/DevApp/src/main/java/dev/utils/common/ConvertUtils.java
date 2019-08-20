@@ -1776,7 +1776,7 @@ public final class ConvertUtils {
         if (data == null) return;
         for (int i = 0, len = data.length; i < len; i++) {
             int d = data[i];
-            d = ~d; // 按位补运算符 => 翻转操作数的每一位, 即 0 变成 1, 1 变成 0, 再通过反转后的二进制初始化回十六进制
+            d = ~d; // 按位补运算符, 翻转操作数的每一位, 即 0 变成 1, 1 变成 0, 再通过反转后的二进制初始化回十六进制
             data[i] = (byte) d;
         }
     }

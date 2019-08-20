@@ -51,9 +51,9 @@ public final class LoggerUse {
         logConfig.logLevel = LogLevel.DEBUG;
         // 设置 TAG (特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下)
         logConfig.tag = "BaseLog";
-        // 进行初始化配置 => 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
+        // 进行初始化配置, 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
         DevLogger.init(logConfig);
-//        // 进行初始化配置 => 在DevUtils.init() 内部调用了
+//        // 进行初始化配置, 在DevUtils.init() 内部调用了
 //        DevLoggerUtils.init(mContext); // 日志操作工具类, 快捷获取 LogConfig、以及保存日志到文件中等
     }
 

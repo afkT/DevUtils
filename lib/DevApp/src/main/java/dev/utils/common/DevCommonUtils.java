@@ -1969,7 +1969,7 @@ public final class DevCommonUtils {
     public static String toCheckValuesSpace(final String defaultStr, final String... strs) {
         if (strs != null && strs.length != 0) {
             for (int i = 0, len = strs.length; i < len; i++) {
-                // 处理后, 进行返回 => 删除前后空格
+                // 删除前后空格处理后, 进行返回
                 String val = toClearSpaceTrim(strs[i]);
                 if (isEmpty(val)) {
                     if (i == len - 1) {

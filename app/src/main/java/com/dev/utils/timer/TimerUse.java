@@ -27,32 +27,32 @@ public final class TimerUse {
      */
     private void timerUse() {
 
-//        // 创建定时器 => 立即执行、无限循环、通知默认 what
+//        // 创建定时器 ( 立即执行、无限循环、通知默认 what )
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long period) {
 //            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, -1);
 //        }
 //
-//        // 创建定时器 => 无限循环、通知默认 what
+//        // 创建定时器( 无限循环、通知默认 what )
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long delay, long period) {
 //            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
 //        }
 //
-//        // 创建定时器 => 立即执行、通知默认 what
+//        // 创建定时器 ( 立即执行、通知默认 what )
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long period, int triggerLimit) {
 //            return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, triggerLimit);
 //        }
 //
-//        // 创建定时器 => 立即执行、无限循环
+//        // 创建定时器 ( 立即执行、无限循环 )
 //        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period) {
 //            return createTimer(handler, what, 0L, period, -1);
 //        }
 //
-//        // 创建定时器 => 无限循环
+//        // 创建定时器 ( 无限循环 )
 //        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long delay, long period) {
 //            return createTimer(handler, what, delay, period, -1);
 //        }
 //
-//        // 创建定时器 => 立即执行
+//        // 创建定时器 ( 立即执行 )
 //        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period, int triggerLimit) {
 //            return createTimer(handler, what, 0L, period, triggerLimit);
 //        }

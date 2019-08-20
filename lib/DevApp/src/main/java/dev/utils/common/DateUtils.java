@@ -636,9 +636,9 @@ public final class DateUtils {
 
     /**
      * 生成 HH:mm 按间隔时间排序数组
-     * @param type 0 = 00:00 - 23:00 => 每 1 小时间隔
-     *             1 = 00:00 - 23:45 => 每 15 分钟间隔
-     *             2 = 00:00 - 23:30 => 每 30 分钟间隔
+     * @param type 0 = 00:00 - 23:00 = 每 1 小时间隔
+     *             1 = 00:00 - 23:45 = 每 15 分钟间隔
+     *             2 = 00:00 - 23:30 = 每 30 分钟间隔
      * @return 指定格式的数组
      */
     public static String[] getArrayToHHMM(final int type) {
@@ -648,9 +648,9 @@ public final class DateUtils {
 
     /**
      * 生成 HH:mm 按间隔时间排序集合
-     * @param type 0 = 00:00 - 23:00 => 每 1 小时间隔
-     *             1 = 00:00 - 23:45 => 每 15 分钟间隔
-     *             2 = 00:00 - 23:30 => 每 30 分钟间隔
+     * @param type 0 = 00:00 - 23:00 = 每 1 小时间隔
+     *             1 = 00:00 - 23:45 = 每 15 分钟间隔
+     *             2 = 00:00 - 23:30 = 每 30 分钟间隔
      * @return 指定格式的集合
      */
     public static List<String> getListToHHMM(final int type) {
@@ -699,9 +699,9 @@ public final class DateUtils {
     /**
      * 获取 HH:mm 按间隔时间排序的集合中, 指定时间所在索引
      * @param time HH:mm 格式
-     * @param type 0 = 00:00 - 23:00 => 每 1 小时间隔
-     *             1 = 00:00 - 23:45 => 每 15 分钟间隔
-     *             2 = 00:00 - 23:30 => 每 30 分钟间隔
+     * @param type 0 = 00:00 - 23:00 = 每 1 小时间隔
+     *             1 = 00:00 - 23:45 = 每 15 分钟间隔
+     *             2 = 00:00 - 23:30 = 每 30 分钟间隔
      * @return 指定数据, 在对应格式类型内的索引
      */
     public static int getListToHHMMPosition(final String time, final int type) {

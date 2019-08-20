@@ -6,14 +6,14 @@
 /**
  * 主要是为了控制整个项目的定时器, 防止定时器混乱, 或者忘记关闭等情况, 以及减少初始化等操作代码
  * 主要实现是 AbsTimer、TimerTask 这两个类
- * AbsTimer => 定时器抽象类, 对外提供该类对象以及内部方法便于内部实现方法的隐藏, 以达到对定时器任务的控制处理
- * TimerTask => 内部私有类, 实现了具体的定时器操作以及代码控制等, 防止外部直接 new 导致定时器混乱
+ * AbsTimer 定时器抽象类, 对外提供该类对象以及内部方法便于内部实现方法的隐藏, 以达到对定时器任务的控制处理
+ * TimerTask 内部私有类, 实现了具体的定时器操作以及代码控制等, 防止外部直接 new 导致定时器混乱
  * <p></p>
  * 如果外部想要实现定时器, 但是通过内部 ArrayList 控制, 也可以通过实现 AbsTimer 接口, 内部的 startTimer()、closeTimer() 进行了对 AbsTimer 的保存、标记等操作
- * 需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer() => 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
+ * 需要注意的是, 实现 start(close)Timer() 方法, 必须保留 super.start(close)Timer() 内部 ArrayList 进行了操作, 而不对外开放(不需要主动调用)
  * <p></p>
- * startTimer() => 主要进行添加到 ArrayList, 并且标记不需要回收
- * closeTimer() => 不直接操作 remove, 防止出现 ConcurrentModificationException 异常, 而是做一个标记, 便于后续回收
+ * startTimer() 主要进行添加到 ArrayList, 并且标记不需要回收
+ * closeTimer() 不直接操作 remove, 防止出现 ConcurrentModificationException 异常, 而是做一个标记, 便于后续回收
  */
 ```
 
@@ -46,7 +46,7 @@
 | closeAll | 关闭全部任务 |
 | closeInfiniteTask | 关闭所有无限循环的任务 |
 | closeMark | 关闭所有符合对应的字符串标记的定时器任务 |
-| createTimer | 创建定时器 => 立即执行、无限循环、通知默认 what |
+| createTimer | 创建定时器 ( 立即执行、无限循环、通知默认 what ) |
 | getMarkId | 获取标记id |
 | getMarkStr | 获取标记字符串 |
 | setMarkId | 设置标记id |
@@ -67,32 +67,32 @@
 
 #### 使用方法
 ```java
-// 创建定时器 => 立即执行、无限循环、通知默认 what
+// 创建定时器 ( 立即执行、无限循环、通知默认 what )
 public static TimerManager.AbsTimer createTimer(Handler handler, long period) {
     return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, -1);
 }
 
-// 创建定时器 => 无限循环、通知默认 what
+// 创建定时器( 无限循环、通知默认 what )
 public static TimerManager.AbsTimer createTimer(Handler handler, long delay, long period) {
     return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
 }
 
-// 创建定时器 => 立即执行、通知默认 what
+// 创建定时器 ( 立即执行、通知默认 what )
 public static TimerManager.AbsTimer createTimer(Handler handler, long period, int triggerLimit) {
     return createTimer(handler, TimerManager.AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, triggerLimit);
 }
 
-// 创建定时器 => 立即执行、无限循环
+// 创建定时器 ( 立即执行、无限循环 )
 public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period) {
     return createTimer(handler, what, 0L, period, -1);
 }
 
-// 创建定时器 => 无限循环
+// 创建定时器 ( 无限循环 )
 public static TimerManager.AbsTimer createTimer(Handler handler, int what, long delay, long period) {
     return createTimer(handler, what, delay, period, -1);
 }
 
-// 创建定时器 => 立即执行
+// 创建定时器 ( 立即执行 )
 public static TimerManager.AbsTimer createTimer(Handler handler, int what, long period, int triggerLimit) {
     return createTimer(handler, what, 0L, period, triggerLimit);
 }

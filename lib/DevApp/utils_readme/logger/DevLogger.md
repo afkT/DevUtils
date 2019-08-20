@@ -89,9 +89,9 @@ logConfig.sortLog = false; // 是否美化日志, 边框包围
 logConfig.logLevel = LogLevel.DEBUG;
 // 设置 TAG (特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下)
 logConfig.tag = "BaseLog";
-// 进行初始化配置 => 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
+// 进行初始化配置, 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
 DevLogger.init(logConfig);
-// 进行初始化配置 => 在DevUtils.init() 内部调用了
+// 进行初始化配置, 在DevUtils.init() 内部调用了
 // DevLoggerUtils.init(mContext); // 日志操作工具类, 快捷获取 LogConfig、以及保存日志到文件中等
 ```
 
@@ -104,8 +104,8 @@ logConfig.logLevel = LogLevel.NONE; // 全部不打印
 DevLogger.init(logConfig); // 该方法设置全局默认日志配置
 
 // 还有一种情况, 部分日志发布的时候不打印, 但是有部分异常信息需要打印, 则单独使用配置
-DevLoggerUtils.getReleaseLogConfig(TAG) => 使用封装好的线上配置都行
-DevLoggerUtils.getReleaseLogConfig(TAG, LogLevel) => 使用封装好的线上配置都行
+DevLoggerUtils.getReleaseLogConfig(TAG) // 使用封装好的线上配置都行
+DevLoggerUtils.getReleaseLogConfig(TAG, LogLevel) // 使用封装好的线上配置都行
 DevLogger.init(DevLoggerUtils.getReleaseLogConfig(TAG));
 
 // DevLoggerUtils 内部包含 常用日志配置快捷获取方法、以及日志存储方法等

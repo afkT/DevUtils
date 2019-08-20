@@ -93,7 +93,7 @@ public final class ValiToPhoneUtils {
     // = 手机号判断 =
     // ==============
 
-    // 简单手机号码校验 => 校验手机号码的长度和 1 开头 ( 是否 11 位 )
+    // 简单手机号码校验 校验手机号码的长度和 1 开头 ( 是否 11 位 )
     public static final String CHAIN_PHONE_FORMAT_CHECK = "^(?:\\+86)?1\\d{10}$";
 
     // 中国手机号正则
@@ -108,7 +108,7 @@ public final class ValiToPhoneUtils {
     // 中国移动号码正则
     public static final String CHINA_MOBILE_PATTERN;
 
-    // 香港手机号码正则 => 香港手机号码 8 位数, 5|6|8|9 开头 + 7 位任意数
+    // 香港手机号码正则 香港手机号码 8 位数, 5|6|8|9 开头 + 7 位任意数
     public static final String HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
 
     // ============

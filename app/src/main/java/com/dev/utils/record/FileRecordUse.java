@@ -27,13 +27,14 @@ public final class FileRecordUse {
      * 日志、异常文件记录保存使用方法
      */
     private void fileRecordUse() {
+
         // AnalysisRecordUtils
 
         // DevLoggerUtils
 
         // FileRecordUtils
 
-        // DevLoggerUtils => 内部的 Utils, 实际和 FileRecordUtils 代码相同, 使用方式一致
+        // DevLoggerUtils 内部的 Utils, 实际和 FileRecordUtils 代码相同, 使用方式一致
 
         // = 记录文件 =
 
@@ -59,7 +60,7 @@ public final class FileRecordUse {
         // 设置存储文件夹名
         AnalysisRecordUtils.setLogFolderName(AnalysisRecordUtils.getLogFolderName() + "/v" + AppUtils.getAppVersionName());
 
-        // AnalysisRecordUtils.HH、MM、SS => 以对应的时间, 创建文件夹 HH_23/MM_13/SS_01 依此类推, 放到对应文件夹, 不传则放到当日文件夹下
+        // AnalysisRecordUtils.HH、MM、SS 以对应的时间, 创建文件夹 HH_23/MM_13/SS_01 依此类推, 放到对应文件夹, 不传则放到当日文件夹下
         AnalysisRecordUtils.FileInfo fileInfo = AnalysisRecordUtils.FileInfo.obtain("test_log.txt", "测试记录", AnalysisRecordUtils.HH);
 
         // 存储路径、存储文件夹、文件名、记录功能提示、时间间隔、是否处理日志记录(是否保存)
