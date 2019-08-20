@@ -662,7 +662,7 @@ public final class DateUtils {
                 }
                 break;
             case 1:
-                for (int i = 0; i < 96; i++) { // 00 15 30 45 = 4 => 24 * 4
+                for (int i = 0; i < 96; i++) { // 00 15 30 45 = 4 (24 * 4)
                     if (i % 2 == 0) { // 判断是否偶数 00、30
                         // 小时数
                         String hour = convertTime(i / 4, true);
@@ -681,7 +681,7 @@ public final class DateUtils {
                 }
                 break;
             case 2:
-                for (int i = 0; i < 48; i++) { // 00 30 = 2 => 24 * 2
+                for (int i = 0; i < 48; i++) { // 00 30 = 2 (24 * 2)
                     // 小时处理
                     int hour = i / 2;
                     // 属于偶数

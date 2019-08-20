@@ -18,8 +18,6 @@ public final class HttpParamsUtils {
 
     // 日志 TAG
     private static final String TAG = HttpParamsUtils.class.getSimpleName();
-    // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 拆分参数
@@ -154,47 +152,9 @@ public final class HttpParamsUtils {
         return null;
     }
 
-    // =
-
-    /**
-     * 拼接打印 Map 参数
-     * @param mapParams Map 请求参数
-     * @return 拼接后的参数
-     */
-    public static String printMapParams(final Map<String, String> mapParams) {
-        return printMapParams(mapParams, false);
-    }
-
-    /**
-     * 拼接打印 Map 参数
-     * @param mapParams Map 请求参数
-     * @param urlEncode 是否需要 URL 编码
-     * @return 拼接后的参数
-     */
-    public static String printMapParams(final Map<String, String> mapParams, final boolean urlEncode) {
-        if (mapParams != null) {
-            StringBuilder builder = new StringBuilder();
-            Iterator<Map.Entry<String, String>> iterator = mapParams.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<String, String> entry = iterator.next();
-                builder.append(entry.getKey());
-                builder.append(" => ");
-                builder.append(urlEncode ? toUrlEncode(entry.getValue()) : entry.getValue());
-                builder.append(NEW_LINE_STR);
-            }
-            return builder.toString();
-        }
-        return null;
-    }
-
     // ============================================
     // = 拼接成, 模拟 JavaScript 传递对象数组格式 =
     // ============================================
-
-    // 正常数据
-    // objStr[key] => sex=1&name=Ttt
-    // 方法会进行 URL 编码
-    // objStr[key] => sex%3d1%26name%3dTtt
 
     /**
      * 进行转换对象处理 ( 请求发送对象 )

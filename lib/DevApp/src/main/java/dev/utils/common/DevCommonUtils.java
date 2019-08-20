@@ -766,7 +766,7 @@ public final class DevCommonUtils {
     private static final char[] HEX_DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
-     * 加密内容 - 32 位 MD5 - 小写
+     * 加密内容 (32 位小写 MD5)
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
@@ -781,7 +781,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 加密内容 - 32 位 MD5 - 小写
+     * 加密内容 (32 位小写 MD5)
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
@@ -801,7 +801,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 加密内容 - 32 位 MD5 - 大写
+     * 加密内容 (32 位大写 MD5)
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
@@ -816,7 +816,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 加密内容 - 32 位 MD5 - 大写
+     * 加密内容 (32 位大写 MD5)
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */

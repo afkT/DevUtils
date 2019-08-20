@@ -23,7 +23,7 @@ public final class MD5Utils {
     private static final String TAG = MD5Utils.class.getSimpleName();
 
     /**
-     * 加密内容 - 32 位 MD5 - 小写
+     * 加密内容 (32 位小写 MD5)
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
@@ -38,7 +38,7 @@ public final class MD5Utils {
     }
 
     /**
-     * 加密内容 - 32 位 MD5 - 小写
+     * 加密内容 (32 位小写 MD5)
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
@@ -58,7 +58,7 @@ public final class MD5Utils {
     }
 
     /**
-     * 加密内容 - 32 位 MD5 - 大写
+     * 加密内容 (32 位大写 MD5)
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */
@@ -73,7 +73,7 @@ public final class MD5Utils {
     }
 
     /**
-     * 加密内容 - 32 位 MD5 - 大写
+     * 加密内容 (32 位大写 MD5)
      * @param data 待加密数据
      * @return MD5 加密后的字符串
      */

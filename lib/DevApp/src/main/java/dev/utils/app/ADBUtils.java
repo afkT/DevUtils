@@ -101,7 +101,7 @@ public final class ADBUtils {
                 String[] arrays = result.successMsg.split(NEW_LINE_STR);
                 return Arrays.asList(arrays);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getAppList type => " + typeStr);
+                LogPrintUtils.eTag(TAG, e, "getAppList type: " + typeStr);
             }
         }
         return null;
@@ -479,7 +479,8 @@ public final class ADBUtils {
                                         if (strData.indexOf(packageName + "/") != -1) {
                                             // 防止属于 packageName/.xx.Main_Activity
                                             if (strData.indexOf("/.") != -1) {
-                                                // packageName/.xx.Main_Activity => packageName/packageName.xx.Main_Activity
+                                                // packageName/.xx.Main_Activity
+                                                // packageName/packageName.xx.Main_Activity
                                                 strData = strData.replace("/", "/" + packageName);
                                             }
                                             return strData;
@@ -563,7 +564,8 @@ public final class ADBUtils {
                                         String strData = splitStr.substring(0, lastIndex);
                                         // 防止属于 packageName/.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
-                                            // packageName/.xx.Main_Activity => packageName/packageName.xx.Main_Activity
+                                            // packageName/.xx.Main_Activity
+                                            // packageName/packageName.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                         }
                                         return strData;
@@ -607,7 +609,8 @@ public final class ADBUtils {
                                         String strData = splitStr.substring(0, lastIndex);
                                         // 防止属于 packageName/.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
-                                            // packageName/.xx.Main_Activity => packageName/packageName.xx.Main_Activity
+                                            // packageName/.xx.Main_Activity
+                                            // packageName/packageName.xx.Main_Activity
                                             strData = strData.replace("/", "/" + packageName);
                                         }
                                         return strData;
@@ -655,7 +658,8 @@ public final class ADBUtils {
                                         String strData = splitStr;
                                         // 防止属于 packageName/.xx.Main_Activity
                                         if (strData.indexOf("/.") != -1) {
-                                            // packageName/.xx.Main_Activity => packageName/packageName.xx.Main_Activity
+                                            // packageName/.xx.Main_Activity
+                                            // packageName/packageName.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                         }
                                         return strData;
@@ -754,7 +758,8 @@ public final class ADBUtils {
                                     String strData = splitStr;
                                     // 防止属于 packageName/.xx.XxxActivity
                                     if (strData.indexOf("/.") != -1) {
-                                        // packageName/.xx.XxxActivity => packageName/packageName.xx.XxxActivity
+                                        // packageName/.xx.XxxActivity
+                                        // packageName/packageName.xx.XxxActivity
                                         strData = strData.replace("/", "/" + splitStr.substring(0, start));
                                     }
                                     // 保存数据
@@ -1348,7 +1353,7 @@ public final class ADBUtils {
 
     /**
      * 触发某些按键
-     * @param keyCode KeyEvent.xxx => KeyEvent.KEYCODE_BACK ( 返回键 )
+     * @param keyCode KeyEvent.xxx 如: KeyEvent.KEYCODE_BACK ( 返回键 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean keyevent(final int keyCode) {

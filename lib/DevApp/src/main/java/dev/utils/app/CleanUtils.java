@@ -12,9 +12,6 @@ import dev.utils.LogPrintUtils;
  * @author Ttt
  * <pre>
  *     主要功能有清除内 / 外缓存、清除数据库、清除 SharedPreferences、清除 files 和清除自定义目录
- *     <p></p>
- *     Context.getExternalFilesDir() --> SDCard/Android/data/packageName/files/ 目录, 一般放一些长时间保存的数据
- *     Context.getExternalCacheDir() --> SDCard/Android/data/packageName/cache/ 目录, 一般存放临时缓存数据
  * </pre>
  */
 public final class CleanUtils {

@@ -976,7 +976,7 @@ public final class StringUtils {
     }
 
     /**
-     * 转化为全角字符 如: a => ａ A => Ａ
+     * 转化为全角字符 如: a = ａ, A = Ａ
      * @param str 待处理字符串
      * @return 转换全角字符串
      */

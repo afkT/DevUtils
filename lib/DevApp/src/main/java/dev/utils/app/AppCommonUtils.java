@@ -224,7 +224,7 @@ public final class AppCommonUtils {
     }
 
     /**
-     * 转换 SDK 版本 convertSDKVersion(14) => Android 4.0.0-2
+     * 转换 SDK 版本 convertSDKVersion(14) = Android 4.0.0-2
      * @return SDK 版本
      */
     public static String convertSDKVersion() {
@@ -232,7 +232,7 @@ public final class AppCommonUtils {
     }
 
     /**
-     * 转换 SDK 版本 convertSDKVersion(14) => Android 4.0.0-2
+     * 转换 SDK 版本 convertSDKVersion(14) = Android 4.0.0-2
      * @param sdkVersion SDK 版本
      * @return SDK 版本
      */

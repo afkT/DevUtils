@@ -402,7 +402,7 @@ public final class IDCardUtils {
     }
 
     /**
-     * 根据身份编号获取生日 - 年份
+     * 根据身份编号获取生日 ( 年份 )
      * @param idCard 身份编号
      * @return 生日 (yyyy)
      */
@@ -421,7 +421,7 @@ public final class IDCardUtils {
     }
 
     /**
-     * 根据身份编号获取生日 - 月份
+     * 根据身份编号获取生日 ( 月份 )
      * @param idCard 身份编号
      * @return 生日 (MM)
      */
@@ -440,7 +440,7 @@ public final class IDCardUtils {
     }
 
     /**
-     * 根据身份编号获取生日 - 天数
+     * 根据身份编号获取生日 ( 天数 )
      * @param idCard 身份编号
      * @return 生日 (dd)
      */

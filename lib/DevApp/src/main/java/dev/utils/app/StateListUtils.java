@@ -60,7 +60,10 @@ public final class StateListUtils {
     // ==============
 
     /**
-     * 创建 ColorStateList => createColorStateList("#ffffffff", "#ff44e6ff")
+     * 创建 ColorStateList
+     * <pre>
+     *     createColorStateList("#ffffffff", "#ff44e6ff")
+     * </pre>
      * @param pressed 按下状态
      * @param normal  默认状态
      * @return {@link ColorStateList}
@@ -126,7 +129,10 @@ public final class StateListUtils {
     // =======
 
     /**
-     * 创建 ColorStateList => createColorStateList(R.color.whilte, R.color.black)
+     * 创建 ColorStateList
+     * <pre>
+     *     createColorStateList(R.color.whilte, R.color.black)
+     * </pre>
      * @param pressed 按下状态
      * @param normal  默认状态
      * @return {@link ColorStateList}
@@ -204,7 +210,10 @@ public final class StateListUtils {
     // =========================
 
     /**
-     * 创建 StateListDrawable => view.setBackground(Drawable)
+     * 创建 StateListDrawable
+     * <pre>
+     *     view.setBackground(Drawable)
+     * </pre>
      * @param pressed 按下状态
      * @param normal  默认状态
      * @return {@link StateListDrawable}
@@ -276,7 +285,10 @@ public final class StateListUtils {
     // =========================
 
     /**
-     * 创建 StateListDrawable => view.setBackground(Drawable)
+     * 创建 StateListDrawable
+     * <pre>
+     *     view.setBackground(Drawable)
+     * </pre>
      * @param pressed 按下状态
      * @param normal  默认状态
      * @return {@link StateListDrawable}

@@ -72,7 +72,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Activity meta Data
-     * @param name    完整路径名 package.name => class.getCanonicalName()
+     * @param name    class.getCanonicalName()
      * @param metaKey meta Key
      * @return Activity meta Data
      */
@@ -88,7 +88,7 @@ public final class ManifestUtils {
     /**
      * 获取 Activity meta Data
      * @param packageName 应用包名
-     * @param name        完整路径名 package.name => class.getCanonicalName()
+     * @param name        class.getCanonicalName()
      * @param metaKey     meta Key
      * @return Activity meta Data
      */
@@ -122,7 +122,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Service meta Data
-     * @param name    完整路径名 package.name => class.getCanonicalName()
+     * @param name    class.getCanonicalName()
      * @param metaKey meta Key
      * @return Service meta Data
      */
@@ -138,7 +138,7 @@ public final class ManifestUtils {
     /**
      * 获取 Service meta Data
      * @param packageName 应用包名
-     * @param name        完整路径名 package.name => class.getCanonicalName()
+     * @param name        class.getCanonicalName()
      * @param metaKey     meta Key
      * @return Service meta Data
      */
@@ -172,7 +172,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 Receiver meta Data
-     * @param name    完整路径名 package.name => class.getCanonicalName()
+     * @param name    class.getCanonicalName()
      * @param metaKey meta Key
      * @return Receiver meta Data
      */
@@ -188,7 +188,7 @@ public final class ManifestUtils {
     /**
      * 获取 Receiver meta Data
      * @param packageName 应用包名
-     * @param name        完整路径名 package.name => class.getCanonicalName()
+     * @param name        class.getCanonicalName()
      * @param metaKey     meta Key
      * @return Receiver meta Data
      */
@@ -222,7 +222,7 @@ public final class ManifestUtils {
 
     /**
      * 获取 ContentProvider meta Data
-     * @param name    完整路径名 package.name => class.getCanonicalName()
+     * @param name    class.getCanonicalName()
      * @param metaKey meta Key
      * @return ContentProvider meta Data
      */
@@ -238,7 +238,7 @@ public final class ManifestUtils {
     /**
      * 获取 ContentProvider meta Data
      * @param packageName 应用包名
-     * @param name        完整路径名 package.name => class.getCanonicalName()
+     * @param name        class.getCanonicalName()
      * @param metaKey     meta Key
      * @return ContentProvider meta Data
      */
