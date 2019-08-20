@@ -33,7 +33,6 @@ import dev.utils.LogPrintUtils;
  * @author Ttt
  * <pre>
  *     Android PorterDuffXfermode 的正确使用方式
- *     @see <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0731/8318.html"/>
  *     @see <a href="https://www.jianshu.com/p/d11892bbe055"/>
  * </pre>
  */

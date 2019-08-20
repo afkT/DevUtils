@@ -17,8 +17,6 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://www.cnblogs.com/zyw-205520/p/4040923.html"/>
  *     关于使用 AlarmManager 的注意事项
  *     @see <a href="https://www.jianshu.com/p/d69a90bc44c0"/>
- *     关于闹钟设置 AlarmManager 类方法参数解释
- *     @see <a href="https://www.cnblogs.com/crazywenza/p/3823774.html"/>
  * </pre>
  */
 public final class AlarmUtils {

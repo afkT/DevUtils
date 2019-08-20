@@ -17,7 +17,6 @@ import dev.utils.LogPrintUtils;
  * detail: 通知栏管理工具类
  * @author Ttt
  * <pre>
- *     @see <a href="https://blog.csdn.net/hss01248/article/details/55096553"/>
  *     @see <a href="https://www.jianshu.com/p/cf5f6c30019d"/>
  * </pre>
  */

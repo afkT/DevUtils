@@ -36,7 +36,6 @@ import dev.utils.LogPrintUtils;
  *     <p></p>
  *     @see <a href="https://www.jianshu.com/p/18be986553db"/>
  *     @see <a href="https://blog.csdn.net/m0_37218227/article/details/84071043"/>
- *     @see <a href="https://developer.android.google.cn/reference/kotlin/androidx/core/content/pm/ShortcutManagerCompat"/>
  * </pre>
  */
 public final class ShortCutUtils {

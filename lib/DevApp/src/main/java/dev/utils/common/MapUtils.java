@@ -15,7 +15,6 @@ import dev.utils.JCLogUtils;
  * @author Ttt
  * <pre>
  *     @see <a href="https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ"/>
- *     @see <a href="http://bookshadow.com/weblog/2016/10/27/java-linked-hash-map-get-first-and-get-last/"/>
  * </pre>
  */
 public final class MapUtils {
@@ -341,9 +340,6 @@ public final class MapUtils {
 
     /**
      * 获取最后一条数据
-     * <pre>
-     *     @see <a href="http://bookshadow.com/weblog/2016/10/27/java-linked-hash-map-get-first-and-get-last/"/>
-     * </pre>
      * @param map          {@link Map}
      * @param isReflection 是否通过反射获取
      * @param <K>          key

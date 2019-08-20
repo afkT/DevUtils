@@ -21,7 +21,6 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     @see <a href="https://www.cnblogs.com/popfisher/p/6238119.html"/>
  *     @see <a href="https://www.cnblogs.com/popfisher/p/5606690.html"/>
- *     @see <a href="https://www.2cto.com/kf/201601/456024.html"/>
  * </pre>
  */
 public final class ShapeUtils {

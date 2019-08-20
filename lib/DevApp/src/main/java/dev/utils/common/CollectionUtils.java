@@ -14,7 +14,6 @@ import dev.utils.JCLogUtils;
  * @author Ttt
  * <pre>
  *     @see <a href="https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ"/>
- *     @see <a href="https://www.cnblogs.com/mr-wuxiansheng/p/7500560.html"/>
  * </pre>
  */
 public final class CollectionUtils {

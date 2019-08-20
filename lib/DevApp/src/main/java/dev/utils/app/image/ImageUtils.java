@@ -38,9 +38,6 @@ import dev.utils.app.ResourceUtils;
  *     @see <a href="https://www.jianshu.com/p/45c0f85c47ed"/>
  *     @see <a href="https://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578220&idx=1&sn=bdc57c640427984e240b19d8b9e10a15&chksm=84b3b1ebb3c438fdcbd446e9f28abd2713e685246efedfc133eb453ca41d08730dbf297ba1a4&scene=4#wechat_redirect"/>
  *     @see <a href="https://developers.google.com/speed/webp/docs/riff_container"/>
- *     <p></p>
- *     View 转 Bitmap
- *     @see <a href="https://www.jianshu.com/p/09e32f10b394"/>
  * </pre>
  */
 public final class ImageUtils {

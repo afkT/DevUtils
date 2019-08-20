@@ -21,11 +21,6 @@ import dev.utils.LogPrintUtils;
  * detail: Wifi 热点工具类
  * @author Ttt
  * <pre>
- *     Android 8.0 开始, 热点操作方法已经变更
- *     @see <a href="https://blog.csdn.net/bukker/article/details/78649504"/>
- *     Android 7.1 系统以上不支持自动开启热点, 需要手动开启热点
- *     @see <a href="https://www.jianshu.com/p/9dbb02c3e21f"/>
- *     <p></p>
  *     所需权限
  *     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
  *     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
