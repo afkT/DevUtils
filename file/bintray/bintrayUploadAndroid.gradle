@@ -74,8 +74,10 @@ task sourcesJar(type: Jar) {
 
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
-    classpath += configurations.compile
+//    classpath += configurations.compile
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    destinationDir = file("../javadoc/")
+    failOnError false
 }
 
 // This generates javadoc.jar
@@ -99,6 +101,7 @@ javadoc {
         links "http://docs.oracle.com/javase/7/docs/api"
         title javadocName
     }
+//    options.addStringOption('Xdoclint:none', '-quiet')
 }
 
 // bintray configuration
