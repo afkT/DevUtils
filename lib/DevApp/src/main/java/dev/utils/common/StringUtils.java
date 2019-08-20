@@ -20,7 +20,7 @@ public final class StringUtils {
     private static final String TAG = StringUtils.class.getSimpleName();
     // 换行字符串
     public static final String NEW_LINE_STR = System.getProperty("line.separator");
-    // 换行字符串 - 两行
+    // 换行字符串 ( 两行 )
     public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
     // ==========

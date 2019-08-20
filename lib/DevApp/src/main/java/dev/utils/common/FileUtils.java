@@ -1903,7 +1903,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件 MD5 值 - 小写
+     * 获取文件 MD5 值
      * @param filePath 文件路径
      * @return 文件 MD5 值转十六进制字符串
      */
@@ -1913,7 +1913,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件 MD5 值 - 小写
+     * 获取文件 MD5 值
      * @param file 文件
      * @return 文件 MD5 值转十六进制字符串
      */

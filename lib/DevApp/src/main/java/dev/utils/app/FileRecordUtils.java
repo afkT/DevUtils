@@ -49,7 +49,7 @@ public final class FileRecordUtils {
     private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
-    // 换行字符串 - 两行
+    // 换行字符串 ( 两行 )
     private static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
     // ================
