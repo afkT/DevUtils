@@ -29,11 +29,10 @@ import dev.utils.LogPrintUtils;
  * detail: 屏幕相关工具类
  * @author Ttt
  * <pre>
- *     计算屏幕尺寸
- *     @see <a href="https://blog.csdn.net/lincyang/article/details/42679589"/>
- *     <p></p>
  *     截图
  *     @see <a href="https://www.cnblogs.com/angel88/p/7933437.html"/>
+ *     计算屏幕尺寸
+ *     @see <a href="https://blog.csdn.net/lincyang/article/details/42679589"/>
  *     <p></p>
  *     所需权限
  *     <uses-permission android:name="android.permission.WRITE_SETTINGS" />

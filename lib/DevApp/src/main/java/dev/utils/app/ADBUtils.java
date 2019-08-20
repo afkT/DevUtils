@@ -24,14 +24,11 @@ import dev.utils.common.DevCommonUtils;
  *     Awesome ADB 一份超全超详细的 ADB 用法大全
  *     @see <a href="https://github.com/mzlogin/awesome-adb"/>
  *     <p></p>
- *     Process.waitFor() 的返回值含义
- *     @see <a href="https://blog.csdn.net/qq_35661171/article/details/79096786"/>
+ *     获取 APP 列表 ( 包名 )
+ *     @see <a href="https://blog.csdn.net/henni_719/article/details/62222439"/>
  *     <p></p>
  *     adb shell input
  *     @see <a href="https://blog.csdn.net/soslinken/article/details/49587497"/>
- *     <p></p>
- *     android 上发送 ADB 指令, 不需要加 adb shell
- *     @see <a href="https://www.imooc.com/qadetail/198264"/>
  *     <p></p>
  *     grep 是 linux 下的命令, windows 用 findstr
  *     开启 Thread 执行, 非主线程, 否则无响应并无效
@@ -91,9 +88,6 @@ public final class ADBUtils {
 
     /**
      * 获取 APP 列表 ( 包名 )
-     * <pre>
-     *     @see <a href="https://blog.csdn.net/henni_719/article/details/62222439"/>
-     * </pre>
      * @param type options
      * @return 对应选项的应用包名列表
      */
@@ -313,9 +307,6 @@ public final class ADBUtils {
      *     -s 将应用安装到 sdcard
      *     -d 允许降级覆盖安装
      *     -g 授予所有运行时权限
-     *     <p></p>
-     *     android:testOnly="true"(ide 绿色三角运行 )
-     *     @see <a href="https://blog.csdn.net/lihenhao/article/details/79146211"/>
      * </pre>
      * @param filePath /sdcard/xxx/x.apk
      * @param params   安装选项

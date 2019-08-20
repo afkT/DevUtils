@@ -21,9 +21,6 @@ import dev.utils.LogPrintUtils;
  * detail: Intent ( 意图 ) 相关工具类
  * @author Ttt
  * <pre>
- *     7.0 及以上安装需要传入清单文件中的 <provider> 的 authorities 属性
- *     @see <a href="https://developer.android.com/reference/android/support/v4/content/FileProvider.html"/>
- *     <p></p>
  *     所需权限
  *     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
  *     <uses-permission android:name="android.permission.SHUTDOWN" />

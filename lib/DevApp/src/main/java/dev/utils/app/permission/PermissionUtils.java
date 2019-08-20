@@ -33,7 +33,6 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     参考链接
  *     @see <a href="https://github.com/anthonycr/Grant"/>
- *     compile 'com.anthonycr.grant:permissions:1.0'
  *     <p></p>
  *     权限介绍
  *     @see <a href="https://www.cnblogs.com/mengdd/p/4892856.html"/>
@@ -200,10 +199,6 @@ public final class PermissionUtils {
     /**
      * detail: 请求权限 Activity
      * @author Ttt
-     * <pre>
-     *     实现 Activity 的透明效果
-     *     @see <a href="https://blog.csdn.net/u014434080/article/details/52260407"/>
-     * </pre>
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static class PermissionActivity extends Activity {
