@@ -50,5 +50,5 @@ task clean(type: Delete) {
 
 // 全局编码设置
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    options.encoding = "UTF-8"
 }

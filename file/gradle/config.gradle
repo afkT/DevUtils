@@ -6,7 +6,10 @@ ext {
             // Android Lib 通用配置文件地址
             app_lib_gradle: 'file/gradle/app_lib_build.gradle',
             // Bintray Upload
-            app_bintray_upload: 'file/bintray/bintrayUploadAndroid.gradle'
+            app_bintray_upload: 'file/bintray/bintrayUploadAndroid.gradle',
+
+            // Java Lib 通用配置文件地址
+            java_lib_gradle: 'file/gradle/java_lib_build.gradle',
     ]
 
     versions = [
@@ -36,6 +39,8 @@ ext {
             dev_app_versionCode: 176,
             // 版本名
             dev_app_versionName: '1.7.6',
+            // 版本名
+            dev_java_version: '1.0.0',
     ]
 
     deps = [
