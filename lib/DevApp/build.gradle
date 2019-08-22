@@ -1,11 +1,13 @@
 apply {
     from rootProject.file(files.app_lib_gradle)
-//    from rootProject.file(files.app_bintray_upload)
 }
 
 android.defaultConfig {
     versionCode versions.dev_app_versionCode
     versionName versions.dev_app_versionName
+    // DevJava Module Version
+    buildConfigField "String", "DevJava_Version", "\"${versions.dev_java_version}\""
+    buildConfigField "int", "DevJava_VersionCode", "${versions.dev_java_versionCode}"
 }
 
 dependencies {
