@@ -1,10 +1,6 @@
 
 ## 初始化
 
-> 只需要在 Application 中调用 DevUtils.init() 进行初始化就行
->
-> DevUtils.openLog() 是打开内部工具类 日志输出 [DevLogger](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/DevLogger.md)，线上(release)版本则不调用此句
-
 ```java
 /**
  * detail: 全局Application
