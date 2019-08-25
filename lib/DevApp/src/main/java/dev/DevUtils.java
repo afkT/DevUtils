@@ -37,6 +37,14 @@ import dev.utils.common.FileUtils;
 /**
  * detail: 开发工具类
  * @author Ttt
+ * <pre>
+ *     GitHub
+ *     @see <a href="https://github.com/afkT/DevUtils"/>
+ *     DevApp Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md"/>
+ *     DevJava Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
+ * </pre>
  */
 public final class DevUtils {
 

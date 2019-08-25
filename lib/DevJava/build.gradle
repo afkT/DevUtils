@@ -1,0 +1,12 @@
+apply {
+    from rootProject.file(files.java_lib_gradle)
+}
+
+version versions.dev_java_version
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+// gradlew bintrayUpload
+apply from : rootProject.file(files.java_bintray_upload)

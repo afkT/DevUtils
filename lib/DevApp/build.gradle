@@ -14,5 +14,7 @@ dependencies {
     implementation deps.android.design
 }
 
+// gradlew clean
+// gradlew install
 // gradlew bintrayUpload
 apply from : rootProject.file(files.app_bintray_upload)
