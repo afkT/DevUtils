@@ -12,6 +12,7 @@ android.defaultConfig {
 
 dependencies {
     implementation deps.android.design
+    compileOnly deps.android.appcompat_v7
 }
 
 // gradlew clean
