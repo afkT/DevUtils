@@ -25,46 +25,9 @@
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md)
 
-
-## Use
-
-> 只需要在 Application 中调用 DevUtils.init() 进行初始化就行
->
-> DevUtils.openLog() 是打开内部工具类 日志输出 [DevLogger](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/DevLogger.md)，线上(release)版本则不调用此句
-
-```java
-/**
- * detail: 全局Application
- * @author Ttt
- */
-public class BaseApplication extends Application {
-
-    // 日志 TAG
-    private final String LOG_TAG = BaseApplication.class.getSimpleName();
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        // 初始化工具类
-        DevUtils.init(this.getApplicationContext());
-        // = 初始化日志配置 =
-        // 设置默认Logger配置
-        LogConfig logConfig = new LogConfig();
-        logConfig.logLevel = LogLevel.DEBUG;
-        logConfig.tag = LOG_TAG;
-        logConfig.sortLog = true; // 美化日志, 边框包围
-        DevLogger.init(logConfig);
-        // 打开 lib 内部日志 - 线上环境, 不调用方法就行
-        DevUtils.openLog();
-        DevUtils.openDebug();
-    }
-}
-```
-
 ## Other
 
-> :smirk: [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类(DevUtils) API 文档, 是通过 JavaDoc 项目读取 class 信息生成, 并且进行代码、注释间距规范检测, 生成效果示范 [DevUtils - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
+> :smirk: [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类(DevUtils) API 文档, 是通过 JavaDoc 项目读取 class 信息生成, 并且进行代码、注释间距规范检测, 生成效果示范 [DevApp - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
 > [DevQuickUtils](https://github.com/afkT/DevQuickUtils) 是一个 基于 [DevUtils](https://github.com/afkT/DevUtils) 二次封装的快捷开发实现库，封装多数逻辑判断代码，内含 Http、ImageLoader、Log 等兼容 Engine 框架，封装 Activity、Fragment、Bean 基类以及 ReqInfoAssist(请求信息辅助类)、PageInfoAssist(分页辅助类)、MultiSelectListAssist、MultiSelectMapAssist(多选辅助类) 等，便于开发人员，基于 [DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils) 快速熟练开发 Android 项目
 
