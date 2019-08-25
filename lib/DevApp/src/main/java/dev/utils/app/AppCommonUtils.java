@@ -1,8 +1,8 @@
 package dev.utils.app;
 
 import android.os.Build;
-import android.support.annotation.RequiresPermission;
-import android.support.annotation.StringRes;
+import androidx.annotation.RequiresPermission;
+import androidx.annotation.StringRes;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;

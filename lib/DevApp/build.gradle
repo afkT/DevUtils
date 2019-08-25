@@ -11,7 +11,8 @@ android.defaultConfig {
 }
 
 dependencies {
-    implementation deps.android.design
+    implementation deps.androidx.design
+    compileOnly deps.androidx.appcompat
 }
 
 // gradlew clean

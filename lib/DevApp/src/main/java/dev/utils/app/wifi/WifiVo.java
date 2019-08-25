@@ -3,7 +3,7 @@ package dev.utils.app.wifi;
 import android.net.wifi.ScanResult;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import java.util.List;
 

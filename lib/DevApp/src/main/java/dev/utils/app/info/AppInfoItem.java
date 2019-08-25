@@ -2,7 +2,7 @@ package dev.utils.app.info;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.text.format.Formatter;
 
 import java.security.cert.CertificateEncodingException;

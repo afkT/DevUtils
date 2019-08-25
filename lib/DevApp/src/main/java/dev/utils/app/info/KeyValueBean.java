@@ -1,7 +1,7 @@
 package dev.utils.app.info;
 
-import android.support.annotation.Keep;
-import android.support.annotation.StringRes;
+import androidx.annotation.Keep;
+import androidx.annotation.StringRes;
 
 import dev.DevUtils;
 

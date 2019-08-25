@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.IntRange;
-import android.support.annotation.RequiresPermission;
+import androidx.annotation.IntRange;
+import androidx.annotation.RequiresPermission;
 import android.view.Window;
 import android.view.WindowManager;
 

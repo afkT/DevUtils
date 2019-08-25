@@ -14,7 +14,7 @@ import android.database.Cursor;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.AnyRes;
+import androidx.annotation.AnyRes;
 
 import java.util.List;
 

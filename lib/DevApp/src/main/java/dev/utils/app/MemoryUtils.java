@@ -3,7 +3,7 @@ package dev.utils.app;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.text.format.Formatter;
 
 import java.io.BufferedReader;

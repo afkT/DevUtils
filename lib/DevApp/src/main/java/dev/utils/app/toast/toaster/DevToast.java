@@ -1,8 +1,8 @@
 package dev.utils.app.toast.toaster;
 
 import android.app.Application;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.StringRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.StringRes;
 import android.view.View;
 import android.widget.Toast;
 

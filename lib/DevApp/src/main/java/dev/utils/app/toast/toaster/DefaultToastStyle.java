@@ -3,7 +3,7 @@ package dev.utils.app.toast.toaster;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 import android.text.TextUtils;
 
 /**

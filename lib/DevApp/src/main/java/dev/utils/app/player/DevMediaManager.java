@@ -9,7 +9,7 @@ import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.media.MediaPlayer.OnVideoSizeChangedListener;
-import android.support.annotation.RawRes;
+import androidx.annotation.RawRes;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;

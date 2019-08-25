@@ -20,21 +20,21 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--dontwarn android.support.**
+-dontwarn androidx.**
 
 # Understand the @Keep support annotation.
--keep class android.support.annotation.Keep
+-keep class androidx.annotation.Keep.Keep
 
--keep @android.support.annotation.Keep class * {*;}
+-keep @androidx.annotation.Keep.Keep class * {*;}
 
 -keepclasseswithmembers class * {
-    @android.support.annotation.Keep <methods>;
+    @androidx.annotation.Keep.Keep <methods>;
 }
 
 -keepclasseswithmembers class * {
-    @android.support.annotation.Keep <fields>;
+    @androidx.annotation.Keep.Keep <fields>;
 }
 
 -keepclasseswithmembers class * {
-    @android.support.annotation.Keep <init>(...);
+    @androidx.annotation.Keep.Keep <init>(...);
 }
