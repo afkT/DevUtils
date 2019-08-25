@@ -1,8 +1,7 @@
 
 [![Cocoapods](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Cocoapods](https://img.shields.io/badge/DevUtils-1.7.6-brightgreen.svg)](https://github.com/afkT/DevUtils)
-[![](https://jitpack.io/v/afkT/DevUtils.svg)](https://jitpack.io/#afkT/DevUtils)
+[![Cocoapods](https://img.shields.io/badge/DevUtils-1.7.7-brightgreen.svg)](https://github.com/afkT/DevUtils)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Cocoapods](https://img.shields.io/badge/utils-100+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -14,34 +13,17 @@
 
 ![module](https://raw.githubusercontent.com/afkT/DevUtils/master/file/DevUtils.png)
 
-## Gradle
 
-Step 1. Add the JitPack repository to your build file
-```
-allprojects {
-	repositories {
-		maven { url 'https://jitpack.io' }
-	}
-}
-```
-
-Step 2. Add the dependency
-```
-dependencies {
-	// 因为内含 res 文件, 使用 aar 方式调用
-	implementation 'com.github.afkT:DevUtils:1.7.6@aar'
-}
-```
-
-## Documentation
+## DevApp
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
 - [Use and Config](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/USE_CONFIG.md)
 
-- [JavaDoc - API](https://javadoc.jitpack.io/com/github/afkT/DevUtils/1.7.6/javadoc/)
 
-- [检测代码规范、注释内容排版, API 文档生成](https://github.com/afkT/JavaDoc)
+## DevJava
+
+- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md)
 
 
 ## Use
@@ -88,15 +70,6 @@ public class BaseApplication extends Application {
 
 > [DevQuickUtils - app module](https://github.com/afkT/DevQuickUtils/tree/master/app/src/main/java/demo/pro) 基于 ([DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils)) 库基础上实现常见功能、UI效果等，并持续增加比较火的框架使用、二次封装等，以及部分架构设计思路、使用等综合示范项目
 
-
-## Thanks
-
-> 感谢以下开源项目的作者，本项目中有些功能受你们项目灵感的启发，有些功能也用到你们的代码完成
-
-- [GrenderG/Toasty](https://github.com/GrenderG/Toasty)
-- [Blankj/AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode)
-- [litesuits/android-common](https://github.com/litesuits/android-common)
-- [AbrahamCaiJin/CommonUtilLibrary](https://github.com/AbrahamCaiJin/CommonUtilLibrary)
 
 ## License
 
