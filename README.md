@@ -14,20 +14,24 @@
 ![module](https://raw.githubusercontent.com/afkT/DevUtils/master/file/DevUtils.png)
 
 
-## DevApp
+## Documentation
+
+### DevApp
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
 - [Use and Config](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/USE_CONFIG.md)
 
 
-## DevJava
+### DevJava
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md)
 
+
+
 ## Other
 
-> :smirk: [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类(DevUtils) API 文档, 是通过 JavaDoc 项目读取 class 信息生成, 并且进行代码、注释间距规范检测, 生成效果示范 [DevApp - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
+> [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类(DevUtils) API 文档, 是通过 JavaDoc 项目读取 class 信息生成, 并且进行代码、注释间距规范检测, 生成效果示范 [DevApp - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
 > [DevQuickUtils](https://github.com/afkT/DevQuickUtils) 是一个 基于 [DevUtils](https://github.com/afkT/DevUtils) 二次封装的快捷开发实现库，封装多数逻辑判断代码，内含 Http、ImageLoader、Log 等兼容 Engine 框架，封装 Activity、Fragment、Bean 基类以及 ReqInfoAssist(请求信息辅助类)、PageInfoAssist(分页辅助类)、MultiSelectListAssist、MultiSelectMapAssist(多选辅助类) 等，便于开发人员，基于 [DevUtils](https://github.com/afkT/DevUtils)、[DevQuickUtils](https://github.com/afkT/DevQuickUtils) 快速熟练开发 Android 项目
 
