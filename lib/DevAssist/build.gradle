@@ -1,0 +1,16 @@
+apply {
+    from rootProject.file(files.app_lib_gradle)
+}
+
+android.defaultConfig {
+    versionCode versions.dev_assist_versionCode
+    versionName versions.dev_assist_versionName
+}
+
+dependencies {
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+apply from : rootProject.file(files.app_bintray_upload)

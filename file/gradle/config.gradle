@@ -46,6 +46,11 @@ ext {
             dev_java_versionCode: 100,
             // 版本名
             dev_java_version    : '1.0.0',
+
+            // 版本号
+            dev_assist_versionCode : 100,
+            // 版本名
+            dev_assist_versionName : '1.0.0',
     ]
 
     deps = [
