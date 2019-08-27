@@ -483,7 +483,7 @@ public final class EditTextUtils {
     public static abstract class DevTextWatcher implements TextWatcher {
 
         // 标记 id - 一定程度上唯一
-        private final int markId;
+        private final int markId = UUID.randomUUID().hashCode();
         // 判断是否操作中
         private boolean operate = false;
         // 标记状态, 特殊需求处理
@@ -495,8 +495,6 @@ public final class EditTextUtils {
          * 构造函数
          */
         public DevTextWatcher() {
-            // 初始化 id
-            this.markId = UUID.randomUUID().hashCode();
         }
 
         /**
@@ -505,8 +503,6 @@ public final class EditTextUtils {
          */
         public DevTextWatcher(int type) {
             this.type = type;
-            // 初始化 id
-            this.markId = UUID.randomUUID().hashCode();
         }
 
         /**

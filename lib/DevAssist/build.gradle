@@ -5,9 +5,13 @@ apply {
 android.defaultConfig {
     versionCode versions.dev_assist_versionCode
     versionName versions.dev_assist_versionName
+    // DevJava Module Version
+    buildConfigField "String", "DevJava_Version", "\"${versions.dev_java_version}\""
+    buildConfigField "int", "DevJava_VersionCode", "${versions.dev_java_versionCode}"
 }
 
 dependencies {
+    api deps.dev.dev_java
 }
 
 // gradlew clean

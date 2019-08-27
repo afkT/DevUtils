@@ -17,40 +17,40 @@ ext {
     versions = [
 
             // 版本号
-            versionCode         : 1,
+            versionCode           : 1,
             // 版本名
-            versionName         : '1.0.0',
+            versionName           : '1.0.0',
             // 支持最小的 SDK
-            minSdkVersion       : 14,
+            minSdkVersion         : 14,
             // 编译 SDK 版本
-            compileSdkVersion   : 28,
+            compileSdkVersion     : 28,
             // 向前兼容 SDK 版本
-            targetSdkVersion    : 28,
+            targetSdkVersion      : 28,
             // 编译工具版本
-            buildToolsVersion   : '28.0.3',
+            buildToolsVersion     : '28.0.3',
             // support 包 Lib 版本
-            supportLibVersion   : '28.0.0',
+            supportLibVersion     : '28.0.0',
             // java 版本
-            javaVersion         : JavaVersion.VERSION_1_8,
+            javaVersion           : JavaVersion.VERSION_1_8,
 
             // ===========
             // = Dev Lib =
             // ===========
 
             // 版本号
-            dev_app_versionCode : 177,
+            dev_app_versionCode   : 177,
             // 版本名
-            dev_app_versionName : '1.7.7',
+            dev_app_versionName   : '1.7.7',
 
             // 版本号
-            dev_java_versionCode: 100,
+            dev_java_versionCode  : 100,
             // 版本名
-            dev_java_version    : '1.0.0',
+            dev_java_version      : '1.0.0',
 
             // 版本号
-            dev_assist_versionCode : 100,
+            dev_assist_versionCode: 100,
             // 版本名
-            dev_assist_versionName : '1.0.0',
+            dev_assist_versionName: '1.0.0',
     ]
 
     deps = [
@@ -70,6 +70,10 @@ ext {
             ],
             'lib'     : [
                     gson: "com.google.code.gson:gson:2.8.2",
+            ],
+            'dev'     : [
+                    dev_app : "com.afkt:DevApp:${versions.dev_app_versionName}",
+                    dev_java: "com.afkt:DevJava:${versions.dev_java_version}",
             ]
     ]
 }

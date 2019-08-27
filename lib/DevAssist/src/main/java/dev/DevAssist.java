@@ -41,4 +41,20 @@ public final class DevAssist {
     public static int getDevAssistUtilsVersionCode() {
         return BuildConfig.VERSION_CODE;
     }
+
+    /**
+     * 获取 DevJava 工具类版本
+     * @return DevJava version
+     */
+    public static String getDevJavaUtilsVersion() {
+        return BuildConfig.DevJava_Version;
+    }
+
+    /**
+     * 获取 DevJava 工具类版本号
+     * @return DevJava version
+     */
+    public static int getDevJavaUtilsVersionCode() {
+        return BuildConfig.DevJava_VersionCode;
+    }
 }
