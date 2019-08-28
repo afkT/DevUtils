@@ -11,7 +11,7 @@ android.defaultConfig {
 }
 
 dependencies {
-    api deps.dev.dev_java
+    compileOnly deps.dev.dev_java
 }
 
 // gradlew clean

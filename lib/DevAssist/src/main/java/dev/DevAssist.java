@@ -1,4 +1,6 @@
-package dev.assist;
+package dev;
+
+import dev.assist.BuildConfig;
 
 /**
  * detail: 开发辅助类

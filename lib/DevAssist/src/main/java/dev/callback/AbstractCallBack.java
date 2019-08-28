@@ -5,7 +5,7 @@ import java.util.UUID;
 import dev.utils.common.ClassUtils;
 
 /**
- * detail: 抽象回调基类
+ * detail: 抽象回调 - 基类
  * @author Ttt
  */
 public abstract class AbstractCallBack<T> {
@@ -14,7 +14,7 @@ public abstract class AbstractCallBack<T> {
     private final int uuid = UUID.randomUUID().hashCode();
     // 标记 tag
     private String tag;
-    // value
+    // Value
     private T value;
     // Object
     private Object object;
@@ -22,23 +22,21 @@ public abstract class AbstractCallBack<T> {
     private Class<T> clas;
 
     public AbstractCallBack() {
-        this(null, null, null);
     }
 
     public AbstractCallBack(T value) {
-        this(value, null, null);
+        this.value = value;
     }
 
     public AbstractCallBack(T value, Object object) {
-        this(value, object, null);
+        this.value = value;
+        this.object = object;
     }
 
     public AbstractCallBack(T value, Object object, String tag) {
         this.value = value;
         this.object = object;
         this.tag = tag;
-        // 获取泛型类型
-        getTClass();
     }
 
     // ================
@@ -61,7 +59,7 @@ public abstract class AbstractCallBack<T> {
 
     /**
      * 获取 UUID
-     * @return
+     * @return random UUID HashCode
      */
     public final int getUuid() {
         return uuid;
