@@ -22,14 +22,16 @@ public abstract class AbstractCommonCallBack<T> extends AbstractCallBack<T> {
     }
 
     // ============
-    // = 通用方法 =
+    // = 回调方法 =
     // ============
 
     /**
-     * 成功回调通知
-     * @param str 返回数据
+     * 结果回调通知
+     * @param str   返回数据
+     * @param msg   返回信息
+     * @param value 返回值
      */
-    public void onSuccess(String str) {
+    public void onResult(String str, String msg, T value) {
     }
 
     /**

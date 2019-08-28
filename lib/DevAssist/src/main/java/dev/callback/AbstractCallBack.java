@@ -2,8 +2,6 @@ package dev.callback;
 
 import java.util.UUID;
 
-import dev.utils.common.ClassUtils;
-
 /**
  * detail: 抽象回调 - 基类
  * @author Ttt
@@ -12,14 +10,12 @@ public abstract class AbstractCallBack<T> {
 
     // uuid 一定程度上唯一
     private final int uuid = UUID.randomUUID().hashCode();
-    // 标记 tag
+    // 标记 tag1
     private String tag;
     // Value
     private T value;
     // Object
     private Object object;
-    // 泛型对象 Class
-    private Class<T> clas;
 
     public AbstractCallBack() {
     }
@@ -42,20 +38,6 @@ public abstract class AbstractCallBack<T> {
     // ================
     // = 对外公开方法 =
     // ================
-
-    /**
-     * 获取泛型对象 Class Type
-     * @return T Class Type
-     */
-    public final Class<T> getTClass() {
-        if (clas == null) {
-            try {
-                clas = (Class<T>) ClassUtils.getGenericSuperclass(getClass());
-            } catch (Exception e) {
-            }
-        }
-        return clas;
-    }
 
     /**
      * 获取 UUID
