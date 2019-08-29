@@ -30,17 +30,21 @@ public class DevBaseVariable<K, V> {
 
     /**
      * 清空全部变量数据
+     * @return {@link DevBaseVariable}
      */
-    public void clearVariables() {
+    public DevBaseVariable clearVariables() {
         linkedHashMap.clear();
+        return this;
     }
 
     /**
      * 保存变量数据集合
      * @param collection {@link LinkedHashMap}
+     * @return {@link DevBaseVariable}
      */
-    public void putVariables(final LinkedHashMap<K, V> collection) {
+    public DevBaseVariable putVariables(final LinkedHashMap<K, V> collection) {
         if (collection != null) linkedHashMap.putAll(collection);
+        return this;
     }
 
     /**
@@ -73,8 +77,9 @@ public class DevBaseVariable<K, V> {
     /**
      * 删除指定变量数据
      * @param value Value
+     * @return {@link DevBaseVariable}
      */
-    public void removeVariableValue(final V value) {
+    public DevBaseVariable removeVariableValue(final V value) {
         Iterator<V> iterator = linkedHashMap.values().iterator();
         while (iterator.hasNext()) {
             V v = iterator.next();
@@ -83,13 +88,15 @@ public class DevBaseVariable<K, V> {
                 break;
             }
         }
+        return this;
     }
 
     /**
      * 删除指定变量数据 - 符合条件的全部 value
      * @param value Value
+     * @return {@link DevBaseVariable}
      */
-    public void removeVariableValueAll(final V value) {
+    public DevBaseVariable removeVariableValueAll(final V value) {
         Iterator<V> iterator = linkedHashMap.values().iterator();
         while (iterator.hasNext()) {
             V v = iterator.next();
@@ -97,6 +104,7 @@ public class DevBaseVariable<K, V> {
                 iterator.remove();
             }
         }
+        return this;
     }
 
     // =
@@ -132,7 +140,7 @@ public class DevBaseVariable<K, V> {
      * @param value Value
      * @return {@link DevBaseVariable}
      */
-    public DevBaseVariable<K, V> putVariable(final K key, final V value) {
+    public DevBaseVariable putVariable(final K key, final V value) {
         linkedHashMap.put(key, value);
         return this;
     }
@@ -144,7 +152,7 @@ public class DevBaseVariable<K, V> {
      * @param value Value
      * @return {@link DevBaseVariable}
      */
-    public DevBaseVariable<K, V> putVariable(final boolean put, final K key, final V value) {
+    public DevBaseVariable putVariable(final boolean put, final K key, final V value) {
         return put ? putVariable(key, value) : removeVariable(key);
     }
 
@@ -153,7 +161,7 @@ public class DevBaseVariable<K, V> {
      * @param key Key
      * @return {@link DevBaseVariable}
      */
-    public DevBaseVariable<K, V> removeVariable(final K key) {
+    public DevBaseVariable removeVariable(final K key) {
         linkedHashMap.remove(key);
         return this;
     }
@@ -165,13 +173,15 @@ public class DevBaseVariable<K, V> {
      * </pre>
      * @param key   Key
      * @param value Value
+     * @return {@link DevBaseVariable}
      */
-    public void toggle(final K key, final V value) {
+    public DevBaseVariable toggle(final K key, final V value) {
         if (isVariable(key)) { // 移除存在的数据
             linkedHashMap.remove(key);
         } else { // 保存变量数据
             linkedHashMap.put(key, value);
         }
+        return this;
     }
 
     // =

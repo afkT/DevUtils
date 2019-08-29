@@ -34,7 +34,7 @@ public class DevBaseEvent<T> {
      * @param code Code
      * @return {@link DevBaseEvent}
      */
-    public DevBaseEvent<T> setCode(final int code) {
+    public DevBaseEvent setCode(final int code) {
         this.code = code;
         return this;
     }
@@ -54,7 +54,7 @@ public class DevBaseEvent<T> {
      * @param codeStr Code String
      * @return {@link DevBaseEvent}
      */
-    public DevBaseEvent<T> setCodeStr(final String codeStr) {
+    public DevBaseEvent setCodeStr(final String codeStr) {
         this.codeStr = codeStr;
         return this;
     }
@@ -74,7 +74,7 @@ public class DevBaseEvent<T> {
      * @param value Value
      * @return {@link DevBaseEvent}
      */
-    public DevBaseEvent<T> setValue(final T value) {
+    public DevBaseEvent setValue(final T value) {
         this.value = value;
         return this;
     }
@@ -94,7 +94,7 @@ public class DevBaseEvent<T> {
      * @param object Object
      * @return {@link DevBaseEvent}
      */
-    public DevBaseEvent<T> setObject(final Object object) {
+    public DevBaseEvent setObject(final Object object) {
         this.object = object;
         return this;
     }
