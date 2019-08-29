@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * detail: 变量基类(方便判断处理)
+ * detail: 变量基类 ( 方便判断处理 )
  * @author Ttt
  */
 public class DevBaseVariable<K, V> {
@@ -159,7 +159,7 @@ public class DevBaseVariable<K, V> {
     }
 
     /**
-     * 切换变量存储状态
+     * 切换变量数据存储状态
      * <pre>
      *     如果存在则删除、反之则保存
      * </pre>
@@ -212,7 +212,7 @@ public class DevBaseVariable<K, V> {
     }
 
     /**
-     * 获取变量数据 value list (倒/逆序)
+     * 获取变量数据 value list ( 倒 / 逆序 )
      * @return {@link List}
      */
     public List<V> getVariableValuesToReverse() {
@@ -253,7 +253,7 @@ public class DevBaseVariable<K, V> {
     }
 
     /**
-     * 获取变量数据 key list (倒/逆序)
+     * 获取变量数据 key list ( 倒 / 逆序 )
      * @return {@link List}
      */
     public List<K> getVariableKeysToReverse() {
