@@ -103,7 +103,7 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
      * @param expandResult 数据业务抽象类
      * @return {@link DevExResultCallback}
      */
-    public final DevExResultCallback setExpandResult(final ExpandResult expandResult) {
+    public final DevExResultCallback<T> setExpandResult(final ExpandResult expandResult) {
         this.expandResult = expandResult;
         return this;
     }
