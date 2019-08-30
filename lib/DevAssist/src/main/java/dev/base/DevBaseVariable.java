@@ -187,7 +187,7 @@ public class DevBaseVariable<K, V> {
     // =
 
     /**
-     * 根据 key 获取对应的 value
+     * 通过 key 获取 value
      * @param key Key
      * @return Value
      */
@@ -196,7 +196,7 @@ public class DevBaseVariable<K, V> {
     }
 
     /**
-     * 根据 key 获取对应的 value
+     * 通过 key 获取 value
      * @param key Key
      * @param <T> 泛型
      * @return Value convert T value
@@ -222,7 +222,7 @@ public class DevBaseVariable<K, V> {
     }
 
     /**
-     * 获取变量数据 value list ( 倒 / 逆序 )
+     * 获取变量数据 value list( 倒序 )
      * @return {@link List}
      */
     public List<V> getVariableValuesToReverse() {
@@ -234,7 +234,7 @@ public class DevBaseVariable<K, V> {
     // =
 
     /**
-     * 根据 value 获取对应的 key
+     * 通过 value 获取 key
      * @param value Value
      * @return Key
      */
@@ -263,7 +263,7 @@ public class DevBaseVariable<K, V> {
     }
 
     /**
-     * 获取变量数据 key list ( 倒 / 逆序 )
+     * 获取变量数据 key list( 倒序 )
      * @return {@link List}
      */
     public List<K> getVariableKeysToReverse() {
