@@ -28,19 +28,19 @@ public class DevDialogCallBack<T> extends DevClickCallBack<T> {
     /**
      * 特殊通知
      */
-    public void onNotify() {
+    public void onDialogNotify() {
     }
 
     /**
      * show 通知
      */
-    public void onNotifyShow() {
+    public void onDialogShow() {
     }
 
     /**
      * dismiss 通知
      */
-    public void onNotifyDismiss() {
+    public void onDialogDismiss() {
     }
 
     // =
@@ -48,30 +48,30 @@ public class DevDialogCallBack<T> extends DevClickCallBack<T> {
     /**
      * start 通知
      */
-    public void onNotifyStart() {
+    public void onDialogStart() {
     }
 
     /**
      * resume 通知
      */
-    public void onNotifyResume() {
+    public void onDialogResume() {
     }
 
     /**
      * pause 通知
      */
-    public void onNotifyPause() {
+    public void onDialogPause() {
     }
 
     /**
      * stop 通知
      */
-    public void onNotifyStop() {
+    public void onDialogStop() {
     }
 
     /**
      * destroy 通知
      */
-    public void onNotifyDestroy() {
+    public void onDialogDestroy() {
     }
 }
