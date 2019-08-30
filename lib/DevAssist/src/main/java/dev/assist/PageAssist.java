@@ -16,15 +16,15 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
     private int config_page_size = DF_PAGE_SIZE;
 
     // 当前请求页数 ( 已成功 )
-    private int pageNum = config_page_num;
+    private int mPageNum = config_page_num;
     // 当前 ( 正在 / 准备 ) 请求的页数, 如果成功则赋值给 pageNum
-    private int pageNumReady = config_page_num;
+    private int mPageNumReady = config_page_num;
     // 每页请求条数
-    private int pageSize = config_page_size;
+    private int mPageSize = config_page_size;
     // 数据总条数 ( 全部 ), 非当前页数有多少条
-    private int totalRow;
+    private int mTotalRow;
     // 判断是否最后一页
-    private boolean lastPage;
+    private boolean mLastPage;
 
     public PageAssist() {
     }
@@ -59,7 +59,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 当前请求页数
      */
     public int getPageNum() {
-        return pageNum;
+        return mPageNum;
     }
 
     /**
@@ -68,7 +68,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 当前请求页数
      */
     public int getPageNum(final int pageNum) {
-        return (this.pageNum = pageNum);
+        return (this.mPageNum = pageNum);
     }
 
     /**
@@ -77,7 +77,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@link PageAssist}
      */
     public PageAssist<T> setPageNum(final int pageNum) {
-        this.pageNum = pageNum;
+        this.mPageNum = pageNum;
         return this;
     }
 
@@ -88,7 +88,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 当前 ( 正在 / 准备 ) 请求的页数
      */
     public int getPageNumReady() {
-        return pageNumReady;
+        return mPageNumReady;
     }
 
     /**
@@ -97,7 +97,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 当前 ( 正在 / 准备 ) 请求的页数
      */
     public int getPageNumReady(final int pageNumReady) {
-        return (this.pageNumReady = pageNumReady);
+        return (this.mPageNumReady = pageNumReady);
     }
 
     /**
@@ -106,7 +106,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@link PageAssist}
      */
     public PageAssist<T> setPageNumReady(final int pageNumReady) {
-        this.pageNumReady = pageNumReady;
+        this.mPageNumReady = pageNumReady;
         return this;
     }
 
@@ -117,7 +117,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 每页请求条数
      */
     public int getPageSize() {
-        return pageSize;
+        return mPageSize;
     }
 
     /**
@@ -126,7 +126,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 每页请求条数
      */
     public int getPageSize(final int pageSize) {
-        return (this.pageSize = pageSize);
+        return (this.mPageSize = pageSize);
     }
 
     /**
@@ -135,7 +135,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@link PageAssist}
      */
     public PageAssist<T> setPageSize(final int pageSize) {
-        this.pageSize = pageSize;
+        this.mPageSize = pageSize;
         return this;
     }
 
@@ -146,7 +146,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 数据总条数
      */
     public int getTotalRow() {
-        return totalRow;
+        return mTotalRow;
     }
 
     /**
@@ -155,7 +155,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 数据总条数
      */
     public int getTotalRow(final int totalRow) {
-        return (this.totalRow = totalRow);
+        return (this.mTotalRow = totalRow);
     }
 
     /**
@@ -164,7 +164,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@link PageAssist}
      */
     public PageAssist<T> setTotalRow(final int totalRow) {
-        this.totalRow = totalRow;
+        this.mTotalRow = totalRow;
         return this;
     }
 
@@ -175,7 +175,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isLastPage() {
-        return lastPage;
+        return mLastPage;
     }
 
     /**
@@ -184,7 +184,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isLastPage(final boolean lastPage) {
-        return (this.lastPage = lastPage);
+        return (this.mLastPage = lastPage);
     }
 
     /**
@@ -193,7 +193,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@link PageAssist}
      */
     public PageAssist<T> setLastPage(final boolean lastPage) {
-        this.lastPage = lastPage;
+        this.mLastPage = lastPage;
         return this;
     }
 
@@ -215,7 +215,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isFirstPage(final int firstPage) {
-        return pageNum == firstPage;
+        return mPageNum == firstPage;
     }
 
     /**
@@ -223,7 +223,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isAllowNextPage() {
-        return !lastPage; // 非最后一页则可以请求
+        return !mLastPage; // 非最后一页则可以请求
     }
 
     // =
@@ -233,7 +233,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 下一页页数
      */
     public int getNextPage() {
-        return pageNum + 1;
+        return mPageNum + 1;
     }
 
     /**
@@ -241,7 +241,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@link PageAssist}
      */
     public PageAssist<T> nextPage() {
-        pageNum += 1;
+        mPageNum += 1;
         return this;
     }
 
@@ -252,7 +252,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return 下一页页数 ( 预加载页数 )
      */
     public int getNextPageReady() {
-        return pageNumReady + 1;
+        return mPageNumReady + 1;
     }
 
     /**
@@ -260,7 +260,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@link PageAssist}
      */
     public PageAssist<T> nextPageReady() {
-        pageNumReady += 1;
+        mPageNumReady += 1;
         return this;
     }
 
@@ -277,7 +277,7 @@ public class PageAssist<T> extends RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isLessThanPageSize(final int size) {
-        return size < pageSize;
+        return size < mPageSize;
     }
 
     /**

@@ -9,30 +9,30 @@ import java.util.UUID;
 public abstract class AbstractCallBack<T> {
 
     // uuid 一定程度上唯一
-    private final int uuid = UUID.randomUUID().hashCode();
-    // 标记 tag1
-    private String tag;
+    private final int mUUID = UUID.randomUUID().hashCode();
+    // 标记 tag
+    private String mTag;
     // Value
-    private T value;
+    private T mValue;
     // Object
-    private Object object;
+    private Object mObject;
 
     public AbstractCallBack() {
     }
 
     public AbstractCallBack(T value) {
-        this.value = value;
+        this.mValue = value;
     }
 
     public AbstractCallBack(T value, Object object) {
-        this.value = value;
-        this.object = object;
+        this.mValue = value;
+        this.mObject = object;
     }
 
     public AbstractCallBack(T value, Object object, String tag) {
-        this.value = value;
-        this.object = object;
-        this.tag = tag;
+        this.mValue = value;
+        this.mObject = object;
+        this.mTag = tag;
     }
 
     // ================
@@ -43,24 +43,24 @@ public abstract class AbstractCallBack<T> {
      * 获取 UUID
      * @return random UUID HashCode
      */
-    public final int getUuid() {
-        return uuid;
+    public final int getUUID() {
+        return mUUID;
     }
 
     /**
      * 获取标记 Tag
-     * @return 标记 tag
+     * @return 标记 Tag
      */
     public String getTag() {
-        return tag;
+        return mTag;
     }
 
     /**
      * 设置标记 Tag
-     * @param tag tag
+     * @param tag Tag
      */
     public void setTag(String tag) {
-        this.tag = tag;
+        this.mTag = tag;
     }
 
     /**
@@ -68,7 +68,7 @@ public abstract class AbstractCallBack<T> {
      * @return Value
      */
     public T getValue() {
-        return value;
+        return mValue;
     }
 
     /**
@@ -76,7 +76,7 @@ public abstract class AbstractCallBack<T> {
      * @param value T Class Object
      */
     public void setValue(T value) {
-        this.value = value;
+        this.mValue = value;
     }
 
     /**
@@ -84,7 +84,7 @@ public abstract class AbstractCallBack<T> {
      * @return Object
      */
     public Object getObject() {
-        return object;
+        return mObject;
     }
 
     /**
@@ -92,6 +92,6 @@ public abstract class AbstractCallBack<T> {
      * @param object Object
      */
     public void setObject(Object object) {
-        this.object = object;
+        this.mObject = object;
     }
 }

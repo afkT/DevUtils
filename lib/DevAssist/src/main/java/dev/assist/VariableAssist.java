@@ -9,16 +9,16 @@ import dev.base.DevBaseVariable;
 public class VariableAssist {
 
     // Boolean 变量存储对象
-    private DevBaseVariable<Object, Boolean> booleanVariable = new DevBaseVariable<>();
+    private DevBaseVariable<Object, Boolean> mBooleanVariable = new DevBaseVariable<>();
     // Object 变量存储对象
-    private DevBaseVariable<Object, Object> objectVariable = new DevBaseVariable<>();
+    private DevBaseVariable<Object, Object> mObjectVariable = new DevBaseVariable<>();
 
     /**
      * 获取 Boolean 变量存储对象
      * @return {@link DevBaseVariable}
      */
     public DevBaseVariable<Object, Boolean> getBooleanVariable() {
-        return booleanVariable;
+        return mBooleanVariable;
     }
 
     /**
@@ -26,6 +26,6 @@ public class VariableAssist {
      * @return {@link DevBaseVariable}
      */
     public DevBaseVariable<Object, Object> getObjectVariable() {
-        return objectVariable;
+        return mObjectVariable;
     }
 }

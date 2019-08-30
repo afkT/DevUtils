@@ -25,11 +25,11 @@ public class RequestStatusAssist<T> {
     public static final int REQUEST_ERROR = BASE + 6;
 
     // 请求类型
-    private T requestType;
+    private T mRequestType;
     // 请求 HashCode
-    private long requestHashCode = UUID.randomUUID().hashCode();
+    private long mRequestHashCode = UUID.randomUUID().hashCode();
     // 请求状态 - 默认状态 ( 暂未进行操作 )
-    private int requestStatus = REQUEST_NORMAL;
+    private int mRequestStatus = REQUEST_NORMAL;
 
     // ================
     // = 对外公开方法 =
@@ -40,7 +40,7 @@ public class RequestStatusAssist<T> {
      * @return 请求类型
      */
     public T getRequestType() {
-        return requestType;
+        return mRequestType;
     }
 
     /**
@@ -49,7 +49,7 @@ public class RequestStatusAssist<T> {
      * @return 请求类型
      */
     public T getRequestType(final T requestType) {
-        return (this.requestType = requestType);
+        return (this.mRequestType = requestType);
     }
 
     /**
@@ -58,7 +58,7 @@ public class RequestStatusAssist<T> {
      * @return {@link RequestStatusAssist}
      */
     public RequestStatusAssist<T> setRequestType(final T requestType) {
-        this.requestType = requestType;
+        this.mRequestType = requestType;
         return this;
     }
 
@@ -68,7 +68,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsRequestType(final T requestType) {
-        return this.requestType != null && requestType != null && ObjectUtils.equals(this.requestType, requestType);
+        return this.mRequestType != null && requestType != null && ObjectUtils.equals(this.mRequestType, requestType);
     }
 
     // =
@@ -78,7 +78,7 @@ public class RequestStatusAssist<T> {
      * @return 请求 HashCode
      */
     public long getRequestHashCode() {
-        return requestHashCode;
+        return mRequestHashCode;
     }
 
     /**
@@ -86,7 +86,7 @@ public class RequestStatusAssist<T> {
      * @return 请求 HashCode
      */
     public long getRequestHashCodeRandom() {
-        return (this.requestHashCode = UUID.randomUUID().hashCode());
+        return (this.mRequestHashCode = UUID.randomUUID().hashCode());
     }
 
     /**
@@ -95,7 +95,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsHashCode(final long hashCode) {
-        return this.requestHashCode == hashCode;
+        return this.mRequestHashCode == hashCode;
     }
 
     // =
@@ -105,7 +105,7 @@ public class RequestStatusAssist<T> {
      * @return 请求状态
      */
     public int getRequestStatus() {
-        return requestStatus;
+        return mRequestStatus;
     }
 
     /**
@@ -114,7 +114,7 @@ public class RequestStatusAssist<T> {
      * @return 请求状态
      */
     public int getRequestStatus(final int requestStatus) {
-        return (this.requestStatus = requestStatus);
+        return (this.mRequestStatus = requestStatus);
     }
 
     /**
@@ -123,7 +123,7 @@ public class RequestStatusAssist<T> {
      * @return {@link RequestStatusAssist}
      */
     public RequestStatusAssist<T> setRequestStatus(final int requestStatus) {
-        this.requestStatus = requestStatus;
+        this.mRequestStatus = requestStatus;
         return this;
     }
 
@@ -136,7 +136,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestNormal() {
-        return this.requestStatus == REQUEST_NORMAL;
+        return this.mRequestStatus == REQUEST_NORMAL;
     }
 
     /**
@@ -144,7 +144,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestNever() {
-        return this.requestStatus == REQUEST_NEVER;
+        return this.mRequestStatus == REQUEST_NEVER;
     }
 
     /**
@@ -152,7 +152,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestIng() {
-        return this.requestStatus == REQUEST_ING;
+        return this.mRequestStatus == REQUEST_ING;
     }
 
     /**
@@ -160,7 +160,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestSuccess() {
-        return this.requestStatus == REQUEST_SUC;
+        return this.mRequestStatus == REQUEST_SUC;
     }
 
     /**
@@ -168,7 +168,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestFail() {
-        return this.requestStatus == REQUEST_FAIL;
+        return this.mRequestStatus == REQUEST_FAIL;
     }
 
     /**
@@ -176,7 +176,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestError() {
-        return this.requestStatus == REQUEST_ERROR;
+        return this.mRequestStatus == REQUEST_ERROR;
     }
 
     // =======
@@ -188,7 +188,7 @@ public class RequestStatusAssist<T> {
      * @return {@link RequestStatusAssist}
      */
     public RequestStatusAssist<T> setRequestNormal() {
-        this.requestStatus = REQUEST_NORMAL;
+        this.mRequestStatus = REQUEST_NORMAL;
         return this;
     }
 
@@ -197,7 +197,7 @@ public class RequestStatusAssist<T> {
      * @return {@link RequestStatusAssist}
      */
     public RequestStatusAssist<T> setRequestNever() {
-        this.requestStatus = REQUEST_NEVER;
+        this.mRequestStatus = REQUEST_NEVER;
         return this;
     }
 
@@ -206,7 +206,7 @@ public class RequestStatusAssist<T> {
      * @return {@link RequestStatusAssist}
      */
     public RequestStatusAssist<T> setRequestIng() {
-        this.requestStatus = REQUEST_ING;
+        this.mRequestStatus = REQUEST_ING;
         return this;
     }
 
@@ -215,7 +215,7 @@ public class RequestStatusAssist<T> {
      * @return {@link RequestStatusAssist}
      */
     public RequestStatusAssist<T> setRequestSuccess() {
-        this.requestStatus = REQUEST_SUC;
+        this.mRequestStatus = REQUEST_SUC;
         return this;
     }
 
@@ -224,7 +224,7 @@ public class RequestStatusAssist<T> {
      * @return {@link RequestStatusAssist}
      */
     public RequestStatusAssist<T> setRequestFail() {
-        this.requestStatus = REQUEST_FAIL;
+        this.mRequestStatus = REQUEST_FAIL;
         return this;
     }
 
@@ -233,7 +233,7 @@ public class RequestStatusAssist<T> {
      * @return {@link RequestStatusAssist}
      */
     public RequestStatusAssist<T> setRequestError() {
-        this.requestStatus = REQUEST_ERROR;
+        this.mRequestStatus = REQUEST_ERROR;
         return this;
     }
 }

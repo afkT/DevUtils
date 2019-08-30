@@ -15,9 +15,9 @@ public abstract class DevBaseModel implements Serializable {
     private static final long serialVersionUID = 2514563577168445802L;
 
     // uuid
-    private final int uuid = UUID.randomUUID().hashCode();
+    private final int mUUID = UUID.randomUUID().hashCode();
     // model id
-    private int modelId;
+    private int mModelId;
 
     // ================
     // = 对外公开方法 =
@@ -28,7 +28,7 @@ public abstract class DevBaseModel implements Serializable {
      * @return random UUID HashCode
      */
     public int getUuid() {
-        return uuid;
+        return mUUID;
     }
 
     /**
@@ -36,7 +36,7 @@ public abstract class DevBaseModel implements Serializable {
      * @return model id
      */
     public int getModelId() {
-        return modelId;
+        return mModelId;
     }
 
     /**
@@ -45,7 +45,7 @@ public abstract class DevBaseModel implements Serializable {
      * @return {@link DevBaseModel}
      */
     public DevBaseModel setModelId(final int modelId) {
-        this.modelId = modelId;
+        this.mModelId = modelId;
         return this;
     }
 

@@ -88,14 +88,14 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
     // =
 
     // 数据业务对象
-    private ExpandResult expandResult;
+    private ExpandResult mExpandResult;
 
     /**
      * 获取实体类
      * @return {@link ExpandResult}
      */
     public final ExpandResult getExpandResult() {
-        return expandResult;
+        return mExpandResult;
     }
 
     /**
@@ -104,7 +104,7 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
      * @return {@link DevExResultCallback}
      */
     public final DevExResultCallback<T> setExpandResult(final ExpandResult expandResult) {
-        this.expandResult = expandResult;
+        this.mExpandResult = expandResult;
         return this;
     }
 }

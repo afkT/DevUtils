@@ -9,13 +9,13 @@ import dev.utils.common.ObjectUtils;
 public class DevBaseEvent<T> {
 
     // code
-    private int code;
+    private int mCode;
     // code String
-    private String codeStr;
+    private String mCodeStr;
     // value
-    private T value;
+    private T mValue;
     // object
-    private Object object;
+    private Object mObject;
 
     // ================
     // = 对外公开方法 =
@@ -26,7 +26,7 @@ public class DevBaseEvent<T> {
      * @return Code
      */
     public int getCode() {
-        return code;
+        return mCode;
     }
 
     /**
@@ -35,7 +35,7 @@ public class DevBaseEvent<T> {
      * @return {@link DevBaseEvent}
      */
     public DevBaseEvent<T> setCode(final int code) {
-        this.code = code;
+        this.mCode = code;
         return this;
     }
 
@@ -46,7 +46,7 @@ public class DevBaseEvent<T> {
      * @return Code String
      */
     public String getCodeStr() {
-        return codeStr;
+        return mCodeStr;
     }
 
     /**
@@ -55,7 +55,7 @@ public class DevBaseEvent<T> {
      * @return {@link DevBaseEvent}
      */
     public DevBaseEvent<T> setCodeStr(final String codeStr) {
-        this.codeStr = codeStr;
+        this.mCodeStr = codeStr;
         return this;
     }
 
@@ -66,7 +66,7 @@ public class DevBaseEvent<T> {
      * @return Value
      */
     public T getValue() {
-        return value;
+        return mValue;
     }
 
     /**
@@ -75,7 +75,7 @@ public class DevBaseEvent<T> {
      * @return {@link DevBaseEvent}
      */
     public DevBaseEvent<T> setValue(final T value) {
-        this.value = value;
+        this.mValue = value;
         return this;
     }
 
@@ -86,7 +86,7 @@ public class DevBaseEvent<T> {
      * @return Object
      */
     public Object getObject() {
-        return object;
+        return mObject;
     }
 
     /**
@@ -95,7 +95,7 @@ public class DevBaseEvent<T> {
      * @return {@link DevBaseEvent}
      */
     public DevBaseEvent<T> setObject(final Object object) {
-        this.object = object;
+        this.mObject = object;
         return this;
     }
 
@@ -109,7 +109,7 @@ public class DevBaseEvent<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsCode(final int code) {
-        return this.code == code;
+        return this.mCode == code;
     }
 
     /**
@@ -118,7 +118,7 @@ public class DevBaseEvent<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsCode(final String codeStr) {
-        return this.codeStr != null && codeStr != null && this.codeStr.equals(codeStr);
+        return this.mCodeStr != null && codeStr != null && this.mCodeStr.equals(codeStr);
     }
 
     /**
@@ -127,7 +127,7 @@ public class DevBaseEvent<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsValue(final T value) {
-        return this.value != null && value != null && ObjectUtils.equals(this.value, value);
+        return this.mValue != null && value != null && ObjectUtils.equals(this.mValue, value);
     }
 
     /**
@@ -136,6 +136,6 @@ public class DevBaseEvent<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsObject(final Object object) {
-        return this.object != null && object != null && ObjectUtils.equals(this.object, object);
+        return this.mObject != null && object != null && ObjectUtils.equals(this.mObject, object);
     }
 }

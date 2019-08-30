@@ -14,7 +14,7 @@ import java.util.Map;
 public class DevBaseVariable<K, V> {
 
     // 存储数据 Map
-    private LinkedHashMap<K, V> linkedHashMap = new LinkedHashMap<>();
+    private LinkedHashMap<K, V> mLinkedHashMap = new LinkedHashMap<>();
 
     // ================
     // = 对外公开方法 =
@@ -25,7 +25,7 @@ public class DevBaseVariable<K, V> {
      * @return {@link LinkedHashMap}
      */
     public LinkedHashMap<K, V> getVariables() {
-        return linkedHashMap;
+        return mLinkedHashMap;
     }
 
     /**
@@ -33,7 +33,7 @@ public class DevBaseVariable<K, V> {
      * @return {@link DevBaseVariable}
      */
     public DevBaseVariable<K, V> clearVariables() {
-        linkedHashMap.clear();
+        mLinkedHashMap.clear();
         return this;
     }
 
@@ -43,7 +43,7 @@ public class DevBaseVariable<K, V> {
      * @return {@link DevBaseVariable}
      */
     public DevBaseVariable<K, V> putVariables(final LinkedHashMap<K, V> collection) {
-        if (collection != null) linkedHashMap.putAll(collection);
+        if (collection != null) mLinkedHashMap.putAll(collection);
         return this;
     }
 
@@ -52,7 +52,7 @@ public class DevBaseVariable<K, V> {
      * @return 变量总数
      */
     public int getVariablesSize() {
-        return linkedHashMap.size();
+        return mLinkedHashMap.size();
     }
 
     /**
@@ -71,7 +71,7 @@ public class DevBaseVariable<K, V> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isVariableValue(final V value) {
-        return linkedHashMap.containsValue(value);
+        return mLinkedHashMap.containsValue(value);
     }
 
     /**
@@ -80,7 +80,7 @@ public class DevBaseVariable<K, V> {
      * @return {@link DevBaseVariable}
      */
     public DevBaseVariable<K, V> removeVariableValue(final V value) {
-        Iterator<V> iterator = linkedHashMap.values().iterator();
+        Iterator<V> iterator = mLinkedHashMap.values().iterator();
         while (iterator.hasNext()) {
             V v = iterator.next();
             if (v == value) {
@@ -97,7 +97,7 @@ public class DevBaseVariable<K, V> {
      * @return {@link DevBaseVariable}
      */
     public DevBaseVariable<K, V> removeVariableValueAll(final V value) {
-        Iterator<V> iterator = linkedHashMap.values().iterator();
+        Iterator<V> iterator = mLinkedHashMap.values().iterator();
         while (iterator.hasNext()) {
             V v = iterator.next();
             if (v == value) {
@@ -115,7 +115,7 @@ public class DevBaseVariable<K, V> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isVariable(final K key) {
-        return linkedHashMap.containsKey(key);
+        return mLinkedHashMap.containsKey(key);
     }
 
     /**
@@ -126,7 +126,7 @@ public class DevBaseVariable<K, V> {
      */
     public boolean isVariable(final K key, final V value) {
         if (!isVariable(key)) {
-            linkedHashMap.put(key, value);
+            mLinkedHashMap.put(key, value);
             return false;
         }
         return true;
@@ -141,7 +141,7 @@ public class DevBaseVariable<K, V> {
      * @return {@link DevBaseVariable}
      */
     public DevBaseVariable<K, V> putVariable(final K key, final V value) {
-        linkedHashMap.put(key, value);
+        mLinkedHashMap.put(key, value);
         return this;
     }
 
@@ -162,7 +162,7 @@ public class DevBaseVariable<K, V> {
      * @return {@link DevBaseVariable}
      */
     public DevBaseVariable<K, V> removeVariable(final K key) {
-        linkedHashMap.remove(key);
+        mLinkedHashMap.remove(key);
         return this;
     }
 
@@ -177,9 +177,9 @@ public class DevBaseVariable<K, V> {
      */
     public DevBaseVariable<K, V> toggle(final K key, final V value) {
         if (isVariable(key)) { // 移除存在的数据
-            linkedHashMap.remove(key);
+            mLinkedHashMap.remove(key);
         } else { // 保存变量数据
-            linkedHashMap.put(key, value);
+            mLinkedHashMap.put(key, value);
         }
         return this;
     }
@@ -192,7 +192,7 @@ public class DevBaseVariable<K, V> {
      * @return Value
      */
     public V getVariableValue(final K key) {
-        return linkedHashMap.get(key);
+        return mLinkedHashMap.get(key);
     }
 
     /**
@@ -203,7 +203,7 @@ public class DevBaseVariable<K, V> {
      */
     public <T> T getVariableValueConvert(final K key) {
         try {
-            return (T) linkedHashMap.get(key);
+            return (T) mLinkedHashMap.get(key);
         } catch (Exception e) {
         }
         return null;
@@ -217,7 +217,7 @@ public class DevBaseVariable<K, V> {
      */
     public List<V> getVariableValues() {
         List<V> lists = new ArrayList<>();
-        lists.addAll(linkedHashMap.values());
+        lists.addAll(mLinkedHashMap.values());
         return lists;
     }
 
@@ -240,7 +240,7 @@ public class DevBaseVariable<K, V> {
      */
     public K getVariableKey(final V value) {
         // 进行循环遍历获取
-        Iterator<Map.Entry<K, V>> iterator = linkedHashMap.entrySet().iterator();
+        Iterator<Map.Entry<K, V>> iterator = mLinkedHashMap.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<K, V> entry = iterator.next();
             V v = entry.getValue();
@@ -258,7 +258,7 @@ public class DevBaseVariable<K, V> {
      */
     public List<K> getVariableKeys() {
         List<K> lists = new ArrayList<>();
-        lists.addAll(linkedHashMap.keySet());
+        lists.addAll(mLinkedHashMap.keySet());
         return lists;
     }
 

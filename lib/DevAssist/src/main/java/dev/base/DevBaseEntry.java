@@ -7,20 +7,20 @@ package dev.base;
 public class DevBaseEntry<K, V> extends DevBaseModel {
 
     // key
-    public K entryKey;
+    public K mEntryKey;
     // value
-    public V entryValue;
+    public V mEntryValue;
 
     public DevBaseEntry() {
     }
 
     public DevBaseEntry(K entryKey) {
-        this.entryKey = entryKey;
+        this.mEntryKey = entryKey;
     }
 
     public DevBaseEntry(K entryKey, V entryValue) {
-        this.entryKey = entryKey;
-        this.entryValue = entryValue;
+        this.mEntryKey = entryKey;
+        this.mEntryValue = entryValue;
     }
 
     // ================
@@ -32,7 +32,7 @@ public class DevBaseEntry<K, V> extends DevBaseModel {
      * @return Entry Key
      */
     public K getEntryKey() {
-        return entryKey;
+        return mEntryKey;
     }
 
     /**
@@ -41,7 +41,7 @@ public class DevBaseEntry<K, V> extends DevBaseModel {
      * @return {@link DevBaseEntry}
      */
     public DevBaseEntry<K, V> setEntryKey(final K entryKey) {
-        this.entryKey = entryKey;
+        this.mEntryKey = entryKey;
         return this;
     }
 
@@ -52,7 +52,7 @@ public class DevBaseEntry<K, V> extends DevBaseModel {
      * @return Entry Value
      */
     public V getEntryValue() {
-        return entryValue;
+        return mEntryValue;
     }
 
     /**
@@ -61,7 +61,7 @@ public class DevBaseEntry<K, V> extends DevBaseModel {
      * @return {@link DevBaseEntry}
      */
     public DevBaseEntry<K, V> setEntryValue(final V entryValue) {
-        this.entryValue = entryValue;
+        this.mEntryValue = entryValue;
         return this;
     }
 
@@ -73,6 +73,6 @@ public class DevBaseEntry<K, V> extends DevBaseModel {
      */
     @Override
     public boolean isCorrect() {
-        return entryKey != null;
+        return mEntryKey != null;
     }
 }
