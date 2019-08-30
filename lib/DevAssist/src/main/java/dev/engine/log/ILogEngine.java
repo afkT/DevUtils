@@ -1,7 +1,7 @@
 package dev.engine.log;
 
 /**
- * detail: 日志接口
+ * detail: Log Engine 接口
  * @author Ttt
  */
 public interface ILogEngine {
