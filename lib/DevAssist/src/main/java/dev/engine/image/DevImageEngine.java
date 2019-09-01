@@ -56,7 +56,6 @@ public final class DevImageEngine {
         if (sImageEngine != null) {
             sImageEngine.displayImage(uri, imageView, defaultImage);
         }
-
     }
 
     /**
