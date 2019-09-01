@@ -1,4 +1,5 @@
 
+
 ## 目录结构
 
 ```
@@ -252,7 +253,7 @@
 ## <span id="devassistmultiselectedit">**`dev.assist.multiselect.edit`**</span>
 
 
-* **多选编辑接口 ->** [IMultiSelectEdit.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assistmultiselect/edit/IMultiSelectEdit.java)
+* **多选编辑接口 ->** [IMultiSelectEdit.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/multiselect/edit/IMultiSelectEdit.java)
 
 | 方法 | 注释 |
 | :- | :- |
