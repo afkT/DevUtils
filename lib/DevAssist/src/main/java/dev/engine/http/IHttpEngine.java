@@ -1,15 +1,10 @@
 package dev.engine.http;
 
-import dev.utils.JCLogUtils;
-
 /**
  * detail: Http Engine 接口
  * @author Ttt
  */
 public interface IHttpEngine {
-
-    // 日志 TAG
-    String TAG = IHttpEngine.class.getSimpleName();
 
     /**
      * detail: Request Object
@@ -40,7 +35,6 @@ public interface IHttpEngine {
             try {
                 return (T) request;
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "getRequest");
             }
             return null;
         }
@@ -123,7 +117,7 @@ public interface IHttpEngine {
      * detail: Request CallBack
      * Created by Ttt
      */
-    abstract class RequestCallBack {
+    abstract class RequestCallBack<T extends Response> {
 
         /**
          * 开始请求
@@ -144,14 +138,14 @@ public interface IHttpEngine {
          * @param call     {@link Call}
          * @param response {@link Response}
          */
-        abstract void onResponse(Call call, Response response);
+        public abstract void onResponse(Call call, T response);
 
         /**
          * 请求失败
          * @param call      {@link Call}
          * @param throwable {@link Throwable}
          */
-        abstract void onFailure(Call call, Throwable throwable);
+        public abstract void onFailure(Call call, Throwable throwable);
     }
 
     // =============
