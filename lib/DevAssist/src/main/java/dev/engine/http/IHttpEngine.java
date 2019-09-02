@@ -123,14 +123,14 @@ public interface IHttpEngine {
          * 开始请求
          * @param call {@link Call}
          */
-        public void onStart(Call call){
+        public void onStart(Call call) {
         }
 
         /**
          * 请求取消
          * @param call {@link Call}
          */
-        public void onCancel(Call call){
+        public void onCancel(Call call) {
         }
 
         /**

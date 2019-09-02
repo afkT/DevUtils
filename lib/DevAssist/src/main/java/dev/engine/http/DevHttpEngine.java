@@ -52,7 +52,7 @@ public final class DevHttpEngine {
     /**
      * 取消请求 ( 全部 )
      */
-    public static void cancelAll(){
+    public static void cancelAll() {
         if (sHttpEngine != null) {
             sHttpEngine.cancelAll();
         }
@@ -62,7 +62,7 @@ public final class DevHttpEngine {
      * 取消请求
      * @param call {@link IHttpEngine.Call}
      */
-    public static void cancelCall(IHttpEngine.Call call){
+    public static void cancelCall(IHttpEngine.Call call) {
         if (sHttpEngine != null) {
             sHttpEngine.cancelCall(call);
         }
@@ -72,7 +72,7 @@ public final class DevHttpEngine {
      * 取消请求
      * @param url Request Url
      */
-    public static void cancelUrl(String url){
+    public static void cancelUrl(String url) {
         if (sHttpEngine != null) {
             sHttpEngine.cancelUrl(url);
         }
@@ -82,7 +82,7 @@ public final class DevHttpEngine {
      * 取消请求
      * @param object Object Tag
      */
-    public static void cancelTag(Object object){
+    public static void cancelTag(Object object) {
         if (sHttpEngine != null) {
             sHttpEngine.cancelTag(object);
         }
