@@ -159,4 +159,31 @@ public interface IHttpEngine {
      * @return {@link Call}
      */
     Call newCall(Request request, RequestCallBack callBack);
+
+    // ============
+    // = 操作方法 =
+    // ============
+
+    /**
+     * 取消请求 ( 全部 )
+     */
+    void cancelAll();
+
+    /**
+     * 取消请求
+     * @param call {@link Call}
+     */
+    void cancelCall(Call call);
+
+    /**
+     * 取消请求
+     * @param url Request Url
+     */
+    void cancelUrl(String url);
+
+    /**
+     * 取消请求
+     * @param object Object Tag
+     */
+    void cancelTag(Object object);
 }

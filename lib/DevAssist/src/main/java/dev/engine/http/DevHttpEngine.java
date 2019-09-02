@@ -44,4 +44,47 @@ public final class DevHttpEngine {
         }
         return null;
     }
+
+    // ============
+    // = 操作方法 =
+    // ============
+
+    /**
+     * 取消请求 ( 全部 )
+     */
+    public static void cancelAll(){
+        if (sHttpEngine != null) {
+            sHttpEngine.cancelAll();
+        }
+    }
+
+    /**
+     * 取消请求
+     * @param call {@link IHttpEngine.Call}
+     */
+    public static void cancelCall(IHttpEngine.Call call){
+        if (sHttpEngine != null) {
+            sHttpEngine.cancelCall(call);
+        }
+    }
+
+    /**
+     * 取消请求
+     * @param url Request Url
+     */
+    public static void cancelUrl(String url){
+        if (sHttpEngine != null) {
+            sHttpEngine.cancelUrl(url);
+        }
+    }
+
+    /**
+     * 取消请求
+     * @param object Object Tag
+     */
+    public static void cancelTag(Object object){
+        if (sHttpEngine != null) {
+            sHttpEngine.cancelTag(object);
+        }
+    }
 }
