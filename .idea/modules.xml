@@ -3,10 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/lib/DevApp/DevApp.iml" filepath="$PROJECT_DIR$/lib/DevApp/DevApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DevLibUtils/DevLibUtils.iml" filepath="$PROJECT_DIR$/DevLibUtils/DevLibUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/DevAssist/DevAssist.iml" filepath="$PROJECT_DIR$/lib/DevAssist/DevAssist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/DevJava/DevJava.iml" filepath="$PROJECT_DIR$/lib/DevJava/DevJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/DevUtils.iml" filepath="$PROJECT_DIR$/DevUtils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DevUtils.iml" filepath="$PROJECT_DIR$/DevUtils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

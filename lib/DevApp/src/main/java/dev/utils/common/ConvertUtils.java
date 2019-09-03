@@ -38,6 +38,23 @@ public final class ConvertUtils {
     private static final char[] HEX_DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
+     * Object 转换所需类型对象
+     * @param object Object
+     * @param <T> 泛型
+     * @return Object convert T object
+     */
+    public static <T> T convert(Object object){
+        try {
+            return (T) object;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "convert");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * char[] 转 String
      * @param data char[]
      * @return {@link String}

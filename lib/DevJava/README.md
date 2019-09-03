@@ -8,25 +8,25 @@ implementation 'com.afkt:DevJava:1.0.0'
 ## 目录结构
 
 ```
-- dev.utils         | 根目录
-   - common         | Java 工具类, 不依赖 android api
-      - assist      | 各种快捷辅助类
-         - search   | 搜索相关 ( 文件搜索等 )
-      - cipher      | 编 / 解码工具类
-      - encrypt     | 加密工具类
-      - random      | 随机概率算法工具类
-      - thread      | 线程相关
-      - validator   | 数据校验工具类
+- dev.utils                                           | 根目录
+   - common                                           | Java 工具类, 不依赖 android api
+      - assist                                        | 各种快捷辅助类
+         - search                                     | 搜索相关 ( 文件搜索等 )
+      - cipher                                        | 编 / 解码工具类
+      - encrypt                                       | 加密工具类
+      - random                                        | 随机概率算法工具类
+      - thread                                        | 线程相关
+      - validator                                     | 数据校验工具类
 ```
 
 
 ## 事项
 
-- 该工具类不依赖 android api, 属于 Java 工具类库
+- 该工具类不依赖 android api，属于 Java 工具类库
 
 - 开启日志
 ```java
-// 打开 lib 内部日志 - 线上(release)环境, 不调用方法就行
+// 打开 lib 内部日志 - 线上 (release) 环境，不调用方法就行
 JCLogUtils.setPrintLog(true);
 // 控制台打印日志
 JCLogUtils.setControlPrintLog(true);
@@ -36,20 +36,20 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 - 部分 API 更新不及时或有遗漏等，`具体以对应的工具类为准`
 
-- [检测代码规范、注释内容排版, API 文档生成](https://github.com/afkT/JavaDoc)
+- [检测代码规范、注释内容排版，API 文档生成](https://github.com/afkT/JavaDoc)
 
 ## API
 
 
-- dev.utils                                        | 根目录
-   - [common](#devutilscommon)                     | Java 工具类, 不依赖 android api
-      - [assist](#devutilscommonassist)            | 各种快捷辅助类
-         - [search](#devutilscommonassistsearch)   | 搜索相关 ( 文件搜索等 )
-      - [cipher](#devutilscommoncipher)            | 编 / 解码工具类
-      - [encrypt](#devutilscommonencrypt)          | 加密工具类
-      - [random](#devutilscommonrandom)            | 随机概率算法工具类
-      - [thread](#devutilscommonthread)            | 线程相关
-      - [validator](#devutilscommonvalidator)      | 数据校验工具类
+- dev.utils                                           | 根目录
+   - [common](#devutilscommon)                        | Java 工具类, 不依赖 android api
+      - [assist](#devutilscommonassist)               | 各种快捷辅助类
+         - [search](#devutilscommonassistsearch)      | 搜索相关 ( 文件搜索等 )
+      - [cipher](#devutilscommoncipher)               | 编 / 解码工具类
+      - [encrypt](#devutilscommonencrypt)             | 加密工具类
+      - [random](#devutilscommonrandom)               | 随机概率算法工具类
+      - [thread](#devutilscommonthread)               | 线程相关
+      - [validator](#devutilscommonvalidator)         | 数据校验工具类
 
 
 
@@ -212,6 +212,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
+| convert | Object 转换所需类型对象 |
 | toString | char[] 转 String |
 | toInt | 字符串 转 int |
 | toBoolean | 字符串 转 boolean |
