@@ -26,6 +26,8 @@ public interface IAdapterData<V> {
      */
     ArrayList<V> getDataArrayList();
 
+    // =
+
     /**
      * 获取 List Count
      * @return List.size()
@@ -79,7 +81,7 @@ public interface IAdapterData<V> {
     /**
      * 判断是否 Last Item Data
      * @param position 索引
-     * @param count 总数
+     * @param count    总数
      * @return {@code true} yes, {@code false} no
      */
     boolean isLastItem(int position, int count);
@@ -110,7 +112,7 @@ public interface IAdapterData<V> {
     /**
      * 添加数据
      * @param position 索引
-     * @param value Value
+     * @param value    Value
      */
     void addData(int position, V value);
 
@@ -122,7 +124,7 @@ public interface IAdapterData<V> {
 
     /**
      * 添加数据
-     * @param position 索引
+     * @param position   索引
      * @param collection {@link Collection}
      */
     void addAllData(int position, Collection<V> collection);
@@ -132,7 +134,7 @@ public interface IAdapterData<V> {
     /**
      * 移除数据
      * @param value Value
-     * @return {@code true} yes, {@code false} no
+     * @return {@code true} success, {@code false} fail
      */
     boolean removeData(V value);
 
@@ -152,14 +154,14 @@ public interface IAdapterData<V> {
     // =
 
     /**
-     * 设置数据源
+     * 设置 List Data
      * @param lists {@link List}
      */
     void setDataList(List<V> lists);
 
     /**
-     * 设置数据源
-     * @param lists {@link List}
+     * 设置 List Data
+     * @param lists  {@link List}
      * @param notify 是否通知适配器
      */
     void setDataList(List<V> lists, boolean notify);

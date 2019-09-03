@@ -7,7 +7,7 @@ package dev.assist.adapter;
 public interface IAdapterNotify {
 
     /**
-     * Adapter 通知数据改变
+     * 通知 Adapter 数据改变
      */
     void adapterNotifyDataSetChanged();
 }
