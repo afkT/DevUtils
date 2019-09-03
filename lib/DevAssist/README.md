@@ -1,21 +1,28 @@
 
+## Gradle
+
+```java
+implementation 'com.afkt:DevAssist:1.0.0'
+```
 
 ## 目录结构
 
 ```
-- dev                 | 根目录
-   - assist           | 快捷功能辅助类
-      - multiselect   | 多选模块
-         - edit       | 多选编辑方法
-   - base             | 基类相关
-   - callback         | 回调相关
-      - click         | 点击回调
-      - common        | 通用回调
-      - result        | 操作结果回调
-   - engine           | 兼容 Engine
-      - http          | Http Engine
-      - image         | Image Engine
-      - log           | Log Engine
+- dev                                                 | 根目录
+   - assist                                           | 快捷功能辅助类
+      - adapter                                       | null
+      - multiselect                                   | 多选模块
+         - edit                                       | 多选编辑方法
+   - base                                             | 基类相关
+   - callback                                         | 回调相关
+      - click                                         | 点击回调
+      - common                                        | 通用回调
+      - result                                        | 操作结果回调
+   - engine                                           | 兼容 Engine
+      - http                                          | Http Engine
+      - image                                         | Image Engine
+      - json                                          | JSON Engine
+      - log                                           | Log Engine
 ```
 
 
@@ -23,24 +30,26 @@
 
 - 部分 API 更新不及时或有遗漏等，`具体以对应的工具类为准`
 
-- [检测代码规范、注释内容排版, API 文档生成](https://github.com/afkT/JavaDoc)
+- [检测代码规范、注释内容排版，API 文档生成](https://github.com/afkT/JavaDoc)
 
 ## API
 
 
-- dev                                               | 根目录
-   - [assist](#devassist)                           | 快捷功能辅助类
-      - [multiselect](#devassistmultiselect)        | 多选模块
-         - [edit](#devassistmultiselectedit)        | 多选编辑方法
-   - [base](#devbase)                               | 基类相关
-   - [callback](#devcallback)                       | 回调相关
-      - [click](#devcallbackclick)                  | 点击回调
-      - [common](#devcallbackcommon)                | 通用回调
-      - [result](#devcallbackresult)                | 操作结果回调
-   - [engine](#devengine)                           | 兼容 Engine
-      - [http](#devenginehttp)                      | Http Engine
-      - [image](#devengineimage)                    | Image Engine
-      - [log](#devenginelog)                        | Log Engine
+- dev                                                 | 根目录
+   - [assist](#devassist)                             | 快捷功能辅助类
+      - [adapter](#devassistadapter)                  | null
+      - [multiselect](#devassistmultiselect)          | 多选模块
+         - [edit](#devassistmultiselectedit)          | 多选编辑方法
+   - [base](#devbase)                                 | 基类相关
+   - [callback](#devcallback)                         | 回调相关
+      - [click](#devcallbackclick)                    | 点击回调
+      - [common](#devcallbackcommon)                  | 通用回调
+      - [result](#devcallbackresult)                  | 操作结果回调
+   - [engine](#devengine)                             | 兼容 Engine
+      - [http](#devenginehttp)                        | Http Engine
+      - [image](#devengineimage)                      | Image Engine
+      - [json](#devenginejson)                        | JSON Engine
+      - [log](#devenginelog)                          | Log Engine
 
 
 
@@ -155,6 +164,58 @@
 | :- | :- |
 | getBooleanVariable | 获取 Boolean 变量存储对象 |
 | getObjectVariable | 获取 Object 变量存储对象 |
+
+
+## <span id="devassistadapter">**`dev.assist.adapter`**</span>
+
+
+* **Adapter 数据辅助类 ->** [AdapterDataAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/adapter/AdapterDataAssist.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| setAdapterNotify | 设置 Adapter Notify |
+| getDataList | 获取 List Data |
+| getDataArrayList | 获取 ArrayList Data |
+| getDataCount | 获取 List Count |
+| getDataItem | 获取 List Position Item |
+| getDataItemPosition | 获取 Value Position |
+| getDataFirstItem | 获取 First Item Data |
+| getDataLastItem | 获取 Last Item Data |
+| isFirstItem | 判断是否 First Item Data |
+| isLastItem | 判断是否 Last Item Data |
+| clearDataList | 清空全部数据 |
+| addData | 添加数据 |
+| addAllData | 添加数据 |
+| removeData | 移除数据 |
+| setDataList | 设置 List Data |
+| adapterNotifyDataSetChanged | 通知 Adapter 数据改变 |
+
+
+* **Adapter 数据操作接口 ->** [IAdapterData.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/adapter/IAdapterData.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getDataList | 获取 List Data |
+| getDataArrayList | 获取 ArrayList Data |
+| getDataCount | 获取 List Count |
+| getDataItem | 获取 List Position Item |
+| getDataItemPosition | 获取 Value Position |
+| getDataFirstItem | 获取 First Item Data |
+| getDataLastItem | 获取 Last Item Data |
+| isFirstItem | 判断是否 First Item Data |
+| isLastItem | 判断是否 Last Item Data |
+| clearDataList | 清空全部数据 |
+| addData | 添加数据 |
+| addAllData | 添加数据 |
+| removeData | 移除数据 |
+| setDataList | 设置 List Data |
+
+
+* **Adapter 通知接口 ->** [IAdapterNotify.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/adapter/IAdapterNotify.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| adapterNotifyDataSetChanged | 通知 Adapter 数据改变 |
 
 
 ## <span id="devassistmultiselect">**`dev.assist.multiselect`**</span>
@@ -444,6 +505,10 @@
 | :- | :- |
 | initEngine | 初始化 Engine |
 | newCall | 获取 Request Call Object |
+| cancelAll | 取消请求 ( 全部 ) |
+| cancelCall | 取消请求 |
+| cancelUrl | 取消请求 |
+| cancelTag | 取消请求 |
 
 
 * **Http Engine 接口 ->** [IHttpEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/http/IHttpEngine.java)
@@ -451,6 +516,10 @@
 | 方法 | 注释 |
 | :- | :- |
 | newCall | 获取 Request Call Object |
+| cancelAll | 取消请求 ( 全部 ) |
+| cancelCall | 取消请求 |
+| cancelUrl | 取消请求 |
+| cancelTag | 取消请求 |
 | getRequest | 获取 Request Object |
 | getSentRequestAtMillis | 获取发送请求时间 |
 | getReceivedResponseAtMillis | 获取请求响应时间 |
@@ -491,6 +560,30 @@
 | getTranscodeType | 获取转码类型 |
 | onResponse | 响应回调 |
 | onFailure | 失败回调 |
+
+
+## <span id="devenginejson">**`dev.engine.json`**</span>
+
+
+* **JSON Engine ->** [DevJSONEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/json/DevJSONEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initEngine | 初始化 Engine |
+| toJson | 将对象转换为 JSON String |
+| fromJson | 将 JSON String 映射为指定类型对象 |
+| isJSON | 判断字符串是否 JSON 格式 |
+| toJsonIndent | JSON String 缩进处理 |
+
+
+* **JSON Engine 接口 ->** [IJSONEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/json/IJSONEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| toJson | 将对象转换为 JSON String |
+| fromJson | 将 JSON String 映射为指定类型对象 |
+| isJSON | 判断字符串是否 JSON 格式 |
+| toJsonIndent | JSON String 缩进处理 |
 
 
 ## <span id="devenginelog">**`dev.engine.log`**</span>

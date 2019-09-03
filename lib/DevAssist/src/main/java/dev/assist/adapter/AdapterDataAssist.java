@@ -36,6 +36,18 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
         this.mAdapterNotify = adapterNotify;
     }
 
+    // =======
+    // = set =
+    // =======
+
+    /**
+     * 设置 Adapter Notify
+     * @param adapterNotify {@link IAdapterNotify}
+     */
+    public void setAdapterNotify(IAdapterNotify adapterNotify) {
+        this.mAdapterNotify = adapterNotify;
+    }
+
     // ================
     // = IAdapterData =
     // ================
@@ -313,6 +325,9 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
     // = IAdapterNotify =
     // ==================
 
+    /**
+     * 通知 Adapter 数据改变
+     */
     @Override
     public void adapterNotifyDataSetChanged() {
         // 通知适配器
