@@ -43,14 +43,19 @@ ext {
             dev_app_versionName   : '1.7.7',
 
             // 版本号
+            dev_assist_versionCode: 100,
+            // 版本名
+            dev_assist_versionName: '1.0.0',
+
+            // 版本号
             dev_java_versionCode  : 100,
             // 版本名
             dev_java_version      : '1.0.0',
 
             // 版本号
-            dev_assist_versionCode: 100,
+            dev_other_versionCode : 100,
             // 版本名
-            dev_assist_versionName: '1.0.0',
+            dev_other_versionName : '1.0.0',
     ]
 
     deps = [
@@ -72,8 +77,9 @@ ext {
                     gson: "com.google.code.gson:gson:2.8.2",
             ],
             'dev'     : [
-                    dev_app : "com.afkt:DevApp:${versions.dev_app_versionName}",
-                    dev_java: "com.afkt:DevJava:${versions.dev_java_version}",
+                    dev_app   : "com.afkt:DevApp:${versions.dev_app_versionName}",
+                    dev_assist: "com.afkt:DevAssist:${versions.dev_assist_versionName}",
+                    dev_java  : "com.afkt:DevJava:${versions.dev_java_version}",
             ]
     ]
 }
