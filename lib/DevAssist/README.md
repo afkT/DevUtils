@@ -10,7 +10,7 @@ implementation 'com.afkt:DevAssist:1.0.0'
 ```
 - dev                                                 | 根目录
    - assist                                           | 快捷功能辅助类
-      - adapter                                       | null
+      - adapter                                       | Adapter 相关
       - multiselect                                   | 多选模块
          - edit                                       | 多选编辑方法
    - base                                             | 基类相关
@@ -37,7 +37,7 @@ implementation 'com.afkt:DevAssist:1.0.0'
 
 - dev                                                 | 根目录
    - [assist](#devassist)                             | 快捷功能辅助类
-      - [adapter](#devassistadapter)                  | null
+      - [adapter](#devassistadapter)                  | Adapter 相关
       - [multiselect](#devassistmultiselect)          | 多选模块
          - [edit](#devassistmultiselectedit)          | 多选编辑方法
    - [base](#devbase)                                 | 基类相关
