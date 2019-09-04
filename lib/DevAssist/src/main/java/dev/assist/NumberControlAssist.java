@@ -26,11 +26,11 @@ public class NumberControlAssist {
     public NumberControlAssist() {
     }
 
-    public NumberControlAssist(int minNumber) {
+    public NumberControlAssist(final int minNumber) {
         this.mMinNumber = minNumber;
     }
 
-    public NumberControlAssist(int minNumber, int maxNumber) {
+    public NumberControlAssist(final int minNumber, final int maxNumber) {
         this.mMinNumber = minNumber;
         this.mMaxNumber = maxNumber;
     }
@@ -156,15 +156,16 @@ public class NumberControlAssist {
      * @param minNumber 最小值
      * @return {@link NumberControlAssist}
      */
-    public NumberControlAssist setMinNumber(int minNumber) {
+    public NumberControlAssist setMinNumber(final int minNumber) {
+        int number = minNumber;
         // 如果不允许为负数, 并且设置最小值为负数, 则设置为重置数量
-        if (!mIsAllowNegative && minNumber < 0) {
-            minNumber = mResetNumber;
+        if (!mIsAllowNegative && number < 0) {
+            number = mResetNumber;
         }
-        if (minNumber > mMaxNumber) {
-            minNumber = mMaxNumber;
+        if (number > mMaxNumber) {
+            number = mMaxNumber;
         }
-        this.mMinNumber = minNumber;
+        this.mMinNumber = number;
         return this;
     }
 
@@ -187,11 +188,8 @@ public class NumberControlAssist {
      * @param maxNumber 最大值
      * @return {@link NumberControlAssist}
      */
-    public NumberControlAssist setMaxNumber(int maxNumber) {
-        if (maxNumber < mMinNumber) {
-            maxNumber = mMinNumber;
-        }
-        this.mMaxNumber = maxNumber;
+    public NumberControlAssist setMaxNumber(final int maxNumber) {
+        this.mMaxNumber = (maxNumber < mMinNumber) ? mMinNumber : maxNumber;
         return this;
     }
 
@@ -230,20 +228,21 @@ public class NumberControlAssist {
      * @param isTriggerListener 是否触发事件
      * @return {@link NumberControlAssist}
      */
-    public NumberControlAssist setCurrentNumber(int currentNumber, final boolean isTriggerListener) {
-        if (currentNumber < mMinNumber) {
-            currentNumber = mMinNumber;
-        } else if (currentNumber > mMaxNumber) {
-            currentNumber = mMaxNumber;
+    public NumberControlAssist setCurrentNumber(final int currentNumber, final boolean isTriggerListener) {
+        int number = currentNumber;
+        if (number < mMinNumber) {
+            number = mMinNumber;
+        } else if (number > mMaxNumber) {
+            number = mMaxNumber;
         }
         // 判断是否添加
-        boolean isAdd = (currentNumber > mCurrentNumber);
+        boolean isAdd = (number > mCurrentNumber);
         // 重新赋值
-        this.mCurrentNumber = currentNumber;
+        this.mCurrentNumber = number;
         // 判断是否触发事件
         if (isTriggerListener) {
             if (mINumberListener != null) {
-                mINumberListener.onNumberChanged(isAdd, currentNumber);
+                mINumberListener.onNumberChanged(isAdd, number);
             }
         }
         return this;
@@ -264,12 +263,9 @@ public class NumberControlAssist {
      * @param resetNumber 重置数量
      * @return {@link NumberControlAssist}
      */
-    public NumberControlAssist setResetNumber(int resetNumber) {
+    public NumberControlAssist setResetNumber(final int resetNumber) {
         // 防止出现负数
-        if (!mIsAllowNegative && mResetNumber < 0) {
-            resetNumber = 1;
-        }
-        this.mResetNumber = resetNumber;
+        this.mResetNumber = (!mIsAllowNegative && mResetNumber < 0) ? 1 : resetNumber;
         return this;
     }
 
