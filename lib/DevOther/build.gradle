@@ -8,5 +8,9 @@ android.defaultConfig {
 }
 
 dependencies {
-//    compileOnly project(path: ':DevJava')
+    compileOnly project(path: ':DevApp')
+    compileOnly project(path: ':DevAssist')
+
+    // Gson
+    implementation deps.lib.gson
 }

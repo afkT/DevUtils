@@ -11,11 +11,10 @@ android.defaultConfig {
 }
 
 dependencies {
-//    compileOnly deps.dev.dev_java
     compileOnly project(path: ':DevJava')
 }
 
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
-apply from : rootProject.file(files.app_bintray_upload)
+//apply from : rootProject.file(files.app_bintray_upload)
