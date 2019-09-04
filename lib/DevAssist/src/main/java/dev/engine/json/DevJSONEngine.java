@@ -139,13 +139,12 @@ public final class DevJSONEngine {
 
     /**
      * JSON String 缩进处理
-     * @param json   JSON String
-     * @param indent 缩进单位
+     * @param json JSON String
      * @return JSON String
      */
-    public static String toJsonIndent(String json, int indent) {
+    public static String toJsonIndent(String json) {
         if (sJSONEngine != null) {
-            return sJSONEngine.toJsonIndent(json, indent);
+            return sJSONEngine.toJsonIndent(json);
         }
         return null;
     }
@@ -153,13 +152,12 @@ public final class DevJSONEngine {
     /**
      * JSON String 缩进处理
      * @param json       JSON String
-     * @param indent     缩进单位
      * @param jsonConfig {@link IJSONEngine.JSONConfig}
      * @return JSON String
      */
-    public static String toJsonIndent(String json, int indent, IJSONEngine.JSONConfig jsonConfig) {
+    public static String toJsonIndent(String json, IJSONEngine.JSONConfig jsonConfig) {
         if (sJSONEngine != null) {
-            return sJSONEngine.toJsonIndent(json, indent, jsonConfig);
+            return sJSONEngine.toJsonIndent(json, jsonConfig);
         }
         return null;
     }
@@ -169,12 +167,11 @@ public final class DevJSONEngine {
     /**
      * Object 转 JSON String 并进行缩进处理
      * @param object {@link Object}
-     * @param indent 缩进单位
      * @return JSON String
      */
-    public static String toJsonIndent(Object object, int indent) {
+    public static String toJsonIndent(Object object) {
         if (sJSONEngine != null) {
-            return sJSONEngine.toJsonIndent(object, indent);
+            return sJSONEngine.toJsonIndent(object);
         }
         return null;
     }
@@ -182,13 +179,12 @@ public final class DevJSONEngine {
     /**
      * Object 转 JSON String 并进行缩进处理
      * @param object     {@link Object}
-     * @param indent     缩进单位
      * @param jsonConfig {@link IJSONEngine.JSONConfig}
      * @return JSON String
      */
-    public static String toJsonIndent(Object object, int indent, IJSONEngine.JSONConfig jsonConfig) {
+    public static String toJsonIndent(Object object, IJSONEngine.JSONConfig jsonConfig) {
         if (sJSONEngine != null) {
-            return sJSONEngine.toJsonIndent(object, indent, jsonConfig);
+            return sJSONEngine.toJsonIndent(object, jsonConfig);
         }
         return null;
     }
