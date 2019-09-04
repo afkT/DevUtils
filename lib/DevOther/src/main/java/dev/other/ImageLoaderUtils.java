@@ -2,6 +2,7 @@ package dev.other;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
@@ -96,7 +97,7 @@ public final class ImageLoaderUtils {
      * @param loadingRes 设置加载中显示的图片
      * @return {@link DisplayImageOptions}
      */
-    public static DisplayImageOptions getDefaultImageOptions(final int loadingRes) {
+    public static DisplayImageOptions getDefaultImageOptions(@DrawableRes final int loadingRes) {
         DisplayImageOptions.Builder optionsBuilder = cloneImageOptions(DF_OPTIONS);
         optionsBuilder.showImageOnLoading(loadingRes) // 设置图片在下载期间显示的图片
                 .showImageForEmptyUri(loadingRes) // 设置图片 Uri 为空或是错误的时候显示的图片
@@ -117,7 +118,7 @@ public final class ImageLoaderUtils {
      * @param loadingRes 设置加载中显示的图片
      * @return {@link DisplayImageOptions}
      */
-    public static DisplayImageOptions getNoCacheImageOptions(final int loadingRes) {
+    public static DisplayImageOptions getNoCacheImageOptions(@DrawableRes final int loadingRes) {
         return getCacheImageOptions(false, false, loadingRes);
     }
 
@@ -140,7 +141,7 @@ public final class ImageLoaderUtils {
      */
     public static DisplayImageOptions getCacheImageOptions(final boolean isCache,
                                                            final boolean isCacheDisk,
-                                                           final int loadingRes) {
+                                                           @DrawableRes final int loadingRes) {
         DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder()
                 .imageScaleType(ImageScaleType.EXACTLY) // 设置图片缩放
                 .bitmapConfig(Bitmap.Config.RGB_565) // 图片解码类型
