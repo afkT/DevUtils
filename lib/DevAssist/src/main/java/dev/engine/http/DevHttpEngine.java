@@ -20,7 +20,7 @@ public final class DevHttpEngine {
      * 初始化 Engine
      * @param httpEngine {@link IHttpEngine}
      */
-    public static void initEngine(IHttpEngine httpEngine) {
+    public static void initEngine(final IHttpEngine httpEngine) {
         DevHttpEngine.sHttpEngine = httpEngine;
     }
 
@@ -38,7 +38,7 @@ public final class DevHttpEngine {
      * @param callBack {@link IHttpEngine.RequestCallBack}
      * @return {@link IHttpEngine.Call}
      */
-    public static IHttpEngine.Call newCall(IHttpEngine.Request request, IHttpEngine.RequestCallBack callBack) {
+    public static IHttpEngine.Call newCall(final IHttpEngine.Request request, final IHttpEngine.RequestCallBack callBack) {
         if (sHttpEngine != null) {
             return sHttpEngine.newCall(request, callBack);
         }
@@ -62,7 +62,7 @@ public final class DevHttpEngine {
      * 取消请求
      * @param call {@link IHttpEngine.Call}
      */
-    public static void cancelCall(IHttpEngine.Call call) {
+    public static void cancelCall(final IHttpEngine.Call call) {
         if (sHttpEngine != null) {
             sHttpEngine.cancelCall(call);
         }
@@ -72,7 +72,7 @@ public final class DevHttpEngine {
      * 取消请求
      * @param url Request Url
      */
-    public static void cancelUrl(String url) {
+    public static void cancelUrl(final String url) {
         if (sHttpEngine != null) {
             sHttpEngine.cancelUrl(url);
         }
@@ -82,7 +82,7 @@ public final class DevHttpEngine {
      * 取消请求
      * @param object Object Tag
      */
-    public static void cancelTag(Object object) {
+    public static void cancelTag(final Object object) {
         if (sHttpEngine != null) {
             sHttpEngine.cancelTag(object);
         }

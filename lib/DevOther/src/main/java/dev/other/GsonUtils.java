@@ -22,8 +22,6 @@ import dev.utils.JCLogUtils;
  * <pre>
  *     Gson 详细使用
  *     @see <a href="https://www.jianshu.com/p/d62c2be60617"/>
- *     TypeBuilder
- *     @see <a href="https://github.com/ikidou/TypeBuilder"/>
  * </pre>
  */
 public final class GsonUtils {
@@ -250,6 +248,15 @@ public final class GsonUtils {
     // ========
 
     /**
+     * 获取 Array Type
+     * @param type Bean.class
+     * @return Bean[] Type
+     */
+    public static Type getArrayType(final Type type) {
+        return TypeToken.getArray(type).getType();
+    }
+
+    /**
      * 获取 List Type
      * @param type Bean.class
      * @return List<Bean> Type
@@ -275,15 +282,6 @@ public final class GsonUtils {
      */
     public static Type getMapType(final Type keyType, final Type valueType) {
         return TypeToken.getParameterized(Map.class, keyType, valueType).getType();
-    }
-
-    /**
-     * 获取 Array Type
-     * @param type Bean.class
-     * @return Bean[] Type
-     */
-    public static Type getArrayType(final Type type) {
-        return TypeToken.getArray(type).getType();
     }
 
     /**
