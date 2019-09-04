@@ -4,11 +4,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.StringReader;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import dev.utils.JCLogUtils;
 
@@ -45,7 +49,7 @@ public final class GsonUtils {
      * @param object {@link Object}
      * @return JSON String
      */
-    public static String toJson(Object object) {
+    public static String toJson(final Object object) {
         return toJson(object, TO_GSON);
     }
 
@@ -55,7 +59,7 @@ public final class GsonUtils {
      * @param gson   {@link Gson}
      * @return JSON String
      */
-    public static String toJson(Object object, Gson gson) {
+    public static String toJson(final Object object, final Gson gson) {
         if (gson != null) {
             try {
                 return gson.toJson(object);
@@ -75,7 +79,7 @@ public final class GsonUtils {
      * @param <T>      泛型
      * @return instance of type
      */
-    public static <T> T fromJson(String json, Class<T> classOfT) {
+    public static <T> T fromJson(final String json, final Class<T> classOfT) {
         return fromJson(json, classOfT, FROM_GSON);
     }
 
@@ -87,7 +91,7 @@ public final class GsonUtils {
      * @param <T>      泛型
      * @return instance of type
      */
-    public static <T> T fromJson(String json, Class<T> classOfT, Gson gson) {
+    public static <T> T fromJson(final String json, final Class<T> classOfT, final Gson gson) {
         if (gson != null) {
             try {
                 return gson.fromJson(json, classOfT);
@@ -107,7 +111,7 @@ public final class GsonUtils {
      * @param <T>     泛型
      * @return instance of type
      */
-    public static <T> T fromJson(String json, Type typeOfT) {
+    public static <T> T fromJson(final String json, final Type typeOfT) {
         return fromJson(json, typeOfT, FROM_GSON);
     }
 
@@ -119,7 +123,7 @@ public final class GsonUtils {
      * @param <T>     泛型
      * @return instance of type
      */
-    public static <T> T fromJson(String json, Type typeOfT, Gson gson) {
+    public static <T> T fromJson(final String json, final Type typeOfT, final Gson gson) {
         if (gson != null) {
             try {
                 return gson.fromJson(json, typeOfT);
@@ -139,7 +143,7 @@ public final class GsonUtils {
      * @param json 待校验 JSON String
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isJSON(String json) {
+    public static boolean isJSON(final String json) {
         JsonElement jsonElement;
         try {
             jsonElement = new JsonParser().parse(json);
@@ -160,7 +164,7 @@ public final class GsonUtils {
      * @param json JSON String
      * @return JSON String
      */
-    public static String toJsonIndent(String json) {
+    public static String toJsonIndent(final String json) {
         return toJsonIndent(json, INDENT_GSON);
     }
 
@@ -170,7 +174,7 @@ public final class GsonUtils {
      * @param gson {@link Gson}
      * @return JSON String
      */
-    public static String toJsonIndent(String json, Gson gson) {
+    public static String toJsonIndent(final String json, final Gson gson) {
         if (gson != null) {
             try {
                 JsonReader reader = new JsonReader(new StringReader(json));
@@ -192,7 +196,7 @@ public final class GsonUtils {
      * @param object {@link Object}
      * @return JSON String
      */
-    public static String toJsonIndent(Object object) {
+    public static String toJsonIndent(final Object object) {
         return toJsonIndent(object, INDENT_GSON);
     }
 
@@ -202,7 +206,7 @@ public final class GsonUtils {
      * @param gson   {@link Gson}
      * @return JSON String
      */
-    public static String toJsonIndent(Object object, Gson gson) {
+    public static String toJsonIndent(final Object object, final Gson gson) {
         if (gson != null) {
             try {
                 return gson.toJson(object);
@@ -222,7 +226,7 @@ public final class GsonUtils {
      * @param serializeNulls 是否序列化 null 值
      * @return {@link GsonBuilder}
      */
-    public static GsonBuilder createGson(boolean serializeNulls) {
+    public static GsonBuilder createGson(final boolean serializeNulls) {
         GsonBuilder builder = new GsonBuilder();
         if (serializeNulls) builder.serializeNulls();
         return builder;
@@ -234,10 +238,61 @@ public final class GsonUtils {
      * @param modifiers 需过滤不处理的字段修饰符 {@link Modifier}
      * @return {@link GsonBuilder}
      */
-    public static GsonBuilder createGsonExcludeFields(GsonBuilder builder, int... modifiers) {
+    public static GsonBuilder createGsonExcludeFields(final GsonBuilder builder, final int... modifiers) {
         if (builder != null) {
             return builder.excludeFieldsWithModifiers(modifiers);
         }
         return null;
+    }
+
+    // ========
+    // = Type =
+    // ========
+
+    /**
+     * 获取 List Type
+     * @param type Bean.class
+     * @return List<Bean> Type
+     */
+    public static Type getListType(final Type type) {
+        return TypeToken.getParameterized(List.class, type).getType();
+    }
+
+    /**
+     * 获取 Set Type
+     * @param type Bean.class
+     * @return Set<Bean> Type
+     */
+    public static Type getSetType(final Type type) {
+        return TypeToken.getParameterized(Set.class, type).getType();
+    }
+
+    /**
+     * 获取 Map Type
+     * @param keyType   Key.class
+     * @param valueType Value.class
+     * @return Map<Bean> Type
+     */
+    public static Type getMapType(final Type keyType, final Type valueType) {
+        return TypeToken.getParameterized(Map.class, keyType, valueType).getType();
+    }
+
+    /**
+     * 获取 Array Type
+     * @param type Bean.class
+     * @return Bean[] Type
+     */
+    public static Type getArrayType(final Type type) {
+        return TypeToken.getArray(type).getType();
+    }
+
+    /**
+     * 获取 Type
+     * @param rawType       raw type
+     * @param typeArguments type arguments
+     * @return Type
+     */
+    public static Type getType(final Type rawType, final Type... typeArguments) {
+        return TypeToken.getParameterized(rawType, typeArguments).getType();
     }
 }
