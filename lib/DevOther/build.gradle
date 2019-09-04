@@ -13,4 +13,13 @@ dependencies {
 
     // Gson
     implementation deps.lib.gson
+    // Imageloader
+    implementation deps.lib.imageloader
+    // Glide
+    implementation deps.lib.glide
+    annotationProcessor deps.lib.glide_compiler
+    // EventBus
+    implementation deps.lib.eventbus
+    // OkHttp3
+    implementation deps.lib.okhttp3
 }
