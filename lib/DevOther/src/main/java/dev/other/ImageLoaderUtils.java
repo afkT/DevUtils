@@ -25,7 +25,8 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListe
  * detail: ImageLoader 工具类
  * @author Ttt
  * <pre>
- *     init: ImageLoaderUtils.initConfig(getApplicationContext());
+ *     init: ImageLoaderUtils.init(getApplicationContext());
+ *     use modify: 修改 defaultOptions() 配置、以及加载默认图片资源
  * </pre>
  */
 public final class ImageLoaderUtils {
@@ -34,12 +35,12 @@ public final class ImageLoaderUtils {
     }
 
     // 图片加载中
-    private static int mImageLoadingRes = 0;
+    private static int sImageLoadingRes = 0;
     // 图片地址异常
-    private static int mImageUriErrorRes = 0;
+    private static int sImageUriErrorRes = 0;
     // 图片 ( 加载 / 解码 ) 失败
-    private static int mImageFailRes = 0;
-    // 图片加载默认配置
+    private static int sImageFailRes = 0;
+    // 图片默认加载配置
     private static final DisplayImageOptions DF_OPTIONS = defaultOptions();
 
     // ========
@@ -47,12 +48,12 @@ public final class ImageLoaderUtils {
     // ========
 
     /**
-     * 初始化 ImageLoader 配置
+     * 初始化 ImageLoader 加载配置
      * @param context {@link Context}
      */
-    public static void initConfig(final Context context) {
+    public static void init(final Context context) {
         DisplayImageOptions options = DF_OPTIONS;
-        // 针对图片缓存的全局配置 ( 主要有线程类、缓存大小、磁盘大小、图片下载与解析、日志方面的配置 )
+        // 针对图片缓存的全局加载配置 ( 主要有线程类、缓存大小、磁盘大小、图片下载与解析、日志方面的配置 )
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
                 .defaultDisplayImageOptions(options) // 加载 DisplayImageOptions 参数
                 .threadPriority(Thread.NORM_PRIORITY - 2) // 线程池内加载的数量
@@ -79,9 +80,9 @@ public final class ImageLoaderUtils {
      */
     public static DisplayImageOptions defaultOptions() {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(mImageLoadingRes) // 设置图片在下载期间显示的图片
-                .showImageForEmptyUri(mImageUriErrorRes) // 设置图片 Uri 为空或是错误的时候显示的图片
-                .showImageOnFail(mImageFailRes) // 设置图片 ( 加载 / 解码 ) 过程中错误时候显示的图片
+                .showImageOnLoading(sImageLoadingRes) // 设置图片在下载期间显示的图片
+                .showImageForEmptyUri(sImageUriErrorRes) // 设置图片 Uri 为空或是错误的时候显示的图片
+                .showImageOnFail(sImageFailRes) // 设置图片 ( 加载 / 解码 ) 过程中错误时候显示的图片
                 .imageScaleType(ImageScaleType.EXACTLY) // 设置图片缩放
                 .bitmapConfig(Bitmap.Config.RGB_565) // 图片解码类型
                 .cacheInMemory(true) // 是否保存到内存
@@ -93,7 +94,7 @@ public final class ImageLoaderUtils {
     }
 
     /**
-     * 获取图片加载默认配置
+     * 获取图片默认加载配置
      * @param loadingRes 设置加载中显示的图片
      * @return {@link DisplayImageOptions}
      */
@@ -123,7 +124,7 @@ public final class ImageLoaderUtils {
     }
 
     /**
-     * 获取 ImageLoader 图片加载缓存配置
+     * 获取 ImageLoader 图片缓存加载配置
      * @param isCache     是否缓存在内存中
      * @param isCacheDisk 是否保存在 SDCard
      * @return {@link DisplayImageOptions}
@@ -159,7 +160,7 @@ public final class ImageLoaderUtils {
 
     /**
      * 克隆图片加载配置
-     * @param options 待克隆配置
+     * @param options 待克隆加载配置
      * @return {@link DisplayImageOptions}
      */
     public static DisplayImageOptions.Builder cloneImageOptions(final DisplayImageOptions options) {
@@ -171,16 +172,16 @@ public final class ImageLoaderUtils {
     // ============
 
     /**
-     * 获取加载渐变动画图片配置
+     * 获取图片渐变动画加载配置
      * @param durationMillis 动画持续时间
      * @return {@link DisplayImageOptions}
      */
     public static DisplayImageOptions getFadeInBitmapDisplayer(final int durationMillis) {
-        return getBitmapDisplayerOptions(DF_OPTIONS, new FadeInBitmapDisplayer(durationMillis));
+        return getBitmapDisplayerOptions(cloneImageOptions(DF_OPTIONS).build(), new FadeInBitmapDisplayer(durationMillis));
     }
 
     /**
-     * 获取加载渐变动画图片配置
+     * 获取图片渐变动画加载配置
      * @param options        {@link DisplayImageOptions}
      * @param durationMillis 动画持续时间
      * @return {@link DisplayImageOptions}
@@ -195,16 +196,16 @@ public final class ImageLoaderUtils {
     // =
 
     /**
-     * 获取圆角图片配置
+     * 获取圆角图片加载配置
      * @param cornerRadiusPixels 圆角大小
      * @return {@link DisplayImageOptions}
      */
     public static DisplayImageOptions getRoundedBitmapDisplayer(final int cornerRadiusPixels) {
-        return getBitmapDisplayerOptions(DF_OPTIONS, new RoundedBitmapDisplayer(cornerRadiusPixels));
+        return getBitmapDisplayerOptions(cloneImageOptions(DF_OPTIONS).build(), new RoundedBitmapDisplayer(cornerRadiusPixels));
     }
 
     /**
-     * 获取圆角图片配置
+     * 获取圆角图片加载配置
      * @param options            {@link DisplayImageOptions}
      * @param cornerRadiusPixels 圆角大小
      * @return {@link DisplayImageOptions}
@@ -217,7 +218,7 @@ public final class ImageLoaderUtils {
     }
 
     /**
-     * 获取图片效果配置
+     * 获取图片效果加载配置
      * @param options   {@link DisplayImageOptions}
      * @param displayer {@link BitmapDisplayer}
      * @return {@link DisplayImageOptions}
@@ -250,7 +251,7 @@ public final class ImageLoaderUtils {
      */
     public static void displayImage(final String uri, final ImageView imageView, final DisplayImageOptions options) {
         if (imageView != null) {
-            // 判断是否使用自定义图片配置
+            // 判断是否使用自定义图片加载配置
             if (options != null) {
                 ImageLoader.getInstance().displayImage(uri, imageView, options);
             } else {
