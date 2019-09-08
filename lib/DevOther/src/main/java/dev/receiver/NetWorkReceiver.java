@@ -15,7 +15,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 网络广播监听
+ * detail: 网络监听广播
  * @author Ttt
  */
 public final class NetWorkReceiver extends BroadcastReceiver {

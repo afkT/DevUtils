@@ -9,7 +9,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 屏幕监听 ( 锁屏 / 解锁 / 亮屏 )
+ * detail: 屏幕监听广播 ( 锁屏 / 解锁 / 亮屏 )
  * @author Ttt
  */
 public final class ScreenReceiver extends BroadcastReceiver {
@@ -104,6 +104,7 @@ public final class ScreenReceiver extends BroadcastReceiver {
      * @author Ttt
      */
     public interface ScreenListener {
+
         /**
          * 用户打开屏幕 ( 屏幕变亮 )
          */
