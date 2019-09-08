@@ -51,7 +51,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(action)) {
                 // 设置连接类型
                 mConnectState = getConnectType();
-                // 触发通知
+                // 触发事件
                 if (NetWorkReceiver.networdStateListener != null) {
                     NetWorkReceiver.networdStateListener.onNetworkState(mConnectState);
                 }
