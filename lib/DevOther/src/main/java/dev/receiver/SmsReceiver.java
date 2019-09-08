@@ -33,12 +33,12 @@ public final class SmsReceiver extends BroadcastReceiver {
             String originatingAddress = null;
             String serviceCenterAddress = null;
             if (pdus != null) {
-                // 短信内容
+                // 消息内容
                 String message = "";
                 // 循环拼接内容
                 for (Object obj : pdus) {
                     SmsMessage sms = SmsMessage.createFromPdu((byte[]) obj);
-                    message += sms.getMessageBody(); // 消息内容 - 多条消息，合并成一条
+                    message += sms.getMessageBody(); // 消息内容 - 多条消息, 合并成一条
                     originatingAddress = sms.getOriginatingAddress();
                     serviceCenterAddress = sms.getServiceCenterAddress();
                     // 触发事件

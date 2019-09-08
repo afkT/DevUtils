@@ -145,8 +145,8 @@ public final class GlideUtils {
      *     缓存:
      *     DiskCacheStrategy.NONE 不做磁盘缓存
      *     DiskCacheStrategy.SOURCE 只缓存图像原图
-     *     DiskCacheStrategy.RESULT 只缓存加载后的图像，即处理后最终显示时的图像
-     *     DiskCacheStrategy.ALL 缓存所有版本的图像（默认行为）
+     *     DiskCacheStrategy.RESULT 只缓存加载后的图像, 即处理后最终显示时的图像
+     *     DiskCacheStrategy.ALL 缓存所有版本的图像 ( 默认行为 )
      * </pre>
      * @return {@link RequestOptions}
      */

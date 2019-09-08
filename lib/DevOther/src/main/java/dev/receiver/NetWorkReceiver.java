@@ -33,7 +33,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
     // = 常量 =
     // ========
 
-    private static final int BASE = 402030;
+    private static final int BASE = 202030;
     // Wifi
     public static final int NET_WIFI = BASE + 1;
     // 移动网络
