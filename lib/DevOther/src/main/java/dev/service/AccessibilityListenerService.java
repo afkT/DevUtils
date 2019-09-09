@@ -10,7 +10,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.app.AccessibilityUtils;
 
 /**
- * detail: AccessibilityListenerService - 无障碍功能监听服务
+ * detail: 无障碍功能监听服务
  * @author Ttt
  * <pre>
  *     具体配合 {@link AccessibilityUtils} 使用

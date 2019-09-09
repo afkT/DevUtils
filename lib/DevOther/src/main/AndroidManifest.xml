@@ -1,8 +1,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.other">
 
+    <!-- NotificationListenerService 所需权限 监听应用程序消息 -->
+    <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
+    <!-- AccessibilityService 所需权限 读取新通知 -->
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+
     <application>
 
+        <!--
+            NotificationListenerService - 通知栏监听服务
+            NotificationListenerService 是在 Android 4.3 (API 18) 时被加入的, 作用就是用来监听通知栏消息
+            并且官方建议在 Android 4.3 及以上使用 NotificationListenerService 来监听通知栏消息, 以此取代 AccessibilityService
+        -->
+        <service
+            android:name="dev.service.NotificationService"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!--
+            AccessibilityListenerService - 无障碍功能监听服务
+            AccessibilityService 在 API < 18 的时候使用 AccessibilityService
+            <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+        -->
         <service
             android:name="dev.service.AccessibilityListenerService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
