@@ -232,9 +232,11 @@ public final class NotificationService extends NotificationListenerService {
          * 触发服务指令
          * @param service {@link NotificationService}
          * @param intent  {@link Intent}
-         * @param flags
-         * @param startId
-         * @return
+         * @param flags   Additional data about this start request.
+         * @param startId A unique integer representing this specific request to start.  Use with {@link #stopSelfResult(int)}.
+         * @return The return value indicates what semantics the system should
+         * use for the service's current started state.  It may be one of the
+         * constants associated with the {@link #START_CONTINUATION_MASK} bits.
          */
         int onStartCommand(NotificationService service, Intent intent, int flags, int startId);
 
