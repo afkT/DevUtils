@@ -43,7 +43,7 @@ public final class ConvertUtils {
      * @param <T>    泛型
      * @return Object convert T object
      */
-    public static <T> T convert(Object object) {
+    public static <T> T convert(final Object object) {
         try {
             return (T) object;
         } catch (Exception e) {
