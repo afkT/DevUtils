@@ -18,7 +18,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 软键盘相关辅助类
+ * detail: 软键盘相关工具类
  * @author Ttt
  * <pre>
  *     避免输入法面板遮挡 manifest.xml 中 activity 中设置
@@ -531,9 +531,9 @@ public final class KeyBoardUtils {
                     if (!declaredField.isAccessible()) {
                         declaredField.setAccessible(true);
                     }
-                    Object obj = declaredField.get(imm);
-                    if (obj == null || !(obj instanceof View)) continue;
-                    View view = (View) obj;
+                    Object object = declaredField.get(imm);
+                    if (object == null || !(object instanceof View)) continue;
+                    View view = (View) object;
                     if (view.getContext() == context) {
                         declaredField.set(imm, null);
                     } else {

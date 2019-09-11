@@ -493,8 +493,8 @@ public final class Reflect2Utils {
      * 获取某个对象的变量
      * <pre>
      *     例: 获取父类中的变量
-     *     Object obj = 对象;
-     *     getObject(getDeclaredFieldParent(obj, "父类中变量名"), obj);
+     *     Object object = 对象;
+     *     getObject(getDeclaredFieldParent(object, "父类中变量名"), object);
      * </pre>
      * @param object 对象
      * @param field  {@link Field}

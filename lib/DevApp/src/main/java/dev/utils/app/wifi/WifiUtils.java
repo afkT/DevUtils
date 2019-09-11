@@ -872,13 +872,13 @@ public final class WifiUtils {
                     setDNS(InetAddress.getByName(dns), wifiConfig);
                 }
             } else { // 5.0 新版本改变到其他地方
-                Object obj = getDeclaredField(wifiConfig, "mIpConfiguration");
+                Object object = getDeclaredField(wifiConfig, "mIpConfiguration");
                 // 设置 IP 分配方式, 静态 IP
-                setEnumField(obj, "STATIC", "ipAssignment");
+                setEnumField(object, "STATIC", "ipAssignment");
                 // 设置不用代理
-                setEnumField(obj, "NONE", "proxySettings");
+                setEnumField(object, "NONE", "proxySettings");
                 // 设置 IP 地址、网关、DNS
-                setStaticIpConfig(ip, gateway, dns, networkPrefixLength, obj);
+                setStaticIpConfig(ip, gateway, dns, networkPrefixLength, object);
             }
             return wifiConfig;
         } catch (Exception e) {

@@ -18,7 +18,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Intent ( 意图 ) 相关工具类
+ * detail: Intent 相关工具类
  * @author Ttt
  * <pre>
  *     所需权限

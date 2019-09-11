@@ -253,7 +253,11 @@ public final class DialogUtils {
      */
     public static <T extends Dialog> T showDialog(final T dialog) {
         if (dialog != null && !dialog.isShowing()) {
-            dialog.show();
+            try {
+                dialog.show();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "showDialog");
+            }
         }
         return dialog;
     }
@@ -264,7 +268,11 @@ public final class DialogUtils {
      */
     public static void closeDialog(final Dialog dialog) {
         if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
+            try {
+                dialog.dismiss();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "closeDialog");
+            }
         }
     }
 
@@ -277,7 +285,11 @@ public final class DialogUtils {
             for (int i = 0, len = dialogs.length; i < len; i++) {
                 Dialog dialog = dialogs[i];
                 if (dialog != null && dialog.isShowing()) {
-                    dialog.dismiss();
+                    try {
+                        dialog.dismiss();
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "closeDialogs");
+                    }
                 }
             }
         }
@@ -291,7 +303,11 @@ public final class DialogUtils {
      */
     public static void closePopupWindow(final PopupWindow popupWindow) {
         if (popupWindow != null && popupWindow.isShowing()) {
-            popupWindow.dismiss();
+            try {
+                popupWindow.dismiss();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "closePopupWindow");
+            }
         }
     }
 
@@ -304,7 +320,11 @@ public final class DialogUtils {
             for (int i = 0, len = popupWindows.length; i < len; i++) {
                 PopupWindow popupWindow = popupWindows[i];
                 if (popupWindow != null && popupWindow.isShowing()) {
-                    popupWindow.dismiss();
+                    try {
+                        popupWindow.dismiss();
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "closePopupWindows");
+                    }
                 }
             }
         }
