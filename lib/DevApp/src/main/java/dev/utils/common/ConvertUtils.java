@@ -40,10 +40,10 @@ public final class ConvertUtils {
     /**
      * Object 转换所需类型对象
      * @param object Object
-     * @param <T> 泛型
+     * @param <T>    泛型
      * @return Object convert T object
      */
-    public static <T> T convert(Object object){
+    public static <T> T convert(Object object) {
         try {
             return (T) object;
         } catch (Exception e) {

@@ -107,6 +107,25 @@ public final class ViewUtils {
     // =
 
     /**
+     * 获取指定 View 父布局
+     * @param view {@link View}
+     * @param <T>  泛型
+     * @return View
+     */
+    public static <T extends View> T getParent(final View view) {
+        if (view != null) {
+            try {
+                return (T) view.getParent();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getParent");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * 获取指定索引 View
      * @param viewGroup {@link ViewGroup}
      * @param <T>       泛型
