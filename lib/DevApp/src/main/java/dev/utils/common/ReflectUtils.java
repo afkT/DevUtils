@@ -642,19 +642,19 @@ public final class ReflectUtils {
 
     /**
      * 判断反射的两个对象是否一样
-     * @param obj 对象
+     * @param object 对象
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean equals(final Object obj) {
-        if (this.mObject == null && obj == null) {
+    public boolean equals(final Object object) {
+        if (this.mObject == null && object == null) {
             return true;
         } else {
-            if (this.mObject != null && obj != null) {
-                if (obj instanceof ReflectUtils) {
-                    return this.mObject.equals(((ReflectUtils) obj).get());
+            if (this.mObject != null && object != null) {
+                if (object instanceof ReflectUtils) {
+                    return this.mObject.equals(((ReflectUtils) object).get());
                 } else {
-                    this.mObject.equals(obj);
+                    this.mObject.equals(object);
                 }
             }
             return false;

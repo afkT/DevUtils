@@ -89,37 +89,33 @@ public interface IJSONEngine {
 
     /**
      * JSON String 缩进处理
-     * @param json   JSON String
-     * @param indent 缩进单位
+     * @param json JSON String
      * @return JSON String
      */
-    String toJsonIndent(String json, int indent);
+    String toJsonIndent(String json);
 
     /**
      * JSON String 缩进处理
      * @param json       JSON String
-     * @param indent     缩进单位
      * @param jsonConfig {@link JSONConfig}
      * @return JSON String
      */
-    String toJsonIndent(String json, int indent, JSONConfig jsonConfig);
+    String toJsonIndent(String json, JSONConfig jsonConfig);
 
     // =
 
     /**
      * Object 转 JSON String 并进行缩进处理
      * @param object {@link Object}
-     * @param indent 缩进单位
      * @return JSON String
      */
-    String toJsonIndent(Object object, int indent);
+    String toJsonIndent(Object object);
 
     /**
      * Object 转 JSON String 并进行缩进处理
      * @param object     {@link Object}
-     * @param indent     缩进单位
      * @param jsonConfig {@link JSONConfig}
      * @return JSON String
      */
-    String toJsonIndent(Object object, int indent, JSONConfig jsonConfig);
+    String toJsonIndent(Object object, JSONConfig jsonConfig);
 }

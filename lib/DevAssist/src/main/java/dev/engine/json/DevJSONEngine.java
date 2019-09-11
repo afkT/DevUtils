@@ -22,7 +22,7 @@ public final class DevJSONEngine {
      * 初始化 Engine
      * @param jsonEngine {@link IJSONEngine}
      */
-    public static void initEngine(IJSONEngine jsonEngine) {
+    public static void initEngine(final IJSONEngine jsonEngine) {
         DevJSONEngine.sJSONEngine = jsonEngine;
     }
 
@@ -39,7 +39,7 @@ public final class DevJSONEngine {
      * @param object {@link Object}
      * @return JSON String
      */
-    public static String toJson(Object object) {
+    public static String toJson(final Object object) {
         if (sJSONEngine != null) {
             return sJSONEngine.toJson(object);
         }
@@ -52,7 +52,7 @@ public final class DevJSONEngine {
      * @param jsonConfig {@link IJSONEngine.JSONConfig}
      * @return JSON String
      */
-    public static String toJson(Object object, IJSONEngine.JSONConfig jsonConfig) {
+    public static String toJson(final Object object, final IJSONEngine.JSONConfig jsonConfig) {
         if (sJSONEngine != null) {
             return sJSONEngine.toJson(object, jsonConfig);
         }
@@ -68,7 +68,7 @@ public final class DevJSONEngine {
      * @param <T>      泛型
      * @return instance of type
      */
-    public static <T> T fromJson(String json, Class<T> classOfT) {
+    public static <T> T fromJson(final String json, final Class<T> classOfT) {
         if (sJSONEngine != null) {
             return sJSONEngine.fromJson(json, classOfT);
         }
@@ -83,7 +83,7 @@ public final class DevJSONEngine {
      * @param <T>        泛型
      * @return instance of type
      */
-    public static <T> T fromJson(String json, Class<T> classOfT, IJSONEngine.JSONConfig jsonConfig) {
+    public static <T> T fromJson(final String json, final Class<T> classOfT, final IJSONEngine.JSONConfig jsonConfig) {
         if (sJSONEngine != null) {
             return sJSONEngine.fromJson(json, classOfT, jsonConfig);
         }
@@ -99,7 +99,7 @@ public final class DevJSONEngine {
      * @param <T>     泛型
      * @return instance of type
      */
-    public static <T> T fromJson(String json, Type typeOfT) {
+    public static <T> T fromJson(final String json, final Type typeOfT) {
         if (sJSONEngine != null) {
             return sJSONEngine.fromJson(json, typeOfT);
         }
@@ -114,7 +114,7 @@ public final class DevJSONEngine {
      * @param <T>        泛型
      * @return instance of type
      */
-    public static <T> T fromJson(String json, Type typeOfT, IJSONEngine.JSONConfig jsonConfig) {
+    public static <T> T fromJson(final String json, final Type typeOfT, final IJSONEngine.JSONConfig jsonConfig) {
         if (sJSONEngine != null) {
             return sJSONEngine.fromJson(json, typeOfT, jsonConfig);
         }
@@ -130,7 +130,7 @@ public final class DevJSONEngine {
      * @param json 待校验 JSON String
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isJSON(String json) {
+    public static boolean isJSON(final String json) {
         if (sJSONEngine != null) {
             return sJSONEngine.isJSON(json);
         }
@@ -139,13 +139,12 @@ public final class DevJSONEngine {
 
     /**
      * JSON String 缩进处理
-     * @param json   JSON String
-     * @param indent 缩进单位
+     * @param json JSON String
      * @return JSON String
      */
-    public static String toJsonIndent(String json, int indent) {
+    public static String toJsonIndent(final String json) {
         if (sJSONEngine != null) {
-            return sJSONEngine.toJsonIndent(json, indent);
+            return sJSONEngine.toJsonIndent(json);
         }
         return null;
     }
@@ -153,13 +152,12 @@ public final class DevJSONEngine {
     /**
      * JSON String 缩进处理
      * @param json       JSON String
-     * @param indent     缩进单位
      * @param jsonConfig {@link IJSONEngine.JSONConfig}
      * @return JSON String
      */
-    public static String toJsonIndent(String json, int indent, IJSONEngine.JSONConfig jsonConfig) {
+    public static String toJsonIndent(final String json, final IJSONEngine.JSONConfig jsonConfig) {
         if (sJSONEngine != null) {
-            return sJSONEngine.toJsonIndent(json, indent, jsonConfig);
+            return sJSONEngine.toJsonIndent(json, jsonConfig);
         }
         return null;
     }
@@ -169,12 +167,11 @@ public final class DevJSONEngine {
     /**
      * Object 转 JSON String 并进行缩进处理
      * @param object {@link Object}
-     * @param indent 缩进单位
      * @return JSON String
      */
-    public static String toJsonIndent(Object object, int indent) {
+    public static String toJsonIndent(final Object object) {
         if (sJSONEngine != null) {
-            return sJSONEngine.toJsonIndent(object, indent);
+            return sJSONEngine.toJsonIndent(object);
         }
         return null;
     }
@@ -182,13 +179,12 @@ public final class DevJSONEngine {
     /**
      * Object 转 JSON String 并进行缩进处理
      * @param object     {@link Object}
-     * @param indent     缩进单位
      * @param jsonConfig {@link IJSONEngine.JSONConfig}
      * @return JSON String
      */
-    public static String toJsonIndent(Object object, int indent, IJSONEngine.JSONConfig jsonConfig) {
+    public static String toJsonIndent(final Object object, final IJSONEngine.JSONConfig jsonConfig) {
         if (sJSONEngine != null) {
-            return sJSONEngine.toJsonIndent(object, indent, jsonConfig);
+            return sJSONEngine.toJsonIndent(object, jsonConfig);
         }
         return null;
     }

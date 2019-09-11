@@ -18,4 +18,4 @@ dependencies {
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
-apply from : rootProject.file(files.app_bintray_upload)
+//apply from : rootProject.file(files.app_bintray_upload)

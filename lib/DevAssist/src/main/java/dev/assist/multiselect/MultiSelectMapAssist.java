@@ -59,7 +59,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param collection 集合泛型
      */
     @Override
-    public void putSelects(LinkedHashMap<K, V> collection) {
+    public void putSelects(final LinkedHashMap<K, V> collection) {
         if (collection != null) {
             mMapSelects.putAll(collection);
         }
@@ -70,7 +70,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param collections 集合
      */
     @Override
-    public void putSelects(Collection<? extends DevBaseEntry<?, V>> collections) {
+    public void putSelects(final Collection<? extends DevBaseEntry<?, V>> collections) {
         if (collections != null) {
             for (DevBaseEntry<?, V> entry : collections) {
                 if (entry != null) {
@@ -95,7 +95,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isSelectValue(V value) {
+    public boolean isSelectValue(final V value) {
         return mMapSelects.containsValue(value);
     }
 
@@ -104,7 +104,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param value Value
      */
     @Override
-    public void unselectValue(V value) {
+    public void unselectValue(final V value) {
         Iterator<V> iterator = mMapSelects.values().iterator();
         while (iterator.hasNext()) {
             V v = iterator.next();
@@ -120,7 +120,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param value Value
      */
     @Override
-    public void unselectValueAll(V value) {
+    public void unselectValueAll(final V value) {
         Iterator<V> iterator = mMapSelects.values().iterator();
         while (iterator.hasNext()) {
             V v = iterator.next();
@@ -141,7 +141,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isSelect(K key, V value) {
+    public boolean isSelect(final K key, final V value) {
         if (!isSelectKey(key)) {
             mMapSelects.put(key, value);
             return false;
@@ -155,7 +155,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isSelectKey(K key) {
+    public boolean isSelectKey(final K key) {
         return mMapSelects.containsKey(key);
     }
 
@@ -165,7 +165,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param value Value
      */
     @Override
-    public void select(K key, V value) {
+    public void select(final K key, final V value) {
         mMapSelects.put(key, value);
     }
 
@@ -176,7 +176,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param value    Value
      */
     @Override
-    public void select(boolean isSelect, K key, V value) {
+    public void select(final boolean isSelect, final K key, final V value) {
         if (isSelect) {
             select(key, value);
         } else {
@@ -189,7 +189,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param key Key
      */
     @Override
-    public void unselect(K key) {
+    public void unselect(final K key) {
         mMapSelects.remove(key);
     }
 
@@ -202,7 +202,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param value Value
      */
     @Override
-    public void toggle(K key, V value) {
+    public void toggle(final K key, final V value) {
         if (isSelectKey(key)) {
             mMapSelects.remove(key);
         } else {
@@ -224,7 +224,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @return Value
      */
     @Override
-    public V getSelectValue(K key) {
+    public V getSelectValue(final K key) {
         return mMapSelects.get(key);
     }
 
@@ -260,7 +260,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @return Key
      */
     @Override
-    public K getSelectKey(V value) {
+    public K getSelectKey(final V value) {
         // 进行循环遍历获取
         Iterator<Map.Entry<K, V>> iterator = mMapSelects.entrySet().iterator();
         while (iterator.hasNext()) {

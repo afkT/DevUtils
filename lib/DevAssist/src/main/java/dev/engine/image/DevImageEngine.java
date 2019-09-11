@@ -23,7 +23,7 @@ public final class DevImageEngine {
      * 初始化 Engine
      * @param imageEngine {@link IImageEngine}
      */
-    public static void initEngine(IImageEngine imageEngine) {
+    public static void initEngine(final IImageEngine imageEngine) {
         DevImageEngine.sImageEngine = imageEngine;
     }
 
@@ -40,7 +40,7 @@ public final class DevImageEngine {
      * @param uri       Image Uri
      * @param imageView ImageView
      */
-    public static void displayImage(String uri, ImageView imageView) {
+    public static void displayImage(final String uri, final ImageView imageView) {
         if (sImageEngine != null) {
             sImageEngine.displayImage(uri, imageView);
         }
@@ -52,7 +52,7 @@ public final class DevImageEngine {
      * @param imageView    ImageView
      * @param defaultImage Default resource image
      */
-    public static void displayImage(String uri, ImageView imageView, int defaultImage) {
+    public static void displayImage(final String uri, final ImageView imageView, final int defaultImage) {
         if (sImageEngine != null) {
             sImageEngine.displayImage(uri, imageView, defaultImage);
         }
@@ -64,7 +64,7 @@ public final class DevImageEngine {
      * @param imageView ImageView
      * @param isDefault 是否使用默认配置
      */
-    public static void displayImage(String uri, ImageView imageView, boolean isDefault) {
+    public static void displayImage(final String uri, final ImageView imageView, final boolean isDefault) {
         if (sImageEngine != null) {
             sImageEngine.displayImage(uri, imageView, isDefault);
         }
@@ -76,7 +76,7 @@ public final class DevImageEngine {
      * @param imageView ImageView
      * @param config    {@link IImageEngine.ImageConfig} 加载配置
      */
-    public static void displayImage(String uri, ImageView imageView, IImageEngine.ImageConfig config) {
+    public static void displayImage(final String uri, final ImageView imageView, final IImageEngine.ImageConfig config) {
         if (sImageEngine != null) {
             sImageEngine.displayImage(uri, imageView, config);
         }
@@ -91,7 +91,7 @@ public final class DevImageEngine {
      * @param uri           Image Uri
      * @param imageCallback 图片加载回调
      */
-    public static void loadImage(String uri, IImageEngine.ImageCallBack imageCallback) {
+    public static void loadImage(final String uri, final IImageEngine.ImageCallBack imageCallback) {
         if (sImageEngine != null) {
             sImageEngine.loadImage(uri, imageCallback);
         }
@@ -103,7 +103,7 @@ public final class DevImageEngine {
      * @param imageCallback 图片加载回调
      * @param config        {@link IImageEngine.ImageConfig} 加载配置
      */
-    public static void loadImage(String uri, IImageEngine.ImageCallBack imageCallback, IImageEngine.ImageConfig config) {
+    public static void loadImage(final String uri, final IImageEngine.ImageCallBack imageCallback, final IImageEngine.ImageConfig config) {
         if (sImageEngine != null) {
             sImageEngine.loadImage(uri, imageCallback, config);
         }

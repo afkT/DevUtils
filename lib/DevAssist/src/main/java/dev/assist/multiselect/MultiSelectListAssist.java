@@ -56,7 +56,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param collection 集合泛型
      */
     @Override
-    public void putSelects(List<V> collection) {
+    public void putSelects(final List<V> collection) {
         if (collection != null) {
             mListSelects.addAll(collection);
         }
@@ -67,7 +67,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param collections 集合
      */
     @Override
-    public void putSelects(Collection<? extends DevBaseEntry<?, V>> collections) {
+    public void putSelects(final Collection<? extends DevBaseEntry<?, V>> collections) {
         if (collections != null) {
             for (DevBaseEntry<?, V> entry : collections) {
                 if (entry != null) {
@@ -92,7 +92,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isSelectValue(V value) {
+    public boolean isSelectValue(final V value) {
         return mListSelects.contains(value);
     }
 
@@ -101,7 +101,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param value Value
      */
     @Override
-    public void unselectValue(V value) {
+    public void unselectValue(final V value) {
         mListSelects.remove(value);
     }
 
@@ -110,7 +110,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param value Value
      */
     @Override
-    public void unselectValueAll(V value) {
+    public void unselectValueAll(final V value) {
         Iterator<V> iterator = mListSelects.iterator();
         while (iterator.hasNext()) {
             V v = iterator.next();
@@ -130,7 +130,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isSelect(V value) {
+    public boolean isSelect(final V value) {
         return isSelectValue(value);
     }
 
@@ -139,7 +139,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param value Value
      */
     @Override
-    public void select(V value) {
+    public void select(final V value) {
         mListSelects.add(value);
     }
 
@@ -149,7 +149,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param value    Value
      */
     @Override
-    public void select(boolean isSelect, V value) {
+    public void select(final boolean isSelect, final V value) {
         if (isSelect) {
             select(value);
         } else {
@@ -163,7 +163,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param position 索引
      */
     @Override
-    public void select(V value, int position) {
+    public void select(final V value, final int position) {
         if (position >= 0) mListSelects.add(position, value);
     }
 
@@ -173,7 +173,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @return Value
      */
     @Override
-    public V unselect(int position) {
+    public V unselect(final int position) {
         if (position >= 0) {
             try {
                 return mListSelects.remove(position);
@@ -188,7 +188,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param value Value
      */
     @Override
-    public void unselect(V value) {
+    public void unselect(final V value) {
         mListSelects.remove(value);
     }
 
@@ -200,7 +200,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param value Value
      */
     @Override
-    public void toggle(V value) {
+    public void toggle(final V value) {
         if (mListSelects.contains(value)) {
             mListSelects.remove(value);
         } else {
@@ -238,7 +238,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @return Value
      */
     @Override
-    public V getSelectValue(int position) {
+    public V getSelectValue(final int position) {
         if (position >= 0) {
             try {
                 return mListSelects.get(position);
@@ -254,7 +254,7 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @return value position
      */
     @Override
-    public int getSelectValueToPosition(V value) {
+    public int getSelectValueToPosition(final V value) {
         return mListSelects.indexOf(value);
     }
 }

@@ -32,7 +32,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * 构造函数
      * @param adapterNotify {@link IAdapterNotify}
      */
-    public AdapterDataAssist(IAdapterNotify adapterNotify) {
+    public AdapterDataAssist(final IAdapterNotify adapterNotify) {
         this.mAdapterNotify = adapterNotify;
     }
 
@@ -44,7 +44,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * 设置 Adapter Notify
      * @param adapterNotify {@link IAdapterNotify}
      */
-    public void setAdapterNotify(IAdapterNotify adapterNotify) {
+    public void setAdapterNotify(final IAdapterNotify adapterNotify) {
         this.mAdapterNotify = adapterNotify;
     }
 
@@ -91,7 +91,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @return V Object
      */
     @Override
-    public V getDataItem(int position) {
+    public V getDataItem(final int position) {
         try {
             return mList.get(position);
         } catch (Exception e) {
@@ -106,7 +106,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @return position
      */
     @Override
-    public int getDataItemPosition(V value) {
+    public int getDataItemPosition(final V value) {
         try {
             return mList.indexOf(value);
         } catch (Exception e) {
@@ -143,7 +143,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isFirstItem(int position) {
+    public boolean isFirstItem(final int position) {
         return position == 0;
     }
 
@@ -153,7 +153,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isLastItem(int position) {
+    public boolean isLastItem(final int position) {
         return isLastItem(position, getDataCount());
     }
 
@@ -164,7 +164,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isLastItem(int position, int count) {
+    public boolean isLastItem(final int position, final int count) {
         return count - position == 1;
     }
 
@@ -183,7 +183,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param notify 是否通知适配器
      */
     @Override
-    public void clearDataList(boolean notify) {
+    public void clearDataList(final boolean notify) {
         if (mList != null) mList.clear();
         if (notify) adapterNotifyDataSetChanged();
     }
@@ -197,7 +197,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param value Value
      */
     @Override
-    public void addData(V value) {
+    public void addData(final V value) {
         try {
             mList.add(value);
         } catch (Exception e) {
@@ -211,7 +211,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param value    Value
      */
     @Override
-    public void addData(int position, V value) {
+    public void addData(final int position, final V value) {
         try {
             mList.add(position, value);
         } catch (Exception e) {
@@ -224,7 +224,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param collection {@link Collection}
      */
     @Override
-    public void addAllData(Collection<V> collection) {
+    public void addAllData(final Collection<V> collection) {
         if (collection != null) {
             try {
                 mList.addAll(collection);
@@ -240,7 +240,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param collection {@link Collection}
      */
     @Override
-    public void addAllData(int position, Collection<V> collection) {
+    public void addAllData(final int position, final Collection<V> collection) {
         if (collection != null) {
             try {
                 mList.addAll(position, collection);
@@ -257,7 +257,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean removeData(V value) {
+    public boolean removeData(final V value) {
         try {
             return mList.remove(value);
         } catch (Exception e) {
@@ -272,7 +272,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @return remove position value
      */
     @Override
-    public V removeData(int position) {
+    public V removeData(final int position) {
         try {
             return mList.remove(position);
         } catch (Exception e) {
@@ -286,7 +286,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param collection {@link Collection}
      */
     @Override
-    public void removeData(Collection<V> collection) {
+    public void removeData(final Collection<V> collection) {
         if (collection != null) {
             try {
                 mList.removeAll(collection);
@@ -303,7 +303,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param lists {@link List}
      */
     @Override
-    public void setDataList(List<V> lists) {
+    public void setDataList(final List<V> lists) {
         setDataList(lists, true);
     }
 
@@ -313,7 +313,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param notify 是否通知适配器
      */
     @Override
-    public void setDataList(List<V> lists, boolean notify) {
+    public void setDataList(final List<V> lists, final boolean notify) {
         if (mList != null) mList.clear();
         // 添加数据
         addAllData(lists);

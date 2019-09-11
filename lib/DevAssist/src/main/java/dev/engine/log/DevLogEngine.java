@@ -20,7 +20,7 @@ public final class DevLogEngine {
      * 初始化 Engine
      * @param logEngine {@link ILogEngine}
      */
-    public static void initEngine(ILogEngine logEngine) {
+    public static void initEngine(final ILogEngine logEngine) {
         DevLogEngine.sLogEngine = logEngine;
     }
 
@@ -52,7 +52,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void d(String message, Object... args) {
+    public static void d(final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.d(message, args);
         }
@@ -63,7 +63,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void e(String message, Object... args) {
+    public static void e(final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.e(message, args);
         }
@@ -73,7 +73,7 @@ public final class DevLogEngine {
      * 打印 Log.ERROR
      * @param throwable 异常
      */
-    public static void e(Throwable throwable) {
+    public static void e(final Throwable throwable) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.e(throwable);
         }
@@ -85,7 +85,7 @@ public final class DevLogEngine {
      * @param message   日志信息
      * @param args      格式化参数
      */
-    public static void e(Throwable throwable, String message, Object... args) {
+    public static void e(final Throwable throwable, final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.e(throwable, message, args);
         }
@@ -96,7 +96,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void w(String message, Object... args) {
+    public static void w(final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.w(message, args);
         }
@@ -107,7 +107,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void i(String message, Object... args) {
+    public static void i(final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.i(message, args);
         }
@@ -118,7 +118,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void v(String message, Object... args) {
+    public static void v(final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.v(message, args);
         }
@@ -129,7 +129,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void wtf(String message, Object... args) {
+    public static void wtf(final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.wtf(message, args);
         }
@@ -141,7 +141,7 @@ public final class DevLogEngine {
      * 格式化 JSON 格式数据, 并打印
      * @param json JSON 格式字符串
      */
-    public static void json(String json) {
+    public static void json(final String json) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.json(json);
         }
@@ -151,7 +151,7 @@ public final class DevLogEngine {
      * 格式化 XML 格式数据, 并打印
      * @param xml XML 格式字符串
      */
-    public static void xml(String xml) {
+    public static void xml(final String xml) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.xml(xml);
         }
@@ -167,7 +167,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void dTag(String tag, String message, Object... args) {
+    public static void dTag(final String tag, final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.dTag(tag, message, args);
         }
@@ -179,7 +179,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void eTag(String tag, String message, Object... args) {
+    public static void eTag(final String tag, final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.eTag(tag, message, args);
         }
@@ -190,7 +190,7 @@ public final class DevLogEngine {
      * @param tag       日志 TAG
      * @param throwable 异常
      */
-    public static void eTag(String tag, Throwable throwable) {
+    public static void eTag(final String tag, final Throwable throwable) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.eTag(tag, throwable);
         }
@@ -203,7 +203,7 @@ public final class DevLogEngine {
      * @param message   日志信息
      * @param args      格式化参数
      */
-    public static void eTag(String tag, Throwable throwable, String message, Object... args) {
+    public static void eTag(final String tag, final Throwable throwable, final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.eTag(tag, throwable, message, args);
         }
@@ -215,7 +215,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void wTag(String tag, String message, Object... args) {
+    public static void wTag(final String tag, final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.wTag(tag, message, args);
         }
@@ -227,7 +227,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void iTag(String tag, String message, Object... args) {
+    public static void iTag(final String tag, final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.iTag(tag, message, args);
         }
@@ -239,7 +239,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void vTag(String tag, String message, Object... args) {
+    public static void vTag(final String tag, final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.vTag(tag, message, args);
         }
@@ -251,7 +251,7 @@ public final class DevLogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    public static void wtfTag(String tag, String message, Object... args) {
+    public static void wtfTag(final String tag, final String message, final Object... args) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.wtfTag(tag, message, args);
         }
@@ -264,7 +264,7 @@ public final class DevLogEngine {
      * @param tag  日志 TAG
      * @param json JSON 格式字符串
      */
-    public static void jsonTag(String tag, String json) {
+    public static void jsonTag(final String tag, final String json) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.jsonTag(tag, json);
         }
@@ -275,7 +275,7 @@ public final class DevLogEngine {
      * @param tag 日志 TAG
      * @param xml XML 格式字符串
      */
-    public static void xmlTag(String tag, String xml) {
+    public static void xmlTag(final String tag, final String xml) {
         if (isPrintLog() && sLogEngine != null) {
             sLogEngine.xmlTag(tag, xml);
         }

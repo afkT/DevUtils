@@ -6,8 +6,9 @@
 ## 目录结构
 
 ```
-- lib                        | 根目录
-   - DevApp                  | Android 工具类库
-   - DevAssist               | 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-   - DevJava                 | Java 工具类库 (不依赖 android api)
+- lib               | 根目录
+   - DevApp         | Android 工具类库
+   - DevAssist      | 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
+   - DevJava        | Java 工具类库 (不依赖 android api)
+   - DevOther       | 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
 ```

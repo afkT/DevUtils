@@ -9,4 +9,4 @@ dependencies {
 }
 
 // gradlew bintrayUpload
-apply from : rootProject.file(files.java_bintray_upload)
+//apply from : rootProject.file(files.java_bintray_upload)

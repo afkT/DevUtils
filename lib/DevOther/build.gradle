@@ -1,0 +1,25 @@
+apply {
+    from rootProject.file(files.app_lib_gradle)
+}
+
+android.defaultConfig {
+    versionCode versions.dev_other_versionCode
+    versionName versions.dev_other_versionName
+}
+
+dependencies {
+    compileOnly project(path: ':DevApp')
+    compileOnly project(path: ':DevAssist')
+
+    // Gson
+    implementation deps.lib.gson
+    // Imageloader
+    implementation deps.lib.imageloader
+    // Glide
+    implementation deps.lib.glide
+    annotationProcessor deps.lib.glide_compiler
+    // EventBus
+    implementation deps.lib.eventbus
+    // OkHttp3
+    implementation deps.lib.okhttp3
+}

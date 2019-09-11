@@ -11,4 +11,21 @@ android {
 dependencies {
     implementation project(path: ':DevApp')
     implementation project(path: ':DevAssist')
+    implementation project(path: ':DevOther')
+
+    // =======
+    // = lib =
+    // =======
+
+    // Gson
+    implementation deps.lib.gson
+    // Imageloader
+    implementation deps.lib.imageloader
+    // Glide
+    implementation deps.lib.glide
+    annotationProcessor deps.lib.glide_compiler
+    // EventBus
+    implementation deps.lib.eventbus
+    // OkHttp3
+    implementation deps.lib.okhttp3
 }

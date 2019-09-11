@@ -739,6 +739,41 @@ public final class ImageViewUtils {
      * @param resId resource identifier
      * @param views View[]
      */
+    public static void setBackgroundResources(@DrawableRes final int resId, final View... views) {
+        setBackgroundResources(resId, View.VISIBLE, views);
+    }
+
+    /**
+     * 设置 View 图片资源
+     * @param resId        resource identifier
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     */
+    public static void setBackgroundResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view != null) {
+                    try {
+                        // 设置显示状态
+                        view.setVisibility(isVisibility);
+                        // 设置图片资源
+                        view.setBackgroundResource(resId);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setBackgroundResources");
+                    }
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * 设置 View 图片资源
+     * @param resId resource identifier
+     * @param views View[]
+     */
     public static void setImageResources(@DrawableRes final int resId, final View... views) {
         setImageResources(resId, View.VISIBLE, views);
     }
