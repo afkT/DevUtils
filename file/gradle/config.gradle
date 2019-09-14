@@ -23,11 +23,9 @@ ext {
             // 支持最小的 SDK
             minSdkVersion         : 14,
             // 编译 SDK 版本
-            compileSdkVersion     : 28,
+            compileSdkVersion     : 29,
             // 向前兼容 SDK 版本
-            targetSdkVersion      : 28,
-            // 编译工具版本
-            buildToolsVersion     : '28.0.3',
+            targetSdkVersion      : 29,
             // support 包 Lib 版本
             supportLibVersion     : '28.0.0',
             // java 版本
