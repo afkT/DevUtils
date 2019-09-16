@@ -4,14 +4,14 @@ Change Log
 
 Version 1.7.8 *(2019-09-12)*
 ----------------------------
-
- * `[Add]` DialogUtils#showDialog、closeDialog try
  
  * `[Add]` ImageViewUtils#setBackgroundResources
  
  * `[Add]` ViewUtils#getParent
  
  * `[Add]` ConvertUtils#convert
+
+ * `[Fix]` DialogUtils#showDialog、closeDialog try catch
  
 
 Version 1.7.7 *(2019-08-25)*
