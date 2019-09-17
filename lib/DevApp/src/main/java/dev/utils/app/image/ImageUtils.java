@@ -35,9 +35,12 @@ import dev.utils.app.ResourceUtils;
  * @author Ttt
  * <pre>
  *     图片文件头标识信息
- *     @see <a href="https://www.jianshu.com/p/45c0f85c47ed"/>
  *     @see <a href="https://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578220&idx=1&sn=bdc57c640427984e240b19d8b9e10a15&chksm=84b3b1ebb3c438fdcbd446e9f28abd2713e685246efedfc133eb453ca41d08730dbf297ba1a4&scene=4#wechat_redirect"/>
  *     @see <a href="https://developers.google.com/speed/webp/docs/riff_container"/>
+ *     各类文件的文件头标志
+ *     @see <a href="https://www.garykessler.net/library/file_sigs.html"/>
+ *     @see <a href="https://blog.csdn.net/feixi7358/article/details/87712812"/>
+ *     @see <a href="http://www.manongjc.com/article/56456.html"/>
  * </pre>
  */
 public final class ImageUtils {
@@ -133,20 +136,53 @@ public final class ImageUtils {
     // =
 
     /**
+     * detail: 图片类型
+     * @author Ttt
+     */
+    public enum ImageType {
+
+        TYPE_PNG("png"),
+
+        TYPE_JPG("jpg"),
+
+        TYPE_BMP("bmp"),
+
+        TYPE_GIF("gif"),
+
+        TYPE_WEBP("webp"),
+
+        TYPE_ICO("ico"),
+
+        TYPE_TIFF("tiff"),
+
+        TYPE_UNKNOWN("unknown");
+
+        String value;
+
+        ImageType(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
+
+    /**
      * 获取图片类型
      * @param filePath 文件路径
-     * @return 图片类型
+     * @return {@link ImageType} 图片类型
      */
-    public static String getImageType(final String filePath) {
+    public static ImageType getImageType(final String filePath) {
         return getImageType(getFileByPath(filePath));
     }
 
     /**
      * 获取图片类型
      * @param file 文件
-     * @return 图片类型
+     * @return {@link ImageType} 图片类型
      */
-    public static String getImageType(final File file) {
+    public static ImageType getImageType(final File file) {
         if (file == null) return null;
         InputStream is = null;
         try {
@@ -163,9 +199,9 @@ public final class ImageUtils {
     /**
      * 获取图片类型
      * @param inputStream 输入流
-     * @return 图片类型
+     * @return {@link ImageType} 图片类型
      */
-    public static String getImageType(final InputStream inputStream) {
+    public static ImageType getImageType(final InputStream inputStream) {
         if (inputStream == null) return null;
         try {
             byte[] bytes = new byte[12];
@@ -179,15 +215,17 @@ public final class ImageUtils {
     /**
      * 获取图片类型
      * @param data 图片 byte[]
-     * @return 图片类型
+     * @return {@link ImageType} 图片类型
      */
-    public static String getImageType(final byte[] data) {
-        if (isPNG(data)) return "PNG";
-        if (isJPEG(data)) return "JPEG";
-        if (isBMP(data)) return "BMP";
-        if (isGif(data)) return "GIF";
-        if (isWEBP(data)) return "WEBP";
-        return null;
+    public static ImageType getImageType(final byte[] data) {
+        if (isPNG(data)) return ImageType.TYPE_PNG;
+        if (isJPEG(data)) return ImageType.TYPE_JPG;
+        if (isBMP(data)) return ImageType.TYPE_BMP;
+        if (isGif(data)) return ImageType.TYPE_GIF;
+        if (isWEBP(data)) return ImageType.TYPE_WEBP;
+        if (isICO(data)) return ImageType.TYPE_ICO;
+        if (isTIFF(data)) return ImageType.TYPE_TIFF;
+        return ImageType.TYPE_UNKNOWN;
     }
 
     // =
@@ -220,7 +258,7 @@ public final class ImageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isBMP(final byte[] data) {
-        return data != null && data.length >= 2 && (data[0] == 0x42) && (data[1] == 0x4d);
+        return data != null && data.length >= 2 && (data[0] == (byte) 0x42) && (data[1] == (byte) 0x4d);
     }
 
     /**
@@ -241,6 +279,35 @@ public final class ImageUtils {
     public static boolean isWEBP(final byte[] data) {
         return data != null && data.length >= 12 && data[0] == 'R' && data[1] == 'I' && data[2] == 'F' && data[3] == 'F'
                 && data[8] == 'W' && (data[9] == 'E' || data[10] == 'B') && data[11] == 'P';
+    }
+
+    /**
+     * 判断是否 ICO 图片
+     * @param data 图片 byte[]
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isICO(final byte[] data) {
+        return data != null && data.length >= 4 && data[0] == 0 && data[1] == 0 && data[2] == 1 && data[3] == 0;
+    }
+
+    /**
+     * 判断是否 TIFF 图片
+     * @param data 图片 byte[]
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isTIFF(final byte[] data) {
+        if (data != null && data.length >= 4){
+            if (data[0] == (byte) 73 && data[1] == (byte) 73 && data[2] == (byte) 0x2a && data[3] == 0){
+                return true; // 49 49 2a 00
+            } else if (data[0] == (byte) 0x4d && data[1] == (byte) 0x4d && data[2] == 0 && data[3] == (byte) 0x2a) {
+                return true; // 4d 4d 00 2a
+            } else if (data[0] == (byte) 0x4d && data[1] == (byte) 0x4d && data[2] == 0 && data[3] == (byte) 0x2b) {
+                return true; // 4d 4d 00 2b
+            } else if (data[0] == (byte) 73 && data[1] == (byte) 32 && data[2] == (byte) 73){
+                return true; // 49 20 49
+            }
+        }
+        return false;
     }
 
     // ============

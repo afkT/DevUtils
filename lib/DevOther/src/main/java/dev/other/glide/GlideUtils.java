@@ -33,6 +33,8 @@ import dev.utils.LogPrintUtils;
  *     <p></p>
  *     Glide 详细使用
  *     @see <a href="https://www.jianshu.com/p/7cfe2653a1fb"/>
+ *     Glide 文档
+ *     @see <a href="https://muyangmin.github.io/glide-docs-cn"/>
  * </pre>
  */
 public final class GlideUtils {
