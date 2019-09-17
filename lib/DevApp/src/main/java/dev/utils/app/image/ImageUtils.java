@@ -98,8 +98,8 @@ public final class ImageUtils {
      * @param file 文件
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isImage(final File file) {
-        return file != null && isImage(file.getPath(), IMAGE_FORMATS);
+    public static boolean isImageFormats(final File file) {
+        return file != null && isImageFormats(file.getPath(), IMAGE_FORMATS);
     }
 
     /**
@@ -107,8 +107,8 @@ public final class ImageUtils {
      * @param filePath 文件路径
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isImage(final String filePath) {
-        return isImage(filePath, IMAGE_FORMATS);
+    public static boolean isImageFormats(final String filePath) {
+        return isImageFormats(filePath, IMAGE_FORMATS);
     }
 
     /**
@@ -117,7 +117,7 @@ public final class ImageUtils {
      * @param imageFormats 图片格式
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isImage(final String filePath, final String[] imageFormats) {
+    public static boolean isImageFormats(final String filePath, final String[] imageFormats) {
         if (filePath == null || imageFormats == null || imageFormats.length == 0) return false;
         String path = filePath.toUpperCase();
         for (String format : imageFormats) {

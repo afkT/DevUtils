@@ -66,6 +66,38 @@ public final class BitmapUtils {
         return bitmap != null && bitmap.getWidth() != 0 && bitmap.getHeight() != 0;
     }
 
+    // ============
+    // = 图片判断 =
+    // ============
+
+    /**
+     * 根据文件判断是否为图片
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isImage(final File file) {
+        return file != null && isImage(file.getPath());
+    }
+
+    /**
+     * 根据文件判断是否为图片
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isImage(final String filePath) {
+        if (!isFileExists(filePath)) return false;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        // 只解析图片信息, 不加载到内存中
+        options.inJustDecodeBounds = true;
+        try {
+            BitmapFactory.decodeFile(filePath, options);
+            return options.outWidth != -1 && options.outHeight != -1;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isImage");
+        }
+        return false;
+    }
+
     // ========
     // = 宽高 =
     // ========
