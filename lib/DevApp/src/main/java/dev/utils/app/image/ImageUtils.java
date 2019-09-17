@@ -157,12 +157,16 @@ public final class ImageUtils {
 
         TYPE_UNKNOWN("unknown");
 
-        String value;
+        private String value;
 
         ImageType(String value) {
             this.value = value;
         }
 
+        /**
+         * 获取图片类型字符串
+         * @return 图片类型字符串
+         */
         public String getValue() {
             return value;
         }
