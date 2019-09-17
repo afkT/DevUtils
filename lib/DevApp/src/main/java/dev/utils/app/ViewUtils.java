@@ -675,9 +675,10 @@ public final class ViewUtils {
      * @param status   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param viewArys View[]
      * @param views    View[]
+     * @return isVisibility
      */
-    public static void reverseVisibilitys(final int status, final View[] viewArys, final View... views) {
-        reverseVisibilitys(status == View.VISIBLE, viewArys, views);
+    public static boolean reverseVisibilitys(final int status, final View[] viewArys, final View... views) {
+        return reverseVisibilitys(status == View.VISIBLE, viewArys, views);
     }
 
     /**
@@ -685,12 +686,14 @@ public final class ViewUtils {
      * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
      * @param viewArys     View[]
      * @param views        View[]
+     * @return isVisibility
      */
-    public static void reverseVisibilitys(final boolean isVisibility, final View[] viewArys, final View... views) {
+    public static boolean reverseVisibilitys(final boolean isVisibility, final View[] viewArys, final View... views) {
         // 默认处理第一个数组
         setVisibilitys(isVisibility, viewArys);
         // 根据状态处理
         setVisibilitys(!isVisibility, views);
+        return isVisibility;
     }
 
     /**
@@ -698,9 +701,10 @@ public final class ViewUtils {
      * @param status {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param view   {@link View}
      * @param views  View[]
+     * @return isVisibility
      */
-    public static void reverseVisibilitys(final int status, final View view, final View... views) {
-        reverseVisibilitys(status == View.VISIBLE, view, views);
+    public static boolean reverseVisibilitys(final int status, final View view, final View... views) {
+        return reverseVisibilitys(status == View.VISIBLE, view, views);
     }
 
     /**
@@ -708,12 +712,14 @@ public final class ViewUtils {
      * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
      * @param view         {@link View}
      * @param views        View[]
+     * @return isVisibility
      */
-    public static void reverseVisibilitys(final boolean isVisibility, final View view, final View... views) {
+    public static boolean reverseVisibilitys(final boolean isVisibility, final View view, final View... views) {
         // 默认处理第一个 View
         setVisibilitys(isVisibility, view);
         // 根据状态处理
         setVisibilitys(!isVisibility, views);
+        return isVisibility;
     }
 
     // =

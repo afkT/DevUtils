@@ -159,26 +159,29 @@ public final class ClickUtils {
     /**
      * 初始化配置信息
      * @param mapConfigs config Maps
+     * @return {@link ClickAssist}
      */
-    public static void initConfig(final Map<String, Long> mapConfigs) {
-        sGlobalClickAssist.initConfig(mapConfigs);
+    public static ClickAssist initConfig(final Map<String, Long> mapConfigs) {
+        return sGlobalClickAssist.initConfig(mapConfigs);
     }
 
     /**
      * 添加配置信息
      * @param key   config Key
      * @param value config Value
+     * @return {@link ClickAssist}
      */
-    public static void putConfig(final String key, final Long value) {
-        sGlobalClickAssist.putConfig(key, value);
+    public static ClickAssist putConfig(final String key, final Long value) {
+        return sGlobalClickAssist.putConfig(key, value);
     }
 
     /**
      * 移除配置信息
      * @param key config Key
+     * @return {@link ClickAssist}
      */
-    public static void removeConfig(final String key) {
-        sGlobalClickAssist.removeConfig(key);
+    public static ClickAssist removeConfig(final String key) {
+        return sGlobalClickAssist.removeConfig(key);
     }
 
     /**
@@ -195,16 +198,18 @@ public final class ClickUtils {
     /**
      * 移除点击记录
      * @param key tag Key
+     * @return {@link ClickAssist}
      */
-    public static void removeRecord(final String key) {
-        sGlobalClickAssist.removeRecord(key);
+    public static ClickAssist removeRecord(final String key) {
+        return sGlobalClickAssist.removeRecord(key);
     }
 
     /**
      * 清空全部点击记录
+     * @return {@link ClickAssist}
      */
-    public static void clearRecord() {
-        sGlobalClickAssist.clearRecord();
+    public static ClickAssist clearRecord() {
+        return sGlobalClickAssist.clearRecord();
     }
 
     // =
@@ -212,16 +217,18 @@ public final class ClickUtils {
     /**
      * 设置默认点击时间间隔
      * @param intervalTime 双击时间间隔
+     * @return {@link ClickAssist}
      */
-    public static void setIntervalTime(final long intervalTime) {
-        sGlobalClickAssist.setIntervalTime(intervalTime);
+    public static ClickAssist setIntervalTime(final long intervalTime) {
+        return sGlobalClickAssist.setIntervalTime(intervalTime);
     }
 
     /**
      * 重置处理
+     * @return {@link ClickAssist}
      */
-    public static void reset() {
-        sGlobalClickAssist.reset();
+    public static ClickAssist reset() {
+        return sGlobalClickAssist.reset();
     }
 
     // =
@@ -342,28 +349,34 @@ public final class ClickUtils {
         /**
          * 初始化配置信息
          * @param mapConfigs config Maps
+         * @return {@link ClickAssist}
          */
-        public void initConfig(final Map<String, Long> mapConfigs) {
+        public ClickAssist initConfig(final Map<String, Long> mapConfigs) {
             if (mapConfigs != null) {
                 mConfigMaps.putAll(mapConfigs);
             }
+            return this;
         }
 
         /**
          * 添加配置信息
          * @param key   config Key
          * @param value config Value
+         * @return {@link ClickAssist}
          */
-        public void putConfig(final String key, final Long value) {
+        public ClickAssist putConfig(final String key, final Long value) {
             mConfigMaps.put(key, value);
+            return this;
         }
 
         /**
          * 移除配置信息
          * @param key config Key
+         * @return {@link ClickAssist}
          */
-        public void removeConfig(final String key) {
+        public ClickAssist removeConfig(final String key) {
             mConfigMaps.remove(key);
+            return this;
         }
 
         /**
@@ -383,16 +396,20 @@ public final class ClickUtils {
         /**
          * 移除点击记录
          * @param key tag Key
+         * @return {@link ClickAssist}
          */
-        public void removeRecord(final String key) {
+        public ClickAssist removeRecord(final String key) {
             mRecordMaps.remove(key);
+            return this;
         }
 
         /**
          * 清空全部点击记录
+         * @return {@link ClickAssist}
          */
-        public void clearRecord() {
+        public ClickAssist clearRecord() {
             mRecordMaps.clear();
+            return this;
         }
 
         // =
@@ -400,15 +417,18 @@ public final class ClickUtils {
         /**
          * 设置默认点击时间间隔
          * @param intervalTime 双击时间间隔
+         * @return {@link ClickAssist}
          */
-        public void setIntervalTime(final long intervalTime) {
+        public ClickAssist setIntervalTime(final long intervalTime) {
             this.mIntervalTime = intervalTime;
+            return this;
         }
 
         /**
          * 重置处理
+         * @return {@link ClickAssist}
          */
-        public void reset() {
+        public ClickAssist reset() {
             // 重置最后一次点击的标识 id
             mLastTagId = -1;
             // 重置最后一次点击时间
@@ -419,6 +439,7 @@ public final class ClickUtils {
             mConfigMaps.clear();
             // 清空点击记录
             mRecordMaps.clear();
+            return this;
         }
     }
 }

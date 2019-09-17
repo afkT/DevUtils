@@ -190,17 +190,19 @@ public final class CameraAssist {
     /**
      * 设置摄像头
      * @param camera {@link android.hardware.Camera}
+     * @return {@link CameraAssist}
      */
-    public void setCamera(final Camera camera) {
+    public CameraAssist setCamera(final Camera camera) {
         this.mCamera = camera;
         // 初始化 Camera 大小
         this.mCameraSizeAssist = new CameraSizeAssist(mCamera);
+        return this;
     }
 
     /**
      * 设置预览回调
      * @param previewNotify 预览通知接口
-     * @return {@link CameraSizeAssist}
+     * @return {@link CameraAssist}
      */
     public CameraAssist setPreviewNotify(final PreviewNotify previewNotify) {
         this.mPreviewNotify = previewNotify;
@@ -210,7 +212,7 @@ public final class CameraAssist {
     /**
      * 设置是否开启自动对焦
      * @param autoFocus 是否自动对焦
-     * @return {@link CameraSizeAssist}
+     * @return {@link CameraAssist}
      */
     public CameraAssist setAutoFocus(final boolean autoFocus) {
         if (mAutoFocusAssist != null) {
@@ -230,9 +232,11 @@ public final class CameraAssist {
     /**
      * 设置自动对焦时间间隔
      * @param autoInterval 自动对焦时间间隔
+     * @return {@link CameraAssist}
      */
-    public void setAutoInterval(final long autoInterval) {
+    public CameraAssist setAutoInterval(final long autoInterval) {
         this.mAutoInterval = autoInterval;
+        return this;
     }
 
     // ======================

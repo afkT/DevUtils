@@ -109,8 +109,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     /**
      * 设置流类型
      * @param streamType Audio streamType
+     * @return {@link DevMediaManager}
      */
-    public void setAudioStreamType(final int streamType) {
+    public DevMediaManager setAudioStreamType(final int streamType) {
         this.mStreamType = streamType;
         // 防止为 null
         if (mMediaPlayer != null) {
@@ -121,6 +122,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                 LogPrintUtils.eTag(TAG, e, "setAudioStreamType");
             }
         }
+        return this;
     }
 
     // ============
@@ -517,9 +519,11 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     /**
      * 设置 MediaPlayer 回调事件
      * @param meidaListener {@link MediaListener} MediaPlayer 回调事件
+     * @return {@link DevMediaManager}
      */
-    public void setMeidaListener(final MediaListener meidaListener) {
+    public DevMediaManager setMeidaListener(final MediaListener meidaListener) {
         this.mMeidaListener = meidaListener;
+        return this;
     }
 
     /**
@@ -583,17 +587,21 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     /**
      * 设置 MediaPlayer 对象
      * @param mediaPlayer {@link MediaPlayer}
+     * @return {@link DevMediaManager}
      */
-    public void setMediaPlayer(final MediaPlayer mediaPlayer) {
+    public DevMediaManager setMediaPlayer(final MediaPlayer mediaPlayer) {
         this.mMediaPlayer = mediaPlayer;
+        return this;
     }
 
     /**
      * 设置日志打印 TAG
      * @param tag 日志 TAG
+     * @return {@link DevMediaManager}
      */
-    public void setTAG(final String tag) {
+    public DevMediaManager setTAG(final String tag) {
         TAG = tag;
+        return this;
     }
 
     /**
@@ -607,9 +615,11 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     /**
      * 设置播放音量
      * @param volume 播放音量
+     * @return {@link DevMediaManager}
      */
-    public void setVolume(final float volume) {
+    public DevMediaManager setVolume(final float volume) {
         this.mVolume = volume;
+        return this;
     }
 
     // ============
