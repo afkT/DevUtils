@@ -187,14 +187,14 @@ public final class ImageUtils {
      * @return {@link ImageType} 图片类型
      */
     public static ImageType getImageType(final File file) {
-        if (file == null) return null;
+        if (file == null) return ImageType.TYPE_UNKNOWN;
         InputStream is = null;
         try {
             is = new FileInputStream(file);
             return getImageType(is);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getImageType");
-            return null;
+            return ImageType.TYPE_UNKNOWN;
         } finally {
             closeIOQuietly(is);
         }
@@ -206,13 +206,13 @@ public final class ImageUtils {
      * @return {@link ImageType} 图片类型
      */
     public static ImageType getImageType(final InputStream inputStream) {
-        if (inputStream == null) return null;
+        if (inputStream == null) return ImageType.TYPE_UNKNOWN;
         try {
             byte[] bytes = new byte[12];
             return inputStream.read(bytes, 0, 12) != -1 ? getImageType(bytes) : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getImageType");
-            return null;
+            return ImageType.TYPE_UNKNOWN;
         }
     }
 
