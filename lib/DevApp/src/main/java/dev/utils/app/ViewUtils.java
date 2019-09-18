@@ -337,6 +337,31 @@ public final class ViewUtils {
     // =
 
     /**
+     * 获取 View Tag
+     * @param view View
+     * @return Tag
+     */
+    public static Object getTag(final View view) {
+        if (view != null) {
+            return view.getTag();
+        }
+        return null;
+    }
+
+    /**
+     * 设置 View Tag
+     * @param view   View
+     * @param object Tag
+     */
+    public static void setTag(final View view, final Object object) {
+        if (view != null) {
+            view.setTag(object);
+        }
+    }
+
+    // =
+
+    /**
      * 设置 View 是否可以获取焦点
      * @param focusable {@code true} 可获取, {@code false} 不可获取
      * @param views     View[]

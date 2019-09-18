@@ -1,15 +1,25 @@
 package dev;
 
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.ColorFilter;
+import android.graphics.Matrix;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.text.method.KeyListener;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import dev.utils.app.EditTextUtils;
+import dev.utils.app.ImageViewUtils;
 import dev.utils.app.TextViewUtils;
+import dev.utils.app.ViewUtils;
 
 /**
  * detail: View 链式调用快捷设置 Helper 类
@@ -463,6 +473,378 @@ public final class ViewHelper {
      */
     public ViewHelper setKeyListener(final EditText editText, final char[] accepted) {
         EditTextUtils.setKeyListener(editText, accepted);
+        return this;
+    }
+
+    // =========
+    // = Image =
+    // =========
+
+    /**
+     * 设置背景图片
+     * @param view       {@link View}
+     * @param background 背景图片
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBackground(final View view, final Drawable background) {
+        ImageViewUtils.setBackground(view, background);
+        return this;
+    }
+
+    /**
+     * 设置背景颜色
+     * @param view  {@link View}
+     * @param color 背景颜色
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBackgroundColor(final View view, @ColorInt final int color) {
+        ImageViewUtils.setBackgroundColor(view, color);
+        return this;
+    }
+
+    /**
+     * 设置背景资源
+     * @param view  {@link View}
+     * @param resId resource identifier
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBackgroundResource(final View view, @DrawableRes final int resId) {
+        ImageViewUtils.setBackgroundResource(view, resId);
+        return this;
+    }
+
+    /**
+     * 设置背景着色颜色
+     * @param view {@link View}
+     * @param tint 着色颜色
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBackgroundTintList(final View view, final ColorStateList tint) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ImageViewUtils.setBackgroundTintList(view, tint);
+        }
+        return this;
+    }
+
+    /**
+     * 设置背景着色模式
+     * @param view     {@link View}
+     * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBackgroundTintMode(final View view, final PorterDuff.Mode tintMode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ImageViewUtils.setBackgroundTintMode(view, tintMode);
+        }
+        return this;
+    }
+
+    /**
+     * 设置前景图片
+     * @param view       {@link View}
+     * @param foreground 前景图片
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setForeground(final View view, final Drawable foreground) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ImageViewUtils.setForeground(view, foreground);
+        }
+        return this;
+    }
+
+    /**
+     * 设置前景重心
+     * @param view    {@link View}
+     * @param gravity 重心
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setForegroundGravity(final View view, final int gravity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ImageViewUtils.setForegroundGravity(view, gravity);
+        }
+        return this;
+    }
+
+    /**
+     * 设置前景着色颜色
+     * @param view {@link View}
+     * @param tint 着色颜色
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setForegroundTintList(final View view, final ColorStateList tint) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ImageViewUtils.setForegroundTintList(view, tint);
+        }
+        return this;
+    }
+
+    /**
+     * 设置前景着色模式
+     * @param view     {@link View}
+     * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setForegroundTintMode(final View view, final PorterDuff.Mode tintMode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ImageViewUtils.setForegroundTintMode(view, tintMode);
+        }
+        return this;
+    }
+
+    /**
+     * 设置 ImageView Bitmap
+     * @param view   {@link View}
+     * @param bitmap {@link Bitmap}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageBitmap(final View view, final Bitmap bitmap) {
+        ImageViewUtils.setImageBitmap(view, bitmap);
+        return this;
+    }
+
+    /**
+     * 设置 ImageView Drawable
+     * @param view     {@link View}
+     * @param drawable {@link Bitmap}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageDrawable(final View view, final Drawable drawable) {
+        ImageViewUtils.setImageDrawable(view, drawable);
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 资源
+     * @param view  {@link View}
+     * @param resId resource identifier
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageResource(final View view, @DrawableRes final int resId) {
+        ImageViewUtils.setImageResource(view, resId);
+        return this;
+    }
+
+    /**
+     * 设置 ImageView Matrix
+     * @param view   {@link View}
+     * @param matrix {@link Matrix}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageMatrix(final View view, final Matrix matrix) {
+        ImageViewUtils.setImageMatrix(view, matrix);
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 着色颜色
+     * @param view {@link View}
+     * @param tint 着色颜色
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageTintList(final View view, final ColorStateList tint) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ImageViewUtils.setImageTintList(view, tint);
+        }
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 着色模式
+     * @param view     {@link View}
+     * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageTintMode(final View view, final PorterDuff.Mode tintMode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ImageViewUtils.setImageTintMode(view, tintMode);
+        }
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 缩放类型
+     * @param view      {@link View}
+     * @param scaleType 缩放类型 {@link ImageView.ScaleType}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setScaleType(final View view, final ImageView.ScaleType scaleType) {
+        ImageViewUtils.setScaleType(view, scaleType);
+        return this;
+    }
+
+    /**
+     * ImageView 着色处理
+     * @param imageView {@link ImageView}
+     * @param color     颜色值
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setColorFilter(final ImageView imageView, @ColorInt final int color) {
+        ImageViewUtils.setColorFilter(imageView, color);
+        return this;
+    }
+
+    /**
+     * ImageView 着色处理, 并且设置 Drawable
+     * @param imageView {@link ImageView}
+     * @param drawable  {@link Drawable}
+     * @param color     颜色值
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setColorFilter(final ImageView imageView, final Drawable drawable, @ColorInt final int color) {
+        ImageViewUtils.setColorFilter(imageView, drawable, color);
+        return this;
+    }
+
+    /**
+     * ImageView 着色处理
+     * @param imageView   {@link ImageView}
+     * @param colorFilter 颜色过滤 ( 效果 )
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setColorFilter(final ImageView imageView, final ColorFilter colorFilter) {
+        ImageViewUtils.setColorFilter(imageView, colorFilter);
+        return this;
+    }
+
+    /**
+     * ImageView 着色处理, 并且设置 Drawable
+     * @param imageView   {@link ImageView}
+     * @param drawable    {@link Drawable}
+     * @param colorFilter 颜色过滤 ( 效果 )
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setColorFilter(final ImageView imageView, final Drawable drawable, final ColorFilter colorFilter) {
+        ImageViewUtils.setColorFilter(imageView, drawable, colorFilter);
+        return this;
+    }
+
+    /**
+     * 设置 View 图片资源
+     * @param resId resource identifier
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBackgroundResources(@DrawableRes final int resId, final View... views) {
+        ImageViewUtils.setBackgroundResources(resId, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 图片资源
+     * @param resId        resource identifier
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBackgroundResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
+        ImageViewUtils.setBackgroundResources(resId, isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 图片资源
+     * @param resId resource identifier
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageResources(@DrawableRes final int resId, final View... views) {
+        ImageViewUtils.setImageResources(resId, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 图片资源
+     * @param resId        resource identifier
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
+        ImageViewUtils.setImageResources(resId, isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 设置 View Bitmap
+     * @param bitmap {@link Bitmap}
+     * @param views  View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageBitmaps(final Bitmap bitmap, final View... views) {
+        ImageViewUtils.setImageBitmaps(bitmap, views);
+        return this;
+    }
+
+    /**
+     * 设置 View Bitmap
+     * @param bitmap       {@link Bitmap}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageBitmaps(final Bitmap bitmap, final int isVisibility, final View... views) {
+        ImageViewUtils.setImageBitmaps(bitmap, isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 设置 View Drawable
+     * @param drawable {@link drawable}
+     * @param views    View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageDrawables(final Drawable drawable, final View... views) {
+        ImageViewUtils.setImageDrawables(drawable, views);
+        return this;
+    }
+
+    /**
+     * 设置 View Drawable
+     * @param drawable     {@link drawable}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageDrawables(final Drawable drawable, final int isVisibility, final View... views) {
+        ImageViewUtils.setImageDrawables(drawable, isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 缩放模式
+     * @param scaleType {@link ImageView.ScaleType}
+     * @param views     View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setScaleTypes(final ImageView.ScaleType scaleType, final View... views) {
+        ImageViewUtils.setScaleTypes(scaleType, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 缩放模式
+     * @param scaleType    {@link ImageView.ScaleType}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setScaleTypes(final ImageView.ScaleType scaleType, final int isVisibility, final View... views) {
+        ImageViewUtils.setScaleTypes(scaleType, isVisibility, views);
+        return this;
+    }
+
+    // ========
+    // = View =
+    // ========
+
+    /**
+     * 设置 View Tag
+     * @param view   View
+     * @param object Tag
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTag(final View view, final Object object) {
+        ViewUtils.setTag(view, object);
         return this;
     }
 }
