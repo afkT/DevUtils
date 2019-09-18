@@ -3,9 +3,12 @@ package dev;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.text.method.KeyListener;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import dev.utils.app.EditTextUtils;
 import dev.utils.app.TextViewUtils;
 
 /**
@@ -310,6 +313,156 @@ public final class ViewHelper {
      */
     public ViewHelper setIncludeFontPadding(final View view, final boolean includepad) {
         TextViewUtils.setIncludeFontPadding(view, includepad);
+        return this;
+    }
+
+    // ============
+    // = EditText =
+    // ============
+
+    /**
+     * 设置内容
+     * @param editText {@link EditText}
+     * @param content  文本内容
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setText(final EditText editText, final String content) {
+        EditTextUtils.setText(editText, content);
+        return this;
+    }
+
+    /**
+     * 设置内容
+     * @param editText {@link EditText}
+     * @param content  文本内容
+     * @param isSelect 是否设置光标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setText(final EditText editText, final String content, final boolean isSelect) {
+        EditTextUtils.setText(editText, content, isSelect);
+        return this;
+    }
+
+    /**
+     * 追加内容 ( 当前光标位置追加 )
+     * @param editText {@link EditText}
+     * @param content  文本内容
+     * @param isSelect 是否设置光标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper insert(final EditText editText, final String content, final boolean isSelect) {
+        EditTextUtils.insert(editText, content, isSelect);
+        return this;
+    }
+
+    /**
+     * 追加内容
+     * @param editText {@link EditText}
+     * @param content  文本内容
+     * @param start    开始添加的位置
+     * @param isSelect 是否设置光标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper insert(final EditText editText, final String content, final int start, final boolean isSelect) {
+        EditTextUtils.insert(editText, content, start, isSelect);
+        return this;
+    }
+
+    /**
+     * 设置长度限制
+     * @param editText  {@link EditText}
+     * @param maxLength 长度限制
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxLength(final EditText editText, final int maxLength) {
+        EditTextUtils.setMaxLength(editText, maxLength);
+        return this;
+    }
+
+    /**
+     * 设置长度限制, 并且设置内容
+     * @param editText  {@link EditText}
+     * @param content   文本内容
+     * @param maxLength 长度限制
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxLengthAndText(final EditText editText, final String content, final int maxLength) {
+        EditTextUtils.setMaxLengthAndText(editText, content, maxLength);
+        return this;
+    }
+
+    /**
+     * 设置是否显示光标
+     * @param editText {@link EditText}
+     * @param visible  是否显示光标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCursorVisible(final EditText editText, final boolean visible) {
+        EditTextUtils.setCursorVisible(editText, visible);
+        return this;
+    }
+
+    /**
+     * 设置光标在第一位
+     * @param editText {@link EditText}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setSelectionToTop(final EditText editText) {
+        EditTextUtils.setSelectionToTop(editText);
+        return this;
+    }
+
+    /**
+     * 设置光标在最后一位
+     * @param editText {@link EditText}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setSelectionToBottom(final EditText editText) {
+        EditTextUtils.setSelectionToBottom(editText);
+        return this;
+    }
+
+    /**
+     * 设置光标位置
+     * @param editText {@link EditText}
+     * @param index    光标位置
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setSelection(final EditText editText, final int index) {
+        EditTextUtils.setSelection(editText, index);
+        return this;
+    }
+
+    /**
+     * 设置 KeyListener
+     * @param editText    {@link EditText}
+     * @param keyListener {@link KeyListener}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setKeyListener(final EditText editText, final KeyListener keyListener) {
+        EditTextUtils.setKeyListener(editText, keyListener);
+        return this;
+    }
+
+    /**
+     * 设置 KeyListener
+     * @param editText {@link EditText}
+     * @param accepted 允许输入的内容, 如: 0123456789
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setKeyListener(final EditText editText, final String accepted) {
+        EditTextUtils.setKeyListener(editText, accepted);
+        return this;
+    }
+
+    /**
+     * 设置 KeyListener
+     * @param editText {@link EditText}
+     * @param accepted 允许输入的内容
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setKeyListener(final EditText editText, final char[] accepted) {
+        EditTextUtils.setKeyListener(editText, accepted);
         return this;
     }
 }
