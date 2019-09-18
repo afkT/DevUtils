@@ -1,4 +1,4 @@
-package dev.other.glide;
+package dev.other;
 
 import android.app.Activity;
 import android.content.Context;
