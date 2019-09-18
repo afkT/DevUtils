@@ -119,6 +119,57 @@ public final class ListenerUtils {
         }
     }
 
+    // =
+
+    /**
+     * 设置长按事件
+     * @param view                {@link View}
+     * @param onLongClickListener {@link View.OnLongClickListener}
+     * @param viewIds             View id 数组
+     */
+    public static void setOnLongClicks(final View view, final View.OnLongClickListener onLongClickListener, @IdRes final int... viewIds) {
+        if (view != null && onLongClickListener != null && viewIds != null) {
+            for (int i = 0, len = viewIds.length; i < len; i++) {
+                View findView = findViewById(view, viewIds[i]);
+                if (findView != null) {
+                    findView.setOnLongClickListener(onLongClickListener);
+                }
+            }
+        }
+    }
+
+    /**
+     * 设置长按事件
+     * @param activity            {@link Activity}
+     * @param onLongClickListener {@link View.OnLongClickListener}
+     * @param viewIds             View id 数组
+     */
+    public static void setOnLongClicks(final Activity activity, final View.OnLongClickListener onLongClickListener, @IdRes final int... viewIds) {
+        if (activity != null && onLongClickListener != null && viewIds != null) {
+            for (int i = 0, len = viewIds.length; i < len; i++) {
+                View findView = findViewById(activity, viewIds[i]);
+                if (findView != null) {
+                    findView.setOnLongClickListener(onLongClickListener);
+                }
+            }
+        }
+    }
+
+    /**
+     * 设置长按事件
+     * @param onLongClickListener {@link View.OnLongClickListener}
+     * @param views               View 数组
+     */
+    public static void setOnLongClicks(final View.OnLongClickListener onLongClickListener, final View... views) {
+        if (onLongClickListener != null && views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                if (views[i] != null) {
+                    views[i].setOnLongClickListener(onLongClickListener);
+                }
+            }
+        }
+    }
+
     // ======================
     // = 其他工具类实现代码 =
     // ======================

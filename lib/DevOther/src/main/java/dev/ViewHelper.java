@@ -17,8 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import dev.utils.app.ClickUtils;
 import dev.utils.app.EditTextUtils;
 import dev.utils.app.ImageViewUtils;
+import dev.utils.app.ListenerUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.ViewUtils;
 
@@ -1515,6 +1517,57 @@ public final class ViewHelper {
                                                               final Drawable left, final Drawable top,
                                                               final Drawable right, final Drawable bottom) {
         ViewUtils.setCompoundDrawablesWithIntrinsicBounds(textView, left, top, right, bottom);
+        return this;
+    }
+
+    // ============
+    // = Listener =
+    // ============
+
+    /**
+     * 设置点击事件
+     * @param onClickListener {@link View.OnClickListener}
+     * @param views           View 数组
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setOnClicks(final View.OnClickListener onClickListener, final View... views) {
+        ListenerUtils.setOnClicks(onClickListener, views);
+        return this;
+    }
+
+    /**
+     * 设置长按事件
+     * @param onLongClickListener {@link View.OnLongClickListener}
+     * @param views               View 数组
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setOnLongClicks(final View.OnLongClickListener onLongClickListener, final View... views) {
+        ListenerUtils.setOnLongClicks(onLongClickListener, views);
+        return this;
+    }
+
+    /**
+     * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
+     * @param view  待添加点击范围 View
+     * @param range 点击范围
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addTouchArea(final View view, final int range) {
+        ClickUtils.addTouchArea(view, range);
+        return this;
+    }
+
+    /**
+     * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
+     * @param view   待添加点击范围 View
+     * @param top    top range
+     * @param bottom bottom range
+     * @param left   left range
+     * @param right  right range
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
+        ClickUtils.addTouchArea(view, top, bottom, left, right);
         return this;
     }
 }
