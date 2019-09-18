@@ -1,26 +1,27 @@
 
-## Use
-
-- 直接 copy 所需要的类到项目中使用
-
 
 ## 目录结构
 
 ```
-- dev              | 根目录
-   - other         | 第三方库封装工具类
-   - receiver      | BroadcastReceiver 监听相关
-   - service       | Service 相关
+- dev                                                 | 根目录
+   - other                                            | 第三方库封装工具类
+   - receiver                                         | BroadcastReceiver 监听相关
+   - service                                          | Service 相关
 ```
+
+
+## Use
+
+> 直接 copy 所需要的类到项目中使用
 
 
 ## API
 
 
-- dev                                      | 根目录
-   - [other](#devother)                    | 第三方库封装工具类
-   - [receiver](#devreceiver)              | BroadcastReceiver 监听相关
-   - [service](#devservice)                | Service 相关
+- dev                                                 | 根目录
+   - [other](#devother)                               | 第三方库封装工具类
+   - [receiver](#devreceiver)                         | BroadcastReceiver 监听相关
+   - [service](#devservice)                           | Service 相关
 
 
 
