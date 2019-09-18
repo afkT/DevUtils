@@ -1,7 +1,7 @@
 
 [![Cocoapods](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Cocoapods](https://img.shields.io/badge/DevUtils-1.7.8-brightgreen.svg)](https://github.com/afkT/DevUtils)
+[![Cocoapods](https://img.shields.io/badge/DevUtils-1.7.9-brightgreen.svg)](https://github.com/afkT/DevUtils)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Cocoapods](https://img.shields.io/badge/utils-100+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -32,6 +32,8 @@
 
 
 ## Other
+
+> [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
 
 > [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类 (DevUtils) API 文档，是通过 JavaDoc 项目读取 class 信息生成，并且进行代码、注释间距规范检测，生成效果示范 [DevApp - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 

@@ -58,9 +58,11 @@ public abstract class AbstractCallBack<T> {
     /**
      * 设置标记 Tag
      * @param tag Tag
+     * @return {@link AbstractCallBack}
      */
-    public void setTag(String tag) {
+    public AbstractCallBack<T> setTag(String tag) {
         this.mTag = tag;
+        return this;
     }
 
     /**
@@ -74,9 +76,11 @@ public abstract class AbstractCallBack<T> {
     /**
      * 设置 Value
      * @param value T Class Object
+     * @return {@link AbstractCallBack}
      */
-    public void setValue(T value) {
+    public AbstractCallBack<T> setValue(T value) {
         this.mValue = value;
+        return this;
     }
 
     /**
@@ -90,8 +94,10 @@ public abstract class AbstractCallBack<T> {
     /**
      * 设置 Object
      * @param object Object
+     * @return {@link AbstractCallBack}
      */
-    public void setObject(Object object) {
+    public AbstractCallBack<T> setObject(Object object) {
         this.mObject = object;
+        return this;
     }
 }

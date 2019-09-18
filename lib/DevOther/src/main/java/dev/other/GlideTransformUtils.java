@@ -1,4 +1,4 @@
-package dev.other.glide;
+package dev.other;
 
 import android.annotation.TargetApi;
 import android.content.Context;

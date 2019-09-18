@@ -23,11 +23,9 @@ ext {
             // 支持最小的 SDK
             minSdkVersion         : 14,
             // 编译 SDK 版本
-            compileSdkVersion     : 28,
+            compileSdkVersion     : 29,
             // 向前兼容 SDK 版本
-            targetSdkVersion      : 28,
-            // 编译工具版本
-            buildToolsVersion     : '28.0.3',
+            targetSdkVersion      : 29,
             // support 包 Lib 版本
             supportLibVersion     : '28.0.0',
             // java 版本
@@ -38,19 +36,19 @@ ext {
             // ===========
 
             // 版本号
-            dev_app_versionCode   : 178,
+            dev_app_versionCode   : 179,
             // 版本名
-            dev_app_versionName   : '1.7.8',
+            dev_app_versionName   : '1.7.9',
 
             // 版本号
-            dev_assist_versionCode: 101,
+            dev_assist_versionCode: 102,
             // 版本名
-            dev_assist_versionName: '1.0.1',
+            dev_assist_versionName: '1.0.2',
 
             // 版本号
-            dev_java_versionCode  : 101,
+            dev_java_versionCode  : 102,
             // 版本名
-            dev_java_version      : '1.0.1',
+            dev_java_version      : '1.0.2',
 
             // 版本号
             dev_other_versionCode : 100,

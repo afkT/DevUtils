@@ -957,5 +957,10 @@ public final class DevUtils {
      * @author Ttt
      */
     public static final class FileProviderDevApp extends FileProvider {
+        @Override
+        public boolean onCreate() {
+            init(getContext());
+            return true;
+        }
     }
 }

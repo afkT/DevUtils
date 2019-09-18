@@ -43,9 +43,11 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
     /**
      * 设置 Adapter Notify
      * @param adapterNotify {@link IAdapterNotify}
+     * @return {@link AdapterDataAssist}
      */
-    public void setAdapterNotify(final IAdapterNotify adapterNotify) {
+    public AdapterDataAssist<V> setAdapterNotify(final IAdapterNotify adapterNotify) {
         this.mAdapterNotify = adapterNotify;
+        return this;
     }
 
     // ================

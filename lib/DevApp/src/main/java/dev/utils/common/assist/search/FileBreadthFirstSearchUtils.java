@@ -231,9 +231,11 @@ public final class FileBreadthFirstSearchUtils {
     /**
      * 设置延迟校验时间 ( 毫秒 )
      * @param delayTimeMillis 延迟校验时间 ( 毫秒 )
+     * @return {@link FileBreadthFirstSearchUtils}
      */
-    public void setDelayTime(final long delayTimeMillis) {
+    public FileBreadthFirstSearchUtils setDelayTime(final long delayTimeMillis) {
         this.mDelayTime = delayTimeMillis;
+        return this;
     }
 
     // =

@@ -232,9 +232,11 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     /**
      * 设置播放监听事件
      * @param mediaListener {@link DevMediaManager.MediaListener}
+     * @return {@link DevVideoPlayerControl}
      */
-    public void setMediaListener(final DevMediaManager.MediaListener mediaListener) {
+    public DevVideoPlayerControl setMediaListener(final DevMediaManager.MediaListener mediaListener) {
         this.mMediaListener = mediaListener;
+        return this;
     }
 
     // ================
@@ -346,9 +348,11 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     /**
      * 设置自动播放
      * @param autoPlay 是否自动播放
+     * @return {@link DevVideoPlayerControl}
      */
-    public void setAutoPlay(final boolean autoPlay) {
+    public DevVideoPlayerControl setAutoPlay(final boolean autoPlay) {
         this.mAutoPlay = autoPlay;
+        return this;
     }
 
     /**
