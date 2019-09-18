@@ -2,6 +2,28 @@ Change Log
 ==========
 
 
+Version 1.7.9 *(2019-09-19)*
+----------------------------
+ 
+ * `[Update]` compileSdkVersion 29 Android Q
+ 
+ * `[Update]` AppCommonUtils#convertSDKVersion
+ 
+ * `[Update]` ImageUtils#getImageType、ImageUtils#isImage modify to isImageFormats
+ 
+ * `[Update]` 修改部分方法 void 返回值 (返回当前对象, 方便链式调用)
+ 
+ * `[Add]` AppCommonUtils#isQ
+ 
+ * `[Add]` BitmapUtils#isImage
+ 
+ * `[Add]` ListenerUtils#setOnLongClicks
+ 
+ * `[Add]` ImageUtils#isICO、ImageUtils#isTIFF
+
+ * `[Add]` ViewUtils#getTag、setTag
+
+
 Version 1.7.8 *(2019-09-12)*
 ----------------------------
  
