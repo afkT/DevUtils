@@ -12,6 +12,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.text.method.KeyListener;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -845,6 +846,675 @@ public final class ViewHelper {
      */
     public ViewHelper setTag(final View view, final Object object) {
         ViewUtils.setTag(view, object);
+        return this;
+    }
+
+    /**
+     * 设置 View LayoutParams
+     * @param view   {@link View}
+     * @param params LayoutParams
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setLayoutParams(final View view, final ViewGroup.LayoutParams params) {
+        ViewUtils.setLayoutParams(view, params);
+        return this;
+    }
+
+    /**
+     * 设置 View 是否可以获取焦点
+     * @param focusable {@code true} 可获取, {@code false} 不可获取
+     * @param views     View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setFocusable(final boolean focusable, final View... views) {
+        ViewUtils.setFocusable(focusable, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 是否选中
+     * @param selected {@code true} 选中, {@code false} 非选中
+     * @param views    View[]
+     * @return {@code true} 选中, {@code false} 非选中
+     */
+    public ViewHelper setSelected(final boolean selected, final View... views) {
+        ViewUtils.setSelected(selected, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 是否启用
+     * @param enabled {@code true} 启用, {@code false} 禁用
+     * @param views   View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setEnabled(final boolean enabled, final View... views) {
+        ViewUtils.setEnabled(enabled, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 是否可以点击
+     * @param clickable {@code true} 可点击, {@code false} 不可点击
+     * @param views     View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setClickable(final boolean clickable, final View... views) {
+        ViewUtils.setClickable(clickable, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 是否可以长按
+     * @param longClickable {@code true} 可长按, {@code false} 不可长按
+     * @param views         View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setLongClickable(final boolean longClickable, final View... views) {
+        ViewUtils.setLongClickable(longClickable, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 显示的状态
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
+     * @param view         {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setVisibility(final boolean isVisibility, final View view) {
+        ViewUtils.setVisibility(isVisibility, view);
+        return this;
+    }
+
+    /**
+     * 设置 View 显示的状态
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param view         {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setVisibility(final int isVisibility, final View view) {
+        ViewUtils.setVisibility(isVisibility, view);
+        return this;
+    }
+
+    /**
+     * 设置 View 显示的状态
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setVisibilitys(final boolean isVisibility, final View... views) {
+        ViewUtils.setVisibilitys(isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 显示的状态
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setVisibilitys(final int isVisibility, final View... views) {
+        ViewUtils.setVisibilitys(isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 切换 View 显示的状态
+     * @param view  {@link View}
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleVisibilitys(final View view, final View... views) {
+        ViewUtils.toggleVisibilitys(view, views);
+        return this;
+    }
+
+    /**
+     * 切换 View 显示的状态
+     * @param viewArys View[]
+     * @param views    View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleVisibilitys(final View[] viewArys, final View... views) {
+        ViewUtils.toggleVisibilitys(viewArys, views);
+        return this;
+    }
+
+    /**
+     * 切换 View 显示的状态
+     * @param status   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param viewArys View[]
+     * @param views    View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleVisibilitys(final int status, final View[] viewArys, final View... views) {
+        ViewUtils.toggleVisibilitys(status, viewArys, views);
+        return this;
+    }
+
+    /**
+     * 反转 View 显示的状态
+     * @param status   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param viewArys View[]
+     * @param views    View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper reverseVisibilitys(final int status, final View[] viewArys, final View... views) {
+        ViewUtils.reverseVisibilitys(status, viewArys, views);
+        return this;
+    }
+
+    /**
+     * 反转 View 显示的状态
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
+     * @param viewArys     View[]
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper reverseVisibilitys(final boolean isVisibility, final View[] viewArys, final View... views) {
+        ViewUtils.reverseVisibilitys(isVisibility, viewArys, views);
+        return this;
+    }
+
+    /**
+     * 反转 View 显示的状态
+     * @param status {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param view   {@link View}
+     * @param views  View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper reverseVisibilitys(final int status, final View view, final View... views) {
+        ViewUtils.reverseVisibilitys(status, view, views);
+        return this;
+    }
+
+    /**
+     * 反转 View 显示的状态
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
+     * @param view         {@link View}
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper reverseVisibilitys(final boolean isVisibility, final View view, final View... views) {
+        ViewUtils.reverseVisibilitys(isVisibility, view, views);
+        return this;
+    }
+
+    /**
+     * 把自身从父 View 中移除
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper removeSelfFromParent(final View view) {
+        ViewUtils.removeSelfFromParent(view);
+        return this;
+    }
+
+    /**
+     * 设置 View Layout Gravity
+     * @param view    {@link View}
+     * @param gravity Gravity
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setLayoutGravity(final View view, final int gravity) {
+        ViewUtils.setLayoutGravity(view, gravity);
+        return this;
+    }
+
+    /**
+     * 设置 View Left Margin
+     * @param view       {@link View}
+     * @param leftMargin Left Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMarginLeft(final View view, final int leftMargin) {
+        ViewUtils.setMarginLeft(view, leftMargin);
+        return this;
+    }
+
+    /**
+     * 设置 View Left Margin
+     * @param view       {@link View}
+     * @param leftMargin Left Margin
+     * @param reset      是否重置清空其他 margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMarginLeft(final View view, final int leftMargin, final boolean reset) {
+        ViewUtils.setMarginLeft(view, leftMargin, reset);
+        return this;
+    }
+
+    /**
+     * 设置 View Top Margin
+     * @param view      {@link View}
+     * @param topMargin Top Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMarginTop(final View view, final int topMargin) {
+        ViewUtils.setMarginTop(view, topMargin);
+        return this;
+    }
+
+    /**
+     * 设置 View Top Margin
+     * @param view      {@link View}
+     * @param topMargin Top Margin
+     * @param reset     是否重置清空其他 margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMarginTop(final View view, final int topMargin, final boolean reset) {
+        ViewUtils.setMarginTop(view, topMargin, reset);
+        return this;
+    }
+
+    /**
+     * 设置 View Right Margin
+     * @param view        {@link View}
+     * @param rightMargin Right Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMarginRight(final View view, final int rightMargin) {
+        ViewUtils.setMarginRight(view, rightMargin);
+        return this;
+    }
+
+    /**
+     * 设置 View Right Margin
+     * @param view        {@link View}
+     * @param rightMargin Right Margin
+     * @param reset       是否重置清空其他 margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMarginRight(final View view, final int rightMargin, final boolean reset) {
+        ViewUtils.setMarginRight(view, rightMargin, reset);
+        return this;
+    }
+
+    /**
+     * 设置 View Bottom Margin
+     * @param view         {@link View}
+     * @param bottomMargin Bottom Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMarginBottom(final View view, final int bottomMargin) {
+        ViewUtils.setMarginBottom(view, bottomMargin);
+        return this;
+    }
+
+    /**
+     * 设置 View Bottom Margin
+     * @param view         {@link View}
+     * @param bottomMargin Bottom Margin
+     * @param reset        是否重置清空其他 margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMarginBottom(final View view, final int bottomMargin, final boolean reset) {
+        ViewUtils.setMarginBottom(view, bottomMargin, reset);
+        return this;
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param view      {@link View}
+     * @param leftRight Left and Right Margin
+     * @param topBottom Top and bottom Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMargin(final View view, final int leftRight, final int topBottom) {
+        ViewUtils.setMargin(view, leftRight, topBottom);
+        return this;
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param view   {@link View}
+     * @param margin Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMargin(final View view, final int margin) {
+        ViewUtils.setMargin(view, margin);
+        return this;
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param view   {@link View}
+     * @param left   Left Margin
+     * @param top    Top Margin
+     * @param right  Right Margin
+     * @param bottom Bottom Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMargin(final View view, final int left, final int top, final int right, final int bottom) {
+        ViewUtils.setMargin(view, left, top, right, bottom);
+        return this;
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param views     View[]
+     * @param leftRight Left and Right Margin
+     * @param topBottom Top and bottom Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMargin(final View[] views, final int leftRight, final int topBottom) {
+        ViewUtils.setMargin(views, leftRight, topBottom);
+        return this;
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param views  View[]
+     * @param margin Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMargin(final View[] views, final int margin) {
+        ViewUtils.setMargin(views, margin);
+        return this;
+    }
+
+    /**
+     * 设置 Margin 边距
+     * @param views  View[]
+     * @param left   Left Margin
+     * @param top    Top Margin
+     * @param right  Right Margin
+     * @param bottom Bottom Margin
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMargin(final View[] views, final int left, final int top, final int right, final int bottom) {
+        ViewUtils.setMargin(views, left, top, right, bottom);
+        return this;
+    }
+
+    /**
+     * 设置 View Left Padding
+     * @param view        {@link View}
+     * @param leftPadding Left Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPaddingLeft(final View view, final int leftPadding) {
+        ViewUtils.setPaddingLeft(view, leftPadding);
+        return this;
+    }
+
+    /**
+     * 设置 View Left Padding
+     * @param view        {@link View}
+     * @param leftPadding Left Padding
+     * @param reset       是否重置清空其他 Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPaddingLeft(final View view, final int leftPadding, final boolean reset) {
+        ViewUtils.setPaddingLeft(view, leftPadding, reset);
+        return this;
+    }
+
+    /**
+     * 设置 View Top Padding
+     * @param view       {@link View}
+     * @param topPadding Top Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPaddingTop(final View view, final int topPadding) {
+        ViewUtils.setPaddingTop(view, topPadding);
+        return this;
+    }
+
+    /**
+     * 设置 View Top Padding
+     * @param view       {@link View}
+     * @param topPadding Top Padding
+     * @param reset      是否重置清空其他 Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPaddingTop(final View view, final int topPadding, final boolean reset) {
+        ViewUtils.setPaddingTop(view, topPadding, reset);
+        return this;
+    }
+
+    /**
+     * 设置 View Right Padding
+     * @param view         {@link View}
+     * @param rightPadding Right Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPaddingRight(final View view, final int rightPadding) {
+        ViewUtils.setPaddingRight(view, rightPadding);
+        return this;
+    }
+
+    /**
+     * 设置 View Right Padding
+     * @param view         {@link View}
+     * @param rightPadding Right Padding
+     * @param reset        是否重置清空其他 Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPaddingRight(final View view, final int rightPadding, final boolean reset) {
+        ViewUtils.setPaddingRight(view, rightPadding, reset);
+        return this;
+    }
+
+    /**
+     * 设置 View Bottom Padding
+     * @param view          {@link View}
+     * @param bottomPadding Bottom Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPaddingBottom(final View view, final int bottomPadding) {
+        ViewUtils.setPaddingBottom(view, bottomPadding);
+        return this;
+    }
+
+    /**
+     * 设置 View Bottom Padding
+     * @param view          {@link View}
+     * @param bottomPadding Bottom Padding
+     * @param reset         是否重置清空其他 Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPaddingBottom(final View view, final int bottomPadding, final boolean reset) {
+        ViewUtils.setPaddingBottom(view, bottomPadding, reset);
+        return this;
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param view      {@link View}
+     * @param leftRight Left and Right Padding
+     * @param topBottom Top and bottom Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPadding(final View view, final int leftRight, final int topBottom) {
+        ViewUtils.setPadding(view, leftRight, topBottom);
+        return this;
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param view    {@link View}
+     * @param padding Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPadding(final View view, final int padding) {
+        ViewUtils.setPadding(view, padding);
+        return this;
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param view   {@link View}
+     * @param left   Left Padding
+     * @param top    Top Padding
+     * @param right  Right Padding
+     * @param bottom Bottom Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPadding(final View view, final int left, final int top, final int right, final int bottom) {
+        ViewUtils.setPadding(view, left, top, right, bottom);
+        return this;
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param views     View[]
+     * @param leftRight Left and Right Padding
+     * @param topBottom Top and bottom Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPadding(final View[] views, final int leftRight, final int topBottom) {
+        ViewUtils.setPadding(views, leftRight, topBottom);
+        return this;
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param views   View[]
+     * @param padding Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPadding(final View[] views, final int padding) {
+        ViewUtils.setPadding(views, padding);
+        return this;
+    }
+
+    /**
+     * 设置 Padding 边距
+     * @param views  View[]
+     * @param left   Left Padding
+     * @param top    Top Padding
+     * @param right  Right Padding
+     * @param bottom Bottom Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPadding(final View[] views, final int left, final int top, final int right, final int bottom) {
+        ViewUtils.setPadding(views, left, top, right, bottom);
+        return this;
+    }
+
+    /**
+     * 设置 Left CompoundDrawables
+     * @param textView {@link TextView}
+     * @param left     left Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablesByLeft(final TextView textView, final Drawable left) {
+        ViewUtils.setCompoundDrawablesByLeft(textView, left);
+        return this;
+    }
+
+    /**
+     * 设置 Top CompoundDrawables
+     * @param textView {@link TextView}
+     * @param top      top Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablesByTop(final TextView textView, final Drawable top) {
+        ViewUtils.setCompoundDrawablesByTop(textView, top);
+        return this;
+    }
+
+    /**
+     * 设置 Right CompoundDrawables
+     * @param textView {@link TextView}
+     * @param right    right Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablesByRight(final TextView textView, final Drawable right) {
+        ViewUtils.setCompoundDrawablesByRight(textView, right);
+        return this;
+    }
+
+    /**
+     * 设置 Bottom CompoundDrawables
+     * @param textView {@link TextView}
+     * @param bottom   bottom Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablesByBottom(final TextView textView, final Drawable bottom) {
+        ViewUtils.setCompoundDrawablesByBottom(textView, bottom);
+        return this;
+    }
+
+    /**
+     * 设置 CompoundDrawables
+     * <pre>
+     *     CompoundDrawable 的大小控制是通过 drawable.setBounds() 控制
+     *     需要先设置 Drawable 的 setBounds
+     * </pre>
+     * @param textView {@link TextView}
+     * @param left     left Drawable
+     * @param top      top Drawable
+     * @param right    right Drawable
+     * @param bottom   bottom Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawables(final TextView textView,
+                                           final Drawable left, final Drawable top,
+                                           final Drawable right, final Drawable bottom) {
+        ViewUtils.setCompoundDrawables(textView, left, top, right, bottom);
+        return this;
+    }
+
+    /**
+     * 设置 Left CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param left     left Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByLeft(final TextView textView, final Drawable left) {
+        ViewUtils.setCompoundDrawablesWithIntrinsicBoundsByLeft(textView, left);
+        return this;
+    }
+
+    /**
+     * 设置 Top CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param top      top Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByTop(final TextView textView, final Drawable top) {
+        ViewUtils.setCompoundDrawablesWithIntrinsicBoundsByTop(textView, top);
+        return this;
+    }
+
+    /**
+     * 设置 Right CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param right    right Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByRight(final TextView textView, final Drawable right) {
+        ViewUtils.setCompoundDrawablesWithIntrinsicBoundsByRight(textView, right);
+        return this;
+    }
+
+    /**
+     * 设置 Bottom CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param bottom   bottom Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByBottom(final TextView textView, final Drawable bottom) {
+        ViewUtils.setCompoundDrawablesWithIntrinsicBoundsByBottom(textView, bottom);
+        return this;
+    }
+
+    /**
+     * 设置 CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param left     left Drawable
+     * @param top      top Drawable
+     * @param right    right Drawable
+     * @param bottom   bottom Drawable
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablesWithIntrinsicBounds(final TextView textView,
+                                                              final Drawable left, final Drawable top,
+                                                              final Drawable right, final Drawable bottom) {
+        ViewUtils.setCompoundDrawablesWithIntrinsicBounds(textView, left, top, right, bottom);
         return this;
     }
 }
