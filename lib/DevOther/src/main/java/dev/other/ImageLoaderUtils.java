@@ -150,7 +150,7 @@ public final class ImageLoaderUtils {
                 .displayer(new RoundedBitmapDisplayer(20))
                 .cacheOnDisk(isCacheDisk); // 是否保存到 SDCard 上
         // 判断是否使用加载图片
-        if (loadingRes > 0) {
+        if (loadingRes != 0) {
             builder.showImageOnLoading(loadingRes) // 设置图片在下载期间显示的图片
                     .showImageForEmptyUri(loadingRes) // 设置图片 Uri 为空或是错误的时候显示的图片
                     .showImageOnFail(loadingRes); // 设置图片 ( 加载 / 解码 ) 过程中错误时候显示的图片

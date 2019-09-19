@@ -207,7 +207,7 @@ public final class GlideUtils {
      * @return {@link RequestOptions}
      */
     public static RequestOptions getLoadResOptions(final RequestOptions options, @DrawableRes final int loadingRes) {
-        if (options != null && loadingRes > 0) {
+        if (options != null && loadingRes != 0) {
             options.placeholder(loadingRes) // 设置图片在下载期间显示的图片
                     .fallback(loadingRes) // 设置图片 Uri 为空或是错误的时候显示的图片
                     .error(loadingRes); // 设置图片 ( 加载 / 解码 ) 过程中错误时候显示的图片
