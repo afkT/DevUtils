@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.StyleRes;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
@@ -298,6 +299,41 @@ public final class DialogUtils {
     // =
 
     /**
+     * 关闭 DialogFragment
+     * @param dialog {@link DialogFragment}
+     */
+    public static void closeDialog(final DialogFragment dialog) {
+        if (dialog != null) {
+            try {
+                dialog.dismiss();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "closeDialog");
+            }
+        }
+    }
+
+    /**
+     * 关闭多个 DialogFragment
+     * @param dialogs {@link DialogFragment} 数组
+     */
+    public static void closeDialogs(final DialogFragment... dialogs) {
+        if (dialogs != null && dialogs.length != 0) {
+            for (int i = 0, len = dialogs.length; i < len; i++) {
+                DialogFragment dialog = dialogs[i];
+                if (dialog != null) {
+                    try {
+                        dialog.dismiss();
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "closeDialogs");
+                    }
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
      * 关闭 PopupWindow
      * @param popupWindow {@link PopupWindow}
      */
@@ -532,6 +568,33 @@ public final class DialogUtils {
                     public void run() {
                         try {
                             if (dialog != null && dialog.isShowing()) {
+                                dialog.dismiss();
+                            }
+                        } catch (Exception e) {
+                        }
+                    }
+                }, delayMillis);
+            }
+        }
+        return dialog;
+    }
+
+    /**
+     * 自动关闭 DialogFragment
+     * @param dialog      {@link DialogFragment}
+     * @param delayMillis 延迟关闭时间
+     * @param handler     {@link Handler}
+     * @param <T>         泛型
+     * @return {@link Dialog}
+     */
+    public static <T extends DialogFragment> T autoCloseDialog(final T dialog, final long delayMillis, final Handler handler) {
+        if (dialog != null) {
+            if (handler != null) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (dialog != null) {
                                 dialog.dismiss();
                             }
                         } catch (Exception e) {
