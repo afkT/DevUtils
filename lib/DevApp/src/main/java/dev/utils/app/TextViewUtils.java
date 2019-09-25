@@ -975,6 +975,29 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取 TextView Paint
+     * @param view {@link TextView}
+     * @param <T>  泛型
+     * @return {@link Paint}
+     */
+    public static <T extends TextView> Paint getPaint(final View view) {
+        return getPaint(getTextView(view));
+    }
+
+    /**
+     * 获取 TextView Paint
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link Paint}
+     */
+    public static <T extends TextView> Paint getPaint(final T textView) {
+        if (textView != null) {
+            return textView.getPaint();
+        }
+        return null;
+    }
+
+    /**
      * 获取字体高度
      * @param textView {@link TextView}
      * @param <T>      泛型
@@ -1041,7 +1064,7 @@ public final class TextViewUtils {
     /**
      * 计算字体宽度
      * @param textView {@link TextView}
-     * @param text     待计算的文本
+     * @param text     待测量文本
      * @param <T>      泛型
      * @return 字体宽度
      */
@@ -1065,7 +1088,7 @@ public final class TextViewUtils {
     /**
      * 计算字体宽度
      * @param paint {@link TextView#getPaint()}
-     * @param text  待计算的文本
+     * @param text  待测量文本
      * @return 字体宽度
      */
     public static float getTextWidth(final Paint paint, final String text) {
@@ -1074,6 +1097,105 @@ public final class TextViewUtils {
         }
         return -1f;
     }
+
+    // =
+
+    /**
+     * 计算字体宽度
+     * @param view  {@link TextView}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final View view, final String text, final int start, final int end) {
+        return getTextWidth(getPaint(view), text, start, end);
+    }
+
+    /**
+     * 计算字体宽度
+     * @param view  {@link TextView}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final View view, final CharSequence text, final int start, final int end) {
+        return getTextWidth(getPaint(view), text, start, end);
+    }
+
+    /**
+     * 计算字体宽度
+     * @param view  {@link TextView}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final View view, final char[] text, final int start, final int end) {
+        return getTextWidth(getPaint(view), text, start, end);
+    }
+
+    // =
+
+    /**
+     * 计算字体宽度
+     * @param paint {@link TextView#getPaint()}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final Paint paint, final String text, final int start, final int end) {
+        if (paint != null && text != null) {
+            try {
+                return paint.measureText(text, start, end);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getTextWidth");
+            }
+        }
+        return -1f;
+    }
+
+    /**
+     * 计算字体宽度
+     * @param paint {@link TextView#getPaint()}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final Paint paint, final CharSequence text, final int start, final int end) {
+        if (paint != null && text != null) {
+            try {
+                return paint.measureText(text, start, end);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getTextWidth");
+            }
+        }
+        return -1f;
+    }
+
+    /**
+     * 计算字体宽度
+     * @param paint {@link TextView#getPaint()}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final Paint paint, final char[] text, final int start, final int end) {
+        if (paint != null && text != null) {
+            try {
+                return paint.measureText(text, start, end);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getTextWidth");
+            }
+        }
+        return -1f;
+    }
+
+    // =
 
     /**
      * 获取画布中间居中位置
@@ -1128,7 +1250,7 @@ public final class TextViewUtils {
     /**
      * 计算第几位超过宽度
      * @param textView {@link TextView}
-     * @param text     待计算的文本
+     * @param text     待测量文本
      * @param width    指定的宽度
      * @param <T>      泛型
      * @return -1 表示没超过, 其他值表示对应的索引位置
