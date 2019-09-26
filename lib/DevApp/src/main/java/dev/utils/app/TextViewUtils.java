@@ -1281,41 +1281,39 @@ public final class TextViewUtils {
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static int calcTextWidth(final Paint paint, final String text, final float width) {
-        if (paint != null && text != null) {
-            // 先获取宽度
-            float textWidth = getTextWidth(paint, text);
+        if (paint != null && text != null && width > 0) {
+            // 全部文本宽度
+            float allTextWidth = getTextWidth(paint, text);
             // 判断是否超过
-            if (textWidth <= width) {
-                return -1; // 表示没超过
-            }
+            if (allTextWidth <= width) return -1; // 表示没超过
             // 获取数据长度
             int length = text.length();
-            // 循环除 2
-            while (true) {
-                // 数据至少为 2 位以上
-                if (length < 2) {
-                    return 0; // 表示第一位已经超过
-                }
-                // 从中间取值
-                length = length / 2;
-                // 计算宽度
-                textWidth = getTextWidth(paint, text.substring(0, length));
-                // 判断是否小于宽度 - 进行返回长度
-                if (textWidth <= width) {
-                    break;
-                }
-            }
-            // 遍历计算
-            for (int i = length, len = text.length(); i < len; i++) {
-                // 获取字体内容宽度
-                float tWidth = paint.measureText(text.substring(0, i));
-                // 判断是否大于指定宽度
-                if (tWidth > width) {
-                    return i - 1; // 返回超过前的长度
-                } else if (tWidth == width) {
-                    return i; // 返回超过前的长度
+            // 超过长度且只有一个数据, 那么只能是第一个就超过了
+            if (length == 1) return 1;
+            // 二分法寻找最佳位置
+            int start = 0;
+            int end = length;
+            int mid = 0;
+            // 判断是否大于位置
+            while (start < end) {
+                mid = (start + end) / 2;
+                // 获取字体宽度
+                float textWidth = getTextWidth(paint, text, 0, mid);
+                // 如果相等直接返回
+                if (textWidth == width) {
+                    return mid;
+                } else if (textWidth > width) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
                 }
             }
+            // 计算最符合的位置
+            for (int i = Math.min(Math.min(start, mid), end), len = length; i <= len; i++) {
+                float textWidth = TextViewUtils.getTextWidth(paint, text, 0, i);
+                if (textWidth >= width) return i;
+            }
+            return start;
         }
         return -1;
     }
