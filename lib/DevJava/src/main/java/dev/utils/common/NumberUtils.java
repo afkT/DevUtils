@@ -499,6 +499,58 @@ public final class NumberUtils {
         return value > max ? max : value < min ? min : value;
     }
 
+    // ========
+    // = calc =
+    // ========
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultiple(final int value, final int divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        return (int) (value / divisor) + 1;
+    }
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultiple(final double value, final double divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        return (int) (value / divisor) + 1;
+    }
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultiple(final long value, final long divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        return (int) (value / divisor) + 1;
+    }
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultiple(final float value, final float divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        return (int) (value / divisor) + 1;
+    }
+
     // ==================
     // = 数字、中文互转 =
     // ==================
