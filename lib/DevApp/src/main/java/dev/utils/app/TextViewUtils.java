@@ -1004,10 +1004,7 @@ public final class TextViewUtils {
      * @return 字体高度
      */
     public static <T extends TextView> int getTextHeight(final T textView) {
-        if (textView != null) {
-            return getTextHeight(textView.getPaint());
-        }
-        return 0;
+        return getTextHeight(getPaint(textView));
     }
 
     /**
@@ -1036,10 +1033,7 @@ public final class TextViewUtils {
      * @return 字体顶部偏移高度
      */
     public static <T extends TextView> int getTextTopOffsetHeight(final T textView) {
-        if (textView != null) {
-            return getTextTopOffsetHeight(textView.getPaint());
-        }
-        return 0;
+        return getTextTopOffsetHeight(getPaint(textView));
     }
 
     /**
@@ -1069,10 +1063,7 @@ public final class TextViewUtils {
      * @return 字体宽度
      */
     public static <T extends TextView> float getTextWidth(final T textView, final String text) {
-        if (textView != null && text != null) {
-            return getTextWidth(textView.getPaint(), text);
-        }
-        return -1;
+        return getTextWidth(getPaint(textView), text);
     }
 
     /**
@@ -1082,7 +1073,7 @@ public final class TextViewUtils {
      * @return 字体宽度
      */
     public static <T extends TextView> float getTextWidth(final T textView) {
-        return getTextWidth(textView, getText(textView));
+        return getTextWidth(getPaint(textView), getText(textView));
     }
 
     /**
@@ -1256,10 +1247,7 @@ public final class TextViewUtils {
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static <T extends TextView> int calcTextWidth(final T textView, final String text, final float width) {
-        if (textView != null && text != null) {
-            return calcTextWidth(textView.getPaint(), text, width);
-        }
-        return -1;
+        return calcTextWidth(getPaint(textView), text, width);
     }
 
     /**
@@ -1270,7 +1258,7 @@ public final class TextViewUtils {
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static <T extends TextView> int calcTextWidth(final T textView, final float width) {
-        return calcTextWidth(textView, getText(textView), width);
+        return calcTextWidth(getPaint(textView), getText(textView), width);
     }
 
     /**
@@ -1316,5 +1304,46 @@ public final class TextViewUtils {
             return start;
         }
         return -1;
+    }
+
+    /**
+     * 计算文本换行行数
+     * @param textView {@link TextView}
+     * @param text     待测量文本
+     * @param width    指定的宽度
+     * @param <T>      泛型
+     * @return 行数
+     */
+    public static <T extends TextView> int calcTextLine(final T textView, final String text, final float width) {
+        return calcTextLine(getPaint(textView), text, width);
+    }
+
+    /**
+     * 计算文本行数
+     * @param textView {@link TextView}
+     * @param width    指定的宽度
+     * @param <T>      泛型
+     * @return 行数
+     */
+    public static <T extends TextView> int calcTextLine(final T textView, final float width) {
+        return calcTextLine(getPaint(textView), getText(textView), width);
+    }
+
+    /**
+     * 计算文本行数
+     * @param paint {@link TextView#getPaint()}
+     * @param text  文本内容
+     * @param width 指定的宽度
+     * @return 行数
+     */
+    public static int calcTextLine(final Paint paint, final String text, final float width) {
+        if (paint != null && text != null && width > 0) {
+            // 全部文本宽度
+            float allTextWidth = getTextWidth(paint, text);
+            // 判断是否超过
+            if (allTextWidth <= width) return 1;
+            return (int) (allTextWidth / width) + 1;
+        }
+        return 0;
     }
 }
