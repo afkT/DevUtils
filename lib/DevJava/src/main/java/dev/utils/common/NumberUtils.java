@@ -524,7 +524,8 @@ public final class NumberUtils {
     public static int getMultiple(final double value, final double divisor) {
         if (value <= 0 || divisor <= 0) return 0;
         if (value <= divisor) return 1;
-        return (int) ((value % divisor == 0) ? (value / divisor) : (value / divisor) + 1);
+        int result = (int) (value / divisor);
+        return ((value - divisor * result == 0d) ? result : result + 1);
     }
 
     /**
@@ -548,7 +549,8 @@ public final class NumberUtils {
     public static int getMultiple(final float value, final float divisor) {
         if (value <= 0 || divisor <= 0) return 0;
         if (value <= divisor) return 1;
-        return (int) ((value % divisor == 0) ? (value / divisor) : (value / divisor) + 1);
+        int result = (int) (value / divisor);
+        return ((value - divisor * result == 0f) ? result : result + 1);
     }
 
     // =======

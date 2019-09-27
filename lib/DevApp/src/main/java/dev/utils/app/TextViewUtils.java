@@ -1342,7 +1342,8 @@ public final class TextViewUtils {
             float allTextWidth = getTextWidth(paint, text);
             // 判断是否超过
             if (allTextWidth <= width) return 1;
-            return (int) ((allTextWidth % width == 0) ? (allTextWidth / width) : (allTextWidth / width) + 1);
+            int result = (int) (allTextWidth / width);
+            return ((allTextWidth - width * result == 0f) ? result : result + 1);
         }
         return 0;
     }
