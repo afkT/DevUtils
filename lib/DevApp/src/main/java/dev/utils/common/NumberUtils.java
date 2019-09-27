@@ -512,7 +512,7 @@ public final class NumberUtils {
     public static int getMultiple(final int value, final int divisor) {
         if (value <= 0 || divisor <= 0) return 0;
         if (value <= divisor) return 1;
-        return (int) (value / divisor) + 1;
+        return (value % divisor == 0) ? (value / divisor) : (value / divisor) + 1;
     }
 
     /**
@@ -524,7 +524,7 @@ public final class NumberUtils {
     public static int getMultiple(final double value, final double divisor) {
         if (value <= 0 || divisor <= 0) return 0;
         if (value <= divisor) return 1;
-        return (int) (value / divisor) + 1;
+        return (int) ((value % divisor == 0) ? (value / divisor) : (value / divisor) + 1);
     }
 
     /**
@@ -536,7 +536,7 @@ public final class NumberUtils {
     public static int getMultiple(final long value, final long divisor) {
         if (value <= 0 || divisor <= 0) return 0;
         if (value <= divisor) return 1;
-        return (int) (value / divisor) + 1;
+        return (int) ((value % divisor == 0) ? (value / divisor) : (value / divisor) + 1);
     }
 
     /**
@@ -548,7 +548,7 @@ public final class NumberUtils {
     public static int getMultiple(final float value, final float divisor) {
         if (value <= 0 || divisor <= 0) return 0;
         if (value <= divisor) return 1;
-        return (int) (value / divisor) + 1;
+        return (int) ((value % divisor == 0) ? (value / divisor) : (value / divisor) + 1);
     }
 
     // =======
@@ -658,7 +658,7 @@ public final class NumberUtils {
      * @return 倍数
      */
     public static long getMultipleL(final int value, final int divisor) {
-        if (value <= 0l || divisor <= 0l) return 0l;
+        if (value <= 0L || divisor <= 0L) return 0L;
         return (long) value / (long) divisor;
     }
 
@@ -669,7 +669,7 @@ public final class NumberUtils {
      * @return 倍数
      */
     public static long getMultipleL(final double value, final double divisor) {
-        if (value <= 0l || divisor <= 0l) return 0l;
+        if (value <= 0L || divisor <= 0L) return 0L;
         return (long) value / (long) divisor;
     }
 
@@ -680,7 +680,7 @@ public final class NumberUtils {
      * @return 倍数
      */
     public static long getMultipleL(final long value, final long divisor) {
-        if (value <= 0l || divisor <= 0l) return 0l;
+        if (value <= 0L || divisor <= 0L) return 0L;
         return (long) value / (long) divisor;
     }
 
@@ -691,7 +691,7 @@ public final class NumberUtils {
      * @return 倍数
      */
     public static long getMultipleL(final float value, final float divisor) {
-        if (value <= 0l || divisor <= 0l) return 0l;
+        if (value <= 0L || divisor <= 0L) return 0L;
         return (long) value / (long) divisor;
     }
 
