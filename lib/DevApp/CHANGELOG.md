@@ -1,6 +1,18 @@
 Change Log
 ==========
 
+Version 1.8.0 *(2019-10-09)*
+----------------------------
+ 
+ * `[Update]` TextViewUtils#calcTextWidth 使用二分法优化处理
+ 
+ * `[Add]` TextViewUtils#calcTextLine、TextViewUtils#getPaint、TextViewUtils#getTextWidth
+ 
+ * `[Add]` DialogUtils#dismiss(DialogFragment)
+ 
+ * `[Add]` ViewUtils#inflate
+ 
+ * `[Add]` NumberUtils#getMultiple、getMultipleI、getMultipleD、getMultipleL、getMultipleF
 
 Version 1.7.9 *(2019-09-19)*
 ----------------------------

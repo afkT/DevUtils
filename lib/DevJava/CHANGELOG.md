@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.3 *(2019-10-09)*
+----------------------------
+ 
+ * `[Add]` NumberUtils#getMultiple、getMultipleI、getMultipleD、getMultipleL、getMultipleF
+ 
 
 Version 1.0.2 *(2019-09-19)*
 ----------------------------

@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.0.2'
+implementation 'com.afkt:DevJava:1.0.3'
 ```
 
 ## 目录结构
@@ -554,6 +554,11 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | percentL2 | 计算百分比值 ( 可超出 100%) |
 | percentF2 | 计算百分比值 ( 可超出 100%) |
 | clamp | 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max |
+| getMultiple | 获取倍数 ( 自动补 1) |
+| getMultipleI | 获取倍数 |
+| getMultipleD | 获取倍数 |
+| getMultipleL | 获取倍数 |
+| getMultipleF | 获取倍数 |
 | numberToCHN | 数字转中文数值 |
 | isNumber | 检验数字 |
 | isNumberDecimal | 检验数字或包含小数点 |
