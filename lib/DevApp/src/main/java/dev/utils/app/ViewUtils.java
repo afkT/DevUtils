@@ -86,7 +86,7 @@ public final class ViewUtils {
      * @return {@link View}
      */
     public static View inflate(@LayoutRes final int resource) {
-        return inflate(resource, null);
+        return inflate(resource, null, false);
     }
 
     /**
@@ -96,8 +96,19 @@ public final class ViewUtils {
      * @return {@link View}
      */
     public static View inflate(@LayoutRes final int resource, final ViewGroup root) {
+        return inflate(resource, root, root != null);
+    }
+
+    /**
+     * 获取 View
+     * @param resource     R.layout.id
+     * @param root         {@link ViewGroup}
+     * @param attachToRoot 是否添加到 root 上
+     * @return {@link View}
+     */
+    public static View inflate(@LayoutRes final int resource, final ViewGroup root, final boolean attachToRoot) {
         try {
-            return ((LayoutInflater) DevUtils.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(resource, root);
+            return LayoutInflater.from(DevUtils.getContext()).inflate(resource, root, attachToRoot);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "inflate");
         }

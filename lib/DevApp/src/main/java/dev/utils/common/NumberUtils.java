@@ -499,6 +499,252 @@ public final class NumberUtils {
         return value > max ? max : value < min ? min : value;
     }
 
+    // ========
+    // = calc =
+    // ========
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultiple(final int value, final int divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        return (value % divisor == 0) ? (value / divisor) : (value / divisor) + 1;
+    }
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultiple(final double value, final double divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        int result = (int) (value / divisor);
+        return ((value - divisor * result == 0d) ? result : result + 1);
+    }
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultiple(final long value, final long divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        return (int) ((value % divisor == 0) ? (value / divisor) : (value / divisor) + 1);
+    }
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultiple(final float value, final float divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        int result = (int) (value / divisor);
+        return ((value - divisor * result == 0f) ? result : result + 1);
+    }
+
+    // =======
+    // = int =
+    // =======
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultipleI(final int value, final int divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        return (int) (value / divisor);
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultipleI(final double value, final double divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        return (int) (value / divisor);
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultipleI(final long value, final long divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        return (int) (value / divisor);
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int getMultipleI(final float value, final float divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        return (int) (value / divisor);
+    }
+
+    // ==========
+    // = double =
+    // ==========
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static double getMultipleD(final int value, final int divisor) {
+        if (value <= 0d || divisor <= 0d) return 0d;
+        return (double) value / (double) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static double getMultipleD(final double value, final double divisor) {
+        if (value <= 0d || divisor <= 0d) return 0d;
+        return (double) value / (double) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static double getMultipleD(final long value, final long divisor) {
+        if (value <= 0d || divisor <= 0d) return 0d;
+        return (double) value / (double) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static double getMultipleD(final float value, final float divisor) {
+        if (value <= 0d || divisor <= 0d) return 0d;
+        return (double) value / (double) divisor;
+    }
+
+    // ========
+    // = long =
+    // ========
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static long getMultipleL(final int value, final int divisor) {
+        if (value <= 0L || divisor <= 0L) return 0L;
+        return (long) value / (long) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static long getMultipleL(final double value, final double divisor) {
+        if (value <= 0L || divisor <= 0L) return 0L;
+        return (long) value / (long) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static long getMultipleL(final long value, final long divisor) {
+        if (value <= 0L || divisor <= 0L) return 0L;
+        return (long) value / (long) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static long getMultipleL(final float value, final float divisor) {
+        if (value <= 0L || divisor <= 0L) return 0L;
+        return (long) value / (long) divisor;
+    }
+
+    // =========
+    // = float =
+    // =========
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static float getMultipleF(final int value, final int divisor) {
+        if (value <= 0f || divisor <= 0f) return 0f;
+        return (float) value / (float) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static float getMultipleF(final double value, final double divisor) {
+        if (value <= 0f || divisor <= 0f) return 0f;
+        return (float) value / (float) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static float getMultipleF(final long value, final long divisor) {
+        if (value <= 0f || divisor <= 0f) return 0f;
+        return (float) value / (float) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static float getMultipleF(final float value, final float divisor) {
+        if (value <= 0f || divisor <= 0f) return 0f;
+        return (float) value / (float) divisor;
+    }
+
     // ==================
     // = 数字、中文互转 =
     // ==================

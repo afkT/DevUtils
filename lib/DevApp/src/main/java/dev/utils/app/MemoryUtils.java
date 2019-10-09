@@ -148,7 +148,7 @@ public final class MemoryUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAvailMemory");
         }
-        return 0l;
+        return 0L;
     }
 
     /**
@@ -218,6 +218,6 @@ public final class MemoryUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMemInfoIype - " + type);
         }
-        return 0l;
+        return 0L;
     }
 }

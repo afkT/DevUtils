@@ -28,6 +28,7 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     转场动画
  *     @see <a href="https://www.cnblogs.com/tianzhijiexian/p/4087917.html"/>
+ *     @see <a href="https://mp.weixin.qq.com/s/1Bp7ApxstPaRF9BY7AEe6g"/>
  *     ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight)
  *     @see <a href="https://www.jianshu.com/p/fa1c8deeaa57"/>
  * </pre>

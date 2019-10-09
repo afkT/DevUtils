@@ -552,7 +552,7 @@ public final class TimerManager {
                 public void run() {
                     // 表示运行定时器中
                     running = true;
-                    // 累积触发次数
+                    // 累计触发次数
                     triggerNumber++;
                     // 进行通知
                     if (handler != null) {

@@ -975,16 +975,36 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取 TextView Paint
+     * @param view {@link TextView}
+     * @param <T>  泛型
+     * @return {@link Paint}
+     */
+    public static <T extends TextView> Paint getPaint(final View view) {
+        return getPaint(getTextView(view));
+    }
+
+    /**
+     * 获取 TextView Paint
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link Paint}
+     */
+    public static <T extends TextView> Paint getPaint(final T textView) {
+        if (textView != null) {
+            return textView.getPaint();
+        }
+        return null;
+    }
+
+    /**
      * 获取字体高度
      * @param textView {@link TextView}
      * @param <T>      泛型
      * @return 字体高度
      */
     public static <T extends TextView> int getTextHeight(final T textView) {
-        if (textView != null) {
-            return getTextHeight(textView.getPaint());
-        }
-        return 0;
+        return getTextHeight(getPaint(textView));
     }
 
     /**
@@ -1013,10 +1033,7 @@ public final class TextViewUtils {
      * @return 字体顶部偏移高度
      */
     public static <T extends TextView> int getTextTopOffsetHeight(final T textView) {
-        if (textView != null) {
-            return getTextTopOffsetHeight(textView.getPaint());
-        }
-        return 0;
+        return getTextTopOffsetHeight(getPaint(textView));
     }
 
     /**
@@ -1041,15 +1058,12 @@ public final class TextViewUtils {
     /**
      * 计算字体宽度
      * @param textView {@link TextView}
-     * @param text     待计算的文本
+     * @param text     待测量文本
      * @param <T>      泛型
      * @return 字体宽度
      */
     public static <T extends TextView> float getTextWidth(final T textView, final String text) {
-        if (textView != null && text != null) {
-            return getTextWidth(textView.getPaint(), text);
-        }
-        return -1;
+        return getTextWidth(getPaint(textView), text);
     }
 
     /**
@@ -1059,13 +1073,13 @@ public final class TextViewUtils {
      * @return 字体宽度
      */
     public static <T extends TextView> float getTextWidth(final T textView) {
-        return getTextWidth(textView, getText(textView));
+        return getTextWidth(getPaint(textView), getText(textView));
     }
 
     /**
      * 计算字体宽度
      * @param paint {@link TextView#getPaint()}
-     * @param text  待计算的文本
+     * @param text  待测量文本
      * @return 字体宽度
      */
     public static float getTextWidth(final Paint paint, final String text) {
@@ -1074,6 +1088,105 @@ public final class TextViewUtils {
         }
         return -1f;
     }
+
+    // =
+
+    /**
+     * 计算字体宽度
+     * @param view  {@link TextView}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final View view, final String text, final int start, final int end) {
+        return getTextWidth(getPaint(view), text, start, end);
+    }
+
+    /**
+     * 计算字体宽度
+     * @param view  {@link TextView}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final View view, final CharSequence text, final int start, final int end) {
+        return getTextWidth(getPaint(view), text, start, end);
+    }
+
+    /**
+     * 计算字体宽度
+     * @param view  {@link TextView}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final View view, final char[] text, final int start, final int end) {
+        return getTextWidth(getPaint(view), text, start, end);
+    }
+
+    // =
+
+    /**
+     * 计算字体宽度
+     * @param paint {@link TextView#getPaint()}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final Paint paint, final String text, final int start, final int end) {
+        if (paint != null && text != null) {
+            try {
+                return paint.measureText(text, start, end);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getTextWidth");
+            }
+        }
+        return -1f;
+    }
+
+    /**
+     * 计算字体宽度
+     * @param paint {@link TextView#getPaint()}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final Paint paint, final CharSequence text, final int start, final int end) {
+        if (paint != null && text != null) {
+            try {
+                return paint.measureText(text, start, end);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getTextWidth");
+            }
+        }
+        return -1f;
+    }
+
+    /**
+     * 计算字体宽度
+     * @param paint {@link TextView#getPaint()}
+     * @param text  待测量文本
+     * @param start 开始位置
+     * @param end   结束位置
+     * @return 字体宽度
+     */
+    public static float getTextWidth(final Paint paint, final char[] text, final int start, final int end) {
+        if (paint != null && text != null) {
+            try {
+                return paint.measureText(text, start, end);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getTextWidth");
+            }
+        }
+        return -1f;
+    }
+
+    // =
 
     /**
      * 获取画布中间居中位置
@@ -1128,16 +1241,13 @@ public final class TextViewUtils {
     /**
      * 计算第几位超过宽度
      * @param textView {@link TextView}
-     * @param text     待计算的文本
+     * @param text     待测量文本
      * @param width    指定的宽度
      * @param <T>      泛型
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static <T extends TextView> int calcTextWidth(final T textView, final String text, final float width) {
-        if (textView != null && text != null) {
-            return calcTextWidth(textView.getPaint(), text, width);
-        }
-        return -1;
+        return calcTextWidth(getPaint(textView), text, width);
     }
 
     /**
@@ -1148,7 +1258,7 @@ public final class TextViewUtils {
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static <T extends TextView> int calcTextWidth(final T textView, final float width) {
-        return calcTextWidth(textView, getText(textView), width);
+        return calcTextWidth(getPaint(textView), getText(textView), width);
     }
 
     /**
@@ -1159,42 +1269,82 @@ public final class TextViewUtils {
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
     public static int calcTextWidth(final Paint paint, final String text, final float width) {
-        if (paint != null && text != null) {
-            // 先获取宽度
-            float textWidth = getTextWidth(paint, text);
+        if (paint != null && text != null && width > 0) {
+            // 全部文本宽度
+            float allTextWidth = getTextWidth(paint, text);
             // 判断是否超过
-            if (textWidth <= width) {
-                return -1; // 表示没超过
-            }
+            if (allTextWidth <= width) return -1; // 表示没超过
             // 获取数据长度
             int length = text.length();
-            // 循环除 2
-            while (true) {
-                // 数据至少为 2 位以上
-                if (length < 2) {
-                    return 0; // 表示第一位已经超过
-                }
-                // 从中间取值
-                length = length / 2;
-                // 计算宽度
-                textWidth = getTextWidth(paint, text.substring(0, length));
-                // 判断是否小于宽度 - 进行返回长度
-                if (textWidth <= width) {
-                    break;
-                }
-            }
-            // 遍历计算
-            for (int i = length, len = text.length(); i < len; i++) {
-                // 获取字体内容宽度
-                float tWidth = paint.measureText(text.substring(0, i));
-                // 判断是否大于指定宽度
-                if (tWidth > width) {
-                    return i - 1; // 返回超过前的长度
-                } else if (tWidth == width) {
-                    return i; // 返回超过前的长度
+            // 超过长度且只有一个数据, 那么只能是第一个就超过了
+            if (length == 1) return 1;
+            // 二分法寻找最佳位置
+            int start = 0;
+            int end = length;
+            int mid = 0;
+            // 判断是否大于位置
+            while (start < end) {
+                mid = (start + end) / 2;
+                // 获取字体宽度
+                float textWidth = getTextWidth(paint, text, 0, mid);
+                // 如果相等直接返回
+                if (textWidth == width) {
+                    return mid;
+                } else if (textWidth > width) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
                 }
             }
+            // 计算最符合的位置
+            for (int i = Math.min(Math.min(start, mid), end), len = length; i <= len; i++) {
+                float textWidth = TextViewUtils.getTextWidth(paint, text, 0, i);
+                if (textWidth >= width) return i;
+            }
+            return start;
         }
         return -1;
+    }
+
+    /**
+     * 计算文本换行行数
+     * @param textView {@link TextView}
+     * @param text     待测量文本
+     * @param width    指定的宽度
+     * @param <T>      泛型
+     * @return 行数
+     */
+    public static <T extends TextView> int calcTextLine(final T textView, final String text, final float width) {
+        return calcTextLine(getPaint(textView), text, width);
+    }
+
+    /**
+     * 计算文本行数
+     * @param textView {@link TextView}
+     * @param width    指定的宽度
+     * @param <T>      泛型
+     * @return 行数
+     */
+    public static <T extends TextView> int calcTextLine(final T textView, final float width) {
+        return calcTextLine(getPaint(textView), getText(textView), width);
+    }
+
+    /**
+     * 计算文本行数
+     * @param paint {@link TextView#getPaint()}
+     * @param text  文本内容
+     * @param width 指定的宽度
+     * @return 行数
+     */
+    public static int calcTextLine(final Paint paint, final String text, final float width) {
+        if (paint != null && text != null && width > 0) {
+            // 全部文本宽度
+            float allTextWidth = getTextWidth(paint, text);
+            // 判断是否超过
+            if (allTextWidth <= width) return 1;
+            int result = (int) (allTextWidth / width);
+            return ((allTextWidth - width * result == 0f) ? result : result + 1);
+        }
+        return 0;
     }
 }
