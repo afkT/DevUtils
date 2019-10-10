@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.text.TextUtils;
 import android.text.method.KeyListener;
 import android.view.View;
 import android.view.ViewGroup;
@@ -327,6 +328,156 @@ public final class ViewHelper {
      */
     public ViewHelper setIncludeFontPadding(final View view, final boolean includepad) {
         TextViewUtils.setIncludeFontPadding(view, includepad);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置行数
+     * @param textView {@link TextView}
+     * @param lines    行数
+     * @param <T>      泛型
+     * @return {@link ViewHelper}
+     */
+    public <T extends TextView> ViewHelper setLines(final T textView, final int lines) {
+        TextViewUtils.setLines(textView, lines);
+        return this;
+    }
+
+    /**
+     * 设置行数
+     * @param view  {@link TextView}
+     * @param lines 行数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setLines(final View view, final int lines) {
+        TextViewUtils.setLines(view, lines);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置最大行数
+     * @param textView {@link TextView}
+     * @param maxLines 最大行数
+     * @param <T>      泛型
+     * @return {@link ViewHelper}
+     */
+    public <T extends TextView> ViewHelper setMaxLines(final T textView, final int maxLines) {
+        TextViewUtils.setMaxLines(textView, maxLines);
+        return this;
+    }
+
+    /**
+     * 设置最大行数
+     * @param view     {@link TextView}
+     * @param maxLines 最大行数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxLines(final View view, final int maxLines) {
+        TextViewUtils.setMaxLines(view, maxLines);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置 Ellipsize 效果
+     * @param textView {@link TextView}
+     * @param where    {@link TextUtils.TruncateAt}
+     * @param <T>      泛型
+     * @return {@link ViewHelper}
+     */
+    public <T extends TextView> ViewHelper setEllipsize(final T textView, final TextUtils.TruncateAt where) {
+        TextViewUtils.setEllipsize(textView, where);
+        return this;
+    }
+
+    /**
+     * 设置 Ellipsize 效果
+     * @param view  {@link TextView}
+     * @param where {@link TextUtils.TruncateAt}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setEllipsize(final View view, final TextUtils.TruncateAt where) {
+        TextViewUtils.setEllipsize(view, where);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置自动识别文本链接
+     * @param textView {@link TextView}
+     * @param mask     {@link android.text.util.Linkify}
+     * @param <T>      泛型
+     * @return {@link ViewHelper}
+     */
+    public <T extends TextView> ViewHelper setAutoLinkMask(final T textView, final int mask) {
+        TextViewUtils.setAutoLinkMask(textView, mask);
+        return this;
+    }
+
+    /**
+     * 设置自动识别文本链接
+     * @param view {@link TextView}
+     * @param mask {@link android.text.util.Linkify}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAutoLinkMask(final View view, final int mask) {
+        TextViewUtils.setAutoLinkMask(view, mask);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置 Hint 文本
+     * @param textView {@link TextView}
+     * @param text     Hint text
+     * @param <T>      泛型
+     * @return {@link ViewHelper}
+     */
+    public <T extends TextView> ViewHelper setHint(final T textView, final String text) {
+        TextViewUtils.setHint(textView, text);
+        return this;
+    }
+
+    /**
+     * 设置 Hint 文本
+     * @param view {@link TextView}
+     * @param text Hint text
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHint(final View view, final String text) {
+        TextViewUtils.setHint(view, text);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置 Gravity
+     * @param textView {@link TextView}
+     * @param gravity  {@link android.view.Gravity}
+     * @param <T>      泛型
+     * @return {@link ViewHelper}
+     */
+    public <T extends TextView> ViewHelper setGravity(final T textView, final int gravity) {
+        TextViewUtils.setGravity(textView, gravity);
+        return this;
+    }
+
+    /**
+     * 设置 Gravity
+     * @param view    {@link TextView}
+     * @param gravity {@link android.view.Gravity}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setGravity(final View view, final int gravity) {
+        TextViewUtils.setGravity(view, gravity);
         return this;
     }
 

@@ -9,6 +9,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.RequiresApi;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
@@ -970,6 +971,144 @@ public final class TextViewUtils {
      */
     public static void setIncludeFontPadding(final View view, final boolean includepad) {
         setIncludeFontPadding(getTextView(view), includepad);
+    }
+
+    // =
+
+    /**
+     * 设置行数
+     * @param textView {@link TextView}
+     * @param lines    行数
+     * @param <T>      泛型
+     */
+    public static <T extends TextView> void setLines(final T textView, final int lines) {
+        if (textView != null) {
+            textView.setLines(lines);
+        }
+    }
+
+    /**
+     * 设置行数
+     * @param view  {@link TextView}
+     * @param lines 行数
+     */
+    public static void setLines(final View view, final int lines) {
+        setLines(getTextView(view), lines);
+    }
+
+    // =
+
+    /**
+     * 设置最大行数
+     * @param textView {@link TextView}
+     * @param maxLines 最大行数
+     * @param <T>      泛型
+     */
+    public static <T extends TextView> void setMaxLines(final T textView, final int maxLines) {
+        if (textView != null) {
+            textView.setMaxLines(maxLines);
+        }
+    }
+
+    /**
+     * 设置最大行数
+     * @param view     {@link TextView}
+     * @param maxLines 最大行数
+     */
+    public static void setMaxLines(final View view, final int maxLines) {
+        setMaxLines(getTextView(view), maxLines);
+    }
+
+    // =
+
+    /**
+     * 设置 Ellipsize 效果
+     * @param textView {@link TextView}
+     * @param where    {@link TextUtils.TruncateAt}
+     * @param <T>      泛型
+     */
+    public static <T extends TextView> void setEllipsize(final T textView, final TextUtils.TruncateAt where) {
+        if (textView != null) {
+            textView.setEllipsize(where);
+        }
+    }
+
+    /**
+     * 设置 Ellipsize 效果
+     * @param view  {@link TextView}
+     * @param where {@link TextUtils.TruncateAt}
+     */
+    public static void setEllipsize(final View view, final TextUtils.TruncateAt where) {
+        setEllipsize(getTextView(view), where);
+    }
+
+    // =
+
+    /**
+     * 设置自动识别文本链接
+     * @param textView {@link TextView}
+     * @param mask     {@link android.text.util.Linkify}
+     * @param <T>      泛型
+     */
+    public static <T extends TextView> void setAutoLinkMask(final T textView, final int mask) {
+        if (textView != null) {
+            textView.setAutoLinkMask(mask);
+        }
+    }
+
+    /**
+     * 设置自动识别文本链接
+     * @param view {@link TextView}
+     * @param mask {@link android.text.util.Linkify}
+     */
+    public static void setAutoLinkMask(final View view, final int mask) {
+        setAutoLinkMask(getTextView(view), mask);
+    }
+
+    // =
+
+    /**
+     * 设置 Hint 文本
+     * @param textView {@link TextView}
+     * @param text     Hint text
+     * @param <T>      泛型
+     */
+    public static <T extends TextView> void setHint(final T textView, final String text) {
+        if (textView != null) {
+            textView.setHint(text);
+        }
+    }
+
+    /**
+     * 设置 Hint 文本
+     * @param view {@link TextView}
+     * @param text Hint text
+     */
+    public static void setHint(final View view, final String text) {
+        setHint(getTextView(view), text);
+    }
+
+    // =
+
+    /**
+     * 设置 Gravity
+     * @param textView {@link TextView}
+     * @param gravity  {@link android.view.Gravity}
+     * @param <T>      泛型
+     */
+    public static <T extends TextView> void setGravity(final T textView, final int gravity) {
+        if (textView != null) {
+            textView.setGravity(gravity);
+        }
+    }
+
+    /**
+     * 设置 Gravity
+     * @param view    {@link TextView}
+     * @param gravity {@link android.view.Gravity}
+     */
+    public static void setGravity(final View view, final int gravity) {
+        setGravity(getTextView(view), gravity);
     }
 
     // =
