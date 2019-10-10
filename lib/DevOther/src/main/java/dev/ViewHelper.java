@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import dev.utils.app.ClickUtils;
 import dev.utils.app.EditTextUtils;
+import dev.utils.app.HandlerUtils;
 import dev.utils.app.ImageViewUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.app.TextViewUtils;
@@ -1568,6 +1569,68 @@ public final class ViewHelper {
      */
     public ViewHelper addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
         ClickUtils.addTouchArea(view, top, bottom, left, right);
+        return this;
+    }
+
+    // ===========
+    // = Handler =
+    // ===========
+
+    /**
+     * 在主线程 Handler 中执行任务
+     * @param runnable 可执行的任务
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper postRunnable(final Runnable runnable) {
+        HandlerUtils.postRunnable(runnable);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable    可执行的任务
+     * @param delayMillis 延迟时间
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper postRunnable(final Runnable runnable, final long delayMillis) {
+        HandlerUtils.postRunnable(runnable, delayMillis);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable    可执行的任务
+     * @param delayMillis 延迟时间
+     * @param number      轮询次数
+     * @param interval    轮询时间
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval) {
+        HandlerUtils.postRunnable(runnable, delayMillis, number, interval);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable      可执行的任务
+     * @param delayMillis   延迟时间
+     * @param number        轮询次数
+     * @param interval      轮询时间
+     * @param onEndListener 结束通知
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval, final HandlerUtils.OnEndListener onEndListener) {
+        HandlerUtils.postRunnable(runnable, delayMillis, number, interval, onEndListener);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中清除任务
+     * @param runnable 需要清除的任务
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper removeRunnable(final Runnable runnable) {
+        HandlerUtils.removeRunnable(runnable);
         return this;
     }
 }
