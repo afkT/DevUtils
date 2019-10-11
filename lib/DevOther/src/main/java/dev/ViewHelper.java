@@ -54,6 +54,17 @@ public final class ViewHelper {
     // ========
 
     /**
+     * 设置 Hint 文本
+     * @param view {@link TextView}
+     * @param text Hint text
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHint(final View view, final String text) {
+        TextViewUtils.setHint(view, text);
+        return this;
+    }
+
+    /**
      * 设置文本
      * @param view {@link TextView}
      * @param text TextView text
@@ -98,6 +109,50 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 Hint 字体颜色
+     * @param view  {@link TextView}
+     * @param color R.color.id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHintTextColor(final View view, @ColorInt final int color) {
+        TextViewUtils.setHintTextColor(view, color);
+        return this;
+    }
+
+    /**
+     * 设置 Hint 字体颜色
+     * @param view   {@link TextView}
+     * @param colors {@link ColorStateList}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHintTextColor(final View view, final ColorStateList colors) {
+        TextViewUtils.setHintTextColor(view, colors);
+        return this;
+    }
+
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param color R.color.id
+     * @param views View(TextView)[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHintTextColors(@ColorInt final int color, final View... views) {
+        TextViewUtils.setHintTextColors(color, views);
+        return this;
+    }
+
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param colors {@link ColorStateList}
+     * @param views  View(TextView)[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHintTextColors(final ColorStateList colors, final View... views) {
+        TextViewUtils.setHintTextColors(colors, views);
+        return this;
+    }
+
+    /**
      * 设置字体颜色
      * @param view  {@link TextView}
      * @param color R.color.id
@@ -109,6 +164,17 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置字体颜色
+     * @param view   {@link TextView}
+     * @param colors {@link ColorStateList}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTextColor(final View view, final ColorStateList colors) {
+        TextViewUtils.setTextColor(view, colors);
+        return this;
+    }
+
+    /**
      * 设置多个 TextView 字体颜色
      * @param color R.color.id
      * @param views View(TextView)[]
@@ -116,6 +182,17 @@ public final class ViewHelper {
      */
     public ViewHelper setTextColors(@ColorInt final int color, final View... views) {
         TextViewUtils.setTextColors(color, views);
+        return this;
+    }
+
+    /**
+     * 设置多个 TextView 字体颜色
+     * @param colors {@link ColorStateList}
+     * @param views  View(TextView)[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTextColors(final ColorStateList colors, final View... views) {
+        TextViewUtils.setTextColors(colors, views);
         return this;
     }
 
@@ -331,20 +408,6 @@ public final class ViewHelper {
         return this;
     }
 
-    // =
-
-    /**
-     * 设置行数
-     * @param textView {@link TextView}
-     * @param lines    行数
-     * @param <T>      泛型
-     * @return {@link ViewHelper}
-     */
-    public <T extends TextView> ViewHelper setLines(final T textView, final int lines) {
-        TextViewUtils.setLines(textView, lines);
-        return this;
-    }
-
     /**
      * 设置行数
      * @param view  {@link TextView}
@@ -353,20 +416,6 @@ public final class ViewHelper {
      */
     public ViewHelper setLines(final View view, final int lines) {
         TextViewUtils.setLines(view, lines);
-        return this;
-    }
-
-    // =
-
-    /**
-     * 设置最大行数
-     * @param textView {@link TextView}
-     * @param maxLines 最大行数
-     * @param <T>      泛型
-     * @return {@link ViewHelper}
-     */
-    public <T extends TextView> ViewHelper setMaxLines(final T textView, final int maxLines) {
-        TextViewUtils.setMaxLines(textView, maxLines);
         return this;
     }
 
@@ -381,20 +430,6 @@ public final class ViewHelper {
         return this;
     }
 
-    // =
-
-    /**
-     * 设置 Ellipsize 效果
-     * @param textView {@link TextView}
-     * @param where    {@link TextUtils.TruncateAt}
-     * @param <T>      泛型
-     * @return {@link ViewHelper}
-     */
-    public <T extends TextView> ViewHelper setEllipsize(final T textView, final TextUtils.TruncateAt where) {
-        TextViewUtils.setEllipsize(textView, where);
-        return this;
-    }
-
     /**
      * 设置 Ellipsize 效果
      * @param view  {@link TextView}
@@ -403,20 +438,6 @@ public final class ViewHelper {
      */
     public ViewHelper setEllipsize(final View view, final TextUtils.TruncateAt where) {
         TextViewUtils.setEllipsize(view, where);
-        return this;
-    }
-
-    // =
-
-    /**
-     * 设置自动识别文本链接
-     * @param textView {@link TextView}
-     * @param mask     {@link android.text.util.Linkify}
-     * @param <T>      泛型
-     * @return {@link ViewHelper}
-     */
-    public <T extends TextView> ViewHelper setAutoLinkMask(final T textView, final int mask) {
-        TextViewUtils.setAutoLinkMask(textView, mask);
         return this;
     }
 
@@ -431,52 +452,13 @@ public final class ViewHelper {
         return this;
     }
 
-    // =
-
     /**
-     * 设置 Hint 文本
-     * @param textView {@link TextView}
-     * @param text     Hint text
-     * @param <T>      泛型
-     * @return {@link ViewHelper}
-     */
-    public <T extends TextView> ViewHelper setHint(final T textView, final String text) {
-        TextViewUtils.setHint(textView, text);
-        return this;
-    }
-
-    /**
-     * 设置 Hint 文本
-     * @param view {@link TextView}
-     * @param text Hint text
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setHint(final View view, final String text) {
-        TextViewUtils.setHint(view, text);
-        return this;
-    }
-
-    // =
-
-    /**
-     * 设置 Gravity
-     * @param textView {@link TextView}
-     * @param gravity  {@link android.view.Gravity}
-     * @param <T>      泛型
-     * @return {@link ViewHelper}
-     */
-    public <T extends TextView> ViewHelper setGravity(final T textView, final int gravity) {
-        TextViewUtils.setGravity(textView, gravity);
-        return this;
-    }
-
-    /**
-     * 设置 Gravity
+     * 设置 Text Gravity
      * @param view    {@link TextView}
      * @param gravity {@link android.view.Gravity}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setGravity(final View view, final int gravity) {
+    public ViewHelper setTextGravity(final View view, final int gravity) {
         TextViewUtils.setGravity(view, gravity);
         return this;
     }
