@@ -11,6 +11,7 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.view.View;
 import android.view.ViewGroup;
@@ -577,6 +578,28 @@ public final class ViewHelper {
      */
     public ViewHelper setSelection(final EditText editText, final int index) {
         EditTextUtils.setSelection(editText, index);
+        return this;
+    }
+
+    /**
+     * 添加输入监听事件
+     * @param editText {@link EditText}
+     * @param watcher  输入监听
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addTextChangedListener(final EditText editText, final TextWatcher watcher) {
+        EditTextUtils.addTextChangedListener(editText, watcher);
+        return this;
+    }
+
+    /**
+     * 移除输入监听事件
+     * @param editText {@link EditText}
+     * @param watcher  输入监听
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper removeTextChangedListener(final EditText editText, final TextWatcher watcher) {
+        EditTextUtils.removeTextChangedListener(editText, watcher);
         return this;
     }
 

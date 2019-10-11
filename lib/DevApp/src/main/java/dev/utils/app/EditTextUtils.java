@@ -319,6 +319,36 @@ public final class EditTextUtils {
         return editText;
     }
 
+    // =
+
+    /**
+     * 添加输入监听事件
+     * @param editText {@link EditText}
+     * @param watcher  输入监听
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T addTextChangedListener(final T editText, final TextWatcher watcher) {
+        if (editText != null && watcher != null) {
+            editText.addTextChangedListener(watcher);
+        }
+        return editText;
+    }
+
+    /**
+     * 移除输入监听事件
+     * @param editText {@link EditText}
+     * @param watcher  输入监听
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T removeTextChangedListener(final T editText, final TextWatcher watcher) {
+        if (editText != null && watcher != null) {
+            editText.removeTextChangedListener(watcher);
+        }
+        return editText;
+    }
+
     // =========================
     // = Key Listener 快捷处理 =
     // =========================
