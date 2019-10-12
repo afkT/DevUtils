@@ -43,6 +43,7 @@ import dev.utils.app.image.BitmapUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.CloseUtils;
 import dev.utils.common.HttpURLConnectionUtils;
+import dev.utils.common.assist.TimeKeeper;
 
 /**
  * detail: Dev 工具类链式调用 Helper 类
@@ -56,6 +57,8 @@ import dev.utils.common.HttpURLConnectionUtils;
  */
 public final class DevHelper {
 
+    // TimeKeeper
+    private TimeKeeper mTimeKeeper = new TimeKeeper();
     // DevHelper
     private static final DevHelper HELPER = new DevHelper();
 
@@ -158,7 +161,7 @@ public final class DevHelper {
      * @param timer {@link TimerManager.AbsTimer}
      * @return {@link DevHelper}
      */
-    public DevHelper startTimer(TimerManager.AbsTimer timer) {
+    public DevHelper startTimer(final TimerManager.AbsTimer timer) {
         if (timer != null) timer.startTimer();
         return this;
     }
@@ -168,7 +171,7 @@ public final class DevHelper {
      * @param timer {@link TimerManager.AbsTimer}
      * @return {@link DevHelper}
      */
-    public DevHelper closeTimer(TimerManager.AbsTimer timer) {
+    public DevHelper closeTimer(final TimerManager.AbsTimer timer) {
         if (timer != null) timer.closeTimer();
         return this;
     }
@@ -1314,6 +1317,7 @@ public final class DevHelper {
     /**
      * 获取网络时间 - 默认使用百度链接
      * @param timeCallBack 请求时间回调接口
+     * @return {@link DevHelper}
      */
     public DevHelper getNetTime(final HttpURLConnectionUtils.TimeCallBack timeCallBack) {
         HttpURLConnectionUtils.getNetTime(timeCallBack);
@@ -1324,9 +1328,36 @@ public final class DevHelper {
      * 获取网络时间
      * @param urlStr       请求地址
      * @param timeCallBack 请求时间回调接口
+     * @return {@link DevHelper}
      */
     public DevHelper getNetTime(final String urlStr, final HttpURLConnectionUtils.TimeCallBack timeCallBack) {
         HttpURLConnectionUtils.getNetTime(urlStr, timeCallBack);
+        return this;
+    }
+
+    // ==============
+    // = TimeKeeper =
+    // ==============
+
+    /**
+     * 设置等待一段时间后, 通知方法 ( 异步 )
+     * @param keepTimeMillis 堵塞时间 ( 毫秒 )
+     * @param endCallback    结束回调通知
+     * @return {@link DevHelper}
+     */
+    public DevHelper waitForEndAsyn(final long keepTimeMillis, final TimeKeeper.OnEndCallback endCallback) {
+        mTimeKeeper.waitForEndAsyn(keepTimeMillis, endCallback);
+        return this;
+    }
+
+    /**
+     * 设置等待一段时间后, 通知方法 ( 同步 )
+     * @param keepTimeMillis 堵塞时间 ( 毫秒 )
+     * @param endCallback    结束回调通知
+     * @return {@link DevHelper}
+     */
+    public DevHelper waitForEnd(final long keepTimeMillis, final TimeKeeper.OnEndCallback endCallback) {
+        mTimeKeeper.waitForEnd(keepTimeMillis, endCallback);
         return this;
     }
 }
