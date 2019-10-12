@@ -34,10 +34,13 @@
 | 方法 | 注释 |
 | :- | :- |
 | get | 获取单例 ViewHelper |
+| setHint | 设置 Hint 文本 |
 | setText | 设置文本 |
 | setTexts | 设置多个 TextView 文本 |
 | setHtmlText | 设置 Html 内容 |
 | setHtmlTexts | 设置多个 TextView Html 内容 |
+| setHintTextColor | 设置 Hint 字体颜色 |
+| setHintTextColors | 设置多个 TextView Hint 字体颜色 |
 | setTextColor | 设置字体颜色 |
 | setTextColors | 设置多个 TextView 字体颜色 |
 | setTypeface | 设置字体 |
@@ -56,6 +59,11 @@
 | setLineSpacingAndMultiplier | 设置文字行间距 ( 行高 )、行间距倍数 |
 | setTextScaleX | 设置字体水平方向的缩放 |
 | setIncludeFontPadding | 设置是否保留字体留白间隙区域 |
+| setLines | 设置行数 |
+| setMaxLines | 设置最大行数 |
+| setEllipsize | 设置 Ellipsize 效果 |
+| setAutoLinkMask | 设置自动识别文本链接 |
+| setTextGravity | 设置 Text Gravity |
 | insert | 追加内容 ( 当前光标位置追加 ) |
 | setMaxLength | 设置长度限制 |
 | setMaxLengthAndText | 设置长度限制, 并且设置内容 |
@@ -63,6 +71,8 @@
 | setSelectionToTop | 设置光标在第一位 |
 | setSelectionToBottom | 设置光标在最后一位 |
 | setSelection | 设置光标位置 |
+| addTextChangedListener | 添加输入监听事件 |
+| removeTextChangedListener | 移除输入监听事件 |
 | setKeyListener | 设置 KeyListener |
 | setBackground | 设置背景图片 |
 | setBackgroundColor | 设置背景颜色 |
@@ -122,6 +132,8 @@
 | setOnClicks | 设置点击事件 |
 | setOnLongClicks | 设置长按事件 |
 | addTouchArea | 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域 |
+| postRunnable | 在主线程 Handler 中执行任务 |
+| removeRunnable | 在主线程 Handler 中清除任务 |
 
 
 ## <span id="devother">**`dev.other`**</span>
