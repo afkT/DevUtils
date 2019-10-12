@@ -72,7 +72,11 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setText(final View view, final String text) {
-        TextViewUtils.setText(view, text);
+        if (view instanceof EditText) {
+            EditTextUtils.setText(EditTextUtils.getEditText(view), text);
+        } else {
+            TextViewUtils.setText(view, text);
+        }
         return this;
     }
 
@@ -467,17 +471,6 @@ public final class ViewHelper {
     // ============
     // = EditText =
     // ============
-
-    /**
-     * 设置内容
-     * @param editText {@link EditText}
-     * @param content  文本内容
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setText(final EditText editText, final String content) {
-        EditTextUtils.setText(editText, content);
-        return this;
-    }
 
     /**
      * 设置内容

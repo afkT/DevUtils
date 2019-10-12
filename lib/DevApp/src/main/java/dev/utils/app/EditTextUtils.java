@@ -181,6 +181,35 @@ public final class EditTextUtils {
     }
 
     /**
+     * 设置多个 EditText 文本
+     * @param content 文本内容
+     * @param views   View(EditText)[]
+     */
+    public static void setTexts(final String content, final View... views) {
+        if (views != null) {
+            for (View view : views) {
+                setText(getEditText(view), content);
+            }
+        }
+    }
+
+    /**
+     * 设置多个 EditText 文本
+     * @param content 文本内容
+     * @param views   EditText[]
+     * @param <T>     泛型
+     */
+    public static <T extends EditText> void setTexts(final String content, final T... views) {
+        if (views != null) {
+            for (T view : views) {
+                setText(view, content);
+            }
+        }
+    }
+
+    // =
+
+    /**
      * 追加内容 ( 当前光标位置追加 )
      * @param editText {@link EditText}
      * @param content  文本内容
