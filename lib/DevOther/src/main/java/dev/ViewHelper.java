@@ -58,7 +58,7 @@ public final class ViewHelper {
      * 获取 ViewHelper
      * @return {@link ViewHelper}
      */
-    public ViewHelper viewHelper(){
+    public ViewHelper viewHelper() {
         return this;
     }
 
@@ -66,7 +66,7 @@ public final class ViewHelper {
      * 获取 DevHelper
      * @return {@link DevHelper}
      */
-    public DevHelper devHelper(){
+    public DevHelper devHelper() {
         return DevHelper.get();
     }
 
