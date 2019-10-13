@@ -20,7 +20,7 @@ import android.view.animation.TranslateAnimation;
  * detail: 动画工具类
  * @author Ttt
  * <pre>
- *     Android动画机制详细解读
+ *     Android 动画机制详细解读
  *     @see <a href="https://mp.weixin.qq.com/s/HQ0Z_RpSzbYzuqdJjw3FLQ"/>
  *     @see <a href="https://mp.weixin.qq.com/s/7EkXNY50jFmgAeusM-reZw"/>
  *     <p></p>

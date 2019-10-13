@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.8.1 *(2019-10-13)*
+----------------------------
+ 
+ * `[Add]` EditTextUtils#addTextChangedListener、removeTextChangedListener、setTexts
+
+ * `[Add]` TextViewUtils#getHint、getHints、getHintTextColors、setHintTextColor、setHintTextColors、getTextColors、setTextColor、setTextColors、setGravity、setHint、setAutoLinkMask、setEllipsize、setMaxLines、setLines
+
+ * `[Add]` ViewUtils#getMinimumHeight、setMinimumHeight、getMinimumWidth、setMinimumWidth
+
+ * `[Add]` ImageViewUtils#getAdjustViewBounds、setAdjustViewBounds、getMaxHeight、setMaxHeight、getMaxWidth、setMaxWidth
+
 Version 1.8.0 *(2019-10-09)*
 ----------------------------
  

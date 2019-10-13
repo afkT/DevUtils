@@ -150,6 +150,9 @@
 | addTextChangedListener | 添加输入监听事件 |
 | removeTextChangedListener | 移除输入监听事件 |
 | setKeyListener | 设置 KeyListener |
+| setAdjustViewBounds | 设置 ImageView 是否保持宽高比 |
+| setMaxHeight | 设置 ImageView 最大高度 |
+| setMaxWidth | 设置 ImageView 最大宽度 |
 | setBackground | 设置背景图片 |
 | setBackgroundColor | 设置背景颜色 |
 | setBackgroundResource | 设置背景资源 |
@@ -172,6 +175,8 @@
 | setImageBitmaps | 设置 View Bitmap |
 | setImageDrawables | 设置 View Drawable |
 | setScaleTypes | 设置 View 缩放模式 |
+| setMinimumHeight | 设置 View 最小高度 |
+| setMinimumWidth | 设置 View 最小宽度 |
 | setTag | 设置 View Tag |
 | setLayoutParams | 设置 View LayoutParams |
 | setFocusable | 设置 View 是否可以获取焦点 |
