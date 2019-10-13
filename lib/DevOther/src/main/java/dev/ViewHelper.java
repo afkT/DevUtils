@@ -716,6 +716,41 @@ public final class ViewHelper {
     // =========
 
     /**
+     * 设置 ImageView 是否保持宽高比
+     * @param imageView        ImageView
+     * @param adjustViewBounds 是否调整此视图的边界以保持可绘制的原始纵横比
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAdjustViewBounds(final ImageView imageView, final boolean adjustViewBounds) {
+        ImageViewUtils.setAdjustViewBounds(imageView, adjustViewBounds);
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 最大高度
+     * @param imageView ImageView
+     * @param minHeight 最大高度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxHeight(final ImageView imageView, final int minHeight) {
+        ImageViewUtils.setMaxHeight(imageView, minHeight);
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 最大宽度
+     * @param imageView ImageView
+     * @param minWidth  最大宽度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxWidth(final ImageView imageView, final int minWidth) {
+        ImageViewUtils.setMaxWidth(imageView, minWidth);
+        return this;
+    }
+
+    // =
+
+    /**
      * 设置背景图片
      * @param view       {@link View}
      * @param background 背景图片
@@ -1071,6 +1106,28 @@ public final class ViewHelper {
     // ========
     // = View =
     // ========
+
+    /**
+     * 设置 View 最小高度
+     * @param view      View
+     * @param minHeight 最小高度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMinimumHeight(final View view, final int minHeight) {
+        ViewUtils.setMinimumHeight(view, minHeight);
+        return this;
+    }
+
+    /**
+     * 设置 View 最小宽度
+     * @param view     View
+     * @param minWidth 最小宽度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMinimumWidth(final View view, final int minWidth) {
+        ViewUtils.setMinimumWidth(view, minWidth);
+        return this;
+    }
 
     /**
      * 设置 View Tag

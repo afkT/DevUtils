@@ -111,6 +111,82 @@ public final class ImageViewUtils {
     }
 
     // ========
+    // = 宽高 =
+    // ========
+
+    /**
+     * 获取 ImageView 是否保持宽高比
+     * @param imageView ImageView
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static boolean getAdjustViewBounds(final ImageView imageView) {
+        if (imageView != null) {
+            return imageView.getAdjustViewBounds();
+        }
+        return false;
+    }
+
+    /**
+     * 设置 ImageView 是否保持宽高比
+     * @param imageView        ImageView
+     * @param adjustViewBounds 是否调整此视图的边界以保持可绘制的原始纵横比
+     */
+    public static void setAdjustViewBounds(final ImageView imageView, final boolean adjustViewBounds) {
+        if (imageView != null) {
+            imageView.setAdjustViewBounds(adjustViewBounds);
+        }
+    }
+
+    /**
+     * 获取 ImageView 最大高度
+     * @param imageView ImageView
+     * @return view 最大高度
+     */
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static int getMaxHeight(final ImageView imageView) {
+        if (imageView != null) {
+            return imageView.getMaxHeight();
+        }
+        return -1;
+    }
+
+    /**
+     * 设置 ImageView 最大高度
+     * @param imageView ImageView
+     * @param minHeight 最大高度
+     */
+    public static void setMaxHeight(final ImageView imageView, final int minHeight) {
+        if (imageView != null) {
+            imageView.setMaxHeight(minHeight);
+        }
+    }
+
+    /**
+     * 获取 ImageView 最大宽度
+     * @param imageView ImageView
+     * @return view 最大宽度
+     */
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static int getMaxWidth(final ImageView imageView) {
+        if (imageView != null) {
+            return imageView.getMaxWidth();
+        }
+        return -1;
+    }
+
+    /**
+     * 设置 ImageView 最大宽度
+     * @param imageView ImageView
+     * @param minWidth  最大宽度
+     */
+    public static void setMaxWidth(final ImageView imageView, final int minWidth) {
+        if (imageView != null) {
+            imageView.setMaxWidth(minWidth);
+        }
+    }
+
+    // ========
     // = 背景 =
     // ========
 
