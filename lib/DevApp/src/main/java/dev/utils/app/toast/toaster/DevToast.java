@@ -1,10 +1,11 @@
 package dev.utils.app.toast.toaster;
 
 import android.app.Application;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.StringRes;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.StringRes;
 
 /**
  * detail: Toast 工具类 ( 支持子线程弹出 Toast, 处理无通知权限 )

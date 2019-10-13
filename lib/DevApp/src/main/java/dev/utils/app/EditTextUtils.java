@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.app.Activity;
-import androidx.annotation.IdRes;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -12,6 +11,8 @@ import android.text.method.KeyListener;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+
+import androidx.annotation.IdRes;
 
 import java.util.UUID;
 
@@ -181,6 +182,35 @@ public final class EditTextUtils {
     }
 
     /**
+     * 设置多个 EditText 文本
+     * @param content 文本内容
+     * @param views   View(EditText)[]
+     */
+    public static void setTexts(final String content, final View... views) {
+        if (views != null) {
+            for (View view : views) {
+                setText(getEditText(view), content);
+            }
+        }
+    }
+
+    /**
+     * 设置多个 EditText 文本
+     * @param content 文本内容
+     * @param views   EditText[]
+     * @param <T>     泛型
+     */
+    public static <T extends EditText> void setTexts(final String content, final T... views) {
+        if (views != null) {
+            for (T view : views) {
+                setText(view, content);
+            }
+        }
+    }
+
+    // =
+
+    /**
      * 追加内容 ( 当前光标位置追加 )
      * @param editText {@link EditText}
      * @param content  文本内容
@@ -315,6 +345,36 @@ public final class EditTextUtils {
             int length = editText.getText().toString().length();
             // 设置光标
             editText.setSelection((index > length) ? length : index);
+        }
+        return editText;
+    }
+
+    // =
+
+    /**
+     * 添加输入监听事件
+     * @param editText {@link EditText}
+     * @param watcher  输入监听
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T addTextChangedListener(final T editText, final TextWatcher watcher) {
+        if (editText != null && watcher != null) {
+            editText.addTextChangedListener(watcher);
+        }
+        return editText;
+    }
+
+    /**
+     * 移除输入监听事件
+     * @param editText {@link EditText}
+     * @param watcher  输入监听
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T removeTextChangedListener(final T editText, final TextWatcher watcher) {
+        if (editText != null && watcher != null) {
+            editText.removeTextChangedListener(watcher);
         }
         return editText;
     }

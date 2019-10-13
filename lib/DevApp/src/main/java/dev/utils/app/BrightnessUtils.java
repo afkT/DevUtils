@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import androidx.annotation.IntRange;
-import androidx.annotation.RequiresPermission;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.annotation.IntRange;
+import androidx.annotation.RequiresPermission;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;

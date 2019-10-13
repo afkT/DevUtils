@@ -6,14 +6,15 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.StringRes;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.StringRes;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;

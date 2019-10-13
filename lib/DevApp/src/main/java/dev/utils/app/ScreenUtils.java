@@ -11,13 +11,14 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.provider.Settings;
-import androidx.annotation.RequiresApi;
-import androidx.annotation.RequiresPermission;
 import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.annotation.RequiresApi;
+import androidx.annotation.RequiresPermission;
 
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;

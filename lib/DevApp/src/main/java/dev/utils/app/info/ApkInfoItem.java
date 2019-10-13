@@ -3,8 +3,9 @@ package dev.utils.app.info;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.Signature;
-import androidx.annotation.Keep;
 import android.text.format.Formatter;
+
+import androidx.annotation.Keep;
 
 import java.io.File;
 import java.security.cert.CertificateEncodingException;

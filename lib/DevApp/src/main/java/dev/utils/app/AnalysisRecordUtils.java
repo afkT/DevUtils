@@ -4,8 +4,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
-import androidx.annotation.IntDef;
 import android.text.TextUtils;
+
+import androidx.annotation.IntDef;
 
 import java.io.File;
 import java.io.FileOutputStream;

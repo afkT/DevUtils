@@ -7,8 +7,9 @@ import android.net.DhcpInfo;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
 import android.text.TextUtils;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

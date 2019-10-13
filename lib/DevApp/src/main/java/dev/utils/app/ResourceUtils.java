@@ -12,6 +12,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
+
 import androidx.annotation.AnimRes;
 import androidx.annotation.AnimatorRes;
 import androidx.annotation.AnyRes;
@@ -25,7 +27,6 @@ import androidx.annotation.IntegerRes;
 import androidx.annotation.RawRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
-import android.util.DisplayMetrics;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;

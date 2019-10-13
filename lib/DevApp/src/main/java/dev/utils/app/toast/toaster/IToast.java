@@ -3,12 +3,13 @@ package dev.utils.app.toast.toaster;
 import android.app.Application;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.ColorInt;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.StringRes;
 
 /**
  * detail: Toast 对外提供接口方法

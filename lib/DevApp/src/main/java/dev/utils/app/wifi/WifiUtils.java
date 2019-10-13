@@ -12,8 +12,9 @@ import android.net.wifi.WifiConfiguration.KeyMgmt;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import androidx.annotation.RequiresPermission;
 import android.text.TextUtils;
+
+import androidx.annotation.RequiresPermission;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

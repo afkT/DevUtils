@@ -3,8 +3,9 @@ package dev.utils.app.toast.toaster;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.ColorInt;
 import android.text.TextUtils;
+
+import androidx.annotation.ColorInt;
 
 /**
  * detail: Toast 默认样式

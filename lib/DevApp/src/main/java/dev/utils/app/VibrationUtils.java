@@ -2,6 +2,7 @@ package dev.utils.app;
 
 import android.content.Context;
 import android.os.Vibrator;
+
 import androidx.annotation.RequiresPermission;
 
 import dev.DevUtils;

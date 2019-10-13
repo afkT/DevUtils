@@ -6,15 +6,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import androidx.annotation.ArrayRes;
-import androidx.annotation.StyleRes;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
-
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
+
+import androidx.annotation.ArrayRes;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 
 import dev.utils.LogPrintUtils;
 

@@ -29,15 +29,94 @@
 ## <span id="dev">**`dev`**</span>
 
 
+* **Dev 工具类链式调用 Helper 类 ->** [DevHelper.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/DevHelper.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| get | 获取单例 DevHelper |
+| viewHelper | 获取 ViewHelper |
+| devHelper | 获取 DevHelper |
+| postRunnable | 在主线程 Handler 中执行任务 |
+| removeRunnable | 在主线程 Handler 中清除任务 |
+| startTimer | 运行定时器 |
+| closeTimer | 关闭定时器 |
+| recycle | Bitmap 通知回收 |
+| saveBitmapToSDCardJPEG | 保存图片到 SDCard - JPEG |
+| saveBitmapToSDCardPNG | 保存图片到 SDCard - PNG |
+| saveBitmapToSDCardWEBP | 保存图片到 SDCard - WEBP |
+| saveBitmapToSDCard | 保存图片到 SDCard |
+| addTextChangedListener | 添加输入监听事件 |
+| removeTextChangedListener | 移除输入监听事件 |
+| setKeyListener | 设置 KeyListener |
+| record | 日志记录 |
+| cleanInternalCache | 清除内部缓存 - path /data/data/package/cache |
+| cleanInternalFiles | 清除内部文件 - path /data/data/package/files |
+| cleanInternalDbs | 清除内部数据库 - path /data/data/package/databases |
+| cleanInternalDbByName | 根据名称清除数据库 - path /data/data/package/databases/dbName |
+| cleanInternalSp | 清除内部 SP - path /data/data/package/shared_prefs |
+| cleanExternalCache | 清除外部缓存 - path /storage/emulated/0/android/data/package/cache |
+| cleanCustomDir | 清除自定义路径下的文件, 使用需小心请不要误删, 而且只支持目录下的文件删除 |
+| cleanApplicationData | 清除本应用所有的数据 |
+| copyText | 复制文本到剪贴板 |
+| copyUri | 复制 URI 到剪贴板 |
+| copyIntent | 复制意图到剪贴板 |
+| notifyMediaStore | 通知刷新本地资源 |
+| insertImageIntoMediaStore | 添加图片到系统相册 ( 包含原图、相册图, 会存在两张 ) - 想要一张, 直接调用 notifyMediaStore() |
+| insertVideoIntoMediaStore | 添加视频到系统相册 |
+| insertIntoMediaStore | 保存到系统相册 |
+| showDialog | 显示 Dialog |
+| closeDialog | 关闭 Dialog |
+| closeDialogs | 关闭多个 Dialog |
+| closePopupWindow | 关闭 PopupWindow |
+| closePopupWindows | 关闭多个 PopupWindow |
+| autoCloseDialog | 自动关闭 dialog |
+| autoClosePopupWindow | 自动关闭 PopupWindow |
+| openKeyboard | 打开软键盘 |
+| closeKeyboard | 关闭软键盘 |
+| closeKeyBoardSpecial | 关闭软键盘 - 特殊处理 |
+| judgeView | 设置某个 View 内所有非 EditText 的子 View OnTouchListener 事件 |
+| registerSoftInputChangedListener | 注册软键盘改变监听 |
+| registerSoftInputChangedListener2 | 注册软键盘改变监听 |
+| applyLanguage | 修改系统语言 (APP 多语言, 单独改变 APP 语言 ) |
+| setOnClicks | 设置点击事件 |
+| setOnLongClicks | 设置长按事件 |
+| addTouchArea | 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域 |
+| cancelAllNotification | 移除通知 - 移除所有通知 ( 只是针对当前 Context 下的 Notification) |
+| cancelNotification | 移除通知 - 移除标记为 id 的通知 ( 只是针对当前 Context 下的所有 Notification) |
+| notifyNotification | 进行通知 |
+| saveAssetsFormFile | 获取 Assets 资源文件数据并保存到本地 |
+| saveRawFormFile | 获取 Raw 资源文件数据并保存到本地 |
+| setWindowSecure | 设置禁止截屏 |
+| setFullScreen | 设置屏幕为全屏 |
+| setLandscape | 设置屏幕为横屏 |
+| setPortrait | 设置屏幕为竖屏 |
+| toggleScreenOrientation | 切换屏幕方向 |
+| forceGetViewSize | 在 onCreate 中获取视图的尺寸 - 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 View 宽高 |
+| vibrate | 震动 |
+| cancel | 取消震动 |
+| closeIO | 关闭 IO |
+| closeIOQuietly | 安静关闭 IO |
+| getNetTime | 获取网络时间 - 默认使用百度链接 |
+| waitForEndAsyn | 设置等待一段时间后, 通知方法 ( 异步 ) |
+| waitForEnd | 设置等待一段时间后, 通知方法 ( 同步 ) |
+
+
 * **View 链式调用快捷设置 Helper 类 ->** [ViewHelper.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/ViewHelper.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | get | 获取单例 ViewHelper |
+| viewHelper | 获取 ViewHelper |
+| devHelper | 获取 DevHelper |
+| postRunnable | 在主线程 Handler 中执行任务 |
+| removeRunnable | 在主线程 Handler 中清除任务 |
+| setHint | 设置 Hint 文本 |
 | setText | 设置文本 |
 | setTexts | 设置多个 TextView 文本 |
 | setHtmlText | 设置 Html 内容 |
 | setHtmlTexts | 设置多个 TextView Html 内容 |
+| setHintTextColor | 设置 Hint 字体颜色 |
+| setHintTextColors | 设置多个 TextView Hint 字体颜色 |
 | setTextColor | 设置字体颜色 |
 | setTextColors | 设置多个 TextView 字体颜色 |
 | setTypeface | 设置字体 |
@@ -56,6 +135,11 @@
 | setLineSpacingAndMultiplier | 设置文字行间距 ( 行高 )、行间距倍数 |
 | setTextScaleX | 设置字体水平方向的缩放 |
 | setIncludeFontPadding | 设置是否保留字体留白间隙区域 |
+| setLines | 设置行数 |
+| setMaxLines | 设置最大行数 |
+| setEllipsize | 设置 Ellipsize 效果 |
+| setAutoLinkMask | 设置自动识别文本链接 |
+| setTextGravity | 设置 Text Gravity |
 | insert | 追加内容 ( 当前光标位置追加 ) |
 | setMaxLength | 设置长度限制 |
 | setMaxLengthAndText | 设置长度限制, 并且设置内容 |
@@ -63,7 +147,12 @@
 | setSelectionToTop | 设置光标在第一位 |
 | setSelectionToBottom | 设置光标在最后一位 |
 | setSelection | 设置光标位置 |
+| addTextChangedListener | 添加输入监听事件 |
+| removeTextChangedListener | 移除输入监听事件 |
 | setKeyListener | 设置 KeyListener |
+| setAdjustViewBounds | 设置 ImageView 是否保持宽高比 |
+| setMaxHeight | 设置 ImageView 最大高度 |
+| setMaxWidth | 设置 ImageView 最大宽度 |
 | setBackground | 设置背景图片 |
 | setBackgroundColor | 设置背景颜色 |
 | setBackgroundResource | 设置背景资源 |
@@ -86,6 +175,8 @@
 | setImageBitmaps | 设置 View Bitmap |
 | setImageDrawables | 设置 View Drawable |
 | setScaleTypes | 设置 View 缩放模式 |
+| setMinimumHeight | 设置 View 最小高度 |
+| setMinimumWidth | 设置 View 最小宽度 |
 | setTag | 设置 View Tag |
 | setLayoutParams | 设置 View LayoutParams |
 | setFocusable | 设置 View 是否可以获取焦点 |

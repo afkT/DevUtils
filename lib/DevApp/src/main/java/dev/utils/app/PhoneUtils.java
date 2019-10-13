@@ -12,11 +12,12 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.provider.Settings;
-import androidx.annotation.RequiresPermission;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Xml;
+
+import androidx.annotation.RequiresPermission;
 
 import org.xmlpull.v1.XmlSerializer;
 

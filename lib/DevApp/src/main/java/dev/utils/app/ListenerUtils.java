@@ -1,8 +1,9 @@
 package dev.utils.app;
 
 import android.app.Activity;
-import androidx.annotation.IdRes;
 import android.view.View;
+
+import androidx.annotation.IdRes;
 
 import java.lang.reflect.Field;
 

@@ -8,8 +8,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.provider.Settings;
-import androidx.annotation.RequiresPermission;
 import android.text.TextUtils;
+
+import androidx.annotation.RequiresPermission;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

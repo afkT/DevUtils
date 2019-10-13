@@ -5,10 +5,11 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import androidx.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.StringRes;
 
 import java.lang.reflect.Field;
 

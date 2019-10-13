@@ -5,12 +5,6 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.RequiresApi;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.viewpager.widget.ViewPager;
-import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,6 +18,13 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.RequiresApi;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -343,6 +344,56 @@ public final class ViewUtils {
             return true;
         }
         return false;
+    }
+
+    // =
+
+    /**
+     * 获取 View 最小高度
+     * @param view View
+     * @return View 最小高度
+     */
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static int getMinimumHeight(final View view) {
+        if (view != null) {
+            return view.getMinimumHeight();
+        }
+        return -1;
+    }
+
+    /**
+     * 设置 View 最小高度
+     * @param view      View
+     * @param minHeight 最小高度
+     */
+    public static void setMinimumHeight(final View view, final int minHeight) {
+        if (view != null) {
+            view.setMinimumHeight(minHeight);
+        }
+    }
+
+    /**
+     * 获取 View 最小宽度
+     * @param view View
+     * @return View 最小宽度
+     */
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static int getMinimumWidth(final View view) {
+        if (view != null) {
+            return view.getMinimumWidth();
+        }
+        return -1;
+    }
+
+    /**
+     * 设置 View 最小宽度
+     * @param view     View
+     * @param minWidth 最小宽度
+     */
+    public static void setMinimumWidth(final View view, final int minWidth) {
+        if (view != null) {
+            view.setMinimumWidth(minWidth);
+        }
     }
 
     // =

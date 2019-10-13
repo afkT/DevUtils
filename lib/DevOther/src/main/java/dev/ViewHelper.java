@@ -8,8 +8,8 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +17,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+
 import dev.utils.app.ClickUtils;
 import dev.utils.app.EditTextUtils;
+import dev.utils.app.HandlerUtils;
 import dev.utils.app.ImageViewUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.app.TextViewUtils;
@@ -47,9 +51,102 @@ public final class ViewHelper {
         return HELPER;
     }
 
+    // ==========
+    // = Helper =
+    // ==========
+
+    /**
+     * 获取 ViewHelper
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper viewHelper() {
+        return this;
+    }
+
+    /**
+     * 获取 DevHelper
+     * @return {@link DevHelper}
+     */
+    public DevHelper devHelper() {
+        return DevHelper.get();
+    }
+
+    // ===========
+    // = Handler =
+    // ===========
+
+    /**
+     * 在主线程 Handler 中执行任务
+     * @param runnable 可执行的任务
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper postRunnable(final Runnable runnable) {
+        HandlerUtils.postRunnable(runnable);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable    可执行的任务
+     * @param delayMillis 延迟时间
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper postRunnable(final Runnable runnable, final long delayMillis) {
+        HandlerUtils.postRunnable(runnable, delayMillis);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable    可执行的任务
+     * @param delayMillis 延迟时间
+     * @param number      轮询次数
+     * @param interval    轮询时间
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval) {
+        HandlerUtils.postRunnable(runnable, delayMillis, number, interval);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable      可执行的任务
+     * @param delayMillis   延迟时间
+     * @param number        轮询次数
+     * @param interval      轮询时间
+     * @param onEndListener 结束通知
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval, final HandlerUtils.OnEndListener onEndListener) {
+        HandlerUtils.postRunnable(runnable, delayMillis, number, interval, onEndListener);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中清除任务
+     * @param runnable 需要清除的任务
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper removeRunnable(final Runnable runnable) {
+        HandlerUtils.removeRunnable(runnable);
+        return this;
+    }
+
     // ========
     // = Text =
     // ========
+
+    /**
+     * 设置 Hint 文本
+     * @param view {@link TextView}
+     * @param text Hint text
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHint(final View view, final String text) {
+        TextViewUtils.setHint(view, text);
+        return this;
+    }
 
     /**
      * 设置文本
@@ -58,7 +155,11 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setText(final View view, final String text) {
-        TextViewUtils.setText(view, text);
+        if (view instanceof EditText) {
+            EditTextUtils.setText(EditTextUtils.getEditText(view), text);
+        } else {
+            TextViewUtils.setText(view, text);
+        }
         return this;
     }
 
@@ -96,6 +197,50 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 Hint 字体颜色
+     * @param view  {@link TextView}
+     * @param color R.color.id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHintTextColor(final View view, @ColorInt final int color) {
+        TextViewUtils.setHintTextColor(view, color);
+        return this;
+    }
+
+    /**
+     * 设置 Hint 字体颜色
+     * @param view   {@link TextView}
+     * @param colors {@link ColorStateList}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHintTextColor(final View view, final ColorStateList colors) {
+        TextViewUtils.setHintTextColor(view, colors);
+        return this;
+    }
+
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param color R.color.id
+     * @param views View(TextView)[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHintTextColors(@ColorInt final int color, final View... views) {
+        TextViewUtils.setHintTextColors(color, views);
+        return this;
+    }
+
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param colors {@link ColorStateList}
+     * @param views  View(TextView)[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHintTextColors(final ColorStateList colors, final View... views) {
+        TextViewUtils.setHintTextColors(colors, views);
+        return this;
+    }
+
+    /**
      * 设置字体颜色
      * @param view  {@link TextView}
      * @param color R.color.id
@@ -107,6 +252,17 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置字体颜色
+     * @param view   {@link TextView}
+     * @param colors {@link ColorStateList}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTextColor(final View view, final ColorStateList colors) {
+        TextViewUtils.setTextColor(view, colors);
+        return this;
+    }
+
+    /**
      * 设置多个 TextView 字体颜色
      * @param color R.color.id
      * @param views View(TextView)[]
@@ -114,6 +270,17 @@ public final class ViewHelper {
      */
     public ViewHelper setTextColors(@ColorInt final int color, final View... views) {
         TextViewUtils.setTextColors(color, views);
+        return this;
+    }
+
+    /**
+     * 设置多个 TextView 字体颜色
+     * @param colors {@link ColorStateList}
+     * @param views  View(TextView)[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTextColors(final ColorStateList colors, final View... views) {
+        TextViewUtils.setTextColors(colors, views);
         return this;
     }
 
@@ -329,20 +496,64 @@ public final class ViewHelper {
         return this;
     }
 
+    /**
+     * 设置行数
+     * @param view  {@link TextView}
+     * @param lines 行数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setLines(final View view, final int lines) {
+        TextViewUtils.setLines(view, lines);
+        return this;
+    }
+
+    /**
+     * 设置最大行数
+     * @param view     {@link TextView}
+     * @param maxLines 最大行数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxLines(final View view, final int maxLines) {
+        TextViewUtils.setMaxLines(view, maxLines);
+        return this;
+    }
+
+    /**
+     * 设置 Ellipsize 效果
+     * @param view  {@link TextView}
+     * @param where {@link TextUtils.TruncateAt}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setEllipsize(final View view, final TextUtils.TruncateAt where) {
+        TextViewUtils.setEllipsize(view, where);
+        return this;
+    }
+
+    /**
+     * 设置自动识别文本链接
+     * @param view {@link TextView}
+     * @param mask {@link android.text.util.Linkify}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAutoLinkMask(final View view, final int mask) {
+        TextViewUtils.setAutoLinkMask(view, mask);
+        return this;
+    }
+
+    /**
+     * 设置 Text Gravity
+     * @param view    {@link TextView}
+     * @param gravity {@link android.view.Gravity}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTextGravity(final View view, final int gravity) {
+        TextViewUtils.setGravity(view, gravity);
+        return this;
+    }
+
     // ============
     // = EditText =
     // ============
-
-    /**
-     * 设置内容
-     * @param editText {@link EditText}
-     * @param content  文本内容
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setText(final EditText editText, final String content) {
-        EditTextUtils.setText(editText, content);
-        return this;
-    }
 
     /**
      * 设置内容
@@ -447,6 +658,28 @@ public final class ViewHelper {
     }
 
     /**
+     * 添加输入监听事件
+     * @param editText {@link EditText}
+     * @param watcher  输入监听
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addTextChangedListener(final EditText editText, final TextWatcher watcher) {
+        EditTextUtils.addTextChangedListener(editText, watcher);
+        return this;
+    }
+
+    /**
+     * 移除输入监听事件
+     * @param editText {@link EditText}
+     * @param watcher  输入监听
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper removeTextChangedListener(final EditText editText, final TextWatcher watcher) {
+        EditTextUtils.removeTextChangedListener(editText, watcher);
+        return this;
+    }
+
+    /**
      * 设置 KeyListener
      * @param editText    {@link EditText}
      * @param keyListener {@link KeyListener}
@@ -482,6 +715,41 @@ public final class ViewHelper {
     // =========
     // = Image =
     // =========
+
+    /**
+     * 设置 ImageView 是否保持宽高比
+     * @param imageView        ImageView
+     * @param adjustViewBounds 是否调整此视图的边界以保持可绘制的原始纵横比
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAdjustViewBounds(final ImageView imageView, final boolean adjustViewBounds) {
+        ImageViewUtils.setAdjustViewBounds(imageView, adjustViewBounds);
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 最大高度
+     * @param imageView ImageView
+     * @param minHeight 最大高度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxHeight(final ImageView imageView, final int minHeight) {
+        ImageViewUtils.setMaxHeight(imageView, minHeight);
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 最大宽度
+     * @param imageView ImageView
+     * @param minWidth  最大宽度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxWidth(final ImageView imageView, final int minWidth) {
+        ImageViewUtils.setMaxWidth(imageView, minWidth);
+        return this;
+    }
+
+    // =
 
     /**
      * 设置背景图片
@@ -839,6 +1107,28 @@ public final class ViewHelper {
     // ========
     // = View =
     // ========
+
+    /**
+     * 设置 View 最小高度
+     * @param view      View
+     * @param minHeight 最小高度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMinimumHeight(final View view, final int minHeight) {
+        ViewUtils.setMinimumHeight(view, minHeight);
+        return this;
+    }
+
+    /**
+     * 设置 View 最小宽度
+     * @param view     View
+     * @param minWidth 最小宽度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMinimumWidth(final View view, final int minWidth) {
+        ViewUtils.setMinimumWidth(view, minWidth);
+        return this;
+    }
 
     /**
      * 设置 View Tag

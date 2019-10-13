@@ -2,8 +2,9 @@ package dev.utils.app.info;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import androidx.annotation.Keep;
 import android.text.format.Formatter;
+
+import androidx.annotation.Keep;
 
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateExpiredException;

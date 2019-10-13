@@ -7,8 +7,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.core.content.FileProvider;
 import android.text.TextUtils;
+
+import androidx.core.content.FileProvider;
 
 import java.io.File;
 import java.lang.reflect.Field;

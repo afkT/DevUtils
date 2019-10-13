@@ -5,12 +5,13 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.text.TextUtils;
+import android.view.View;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
-import android.text.TextUtils;
-import android.view.View;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;

@@ -8,9 +8,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.TextUtils;
+
 import androidx.annotation.RequiresPermission;
 import androidx.core.content.FileProvider;
-import android.text.TextUtils;
 
 import java.io.File;
 
