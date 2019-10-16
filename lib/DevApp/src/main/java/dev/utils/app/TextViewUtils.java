@@ -1446,7 +1446,6 @@ public final class TextViewUtils {
      * @param view      {@link TextView}
      * @param content   文本内容
      * @param maxLength 长度限制
-     * @return {@link TextView}
      */
     public static void setMaxLengthAndText(final View view, final String content, final int maxLength) {
         setMaxLength(view, maxLength);
