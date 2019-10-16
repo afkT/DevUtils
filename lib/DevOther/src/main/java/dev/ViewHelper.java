@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.FloatRange;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
@@ -518,6 +519,50 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置最小行数
+     * @param view     {@link TextView}
+     * @param minLines 最小行数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMinLines(final View view, final int minLines) {
+        TextViewUtils.setMinLines(view, minLines);
+        return this;
+    }
+
+    /**
+     * 设置最大字符宽度限制
+     * @param view   {@link TextView}
+     * @param maxEms 最大字符
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxEms(final View view, final int maxEms) {
+        TextViewUtils.setMaxEms(view, maxEms);
+        return this;
+    }
+
+    /**
+     * 设置最小字符宽度限制
+     * @param view   {@link TextView}
+     * @param minEms 最小字符
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMinEms(final View view, final int minEms) {
+        TextViewUtils.setMinEms(view, minEms);
+        return this;
+    }
+
+    /**
+     * 设置指定字符宽度
+     * @param view {@link TextView}
+     * @param ems  字符
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setEms(final View view, final int ems) {
+        TextViewUtils.setEms(view, ems);
+        return this;
+    }
+
+    /**
      * 设置 Ellipsize 效果
      * @param view  {@link TextView}
      * @param where {@link TextUtils.TruncateAt}
@@ -593,24 +638,32 @@ public final class ViewHelper {
 
     /**
      * 设置长度限制
-     * @param editText  {@link EditText}
+     * @param view      {@link View}
      * @param maxLength 长度限制
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxLength(final EditText editText, final int maxLength) {
-        EditTextUtils.setMaxLength(editText, maxLength);
+    public ViewHelper setMaxLength(final View view, final int maxLength) {
+        if (view instanceof EditText) {
+            EditTextUtils.setMaxLength(EditTextUtils.getEditText(view), maxLength);
+        } else {
+            TextViewUtils.setMaxLength(view, maxLength);
+        }
         return this;
     }
 
     /**
      * 设置长度限制, 并且设置内容
-     * @param editText  {@link EditText}
+     * @param view      {@link View}
      * @param content   文本内容
      * @param maxLength 长度限制
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxLengthAndText(final EditText editText, final String content, final int maxLength) {
-        EditTextUtils.setMaxLengthAndText(editText, content, maxLength);
+    public ViewHelper setMaxLengthAndText(final View view, final String content, final int maxLength) {
+        if (view instanceof EditText) {
+            EditTextUtils.setMaxLengthAndText(EditTextUtils.getEditText(view), content, maxLength);
+        } else {
+            TextViewUtils.setMaxLengthAndText(view, content, maxLength);
+        }
         return this;
     }
 
@@ -729,22 +782,22 @@ public final class ViewHelper {
     /**
      * 设置 ImageView 最大高度
      * @param imageView ImageView
-     * @param minHeight 最大高度
+     * @param maxHeight 最大高度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxHeight(final ImageView imageView, final int minHeight) {
-        ImageViewUtils.setMaxHeight(imageView, minHeight);
+    public ViewHelper setMaxHeight(final ImageView imageView, final int maxHeight) {
+        ImageViewUtils.setMaxHeight(imageView, maxHeight);
         return this;
     }
 
     /**
      * 设置 ImageView 最大宽度
      * @param imageView ImageView
-     * @param minWidth  最大宽度
+     * @param maxWidth  最大宽度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxWidth(final ImageView imageView, final int minWidth) {
-        ImageViewUtils.setMaxWidth(imageView, minWidth);
+    public ViewHelper setMaxWidth(final ImageView imageView, final int maxWidth) {
+        ImageViewUtils.setMaxWidth(imageView, maxWidth);
         return this;
     }
 
@@ -1126,6 +1179,17 @@ public final class ViewHelper {
      */
     public ViewHelper setMinimumWidth(final View view, final int minWidth) {
         ViewUtils.setMinimumWidth(view, minWidth);
+        return this;
+    }
+
+    /**
+     * 设置 View 透明度
+     * @param view  View
+     * @param alpha 透明度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAlpha(final View view, @FloatRange(from = 0.0, to = 1.0) final float alpha) {
+        ViewUtils.setAlpha(view, alpha);
         return this;
     }
 

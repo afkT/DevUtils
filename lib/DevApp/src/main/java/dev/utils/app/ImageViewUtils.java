@@ -154,11 +154,11 @@ public final class ImageViewUtils {
     /**
      * 设置 ImageView 最大高度
      * @param imageView ImageView
-     * @param minHeight 最大高度
+     * @param maxHeight 最大高度
      */
-    public static void setMaxHeight(final ImageView imageView, final int minHeight) {
+    public static void setMaxHeight(final ImageView imageView, final int maxHeight) {
         if (imageView != null) {
-            imageView.setMaxHeight(minHeight);
+            imageView.setMaxHeight(maxHeight);
         }
     }
 
@@ -178,11 +178,11 @@ public final class ImageViewUtils {
     /**
      * 设置 ImageView 最大宽度
      * @param imageView ImageView
-     * @param minWidth  最大宽度
+     * @param maxWidth  最大宽度
      */
-    public static void setMaxWidth(final ImageView imageView, final int minWidth) {
+    public static void setMaxWidth(final ImageView imageView, final int maxWidth) {
         if (imageView != null) {
-            imageView.setMaxWidth(minWidth);
+            imageView.setMaxWidth(maxWidth);
         }
     }
 

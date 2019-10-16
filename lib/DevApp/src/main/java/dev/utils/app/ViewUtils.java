@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.FloatRange;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.RequiresApi;
@@ -396,6 +397,29 @@ public final class ViewUtils {
     }
 
     // =
+
+    /**
+     * 获取 View 透明度
+     * @param view View
+     * @return 透明度
+     */
+    public static float getAlpha(final View view) {
+        if (view != null) {
+            return view.getAlpha();
+        }
+        return 1.0f;
+    }
+
+    /**
+     * 设置 View 透明度
+     * @param view  View
+     * @param alpha 透明度
+     */
+    public static void setAlpha(final View view, @FloatRange(from = 0.0, to = 1.0) final float alpha) {
+        if (view != null) {
+            view.setAlpha(alpha);
+        }
+    }
 
     /**
      * 获取 View Tag

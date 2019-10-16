@@ -10,6 +10,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.RequiresApi;
 import android.text.Html;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
@@ -500,7 +501,7 @@ public final class TextViewUtils {
 
     /**
      * 获取 Hint 字体颜色
-     * @param view  {@link TextView}
+     * @param view {@link TextView}
      * @return {@link ColorStateList}
      */
     public static ColorStateList getHintTextColors(final View view) {
@@ -568,7 +569,7 @@ public final class TextViewUtils {
 
     /**
      * 获取字体颜色
-     * @param view  {@link TextView}
+     * @param view {@link TextView}
      * @return {@link ColorStateList}
      */
     public static ColorStateList getTextColors(final View view) {
@@ -1298,6 +1299,158 @@ public final class TextViewUtils {
      */
     public static void setMaxLines(final View view, final int maxLines) {
         setMaxLines(getTextView(view), maxLines);
+    }
+
+    // =
+
+    /**
+     * 设置最小行数
+     * @param textView {@link TextView}
+     * @param minLines 最小行数
+     * @param <T>      泛型
+     */
+    public static <T extends TextView> void setMinLines(final T textView, final int minLines) {
+        if (textView != null && minLines > 0) {
+            textView.setMinLines(minLines);
+        }
+    }
+
+    /**
+     * 设置最小行数
+     * @param view     {@link TextView}
+     * @param minLines 最小行数
+     */
+    public static void setMinLines(final View view, final int minLines) {
+        setMinLines(getTextView(view), minLines);
+    }
+
+    // =
+
+    /**
+     * 设置最大字符宽度限制
+     * @param textView {@link TextView}
+     * @param maxEms   最大字符
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setMaxEms(final T textView, final int maxEms) {
+        if (textView != null && maxEms > 0) {
+            textView.setMaxEms(maxEms);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置最大字符宽度限制
+     * @param view   {@link TextView}
+     * @param maxEms 最大字符
+     */
+    public static void setMaxEms(final View view, final int maxEms) {
+        setMaxEms(getTextView(view), maxEms);
+    }
+
+    // =
+
+    /**
+     * 设置最小字符宽度限制
+     * @param textView {@link TextView}
+     * @param minEms   最小字符
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setMinEms(final T textView, final int minEms) {
+        if (textView != null && minEms > 0) {
+            textView.setMinEms(minEms);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置最小字符宽度限制
+     * @param view   {@link TextView}
+     * @param minEms 最小字符
+     */
+    public static void setMinEms(final View view, final int minEms) {
+        setMinEms(getTextView(view), minEms);
+    }
+
+    // =
+
+    /**
+     * 设置指定字符宽度
+     * @param textView {@link TextView}
+     * @param ems      字符
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setEms(final T textView, final int ems) {
+        if (textView != null && ems > 0) {
+            textView.setEms(ems);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置指定字符宽度
+     * @param view {@link TextView}
+     * @param ems  字符
+     */
+    public static void setEms(final View view, final int ems) {
+        setEms(getTextView(view), ems);
+    }
+
+    // =
+
+    /**
+     * 设置长度限制
+     * @param textView  {@link TextView}
+     * @param maxLength 长度限制
+     * @param <T>       泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setMaxLength(final T textView, final int maxLength) {
+        if (textView != null && maxLength > 0) {
+            // 设置最大长度限制
+            InputFilter[] filters = {new InputFilter.LengthFilter(maxLength)};
+            textView.setFilters(filters);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置长度限制
+     * @param view      {@link TextView}
+     * @param maxLength 长度限制
+     */
+    public static void setMaxLength(final View view, final int maxLength) {
+        setMaxLength(getTextView(view), maxLength);
+    }
+
+    // =
+
+    /**
+     * 设置长度限制, 并且设置内容
+     * @param textView  {@link TextView}
+     * @param content   文本内容
+     * @param maxLength 长度限制
+     * @param <T>       泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setMaxLengthAndText(final T textView, final String content, final int maxLength) {
+        setText(setMaxLength(textView, maxLength), content);
+        return textView;
+    }
+
+    /**
+     * 设置长度限制, 并且设置内容
+     * @param view      {@link TextView}
+     * @param content   文本内容
+     * @param maxLength 长度限制
+     * @return {@link TextView}
+     */
+    public static void setMaxLengthAndText(final View view, final String content, final int maxLength) {
+        setMaxLength(view, maxLength);
+        setText(view, content);
     }
 
     // =
