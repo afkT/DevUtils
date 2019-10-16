@@ -1258,6 +1258,56 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 设置输入类型
+     * @param textView {@link TextView}
+     * @param type     类型
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setInputType(final T textView, final int type) {
+        if (textView != null) {
+            textView.setInputType(type);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置输入类型
+     * @param view {@link TextView}
+     * @param type 类型
+     */
+    public static void setInputType(final View view, final int type) {
+        setInputType(getTextView(view), type);
+    }
+
+    // =
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param textView   {@link TextView}
+     * @param imeOptions 软键盘按钮类型
+     * @param <T>        泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setImeOptions(final T textView, final int imeOptions) {
+        if (textView != null) {
+            textView.setImeOptions(imeOptions);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param view       {@link TextView}
+     * @param imeOptions 软键盘按钮类型
+     */
+    public static void setImeOptions(final View view, final int imeOptions) {
+        setImeOptions(getTextView(view), imeOptions);
+    }
+
+    // =
+
+    /**
      * 设置行数
      * @param textView {@link TextView}
      * @param lines    行数

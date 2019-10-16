@@ -497,6 +497,28 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置输入类型
+     * @param view {@link TextView}
+     * @param type 类型
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setInputType(final View view, final int type) {
+        TextViewUtils.setInputType(view, type);
+        return this;
+    }
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param view       {@link TextView}
+     * @param imeOptions 软键盘按钮类型
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImeOptions(final View view, final int imeOptions) {
+        TextViewUtils.setImeOptions(view, imeOptions);
+        return this;
+    }
+
+    /**
      * 设置行数
      * @param view  {@link TextView}
      * @param lines 行数
