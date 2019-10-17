@@ -47,6 +47,8 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
  *     DevAssist Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/README.md"/>
+ *     DevOther Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md"/>
  * </pre>
  */
 public final class DevUtils {

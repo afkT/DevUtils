@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.8.2 *(2019-10-18)*
+----------------------------
+ 
+ * `[Add]` TextViewUtils#setMinLines、setMaxEms、setMinEms、setEms、setMaxLength、setMaxLengthAndText、setInputType、setImeOptions
+
+ * `[Add]` EditTextUtils#setInputType、setImeOptions
+
+ * `[Add]` JSONObjectUtils#isJSON
+
+ * `[Add]` ViewUtils#setLayerType、setAllCaps、setAlpha、getAlpha、setScrollContainer、setNextFocusForwardId、setNextFocusDownId、setNextFocusLeftId、setNextFocusRightId、setNextFocusUpId、setRotation、setRotationX、setRotationY、setScaleX、setScaleY、setTextAlignment、setTextDirection、setPivotX、setPivotY、setTranslationX、setTranslationY
+
 Version 1.8.1 *(2019-10-13)*
 ----------------------------
  

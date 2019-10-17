@@ -349,6 +349,34 @@ public final class EditTextUtils {
         return editText;
     }
 
+    /**
+     * 设置输入类型
+     * @param editText {@link EditText}
+     * @param type     类型
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T setInputType(final T editText, final int type) {
+        if (editText != null) {
+            editText.setInputType(type);
+        }
+        return editText;
+    }
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param editText   {@link EditText}
+     * @param imeOptions 软键盘按钮类型
+     * @param <T>        泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T setImeOptions(final T editText, final int imeOptions) {
+        if (editText != null) {
+            editText.setImeOptions(imeOptions);
+        }
+        return editText;
+    }
+
     // =
 
     /**

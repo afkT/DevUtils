@@ -132,11 +132,13 @@ public final class ImageViewUtils {
      * 设置 ImageView 是否保持宽高比
      * @param imageView        ImageView
      * @param adjustViewBounds 是否调整此视图的边界以保持可绘制的原始纵横比
+     * @return {@link ImageView}
      */
-    public static void setAdjustViewBounds(final ImageView imageView, final boolean adjustViewBounds) {
+    public static ImageView setAdjustViewBounds(final ImageView imageView, final boolean adjustViewBounds) {
         if (imageView != null) {
             imageView.setAdjustViewBounds(adjustViewBounds);
         }
+        return imageView;
     }
 
     /**
@@ -155,12 +157,14 @@ public final class ImageViewUtils {
     /**
      * 设置 ImageView 最大高度
      * @param imageView ImageView
-     * @param minHeight 最大高度
+     * @param maxHeight 最大高度
+     * @return {@link ImageView}
      */
-    public static void setMaxHeight(final ImageView imageView, final int minHeight) {
+    public static ImageView setMaxHeight(final ImageView imageView, final int maxHeight) {
         if (imageView != null) {
-            imageView.setMaxHeight(minHeight);
+            imageView.setMaxHeight(maxHeight);
         }
+        return imageView;
     }
 
     /**
@@ -179,12 +183,14 @@ public final class ImageViewUtils {
     /**
      * 设置 ImageView 最大宽度
      * @param imageView ImageView
-     * @param minWidth  最大宽度
+     * @param maxWidth  最大宽度
+     * @return {@link ImageView}
      */
-    public static void setMaxWidth(final ImageView imageView, final int minWidth) {
+    public static ImageView setMaxWidth(final ImageView imageView, final int maxWidth) {
         if (imageView != null) {
-            imageView.setMaxWidth(minWidth);
+            imageView.setMaxWidth(maxWidth);
         }
+        return imageView;
     }
 
     // ========
@@ -195,8 +201,9 @@ public final class ImageViewUtils {
      * 设置背景图片
      * @param view       {@link View}
      * @param background 背景图片
+     * @return {@link View}
      */
-    public static void setBackground(final View view, final Drawable background) {
+    public static View setBackground(final View view, final Drawable background) {
         if (view != null) {
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -208,14 +215,16 @@ public final class ImageViewUtils {
                 LogPrintUtils.eTag(TAG, e, "setBackground");
             }
         }
+        return view;
     }
 
     /**
      * 设置背景颜色
      * @param view  {@link View}
      * @param color 背景颜色
+     * @return {@link View}
      */
-    public static void setBackgroundColor(final View view, @ColorInt final int color) {
+    public static View setBackgroundColor(final View view, @ColorInt final int color) {
         if (view != null) {
             try {
                 view.setBackgroundColor(color);
@@ -223,14 +232,16 @@ public final class ImageViewUtils {
                 LogPrintUtils.eTag(TAG, e, "setBackgroundColor");
             }
         }
+        return view;
     }
 
     /**
      * 设置背景资源
      * @param view  {@link View}
      * @param resId resource identifier
+     * @return {@link View}
      */
-    public static void setBackgroundResource(final View view, @DrawableRes final int resId) {
+    public static View setBackgroundResource(final View view, @DrawableRes final int resId) {
         if (view != null) {
             try {
                 view.setBackgroundResource(resId);
@@ -238,15 +249,17 @@ public final class ImageViewUtils {
                 LogPrintUtils.eTag(TAG, e, "setBackgroundResource");
             }
         }
+        return view;
     }
 
     /**
      * 设置背景着色颜色
      * @param view {@link View}
      * @param tint 着色颜色
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static void setBackgroundTintList(final View view, final ColorStateList tint) {
+    public static View setBackgroundTintList(final View view, final ColorStateList tint) {
         if (view != null) {
             try {
                 view.setBackgroundTintList(tint);
@@ -254,15 +267,17 @@ public final class ImageViewUtils {
                 LogPrintUtils.eTag(TAG, e, "setBackgroundTintList");
             }
         }
+        return view;
     }
 
     /**
      * 设置背景着色模式
      * @param view     {@link View}
      * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static void setBackgroundTintMode(final View view, final PorterDuff.Mode tintMode) {
+    public static View setBackgroundTintMode(final View view, final PorterDuff.Mode tintMode) {
         if (view != null) {
             try {
                 view.setBackgroundTintMode(tintMode);
@@ -270,6 +285,7 @@ public final class ImageViewUtils {
                 LogPrintUtils.eTag(TAG, e, "setBackgroundTintMode");
             }
         }
+        return view;
     }
 
     // ========
@@ -280,9 +296,10 @@ public final class ImageViewUtils {
      * 设置前景图片
      * @param view       {@link View}
      * @param foreground 前景图片
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void setForeground(final View view, final Drawable foreground) {
+    public static View setForeground(final View view, final Drawable foreground) {
         if (view != null) {
             try {
                 view.setForeground(foreground);
@@ -290,15 +307,17 @@ public final class ImageViewUtils {
                 LogPrintUtils.eTag(TAG, e, "setForeground");
             }
         }
+        return view;
     }
 
     /**
      * 设置前景重心
      * @param view    {@link View}
      * @param gravity 重心
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void setForegroundGravity(final View view, final int gravity) {
+    public static View setForegroundGravity(final View view, final int gravity) {
         if (view != null) {
             try {
                 view.setForegroundGravity(gravity);
@@ -306,15 +325,17 @@ public final class ImageViewUtils {
                 LogPrintUtils.eTag(TAG, e, "setForegroundGravity");
             }
         }
+        return view;
     }
 
     /**
      * 设置前景着色颜色
      * @param view {@link View}
      * @param tint 着色颜色
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void setForegroundTintList(final View view, final ColorStateList tint) {
+    public static View setForegroundTintList(final View view, final ColorStateList tint) {
         if (view != null) {
             try {
                 view.setForegroundTintList(tint);
@@ -322,15 +343,17 @@ public final class ImageViewUtils {
                 LogPrintUtils.eTag(TAG, e, "setForegroundTintList");
             }
         }
+        return view;
     }
 
     /**
      * 设置前景着色模式
      * @param view     {@link View}
      * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void setForegroundTintMode(final View view, final PorterDuff.Mode tintMode) {
+    public static View setForegroundTintMode(final View view, final PorterDuff.Mode tintMode) {
         if (view != null) {
             try {
                 view.setForegroundTintMode(tintMode);
@@ -338,6 +361,7 @@ public final class ImageViewUtils {
                 LogPrintUtils.eTag(TAG, e, "setForegroundTintMode");
             }
         }
+        return view;
     }
 
     // =============
@@ -348,9 +372,11 @@ public final class ImageViewUtils {
      * 设置 ImageView Bitmap
      * @param view   {@link View}
      * @param bitmap {@link Bitmap}
+     * @return {@link View}
      */
-    public static void setImageBitmap(final View view, final Bitmap bitmap) {
+    public static View setImageBitmap(final View view, final Bitmap bitmap) {
         setImageBitmap(getImageView(view), bitmap);
+        return view;
     }
 
     /**
@@ -377,9 +403,11 @@ public final class ImageViewUtils {
      * 设置 ImageView Drawable
      * @param view     {@link View}
      * @param drawable {@link Bitmap}
+     * @return {@link View}
      */
-    public static void setImageDrawable(final View view, final Drawable drawable) {
+    public static View setImageDrawable(final View view, final Drawable drawable) {
         setImageDrawable(getImageView(view), drawable);
+        return view;
     }
 
     /**
@@ -406,9 +434,11 @@ public final class ImageViewUtils {
      * 设置 ImageView 资源
      * @param view  {@link View}
      * @param resId resource identifier
+     * @return {@link View}
      */
-    public static void setImageResource(final View view, @DrawableRes final int resId) {
+    public static View setImageResource(final View view, @DrawableRes final int resId) {
         setImageResource(getImageView(view), resId);
+        return view;
     }
 
     /**
@@ -435,9 +465,11 @@ public final class ImageViewUtils {
      * 设置 ImageView Matrix
      * @param view   {@link View}
      * @param matrix {@link Matrix}
+     * @return {@link View}
      */
-    public static void setImageMatrix(final View view, final Matrix matrix) {
+    public static View setImageMatrix(final View view, final Matrix matrix) {
         setImageMatrix(getImageView(view), matrix);
+        return view;
     }
 
     /**
@@ -464,10 +496,12 @@ public final class ImageViewUtils {
      * 设置 ImageView 着色颜色
      * @param view {@link View}
      * @param tint 着色颜色
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static void setImageTintList(final View view, final ColorStateList tint) {
+    public static View setImageTintList(final View view, final ColorStateList tint) {
         setImageTintList(getImageView(view), tint);
+        return view;
     }
 
     /**
@@ -495,10 +529,12 @@ public final class ImageViewUtils {
      * 设置 ImageView 着色模式
      * @param view     {@link View}
      * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static void setImageTintMode(final View view, final PorterDuff.Mode tintMode) {
+    public static View setImageTintMode(final View view, final PorterDuff.Mode tintMode) {
         setImageTintMode(getImageView(view), tintMode);
+        return view;
     }
 
     /**
@@ -526,9 +562,11 @@ public final class ImageViewUtils {
      * 设置 ImageView 缩放类型
      * @param view      {@link View}
      * @param scaleType 缩放类型 {@link ImageView.ScaleType}
+     * @return {@link View}
      */
-    public static void setScaleType(final View view, final ImageView.ScaleType scaleType) {
+    public static View setScaleType(final View view, final ImageView.ScaleType scaleType) {
         setScaleType(getImageView(view), scaleType);
+        return view;
     }
 
     /**

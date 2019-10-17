@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.RequiresApi;
@@ -365,11 +367,13 @@ public final class ViewUtils {
      * 设置 View 最小高度
      * @param view      View
      * @param minHeight 最小高度
+     * @return View
      */
-    public static void setMinimumHeight(final View view, final int minHeight) {
+    public static View setMinimumHeight(final View view, final int minHeight) {
         if (view != null) {
             view.setMinimumHeight(minHeight);
         }
+        return view;
     }
 
     /**
@@ -389,14 +393,41 @@ public final class ViewUtils {
      * 设置 View 最小宽度
      * @param view     View
      * @param minWidth 最小宽度
+     * @return View
      */
-    public static void setMinimumWidth(final View view, final int minWidth) {
+    public static View setMinimumWidth(final View view, final int minWidth) {
         if (view != null) {
             view.setMinimumWidth(minWidth);
         }
+        return view;
     }
 
     // =
+
+    /**
+     * 获取 View 透明度
+     * @param view View
+     * @return 透明度
+     */
+    public static float getAlpha(final View view) {
+        if (view != null) {
+            return view.getAlpha();
+        }
+        return 1.0f;
+    }
+
+    /**
+     * 设置 View 透明度
+     * @param view  View
+     * @param alpha 透明度
+     * @return View
+     */
+    public static View setAlpha(final View view, @FloatRange(from = 0.0, to = 1.0) final float alpha) {
+        if (view != null) {
+            view.setAlpha(alpha);
+        }
+        return view;
+    }
 
     /**
      * 获取 View Tag
@@ -414,11 +445,252 @@ public final class ViewUtils {
      * 设置 View Tag
      * @param view   View
      * @param object Tag
+     * @return View
      */
-    public static void setTag(final View view, final Object object) {
+    public static View setTag(final View view, final Object object) {
         if (view != null) {
             view.setTag(object);
         }
+        return view;
+    }
+
+    // =
+
+    /**
+     * 设置 View 滚动效应
+     * @param view              View
+     * @param isScrollContainer 是否需要滚动效应
+     * @return View
+     */
+    public static View setScrollContainer(final View view, final boolean isScrollContainer) {
+        if (view != null) {
+            view.setScrollContainer(isScrollContainer);
+        }
+        return view;
+    }
+
+    /**
+     * 设置下一个获取焦点的 View id
+     * @param view               View
+     * @param nextFocusForwardId 下一个获取焦点的 View id
+     * @return View
+     */
+    public static View setNextFocusForwardId(final View view, @IdRes final int nextFocusForwardId) {
+        if (view != null) {
+            view.setNextFocusForwardId(nextFocusForwardId);
+        }
+        return view;
+    }
+
+    /**
+     * 设置向下移动焦点时, 下一个获取焦点的 View id
+     * @param view            View
+     * @param nextFocusDownId 下一个获取焦点的 View id
+     * @return View
+     */
+    public static View setNextFocusDownId(final View view, @IdRes final int nextFocusDownId) {
+        if (view != null) {
+            view.setNextFocusDownId(nextFocusDownId);
+        }
+        return view;
+    }
+
+    /**
+     * 设置向左移动焦点时, 下一个获取焦点的 View id
+     * @param view            View
+     * @param nextFocusLeftId 下一个获取焦点的 View id
+     * @return View
+     */
+    public static View setNextFocusLeftId(final View view, @IdRes final int nextFocusLeftId) {
+        if (view != null) {
+            view.setNextFocusLeftId(nextFocusLeftId);
+        }
+        return view;
+    }
+
+    /**
+     * 设置向右移动焦点时, 下一个获取焦点的 View id
+     * @param view             View
+     * @param nextFocusRightId 下一个获取焦点的 View id
+     * @return View
+     */
+    public static View setNextFocusRightId(final View view, @IdRes final int nextFocusRightId) {
+        if (view != null) {
+            view.setNextFocusRightId(nextFocusRightId);
+        }
+        return view;
+    }
+
+    /**
+     * 设置向上移动焦点时, 下一个获取焦点的 View id
+     * @param view          View
+     * @param nextFocusUpId 下一个获取焦点的 View id
+     * @return View
+     */
+    public static View setNextFocusUpId(final View view, @IdRes final int nextFocusUpId) {
+        if (view != null) {
+            view.setNextFocusUpId(nextFocusUpId);
+        }
+        return view;
+    }
+
+    /**
+     * 设置 View 旋转度数
+     * @param view     View
+     * @param rotation 旋转度数
+     * @return View
+     */
+    public static View setRotation(final View view, final float rotation) {
+        if (view != null) {
+            view.setRotation(rotation);
+        }
+        return view;
+    }
+
+    /**
+     * 设置 View 水平旋转度数
+     * @param view      View
+     * @param rotationX 水平旋转度数
+     * @return View
+     */
+    public static View setRotationX(final View view, final float rotationX) {
+        if (view != null) {
+            view.setRotationX(rotationX);
+        }
+        return view;
+    }
+
+    /**
+     * 设置 View 竖直旋转度数
+     * @param view      View
+     * @param rotationY 竖直旋转度数
+     * @return View
+     */
+    public static View setRotationY(final View view, final float rotationY) {
+        if (view != null) {
+            view.setRotationY(rotationY);
+        }
+        return view;
+    }
+
+    /**
+     * 设置 View 水平方向缩放比例
+     * @param view   View
+     * @param scaleX 水平方向缩放比例
+     * @return View
+     */
+    public static View setScaleX(final View view, final float scaleX) {
+        if (view != null) {
+            view.setScaleX(scaleX);
+        }
+        return view;
+    }
+
+    /**
+     * 设置 View 竖直方向缩放比例
+     * @param view   View
+     * @param scaleY 竖直方向缩放比例
+     * @return View
+     */
+    public static View setScaleY(final View view, final float scaleY) {
+        if (view != null) {
+            view.setScaleY(scaleY);
+        }
+        return view;
+    }
+
+    /**
+     * 设置文本的显示方式
+     * @param view          View
+     * @param textAlignment 文本的显示方式
+     * @return View
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static View setTextAlignment(final View view, final int textAlignment) {
+        if (view != null) {
+            view.setTextAlignment(textAlignment);
+        }
+        return view;
+    }
+
+    /**
+     * 设置文本的显示方向
+     * @param view          View
+     * @param textDirection 文本的显示方向
+     * @return View
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static View setTextDirection(final View view, final int textDirection) {
+        if (view != null) {
+            view.setTextDirection(textDirection);
+        }
+        return view;
+    }
+
+    /**
+     * 设置水平方向偏转量
+     * @param view   View
+     * @param pivotX 水平方向偏转量
+     * @return View
+     */
+    public static View setPivotX(final View view, final float pivotX) {
+        if (view != null) {
+            view.setPivotX(pivotX);
+        }
+        return view;
+    }
+
+    /**
+     * 设置竖直方向偏转量
+     * @param view   View
+     * @param pivotY 竖直方向偏转量
+     * @return View
+     */
+    public static View setPivotY(final View view, final float pivotY) {
+        if (view != null) {
+            view.setPivotY(pivotY);
+        }
+        return view;
+    }
+
+    /**
+     * 设置水平方向的移动距离
+     * @param view         View
+     * @param translationX 水平方向的移动距离
+     * @return View
+     */
+    public static View setTranslationX(final View view, final float translationX) {
+        if (view != null) {
+            view.setTranslationX(translationX);
+        }
+        return view;
+    }
+
+    /**
+     * 设置竖直方向的移动距离
+     * @param view         View
+     * @param translationY 竖直方向的移动距离
+     * @return View
+     */
+    public static View setTranslationY(final View view, final float translationY) {
+        if (view != null) {
+            view.setTranslationY(translationY);
+        }
+        return view;
+    }
+
+    /**
+     * 设置 View 硬件加速类型
+     * @param view      View
+     * @param layerType 硬件加速类型
+     * @param paint     {@link Paint}
+     * @return View
+     */
+    public static View setLayerType(final View view, final int layerType, final Paint paint) {
+        if (view != null) {
+            view.setLayerType(layerType, paint);
+        }
+        return view;
     }
 
     // =
@@ -849,8 +1121,9 @@ public final class ViewUtils {
     /**
      * 把自身从父 View 中移除
      * @param view {@link View}
+     * @return View
      */
-    public static void removeSelfFromParent(final View view) {
+    public static View removeSelfFromParent(final View view) {
         if (view != null) {
             try {
                 ViewParent parent = view.getParent();
@@ -862,6 +1135,7 @@ public final class ViewUtils {
                 LogPrintUtils.eTag(TAG, e, "removeSelfFromParent");
             }
         }
+        return view;
     }
 
     /**
@@ -886,8 +1160,9 @@ public final class ViewUtils {
      * View 请求更新
      * @param view      {@link View}
      * @param allParent 是否全部父布局 View 都请求
+     * @return View
      */
-    public static void requestLayoutParent(final View view, final boolean allParent) {
+    public static View requestLayoutParent(final View view, final boolean allParent) {
         if (view != null) {
             ViewParent parent = view.getParent();
             while (parent != null && parent instanceof View) {
@@ -900,6 +1175,7 @@ public final class ViewUtils {
                 parent = parent.getParent();
             }
         }
+        return view;
     }
 
     /**

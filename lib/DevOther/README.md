@@ -135,10 +135,17 @@
 | setLineSpacingAndMultiplier | 设置文字行间距 ( 行高 )、行间距倍数 |
 | setTextScaleX | 设置字体水平方向的缩放 |
 | setIncludeFontPadding | 设置是否保留字体留白间隙区域 |
+| setInputType | 设置输入类型 |
+| setImeOptions | 设置软键盘右下角按钮类型 |
 | setLines | 设置行数 |
 | setMaxLines | 设置最大行数 |
+| setMinLines | 设置最小行数 |
+| setMaxEms | 设置最大字符宽度限制 |
+| setMinEms | 设置最小字符宽度限制 |
+| setEms | 设置指定字符宽度 |
 | setEllipsize | 设置 Ellipsize 效果 |
 | setAutoLinkMask | 设置自动识别文本链接 |
+| setAllCaps | 设置文本全为大写 |
 | setTextGravity | 设置 Text Gravity |
 | insert | 追加内容 ( 当前光标位置追加 ) |
 | setMaxLength | 设置长度限制 |
@@ -177,7 +184,26 @@
 | setScaleTypes | 设置 View 缩放模式 |
 | setMinimumHeight | 设置 View 最小高度 |
 | setMinimumWidth | 设置 View 最小宽度 |
+| setAlpha | 设置 View 透明度 |
 | setTag | 设置 View Tag |
+| setScrollContainer | 设置 View 滚动效应 |
+| setNextFocusForwardId | 设置下一个获取焦点的 View id |
+| setNextFocusDownId | 设置向下移动焦点时, 下一个获取焦点的 View id |
+| setNextFocusLeftId | 设置向左移动焦点时, 下一个获取焦点的 View id |
+| setNextFocusRightId | 设置向右移动焦点时, 下一个获取焦点的 View id |
+| setNextFocusUpId | 设置向上移动焦点时, 下一个获取焦点的 View id |
+| setRotation | 设置 View 旋转度数 |
+| setRotationX | 设置 View 水平旋转度数 |
+| setRotationY | 设置 View 竖直旋转度数 |
+| setScaleX | 设置 View 水平方向缩放比例 |
+| setScaleY | 设置 View 竖直方向缩放比例 |
+| setTextAlignment | 设置文本的显示方式 |
+| setTextDirection | 设置文本的显示方向 |
+| setPivotX | 设置水平方向偏转量 |
+| setPivotY | 设置竖直方向偏转量 |
+| setTranslationX | 设置水平方向的移动距离 |
+| setTranslationY | 设置竖直方向的移动距离 |
+| setLayerType | 设置 View 硬件加速类型 |
 | setLayoutParams | 设置 View LayoutParams |
 | setFocusable | 设置 View 是否可以获取焦点 |
 | setSelected | 设置 View 是否选中 |

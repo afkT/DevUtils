@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.FloatRange;
+import androidx.annotation.IdRes;
 
 import dev.utils.app.ClickUtils;
 import dev.utils.app.EditTextUtils;
@@ -497,6 +500,28 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置输入类型
+     * @param view {@link TextView}
+     * @param type 类型
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setInputType(final View view, final int type) {
+        TextViewUtils.setInputType(view, type);
+        return this;
+    }
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param view       {@link TextView}
+     * @param imeOptions 软键盘按钮类型
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImeOptions(final View view, final int imeOptions) {
+        TextViewUtils.setImeOptions(view, imeOptions);
+        return this;
+    }
+
+    /**
      * 设置行数
      * @param view  {@link TextView}
      * @param lines 行数
@@ -519,6 +544,50 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置最小行数
+     * @param view     {@link TextView}
+     * @param minLines 最小行数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMinLines(final View view, final int minLines) {
+        TextViewUtils.setMinLines(view, minLines);
+        return this;
+    }
+
+    /**
+     * 设置最大字符宽度限制
+     * @param view   {@link TextView}
+     * @param maxEms 最大字符
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMaxEms(final View view, final int maxEms) {
+        TextViewUtils.setMaxEms(view, maxEms);
+        return this;
+    }
+
+    /**
+     * 设置最小字符宽度限制
+     * @param view   {@link TextView}
+     * @param minEms 最小字符
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setMinEms(final View view, final int minEms) {
+        TextViewUtils.setMinEms(view, minEms);
+        return this;
+    }
+
+    /**
+     * 设置指定字符宽度
+     * @param view {@link TextView}
+     * @param ems  字符
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setEms(final View view, final int ems) {
+        TextViewUtils.setEms(view, ems);
+        return this;
+    }
+
+    /**
      * 设置 Ellipsize 效果
      * @param view  {@link TextView}
      * @param where {@link TextUtils.TruncateAt}
@@ -537,6 +606,17 @@ public final class ViewHelper {
      */
     public ViewHelper setAutoLinkMask(final View view, final int mask) {
         TextViewUtils.setAutoLinkMask(view, mask);
+        return this;
+    }
+
+    /**
+     * 设置文本全为大写
+     * @param view    {@link TextView}
+     * @param allCaps 是否全部大写
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAllCaps(final View view, final boolean allCaps) {
+        TextViewUtils.setAllCaps(view, allCaps);
         return this;
     }
 
@@ -594,24 +674,32 @@ public final class ViewHelper {
 
     /**
      * 设置长度限制
-     * @param editText  {@link EditText}
+     * @param view      {@link View}
      * @param maxLength 长度限制
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxLength(final EditText editText, final int maxLength) {
-        EditTextUtils.setMaxLength(editText, maxLength);
+    public ViewHelper setMaxLength(final View view, final int maxLength) {
+        if (view instanceof EditText) {
+            EditTextUtils.setMaxLength(EditTextUtils.getEditText(view), maxLength);
+        } else {
+            TextViewUtils.setMaxLength(view, maxLength);
+        }
         return this;
     }
 
     /**
      * 设置长度限制, 并且设置内容
-     * @param editText  {@link EditText}
+     * @param view      {@link View}
      * @param content   文本内容
      * @param maxLength 长度限制
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxLengthAndText(final EditText editText, final String content, final int maxLength) {
-        EditTextUtils.setMaxLengthAndText(editText, content, maxLength);
+    public ViewHelper setMaxLengthAndText(final View view, final String content, final int maxLength) {
+        if (view instanceof EditText) {
+            EditTextUtils.setMaxLengthAndText(EditTextUtils.getEditText(view), content, maxLength);
+        } else {
+            TextViewUtils.setMaxLengthAndText(view, content, maxLength);
+        }
         return this;
     }
 
@@ -730,22 +818,22 @@ public final class ViewHelper {
     /**
      * 设置 ImageView 最大高度
      * @param imageView ImageView
-     * @param minHeight 最大高度
+     * @param maxHeight 最大高度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxHeight(final ImageView imageView, final int minHeight) {
-        ImageViewUtils.setMaxHeight(imageView, minHeight);
+    public ViewHelper setMaxHeight(final ImageView imageView, final int maxHeight) {
+        ImageViewUtils.setMaxHeight(imageView, maxHeight);
         return this;
     }
 
     /**
      * 设置 ImageView 最大宽度
      * @param imageView ImageView
-     * @param minWidth  最大宽度
+     * @param maxWidth  最大宽度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxWidth(final ImageView imageView, final int minWidth) {
-        ImageViewUtils.setMaxWidth(imageView, minWidth);
+    public ViewHelper setMaxWidth(final ImageView imageView, final int maxWidth) {
+        ImageViewUtils.setMaxWidth(imageView, maxWidth);
         return this;
     }
 
@@ -1131,6 +1219,17 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 View 透明度
+     * @param view  View
+     * @param alpha 透明度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAlpha(final View view, @FloatRange(from = 0.0, to = 1.0) final float alpha) {
+        ViewUtils.setAlpha(view, alpha);
+        return this;
+    }
+
+    /**
      * 设置 View Tag
      * @param view   View
      * @param object Tag
@@ -1140,6 +1239,213 @@ public final class ViewHelper {
         ViewUtils.setTag(view, object);
         return this;
     }
+
+    // =
+
+    /**
+     * 设置 View 滚动效应
+     * @param view              View
+     * @param isScrollContainer 是否需要滚动效应
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setScrollContainer(final View view, final boolean isScrollContainer) {
+        ViewUtils.setScrollContainer(view, isScrollContainer);
+        return this;
+    }
+
+    /**
+     * 设置下一个获取焦点的 View id
+     * @param view               View
+     * @param nextFocusForwardId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusForwardId(final View view, @IdRes final int nextFocusForwardId) {
+        ViewUtils.setNextFocusForwardId(view, nextFocusForwardId);
+        return this;
+    }
+
+    /**
+     * 设置向下移动焦点时, 下一个获取焦点的 View id
+     * @param view            View
+     * @param nextFocusDownId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusDownId(final View view, @IdRes final int nextFocusDownId) {
+        ViewUtils.setNextFocusDownId(view, nextFocusDownId);
+        return this;
+    }
+
+    /**
+     * 设置向左移动焦点时, 下一个获取焦点的 View id
+     * @param view            View
+     * @param nextFocusLeftId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusLeftId(final View view, @IdRes final int nextFocusLeftId) {
+        ViewUtils.setNextFocusLeftId(view, nextFocusLeftId);
+        return this;
+    }
+
+    /**
+     * 设置向右移动焦点时, 下一个获取焦点的 View id
+     * @param view             View
+     * @param nextFocusRightId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusRightId(final View view, @IdRes final int nextFocusRightId) {
+        ViewUtils.setNextFocusRightId(view, nextFocusRightId);
+        return this;
+    }
+
+    /**
+     * 设置向上移动焦点时, 下一个获取焦点的 View id
+     * @param view          View
+     * @param nextFocusUpId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusUpId(final View view, @IdRes final int nextFocusUpId) {
+        ViewUtils.setNextFocusUpId(view, nextFocusUpId);
+        return this;
+    }
+
+    /**
+     * 设置 View 旋转度数
+     * @param view     View
+     * @param rotation 旋转度数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setRotation(final View view, final float rotation) {
+        ViewUtils.setRotation(view, rotation);
+        return this;
+    }
+
+    /**
+     * 设置 View 水平旋转度数
+     * @param view      View
+     * @param rotationX 水平旋转度数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setRotationX(final View view, final float rotationX) {
+        ViewUtils.setRotationX(view, rotationX);
+        return this;
+    }
+
+    /**
+     * 设置 View 竖直旋转度数
+     * @param view      View
+     * @param rotationY 竖直旋转度数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setRotationY(final View view, final float rotationY) {
+        ViewUtils.setRotationY(view, rotationY);
+        return this;
+    }
+
+    /**
+     * 设置 View 水平方向缩放比例
+     * @param view   View
+     * @param scaleX 水平方向缩放比例
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setScaleX(final View view, final float scaleX) {
+        ViewUtils.setScaleX(view, scaleX);
+        return this;
+    }
+
+    /**
+     * 设置 View 竖直方向缩放比例
+     * @param view   View
+     * @param scaleY 竖直方向缩放比例
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setScaleY(final View view, final float scaleY) {
+        ViewUtils.setScaleY(view, scaleY);
+        return this;
+    }
+
+    /**
+     * 设置文本的显示方式
+     * @param view          View
+     * @param textAlignment 文本的显示方式
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTextAlignment(final View view, final int textAlignment) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            ViewUtils.setTextAlignment(view, textAlignment);
+        }
+        return this;
+    }
+
+    /**
+     * 设置文本的显示方向
+     * @param view          View
+     * @param textDirection 文本的显示方向
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTextDirection(final View view, final int textDirection) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            ViewUtils.setTextDirection(view, textDirection);
+        }
+        return this;
+    }
+
+    /**
+     * 设置水平方向偏转量
+     * @param view   View
+     * @param pivotX 水平方向偏转量
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPivotX(final View view, final float pivotX) {
+        ViewUtils.setPivotX(view, pivotX);
+        return this;
+    }
+
+    /**
+     * 设置竖直方向偏转量
+     * @param view   View
+     * @param pivotY 竖直方向偏转量
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPivotY(final View view, final float pivotY) {
+        ViewUtils.setPivotY(view, pivotY);
+        return this;
+    }
+
+    /**
+     * 设置水平方向的移动距离
+     * @param view         View
+     * @param translationX 水平方向的移动距离
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTranslationX(final View view, final float translationX) {
+        ViewUtils.setTranslationX(view, translationX);
+        return this;
+    }
+
+    /**
+     * 设置竖直方向的移动距离
+     * @param view         View
+     * @param translationY 竖直方向的移动距离
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTranslationY(final View view, final float translationY) {
+        ViewUtils.setTranslationY(view, translationY);
+        return this;
+    }
+
+    /**
+     * 设置 View 硬件加速类型
+     * @param view      View
+     * @param layerType 硬件加速类型
+     * @param paint     {@link Paint}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setLayerType(final View view, final int layerType, final Paint paint) {
+        ViewUtils.setLayerType(view, layerType, paint);
+        return this;
+    }
+
+    // =
 
     /**
      * 设置 View LayoutParams
