@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import android.os.Build;
+import android.text.TextUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -276,5 +277,29 @@ public final class JSONObjectUtils {
             }
         }
         return builder.toString();
+    }
+
+    /**
+     * 判断字符串是否 JSON 格式
+     * @param json 待校验 JSON String
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isJSON(final String json) {
+        if (!TextUtils.isEmpty(json)) {
+            if (json.startsWith("[") && json.endsWith("]")) {
+                try {
+                    new JSONArray(json);
+                    return true;
+                } catch (Exception e) {
+                }
+            } else if (json.startsWith("{") && json.endsWith("}")) {
+                try {
+                    new JSONObject(json);
+                    return true;
+                } catch (Exception e) {
+                }
+            }
+        }
+        return false;
     }
 }
