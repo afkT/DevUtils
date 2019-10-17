@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.app.Activity;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.ColorFilter;
@@ -10,13 +9,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
 import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 
 import java.lang.reflect.Field;
@@ -49,60 +46,6 @@ public final class ImageViewUtils {
         if (view != null) {
             try {
                 return (T) view;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getImageView");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取 ImageView
-     * @param view {@link View}
-     * @param id   R.id.viewId
-     * @param <T>  泛型
-     * @return {@link ImageView}
-     */
-    public static <T extends ImageView> T getImageView(final View view, @IdRes final int id) {
-        if (view != null) {
-            try {
-                return view.findViewById(id);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getImageView");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取 ImageView
-     * @param window {@link Window}
-     * @param id     R.id.viewId
-     * @param <T>    泛型
-     * @return {@link ImageView}
-     */
-    public static <T extends ImageView> T getImageView(final Window window, @IdRes final int id) {
-        if (window != null) {
-            try {
-                return window.findViewById(id);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getImageView");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取 ImageView
-     * @param activity {@link Activity}
-     * @param id       R.id.viewId
-     * @param <T>      泛型
-     * @return {@link ImageView}
-     */
-    public static <T extends ImageView> T getImageView(final Activity activity, @IdRes final int id) {
-        if (activity != null) {
-            try {
-                return activity.findViewById(id);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getImageView");
             }
