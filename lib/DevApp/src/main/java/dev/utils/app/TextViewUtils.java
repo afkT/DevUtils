@@ -1,20 +1,17 @@
 package dev.utils.app;
 
-import android.app.Activity;
 import android.content.res.ColorStateList;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.ColorInt;
-import android.support.annotation.IdRes;
 import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -83,60 +80,6 @@ public final class TextViewUtils {
         return null;
     }
 
-    /**
-     * 获取 TextView
-     * @param view {@link View}
-     * @param id   R.id.viewId
-     * @param <T>  泛型
-     * @return {@link TextView}
-     */
-    public static <T extends TextView> T getTextView(final View view, @IdRes final int id) {
-        if (view != null) {
-            try {
-                return view.findViewById(id);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getTextView");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取 TextView
-     * @param window {@link Window}
-     * @param id     R.id.viewId
-     * @param <T>    泛型
-     * @return {@link TextView}
-     */
-    public static <T extends TextView> T getTextView(final Window window, @IdRes final int id) {
-        if (window != null) {
-            try {
-                return window.findViewById(id);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getTextView");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取 TextView
-     * @param activity {@link Activity}
-     * @param id       R.id.viewId
-     * @param <T>      泛型
-     * @return {@link TextView}
-     */
-    public static <T extends TextView> T getTextView(final Activity activity, @IdRes final int id) {
-        if (activity != null) {
-            try {
-                return activity.findViewById(id);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getTextView");
-            }
-        }
-        return null;
-    }
-
     // ========
     // = Text =
     // ========
@@ -185,36 +128,6 @@ public final class TextViewUtils {
      */
     public static String getText(final View view) {
         return getText(getTextView(view));
-    }
-
-    /**
-     * 获取文本
-     * @param view {@link View}
-     * @param id   R.id.viewId
-     * @return {@link TextView#getText()}
-     */
-    public static String getText(final View view, @IdRes final int id) {
-        return getText(getTextView(view, id));
-    }
-
-    /**
-     * 获取文本
-     * @param window {@link Window}
-     * @param id     R.id.viewId
-     * @return {@link TextView#getText()}
-     */
-    public static String getText(final Window window, @IdRes final int id) {
-        return getText(getTextView(window, id));
-    }
-
-    /**
-     * 获取文本
-     * @param activity {@link Activity}
-     * @param id       R.id.viewId
-     * @return {@link TextView#getText()}
-     */
-    public static String getText(final Activity activity, @IdRes final int id) {
-        return getText(getTextView(activity, id));
     }
 
     // =
@@ -311,9 +224,11 @@ public final class TextViewUtils {
      * 设置 Hint 文本
      * @param view {@link TextView}
      * @param text Hint text
+     * @return View
      */
-    public static void setHint(final View view, final String text) {
+    public static View setHint(final View view, final String text) {
         setHint(getTextView(view), text);
+        return view;
     }
 
     /**
@@ -332,39 +247,11 @@ public final class TextViewUtils {
      * 设置文本
      * @param view {@link TextView}
      * @param text TextView text
+     * @return View
      */
-    public static void setText(final View view, final String text) {
+    public static View setText(final View view, final String text) {
         setText(getTextView(view), text);
-    }
-
-    /**
-     * 设置文本
-     * @param view {@link View}
-     * @param id   R.id.viewId
-     * @param text TextView text
-     */
-    public static void setText(final View view, @IdRes final int id, final String text) {
-        setText(getTextView(view, id), text);
-    }
-
-    /**
-     * 设置文本
-     * @param window {@link Window}
-     * @param id     R.id.viewId
-     * @param text   TextView text
-     */
-    public static void setText(final Window window, @IdRes final int id, final String text) {
-        setText(getTextView(window, id), text);
-    }
-
-    /**
-     * 设置文本
-     * @param activity {@link Activity}
-     * @param id       R.id.viewId
-     * @param text     TextView text
-     */
-    public static void setText(final Activity activity, @IdRes final int id, final String text) {
-        setText(getTextView(activity, id), text);
+        return view;
     }
 
     // =
@@ -418,39 +305,11 @@ public final class TextViewUtils {
      * 设置 Html 内容
      * @param view    {@link TextView}
      * @param content Html content
+     * @return View
      */
-    public static void setHtmlText(final View view, final String content) {
+    public static View setHtmlText(final View view, final String content) {
         setHtmlText(getTextView(view), content);
-    }
-
-    /**
-     * 设置 Html 内容
-     * @param view    {@link View}
-     * @param id      R.id.viewId
-     * @param content Html content
-     */
-    public static void setHtmlText(final View view, @IdRes final int id, final String content) {
-        setHtmlText(getTextView(view, id), content);
-    }
-
-    /**
-     * 设置 Html 内容
-     * @param window  {@link Window}
-     * @param id      R.id.viewId
-     * @param content Html content
-     */
-    public static void setHtmlText(final Window window, @IdRes final int id, final String content) {
-        setHtmlText(getTextView(window, id), content);
-    }
-
-    /**
-     * 设置 Html 内容
-     * @param activity {@link Activity}
-     * @param id       R.id.viewId
-     * @param content  Html content
-     */
-    public static void setHtmlText(final Activity activity, @IdRes final int id, final String content) {
-        setHtmlText(getTextView(activity, id), content);
+        return view;
     }
 
     // =
@@ -526,9 +385,11 @@ public final class TextViewUtils {
      * 设置 Hint 字体颜色
      * @param view  {@link TextView}
      * @param color R.color.id
+     * @return View
      */
-    public static void setHintTextColor(final View view, @ColorInt final int color) {
+    public static View setHintTextColor(final View view, @ColorInt final int color) {
         setHintTextColor(getTextView(view), color);
+        return view;
     }
 
     /**
@@ -547,9 +408,11 @@ public final class TextViewUtils {
      * 设置 Hint 字体颜色
      * @param view   {@link TextView}
      * @param colors {@link ColorStateList}
+     * @return View
      */
-    public static void setHintTextColor(final View view, final ColorStateList colors) {
+    public static View setHintTextColor(final View view, final ColorStateList colors) {
         setHintTextColor(getTextView(view), colors);
+        return view;
     }
 
     // =
@@ -594,9 +457,11 @@ public final class TextViewUtils {
      * 设置字体颜色
      * @param view  {@link TextView}
      * @param color R.color.id
+     * @return View
      */
-    public static void setTextColor(final View view, @ColorInt final int color) {
+    public static View setTextColor(final View view, @ColorInt final int color) {
         setTextColor(getTextView(view), color);
+        return view;
     }
 
     /**
@@ -615,41 +480,11 @@ public final class TextViewUtils {
      * 设置字体颜色
      * @param view   {@link TextView}
      * @param colors {@link ColorStateList}
+     * @return View
      */
-    public static void setTextColor(final View view, final ColorStateList colors) {
+    public static View setTextColor(final View view, final ColorStateList colors) {
         setTextColor(getTextView(view), colors);
-    }
-
-    // =
-
-    /**
-     * 设置字体颜色
-     * @param view  {@link View}
-     * @param id    R.id.viewId
-     * @param color R.color.id
-     */
-    public static void setTextColor(final View view, @IdRes final int id, @ColorInt final int color) {
-        setTextColor(getTextView(view, id), color);
-    }
-
-    /**
-     * 设置字体颜色
-     * @param window {@link Window}
-     * @param id     R.id.viewId
-     * @param color  R.color.id
-     */
-    public static void setTextColor(final Window window, @IdRes final int id, @ColorInt final int color) {
-        setTextColor(getTextView(window, id), color);
-    }
-
-    /**
-     * 设置字体颜色
-     * @param activity {@link Activity}
-     * @param id       R.id.viewId
-     * @param color    R.color.id
-     */
-    public static void setTextColor(final Activity activity, @IdRes final int id, @ColorInt final int color) {
-        setTextColor(getTextView(activity, id), color);
+        return view;
     }
 
     // =
@@ -797,9 +632,11 @@ public final class TextViewUtils {
      * 设置字体
      * @param view     {@link TextView}
      * @param typeface {@link Typeface} 字体样式
+     * @return View
      */
-    public static void setTypeface(final View view, final Typeface typeface) {
+    public static View setTypeface(final View view, final Typeface typeface) {
         setTypeface(getTextView(view), typeface);
+        return view;
     }
 
     /**
@@ -807,9 +644,11 @@ public final class TextViewUtils {
      * @param view     {@link TextView}
      * @param typeface {@link Typeface} 字体样式
      * @param style    样式
+     * @return View
      */
-    public static void setTypeface(final View view, final Typeface typeface, final int style) {
+    public static View setTypeface(final View view, final Typeface typeface, final int style) {
         setTypeface(getTextView(view), typeface, style);
+        return view;
     }
 
     // =
@@ -860,36 +699,44 @@ public final class TextViewUtils {
      * 设置字体大小 - px 像素
      * @param view {@link TextView}
      * @param size 字体大小
+     * @return View
      */
-    public static void setTextSizeByPx(final View view, final float size) {
+    public static View setTextSizeByPx(final View view, final float size) {
         setTextSize(getTextView(view), TypedValue.COMPLEX_UNIT_PX, size);
+        return view;
     }
 
     /**
      * 设置字体大小 - sp 缩放像素
      * @param view {@link TextView}
      * @param size 字体大小
+     * @return View
      */
-    public static void setTextSizeBySp(final View view, final float size) {
+    public static View setTextSizeBySp(final View view, final float size) {
         setTextSize(getTextView(view), TypedValue.COMPLEX_UNIT_SP, size);
+        return view;
     }
 
     /**
      * 设置字体大小 - dp 与设备无关的像素
      * @param view {@link TextView}
      * @param size 字体大小
+     * @return View
      */
-    public static void setTextSizeByDp(final View view, final float size) {
+    public static View setTextSizeByDp(final View view, final float size) {
         setTextSize(getTextView(view), TypedValue.COMPLEX_UNIT_DIP, size);
+        return view;
     }
 
     /**
      * 设置字体大小 - inches 英寸
      * @param view {@link TextView}
      * @param size 字体大小
+     * @return View
      */
-    public static void setTextSizeByIn(final View view, final float size) {
+    public static View setTextSizeByIn(final View view, final float size) {
         setTextSize(getTextView(view), TypedValue.COMPLEX_UNIT_IN, size);
+        return view;
     }
 
     // =
@@ -912,9 +759,11 @@ public final class TextViewUtils {
      * @param view {@link TextView}
      * @param unit 字体参数类型
      * @param size 字体大小
+     * @return View
      */
-    public static void setTextSize(final View view, final int unit, final float size) {
+    public static View setTextSize(final View view, final int unit, final float size) {
         setTextSize(getTextView(view), unit, size);
+        return view;
     }
 
     // =
@@ -988,9 +837,11 @@ public final class TextViewUtils {
     /**
      * 清空 flags
      * @param view {@link TextView}
+     * @return View
      */
-    public static void clearFlags(final View view) {
+    public static View clearFlags(final View view) {
         clearFlags(getTextView(view));
+        return view;
     }
 
     // =
@@ -1024,9 +875,11 @@ public final class TextViewUtils {
      * 设置 TextView 是否加粗
      * @param view   {@link TextView}
      * @param isBold {@code true} yes, {@code false} no
+     * @return View
      */
-    public static void setBold(final View view, final boolean isBold) {
+    public static View setBold(final View view, final boolean isBold) {
         setBold(getTextView(view), isBold);
+        return view;
     }
 
     /**
@@ -1034,9 +887,11 @@ public final class TextViewUtils {
      * @param view     {@link TextView}
      * @param typeface {@link Typeface} 字体样式
      * @param isBold   {@code true} yes, {@code false} no
+     * @return View
      */
-    public static void setBold(final View view, final Typeface typeface, final boolean isBold) {
+    public static View setBold(final View view, final Typeface typeface, final boolean isBold) {
         setBold(getTextView(view), typeface, isBold);
+        return view;
     }
 
     // =
@@ -1070,18 +925,22 @@ public final class TextViewUtils {
     /**
      * 设置下划线
      * @param view {@link TextView}
+     * @return View
      */
-    public static void setUnderlineText(final View view) {
+    public static View setUnderlineText(final View view) {
         setUnderlineText(getTextView(view), true);
+        return view;
     }
 
     /**
      * 设置下划线并加清晰
      * @param view        {@link TextView}
      * @param isAntiAlias 是否消除锯齿
+     * @return View
      */
-    public static void setUnderlineText(final View view, final boolean isAntiAlias) {
+    public static View setUnderlineText(final View view, final boolean isAntiAlias) {
         setUnderlineText(getTextView(view), isAntiAlias);
+        return view;
     }
 
     // =
@@ -1115,18 +974,22 @@ public final class TextViewUtils {
     /**
      * 设置中划线
      * @param view {@link TextView}
+     * @return View
      */
-    public static void setStrikeThruText(final View view) {
+    public static View setStrikeThruText(final View view) {
         setStrikeThruText(getTextView(view), true);
+        return view;
     }
 
     /**
      * 设置中划线并加清晰
      * @param view        {@link TextView}
      * @param isAntiAlias 是否消除锯齿
+     * @return View
      */
-    public static void setStrikeThruText(final View view, final boolean isAntiAlias) {
+    public static View setStrikeThruText(final View view, final boolean isAntiAlias) {
         setStrikeThruText(getTextView(view), isAntiAlias);
+        return view;
     }
 
     // =
@@ -1151,10 +1014,12 @@ public final class TextViewUtils {
      * 设置文字水平间距
      * @param view          {@link TextView}
      * @param letterSpacing 文字水平间距值
+     * @return View
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static void setLetterSpacing(final View view, final float letterSpacing) {
+    public static View setLetterSpacing(final View view, final float letterSpacing) {
         setLetterSpacing(getTextView(view), letterSpacing);
+        return view;
     }
 
     // =
@@ -1188,9 +1053,11 @@ public final class TextViewUtils {
      * 设置文字行间距 ( 行高 )
      * @param view        {@link TextView}
      * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
+     * @return View
      */
-    public static void setLineSpacing(final View view, final float lineSpacing) {
+    public static View setLineSpacing(final View view, final float lineSpacing) {
         setLineSpacingAndMultiplier(getTextView(view), lineSpacing, 1.0f);
+        return view;
     }
 
     /**
@@ -1198,9 +1065,11 @@ public final class TextViewUtils {
      * @param view        {@link TextView}
      * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @param multiplier  行间距倍数, android:lineSpacingMultiplier
+     * @return View
      */
-    public static void setLineSpacingAndMultiplier(final View view, final float lineSpacing, final float multiplier) {
+    public static View setLineSpacingAndMultiplier(final View view, final float lineSpacing, final float multiplier) {
         setLineSpacingAndMultiplier(getTextView(view), lineSpacing, multiplier);
+        return view;
     }
 
     // =
@@ -1224,9 +1093,11 @@ public final class TextViewUtils {
      * 设置字体水平方向的缩放
      * @param view {@link TextView}
      * @param size 缩放比例
+     * @return View
      */
-    public static void setTextScaleX(final View view, final float size) {
+    public static View setTextScaleX(final View view, final float size) {
         setTextScaleX(getTextView(view), size);
+        return view;
     }
 
     // =
@@ -1250,9 +1121,11 @@ public final class TextViewUtils {
      * 设置是否保留字体留白间隙区域
      * @param view       {@link TextView}
      * @param includepad 是否保留字体留白间隙区域
+     * @return View
      */
-    public static void setIncludeFontPadding(final View view, final boolean includepad) {
+    public static View setIncludeFontPadding(final View view, final boolean includepad) {
         setIncludeFontPadding(getTextView(view), includepad);
+        return view;
     }
 
     // =
@@ -1275,9 +1148,11 @@ public final class TextViewUtils {
      * 设置输入类型
      * @param view {@link TextView}
      * @param type 类型
+     * @return View
      */
-    public static void setInputType(final View view, final int type) {
+    public static View setInputType(final View view, final int type) {
         setInputType(getTextView(view), type);
+        return view;
     }
 
     // =
@@ -1300,9 +1175,11 @@ public final class TextViewUtils {
      * 设置软键盘右下角按钮类型
      * @param view       {@link TextView}
      * @param imeOptions 软键盘按钮类型
+     * @return View
      */
-    public static void setImeOptions(final View view, final int imeOptions) {
+    public static View setImeOptions(final View view, final int imeOptions) {
         setImeOptions(getTextView(view), imeOptions);
+        return view;
     }
 
     // =
@@ -1323,9 +1200,11 @@ public final class TextViewUtils {
      * 设置行数
      * @param view  {@link TextView}
      * @param lines 行数
+     * @return View
      */
-    public static void setLines(final View view, final int lines) {
+    public static View setLines(final View view, final int lines) {
         setLines(getTextView(view), lines);
+        return view;
     }
 
     // =
@@ -1346,9 +1225,11 @@ public final class TextViewUtils {
      * 设置最大行数
      * @param view     {@link TextView}
      * @param maxLines 最大行数
+     * @return View
      */
-    public static void setMaxLines(final View view, final int maxLines) {
+    public static View setMaxLines(final View view, final int maxLines) {
         setMaxLines(getTextView(view), maxLines);
+        return view;
     }
 
     // =
@@ -1369,9 +1250,11 @@ public final class TextViewUtils {
      * 设置最小行数
      * @param view     {@link TextView}
      * @param minLines 最小行数
+     * @return View
      */
-    public static void setMinLines(final View view, final int minLines) {
+    public static View setMinLines(final View view, final int minLines) {
         setMinLines(getTextView(view), minLines);
+        return view;
     }
 
     // =
@@ -1394,9 +1277,11 @@ public final class TextViewUtils {
      * 设置最大字符宽度限制
      * @param view   {@link TextView}
      * @param maxEms 最大字符
+     * @return View
      */
-    public static void setMaxEms(final View view, final int maxEms) {
+    public static View setMaxEms(final View view, final int maxEms) {
         setMaxEms(getTextView(view), maxEms);
+        return view;
     }
 
     // =
@@ -1419,9 +1304,11 @@ public final class TextViewUtils {
      * 设置最小字符宽度限制
      * @param view   {@link TextView}
      * @param minEms 最小字符
+     * @return View
      */
-    public static void setMinEms(final View view, final int minEms) {
+    public static View setMinEms(final View view, final int minEms) {
         setMinEms(getTextView(view), minEms);
+        return view;
     }
 
     // =
@@ -1444,9 +1331,11 @@ public final class TextViewUtils {
      * 设置指定字符宽度
      * @param view {@link TextView}
      * @param ems  字符
+     * @return View
      */
-    public static void setEms(final View view, final int ems) {
+    public static View setEms(final View view, final int ems) {
         setEms(getTextView(view), ems);
+        return view;
     }
 
     // =
@@ -1471,9 +1360,11 @@ public final class TextViewUtils {
      * 设置长度限制
      * @param view      {@link TextView}
      * @param maxLength 长度限制
+     * @return View
      */
-    public static void setMaxLength(final View view, final int maxLength) {
+    public static View setMaxLength(final View view, final int maxLength) {
         setMaxLength(getTextView(view), maxLength);
+        return view;
     }
 
     // =
@@ -1496,10 +1387,10 @@ public final class TextViewUtils {
      * @param view      {@link TextView}
      * @param content   文本内容
      * @param maxLength 长度限制
+     * @return View
      */
-    public static void setMaxLengthAndText(final View view, final String content, final int maxLength) {
-        setMaxLength(view, maxLength);
-        setText(view, content);
+    public static View setMaxLengthAndText(final View view, final String content, final int maxLength) {
+        return setText(setMaxLength(view, maxLength), content);
     }
 
     // =
@@ -1520,9 +1411,11 @@ public final class TextViewUtils {
      * 设置 Ellipsize 效果
      * @param view  {@link TextView}
      * @param where {@link TextUtils.TruncateAt}
+     * @return View
      */
-    public static void setEllipsize(final View view, final TextUtils.TruncateAt where) {
+    public static View setEllipsize(final View view, final TextUtils.TruncateAt where) {
         setEllipsize(getTextView(view), where);
+        return view;
     }
 
     // =
@@ -1543,9 +1436,11 @@ public final class TextViewUtils {
      * 设置自动识别文本链接
      * @param view {@link TextView}
      * @param mask {@link android.text.util.Linkify}
+     * @return View
      */
-    public static void setAutoLinkMask(final View view, final int mask) {
+    public static View setAutoLinkMask(final View view, final int mask) {
         setAutoLinkMask(getTextView(view), mask);
+        return view;
     }
 
     // =
@@ -1566,9 +1461,11 @@ public final class TextViewUtils {
      * 设置 Gravity
      * @param view    {@link TextView}
      * @param gravity {@link android.view.Gravity}
+     * @return View
      */
-    public static void setGravity(final View view, final int gravity) {
+    public static View setGravity(final View view, final int gravity) {
         setGravity(getTextView(view), gravity);
+        return view;
     }
 
     // =
