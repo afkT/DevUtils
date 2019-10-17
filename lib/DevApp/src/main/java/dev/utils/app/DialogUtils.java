@@ -59,12 +59,15 @@ public final class DialogUtils {
      * 设置 Dialog Window LayoutParams
      * @param dialog {@link Dialog}
      * @param params {@link WindowManager.LayoutParams}
+     * @param <T>    泛型
+     * @return {@link Dialog}
      */
-    public static void setAttributes(final Dialog dialog, final WindowManager.LayoutParams params) {
+    public static <T extends Dialog> T setAttributes(final T dialog, final WindowManager.LayoutParams params) {
         if (dialog != null && params != null) {
             Window window = dialog.getWindow();
             if (window != null) window.setAttributes(params);
         }
+        return dialog;
     }
 
     // =
