@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.app.Activity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -9,10 +8,7 @@ import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
 import android.text.method.KeyListener;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
-
-import androidx.annotation.IdRes;
 
 import java.util.UUID;
 
@@ -63,60 +59,6 @@ public final class EditTextUtils {
         if (view != null) {
             try {
                 return (T) view;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getEditText");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取 EditText
-     * @param view {@link View}
-     * @param id   R.id.viewId
-     * @param <T>  泛型
-     * @return {@link EditText}
-     */
-    public static <T extends EditText> T getEditText(final View view, @IdRes final int id) {
-        if (view != null) {
-            try {
-                return view.findViewById(id);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getEditText");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取 EditText
-     * @param window {@link Window}
-     * @param id     R.id.viewId
-     * @param <T>    泛型
-     * @return {@link EditText}
-     */
-    public static <T extends EditText> T getEditText(final Window window, @IdRes final int id) {
-        if (window != null) {
-            try {
-                return window.findViewById(id);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getEditText");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取 EditText
-     * @param activity {@link Activity}
-     * @param id       R.id.viewId
-     * @param <T>      泛型
-     * @return {@link EditText}
-     */
-    public static <T extends EditText> T getEditText(final Activity activity, @IdRes final int id) {
-        if (activity != null) {
-            try {
-                return activity.findViewById(id);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getEditText");
             }
