@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.FloatRange;
@@ -673,6 +674,20 @@ public final class ViewUtils {
     public static View setTranslationY(final View view, final float translationY) {
         if (view != null) {
             view.setTranslationY(translationY);
+        }
+        return view;
+    }
+
+    /**
+     * 设置 View 硬件加速类型
+     * @param view      View
+     * @param layerType 硬件加速类型
+     * @param paint     {@link Paint}
+     * @return View
+     */
+    public static View setLayerType(final View view, final int layerType, final Paint paint) {
+        if (view != null) {
+            view.setLayerType(layerType, paint);
         }
         return view;
     }

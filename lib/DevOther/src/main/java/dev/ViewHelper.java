@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -604,6 +605,17 @@ public final class ViewHelper {
      */
     public ViewHelper setAutoLinkMask(final View view, final int mask) {
         TextViewUtils.setAutoLinkMask(view, mask);
+        return this;
+    }
+
+    /**
+     * 设置文本全为大写
+     * @param view    {@link TextView}
+     * @param allCaps 是否全部大写
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAllCaps(final View view, final boolean allCaps) {
+        TextViewUtils.setAllCaps(view, allCaps);
         return this;
     }
 
@@ -1417,6 +1429,18 @@ public final class ViewHelper {
      */
     public ViewHelper setTranslationY(final View view, final float translationY) {
         ViewUtils.setTranslationY(view, translationY);
+        return this;
+    }
+
+    /**
+     * 设置 View 硬件加速类型
+     * @param view      View
+     * @param layerType 硬件加速类型
+     * @param paint     {@link Paint}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setLayerType(final View view, final int layerType, final Paint paint) {
+        ViewUtils.setLayerType(view, layerType, paint);
         return this;
     }
 

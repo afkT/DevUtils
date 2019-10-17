@@ -1446,6 +1446,31 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 设置文本全为大写
+     * @param textView {@link TextView}
+     * @param allCaps  是否全部大写
+     * @param <T>      泛型
+     */
+    public static <T extends TextView> void setAllCaps(final T textView, final boolean allCaps) {
+        if (textView != null) {
+            textView.setAllCaps(allCaps);
+        }
+    }
+
+    /**
+     * 设置文本全为大写
+     * @param view    {@link TextView}
+     * @param allCaps 是否全部大写
+     * @return View
+     */
+    public static View setAllCaps(final View view, final boolean allCaps) {
+        setAllCaps(getTextView(view), allCaps);
+        return view;
+    }
+
+    // =
+
+    /**
      * 设置 Gravity
      * @param textView {@link TextView}
      * @param gravity  {@link android.view.Gravity}
