@@ -447,6 +447,197 @@ public final class ViewUtils {
     // =
 
     /**
+     * 设置 View 滚动效应
+     * @param view              View
+     * @param isScrollContainer 是否需要滚动效应
+     */
+    public static void setScrollContainer(final View view, final boolean isScrollContainer) {
+        if (view != null) {
+            view.setScrollContainer(isScrollContainer);
+        }
+    }
+
+    /**
+     * 设置下一个获取焦点的 View id
+     * @param view               View
+     * @param nextFocusForwardId 下一个获取焦点的 View id
+     */
+    public static void setNextFocusForwardId(final View view, @IdRes final int nextFocusForwardId) {
+        if (view != null) {
+            view.setNextFocusForwardId(nextFocusForwardId);
+        }
+    }
+
+    /**
+     * 设置向下移动焦点时, 下一个获取焦点的 View id
+     * @param view            View
+     * @param nextFocusDownId 下一个获取焦点的 View id
+     */
+    public static void setNextFocusDownId(final View view, @IdRes final int nextFocusDownId) {
+        if (view != null) {
+            view.setNextFocusDownId(nextFocusDownId);
+        }
+    }
+
+    /**
+     * 设置向左移动焦点时, 下一个获取焦点的 View id
+     * @param view            View
+     * @param nextFocusLeftId 下一个获取焦点的 View id
+     */
+    public static void setNextFocusLeftId(final View view, @IdRes final int nextFocusLeftId) {
+        if (view != null) {
+            view.setNextFocusLeftId(nextFocusLeftId);
+        }
+    }
+
+    /**
+     * 设置向右移动焦点时, 下一个获取焦点的 View id
+     * @param view             View
+     * @param nextFocusRightId 下一个获取焦点的 View id
+     */
+    public static void setNextFocusRightId(final View view, @IdRes final int nextFocusRightId) {
+        if (view != null) {
+            view.setNextFocusRightId(nextFocusRightId);
+        }
+    }
+
+    /**
+     * 设置向上移动焦点时, 下一个获取焦点的 View id
+     * @param view          View
+     * @param nextFocusUpId 下一个获取焦点的 View id
+     */
+    public static void setNextFocusUpId(final View view, @IdRes final int nextFocusUpId) {
+        if (view != null) {
+            view.setNextFocusUpId(nextFocusUpId);
+        }
+    }
+
+    /**
+     * 设置 View 旋转度数
+     * @param view     View
+     * @param rotation 旋转度数
+     */
+    public static void setRotation(final View view, final float rotation) {
+        if (view != null) {
+            view.setRotation(rotation);
+        }
+    }
+
+    /**
+     * 设置 View 水平旋转度数
+     * @param view      View
+     * @param rotationX 水平旋转度数
+     */
+    public static void setRotationX(final View view, final float rotationX) {
+        if (view != null) {
+            view.setRotationX(rotationX);
+        }
+    }
+
+    /**
+     * 设置 View 竖直旋转度数
+     * @param view      View
+     * @param rotationY 竖直旋转度数
+     */
+    public static void setRotationY(final View view, final float rotationY) {
+        if (view != null) {
+            view.setRotationY(rotationY);
+        }
+    }
+
+    /**
+     * 设置 View 水平方向缩放比例
+     * @param view   View
+     * @param scaleX 水平方向缩放比例
+     */
+    public static void setScaleX(final View view, final float scaleX) {
+        if (view != null) {
+            view.setScaleX(scaleX);
+        }
+    }
+
+    /**
+     * 设置 View 竖直方向缩放比例
+     * @param view   View
+     * @param scaleY 竖直方向缩放比例
+     */
+    public static void setScaleY(final View view, final float scaleY) {
+        if (view != null) {
+            view.setScaleY(scaleY);
+        }
+    }
+
+    /**
+     * 设置文本的显示方式
+     * @param view          View
+     * @param textAlignment 文本的显示方式
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static void setTextAlignment(final View view, final int textAlignment) {
+        if (view != null) {
+            view.setTextAlignment(textAlignment);
+        }
+    }
+
+    /**
+     * 设置文本的显示方向
+     * @param view          View
+     * @param textDirection 文本的显示方向
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static void setTextDirection(final View view, final int textDirection) {
+        if (view != null) {
+            view.setTextDirection(textDirection);
+        }
+    }
+
+    /**
+     * 设置水平方向偏转量
+     * @param view   View
+     * @param pivotX 水平方向偏转量
+     */
+    public static void setPivotX(final View view, final float pivotX) {
+        if (view != null) {
+            view.setPivotX(pivotX);
+        }
+    }
+
+    /**
+     * 设置竖直方向偏转量
+     * @param view   View
+     * @param pivotY 竖直方向偏转量
+     */
+    public static void setPivotY(final View view, final float pivotY) {
+        if (view != null) {
+            view.setPivotY(pivotY);
+        }
+    }
+
+    /**
+     * 设置水平方向的移动距离
+     * @param view         View
+     * @param translationX 水平方向的移动距离
+     */
+    public static void setTranslationX(final View view, final float translationX) {
+        if (view != null) {
+            view.setTranslationX(translationX);
+        }
+    }
+
+    /**
+     * 设置竖直方向的移动距离
+     * @param view         View
+     * @param translationY 竖直方向的移动距离
+     */
+    public static void setTranslationY(final View view, final float translationY) {
+        if (view != null) {
+            view.setTranslationY(translationY);
+        }
+    }
+
+    // =
+
+    /**
      * 设置 View 是否可以获取焦点
      * @param focusable {@code true} 可获取, {@code false} 不可获取
      * @param views     View[]

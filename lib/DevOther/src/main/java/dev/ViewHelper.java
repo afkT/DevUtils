@@ -11,6 +11,7 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
+import android.support.annotation.IdRes;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
@@ -1225,6 +1226,201 @@ public final class ViewHelper {
         ViewUtils.setTag(view, object);
         return this;
     }
+
+    // =
+
+    /**
+     * 设置 View 滚动效应
+     * @param view              View
+     * @param isScrollContainer 是否需要滚动效应
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setScrollContainer(final View view, final boolean isScrollContainer) {
+        ViewUtils.setScrollContainer(view, isScrollContainer);
+        return this;
+    }
+
+    /**
+     * 设置下一个获取焦点的 View id
+     * @param view               View
+     * @param nextFocusForwardId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusForwardId(final View view, @IdRes final int nextFocusForwardId) {
+        ViewUtils.setNextFocusForwardId(view, nextFocusForwardId);
+        return this;
+    }
+
+    /**
+     * 设置向下移动焦点时, 下一个获取焦点的 View id
+     * @param view            View
+     * @param nextFocusDownId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusDownId(final View view, @IdRes final int nextFocusDownId) {
+        ViewUtils.setNextFocusDownId(view, nextFocusDownId);
+        return this;
+    }
+
+    /**
+     * 设置向左移动焦点时, 下一个获取焦点的 View id
+     * @param view            View
+     * @param nextFocusLeftId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusLeftId(final View view, @IdRes final int nextFocusLeftId) {
+        ViewUtils.setNextFocusLeftId(view, nextFocusLeftId);
+        return this;
+    }
+
+    /**
+     * 设置向右移动焦点时, 下一个获取焦点的 View id
+     * @param view             View
+     * @param nextFocusRightId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusRightId(final View view, @IdRes final int nextFocusRightId) {
+        ViewUtils.setNextFocusRightId(view, nextFocusRightId);
+        return this;
+    }
+
+    /**
+     * 设置向上移动焦点时, 下一个获取焦点的 View id
+     * @param view          View
+     * @param nextFocusUpId 下一个获取焦点的 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setNextFocusUpId(final View view, @IdRes final int nextFocusUpId) {
+        ViewUtils.setNextFocusUpId(view, nextFocusUpId);
+        return this;
+    }
+
+    /**
+     * 设置 View 旋转度数
+     * @param view     View
+     * @param rotation 旋转度数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setRotation(final View view, final float rotation) {
+        ViewUtils.setRotation(view, rotation);
+        return this;
+    }
+
+    /**
+     * 设置 View 水平旋转度数
+     * @param view      View
+     * @param rotationX 水平旋转度数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setRotationX(final View view, final float rotationX) {
+        ViewUtils.setRotationX(view, rotationX);
+        return this;
+    }
+
+    /**
+     * 设置 View 竖直旋转度数
+     * @param view      View
+     * @param rotationY 竖直旋转度数
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setRotationY(final View view, final float rotationY) {
+        ViewUtils.setRotationY(view, rotationY);
+        return this;
+    }
+
+    /**
+     * 设置 View 水平方向缩放比例
+     * @param view   View
+     * @param scaleX 水平方向缩放比例
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setScaleX(final View view, final float scaleX) {
+        ViewUtils.setScaleX(view, scaleX);
+        return this;
+    }
+
+    /**
+     * 设置 View 竖直方向缩放比例
+     * @param view   View
+     * @param scaleY 竖直方向缩放比例
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setScaleY(final View view, final float scaleY) {
+        ViewUtils.setScaleY(view, scaleY);
+        return this;
+    }
+
+    /**
+     * 设置文本的显示方式
+     * @param view          View
+     * @param textAlignment 文本的显示方式
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTextAlignment(final View view, final int textAlignment) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            ViewUtils.setTextAlignment(view, textAlignment);
+        }
+        return this;
+    }
+
+    /**
+     * 设置文本的显示方向
+     * @param view          View
+     * @param textDirection 文本的显示方向
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTextDirection(final View view, final int textDirection) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            ViewUtils.setTextDirection(view, textDirection);
+        }
+        return this;
+    }
+
+    /**
+     * 设置水平方向偏转量
+     * @param view   View
+     * @param pivotX 水平方向偏转量
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPivotX(final View view, final float pivotX) {
+        ViewUtils.setPivotX(view, pivotX);
+        return this;
+    }
+
+    /**
+     * 设置竖直方向偏转量
+     * @param view   View
+     * @param pivotY 竖直方向偏转量
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPivotY(final View view, final float pivotY) {
+        ViewUtils.setPivotY(view, pivotY);
+        return this;
+    }
+
+    /**
+     * 设置水平方向的移动距离
+     * @param view         View
+     * @param translationX 水平方向的移动距离
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTranslationX(final View view, final float translationX) {
+        ViewUtils.setTranslationX(view, translationX);
+        return this;
+    }
+
+    /**
+     * 设置竖直方向的移动距离
+     * @param view         View
+     * @param translationY 竖直方向的移动距离
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTranslationY(final View view, final float translationY) {
+        ViewUtils.setTranslationY(view, translationY);
+        return this;
+    }
+
+    // =
 
     /**
      * 设置 View LayoutParams
