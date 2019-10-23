@@ -1,14 +1,19 @@
 package dev.utils.app;
 
+import android.app.AppOpsManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -44,6 +49,40 @@ public final class NotificationUtils {
         }
         return sNotificationManager;
     }
+
+    /**
+     * 检查通知栏权限是否开启
+     * 参考 SupportCompat 包中的: NotificationManagerCompat.from(context).areNotificationsEnabled();
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNotificationEnabled() {
+        Context context = DevUtils.getContext();
+        if (context != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                return ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).areNotificationsEnabled();
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                try {
+                    AppOpsManager appOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+                    ApplicationInfo appInfo = context.getApplicationInfo();
+                    String pkg = context.getApplicationContext().getPackageName();
+                    int uid = appInfo.uid;
+
+                    Class<?> appOpsClass = Class.forName(AppOpsManager.class.getName());
+                    Method checkOpNoThrowMethod = appOpsClass.getMethod("checkOpNoThrow", Integer.TYPE, Integer.TYPE, String.class);
+                    Field opPostNotificationValue = appOpsClass.getDeclaredField("OP_POST_NOTIFICATION");
+                    int value = (Integer) opPostNotificationValue.get(Integer.class);
+                    return (Integer) checkOpNoThrowMethod.invoke(appOps, value, uid, pkg) == 0;
+                } catch (Throwable ignored) {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // =
 
     /**
      * 移除通知 - 移除所有通知 ( 只是针对当前 Context 下的 Notification)

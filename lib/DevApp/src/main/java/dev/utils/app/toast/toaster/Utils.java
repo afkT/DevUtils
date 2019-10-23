@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.WindowManager;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import dev.DevUtils;
@@ -88,7 +87,7 @@ final class Utils {
     }
 
     /**
-     * 检查通知栏权限有没有开启
+     * 检查通知栏权限是否开启
      * 参考 SupportCompat 包中的: NotificationManagerCompat.from(context).areNotificationsEnabled();
      * @param context {@link Context}
      * @return {@code true} yes, {@code false} no
@@ -97,18 +96,18 @@ final class Utils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).areNotificationsEnabled();
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            AppOpsManager appOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
-            ApplicationInfo appInfo = context.getApplicationInfo();
-            String pkg = context.getApplicationContext().getPackageName();
-            int uid = appInfo.uid;
-
             try {
+                AppOpsManager appOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+                ApplicationInfo appInfo = context.getApplicationInfo();
+                String pkg = context.getApplicationContext().getPackageName();
+                int uid = appInfo.uid;
+
                 Class<?> appOpsClass = Class.forName(AppOpsManager.class.getName());
                 Method checkOpNoThrowMethod = appOpsClass.getMethod("checkOpNoThrow", Integer.TYPE, Integer.TYPE, String.class);
                 Field opPostNotificationValue = appOpsClass.getDeclaredField("OP_POST_NOTIFICATION");
                 int value = (Integer) opPostNotificationValue.get(Integer.class);
                 return (Integer) checkOpNoThrowMethod.invoke(appOps, value, uid, pkg) == 0;
-            } catch (NoSuchMethodException | NoSuchFieldException | InvocationTargetException | IllegalAccessException | RuntimeException | ClassNotFoundException ignored) {
+            } catch (Throwable ignored) {
                 return true;
             }
         } else {
