@@ -22,6 +22,8 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     截图
  *     @see <a href="https://www.cnblogs.com/angel88/p/7933437.html"/>
+ *     WebView 截长图解决方案
+ *     @see <a href="https://www.jianshu.com/p/0faa70e88441"/>
  * </pre>
  */
 public final class CapturePictureUtils {
@@ -39,6 +41,19 @@ public final class CapturePictureUtils {
     // ===========
     // = WebView =
     // ===========
+
+    /**
+     * 关闭 WebView 优化
+     * <pre>
+     *     推荐在 setContentView 前调用
+     *     {@link CapturePictureUtils#snapshotByWebView}
+     * </pre>
+     */
+    public static void enableSlowWholeDocumentDraw() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            android.webkit.WebView.enableSlowWholeDocumentDraw();
+        }
+    }
 
     /**
      * 截图 WebView
@@ -61,35 +76,67 @@ public final class CapturePictureUtils {
 
     /**
      * 截图 WebView
+     * @param webView {@link WebView}
+     * @param scale   缩放比例
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByWebView(final WebView webView, final float scale) {
+        return snapshotByWebView(webView, Integer.MAX_VALUE, Bitmap.Config.RGB_565, scale);
+    }
+
+    /**
+     * 截图 WebView
      * @param webView   {@link WebView}
      * @param maxHeight 最大高度
      * @param config    {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByWebView(final WebView webView, final int maxHeight, final Bitmap.Config config) {
+        return snapshotByWebView(webView, maxHeight, config, 0f);
+    }
+
+    /**
+     * 截图 WebView
+     * <pre>
+     *     TODO 在 Android 5.0 及以上版本, Android 对 WebView 进行了优化, 为了减少内存使用和提高性能
+     *     TODO 使用 WebView 加载网页时只绘制显示部分, 如果我们不做处理, 就会出现只截到屏幕内显示的 WebView 内容, 其它部分是空白的情况
+     *     TODO 通过调用 WebView.enableSlowWholeDocumentDraw() 方法可以关闭这种优化, 但要注意的是, 该方法需要在 WebView 实例被创建前就要调用,
+     *     TODO 否则没有效果, 所以我们在 WebView 实例被创建前加入代码
+     *     {@link CapturePictureUtils#enableSlowWholeDocumentDraw}
+     * </pre>
+     * @param webView   {@link WebView}
+     * @param maxHeight 最大高度
+     * @param config    {@link Bitmap.Config}
+     * @param scale     缩放比例
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByWebView(final WebView webView, final int maxHeight,
+                                           final Bitmap.Config config, final float scale) {
         if (webView != null && config != null) {
             // Android 5.0 以上
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 try {
-                    // 获取 Picture 对象
-                    Picture picture = webView.capturePicture();
-                    int width = picture.getWidth();
-                    int height = picture.getHeight();
-                    if (width > 0 && height > 0) {
-                        // 重新设置高度
-                        height = (height > maxHeight) ? maxHeight : height;
-                        // 创建位图
-                        Bitmap bitmap = Bitmap.createBitmap(width, height, config);
-                        Canvas canvas = new Canvas(bitmap);
-                        picture.draw(canvas);
-                        return bitmap;
+                    float newScale = scale;
+                    if (newScale <= 0) {
+                        // 该方法已抛弃, 可通过 setWebViewClient
+                        // onScaleChanged(WebView view, float oldScale, float newScale)
+                        // 存储并传入 newScale
+                        newScale = webView.getScale();
                     }
+                    int width = webView.getWidth();
+                    int height = (int) (webView.getContentHeight() * newScale + 0.5);
+                    // 重新设置高度
+                    height = (height > maxHeight) ? maxHeight : height;
+                    // 创建位图
+                    Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+                    Canvas canvas = new Canvas(bitmap);
+                    webView.draw(canvas);
+                    return bitmap;
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "snapshotByWebView - capturePicture()");
+                    LogPrintUtils.eTag(TAG, e, "snapshotByWebView - SDK_INT >= 21(5.0)");
                 }
             } else {
                 try {
-                    // 获取 Picture 对象
                     Picture picture = webView.capturePicture();
                     int width = picture.getWidth();
                     int height = picture.getHeight();
@@ -103,7 +150,7 @@ public final class CapturePictureUtils {
                         return bitmap;
                     }
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "snapshotByWebView - capturePicture()");
+                    LogPrintUtils.eTag(TAG, e, "snapshotByWebView - SDK_INT < 21(5.0)");
                 }
             }
         }
