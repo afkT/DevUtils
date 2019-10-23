@@ -2,6 +2,8 @@ package dev.utils.app;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -175,6 +177,41 @@ public final class IntentUtils {
     }
 
     /**
+     * 获取 APP 通知权限设置的意图
+     * @param packageName 应用包名
+     * @return APP 通知权限设置的意图
+     */
+    public static Intent getLaunchAppNotificationSettingsIntent(final String packageName) {
+        return getLaunchAppNotificationSettingsIntent(packageName, false);
+    }
+
+    /**
+     * 获取 APP 通知权限设置的意图
+     * @param packageName 应用包名
+     * @param isNewTask   是否开启新的任务栈
+     * @return APP 通知权限设置的意图
+     */
+    public static Intent getLaunchAppNotificationSettingsIntent(final String packageName, final boolean isNewTask) {
+        try {
+            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
+            ApplicationInfo applicationInfo = packageInfo.applicationInfo;
+
+            Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+            // 这种方案适用于 API 26 即 8.0 ( 含 8.0) 以上可以用
+            intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName);
+            intent.putExtra(Settings.EXTRA_CHANNEL_ID, applicationInfo.uid);
+            // 这种方案适用于 API 21 - 25 即 5.0 - 7.1 之间的版本可以使用
+            intent.putExtra("app_package", packageName);
+            intent.putExtra("app_uid", applicationInfo.uid);
+            return getIntent(intent, isNewTask);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getLaunchAppNotificationSettingsIntent");
+        }
+        return null;
+    }
+
+    /**
      * 获取 APP 具体设置的意图
      * @param packageName 应用包名
      * @return APP 具体设置的意图
@@ -191,7 +228,7 @@ public final class IntentUtils {
      */
     public static Intent getLaunchAppDetailsSettingsIntent(final String packageName, final boolean isNewTask) {
         try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             intent.setData(Uri.parse("package:" + packageName));
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
