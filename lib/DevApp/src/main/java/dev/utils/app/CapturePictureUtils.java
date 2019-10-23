@@ -24,15 +24,19 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://www.cnblogs.com/angel88/p/7933437.html"/>
  *     WebView 截长图解决方案
  *     @see <a href="https://www.jianshu.com/p/0faa70e88441"/>
+ *     X5 WebView 使用 snapshotWholePage 方法清晰截图
+ *     @see <a href="https://www.v2ex.com/t/583020"/>
+ *     Android 实现截屏和截长图功能的几种方法
+ *     @see <a href="https://blog.csdn.net/hailong0529/article/details/88677358"/>
  * </pre>
  */
 public final class CapturePictureUtils {
 
-    // 日志 TAG
-    private static final String TAG = CapturePictureUtils.class.getSimpleName();
-
     private CapturePictureUtils() {
     }
+
+    // 日志 TAG
+    private static final String TAG = CapturePictureUtils.class.getSimpleName();
 
     // ========
     // = 截图 =
