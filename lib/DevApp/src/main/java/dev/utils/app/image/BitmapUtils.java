@@ -293,12 +293,26 @@ public final class BitmapUtils {
      */
     public static Bitmap recode(final Bitmap bitmap, final Bitmap.CompressFormat format,
                                 @IntRange(from = 0, to = 100) final int quality) {
+        return recode(bitmap, format, quality, null);
+    }
+
+    /**
+     * 重新编码 Bitmap
+     * @param bitmap  需要重新编码的 bitmap
+     * @param format  编码后的格式 如 Bitmap.CompressFormat.PNG
+     * @param quality 质量
+     * @param options {@link BitmapFactory.Options}
+     * @return 重新编码后的图片
+     */
+    public static Bitmap recode(final Bitmap bitmap, final Bitmap.CompressFormat format,
+                                @IntRange(from = 0, to = 100) final int quality,
+                                final BitmapFactory.Options options) {
         if (isEmpty(bitmap) || format == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(format, quality, baos);
             byte[] data = baos.toByteArray();
-            return BitmapFactory.decodeByteArray(data, 0, data.length);
+            return BitmapFactory.decodeByteArray(data, 0, data.length, options);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "recode");
         }
@@ -1110,7 +1124,19 @@ public final class BitmapUtils {
      * @return 质量压缩过的图片
      */
     public static Bitmap compressByQuality(final Bitmap bitmap, @IntRange(from = 0, to = 100) final int quality) {
-        return compressByQuality(bitmap, Bitmap.CompressFormat.JPEG, quality);
+        return compressByQuality(bitmap, Bitmap.CompressFormat.JPEG, quality, null);
+    }
+
+    /**
+     * 按质量压缩
+     * @param bitmap  待操作源图片
+     * @param quality 质量
+     * @param options {@link BitmapFactory.Options}
+     * @return 质量压缩过的图片
+     */
+    public static Bitmap compressByQuality(final Bitmap bitmap, @IntRange(from = 0, to = 100) final int quality,
+                                           final BitmapFactory.Options options) {
+        return compressByQuality(bitmap, Bitmap.CompressFormat.JPEG, quality, options);
     }
 
     /**
@@ -1118,16 +1144,18 @@ public final class BitmapUtils {
      * @param bitmap  待操作源图片
      * @param format  图片压缩格式
      * @param quality 质量
+     * @param options {@link BitmapFactory.Options}
      * @return 质量压缩过的图片
      */
     public static Bitmap compressByQuality(final Bitmap bitmap, final Bitmap.CompressFormat format,
-                                           @IntRange(from = 0, to = 100) final int quality) {
+                                           @IntRange(from = 0, to = 100) final int quality,
+                                           final BitmapFactory.Options options) {
         if (isEmpty(bitmap) || format == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(format, quality, baos);
             byte[] data = baos.toByteArray();
-            return BitmapFactory.decodeByteArray(data, 0, data.length);
+            return BitmapFactory.decodeByteArray(data, 0, data.length, options);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "compressByQuality");
         }
@@ -1143,7 +1171,7 @@ public final class BitmapUtils {
      * @return 质量压缩过的图片
      */
     public static Bitmap compressByByteSize(final Bitmap bitmap, final long maxByteSize) {
-        return compressByByteSize(bitmap, Bitmap.CompressFormat.JPEG, maxByteSize);
+        return compressByByteSize(bitmap, Bitmap.CompressFormat.JPEG, maxByteSize, null);
     }
 
     /**
@@ -1154,6 +1182,18 @@ public final class BitmapUtils {
      * @return 质量压缩过的图片
      */
     public static Bitmap compressByByteSize(final Bitmap bitmap, final Bitmap.CompressFormat format, final long maxByteSize) {
+        return compressByByteSize(bitmap, format, maxByteSize, null);
+    }
+
+    /**
+     * 按质量压缩 ( 图片大小 )
+     * @param bitmap      待操作源图片
+     * @param format      图片压缩格式
+     * @param maxByteSize 允许最大值字节数
+     * @param options     {@link BitmapFactory.Options}
+     * @return 质量压缩过的图片
+     */
+    public static Bitmap compressByByteSize(final Bitmap bitmap, final Bitmap.CompressFormat format, final long maxByteSize, final BitmapFactory.Options options) {
         if (isEmpty(bitmap) || maxByteSize <= 0) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -1190,7 +1230,7 @@ public final class BitmapUtils {
                     data = baos.toByteArray();
                 }
             }
-            return BitmapFactory.decodeByteArray(data, 0, data.length);
+            return BitmapFactory.decodeByteArray(data, 0, data.length, options);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "compressByByteSize");
         }
