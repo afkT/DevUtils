@@ -51,7 +51,8 @@ public final class CapturePictureUtils {
 
     /**
      * 截图 WebView
-     * @param webView {@link WebView}
+     * @param webView   {@link WebView}
+     * @param maxHeight 最大高度
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByWebView(final WebView webView, final int maxHeight) {
@@ -62,6 +63,7 @@ public final class CapturePictureUtils {
      * 截图 WebView
      * @param webView   {@link WebView}
      * @param maxHeight 最大高度
+     * @param config    {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByWebView(final WebView webView, final int maxHeight, final Bitmap.Config config) {
