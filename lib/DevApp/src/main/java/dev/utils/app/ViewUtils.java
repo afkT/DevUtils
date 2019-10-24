@@ -19,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.Window;
-import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -380,8 +379,8 @@ public final class ViewUtils {
 
     /**
      * 设置 View 宽度、高度
-     * @param view  {@link View}
-     * @param width View 宽度
+     * @param view   {@link View}
+     * @param width  View 宽度
      * @param height View 高度
      * @return {@link View}
      */
@@ -2320,47 +2319,56 @@ public final class ViewUtils {
     // ============
 
     /**
-     * 计算 ListView Item 高度
+     * 计算 ListView 高度
      * @param listView {@link ListView}
-     * @return ListView Item 高度
+     * @return ListView 高度
      */
-    public static int calcListViewItemHeight(final ListView listView) {
-        return calcListViewItemHeight(listView, false);
+    public static int calcListViewHeight(final ListView listView) {
+        return calcListViewHeight(listView, false);
     }
 
     /**
-     * 计算 ListView Item 高度
+     * 计算 ListView 高度
      * @param listView  {@link ListView}
      * @param setParams 是否 setLayoutParams
-     * @return ListView Item 高度
+     * @return ListView 高度
      */
-    public static int calcListViewItemHeight(final ListView listView, final boolean setParams) {
-        // 获取 Adapter
-        ListAdapter listAdapter = listView.getAdapter();
-        // 防止为 null
-        if (listAdapter == null) {
-            return 0;
+    public static int calcListViewHeight(final ListView listView, final boolean setParams) {
+        if (listView == null) return 0;
+        try {
+            int height = 0;
+            // 获取子项间分隔符占用的高度
+            int dividerHeight = listView.getDividerHeight();
+            // Adapter
+            ListAdapter listAdapter = listView.getAdapter();
+            // Item 总条数
+            int itemCount = listAdapter.getCount();
+            // 没数据则直接跳过
+            if (itemCount == 0) return 0;
+
+            // 循环绘制每个 Item 并保存 Bitmap
+            for (int i = 0; i < itemCount; i++) {
+                View childView = listAdapter.getView(i, null, listView);
+                childView.measure(View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.EXACTLY),
+                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+
+                height += childView.getMeasuredHeight();
+            }
+            // 追加子项间分隔符占用的高度
+            height += (dividerHeight * (itemCount - 1));
+
+            // 判断是否需要设置高度
+            if (setParams) {
+                ViewGroup.LayoutParams params = listView.getLayoutParams();
+                params.height = height;
+                listView.setLayoutParams(params);
+            }
+            return height;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "calcListViewHeight");
         }
-        // 获取总体高度
-        int totalHeight = 0;
-        // 遍历累加
-        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
-            // 累加 Item 高度
-            totalHeight += getItemHeighet(listAdapter, listView, i);
-        }
-        // =
-        // 获取子项间分隔符占用的高度
-        // listView.getDividerHeight();
-        // 累加分割线高度
-        totalHeight += (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        // 判断是否需要设置高度
-        if (setParams) {
-            ViewGroup.LayoutParams params = listView.getLayoutParams();
-            params.height = totalHeight;
-            listView.setLayoutParams(params);
-        }
-        // 返回总体高度
-        return totalHeight;
+        return 0;
     }
 
     // ============
@@ -2368,132 +2376,107 @@ public final class ViewUtils {
     // ============
 
     /**
-     * 计算 GridView Item 高度
-     * @param gridView   {@link GridView}
-     * @param numColumns GridView 行数
-     * @return GridView Item 高度
+     * 计算 GridView 高度
+     * @param gridView {@link GridView}
+     * @return GridView 高度
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static int calcGridViewItemHeight(final GridView gridView, final int numColumns) {
-        return calcGridViewItemHeight(gridView, numColumns, false);
+    public static int calcGridViewHeight(final GridView gridView) {
+        return calcGridViewHeight(gridView, false);
     }
 
     /**
-     * 计算 GridView Item 高度
-     * @param gridView   {@link GridView}
-     * @param numColumns GridView 行数
-     * @param setParams  是否 setLayoutParams
-     * @return GridView Item 高度
+     * 计算 GridView 高度
+     * @param gridView  {@link GridView}
+     * @param setParams 是否 setLayoutParams
+     * @return GridView 高度
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static int calcGridViewItemHeight(final GridView gridView, final int numColumns, final boolean setParams) {
-        // 获取 Adapter
-        ListAdapter listAdapter = gridView.getAdapter();
-        // 防止为 null
-        if (listAdapter == null) {
-            return 0;
-        }
-        // 最高高度
-        int singleMax = 0;
-        // 获取总体高度
-        int totalHeight = 0;
-        // 获取总数
-        int count = listAdapter.getCount();
-        // 判断是否整数
-        count = (count % numColumns == 0) ? (count / numColumns) : (count / numColumns + 1);
-        // 遍历累加
-        for (int i = 0; i < count; i++) {
-            // 默认表示第一个的高度
-            singleMax = getItemHeighet(listAdapter, gridView, i * numColumns);
-            // 遍历判断
-            for (int eqI = 1; eqI < numColumns; eqI++) {
-                // 临时高度
-                int tempHeight = 0;
-                // 进行判断处理
-                if (i * numColumns + eqI <= count) {
-                    // 获取对应的高度
-                    tempHeight = getItemHeighet(listAdapter, gridView, i * numColumns + eqI);
-                }
-                // 判断是否在最大高度
-                if (tempHeight > singleMax) {
-                    singleMax = tempHeight;
+    public static int calcGridViewHeight(final GridView gridView, final boolean setParams) {
+        if (gridView == null) return 0;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return 0;
+        try {
+            int height = 0;
+            // 获取一共多少列
+            int numColumns = gridView.getNumColumns();
+            // 每列之间的间隔 |
+            int horizontalSpacing = gridView.getHorizontalSpacing();
+            // 每行之间的间隔 -
+            int verticalSpacing = gridView.getVerticalSpacing();
+            // Adapter
+            ListAdapter listAdapter = gridView.getAdapter();
+            // Item 总条数
+            int itemCount = listAdapter.getCount();
+            // 没数据则直接跳过
+            if (itemCount == 0) return 0;
+
+            // 获取倍数 ( 行数 )
+            int lineNumber = getMultiple(itemCount, numColumns);
+            // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / numColumns
+            int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
+
+            // 记录每一行高度
+            int[] itemHeightArrays = new int[lineNumber];
+            // 临时高度 - 保存一行中最长列的高度
+            int tempHeight = 0;
+            // 循环每一行绘制每个 Item 并保存 Bitmap
+            for (int i = 0; i < lineNumber; i++) {
+                // 清空高度
+                tempHeight = 0;
+                // 循环列数
+                for (int j = 0; j < numColumns; j++) {
+                    // 获取对应的索引
+                    int position = i * numColumns + j;
+                    // 如果大于总数据则跳过
+                    if (position < itemCount) {
+                        View childView = listAdapter.getView(position, null, gridView);
+                        childView.measure(View.MeasureSpec.makeMeasureSpec(childWidth, View.MeasureSpec.EXACTLY),
+                                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                        childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+
+                        int itemHeight = childView.getMeasuredHeight();
+                        // 保留最大高度
+                        tempHeight = Math.max(itemHeight, tempHeight);
+                    }
+
+                    // 最后记录高度并累加
+                    if (j == numColumns - 1) {
+                        height += tempHeight;
+                        itemHeightArrays[i] = tempHeight;
+                    }
                 }
             }
-            // 累加 Item 高度
-            totalHeight += singleMax;
-        }
-//        // 每列之间的间隔 |
-//        int horizontalSpacing = gridView.getHorizontalSpacing();
-        // 每行之间的间隔 -
-        int verticalSpacing = gridView.getVerticalSpacing();
-        // 最后获取整个 GridView 完整显示需要的高度
-        totalHeight += (verticalSpacing * (count - 1));
-        // 判断是否需要设置高度
-        if (setParams) {
-            ViewGroup.LayoutParams params = gridView.getLayoutParams();
-            params.height = totalHeight;
-            gridView.setLayoutParams(params);
-        }
-        // 返回总体高度
-        return totalHeight;
-    }
+            // 追加子项间分隔符占用的高度
+            height += (verticalSpacing * (lineNumber - 1));
 
-    // =
-
-    /**
-     * 获取单独一个 Item 高度
-     * @param absViews {@link AbsListView}
-     * @param pos      索引
-     * @return Item 高度
-     */
-    public static int getItemHeighet(final AbsListView absViews, final int pos) {
-        return getItemHeighet(absViews, pos, 0);
-    }
-
-    /**
-     * 获取单独一个 Item 高度
-     * @param absViews      {@link AbsListView}
-     * @param pos           索引
-     * @param defaultHeight 默认高度
-     * @return Item 高度
-     */
-    public static int getItemHeighet(final AbsListView absViews, final int pos, final int defaultHeight) {
-        if (absViews != null) {
-            return getItemHeighet(absViews.getAdapter(), absViews, pos, defaultHeight);
-        }
-        return defaultHeight;
-    }
-
-    /**
-     * 获取单独一个 Item 高度
-     * @param listAdapter {@link ListAdapter}
-     * @param absViews    {@link AbsListView}
-     * @param pos         索引
-     * @return Item 高度
-     */
-    public static int getItemHeighet(final ListAdapter listAdapter, final AbsListView absViews, final int pos) {
-        return getItemHeighet(listAdapter, absViews, pos, 0);
-    }
-
-    /**
-     * 获取单独一个 Item 高度
-     * @param listAdapter   {@link ListAdapter}
-     * @param absViews      {@link AbsListView}
-     * @param pos           索引
-     * @param defaultHeight 默认高度
-     * @return Item 高度
-     */
-    public static int getItemHeighet(final ListAdapter listAdapter, final AbsListView absViews, final int pos, final int defaultHeight) {
-        try {
-            // listAdapter.getCount() 返回数据项的数目
-            View listItem = listAdapter.getView(pos, null, absViews);
-            // 计算子项 View 的宽高
-            listItem.measure(0, 0);
-            // 统计所有子项的总高度
-            return listItem.getMeasuredHeight();
+            // 判断是否需要设置高度
+            if (setParams) {
+                ViewGroup.LayoutParams params = gridView.getLayoutParams();
+                params.height = height;
+                gridView.setLayoutParams(params);
+            }
+            return height;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getItemHeighet");
-            return defaultHeight;
+            LogPrintUtils.eTag(TAG, e, "calcGridViewHeight");
         }
+        return 0;
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = NumberUtils =
+    // ===============
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    private static int getMultiple(final int value, final int divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        return (value % divisor == 0) ? (value / divisor) : (value / divisor) + 1;
     }
 }
