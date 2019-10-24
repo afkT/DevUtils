@@ -2199,12 +2199,12 @@ public final class ViewUtils {
             // 累加 Item 高度
             totalHeight += singleMax;
         }
-        // 每列之间的间隔 |
-        // int hSpaec = gridView.getHorizontalSpacing();
+//        // 每列之间的间隔 |
+//        int horizontalSpacing = gridView.getHorizontalSpacing();
         // 每行之间的间隔 -
-        int vSpace = gridView.getVerticalSpacing();
+        int verticalSpacing = gridView.getVerticalSpacing();
         // 最后获取整个 GridView 完整显示需要的高度
-        totalHeight += (vSpace * (count - 1));
+        totalHeight += (verticalSpacing * (count - 1));
         // 判断是否需要设置高度
         if (setParams) {
             ViewGroup.LayoutParams params = gridView.getLayoutParams();
