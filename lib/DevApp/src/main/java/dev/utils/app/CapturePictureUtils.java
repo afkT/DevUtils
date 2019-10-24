@@ -19,6 +19,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import java.util.ArrayList;
@@ -275,9 +276,9 @@ public final class CapturePictureUtils {
         return snapshotByView(linearLayout, config);
     }
 
-    // ================
+    // ===============
     // = FrameLayout =
-    // ================
+    // ===============
 
     /**
      * 通过 FrameLayout 绘制为 Bitmap
@@ -299,6 +300,32 @@ public final class CapturePictureUtils {
      */
     public static Bitmap snapshotByFrameLayout(final FrameLayout frameLayout, final Bitmap.Config config) {
         return snapshotByView(frameLayout, config);
+    }
+
+    // ==================
+    // = RelativeLayout =
+    // ==================
+
+    /**
+     * 通过 RelativeLayout 绘制为 Bitmap
+     * @param relativeLayout {@link RelativeLayout}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByRelativeLayout(final RelativeLayout relativeLayout) {
+        return snapshotByRelativeLayout(relativeLayout, Bitmap.Config.ARGB_8888);
+    }
+
+    /**
+     * 通过 RelativeLayout 绘制为 Bitmap
+     * <pre>
+     *     RelativeLayout 容器中不能有诸如 ListView、GridView、WebView 这样的高度可变的控件
+     * </pre>
+     * @param relativeLayout {@link RelativeLayout}
+     * @param config       {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByRelativeLayout(final RelativeLayout relativeLayout, final Bitmap.Config config) {
+        return snapshotByView(relativeLayout, config);
     }
 
     // ==============

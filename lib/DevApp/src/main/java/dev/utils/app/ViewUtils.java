@@ -36,6 +36,8 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     组件设置 setCompoundDrawables 不生效解决办法
  *     @see <a href="https://blog.csdn.net/qq_26971803/article/details/54347598"/>
+ *     Android 常用布局属性
+ *     @see <a href="https://www.jianshu.com/p/78e2dfb6d244"/>
  * </pre>
  */
 public final class ViewUtils {
