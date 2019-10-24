@@ -1196,6 +1196,18 @@ public final class ViewHelper {
     // ========
 
     /**
+     * 设置 View 宽度、高度
+     * @param view  {@link View}
+     * @param width View 宽度
+     * @param height View 高度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setWidthHeight(final View view, final int width, final int height) {
+        ViewUtils.setWidthHeight(view, width, height);
+        return this;
+    }
+
+    /**
      * 设置 View 宽度
      * @param view  {@link View}
      * @param width View 宽度

@@ -379,6 +379,25 @@ public final class ViewUtils {
     // =
 
     /**
+     * 设置 View 宽度、高度
+     * @param view  {@link View}
+     * @param width View 宽度
+     * @param height View 高度
+     * @return {@link View}
+     */
+    public static View setWidthHeight(final View view, final int width, final int height) {
+        if (view != null) {
+            try {
+                view.getLayoutParams().width = width;
+                view.getLayoutParams().height = height;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setWidthHeight");
+            }
+        }
+        return view;
+    }
+
+    /**
      * 设置 View 宽度
      * @param view  {@link View}
      * @param width View 宽度
