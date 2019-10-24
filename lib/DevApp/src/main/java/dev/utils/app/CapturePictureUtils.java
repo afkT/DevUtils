@@ -42,11 +42,11 @@ import dev.utils.LogPrintUtils;
  */
 public final class CapturePictureUtils {
 
-    // 日志 TAG
-    private static final String TAG = CapturePictureUtils.class.getSimpleName();
-
     private CapturePictureUtils() {
     }
+
+    // 日志 TAG
+    private static final String TAG = CapturePictureUtils.class.getSimpleName();
 
     // ========
     // = 截图 =
@@ -479,6 +479,8 @@ public final class CapturePictureUtils {
                 int tempHeight = 0;
                 // 循环每一行绘制每个 Item 并保存 Bitmap
                 for (int i = 0; i < lineNumber; i++) {
+                    // 清空高度
+                    tempHeight = 0;
                     // 循环列数
                     for (int j = 0; j < numColumns; j++) {
                         // 获取对应的索引
@@ -675,7 +677,7 @@ public final class CapturePictureUtils {
      * @param divisor 除数
      * @return 倍数
      */
-    public static int getMultiple(final int value, final int divisor) {
+    private static int getMultiple(final int value, final int divisor) {
         if (value <= 0 || divisor <= 0) return 0;
         if (value <= divisor) return 1;
         return (value % divisor == 0) ? (value / divisor) : (value / divisor) + 1;
