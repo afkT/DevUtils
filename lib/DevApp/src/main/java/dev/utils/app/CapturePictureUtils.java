@@ -14,6 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -272,6 +273,32 @@ public final class CapturePictureUtils {
      */
     public static Bitmap snapshotByLinearLayout(final LinearLayout linearLayout, final Bitmap.Config config) {
         return snapshotByView(linearLayout, config);
+    }
+
+    // ================
+    // = FrameLayout =
+    // ================
+
+    /**
+     * 通过 FrameLayout 绘制为 Bitmap
+     * @param frameLayout {@link FrameLayout}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByFrameLayout(final FrameLayout frameLayout) {
+        return snapshotByFrameLayout(frameLayout, Bitmap.Config.ARGB_8888);
+    }
+
+    /**
+     * 通过 FrameLayout 绘制为 Bitmap
+     * <pre>
+     *     FrameLayout 容器中不能有诸如 ListView、GridView、WebView 这样的高度可变的控件
+     * </pre>
+     * @param frameLayout {@link FrameLayout}
+     * @param config       {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByFrameLayout(final FrameLayout frameLayout, final Bitmap.Config config) {
+        return snapshotByView(frameLayout, config);
     }
 
     // ==============
