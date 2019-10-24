@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Picture;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -13,7 +14,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.ScrollView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -303,6 +309,70 @@ public final class CapturePictureUtils {
             return bitmap;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByScrollView");
+        }
+        return null;
+    }
+
+    // ============
+    // = ListView =
+    // ============
+
+    /**
+     * 通过 ListView 绘制为 Bitmap
+     * @param listView {@link ListView}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByListView(final ListView listView) {
+        return snapshotByListView(listView, Bitmap.Config.ARGB_8888);
+    }
+
+    /**
+     * 通过 ListView 绘制为 Bitmap
+     * @param listView {@link ListView}
+     * @param config   {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByListView(final ListView listView, final Bitmap.Config config) {
+        if (listView == null) return null;
+        try {
+            int height = 0;
+            // 获取子项间分隔符占用的高度
+            int dividerHeight = listView.getDividerHeight();
+            ListAdapter listAdapter = listView.getAdapter();
+            List<Bitmap> listBitmaps = new ArrayList<>();
+            // 循环绘制每个 Item 并保存 Bitmap
+            for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
+                View childView = listAdapter.getView(i, null, listView);
+                childView.measure(View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.EXACTLY),
+                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+                childView.setDrawingCacheEnabled(true);
+                childView.buildDrawingCache();
+
+                listBitmaps.add(childView.getDrawingCache());
+                height += childView.getMeasuredHeight();
+            }
+            // 追加子项间分隔符占用的高度
+            height += (dividerHeight * (listAdapter.getCount() - 1));
+
+            int width = listView.getMeasuredWidth();
+            // 创建位图
+            Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+            Canvas canvas = new Canvas(bitmap);
+            // 拼接 Bitmap
+            Paint paint = new Paint();
+            int iHeight = 0;
+            for (int i = 0, len = listBitmaps.size(); i < len; i++) {
+                Bitmap bmp = listBitmaps.get(i);
+                canvas.drawBitmap(bmp, 0, iHeight, paint);
+                iHeight += (bmp.getHeight() + dividerHeight);
+                // 释放资源
+                bmp.recycle();
+                bmp = null;
+            }
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "snapshotByListView");
         }
         return null;
     }
