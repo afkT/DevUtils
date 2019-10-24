@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -38,8 +39,6 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://www.jianshu.com/p/0faa70e88441"/>
  *     X5 WebView 使用 snapshotWholePage 方法清晰截图
  *     @see <a href="https://www.v2ex.com/t/583020"/>
- *     Android 实现截屏和截长图功能的几种方法
- *     @see <a href="https://blog.csdn.net/hailong0529/article/details/88677358"/>
  * </pre>
  */
 public final class CapturePictureUtils {
@@ -295,7 +294,7 @@ public final class CapturePictureUtils {
      *     FrameLayout 容器中不能有诸如 ListView、GridView、WebView 这样的高度可变的控件
      * </pre>
      * @param frameLayout {@link FrameLayout}
-     * @param config       {@link Bitmap.Config}
+     * @param config      {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByFrameLayout(final FrameLayout frameLayout, final Bitmap.Config config) {
@@ -321,7 +320,7 @@ public final class CapturePictureUtils {
      *     RelativeLayout 容器中不能有诸如 ListView、GridView、WebView 这样的高度可变的控件
      * </pre>
      * @param relativeLayout {@link RelativeLayout}
-     * @param config       {@link Bitmap.Config}
+     * @param config         {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByRelativeLayout(final RelativeLayout relativeLayout, final Bitmap.Config config) {
@@ -353,18 +352,54 @@ public final class CapturePictureUtils {
     public static Bitmap snapshotByScrollView(final ScrollView scrollView, final Bitmap.Config config) {
         if (scrollView == null) return null;
         try {
-            int height = 0;
-            for (int i = 0, len = scrollView.getChildCount(); i < len; i++) {
-                height += scrollView.getChildAt(i).getHeight();
-            }
+            int height = scrollView.getChildAt(0).getHeight();
 
             Bitmap bitmap = Bitmap.createBitmap(scrollView.getWidth(), height, config);
             Canvas canvas = new Canvas(bitmap);
-            scrollView.layout(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), scrollView.getBottom());
+            scrollView.layout(scrollView.getLeft(), scrollView.getTop(),
+                    scrollView.getRight(), scrollView.getBottom());
             scrollView.draw(canvas);
             return bitmap;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByScrollView");
+        }
+        return null;
+    }
+
+    // ========================
+    // = HorizontalScrollView =
+    // ========================
+
+    /**
+     * 通过 HorizontalScrollView 绘制为 Bitmap
+     * @param scrollView {@link HorizontalScrollView}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByHorizontalScrollView(final HorizontalScrollView scrollView) {
+        return snapshotByHorizontalScrollView(scrollView, Bitmap.Config.ARGB_8888);
+    }
+
+    /**
+     * 通过 HorizontalScrollView 绘制为 Bitmap
+     * @param scrollView {@link HorizontalScrollView}
+     * @param config     {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByHorizontalScrollView(final HorizontalScrollView scrollView, final Bitmap.Config config) {
+        if (scrollView == null) return null;
+        try {
+            View view = scrollView.getChildAt(0);
+            int width = view.getWidth();
+            int height = view.getHeight();
+
+            Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+            Canvas canvas = new Canvas(bitmap);
+            scrollView.layout(scrollView.getLeft(), scrollView.getTop(),
+                    scrollView.getRight(), scrollView.getBottom());
+            scrollView.draw(canvas);
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "snapshotByHorizontalScrollView");
         }
         return null;
     }
