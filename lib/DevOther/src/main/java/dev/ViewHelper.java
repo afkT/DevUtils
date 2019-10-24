@@ -2115,6 +2115,80 @@ public final class ViewHelper {
         return this;
     }
 
+    // ==================
+    // = RelativeLayout =
+    // ==================
+
+    /**
+     * 设置 RelativeLayout View 布局规则
+     * @param view {@link View}
+     * @param verb 布局位置
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addRule(final View view, final int verb) {
+        ViewUtils.addRule(view, verb);
+        return this;
+    }
+
+    /**
+     * 设置 RelativeLayout View 布局规则
+     * @param view    {@link View}
+     * @param verb    布局位置
+     * @param subject 关联 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addRule(final View view, final int verb, final int subject) {
+        ViewUtils.addRule(view, verb, subject);
+        return this;
+    }
+
+    /**
+     * 移除 RelativeLayout View 布局规则
+     * @param view {@link View}
+     * @param verb 布局位置
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper removeRule(final View view, final int verb) {
+        ViewUtils.removeRule(view, verb);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置多个 RelativeLayout View 布局规则
+     * @param verb  布局位置
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addRules(final int verb, final View... views) {
+        ViewUtils.addRules(verb, views);
+        return this;
+    }
+
+    /**
+     * 设置多个 RelativeLayout View 布局规则
+     * @param verb    布局位置
+     * @param subject 关联 View id
+     * @param views   View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addRules(final int verb, final int subject, final View... views) {
+        ViewUtils.addRules(verb, subject, views);
+        return this;
+    }
+
+    /**
+     * 移除多个 RelativeLayout View 布局规则
+     * @param verb  布局位置
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper removeRules(final int verb, final View... views) {
+        ViewUtils.removeRules(verb, views);
+        return this;
+    }
+
     // ============
     // = Listener =
     // ============
