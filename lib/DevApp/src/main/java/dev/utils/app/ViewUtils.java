@@ -39,6 +39,32 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://blog.csdn.net/qq_26971803/article/details/54347598"/>
  *     Android 常用布局属性
  *     @see <a href="https://www.jianshu.com/p/78e2dfb6d244"/>
+ *     <p></p>
+ *     RelativeLayout 的特有属性
+ *     属性值为 true、false
+ *     android:layout_centerHrizontal 位于父控件的横向中间位置
+ *     android:layout_centerVertical 位于父控件的纵向中间位置
+ *     android:layout_centerInparent 位于父控件的纵横向中间位置
+ *     android:layout_alignParentBottom 贴紧父元素的下边缘
+ *     android:layout_alignParentLeft 贴紧父元素的左边缘
+ *     android:layout_alignParentRight 贴紧父元素的右边缘
+ *     android:layout_alignParentTop 贴紧父元素的上边缘
+ *     android:layout_alignParentStart 将控件开始位置与父控件的开始位置对齐
+ *     android:layout_alignParentEnd 将控件结束位置与父控件的结束位置对齐
+ *     属性值为引用 id
+ *     android:layout_below 在某元素的下方
+ *     android:layout_above 在某元素的的上方
+ *     android:layout_toLeftOf 在某元素的左边
+ *     android:layout_toRightOf 在某元素的右边
+ *     android:layout_toStartOf 在某元素的开始位置
+ *     android:layout_toEndOf 在某元素的结束位置
+ *     android:layout_alignTop 本元素的上边缘和某元素的的上边缘对齐
+ *     android:layout_alignLeft 本元素的左边缘和某元素的的左边缘对齐
+ *     android:layout_alignBottom 本元素的下边缘和某元素的的下边缘对齐
+ *     android:layout_alignRight 本元素的右边缘和某元素的的右边缘对齐
+ *     android:layout_alignStart 本元素与某元素开始位置对齐
+ *     android:layout_alignEnd 本元素与某元素结束位置对齐
+ *     android:layout_alignBaseline 将当前控件的基线与指定 id 控件 t 的基线对齐
  * </pre>
  */
 public final class ViewUtils {
@@ -2102,7 +2128,7 @@ public final class ViewUtils {
     /**
      * 设置 RelativeLayout View 布局规则
      * @param view {@link View}
-     * @param verb  布局位置
+     * @param verb 布局位置
      * @return {@link View}
      */
     public static View addRule(final View view, final int verb) {
@@ -2111,8 +2137,8 @@ public final class ViewUtils {
 
     /**
      * 设置 RelativeLayout View 布局规则
-     * @param view {@link View}
-     * @param verb  布局位置
+     * @param view    {@link View}
+     * @param verb    布局位置
      * @param subject 关联 View id
      * @return {@link View}
      */
@@ -2131,7 +2157,7 @@ public final class ViewUtils {
     /**
      * 移除 RelativeLayout View 布局规则
      * @param view {@link View}
-     * @param verb  布局位置
+     * @param verb 布局位置
      * @return {@link View}
      */
     public static View removeRule(final View view, final int verb) {
@@ -2151,8 +2177,9 @@ public final class ViewUtils {
     }
 
     /**
-     * 移除 RelativeLayout View 布局规则
+     * 获取 RelativeLayout View 指定布局位置 View id
      * @param view {@link View}
+     * @param verb 布局位置
      * @return 关联 View id
      */
     public static int getRule(final View view, final int verb) {
@@ -2161,12 +2188,52 @@ public final class ViewUtils {
                 RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     return layoutParams.getRule(verb);
+                } else {
+                    return layoutParams.getRules()[verb];
                 }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getRule");
             }
         }
         return 0;
+    }
+
+    // =
+
+    /**
+     * 设置多个 RelativeLayout View 布局规则
+     * @param verb  布局位置
+     * @param views View[]
+     */
+    public static void addRules(final int verb, final View... views) {
+        addRules(verb, -1, views);
+    }
+
+    /**
+     * 设置多个 RelativeLayout View 布局规则
+     * @param verb    布局位置
+     * @param subject 关联 View id
+     * @param views   View[]
+     */
+    public static void addRules(final int verb, final int subject, final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                addRule(views[i], verb, subject);
+            }
+        }
+    }
+
+    /**
+     * 移除多个 RelativeLayout View 布局规则
+     * @param verb  布局位置
+     * @param views View[]
+     */
+    public static void removeRules(final int verb, final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                removeRule(views[i], verb);
+            }
+        }
     }
 
     // ============
