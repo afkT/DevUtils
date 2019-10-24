@@ -171,9 +171,19 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByView(final View view) {
+        return snapshotByView(view, Bitmap.Config.ARGB_8888);
+    }
+
+    /**
+     * 通过 View 绘制为 Bitmap
+     * @param view   {@link View}
+     * @param config {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByView(final View view, final Bitmap.Config config) {
         if (view == null) return null;
         try {
-            Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), config);
             Canvas canvas = new Canvas(bitmap);
             view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
             view.draw(canvas);
