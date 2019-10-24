@@ -12,6 +12,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -234,6 +236,73 @@ public final class CapturePictureUtils {
             return bitmap;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByViewCache");
+        }
+        return null;
+    }
+
+    // ================
+    // = LinearLayout =
+    // ================
+
+    /**
+     * 通过 LinearLayout 绘制为 Bitmap
+     * @param linearLayout {@link LinearLayout}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByLinearLayout(final LinearLayout linearLayout) {
+        return snapshotByLinearLayout(linearLayout, Bitmap.Config.ARGB_8888);
+    }
+
+    /**
+     * 通过 LinearLayout 绘制为 Bitmap
+     * <pre>
+     *     LinearLayout 容器中不能有诸如 ListView、WebView 这样的高度可变的控件
+     * </pre>
+     * @param linearLayout {@link LinearLayout}
+     * @param config       {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByLinearLayout(final LinearLayout linearLayout, final Bitmap.Config config) {
+        return snapshotByView(linearLayout, config);
+    }
+
+    // ==============
+    // = ScrollView =
+    // ==============
+
+    /**
+     * 通过 ScrollView 绘制为 Bitmap
+     * @param scrollView {@link ScrollView}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByScrollView(final ScrollView scrollView) {
+        return snapshotByScrollView(scrollView, Bitmap.Config.ARGB_8888);
+    }
+
+    /**
+     * 通过 ScrollView 绘制为 Bitmap
+     * <pre>
+     *     ScrollView 容器中不能有诸如 ListView、WebView 这样的高度可变的控件
+     * </pre>
+     * @param scrollView {@link ScrollView}
+     * @param config     {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByScrollView(final ScrollView scrollView, final Bitmap.Config config) {
+        if (scrollView == null) return null;
+        try {
+            int height = 0;
+            for (int i = 0, len = scrollView.getChildCount(); i < len; i++) {
+                height += scrollView.getChildAt(i).getHeight();
+            }
+
+            Bitmap bitmap = Bitmap.createBitmap(scrollView.getWidth(), height, config);
+            Canvas canvas = new Canvas(bitmap);
+            scrollView.layout(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), scrollView.getBottom());
+            scrollView.draw(canvas);
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "snapshotByScrollView");
         }
         return null;
     }
