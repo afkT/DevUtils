@@ -379,6 +379,66 @@ public final class ViewUtils {
     // =
 
     /**
+     * 设置 View 宽度
+     * @param view  {@link View}
+     * @param width View 宽度
+     * @return {@link View}
+     */
+    public static View setWidth(final View view, final int width) {
+        if (view != null) {
+            try {
+                view.getLayoutParams().width = width;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setWidth");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 获取 View 宽度
+     * @param view {@link View}
+     * @return View 宽度
+     */
+    public static int getWidth(final View view) {
+        if (view != null) {
+            return view.getWidth();
+        }
+        return -1;
+    }
+
+    /**
+     * 设置 View 高度
+     * @param view   {@link View}
+     * @param height View 高度
+     * @return {@link View}
+     */
+    public static View setHeight(final View view, final int height) {
+        if (view != null) {
+            try {
+                view.getLayoutParams().height = height;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setHeight");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 获取 View 高度
+     * @param view {@link View}
+     * @return View 高度
+     */
+    public static int getHeight(final View view) {
+        if (view != null) {
+            return view.getHeight();
+        }
+        return -1;
+    }
+
+    // =
+
+    /**
      * 获取 View 最小高度
      * @param view View
      * @return View 最小高度
