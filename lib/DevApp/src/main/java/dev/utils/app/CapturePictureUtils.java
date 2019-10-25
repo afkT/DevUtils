@@ -193,7 +193,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByView(final View view, final Bitmap.Config config) {
-        if (view == null) return null;
+        if (view == null || config == null) return null;
         try {
             Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), config);
             Canvas canvas = new Canvas(bitmap);
@@ -351,7 +351,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByScrollView(final ScrollView scrollView, final Bitmap.Config config) {
-        if (scrollView == null) return null;
+        if (scrollView == null || config == null) return null;
         try {
             int height = scrollView.getChildAt(0).getHeight();
 
@@ -387,7 +387,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByHorizontalScrollView(final HorizontalScrollView scrollView, final Bitmap.Config config) {
-        if (scrollView == null) return null;
+        if (scrollView == null || config == null) return null;
         try {
             View view = scrollView.getChildAt(0);
             int width = view.getWidth();
@@ -425,7 +425,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByNestedScrollView(final NestedScrollView scrollView, final Bitmap.Config config) {
-        if (scrollView == null) return null;
+        if (scrollView == null || config == null) return null;
         try {
             View view = scrollView.getChildAt(0);
             int width = view.getWidth();
@@ -463,7 +463,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByListView(final ListView listView, final Bitmap.Config config) {
-        if (listView == null) return null;
+        if (listView == null || config == null) return null;
         try {
             int height = 0;
             // 获取子项间分隔符占用的高度
@@ -544,7 +544,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByGridView(final GridView gridView, final Bitmap.Config config, final boolean listViewEffect) {
-        if (gridView == null) return null;
+        if (gridView == null || config == null) return null;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return null;
         try {
             int height = 0;
