@@ -11,7 +11,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -523,7 +522,39 @@ public final class CapturePictureUtils {
                             bmp = null;
                         }
                     } else { // 横向滑动
+                        int width = 0;
+                        for (int i = 0; i < itemCount; i++) {
+                            RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
+                            adapter.onBindViewHolder(holder, i);
+                            View childView = holder.itemView;
+                            childView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                            childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
 
+                            // 绘制缓存 Bitmap
+                            Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                            Canvas canvas = new Canvas(drawingCache);
+                            childView.draw(canvas);
+
+                            listBitmaps.add(drawingCache);
+                            width += childView.getMeasuredWidth();
+                        }
+
+                        height = recyclerView.getMeasuredHeight();
+                        // 创建位图
+                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Canvas canvas = new Canvas(bitmap);
+                        // 拼接 Bitmap
+                        Paint paint = new Paint();
+                        int iWidth = 0;
+                        for (int i = 0, len = listBitmaps.size(); i < len; i++) {
+                            Bitmap bmp = listBitmaps.get(i);
+                            canvas.drawBitmap(bmp, iWidth, 0, paint);
+                            iWidth += bmp.getWidth();
+                            // 释放资源
+                            bmp.recycle();
+                            bmp = null;
+                        }
                     }
                 }
             }
