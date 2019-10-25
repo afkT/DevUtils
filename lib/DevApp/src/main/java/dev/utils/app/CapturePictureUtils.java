@@ -14,6 +14,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,9 +27,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -477,26 +475,30 @@ public final class CapturePictureUtils {
             // 获取布局管理器
             RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
             if (layoutManager != null && adapter != null) {
-                int height = 0;
+                int width = 0, height = 0;
                 // Item 总条数
                 int itemCount = adapter.getItemCount();
                 // 没数据则直接跳过
                 if (itemCount == 0) return null;
                 // View Bitmaps
-                List<Bitmap> listBitmaps = new ArrayList<>();
+                Bitmap[] bitmaps = new Bitmap[itemCount];
 //                // 开启缓存
 //                recyclerView.setDrawingCacheEnabled(true);
                 // 获取类型
                 Class clazz = layoutManager.getClass();
+                // 判断横竖布局
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
+                int orientation = linearLayoutManager.getOrientation();
+                boolean vertical = (orientation == 1);
                 // layoutManager instanceof XXX 可以通过这种方式判断
                 // 但是需要优先判断 StaggeredGridLayoutManager、GridLayoutManager 最后判断 LinearLayoutManager
                 // 判断布局类型
                 if (clazz == LinearLayoutManager.class) {
-                    // 判断横竖布局
-                    LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
-                    int orientation = linearLayoutManager.getOrientation();
-                    boolean vertical = (orientation == 1);
-                    if (vertical) { // 竖向滑动
+                    if (vertical) {
+                        // ============
+                        // = 竖向滑动 =
+                        // ============
+
                         for (int i = 0; i < itemCount; i++) {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                             adapter.onBindViewHolder(holder, i);
@@ -510,27 +512,29 @@ public final class CapturePictureUtils {
                             Canvas canvas = new Canvas(drawingCache);
                             childView.draw(canvas);
 
-                            listBitmaps.add(drawingCache);
+                            bitmaps[i] = drawingCache;
                             height += childView.getMeasuredHeight();
                         }
 
-                        int width = recyclerView.getMeasuredWidth();
+                        width = recyclerView.getMeasuredWidth();
                         // 创建位图
                         bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
-                        // 拼接 Bitmap
                         Paint paint = new Paint();
                         int iHeight = 0;
-                        for (int i = 0, len = listBitmaps.size(); i < len; i++) {
-                            Bitmap bmp = listBitmaps.get(i);
+                        for (int i = 0, len = bitmaps.length; i < len; i++) {
+                            Bitmap bmp = bitmaps[i];
                             canvas.drawBitmap(bmp, 0, iHeight, paint);
                             iHeight += bmp.getHeight();
                             // 释放资源
                             bmp.recycle();
                             bmp = null;
                         }
-                    } else { // 横向滑动
-                        int width = 0;
+                    } else {
+                        // ============
+                        // = 横向滑动 =
+                        // ============
+
                         for (int i = 0; i < itemCount; i++) {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                             adapter.onBindViewHolder(holder, i);
@@ -544,7 +548,7 @@ public final class CapturePictureUtils {
                             Canvas canvas = new Canvas(drawingCache);
                             childView.draw(canvas);
 
-                            listBitmaps.add(drawingCache);
+                            bitmaps[i] = drawingCache;
                             width += childView.getMeasuredWidth();
                         }
 
@@ -552,11 +556,10 @@ public final class CapturePictureUtils {
                         // 创建位图
                         bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
-                        // 拼接 Bitmap
                         Paint paint = new Paint();
                         int iWidth = 0;
-                        for (int i = 0, len = listBitmaps.size(); i < len; i++) {
-                            Bitmap bmp = listBitmaps.get(i);
+                        for (int i = 0, len = bitmaps.length; i < len; i++) {
+                            Bitmap bmp = bitmaps[i];
                             canvas.drawBitmap(bmp, iWidth, 0, paint);
                             iWidth += bmp.getWidth();
                             // 释放资源
@@ -569,92 +572,195 @@ public final class CapturePictureUtils {
                     // 获取一共多少列
                     int spanCount = gridLayoutManager.getSpanCount();
                     // 获取倍数 ( 行数 )
-                    int lineNumber = getMultiple(itemCount, spanCount);
+                    int lineNumber = 0;
                     // 每列之间的间隔 |
                     int horizontalSpacing = 0;
                     // 每行之间的间隔 -
                     int verticalSpacing = 0;
-                    // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / spanCount
-                    int childWidth = (recyclerView.getWidth() - (spanCount - 1) * horizontalSpacing) / spanCount;
-                    // 记录每一行高度
-                    int[] itemHeightArrays = new int[lineNumber];
-                    // 临时高度 - 保存一行中最长列的高度
-                    int tempHeight = 0;
 
-                    // 循环每一行绘制每个 Item 并保存 Bitmap
-                    for (int i = 0; i < lineNumber; i++) {
-                        // 清空高度
-                        tempHeight = 0;
-                        // 循环列数
-                        for (int j = 0; j < spanCount; j++) {
-                            // 获取对应的索引
-                            int position = i * spanCount + j;
-                            // 如果大于总数据则跳过
-                            if (position < itemCount) {
-                                RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
-                                adapter.onBindViewHolder(holder, position);
-                                View childView = holder.itemView;
-                                childView.measure(View.MeasureSpec.makeMeasureSpec(childWidth, View.MeasureSpec.EXACTLY),
-                                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                                childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+                    if (vertical) {
+                        // ============
+                        // = 竖向滑动 =
+                        // ============
 
-                                // 绘制缓存 Bitmap
-                                Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
-                                Canvas canvas = new Canvas(drawingCache);
-                                childView.draw(canvas);
+                        // 获取倍数 ( 行数 )
+                        lineNumber = getMultiple(itemCount, spanCount);
+                        // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / spanCount
+                        int childWidth = (recyclerView.getWidth() - (spanCount - 1) * horizontalSpacing) / spanCount;
+                        // 记录每一行高度
+                        int[] itemHeightArrays = new int[lineNumber];
+                        // 临时高度 - 保存一行中最长列的高度
+                        int tempHeight = 0;
 
-                                listBitmaps.add(drawingCache);
-                                int itemHeight = childView.getMeasuredHeight();
-                                // 保留最大高度
-                                tempHeight = Math.max(itemHeight, tempHeight);
+                        // 循环每一行绘制每个 Item 并保存 Bitmap
+                        for (int i = 0; i < lineNumber; i++) {
+                            // 清空高度
+                            tempHeight = 0;
+                            // 循环列数
+                            for (int j = 0; j < spanCount; j++) {
+                                // 获取对应的索引
+                                int position = i * spanCount + j;
+                                // 小于总数才处理
+                                if (position < itemCount) {
+                                    RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
+                                    adapter.onBindViewHolder(holder, position);
+                                    View childView = holder.itemView;
+                                    childView.measure(View.MeasureSpec.makeMeasureSpec(childWidth, View.MeasureSpec.EXACTLY),
+                                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                                    childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+
+                                    // 绘制缓存 Bitmap
+                                    Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                                    Canvas canvas = new Canvas(drawingCache);
+                                    childView.draw(canvas);
+
+                                    bitmaps[position] = drawingCache;
+                                    int itemHeight = childView.getMeasuredHeight();
+                                    // 保留最大高度
+                                    tempHeight = Math.max(itemHeight, tempHeight);
+                                }
+
+                                // 最后记录高度并累加
+                                if (j == spanCount - 1) {
+                                    height += tempHeight;
+                                    itemHeightArrays[i] = tempHeight;
+                                }
                             }
+                        }
 
-                            // 最后记录高度并累加
-                            if (j == spanCount - 1) {
-                                height += tempHeight;
-                                itemHeightArrays[i] = tempHeight;
+                        // 追加子项间分隔符占用的高度
+                        height += (verticalSpacing * (lineNumber - 1));
+
+                        width = recyclerView.getMeasuredWidth();
+                        // 创建位图
+                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Canvas canvas = new Canvas(bitmap);
+                        Paint paint = new Paint();
+                        int iHeight = 0;
+                        // 循环每一行绘制每个 Item Bitmap
+                        for (int i = 0; i < lineNumber; i++) {
+                            // 获取每一行最长列的高度
+                            int itemHeight = itemHeightArrays[i];
+                            // 循环列数
+                            for (int j = 0; j < spanCount; j++) {
+                                // 获取对应的索引
+                                int position = i * spanCount + j;
+                                // 小于总数才处理
+                                if (position < itemCount) {
+                                    Bitmap bmp = bitmaps[position];
+                                    // 计算一下边距
+                                    int left = j * (horizontalSpacing + childWidth);
+                                    Matrix matrix = new Matrix();
+                                    matrix.postTranslate(left, iHeight);
+                                    // 绘制到 Bitmap
+                                    canvas.drawBitmap(bmp, matrix, paint);
+                                    // 释放资源
+//                                    bmp.recycle();
+                                    bmp = null;
+                                }
+
+                                // 最后记录高度并累加
+                                if (j == spanCount - 1) {
+                                    iHeight += itemHeight + verticalSpacing;
+                                }
+                            }
+                        }
+                    } else {
+                        // ============
+                        // = 横向滑动 =
+                        // ============
+
+                        // 获取行数
+                        lineNumber = Math.min(spanCount, itemCount);
+                        // 记录每一行宽度
+                        int[] itemWidthArrays = new int[lineNumber];
+                        // 记录每一行高度
+                        int[] itemHeightArrays = new int[lineNumber];
+                        // 获取一共多少列
+                        int numColumns = getMultiple(itemCount, lineNumber);
+                        // 临时高度 - 保存一行中最长列的高度
+                        int tempHeight = 0;
+
+                        // 循环每一行绘制每个 Item 并保存 Bitmap
+                        for (int i = 0; i < lineNumber; i++) {
+                            for (int j = 0; j < numColumns; j++) {
+                                // 获取对应的索引
+                                int position = j * lineNumber + i;
+                                // 小于总数才处理
+                                if (position < itemCount) {
+                                    RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
+                                    adapter.onBindViewHolder(holder, position);
+                                    View childView = holder.itemView;
+                                    childView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                                    childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+
+                                    // 绘制缓存 Bitmap
+                                    Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                                    Canvas canvas = new Canvas(drawingCache);
+                                    childView.draw(canvas);
+
+                                    bitmaps[position] = drawingCache;
+                                    int itemWidth = childView.getMeasuredWidth();
+                                    int itemHeight = childView.getMeasuredHeight();
+                                    // 累加宽度
+                                    itemWidthArrays[i] += itemWidth;
+                                    // 保留最大高度
+                                    tempHeight = Math.max(itemHeight, tempHeight);
+                                }
+
+                                // 最后记录处理
+                                if (j == numColumns - 1) {
+                                    height += tempHeight;
+                                    width = Math.max(width, itemWidthArrays[i]);
+                                    itemHeightArrays[i] = tempHeight;
+                                }
+                            }
+                        }
+
+                        // 追加子项间分隔符占用的高度
+                        height += (verticalSpacing * (numColumns - 1));
+
+                        // 创建位图
+                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Canvas canvas = new Canvas(bitmap);
+                        Paint paint = new Paint();
+                        int iWidth = 0, iHeight = 0;
+
+                        // 循环每一行绘制每个 Item 并保存 Bitmap
+                        for (int i = 0; i < lineNumber; i++) {
+                            int itemHeight = itemHeightArrays[i];
+
+                            for (int j = 0; j < numColumns; j++) {
+                                // 获取对应的索引
+                                int position = j * lineNumber + i;
+                                // 小于总数才处理
+                                if (position < itemCount) {
+                                    Bitmap bmp = bitmaps[position];
+                                    // 计算一下边距
+                                    int left = iWidth + (j * horizontalSpacing);
+                                    Matrix matrix = new Matrix();
+                                    matrix.postTranslate(left, iHeight);
+                                    // 绘制到 Bitmap
+                                    canvas.drawBitmap(bmp, matrix, paint);
+                                    // 累加 Bitmap 宽度
+                                    iWidth += bmp.getWidth();
+                                    // 释放资源
+//                                    bmp.recycle();
+                                    bmp = null;
+
+                                }
+
+                                // 最后记录处理
+                                if (j == numColumns - 1) {
+                                    iWidth = 0;
+                                    iHeight += itemHeight + (verticalSpacing * i);
+                                }
                             }
                         }
                     }
+                } else if (clazz == StaggeredGridLayoutManager.class) {
 
-                    // 追加子项间分隔符占用的高度
-                    height += (verticalSpacing * (lineNumber - 1));
-
-                    int width = recyclerView.getMeasuredWidth();
-                    // 创建位图
-                    bitmap = Bitmap.createBitmap(width, height, config);
-                    Canvas canvas = new Canvas(bitmap);
-                    // 拼接 Bitmap
-                    Paint paint = new Paint();
-                    int iHeight = 0;
-                    // 循环每一行绘制每个 Item Bitmap
-                    for (int i = 0; i < lineNumber; i++) {
-                        // 获取每一行最长列的高度
-                        int itemHeight = itemHeightArrays[i];
-                        // 循环列数
-                        for (int j = 0; j < spanCount; j++) {
-                            // 获取对应的索引
-                            int position = i * spanCount + j;
-                            // 如果大于总数据则跳过
-                            if (position < itemCount) {
-                                Bitmap bmp = listBitmaps.get(position);
-                                // 计算一下边距
-                                int left = j * (horizontalSpacing + childWidth);
-                                Matrix matrix = new Matrix();
-                                matrix.postTranslate(left, iHeight);
-                                // 绘制到 Bitmap
-                                canvas.drawBitmap(bmp, matrix, paint);
-                                // 释放资源
-//                                bmp.recycle();
-                                bmp = null;
-                            }
-
-                            // 最后记录高度并累加
-                            if (j == spanCount - 1) {
-                                iHeight += itemHeight + verticalSpacing;
-                            }
-                        }
-                    }
                 }
             }
         } catch (Exception e) {
@@ -693,11 +799,12 @@ public final class CapturePictureUtils {
             int dividerHeight = listView.getDividerHeight();
             // Adapter
             ListAdapter listAdapter = listView.getAdapter();
-            List<Bitmap> listBitmaps = new ArrayList<>();
             // Item 总条数
             int itemCount = listAdapter.getCount();
             // 没数据则直接跳过
             if (itemCount == 0) return null;
+            // View Bitmaps
+            Bitmap[] bitmaps = new Bitmap[itemCount];
 
             // 循环绘制每个 Item 并保存 Bitmap
             for (int i = 0; i < itemCount; i++) {
@@ -708,7 +815,7 @@ public final class CapturePictureUtils {
                 childView.setDrawingCacheEnabled(true);
                 childView.buildDrawingCache();
 
-                listBitmaps.add(childView.getDrawingCache());
+                bitmaps[i] = childView.getDrawingCache();
                 height += childView.getMeasuredHeight();
             }
             // 追加子项间分隔符占用的高度
@@ -718,11 +825,10 @@ public final class CapturePictureUtils {
             // 创建位图
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
-            // 拼接 Bitmap
             Paint paint = new Paint();
             int iHeight = 0;
-            for (int i = 0, len = listBitmaps.size(); i < len; i++) {
-                Bitmap bmp = listBitmaps.get(i);
+            for (int i = 0, len = bitmaps.length; i < len; i++) {
+                Bitmap bmp = bitmaps[i];
                 canvas.drawBitmap(bmp, 0, iHeight, paint);
                 iHeight += (bmp.getHeight() + dividerHeight);
                 // 释放资源
@@ -779,11 +885,12 @@ public final class CapturePictureUtils {
             int verticalSpacing = gridView.getVerticalSpacing();
             // Adapter
             ListAdapter listAdapter = gridView.getAdapter();
-            List<Bitmap> listBitmaps = new ArrayList<>();
             // Item 总条数
             int itemCount = listAdapter.getCount();
             // 没数据则直接跳过
             if (itemCount == 0) return null;
+            // View Bitmaps
+            Bitmap[] bitmaps = new Bitmap[itemCount];
 
             // 效果处理 - ListView 效果 Item 铺满
             if (listViewEffect) {
@@ -796,7 +903,7 @@ public final class CapturePictureUtils {
                     childView.setDrawingCacheEnabled(true);
                     childView.buildDrawingCache();
 
-                    listBitmaps.add(childView.getDrawingCache());
+                    bitmaps[i] = childView.getDrawingCache();
                     height += childView.getMeasuredHeight();
                 }
                 // 追加子项间分隔符占用的高度
@@ -806,11 +913,10 @@ public final class CapturePictureUtils {
                 // 创建位图
                 Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                 Canvas canvas = new Canvas(bitmap);
-                // 拼接 Bitmap
                 Paint paint = new Paint();
                 int iHeight = 0;
-                for (int i = 0, len = listBitmaps.size(); i < len; i++) {
-                    Bitmap bmp = listBitmaps.get(i);
+                for (int i = 0, len = bitmaps.length; i < len; i++) {
+                    Bitmap bmp = bitmaps[i];
                     canvas.drawBitmap(bmp, 0, iHeight, paint);
                     iHeight += (bmp.getHeight() + verticalSpacing);
                     // 释放资源
@@ -836,7 +942,7 @@ public final class CapturePictureUtils {
                     for (int j = 0; j < numColumns; j++) {
                         // 获取对应的索引
                         int position = i * numColumns + j;
-                        // 如果大于总数据则跳过
+                        // 小于总数才处理
                         if (position < itemCount) {
                             View childView = listAdapter.getView(position, null, gridView);
                             childView.measure(View.MeasureSpec.makeMeasureSpec(childWidth, View.MeasureSpec.EXACTLY),
@@ -845,7 +951,7 @@ public final class CapturePictureUtils {
                             childView.setDrawingCacheEnabled(true);
                             childView.buildDrawingCache();
 
-                            listBitmaps.add(childView.getDrawingCache());
+                            bitmaps[position] = childView.getDrawingCache();
                             int itemHeight = childView.getMeasuredHeight();
                             // 保留最大高度
                             tempHeight = Math.max(itemHeight, tempHeight);
@@ -865,7 +971,6 @@ public final class CapturePictureUtils {
                 // 创建位图
                 Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                 Canvas canvas = new Canvas(bitmap);
-                // 拼接 Bitmap
                 Paint paint = new Paint();
                 int iHeight = 0;
                 // 循环每一行绘制每个 Item Bitmap
@@ -876,9 +981,9 @@ public final class CapturePictureUtils {
                     for (int j = 0; j < numColumns; j++) {
                         // 获取对应的索引
                         int position = i * numColumns + j;
-                        // 如果大于总数据则跳过
+                        // 小于总数才处理
                         if (position < itemCount) {
-                            Bitmap bmp = listBitmaps.get(position);
+                            Bitmap bmp = bitmaps[position];
                             // 计算一下边距
                             int left = j * (horizontalSpacing + childWidth);
                             Matrix matrix = new Matrix();
