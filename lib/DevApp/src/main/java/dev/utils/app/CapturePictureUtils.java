@@ -10,6 +10,7 @@ import android.graphics.Picture;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.v4.widget.NestedScrollView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -400,6 +401,44 @@ public final class CapturePictureUtils {
             return bitmap;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByHorizontalScrollView");
+        }
+        return null;
+    }
+
+    // ====================
+    // = NestedScrollView =
+    // ====================
+
+    /**
+     * 通过 NestedScrollView 绘制为 Bitmap
+     * @param scrollView {@link NestedScrollView}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByNestedScrollView(final NestedScrollView scrollView) {
+        return snapshotByNestedScrollView(scrollView, Bitmap.Config.ARGB_8888);
+    }
+
+    /**
+     * 通过 NestedScrollView 绘制为 Bitmap
+     * @param scrollView {@link NestedScrollView}
+     * @param config     {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByNestedScrollView(final NestedScrollView scrollView, final Bitmap.Config config) {
+        if (scrollView == null) return null;
+        try {
+            View view = scrollView.getChildAt(0);
+            int width = view.getWidth();
+            int height = view.getHeight();
+
+            Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+            Canvas canvas = new Canvas(bitmap);
+            scrollView.layout(scrollView.getLeft(), scrollView.getTop(),
+                    scrollView.getRight(), scrollView.getBottom());
+            scrollView.draw(canvas);
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "snapshotByNestedScrollView");
         }
         return null;
     }
