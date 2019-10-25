@@ -476,6 +476,10 @@ public final class CapturePictureUtils {
             RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
             if (layoutManager != null && adapter != null) {
                 int width = 0, height = 0;
+                // 每列之间的间隔 |
+                int horizontalSpacing = 0;
+                // 每行之间的间隔 -
+                int verticalSpacing = 0;
                 // Item 总条数
                 int itemCount = adapter.getItemCount();
                 // 没数据则直接跳过
@@ -516,6 +520,8 @@ public final class CapturePictureUtils {
                             height += childView.getMeasuredHeight();
                         }
 
+                        // 追加子项间分隔符占用的高度
+                        height += (verticalSpacing * (itemCount - 1));
                         width = recyclerView.getMeasuredWidth();
                         // 创建位图
                         bitmap = Bitmap.createBitmap(width, height, config);
@@ -525,7 +531,7 @@ public final class CapturePictureUtils {
                         for (int i = 0, len = bitmaps.length; i < len; i++) {
                             Bitmap bmp = bitmaps[i];
                             canvas.drawBitmap(bmp, 0, iHeight, paint);
-                            iHeight += bmp.getHeight();
+                            iHeight += (bmp.getHeight() + (i * verticalSpacing));
                             // 释放资源
                             bmp.recycle();
                             bmp = null;
@@ -552,6 +558,8 @@ public final class CapturePictureUtils {
                             width += childView.getMeasuredWidth();
                         }
 
+                        // 追加子项间分隔符占用的宽度
+                        width += (horizontalSpacing * (itemCount - 1));
                         height = recyclerView.getMeasuredHeight();
                         // 创建位图
                         bitmap = Bitmap.createBitmap(width, height, config);
@@ -561,7 +569,7 @@ public final class CapturePictureUtils {
                         for (int i = 0, len = bitmaps.length; i < len; i++) {
                             Bitmap bmp = bitmaps[i];
                             canvas.drawBitmap(bmp, iWidth, 0, paint);
-                            iWidth += bmp.getWidth();
+                            iWidth += (bmp.getWidth() + (i * horizontalSpacing));
                             // 释放资源
                             bmp.recycle();
                             bmp = null;
@@ -573,10 +581,6 @@ public final class CapturePictureUtils {
                     int spanCount = gridLayoutManager.getSpanCount();
                     // 获取倍数 ( 行数 )
                     int lineNumber = 0;
-                    // 每列之间的间隔 |
-                    int horizontalSpacing = 0;
-                    // 每行之间的间隔 -
-                    int verticalSpacing = 0;
 
                     if (vertical) {
                         // ============
@@ -630,7 +634,6 @@ public final class CapturePictureUtils {
 
                         // 追加子项间分隔符占用的高度
                         height += (verticalSpacing * (lineNumber - 1));
-
                         width = recyclerView.getMeasuredWidth();
                         // 创建位图
                         bitmap = Bitmap.createBitmap(width, height, config);
@@ -718,7 +721,8 @@ public final class CapturePictureUtils {
                             }
                         }
 
-                        // 追加子项间分隔符占用的高度
+                        // 追加子项间分隔符占用的宽高
+                        width += (horizontalSpacing * (numColumns - 1));
                         height += (verticalSpacing * (numColumns - 1));
 
                         // 创建位图
