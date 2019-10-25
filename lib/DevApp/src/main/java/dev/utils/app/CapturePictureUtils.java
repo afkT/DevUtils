@@ -11,6 +11,9 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -441,6 +444,96 @@ public final class CapturePictureUtils {
             LogPrintUtils.eTag(TAG, e, "snapshotByNestedScrollView");
         }
         return null;
+    }
+
+    // ================
+    // = RecyclerView =
+    // ================
+
+    /**
+     * 通过 RecyclerView 绘制为 Bitmap
+     * @param recyclerView {@link RecyclerView}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView) {
+        return snapshotByRecyclerView(recyclerView, Bitmap.Config.ARGB_8888);
+    }
+
+    /**
+     * 通过 RecyclerView 绘制为 Bitmap
+     * @param recyclerView {@link RecyclerView}
+     * @param config       {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView, final Bitmap.Config config) {
+        if (recyclerView == null || config == null) return null;
+        // 返回图片
+        Bitmap bitmap = null;
+//        // 判断是否打开缓存
+//        boolean drawingCacheEnabled = recyclerView.isDrawingCacheEnabled();
+        try {
+            // 获取适配器
+            RecyclerView.Adapter adapter = recyclerView.getAdapter();
+            // 获取布局管理器
+            RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+            if (layoutManager != null && adapter != null) {
+                int height = 0;
+                // Item 总条数
+                int itemCount = adapter.getItemCount();
+                // View Bitmaps
+                List<Bitmap> listBitmaps = new ArrayList<>();
+                // 判断布局类型
+                if (layoutManager instanceof LinearLayoutManager) {
+//                    recyclerView.setDrawingCacheEnabled(true);
+                    // 判断横竖布局
+                    LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
+                    int orientation = linearLayoutManager.getOrientation();
+                    boolean vertical = (orientation == 1);
+                    if (vertical) { // 竖向滑动
+                        for (int i = 0; i < itemCount; i++) {
+                            RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
+                            adapter.onBindViewHolder(holder, i);
+                            View childView = holder.itemView;
+                            childView.measure(View.MeasureSpec.makeMeasureSpec(recyclerView.getWidth(), View.MeasureSpec.EXACTLY),
+                                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                            childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+
+                            // 绘制缓存 Bitmap
+                            Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                            Canvas canvas = new Canvas(drawingCache);
+                            childView.draw(canvas);
+
+                            listBitmaps.add(drawingCache);
+                            height += childView.getMeasuredHeight();
+                        }
+
+                        int width = recyclerView.getMeasuredWidth();
+                        // 创建位图
+                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Canvas canvas = new Canvas(bitmap);
+                        // 拼接 Bitmap
+                        Paint paint = new Paint();
+                        int iHeight = 0;
+                        for (int i = 0, len = listBitmaps.size(); i < len; i++) {
+                            Bitmap bmp = listBitmaps.get(i);
+                            canvas.drawBitmap(bmp, 0, iHeight, paint);
+                            iHeight += bmp.getHeight();
+                            // 释放资源
+                            bmp.recycle();
+                            bmp = null;
+                        }
+                    } else { // 横向滑动
+
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "snapshotByRecyclerView");
+            bitmap = null;
+        }
+//        // 修改回原始状态
+//        recyclerView.setDrawingCacheEnabled(drawingCacheEnabled);
+        return bitmap;
     }
 
     // ============
