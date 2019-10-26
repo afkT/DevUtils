@@ -474,6 +474,42 @@ public final class AppUtils {
         return !isSpace(packageName) && IntentUtils.getLaunchAppIntent(packageName) != null;
     }
 
+    // =================
+    // = Activity 跳转 =
+    // =================
+
+    /**
+     * Activity 跳转
+     * @param intent {@link Intent}
+     * @return {@code true} operation successfully, {@code false} operation failed
+     */
+    public static boolean startActivity(final Intent intent) {
+        try {
+            DevUtils.getContext().startActivity(IntentUtils.getIntent(intent, true));
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startActivity");
+        }
+        return false;
+    }
+
+    /**
+     * Activity 跳转回传
+     * @param activity    {@link Activity}
+     * @param intent      {@link Intent}
+     * @param requestCode requestCode
+     * @return {@code true} operation successfully, {@code false} operation failed
+     */
+    public static boolean startActivityForResult(final Activity activity, final Intent intent, final int requestCode) {
+        try {
+            activity.startActivityForResult(intent, requestCode);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startActivityForResult");
+        }
+        return false;
+    }
+
     // ==============
     // = 安装、卸载 =
     // ==============
