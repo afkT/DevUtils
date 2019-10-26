@@ -3085,4 +3085,204 @@ public final class ArrayUtils {
         }
         return "";
     }
+
+    // ==============
+    // = 最小值索引 =
+    // ==============
+
+    /**
+     * 获取数组中最小值索引
+     * @param data 数组
+     * @return 最小值索引
+     */
+    public static int getMinimumIndex(final int[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                int temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    int value = data[i];
+                    if (value < temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取数组中最小值索引
+     * @param data 数组
+     * @return 最小值索引
+     */
+    public static int getMinimumIndex(final long[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                long temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    long value = data[i];
+                    if (value < temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取数组中最小值索引
+     * @param data 数组
+     * @return 最小值索引
+     */
+    public static int getMinimumIndex(final float[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                float temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    float value = data[i];
+                    if (value < temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取数组中最小值索引
+     * @param data 数组
+     * @return 最小值索引
+     */
+    public static int getMinimumIndex(final double[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                double temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    double value = data[i];
+                    if (value < temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    // ==============
+    // = 最大值索引 =
+    // ==============
+
+    /**
+     * 获取数组中最大值索引
+     * @param data 数组
+     * @return 最大值索引
+     */
+    public static int getMaximumIndex(final int[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                int temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    int value = data[i];
+                    if (value > temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取数组中最大值索引
+     * @param data 数组
+     * @return 最大值索引
+     */
+    public static int getMaximumIndex(final long[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                long temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    long value = data[i];
+                    if (value > temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取数组中最大值索引
+     * @param data 数组
+     * @return 最大值索引
+     */
+    public static int getMaximumIndex(final float[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                float temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    float value = data[i];
+                    if (value > temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取数组中最大值索引
+     * @param data 数组
+     * @return 最大值索引
+     */
+    public static int getMaximumIndex(final double[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                double temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    double value = data[i];
+                    if (value > temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
 }

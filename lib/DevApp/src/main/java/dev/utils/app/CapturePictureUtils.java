@@ -1235,9 +1235,9 @@ public final class CapturePictureUtils {
         return (value % divisor == 0) ? (value / divisor) : (value / divisor) + 1;
     }
 
-    // ===============
+    // ==============
     // = ArrayUtils =
-    // ===============
+    // ==============
 
     /**
      * 获取数组中最小值索引
