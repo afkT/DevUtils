@@ -1167,4 +1167,276 @@ public final class CollectionUtils {
         }
         return null;
     }
+
+    // ==============
+    // = 最小值索引 =
+    // ==============
+
+    /**
+     * 获取集合中最小值索引
+     * @param list 集合
+     * @return 最小值索引
+     */
+    public static int getMinimumIndexI(final List<Integer> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Integer temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Integer value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value < temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最小值索引
+     * @param list 集合
+     * @return 最小值索引
+     */
+    public static int getMinimumIndexL(final List<Long> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Long temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Long value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value < temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最小值索引
+     * @param list 集合
+     * @return 最小值索引
+     */
+    public static int getMinimumIndexF(final List<Float> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Float temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Float value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value < temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最小值索引
+     * @param list 集合
+     * @return 最小值索引
+     */
+    public static int getMinimumIndexD(final List<Double> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Double temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Double value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value < temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    // ==============
+    // = 最大值索引 =
+    // ==============
+
+    /**
+     * 获取集合中最大值索引
+     * @param list 集合
+     * @return 最大值索引
+     */
+    public static int getMaximumIndexI(final List<Integer> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Integer temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Integer value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value > temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最大值索引
+     * @param list 集合
+     * @return 最大值索引
+     */
+    public static int getMaximumIndexL(final List<Long> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Long temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Long value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value > temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最大值索引
+     * @param list 集合
+     * @return 最大值索引
+     */
+    public static int getMaximumIndexF(final List<Float> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Float temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Float value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value > temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最大值索引
+     * @param list 集合
+     * @return 最大值索引
+     */
+    public static int getMaximumIndexD(final List<Double> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Double temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Double value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value > temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
 }
