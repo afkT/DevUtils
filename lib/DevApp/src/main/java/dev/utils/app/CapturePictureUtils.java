@@ -495,7 +495,7 @@ public final class CapturePictureUtils {
                 Class clazz = layoutManager.getClass();
                 // 判断横竖布局
                 boolean vertical;
-                if (layoutManager instanceof LinearLayoutManager){
+                if (layoutManager instanceof LinearLayoutManager) {
                     LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
                     int orientation = linearLayoutManager.getOrientation();
                     vertical = (orientation == 1);
@@ -772,7 +772,91 @@ public final class CapturePictureUtils {
                         }
                     }
                 } else if (clazz == StaggeredGridLayoutManager.class) {
+                    StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) layoutManager;
+                    // 获取一共多少列
+                    int spanCount = staggeredGridLayoutManager.getSpanCount();
+                    // 获取倍数 ( 行数 )
+                    int lineNumber = 0;
 
+                    if (vertical) {
+                        // ============
+                        // = 竖向滑动 =
+                        // ============
+
+                        // 获取倍数 ( 行数 )
+                        lineNumber = getMultiple(itemCount, spanCount);
+                        // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / spanCount
+                        int childWidth = (recyclerView.getWidth() - (spanCount - 1) * horizontalSpacing) / spanCount;
+                        // 记录每个 Item 高度
+                        int[] itemHeightArrays = new int[itemCount];
+
+                        // 循环每一行绘制每个 Item 并保存 Bitmap
+                        for (int i = 0; i < lineNumber; i++) {
+                            // 循环列数
+                            for (int j = 0; j < spanCount; j++) {
+                                // 获取对应的索引
+                                int position = i * spanCount + j;
+                                // 小于总数才处理
+                                if (position < itemCount) {
+                                    RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
+                                    adapter.onBindViewHolder(holder, position);
+                                    View childView = holder.itemView;
+                                    childView.measure(View.MeasureSpec.makeMeasureSpec(childWidth, View.MeasureSpec.EXACTLY),
+                                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                                    childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+
+                                    // 绘制缓存 Bitmap
+                                    Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                                    Canvas canvas = new Canvas(drawingCache);
+                                    childView.draw(canvas);
+
+                                    bitmaps[position] = drawingCache;
+                                    int itemHeight = childView.getMeasuredHeight();
+                                    itemHeightArrays[position] = itemHeight;
+                                }
+                            }
+                        }
+
+                        // 记录每列总高度
+                        int[] columnsHeightArrays = new int[spanCount];
+                        // 循环图片高度, 计算绘制位置
+                        for (int i = 0; i < itemCount; i++) {
+                            // 获取最小高度索引
+                            int minIndex = getMinimumIndex(columnsHeightArrays);
+                            // 累加高度
+                            columnsHeightArrays[minIndex] += itemHeightArrays[i];
+                        }
+
+                        int maxIndex = getMaximumIndex(columnsHeightArrays);
+                        // 追加子项间分隔符占用的高度
+                        height = columnsHeightArrays[maxIndex] + (verticalSpacing * (spanCount - 1));
+                        width = recyclerView.getMeasuredWidth();
+
+                        columnsHeightArrays = new int[spanCount];
+                        // 创建位图
+                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Canvas canvas = new Canvas(bitmap);
+                        Paint paint = new Paint();
+                        // 循环绘制
+                        for (int i = 0; i < itemCount; i++) {
+                            // 获取最小高度索引
+                            int minIndex = getMinimumIndex(columnsHeightArrays);
+                            // 计算一下边距
+                            int left = minIndex * (horizontalSpacing + childWidth);
+                            Matrix matrix = new Matrix();
+                            matrix.postTranslate(left, columnsHeightArrays[minIndex]);
+                            // 绘制到 Bitmap
+                            Bitmap bmp = bitmaps[i];
+                            canvas.drawBitmap(bmp, matrix, paint);
+                            // 累加高度
+                            columnsHeightArrays[minIndex] += itemHeightArrays[i];
+                        }
+                    } else {
+                        // ============
+                        // = 横向滑动 =
+                        // ============
+
+                    }
                 }
             }
         } catch (Exception e) {
@@ -1149,5 +1233,57 @@ public final class CapturePictureUtils {
         if (value <= 0 || divisor <= 0) return 0;
         if (value <= divisor) return 1;
         return (value % divisor == 0) ? (value / divisor) : (value / divisor) + 1;
+    }
+
+    // ===============
+    // = ArrayUtils =
+    // ===============
+
+    /**
+     * 获取数组中最小值索引
+     * @param data 数组
+     * @return 最小值索引
+     */
+    private static int getMinimumIndex(final int[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                int temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    int value = data[i];
+                    if (value < temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取数组中最大值索引
+     * @param data 数组
+     * @return 最大值索引
+     */
+    private static int getMaximumIndex(final int[] data) {
+        if (data != null) {
+            int len = data.length;
+            if (len > 0) {
+                int index = 0;
+                int temp = data[index];
+                for (int i = 1; i < len; i++) {
+                    int value = data[i];
+                    if (value > temp) {
+                        index = i;
+                        temp = value;
+                    }
+                }
+                return index;
+            }
+        }
+        return -1;
     }
 }
