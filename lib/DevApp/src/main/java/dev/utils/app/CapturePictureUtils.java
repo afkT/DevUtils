@@ -459,6 +459,9 @@ public final class CapturePictureUtils {
 
     /**
      * 通过 RecyclerView 绘制为 Bitmap
+     * <pre>
+     *     不支持含 ItemDecoration 截图
+     * </pre>
      * @param recyclerView {@link RecyclerView}
      * @param config       {@link Bitmap.Config}
      * @return {@link Bitmap}
