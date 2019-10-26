@@ -177,6 +177,32 @@ public final class IntentUtils {
     }
 
     /**
+     * 获取 APP 安装权限设置的意图
+     * @param packageName 应用包名
+     * @return APP 安装权限设置的意图
+     */
+    public static Intent getLaunchAppInstallPermissionSettingsIntent(final String packageName) {
+        return getLaunchAppInstallPermissionSettingsIntent(packageName, false);
+    }
+
+    /**
+     * 获取 APP 安装权限设置的意图
+     * @param packageName 应用包名
+     * @param isNewTask   是否开启新的任务栈
+     * @return APP 安装权限设置的意图
+     */
+    public static Intent getLaunchAppInstallPermissionSettingsIntent(final String packageName, final boolean isNewTask) {
+        try {
+            Uri uri = Uri.parse("package:" + packageName);
+            Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, uri);
+            return getIntent(intent, isNewTask);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getLaunchAppInstallPermissionSettingsIntent");
+        }
+        return null;
+    }
+
+    /**
      * 获取 APP 通知权限设置的意图
      * @param packageName 应用包名
      * @return APP 通知权限设置的意图

@@ -425,14 +425,15 @@ public final class PermissionUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean canRequestPackageInstalls() {
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
                 return DevUtils.getContext().getPackageManager().canRequestPackageInstalls();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "canRequestPackageInstalls");
             }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "canRequestPackageInstalls");
+            return false;
         }
-        return false;
+        return true;
     }
 
     /**
