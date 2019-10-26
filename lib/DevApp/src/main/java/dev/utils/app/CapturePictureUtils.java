@@ -494,11 +494,16 @@ public final class CapturePictureUtils {
                 // 获取类型
                 Class clazz = layoutManager.getClass();
                 // 判断横竖布局
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
-                int orientation = linearLayoutManager.getOrientation();
-                boolean vertical = (orientation == 1);
-                // layoutManager instanceof XXX 可以通过这种方式判断
-                // 但是需要优先判断 StaggeredGridLayoutManager、GridLayoutManager 最后判断 LinearLayoutManager
+                boolean vertical;
+                if (layoutManager instanceof LinearLayoutManager){
+                    LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
+                    int orientation = linearLayoutManager.getOrientation();
+                    vertical = (orientation == 1);
+                } else {
+                    StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) layoutManager;
+                    int orientation = staggeredGridLayoutManager.getOrientation();
+                    vertical = (orientation == 1);
+                }
                 // 判断布局类型
                 if (clazz == LinearLayoutManager.class) {
                     if (vertical) {
