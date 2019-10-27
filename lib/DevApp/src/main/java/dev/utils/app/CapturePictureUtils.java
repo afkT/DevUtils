@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Picture;
@@ -17,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
@@ -50,6 +52,12 @@ public final class CapturePictureUtils {
 
     // 日志 TAG
     private static final String TAG = CapturePictureUtils.class.getSimpleName();
+    // Bitmap Config
+    private static Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
+    // Canvas 背景色
+    private static int BACKGROUND_COLOR = Color.TRANSPARENT;
+    // 画笔
+    private static Paint PAINT = new Paint();
 
     // ========
     // = 截图 =
@@ -78,7 +86,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByWebView(final WebView webView) {
-        return snapshotByWebView(webView, Integer.MAX_VALUE, Bitmap.Config.RGB_565);
+        return snapshotByWebView(webView, Integer.MAX_VALUE, BITMAP_CONFIG, 0f);
     }
 
     /**
@@ -88,7 +96,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByWebView(final WebView webView, final int maxHeight) {
-        return snapshotByWebView(webView, maxHeight, Bitmap.Config.RGB_565);
+        return snapshotByWebView(webView, maxHeight, BITMAP_CONFIG, 0f);
     }
 
     /**
@@ -98,7 +106,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByWebView(final WebView webView, final float scale) {
-        return snapshotByWebView(webView, Integer.MAX_VALUE, Bitmap.Config.RGB_565, scale);
+        return snapshotByWebView(webView, Integer.MAX_VALUE, BITMAP_CONFIG, scale);
     }
 
     /**
@@ -147,6 +155,7 @@ public final class CapturePictureUtils {
                     // 创建位图
                     Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                     Canvas canvas = new Canvas(bitmap);
+                    canvas.drawColor(BACKGROUND_COLOR);
                     webView.draw(canvas);
                     return bitmap;
                 } catch (Exception e) {
@@ -163,6 +172,7 @@ public final class CapturePictureUtils {
                         // 创建位图
                         Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
+                        canvas.drawColor(BACKGROUND_COLOR);
                         picture.draw(canvas);
                         return bitmap;
                     }
@@ -184,7 +194,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByView(final View view) {
-        return snapshotByView(view, Bitmap.Config.ARGB_8888);
+        return snapshotByView(view, BITMAP_CONFIG);
     }
 
     /**
@@ -198,6 +208,7 @@ public final class CapturePictureUtils {
         try {
             Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), config);
             Canvas canvas = new Canvas(bitmap);
+            canvas.drawColor(BACKGROUND_COLOR);
             view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
             view.draw(canvas);
             return bitmap;
@@ -261,7 +272,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByLinearLayout(final LinearLayout linearLayout) {
-        return snapshotByLinearLayout(linearLayout, Bitmap.Config.ARGB_8888);
+        return snapshotByLinearLayout(linearLayout, BITMAP_CONFIG);
     }
 
     /**
@@ -287,7 +298,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByFrameLayout(final FrameLayout frameLayout) {
-        return snapshotByFrameLayout(frameLayout, Bitmap.Config.ARGB_8888);
+        return snapshotByFrameLayout(frameLayout, BITMAP_CONFIG);
     }
 
     /**
@@ -313,7 +324,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByRelativeLayout(final RelativeLayout relativeLayout) {
-        return snapshotByRelativeLayout(relativeLayout, Bitmap.Config.ARGB_8888);
+        return snapshotByRelativeLayout(relativeLayout, BITMAP_CONFIG);
     }
 
     /**
@@ -339,7 +350,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByScrollView(final ScrollView scrollView) {
-        return snapshotByScrollView(scrollView, Bitmap.Config.ARGB_8888);
+        return snapshotByScrollView(scrollView, BITMAP_CONFIG);
     }
 
     /**
@@ -358,6 +369,7 @@ public final class CapturePictureUtils {
 
             Bitmap bitmap = Bitmap.createBitmap(scrollView.getWidth(), height, config);
             Canvas canvas = new Canvas(bitmap);
+            canvas.drawColor(BACKGROUND_COLOR);
             scrollView.layout(scrollView.getLeft(), scrollView.getTop(),
                     scrollView.getRight(), scrollView.getBottom());
             scrollView.draw(canvas);
@@ -378,7 +390,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByHorizontalScrollView(final HorizontalScrollView scrollView) {
-        return snapshotByHorizontalScrollView(scrollView, Bitmap.Config.ARGB_8888);
+        return snapshotByHorizontalScrollView(scrollView, BITMAP_CONFIG);
     }
 
     /**
@@ -396,6 +408,7 @@ public final class CapturePictureUtils {
 
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
+            canvas.drawColor(BACKGROUND_COLOR);
             scrollView.layout(scrollView.getLeft(), scrollView.getTop(),
                     scrollView.getRight(), scrollView.getBottom());
             scrollView.draw(canvas);
@@ -416,7 +429,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByNestedScrollView(final NestedScrollView scrollView) {
-        return snapshotByNestedScrollView(scrollView, Bitmap.Config.ARGB_8888);
+        return snapshotByNestedScrollView(scrollView, BITMAP_CONFIG);
     }
 
     /**
@@ -434,6 +447,7 @@ public final class CapturePictureUtils {
 
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
+            canvas.drawColor(BACKGROUND_COLOR);
             scrollView.layout(scrollView.getLeft(), scrollView.getTop(),
                     scrollView.getRight(), scrollView.getBottom());
             scrollView.draw(canvas);
@@ -454,7 +468,40 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView) {
-        return snapshotByRecyclerView(recyclerView, Bitmap.Config.ARGB_8888);
+        return snapshotByRecyclerView(recyclerView, BITMAP_CONFIG, 0, 0);
+    }
+
+    /**
+     * 通过 RecyclerView 绘制为 Bitmap
+     * @param recyclerView {@link RecyclerView}
+     * @param config       {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView,
+                                                final Bitmap.Config config) {
+        return snapshotByRecyclerView(recyclerView, config, 0, 0);
+    }
+
+    /**
+     * 通过 RecyclerView 绘制为 Bitmap
+     * @param recyclerView {@link RecyclerView}
+     * @param spacing 每列之间的间隔 |
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView, final int spacing) {
+        return snapshotByRecyclerView(recyclerView, BITMAP_CONFIG, spacing, spacing);
+    }
+
+    /**
+     * 通过 RecyclerView 绘制为 Bitmap
+     * @param recyclerView {@link RecyclerView}
+     * @param config       {@link Bitmap.Config}
+     * @param spacing 每列之间的间隔 |
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView,
+                                                final Bitmap.Config config, final int spacing) {
+        return snapshotByRecyclerView(recyclerView, config, spacing, spacing);
     }
 
     /**
@@ -464,14 +511,15 @@ public final class CapturePictureUtils {
      * </pre>
      * @param recyclerView {@link RecyclerView}
      * @param config       {@link Bitmap.Config}
+     * @param horizontalSpacing 每列之间的间隔 |
+     * @param verticalSpacing 每行之间的间隔 -
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView, final Bitmap.Config config) {
+    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView,
+                                                final Bitmap.Config config,
+                                                final int horizontalSpacing,
+                                                final int verticalSpacing) {
         if (recyclerView == null || config == null) return null;
-        // 返回图片
-        Bitmap bitmap = null;
-//        // 判断是否打开缓存
-//        boolean drawingCacheEnabled = recyclerView.isDrawingCacheEnabled();
         try {
             // 获取适配器
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
@@ -479,18 +527,12 @@ public final class CapturePictureUtils {
             RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
             if (layoutManager != null && adapter != null) {
                 int width = 0, height = 0;
-                // 每列之间的间隔 |
-                int horizontalSpacing = 0;
-                // 每行之间的间隔 -
-                int verticalSpacing = 0;
                 // Item 总条数
                 int itemCount = adapter.getItemCount();
                 // 没数据则直接跳过
                 if (itemCount == 0) return null;
                 // View Bitmaps
                 Bitmap[] bitmaps = new Bitmap[itemCount];
-//                // 开启缓存
-//                recyclerView.setDrawingCacheEnabled(true);
                 // 获取类型
                 Class clazz = layoutManager.getClass();
                 // 判断横竖布局
@@ -515,16 +557,14 @@ public final class CapturePictureUtils {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                             adapter.onBindViewHolder(holder, i);
                             View childView = holder.itemView;
-                            childView.measure(View.MeasureSpec.makeMeasureSpec(recyclerView.getWidth(), View.MeasureSpec.EXACTLY),
-                                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                            childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+                            measureChild(childView, recyclerView.getWidth());
 
-                            // 绘制缓存 Bitmap
-                            Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
-                            Canvas canvas = new Canvas(drawingCache);
+                            Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                            Canvas canvas = new Canvas(bitmap);
+                            canvas.drawColor(BACKGROUND_COLOR);
                             childView.draw(canvas);
 
-                            bitmaps[i] = drawingCache;
+                            bitmaps[i] = bitmap;
                             height += childView.getMeasuredHeight();
                         }
 
@@ -532,56 +572,62 @@ public final class CapturePictureUtils {
                         height += (verticalSpacing * (itemCount - 1));
                         width = recyclerView.getMeasuredWidth();
                         // 创建位图
-                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
-                        Paint paint = new Paint();
+                        canvas.drawColor(BACKGROUND_COLOR);
                         int iHeight = 0;
                         for (int i = 0, len = bitmaps.length; i < len; i++) {
                             Bitmap bmp = bitmaps[i];
-                            canvas.drawBitmap(bmp, 0, iHeight, paint);
+                            canvas.drawBitmap(bmp, 0, iHeight, PAINT);
                             iHeight += (bmp.getHeight() + (i * verticalSpacing));
                             // 释放资源
                             bmp.recycle();
                             bmp = null;
                         }
+                        return bitmap;
                     } else {
                         // ============
                         // = 横向滑动 =
                         // ============
 
+                        // 临时高度 - 保存一行中最长列的高度
+                        int tempHeight = 0;
+                        // 循环每一行绘制每个 Item 并保存 Bitmap
                         for (int i = 0; i < itemCount; i++) {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                             adapter.onBindViewHolder(holder, i);
                             View childView = holder.itemView;
-                            childView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                            childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+                            measureChild(childView, 0);
 
-                            // 绘制缓存 Bitmap
-                            Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
-                            Canvas canvas = new Canvas(drawingCache);
+                            Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                            Canvas canvas = new Canvas(bitmap);
+                            canvas.drawColor(BACKGROUND_COLOR);
                             childView.draw(canvas);
 
-                            bitmaps[i] = drawingCache;
+                            bitmaps[i] = bitmap;
                             width += childView.getMeasuredWidth();
+                            int itemHeight = childView.getMeasuredHeight();
+                            // 保留最大高度
+                            tempHeight = Math.max(itemHeight, tempHeight);
                         }
 
                         // 追加子项间分隔符占用的宽度
                         width += (horizontalSpacing * (itemCount - 1));
-                        height = recyclerView.getMeasuredHeight();
+                        height = tempHeight;
                         // 创建位图
-                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
-                        Paint paint = new Paint();
+                        canvas.drawColor(BACKGROUND_COLOR);
                         int iWidth = 0;
                         for (int i = 0, len = bitmaps.length; i < len; i++) {
                             Bitmap bmp = bitmaps[i];
-                            canvas.drawBitmap(bmp, iWidth, 0, paint);
+                            canvas.drawBitmap(bmp, iWidth, 0, PAINT);
                             iWidth += (bmp.getWidth() + (i * horizontalSpacing));
                             // 释放资源
                             bmp.recycle();
                             bmp = null;
                         }
+                        return bitmap;
                     }
                 } else if (clazz == GridLayoutManager.class) {
                     GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
@@ -621,12 +667,12 @@ public final class CapturePictureUtils {
                                             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
                                     childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
 
-                                    // 绘制缓存 Bitmap
-                                    Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
-                                    Canvas canvas = new Canvas(drawingCache);
+                                    Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                                    Canvas canvas = new Canvas(bitmap);
+                                    canvas.drawColor(BACKGROUND_COLOR);
                                     childView.draw(canvas);
 
-                                    bitmaps[position] = drawingCache;
+                                    bitmaps[position] = bitmap;
                                     int itemHeight = childView.getMeasuredHeight();
                                     // 保留最大高度
                                     tempHeight = Math.max(itemHeight, tempHeight);
@@ -644,9 +690,9 @@ public final class CapturePictureUtils {
                         height += (verticalSpacing * (lineNumber - 1));
                         width = recyclerView.getMeasuredWidth();
                         // 创建位图
-                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
-                        Paint paint = new Paint();
+                        canvas.drawColor(BACKGROUND_COLOR);
                         int iHeight = 0;
                         // 循环每一行绘制每个 Item Bitmap
                         for (int i = 0; i < lineNumber; i++) {
@@ -664,7 +710,7 @@ public final class CapturePictureUtils {
                                     Matrix matrix = new Matrix();
                                     matrix.postTranslate(left, iHeight);
                                     // 绘制到 Bitmap
-                                    canvas.drawBitmap(bmp, matrix, paint);
+                                    canvas.drawBitmap(bmp, matrix, PAINT);
                                     // 释放资源
 //                                    bmp.recycle();
                                     bmp = null;
@@ -676,6 +722,7 @@ public final class CapturePictureUtils {
                                 }
                             }
                         }
+                        return bitmap;
                     } else {
                         // ============
                         // = 横向滑动 =
@@ -706,12 +753,12 @@ public final class CapturePictureUtils {
                                             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
                                     childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
 
-                                    // 绘制缓存 Bitmap
-                                    Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
-                                    Canvas canvas = new Canvas(drawingCache);
+                                    Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                                    Canvas canvas = new Canvas(bitmap);
+                                    canvas.drawColor(BACKGROUND_COLOR);
                                     childView.draw(canvas);
 
-                                    bitmaps[position] = drawingCache;
+                                    bitmaps[position] = bitmap;
                                     int itemWidth = childView.getMeasuredWidth();
                                     int itemHeight = childView.getMeasuredHeight();
                                     // 累加宽度
@@ -734,9 +781,9 @@ public final class CapturePictureUtils {
                         height += (verticalSpacing * (numColumns - 1));
 
                         // 创建位图
-                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
-                        Paint paint = new Paint();
+                        canvas.drawColor(BACKGROUND_COLOR);
                         int iWidth = 0, iHeight = 0;
 
                         // 循环每一行绘制每个 Item 并保存 Bitmap
@@ -754,7 +801,7 @@ public final class CapturePictureUtils {
                                     Matrix matrix = new Matrix();
                                     matrix.postTranslate(left, iHeight);
                                     // 绘制到 Bitmap
-                                    canvas.drawBitmap(bmp, matrix, paint);
+                                    canvas.drawBitmap(bmp, matrix, PAINT);
                                     // 累加 Bitmap 宽度
                                     iWidth += bmp.getWidth();
                                     // 释放资源
@@ -770,6 +817,7 @@ public final class CapturePictureUtils {
                                 }
                             }
                         }
+                        return bitmap;
                     }
                 } else if (clazz == StaggeredGridLayoutManager.class) {
                     StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) layoutManager;
@@ -805,12 +853,12 @@ public final class CapturePictureUtils {
                                             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
                                     childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
 
-                                    // 绘制缓存 Bitmap
-                                    Bitmap drawingCache = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
-                                    Canvas canvas = new Canvas(drawingCache);
+                                    Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+                                    Canvas canvas = new Canvas(bitmap);
+                                    canvas.drawColor(BACKGROUND_COLOR);
                                     childView.draw(canvas);
 
-                                    bitmaps[position] = drawingCache;
+                                    bitmaps[position] = bitmap;
                                     int itemHeight = childView.getMeasuredHeight();
                                     itemHeightArrays[position] = itemHeight;
                                 }
@@ -834,9 +882,9 @@ public final class CapturePictureUtils {
 
                         columnsHeightArrays = new int[spanCount];
                         // 创建位图
-                        bitmap = Bitmap.createBitmap(width, height, config);
+                        Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
-                        Paint paint = new Paint();
+                        canvas.drawColor(BACKGROUND_COLOR);
                         // 循环绘制
                         for (int i = 0; i < itemCount; i++) {
                             // 获取最小高度索引
@@ -847,10 +895,11 @@ public final class CapturePictureUtils {
                             matrix.postTranslate(left, columnsHeightArrays[minIndex]);
                             // 绘制到 Bitmap
                             Bitmap bmp = bitmaps[i];
-                            canvas.drawBitmap(bmp, matrix, paint);
+                            canvas.drawBitmap(bmp, matrix, PAINT);
                             // 累加高度
                             columnsHeightArrays[minIndex] += itemHeightArrays[i];
                         }
+                        return bitmap;
                     } else {
                         // ============
                         // = 横向滑动 =
@@ -861,11 +910,8 @@ public final class CapturePictureUtils {
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByRecyclerView");
-            bitmap = null;
         }
-//        // 修改回原始状态
-//        recyclerView.setDrawingCacheEnabled(drawingCacheEnabled);
-        return bitmap;
+        return null;
     }
 
     // ============
@@ -878,7 +924,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByListView(final ListView listView) {
-        return snapshotByListView(listView, Bitmap.Config.ARGB_8888);
+        return snapshotByListView(listView, BITMAP_CONFIG);
     }
 
     /**
@@ -921,11 +967,11 @@ public final class CapturePictureUtils {
             // 创建位图
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
-            Paint paint = new Paint();
+            canvas.drawColor(BACKGROUND_COLOR);
             int iHeight = 0;
             for (int i = 0, len = bitmaps.length; i < len; i++) {
                 Bitmap bmp = bitmaps[i];
-                canvas.drawBitmap(bmp, 0, iHeight, paint);
+                canvas.drawBitmap(bmp, 0, iHeight, PAINT);
                 iHeight += (bmp.getHeight() + dividerHeight);
                 // 释放资源
                 bmp.recycle();
@@ -948,7 +994,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByGridView(final GridView gridView) {
-        return snapshotByGridView(gridView, Bitmap.Config.ARGB_8888, false);
+        return snapshotByGridView(gridView, BITMAP_CONFIG, false);
     }
 
     /**
@@ -1009,11 +1055,11 @@ public final class CapturePictureUtils {
                 // 创建位图
                 Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                 Canvas canvas = new Canvas(bitmap);
-                Paint paint = new Paint();
+                canvas.drawColor(BACKGROUND_COLOR);
                 int iHeight = 0;
                 for (int i = 0, len = bitmaps.length; i < len; i++) {
                     Bitmap bmp = bitmaps[i];
-                    canvas.drawBitmap(bmp, 0, iHeight, paint);
+                    canvas.drawBitmap(bmp, 0, iHeight, PAINT);
                     iHeight += (bmp.getHeight() + verticalSpacing);
                     // 释放资源
                     bmp.recycle();
@@ -1067,7 +1113,7 @@ public final class CapturePictureUtils {
                 // 创建位图
                 Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                 Canvas canvas = new Canvas(bitmap);
-                Paint paint = new Paint();
+                canvas.drawColor(BACKGROUND_COLOR);
                 int iHeight = 0;
                 // 循环每一行绘制每个 Item Bitmap
                 for (int i = 0; i < lineNumber; i++) {
@@ -1085,7 +1131,7 @@ public final class CapturePictureUtils {
                             Matrix matrix = new Matrix();
                             matrix.postTranslate(left, iHeight);
                             // 绘制到 Bitmap
-                            canvas.drawBitmap(bmp, matrix, paint);
+                            canvas.drawBitmap(bmp, matrix, PAINT);
                             // 释放资源
 //                            bmp.recycle();
                             bmp = null;
@@ -1169,6 +1215,41 @@ public final class CapturePictureUtils {
             LogPrintUtils.eTag(TAG, e, "snapshotWithoutStatusBar");
         }
         return null;
+    }
+
+    // ================
+    // = 内部私有方法 =
+    // ================
+
+    /**
+     * 测量 View
+     * @param childView {@link View}
+     * @param specifiedWidth 指定高度
+     */
+    private static void measureChild(final View childView, final int specifiedWidth) {
+        ViewGroup.LayoutParams layoutParams = childView.getLayoutParams();
+        // MeasureSpec
+        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        // 如果大于 0
+        if (specifiedWidth > 0) {
+            widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedWidth, View.MeasureSpec.EXACTLY);
+        }
+        // 判断是否存在自定义宽高
+        if (layoutParams != null) {
+            int width = layoutParams.width;
+            int height = layoutParams.height;
+            if (width > 0 && height > 0) {
+                widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+                heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+            } else if (width > 0) {
+                widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+            } else if (height > 0){
+                heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+            }
+        }
+        childView.measure(widthMeasureSpec, heightMeasureSpec);
+        childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
     }
 
     // ======================
