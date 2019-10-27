@@ -1357,6 +1357,55 @@ public final class ViewUtils {
         return 0;
     }
 
+    /**
+     * 测量 View
+     * @param view           {@link View}
+     * @param specifiedWidth 指定宽度
+     */
+    public static void measureView(final View view, final int specifiedWidth) {
+        measureView(view, specifiedWidth, 0);
+    }
+
+    /**
+     * 测量 View
+     * @param view            {@link View}
+     * @param specifiedWidth  指定宽度
+     * @param specifiedHeight 指定高度
+     */
+    public static void measureView(final View view, final int specifiedWidth, final int specifiedHeight) {
+        try {
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            // MeasureSpec
+            int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            // 如果大于 0
+            if (specifiedWidth > 0) {
+                widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedWidth, View.MeasureSpec.EXACTLY);
+            }
+            // 如果大于 0
+            if (specifiedHeight > 0) {
+                heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedHeight, View.MeasureSpec.EXACTLY);
+            }
+            // 判断是否存在自定义宽高
+            if (layoutParams != null) {
+                int width = layoutParams.width;
+                int height = layoutParams.height;
+                if (width > 0 && height > 0) {
+                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+                } else if (width > 0) {
+                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+                } else if (height > 0) {
+                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+                }
+            }
+            view.measure(widthMeasureSpec, heightMeasureSpec);
+            view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "measureView");
+        }
+    }
+
     // ==================
     // = Layout Gravity =
     // ==================
@@ -2354,29 +2403,27 @@ public final class ViewUtils {
     public static int calcListViewHeight(final ListView listView, final boolean setParams) {
         if (listView == null) return 0;
         try {
-            int height = 0;
-            // 获取子项间分隔符占用的高度
-            int dividerHeight = listView.getDividerHeight();
             // Adapter
             ListAdapter listAdapter = listView.getAdapter();
             // Item 总条数
             int itemCount = listAdapter.getCount();
             // 没数据则直接跳过
             if (itemCount == 0) return 0;
+            // 高度
+            int height = 0;
+            // 获取子项间分隔符占用的高度
+            int dividerHeight = listView.getDividerHeight();
 
             // 循环绘制每个 Item 并保存 Bitmap
             for (int i = 0; i < itemCount; i++) {
                 View childView = listAdapter.getView(i, null, listView);
-                childView.measure(View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.EXACTLY),
-                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
-
+                measureView(childView, listView.getWidth());
                 height += childView.getMeasuredHeight();
             }
             // 追加子项间分隔符占用的高度
             height += (dividerHeight * (itemCount - 1));
 
-            // 判断是否需要设置高度
+            // 是否需要设置高度
             if (setParams) {
                 ViewGroup.LayoutParams params = listView.getLayoutParams();
                 params.height = height;
@@ -2412,6 +2459,13 @@ public final class ViewUtils {
         if (gridView == null) return 0;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return 0;
         try {
+            // Adapter
+            ListAdapter listAdapter = gridView.getAdapter();
+            // Item 总条数
+            int itemCount = listAdapter.getCount();
+            // 没数据则直接跳过
+            if (itemCount == 0) return 0;
+            // 高度
             int height = 0;
             // 获取一共多少列
             int numColumns = gridView.getNumColumns();
@@ -2419,13 +2473,6 @@ public final class ViewUtils {
             int horizontalSpacing = gridView.getHorizontalSpacing();
             // 每行之间的间隔 -
             int verticalSpacing = gridView.getVerticalSpacing();
-            // Adapter
-            ListAdapter listAdapter = gridView.getAdapter();
-            // Item 总条数
-            int itemCount = listAdapter.getCount();
-            // 没数据则直接跳过
-            if (itemCount == 0) return 0;
-
             // 获取倍数 ( 行数 )
             int lineNumber = getMultiple(itemCount, numColumns);
             // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / numColumns
@@ -2446,9 +2493,7 @@ public final class ViewUtils {
                     // 如果大于总数据则跳过
                     if (position < itemCount) {
                         View childView = listAdapter.getView(position, null, gridView);
-                        childView.measure(View.MeasureSpec.makeMeasureSpec(childWidth, View.MeasureSpec.EXACTLY),
-                                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                        childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
+                        measureView(childView, childWidth);
 
                         int itemHeight = childView.getMeasuredHeight();
                         // 保留最大高度
@@ -2465,7 +2510,7 @@ public final class ViewUtils {
             // 追加子项间分隔符占用的高度
             height += (verticalSpacing * (lineNumber - 1));
 
-            // 判断是否需要设置高度
+            // 是否需要设置高度
             if (setParams) {
                 ViewGroup.LayoutParams params = gridView.getLayoutParams();
                 params.height = height;

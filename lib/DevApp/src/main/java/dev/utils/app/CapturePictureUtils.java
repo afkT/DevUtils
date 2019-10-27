@@ -553,7 +553,7 @@ public final class CapturePictureUtils {
     /**
      * 通过 RecyclerView 绘制为 Bitmap
      * @param recyclerView {@link RecyclerView}
-     * @param spacing 每列之间的间隔 |
+     * @param spacing      每列之间的间隔 |
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView, final int spacing) {
@@ -564,7 +564,7 @@ public final class CapturePictureUtils {
      * 通过 RecyclerView 绘制为 Bitmap
      * @param recyclerView {@link RecyclerView}
      * @param config       {@link Bitmap.Config}
-     * @param spacing 每列之间的间隔 |
+     * @param spacing      每列之间的间隔 |
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView,
@@ -577,10 +577,10 @@ public final class CapturePictureUtils {
      * <pre>
      *     不支持含 ItemDecoration 截图
      * </pre>
-     * @param recyclerView {@link RecyclerView}
-     * @param config       {@link Bitmap.Config}
+     * @param recyclerView      {@link RecyclerView}
+     * @param config            {@link Bitmap.Config}
      * @param horizontalSpacing 每列之间的间隔 |
-     * @param verticalSpacing 每行之间的间隔 -
+     * @param verticalSpacing   每行之间的间隔 -
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView,
@@ -625,7 +625,7 @@ public final class CapturePictureUtils {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                             adapter.onBindViewHolder(holder, i);
                             View childView = holder.itemView;
-                            measureChild(childView, recyclerView.getWidth());
+                            measureView(childView, recyclerView.getWidth());
 
                             Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
                             Canvas canvas = new Canvas(bitmap);
@@ -665,7 +665,7 @@ public final class CapturePictureUtils {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                             adapter.onBindViewHolder(holder, i);
                             View childView = holder.itemView;
-                            measureChild(childView, 0);
+                            measureView(childView, 0);
 
                             Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
                             Canvas canvas = new Canvas(bitmap);
@@ -1020,13 +1020,14 @@ public final class CapturePictureUtils {
             // 循环绘制每个 Item 并保存 Bitmap
             for (int i = 0; i < itemCount; i++) {
                 View childView = listAdapter.getView(i, null, listView);
-                measureChild(childView, listView.getWidth());
+                measureView(childView, listView.getWidth());
                 bitmaps[i] = canvasBitmap(childView, config);
                 height += childView.getMeasuredHeight();
             }
             // 追加子项间分隔符占用的高度
             height += (dividerHeight * (itemCount - 1));
             int width = listView.getMeasuredWidth();
+
             // 创建位图
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
@@ -1082,6 +1083,13 @@ public final class CapturePictureUtils {
         if (gridView == null || config == null) return null;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return null;
         try {
+            // Adapter
+            ListAdapter listAdapter = gridView.getAdapter();
+            // Item 总条数
+            int itemCount = listAdapter.getCount();
+            // 没数据则直接跳过
+            if (itemCount == 0) return null;
+            // 高度
             int height = 0;
             // 获取一共多少列
             int numColumns = gridView.getNumColumns();
@@ -1089,12 +1097,6 @@ public final class CapturePictureUtils {
             int horizontalSpacing = gridView.getHorizontalSpacing();
             // 每行之间的间隔 -
             int verticalSpacing = gridView.getVerticalSpacing();
-            // Adapter
-            ListAdapter listAdapter = gridView.getAdapter();
-            // Item 总条数
-            int itemCount = listAdapter.getCount();
-            // 没数据则直接跳过
-            if (itemCount == 0) return null;
             // View Bitmaps
             Bitmap[] bitmaps = new Bitmap[itemCount];
 
@@ -1103,28 +1105,23 @@ public final class CapturePictureUtils {
                 // 循环绘制每个 Item 并保存 Bitmap
                 for (int i = 0; i < itemCount; i++) {
                     View childView = listAdapter.getView(i, null, gridView);
-                    childView.measure(View.MeasureSpec.makeMeasureSpec(gridView.getWidth(), View.MeasureSpec.EXACTLY),
-                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                    childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
-                    childView.setDrawingCacheEnabled(true);
-                    childView.buildDrawingCache();
-
-                    bitmaps[i] = childView.getDrawingCache();
+                    measureView(childView, gridView.getWidth());
+                    bitmaps[i] = canvasBitmap(childView, config);
                     height += childView.getMeasuredHeight();
                 }
                 // 追加子项间分隔符占用的高度
                 height += (verticalSpacing * (itemCount - 1));
-
                 int width = gridView.getMeasuredWidth();
                 // 创建位图
                 Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                 Canvas canvas = new Canvas(bitmap);
                 canvas.drawColor(BACKGROUND_COLOR);
-                int iHeight = 0;
+                // 累加高度
+                int appendHeight = 0;
                 for (int i = 0, len = bitmaps.length; i < len; i++) {
                     Bitmap bmp = bitmaps[i];
-                    canvas.drawBitmap(bmp, 0, iHeight, PAINT);
-                    iHeight += (bmp.getHeight() + verticalSpacing);
+                    canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
+                    appendHeight += (bmp.getHeight() + verticalSpacing);
                     // 释放资源
                     bmp.recycle();
                     bmp = null;
@@ -1151,13 +1148,9 @@ public final class CapturePictureUtils {
                         // 小于总数才处理
                         if (position < itemCount) {
                             View childView = listAdapter.getView(position, null, gridView);
-                            childView.measure(View.MeasureSpec.makeMeasureSpec(childWidth, View.MeasureSpec.EXACTLY),
-                                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                            childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
-                            childView.setDrawingCacheEnabled(true);
-                            childView.buildDrawingCache();
+                            measureView(childView, childWidth);
+                            bitmaps[position] = canvasBitmap(childView, config);
 
-                            bitmaps[position] = childView.getDrawingCache();
                             int itemHeight = childView.getMeasuredHeight();
                             // 保留最大高度
                             tempHeight = Math.max(itemHeight, tempHeight);
@@ -1172,13 +1165,13 @@ public final class CapturePictureUtils {
                 }
                 // 追加子项间分隔符占用的高度
                 height += (verticalSpacing * (lineNumber - 1));
-
                 int width = gridView.getMeasuredWidth();
                 // 创建位图
                 Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                 Canvas canvas = new Canvas(bitmap);
                 canvas.drawColor(BACKGROUND_COLOR);
-                int iHeight = 0;
+                // 累加高度
+                int appendHeight = 0;
                 // 循环每一行绘制每个 Item Bitmap
                 for (int i = 0; i < lineNumber; i++) {
                     // 获取每一行最长列的高度
@@ -1193,17 +1186,17 @@ public final class CapturePictureUtils {
                             // 计算一下边距
                             int left = j * (horizontalSpacing + childWidth);
                             Matrix matrix = new Matrix();
-                            matrix.postTranslate(left, iHeight);
+                            matrix.postTranslate(left, appendHeight);
                             // 绘制到 Bitmap
                             canvas.drawBitmap(bmp, matrix, PAINT);
                             // 释放资源
-//                            bmp.recycle();
+                            bmp.recycle();
                             bmp = null;
                         }
 
                         // 最后记录高度并累加
                         if (j == numColumns - 1) {
-                            iHeight += itemHeight + verticalSpacing;
+                            appendHeight += itemHeight + verticalSpacing;
                         }
                     }
                 }
@@ -1222,46 +1215,15 @@ public final class CapturePictureUtils {
     /**
      * 绘制 Bitmap
      * @param childView {@link View}
-     * @param config {@link Bitmap.Config}
+     * @param config    {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    private static Bitmap canvasBitmap(final View childView, final Bitmap.Config config){
+    private static Bitmap canvasBitmap(final View childView, final Bitmap.Config config) {
         Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
         Canvas canvas = new Canvas(bitmap);
         canvas.drawColor(BACKGROUND_COLOR);
         childView.draw(canvas);
         return bitmap;
-    }
-
-    /**
-     * 测量 View
-     * @param childView {@link View}
-     * @param specifiedWidth 指定高度
-     */
-    private static void measureChild(final View childView, final int specifiedWidth) {
-        ViewGroup.LayoutParams layoutParams = childView.getLayoutParams();
-        // MeasureSpec
-        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        // 如果大于 0
-        if (specifiedWidth > 0) {
-            widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedWidth, View.MeasureSpec.EXACTLY);
-        }
-        // 判断是否存在自定义宽高
-        if (layoutParams != null) {
-            int width = layoutParams.width;
-            int height = layoutParams.height;
-            if (width > 0 && height > 0) {
-                widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
-                heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
-            } else if (width > 0) {
-                widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
-            } else if (height > 0){
-                heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
-            }
-        }
-        childView.measure(widthMeasureSpec, heightMeasureSpec);
-        childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
     }
 
     // ======================
@@ -1378,5 +1340,58 @@ public final class CapturePictureUtils {
             }
         }
         return -1;
+    }
+
+    // =============
+    // = ViewUtils =
+    // =============
+
+    /**
+     * 测量 View
+     * @param view           {@link View}
+     * @param specifiedWidth 指定宽度
+     */
+    private static void measureView(final View view, final int specifiedWidth) {
+        measureView(view, specifiedWidth, 0);
+    }
+
+    /**
+     * 测量 View
+     * @param view            {@link View}
+     * @param specifiedWidth  指定宽度
+     * @param specifiedHeight 指定高度
+     */
+    private static void measureView(final View view, final int specifiedWidth, final int specifiedHeight) {
+        try {
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            // MeasureSpec
+            int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            // 如果大于 0
+            if (specifiedWidth > 0) {
+                widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedWidth, View.MeasureSpec.EXACTLY);
+            }
+            // 如果大于 0
+            if (specifiedHeight > 0) {
+                heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedHeight, View.MeasureSpec.EXACTLY);
+            }
+            // 判断是否存在自定义宽高
+            if (layoutParams != null) {
+                int width = layoutParams.width;
+                int height = layoutParams.height;
+                if (width > 0 && height > 0) {
+                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+                } else if (width > 0) {
+                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+                } else if (height > 0) {
+                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+                }
+            }
+            view.measure(widthMeasureSpec, heightMeasureSpec);
+            view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "measureView");
+        }
     }
 }
