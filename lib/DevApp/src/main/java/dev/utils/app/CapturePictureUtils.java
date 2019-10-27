@@ -583,10 +583,8 @@ public final class CapturePictureUtils {
      * @param verticalSpacing   每行之间的间隔 -
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView,
-                                                final Bitmap.Config config,
-                                                final int horizontalSpacing,
-                                                final int verticalSpacing) {
+    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView, final Bitmap.Config config,
+                                                final int horizontalSpacing, final int verticalSpacing) {
         if (recyclerView == null || config == null) return null;
         try {
             // 获取适配器
@@ -746,7 +744,7 @@ public final class CapturePictureUtils {
                                     tempHeight = Math.max(itemHeight, tempHeight);
                                 }
 
-                                // 最后记录高度并累加
+                                // 记录高度并累加
                                 if (j == spanCount - 1) {
                                     height += tempHeight;
                                     itemHeightArrays[i] = tempHeight;
@@ -773,7 +771,7 @@ public final class CapturePictureUtils {
                                 // 小于总数才处理
                                 if (position < itemCount) {
                                     Bitmap bmp = bitmaps[position];
-                                    // 计算一下边距
+                                    // 计算边距
                                     int left = j * (horizontalSpacing + childWidth);
                                     Matrix matrix = new Matrix();
                                     matrix.postTranslate(left, iHeight);
@@ -784,7 +782,7 @@ public final class CapturePictureUtils {
                                     bmp = null;
                                 }
 
-                                // 最后记录高度并累加
+                                // 记录高度并累加
                                 if (j == spanCount - 1) {
                                     iHeight += itemHeight + verticalSpacing;
                                 }
@@ -847,7 +845,6 @@ public final class CapturePictureUtils {
                         // 追加子项间分隔符占用的宽高
                         width += (horizontalSpacing * (numColumns - 1));
                         height += (verticalSpacing * (numColumns - 1));
-
                         // 创建位图
                         Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
@@ -864,7 +861,7 @@ public final class CapturePictureUtils {
                                 // 小于总数才处理
                                 if (position < itemCount) {
                                     Bitmap bmp = bitmaps[position];
-                                    // 计算一下边距
+                                    // 计算边距
                                     int left = iWidth + (j * horizontalSpacing);
                                     Matrix matrix = new Matrix();
                                     matrix.postTranslate(left, iHeight);
@@ -957,7 +954,7 @@ public final class CapturePictureUtils {
                         for (int i = 0; i < itemCount; i++) {
                             // 获取最小高度索引
                             int minIndex = getMinimumIndex(columnsHeightArrays);
-                            // 计算一下边距
+                            // 计算边距
                             int left = minIndex * (horizontalSpacing + childWidth);
                             Matrix matrix = new Matrix();
                             matrix.postTranslate(left, columnsHeightArrays[minIndex]);
@@ -1027,7 +1024,6 @@ public final class CapturePictureUtils {
             // 追加子项间分隔符占用的高度
             height += (dividerHeight * (itemCount - 1));
             int width = listView.getMeasuredWidth();
-
             // 创建位图
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
@@ -1156,7 +1152,7 @@ public final class CapturePictureUtils {
                             tempHeight = Math.max(itemHeight, tempHeight);
                         }
 
-                        // 最后记录高度并累加
+                        // 记录高度并累加
                         if (j == numColumns - 1) {
                             height += tempHeight;
                             itemHeightArrays[i] = tempHeight;
@@ -1183,7 +1179,7 @@ public final class CapturePictureUtils {
                         // 小于总数才处理
                         if (position < itemCount) {
                             Bitmap bmp = bitmaps[position];
-                            // 计算一下边距
+                            // 计算边距
                             int left = j * (horizontalSpacing + childWidth);
                             Matrix matrix = new Matrix();
                             matrix.postTranslate(left, appendHeight);
@@ -1194,7 +1190,7 @@ public final class CapturePictureUtils {
                             bmp = null;
                         }
 
-                        // 最后记录高度并累加
+                        // 记录高度并累加
                         if (j == numColumns - 1) {
                             appendHeight += itemHeight + verticalSpacing;
                         }
