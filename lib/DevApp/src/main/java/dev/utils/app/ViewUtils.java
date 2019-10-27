@@ -387,8 +387,14 @@ public final class ViewUtils {
     public static View setWidthHeight(final View view, final int width, final int height) {
         if (view != null) {
             try {
-                view.getLayoutParams().width = width;
-                view.getLayoutParams().height = height;
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams != null) {
+                    layoutParams.width = width;
+                    layoutParams.height = height;
+                } else {
+                    layoutParams = new ViewGroup.LayoutParams(width, height);
+                    view.setLayoutParams(layoutParams);
+                }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setWidthHeight");
             }
@@ -405,7 +411,13 @@ public final class ViewUtils {
     public static View setWidth(final View view, final int width) {
         if (view != null) {
             try {
-                view.getLayoutParams().width = width;
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams != null) {
+                    layoutParams.width = width;
+                } else {
+                    layoutParams = new ViewGroup.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    view.setLayoutParams(layoutParams);
+                }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setWidth");
             }
@@ -434,7 +446,13 @@ public final class ViewUtils {
     public static View setHeight(final View view, final int height) {
         if (view != null) {
             try {
-                view.getLayoutParams().height = height;
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams != null) {
+                    layoutParams.height = height;
+                } else {
+                    layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, height);
+                    view.setLayoutParams(layoutParams);
+                }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setHeight");
             }

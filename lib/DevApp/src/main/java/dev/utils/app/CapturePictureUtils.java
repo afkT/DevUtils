@@ -1004,43 +1004,39 @@ public final class CapturePictureUtils {
     public static Bitmap snapshotByListView(final ListView listView, final Bitmap.Config config) {
         if (listView == null || config == null) return null;
         try {
-            int height = 0;
-            // 获取子项间分隔符占用的高度
-            int dividerHeight = listView.getDividerHeight();
             // Adapter
             ListAdapter listAdapter = listView.getAdapter();
             // Item 总条数
             int itemCount = listAdapter.getCount();
             // 没数据则直接跳过
             if (itemCount == 0) return null;
+            // 高度
+            int height = 0;
+            // 获取子项间分隔符占用的高度
+            int dividerHeight = listView.getDividerHeight();
             // View Bitmaps
             Bitmap[] bitmaps = new Bitmap[itemCount];
 
             // 循环绘制每个 Item 并保存 Bitmap
             for (int i = 0; i < itemCount; i++) {
                 View childView = listAdapter.getView(i, null, listView);
-                childView.measure(View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.EXACTLY),
-                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                childView.layout(0, 0, childView.getMeasuredWidth(), childView.getMeasuredHeight());
-                childView.setDrawingCacheEnabled(true);
-                childView.buildDrawingCache();
-
-                bitmaps[i] = childView.getDrawingCache();
+                measureChild(childView, listView.getWidth());
+                bitmaps[i] = canvasBitmap(childView, config);
                 height += childView.getMeasuredHeight();
             }
             // 追加子项间分隔符占用的高度
             height += (dividerHeight * (itemCount - 1));
-
             int width = listView.getMeasuredWidth();
             // 创建位图
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
             canvas.drawColor(BACKGROUND_COLOR);
-            int iHeight = 0;
+            // 累加高度
+            int appendHeight = 0;
             for (int i = 0, len = bitmaps.length; i < len; i++) {
                 Bitmap bmp = bitmaps[i];
-                canvas.drawBitmap(bmp, 0, iHeight, PAINT);
-                iHeight += (bmp.getHeight() + dividerHeight);
+                canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
+                appendHeight += (bmp.getHeight() + dividerHeight);
                 // 释放资源
                 bmp.recycle();
                 bmp = null;
@@ -1222,6 +1218,20 @@ public final class CapturePictureUtils {
     // ================
     // = 内部私有方法 =
     // ================
+
+    /**
+     * 绘制 Bitmap
+     * @param childView {@link View}
+     * @param config {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    private static Bitmap canvasBitmap(final View childView, final Bitmap.Config config){
+        Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawColor(BACKGROUND_COLOR);
+        childView.draw(canvas);
+        return bitmap;
+    }
 
     /**
      * 测量 View
