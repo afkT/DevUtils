@@ -2478,10 +2478,10 @@ public final class ViewUtils {
             // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / numColumns
             int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
 
-            // 记录每一行高度
-            int[] itemHeightArrays = new int[lineNumber];
-            // 临时高度 - 保存一行中最长列的高度
-            int tempHeight = 0;
+            // 记录每行最大高度
+            int[] rowHeightArrays = new int[lineNumber];
+            // 临时高度 - 保存行中最高的列高度
+            int tempHeight;
             // 循环每一行绘制每个 Item 并保存 Bitmap
             for (int i = 0; i < lineNumber; i++) {
                 // 清空高度
@@ -2503,7 +2503,7 @@ public final class ViewUtils {
                     // 记录高度并累加
                     if (j == numColumns - 1) {
                         height += tempHeight;
-                        itemHeightArrays[i] = tempHeight;
+                        rowHeightArrays[i] = tempHeight;
                     }
                 }
             }
