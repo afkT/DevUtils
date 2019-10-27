@@ -11,6 +11,7 @@ import android.graphics.Picture;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,6 +59,36 @@ public final class CapturePictureUtils {
     private static int BACKGROUND_COLOR = Color.TRANSPARENT;
     // 画笔
     private static Paint PAINT = new Paint();
+
+    // ============
+    // = 配置相关 =
+    // ============
+
+    /**
+     * 设置 Bitmap Config
+     * @param config {@link Bitmap.Config}
+     */
+    public static void setBitmapConfig(final Bitmap.Config config) {
+        if (config == null) return;
+        BITMAP_CONFIG = config;
+    }
+
+    /**
+     * 设置 Canvas 背景色
+     * @param backgroundColor 背景色
+     */
+    public static void setBackgroundColor(@ColorInt final int backgroundColor) {
+        BACKGROUND_COLOR = backgroundColor;
+    }
+
+    /**
+     * 设置画笔
+     * @param paint {@link Paint}
+     */
+    public static void setPaint(final Paint paint) {
+        if (paint == null) return;
+        PAINT = paint;
+    }
 
     // ========
     // = 截图 =
