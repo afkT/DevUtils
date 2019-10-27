@@ -526,6 +526,231 @@ public final class CapturePictureUtils {
         return null;
     }
 
+    // ============
+    // = ListView =
+    // ============
+
+    /**
+     * 通过 ListView 绘制为 Bitmap
+     * @param listView {@link ListView}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByListView(final ListView listView) {
+        return snapshotByListView(listView, BITMAP_CONFIG);
+    }
+
+    /**
+     * 通过 ListView 绘制为 Bitmap
+     * @param listView {@link ListView}
+     * @param config   {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByListView(final ListView listView, final Bitmap.Config config) {
+        if (listView == null || config == null) return null;
+        try {
+            // Adapter
+            ListAdapter listAdapter = listView.getAdapter();
+            // Item 总条数
+            int itemCount = listAdapter.getCount();
+            // 没数据则直接跳过
+            if (itemCount == 0) return null;
+            // 高度
+            int height = 0;
+            // 获取子项间分隔符占用的高度
+            int dividerHeight = listView.getDividerHeight();
+            // View Bitmaps
+            Bitmap[] bitmaps = new Bitmap[itemCount];
+
+            // 循环绘制每个 Item 并保存 Bitmap
+            for (int i = 0; i < itemCount; i++) {
+                View childView = listAdapter.getView(i, null, listView);
+                measureView(childView, listView.getWidth());
+                bitmaps[i] = canvasBitmap(childView, config);
+                height += childView.getMeasuredHeight();
+            }
+            // 追加子项间分隔符占用的高度
+            height += (dividerHeight * (itemCount - 1));
+            int width = listView.getMeasuredWidth();
+            // 创建位图
+            Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+            Canvas canvas = new Canvas(bitmap);
+            canvas.drawColor(BACKGROUND_COLOR);
+            // 累加高度
+            int appendHeight = 0;
+            for (int i = 0, len = bitmaps.length; i < len; i++) {
+                Bitmap bmp = bitmaps[i];
+                canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
+                appendHeight += (bmp.getHeight() + dividerHeight);
+                // 释放资源
+                bmp.recycle();
+                bmp = null;
+            }
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "snapshotByListView");
+        }
+        return null;
+    }
+
+    // ============
+    // = GridView =
+    // ============
+
+    /**
+     * 通过 GridView 绘制为 Bitmap
+     * @param gridView {@link GridView}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByGridView(final GridView gridView) {
+        return snapshotByGridView(gridView, BITMAP_CONFIG, false);
+    }
+
+    /**
+     * 通过 GridView 绘制为 Bitmap
+     * @param gridView {@link GridView}
+     * @param config   {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByGridView(final GridView gridView, final Bitmap.Config config) {
+        return snapshotByGridView(gridView, config, false);
+    }
+
+    /**
+     * 通过 GridView 绘制为 Bitmap
+     * @param gridView       {@link GridView}
+     * @param config         {@link Bitmap.Config}
+     * @param listViewEffect 是否保存 ListView 效果 ( 每个 Item 铺满 )
+     * @return {@link Bitmap}
+     */
+    public static Bitmap snapshotByGridView(final GridView gridView, final Bitmap.Config config, final boolean listViewEffect) {
+        if (gridView == null || config == null) return null;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return null;
+        try {
+            // Adapter
+            ListAdapter listAdapter = gridView.getAdapter();
+            // Item 总条数
+            int itemCount = listAdapter.getCount();
+            // 没数据则直接跳过
+            if (itemCount == 0) return null;
+            // 高度
+            int height = 0;
+            // 获取一共多少列
+            int numColumns = gridView.getNumColumns();
+            // 每列之间的间隔 |
+            int horizontalSpacing = gridView.getHorizontalSpacing();
+            // 每行之间的间隔 -
+            int verticalSpacing = gridView.getVerticalSpacing();
+            // View Bitmaps
+            Bitmap[] bitmaps = new Bitmap[itemCount];
+
+            // 效果处理 - ListView 效果 Item 铺满
+            if (listViewEffect) {
+                // 循环绘制每个 Item 并保存 Bitmap
+                for (int i = 0; i < itemCount; i++) {
+                    View childView = listAdapter.getView(i, null, gridView);
+                    measureView(childView, gridView.getWidth());
+                    bitmaps[i] = canvasBitmap(childView, config);
+                    height += childView.getMeasuredHeight();
+                }
+                // 追加子项间分隔符占用的高度
+                height += (verticalSpacing * (itemCount - 1));
+                int width = gridView.getMeasuredWidth();
+                // 创建位图
+                Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+                Canvas canvas = new Canvas(bitmap);
+                canvas.drawColor(BACKGROUND_COLOR);
+                // 累加高度
+                int appendHeight = 0;
+                for (int i = 0, len = bitmaps.length; i < len; i++) {
+                    Bitmap bmp = bitmaps[i];
+                    canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
+                    appendHeight += (bmp.getHeight() + verticalSpacing);
+                    // 释放资源
+                    bmp.recycle();
+                    bmp = null;
+                }
+                return bitmap;
+            } else {
+                // 获取倍数 ( 行数 )
+                int lineNumber = getMultiple(itemCount, numColumns);
+                // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / numColumns
+                int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
+
+                // 记录每一行高度
+                int[] itemHeightArrays = new int[lineNumber];
+                // 临时高度 - 保存一行中最长列的高度
+                int tempHeight = 0;
+                // 循环每一行绘制每个 Item 并保存 Bitmap
+                for (int i = 0; i < lineNumber; i++) {
+                    // 清空高度
+                    tempHeight = 0;
+                    // 循环列数
+                    for (int j = 0; j < numColumns; j++) {
+                        // 获取对应的索引
+                        int position = i * numColumns + j;
+                        // 小于总数才处理
+                        if (position < itemCount) {
+                            View childView = listAdapter.getView(position, null, gridView);
+                            measureView(childView, childWidth);
+                            bitmaps[position] = canvasBitmap(childView, config);
+
+                            int itemHeight = childView.getMeasuredHeight();
+                            // 保留最大高度
+                            tempHeight = Math.max(itemHeight, tempHeight);
+                        }
+
+                        // 记录高度并累加
+                        if (j == numColumns - 1) {
+                            height += tempHeight;
+                            itemHeightArrays[i] = tempHeight;
+                        }
+                    }
+                }
+                // 追加子项间分隔符占用的高度
+                height += (verticalSpacing * (lineNumber - 1));
+                int width = gridView.getMeasuredWidth();
+                // 创建位图
+                Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+                Canvas canvas = new Canvas(bitmap);
+                canvas.drawColor(BACKGROUND_COLOR);
+                // 累加高度
+                int appendHeight = 0;
+                // 循环每一行绘制每个 Item Bitmap
+                for (int i = 0; i < lineNumber; i++) {
+                    // 获取每一行最长列的高度
+                    int itemHeight = itemHeightArrays[i];
+                    // 循环列数
+                    for (int j = 0; j < numColumns; j++) {
+                        // 获取对应的索引
+                        int position = i * numColumns + j;
+                        // 小于总数才处理
+                        if (position < itemCount) {
+                            Bitmap bmp = bitmaps[position];
+                            // 计算边距
+                            int left = j * (horizontalSpacing + childWidth);
+                            Matrix matrix = new Matrix();
+                            matrix.postTranslate(left, appendHeight);
+                            // 绘制到 Bitmap
+                            canvas.drawBitmap(bmp, matrix, PAINT);
+                            // 释放资源
+                            bmp.recycle();
+                            bmp = null;
+                        }
+
+                        // 记录高度并累加
+                        if (j == numColumns - 1) {
+                            appendHeight += itemHeight + verticalSpacing;
+                        }
+                    }
+                }
+                return bitmap;
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "snapshotByGridView");
+        }
+        return null;
+    }
+
     // ================
     // = RecyclerView =
     // ================
@@ -599,7 +824,7 @@ public final class CapturePictureUtils {
                 if (itemCount == 0) return null;
                 // View Bitmaps
                 Bitmap[] bitmaps = new Bitmap[itemCount];
-                // 获取类型
+                // 获取 LayoutManager 类型
                 Class clazz = layoutManager.getClass();
                 // 判断横竖布局
                 boolean vertical;
@@ -975,231 +1200,6 @@ public final class CapturePictureUtils {
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByRecyclerView");
-        }
-        return null;
-    }
-
-    // ============
-    // = ListView =
-    // ============
-
-    /**
-     * 通过 ListView 绘制为 Bitmap
-     * @param listView {@link ListView}
-     * @return {@link Bitmap}
-     */
-    public static Bitmap snapshotByListView(final ListView listView) {
-        return snapshotByListView(listView, BITMAP_CONFIG);
-    }
-
-    /**
-     * 通过 ListView 绘制为 Bitmap
-     * @param listView {@link ListView}
-     * @param config   {@link Bitmap.Config}
-     * @return {@link Bitmap}
-     */
-    public static Bitmap snapshotByListView(final ListView listView, final Bitmap.Config config) {
-        if (listView == null || config == null) return null;
-        try {
-            // Adapter
-            ListAdapter listAdapter = listView.getAdapter();
-            // Item 总条数
-            int itemCount = listAdapter.getCount();
-            // 没数据则直接跳过
-            if (itemCount == 0) return null;
-            // 高度
-            int height = 0;
-            // 获取子项间分隔符占用的高度
-            int dividerHeight = listView.getDividerHeight();
-            // View Bitmaps
-            Bitmap[] bitmaps = new Bitmap[itemCount];
-
-            // 循环绘制每个 Item 并保存 Bitmap
-            for (int i = 0; i < itemCount; i++) {
-                View childView = listAdapter.getView(i, null, listView);
-                measureView(childView, listView.getWidth());
-                bitmaps[i] = canvasBitmap(childView, config);
-                height += childView.getMeasuredHeight();
-            }
-            // 追加子项间分隔符占用的高度
-            height += (dividerHeight * (itemCount - 1));
-            int width = listView.getMeasuredWidth();
-            // 创建位图
-            Bitmap bitmap = Bitmap.createBitmap(width, height, config);
-            Canvas canvas = new Canvas(bitmap);
-            canvas.drawColor(BACKGROUND_COLOR);
-            // 累加高度
-            int appendHeight = 0;
-            for (int i = 0, len = bitmaps.length; i < len; i++) {
-                Bitmap bmp = bitmaps[i];
-                canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
-                appendHeight += (bmp.getHeight() + dividerHeight);
-                // 释放资源
-                bmp.recycle();
-                bmp = null;
-            }
-            return bitmap;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "snapshotByListView");
-        }
-        return null;
-    }
-
-    // ============
-    // = GridView =
-    // ============
-
-    /**
-     * 通过 GridView 绘制为 Bitmap
-     * @param gridView {@link GridView}
-     * @return {@link Bitmap}
-     */
-    public static Bitmap snapshotByGridView(final GridView gridView) {
-        return snapshotByGridView(gridView, BITMAP_CONFIG, false);
-    }
-
-    /**
-     * 通过 GridView 绘制为 Bitmap
-     * @param gridView {@link GridView}
-     * @param config   {@link Bitmap.Config}
-     * @return {@link Bitmap}
-     */
-    public static Bitmap snapshotByGridView(final GridView gridView, final Bitmap.Config config) {
-        return snapshotByGridView(gridView, config, false);
-    }
-
-    /**
-     * 通过 GridView 绘制为 Bitmap
-     * @param gridView       {@link GridView}
-     * @param config         {@link Bitmap.Config}
-     * @param listViewEffect 是否保存 ListView 效果 ( 每个 Item 铺满 )
-     * @return {@link Bitmap}
-     */
-    public static Bitmap snapshotByGridView(final GridView gridView, final Bitmap.Config config, final boolean listViewEffect) {
-        if (gridView == null || config == null) return null;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return null;
-        try {
-            // Adapter
-            ListAdapter listAdapter = gridView.getAdapter();
-            // Item 总条数
-            int itemCount = listAdapter.getCount();
-            // 没数据则直接跳过
-            if (itemCount == 0) return null;
-            // 高度
-            int height = 0;
-            // 获取一共多少列
-            int numColumns = gridView.getNumColumns();
-            // 每列之间的间隔 |
-            int horizontalSpacing = gridView.getHorizontalSpacing();
-            // 每行之间的间隔 -
-            int verticalSpacing = gridView.getVerticalSpacing();
-            // View Bitmaps
-            Bitmap[] bitmaps = new Bitmap[itemCount];
-
-            // 效果处理 - ListView 效果 Item 铺满
-            if (listViewEffect) {
-                // 循环绘制每个 Item 并保存 Bitmap
-                for (int i = 0; i < itemCount; i++) {
-                    View childView = listAdapter.getView(i, null, gridView);
-                    measureView(childView, gridView.getWidth());
-                    bitmaps[i] = canvasBitmap(childView, config);
-                    height += childView.getMeasuredHeight();
-                }
-                // 追加子项间分隔符占用的高度
-                height += (verticalSpacing * (itemCount - 1));
-                int width = gridView.getMeasuredWidth();
-                // 创建位图
-                Bitmap bitmap = Bitmap.createBitmap(width, height, config);
-                Canvas canvas = new Canvas(bitmap);
-                canvas.drawColor(BACKGROUND_COLOR);
-                // 累加高度
-                int appendHeight = 0;
-                for (int i = 0, len = bitmaps.length; i < len; i++) {
-                    Bitmap bmp = bitmaps[i];
-                    canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
-                    appendHeight += (bmp.getHeight() + verticalSpacing);
-                    // 释放资源
-                    bmp.recycle();
-                    bmp = null;
-                }
-                return bitmap;
-            } else {
-                // 获取倍数 ( 行数 )
-                int lineNumber = getMultiple(itemCount, numColumns);
-                // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / numColumns
-                int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
-
-                // 记录每一行高度
-                int[] itemHeightArrays = new int[lineNumber];
-                // 临时高度 - 保存一行中最长列的高度
-                int tempHeight = 0;
-                // 循环每一行绘制每个 Item 并保存 Bitmap
-                for (int i = 0; i < lineNumber; i++) {
-                    // 清空高度
-                    tempHeight = 0;
-                    // 循环列数
-                    for (int j = 0; j < numColumns; j++) {
-                        // 获取对应的索引
-                        int position = i * numColumns + j;
-                        // 小于总数才处理
-                        if (position < itemCount) {
-                            View childView = listAdapter.getView(position, null, gridView);
-                            measureView(childView, childWidth);
-                            bitmaps[position] = canvasBitmap(childView, config);
-
-                            int itemHeight = childView.getMeasuredHeight();
-                            // 保留最大高度
-                            tempHeight = Math.max(itemHeight, tempHeight);
-                        }
-
-                        // 记录高度并累加
-                        if (j == numColumns - 1) {
-                            height += tempHeight;
-                            itemHeightArrays[i] = tempHeight;
-                        }
-                    }
-                }
-                // 追加子项间分隔符占用的高度
-                height += (verticalSpacing * (lineNumber - 1));
-                int width = gridView.getMeasuredWidth();
-                // 创建位图
-                Bitmap bitmap = Bitmap.createBitmap(width, height, config);
-                Canvas canvas = new Canvas(bitmap);
-                canvas.drawColor(BACKGROUND_COLOR);
-                // 累加高度
-                int appendHeight = 0;
-                // 循环每一行绘制每个 Item Bitmap
-                for (int i = 0; i < lineNumber; i++) {
-                    // 获取每一行最长列的高度
-                    int itemHeight = itemHeightArrays[i];
-                    // 循环列数
-                    for (int j = 0; j < numColumns; j++) {
-                        // 获取对应的索引
-                        int position = i * numColumns + j;
-                        // 小于总数才处理
-                        if (position < itemCount) {
-                            Bitmap bmp = bitmaps[position];
-                            // 计算边距
-                            int left = j * (horizontalSpacing + childWidth);
-                            Matrix matrix = new Matrix();
-                            matrix.postTranslate(left, appendHeight);
-                            // 绘制到 Bitmap
-                            canvas.drawBitmap(bmp, matrix, PAINT);
-                            // 释放资源
-                            bmp.recycle();
-                            bmp = null;
-                        }
-
-                        // 记录高度并累加
-                        if (j == numColumns - 1) {
-                            appendHeight += itemHeight + verticalSpacing;
-                        }
-                    }
-                }
-                return bitmap;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "snapshotByGridView");
         }
         return null;
     }

@@ -2500,7 +2500,7 @@ public final class ViewUtils {
                         tempHeight = Math.max(itemHeight, tempHeight);
                     }
 
-                    // 最后记录高度并累加
+                    // 记录高度并累加
                     if (j == numColumns - 1) {
                         height += tempHeight;
                         itemHeightArrays[i] = tempHeight;
