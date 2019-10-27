@@ -63,6 +63,72 @@ public final class CapturePictureUtils {
     // = 截图 =
     // ========
 
+    // ============
+    // = Activity =
+    // ============
+
+    /**
+     * 获取当前屏幕截图, 包含状态栏 ( 顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示 )
+     * @param activity {@link Activity}
+     * @return 当前屏幕截图, 包含状态栏
+     */
+    public static Bitmap snapshotWithStatusBar(final Activity activity) {
+        try {
+            View view = activity.getWindow().getDecorView();
+            view.setDrawingCacheEnabled(true);
+            // 重新创建绘图缓存, 此时的背景色是黑色
+            view.buildDrawingCache();
+            // 获取绘图缓存, 注意这里得到的只是一个图像的引用
+            Bitmap cacheBitmap = view.getDrawingCache();
+            if (cacheBitmap == null) return null;
+            // 获取屏幕宽度
+            int[] widthHeight = getScreenWidthHeight();
+
+            Rect frame = new Rect();
+            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+            // 创建新的图片
+            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap, 0, 0, widthHeight[0], widthHeight[1]);
+            // 释放绘图资源所使用的缓存
+            view.destroyDrawingCache();
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "snapshotWithStatusBar");
+        }
+        return null;
+    }
+
+    /**
+     * 获取当前屏幕截图, 不包含状态栏 ( 如果 android:theme 全屏, 则截图无状态栏 )
+     * @param activity {@link Activity}
+     * @return 当前屏幕截图, 不包含状态栏
+     */
+    public static Bitmap snapshotWithoutStatusBar(final Activity activity) {
+        try {
+            View view = activity.getWindow().getDecorView();
+            view.setDrawingCacheEnabled(true);
+            // 重新创建绘图缓存, 此时的背景色是黑色
+            view.buildDrawingCache();
+            // 获取绘图缓存, 注意这里得到的只是一个图像的引用
+            Bitmap cacheBitmap = view.getDrawingCache();
+            if (cacheBitmap == null) return null;
+            // 获取屏幕宽度
+            int[] widthHeight = getScreenWidthHeight();
+            // 获取状态栏高度
+            int statusBarHeight = getStatusBarHeight(activity);
+
+            Rect frame = new Rect();
+            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+            // 创建新的图片
+            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap, 0, statusBarHeight, widthHeight[0], widthHeight[1] - statusBarHeight);
+            // 释放绘图资源所使用的缓存
+            view.destroyDrawingCache();
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "snapshotWithoutStatusBar");
+        }
+        return null;
+    }
+
     // ===========
     // = WebView =
     // ===========
@@ -1147,72 +1213,6 @@ public final class CapturePictureUtils {
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByGridView");
-        }
-        return null;
-    }
-
-    // ============
-    // = Activity =
-    // ============
-
-    /**
-     * 获取当前屏幕截图, 包含状态栏 ( 顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示 )
-     * @param activity {@link Activity}
-     * @return 当前屏幕截图, 包含状态栏
-     */
-    public static Bitmap snapshotWithStatusBar(final Activity activity) {
-        try {
-            View view = activity.getWindow().getDecorView();
-            view.setDrawingCacheEnabled(true);
-            // 重新创建绘图缓存, 此时的背景色是黑色
-            view.buildDrawingCache();
-            // 获取绘图缓存, 注意这里得到的只是一个图像的引用
-            Bitmap cacheBitmap = view.getDrawingCache();
-            if (cacheBitmap == null) return null;
-            // 获取屏幕宽度
-            int[] widthHeight = getScreenWidthHeight();
-
-            Rect frame = new Rect();
-            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-            // 创建新的图片
-            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap, 0, 0, widthHeight[0], widthHeight[1]);
-            // 释放绘图资源所使用的缓存
-            view.destroyDrawingCache();
-            return bitmap;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "snapshotWithStatusBar");
-        }
-        return null;
-    }
-
-    /**
-     * 获取当前屏幕截图, 不包含状态栏 ( 如果 android:theme 全屏, 则截图无状态栏 )
-     * @param activity {@link Activity}
-     * @return 当前屏幕截图, 不包含状态栏
-     */
-    public static Bitmap snapshotWithoutStatusBar(final Activity activity) {
-        try {
-            View view = activity.getWindow().getDecorView();
-            view.setDrawingCacheEnabled(true);
-            // 重新创建绘图缓存, 此时的背景色是黑色
-            view.buildDrawingCache();
-            // 获取绘图缓存, 注意这里得到的只是一个图像的引用
-            Bitmap cacheBitmap = view.getDrawingCache();
-            if (cacheBitmap == null) return null;
-            // 获取屏幕宽度
-            int[] widthHeight = getScreenWidthHeight();
-            // 获取状态栏高度
-            int statusBarHeight = getStatusBarHeight(activity);
-
-            Rect frame = new Rect();
-            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-            // 创建新的图片
-            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap, 0, statusBarHeight, widthHeight[0], widthHeight[1] - statusBarHeight);
-            // 释放绘图资源所使用的缓存
-            view.destroyDrawingCache();
-            return bitmap;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "snapshotWithoutStatusBar");
         }
         return null;
     }
