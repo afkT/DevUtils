@@ -431,13 +431,15 @@ public final class CapturePictureUtils {
     public static Bitmap snapshotByScrollView(final ScrollView scrollView, final Bitmap.Config config) {
         if (scrollView == null || config == null) return null;
         try {
-            int height = scrollView.getChildAt(0).getHeight();
+            View view = scrollView.getChildAt(0);
+            int width = view.getWidth();
+            int height = view.getHeight();
 
-            Bitmap bitmap = Bitmap.createBitmap(scrollView.getWidth(), height, config);
+            Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
             canvas.drawColor(BACKGROUND_COLOR);
-            scrollView.layout(scrollView.getLeft(), scrollView.getTop(),
-                    scrollView.getRight(), scrollView.getBottom());
+            scrollView.layout(0, 0, scrollView.getMeasuredWidth(),
+                    scrollView.getMeasuredHeight());
             scrollView.draw(canvas);
             return bitmap;
         } catch (Exception e) {
@@ -475,8 +477,8 @@ public final class CapturePictureUtils {
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
             canvas.drawColor(BACKGROUND_COLOR);
-            scrollView.layout(scrollView.getLeft(), scrollView.getTop(),
-                    scrollView.getRight(), scrollView.getBottom());
+            scrollView.layout(0, 0, scrollView.getMeasuredWidth(),
+                    scrollView.getMeasuredHeight());
             scrollView.draw(canvas);
             return bitmap;
         } catch (Exception e) {
@@ -514,8 +516,8 @@ public final class CapturePictureUtils {
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
             canvas.drawColor(BACKGROUND_COLOR);
-            scrollView.layout(scrollView.getLeft(), scrollView.getTop(),
-                    scrollView.getRight(), scrollView.getBottom());
+            scrollView.layout(0, 0, scrollView.getMeasuredWidth(),
+                    scrollView.getMeasuredHeight());
             scrollView.draw(canvas);
             return bitmap;
         } catch (Exception e) {
