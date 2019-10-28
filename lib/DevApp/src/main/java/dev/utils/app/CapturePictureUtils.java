@@ -885,6 +885,13 @@ public final class CapturePictureUtils {
                                                                    final Bitmap.Config config,
                                                                    final int verticalSpacing,
                                                                    final int horizontalSpacing) {
+        // 计算思路
+        // = 竖屏 =
+        // 每个 Item 宽度最大值固定为 (RecyclerView 宽度 - ( 列数 - 1) * 每列边距 ) / 列数
+        // 循环保存每行最大高度, 并累加每行之间的间隔, 用于 Bitmap 高度, 宽度用 RecyclerView 宽度
+        // = 横屏 =
+        // 循环保存每一行宽度以及每一行 ( 横着一行 ) 最大高度, 并且累加每行、每列之间的间隔
+        // 用于 Bitmap 高度, 宽度用 ( 每一行宽度累加值 ) 最大值
         try {
             // 获取适配器
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
@@ -1083,6 +1090,13 @@ public final class CapturePictureUtils {
                                                                      final Bitmap.Config config,
                                                                      final int verticalSpacing,
                                                                      final int horizontalSpacing) {
+        // 计算思路
+        // = 竖屏 =
+        // 循环保存每一个 Item View 高度, 并累加每行之间的间隔,
+        // 用于 Bitmap 高度, 宽度用 RecyclerView 宽度
+        // = 横屏 =
+        // 循环保存每一个 Item View 宽度, 并累加每列之间的间隔, 且记录最高的列
+        // 用于 Bitmap 高度, 宽度用累加出来的值
         try {
             // 获取适配器
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
@@ -1187,6 +1201,13 @@ public final class CapturePictureUtils {
                                                                             final Bitmap.Config config,
                                                                             final int verticalSpacing,
                                                                             final int horizontalSpacing) {
+        // 计算思路
+        // = 竖屏 =
+        // 每个 Item 宽度最大值固定为 (RecyclerView 宽度 - ( 列数 - 1) * 每列边距 ) / 列数
+        // 循环保存每一个 Item View 高度, 并创建数组记录每一列待绘制高度, 实现瀑布流高度补差
+        // 并通过该数组 ( 每列待绘制高度数组 ) 获取最大值, 用做 Bitmap 高度, 绘制则还是按以上规则高度补差累加
+        // = 横屏 =
+        // 循环保存每一个 Item View 宽度, 并且
         try {
             // 获取适配器
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
@@ -1292,6 +1313,7 @@ public final class CapturePictureUtils {
                 // ============
                 // = 横向滑动 =
                 // ============
+
 
             }
         } catch (Exception e) {
