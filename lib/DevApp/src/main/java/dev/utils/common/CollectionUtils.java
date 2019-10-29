@@ -1439,4 +1439,222 @@ public final class CollectionUtils {
         }
         return -1;
     }
+
+    // ================
+    // = 计算集合总和 =
+    // ================
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @return 集合总和
+     */
+    public static int sumlistI(final List<Integer> lists) {
+        return sumlistI(lists, 0, length(lists), 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @return 集合总和
+     */
+    public static int sumlistI(final List<Integer> lists, final int end) {
+        return sumlistI(lists, 0, end, 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static int sumlistI(final List<Integer> lists, final int end, final int extra) {
+        return sumlistI(lists, 0, end, extra);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param start 开始位置
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static int sumlistI(final List<Integer> lists, final int start, final int end, final int extra) {
+        int total = 0;
+        if (lists != null) {
+            for (int i = start; i < end; i++) {
+                try {
+                    total += (lists.get(i) + extra);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "sumlistI");
+                }
+            }
+        }
+        return total;
+    }
+
+    // =
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @return 集合总和
+     */
+    public static long sumlistL(final List<Long> lists) {
+        return sumlistL(lists, 0, length(lists), 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @return 集合总和
+     */
+    public static long sumlistL(final List<Long> lists, final int end) {
+        return sumlistL(lists, 0, end, 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static long sumlistL(final List<Long> lists, final int end, final long extra) {
+        return sumlistL(lists, 0, end, extra);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param start 开始位置
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static long sumlistL(final List<Long> lists, final int start, final int end, final long extra) {
+        long total = 0;
+        if (lists != null) {
+            for (int i = start; i < end; i++) {
+                try {
+                    total += (lists.get(i) + extra);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "sumlistL");
+                }
+            }
+        }
+        return total;
+    }
+
+    // =
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @return 集合总和
+     */
+    public static float sumlistF(final List<Float> lists) {
+        return sumlistF(lists, 0, length(lists), 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @return 集合总和
+     */
+    public static float sumlistF(final List<Float> lists, final int end) {
+        return sumlistF(lists, 0, end, 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static float sumlistF(final List<Float> lists, final int end, final float extra) {
+        return sumlistF(lists, 0, end, extra);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param start 开始位置
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static float sumlistF(final List<Float> lists, final int start, final int end, final float extra) {
+        float total = 0;
+        if (lists != null) {
+            for (int i = start; i < end; i++) {
+                try {
+                    total += (lists.get(i) + extra);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "sumlistF");
+                }
+            }
+        }
+        return total;
+    }
+
+    // =
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @return 集合总和
+     */
+    public static double sumlistD(final List<Double> lists) {
+        return sumlistD(lists, 0, length(lists), 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @return 集合总和
+     */
+    public static double sumlistD(final List<Double> lists, final int end) {
+        return sumlistD(lists, 0, end, 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static double sumlistD(final List<Double> lists, final int end, final double extra) {
+        return sumlistD(lists, 0, end, extra);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param start 开始位置
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static double sumlistD(final List<Double> lists, final int start, final int end, final double extra) {
+        double total = 0;
+        if (lists != null) {
+            for (int i = start; i < end; i++) {
+                try {
+                    total += (lists.get(i) + extra);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "sumlistD");
+                }
+            }
+        }
+        return total;
+    }
 }
