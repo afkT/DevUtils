@@ -54,7 +54,7 @@ public final class CapturePictureUtils {
     // 日志 TAG
     private static final String TAG = CapturePictureUtils.class.getSimpleName();
     // Bitmap Config
-    private static Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
+    private static Bitmap.Config BITMAP_CONFIG = Bitmap.Config.RGB_565;
     // Canvas 背景色
     private static int BACKGROUND_COLOR = Color.TRANSPARENT;
     // 画笔
@@ -832,6 +832,7 @@ public final class CapturePictureUtils {
      * 通过 RecyclerView 绘制为 Bitmap
      * <pre>
      *     不支持含 ItemDecoration 截图
+     *     如果数据太多推荐 copy 代码, 修改为保存每个 Item Bitmap 到本地, 并在绘制时获取绘制
      * </pre>
      * @param recyclerView      {@link RecyclerView}
      * @param config            {@link Bitmap.Config}
@@ -1207,7 +1208,8 @@ public final class CapturePictureUtils {
         // 循环保存每一个 Item View 高度, 并创建数组记录每一列待绘制高度, 实现瀑布流高度补差
         // 并通过该数组 ( 每列待绘制高度数组 ) 获取最大值, 用做 Bitmap 高度, 绘制则还是按以上规则高度补差累加
         // = 横屏 =
-        // 循环保存每一个 Item View 宽度, 并且
+        // 循环保存每一个 Item View 宽度、高度, 并创建数组记录每一列待绘制宽度, 实现瀑布流高度补差
+        // 并通过该数组 ( 每列待绘制宽度数组 ) 获取最大值, 用做 Bitmap 高度, 绘制则还是按以上规则宽度补差累加
         try {
             // 获取适配器
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
@@ -1236,22 +1238,13 @@ public final class CapturePictureUtils {
                 int childWidth = (recyclerView.getWidth() - (spanCount - 1) * horizontalSpacing) / spanCount;
                 // 记录每个 Item 高度
                 int[] itemHeightArrays = new int[itemCount];
-                for (int i = 0; i < lineNumber; i++) {
-                    // 循环列数
-                    for (int j = 0; j < spanCount; j++) {
-                        // 获取对应的索引
-                        int position = i * spanCount + j;
-                        // 小于总数才处理
-                        if (position < itemCount) {
-                            RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
-                            adapter.onBindViewHolder(holder, position);
-                            View childView = holder.itemView;
-                            measureView(childView, childWidth);
-                            bitmaps[position] = canvasBitmap(childView, config);
-                            int itemHeight = childView.getMeasuredHeight();
-                            itemHeightArrays[position] = itemHeight;
-                        }
-                    }
+                for (int i = 0; i < itemCount; i++) {
+                    RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
+                    adapter.onBindViewHolder(holder, i);
+                    View childView = holder.itemView;
+                    measureView(childView, childWidth);
+                    bitmaps[i] = canvasBitmap(childView, config);
+                    itemHeightArrays[i] = childView.getMeasuredHeight();
                 }
 
                 // 记录每列 Item 个数
@@ -1314,7 +1307,81 @@ public final class CapturePictureUtils {
                 // = 横向滑动 =
                 // ============
 
+                // 获取行数
+                lineNumber = Math.min(spanCount, itemCount);
+                // 记录每个 Item 宽度
+                int[] itemWidthArrays = new int[itemCount];
+                // 记录每个 Item 高度
+                int[] itemHeightArrays = new int[itemCount];
+                for (int i = 0; i < itemCount; i++) {
+                    RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
+                    adapter.onBindViewHolder(holder, i);
+                    View childView = holder.itemView;
+                    measureView(childView, 0);
+                    bitmaps[i] = canvasBitmap(childView, config);
+                    itemWidthArrays[i] = childView.getMeasuredWidth();
+                    itemHeightArrays[i] = childView.getMeasuredHeight();
+                }
 
+                // 记录每行向上距离
+                int[] columnsTopArrays = new int[lineNumber];
+                // 记录每行 Item 个数
+                int[] columnsItemNumberArrays = new int[lineNumber];
+                // 记录每行总宽度
+                int[] columnsWidthArrays = new int[lineNumber];
+                // 记录每行最大高度
+                int[] columnsHeightArrays = new int[lineNumber];
+                // 循环宽度, 计算绘制位置
+                for (int i = 0; i < itemCount; i++) {
+                    // 获取最小宽度索引
+                    int minIndex = getMinimumIndex(columnsWidthArrays);
+                    // 累加宽度
+                    columnsWidthArrays[minIndex] += itemWidthArrays[i];
+                    // 累加数量
+                    columnsItemNumberArrays[minIndex] += 1;
+                    // 保存每行最大高度
+                    columnsHeightArrays[minIndex] = Math.max(itemHeightArrays[i], columnsHeightArrays[minIndex]);
+                }
+
+                // 循环追加子项间分隔符占用的宽度
+                for (int i = 0; i < lineNumber; i++) {
+                    if (columnsItemNumberArrays[i] > 1) {
+                        columnsWidthArrays[i] += (columnsItemNumberArrays[i] - 1) * horizontalSpacing;
+                    }
+                    if (i > 0) {
+                        columnsTopArrays[i] = height + (i * verticalSpacing);
+                    }
+                    // 累加每行高度
+                    height += columnsHeightArrays[i];
+                }
+
+                // 获取最大宽值
+                int maxColumnsWidth = columnsWidthArrays[getMaximumIndex(columnsWidthArrays)];
+                // 使用最大值
+                height += (lineNumber - 1) * verticalSpacing;
+                width = maxColumnsWidth;
+                // 清空绘制时累加计算
+                columnsWidthArrays = new int[lineNumber];
+                // 创建位图
+                Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+                Canvas canvas = new Canvas(bitmap);
+                canvas.drawColor(BACKGROUND_COLOR);
+                // 循环绘制
+                for (int i = 0; i < itemCount; i++) {
+                    // 获取最小宽度索引
+                    int minIndex = getMinimumIndex(columnsWidthArrays);
+                    Matrix matrix = new Matrix();
+                    matrix.postTranslate(columnsWidthArrays[minIndex], columnsTopArrays[minIndex]);
+                    // 绘制到 Bitmap
+                    Bitmap bmp = bitmaps[i];
+                    canvas.drawBitmap(bmp, matrix, PAINT);
+                    // 累加宽度
+                    columnsWidthArrays[minIndex] += (itemWidthArrays[i] + horizontalSpacing);
+                    // 释放资源
+                    bmp.recycle();
+                    bmp = null;
+                }
+                return bitmap;
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByRecyclerView_StaggeredGridLayoutManager");
