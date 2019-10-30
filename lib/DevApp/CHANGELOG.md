@@ -20,7 +20,7 @@ Version 1.8.3 *(2019-10-31)*
 
 * `[Add]` NotificationUtils#isNotificationEnabled
 
-* `[Add]` CapturePictureUtils 截图工具类(支持 View、Activity、FrameLayout、RelativeLayout、LinearLayout、ListView、GridView、ScrollView、HorizontalScrollView、NestedScrollView、WebView、RecyclerView(GridLayoutManager、LinearLayoutManager、StaggeredGridLayoutManager))
+* `[Add]` CapturePictureUtils 截图工具类 ( 支持 View、Activity、FrameLayout、RelativeLayout、LinearLayout、ListView、GridView、ScrollView、HorizontalScrollView、NestedScrollView、WebView、RecyclerView(GridLayoutManager、LinearLayoutManager、StaggeredGridLayoutManager) )
 
 Version 1.8.2 *(2019-10-18)*
 ----------------------------

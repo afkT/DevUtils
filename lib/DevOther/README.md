@@ -7,6 +7,7 @@
    - other                                            | 第三方库封装工具类
    - receiver                                         | BroadcastReceiver 监听相关
    - service                                          | Service 相关
+   - temp                                             | 临时快捷调用工具类
 ```
 
 
@@ -22,6 +23,7 @@
    - [other](#devother)                               | 第三方库封装工具类
    - [receiver](#devreceiver)                         | BroadcastReceiver 监听相关
    - [service](#devservice)                           | Service 相关
+   - [temp](#devtemp)                                 | 临时快捷调用工具类
 
 
 
@@ -182,6 +184,9 @@
 | setImageBitmaps | 设置 View Bitmap |
 | setImageDrawables | 设置 View Drawable |
 | setScaleTypes | 设置 View 缩放模式 |
+| setWidthHeight | 设置 View 宽度、高度 |
+| setWidth | 设置 View 宽度 |
+| setHeight | 设置 View 高度 |
 | setMinimumHeight | 设置 View 最小高度 |
 | setMinimumWidth | 设置 View 最小宽度 |
 | setAlpha | 设置 View 透明度 |
@@ -236,6 +241,13 @@
 | setCompoundDrawablesWithIntrinsicBoundsByRight | 设置 Right CompoundDrawables - 按照原有比例大小显示图片 |
 | setCompoundDrawablesWithIntrinsicBoundsByBottom | 设置 Bottom CompoundDrawables - 按照原有比例大小显示图片 |
 | setCompoundDrawablesWithIntrinsicBounds | 设置 CompoundDrawables - 按照原有比例大小显示图片 |
+| addRule | 设置 RelativeLayout View 布局规则 |
+| removeRule | 移除 RelativeLayout View 布局规则 |
+| addRules | 设置多个 RelativeLayout View 布局规则 |
+| removeRules | 移除多个 RelativeLayout View 布局规则 |
+| setAnimation | 设置动画 |
+| clearAnimation | 清空动画 |
+| startAnimation | 启动动画 |
 | setOnClicks | 设置点击事件 |
 | setOnLongClicks | 设置长按事件 |
 | addTouchArea | 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域 |
@@ -464,3 +476,13 @@
 | setNotificationListener | 设置通知栏监听事件 |
 | onServiceCreated | 服务创建通知 |
 | onServiceDestroy | 服务销毁通知 |
+
+
+## <span id="devtemp">**`dev.temp`**</span>
+
+
+* **随机生成汉字工具类 ->** [ChineseUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/temp/ChineseUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getRandomWord | 获取随机汉字 |
