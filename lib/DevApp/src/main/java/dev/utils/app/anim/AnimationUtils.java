@@ -1,5 +1,6 @@
 package dev.utils.app.anim;
 
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -15,6 +16,8 @@ import android.view.animation.OvershootInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
+
+import dev.utils.LogPrintUtils;
 
 /**
  * detail: 动画工具类
@@ -43,6 +46,8 @@ public final class AnimationUtils {
     private AnimationUtils() {
     }
 
+    // 日志 TAG
+    private static final String TAG = AnimationUtils.class.getSimpleName();
     // 默认动画持续时间
     public static final long DEFAULT_ANIMATION_DURATION = 400;
 
@@ -60,6 +65,94 @@ public final class AnimationUtils {
             anim.setRepeatMode(repeatMode);
         }
         return anim;
+    }
+
+    /**
+     * 设置动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link View}
+     */
+    public static View setAnimation(final View view, final Animation animation) {
+        if (view != null) view.setAnimation(animation);
+        return view;
+    }
+
+    /**
+     * 获取动画
+     * @param view {@link View}
+     * @return {@link Animation}
+     */
+    public static Animation getAnimation(final View view) {
+        if (view != null) return view.getAnimation();
+        return null;
+    }
+
+    /**
+     * 清空动画
+     * @param view {@link View}
+     * @return {@link View}
+     */
+    public static View clearAnimation(final View view) {
+        if (view != null) {
+            try {
+                view.clearAnimation();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "clearAnimation");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 启动动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link View}
+     */
+    public static View startAnimation(final View view, final Animation animation) {
+        if (view != null && animation != null) {
+            try {
+                view.startAnimation(animation);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startAnimation");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 启动动画
+     * @param animation {@link Animation}
+     * @param <T>       泛型
+     * @return {@link Animation}
+     */
+    public static <T extends Animation> T startAnimation(final T animation) {
+        if (animation != null) {
+            try {
+                animation.start();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startAnimation");
+            }
+        }
+        return animation;
+    }
+
+    /**
+     * 取消动画
+     * @param animation {@link Animation}
+     * @param <T>       泛型
+     * @return {@link Animation}
+     */
+    public static <T extends Animation> T cancel(final T animation) {
+        if (animation != null) {
+            try {
+                animation.cancel();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "cancel");
+            }
+        }
+        return animation;
     }
 
     // ================

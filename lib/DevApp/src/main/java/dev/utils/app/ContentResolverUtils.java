@@ -29,6 +29,10 @@ public final class ContentResolverUtils {
 
     /**
      * 通知刷新本地资源
+     * <pre>
+     *     注意事项: 部分手机 ( 如小米 ) 通知文件地址层级过深, 将会并入相册文件夹中
+     *     尽量放在 SDCrad/XXX/xx.jpg 层级中
+     * </pre>
      * @param file 文件
      * @return {@code true} success, {@code false} fail
      */

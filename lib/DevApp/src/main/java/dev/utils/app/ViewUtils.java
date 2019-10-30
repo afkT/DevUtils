@@ -12,12 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.Window;
-import android.widget.AbsListView;
+import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.FloatRange;
@@ -37,6 +38,34 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     组件设置 setCompoundDrawables 不生效解决办法
  *     @see <a href="https://blog.csdn.net/qq_26971803/article/details/54347598"/>
+ *     Android 常用布局属性
+ *     @see <a href="https://www.jianshu.com/p/78e2dfb6d244"/>
+ *     <p></p>
+ *     RelativeLayout 的特有属性
+ *     属性值为 true、false
+ *     android:layout_centerHrizontal 位于父控件的横向中间位置
+ *     android:layout_centerVertical 位于父控件的纵向中间位置
+ *     android:layout_centerInparent 位于父控件的纵横向中间位置
+ *     android:layout_alignParentBottom 贴紧父元素的下边缘
+ *     android:layout_alignParentLeft 贴紧父元素的左边缘
+ *     android:layout_alignParentRight 贴紧父元素的右边缘
+ *     android:layout_alignParentTop 贴紧父元素的上边缘
+ *     android:layout_alignParentStart 将控件开始位置与父控件的开始位置对齐
+ *     android:layout_alignParentEnd 将控件结束位置与父控件的结束位置对齐
+ *     属性值为引用 id
+ *     android:layout_below 在某元素的下方
+ *     android:layout_above 在某元素的的上方
+ *     android:layout_toLeftOf 在某元素的左边
+ *     android:layout_toRightOf 在某元素的右边
+ *     android:layout_toStartOf 在某元素的开始位置
+ *     android:layout_toEndOf 在某元素的结束位置
+ *     android:layout_alignTop 本元素的上边缘和某元素的的上边缘对齐
+ *     android:layout_alignLeft 本元素的左边缘和某元素的的左边缘对齐
+ *     android:layout_alignBottom 本元素的下边缘和某元素的的下边缘对齐
+ *     android:layout_alignRight 本元素的右边缘和某元素的的右边缘对齐
+ *     android:layout_alignStart 本元素与某元素开始位置对齐
+ *     android:layout_alignEnd 本元素与某元素结束位置对齐
+ *     android:layout_alignBaseline 将当前控件的基线与指定 id 控件 t 的基线对齐
  * </pre>
  */
 public final class ViewUtils {
@@ -124,7 +153,7 @@ public final class ViewUtils {
      * 获取指定 View 父布局
      * @param view {@link View}
      * @param <T>  泛型
-     * @return View
+     * @return {@link View}
      */
     public static <T extends View> T getParent(final View view) {
         if (view != null) {
@@ -143,7 +172,7 @@ public final class ViewUtils {
      * 获取指定索引 View
      * @param viewGroup {@link ViewGroup}
      * @param <T>       泛型
-     * @return View
+     * @return {@link View}
      */
     public static <T extends View> T getChildAt(final ViewGroup viewGroup) {
         return getChildAt(viewGroup, 0);
@@ -154,7 +183,7 @@ public final class ViewUtils {
      * @param viewGroup {@link ViewGroup}
      * @param index     索引
      * @param <T>       泛型
-     * @return View
+     * @return {@link View}
      */
     public static <T extends View> T getChildAt(final ViewGroup viewGroup, final int index) {
         if (viewGroup != null && index >= 0) {
@@ -351,6 +380,103 @@ public final class ViewUtils {
     // =
 
     /**
+     * 设置 View 宽度、高度
+     * @param view   {@link View}
+     * @param width  View 宽度
+     * @param height View 高度
+     * @return {@link View}
+     */
+    public static View setWidthHeight(final View view, final int width, final int height) {
+        if (view != null) {
+            try {
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams != null) {
+                    layoutParams.width = width;
+                    layoutParams.height = height;
+                } else {
+                    layoutParams = new ViewGroup.LayoutParams(width, height);
+                    view.setLayoutParams(layoutParams);
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setWidthHeight");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 设置 View 宽度
+     * @param view  {@link View}
+     * @param width View 宽度
+     * @return {@link View}
+     */
+    public static View setWidth(final View view, final int width) {
+        if (view != null) {
+            try {
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams != null) {
+                    layoutParams.width = width;
+                } else {
+                    layoutParams = new ViewGroup.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    view.setLayoutParams(layoutParams);
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setWidth");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 获取 View 宽度
+     * @param view {@link View}
+     * @return View 宽度
+     */
+    public static int getWidth(final View view) {
+        if (view != null) {
+            return view.getWidth();
+        }
+        return -1;
+    }
+
+    /**
+     * 设置 View 高度
+     * @param view   {@link View}
+     * @param height View 高度
+     * @return {@link View}
+     */
+    public static View setHeight(final View view, final int height) {
+        if (view != null) {
+            try {
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams != null) {
+                    layoutParams.height = height;
+                } else {
+                    layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, height);
+                    view.setLayoutParams(layoutParams);
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setHeight");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 获取 View 高度
+     * @param view {@link View}
+     * @return View 高度
+     */
+    public static int getHeight(final View view) {
+        if (view != null) {
+            return view.getHeight();
+        }
+        return -1;
+    }
+
+    // =
+
+    /**
      * 获取 View 最小高度
      * @param view View
      * @return View 最小高度
@@ -367,7 +493,7 @@ public final class ViewUtils {
      * 设置 View 最小高度
      * @param view      View
      * @param minHeight 最小高度
-     * @return View
+     * @return {@link View}
      */
     public static View setMinimumHeight(final View view, final int minHeight) {
         if (view != null) {
@@ -393,7 +519,7 @@ public final class ViewUtils {
      * 设置 View 最小宽度
      * @param view     View
      * @param minWidth 最小宽度
-     * @return View
+     * @return {@link View}
      */
     public static View setMinimumWidth(final View view, final int minWidth) {
         if (view != null) {
@@ -420,7 +546,7 @@ public final class ViewUtils {
      * 设置 View 透明度
      * @param view  View
      * @param alpha 透明度
-     * @return View
+     * @return {@link View}
      */
     public static View setAlpha(final View view, @FloatRange(from = 0.0, to = 1.0) final float alpha) {
         if (view != null) {
@@ -445,7 +571,7 @@ public final class ViewUtils {
      * 设置 View Tag
      * @param view   View
      * @param object Tag
-     * @return View
+     * @return {@link View}
      */
     public static View setTag(final View view, final Object object) {
         if (view != null) {
@@ -460,7 +586,7 @@ public final class ViewUtils {
      * 设置 View 滚动效应
      * @param view              View
      * @param isScrollContainer 是否需要滚动效应
-     * @return View
+     * @return {@link View}
      */
     public static View setScrollContainer(final View view, final boolean isScrollContainer) {
         if (view != null) {
@@ -473,7 +599,7 @@ public final class ViewUtils {
      * 设置下一个获取焦点的 View id
      * @param view               View
      * @param nextFocusForwardId 下一个获取焦点的 View id
-     * @return View
+     * @return {@link View}
      */
     public static View setNextFocusForwardId(final View view, @IdRes final int nextFocusForwardId) {
         if (view != null) {
@@ -486,7 +612,7 @@ public final class ViewUtils {
      * 设置向下移动焦点时, 下一个获取焦点的 View id
      * @param view            View
      * @param nextFocusDownId 下一个获取焦点的 View id
-     * @return View
+     * @return {@link View}
      */
     public static View setNextFocusDownId(final View view, @IdRes final int nextFocusDownId) {
         if (view != null) {
@@ -499,7 +625,7 @@ public final class ViewUtils {
      * 设置向左移动焦点时, 下一个获取焦点的 View id
      * @param view            View
      * @param nextFocusLeftId 下一个获取焦点的 View id
-     * @return View
+     * @return {@link View}
      */
     public static View setNextFocusLeftId(final View view, @IdRes final int nextFocusLeftId) {
         if (view != null) {
@@ -512,7 +638,7 @@ public final class ViewUtils {
      * 设置向右移动焦点时, 下一个获取焦点的 View id
      * @param view             View
      * @param nextFocusRightId 下一个获取焦点的 View id
-     * @return View
+     * @return {@link View}
      */
     public static View setNextFocusRightId(final View view, @IdRes final int nextFocusRightId) {
         if (view != null) {
@@ -525,7 +651,7 @@ public final class ViewUtils {
      * 设置向上移动焦点时, 下一个获取焦点的 View id
      * @param view          View
      * @param nextFocusUpId 下一个获取焦点的 View id
-     * @return View
+     * @return {@link View}
      */
     public static View setNextFocusUpId(final View view, @IdRes final int nextFocusUpId) {
         if (view != null) {
@@ -538,7 +664,7 @@ public final class ViewUtils {
      * 设置 View 旋转度数
      * @param view     View
      * @param rotation 旋转度数
-     * @return View
+     * @return {@link View}
      */
     public static View setRotation(final View view, final float rotation) {
         if (view != null) {
@@ -551,7 +677,7 @@ public final class ViewUtils {
      * 设置 View 水平旋转度数
      * @param view      View
      * @param rotationX 水平旋转度数
-     * @return View
+     * @return {@link View}
      */
     public static View setRotationX(final View view, final float rotationX) {
         if (view != null) {
@@ -564,7 +690,7 @@ public final class ViewUtils {
      * 设置 View 竖直旋转度数
      * @param view      View
      * @param rotationY 竖直旋转度数
-     * @return View
+     * @return {@link View}
      */
     public static View setRotationY(final View view, final float rotationY) {
         if (view != null) {
@@ -577,7 +703,7 @@ public final class ViewUtils {
      * 设置 View 水平方向缩放比例
      * @param view   View
      * @param scaleX 水平方向缩放比例
-     * @return View
+     * @return {@link View}
      */
     public static View setScaleX(final View view, final float scaleX) {
         if (view != null) {
@@ -590,7 +716,7 @@ public final class ViewUtils {
      * 设置 View 竖直方向缩放比例
      * @param view   View
      * @param scaleY 竖直方向缩放比例
-     * @return View
+     * @return {@link View}
      */
     public static View setScaleY(final View view, final float scaleY) {
         if (view != null) {
@@ -603,7 +729,7 @@ public final class ViewUtils {
      * 设置文本的显示方式
      * @param view          View
      * @param textAlignment 文本的显示方式
-     * @return View
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static View setTextAlignment(final View view, final int textAlignment) {
@@ -617,7 +743,7 @@ public final class ViewUtils {
      * 设置文本的显示方向
      * @param view          View
      * @param textDirection 文本的显示方向
-     * @return View
+     * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static View setTextDirection(final View view, final int textDirection) {
@@ -631,7 +757,7 @@ public final class ViewUtils {
      * 设置水平方向偏转量
      * @param view   View
      * @param pivotX 水平方向偏转量
-     * @return View
+     * @return {@link View}
      */
     public static View setPivotX(final View view, final float pivotX) {
         if (view != null) {
@@ -644,7 +770,7 @@ public final class ViewUtils {
      * 设置竖直方向偏转量
      * @param view   View
      * @param pivotY 竖直方向偏转量
-     * @return View
+     * @return {@link View}
      */
     public static View setPivotY(final View view, final float pivotY) {
         if (view != null) {
@@ -657,7 +783,7 @@ public final class ViewUtils {
      * 设置水平方向的移动距离
      * @param view         View
      * @param translationX 水平方向的移动距离
-     * @return View
+     * @return {@link View}
      */
     public static View setTranslationX(final View view, final float translationX) {
         if (view != null) {
@@ -670,7 +796,7 @@ public final class ViewUtils {
      * 设置竖直方向的移动距离
      * @param view         View
      * @param translationY 竖直方向的移动距离
-     * @return View
+     * @return {@link View}
      */
     public static View setTranslationY(final View view, final float translationY) {
         if (view != null) {
@@ -684,7 +810,7 @@ public final class ViewUtils {
      * @param view      View
      * @param layerType 硬件加速类型
      * @param paint     {@link Paint}
-     * @return View
+     * @return {@link View}
      */
     public static View setLayerType(final View view, final int layerType, final Paint paint) {
         if (view != null) {
@@ -1121,7 +1247,7 @@ public final class ViewUtils {
     /**
      * 把自身从父 View 中移除
      * @param view {@link View}
-     * @return View
+     * @return {@link View}
      */
     public static View removeSelfFromParent(final View view) {
         if (view != null) {
@@ -1160,7 +1286,7 @@ public final class ViewUtils {
      * View 请求更新
      * @param view      {@link View}
      * @param allParent 是否全部父布局 View 都请求
-     * @return View
+     * @return {@link View}
      */
     public static View requestLayoutParent(final View view, final boolean allParent) {
         if (view != null) {
@@ -1231,6 +1357,55 @@ public final class ViewUtils {
             return view.getMeasuredHeight();
         }
         return 0;
+    }
+
+    /**
+     * 测量 View
+     * @param view           {@link View}
+     * @param specifiedWidth 指定宽度
+     */
+    public static void measureView(final View view, final int specifiedWidth) {
+        measureView(view, specifiedWidth, 0);
+    }
+
+    /**
+     * 测量 View
+     * @param view            {@link View}
+     * @param specifiedWidth  指定宽度
+     * @param specifiedHeight 指定高度
+     */
+    public static void measureView(final View view, final int specifiedWidth, final int specifiedHeight) {
+        try {
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            // MeasureSpec
+            int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            // 如果大于 0
+            if (specifiedWidth > 0) {
+                widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedWidth, View.MeasureSpec.EXACTLY);
+            }
+            // 如果大于 0
+            if (specifiedHeight > 0) {
+                heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedHeight, View.MeasureSpec.EXACTLY);
+            }
+            // 判断是否存在自定义宽高
+            if (layoutParams != null) {
+                int width = layoutParams.width;
+                int height = layoutParams.height;
+                if (width > 0 && height > 0) {
+                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+                } else if (width > 0) {
+                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+                } else if (height > 0) {
+                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+                }
+            }
+            view.measure(widthMeasureSpec, heightMeasureSpec);
+            view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "measureView");
+        }
     }
 
     // ==================
@@ -2093,52 +2268,266 @@ public final class ViewUtils {
         return textView;
     }
 
+    // ==================
+    // = RelativeLayout =
+    // ==================
+
+    /**
+     * 设置 RelativeLayout View 布局规则
+     * @param view {@link View}
+     * @param verb 布局位置
+     * @return {@link View}
+     */
+    public static View addRule(final View view, final int verb) {
+        return addRule(view, verb, -1);
+    }
+
+    /**
+     * 设置 RelativeLayout View 布局规则
+     * @param view    {@link View}
+     * @param verb    布局位置
+     * @param subject 关联 View id
+     * @return {@link View}
+     */
+    public static View addRule(final View view, final int verb, final int subject) {
+        if (view != null) {
+            try {
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+                layoutParams.addRule(verb, subject);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "addRule");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 移除 RelativeLayout View 布局规则
+     * @param view {@link View}
+     * @param verb 布局位置
+     * @return {@link View}
+     */
+    public static View removeRule(final View view, final int verb) {
+        if (view != null) {
+            try {
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    layoutParams.removeRule(verb);
+                } else {
+                    layoutParams.addRule(verb, 0);
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "removeRule");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 获取 RelativeLayout View 指定布局位置 View id
+     * @param view {@link View}
+     * @param verb 布局位置
+     * @return 关联 View id
+     */
+    public static int getRule(final View view, final int verb) {
+        if (view != null) {
+            try {
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    return layoutParams.getRule(verb);
+                } else {
+                    return layoutParams.getRules()[verb];
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getRule");
+            }
+        }
+        return 0;
+    }
+
+    // =
+
+    /**
+     * 设置多个 RelativeLayout View 布局规则
+     * @param verb  布局位置
+     * @param views View[]
+     */
+    public static void addRules(final int verb, final View... views) {
+        addRules(verb, -1, views);
+    }
+
+    /**
+     * 设置多个 RelativeLayout View 布局规则
+     * @param verb    布局位置
+     * @param subject 关联 View id
+     * @param views   View[]
+     */
+    public static void addRules(final int verb, final int subject, final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                addRule(views[i], verb, subject);
+            }
+        }
+    }
+
+    /**
+     * 移除多个 RelativeLayout View 布局规则
+     * @param verb  布局位置
+     * @param views View[]
+     */
+    public static void removeRules(final int verb, final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                removeRule(views[i], verb);
+            }
+        }
+    }
+
+    // =============
+    // = Animation =
+    // =============
+
+    /**
+     * 设置动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link View}
+     */
+    public static View setAnimation(final View view, final Animation animation) {
+        if (view != null) view.setAnimation(animation);
+        return view;
+    }
+
+    /**
+     * 获取动画
+     * @param view {@link View}
+     * @return {@link Animation}
+     */
+    public static Animation getAnimation(final View view) {
+        if (view != null) return view.getAnimation();
+        return null;
+    }
+
+    /**
+     * 清空动画
+     * @param view {@link View}
+     * @return {@link View}
+     */
+    public static View clearAnimation(final View view) {
+        if (view != null) {
+            try {
+                view.clearAnimation();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "clearAnimation");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 启动动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link View}
+     */
+    public static View startAnimation(final View view, final Animation animation) {
+        if (view != null && animation != null) {
+            try {
+                view.startAnimation(animation);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startAnimation");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 启动动画
+     * @param animation {@link Animation}
+     * @param <T>       泛型
+     * @return {@link Animation}
+     */
+    public static <T extends Animation> T startAnimation(final T animation) {
+        if (animation != null) {
+            try {
+                animation.start();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startAnimation");
+            }
+        }
+        return animation;
+    }
+
+    /**
+     * 取消动画
+     * @param animation {@link Animation}
+     * @param <T>       泛型
+     * @return {@link Animation}
+     */
+    public static <T extends Animation> T cancel(final T animation) {
+        if (animation != null) {
+            try {
+                animation.cancel();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "cancel");
+            }
+        }
+        return animation;
+    }
+
     // ============
     // = ListView =
     // ============
 
     /**
-     * 计算 ListView Item 高度
+     * 计算 ListView 高度
      * @param listView {@link ListView}
-     * @return ListView Item 高度
+     * @return ListView 高度
      */
-    public static int calcListViewItemHeight(final ListView listView) {
-        return calcListViewItemHeight(listView, false);
+    public static int calcListViewHeight(final ListView listView) {
+        return calcListViewHeight(listView, false);
     }
 
     /**
-     * 计算 ListView Item 高度
+     * 计算 ListView 高度
      * @param listView  {@link ListView}
      * @param setParams 是否 setLayoutParams
-     * @return ListView Item 高度
+     * @return ListView 高度
      */
-    public static int calcListViewItemHeight(final ListView listView, final boolean setParams) {
-        // 获取 Adapter
-        ListAdapter listAdapter = listView.getAdapter();
-        // 防止为 null
-        if (listAdapter == null) {
-            return 0;
+    public static int calcListViewHeight(final ListView listView, final boolean setParams) {
+        if (listView == null) return 0;
+        try {
+            // Adapter
+            ListAdapter listAdapter = listView.getAdapter();
+            // Item 总条数
+            int itemCount = listAdapter.getCount();
+            // 没数据则直接跳过
+            if (itemCount == 0) return 0;
+            // 高度
+            int height = 0;
+            // 获取子项间分隔符占用的高度
+            int dividerHeight = listView.getDividerHeight();
+
+            // 循环绘制每个 Item 并保存 Bitmap
+            for (int i = 0; i < itemCount; i++) {
+                View childView = listAdapter.getView(i, null, listView);
+                measureView(childView, listView.getWidth());
+                height += childView.getMeasuredHeight();
+            }
+            // 追加子项间分隔符占用的高度
+            height += (dividerHeight * (itemCount - 1));
+
+            // 是否需要设置高度
+            if (setParams) {
+                ViewGroup.LayoutParams params = listView.getLayoutParams();
+                params.height = height;
+                listView.setLayoutParams(params);
+            }
+            return height;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "calcListViewHeight");
         }
-        // 获取总体高度
-        int totalHeight = 0;
-        // 遍历累加
-        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
-            // 累加 Item 高度
-            totalHeight += getItemHeighet(listAdapter, listView, i);
-        }
-        // =
-        // 获取子项间分隔符占用的高度
-        // listView.getDividerHeight();
-        // 累加分割线高度
-        totalHeight += (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        // 判断是否需要设置高度
-        if (setParams) {
-            ViewGroup.LayoutParams params = listView.getLayoutParams();
-            params.height = totalHeight;
-            listView.setLayoutParams(params);
-        }
-        // 返回总体高度
-        return totalHeight;
+        return 0;
     }
 
     // ============
@@ -2146,132 +2535,105 @@ public final class ViewUtils {
     // ============
 
     /**
-     * 计算 GridView Item 高度
-     * @param gridView   {@link GridView}
-     * @param numColumns GridView 行数
-     * @return GridView Item 高度
+     * 计算 GridView 高度
+     * @param gridView {@link GridView}
+     * @return GridView 高度
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static int calcGridViewItemHeight(final GridView gridView, final int numColumns) {
-        return calcGridViewItemHeight(gridView, numColumns, false);
+    public static int calcGridViewHeight(final GridView gridView) {
+        return calcGridViewHeight(gridView, false);
     }
 
     /**
-     * 计算 GridView Item 高度
-     * @param gridView   {@link GridView}
-     * @param numColumns GridView 行数
-     * @param setParams  是否 setLayoutParams
-     * @return GridView Item 高度
+     * 计算 GridView 高度
+     * @param gridView  {@link GridView}
+     * @param setParams 是否 setLayoutParams
+     * @return GridView 高度
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static int calcGridViewItemHeight(final GridView gridView, final int numColumns, final boolean setParams) {
-        // 获取 Adapter
-        ListAdapter listAdapter = gridView.getAdapter();
-        // 防止为 null
-        if (listAdapter == null) {
-            return 0;
-        }
-        // 最高高度
-        int singleMax = 0;
-        // 获取总体高度
-        int totalHeight = 0;
-        // 获取总数
-        int count = listAdapter.getCount();
-        // 判断是否整数
-        count = (count % numColumns == 0) ? (count / numColumns) : (count / numColumns + 1);
-        // 遍历累加
-        for (int i = 0; i < count; i++) {
-            // 默认表示第一个的高度
-            singleMax = getItemHeighet(listAdapter, gridView, i * numColumns);
-            // 遍历判断
-            for (int eqI = 1; eqI < numColumns; eqI++) {
-                // 临时高度
-                int tempHeight = 0;
-                // 进行判断处理
-                if (i * numColumns + eqI <= count) {
-                    // 获取对应的高度
-                    tempHeight = getItemHeighet(listAdapter, gridView, i * numColumns + eqI);
-                }
-                // 判断是否在最大高度
-                if (tempHeight > singleMax) {
-                    singleMax = tempHeight;
+    public static int calcGridViewHeight(final GridView gridView, final boolean setParams) {
+        if (gridView == null) return 0;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return 0;
+        try {
+            // Adapter
+            ListAdapter listAdapter = gridView.getAdapter();
+            // Item 总条数
+            int itemCount = listAdapter.getCount();
+            // 没数据则直接跳过
+            if (itemCount == 0) return 0;
+            // 高度
+            int height = 0;
+            // 获取一共多少列
+            int numColumns = gridView.getNumColumns();
+            // 每列之间的间隔 |
+            int horizontalSpacing = gridView.getHorizontalSpacing();
+            // 每行之间的间隔 -
+            int verticalSpacing = gridView.getVerticalSpacing();
+            // 获取倍数 ( 行数 )
+            int lineNumber = getMultiple(itemCount, numColumns);
+            // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / numColumns
+            int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
+
+            // 记录每行最大高度
+            int[] rowHeightArrays = new int[lineNumber];
+            // 临时高度 - 保存行中最高的列高度
+            int tempHeight;
+            // 循环每一行绘制每个 Item 并保存 Bitmap
+            for (int i = 0; i < lineNumber; i++) {
+                // 清空高度
+                tempHeight = 0;
+                // 循环列数
+                for (int j = 0; j < numColumns; j++) {
+                    // 获取对应的索引
+                    int position = i * numColumns + j;
+                    // 如果大于总数据则跳过
+                    if (position < itemCount) {
+                        View childView = listAdapter.getView(position, null, gridView);
+                        measureView(childView, childWidth);
+
+                        int itemHeight = childView.getMeasuredHeight();
+                        // 保留最大高度
+                        tempHeight = Math.max(itemHeight, tempHeight);
+                    }
+
+                    // 记录高度并累加
+                    if (j == numColumns - 1) {
+                        height += tempHeight;
+                        rowHeightArrays[i] = tempHeight;
+                    }
                 }
             }
-            // 累加 Item 高度
-            totalHeight += singleMax;
-        }
-        // 每列之间的间隔 |
-        // int hSpaec = gridView.getHorizontalSpacing();
-        // 每行之间的间隔 -
-        int vSpace = gridView.getVerticalSpacing();
-        // 最后获取整个 GridView 完整显示需要的高度
-        totalHeight += (vSpace * (count - 1));
-        // 判断是否需要设置高度
-        if (setParams) {
-            ViewGroup.LayoutParams params = gridView.getLayoutParams();
-            params.height = totalHeight;
-            gridView.setLayoutParams(params);
-        }
-        // 返回总体高度
-        return totalHeight;
-    }
+            // 追加子项间分隔符占用的高度
+            height += (verticalSpacing * (lineNumber - 1));
 
-    // =
-
-    /**
-     * 获取单独一个 Item 高度
-     * @param absViews {@link AbsListView}
-     * @param pos      索引
-     * @return Item 高度
-     */
-    public static int getItemHeighet(final AbsListView absViews, final int pos) {
-        return getItemHeighet(absViews, pos, 0);
-    }
-
-    /**
-     * 获取单独一个 Item 高度
-     * @param absViews      {@link AbsListView}
-     * @param pos           索引
-     * @param defaultHeight 默认高度
-     * @return Item 高度
-     */
-    public static int getItemHeighet(final AbsListView absViews, final int pos, final int defaultHeight) {
-        if (absViews != null) {
-            return getItemHeighet(absViews.getAdapter(), absViews, pos, defaultHeight);
-        }
-        return defaultHeight;
-    }
-
-    /**
-     * 获取单独一个 Item 高度
-     * @param listAdapter {@link ListAdapter}
-     * @param absViews    {@link AbsListView}
-     * @param pos         索引
-     * @return Item 高度
-     */
-    public static int getItemHeighet(final ListAdapter listAdapter, final AbsListView absViews, final int pos) {
-        return getItemHeighet(listAdapter, absViews, pos, 0);
-    }
-
-    /**
-     * 获取单独一个 Item 高度
-     * @param listAdapter   {@link ListAdapter}
-     * @param absViews      {@link AbsListView}
-     * @param pos           索引
-     * @param defaultHeight 默认高度
-     * @return Item 高度
-     */
-    public static int getItemHeighet(final ListAdapter listAdapter, final AbsListView absViews, final int pos, final int defaultHeight) {
-        try {
-            // listAdapter.getCount() 返回数据项的数目
-            View listItem = listAdapter.getView(pos, null, absViews);
-            // 计算子项 View 的宽高
-            listItem.measure(0, 0);
-            // 统计所有子项的总高度
-            return listItem.getMeasuredHeight();
+            // 是否需要设置高度
+            if (setParams) {
+                ViewGroup.LayoutParams params = gridView.getLayoutParams();
+                params.height = height;
+                gridView.setLayoutParams(params);
+            }
+            return height;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getItemHeighet");
-            return defaultHeight;
+            LogPrintUtils.eTag(TAG, e, "calcGridViewHeight");
         }
+        return 0;
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = NumberUtils =
+    // ===============
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    private static int getMultiple(final int value, final int divisor) {
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        return (value % divisor == 0) ? (value / divisor) : (value / divisor) + 1;
     }
 }

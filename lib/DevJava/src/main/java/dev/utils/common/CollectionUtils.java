@@ -1167,4 +1167,614 @@ public final class CollectionUtils {
         }
         return null;
     }
+
+    // ==============
+    // = 最小值索引 =
+    // ==============
+
+    /**
+     * 获取集合中最小值索引
+     * @param list 集合
+     * @return 最小值索引
+     */
+    public static int getMinimumIndexI(final List<Integer> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Integer temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Integer value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value < temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最小值索引
+     * @param list 集合
+     * @return 最小值索引
+     */
+    public static int getMinimumIndexL(final List<Long> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Long temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Long value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value < temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最小值索引
+     * @param list 集合
+     * @return 最小值索引
+     */
+    public static int getMinimumIndexF(final List<Float> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Float temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Float value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value < temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最小值索引
+     * @param list 集合
+     * @return 最小值索引
+     */
+    public static int getMinimumIndexD(final List<Double> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Double temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Double value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value < temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    // ==============
+    // = 最大值索引 =
+    // ==============
+
+    /**
+     * 获取集合中最大值索引
+     * @param list 集合
+     * @return 最大值索引
+     */
+    public static int getMaximumIndexI(final List<Integer> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Integer temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Integer value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value > temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最大值索引
+     * @param list 集合
+     * @return 最大值索引
+     */
+    public static int getMaximumIndexL(final List<Long> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Long temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Long value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value > temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最大值索引
+     * @param list 集合
+     * @return 最大值索引
+     */
+    public static int getMaximumIndexF(final List<Float> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Float temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Float value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value > temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取集合中最大值索引
+     * @param list 集合
+     * @return 最大值索引
+     */
+    public static int getMaximumIndexD(final List<Double> list) {
+        if (list != null) {
+            int len = list.size();
+            if (len > 0) {
+                int index = 0;
+                Double temp = list.get(index);
+                for (int i = 1; i < len; i++) {
+                    Double value = list.get(i);
+                    if (value != null) {
+                        if (temp == null) {
+                            index = i;
+                            temp = value;
+                        }
+                        if (value > temp) {
+                            index = i;
+                            temp = value;
+                        }
+                    }
+                }
+                if (temp == null) {
+                    return -1;
+                }
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    // ==============
+    // = 获取最小值 =
+    // ==============
+
+    /**
+     * 获取集合中最小值
+     * @param list 集合
+     * @return 最小值
+     */
+    public static int getMinimumI(final List<Integer> list) {
+        try {
+            return list.get(getMinimumIndexI(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMinimumI");
+        }
+        return 0;
+    }
+
+    /**
+     * 获取集合中最小值
+     * @param list 集合
+     * @return 最小值
+     */
+    public static long getMinimumL(final List<Long> list) {
+        try {
+            return list.get(getMinimumIndexL(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMinimumL");
+        }
+        return 0L;
+    }
+
+    /**
+     * 获取集合中最小值
+     * @param list 集合
+     * @return 最小值
+     */
+    public static float getMinimumF(final List<Float> list) {
+        try {
+            return list.get(getMinimumIndexF(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMinimumF");
+        }
+        return 0f;
+    }
+
+    /**
+     * 获取集合中最小值
+     * @param list 集合
+     * @return 最小值
+     */
+    public static double getMinimumD(final List<Double> list) {
+        try {
+            return list.get(getMinimumIndexD(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMinimumD");
+        }
+        return 0d;
+    }
+
+    // ==============
+    // = 获取最大值 =
+    // ==============
+
+    /**
+     * 获取集合中最大值
+     * @param list 集合
+     * @return 最大值
+     */
+    public static int getMaximumI(final List<Integer> list) {
+        try {
+            return list.get(getMaximumIndexI(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMaximumI");
+        }
+        return 0;
+    }
+
+    /**
+     * 获取集合中最大值
+     * @param list 集合
+     * @return 最大值
+     */
+    public static long getMaximumL(final List<Long> list) {
+        try {
+            return list.get(getMaximumIndexL(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMaximumL");
+        }
+        return 0L;
+    }
+
+    /**
+     * 获取集合中最大值
+     * @param list 集合
+     * @return 最大值
+     */
+    public static float getMaximumF(final List<Float> list) {
+        try {
+            return list.get(getMaximumIndexF(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMaximumF");
+        }
+        return 0f;
+    }
+
+    /**
+     * 获取集合中最大值
+     * @param list 集合
+     * @return 最大值
+     */
+    public static double getMaximumD(final List<Double> list) {
+        try {
+            return list.get(getMaximumIndexD(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMaximumD");
+        }
+        return 0d;
+    }
+
+    // ================
+    // = 计算集合总和 =
+    // ================
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @return 集合总和
+     */
+    public static int sumlistI(final List<Integer> lists) {
+        return sumlistI(lists, 0, length(lists), 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @return 集合总和
+     */
+    public static int sumlistI(final List<Integer> lists, final int end) {
+        return sumlistI(lists, 0, end, 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static int sumlistI(final List<Integer> lists, final int end, final int extra) {
+        return sumlistI(lists, 0, end, extra);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param start 开始位置
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static int sumlistI(final List<Integer> lists, final int start, final int end, final int extra) {
+        int total = 0;
+        if (lists != null) {
+            for (int i = start; i < end; i++) {
+                try {
+                    total += (lists.get(i) + extra);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "sumlistI");
+                }
+            }
+        }
+        return total;
+    }
+
+    // =
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @return 集合总和
+     */
+    public static long sumlistL(final List<Long> lists) {
+        return sumlistL(lists, 0, length(lists), 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @return 集合总和
+     */
+    public static long sumlistL(final List<Long> lists, final int end) {
+        return sumlistL(lists, 0, end, 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static long sumlistL(final List<Long> lists, final int end, final long extra) {
+        return sumlistL(lists, 0, end, extra);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param start 开始位置
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static long sumlistL(final List<Long> lists, final int start, final int end, final long extra) {
+        long total = 0;
+        if (lists != null) {
+            for (int i = start; i < end; i++) {
+                try {
+                    total += (lists.get(i) + extra);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "sumlistL");
+                }
+            }
+        }
+        return total;
+    }
+
+    // =
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @return 集合总和
+     */
+    public static float sumlistF(final List<Float> lists) {
+        return sumlistF(lists, 0, length(lists), 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @return 集合总和
+     */
+    public static float sumlistF(final List<Float> lists, final int end) {
+        return sumlistF(lists, 0, end, 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static float sumlistF(final List<Float> lists, final int end, final float extra) {
+        return sumlistF(lists, 0, end, extra);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param start 开始位置
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static float sumlistF(final List<Float> lists, final int start, final int end, final float extra) {
+        float total = 0;
+        if (lists != null) {
+            for (int i = start; i < end; i++) {
+                try {
+                    total += (lists.get(i) + extra);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "sumlistF");
+                }
+            }
+        }
+        return total;
+    }
+
+    // =
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @return 集合总和
+     */
+    public static double sumlistD(final List<Double> lists) {
+        return sumlistD(lists, 0, length(lists), 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @return 集合总和
+     */
+    public static double sumlistD(final List<Double> lists, final int end) {
+        return sumlistD(lists, 0, end, 0);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static double sumlistD(final List<Double> lists, final int end, final double extra) {
+        return sumlistD(lists, 0, end, extra);
+    }
+
+    /**
+     * 计算集合总和
+     * @param lists 集合
+     * @param start 开始位置
+     * @param end   结束位置
+     * @param extra 额外值
+     * @return 集合总和
+     */
+    public static double sumlistD(final List<Double> lists, final int start, final int end, final double extra) {
+        double total = 0;
+        if (lists != null) {
+            for (int i = start; i < end; i++) {
+                try {
+                    total += (lists.get(i) + extra);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "sumlistD");
+                }
+            }
+        }
+        return total;
+    }
 }

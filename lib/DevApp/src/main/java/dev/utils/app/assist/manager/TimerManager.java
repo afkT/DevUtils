@@ -345,8 +345,8 @@ public final class TimerManager {
      * detail: 定时器抽象类, 主要对内部 Timer 参数进行控制, 以及防止外部直接 new TimerTask, 照成不必要的失误
      * @author Ttt
      * <pre>
-     *     @TODO 推荐使用 {@link TimerManager#createTimer} 创建定时任务, 如果需要自己实现 AbsTimer, 则参考 {@link TimerManager.TimerTask} 实现
-     *     @TODO {@link TimerManager.AbsTimer} 只是提供了常见的方法, 以及变量等, 便于定时任务控制, 具体实现在 {@link TimerManager.TimerTask}
+     *     TODO 推荐使用 {@link TimerManager#createTimer} 创建定时任务, 如果需要自己实现 AbsTimer, 则参考 {@link TimerManager.TimerTask} 实现
+     *     TODO {@link TimerManager.AbsTimer} 只是提供了常见的方法, 以及变量等, 便于定时任务控制, 具体实现在 {@link TimerManager.TimerTask}
      * </pre>
      */
     public static abstract class AbsTimer {

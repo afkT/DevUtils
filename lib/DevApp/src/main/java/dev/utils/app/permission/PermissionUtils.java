@@ -422,6 +422,22 @@ public final class PermissionUtils {
     // ============
 
     /**
+     * 是否存在 APK 安装权限
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canRequestPackageInstalls() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
+                return DevUtils.getContext().getPackageManager().canRequestPackageInstalls();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "canRequestPackageInstalls");
+            }
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * 获取全部权限
      * @return {@link Set} 全部权限
      */

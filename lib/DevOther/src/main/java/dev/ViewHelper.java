@@ -14,6 +14,7 @@ import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -1197,6 +1198,40 @@ public final class ViewHelper {
     // ========
 
     /**
+     * 设置 View 宽度、高度
+     * @param view  {@link View}
+     * @param width View 宽度
+     * @param height View 高度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setWidthHeight(final View view, final int width, final int height) {
+        ViewUtils.setWidthHeight(view, width, height);
+        return this;
+    }
+
+    /**
+     * 设置 View 宽度
+     * @param view  {@link View}
+     * @param width View 宽度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setWidth(final View view, final int width) {
+        ViewUtils.setWidth(view, width);
+        return this;
+    }
+
+    /**
+     * 设置 View 高度
+     * @param view   {@link View}
+     * @param height View 高度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHeight(final View view, final int height) {
+        ViewUtils.setHeight(view, height);
+        return this;
+    }
+
+    /**
      * 设置 View 最小高度
      * @param view      View
      * @param minHeight 最小高度
@@ -2113,6 +2148,116 @@ public final class ViewHelper {
                                                               final Drawable left, final Drawable top,
                                                               final Drawable right, final Drawable bottom) {
         ViewUtils.setCompoundDrawablesWithIntrinsicBounds(textView, left, top, right, bottom);
+        return this;
+    }
+
+    // ==================
+    // = RelativeLayout =
+    // ==================
+
+    /**
+     * 设置 RelativeLayout View 布局规则
+     * @param view {@link View}
+     * @param verb 布局位置
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addRule(final View view, final int verb) {
+        ViewUtils.addRule(view, verb);
+        return this;
+    }
+
+    /**
+     * 设置 RelativeLayout View 布局规则
+     * @param view    {@link View}
+     * @param verb    布局位置
+     * @param subject 关联 View id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addRule(final View view, final int verb, final int subject) {
+        ViewUtils.addRule(view, verb, subject);
+        return this;
+    }
+
+    /**
+     * 移除 RelativeLayout View 布局规则
+     * @param view {@link View}
+     * @param verb 布局位置
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper removeRule(final View view, final int verb) {
+        ViewUtils.removeRule(view, verb);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置多个 RelativeLayout View 布局规则
+     * @param verb  布局位置
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addRules(final int verb, final View... views) {
+        ViewUtils.addRules(verb, views);
+        return this;
+    }
+
+    /**
+     * 设置多个 RelativeLayout View 布局规则
+     * @param verb    布局位置
+     * @param subject 关联 View id
+     * @param views   View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper addRules(final int verb, final int subject, final View... views) {
+        ViewUtils.addRules(verb, subject, views);
+        return this;
+    }
+
+    /**
+     * 移除多个 RelativeLayout View 布局规则
+     * @param verb  布局位置
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper removeRules(final int verb, final View... views) {
+        ViewUtils.removeRules(verb, views);
+        return this;
+    }
+
+    // =============
+    // = Animation =
+    // =============
+
+    /**
+     * 设置动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAnimation(final View view, final Animation animation) {
+        ViewUtils.setAnimation(view, animation);
+        return this;
+    }
+
+    /**
+     * 清空动画
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper clearAnimation(final View view) {
+        ViewUtils.clearAnimation(view);
+        return this;
+    }
+
+    /**
+     * 启动动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper startAnimation(final View view, final Animation animation) {
+        ViewUtils.startAnimation(view, animation);
         return this;
     }
 

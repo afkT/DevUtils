@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.0.4 *(2019-10-31)*
+----------------------------
+ 
+* `[Add]` ArrayUtils#getMinimum、getMaximum、getMinimumIndex、getMaximumIndex、sumarray
+
+* `[Add]` CollectionUtils#getMinimum、getMaximum、getMinimumIndex、getMaximumIndex、sumlist
+
 Version 1.0.3 *(2019-10-09)*
 ----------------------------
  

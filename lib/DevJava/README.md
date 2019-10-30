@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.0.3'
+implementation 'com.afkt:DevJava:1.0.4'
 ```
 
 ## 目录结构
@@ -87,6 +87,11 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | newarray | 创建指定长度数组 |
 | subarray | 从数组上截取一段 |
 | appendToString | 追加数组内容字符串 |
+| getMinimumIndex | 获取数组中最小值索引 |
+| getMaximumIndex | 获取数组中最大值索引 |
+| getMinimum | 获取数组中最小值 |
+| getMaximum | 获取数组中最大值 |
+| sumarray | 计算数组总和 |
 
 
 * **资金运算工具类 ->** [BigDecimalUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/BigDecimalUtils.java)
@@ -174,6 +179,26 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | equals | 判断两个值是否一样 |
 | toArray | 转换数组 to Object |
 | reverse | 集合翻转处理 |
+| getMinimumIndexI | 获取集合中最小值索引 |
+| getMinimumIndexL | 获取集合中最小值索引 |
+| getMinimumIndexF | 获取集合中最小值索引 |
+| getMinimumIndexD | 获取集合中最小值索引 |
+| getMaximumIndexI | 获取集合中最大值索引 |
+| getMaximumIndexL | 获取集合中最大值索引 |
+| getMaximumIndexF | 获取集合中最大值索引 |
+| getMaximumIndexD | 获取集合中最大值索引 |
+| getMinimumI | 获取集合中最小值 |
+| getMinimumL | 获取集合中最小值 |
+| getMinimumF | 获取集合中最小值 |
+| getMinimumD | 获取集合中最小值 |
+| getMaximumI | 获取集合中最大值 |
+| getMaximumL | 获取集合中最大值 |
+| getMaximumF | 获取集合中最大值 |
+| getMaximumD | 获取集合中最大值 |
+| sumlistI | 计算集合总和 |
+| sumlistL | 计算集合总和 |
+| sumlistF | 计算集合总和 |
+| sumlistD | 计算集合总和 |
 
 
 * **颜色工具类 ( 包括常用的色值 ) ->** [ColorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ColorUtils.java)
