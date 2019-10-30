@@ -1440,6 +1440,126 @@ public final class CollectionUtils {
         return -1;
     }
 
+    // ==============
+    // = 获取最小值 =
+    // ==============
+
+    /**
+     * 获取集合中最小值
+     * @param list 集合
+     * @return 最小值
+     */
+    public static int getMinimumI(final List<Integer> list) {
+        try {
+            return list.get(getMinimumIndexI(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMinimumI");
+        }
+        return 0;
+    }
+
+    /**
+     * 获取集合中最小值
+     * @param list 集合
+     * @return 最小值
+     */
+    public static long getMinimumL(final List<Long> list) {
+        try {
+            return list.get(getMinimumIndexL(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMinimumL");
+        }
+        return 0L;
+    }
+
+    /**
+     * 获取集合中最小值
+     * @param list 集合
+     * @return 最小值
+     */
+    public static float getMinimumF(final List<Float> list) {
+        try {
+            return list.get(getMinimumIndexF(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMinimumF");
+        }
+        return 0f;
+    }
+
+    /**
+     * 获取集合中最小值
+     * @param list 集合
+     * @return 最小值
+     */
+    public static double getMinimumD(final List<Double> list) {
+        try {
+            return list.get(getMinimumIndexD(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMinimumD");
+        }
+        return 0d;
+    }
+
+    // ==============
+    // = 获取最大值 =
+    // ==============
+
+    /**
+     * 获取集合中最大值
+     * @param list 集合
+     * @return 最大值
+     */
+    public static int getMaximumI(final List<Integer> list) {
+        try {
+            return list.get(getMaximumIndexI(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMaximumI");
+        }
+        return 0;
+    }
+
+    /**
+     * 获取集合中最大值
+     * @param list 集合
+     * @return 最大值
+     */
+    public static long getMaximumL(final List<Long> list) {
+        try {
+            return list.get(getMaximumIndexL(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMaximumL");
+        }
+        return 0L;
+    }
+
+    /**
+     * 获取集合中最大值
+     * @param list 集合
+     * @return 最大值
+     */
+    public static float getMaximumF(final List<Float> list) {
+        try {
+            return list.get(getMaximumIndexF(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMaximumF");
+        }
+        return 0f;
+    }
+
+    /**
+     * 获取集合中最大值
+     * @param list 集合
+     * @return 最大值
+     */
+    public static double getMaximumD(final List<Double> list) {
+        try {
+            return list.get(getMaximumIndexD(list));
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getMaximumD");
+        }
+        return 0d;
+    }
+
     // ================
     // = 计算集合总和 =
     // ================
