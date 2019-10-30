@@ -18,6 +18,7 @@ import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -2220,6 +2221,42 @@ public final class ViewHelper {
      */
     public ViewHelper removeRules(final int verb, final View... views) {
         ViewUtils.removeRules(verb, views);
+        return this;
+    }
+
+    // =============
+    // = Animation =
+    // =============
+
+    /**
+     * 设置动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAnimation(final View view, final Animation animation) {
+        ViewUtils.setAnimation(view, animation);
+        return this;
+    }
+
+    /**
+     * 清空动画
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper clearAnimation(final View view) {
+        ViewUtils.clearAnimation(view);
+        return this;
+    }
+
+    /**
+     * 启动动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper startAnimation(final View view, final Animation animation) {
+        ViewUtils.startAnimation(view, animation);
         return this;
     }
 

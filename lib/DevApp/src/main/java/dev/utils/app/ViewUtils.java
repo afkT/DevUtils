@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.Window;
+import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -2379,6 +2380,98 @@ public final class ViewUtils {
                 removeRule(views[i], verb);
             }
         }
+    }
+
+    // =============
+    // = Animation =
+    // =============
+
+    /**
+     * 设置动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link View}
+     */
+    public static View setAnimation(final View view, final Animation animation) {
+        if (view != null) view.setAnimation(animation);
+        return view;
+    }
+
+    /**
+     * 获取动画
+     * @param view {@link View}
+     * @return {@link Animation}
+     */
+    public static Animation getAnimation(final View view) {
+        if (view != null) return view.getAnimation();
+        return null;
+    }
+
+    /**
+     * 清空动画
+     * @param view {@link View}
+     * @return {@link View}
+     */
+    public static View clearAnimation(final View view) {
+        if (view != null) {
+            try {
+                view.clearAnimation();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "clearAnimation");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 启动动画
+     * @param view      {@link View}
+     * @param animation {@link Animation}
+     * @return {@link View}
+     */
+    public static View startAnimation(final View view, final Animation animation) {
+        if (view != null && animation != null) {
+            try {
+                view.startAnimation(animation);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startAnimation");
+            }
+        }
+        return view;
+    }
+
+    /**
+     * 启动动画
+     * @param animation {@link Animation}
+     * @param <T>       泛型
+     * @return {@link Animation}
+     */
+    public static <T extends Animation> T startAnimation(final T animation) {
+        if (animation != null) {
+            try {
+                animation.start();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startAnimation");
+            }
+        }
+        return animation;
+    }
+
+    /**
+     * 取消动画
+     * @param animation {@link Animation}
+     * @param <T>       泛型
+     * @return {@link Animation}
+     */
+    public static <T extends Animation> T cancel(final T animation) {
+        if (animation != null) {
+            try {
+                animation.cancel();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "cancel");
+            }
+        }
+        return animation;
     }
 
     // ============
