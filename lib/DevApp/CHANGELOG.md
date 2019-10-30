@@ -1,6 +1,27 @@
 Change Log
 ==========
 
+Version 1.8.3 *(2019-10-31)*
+----------------------------
+ 
+* `[Add]` ArrayUtils#getMinimum、getMaximum、getMinimumIndex、getMaximumIndex、sumarray
+
+* `[Add]` CollectionUtils#getMinimum、getMaximum、、getMinimumIndex、getMaximumIndex、sumlist
+
+* `[Add]` AnimationUtils#setAnimation、getAnimation、clearAnimation、startAnimation、cancel
+
+* `[Add]` ViewUtils#setAnimation、getAnimation、clearAnimation、startAnimation、cancel、measureView、setWidthHeight、setWidth、setHeight、addRule、removeRule、getRule、addRules、removeRules、
+
+* `[Add]` AppUtils#startActivity、startActivityForResult
+
+* `[Add]` IntentUtils#getLaunchAppInstallPermissionSettingsIntent、getLaunchAppNotificationSettingsIntent
+
+* `[Add]` PermissionUtils#canRequestPackageInstalls
+
+* `[Add]` NotificationUtils#isNotificationEnabled
+
+* `[Add]` CapturePictureUtils 截图工具类(支持 View、Activity、FrameLayout、RelativeLayout、LinearLayout、ListView、GridView、ScrollView、HorizontalScrollView、NestedScrollView、WebView、RecyclerView(GridLayoutManager、LinearLayoutManager、StaggeredGridLayoutManager))
+
 Version 1.8.2 *(2019-10-18)*
 ----------------------------
  
