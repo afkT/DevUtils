@@ -1198,13 +1198,26 @@ public final class ViewHelper {
 
     /**
      * 设置 View 宽度、高度
-     * @param view  {@link View}
-     * @param width View 宽度
+     * @param view   {@link View}
+     * @param width  View 宽度
      * @param height View 高度
      * @return {@link ViewHelper}
      */
     public ViewHelper setWidthHeight(final View view, final int width, final int height) {
         ViewUtils.setWidthHeight(view, width, height);
+        return this;
+    }
+
+    /**
+     * 设置 View 宽度、高度
+     * @param view      {@link View}
+     * @param width     View 宽度
+     * @param height    View 高度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setWidthHeight(final View view, final int width, final int height, final boolean nullNewLP) {
+        ViewUtils.setWidthHeight(view, width, height, nullNewLP);
         return this;
     }
 
@@ -1220,6 +1233,18 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 View 宽度
+     * @param view      {@link View}
+     * @param width     View 宽度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setWidth(final View view, final int width, final boolean nullNewLP) {
+        ViewUtils.setWidth(view, width, nullNewLP);
+        return this;
+    }
+
+    /**
      * 设置 View 高度
      * @param view   {@link View}
      * @param height View 高度
@@ -1231,8 +1256,20 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 View 高度
+     * @param view      {@link View}
+     * @param height    View 高度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHeight(final View view, final int height, final boolean nullNewLP) {
+        ViewUtils.setHeight(view, height, nullNewLP);
+        return this;
+    }
+
+    /**
      * 设置 View 最小高度
-     * @param view      View
+     * @param view      {@link View}
      * @param minHeight 最小高度
      * @return {@link ViewHelper}
      */
@@ -1243,7 +1280,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 最小宽度
-     * @param view     View
+     * @param view     {@link View}
      * @param minWidth 最小宽度
      * @return {@link ViewHelper}
      */
@@ -1278,7 +1315,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 滚动效应
-     * @param view              View
+     * @param view              {@link View}
      * @param isScrollContainer 是否需要滚动效应
      * @return {@link ViewHelper}
      */
@@ -1289,7 +1326,7 @@ public final class ViewHelper {
 
     /**
      * 设置下一个获取焦点的 View id
-     * @param view               View
+     * @param view               {@link View}
      * @param nextFocusForwardId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1300,7 +1337,7 @@ public final class ViewHelper {
 
     /**
      * 设置向下移动焦点时, 下一个获取焦点的 View id
-     * @param view            View
+     * @param view            {@link View}
      * @param nextFocusDownId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1311,7 +1348,7 @@ public final class ViewHelper {
 
     /**
      * 设置向左移动焦点时, 下一个获取焦点的 View id
-     * @param view            View
+     * @param view            {@link View}
      * @param nextFocusLeftId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1322,7 +1359,7 @@ public final class ViewHelper {
 
     /**
      * 设置向右移动焦点时, 下一个获取焦点的 View id
-     * @param view             View
+     * @param view             {@link View}
      * @param nextFocusRightId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1333,7 +1370,7 @@ public final class ViewHelper {
 
     /**
      * 设置向上移动焦点时, 下一个获取焦点的 View id
-     * @param view          View
+     * @param view          {@link View}
      * @param nextFocusUpId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1344,7 +1381,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 旋转度数
-     * @param view     View
+     * @param view     {@link View}
      * @param rotation 旋转度数
      * @return {@link ViewHelper}
      */
@@ -1355,7 +1392,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 水平旋转度数
-     * @param view      View
+     * @param view      {@link View}
      * @param rotationX 水平旋转度数
      * @return {@link ViewHelper}
      */
@@ -1366,7 +1403,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 竖直旋转度数
-     * @param view      View
+     * @param view      {@link View}
      * @param rotationY 竖直旋转度数
      * @return {@link ViewHelper}
      */
@@ -1399,7 +1436,7 @@ public final class ViewHelper {
 
     /**
      * 设置文本的显示方式
-     * @param view          View
+     * @param view          {@link View}
      * @param textAlignment 文本的显示方式
      * @return {@link ViewHelper}
      */
@@ -1412,7 +1449,7 @@ public final class ViewHelper {
 
     /**
      * 设置文本的显示方向
-     * @param view          View
+     * @param view          {@link View}
      * @param textDirection 文本的显示方向
      * @return {@link ViewHelper}
      */
@@ -1447,7 +1484,7 @@ public final class ViewHelper {
 
     /**
      * 设置水平方向的移动距离
-     * @param view         View
+     * @param view         {@link View}
      * @param translationX 水平方向的移动距离
      * @return {@link ViewHelper}
      */
@@ -1458,7 +1495,7 @@ public final class ViewHelper {
 
     /**
      * 设置竖直方向的移动距离
-     * @param view         View
+     * @param view         {@link View}
      * @param translationY 竖直方向的移动距离
      * @return {@link ViewHelper}
      */
@@ -1469,7 +1506,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 硬件加速类型
-     * @param view      View
+     * @param view      {@link View}
      * @param layerType 硬件加速类型
      * @param paint     {@link Paint}
      * @return {@link ViewHelper}
