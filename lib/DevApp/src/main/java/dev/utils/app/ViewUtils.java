@@ -168,6 +168,18 @@ public final class ViewUtils {
     // =
 
     /**
+     * 获取子 View 总数
+     * @param viewGroup {@link ViewGroup}
+     * @return 子 View 总数
+     */
+    public static int getChildCount(final ViewGroup viewGroup) {
+        if (viewGroup != null) {
+            return viewGroup.getChildCount();
+        }
+        return 0;
+    }
+
+    /**
      * 获取指定索引 View
      * @param viewGroup {@link ViewGroup}
      * @param <T>       泛型
@@ -379,6 +391,18 @@ public final class ViewUtils {
     // =
 
     /**
+     * 获取 View 宽高
+     * @param view {@link View}
+     * @return int[], 0 = 宽度, 1 = 高度
+     */
+    public static int[] getWidthHeight(final View view) {
+        if (view != null) {
+            return new int[]{view.getWidth(), view.getHeight()};
+        }
+        return new int[]{0, 0};
+    }
+
+    /**
      * 设置 View 宽度、高度
      * @param view   {@link View}
      * @param width  View 宽度
@@ -386,6 +410,18 @@ public final class ViewUtils {
      * @return {@link View}
      */
     public static View setWidthHeight(final View view, final int width, final int height) {
+        return setWidthHeight(view, width, height, true);
+    }
+
+    /**
+     * 设置 View 宽度、高度
+     * @param view      {@link View}
+     * @param width     View 宽度
+     * @param height    View 高度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @return {@link View}
+     */
+    public static View setWidthHeight(final View view, final int width, final int height, final boolean nullNewLP) {
         if (view != null) {
             try {
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
@@ -393,8 +429,10 @@ public final class ViewUtils {
                     layoutParams.width = width;
                     layoutParams.height = height;
                 } else {
-                    layoutParams = new ViewGroup.LayoutParams(width, height);
-                    view.setLayoutParams(layoutParams);
+                    if (nullNewLP) {
+                        layoutParams = new ViewGroup.LayoutParams(width, height);
+                        view.setLayoutParams(layoutParams);
+                    }
                 }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setWidthHeight");
@@ -403,28 +441,7 @@ public final class ViewUtils {
         return view;
     }
 
-    /**
-     * 设置 View 宽度
-     * @param view  {@link View}
-     * @param width View 宽度
-     * @return {@link View}
-     */
-    public static View setWidth(final View view, final int width) {
-        if (view != null) {
-            try {
-                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                if (layoutParams != null) {
-                    layoutParams.width = width;
-                } else {
-                    layoutParams = new ViewGroup.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    view.setLayoutParams(layoutParams);
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setWidth");
-            }
-        }
-        return view;
-    }
+    // =
 
     /**
      * 获取 View 宽度
@@ -435,31 +452,46 @@ public final class ViewUtils {
         if (view != null) {
             return view.getWidth();
         }
-        return -1;
+        return 0;
     }
 
     /**
-     * 设置 View 高度
-     * @param view   {@link View}
-     * @param height View 高度
+     * 设置 View 宽度
+     * @param view  {@link View}
+     * @param width View 宽度
      * @return {@link View}
      */
-    public static View setHeight(final View view, final int height) {
+    public static View setWidth(final View view, final int width) {
+        return setWidth(view, width, true);
+    }
+
+    /**
+     * 设置 View 宽度
+     * @param view      {@link View}
+     * @param width     View 宽度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @return {@link View}
+     */
+    public static View setWidth(final View view, final int width, final boolean nullNewLP) {
         if (view != null) {
             try {
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
                 if (layoutParams != null) {
-                    layoutParams.height = height;
+                    layoutParams.width = width;
                 } else {
-                    layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, height);
-                    view.setLayoutParams(layoutParams);
+                    if (nullNewLP) {
+                        layoutParams = new ViewGroup.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        view.setLayoutParams(layoutParams);
+                    }
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setHeight");
+                LogPrintUtils.eTag(TAG, e, "setWidth");
             }
         }
         return view;
     }
+
+    // =
 
     /**
      * 获取 View 高度
@@ -470,7 +502,43 @@ public final class ViewUtils {
         if (view != null) {
             return view.getHeight();
         }
-        return -1;
+        return 0;
+    }
+
+    /**
+     * 设置 View 高度
+     * @param view   {@link View}
+     * @param height View 高度
+     * @return {@link View}
+     */
+    public static View setHeight(final View view, final int height) {
+        return setHeight(view, height, true);
+    }
+
+    /**
+     * 设置 View 高度
+     * @param view      {@link View}
+     * @param height    View 高度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @return {@link View}
+     */
+    public static View setHeight(final View view, final int height, final boolean nullNewLP) {
+        if (view != null) {
+            try {
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams != null) {
+                    layoutParams.height = height;
+                } else {
+                    if (nullNewLP) {
+                        layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, height);
+                        view.setLayoutParams(layoutParams);
+                    }
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setHeight");
+            }
+        }
+        return view;
     }
 
     // =
@@ -485,12 +553,12 @@ public final class ViewUtils {
         if (view != null) {
             return view.getMinimumHeight();
         }
-        return -1;
+        return 0;
     }
 
     /**
      * 设置 View 最小高度
-     * @param view      View
+     * @param view      {@link View}
      * @param minHeight 最小高度
      * @return {@link View}
      */
@@ -511,12 +579,12 @@ public final class ViewUtils {
         if (view != null) {
             return view.getMinimumWidth();
         }
-        return -1;
+        return 0;
     }
 
     /**
      * 设置 View 最小宽度
-     * @param view     View
+     * @param view     {@link View}
      * @param minWidth 最小宽度
      * @return {@link View}
      */
@@ -582,8 +650,21 @@ public final class ViewUtils {
     // =
 
     /**
+     * 获取 View 是否需要滚动效应
+     * @param view {@link View}
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static boolean isScrollContainer(final View view) {
+        if (view != null) {
+            return view.isScrollContainer();
+        }
+        return false;
+    }
+
+    /**
      * 设置 View 滚动效应
-     * @param view              View
+     * @param view              {@link View}
      * @param isScrollContainer 是否需要滚动效应
      * @return {@link View}
      */
@@ -594,9 +675,23 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 下一个获取焦点的 View id
+     * @param view {@link View}
+     * @return 下一个获取焦点的 View id
+     */
+    public static int getNextFocusForwardId(final View view) {
+        if (view != null) {
+            return view.getNextFocusForwardId();
+        }
+        return 0;
+    }
+
     /**
      * 设置下一个获取焦点的 View id
-     * @param view               View
+     * @param view               {@link View}
      * @param nextFocusForwardId 下一个获取焦点的 View id
      * @return {@link View}
      */
@@ -607,9 +702,23 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 向下移动焦点时, 下一个获取焦点的 View id
+     * @param view {@link View}
+     * @return 向下移动焦点时, 下一个获取焦点的 View id
+     */
+    public static int getNextFocusDownId(final View view) {
+        if (view != null) {
+            return view.getNextFocusDownId();
+        }
+        return 0;
+    }
+
     /**
      * 设置向下移动焦点时, 下一个获取焦点的 View id
-     * @param view            View
+     * @param view            {@link View}
      * @param nextFocusDownId 下一个获取焦点的 View id
      * @return {@link View}
      */
@@ -620,9 +729,23 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 向左移动焦点时, 下一个获取焦点的 View id
+     * @param view {@link View}
+     * @return 向左移动焦点时, 下一个获取焦点的 View id
+     */
+    public static int getNextFocusLeftId(final View view) {
+        if (view != null) {
+            return view.getNextFocusLeftId();
+        }
+        return 0;
+    }
+
     /**
      * 设置向左移动焦点时, 下一个获取焦点的 View id
-     * @param view            View
+     * @param view            {@link View}
      * @param nextFocusLeftId 下一个获取焦点的 View id
      * @return {@link View}
      */
@@ -633,9 +756,23 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 向右移动焦点时, 下一个获取焦点的 View id
+     * @param view {@link View}
+     * @return 向右移动焦点时, 下一个获取焦点的 View id
+     */
+    public static int getNextFocusRightId(final View view) {
+        if (view != null) {
+            return view.getNextFocusRightId();
+        }
+        return 0;
+    }
+
     /**
      * 设置向右移动焦点时, 下一个获取焦点的 View id
-     * @param view             View
+     * @param view             {@link View}
      * @param nextFocusRightId 下一个获取焦点的 View id
      * @return {@link View}
      */
@@ -646,9 +783,23 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 向上移动焦点时, 下一个获取焦点的 View id
+     * @param view {@link View}
+     * @return 向上移动焦点时, 下一个获取焦点的 View id
+     */
+    public static int getNextFocusUpId(final View view) {
+        if (view != null) {
+            return view.getNextFocusUpId();
+        }
+        return 0;
+    }
+
     /**
      * 设置向上移动焦点时, 下一个获取焦点的 View id
-     * @param view          View
+     * @param view          {@link View}
      * @param nextFocusUpId 下一个获取焦点的 View id
      * @return {@link View}
      */
@@ -659,9 +810,11 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
     /**
      * 设置 View 旋转度数
-     * @param view     View
+     * @param view     {@link View}
      * @param rotation 旋转度数
      * @return {@link View}
      */
@@ -674,7 +827,7 @@ public final class ViewUtils {
 
     /**
      * 设置 View 水平旋转度数
-     * @param view      View
+     * @param view      {@link View}
      * @param rotationX 水平旋转度数
      * @return {@link View}
      */
@@ -687,7 +840,7 @@ public final class ViewUtils {
 
     /**
      * 设置 View 竖直旋转度数
-     * @param view      View
+     * @param view      {@link View}
      * @param rotationY 竖直旋转度数
      * @return {@link View}
      */
@@ -726,7 +879,7 @@ public final class ViewUtils {
 
     /**
      * 设置文本的显示方式
-     * @param view          View
+     * @param view          {@link View}
      * @param textAlignment 文本的显示方式
      * @return {@link View}
      */
@@ -740,7 +893,7 @@ public final class ViewUtils {
 
     /**
      * 设置文本的显示方向
-     * @param view          View
+     * @param view          {@link View}
      * @param textDirection 文本的显示方向
      * @return {@link View}
      */
@@ -780,7 +933,7 @@ public final class ViewUtils {
 
     /**
      * 设置水平方向的移动距离
-     * @param view         View
+     * @param view         {@link View}
      * @param translationX 水平方向的移动距离
      * @return {@link View}
      */
@@ -793,7 +946,7 @@ public final class ViewUtils {
 
     /**
      * 设置竖直方向的移动距离
-     * @param view         View
+     * @param view         {@link View}
      * @param translationY 竖直方向的移动距离
      * @return {@link View}
      */
@@ -806,7 +959,7 @@ public final class ViewUtils {
 
     /**
      * 设置 View 硬件加速类型
-     * @param view      View
+     * @param view      {@link View}
      * @param layerType 硬件加速类型
      * @param paint     {@link Paint}
      * @return {@link View}
@@ -1437,7 +1590,7 @@ public final class ViewUtils {
                 LogPrintUtils.eTag(TAG, e, "getLayoutGravity");
             }
         }
-        return -1;
+        return 0;
     }
 
     /**
