@@ -388,11 +388,13 @@ public final class EditTextUtils {
      * @param editText {@link EditText}
      * @param method   {@link TransformationMethod}
      * @param <T>      泛型
+     * @return {@link EditText}
      */
-    public static <T extends EditText> void setTransformationMethod(final T editText, final TransformationMethod method) {
+    public static <T extends EditText> T setTransformationMethod(final T editText, final TransformationMethod method) {
         if (editText != null) {
             editText.setTransformationMethod(method);
         }
+        return editText;
     }
 
     // =
@@ -402,9 +404,10 @@ public final class EditTextUtils {
      * @param editText          {@link EditText}
      * @param isDisplayPassword 是否显示密码
      * @param <T>               泛型
+     * @return {@link EditText}
      */
-    public static <T extends EditText> void setTransformationMethod(final T editText, final boolean isDisplayPassword) {
-        setTransformationMethod(editText, isDisplayPassword, true);
+    public static <T extends EditText> T setTransformationMethod(final T editText, final boolean isDisplayPassword) {
+        return setTransformationMethod(editText, isDisplayPassword, true);
     }
 
     /**
@@ -413,8 +416,9 @@ public final class EditTextUtils {
      * @param isDisplayPassword 是否显示密码
      * @param isSelectBottom    是否设置光标到最后
      * @param <T>               泛型
+     * @return {@link EditText}
      */
-    public static <T extends EditText> void setTransformationMethod(final T editText, final boolean isDisplayPassword, final boolean isSelectBottom) {
+    public static <T extends EditText> T setTransformationMethod(final T editText, final boolean isDisplayPassword, final boolean isSelectBottom) {
         if (editText != null) {
             // 获取光标位置
             int curSelect = 0;
@@ -429,6 +433,7 @@ public final class EditTextUtils {
                 setSelection(editText, curSelect);
             }
         }
+        return editText;
     }
 
     // =

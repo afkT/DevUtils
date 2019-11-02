@@ -23,8 +23,9 @@ public final class HtmlUtils {
      * @param textView {@link TextView}
      * @param content  Html content
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setHtmlText(final T textView, final String content) {
+    public static <T extends TextView> T setHtmlText(final T textView, final String content) {
         if (textView != null && content != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 textView.setText(Html.fromHtml(content, Html.FROM_HTML_MODE_LEGACY));
@@ -32,6 +33,7 @@ public final class HtmlUtils {
                 textView.setText(Html.fromHtml(content));
             }
         }
+        return textView;
     }
 
     // =
