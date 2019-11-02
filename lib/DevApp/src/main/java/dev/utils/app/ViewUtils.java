@@ -813,6 +813,18 @@ public final class ViewUtils {
     // =
 
     /**
+     * 获取 View 旋转度数
+     * @param view {@link View}
+     * @return View 旋转度数
+     */
+    public static float getRotation(final View view) {
+        if (view != null) {
+            return view.getRotation();
+        }
+        return 0f;
+    }
+
+    /**
      * 设置 View 旋转度数
      * @param view     {@link View}
      * @param rotation 旋转度数
@@ -823,6 +835,20 @@ public final class ViewUtils {
             view.setRotation(rotation);
         }
         return view;
+    }
+
+    // =
+
+    /**
+     * 获取 View 水平旋转度数
+     * @param view {@link View}
+     * @return View 水平旋转度数
+     */
+    public static float getRotationX(final View view) {
+        if (view != null) {
+            return view.getRotationX();
+        }
+        return 0f;
     }
 
     /**
@@ -838,6 +864,20 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 获取 View 竖直旋转度数
+     * @param view {@link View}
+     * @return View 竖直旋转度数
+     */
+    public static float getRotationY(final View view) {
+        if (view != null) {
+            return view.getRotationY();
+        }
+        return 0f;
+    }
+
     /**
      * 设置 View 竖直旋转度数
      * @param view      {@link View}
@@ -849,6 +889,20 @@ public final class ViewUtils {
             view.setRotationY(rotationY);
         }
         return view;
+    }
+
+    // =
+
+    /**
+     * 获取 View 水平方向缩放比例
+     * @param view View
+     * @return View 水平方向缩放比例
+     */
+    public static float getScaleX(final View view) {
+        if (view != null) {
+            return view.getScaleX();
+        }
+        return 0f;
     }
 
     /**
@@ -864,6 +918,20 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 获取 View 竖直方向缩放比例
+     * @param view View
+     * @return View 竖直方向缩放比例
+     */
+    public static float getScaleY(final View view) {
+        if (view != null) {
+            return view.getScaleY();
+        }
+        return 0f;
+    }
+
     /**
      * 设置 View 竖直方向缩放比例
      * @param view   View
@@ -875,6 +943,21 @@ public final class ViewUtils {
             view.setScaleY(scaleY);
         }
         return view;
+    }
+
+    // =
+
+    /**
+     * 获取文本的显示方式
+     * @param view {@link View}
+     * @return 文本的显示方式
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static int getTextAlignment(final View view) {
+        if (view != null) {
+            return view.getTextAlignment();
+        }
+        return 0;
     }
 
     /**
@@ -891,6 +974,21 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 获取文本的显示方向
+     * @param view {@link View}
+     * @return 文本的显示方向
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static int getTextDirection(final View view) {
+        if (view != null) {
+            return view.getTextDirection();
+        }
+        return 0;
+    }
+
     /**
      * 设置文本的显示方向
      * @param view          {@link View}
@@ -903,6 +1001,20 @@ public final class ViewUtils {
             view.setTextDirection(textDirection);
         }
         return view;
+    }
+
+    // =
+
+    /**
+     * 获取水平方向偏转量
+     * @param view {@link View}
+     * @return 水平方向偏转量
+     */
+    public static float getPivotX(final View view) {
+        if (view != null) {
+            return view.getPivotX();
+        }
+        return 0f;
     }
 
     /**
@@ -918,6 +1030,20 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 获取竖直方向偏转量
+     * @param view {@link View}
+     * @return 竖直方向偏转量
+     */
+    public static float getPivotY(final View view) {
+        if (view != null) {
+            return view.getPivotY();
+        }
+        return 0f;
+    }
+
     /**
      * 设置竖直方向偏转量
      * @param view   View
@@ -929,6 +1055,20 @@ public final class ViewUtils {
             view.setPivotY(pivotY);
         }
         return view;
+    }
+
+    // =
+
+    /**
+     * 获取水平方向的移动距离
+     * @param view {@link View}
+     * @return 水平方向的移动距离
+     */
+    public static float getTranslationX(final View view) {
+        if (view != null) {
+            return view.getTranslationX();
+        }
+        return 0f;
     }
 
     /**
@@ -944,6 +1084,20 @@ public final class ViewUtils {
         return view;
     }
 
+    // =
+
+    /**
+     * 获取竖直方向的移动距离
+     * @param view {@link View}
+     * @return 竖直方向的移动距离
+     */
+    public static float getTranslationY(final View view) {
+        if (view != null) {
+            return view.getTranslationY();
+        }
+        return 0f;
+    }
+
     /**
      * 设置竖直方向的移动距离
      * @param view         {@link View}
@@ -955,6 +1109,20 @@ public final class ViewUtils {
             view.setTranslationY(translationY);
         }
         return view;
+    }
+
+    // =
+
+    /**
+     * 获取 View 硬件加速类型
+     * @param view {@link View}
+     * @return View 硬件加速类型
+     */
+    public static int getLayerType(final View view) {
+        if (view != null) {
+            return view.getLayerType();
+        }
+        return 0;
     }
 
     /**
@@ -974,6 +1142,18 @@ public final class ViewUtils {
     // =
 
     /**
+     * 获取 View 是否可以获取焦点
+     * @param view {@link View}
+     * @return {@code true} 可获取, {@code false} 不可获取
+     */
+    public static boolean isFocusable(final View view) {
+        if (view != null) {
+            return view.isFocusable();
+        }
+        return false;
+    }
+
+    /**
      * 设置 View 是否可以获取焦点
      * @param focusable {@code true} 可获取, {@code false} 不可获取
      * @param views     View[]
@@ -989,6 +1169,20 @@ public final class ViewUtils {
             }
         }
         return focusable;
+    }
+
+    // =
+
+    /**
+     * 获取 View 是否选中
+     * @param view {@link View}
+     * @return {@code true} 选中, {@code false} 非选中
+     */
+    public static boolean isSelected(final View view) {
+        if (view != null) {
+            return view.isSelected();
+        }
+        return false;
     }
 
     /**
@@ -1009,6 +1203,20 @@ public final class ViewUtils {
         return selected;
     }
 
+    // =
+
+    /**
+     * 获取 View 是否启用
+     * @param view {@link View}
+     * @return {@code true} 启用, {@code false} 禁用
+     */
+    public static boolean isEnabled(final View view) {
+        if (view != null) {
+            return view.isEnabled();
+        }
+        return false;
+    }
+
     /**
      * 设置 View 是否启用
      * @param enabled {@code true} 启用, {@code false} 禁用
@@ -1027,6 +1235,20 @@ public final class ViewUtils {
         return enabled;
     }
 
+    // =
+
+    /**
+     * 获取 View 是否可以点击
+     * @param view {@link View}
+     * @return {@code true} 可点击, {@code false} 不可点击
+     */
+    public static boolean isClickable(final View view) {
+        if (view != null) {
+            return view.isClickable();
+        }
+        return false;
+    }
+
     /**
      * 设置 View 是否可以点击
      * @param clickable {@code true} 可点击, {@code false} 不可点击
@@ -1043,6 +1265,20 @@ public final class ViewUtils {
             }
         }
         return clickable;
+    }
+
+    // =
+
+    /**
+     * 获取 View 是否可以长按
+     * @param view {@link View}
+     * @return {@code true} 可长按, {@code false} 不可长按
+     */
+    public static boolean isLongClickable(final View view) {
+        if (view != null) {
+            return view.isLongClickable();
+        }
+        return false;
     }
 
     /**
