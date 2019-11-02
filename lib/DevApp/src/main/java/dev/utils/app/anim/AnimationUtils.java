@@ -68,6 +68,17 @@ public final class AnimationUtils {
     }
 
     /**
+     * 设置动画事件
+     * @param animation {@link Animation}
+     * @param listener  {@link AnimationListener}
+     * @return {@link Animation}
+     */
+    public static Animation setAnimationListener(final Animation animation, final AnimationListener listener) {
+        if (animation != null) animation.setAnimationListener(listener);
+        return animation;
+    }
+
+    /**
      * 设置动画
      * @param view      {@link View}
      * @param animation {@link Animation}
