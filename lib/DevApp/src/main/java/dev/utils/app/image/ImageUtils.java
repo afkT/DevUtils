@@ -300,14 +300,14 @@ public final class ImageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isTIFF(final byte[] data) {
-        if (data != null && data.length >= 4){
-            if (data[0] == (byte) 73 && data[1] == (byte) 73 && data[2] == (byte) 0x2a && data[3] == 0){
+        if (data != null && data.length >= 4) {
+            if (data[0] == (byte) 73 && data[1] == (byte) 73 && data[2] == (byte) 0x2a && data[3] == 0) {
                 return true; // 49 49 2a 00
             } else if (data[0] == (byte) 0x4d && data[1] == (byte) 0x4d && data[2] == 0 && data[3] == (byte) 0x2a) {
                 return true; // 4d 4d 00 2a
             } else if (data[0] == (byte) 0x4d && data[1] == (byte) 0x4d && data[2] == 0 && data[3] == (byte) 0x2b) {
                 return true; // 4d 4d 00 2b
-            } else if (data[0] == (byte) 73 && data[1] == (byte) 32 && data[2] == (byte) 73){
+            } else if (data[0] == (byte) 73 && data[1] == (byte) 32 && data[2] == (byte) 73) {
                 return true; // 49 20 49
             }
         }
