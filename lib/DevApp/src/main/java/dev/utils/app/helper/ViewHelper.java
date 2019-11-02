@@ -1530,6 +1530,17 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 View 是否在触摸模式下获得焦点
+     * @param focusableInTouchMode {@code true} 可获取, {@code false} 不可获取
+     * @param views                View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setFocusableInTouchMode(final boolean focusableInTouchMode, final View... views) {
+        ViewUtils.setFocusableInTouchMode(focusableInTouchMode, views);
+        return this;
+    }
+
+    /**
      * 设置 View 是否可以获取焦点
      * @param focusable {@code true} 可获取, {@code false} 不可获取
      * @param views     View[]

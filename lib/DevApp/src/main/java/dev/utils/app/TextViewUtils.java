@@ -604,6 +604,19 @@ public final class TextViewUtils {
     // ============
 
     /**
+     * 获取字体
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link Typeface}
+     */
+    public static <T extends TextView> Typeface getTypeface(final T textView) {
+        if (textView != null) {
+            return textView.getTypeface();
+        }
+        return null;
+    }
+
+    /**
      * 设置字体
      * @param textView {@link TextView}
      * @param typeface {@link Typeface} 字体样式
@@ -995,12 +1008,26 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取文字水平间距
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 文字水平间距
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static <T extends TextView> float getLetterSpacing(final T textView) {
+        if (textView != null) {
+            return textView.getLetterSpacing();
+        }
+        return 0f;
+    }
+
+    /**
      * 设置文字水平间距
      * <pre>
      *     android:letterSpacing
      * </pre>
      * @param textView      {@link TextView}
-     * @param letterSpacing 文字水平间距值
+     * @param letterSpacing 文字水平间距
      * @param <T>           泛型
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -1013,7 +1040,7 @@ public final class TextViewUtils {
     /**
      * 设置文字水平间距
      * @param view          {@link TextView}
-     * @param letterSpacing 文字水平间距值
+     * @param letterSpacing 文字水平间距
      * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -1023,6 +1050,34 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取文字行间距 ( 行高 )
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 文字行间距 ( 行高 )
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> float getLineSpacingExtra(final T textView) {
+        if (textView != null) {
+            return textView.getLineSpacingExtra();
+        }
+        return 0f;
+    }
+
+    /**
+     * 获取文字行间距倍数
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 文字行间距倍数
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> float getLineSpacingMultiplier(final T textView) {
+        if (textView != null) {
+            return textView.getLineSpacingMultiplier();
+        }
+        return 0f;
+    }
 
     /**
      * 设置文字行间距 ( 行高 )
@@ -1075,6 +1130,19 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取字体水平方向的缩放
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 字体水平方向的缩放
+     */
+    public static <T extends TextView> float getTextScaleX(final T textView) {
+        if (textView != null) {
+            return textView.getTextScaleX();
+        }
+        return 0f;
+    }
+
+    /**
      * 设置字体水平方向的缩放
      * <pre>
      *     android:textScaleX
@@ -1101,6 +1169,20 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 是否保留字体留白间隙区域
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> boolean getIncludeFontPadding(final T textView) {
+        if (textView != null) {
+            return textView.getIncludeFontPadding();
+        }
+        return false;
+    }
 
     /**
      * 设置是否保留字体留白间隙区域
@@ -1131,6 +1213,19 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取输入类型
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 输入类型
+     */
+    public static <T extends TextView> int getInputType(final T textView) {
+        if (textView != null) {
+            return textView.getInputType();
+        }
+        return 0;
+    }
+
+    /**
      * 设置输入类型
      * @param textView {@link TextView}
      * @param type     类型
@@ -1156,6 +1251,19 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取软键盘右下角按钮类型
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 软键盘右下角按钮类型
+     */
+    public static <T extends TextView> int getImeOptions(final T textView) {
+        if (textView != null) {
+            return textView.getImeOptions();
+        }
+        return 0;
+    }
 
     /**
      * 设置软键盘右下角按钮类型
@@ -1210,6 +1318,20 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取最大行数
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 最大行数
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> int getMaxLines(final T textView) {
+        if (textView != null) {
+            return textView.getMaxLines();
+        }
+        return 0;
+    }
+
+    /**
      * 设置最大行数
      * @param textView {@link TextView}
      * @param maxLines 最大行数
@@ -1233,6 +1355,20 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取最小行数
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 最小行数
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> int getMinLines(final T textView) {
+        if (textView != null) {
+            return textView.getMinLines();
+        }
+        return 0;
+    }
 
     /**
      * 设置最小行数
@@ -1260,6 +1396,20 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取最大字符宽度限制
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 最大字符宽度限制
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> int getMaxEms(final T textView) {
+        if (textView != null) {
+            return textView.getMaxEms();
+        }
+        return 0;
+    }
+
+    /**
      * 设置最大字符宽度限制
      * @param textView {@link TextView}
      * @param maxEms   最大字符
@@ -1285,6 +1435,20 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取最小字符宽度限制
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 最小字符宽度限制
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> int getMinEms(final T textView) {
+        if (textView != null) {
+            return textView.getMinEms();
+        }
+        return 0;
+    }
 
     /**
      * 设置最小字符宽度限制
@@ -1396,6 +1560,19 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取 Ellipsize 效果
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return Ellipsize 效果
+     */
+    public static <T extends TextView> TextUtils.TruncateAt getEllipsize(final T textView) {
+        if (textView != null) {
+            return textView.getEllipsize();
+        }
+        return null;
+    }
+
+    /**
      * 设置 Ellipsize 效果
      * @param textView {@link TextView}
      * @param where    {@link TextUtils.TruncateAt}
@@ -1419,6 +1596,19 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取自动识别文本类型
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 自动识别文本类型
+     */
+    public static <T extends TextView> int getAutoLinkMask(final T textView) {
+        if (textView != null) {
+            return textView.getAutoLinkMask();
+        }
+        return 0;
+    }
 
     /**
      * 设置自动识别文本链接
@@ -1469,6 +1659,19 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取 Gravity
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link android.view.Gravity}
+     */
+    public static <T extends TextView> int getGravity(final T textView) {
+        if (textView != null) {
+            return textView.getGravity();
+        }
+        return 0;
+    }
 
     /**
      * 设置 Gravity
