@@ -16,17 +16,17 @@
 
 ## Documentation - [Lib](https://github.com/afkT/DevUtils/tree/master/lib)
 
-### DevApp
+### DevApp - Android 工具类库
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
 - [Use and Config](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/USE_CONFIG.md)
 
-### DevAssist
+### DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/README.md)
 
-### DevJava
+### DevJava - Java 工具类库 (不依赖 android api)
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md)
 
