@@ -1142,6 +1142,42 @@ public final class ViewUtils {
     // =
 
     /**
+     * 请求重新对 View 布局
+     * @param view {@link View}
+     * @return {@link View}
+     */
+    public static View requestLayout(final View view) {
+        if (view != null) {
+            view.requestLayout();
+        }
+        return view;
+    }
+
+    /**
+     * View 请求获取焦点
+     * @param view {@link View}
+     * @return {@link View}
+     */
+    public static View requestFocus(final View view) {
+        if (view != null) {
+            view.requestFocus();
+        }
+        return view;
+    }
+
+    /**
+     * View 清除焦点
+     * @param view {@link View}
+     * @return {@link View}
+     */
+    public static View clearFocus(final View view) {
+        if (view != null) {
+            view.clearFocus();
+        }
+        return view;
+    }
+
+    /**
      * 获取 View 里获取焦点的 View
      * @param view {@link View}
      * @return {@link View}

@@ -1519,6 +1519,49 @@ public final class ViewHelper {
     // =
 
     /**
+     * 请求重新对 View 布局
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper requestLayout(final View view) {
+        ViewUtils.requestLayout(view);
+        return this;
+    }
+
+    /**
+     * View 请求获取焦点
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper requestFocus(final View view) {
+        ViewUtils.requestFocus(view);
+        return this;
+    }
+
+    /**
+     * View 清除焦点
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper clearFocus(final View view) {
+        ViewUtils.clearFocus(view);
+        return this;
+    }
+
+    /**
+     * View 请求更新
+     * @param view      {@link View}
+     * @param allParent 是否全部父布局 View 都请求
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper requestLayoutParent(final View view, final boolean allParent) {
+        ViewUtils.requestLayoutParent(view, allParent);
+        return this;
+    }
+
+    // =
+
+    /**
      * 设置 View LayoutParams
      * @param view   {@link View}
      * @param params LayoutParams
