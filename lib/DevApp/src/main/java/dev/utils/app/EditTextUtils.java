@@ -1,5 +1,7 @@
 package dev.utils.app;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -228,6 +230,20 @@ public final class EditTextUtils {
     // ========
 
     /**
+     * 是否显示光标
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends EditText> boolean isCursorVisible(final T editText) {
+        if (editText != null) {
+            return editText.isCursorVisible();
+        }
+        return false;
+    }
+
+    /**
      * 设置是否显示光标
      * @param editText {@link EditText}
      * @param visible  是否显示光标
@@ -291,6 +307,21 @@ public final class EditTextUtils {
         return editText;
     }
 
+    // =
+
+    /**
+     * 设置输入类型
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return 输入类型
+     */
+    public static <T extends EditText> int getInputType(final T editText) {
+        if (editText != null) {
+            return editText.getInputType();
+        }
+        return 0;
+    }
+
     /**
      * 设置输入类型
      * @param editText {@link EditText}
@@ -303,6 +334,21 @@ public final class EditTextUtils {
             editText.setInputType(type);
         }
         return editText;
+    }
+
+    // =
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return 软键盘右下角按钮类型
+     */
+    public static <T extends EditText> int getImeOptions(final T editText) {
+        if (editText != null) {
+            return editText.getImeOptions();
+        }
+        return 0;
     }
 
     /**
