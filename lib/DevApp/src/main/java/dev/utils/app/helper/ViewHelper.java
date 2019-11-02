@@ -16,6 +16,7 @@ import android.support.annotation.IdRes;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -744,6 +745,52 @@ public final class ViewHelper {
         EditTextUtils.setSelection(editText, index);
         return this;
     }
+
+    // =
+
+    /**
+     * 设置文本视图显示转换
+     * @param view   {@link View}
+     * @param method {@link TransformationMethod}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTransformationMethod(final View view, final TransformationMethod method) {
+        if (view instanceof EditText) {
+            EditTextUtils.setTransformationMethod(EditTextUtils.getEditText(view), method);
+        } else {
+            TextViewUtils.setTransformationMethod(view, method);
+        }
+        return this;
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param view              {@link View}
+     * @param isDisplayPassword 是否显示密码
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTransformationMethod(final View view, final boolean isDisplayPassword) {
+        if (view instanceof EditText) {
+            EditTextUtils.setTransformationMethod(EditTextUtils.getEditText(view), isDisplayPassword);
+        } else {
+            TextViewUtils.setTransformationMethod(view, isDisplayPassword);
+        }
+        return this;
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param editText          {@link EditText}
+     * @param isDisplayPassword 是否显示密码
+     * @param isSelectBottom    是否设置光标到最后
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTransformationMethod(final EditText editText, final boolean isDisplayPassword, final boolean isSelectBottom) {
+        EditTextUtils.setTransformationMethod(editText, isDisplayPassword, isSelectBottom);
+        return this;
+    }
+
+    // =
 
     /**
      * 添加输入监听事件

@@ -8,7 +8,10 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.KeyListener;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 
@@ -363,6 +366,69 @@ public final class EditTextUtils {
             editText.setImeOptions(imeOptions);
         }
         return editText;
+    }
+
+    // =
+
+    /**
+     * 获取文本视图显示转换
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return {@link TransformationMethod}
+     */
+    public static <T extends EditText> TransformationMethod getTransformationMethod(final T editText) {
+        if (editText != null) {
+            return editText.getTransformationMethod();
+        }
+        return null;
+    }
+
+    /**
+     * 设置文本视图显示转换
+     * @param editText {@link EditText}
+     * @param method   {@link TransformationMethod}
+     * @param <T>      泛型
+     */
+    public static <T extends EditText> void setTransformationMethod(final T editText, final TransformationMethod method) {
+        if (editText != null) {
+            editText.setTransformationMethod(method);
+        }
+    }
+
+    // =
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param editText          {@link EditText}
+     * @param isDisplayPassword 是否显示密码
+     * @param <T>               泛型
+     */
+    public static <T extends EditText> void setTransformationMethod(final T editText, final boolean isDisplayPassword) {
+        setTransformationMethod(editText, isDisplayPassword, true);
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param editText          {@link EditText}
+     * @param isDisplayPassword 是否显示密码
+     * @param isSelectBottom    是否设置光标到最后
+     * @param <T>               泛型
+     */
+    public static <T extends EditText> void setTransformationMethod(final T editText, final boolean isDisplayPassword, final boolean isSelectBottom) {
+        if (editText != null) {
+            // 获取光标位置
+            int curSelect = 0;
+            if (!isSelectBottom) {
+                curSelect = getSelectionStart(editText);
+            }
+            editText.setTransformationMethod(isDisplayPassword ?
+                    HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
+            if (isSelectBottom) { // 设置光标到最后
+                setSelectionToBottom(editText);
+            } else { // 设置光标到之前的位置
+                setSelection(editText, curSelect);
+            }
+        }
     }
 
     // =

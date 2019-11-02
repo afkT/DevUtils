@@ -10,6 +10,9 @@ import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
@@ -1693,6 +1696,70 @@ public final class TextViewUtils {
      */
     public static View setGravity(final View view, final int gravity) {
         setGravity(getTextView(view), gravity);
+        return view;
+    }
+
+    // =
+
+    /**
+     * 获取文本视图显示转换
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link TransformationMethod}
+     */
+    public static <T extends TextView> TransformationMethod getTransformationMethod(final T textView) {
+        if (textView != null) {
+            return textView.getTransformationMethod();
+        }
+        return null;
+    }
+
+    /**
+     * 设置文本视图显示转换
+     * @param textView {@link TextView}
+     * @param method   {@link TransformationMethod}
+     * @param <T>      泛型
+     */
+    public static <T extends TextView> void setTransformationMethod(final T textView, final TransformationMethod method) {
+        if (textView != null) {
+            textView.setTransformationMethod(method);
+        }
+    }
+
+    /**
+     * 设置文本视图显示转换
+     * @param view   {@link TextView}
+     * @param method {@link TransformationMethod}
+     * @return {@link View}
+     */
+    public static View setTransformationMethod(final View view, final TransformationMethod method) {
+        setTransformationMethod(getTextView(view), method);
+        return view;
+    }
+
+    // =
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param textView          {@link TextView}
+     * @param isDisplayPassword 是否显示密码
+     * @param <T>               泛型
+     */
+    public static <T extends TextView> void setTransformationMethod(final T textView, final boolean isDisplayPassword) {
+        if (textView != null) {
+            textView.setTransformationMethod(isDisplayPassword ?
+                    HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
+        }
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param view              {@link TextView}
+     * @param isDisplayPassword 是否显示密码
+     * @return {@link View}
+     */
+    public static View setTransformationMethod(final View view, final boolean isDisplayPassword) {
+        setTransformationMethod(getTextView(view), isDisplayPassword);
         return view;
     }
 
