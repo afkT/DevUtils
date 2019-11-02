@@ -1142,6 +1142,88 @@ public final class ViewUtils {
     // =
 
     /**
+     * 获取 View 里获取焦点的 View
+     * @param view {@link View}
+     * @return {@link View}
+     */
+    public static View findFocus(final View view) {
+        if (view != null) {
+            return view.findFocus();
+        }
+        return null;
+    }
+
+    /**
+     * 获取是否当前 View 就是焦点 View
+     * @param view {@link View}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isFocused(final View view) {
+        if (view != null) {
+            return view.isFocused();
+        }
+        return false;
+    }
+
+    /**
+     * 获取当前 View 是否是焦点 View 或者子 View 里面有焦点 View
+     * @param view {@link View}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean hasFocus(final View view) {
+        if (view != null) {
+            return view.hasFocus();
+        }
+        return false;
+    }
+
+    /**
+     * 获取当前 View 或者子 View 是否可以获取焦点
+     * @param view {@link View}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean hasFocusable(final View view) {
+        if (view != null) {
+            return view.hasFocusable();
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 获取 View 是否在触摸模式下获得焦点
+     * @param view {@link View}
+     * @return {@code true} 可获取, {@code false} 不可获取
+     */
+    public static boolean isFocusableInTouchMode(final View view) {
+        if (view != null) {
+            return view.isFocusableInTouchMode();
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View 是否在触摸模式下获得焦点
+     * @param focusableInTouchMode {@code true} 可获取, {@code false} 不可获取
+     * @param views                View[]
+     * @return {@code true} 可获取, {@code false} 不可获取
+     */
+    public static boolean setFocusableInTouchMode(final boolean focusableInTouchMode, final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view != null) {
+                    view.setFocusableInTouchMode(focusableInTouchMode);
+                }
+            }
+        }
+        return focusableInTouchMode;
+    }
+
+    // =
+
+    /**
      * 获取 View 是否可以获取焦点
      * @param view {@link View}
      * @return {@code true} 可获取, {@code false} 不可获取
