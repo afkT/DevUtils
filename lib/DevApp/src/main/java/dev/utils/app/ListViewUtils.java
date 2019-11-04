@@ -120,6 +120,11 @@ public final class ListViewUtils {
 
     /**
      * 滑动到底部 ( 有滚动过程 )
+     * <pre>
+     *     如果未到达底部 ( position 可以再加上 smoothScrollBy 搭配到底部)
+     *     smoothScrollToBottom(view)
+     *     smoothScrollBy(view, 0, Integer.MAX_VALUE);
+     * </pre>
      * @param view {@link View}
      * @param <T>  泛型
      * @return {@link View}
@@ -153,6 +158,11 @@ public final class ListViewUtils {
 
     /**
      * 滑动到底部 ( 无滚动过程 )
+     * <pre>
+     *     如果未到达底部 ( position 可以再加上 scrollBy 搭配到底部)
+     *     scrollToBottom(view)
+     *     scrollBy(view, 0, Integer.MAX_VALUE);
+     * </pre>
      * @param view {@link View}
      * @param <T>  泛型
      * @return {@link View}
