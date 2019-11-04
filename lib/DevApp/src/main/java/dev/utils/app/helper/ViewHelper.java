@@ -28,6 +28,7 @@ import dev.utils.app.ClickUtils;
 import dev.utils.app.EditTextUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ImageViewUtils;
+import dev.utils.app.ListViewUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.ViewUtils;
@@ -2502,6 +2503,119 @@ public final class ViewHelper {
      */
     public ViewHelper addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
         ClickUtils.addTouchArea(view, top, bottom, left, right);
+        return this;
+    }
+
+    // =================
+    // = ListViewUtils =
+    // =================
+
+    /**
+     * 滑动到指定索引 ( 有滚动过程 )
+     * @param view     {@link View}
+     * @param position 索引
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollToPosition(final View view, final int position) {
+        ListViewUtils.smoothScrollToPosition(view, position);
+        return this;
+    }
+
+    /**
+     * 滑动到指定索引 ( 无滚动过程 )
+     * @param view     {@link View}
+     * @param position 索引
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollToPosition(final View view, final int position) {
+        ListViewUtils.scrollToPosition(view, position);
+        return this;
+    }
+
+    // ==============
+    // = 滑动到顶部 =
+    // ==============
+
+    /**
+     * 滑动到顶部 ( 有滚动过程 )
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollToTop(final View view) {
+        ListViewUtils.smoothScrollToTop(view);
+        return this;
+    }
+
+    /**
+     * 滑动到顶部 ( 无滚动过程 )
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollToTop(final View view) {
+        ListViewUtils.scrollToTop(view);
+        return this;
+    }
+
+    // ==============
+    // = 滑动到底部 =
+    // ==============
+
+    /**
+     * 滑动到底部 ( 有滚动过程 )
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollToBottom(final View view) {
+        ListViewUtils.smoothScrollToBottom(view);
+        return this;
+    }
+
+    /**
+     * 滑动到底部 ( 无滚动过程 )
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollToBottom(final View view) {
+        ListViewUtils.scrollToBottom(view);
+        return this;
+    }
+
+    // ==============
+    // = ScrollView =
+    // ==============
+
+    /**
+     * 滚动到指定位置 ( 有滚动过程 ) - 相对于初始位置移动
+     * @param view {@link View}
+     * @param x    X 轴开始坐标
+     * @param y    Y 轴开始坐标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollTo(final View view, final int x, final int y) {
+        ListViewUtils.smoothScrollTo(view, x, y);
+        return this;
+    }
+
+    /**
+     * 滚动到指定位置 ( 有滚动过程 ) - 相对于上次移动的最后位置移动
+     * @param view {@link View}
+     * @param x    X 轴开始坐标
+     * @param y    Y 轴开始坐标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollBy(final View view, final int x, final int y) {
+        ListViewUtils.smoothScrollBy(view, x, y);
+        return this;
+    }
+
+    /**
+     * 滚动方向 ( 有滚动过程 )
+     * @param view      {@link View}
+     * @param direction 滚动方向 如: View.FOCUS_UP、View.FOCUS_DOWN
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper fullScroll(final View view, final int direction) {
+        ListViewUtils.fullScroll(view, direction);
         return this;
     }
 }
