@@ -13,6 +13,11 @@ import dev.utils.JCLogUtils;
 /**
  * detail: HttpURLConnection 网络工具类
  * @author Ttt
+ * <pre>
+ *     详细解释 HttpURLConnection 类
+ *     @see <a href="https://www.cnblogs.com/jiuhaoyun/p/8040028.html"/>
+ *     @see <a href="https://blog.csdn.net/you18131371836/article/details/53189966"/>
+ * </pre>
  */
 public final class HttpURLConnectionUtils {
 

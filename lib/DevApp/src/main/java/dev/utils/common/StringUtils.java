@@ -719,7 +719,7 @@ public final class StringUtils {
             try {
                 int length = args.length;
                 StringBuilder builder = new StringBuilder();
-                builder.append("【%s】");
+                builder.append("[%s]");
                 if (length > 1) {
                     for (int i = 1; i < length; i++) {
                         builder.append(" %s");
