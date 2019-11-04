@@ -1387,6 +1387,30 @@ public final class ViewHelper {
     // =
 
     /**
+     * 设置是否绘制横向滚动条
+     * @param view                       {@link View}
+     * @param horizontalScrollBarEnabled {@code true} yes, {@code false} no
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHorizontalScrollBarEnabled(final View view, final boolean horizontalScrollBarEnabled) {
+        ViewUtils.setHorizontalScrollBarEnabled(view, horizontalScrollBarEnabled);
+        return this;
+    }
+
+    /**
+     * 设置是否绘制垂直滚动条
+     * @param view                     {@link View}
+     * @param verticalScrollBarEnabled {@code true} yes, {@code false} no
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setVerticalScrollBarEnabled(final View view, final boolean verticalScrollBarEnabled) {
+        ViewUtils.setVerticalScrollBarEnabled(view, verticalScrollBarEnabled);
+        return this;
+    }
+
+    // =
+
+    /**
      * 设置 View 滚动效应
      * @param view              {@link View}
      * @param isScrollContainer 是否需要滚动效应
