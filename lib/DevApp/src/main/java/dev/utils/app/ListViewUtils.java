@@ -23,11 +23,11 @@ import dev.utils.LogPrintUtils;
  */
 public final class ListViewUtils {
 
-    // 日志 TAG
-    private static final String TAG = ListViewUtils.class.getSimpleName();
-
     private ListViewUtils() {
     }
+
+    // 日志 TAG
+    private static final String TAG = ListViewUtils.class.getSimpleName();
 
     // =============
     // = List View =

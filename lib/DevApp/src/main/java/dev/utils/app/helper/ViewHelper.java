@@ -1394,6 +1394,40 @@ public final class ViewHelper {
     // =
 
     /**
+     * 设置 ViewGroup 和其子控件两者之间的关系
+     * <pre>
+     *     beforeDescendants : ViewGroup 会优先其子类控件而获取到焦点
+     *     afterDescendants : ViewGroup 只有当其子类控件不需要获取焦点时才获取焦点
+     *     blocksDescendants : ViewGroup 会覆盖子类控件而直接获得焦点
+     *     android:descendantFocusability="blocksDescendants"
+     * </pre>
+     * @param view         {@link ViewGroup}
+     * @param focusability {@link ViewGroup#FOCUS_BEFORE_DESCENDANTS}、@link ViewGroup#FOCUS_AFTER_DESCENDANTS}、@link ViewGroup#FOCUS_BLOCK_DESCENDANTS}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setDescendantFocusability(final ViewGroup view, final int focusability) {
+        ViewUtils.setDescendantFocusability(view, focusability);
+        return this;
+    }
+
+    /**
+     * 设置 View 滚动模式
+     * <pre>
+     *     设置滑动到边缘时无效果模式 {@link View#OVER_SCROLL_NEVER}
+     *     android:overScrollMode="never"
+     * </pre>
+     * @param view           {@link View}
+     * @param overScrollMode {@link View#OVER_SCROLL_ALWAYS}、{@link View#OVER_SCROLL_IF_CONTENT_SCROLLS}、{@link View#OVER_SCROLL_NEVER}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setOverScrollMode(final View view, final int overScrollMode) {
+        ViewUtils.setOverScrollMode(view, overScrollMode);
+        return this;
+    }
+
+    // =
+
+    /**
      * 设置是否绘制横向滚动条
      * @param view                       {@link View}
      * @param horizontalScrollBarEnabled {@code true} yes, {@code false} no
