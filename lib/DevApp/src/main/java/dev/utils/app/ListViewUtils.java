@@ -37,6 +37,55 @@ public final class ListViewUtils {
     // =============
 
     /**
+     * 获取指定索引 Item View
+     * @param view     {@link View}
+     * @param position 索引
+     * @return {@link View}
+     */
+    public static View getItemView(final View view, final int position) {
+        if (view != null && position >= 0) {
+            if (view instanceof RecyclerView) {
+                RecyclerView recyclerView = ((RecyclerView) view);
+                RecyclerView.Adapter adapter = recyclerView.getAdapter();
+                if (adapter != null && adapter.getItemCount() > 0 && position < adapter.getItemCount()) {
+                    try {
+                        RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
+                        adapter.onBindViewHolder(holder, position);
+                        return holder.itemView;
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "getItemView - RecyclerView");
+                    }
+                }
+            } else if (view instanceof ListView) {
+                ListView listView = ((ListView) view);
+                ListAdapter listAdapter = listView.getAdapter();
+                if (listAdapter != null && listAdapter.getCount() > 0 && position < listAdapter.getCount()) {
+                    try {
+                        return listAdapter.getView(position, null, listView);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "getItemView - ListView");
+                    }
+                }
+            } else if (view instanceof GridView) {
+                GridView gridView = ((GridView) view);
+                ListAdapter listAdapter = gridView.getAdapter();
+                if (listAdapter != null && listAdapter.getCount() > 0 && position < listAdapter.getCount()) {
+                    try {
+                        return listAdapter.getView(position, null, gridView);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "getItemView - GridView");
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    // ========
+    // = 滑动 =
+    // ========
+
+    /**
      * 滑动到指定索引 ( 有滚动过程 )
      * @param view     {@link View}
      * @param position 索引
