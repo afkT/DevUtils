@@ -1361,6 +1361,32 @@ public final class ViewHelper {
     // =
 
     /**
+     * View 内容滚动位置 - 相对于初始位置移动
+     * @param view {@link View}
+     * @param x    X 轴开始坐标
+     * @param y    Y 轴开始坐标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollTo(final View view, final int x, final int y) {
+        ViewUtils.scrollTo(view, x, y);
+        return this;
+    }
+
+    /**
+     * View 内部滚动位置 - 相对于上次移动的最后位置移动
+     * @param view {@link View}
+     * @param x    X 轴开始坐标
+     * @param y    Y 轴开始坐标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollBy(final View view, final int x, final int y) {
+        ViewUtils.scrollBy(view, x, y);
+        return this;
+    }
+
+    // =
+
+    /**
      * 设置 View 滚动效应
      * @param view              {@link View}
      * @param isScrollContainer 是否需要滚动效应
