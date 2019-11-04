@@ -3,17 +3,28 @@ package dev.utils.app;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
+import dev.utils.LogPrintUtils;
+
 /**
  * detail: List View ( 列表 View ) 相关工具类
  * @author Ttt
+ * <pre>
+ *     android:descendantFocusability="blocksDescendants"
+ *     android:overScrollMode="never"
+ *     android:scrollbars="none"
+ * </pre>
  */
 public final class ListViewUtils {
+
+    // 日志 TAG
+    private static final String TAG = ListViewUtils.class.getSimpleName();
 
     private ListViewUtils() {
     }
@@ -318,5 +329,49 @@ public final class ListViewUtils {
      */
     public static int getScrollY(final View view) {
         return view != null ? view.getScrollY() : 0;
+    }
+
+    // =
+
+    /**
+     * 设置 ViewGroup 和其子控件两者之间的关系
+     * <pre>
+     *     beforeDescendants : ViewGroup 会优先其子类控件而获取到焦点
+     *     afterDescendants : ViewGroup 只有当其子类控件不需要获取焦点时才获取焦点
+     *     blocksDescendants : ViewGroup 会覆盖子类控件而直接获得焦点
+     *     android:descendantFocusability="blocksDescendants"
+     * </pre>
+     * @param view         {@link ViewGroup}
+     * @param focusability {@link ViewGroup#FOCUS_BEFORE_DESCENDANTS}、@link ViewGroup#FOCUS_AFTER_DESCENDANTS}、@link ViewGroup#FOCUS_BLOCK_DESCENDANTS}
+     * @param <T>          泛型
+     * @return {@link ViewGroup}
+     */
+    public static <T extends ViewGroup> T setDescendantFocusability(final T view, final int focusability) {
+        try {
+            if (view != null) view.setDescendantFocusability(focusability);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setDescendantFocusability");
+        }
+        return view;
+    }
+
+    /**
+     * 设置 View 滚动模式
+     * <pre>
+     *     设置滑动到边缘时无效果模式 {@link View#OVER_SCROLL_NEVER}
+     *     android:overScrollMode="never"
+     * </pre>
+     * @param view           {@link View}
+     * @param overScrollMode {@link View#OVER_SCROLL_ALWAYS}、{@link View#OVER_SCROLL_IF_CONTENT_SCROLLS}、{@link View#OVER_SCROLL_NEVER}
+     * @param <T>            泛型
+     * @return {@link View}
+     */
+    public static <T extends View> T setOverScrollMode(final T view, final int overScrollMode) {
+        try {
+            if (view != null) view.setOverScrollMode(overScrollMode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setOverScrollMode");
+        }
+        return view;
     }
 }
