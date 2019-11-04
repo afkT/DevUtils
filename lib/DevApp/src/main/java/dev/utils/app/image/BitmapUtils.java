@@ -34,6 +34,8 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     Android PorterDuffXfermode 的正确使用方式
  *     @see <a href="https://www.jianshu.com/p/d11892bbe055"/>
+ *     Android 中一张图片占据的内存大小是如何计算
+ *     @see <a href="https://www.cnblogs.com/dasusu/p/9789389.html"/>
  * </pre>
  */
 public final class BitmapUtils {

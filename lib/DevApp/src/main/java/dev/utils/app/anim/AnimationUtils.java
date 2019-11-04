@@ -26,6 +26,16 @@ import dev.utils.LogPrintUtils;
  *     Android 动画机制详细解读
  *     @see <a href="https://mp.weixin.qq.com/s/HQ0Z_RpSzbYzuqdJjw3FLQ"/>
  *     @see <a href="https://mp.weixin.qq.com/s/7EkXNY50jFmgAeusM-reZw"/>
+ *     Android 一共有多少种动画, 准确告诉你
+ *     @see <a href="https://www.jianshu.com/p/0eb89d43eea4"/>
+ *     Android 中弹簧动画的那些事 - SpringAnimation
+ *     @see <a href="https://www.jianshu.com/p/c2962a8135f5"/>
+ *     Android 弹性动画的三种实现方式
+ *     @see <a href="https://blog.csdn.net/qq_34902522/article/details/77651799"/>
+ *     Android 动画
+ *     @see <a href="https://blog.csdn.net/shibin1990_/article/list/2"/>
+ *     Android 动效开篇
+ *     @see <a href="https://blog.csdn.net/tianjian4592/article/details/44155147"/>
  *     <p></p>
  *     setInterpolator:
  *     {@link AccelerateInterpolator} 先减速后加速
