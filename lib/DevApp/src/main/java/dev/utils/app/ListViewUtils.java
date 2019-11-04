@@ -16,6 +16,9 @@ import dev.utils.LogPrintUtils;
  * detail: List View ( 列表 View ) 相关工具类
  * @author Ttt
  * <pre>
+ *     Fading Edge 让你的 View 更有层次感
+ *     @see <a href="https://blog.csdn.net/u012702547/article/details/52913538"/>
+ *     <p></p>
  *     android:descendantFocusability="blocksDescendants"
  *     android:overScrollMode="never"
  *     android:scrollbars="none"
@@ -342,7 +345,7 @@ public final class ListViewUtils {
      *     android:descendantFocusability="blocksDescendants"
      * </pre>
      * @param view         {@link ViewGroup}
-     * @param focusability {@link ViewGroup#FOCUS_BEFORE_DESCENDANTS}、@link ViewGroup#FOCUS_AFTER_DESCENDANTS}、@link ViewGroup#FOCUS_BLOCK_DESCENDANTS}
+     * @param focusability {@link ViewGroup#FOCUS_BEFORE_DESCENDANTS}、{@link ViewGroup#FOCUS_AFTER_DESCENDANTS}、{@link ViewGroup#FOCUS_BLOCK_DESCENDANTS}
      * @param <T>          泛型
      * @return {@link ViewGroup}
      */
