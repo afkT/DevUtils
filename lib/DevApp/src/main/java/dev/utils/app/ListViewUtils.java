@@ -37,6 +37,30 @@ public final class ListViewUtils {
     // =============
 
     /**
+     * 获取 Adapter Item 总数
+     * @param view {@link View}
+     * @return Adapter Item 总数
+     */
+    public static int getItemCount(final View view) {
+        if (view != null) {
+            if (view instanceof RecyclerView) {
+                RecyclerView recyclerView = ((RecyclerView) view);
+                RecyclerView.Adapter adapter = recyclerView.getAdapter();
+                return (adapter != null) ? adapter.getItemCount() : 0;
+            } else if (view instanceof ListView) {
+                ListView listView = ((ListView) view);
+                ListAdapter listAdapter = listView.getAdapter();
+                return (listAdapter != null) ? listAdapter.getCount() : 0;
+            } else if (view instanceof GridView) {
+                GridView gridView = ((GridView) view);
+                ListAdapter listAdapter = gridView.getAdapter();
+                return (listAdapter != null) ? listAdapter.getCount() : 0;
+            }
+        }
+        return 0;
+    }
+
+    /**
      * 获取指定索引 Item View
      * @param view     {@link View}
      * @param position 索引
@@ -93,7 +117,7 @@ public final class ListViewUtils {
      * @return {@link View}
      */
     public static <T extends View> T smoothScrollToPosition(final T view, final int position) {
-        if (view != null) {
+        if (view != null && position >= 0) {
             if (view instanceof RecyclerView) {
                 ((RecyclerView) view).smoothScrollToPosition(position);
             } else if (view instanceof ListView) {
@@ -113,7 +137,7 @@ public final class ListViewUtils {
      * @return {@link View}
      */
     public static <T extends View> T scrollToPosition(final T view, final int position) {
-        if (view != null) {
+        if (view != null && position >= 0) {
             if (view instanceof RecyclerView) {
                 ((RecyclerView) view).scrollToPosition(position);
             } else if (view instanceof ListView) {
