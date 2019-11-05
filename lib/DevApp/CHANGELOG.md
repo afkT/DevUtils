@@ -6,7 +6,7 @@ Version 1.8.4 *(2019-11-05)*
  
 * `[Add]` FileUtils#isImageFormats、isAudioFormats、isVideoFormats、isFileFormats
 
-* `[Add]` ViewUtils#getWidthHeight、getNextFocusUpId、getNextFocusRightId、getNextFocusLeftId、getNextFocusDownId、getNextFocusForwardId、isScrollContainer、getChildCount、getRotation、getRotationX、getRotationY、getScaleX、getScaleY、getTextAlignment、getTextDirection、getPivotX、getPivotY、getTranslationX、getTranslationY、getLayerType、isFocusable、isSelected、isEnabled、isClickable、isLongClickable、findFocus、isFocused、hasFocus、hasFocusable、isFocusableInTouchMode、setFocusableInTouchMode、scrollTo、scrollBy、setScrollX、setScrollY、getScrollX、getScrollY、isHorizontalScrollBarEnabled、setHorizontalScrollBarEnabled、isVerticalScrollBarEnabled、setVerticalScrollBarEnabled、setDescendantFocusability、setOverScrollMode、
+* `[Add]` ViewUtils#getWidthHeight、getNextFocusUpId、getNextFocusRightId、getNextFocusLeftId、getNextFocusDownId、getNextFocusForwardId、isScrollContainer、getChildCount、getRotation、getRotationX、getRotationY、getScaleX、getScaleY、getTextAlignment、getTextDirection、getPivotX、getPivotY、getTranslationX、getTranslationY、getLayerType、isFocusable、isSelected、isEnabled、isClickable、isLongClickable、findFocus、isFocused、hasFocus、hasFocusable、isFocusableInTouchMode、setFocusableInTouchMode、scrollTo、scrollBy、setScrollX、setScrollY、getScrollX、getScrollY、isHorizontalScrollBarEnabled、setHorizontalScrollBarEnabled、isVerticalScrollBarEnabled、setVerticalScrollBarEnabled、setDescendantFocusability、setOverScrollMode
 
 * `[Add]` TextViewUtils#getTypeface、getLetterSpacing、getLineSpacingExtra、getLineSpacingMultiplier、getTextScaleX、getIncludeFontPadding、getInputType、getImeOptions、getMaxLines、getMinLines、getMaxEms、getMinEms、getEllipsize、getAutoLinkMask、getGravity、clearFocus、requestFocus、requestLayout、getTransformationMethod、setTransformationMethod
 
@@ -27,7 +27,7 @@ Version 1.8.3 *(2019-10-31)*
 
 * `[Add]` AnimationUtils#setAnimation、getAnimation、clearAnimation、startAnimation、cancel
 
-* `[Add]` ViewUtils#setAnimation、getAnimation、clearAnimation、startAnimation、cancel、measureView、setWidthHeight、setWidth、setHeight、addRule、removeRule、getRule、addRules、removeRules、
+* `[Add]` ViewUtils#setAnimation、getAnimation、clearAnimation、startAnimation、cancel、measureView、setWidthHeight、setWidth、setHeight、addRule、removeRule、getRule、addRules、removeRules
 
 * `[Add]` AppUtils#startActivity、startActivityForResult
 
