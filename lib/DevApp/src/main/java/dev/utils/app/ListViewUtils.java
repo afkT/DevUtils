@@ -44,15 +44,15 @@ public final class ListViewUtils {
     public static int getItemCount(final View view) {
         if (view != null) {
             if (view instanceof RecyclerView) {
-                RecyclerView recyclerView = ((RecyclerView) view);
+                RecyclerView recyclerView = (RecyclerView) view;
                 RecyclerView.Adapter adapter = recyclerView.getAdapter();
                 return (adapter != null) ? adapter.getItemCount() : 0;
             } else if (view instanceof ListView) {
-                ListView listView = ((ListView) view);
+                ListView listView = (ListView) view;
                 ListAdapter listAdapter = listView.getAdapter();
                 return (listAdapter != null) ? listAdapter.getCount() : 0;
             } else if (view instanceof GridView) {
-                GridView gridView = ((GridView) view);
+                GridView gridView = (GridView) view;
                 ListAdapter listAdapter = gridView.getAdapter();
                 return (listAdapter != null) ? listAdapter.getCount() : 0;
             }
@@ -69,7 +69,7 @@ public final class ListViewUtils {
     public static View getItemView(final View view, final int position) {
         if (view != null && position >= 0) {
             if (view instanceof RecyclerView) {
-                RecyclerView recyclerView = ((RecyclerView) view);
+                RecyclerView recyclerView = (RecyclerView) view;
                 RecyclerView.Adapter adapter = recyclerView.getAdapter();
                 if (adapter != null && adapter.getItemCount() > 0 && position < adapter.getItemCount()) {
                     try {
@@ -81,7 +81,7 @@ public final class ListViewUtils {
                     }
                 }
             } else if (view instanceof ListView) {
-                ListView listView = ((ListView) view);
+                ListView listView = (ListView) view;
                 ListAdapter listAdapter = listView.getAdapter();
                 if (listAdapter != null && listAdapter.getCount() > 0 && position < listAdapter.getCount()) {
                     try {
@@ -91,7 +91,7 @@ public final class ListViewUtils {
                     }
                 }
             } else if (view instanceof GridView) {
-                GridView gridView = ((GridView) view);
+                GridView gridView = (GridView) view;
                 ListAdapter listAdapter = gridView.getAdapter();
                 if (listAdapter != null && listAdapter.getCount() > 0 && position < listAdapter.getCount()) {
                     try {
@@ -205,19 +205,19 @@ public final class ListViewUtils {
     public static <T extends View> T smoothScrollToBottom(final T view) {
         if (view != null) {
             if (view instanceof RecyclerView) {
-                RecyclerView recyclerView = ((RecyclerView) view);
+                RecyclerView recyclerView = (RecyclerView) view;
                 RecyclerView.Adapter adapter = recyclerView.getAdapter();
                 if (adapter != null && adapter.getItemCount() > 0) {
                     recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
                 }
             } else if (view instanceof ListView) {
-                ListView listView = ((ListView) view);
+                ListView listView = (ListView) view;
                 ListAdapter listAdapter = listView.getAdapter();
                 if (listAdapter != null && listAdapter.getCount() > 0) {
                     listView.smoothScrollToPosition(listAdapter.getCount() - 1);
                 }
             } else if (view instanceof GridView) {
-                GridView gridView = ((GridView) view);
+                GridView gridView = (GridView) view;
                 ListAdapter listAdapter = gridView.getAdapter();
                 if (listAdapter != null && listAdapter.getCount() > 0) {
                     gridView.smoothScrollToPosition(listAdapter.getCount() - 1);
@@ -243,19 +243,19 @@ public final class ListViewUtils {
     public static <T extends View> T scrollToBottom(final T view) {
         if (view != null) {
             if (view instanceof RecyclerView) {
-                RecyclerView recyclerView = ((RecyclerView) view);
+                RecyclerView recyclerView = (RecyclerView) view;
                 RecyclerView.Adapter adapter = recyclerView.getAdapter();
                 if (adapter != null && adapter.getItemCount() > 0) {
                     recyclerView.scrollToPosition(adapter.getItemCount() - 1);
                 }
             } else if (view instanceof ListView) {
-                ListView listView = ((ListView) view);
+                ListView listView = (ListView) view;
                 ListAdapter listAdapter = listView.getAdapter();
                 if (listAdapter != null && listAdapter.getCount() > 0) {
                     listView.setSelection(listAdapter.getCount() - 1);
                 }
             } else if (view instanceof GridView) {
-                GridView gridView = ((GridView) view);
+                GridView gridView = (GridView) view;
                 ListAdapter listAdapter = gridView.getAdapter();
                 if (listAdapter != null && listAdapter.getCount() > 0) {
                     gridView.setSelection(listAdapter.getCount() - 1);
