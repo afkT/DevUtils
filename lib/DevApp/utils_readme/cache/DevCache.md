@@ -2,7 +2,7 @@
 
 #### 使用演示类 [CacheUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/cache/CacheUse.java) 介绍了配置参数及使用
 
-#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/lib/DevApp/src/main/java/dev/utils/app/cache)
+#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache)
 
 * 缓存工具类（[DevCache.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCache.java)）：缓存工具类, 提供各种保存数据方法
 

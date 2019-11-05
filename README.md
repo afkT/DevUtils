@@ -1,7 +1,7 @@
 
 [![Cocoapods](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Cocoapods](https://img.shields.io/badge/DevUtils-1.8.3-brightgreen.svg)](https://github.com/afkT/DevUtils)
+[![Cocoapods](https://img.shields.io/badge/DevUtils-1.8.4-brightgreen.svg)](https://github.com/afkT/DevUtils)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Cocoapods](https://img.shields.io/badge/utils-100+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -14,7 +14,7 @@
 ![module](https://raw.githubusercontent.com/afkT/DevUtils/master/file/DevUtils.png)
 
 
-## Documentation - [Lib](https://github.com/afkT/DevUtils/tree/master/lib)
+## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib)
 
 ### DevApp - Android 工具类库
 

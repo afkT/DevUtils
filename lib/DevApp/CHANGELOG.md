@@ -1,6 +1,23 @@
 Change Log
 ==========
 
+Version 1.8.4 *(2019-11-05)*
+----------------------------
+ 
+* `[Add]` FileUtils#isImageFormats、isAudioFormats、isVideoFormats、isFileFormats
+
+* `[Add]` ViewUtils#getWidthHeight、getNextFocusUpId、getNextFocusRightId、getNextFocusLeftId、getNextFocusDownId、getNextFocusForwardId、isScrollContainer、getChildCount、getRotation、getRotationX、getRotationY、getScaleX、getScaleY、getTextAlignment、getTextDirection、getPivotX、getPivotY、getTranslationX、getTranslationY、getLayerType、isFocusable、isSelected、isEnabled、isClickable、isLongClickable、findFocus、isFocused、hasFocus、hasFocusable、isFocusableInTouchMode、setFocusableInTouchMode、scrollTo、scrollBy、setScrollX、setScrollY、getScrollX、getScrollY、isHorizontalScrollBarEnabled、setHorizontalScrollBarEnabled、isVerticalScrollBarEnabled、setVerticalScrollBarEnabled、setDescendantFocusability、setOverScrollMode、
+
+* `[Add]` TextViewUtils#getTypeface、getLetterSpacing、getLineSpacingExtra、getLineSpacingMultiplier、getTextScaleX、getIncludeFontPadding、getInputType、getImeOptions、getMaxLines、getMinLines、getMaxEms、getMinEms、getEllipsize、getAutoLinkMask、getGravity、clearFocus、requestFocus、requestLayout、getTransformationMethod、setTransformationMethod
+
+* `[Add]` EditTextUtils#isCursorVisible、getInputType、getImeOptions、getTransformationMethod、setTransformationMethod
+
+* `[Add]` AnimationUtils#setAnimationListener
+
+* `[Add]` ListViewUtils - 列表 View 相关工具类(支持快捷滑动到指定索引、指定 x、y轴坐标、回到顶部、底部等)
+
+* `[Add]` DevHelper、ViewHelper 快捷链式调用 Helper 类
+
 Version 1.8.3 *(2019-10-31)*
 ----------------------------
  

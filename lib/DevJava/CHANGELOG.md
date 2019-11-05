@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.5 *(2019-11-05)*
+----------------------------
+ 
+* `[Add]` FileUtils#isImageFormats、isAudioFormats、isVideoFormats、isFileFormats
+
 Version 1.0.4 *(2019-10-31)*
 ----------------------------
  

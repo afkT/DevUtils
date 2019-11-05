@@ -2,7 +2,7 @@
 
 #### 使用演示类 [MediaUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/media/MediaUse.java) 介绍了配置参数及使用
 
-#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/lib/DevApp/src/main/java/dev/utils/app/player)
+#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player)
 
 * 多媒体管理类（[DevMediaManager](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player/DevMediaManager.java)）：MediaPlayer 统一管理类, 全局使用一个 MediaPlayer
 

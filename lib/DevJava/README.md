@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.0.4'
+implementation 'com.afkt:DevJava:1.0.5'
 ```
 
 ## 目录结构
@@ -498,6 +498,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | deleteFilesInDirWithFilter | 删除目录下所有过滤的文件 |
 | listFilesInDir | 获取目录下所有文件 - 不递归进子目录 |
 | listFilesInDirWithFilter | 获取目录下所有过滤的文件 - 不递归进子目录 |
+| isImageFormats | 根据文件名判断文件是否为图片 |
+| isAudioFormats | 根据文件名判断文件是否为音频 |
+| isVideoFormats | 根据文件名判断文件是否为视频 |
+| isFileFormats | 根据文件名判断文件是否为指定格式 |
 | getFileMD5 | 获取文件 MD5 值 |
 | getFileMD5ToHexString | 获取文件 MD5 值 |
 

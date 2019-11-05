@@ -6,7 +6,7 @@
 > 2. 内部解决 Android 7.1.1 崩溃问题
 > 3. 已处理 部分 ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
 
-#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/tree/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster)
+#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster)
 
 * Toast 工具类（[DevToast](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/DevToast.java)）：Toast 工具类(对外公开直接调用), 直接调用 IToastImpl 类方法
 
