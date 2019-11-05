@@ -14,7 +14,7 @@ Version 1.8.4 *(2019-11-05)*
 
 * `[Add]` AnimationUtils#setAnimationListener
 
-* `[Add]` ListViewUtils - 列表 View 相关工具类(支持快捷滑动到指定索引、指定 x、y轴坐标、回到顶部、底部等)
+* `[Add]` ListViewUtils - 列表 View 相关工具类 ( 支持快捷滑动到指定索引、指定 x、y 轴坐标、回到顶部、底部等 )
 
 * `[Add]` DevHelper、ViewHelper 快捷链式调用 Helper 类
 
