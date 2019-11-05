@@ -1,12 +1,17 @@
 package dev.utils.app;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.KeyListener;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 
@@ -228,6 +233,20 @@ public final class EditTextUtils {
     // ========
 
     /**
+     * 是否显示光标
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends EditText> boolean isCursorVisible(final T editText) {
+        if (editText != null) {
+            return editText.isCursorVisible();
+        }
+        return false;
+    }
+
+    /**
      * 设置是否显示光标
      * @param editText {@link EditText}
      * @param visible  是否显示光标
@@ -291,6 +310,21 @@ public final class EditTextUtils {
         return editText;
     }
 
+    // =
+
+    /**
+     * 设置输入类型
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return 输入类型
+     */
+    public static <T extends EditText> int getInputType(final T editText) {
+        if (editText != null) {
+            return editText.getInputType();
+        }
+        return 0;
+    }
+
     /**
      * 设置输入类型
      * @param editText {@link EditText}
@@ -305,6 +339,21 @@ public final class EditTextUtils {
         return editText;
     }
 
+    // =
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return 软键盘右下角按钮类型
+     */
+    public static <T extends EditText> int getImeOptions(final T editText) {
+        if (editText != null) {
+            return editText.getImeOptions();
+        }
+        return 0;
+    }
+
     /**
      * 设置软键盘右下角按钮类型
      * @param editText   {@link EditText}
@@ -315,6 +364,74 @@ public final class EditTextUtils {
     public static <T extends EditText> T setImeOptions(final T editText, final int imeOptions) {
         if (editText != null) {
             editText.setImeOptions(imeOptions);
+        }
+        return editText;
+    }
+
+    // =
+
+    /**
+     * 获取文本视图显示转换
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return {@link TransformationMethod}
+     */
+    public static <T extends EditText> TransformationMethod getTransformationMethod(final T editText) {
+        if (editText != null) {
+            return editText.getTransformationMethod();
+        }
+        return null;
+    }
+
+    /**
+     * 设置文本视图显示转换
+     * @param editText {@link EditText}
+     * @param method   {@link TransformationMethod}
+     * @param <T>      泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T setTransformationMethod(final T editText, final TransformationMethod method) {
+        if (editText != null) {
+            editText.setTransformationMethod(method);
+        }
+        return editText;
+    }
+
+    // =
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param editText          {@link EditText}
+     * @param isDisplayPassword 是否显示密码
+     * @param <T>               泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T setTransformationMethod(final T editText, final boolean isDisplayPassword) {
+        return setTransformationMethod(editText, isDisplayPassword, true);
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param editText          {@link EditText}
+     * @param isDisplayPassword 是否显示密码
+     * @param isSelectBottom    是否设置光标到最后
+     * @param <T>               泛型
+     * @return {@link EditText}
+     */
+    public static <T extends EditText> T setTransformationMethod(final T editText, final boolean isDisplayPassword, final boolean isSelectBottom) {
+        if (editText != null) {
+            // 获取光标位置
+            int curSelect = 0;
+            if (!isSelectBottom) {
+                curSelect = getSelectionStart(editText);
+            }
+            editText.setTransformationMethod(isDisplayPassword ?
+                    HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
+            if (isSelectBottom) { // 设置光标到最后
+                setSelectionToBottom(editText);
+            } else { // 设置光标到之前的位置
+                setSelection(editText, curSelect);
+            }
         }
         return editText;
     }

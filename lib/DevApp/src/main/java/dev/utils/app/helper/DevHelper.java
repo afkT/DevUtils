@@ -1,4 +1,4 @@
-package dev;
+package dev.utils.app.helper;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 
@@ -39,6 +40,7 @@ import dev.utils.app.ResourceUtils;
 import dev.utils.app.ScreenUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.VibrationUtils;
+import dev.utils.app.anim.AnimationUtils;
 import dev.utils.app.assist.manager.TimerManager;
 import dev.utils.app.image.BitmapUtils;
 import dev.utils.app.image.ImageUtils;
@@ -1359,6 +1361,21 @@ public final class DevHelper {
      */
     public DevHelper waitForEnd(final long keepTimeMillis, final TimeKeeper.OnEndCallback endCallback) {
         mTimeKeeper.waitForEnd(keepTimeMillis, endCallback);
+        return this;
+    }
+
+    // ==================
+    // = AnimationUtils =
+    // ==================
+
+    /**
+     * 设置动画事件
+     * @param animation {@link Animation}
+     * @param listener  {@link Animation.AnimationListener}
+     * @return {@link DevHelper}
+     */
+    public DevHelper setAnimationListener(final Animation animation, final Animation.AnimationListener listener) {
+        AnimationUtils.setAnimationListener(animation, listener);
         return this;
     }
 }

@@ -8,6 +8,9 @@ import android.os.Build;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
@@ -214,11 +217,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param text     Hint text
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setHint(final T textView, final String text) {
+    public static <T extends TextView> T setHint(final T textView, final String text) {
         if (textView != null) {
             textView.setHint(text);
         }
+        return textView;
     }
 
     /**
@@ -237,11 +242,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param text     TextView text
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setText(final T textView, final String text) {
+    public static <T extends TextView> T setText(final T textView, final String text) {
         if (textView != null) {
             textView.setText(text);
         }
+        return textView;
     }
 
     /**
@@ -291,8 +298,9 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param content  Html content
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setHtmlText(final T textView, final String content) {
+    public static <T extends TextView> T setHtmlText(final T textView, final String content) {
         if (textView != null && content != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 textView.setText(Html.fromHtml(content, Html.FROM_HTML_MODE_LEGACY));
@@ -300,6 +308,7 @@ public final class TextViewUtils {
                 textView.setText(Html.fromHtml(content));
             }
         }
+        return textView;
     }
 
     /**
@@ -375,11 +384,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param color    R.color.id
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setHintTextColor(final T textView, @ColorInt final int color) {
+    public static <T extends TextView> T setHintTextColor(final T textView, @ColorInt final int color) {
         if (textView != null) {
             textView.setHintTextColor(color);
         }
+        return textView;
     }
 
     /**
@@ -398,11 +409,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param colors   {@link ColorStateList}
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setHintTextColor(final T textView, final ColorStateList colors) {
+    public static <T extends TextView> T setHintTextColor(final T textView, final ColorStateList colors) {
         if (textView != null) {
             textView.setHintTextColor(colors);
         }
+        return textView;
     }
 
     /**
@@ -447,11 +460,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param color    R.color.id
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTextColor(final T textView, @ColorInt final int color) {
+    public static <T extends TextView> T setTextColor(final T textView, @ColorInt final int color) {
         if (textView != null) {
             textView.setTextColor(color);
         }
+        return textView;
     }
 
     /**
@@ -470,11 +485,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param colors   {@link ColorStateList}
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTextColor(final T textView, final ColorStateList colors) {
+    public static <T extends TextView> T setTextColor(final T textView, final ColorStateList colors) {
         if (textView != null) {
             textView.setTextColor(colors);
         }
+        return textView;
     }
 
     /**
@@ -605,15 +622,30 @@ public final class TextViewUtils {
     // ============
 
     /**
+     * 获取字体
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link Typeface}
+     */
+    public static <T extends TextView> Typeface getTypeface(final T textView) {
+        if (textView != null) {
+            return textView.getTypeface();
+        }
+        return null;
+    }
+
+    /**
      * 设置字体
      * @param textView {@link TextView}
      * @param typeface {@link Typeface} 字体样式
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTypeface(final T textView, final Typeface typeface) {
+    public static <T extends TextView> T setTypeface(final T textView, final Typeface typeface) {
         if (textView != null && typeface != null) {
             textView.setTypeface(typeface);
         }
+        return textView;
     }
 
     /**
@@ -622,11 +654,13 @@ public final class TextViewUtils {
      * @param typeface {@link Typeface} 字体样式
      * @param style    样式
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTypeface(final T textView, final Typeface typeface, final int style) {
+    public static <T extends TextView> T setTypeface(final T textView, final Typeface typeface, final int style) {
         if (textView != null && typeface != null) {
             textView.setTypeface(typeface, style);
         }
+        return textView;
     }
 
     /**
@@ -659,9 +693,10 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param size     字体大小
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTextSizeByPx(final T textView, final float size) {
-        setTextSize(textView, TypedValue.COMPLEX_UNIT_PX, size);
+    public static <T extends TextView> T setTextSizeByPx(final T textView, final float size) {
+        return setTextSize(textView, TypedValue.COMPLEX_UNIT_PX, size);
     }
 
     /**
@@ -669,9 +704,10 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param size     字体大小
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTextSizeBySp(final T textView, final float size) {
-        setTextSize(textView, TypedValue.COMPLEX_UNIT_SP, size);
+    public static <T extends TextView> T setTextSizeBySp(final T textView, final float size) {
+        return setTextSize(textView, TypedValue.COMPLEX_UNIT_SP, size);
     }
 
     /**
@@ -679,9 +715,10 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param size     字体大小
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTextSizeByDp(final T textView, final float size) {
-        setTextSize(textView, TypedValue.COMPLEX_UNIT_DIP, size);
+    public static <T extends TextView> T setTextSizeByDp(final T textView, final float size) {
+        return setTextSize(textView, TypedValue.COMPLEX_UNIT_DIP, size);
     }
 
     /**
@@ -689,9 +726,10 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param size     字体大小
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTextSizeByIn(final T textView, final float size) {
-        setTextSize(textView, TypedValue.COMPLEX_UNIT_IN, size);
+    public static <T extends TextView> T setTextSizeByIn(final T textView, final float size) {
+        return setTextSize(textView, TypedValue.COMPLEX_UNIT_IN, size);
     }
 
     // =
@@ -748,11 +786,13 @@ public final class TextViewUtils {
      * @param unit     字体参数类型
      * @param size     字体大小
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTextSize(final T textView, final int unit, final float size) {
+    public static <T extends TextView> T setTextSize(final T textView, final int unit, final float size) {
         if (textView != null) {
             textView.setTextSize(unit, size);
         }
+        return textView;
     }
 
     /**
@@ -828,11 +868,13 @@ public final class TextViewUtils {
      * 清空 flags
      * @param textView {@link TextView}
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void clearFlags(final T textView) {
+    public static <T extends TextView> T clearFlags(final T textView) {
         if (textView != null) {
             textView.setPaintFlags(0);
         }
+        return textView;
     }
 
     /**
@@ -852,11 +894,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param isBold   {@code true} yes, {@code false} no
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setBold(final T textView, final boolean isBold) {
+    public static <T extends TextView> T setBold(final T textView, final boolean isBold) {
         if (textView != null) {
             textView.setTypeface(Typeface.defaultFromStyle(isBold ? Typeface.BOLD : Typeface.NORMAL));
         }
+        return textView;
     }
 
     /**
@@ -865,11 +909,13 @@ public final class TextViewUtils {
      * @param typeface {@link Typeface} 字体样式
      * @param isBold   {@code true} yes, {@code false} no
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setBold(final T textView, final Typeface typeface, final boolean isBold) {
+    public static <T extends TextView> T setBold(final T textView, final Typeface typeface, final boolean isBold) {
         if (textView != null && typeface != null) {
             textView.setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
         }
+        return textView;
     }
 
     /**
@@ -901,9 +947,10 @@ public final class TextViewUtils {
      * 设置下划线
      * @param textView {@link TextView}
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setUnderlineText(final T textView) {
-        setUnderlineText(textView, true);
+    public static <T extends TextView> T setUnderlineText(final T textView) {
+        return setUnderlineText(textView, true);
     }
 
     /**
@@ -911,14 +958,16 @@ public final class TextViewUtils {
      * @param textView    {@link TextView}
      * @param isAntiAlias 是否消除锯齿
      * @param <T>         泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setUnderlineText(final T textView, final boolean isAntiAlias) {
+    public static <T extends TextView> T setUnderlineText(final T textView, final boolean isAntiAlias) {
         if (textView != null) {
             textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             if (isAntiAlias) {
                 textView.setPaintFlags(textView.getPaintFlags() | Paint.ANTI_ALIAS_FLAG);
             }
         }
+        return textView;
     }
 
     // =
@@ -950,9 +999,10 @@ public final class TextViewUtils {
      * 设置中划线
      * @param textView {@link TextView}
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setStrikeThruText(final T textView) {
-        setStrikeThruText(textView, true);
+    public static <T extends TextView> T setStrikeThruText(final T textView) {
+        return setStrikeThruText(textView, true);
     }
 
     /**
@@ -960,14 +1010,16 @@ public final class TextViewUtils {
      * @param textView    {@link TextView}
      * @param isAntiAlias 是否消除锯齿
      * @param <T>         泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setStrikeThruText(final T textView, final boolean isAntiAlias) {
+    public static <T extends TextView> T setStrikeThruText(final T textView, final boolean isAntiAlias) {
         if (textView != null) {
             textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             if (isAntiAlias) {
                 textView.setPaintFlags(textView.getPaintFlags() | Paint.ANTI_ALIAS_FLAG);
             }
         }
+        return textView;
     }
 
     // =
@@ -996,25 +1048,41 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取文字水平间距
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 文字水平间距
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static <T extends TextView> float getLetterSpacing(final T textView) {
+        if (textView != null) {
+            return textView.getLetterSpacing();
+        }
+        return 0f;
+    }
+
+    /**
      * 设置文字水平间距
      * <pre>
      *     android:letterSpacing
      * </pre>
      * @param textView      {@link TextView}
-     * @param letterSpacing 文字水平间距值
+     * @param letterSpacing 文字水平间距
      * @param <T>           泛型
+     * @return {@link TextView}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static <T extends TextView> void setLetterSpacing(final T textView, final float letterSpacing) {
+    public static <T extends TextView> T setLetterSpacing(final T textView, final float letterSpacing) {
         if (textView != null) {
             textView.setLetterSpacing(letterSpacing);
         }
+        return textView;
     }
 
     /**
      * 设置文字水平间距
      * @param view          {@link TextView}
-     * @param letterSpacing 文字水平间距值
+     * @param letterSpacing 文字水平间距
      * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -1026,13 +1094,42 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取文字行间距 ( 行高 )
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 文字行间距 ( 行高 )
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> float getLineSpacingExtra(final T textView) {
+        if (textView != null) {
+            return textView.getLineSpacingExtra();
+        }
+        return 0f;
+    }
+
+    /**
+     * 获取文字行间距倍数
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 文字行间距倍数
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> float getLineSpacingMultiplier(final T textView) {
+        if (textView != null) {
+            return textView.getLineSpacingMultiplier();
+        }
+        return 0f;
+    }
+
+    /**
      * 设置文字行间距 ( 行高 )
      * @param textView    {@link TextView}
      * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @param <T>         泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setLineSpacing(final T textView, final float lineSpacing) {
-        setLineSpacingAndMultiplier(textView, lineSpacing, 1.0f);
+    public static <T extends TextView> T setLineSpacing(final T textView, final float lineSpacing) {
+        return setLineSpacingAndMultiplier(textView, lineSpacing, 1.0f);
     }
 
     /**
@@ -1041,11 +1138,13 @@ public final class TextViewUtils {
      * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @param multiplier  行间距倍数, android:lineSpacingMultiplier
      * @param <T>         泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setLineSpacingAndMultiplier(final T textView, final float lineSpacing, final float multiplier) {
+    public static <T extends TextView> T setLineSpacingAndMultiplier(final T textView, final float lineSpacing, final float multiplier) {
         if (textView != null) {
             textView.setLineSpacing(lineSpacing, multiplier);
         }
+        return textView;
     }
 
     // =
@@ -1076,6 +1175,19 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取字体水平方向的缩放
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 字体水平方向的缩放
+     */
+    public static <T extends TextView> float getTextScaleX(final T textView) {
+        if (textView != null) {
+            return textView.getTextScaleX();
+        }
+        return 0f;
+    }
+
+    /**
      * 设置字体水平方向的缩放
      * <pre>
      *     android:textScaleX
@@ -1083,11 +1195,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param size     缩放比例
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setTextScaleX(final T textView, final float size) {
+    public static <T extends TextView> T setTextScaleX(final T textView, final float size) {
         if (textView != null) {
             textView.setTextScaleX(size);
         }
+        return textView;
     }
 
     /**
@@ -1104,6 +1218,20 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 是否保留字体留白间隙区域
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> boolean getIncludeFontPadding(final T textView) {
+        if (textView != null) {
+            return textView.getIncludeFontPadding();
+        }
+        return false;
+    }
+
+    /**
      * 设置是否保留字体留白间隙区域
      * <pre>
      *     android:includeFontPadding
@@ -1111,11 +1239,13 @@ public final class TextViewUtils {
      * @param textView   {@link TextView}
      * @param includepad 是否保留字体留白间隙区域
      * @param <T>        泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setIncludeFontPadding(final T textView, final boolean includepad) {
+    public static <T extends TextView> T setIncludeFontPadding(final T textView, final boolean includepad) {
         if (textView != null) {
             textView.setIncludeFontPadding(includepad);
         }
+        return textView;
     }
 
     /**
@@ -1130,6 +1260,19 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取输入类型
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 输入类型
+     */
+    public static <T extends TextView> int getInputType(final T textView) {
+        if (textView != null) {
+            return textView.getInputType();
+        }
+        return 0;
+    }
 
     /**
      * 设置输入类型
@@ -1157,6 +1300,19 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取软键盘右下角按钮类型
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 软键盘右下角按钮类型
+     */
+    public static <T extends TextView> int getImeOptions(final T textView) {
+        if (textView != null) {
+            return textView.getImeOptions();
+        }
+        return 0;
+    }
 
     /**
      * 设置软键盘右下角按钮类型
@@ -1190,11 +1346,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param lines    行数
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setLines(final T textView, final int lines) {
+    public static <T extends TextView> T setLines(final T textView, final int lines) {
         if (textView != null) {
             textView.setLines(lines);
         }
+        return textView;
     }
 
     /**
@@ -1211,15 +1369,31 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取最大行数
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 最大行数
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> int getMaxLines(final T textView) {
+        if (textView != null) {
+            return textView.getMaxLines();
+        }
+        return 0;
+    }
+
+    /**
      * 设置最大行数
      * @param textView {@link TextView}
      * @param maxLines 最大行数
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setMaxLines(final T textView, final int maxLines) {
+    public static <T extends TextView> T setMaxLines(final T textView, final int maxLines) {
         if (textView != null) {
             textView.setMaxLines(maxLines);
         }
+        return textView;
     }
 
     /**
@@ -1236,15 +1410,31 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取最小行数
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 最小行数
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> int getMinLines(final T textView) {
+        if (textView != null) {
+            return textView.getMinLines();
+        }
+        return 0;
+    }
+
+    /**
      * 设置最小行数
      * @param textView {@link TextView}
      * @param minLines 最小行数
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setMinLines(final T textView, final int minLines) {
+    public static <T extends TextView> T setMinLines(final T textView, final int minLines) {
         if (textView != null && minLines > 0) {
             textView.setMinLines(minLines);
         }
+        return textView;
     }
 
     /**
@@ -1259,6 +1449,20 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取最大字符宽度限制
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 最大字符宽度限制
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> int getMaxEms(final T textView) {
+        if (textView != null) {
+            return textView.getMaxEms();
+        }
+        return 0;
+    }
 
     /**
      * 设置最大字符宽度限制
@@ -1286,6 +1490,20 @@ public final class TextViewUtils {
     }
 
     // =
+
+    /**
+     * 获取最小字符宽度限制
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 最小字符宽度限制
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static <T extends TextView> int getMinEms(final T textView) {
+        if (textView != null) {
+            return textView.getMinEms();
+        }
+        return 0;
+    }
 
     /**
      * 设置最小字符宽度限制
@@ -1397,15 +1615,30 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取 Ellipsize 效果
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return Ellipsize 效果
+     */
+    public static <T extends TextView> TextUtils.TruncateAt getEllipsize(final T textView) {
+        if (textView != null) {
+            return textView.getEllipsize();
+        }
+        return null;
+    }
+
+    /**
      * 设置 Ellipsize 效果
      * @param textView {@link TextView}
      * @param where    {@link TextUtils.TruncateAt}
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setEllipsize(final T textView, final TextUtils.TruncateAt where) {
+    public static <T extends TextView> T setEllipsize(final T textView, final TextUtils.TruncateAt where) {
         if (textView != null) {
             textView.setEllipsize(where);
         }
+        return textView;
     }
 
     /**
@@ -1422,15 +1655,30 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取自动识别文本类型
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return 自动识别文本类型
+     */
+    public static <T extends TextView> int getAutoLinkMask(final T textView) {
+        if (textView != null) {
+            return textView.getAutoLinkMask();
+        }
+        return 0;
+    }
+
+    /**
      * 设置自动识别文本链接
      * @param textView {@link TextView}
      * @param mask     {@link android.text.util.Linkify}
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setAutoLinkMask(final T textView, final int mask) {
+    public static <T extends TextView> T setAutoLinkMask(final T textView, final int mask) {
         if (textView != null) {
             textView.setAutoLinkMask(mask);
         }
+        return textView;
     }
 
     /**
@@ -1451,11 +1699,13 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @param allCaps  是否全部大写
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setAllCaps(final T textView, final boolean allCaps) {
+    public static <T extends TextView> T setAllCaps(final T textView, final boolean allCaps) {
         if (textView != null) {
             textView.setAllCaps(allCaps);
         }
+        return textView;
     }
 
     /**
@@ -1472,15 +1722,30 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 获取 Gravity
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link android.view.Gravity}
+     */
+    public static <T extends TextView> int getGravity(final T textView) {
+        if (textView != null) {
+            return textView.getGravity();
+        }
+        return 0;
+    }
+
+    /**
      * 设置 Gravity
      * @param textView {@link TextView}
      * @param gravity  {@link android.view.Gravity}
      * @param <T>      泛型
+     * @return {@link TextView}
      */
-    public static <T extends TextView> void setGravity(final T textView, final int gravity) {
+    public static <T extends TextView> T setGravity(final T textView, final int gravity) {
         if (textView != null) {
             textView.setGravity(gravity);
         }
+        return textView;
     }
 
     /**
@@ -1491,6 +1756,74 @@ public final class TextViewUtils {
      */
     public static View setGravity(final View view, final int gravity) {
         setGravity(getTextView(view), gravity);
+        return view;
+    }
+
+    // =
+
+    /**
+     * 获取文本视图显示转换
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link TransformationMethod}
+     */
+    public static <T extends TextView> TransformationMethod getTransformationMethod(final T textView) {
+        if (textView != null) {
+            return textView.getTransformationMethod();
+        }
+        return null;
+    }
+
+    /**
+     * 设置文本视图显示转换
+     * @param textView {@link TextView}
+     * @param method   {@link TransformationMethod}
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setTransformationMethod(final T textView, final TransformationMethod method) {
+        if (textView != null) {
+            textView.setTransformationMethod(method);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置文本视图显示转换
+     * @param view   {@link TextView}
+     * @param method {@link TransformationMethod}
+     * @return {@link View}
+     */
+    public static View setTransformationMethod(final View view, final TransformationMethod method) {
+        setTransformationMethod(getTextView(view), method);
+        return view;
+    }
+
+    // =
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param textView          {@link TextView}
+     * @param isDisplayPassword 是否显示密码
+     * @param <T>               泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setTransformationMethod(final T textView, final boolean isDisplayPassword) {
+        if (textView != null) {
+            textView.setTransformationMethod(isDisplayPassword ?
+                    HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
+        }
+        return textView;
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param view              {@link TextView}
+     * @param isDisplayPassword 是否显示密码
+     * @return {@link View}
+     */
+    public static View setTransformationMethod(final View view, final boolean isDisplayPassword) {
+        setTransformationMethod(getTextView(view), isDisplayPassword);
         return view;
     }
 

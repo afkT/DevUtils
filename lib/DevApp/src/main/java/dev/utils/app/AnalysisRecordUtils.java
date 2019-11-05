@@ -241,7 +241,7 @@ public final class AnalysisRecordUtils {
                 // = 首次则保存设备、APP 信息 =
                 StringBuilder builder = new StringBuilder();
                 builder.append(NEW_LINE_STR_X2);
-                builder.append("【设备信息】");
+                builder.append("[设备信息]");
                 builder.append(NEW_LINE_STR_X2);
                 builder.append("===========================");
                 builder.append(NEW_LINE_STR_X2);
@@ -252,7 +252,7 @@ public final class AnalysisRecordUtils {
 
                 builder.append(NEW_LINE_STR_X2);
                 builder.append(NEW_LINE_STR_X2);
-                builder.append("【版本信息】");
+                builder.append("[版本信息]");
                 builder.append(NEW_LINE_STR_X2);
                 builder.append("===========================");
                 builder.append(NEW_LINE_STR_X2);
@@ -267,7 +267,7 @@ public final class AnalysisRecordUtils {
 
                 builder.append(NEW_LINE_STR_X2);
                 builder.append(NEW_LINE_STR_X2);
-                builder.append("【文件信息】");
+                builder.append("[文件信息]");
                 builder.append(NEW_LINE_STR_X2);
                 builder.append("===========================");
                 builder.append(NEW_LINE_STR_X2);
@@ -278,7 +278,7 @@ public final class AnalysisRecordUtils {
 
                 builder.append(NEW_LINE_STR_X2);
                 builder.append(NEW_LINE_STR_X2);
-                builder.append("【日志内容】");
+                builder.append("[日志内容]");
                 builder.append(NEW_LINE_STR_X2);
                 builder.append("===========================");
                 // 创建文件夹, 并且进行处理

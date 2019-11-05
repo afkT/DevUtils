@@ -14,6 +14,12 @@ import dev.utils.JCLogUtils;
  * @author Ttt
  * <pre>
  *     @see <a href="https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ"/>
+ *     // 升序
+ *     Collections.sort(list);
+ *     // 降序
+ *     Collections.sort(list, Collections.reverseOrder());
+ *     // 逆序
+ *     Collections.reverse(list);
  * </pre>
  */
 public final class CollectionUtils {

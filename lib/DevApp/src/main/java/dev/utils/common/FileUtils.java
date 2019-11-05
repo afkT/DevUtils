@@ -1884,6 +1884,142 @@ public final class FileUtils {
         boolean onReplace();
     }
 
+    // ================
+    // = 图片类型判断 =
+    // ================
+
+    // 图片格式
+    private static final String[] IMAGE_FORMATS = new String[]{".PNG", ".JPG", ".JPEG", ".BMP", ".GIF", ".WEBP"};
+
+    /**
+     * 根据文件名判断文件是否为图片
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isImageFormats(final File file) {
+        return file != null && isImageFormats(file.getPath(), IMAGE_FORMATS);
+    }
+
+    /**
+     * 根据文件名判断文件是否为图片
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isImageFormats(final String filePath) {
+        return isImageFormats(filePath, IMAGE_FORMATS);
+    }
+
+    /**
+     * 根据文件名判断文件是否为图片
+     * @param filePath    文件路径
+     * @param fileFormats 文件格式
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isImageFormats(final String filePath, final String[] fileFormats) {
+        return isFileFormats(filePath, fileFormats);
+    }
+
+    // ================
+    // = 音频类型判断 =
+    // ================
+
+    // 音频格式
+    private static final String[] AUDIO_FORMATS = new String[]{".MP3", ".AAC", ".OGG", ".WMA", ".APE", ".FLAC", ".RA"};
+
+    /**
+     * 根据文件名判断文件是否为音频
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAudioFormats(final File file) {
+        return file != null && isAudioFormats(file.getPath(), AUDIO_FORMATS);
+    }
+
+    /**
+     * 根据文件名判断文件是否为音频
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAudioFormats(final String filePath) {
+        return isAudioFormats(filePath, AUDIO_FORMATS);
+    }
+
+    /**
+     * 根据文件名判断文件是否为音频
+     * @param filePath    文件路径
+     * @param fileFormats 文件格式
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAudioFormats(final String filePath, final String[] fileFormats) {
+        return isFileFormats(filePath, fileFormats);
+    }
+
+    // ================
+    // = 视频类型判断 =
+    // ================
+
+    // 视频格式
+    private static final String[] VIDEO_FORMATS = new String[]{".MP4", ".AVI", ".MOV", ".ASF", ".MPG", ".MPEG", ".WMV", ".RM", ".RMVB", ".3GP", ".MKV"};
+
+    /**
+     * 根据文件名判断文件是否为视频
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isVideoFormats(final File file) {
+        return file != null && isVideoFormats(file.getPath(), VIDEO_FORMATS);
+    }
+
+    /**
+     * 根据文件名判断文件是否为视频
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isVideoFormats(final String filePath) {
+        return isVideoFormats(filePath, VIDEO_FORMATS);
+    }
+
+    /**
+     * 根据文件名判断文件是否为视频
+     * @param filePath    文件路径
+     * @param fileFormats 文件格式
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isVideoFormats(final String filePath, final String[] fileFormats) {
+        return isFileFormats(filePath, fileFormats);
+    }
+
+    // =
+
+    /**
+     * 根据文件名判断文件是否为指定格式
+     * @param file        文件
+     * @param fileFormats 文件格式
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isFileFormats(final File file, final String[] fileFormats) {
+        return file != null && isFileFormats(file.getPath(), fileFormats);
+    }
+
+    /**
+     * 根据文件名判断文件是否为指定格式
+     * @param filePath    文件路径
+     * @param fileFormats 文件格式
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isFileFormats(final String filePath, final String[] fileFormats) {
+        if (filePath == null || fileFormats == null || fileFormats.length == 0) return false;
+        String path = filePath.toUpperCase();
+        for (String format : fileFormats) {
+            if (format != null) {
+                if (path.endsWith(format.toUpperCase())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     // ======================
     // = 其他工具类实现代码 =
     // ======================

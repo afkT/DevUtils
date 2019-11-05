@@ -1,4 +1,4 @@
-package dev;
+package dev.utils.app.helper;
 
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
@@ -12,6 +12,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -28,6 +29,7 @@ import dev.utils.app.ClickUtils;
 import dev.utils.app.EditTextUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ImageViewUtils;
+import dev.utils.app.ListViewUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.ViewUtils;
@@ -746,6 +748,52 @@ public final class ViewHelper {
         return this;
     }
 
+    // =
+
+    /**
+     * 设置文本视图显示转换
+     * @param view   {@link View}
+     * @param method {@link TransformationMethod}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTransformationMethod(final View view, final TransformationMethod method) {
+        if (view instanceof EditText) {
+            EditTextUtils.setTransformationMethod(EditTextUtils.getEditText(view), method);
+        } else {
+            TextViewUtils.setTransformationMethod(view, method);
+        }
+        return this;
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param view              {@link View}
+     * @param isDisplayPassword 是否显示密码
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTransformationMethod(final View view, final boolean isDisplayPassword) {
+        if (view instanceof EditText) {
+            EditTextUtils.setTransformationMethod(EditTextUtils.getEditText(view), isDisplayPassword);
+        } else {
+            TextViewUtils.setTransformationMethod(view, isDisplayPassword);
+        }
+        return this;
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param editText          {@link EditText}
+     * @param isDisplayPassword 是否显示密码
+     * @param isSelectBottom    是否设置光标到最后
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setTransformationMethod(final EditText editText, final boolean isDisplayPassword, final boolean isSelectBottom) {
+        EditTextUtils.setTransformationMethod(editText, isDisplayPassword, isSelectBottom);
+        return this;
+    }
+
+    // =
+
     /**
      * 添加输入监听事件
      * @param editText {@link EditText}
@@ -1199,13 +1247,26 @@ public final class ViewHelper {
 
     /**
      * 设置 View 宽度、高度
-     * @param view  {@link View}
-     * @param width View 宽度
+     * @param view   {@link View}
+     * @param width  View 宽度
      * @param height View 高度
      * @return {@link ViewHelper}
      */
     public ViewHelper setWidthHeight(final View view, final int width, final int height) {
         ViewUtils.setWidthHeight(view, width, height);
+        return this;
+    }
+
+    /**
+     * 设置 View 宽度、高度
+     * @param view      {@link View}
+     * @param width     View 宽度
+     * @param height    View 高度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setWidthHeight(final View view, final int width, final int height, final boolean nullNewLP) {
+        ViewUtils.setWidthHeight(view, width, height, nullNewLP);
         return this;
     }
 
@@ -1221,6 +1282,18 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 View 宽度
+     * @param view      {@link View}
+     * @param width     View 宽度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setWidth(final View view, final int width, final boolean nullNewLP) {
+        ViewUtils.setWidth(view, width, nullNewLP);
+        return this;
+    }
+
+    /**
      * 设置 View 高度
      * @param view   {@link View}
      * @param height View 高度
@@ -1232,8 +1305,20 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 View 高度
+     * @param view      {@link View}
+     * @param height    View 高度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHeight(final View view, final int height, final boolean nullNewLP) {
+        ViewUtils.setHeight(view, height, nullNewLP);
+        return this;
+    }
+
+    /**
      * 设置 View 最小高度
-     * @param view      View
+     * @param view      {@link View}
      * @param minHeight 最小高度
      * @return {@link ViewHelper}
      */
@@ -1244,7 +1329,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 最小宽度
-     * @param view     View
+     * @param view     {@link View}
      * @param minWidth 最小宽度
      * @return {@link ViewHelper}
      */
@@ -1278,8 +1363,98 @@ public final class ViewHelper {
     // =
 
     /**
+     * View 内容滚动位置 - 相对于初始位置移动
+     * <pre>
+     *     无滚动过程
+     * </pre>
+     * @param view {@link View}
+     * @param x    X 轴开始坐标
+     * @param y    Y 轴开始坐标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollTo(final View view, final int x, final int y) {
+        ViewUtils.scrollTo(view, x, y);
+        return this;
+    }
+
+    /**
+     * View 内部滚动位置 - 相对于上次移动的最后位置移动
+     * <pre>
+     *     无滚动过程
+     * </pre>
+     * @param view {@link View}
+     * @param x    X 轴开始坐标
+     * @param y    Y 轴开始坐标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollBy(final View view, final int x, final int y) {
+        ViewUtils.scrollBy(view, x, y);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置 ViewGroup 和其子控件两者之间的关系
+     * <pre>
+     *     beforeDescendants : ViewGroup 会优先其子类控件而获取到焦点
+     *     afterDescendants : ViewGroup 只有当其子类控件不需要获取焦点时才获取焦点
+     *     blocksDescendants : ViewGroup 会覆盖子类控件而直接获得焦点
+     *     android:descendantFocusability="blocksDescendants"
+     * </pre>
+     * @param view         {@link ViewGroup}
+     * @param focusability {@link ViewGroup#FOCUS_BEFORE_DESCENDANTS}、{@link ViewGroup#FOCUS_AFTER_DESCENDANTS}、{@link ViewGroup#FOCUS_BLOCK_DESCENDANTS}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setDescendantFocusability(final ViewGroup view, final int focusability) {
+        ViewUtils.setDescendantFocusability(view, focusability);
+        return this;
+    }
+
+    /**
+     * 设置 View 滚动模式
+     * <pre>
+     *     设置滑动到边缘时无效果模式 {@link View#OVER_SCROLL_NEVER}
+     *     android:overScrollMode="never"
+     * </pre>
+     * @param view           {@link View}
+     * @param overScrollMode {@link View#OVER_SCROLL_ALWAYS}、{@link View#OVER_SCROLL_IF_CONTENT_SCROLLS}、{@link View#OVER_SCROLL_NEVER}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setOverScrollMode(final View view, final int overScrollMode) {
+        ViewUtils.setOverScrollMode(view, overScrollMode);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置是否绘制横向滚动条
+     * @param view                       {@link View}
+     * @param horizontalScrollBarEnabled {@code true} yes, {@code false} no
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setHorizontalScrollBarEnabled(final View view, final boolean horizontalScrollBarEnabled) {
+        ViewUtils.setHorizontalScrollBarEnabled(view, horizontalScrollBarEnabled);
+        return this;
+    }
+
+    /**
+     * 设置是否绘制垂直滚动条
+     * @param view                     {@link View}
+     * @param verticalScrollBarEnabled {@code true} yes, {@code false} no
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setVerticalScrollBarEnabled(final View view, final boolean verticalScrollBarEnabled) {
+        ViewUtils.setVerticalScrollBarEnabled(view, verticalScrollBarEnabled);
+        return this;
+    }
+
+    // =
+
+    /**
      * 设置 View 滚动效应
-     * @param view              View
+     * @param view              {@link View}
      * @param isScrollContainer 是否需要滚动效应
      * @return {@link ViewHelper}
      */
@@ -1290,7 +1465,7 @@ public final class ViewHelper {
 
     /**
      * 设置下一个获取焦点的 View id
-     * @param view               View
+     * @param view               {@link View}
      * @param nextFocusForwardId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1301,7 +1476,7 @@ public final class ViewHelper {
 
     /**
      * 设置向下移动焦点时, 下一个获取焦点的 View id
-     * @param view            View
+     * @param view            {@link View}
      * @param nextFocusDownId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1312,7 +1487,7 @@ public final class ViewHelper {
 
     /**
      * 设置向左移动焦点时, 下一个获取焦点的 View id
-     * @param view            View
+     * @param view            {@link View}
      * @param nextFocusLeftId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1323,7 +1498,7 @@ public final class ViewHelper {
 
     /**
      * 设置向右移动焦点时, 下一个获取焦点的 View id
-     * @param view             View
+     * @param view             {@link View}
      * @param nextFocusRightId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1334,7 +1509,7 @@ public final class ViewHelper {
 
     /**
      * 设置向上移动焦点时, 下一个获取焦点的 View id
-     * @param view          View
+     * @param view          {@link View}
      * @param nextFocusUpId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
@@ -1345,7 +1520,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 旋转度数
-     * @param view     View
+     * @param view     {@link View}
      * @param rotation 旋转度数
      * @return {@link ViewHelper}
      */
@@ -1356,7 +1531,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 水平旋转度数
-     * @param view      View
+     * @param view      {@link View}
      * @param rotationX 水平旋转度数
      * @return {@link ViewHelper}
      */
@@ -1367,7 +1542,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 竖直旋转度数
-     * @param view      View
+     * @param view      {@link View}
      * @param rotationY 竖直旋转度数
      * @return {@link ViewHelper}
      */
@@ -1400,7 +1575,7 @@ public final class ViewHelper {
 
     /**
      * 设置文本的显示方式
-     * @param view          View
+     * @param view          {@link View}
      * @param textAlignment 文本的显示方式
      * @return {@link ViewHelper}
      */
@@ -1413,7 +1588,7 @@ public final class ViewHelper {
 
     /**
      * 设置文本的显示方向
-     * @param view          View
+     * @param view          {@link View}
      * @param textDirection 文本的显示方向
      * @return {@link ViewHelper}
      */
@@ -1448,7 +1623,7 @@ public final class ViewHelper {
 
     /**
      * 设置水平方向的移动距离
-     * @param view         View
+     * @param view         {@link View}
      * @param translationX 水平方向的移动距离
      * @return {@link ViewHelper}
      */
@@ -1459,7 +1634,7 @@ public final class ViewHelper {
 
     /**
      * 设置竖直方向的移动距离
-     * @param view         View
+     * @param view         {@link View}
      * @param translationY 竖直方向的移动距离
      * @return {@link ViewHelper}
      */
@@ -1470,13 +1645,56 @@ public final class ViewHelper {
 
     /**
      * 设置 View 硬件加速类型
-     * @param view      View
+     * @param view      {@link View}
      * @param layerType 硬件加速类型
      * @param paint     {@link Paint}
      * @return {@link ViewHelper}
      */
     public ViewHelper setLayerType(final View view, final int layerType, final Paint paint) {
         ViewUtils.setLayerType(view, layerType, paint);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 请求重新对 View 布局
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper requestLayout(final View view) {
+        ViewUtils.requestLayout(view);
+        return this;
+    }
+
+    /**
+     * View 请求获取焦点
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper requestFocus(final View view) {
+        ViewUtils.requestFocus(view);
+        return this;
+    }
+
+    /**
+     * View 清除焦点
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper clearFocus(final View view) {
+        ViewUtils.clearFocus(view);
+        return this;
+    }
+
+    /**
+     * View 请求更新
+     * @param view      {@link View}
+     * @param allParent 是否全部父布局 View 都请求
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper requestLayoutParent(final View view, final boolean allParent) {
+        ViewUtils.requestLayoutParent(view, allParent);
         return this;
     }
 
@@ -1490,6 +1708,17 @@ public final class ViewHelper {
      */
     public ViewHelper setLayoutParams(final View view, final ViewGroup.LayoutParams params) {
         ViewUtils.setLayoutParams(view, params);
+        return this;
+    }
+
+    /**
+     * 设置 View 是否在触摸模式下获得焦点
+     * @param focusableInTouchMode {@code true} 可获取, {@code false} 不可获取
+     * @param views                View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setFocusableInTouchMode(final boolean focusableInTouchMode, final View... views) {
+        ViewUtils.setFocusableInTouchMode(focusableInTouchMode, views);
         return this;
     }
 
@@ -2309,6 +2538,129 @@ public final class ViewHelper {
      */
     public ViewHelper addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
         ClickUtils.addTouchArea(view, top, bottom, left, right);
+        return this;
+    }
+
+    // =================
+    // = ListViewUtils =
+    // =================
+
+    /**
+     * 滑动到指定索引 ( 有滚动过程 )
+     * @param view     {@link View}
+     * @param position 索引
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollToPosition(final View view, final int position) {
+        ListViewUtils.smoothScrollToPosition(view, position);
+        return this;
+    }
+
+    /**
+     * 滑动到指定索引 ( 无滚动过程 )
+     * @param view     {@link View}
+     * @param position 索引
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollToPosition(final View view, final int position) {
+        ListViewUtils.scrollToPosition(view, position);
+        return this;
+    }
+
+    // ==============
+    // = 滑动到顶部 =
+    // ==============
+
+    /**
+     * 滑动到顶部 ( 有滚动过程 )
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollToTop(final View view) {
+        ListViewUtils.smoothScrollToTop(view);
+        return this;
+    }
+
+    /**
+     * 滑动到顶部 ( 无滚动过程 )
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollToTop(final View view) {
+        ListViewUtils.scrollToTop(view);
+        return this;
+    }
+
+    // ==============
+    // = 滑动到底部 =
+    // ==============
+
+    /**
+     * 滑动到底部 ( 有滚动过程 )
+     * <pre>
+     *     如果未到达底部 ( position 可以再加上 smoothScrollBy 搭配到底部 )
+     *     smoothScrollToBottom(view)
+     *     smoothScrollBy(view, 0, Integer.MAX_VALUE);
+     * </pre>
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollToBottom(final View view) {
+        ListViewUtils.smoothScrollToBottom(view);
+        return this;
+    }
+
+    /**
+     * 滑动到底部 ( 无滚动过程 )
+     * <pre>
+     *     如果未到达底部 ( position 可以再加上 scrollBy 搭配到底部 )
+     *     scrollToBottom(view)
+     *     scrollBy(view, 0, Integer.MAX_VALUE);
+     * </pre>
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper scrollToBottom(final View view) {
+        ListViewUtils.scrollToBottom(view);
+        return this;
+    }
+
+    // ==============
+    // = ScrollView =
+    // ==============
+
+    /**
+     * 滚动到指定位置 ( 有滚动过程 ) - 相对于初始位置移动
+     * @param view {@link View}
+     * @param x    X 轴开始坐标
+     * @param y    Y 轴开始坐标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollTo(final View view, final int x, final int y) {
+        ListViewUtils.smoothScrollTo(view, x, y);
+        return this;
+    }
+
+    /**
+     * 滚动到指定位置 ( 有滚动过程 ) - 相对于上次移动的最后位置移动
+     * @param view {@link View}
+     * @param x    X 轴开始坐标
+     * @param y    Y 轴开始坐标
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper smoothScrollBy(final View view, final int x, final int y) {
+        ListViewUtils.smoothScrollBy(view, x, y);
+        return this;
+    }
+
+    /**
+     * 滚动方向 ( 有滚动过程 )
+     * @param view      {@link View}
+     * @param direction 滚动方向 如: View.FOCUS_UP、View.FOCUS_DOWN
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper fullScroll(final View view, final int direction) {
+        ListViewUtils.fullScroll(view, direction);
         return this;
     }
 }
