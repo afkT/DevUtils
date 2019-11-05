@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -14,6 +13,8 @@ import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.UUID;
 
