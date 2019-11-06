@@ -35,6 +35,8 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://www.jianshu.com/p/7cfe2653a1fb"/>
  *     Glide 文档
  *     @see <a href="https://muyangmin.github.io/glide-docs-cn"/>
+ *     解决 Glide 加载图片闪烁的问题 ( 圆角处理 ) - transform(new RoundedCorners(xx));
+ *     @see <a href="https://blog.csdn.net/andcisco/article/details/96487800"/>
  * </pre>
  */
 public final class GlideUtils {

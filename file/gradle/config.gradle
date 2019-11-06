@@ -91,6 +91,8 @@ ext {
                     okgo           : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展
                     okserver       : "com.lzy.net:okserver:2.0.5",
+                    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+                    pictureSelector: "com.github.LuckSiege.PictureSelector:picture_library:v2.2.4",
             ],
             'dev'     : [
                     // https://github.com/afkT/DevUtils

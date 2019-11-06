@@ -22,4 +22,6 @@ dependencies {
     implementation deps.lib.eventbus
     // OkHttp3
     implementation deps.lib.okhttp3
+    // PictureSelector
+    implementation deps.lib.pictureSelector
 }
