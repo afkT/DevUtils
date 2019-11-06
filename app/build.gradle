@@ -17,6 +17,8 @@ dependencies {
     // = lib =
     // =======
 
+    // Multidex
+    implementation deps.android.multidex
     // Gson
     implementation deps.lib.gson
     // Imageloader
@@ -28,4 +30,6 @@ dependencies {
     implementation deps.lib.eventbus
     // OkHttp3
     implementation deps.lib.okhttp3
+    // PictureSelector
+    implementation deps.lib.pictureSelector
 }

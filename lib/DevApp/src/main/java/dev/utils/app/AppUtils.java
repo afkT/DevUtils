@@ -497,7 +497,7 @@ public final class AppUtils {
      * Activity 跳转回传
      * @param activity    {@link Activity}
      * @param intent      {@link Intent}
-     * @param requestCode requestCode
+     * @param requestCode 请求 code
      * @return {@code true} operation successfully, {@code false} operation failed
      */
     public static boolean startActivityForResult(final Activity activity, final Intent intent, final int requestCode) {

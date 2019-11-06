@@ -1,6 +1,8 @@
 package com.dev;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import dev.DevUtils;
 import dev.utils.app.logger.DevLogger;
@@ -32,5 +34,11 @@ public class BaseApplication extends Application {
         // 打开 lib 内部日志 - 线上环境, 不调用方法就行
         DevUtils.openLog();
         DevUtils.openDebug();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(base);
     }
 }
