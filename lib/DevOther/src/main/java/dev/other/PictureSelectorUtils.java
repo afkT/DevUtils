@@ -10,6 +10,7 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.PictureFileUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dev.DevUtils;
@@ -160,12 +161,33 @@ public final class PictureSelectorUtils {
     }
 
     /**
-     * 获取最佳本地资源路径
+     * 获取本地资源路径
+     * @param data {@link Intent}
+     * @return 本地资源路径
+     */
+    public static String getLocalMediaPath(final Intent data) {
+        return getLocalMediaPath(getSingleMedia(data), false);
+    }
+
+    /**
+     * 获取本地资源路径
      * @param localMedia {@link LocalMedia}
-     * @return 最佳本地资源路径
+     * @return 本地资源路径
      */
     public static String getLocalMediaPath(final LocalMedia localMedia) {
+        return getLocalMediaPath(localMedia, false);
+    }
+
+    /**
+     * 获取本地资源路径
+     * @param localMedia {@link LocalMedia}
+     * @param original   是否使用原图地址
+     * @return 本地资源路径
+     */
+    public static String getLocalMediaPath(final LocalMedia localMedia, final boolean original) {
         if (localMedia != null) {
+            if (original) return localMedia.getPath();
+            // 判断资源类型
             switch (localMedia.getMimeType()) {
                 case PictureConfig.TYPE_IMAGE: // 图片
                     if (localMedia.isCompressed()) { // 是否压缩图片
@@ -184,13 +206,33 @@ public final class PictureSelectorUtils {
     }
 
     /**
-     * 获取本地资源原图地址
-     * @param localMedia {@link LocalMedia}
-     * @return 本地资源原图地址
+     * 获取本地资源地址集合
+     * @param data {@link Intent}
+     * @return {@link List}
      */
-    public static String getOriginalPath(final LocalMedia localMedia) {
-        return (localMedia != null) ? localMedia.getPath() : null;
+    public static List<String> getLocalMediaPaths(final Intent data) {
+        return getLocalMediaPaths(data, false);
     }
+
+    /**
+     * 获取本地资源地址集合
+     * @param data     {@link Intent}
+     * @param original 是否使用原图地址
+     * @return {@link List}
+     */
+    public static List<String> getLocalMediaPaths(final Intent data, final boolean original) {
+        List<String> lists = new ArrayList<>();
+        List<LocalMedia> result = getLocalMedias(data);
+        if (result != null) {
+            for (LocalMedia localMedia : result) {
+                String path = getLocalMediaPath(localMedia, original);
+                lists.add(path);
+            }
+        }
+        return lists;
+    }
+
+    // =
 
     /**
      * 获取图片选择配置模型
