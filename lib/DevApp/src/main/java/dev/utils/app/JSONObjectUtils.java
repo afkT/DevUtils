@@ -8,7 +8,11 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import dev.utils.LogPrintUtils;
@@ -24,8 +28,6 @@ public final class JSONObjectUtils {
 
     // 日志 TAG
     private static final String TAG = JSONObjectUtils.class.getSimpleName();
-    // JSON 格式内容 默认缩进
-    public static final int JSON_INDENT = 4;
 
     // ====================
     // = 转换 JSON 字符串 =
@@ -301,5 +303,115 @@ public final class JSONObjectUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 判断字符串是否 JSON Object 格式
+     * @param json 待校验 JSON String
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isJSONObject(final String json) {
+        if (!TextUtils.isEmpty(json)) {
+            if (json.startsWith("{") && json.endsWith("}")) {
+                try {
+                    new JSONObject(json);
+                    return true;
+                } catch (Exception e) {
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断字符串是否 JSON Array 格式
+     * @param json 待校验 JSON String
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isJSONArray(final String json) {
+        if (!TextUtils.isEmpty(json)) {
+            if (json.startsWith("[") && json.endsWith("]")) {
+                try {
+                    new JSONArray(json);
+                    return true;
+                } catch (Exception e) {
+                }
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 将 JSON 格式字符串转化为 Map
+     * @param json JSON String
+     * @return {@link Map}
+     */
+    public static Map<String, Object> jsonToMap(final String json) {
+        return isJSONObject(json) ? jsonToMap(fromJson(json, JSONObject.class)) : null;
+    }
+
+    /**
+     * 将 JSON 对象转化为 Map
+     * @param jsonObject {@link JSONObject}
+     * @return {@link Map}
+     */
+    public static Map<String, Object> jsonToMap(final JSONObject jsonObject) {
+        if (JSONObject.NULL.equals(jsonObject)) return null;
+        try {
+            Map<String, Object> map = new LinkedHashMap<>();
+            Iterator<String> iterator = jsonObject.keys();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                Object value = jsonObject.get(key);
+                if (value instanceof JSONArray) {
+                    value = jsonToList((JSONArray) value);
+                } else if (value instanceof JSONObject) {
+                    value = jsonToMap((JSONObject) value);
+                }
+                map.put(key, value);
+            }
+            return map;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "jsonToMap");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 将 JSON 格式字符串转化为 List
+     * @param json JSON String
+     * @return {@link List}
+     */
+    public static List<Object> jsonToList(final String json) {
+        return isJSONArray(json) ? jsonToList(fromJson(json, JSONArray.class)) : null;
+    }
+
+    /**
+     * 将 JSON 对象转化为 List
+     * @param jsonArray {@link JSONArray}
+     * @return {@link List}
+     */
+    public static List<Object> jsonToList(final JSONArray jsonArray) {
+        if (JSONObject.NULL.equals(jsonArray)) return null;
+        try {
+            List<Object> list = new ArrayList<>();
+            for (int i = 0, len = jsonArray.length(); i < len; i++) {
+                Object value = jsonArray.get(i);
+                if (value instanceof JSONArray) {
+                    value = jsonToList((JSONArray) value);
+                } else if (value instanceof JSONObject) {
+                    value = jsonToMap((JSONObject) value);
+                }
+                list.add(value);
+            }
+            return list;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "jsonToList");
+        }
+        return null;
     }
 }
