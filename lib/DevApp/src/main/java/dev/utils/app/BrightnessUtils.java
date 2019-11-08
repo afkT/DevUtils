@@ -116,16 +116,19 @@ public final class BrightnessUtils {
      * 设置窗口亮度
      * @param window     {@link Window}
      * @param brightness 亮度值
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setWindowBrightness(final Window window, @IntRange(from = 0, to = 255) final int brightness) {
-        if (window == null) return;
+    public static boolean setWindowBrightness(final Window window, @IntRange(from = 0, to = 255) final int brightness) {
+        if (window == null) return false;
         try {
             WindowManager.LayoutParams layoutParams = window.getAttributes();
             layoutParams.screenBrightness = brightness / 255f;
             window.setAttributes(layoutParams);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setWindowBrightness");
         }
+        return false;
     }
 
     /**

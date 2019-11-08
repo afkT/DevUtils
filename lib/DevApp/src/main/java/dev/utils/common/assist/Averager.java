@@ -14,16 +14,20 @@ public class Averager {
     /**
      * 添加一个数字
      * @param number Number
+     * @return {@link Averager}
      */
-    public synchronized void add(final Number number) {
+    public synchronized Averager add(final Number number) {
         mNumLists.add(number);
+        return this;
     }
 
     /**
      * 清除全部
+     * @return {@link Averager}
      */
-    public void clear() {
+    public Averager clear() {
         mNumLists.clear();
+        return this;
     }
 
     /**

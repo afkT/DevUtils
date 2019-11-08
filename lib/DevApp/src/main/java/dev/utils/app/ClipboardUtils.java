@@ -24,17 +24,20 @@ public final class ClipboardUtils {
     /**
      * 复制文本到剪贴板
      * @param text 文本
+     * @return {@code true} success, {@code false} fail
      */
-    public static void copyText(final CharSequence text) {
+    public static boolean copyText(final CharSequence text) {
         try {
             ClipboardManager clipManager = (ClipboardManager) DevUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
             // 复制的数据
             ClipData clipData = ClipData.newPlainText("text", text);
             // 设置复制的数据
             clipManager.setPrimaryClip(clipData);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "copyText");
         }
+        return false;
     }
 
     /**
@@ -57,17 +60,20 @@ public final class ClipboardUtils {
     /**
      * 复制 URI 到剪贴板
      * @param uri {@link Uri}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void copyUri(final Uri uri) {
+    public static boolean copyUri(final Uri uri) {
         try {
             ClipboardManager clipManager = (ClipboardManager) DevUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
             // 复制的数据
             ClipData clipData = ClipData.newUri(DevUtils.getContext().getContentResolver(), "", uri);
             // 设置复制的数据
             clipManager.setPrimaryClip(clipData);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "copyUri");
         }
+        return false;
     }
 
     /**
@@ -90,17 +96,20 @@ public final class ClipboardUtils {
     /**
      * 复制意图到剪贴板
      * @param intent 意图
+     * @return {@code true} success, {@code false} fail
      */
-    public static void copyIntent(final Intent intent) {
+    public static boolean copyIntent(final Intent intent) {
         try {
             ClipboardManager clipManager = (ClipboardManager) DevUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
             // 复制的数据
             ClipData clipData = ClipData.newIntent("intent", intent);
             // 设置复制的数据
             clipManager.setPrimaryClip(clipData);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "copyIntent");
         }
+        return false;
     }
 
     /**
