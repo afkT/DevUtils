@@ -1531,9 +1531,10 @@ public final class CapturePictureUtils {
      * 测量 View
      * @param view           {@link View}
      * @param specifiedWidth 指定宽度
+     * @return {@code true} success, {@code false} fail
      */
-    private static void measureView(final View view, final int specifiedWidth) {
-        measureView(view, specifiedWidth, 0);
+    private static boolean measureView(final View view, final int specifiedWidth) {
+        return measureView(view, specifiedWidth, 0);
     }
 
     /**
@@ -1541,8 +1542,9 @@ public final class CapturePictureUtils {
      * @param view            {@link View}
      * @param specifiedWidth  指定宽度
      * @param specifiedHeight 指定高度
+     * @return {@code true} success, {@code false} fail
      */
-    private static void measureView(final View view, final int specifiedWidth, final int specifiedHeight) {
+    private static boolean measureView(final View view, final int specifiedWidth, final int specifiedHeight) {
         try {
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             // MeasureSpec
@@ -1571,8 +1573,10 @@ public final class CapturePictureUtils {
             }
             view.measure(widthMeasureSpec, heightMeasureSpec);
             view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "measureView");
         }
+        return false;
     }
 }

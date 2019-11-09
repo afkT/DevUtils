@@ -324,16 +324,19 @@ public final class BitmapUtils {
     /**
      * Bitmap 通知回收
      * @param bitmap 待回收图片
+     * @return {@code true} success, {@code false} fail
      */
-    public static void recycle(final Bitmap bitmap) {
-        if (bitmap == null) return;
+    public static boolean recycle(final Bitmap bitmap) {
+        if (bitmap == null) return false;
         if (!bitmap.isRecycled()) {
             try {
                 bitmap.recycle();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "recycle");
             }
         }
+        return false;
     }
 
     // ===============

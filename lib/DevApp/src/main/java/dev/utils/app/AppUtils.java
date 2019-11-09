@@ -924,63 +924,78 @@ public final class AppUtils {
 
     /**
      * 跳转到系统设置页面
+     * @return {@code true} success, {@code false} fail
      */
-    public static void startSysSetting() {
+    public static boolean startSysSetting() {
         try {
             DevUtils.getContext().startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_SETTINGS), true));
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSysSetting");
         }
+        return false;
     }
 
     /**
      * 跳转到系统设置页面
      * @param activity    {@link Activity}
      * @param requestCode 请求 code
+     * @return {@code true} success, {@code false} fail
      */
-    public static void startSysSetting(final Activity activity, final int requestCode) {
+    public static boolean startSysSetting(final Activity activity, final int requestCode) {
         try {
             Intent intent = new Intent(Settings.ACTION_SETTINGS);
             activity.startActivityForResult(intent, requestCode);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSysSetting");
         }
+        return false;
     }
 
     /**
      * 打开网络设置界面
+     * @return {@code true} success, {@code false} fail
      */
-    public static void openWirelessSettings() {
+    public static boolean openWirelessSettings() {
         try {
             DevUtils.getContext().startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS), true));
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
         }
+        return false;
     }
 
     /**
      * 打开网络设置界面
      * @param activity    {@link Activity}
      * @param requestCode 请求 code
+     * @return {@code true} success, {@code false} fail
      */
-    public static void openWirelessSettings(final Activity activity, final int requestCode) {
+    public static boolean openWirelessSettings(final Activity activity, final int requestCode) {
         try {
             Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
             activity.startActivityForResult(intent, requestCode);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
         }
+        return false;
     }
 
     /**
      * 打开 GPS 设置界面
+     * @return {@code true} success, {@code false} fail
      */
-    public static void openGpsSettings() {
+    public static boolean openGpsSettings() {
         try {
             DevUtils.getContext().startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), true));
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openGpsSettings");
         }
+        return false;
     }
 
     // ======================

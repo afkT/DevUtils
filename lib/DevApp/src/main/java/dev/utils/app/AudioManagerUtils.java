@@ -100,32 +100,37 @@ public final class AudioManagerUtils {
      * 设置指定声音流音量大小
      * @param streamType 流类型
      * @param index      音量大小
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setStreamVolume(final int streamType, final int index) {
+    public static boolean setStreamVolume(final int streamType, final int index) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setStreamVolume(streamType, index, 0);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setStreamVolume");
             }
         }
+        return false;
     }
 
     // =
 
     /**
      * 控制手机音量, 调小一个单位
+     * @return {@code true} success, {@code false} fail
      */
-    public static void adjustVolumeLower() {
-        adjustVolume(AudioManager.ADJUST_LOWER);
+    public static boolean adjustVolumeLower() {
+        return adjustVolume(AudioManager.ADJUST_LOWER);
     }
 
     /**
      * 控制手机音量, 调大一个单位
+     * @return {@code true} success, {@code false} fail
      */
-    public static void adjustVolumeRaise() {
-        adjustVolume(AudioManager.ADJUST_RAISE);
+    public static boolean adjustVolumeRaise() {
+        return adjustVolume(AudioManager.ADJUST_RAISE);
     }
 
     /**
@@ -135,16 +140,19 @@ public final class AudioManagerUtils {
      *     AudioManager.ADJUST_RAISE 可调大一个单位
      * </pre>
      * @param direction 音量方向 ( 调大、调小 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void adjustVolume(final int direction) {
+    public static boolean adjustVolume(final int direction) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.adjustVolume(direction, 0);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "adjustVolume");
             }
         }
+        return false;
     }
 
     // =
@@ -152,17 +160,19 @@ public final class AudioManagerUtils {
     /**
      * 控制指定声音流音量, 调小一个单位
      * @param streamType 流类型
+     * @return {@code true} success, {@code false} fail
      */
-    public static void adjustStreamVolumeLower(final int streamType) {
-        adjustStreamVolume(streamType, AudioManager.ADJUST_LOWER);
+    public static boolean adjustStreamVolumeLower(final int streamType) {
+        return adjustStreamVolume(streamType, AudioManager.ADJUST_LOWER);
     }
 
     /**
      * 控制指定声音流音量, 调大一个单位
      * @param streamType 流类型
+     * @return {@code true} success, {@code false} fail
      */
-    public static void adjustStreamVolumeRaise(final int streamType) {
-        adjustStreamVolume(streamType, AudioManager.ADJUST_RAISE);
+    public static boolean adjustStreamVolumeRaise(final int streamType) {
+        return adjustStreamVolume(streamType, AudioManager.ADJUST_RAISE);
     }
 
     /**
@@ -173,16 +183,19 @@ public final class AudioManagerUtils {
      * </pre>
      * @param streamType 流类型
      * @param direction  音量方向 ( 调大、调小 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void adjustStreamVolume(final int streamType, final int direction) {
+    public static boolean adjustStreamVolume(final int streamType, final int direction) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.adjustStreamVolume(streamType, direction, 0);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "adjustStreamVolume");
             }
         }
+        return false;
     }
 
     // ============
@@ -192,65 +205,74 @@ public final class AudioManagerUtils {
     /**
      * 设置媒体声音静音状态
      * @param state {@code true} 静音, {@code false} 非静音
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setStreamMuteByMusic(final boolean state) {
-        setStreamMute(AudioManager.STREAM_MUSIC, state);
+    public static boolean setStreamMuteByMusic(final boolean state) {
+        return setStreamMute(AudioManager.STREAM_MUSIC, state);
     }
 
     /**
      * 设置通话声音静音状态
      * @param state {@code true} 静音, {@code false} 非静音
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setStreamMuteByVoiceCall(final boolean state) {
-        setStreamMute(AudioManager.STREAM_VOICE_CALL, state);
+    public static boolean setStreamMuteByVoiceCall(final boolean state) {
+        return setStreamMute(AudioManager.STREAM_VOICE_CALL, state);
     }
 
     /**
      * 设置系统声音静音状态
      * @param state {@code true} 静音, {@code false} 非静音
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setStreamMuteBySystem(final boolean state) {
-        setStreamMute(AudioManager.STREAM_SYSTEM, state);
+    public static boolean setStreamMuteBySystem(final boolean state) {
+        return setStreamMute(AudioManager.STREAM_SYSTEM, state);
     }
 
     /**
      * 设置来电响铃静音状态
      * @param state {@code true} 静音, {@code false} 非静音
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setStreamMuteByRing(final boolean state) {
-        setStreamMute(AudioManager.STREAM_RING, state);
+    public static boolean setStreamMuteByRing(final boolean state) {
+        return setStreamMute(AudioManager.STREAM_RING, state);
     }
 
     /**
      * 设置闹钟声音静音状态
      * @param state {@code true} 静音, {@code false} 非静音
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setStreamMuteByAlarm(final boolean state) {
-        setStreamMute(AudioManager.STREAM_ALARM, state);
+    public static boolean setStreamMuteByAlarm(final boolean state) {
+        return setStreamMute(AudioManager.STREAM_ALARM, state);
     }
 
     /**
      * 设置通知声音静音状态
      * @param state {@code true} 静音, {@code false} 非静音
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setStreamMuteByNotification(final boolean state) {
-        setStreamMute(AudioManager.STREAM_NOTIFICATION, state);
+    public static boolean setStreamMuteByNotification(final boolean state) {
+        return setStreamMute(AudioManager.STREAM_NOTIFICATION, state);
     }
 
     /**
      * 设置指定声音流静音状态
      * @param streamType 流类型
      * @param state      {@code true} 静音, {@code false} 非静音
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setStreamMute(final int streamType, final boolean state) {
+    public static boolean setStreamMute(final int streamType, final boolean state) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setStreamMute(streamType, state);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setStreamMute");
             }
         }
+        return false;
     }
 
     // ========
@@ -290,16 +312,19 @@ public final class AudioManagerUtils {
      *     MODE_IN_COMMUNICATION( 通话 )
      * </pre>
      * @param mode 音频模式
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setMode(final int mode) {
+    public static boolean setMode(final int mode) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setMode(mode);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setMode");
             }
         }
+        return false;
     }
 
     // ============
@@ -331,9 +356,10 @@ public final class AudioManagerUtils {
     /**
      * 获取当前的铃声模式
      * @param ringerMode 铃声模式
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setRingerMode(final int ringerMode) {
-        setRingerMode(ringerMode, true);
+    public static boolean setRingerMode(final int ringerMode) {
+        return setRingerMode(ringerMode, true);
     }
 
     /**
@@ -346,41 +372,47 @@ public final class AudioManagerUtils {
      * </pre>
      * @param ringerMode 铃声模式
      * @param setting    如果没授权, 是否跳转到设置页面
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setRingerMode(final int ringerMode, final boolean setting) {
+    public static boolean setRingerMode(final int ringerMode, final boolean setting) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 if (isDoNotDisturb(setting)) {
                     audioManager.setRingerMode(ringerMode);
+                    return true;
                 }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setRingerMode");
             }
         }
+        return false;
     }
 
     // =
 
     /**
      * 设置静音模式 ( 静音, 且无振动 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void ringerSilent() {
-        setRingerMode(AudioManager.RINGER_MODE_SILENT);
+    public static boolean ringerSilent() {
+        return setRingerMode(AudioManager.RINGER_MODE_SILENT);
     }
 
     /**
      * 设置震动模式 ( 静音, 但有振动 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void ringerVibrate() {
-        setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+    public static boolean ringerVibrate() {
+        return setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
     }
 
     /**
      * 设置正常模式 ( 正常声音, 振动开关由 setVibrateSetting 决定 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void ringerNormal() {
-        setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+    public static boolean ringerNormal() {
+        return setRingerMode(AudioManager.RINGER_MODE_NORMAL);
     }
 
     // =
@@ -419,31 +451,37 @@ public final class AudioManagerUtils {
     /**
      * 设置是否打开扩音器 ( 扬声器 )
      * @param on {@code true} yes, {@code false} no
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setSpeakerphoneOn(final boolean on) {
+    public static boolean setSpeakerphoneOn(final boolean on) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setSpeakerphoneOn(on);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setSpeakerphoneOn");
             }
         }
+        return false;
     }
 
     /**
      * 设置是否让麦克风静音
      * @param on {@code true} yes, {@code false} no
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setMicrophoneMute(final boolean on) {
+    public static boolean setMicrophoneMute(final boolean on) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setMicrophoneMute(on);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setMicrophoneMute");
             }
         }
+        return false;
     }
 
     /**
@@ -561,74 +599,89 @@ public final class AudioManagerUtils {
     /**
      * 设置是否使用蓝牙 SCO 耳机进行通讯
      * @param on {@code true} yes, {@code false} no
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setBluetoothScoOn(final boolean on) {
+    public static boolean setBluetoothScoOn(final boolean on) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setBluetoothScoOn(on);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setBluetoothScoOn");
             }
         }
+        return false;
     }
 
     /**
      * 启动蓝牙 SCO 音频连接
+     * @return {@code true} success, {@code false} fail
      */
-    public static void startBluetoothSco() {
+    public static boolean startBluetoothSco() {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.startBluetoothSco();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "startBluetoothSco");
             }
         }
+        return false;
     }
 
     /**
      * 停止蓝牙 SCO 音频连接
+     * @return {@code true} success, {@code false} fail
      */
-    public static void stopBluetoothSco() {
+    public static boolean stopBluetoothSco() {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.stopBluetoothSco();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "stopBluetoothSco");
             }
         }
+        return false;
     }
 
     // =
 
     /**
      * 加载音效
+     * @return {@code true} success, {@code false} fail
      */
-    public static void loadSoundEffects() {
+    public static boolean loadSoundEffects() {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.loadSoundEffects();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "loadSoundEffects");
             }
         }
+        return false;
     }
 
     /**
      * 卸载音效
+     * @return {@code true} success, {@code false} fail
      */
-    public static void unloadSoundEffects() {
+    public static boolean unloadSoundEffects() {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.unloadSoundEffects();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "unloadSoundEffects");
             }
         }
+        return false;
     }
 
     /**
@@ -644,16 +697,19 @@ public final class AudioManagerUtils {
      *                   {@link AudioManager#FX_KEYPRESS_RETURN},
      *                   {@link AudioManager#FX_KEYPRESS_INVALID},
      * @param volume     音量大小
+     * @return {@code true} success, {@code false} fail
      */
-    public static void playSoundEffect(final int effectType, final float volume) {
+    public static boolean playSoundEffect(final int effectType, final float volume) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.playSoundEffect(effectType, volume);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "playSoundEffect");
             }
         }
+        return false;
     }
 
     // =
@@ -661,31 +717,37 @@ public final class AudioManagerUtils {
     /**
      * 放弃音频焦点, 使上一个焦点所有者 ( 如果有 ) 接收焦点
      * @param listener 焦点监听事件
+     * @return {@code true} success, {@code false} fail
      */
-    public static void abandonAudioFocus(final AudioManager.OnAudioFocusChangeListener listener) {
+    public static boolean abandonAudioFocus(final AudioManager.OnAudioFocusChangeListener listener) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.abandonAudioFocus(listener);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "abandonAudioFocus");
             }
         }
+        return false;
     }
 
     /**
      * 调整最相关的流的音量, 或者给定的回退流
      * @param direction 调整参数
+     * @return {@code true} success, {@code false} fail
      */
-    public static void adjustSuggestedStreamVolume(final int direction) {
+    public static boolean adjustSuggestedStreamVolume(final int direction) {
         AudioManager audioManager = getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.adjustSuggestedStreamVolume(direction, AudioManager.USE_DEFAULT_STREAM_TYPE, 0);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "adjustSuggestedStreamVolume");
             }
         }
+        return false;
     }
 
     /**

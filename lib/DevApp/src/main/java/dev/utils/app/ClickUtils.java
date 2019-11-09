@@ -29,9 +29,10 @@ public final class ClickUtils {
      * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
      * @param view  待添加点击范围 View
      * @param range 点击范围
+     * @return {@code true} success, {@code false} fail
      */
-    public static void addTouchArea(final View view, final int range) {
-        addTouchArea(view, range, range, range, range);
+    public static boolean addTouchArea(final View view, final int range) {
+        return addTouchArea(view, range, range, range, range);
     }
 
     /**
@@ -41,8 +42,9 @@ public final class ClickUtils {
      * @param bottom bottom range
      * @param left   left range
      * @param right  right range
+     * @return {@code true} success, {@code false} fail
      */
-    public static void addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
+    public static boolean addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
         if (view != null) {
             try {
                 final View parent = (View) view.getParent();
@@ -67,10 +69,12 @@ public final class ClickUtils {
                         }
                     }
                 });
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "addTouchArea");
             }
         }
+        return false;
     }
 
     // ======================

@@ -249,30 +249,32 @@ public final class CameraAssist {
 
     /**
      * 打开闪光灯
+     * @return {@code true} success, {@code false} fail
      */
-    public void setFlashlightOn() {
-        if (mCamera == null) {
-            return;
-        }
+    public boolean setFlashlightOn() {
+        if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
         if (!Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             mCamera.setParameters(parameters);
+            return true;
         }
+        return false;
     }
 
     /**
      * 关闭闪光灯
+     * @return {@code true} success, {@code false} fail
      */
-    public void setFlashlightOff() {
-        if (mCamera == null) {
-            return;
-        }
+    public boolean setFlashlightOff() {
+        if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
         if (Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             mCamera.setParameters(parameters);
+            return true;
         }
+        return false;
     }
 
     /**
