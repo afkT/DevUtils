@@ -1593,17 +1593,18 @@ public final class ADBUtils {
      * 重启设备 ( 需要 root 权限 ) - 并进行特殊的引导模式 (recovery、Fastboot)
      * @param reason 传递给内核来请求特殊的引导模式, 如 "recovery"
      *               重启到 Fastboot 模式 bootloader
+     * @return {@code true} success, {@code false} fail
      */
-    public static void reboot(final String reason) {
-        if (isSpace(reason)) return;
+    public static boolean reboot(final String reason) {
+        if (isSpace(reason)) return false;
         try {
             PowerManager mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
-            if (mPowerManager == null)
-                return;
             mPowerManager.reboot(reason);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
+        return false;
     }
 
     /**

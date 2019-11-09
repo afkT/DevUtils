@@ -481,7 +481,7 @@ public final class AppUtils {
     /**
      * Activity 跳转
      * @param intent {@link Intent}
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean startActivity(final Intent intent) {
         try {
@@ -498,7 +498,7 @@ public final class AppUtils {
      * @param activity    {@link Activity}
      * @param intent      {@link Intent}
      * @param requestCode 请求 code
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean startActivityForResult(final Activity activity, final Intent intent, final int requestCode) {
         try {
@@ -517,7 +517,7 @@ public final class AppUtils {
     /**
      * 安装 APP( 支持 8.0) 的意图
      * @param filePath 文件路径
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final String filePath) {
         return installApp(getFileByPath(filePath));
@@ -526,7 +526,7 @@ public final class AppUtils {
     /**
      * 安装 APP( 支持 8.0) 的意图
      * @param file 文件
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final File file) {
         if (!isFileExists(file)) return false;
@@ -544,7 +544,7 @@ public final class AppUtils {
      * @param activity    {@link Activity}
      * @param filePath    文件路径
      * @param requestCode 请求 code
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final Activity activity, final String filePath, final int requestCode) {
         return installApp(activity, getFileByPath(filePath), requestCode);
@@ -555,7 +555,7 @@ public final class AppUtils {
      * @param activity    {@link Activity}
      * @param file        文件
      * @param requestCode 请求 code
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final Activity activity, final File file, final int requestCode) {
         if (!isFileExists(file)) return false;
@@ -573,7 +573,7 @@ public final class AppUtils {
     /**
      * 静默安装应用
      * @param filePath 文件路径
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final String filePath) {
         return installAppSilent(filePath, null);
@@ -582,7 +582,7 @@ public final class AppUtils {
     /**
      * 静默安装应用
      * @param file 文件
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final File file) {
         return installAppSilent(file, null);
@@ -592,7 +592,7 @@ public final class AppUtils {
      * 静默安装应用
      * @param filePath 文件路径
      * @param params   安装参数
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final String filePath, final String params) {
         return installAppSilent(getFileByPath(filePath), params, isDeviceRooted());
@@ -602,7 +602,7 @@ public final class AppUtils {
      * 静默安装应用
      * @param file   文件
      * @param params 安装参数
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final File file, final String params) {
         return installAppSilent(file, params, isDeviceRooted());
@@ -613,7 +613,7 @@ public final class AppUtils {
      * @param file     文件
      * @param params   安装参数
      * @param isRooted 是否 root
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final File file, final String params, final boolean isRooted) {
         if (!isFileExists(file)) return false;
@@ -628,7 +628,7 @@ public final class AppUtils {
     /**
      * 卸载应用
      * @param packageName 应用包名
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -646,7 +646,7 @@ public final class AppUtils {
      * @param activity    {@link Activity}
      * @param packageName 应用包名
      * @param requestCode 请求 code
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final Activity activity, final String packageName, final int requestCode) {
         if (isSpace(packageName)) return false;
@@ -662,7 +662,7 @@ public final class AppUtils {
     /**
      * 静默卸载应用
      * @param packageName 应用包名
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallAppSilent(final String packageName) {
         return uninstallAppSilent(packageName, false, isDeviceRooted());
@@ -672,7 +672,7 @@ public final class AppUtils {
      * 静默卸载应用
      * @param packageName 应用包名
      * @param isKeepData  true 表示卸载应用但保留数据和缓存目录
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData) {
         return uninstallAppSilent(packageName, isKeepData, isDeviceRooted());
@@ -683,7 +683,7 @@ public final class AppUtils {
      * @param packageName 应用包名
      * @param isKeepData  true 表示卸载应用但保留数据和缓存目录
      * @param isRooted    是否 root
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
         if (isSpace(packageName)) return false;
@@ -699,7 +699,7 @@ public final class AppUtils {
     /**
      * 打开 APP
      * @param packageName 应用包名
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchApp(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -717,7 +717,7 @@ public final class AppUtils {
      * @param activity    {@link Activity}
      * @param packageName 应用包名
      * @param requestCode 请求 code
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchApp(final Activity activity, final String packageName, final int requestCode) {
         if (isSpace(packageName)) return false;
@@ -734,7 +734,7 @@ public final class AppUtils {
 
     /**
      * 跳转到 APP 设置详情页面
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings() {
         return launchAppDetailsSettings(DevUtils.getContext().getPackageName());
@@ -743,7 +743,7 @@ public final class AppUtils {
     /**
      * 跳转到 APP 设置详情页面
      * @param packageName 应用包名
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings(final String packageName) {
         if (isSpace(packageName)) return false;
@@ -759,7 +759,7 @@ public final class AppUtils {
     /**
      * 跳转到 APP 应用商城详情页面
      * @param marketPkg 应用商店包名, 如果为 ""  则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetails(final String marketPkg) {
         return launchAppDetails(DevUtils.getContext().getPackageName(), marketPkg);
@@ -769,7 +769,7 @@ public final class AppUtils {
      * 跳转到 APP 应用商城详情页面
      * @param packageName 应用包名
      * @param marketPkg   应用商店包名, 如果为 ""  则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetails(final String packageName, final String marketPkg) {
         if (isSpace(packageName)) return false;
@@ -790,7 +790,7 @@ public final class AppUtils {
      * 打开文件
      * @param filePath 文件路径
      * @param dataType 数据类型
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openFile(final String filePath, final String dataType) {
         return openFile(getFileByPath(filePath), dataType);
@@ -800,7 +800,7 @@ public final class AppUtils {
      * 打开文件
      * @param file     文件
      * @param dataType 数据类型
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openFile(final File file, final String dataType) {
         if (!isFileExists(file)) return false;
@@ -825,7 +825,7 @@ public final class AppUtils {
      * @param filePath    文件路径
      * @param packageName 应用包名
      * @param className   Activity.class.getCanonicalName()
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openFileByApp(final String filePath, final String packageName, final String className) {
         return openFileByApp(getFileByPath(filePath), packageName, className);
@@ -836,7 +836,7 @@ public final class AppUtils {
      * @param file        文件
      * @param packageName 应用包名
      * @param className   Activity.class.getCanonicalName()
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openFileByApp(final File file, final String packageName, final String className) {
         if (!isFileExists(file)) return false;
@@ -859,7 +859,7 @@ public final class AppUtils {
     /**
      * 打开 PDF 文件
      * @param filePath 文件路径
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openPDFFile(final String filePath) {
         return openPDFFile(getFileByPath(filePath));
@@ -868,7 +868,7 @@ public final class AppUtils {
     /**
      * 打开 PDF 文件
      * @param file 文件
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openPDFFile(final File file) {
         return openFile(file, "application/pdf");
@@ -879,7 +879,7 @@ public final class AppUtils {
     /**
      * 打开 Word 文件
      * @param filePath 文件路径
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openWordFile(final String filePath) {
         return openWordFile(getFileByPath(filePath));
@@ -888,7 +888,7 @@ public final class AppUtils {
     /**
      * 打开 Word 文件
      * @param file 文件
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openWordFile(final File file) {
         return openFile(file, "application/msword");
@@ -899,7 +899,7 @@ public final class AppUtils {
     /**
      * 调用 WPS 打开 office 文档
      * @param filePath 文件路径
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openOfficeByWPS(final String filePath) {
         return openOfficeByWPS(getFileByPath(filePath));
@@ -908,7 +908,7 @@ public final class AppUtils {
     /**
      * 调用 WPS 打开 office 文档
      * @param file 文件
-     * @return {@code true} operation successfully, {@code false} operation failed
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean openOfficeByWPS(final File file) {
         String wpsPackage = "cn.wps.moffice_eng"; // 普通版与英文版一样

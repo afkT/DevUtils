@@ -427,9 +427,10 @@ public final class AccessibilityUtils {
      * 点击指定的节点
      * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+     * @return {@code true} success, {@code false} fail
      */
-    public static void performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
-        performClick(nodeInfo, clickParent, false);
+    public static boolean performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
+        return performClick(nodeInfo, clickParent, false);
     }
 
     /**
@@ -437,25 +438,27 @@ public final class AccessibilityUtils {
      * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @param clickAll    判断是否点击全部节点
+     * @return {@code true} success, {@code false} fail
      */
-    public static void performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
-        if (nodeInfo == null) return;
+    public static boolean performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
+        if (nodeInfo == null) return false;
         if (clickParent) {
             if (nodeInfo.isClickable()) {
-                nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                return nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
             } else {
                 AccessibilityNodeInfo parent = nodeInfo.getParent();
                 while (parent != null) {
                     if (performClick(parent)) {
                         if (!clickAll) {
-                            return;
+                            return true;
                         }
                     }
                     parent = parent.getParent();
                 }
+                return true;
             }
         } else {
-            performClick(nodeInfo);
+            return performClick(nodeInfo);
         }
     }
 
@@ -477,9 +480,10 @@ public final class AccessibilityUtils {
      * 长按指定的节点
      * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+     * @return {@code true} success, {@code false} fail
      */
-    public static void performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
-        performLongClick(nodeInfo, clickParent, false);
+    public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
+        return performLongClick(nodeInfo, clickParent, false);
     }
 
     /**
@@ -487,25 +491,27 @@ public final class AccessibilityUtils {
      * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @param clickAll    判断是否点击全部节点
+     * @return {@code true} success, {@code false} fail
      */
-    public static void performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
-        if (nodeInfo == null) return;
+    public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
+        if (nodeInfo == null) return false;
         if (clickParent) {
             if (nodeInfo.isClickable()) {
-                nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
+                return nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
             } else {
                 AccessibilityNodeInfo parent = nodeInfo.getParent();
                 while (parent != null) {
                     if (performLongClick(parent)) {
                         if (!clickAll) {
-                            return;
+                            return true;
                         }
                     }
                     parent = parent.getParent();
                 }
+                return true;
             }
         } else {
-            performLongClick(nodeInfo);
+            return performLongClick(nodeInfo);
         }
     }
 

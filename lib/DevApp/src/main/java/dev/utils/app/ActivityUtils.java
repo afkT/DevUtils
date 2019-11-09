@@ -180,16 +180,19 @@ public final class ActivityUtils {
 
     /**
      * 回到桌面 ( 同点击 Home 键效果 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void startHomeActivity() {
+    public static boolean startHomeActivity() {
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             DevUtils.getContext().startActivity(intent);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startHomeActivity");
         }
+        return false;
     }
 
     /**
@@ -485,28 +488,31 @@ public final class ActivityUtils {
     /**
      * 添加 Activity
      * @param activity {@link Activity}
+     * @return {@link ActivityUtils}
      */
-    public void addActivity(final Activity activity) {
+    public ActivityUtils addActivity(final Activity activity) {
         if (activity != null) {
             synchronized (mActivityStacks) {
                 if (mActivityStacks.contains(activity)) {
-                    return;
+                    return this;
                 }
                 mActivityStacks.add(activity);
             }
         }
+        return this;
     }
 
     /**
      * 移除 Activity
      * @param activity {@link Activity}
+     * @return {@link ActivityUtils}
      */
-    public void removeActivity(final Activity activity) {
+    public ActivityUtils removeActivity(final Activity activity) {
         if (activity != null) {
             synchronized (mActivityStacks) {
                 int index = mActivityStacks.indexOf(activity);
                 if (index == -1) {
-                    return;
+                    return this;
                 }
                 try {
                     mActivityStacks.remove(index);
@@ -515,18 +521,21 @@ public final class ActivityUtils {
                 }
             }
         }
+        return this;
     }
 
     /**
      * 移除多个 Activity
      * @param activitys Activity[]
+     * @return {@link ActivityUtils}
      */
-    public void removeActivity(final Activity... activitys) {
+    public ActivityUtils removeActivity(final Activity... activitys) {
         if (activitys != null && activitys.length != 0) {
             for (int i = 0, len = activitys.length; i < len; i++) {
                 removeActivity(activitys[i]);
             }
         }
+        return this;
     }
 
     /**
@@ -539,9 +548,10 @@ public final class ActivityUtils {
 
     /**
      * 关闭最后一个 ( 当前 ) Activity
+     * @return {@link ActivityUtils}
      */
-    public void finishActivity() {
-        finishActivity(mActivityStacks.lastElement());
+    public ActivityUtils finishActivity() {
+        return finishActivity(mActivityStacks.lastElement());
     }
 
     /**
@@ -581,33 +591,38 @@ public final class ActivityUtils {
     /**
      * 关闭指定 Activity
      * @param activity {@link Activity}
+     * @return {@link ActivityUtils}
      */
-    public void finishActivity(final Activity activity) {
+    public ActivityUtils finishActivity(final Activity activity) {
         // 先移除 Activity
         removeActivity(activity);
         // Activity 不为 null, 并且属于未销毁状态
         if (activity != null && !activity.isFinishing()) {
             activity.finish();
         }
+        return this;
     }
 
     /**
      * 关闭多个 Activity
      * @param activitys Activity[]
+     * @return {@link ActivityUtils}
      */
-    public void finishActivity(final Activity... activitys) {
+    public ActivityUtils finishActivity(final Activity... activitys) {
         if (activitys != null && activitys.length != 0) {
             for (int i = 0, len = activitys.length; i < len; i++) {
                 finishActivity(activitys[i]);
             }
         }
+        return this;
     }
 
     /**
      * 关闭指定类名 Activity
      * @param clazz Activity.class
+     * @return {@link ActivityUtils}
      */
-    public void finishActivity(final Class<?> clazz) {
+    public ActivityUtils finishActivity(final Class<?> clazz) {
         if (clazz != null) {
             synchronized (mActivityStacks) {
                 // 保存新的堆栈, 防止出现同步问题
@@ -641,13 +656,15 @@ public final class ActivityUtils {
                 stack = null;
             }
         }
+        return this;
     }
 
     /**
      * 结束多个类名 Activity
      * @param clazzs Class(Activity)[]
+     * @return {@link ActivityUtils}
      */
-    public void finishActivity(final Class<?>... clazzs) {
+    public ActivityUtils finishActivity(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {
             synchronized (mActivityStacks) {
                 // 保存新的堆栈, 防止出现同步问题
@@ -694,13 +711,15 @@ public final class ActivityUtils {
                 stack = null;
             }
         }
+        return this;
     }
 
     /**
      * 结束全部 Activity 除忽略的 Activity 外
      * @param clazz Activity.class
+     * @return {@link ActivityUtils}
      */
-    public void finishAllActivityToIgnore(final Class<?> clazz) {
+    public ActivityUtils finishAllActivityToIgnore(final Class<?> clazz) {
         if (clazz != null) {
             synchronized (mActivityStacks) {
                 // 保存新的堆栈, 防止出现同步问题
@@ -734,13 +753,15 @@ public final class ActivityUtils {
                 stack = null;
             }
         }
+        return this;
     }
 
     /**
      * 结束全部 Activity 除忽略的 Activity 外
      * @param clazzs Class(Activity)[]
+     * @return {@link ActivityUtils}
      */
-    public void finishAllActivityToIgnore(final Class<?>... clazzs) {
+    public ActivityUtils finishAllActivityToIgnore(final Class<?>... clazzs) {
         if (clazzs != null && clazzs.length != 0) {
             synchronized (mActivityStacks) {
                 // 保存新的堆栈, 防止出现同步问题
@@ -787,12 +808,14 @@ public final class ActivityUtils {
                 stack = null;
             }
         }
+        return this;
     }
 
     /**
      * 结束所有 Activity
+     * @return {@link ActivityUtils}
      */
-    public void finishAllActivity() {
+    public ActivityUtils finishAllActivity() {
         synchronized (mActivityStacks) {
             // 保存新的堆栈, 防止出现同步问题
             Stack<Activity> stack = new Stack<>();
@@ -813,14 +836,16 @@ public final class ActivityUtils {
             stack.clear();
             stack = null;
         }
+        return this;
     }
 
     // =
 
     /**
      * 退出应用程序
+     * @return {@link ActivityUtils}
      */
-    public void appExit() {
+    public ActivityUtils appExit() {
         try {
             finishAllActivity();
             // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
@@ -832,12 +857,14 @@ public final class ActivityUtils {
             // =
             System.exit(-1);
         }
+        return this;
     }
 
     /**
      * 重启 APP
+     * @return {@link ActivityUtils}
      */
-    public void restartApplication() {
+    public ActivityUtils restartApplication() {
         try {
             Intent intent = DevUtils.getContext().getPackageManager().getLaunchIntentForPackage(DevUtils.getContext().getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -845,5 +872,6 @@ public final class ActivityUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "restartApplication");
         }
+        return this;
     }
 }
