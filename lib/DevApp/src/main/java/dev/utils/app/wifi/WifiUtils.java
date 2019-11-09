@@ -90,32 +90,38 @@ public final class WifiUtils {
 
     /**
      * 打开 wifi
+     * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public void openWifi() {
+    public boolean openWifi() {
         // 如果没有打开 wifi, 才进行打开
         if (!isOpenWifi()) {
             try {
                 mWifiManager.setWifiEnabled(true);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "openWifi");
             }
         }
+        return false;
     }
 
     /**
      * 关闭 wifi
+     * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public void closeWifi() {
+    public boolean closeWifi() {
         // 如果已经打开了 wifi, 才进行关闭
         if (isOpenWifi()) {
             try {
                 mWifiManager.setWifiEnabled(false);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeWifi");
             }
         }
+        return false;
     }
 
     /**
@@ -124,14 +130,17 @@ public final class WifiUtils {
      *     如果打开了, 则关闭
      *     如果关闭了, 则打开
      * </pre>
+     * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public void toggleWifiEnabled() {
+    public boolean toggleWifiEnabled() {
         try {
             mWifiManager.setWifiEnabled(!isOpenWifi());
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "toggleWifiEnabled");
         }
+        return false;
     }
 
     /**
@@ -854,15 +863,18 @@ public final class WifiUtils {
     /**
      * 断开指定 networkId 的网络
      * @param networkId network id
+     * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public void disconnectWifi(final int networkId) {
+    public boolean disconnectWifi(final int networkId) {
         try {
             mWifiManager.disableNetwork(networkId);
             mWifiManager.disconnect();
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, "disconnectWifi", e);
         }
+        return false;
     }
 
     // ===========================

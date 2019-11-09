@@ -74,24 +74,30 @@ public final class PowerManagerUtils {
 
     /**
      * 唤醒 / 点亮 屏幕
+     * @return {@code true} success, {@code false} fail
      */
-    public void turnScreenOn() {
+    public boolean turnScreenOn() {
         if (mWakeLock != null && !mWakeLock.isHeld()) {
             mWakeLock.acquire();
+            return true;
         }
+        return false;
     }
 
     /**
      * 释放屏幕锁, 允许休眠时间自动黑屏
+     * @return {@code true} success, {@code false} fail
      */
-    public void turnScreenOff() {
+    public boolean turnScreenOff() {
         if (mWakeLock != null && mWakeLock.isHeld()) {
             try {
                 mWakeLock.release();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "turnScreenOff");
             }
         }
+        return false;
     }
 
     /**
@@ -129,21 +135,30 @@ public final class PowerManagerUtils {
     /**
      * 设置屏幕常亮
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setBright(final Activity activity) {
+    public static boolean setBright(final Activity activity) {
         if (activity != null) {
-            setBright(activity.getWindow());
+            return setBright(activity.getWindow());
         }
+        return false;
     }
 
     /**
      * 设置屏幕常亮
      * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setBright(final Window window) {
+    public static boolean setBright(final Window window) {
         if (window != null) {
-            window.setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            try {
+                window.setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setBright");
+            }
         }
+        return false;
     }
 
     /**

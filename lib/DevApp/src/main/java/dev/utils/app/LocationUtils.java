@@ -116,14 +116,17 @@ public final class LocationUtils {
 
     /**
      * 打开 GPS 设置界面
+     * @return {@code true} success, {@code false} fail
      */
-    public static void openGpsSettings() {
+    public static boolean openGpsSettings() {
         try {
             Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openGpsSettings");
         }
+        return false;
     }
 
     /**
@@ -161,9 +164,10 @@ public final class LocationUtils {
 
     /**
      * 注销监听
+     * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public static void unregister() {
+    public static boolean unregister() {
         try {
             if (sLocationManager != null) {
                 if (sCustomLocationListener != null) {
@@ -175,9 +179,11 @@ public final class LocationUtils {
             if (sListener != null) {
                 sListener = null;
             }
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregister");
         }
+        return false;
     }
 
     /**

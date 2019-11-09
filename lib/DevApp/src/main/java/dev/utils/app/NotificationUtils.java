@@ -86,46 +86,55 @@ public final class NotificationUtils {
 
     /**
      * 移除通知 - 移除所有通知 ( 只是针对当前 Context 下的 Notification)
+     * @return {@code true} success, {@code false} fail
      */
-    public static void cancelAll() {
+    public static boolean cancelAll() {
         if (getNotificationManager() != null) {
             try {
                 sNotificationManager.cancelAll();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "cancelAll");
             }
         }
+        return false;
     }
 
     /**
      * 移除通知 - 移除标记为 id 的通知 ( 只是针对当前 Context 下的所有 Notification)
      * @param args 消息 id 集合
+     * @return {@code true} success, {@code false} fail
      */
-    public static void cancel(final int... args) {
+    public static boolean cancel(final int... args) {
         if (getNotificationManager() != null && args != null) {
             for (int id : args) {
                 try {
                     sNotificationManager.cancel(id);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "cancel - id: " + id);
                 }
             }
         }
+        return false;
     }
 
     /**
      * 移除通知 - 移除标记为 id 的通知 ( 只是针对当前 Context 下的所有 Notification)
      * @param tag 标记 TAG
      * @param id  消息 id
+     * @return {@code true} success, {@code false} fail
      */
-    public static void cancel(final String tag, final int id) {
+    public static boolean cancel(final String tag, final int id) {
         if (getNotificationManager() != null && tag != null) {
             try {
                 sNotificationManager.cancel(tag, id);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "cancel - id: " + id + ", tag: " + tag);
             }
         }
+        return false;
     }
 
     /**

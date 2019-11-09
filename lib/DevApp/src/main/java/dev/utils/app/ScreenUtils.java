@@ -357,29 +357,35 @@ public final class ScreenUtils {
     /**
      * 设置禁止截屏
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setWindowSecure(final Activity activity) {
+    public static boolean setWindowSecure(final Activity activity) {
         try {
             // 禁止截屏
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setWindowSecure");
         }
+        return false;
     }
 
     /**
      * 设置屏幕为全屏
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setFullScreen(final Activity activity) {
+    public static boolean setFullScreen(final Activity activity) {
         try {
             // 隐藏标题
             activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
             // 设置全屏
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setFullScreen");
         }
+        return false;
     }
 
     /**
@@ -395,25 +401,31 @@ public final class ScreenUtils {
      *     切屏不会重新调用各个生命周期, 只会执行 onConfigurationChanged 方法
      * </pre>
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setLandscape(final Activity activity) {
+    public static boolean setLandscape(final Activity activity) {
         try {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setLandscape");
         }
+        return false;
     }
 
     /**
      * 设置屏幕为竖屏
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setPortrait(final Activity activity) {
+    public static boolean setPortrait(final Activity activity) {
         try {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setPortrait");
         }
+        return false;
     }
 
     /**
@@ -550,14 +562,17 @@ public final class ScreenUtils {
     /**
      * 设置进入休眠时长
      * @param duration 时长
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.WRITE_SETTINGS)
-    public static void setSleepDuration(final int duration) {
+    public static boolean setSleepDuration(final int duration) {
         try {
             Settings.System.putInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSleepDuration");
         }
+        return false;
     }
 
     /**

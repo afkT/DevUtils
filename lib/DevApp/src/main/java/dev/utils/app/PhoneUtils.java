@@ -586,20 +586,27 @@ public final class PhoneUtils {
      * 发送短信
      * @param phoneNumber 接收号码
      * @param content     短信内容
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.SEND_SMS)
-    public static void sendSmsSilent(final String phoneNumber, final String content) {
-        if (TextUtils.isEmpty(content)) return;
-        PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent("send"), 0);
-        SmsManager smsManager = SmsManager.getDefault();
-        if (content.length() >= 70) {
-            List<String> ms = smsManager.divideMessage(content);
-            for (String str : ms) {
-                smsManager.sendTextMessage(phoneNumber, null, str, sentIntent, null);
+    public static boolean sendSmsSilent(final String phoneNumber, final String content) {
+        if (TextUtils.isEmpty(content)) return false;
+        try {
+            PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent("send"), 0);
+            SmsManager smsManager = SmsManager.getDefault();
+            if (content.length() >= 70) {
+                List<String> ms = smsManager.divideMessage(content);
+                for (String str : ms) {
+                    smsManager.sendTextMessage(phoneNumber, null, str, sentIntent, null);
+                }
+            } else {
+                smsManager.sendTextMessage(phoneNumber, null, content, sentIntent, null);
             }
-        } else {
-            smsManager.sendTextMessage(phoneNumber, null, content, sentIntent, null);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "sendSmsSilent");
         }
+        return false;
     }
 
     /**
@@ -623,14 +630,21 @@ public final class PhoneUtils {
      *      }
      * </pre>
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void getContactNum(final Activity activity) {
+    public static boolean getContactNum(final Activity activity) {
         if (activity != null && !activity.isFinishing()) {
-            Intent intent = new Intent();
-            intent.setAction("android.intent.action.PICK");
-            intent.setType("vnd.android.cursor.dir/phone_v2");
-            activity.startActivityForResult(intent, 0);
+            try {
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.PICK");
+                intent.setType("vnd.android.cursor.dir/phone_v2");
+                activity.startActivityForResult(intent, 0);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getContactNum");
+            }
         }
+        return false;
     }
 
     /**
@@ -735,9 +749,10 @@ public final class PhoneUtils {
     /**
      * 获取手机短信并保存到 xml 中
      * @param filePath 文件路径 /sdcard/xxx.xml
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(allOf = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_SMS})
-    public static void getAllSMS(final String filePath) {
+    public static boolean getAllSMS(final String filePath) {
         // 游标
         Cursor cursor = null;
         try {
@@ -796,9 +811,11 @@ public final class PhoneUtils {
             xmlSerializer.endDocument();
             // 2.8 将数据刷新到文件中
             xmlSerializer.flush();
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllSMS");
         }
+        return false;
     }
 
     // ============

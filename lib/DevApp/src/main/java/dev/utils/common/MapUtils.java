@@ -898,8 +898,9 @@ public final class MapUtils {
      * @param value value
      * @param <K>   key
      * @param <V>   value
+     * @return {@code true} success, {@code false} fail
      */
-    public static <K, V> void toggle(final Map<K, V> map, final K key, final V value) {
+    public static <K, V> boolean toggle(final Map<K, V> map, final K key, final V value) {
         if (map != null) {
             // 判断是否存在 key
             boolean existKey = map.containsKey(key);
@@ -909,10 +910,12 @@ public final class MapUtils {
                 } else { // 不存在则保存
                     map.put(key, value);
                 }
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toggle");
             }
         }
+        return false;
     }
 
     /**
@@ -1107,9 +1110,10 @@ public final class MapUtils {
      * @param removeMap {@link Map} 移除对比数据源
      * @param <K>       key
      * @param <T>       value type
+     * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap) {
-        removeToMap(map, removeMap, true, false);
+    public static <K, T> boolean removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap) {
+        return removeToMap(map, removeMap, true, false);
     }
 
     /**
@@ -1120,8 +1124,9 @@ public final class MapUtils {
      * @param isNullRemoveAll 如果待移除的 ArrayList 是 null, 是否移除全部
      * @param <K>             key
      * @param <T>             value type
+     * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap,
+    public static <K, T> boolean removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap,
                                           final boolean removeEmpty, final boolean isNullRemoveAll) {
         if (map != null && removeMap != null) {
             Iterator<Map.Entry<K, ArrayList<T>>> iterator = removeMap.entrySet().iterator();
@@ -1157,6 +1162,8 @@ public final class MapUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 }

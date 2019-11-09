@@ -167,8 +167,9 @@ public final class SizeUtils {
      * </pre>
      * @param view     {@link View}
      * @param listener {@link onGetSizeListener}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void forceGetViewSize(final View view, final onGetSizeListener listener) {
+    public static boolean forceGetViewSize(final View view, final onGetSizeListener listener) {
         if (view != null) {
             view.post(new Runnable() {
                 @Override
@@ -178,7 +179,9 @@ public final class SizeUtils {
                     }
                 }
             });
+            return true;
         }
+        return false;
     }
 
     /**

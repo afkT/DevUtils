@@ -115,8 +115,9 @@ public final class WifiHotUtils {
     /**
      * 开启 wifi 热点
      * @param wifiConfig wifi 配置
+     * @return {@code true} success, {@code false} fail
      */
-    public void stratWifiAp(final WifiConfiguration wifiConfig) {
+    public boolean stratWifiAp(final WifiConfiguration wifiConfig) {
         this.mAPWifiConfig = wifiConfig;
         // 大于 8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -168,33 +169,42 @@ public final class WifiHotUtils {
                     }
                 }
             }, null);
+            return true;
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) { // android 7.1 系统以上不支持自动开启热点, 需要手动开启热点
-            // 先设置 wifi 热点信息, 这样跳转前保存热点信息, 开启热点则是对应设置的信息
-            boolean setResult = setWifiApConfiguration(wifiConfig);
-            // 打印日志
-            LogPrintUtils.dTag(TAG, "设置 wifi 热点信息是否成功: " + setResult);
-            // 跳转到便携式热点设置页面
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_MAIN);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.TetherSettings"));
-            mContext.startActivity(intent);
+            try {
+                // 先设置 wifi 热点信息, 这样跳转前保存热点信息, 开启热点则是对应设置的信息
+                boolean setResult = setWifiApConfiguration(wifiConfig);
+                // 打印日志
+                LogPrintUtils.dTag(TAG, "设置 wifi 热点信息是否成功: " + setResult);
+                // 跳转到便携式热点设置页面
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_MAIN);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.TetherSettings"));
+                mContext.startActivity(intent);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "stratWifiAp");
+            }
         } else {
             try {
                 // 获取设置 wifi 热点方法
                 Method method = mWifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
                 // 开启 wifi 热点
                 method.invoke(mWifiManager, wifiConfig, true);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "stratWifiAp");
             }
         }
+        return false;
     }
 
     /**
      * 关闭 wifi 热点
+     * @return {@code true} success, {@code false} fail
      */
-    public void closeWifiAp() {
+    public boolean closeWifiAp() {
         // 大于 8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // 关闭热点
@@ -203,7 +213,7 @@ public final class WifiHotUtils {
             }
             // 清空信息
             mAPWifiSSID = mAPWifiPwd = null;
-            return;
+            return true;
         }
         try {
             // 获取设置 wifi 热点方法
@@ -231,9 +241,11 @@ public final class WifiHotUtils {
             wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
             // 开启 wifi 热点
             method.invoke(mWifiManager, wifiConfig, false);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "closeWifiAp");
         }
+        return false;
     }
 
     // ================
