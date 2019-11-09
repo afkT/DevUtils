@@ -30,7 +30,7 @@ public final class ViewAnimationUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean invisibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick,
-                                            final AnimationListener animationListener) {
+                                               final AnimationListener animationListener) {
         if (view != null && view.getVisibility() != View.INVISIBLE) {
             view.setVisibility(View.INVISIBLE);
             // 获取动画
@@ -152,7 +152,7 @@ public final class ViewAnimationUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean goneViewByAlpha(final View view, final long durationMillis, final boolean isBanClick,
-                                       final AnimationListener animationListener) {
+                                          final AnimationListener animationListener) {
         if (view != null && view.getVisibility() != View.GONE) {
             view.setVisibility(View.GONE);
             // 获取动画
@@ -274,7 +274,7 @@ public final class ViewAnimationUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean visibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick,
-                                          final AnimationListener animationListener) {
+                                             final AnimationListener animationListener) {
         if (view != null && view.getVisibility() != View.VISIBLE) {
             view.setVisibility(View.VISIBLE);
             // 获取动画
@@ -402,8 +402,8 @@ public final class ViewAnimationUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean translate(final View view, final float fromXDelta, final float toXDelta,
-                                 final float fromYDelta, final float toYDelta, final Interpolator interpolator,
-                                 final long durationMillis, final boolean isBanClick) {
+                                    final float fromYDelta, final float toYDelta, final Interpolator interpolator,
+                                    final long durationMillis, final boolean isBanClick) {
         if (view != null) {
             TranslateAnimation animation = AnimationUtils.getTranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta, interpolator, durationMillis);
             animation.setAnimationListener(new AnimationListener() {
@@ -445,7 +445,7 @@ public final class ViewAnimationUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean translate(final View view, final float fromXDelta, final float toXDelta,
-                                 final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis, final boolean isBanClick) {
+                                    final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis, final boolean isBanClick) {
         if (view != null) {
             Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
             return translate(view, fromXDelta, toXDelta, fromYDelta, toYDelta, interpolator, durationMillis, isBanClick);
@@ -465,7 +465,7 @@ public final class ViewAnimationUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean translate(final View view, final float fromXDelta, final float toXDelta,
-                                 final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis) {
+                                    final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis) {
         return translate(view, fromXDelta, toXDelta, fromYDelta, toYDelta, cycles, durationMillis, false);
     }
 
@@ -482,7 +482,7 @@ public final class ViewAnimationUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean shake(final View view, final float fromXDelta, final float toXDelta,
-                             final float cycles, final long durationMillis, final boolean isBanClick) {
+                                final float cycles, final long durationMillis, final boolean isBanClick) {
         return translate(view, fromXDelta, toXDelta, 0.0f, 0.0f, cycles, durationMillis, isBanClick);
     }
 
