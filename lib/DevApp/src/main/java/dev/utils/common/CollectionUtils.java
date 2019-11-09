@@ -609,9 +609,10 @@ public final class CollectionUtils {
      * @param list  集合
      * @param value 值
      * @param <T>   泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void add(final int index, final List<T> list, final T value) {
-        add(index, list, value, false);
+    public static <T> boolean add(final int index, final List<T> list, final T value) {
+        return add(index, list, value, false);
     }
 
     /**
@@ -621,13 +622,15 @@ public final class CollectionUtils {
      * @param value   值
      * @param notNull 是否不允许添加 null 数据
      * @param <T>     泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void add(final int index, final List<T> list, final T value, final boolean notNull) {
+    public static <T> boolean add(final int index, final List<T> list, final T value, final boolean notNull) {
         if (list != null) {
             if (notNull) {
                 if (value != null) {
                     try {
                         list.add(index, value);
+                        return true;
                     } catch (Exception e) {
                         JCLogUtils.eTag(TAG, e, "add notNull");
                     }
@@ -635,11 +638,13 @@ public final class CollectionUtils {
             } else {
                 try {
                     list.add(index, value);
+                    return true;
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "add");
                 }
             }
         }
+        return false;
     }
 
     /**
@@ -648,9 +653,10 @@ public final class CollectionUtils {
      * @param list  集合
      * @param value 值
      * @param <T>   泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void addNotNull(final int index, final List<T> list, final T value) {
-        add(index, list, value, true);
+    public static <T> boolean addNotNull(final int index, final List<T> list, final T value) {
+        return add(index, list, value, true);
     }
 
     // =
@@ -661,9 +667,10 @@ public final class CollectionUtils {
      * @param list   集合
      * @param values 准备添加的值 ( 集合 )
      * @param <T>    泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void addAll(final int index, final List<T> list, final List<T> values) {
-        addAll(index, list, values, false);
+    public static <T> boolean addAll(final int index, final List<T> list, final List<T> values) {
+        return addAll(index, list, values, false);
     }
 
     /**
@@ -673,8 +680,9 @@ public final class CollectionUtils {
      * @param values  准备添加的值 ( 集合 )
      * @param notNull 是否不允许添加 null 值
      * @param <T>     泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void addAll(final int index, final List<T> list, final List<T> values, final boolean notNull) {
+    public static <T> boolean addAll(final int index, final List<T> list, final List<T> values, final boolean notNull) {
         if (list != null && values != null) {
             if (notNull) {
                 try {
@@ -686,17 +694,20 @@ public final class CollectionUtils {
                     }
                     // 添加到集合中
                     list.addAll(index, tempList);
+                    return true;
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "addAll notNull");
                 }
             } else {
                 try {
                     list.addAll(index, values);
+                    return true;
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "addAll");
                 }
             }
         }
+        return false;
     }
 
     /**
@@ -705,9 +716,10 @@ public final class CollectionUtils {
      * @param list   集合
      * @param values 准备添加的值 ( 集合 )
      * @param <T>    泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void addAllNotNull(final int index, final List<T> list, final List<T> values) {
-        addAll(index, list, values, true);
+    public static <T> boolean addAllNotNull(final int index, final List<T> list, final List<T> values) {
+        return addAll(index, list, values, true);
     }
 
     // ============
@@ -779,8 +791,9 @@ public final class CollectionUtils {
      * @param collection {@link Collection}
      * @param value      准备对比移除的值
      * @param <T>        泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void clear(final Collection<T> collection, final T value) {
+    public static <T> boolean clear(final Collection<T> collection, final T value) {
         if (collection != null) {
             try {
                 Iterator<T> iterator = collection.iterator();
@@ -791,10 +804,12 @@ public final class CollectionUtils {
                         iterator.remove();
                     }
                 }
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "clear");
             }
         }
+        return false;
     }
 
     /**
@@ -802,8 +817,9 @@ public final class CollectionUtils {
      * @param collection {@link Collection}
      * @param value      准备对比保留的值
      * @param <T>        泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void clearNotBelong(final Collection<T> collection, final T value) {
+    public static <T> boolean clearNotBelong(final Collection<T> collection, final T value) {
         if (collection != null) {
             try {
                 Iterator<T> iterator = collection.iterator();
@@ -814,34 +830,40 @@ public final class CollectionUtils {
                         iterator.remove();
                     }
                 }
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "clearNotBelong");
             }
         }
+        return false;
     }
 
     /**
      * 清空集合全部数据
      * @param collection {@link Collection}
      * @param <T>        泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void clearAll(final Collection<T> collection) {
+    public static <T> boolean clearAll(final Collection<T> collection) {
         if (collection != null) {
             try {
                 collection.clear();
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "clearAll");
             }
         }
+        return false;
     }
 
     /**
      * 清空集合中为 null 的值
      * @param collection {@link Collection}
      * @param <T>        泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T> void clearNull(final Collection<T> collection) {
-        clear(collection, null);
+    public static <T> boolean clearNull(final Collection<T> collection) {
+        return clear(collection, null);
     }
 
     // ====================

@@ -338,7 +338,11 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      */
     public void pause() {
         if (mMediaPlayer != null) {
-            mMediaPlayer.pause();
+            try {
+                mMediaPlayer.pause();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "pause");
+            }
         }
     }
 

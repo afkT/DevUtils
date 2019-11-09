@@ -1073,17 +1073,19 @@ public final class FileUtils {
      * 追加文件 ( 使用 FileWriter)
      * @param filePath 文件路径
      * @param content  追加内容
+     * @return {@code true} success, {@code false} fail
      */
-    public static void appendFile(final String filePath, final String content) {
-        if (filePath == null || content == null) return;
+    public static boolean appendFile(final String filePath, final String content) {
+        if (filePath == null || content == null) return false;
         File file = new File(filePath);
         // 如果文件不存在, 则跳过
-        if (!file.exists()) return;
+        if (!file.exists()) return false;
         FileWriter writer = null;
         try {
             // 打开一个写文件器, 构造函数中的第二个参数 true 表示以追加形式写文件
             writer = new FileWriter(file, true);
             writer.write(content);
+            return true;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "appendFile");
         } finally {
@@ -1094,6 +1096,7 @@ public final class FileUtils {
                 }
             }
         }
+        return false;
     }
 
     // =

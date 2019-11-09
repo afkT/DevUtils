@@ -200,16 +200,16 @@ public final class DevCache {
      * 保存 String 数据到缓存中
      * @param key   保存的 key
      * @param value 保存的 String 数据
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final String value) {
+    public boolean put(final String key, final String value) {
         File file = mCache.newFile(key);
-        if (file == null || value == null) {
-            return;
-        }
+        if (file == null || value == null) return false;
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter(file), 1024);
             bw.write(value);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put");
         } finally {
@@ -227,6 +227,7 @@ public final class DevCache {
             }
             mCache.put(file);
         }
+        return false;
     }
 
     /**
@@ -234,11 +235,13 @@ public final class DevCache {
      * @param key      保存的 key
      * @param value    保存的 String 数据
      * @param saveTime 保存的时间, 单位: 秒
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final String value, final int saveTime) {
+    public boolean put(final String key, final String value, final int saveTime) {
         if (key != null && value != null) {
-            put(key, DevCacheUtils.newStringWithDateInfo(saveTime, value));
+            return put(key, DevCacheUtils.newStringWithDateInfo(saveTime, value));
         }
+        return false;
     }
 
     /**
@@ -294,15 +297,17 @@ public final class DevCache {
      * 保存 JSONObject 数据到缓存中
      * @param key   保存的 key
      * @param value 保存的 JSONObject 数据
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final JSONObject value) {
+    public boolean put(final String key, final JSONObject value) {
         if (value != null) {
             try {
-                put(key, value.toString());
+                return put(key, value.toString());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "put JSONObject");
             }
         }
+        return false;
     }
 
     /**
@@ -310,15 +315,17 @@ public final class DevCache {
      * @param key      保存的 key
      * @param value    保存的 JSONObject 数据
      * @param saveTime 保存的时间, 单位: 秒
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final JSONObject value, final int saveTime) {
+    public boolean put(final String key, final JSONObject value, final int saveTime) {
         if (value != null) {
             try {
-                put(key, value.toString(), saveTime);
+                return put(key, value.toString(), saveTime);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "put JSONObject");
             }
         }
+        return false;
     }
 
     /**
@@ -346,15 +353,17 @@ public final class DevCache {
      * 保存 JSONArray 数据到缓存中
      * @param key   保存的 key
      * @param value 保存的 JSONArray 数据
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final JSONArray value) {
+    public boolean put(final String key, final JSONArray value) {
         if (value != null) {
             try {
-                put(key, value.toString());
+                return put(key, value.toString());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "put JSONArray");
             }
         }
+        return false;
     }
 
     /**
@@ -362,15 +371,17 @@ public final class DevCache {
      * @param key      保存的 key
      * @param value    保存的 JSONArray 数据
      * @param saveTime 保存的时间, 单位: 秒
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final JSONArray value, final int saveTime) {
+    public boolean put(final String key, final JSONArray value, final int saveTime) {
         if (value != null) {
             try {
-                put(key, value.toString(), saveTime);
+                return put(key, value.toString(), saveTime);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "put JSONArray");
             }
         }
+        return false;
     }
 
     /**
@@ -398,16 +409,16 @@ public final class DevCache {
      * 保存 byte 数据到缓存中
      * @param key  保存的 key
      * @param data 保存的数据
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final byte[] data) {
-        if (key == null || data == null) {
-            return;
-        }
+    public boolean put(final String key, final byte[] data) {
+        if (key == null || data == null) return false;
         File file = mCache.newFile(key);
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(file);
             fos.write(data);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put byte[]");
         } finally {
@@ -425,6 +436,7 @@ public final class DevCache {
             }
             mCache.put(file);
         }
+        return false;
     }
 
     /**
@@ -460,9 +472,10 @@ public final class DevCache {
      * @param key      保存的 key
      * @param data     保存的数据
      * @param saveTime 保存的时间, 单位: 秒
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final byte[] data, final int saveTime) {
-        put(key, DevCacheUtils.newByteArrayWithDateInfo(saveTime, data));
+    public boolean put(final String key, final byte[] data, final int saveTime) {
+        return put(key, DevCacheUtils.newByteArrayWithDateInfo(saveTime, data));
     }
 
     /**
@@ -510,9 +523,10 @@ public final class DevCache {
      * 保存 Serializable 数据到缓存中
      * @param key   保存的 key
      * @param value 保存的 value
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final Serializable value) {
-        put(key, value, -1);
+    public boolean put(final String key, final Serializable value) {
+        return put(key, value, -1);
     }
 
     /**
@@ -520,8 +534,9 @@ public final class DevCache {
      * @param key      保存的 key
      * @param value    保存的 value
      * @param saveTime 保存的时间, 单位: 秒
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final Serializable value, final int saveTime) {
+    public boolean put(final String key, final Serializable value, final int saveTime) {
         ObjectOutputStream oos = null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -533,6 +548,7 @@ public final class DevCache {
             } else {
                 put(key, data);
             }
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put");
         } finally {
@@ -543,6 +559,7 @@ public final class DevCache {
                 }
             }
         }
+        return false;
     }
 
     /**
@@ -580,9 +597,10 @@ public final class DevCache {
      * 保存 Bitmap 到缓存中
      * @param key   保存的 key
      * @param value 保存的 bitmap 数据
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final Bitmap value) {
-        put(key, DevCacheUtils.bitmapToBytes(value));
+    public boolean put(final String key, final Bitmap value) {
+        return put(key, DevCacheUtils.bitmapToBytes(value));
     }
 
     /**
@@ -590,9 +608,10 @@ public final class DevCache {
      * @param key      保存的 key
      * @param value    保存的 bitmap 数据
      * @param saveTime 保存的时间, 单位: 秒
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final Bitmap value, final int saveTime) {
-        put(key, DevCacheUtils.bitmapToBytes(value), saveTime);
+    public boolean put(final String key, final Bitmap value, final int saveTime) {
+        return put(key, DevCacheUtils.bitmapToBytes(value), saveTime);
     }
 
     /**
@@ -614,9 +633,10 @@ public final class DevCache {
      * 保存 Drawable 到缓存中
      * @param key   保存的 key
      * @param value 保存的 drawable 数据
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final Drawable value) {
-        put(key, DevCacheUtils.drawableToBitmap(value));
+    public boolean put(final String key, final Drawable value) {
+        return put(key, DevCacheUtils.drawableToBitmap(value));
     }
 
     /**
@@ -624,9 +644,10 @@ public final class DevCache {
      * @param key      保存的 key
      * @param value    保存的 drawable 数据
      * @param saveTime 保存的时间, 单位: 秒
+     * @return {@code true} success, {@code false} fail
      */
-    public void put(final String key, final Drawable value, final int saveTime) {
-        put(key, DevCacheUtils.drawableToBitmap(value), saveTime);
+    public boolean put(final String key, final Drawable value, final int saveTime) {
+        return put(key, DevCacheUtils.drawableToBitmap(value), saveTime);
     }
 
     /**

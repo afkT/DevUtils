@@ -23,6 +23,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -73,6 +74,16 @@ public final class DeviceUtils {
     private static final String TAG = DeviceUtils.class.getSimpleName();
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
+
+    /**
+     * 获取设备信息
+     * @return {@link Map<String, String>}
+     */
+    public static Map<String, String> getDeviceInfo() {
+        Map<String, String> deviceInfoMap = new HashMap<>();
+        getDeviceInfo(deviceInfoMap);
+        return deviceInfoMap;
+    }
 
     /**
      * 获取设备信息
@@ -638,22 +649,26 @@ public final class DeviceUtils {
 
     /**
      * 关机 ( 需要 root 权限 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void shutdown() {
+    public static boolean shutdown() {
         try {
             ShellUtils.execCmd("reboot -p", true);
             Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
             intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
             DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shutdown");
         }
+        return false;
     }
 
     /**
      * 重启设备 ( 需要 root 权限 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void reboot() {
+    public static boolean reboot() {
         try {
             ShellUtils.execCmd("reboot", true);
             Intent intent = new Intent(Intent.ACTION_REBOOT);
@@ -661,24 +676,28 @@ public final class DeviceUtils {
             intent.putExtra("interval", 1);
             intent.putExtra("window", 0);
             DevUtils.getContext().sendBroadcast(intent);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
+        return false;
     }
 
     /**
      * 重启设备 ( 需要 root 权限 ) - 并进行特殊的引导模式 (recovery、Fastboot)
      * @param reason 传递给内核来请求特殊的引导模式, 如 "recovery"
      *               重启到 Fastboot 模式 bootloader
+     * @return {@code true} success, {@code false} fail
      */
-    public static void reboot(final String reason) {
+    public static boolean reboot(final String reason) {
         try {
             PowerManager mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
-            if (mPowerManager == null) return;
             mPowerManager.reboot(reason);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
+        return false;
     }
 
     /**

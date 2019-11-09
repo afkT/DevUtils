@@ -162,8 +162,9 @@ public final class HttpParamsUtils {
      * @param objStr    数组名
      * @param key       数组 key
      * @param value     数组 [key] 保存值
+     * @return {@code true} success, {@code false} fail
      */
-    public static void toConvertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
+    public static boolean toConvertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
         if (mapParams != null) {
             String data = null;
             try {
@@ -172,7 +173,9 @@ public final class HttpParamsUtils {
                 JCLogUtils.eTag(TAG, e, "toConvertObjToMS");
             }
             mapParams.put(objStr + "[" + key + "]", data);
+            return true;
         }
+        return false;
     }
 
     /**
@@ -181,8 +184,9 @@ public final class HttpParamsUtils {
      * @param objStr    数组名
      * @param key       数组 key
      * @param value     数组 [key] 保存值
+     * @return {@code true} success, {@code false} fail
      */
-    public static void toConvertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
+    public static boolean toConvertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
         if (mapParams != null) {
             Object data = null;
             try {
@@ -191,7 +195,9 @@ public final class HttpParamsUtils {
                 JCLogUtils.eTag(TAG, e, "toConvertObjToMO");
             }
             mapParams.put(objStr + "[" + key + "]", data);
+            return true;
         }
+        return false;
     }
 
     // ======================

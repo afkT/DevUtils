@@ -74,24 +74,8 @@ public class WifiVo implements Parcelable {
      * @return {@link List<WifiVo>}
      */
     public static List<WifiVo> scanWifiVos(final List<ScanResult> listScanResults) {
-        if (listScanResults == null) return null;
         List<WifiVo> listWifiVos = new ArrayList<>();
-        // 遍历 wifi 列表数据
-        for (int i = 0, len = listScanResults.size(); i < len; i++) {
-            // 如果出现异常、或者失败, 则无视当前的索引 wifi 信息
-            try {
-                // 获取当前索引的 wifi 信息
-                ScanResult scanResult = listScanResults.get(i);
-                // 防止 wifi 名长度为 0
-                if (scanResult.SSID.length() == 0) {
-                    continue;
-                }
-                // 保存 wifi 信息
-                listWifiVos.add(createWifiVo(scanResult));
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "scanWifiVos");
-            }
-        }
+        scanWifiVos(listWifiVos, listScanResults);
         return listWifiVos;
     }
 
