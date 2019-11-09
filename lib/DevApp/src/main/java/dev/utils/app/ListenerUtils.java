@@ -75,8 +75,9 @@ public final class ListenerUtils {
      * @param view            {@link View}
      * @param onClickListener {@link View.OnClickListener}
      * @param viewIds         View id 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setOnClicks(final View view, final View.OnClickListener onClickListener, @IdRes final int... viewIds) {
+    public static boolean setOnClicks(final View view, final View.OnClickListener onClickListener, @IdRes final int... viewIds) {
         if (view != null && onClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(view, viewIds[i]);
@@ -84,7 +85,9 @@ public final class ListenerUtils {
                     findView.setOnClickListener(onClickListener);
                 }
             }
+            return true;
         }
+        return false;
     }
 
     /**
@@ -92,8 +95,9 @@ public final class ListenerUtils {
      * @param activity        {@link Activity}
      * @param onClickListener {@link View.OnClickListener}
      * @param viewIds         View id 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setOnClicks(final Activity activity, final View.OnClickListener onClickListener, @IdRes final int... viewIds) {
+    public static boolean setOnClicks(final Activity activity, final View.OnClickListener onClickListener, @IdRes final int... viewIds) {
         if (activity != null && onClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(activity, viewIds[i]);
@@ -101,22 +105,27 @@ public final class ListenerUtils {
                     findView.setOnClickListener(onClickListener);
                 }
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * 设置点击事件
      * @param onClickListener {@link View.OnClickListener}
      * @param views           View 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setOnClicks(final View.OnClickListener onClickListener, final View... views) {
+    public static boolean setOnClicks(final View.OnClickListener onClickListener, final View... views) {
         if (onClickListener != null && views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 if (views[i] != null) {
                     views[i].setOnClickListener(onClickListener);
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -126,8 +135,9 @@ public final class ListenerUtils {
      * @param view                {@link View}
      * @param onLongClickListener {@link View.OnLongClickListener}
      * @param viewIds             View id 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setOnLongClicks(final View view, final View.OnLongClickListener onLongClickListener, @IdRes final int... viewIds) {
+    public static boolean setOnLongClicks(final View view, final View.OnLongClickListener onLongClickListener, @IdRes final int... viewIds) {
         if (view != null && onLongClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(view, viewIds[i]);
@@ -135,7 +145,9 @@ public final class ListenerUtils {
                     findView.setOnLongClickListener(onLongClickListener);
                 }
             }
+            return true;
         }
+        return false;
     }
 
     /**
@@ -143,8 +155,9 @@ public final class ListenerUtils {
      * @param activity            {@link Activity}
      * @param onLongClickListener {@link View.OnLongClickListener}
      * @param viewIds             View id 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setOnLongClicks(final Activity activity, final View.OnLongClickListener onLongClickListener, @IdRes final int... viewIds) {
+    public static boolean setOnLongClicks(final Activity activity, final View.OnLongClickListener onLongClickListener, @IdRes final int... viewIds) {
         if (activity != null && onLongClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = findViewById(activity, viewIds[i]);
@@ -152,22 +165,27 @@ public final class ListenerUtils {
                     findView.setOnLongClickListener(onLongClickListener);
                 }
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * 设置长按事件
      * @param onLongClickListener {@link View.OnLongClickListener}
      * @param views               View 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setOnLongClicks(final View.OnLongClickListener onLongClickListener, final View... views) {
+    public static boolean setOnLongClicks(final View.OnLongClickListener onLongClickListener, final View... views) {
         if (onLongClickListener != null && views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 if (views[i] != null) {
                     views[i].setOnLongClickListener(onLongClickListener);
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // ======================

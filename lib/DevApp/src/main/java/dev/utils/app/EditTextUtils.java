@@ -132,13 +132,16 @@ public final class EditTextUtils {
      * 设置多个 EditText 文本
      * @param content 文本内容
      * @param views   View(EditText)[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setTexts(final String content, final View... views) {
+    public static boolean setTexts(final String content, final View... views) {
         if (views != null) {
             for (View view : views) {
                 setText(getEditText(view), content);
             }
+            return true;
         }
+        return false;
     }
 
     /**
@@ -146,13 +149,16 @@ public final class EditTextUtils {
      * @param content 文本内容
      * @param views   EditText[]
      * @param <T>     泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T extends EditText> void setTexts(final String content, final T... views) {
+    public static <T extends EditText> boolean setTexts(final String content, final T... views) {
         if (views != null) {
             for (T view : views) {
                 setText(view, content);
             }
+            return true;
         }
+        return false;
     }
 
     // =

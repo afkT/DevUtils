@@ -57,15 +57,18 @@ public final class FlashlightUtils {
 
     /**
      * 注销摄像头
+     * @return {@code true} success, {@code false} fail
      */
-    public void unregister() {
-        if (mCamera == null) return;
+    public boolean unregister() {
+        if (mCamera == null) return false;
         try {
             mCamera.stopPreview();
             mCamera.release();
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregister");
         }
+        return false;
     }
 
     /**

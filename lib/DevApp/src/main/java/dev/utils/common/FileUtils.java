@@ -157,25 +157,31 @@ public final class FileUtils {
     /**
      * 创建多个文件夹, 如果不存在则创建
      * @param filePaths 文件路径数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void createFolderByPaths(final String... filePaths) {
+    public static boolean createFolderByPaths(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
             for (int i = 0, len = filePaths.length; i < len; i++) {
                 createFolder(filePaths[i]);
             }
+            return false;
         }
+        return true;
     }
 
     /**
      * 创建多个文件夹, 如果不存在则创建
      * @param files 文件数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void createFolderByPaths(final File... files) {
+    public static boolean createFolderByPaths(final File... files) {
         if (files != null && files.length != 0) {
             for (int i = 0, len = files.length; i < len; i++) {
                 createFolder(files[i]);
             }
+            return false;
         }
+        return true;
     }
 
     // =
@@ -894,25 +900,31 @@ public final class FileUtils {
     /**
      * 删除多个文件
      * @param filePaths 文件路径数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void deleteFiles(final String... filePaths) {
+    public static boolean deleteFiles(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
             for (int i = 0, len = filePaths.length; i < len; i++) {
                 deleteFile(filePaths[i]);
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * 删除多个文件
      * @param files 文件数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void deleteFiles(final File... files) {
+    public static boolean deleteFiles(final File... files) {
         if (files != null && files.length != 0) {
             for (int i = 0, len = files.length; i < len; i++) {
                 deleteFile(files[i]);
             }
+            return true;
         }
+        return false;
     }
 
     // =

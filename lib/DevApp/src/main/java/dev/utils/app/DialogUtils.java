@@ -269,22 +269,26 @@ public final class DialogUtils {
     /**
      * 关闭 Dialog
      * @param dialog {@link Dialog}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeDialog(final Dialog dialog) {
+    public static boolean closeDialog(final Dialog dialog) {
         if (dialog != null && dialog.isShowing()) {
             try {
                 dialog.dismiss();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeDialog");
             }
         }
+        return false;
     }
 
     /**
      * 关闭多个 Dialog
      * @param dialogs {@link Dialog} 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeDialogs(final Dialog... dialogs) {
+    public static boolean closeDialogs(final Dialog... dialogs) {
         if (dialogs != null && dialogs.length != 0) {
             for (int i = 0, len = dialogs.length; i < len; i++) {
                 Dialog dialog = dialogs[i];
@@ -296,7 +300,9 @@ public final class DialogUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -304,22 +310,26 @@ public final class DialogUtils {
     /**
      * 关闭 DialogFragment
      * @param dialog {@link DialogFragment}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeDialog(final DialogFragment dialog) {
+    public static boolean closeDialog(final DialogFragment dialog) {
         if (dialog != null) {
             try {
                 dialog.dismiss();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeDialog");
             }
         }
+        return false;
     }
 
     /**
      * 关闭多个 DialogFragment
      * @param dialogs {@link DialogFragment} 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeDialogs(final DialogFragment... dialogs) {
+    public static boolean closeDialogs(final DialogFragment... dialogs) {
         if (dialogs != null && dialogs.length != 0) {
             for (int i = 0, len = dialogs.length; i < len; i++) {
                 DialogFragment dialog = dialogs[i];
@@ -331,7 +341,9 @@ public final class DialogUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -339,22 +351,26 @@ public final class DialogUtils {
     /**
      * 关闭 PopupWindow
      * @param popupWindow {@link PopupWindow}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closePopupWindow(final PopupWindow popupWindow) {
+    public static boolean closePopupWindow(final PopupWindow popupWindow) {
         if (popupWindow != null && popupWindow.isShowing()) {
             try {
                 popupWindow.dismiss();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closePopupWindow");
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * 关闭多个 PopupWindow
      * @param popupWindows {@link PopupWindow} 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closePopupWindows(final PopupWindow... popupWindows) {
+    public static boolean closePopupWindows(final PopupWindow... popupWindows) {
         if (popupWindows != null && popupWindows.length != 0) {
             for (int i = 0, len = popupWindows.length; i < len; i++) {
                 PopupWindow popupWindow = popupWindows[i];
@@ -366,7 +382,9 @@ public final class DialogUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // =
