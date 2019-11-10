@@ -153,11 +153,7 @@ public final class DevUtils {
      * @return {@link Context}
      */
     public static Context getContext(final Context context) {
-        // 进行判断
-        if (context != null) {
-            return context;
-        }
-        return DevUtils.sContext;
+        return (context != null) ? context : DevUtils.sContext;
     }
 
     /**
