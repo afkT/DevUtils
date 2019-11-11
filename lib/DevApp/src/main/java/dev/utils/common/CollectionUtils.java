@@ -131,6 +131,24 @@ public final class CollectionUtils {
         return collection != null && collection.size() <= length;
     }
 
+    // ================
+    // = 获取长度总和 =
+    // ================
+
+    /**
+     * 获取 Collection 数组长度总和
+     * @param collections Collection[]
+     * @return Collection 数组长度总和
+     */
+    public static int getCount(final Collection... collections) {
+        if (collections == null) return 0;
+        int count = 0;
+        for (Collection collection : collections) {
+            count += length(collection);
+        }
+        return count;
+    }
+
     // ============
     // = 数据获取 =
     // ============

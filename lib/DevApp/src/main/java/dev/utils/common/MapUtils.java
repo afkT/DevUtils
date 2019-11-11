@@ -126,6 +126,24 @@ public final class MapUtils {
         return map != null && map.size() <= length;
     }
 
+    // ================
+    // = 获取长度总和 =
+    // ================
+
+    /**
+     * 获取 Map 数组长度总和
+     * @param maps Map[]
+     * @return Map 数组长度总和
+     */
+    public static int getCount(final Map... maps) {
+        if (maps == null) return 0;
+        int count = 0;
+        for (Map map : maps) {
+            count += length(map);
+        }
+        return count;
+    }
+
     // ============
     // = 数据获取 =
     // ============
