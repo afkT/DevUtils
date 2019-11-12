@@ -65,6 +65,15 @@ public final class ClassUtils {
     // =
 
     /**
+     * 获取 Object Class
+     * @param object {@link Object}
+     * @return Object Class
+     */
+    public static Class getClass(final Object object) {
+        return (object != null) ? object.getClass() : null;
+    }
+
+    /**
      * 判断 Class 是否为原始类型
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
