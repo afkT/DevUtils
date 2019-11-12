@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
-import java.util.Date;
+import java.util.Map;
 
 import dev.utils.JCLogUtils;
 
@@ -19,19 +19,6 @@ public final class ClassUtils {
 
     // 日志 TAG
     private static final String TAG = ClassUtils.class.getSimpleName();
-
-    /**
-     * 判断类是否是基础数据类型 - 目前支持 11 种
-     * @param clazz {@link Class}
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isBaseDataType(final Class<?> clazz) {
-        return clazz != null && (clazz.isPrimitive() || clazz.equals(String.class) || clazz.equals(Boolean.class)
-                || clazz.equals(Integer.class) || clazz.equals(Long.class) || clazz.equals(Float.class)
-                || clazz.equals(Double.class) || clazz.equals(Byte.class) || clazz.equals(Character.class)
-                || clazz.equals(Short.class) || clazz.equals(Date.class) || clazz.equals(byte[].class)
-                || clazz.equals(Byte[].class));
-    }
 
     /**
      * 根据类获取对象, 不再必须一个无参构造
@@ -64,7 +51,7 @@ public final class ClassUtils {
     }
 
     /**
-     * 判断 Class 是否为原始类型 (boolean、char、byte、short、int、long、float、double)
+     * 获取 Class 原始类型值
      * @param clazz {@link Class}
      * @return 原始类型值
      */
@@ -75,8 +62,19 @@ public final class ClassUtils {
         return null;
     }
 
+    // =
+
     /**
-     * 判断是否集合类型
+     * 判断 Class 是否为原始类型
+     * @param clazz {@link Class}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPrimitive(final Class clazz) {
+        return (clazz != null && clazz.isPrimitive());
+    }
+
+    /**
+     * 判断是否 Collection 类型
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
      */
@@ -85,7 +83,16 @@ public final class ClassUtils {
     }
 
     /**
-     * 判断是否数组类型
+     * 判断是否 Map 类型
+     * @param clazz {@link Class}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMap(final Class clazz) {
+        return (clazz != null && Map.class.isAssignableFrom(clazz));
+    }
+
+    /**
+     * 判断是否 Array 类型
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
      */
