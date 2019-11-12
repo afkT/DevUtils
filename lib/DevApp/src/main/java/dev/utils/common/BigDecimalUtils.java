@@ -585,45 +585,45 @@ public final class BigDecimalUtils {
      * 比较大小
      * @param v1 输入的数值
      * @param v2 被比较的数字
-     * @return {@code true} v1 >= v2, {@code false} v1 < v2
+     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
      */
-    public static boolean compare(final double v1, final double v2) {
+    public static int compareTo(final double v1, final double v2) {
         try {
-            return new BigDecimal(Double.valueOf(v1)).compareTo(new BigDecimal(Double.valueOf(v2))) != -1;
+            return new BigDecimal(Double.valueOf(v1)).compareTo(new BigDecimal(Double.valueOf(v2)));
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "compare");
+            JCLogUtils.eTag(TAG, e, "compareTo");
         }
-        return false;
+        return -2;
     }
 
     /**
      * 比较大小
      * @param v1 输入的数值
      * @param v2 被比较的数字
-     * @return {@code true} v1 >= v2, {@code false} v1 < v2
+     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
      */
-    public static boolean compare(final String v1, final String v2) {
+    public static int compareTo(final String v1, final String v2) {
         try {
-            return new BigDecimal(v1).compareTo(new BigDecimal(v2)) != -1;
+            return new BigDecimal(v1).compareTo(new BigDecimal(v2));
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "compare");
+            JCLogUtils.eTag(TAG, e, "compareTo");
         }
-        return false;
+        return -2;
     }
 
     /**
      * 比较大小
      * @param v1 输入的数值
      * @param v2 被比较的数字
-     * @return {@code true} v1 >= v2, {@code false} v1 < v2
+     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
      */
-    public static boolean compare(final BigDecimal v1, final BigDecimal v2) {
+    public static int compareTo(final BigDecimal v1, final BigDecimal v2) {
         try {
-            return v1.compareTo(v2) != -1;
+            return v1.compareTo(v2);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "compare");
+            JCLogUtils.eTag(TAG, e, "compareTo");
         }
-        return false;
+        return -2;
     }
 
     // ============
