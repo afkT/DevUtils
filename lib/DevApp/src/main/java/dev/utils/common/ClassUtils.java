@@ -129,10 +129,7 @@ public final class ClassUtils {
      * @return 泛型类型
      */
     public static Class<?> getGenericSuperclass(final Object object, final int pos) {
-        if (object != null) {
-            return getGenericSuperclass(object.getClass(), pos);
-        }
-        return null;
+        return getGenericSuperclass(getClass(object), pos);
     }
 
     // =
@@ -187,10 +184,7 @@ public final class ClassUtils {
      * @return 泛型类型
      */
     public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz, final int pos) {
-        if (object != null) {
-            return getGenericInterfaces(object.getClass(), interfaceClazz, pos);
-        }
-        return null;
+        return getGenericInterfaces(getClass(object), interfaceClazz, pos);
     }
 
     // =
