@@ -455,12 +455,12 @@ public final class DevCommonUtils {
             if (isEmpty(str) || isEmpty(suffix) || isEmpty(value) || suffix.equals(value))
                 return str;
             // 获取编辑内容长度
-            int kLength = suffix.length();
+            int suffixLength = suffix.length();
             // 保存新的 Builder 中, 减少内存开销
             StringBuilder builder = new StringBuilder(str);
             // 判断是否在最头部
             if (builder.indexOf(suffix) == 0) {
-                builder.delete(0, kLength);
+                builder.delete(0, suffixLength);
                 // 追加内容
                 builder.insert(0, value);
             }
@@ -469,7 +469,7 @@ public final class DevCommonUtils {
             // 数据长度
             int bufLength = -1;
             // 判断是否在最尾部
-            if ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - kLength)) {
+            if ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - suffixLength)) {
                 builder.delete(lastIndexOf, bufLength);
                 // 追加内容
                 builder.insert(lastIndexOf, value);
@@ -557,19 +557,19 @@ public final class DevCommonUtils {
         if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
-            int kLength = suffix.length();
+            int suffixLength = suffix.length();
             // 保存新的 Builder 中, 减少内存开销
             StringBuilder builder = new StringBuilder(str);
             // 进行循环判断 - 属于最前面的, 才进行处理
             while (builder.indexOf(suffix) == 0) {
-                builder.delete(0, kLength);
+                builder.delete(0, suffixLength);
             }
             // 获取尾部的位置
             int lastIndexOf = -1;
             // 数据长度
             int bufLength = -1;
             // 进行循环判断 - 属于最后面的, 才进行处理
-            while ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - kLength)) {
+            while ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - suffixLength)) {
                 builder.delete(lastIndexOf, bufLength);
             }
             return builder.toString();
@@ -591,12 +591,12 @@ public final class DevCommonUtils {
         if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
-            int kLength = suffix.length();
+            int suffixLength = suffix.length();
             // 保存新的 Builder 中, 减少内存开销
             StringBuilder builder = new StringBuilder(str);
             // 进行循环判断 - 属于最前面的, 才进行处理
             while (builder.indexOf(suffix) == 0) {
-                builder.delete(0, kLength);
+                builder.delete(0, suffixLength);
             }
             return builder.toString();
         } catch (Exception e) {
@@ -617,14 +617,14 @@ public final class DevCommonUtils {
         if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
-            int kLength = suffix.length();
+            int suffixLength = suffix.length();
             // 保存新的 Builder 中, 减少内存开销
             StringBuilder builder = new StringBuilder(str);
             // 获取最后一位位置
-            int sLength = 0;
+            int bufLength = 0;
             // 进行循环判断 - 属于最前面的, 才进行处理
-            while (builder.lastIndexOf(suffix) == ((sLength = builder.length()) - kLength)) {
-                builder.delete(sLength - kLength, sLength);
+            while (builder.lastIndexOf(suffix) == ((bufLength = builder.length()) - suffixLength)) {
+                builder.delete(bufLength - suffixLength, bufLength);
             }
             return builder.toString();
         } catch (Exception e) {
@@ -1670,13 +1670,13 @@ public final class DevCommonUtils {
                 tempString = tempString.toLowerCase();
             }
             // 获取内容长度
-            int cLength = tempString.length();
+            int strLength = tempString.length();
             // 遍历判断
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 获取参数
                 String val = strs[i];
                 // 判断是否为 null, 或者长度为 0
-                if (!isEmpty(val) && cLength != 0) {
+                if (!isEmpty(val) && strLength != 0) {
                     if (isIgnore) {
                         // 转换小写
                         String valIgnore = val.toLowerCase();

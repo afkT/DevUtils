@@ -333,13 +333,13 @@ public final class StringUtils {
                 tempString = tempString.toLowerCase();
             }
             // 获取内容长度
-            int cLength = tempString.length();
+            int strLength = tempString.length();
             // 遍历判断
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 获取参数
                 String val = strs[i];
                 // 判断是否为 null, 或者长度为 0
-                if (!isEmpty(val) && cLength != 0) {
+                if (!isEmpty(val) && strLength != 0) {
                     if (isIgnore) {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
