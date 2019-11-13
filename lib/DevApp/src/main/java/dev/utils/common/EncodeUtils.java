@@ -281,13 +281,6 @@ public final class EncodeUtils {
      * @return byte[]
      */
     private static byte[] toBytes(final String str) {
-        if (str != null) {
-            try {
-                return str.getBytes();
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toBytes");
-            }
-        }
-        return null;
+        return (str != null) ? str.getBytes() : null;
     }
 }

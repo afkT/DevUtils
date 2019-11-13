@@ -22,25 +22,131 @@ public final class FieldUtils {
     // 日志 TAG
     private static final String TAG = FieldUtils.class.getSimpleName();
 
+    // =
+
     /**
-     * 判断是否序列化
-     * @param field {@link Field}
-     * @return {@code true} yes, {@code false} no
+     * 获取变量对象
+     * @param object {@link Object}
+     * @param name   变量名
+     * @return {@link Field}
      */
-    public static boolean isSerializable(final Field field) {
-        if (field == null) return false;
-        try {
-            Class<?>[] clazzs = field.getType().getInterfaces();
-            for (Class<?> clazz : clazzs) {
-                if (Serializable.class == clazz) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "isSerializable");
-        }
-        return false;
+    public static Field getField(final Object object, final String name) {
+        return getField(getClass(object), name);
     }
+
+    /**
+     * 获取变量对象
+     * <pre>
+     *     public 成员变量, 包括基类
+     * </pre>
+     * @param clazz {@link Class}
+     * @param name  变量名
+     * @return {@link Field}
+     */
+    public static Field getField(final Class clazz, final String name) {
+        if (clazz != null && name != null) {
+            try {
+                return clazz.getField(name);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getField");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取变量对象
+     * @param object {@link Object}
+     * @param name   变量名
+     * @return {@link Field}
+     */
+    public static Field getDeclaredField(final Object object, final String name) {
+        return getDeclaredField(getClass(object), name);
+    }
+
+    /**
+     * 获取变量对象
+     * <pre>
+     *     所有成员变量, 不包括基类
+     * </pre>
+     * @param clazz {@link Class}
+     * @param name  变量名
+     * @return {@link Field}
+     */
+    public static Field getDeclaredField(final Class clazz, final String name) {
+        if (clazz != null && name != null) {
+            try {
+                return clazz.getDeclaredField(name);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getDeclaredField");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取变量对象数组
+     * @param object {@link Object}
+     * @return Field[]
+     */
+    public static Field[] getFields(final Object object) {
+        return getFields(getClass(object));
+    }
+
+    /**
+     * 获取变量对象数组
+     * <pre>
+     *     public 成员变量, 包括基类
+     * </pre>
+     * @param clazz {@link Class}
+     * @return Field[]
+     */
+    public static Field[] getFields(final Class clazz) {
+        if (clazz != null) {
+            try {
+                return clazz.getFields();
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getFields");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取变量对象数组
+     * @param object {@link Object}
+     * @return Field[]
+     */
+    public static Field[] getDeclaredFields(final Object object) {
+        return getDeclaredFields(getClass(object));
+    }
+
+    /**
+     * 获取变量对象数组
+     * <pre>
+     *     所有成员变量, 不包括基类
+     * </pre>
+     * @param clazz {@link Class}
+     * @return Field[]
+     */
+    public static Field[] getDeclaredFields(final Class clazz) {
+        if (clazz != null) {
+            try {
+                return clazz.getDeclaredFields();
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "getDeclaredFields");
+            }
+        }
+        return null;
+    }
+
+    // =
 
     /**
      * 设置字段的值
@@ -117,12 +223,115 @@ public final class FieldUtils {
     }
 
     /**
+     * 是否 boolean/Boolean 类型
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isBoolean(final Field field) {
+        return field != null && (field.getType() == boolean.class || field.getType() == Boolean.class);
+    }
+
+    /**
+     * 是否 char/Character 类型
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isCharacter(final Field field) {
+        return field != null && (field.getType() == char.class || field.getType() == Character.class);
+    }
+
+    /**
+     * 是否 byte/Byte 类型
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isByte(final Field field) {
+        return field != null && (field.getType() == byte.class || field.getType() == Byte.class);
+    }
+
+    /**
+     * 是否 short/Short 类型
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isShort(final Field field) {
+        return field != null && (field.getType() == short.class || field.getType() == Short.class);
+    }
+
+    /**
      * 是否 String 类型
      * @param field {@link Field}
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isString(final Field field) {
         return field != null && (field.getType() == String.class);
+    }
+
+    // =
+
+    /**
+     * 判断是否序列化
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSerializable(final Field field) {
+        if (field == null) return false;
+        try {
+            Class<?>[] clazzs = field.getType().getInterfaces();
+            for (Class<?> clazz : clazzs) {
+                if (Serializable.class == clazz) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "isSerializable");
+        }
+        return false;
+    }
+
+    /**
+     * 是否静态常量或者内部结构属性
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInvalid(final Field field) {
+        return isStaticFinal(field) || isSynthetic(field);
+    }
+
+    /**
+     * 是否静态变量
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isStatic(final Field field) {
+        return field != null && Modifier.isStatic(field.getModifiers());
+    }
+
+    /**
+     * 是否常量
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isFinal(final Field field) {
+        return field != null && Modifier.isFinal(field.getModifiers());
+    }
+
+    /**
+     * 是否静态变量
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isStaticFinal(final Field field) {
+        return field != null && Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers());
+    }
+
+    /**
+     * 是否内部结构属性
+     * @param field {@link Field}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSynthetic(final Field field) {
+        return field != null && field.isSynthetic();
     }
 
     // =
@@ -190,12 +399,20 @@ public final class FieldUtils {
         return null;
     }
 
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ==============
+    // = ClassUtils =
+    // ==============
+
     /**
-     * 是静态常量或者内部结构属性
-     * @param field {@link Field}
-     * @return {@code true} yes, {@code false} no
+     * 获取 Object Class
+     * @param object {@link Object}
+     * @return Object Class
      */
-    public static boolean isInvalid(final Field field) {
-        return field != null && ((Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) || field.isSynthetic());
+    private static Class getClass(final Object object) {
+        return (object != null) ? object.getClass() : null;
     }
 }
