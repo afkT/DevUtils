@@ -343,8 +343,7 @@ public final class DateUtils {
         try {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
-            int week = calendar.get(Calendar.DAY_OF_WEEK);
-            return week;
+            return calendar.get(Calendar.DAY_OF_WEEK);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getWeek");
         }
@@ -459,8 +458,7 @@ public final class DateUtils {
      * @return 月
      */
     public static int getMonth() {
-        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        return month;
+        return Calendar.getInstance().get(Calendar.MONTH) + 1;
     }
 
     /**
@@ -519,7 +517,6 @@ public final class DateUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLeapYear(final int year) {
-        // 判断是否闰年
         return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
     }
 
@@ -582,7 +579,7 @@ public final class DateUtils {
     public static int getMonthDayNumber(final int year, final int month) {
         // 判断年份, 相同则判断月份
         if (year == getYear()) {
-            // 判断月份, 先同则返回天数
+            // 判断月份, 相同则返回天数
             if (getYearMonthNumber(year) == month) {
                 return getDay();
             }
