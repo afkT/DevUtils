@@ -200,24 +200,25 @@ public final class ConvertUtils {
                         } else if (clazz.isAssignableFrom(short[].class)) {
                             return Arrays.toString((short[]) object);
                         }
-                        // = 基本类型封装 =
-                        if (clazz.isAssignableFrom(Integer[].class)) {
-                            return Arrays.toString((Integer[]) object);
-                        } else if (clazz.isAssignableFrom(Boolean[].class)) {
-                            return Arrays.toString((Boolean[]) object);
-                        } else if (clazz.isAssignableFrom(Long[].class)) {
-                            return Arrays.toString((Long[]) object);
-                        } else if (clazz.isAssignableFrom(Double[].class)) {
-                            return Arrays.toString((Double[]) object);
-                        } else if (clazz.isAssignableFrom(Float[].class)) {
-                            return Arrays.toString((Float[]) object);
-                        } else if (clazz.isAssignableFrom(Byte[].class)) {
-                            return Arrays.toString((Byte[]) object);
-                        } else if (clazz.isAssignableFrom(Character[].class)) {
-                            return Arrays.toString((Character[]) object);
-                        } else if (clazz.isAssignableFrom(Short[].class)) {
-                            return Arrays.toString((Short[]) object);
-                        }
+//                        // = 基本类型封装 =
+//                        if (clazz.isAssignableFrom(Integer[].class)) {
+//                            return Arrays.toString((Integer[]) object);
+//                        } else if (clazz.isAssignableFrom(Boolean[].class)) {
+//                            return Arrays.toString((Boolean[]) object);
+//                        } else if (clazz.isAssignableFrom(Long[].class)) {
+//                            return Arrays.toString((Long[]) object);
+//                        } else if (clazz.isAssignableFrom(Double[].class)) {
+//                            return Arrays.toString((Double[]) object);
+//                        } else if (clazz.isAssignableFrom(Float[].class)) {
+//                            return Arrays.toString((Float[]) object);
+//                        } else if (clazz.isAssignableFrom(Byte[].class)) {
+//                            return Arrays.toString((Byte[]) object);
+//                        } else if (clazz.isAssignableFrom(Character[].class)) {
+//                            return Arrays.toString((Character[]) object);
+//                        } else if (clazz.isAssignableFrom(Short[].class)) {
+//                            return Arrays.toString((Short[]) object);
+//                        }
+                        return Arrays.toString((Object[]) object);
                     }
                     return object.toString();
                 }
@@ -273,7 +274,6 @@ public final class ConvertUtils {
     public static boolean toBoolean(final String str, final boolean defaultValue) {
         if (str == null) return defaultValue;
         try {
-            // 判断是否 0
             return str.equalsIgnoreCase("true") || str.equalsIgnoreCase("1");
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toBoolean");
@@ -376,13 +376,7 @@ public final class ConvertUtils {
      * @return int 如果转换失败, 则返回 defaultValue
      */
     public static int toInt(final Integer value, final int defaultValue) {
-        if (value == null) return defaultValue;
-        try {
-            return value;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toInt");
-        }
-        return defaultValue;
+        return (value == null) ? defaultValue : value;
     }
 
     /**
@@ -401,8 +395,7 @@ public final class ConvertUtils {
      * @return boolean 如果转换失败, 则返回 defaultValue
      */
     public static boolean toBoolean(final Boolean value, final boolean defaultValue) {
-        if (value == null) return defaultValue;
-        return value;
+        return (value == null) ? defaultValue : value;
     }
 
     /**
@@ -421,13 +414,7 @@ public final class ConvertUtils {
      * @return float 如果转换失败, 则返回 defaultValue
      */
     public static float toFloat(final Float value, final float defaultValue) {
-        if (value == null) return defaultValue;
-        try {
-            return value;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toFloat");
-        }
-        return defaultValue;
+        return (value == null) ? defaultValue : value;
     }
 
     /**
@@ -446,13 +433,7 @@ public final class ConvertUtils {
      * @return double 如果转换失败, 则返回 defaultValue
      */
     public static double toDouble(final Double value, final double defaultValue) {
-        if (value == null) return defaultValue;
-        try {
-            return value;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toDouble");
-        }
-        return defaultValue;
+        return (value == null) ? defaultValue : value;
     }
 
     /**
@@ -471,13 +452,7 @@ public final class ConvertUtils {
      * @return long 如果转换失败, 则返回 defaultValue
      */
     public static long toLong(final Long value, final long defaultValue) {
-        if (value == null) return defaultValue;
-        try {
-            return value;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toLong");
-        }
-        return defaultValue;
+        return (value == null) ? defaultValue : value;
     }
 
     /**
@@ -496,13 +471,7 @@ public final class ConvertUtils {
      * @return short 如果转换失败, 则返回 defaultValue
      */
     public static short toShort(final Short value, final short defaultValue) {
-        if (value == null) return defaultValue;
-        try {
-            return value;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toShort");
-        }
-        return defaultValue;
+        return (value == null) ? defaultValue : value;
     }
 
     /**
@@ -521,13 +490,7 @@ public final class ConvertUtils {
      * @return char 如果转换失败, 则返回 defaultValue
      */
     public static char toChar(final Character value, final char defaultValue) {
-        if (value == null) return defaultValue;
-        try {
-            return value;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toChar");
-        }
-        return defaultValue;
+        return (value == null) ? defaultValue : value;
     }
 
     /**
@@ -546,13 +509,7 @@ public final class ConvertUtils {
      * @return byte 如果转换失败, 则返回 defaultValue
      */
     public static byte toByte(final Byte value, final byte defaultValue) {
-        if (value == null) return defaultValue;
-        try {
-            return value;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toByte");
-        }
-        return defaultValue;
+        return (value == null) ? defaultValue : value;
     }
 
     // ========
@@ -603,14 +560,7 @@ public final class ConvertUtils {
      * @return char[]
      */
     public static char[] toChars(final String str) {
-        if (str != null) {
-            try {
-                return str.toCharArray();
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toChars");
-            }
-        }
-        return null;
+        return (str != null) ? str.toCharArray() : null;
     }
 
     /**
@@ -619,14 +569,7 @@ public final class ConvertUtils {
      * @return byte[]
      */
     public static byte[] toBytes(final String str) {
-        if (str != null) {
-            try {
-                return str.getBytes();
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toBytes");
-            }
-        }
-        return null;
+        return (str != null) ? str.getBytes() : null;
     }
 
     // =
@@ -1435,7 +1378,7 @@ public final class ConvertUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "bytesToBits");
+            JCLogUtils.eTag(TAG, e, "toBinaryString");
         }
         return null;
     }
@@ -1470,7 +1413,7 @@ public final class ConvertUtils {
             }
             return bytes;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "bitsToBytes");
+            JCLogUtils.eTag(TAG, e, "decodeBinary");
         }
         return null;
     }
