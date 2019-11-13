@@ -1342,7 +1342,7 @@ public final class DevCommonUtils {
     // =
 
     /**
-     * 获取长度 to Collection 是否等于期望长度
+     * 获取长度 Collection 是否等于期望长度
      * @param collection {@link Collection}
      * @param length     期望长度
      * @return {@code true} yes, {@code false} no
@@ -1399,7 +1399,7 @@ public final class DevCommonUtils {
     // =
 
     /**
-     * 获取长度 to Map 是否等于期望长度
+     * 获取长度 Map 是否等于期望长度
      * @param map    {@link Map}
      * @param length 期望长度
      * @return {@code true} yes, {@code false} no

@@ -78,7 +78,7 @@ public final class CollectionUtils {
     // =
 
     /**
-     * 获取长度 to Collection 是否等于期望长度
+     * 获取长度 Collection 是否等于期望长度
      * @param collection {@link Collection}
      * @param length     期望长度
      * @return {@code true} yes, {@code false} no
@@ -843,7 +843,7 @@ public final class CollectionUtils {
                 Iterator<T> iterator = collection.iterator();
                 while (iterator.hasNext()) {
                     T t = iterator.next();
-                    // 判断值是否不一样 ( 保留不一样的 )
+                    // 判断值是否不一样 ( 移除不一样的 )
                     if (!equals(t, value)) {
                         iterator.remove();
                     }

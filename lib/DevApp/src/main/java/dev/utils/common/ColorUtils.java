@@ -408,13 +408,18 @@ public final class ColorUtils {
      * @return rgb color String
      */
     public static String intToRgbString(final int colorInt) {
-        int color = colorInt;
-        color = color & 0x00ffffff;
-        String colorStr = Integer.toHexString(color);
-        while (colorStr.length() < 6) {
-            colorStr = "0" + colorStr;
+        try {
+            int color = colorInt;
+            color = color & 0x00ffffff;
+            String colorStr = Integer.toHexString(color);
+            while (colorStr.length() < 6) {
+                colorStr = "0" + colorStr;
+            }
+            return "#" + colorStr;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "intToRgbString");
         }
-        return "#" + colorStr;
+        return null;
     }
 
     /**
@@ -423,14 +428,19 @@ public final class ColorUtils {
      * @return argb color String
      */
     public static String intToArgbString(final int colorInt) {
-        String colorString = Integer.toHexString(colorInt);
-        while (colorString.length() < 6) {
-            colorString = "0" + colorString;
+        try {
+            String colorString = Integer.toHexString(colorInt);
+            while (colorString.length() < 6) {
+                colorString = "0" + colorString;
+            }
+            while (colorString.length() < 8) {
+                colorString = "f" + colorString;
+            }
+            return "#" + colorString;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "intToArgbString");
         }
-        while (colorString.length() < 8) {
-            colorString = "f" + colorString;
-        }
-        return "#" + colorString;
+        return null;
     }
 
     // =

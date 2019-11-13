@@ -73,7 +73,7 @@ public final class MapUtils {
     // =
 
     /**
-     * 获取长度 to Map 是否等于期望长度
+     * 获取长度 Map 是否等于期望长度
      * @param map    {@link Map}
      * @param length 期望长度
      * @return {@code true} yes, {@code false} no
