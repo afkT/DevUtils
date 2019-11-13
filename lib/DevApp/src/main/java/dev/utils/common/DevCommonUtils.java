@@ -107,8 +107,8 @@ public final class DevCommonUtils {
         if (time > 0) {
             try {
                 Thread.sleep(time);
-            } catch (Throwable e1) {
-                JCLogUtils.eTag(TAG, e1, "sleepOperate");
+            } catch (Throwable throwable) {
+                JCLogUtils.eTag(TAG, throwable, "sleepOperate");
             }
         }
     }
@@ -146,7 +146,7 @@ public final class DevCommonUtils {
             if (isUppercase) {
                 // 循环加密
                 for (int i = 0; i < number; i++) {
-                    if (saltLen >= i) {
+                    if (saltLen > i) {
                         String salt = salts[i];
                         if (salt != null) {
                             dataTemp = md5Upper(dataTemp + salt);
@@ -160,7 +160,7 @@ public final class DevCommonUtils {
             } else {
                 // 循环加密
                 for (int i = 0; i < number; i++) {
-                    if (saltLen >= i) {
+                    if (saltLen > i) {
                         String salt = salts[i];
                         if (salt != null) {
                             dataTemp = md5(dataTemp + salt);
@@ -172,6 +172,7 @@ public final class DevCommonUtils {
                     }
                 }
             }
+            return dataTemp;
         }
         return str;
     }
@@ -360,7 +361,6 @@ public final class DevCommonUtils {
     public static String subSetSymbol(final String str, final int frontRetainLength, final int rearRetainLength, final String symbol) {
         if (str != null) {
             try {
-
                 // 截取前面需保留的内容
                 String startStr = str.substring(0, frontRetainLength);
                 // 截取后面需保留的内容
@@ -683,7 +683,7 @@ public final class DevCommonUtils {
     public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
         // 防止数据为 null
         if (str != null && suffixArys != null && replaceArys != null) {
-            String cStr = str;
+            String tempString = str;
             // 替换的特殊字符串长度
             int spCount = suffixArys.length;
             // 替换的内容长度
@@ -693,10 +693,9 @@ public final class DevCommonUtils {
                 // 遍历进行判断
                 for (int i = 0; i < spCount; i++) {
                     // 进行替换字符串
-                    cStr = replaceStr(cStr, suffixArys[i], replaceArys[i]);
+                    tempString = replaceStr(tempString, suffixArys[i], replaceArys[i]);
                 }
-                // 最终不为 null, 则进行返回
-                return cStr;
+                return tempString;
             }
         }
         return null;
@@ -1665,13 +1664,13 @@ public final class DevCommonUtils {
      */
     public static boolean isContains(final boolean isIgnore, final String str, final String... strs) {
         if (str != null && strs != null && strs.length != 0) {
-            String strTemp = str;
+            String tempString = str;
             // 判断是否需要忽略大小写
             if (isIgnore) {
-                strTemp = strTemp.toLowerCase();
+                tempString = tempString.toLowerCase();
             }
             // 获取内容长度
-            int cLength = strTemp.length();
+            int cLength = tempString.length();
             // 遍历判断
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 获取参数
@@ -1682,19 +1681,17 @@ public final class DevCommonUtils {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
                         // 判断是否包含
-                        if (valIgnore.indexOf(strTemp) != -1) {
+                        if (valIgnore.indexOf(tempString) != -1) {
                             return true;
                         }
                     } else {
                         // 判断是否包含
-                        if (val.indexOf(strTemp) != -1) {
+                        if (val.indexOf(tempString) != -1) {
                             return true;
                         }
                     }
                 } else {
-                    // 下面这一串可以不要, 因为判断字符串是否包含
-                    // 已经处理了值不为 null, 并且需要判断的值长度不能为 0, 下面则不需要加上
-                    if (strTemp.equals(val)) {
+                    if (tempString.equals(val)) {
                         return true;
                     }
                 }
@@ -1722,10 +1719,10 @@ public final class DevCommonUtils {
      */
     public static boolean isStartsWith(final boolean isIgnore, final String str, final String... strs) {
         if (!isEmpty(str) && strs != null && strs.length != 0) {
-            String strTemp = str;
+            String tempString = str;
             // 判断是否需要忽略大小写
             if (isIgnore) {
-                strTemp = strTemp.toLowerCase();
+                tempString = tempString.toLowerCase();
             }
             // 获取数据长度
             int len = strs.length;
@@ -1739,12 +1736,12 @@ public final class DevCommonUtils {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
                         // 判断是否属于 val 开头
-                        if (strTemp.startsWith(valIgnore)) {
+                        if (tempString.startsWith(valIgnore)) {
                             return true;
                         }
                     } else {
                         // 判断是否属于 val 开头
-                        if (strTemp.startsWith(val)) {
+                        if (tempString.startsWith(val)) {
                             return true;
                         }
                     }
@@ -1773,10 +1770,10 @@ public final class DevCommonUtils {
      */
     public static boolean isEndsWith(final boolean isIgnore, final String str, final String... strs) {
         if (!isEmpty(str) && strs != null && strs.length != 0) {
-            String strTemp = str;
+            String tempString = str;
             // 判断是否需要忽略大小写
             if (isIgnore) {
-                strTemp = strTemp.toLowerCase();
+                tempString = tempString.toLowerCase();
             }
             // 获取数据长度
             int len = strs.length;
@@ -1790,12 +1787,12 @@ public final class DevCommonUtils {
                         // 转换小写
                         String valIgnore = val.toLowerCase();
                         // 判断是否属于 val 结尾
-                        if (strTemp.endsWith(valIgnore)) {
+                        if (tempString.endsWith(valIgnore)) {
                             return true;
                         }
                     } else {
                         // 判断是否属于 val 结尾
-                        if (strTemp.endsWith(val)) {
+                        if (tempString.endsWith(val)) {
                             return true;
                         }
                     }
@@ -1841,12 +1838,12 @@ public final class DevCommonUtils {
      */
     public static String toClearSpaceTrim(final String str) {
         if (isEmpty(str)) return str;
-        String strTemp = str;
+        String tempString = str;
         // 如果前面或者后面都是空格开头, 就一直进行处理
-        while (strTemp.startsWith(" ") || strTemp.endsWith(" ")) {
-            strTemp = strTemp.trim();
+        while (tempString.startsWith(" ") || tempString.endsWith(" ")) {
+            tempString = tempString.trim();
         }
-        return strTemp;
+        return tempString;
     }
 
     // =
@@ -1946,13 +1943,7 @@ public final class DevCommonUtils {
         if (strs != null && strs.length != 0) {
             for (int i = 0, len = strs.length; i < len; i++) {
                 String val = strs[i];
-                if (isEmpty(val)) {
-                    if (i == len - 1) {
-                        return defaultStr; // 属于最后一个, 则返回默认值
-                    } else {
-                        continue; // 不属于最后一个则跳过
-                    }
-                } else {
+                if (!isEmpty(val)) {
                     return val;
                 }
             }
@@ -1971,13 +1962,7 @@ public final class DevCommonUtils {
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 删除前后空格处理后, 进行返回
                 String val = toClearSpaceTrim(strs[i]);
-                if (isEmpty(val)) {
-                    if (i == len - 1) {
-                        return defaultStr; // 属于最后一个, 则返回默认值
-                    } else {
-                        continue; // 不属于最后一个则跳过
-                    }
-                } else {
+                if (!isEmpty(val)) {
                     return val;
                 }
             }
@@ -2129,9 +2114,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Object object) {
-        if (object == null) {
-            return true;
-        }
+        if (object == null) return true;
         try {
             if (object.getClass().isArray() && Array.getLength(object) == 0) {
                 return true;

@@ -28,9 +28,7 @@ public final class ObjectUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Object object) {
-        if (object == null) {
-            return true;
-        }
+        if (object == null) return true;
         try {
             if (object.getClass().isArray() && Array.getLength(object) == 0) {
                 return true;
