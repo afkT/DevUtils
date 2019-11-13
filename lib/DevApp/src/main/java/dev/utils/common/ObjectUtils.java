@@ -142,17 +142,17 @@ public final class ObjectUtils {
     }
 
     /**
-     * 获取转换对象
-     * @param object 对象
+     * Object 转换所需类型对象
+     * @param object Object
      * @param <T>    泛型
-     * @return 非空或默认对象
+     * @return Object convert T object
      */
-    public static <T> T converObj(final Object object) {
+    public static <T> T convert(final Object object) {
         if (object == null) return null;
         try {
             return (T) object;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "converObj");
+            JCLogUtils.eTag(TAG, e, "convert");
         }
         return null;
     }

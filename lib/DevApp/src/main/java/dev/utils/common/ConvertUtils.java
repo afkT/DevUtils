@@ -44,6 +44,7 @@ public final class ConvertUtils {
      * @return Object convert T object
      */
     public static <T> T convert(final Object object) {
+        if (object == null) return null;
         try {
             return (T) object;
         } catch (Exception e) {
