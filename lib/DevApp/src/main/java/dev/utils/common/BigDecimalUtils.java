@@ -41,6 +41,87 @@ public final class BigDecimalUtils {
         ROUNDING_MODE = roundingMode;
     }
 
+    // =
+
+    /**
+     * 获取 BigDecimal
+     * @param value Value
+     * @return {@link BigDecimal}
+     */
+    public static BigDecimal getBigDecimal(final int value) {
+        return new BigDecimal(value);
+    }
+
+    /**
+     * 获取 BigDecimal
+     * @param value Value
+     * @return {@link BigDecimal}
+     */
+    public static BigDecimal getBigDecimal(final long value) {
+        return new BigDecimal(value);
+    }
+
+    /**
+     * 获取 BigDecimal
+     * @param value Value
+     * @return {@link BigDecimal}
+     */
+    public static BigDecimal getBigDecimal(final float value) {
+        return new BigDecimal(Float.toString(value));
+    }
+
+    /**
+     * 获取 BigDecimal
+     * @param value Value
+     * @return {@link BigDecimal}
+     */
+    public static BigDecimal getBigDecimal(final double value) {
+        return new BigDecimal(Double.toString(value));
+    }
+
+    /**
+     * 获取 BigDecimal
+     * @param value Value
+     * @return {@link BigDecimal}
+     */
+    public static BigDecimal getBigDecimal(final String value) {
+        try {
+            return new BigDecimal(value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getBigDecimal");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取此 BigDecimal 的字符串表示形式科学记数法
+     * @param value {@link BigDecimal}
+     * @return 此 BigDecimal 的字符串表示形式科学记数法
+     */
+    public static String toString(final BigDecimal value) {
+        return (value != null) ? value.toString() : null;
+    }
+
+    /**
+     * 获取此 BigDecimal 的字符串表示形式不带指数字段
+     * @param value {@link BigDecimal}
+     * @return 此 BigDecimal 的字符串表示形式不带指数字段
+     */
+    public static String toPlainString(final BigDecimal value) {
+        return (value != null) ? value.toPlainString() : null;
+    }
+
+    /**
+     * 获取此 BigDecimal 的字符串表示形式工程计数法
+     * @param value {@link BigDecimal}
+     * @return 此 BigDecimal 的字符串表示形式工程计数法
+     */
+    public static String toEngineeringString(final BigDecimal value) {
+        return (value != null) ? value.toEngineeringString() : null;
+    }
+
     // ======
     // = 加 =
     // ======
