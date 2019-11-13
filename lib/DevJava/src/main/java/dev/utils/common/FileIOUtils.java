@@ -85,7 +85,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromIS(final File file, final InputStream inputStream, final boolean append) {
-        if (!createOrExistsFile(file) || inputStream == null) return false;
+        if (inputStream == null || !createOrExistsFile(file)) return false;
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
@@ -199,7 +199,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByChannel(final File file, final byte[] bytes, final boolean append, final boolean isForce) {
-        if (bytes == null) return false;
+        if (bytes == null || !createOrExistsFile(file)) return false;
         FileChannel fc = null;
         try {
             fc = new FileOutputStream(file, append).getChannel();
@@ -313,8 +313,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromString(final File file, final String content, final boolean append) {
-        if (file == null || content == null) return false;
-        if (!createOrExistsFile(file)) return false;
+        if (content == null || !createOrExistsFile(file)) return false;
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter(file, append));

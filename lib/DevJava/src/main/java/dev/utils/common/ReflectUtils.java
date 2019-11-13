@@ -654,7 +654,7 @@ public final class ReflectUtils {
                 if (object instanceof ReflectUtils) {
                     return this.mObject.equals(((ReflectUtils) object).get());
                 } else {
-                    this.mObject.equals(object);
+                    return this.mObject.equals(object);
                 }
             }
             return false;

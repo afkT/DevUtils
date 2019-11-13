@@ -1,5 +1,6 @@
 package dev.utils.common;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -73,7 +74,7 @@ public final class MapUtils {
     // =
 
     /**
-     * 获取长度 to Map 是否等于期望长度
+     * 获取长度 Map 是否等于期望长度
      * @param map    {@link Map}
      * @param length 期望长度
      * @return {@code true} yes, {@code false} no
@@ -124,6 +125,24 @@ public final class MapUtils {
      */
     public static boolean lessThanOrEqual(final Map map, final int length) {
         return map != null && map.size() <= length;
+    }
+
+    // ================
+    // = 获取长度总和 =
+    // ================
+
+    /**
+     * 获取 Map 数组长度总和
+     * @param maps Map[]
+     * @return Map 数组长度总和
+     */
+    public static int getCount(final Map... maps) {
+        if (maps == null) return 0;
+        int count = 0;
+        for (Map map : maps) {
+            count += length(map);
+        }
+        return count;
     }
 
     // ============
@@ -185,7 +204,6 @@ public final class MapUtils {
     public static <K, V> K getKeyByValue(final Map<K, V> map, final V value) {
         if (map != null) {
             try {
-                List<K> lists = new ArrayList<>();
                 // 进行遍历判断
                 Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
                 while (iterator.hasNext()) {
@@ -263,7 +281,7 @@ public final class MapUtils {
     public static <K, V> K[] getKeysToArrays(final Map<K, V> map) {
         if (map != null) {
             try {
-                return (K[]) getKeys(map).toArray();
+                return toArrayT(getKeys(map));
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getKeysToArrays");
             }
@@ -299,7 +317,7 @@ public final class MapUtils {
     public static <K, V> V[] getValuesToArrays(final Map<K, V> map) {
         if (map != null) {
             try {
-                return (V[]) getValues(map).toArray();
+                return toArrayT(getValues(map));
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getValuesToArrays");
             }
@@ -695,6 +713,7 @@ public final class MapUtils {
                             map.put(key, entry.getValue());
                         }
                     }
+                    return true;
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "putAll");
                 }
@@ -762,7 +781,7 @@ public final class MapUtils {
                 if (equals(value, map.get(key))) {
                     map.remove(key);
                 }
-                // return map.remove(key, value);
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "remove");
             }
@@ -784,6 +803,7 @@ public final class MapUtils {
                 for (K key : keys) {
                     map.remove(key);
                 }
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "removeToKeys");
             }
@@ -898,8 +918,9 @@ public final class MapUtils {
      * @param value value
      * @param <K>   key
      * @param <V>   value
+     * @return {@code true} success, {@code false} fail
      */
-    public static <K, V> void toggle(final Map<K, V> map, final K key, final V value) {
+    public static <K, V> boolean toggle(final Map<K, V> map, final K key, final V value) {
         if (map != null) {
             // 判断是否存在 key
             boolean existKey = map.containsKey(key);
@@ -909,10 +930,12 @@ public final class MapUtils {
                 } else { // 不存在则保存
                     map.put(key, value);
                 }
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toggle");
             }
         }
+        return false;
     }
 
     /**
@@ -1107,9 +1130,10 @@ public final class MapUtils {
      * @param removeMap {@link Map} 移除对比数据源
      * @param <K>       key
      * @param <T>       value type
+     * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap) {
-        removeToMap(map, removeMap, true, false);
+    public static <K, T> boolean removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap) {
+        return removeToMap(map, removeMap, true, false);
     }
 
     /**
@@ -1120,9 +1144,10 @@ public final class MapUtils {
      * @param isNullRemoveAll 如果待移除的 ArrayList 是 null, 是否移除全部
      * @param <K>             key
      * @param <T>             value type
+     * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap,
-                                          final boolean removeEmpty, final boolean isNullRemoveAll) {
+    public static <K, T> boolean removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap,
+                                             final boolean removeEmpty, final boolean isNullRemoveAll) {
         if (map != null && removeMap != null) {
             Iterator<Map.Entry<K, ArrayList<T>>> iterator = removeMap.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -1156,6 +1181,114 @@ public final class MapUtils {
                         }
                     }
                 }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===================
+    // = CollectionUtils =
+    // ===================
+
+    /**
+     * 转换数组 to T
+     * @param collection {@link Collection}
+     * @param <T>        泛型
+     * @return 转换后的泛型数组
+     */
+    private static <T> T[] toArrayT(final Collection<T> collection) {
+        if (collection != null) {
+            try {
+                return new CollectionUtils.ArrayWithTypeToken<T>(collection).create();
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "toArrayT");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * detail: 持有数组 TypeToken 实体类
+     * @author Ttt
+     */
+    private static class ArrayWithTypeToken<T> {
+
+        // 泛型数组
+        private T[] array;
+
+        public ArrayWithTypeToken(Collection<T> collection) {
+            newInstance(collection);
+        }
+
+        public ArrayWithTypeToken(Class<T> type, int size) {
+            newInstance(type, size);
+        }
+
+        /**
+         * 添加数据
+         * @param index 索引
+         * @param item  数据
+         */
+        public void put(final int index, final T item) {
+            array[index] = item;
+        }
+
+        /**
+         * 获取对应索引的数据
+         * @param index 索引
+         * @return 对应索引的数据
+         */
+        public T get(final int index) {
+            return array[index];
+        }
+
+        /**
+         * 获取数组
+         * @return 泛型数组
+         */
+        public T[] create() {
+            return array;
+        }
+
+        // ================
+        // = 内部处理方法 =
+        // ================
+
+        /**
+         * 创建数组方法
+         * @param type 数组类型
+         * @param size 数组长度
+         */
+        private void newInstance(final Class<T> type, final int size) {
+            array = (T[]) Array.newInstance(type, size);
+        }
+
+        /**
+         * 创建数组方法
+         * @param collection 集合
+         */
+        private void newInstance(final Collection<T> collection) {
+            // 泛型实体类
+            T value = null;
+            // 数组
+            Object[] objects = collection.toArray();
+            // 获取不为 null 的泛型实体类
+            for (Object object : objects) {
+                if (object != null) {
+                    value = (T) object;
+                    break;
+                }
+            }
+            newInstance((Class<T>) value.getClass(), objects.length);
+            // 保存数据
+            for (int i = 0, len = objects.length; i < len; i++) {
+                Object object = objects[i];
+                put(i, (object != null) ? (T) object : null);
             }
         }
     }

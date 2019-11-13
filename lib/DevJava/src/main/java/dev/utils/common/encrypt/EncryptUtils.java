@@ -828,7 +828,7 @@ public final class EncryptUtils {
                 cipher.init(isEncrypt ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE, secretKey, params);
             }
             return cipher.doFinal(data);
-        } catch (Throwable e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "symmetricTemplate");
             return null;
         }

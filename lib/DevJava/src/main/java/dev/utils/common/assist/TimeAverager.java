@@ -57,8 +57,10 @@ public class TimeAverager {
 
     /**
      * 清除计时数据
+     * @return {@link TimeAverager}
      */
-    public void clear() {
+    public TimeAverager clear() {
         mAverager.clear();
+        return this;
     }
 }

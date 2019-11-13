@@ -16,7 +16,7 @@ import dev.utils.JCLogUtils;
  *     getMethod() 获取的是类的所有共有方法, 这就包括自身的所有 public 方法, 和从基类继承的、从接口实现的所有 public 方法
  *     <p></p>
  *     getMethod 只能调用 public 声明的方法, 而 getDeclaredMethod 基本可以调用任何类型声明的方法
- *     反射多用 getDeclaredMethod, 尽量少用 getMethod
+ *     反射多用 getDeclaredMethod 尽量少用 getMethod
  * </pre>
  */
 public final class Reflect2Utils {

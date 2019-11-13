@@ -303,7 +303,7 @@ public final class RandomUtils {
     // java.util.Collections.shuffle(List<?> list);
 
     /**
-     * 洗牌算法 ( 第一种 ), 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
+     * 洗牌算法 ( 第一种 ) 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
      * @param objects 随机数据源
      * @return {@code true} success, {@code false} fail
      */
@@ -313,7 +313,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 洗牌算法 ( 第一种 ), 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
+     * 洗牌算法 ( 第一种 ) 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
      * @param objects      随机数据源
      * @param shuffleCount 洗牌次数
      * @return {@code true} success, {@code false} fail
@@ -333,7 +333,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 洗牌算法 ( 第一种 ), 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
+     * 洗牌算法 ( 第一种 ) 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
      * @param ints 随机数据源
      * @return 随机 int[]
      */
@@ -343,7 +343,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 洗牌算法 ( 第一种 ), 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
+     * 洗牌算法 ( 第一种 ) 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 )
      * @param ints         随机数据源
      * @param shuffleCount 洗牌次数
      * @return 随机 int[]
@@ -367,7 +367,7 @@ public final class RandomUtils {
     // =
 
     /**
-     * 洗牌算法 ( 第二种 ), 随机置换指定的数组使用的默认源的随机性
+     * 洗牌算法 ( 第二种 ) 随机置换指定的数组使用的默认源的随机性
      * @param objects 随机数据源
      * @return {@code true} success, {@code false} fail
      */
@@ -478,10 +478,8 @@ public final class RandomUtils {
         } else if (streamSize < 0) {
             return null;
         }
-//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//			IntStream intStream = new Random().ints(streamSize, randomNumberOrigin, randomNumberBound);
-//			return intStream.toArray();
-//		} else {
+//        IntStream intStream = new Random().ints(streamSize, randomNumberOrigin, randomNumberBound);
+//        return intStream.toArray();
         try {
             int[] ints = new int[streamSize];
             for (int i = 0; i < streamSize; i++) {
@@ -492,7 +490,6 @@ public final class RandomUtils {
             JCLogUtils.eTag(TAG, e, "ints");
         }
         return null;
-//		}
     }
 
     /**
@@ -508,10 +505,8 @@ public final class RandomUtils {
         } else if (streamSize < 0) {
             return null;
         }
-//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//			LongStream longStream = new Random().longs(streamSize, randomNumberOrigin, randomNumberBound);
-//			return longStream.toArray();
-//		} else {
+//        LongStream longStream = new Random().longs(streamSize, randomNumberOrigin, randomNumberBound);
+//        return longStream.toArray();
         try {
             long[] longs = new long[streamSize];
             for (int i = 0; i < streamSize; i++) {
@@ -522,7 +517,6 @@ public final class RandomUtils {
             JCLogUtils.eTag(TAG, e, "longs");
         }
         return null;
-//		}
     }
 
     /**
@@ -538,10 +532,8 @@ public final class RandomUtils {
         } else if (streamSize < 0) {
             return null;
         }
-//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//			DoubleStream doubleStream = new Random().doubles(streamSize, randomNumberOrigin, randomNumberBound);
-//			return doubleStream.toArray();
-//		} else {
+//        DoubleStream doubleStream = new Random().doubles(streamSize, randomNumberOrigin, randomNumberBound);
+//        return doubleStream.toArray();
         try {
             double[] doubles = new double[streamSize];
             for (int i = 0; i < streamSize; i++) {
@@ -552,6 +544,5 @@ public final class RandomUtils {
             JCLogUtils.eTag(TAG, e, "doubles");
         }
         return null;
-//		}
     }
 }

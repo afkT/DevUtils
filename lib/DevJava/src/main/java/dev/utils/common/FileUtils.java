@@ -117,8 +117,6 @@ public final class FileUtils {
                 if (!file.exists()) {
                     // 允许创建多级目录
                     return file.mkdirs();
-                    // 这个无法创建多级目录
-                    // rootFile.mkdir();
                 }
                 return true;
             } catch (Exception e) {
@@ -157,25 +155,31 @@ public final class FileUtils {
     /**
      * 创建多个文件夹, 如果不存在则创建
      * @param filePaths 文件路径数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void createFolderByPaths(final String... filePaths) {
+    public static boolean createFolderByPaths(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
             for (int i = 0, len = filePaths.length; i < len; i++) {
                 createFolder(filePaths[i]);
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * 创建多个文件夹, 如果不存在则创建
      * @param files 文件数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void createFolderByPaths(final File... files) {
+    public static boolean createFolderByPaths(final File... files) {
         if (files != null && files.length != 0) {
             for (int i = 0, len = files.length; i < len; i++) {
                 createFolder(files[i]);
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -537,7 +541,7 @@ public final class FileUtils {
      * @return 文件编码格式
      */
     public static String getFileCharsetSimple(final File file) {
-        if (file == null) return null;
+        if (!isFileExists(file)) return null;
         int pos = 0;
         InputStream is = null;
         try {
@@ -575,7 +579,7 @@ public final class FileUtils {
      * @return 文件行数
      */
     public static int getFileLines(final File file) {
-        if (file == null) return 0;
+        if (!isFileExists(file)) return 0;
         int lineCount = 1;
         InputStream is = null;
         try {
@@ -696,8 +700,9 @@ public final class FileUtils {
      */
     public static long getFileLengthNetwork(final String httpUri) {
         if (isSpace(httpUri)) return 0L;
-        boolean isURL = httpUri.toLowerCase().matches("http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?");
-        if (isURL) {
+        // 判断是否网络资源
+        boolean isHttpRes = httpUri.toLowerCase().startsWith("http:") || httpUri.toLowerCase().startsWith("https:");
+        if (isHttpRes) {
             try {
                 HttpURLConnection conn = (HttpURLConnection) new URL(httpUri).openConnection();
                 conn.setRequestProperty("Accept-Encoding", "identity");
@@ -894,25 +899,31 @@ public final class FileUtils {
     /**
      * 删除多个文件
      * @param filePaths 文件路径数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void deleteFiles(final String... filePaths) {
+    public static boolean deleteFiles(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
             for (int i = 0, len = filePaths.length; i < len; i++) {
                 deleteFile(filePaths[i]);
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * 删除多个文件
      * @param files 文件数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void deleteFiles(final File... files) {
+    public static boolean deleteFiles(final File... files) {
         if (files != null && files.length != 0) {
             for (int i = 0, len = files.length; i < len; i++) {
                 deleteFile(files[i]);
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -1073,17 +1084,19 @@ public final class FileUtils {
      * 追加文件 ( 使用 FileWriter)
      * @param filePath 文件路径
      * @param content  追加内容
+     * @return {@code true} success, {@code false} fail
      */
-    public static void appendFile(final String filePath, final String content) {
-        if (filePath == null || content == null) return;
+    public static boolean appendFile(final String filePath, final String content) {
+        if (filePath == null || content == null) return false;
         File file = new File(filePath);
         // 如果文件不存在, 则跳过
-        if (!file.exists()) return;
+        if (!file.exists()) return false;
         FileWriter writer = null;
         try {
             // 打开一个写文件器, 构造函数中的第二个参数 true 表示以追加形式写文件
             writer = new FileWriter(file, true);
             writer.write(content);
+            return true;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "appendFile");
         } finally {
@@ -1094,6 +1107,7 @@ public final class FileUtils {
                 }
             }
         }
+        return false;
     }
 
     // =
@@ -2161,7 +2175,7 @@ public final class FileUtils {
      * @return {@code true} success, {@code false} fail
      */
     private static boolean writeFileFromIS(final File file, final InputStream inputStream, final boolean append) {
-        if (!createOrExistsFile(file) || inputStream == null) return false;
+        if (inputStream == null || !createOrExistsFile(file)) return false;
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
