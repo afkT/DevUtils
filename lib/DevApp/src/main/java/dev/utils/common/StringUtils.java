@@ -1162,4 +1162,475 @@ public final class StringUtils {
         keyWord = keyWord.replace(")", "/)");
         return keyWord;
     }
+
+    // ==============
+    // = 字符串处理 =
+    // ==============
+
+    /**
+     * 转换手机号
+     * @param phone 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String converHideMobile(final String phone) {
+        return converHideMobile(phone, "*");
+    }
+
+    /**
+     * 转换手机号
+     * @param phone  待处理字符串
+     * @param symbol 转换符号
+     * @return 处理后的字符串
+     */
+    public static String converHideMobile(final String phone, final String symbol) {
+        return converSymbolHide(3, phone, symbol);
+    }
+
+    /**
+     * 转换符号处理
+     * @param start  开始位置
+     * @param str    待处理字符串
+     * @param symbol 转换符号
+     * @return 处理后的字符串
+     */
+    public static String converSymbolHide(final int start, final String str, final String symbol) {
+        if (!isEmpty(str)) {
+            if (start <= 0) {
+                return str;
+            }
+            // 获取数据长度
+            int length = str.length();
+            // 如果数据小于 start 位则直接返回
+            if (length <= start) {
+                return str;
+            } else { // 大于 start 位
+                StringBuilder builder = new StringBuilder();
+                builder.append(str.substring(0, start));
+                int len = length - start;
+                // 进行平分
+                len /= 2;
+                // 进行遍历保存
+                for (int i = 0; i < len; i++) {
+                    builder.append(symbol);
+                }
+                builder.append(str.substring(start + len, length));
+                return builder.toString();
+            }
+        }
+        return "";
+    }
+
+    // =
+
+    /**
+     * 裁剪超出的内容, 并且追加符号 ( 如 ...)
+     * @param maxLength 允许最大的长度
+     * @param str       待处理字符串
+     * @param symbol    转换符号
+     * @return 处理后的字符串
+     */
+    public static String subEllipsize(final int maxLength, final String str, final String symbol) {
+        if (maxLength >= 1) {
+            // 获取内容长度
+            int strLength = length(str);
+            // 防止为不存在数据
+            if (strLength != 0) {
+                if (maxLength >= strLength) {
+                    return str;
+                }
+                return str.substring(0, maxLength) + toCheckValue(symbol);
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 裁剪符号处理
+     * @param start        开始位置
+     * @param symbolNumber 转换数量
+     * @param str          待处理字符串
+     * @param symbol       转换符号
+     * @return 处理后的字符串
+     */
+    public static String subSymbolHide(final int start, final int symbolNumber, final String str, final String symbol) {
+        if (!isEmpty(str)) {
+            if (start <= 0 || symbolNumber <= 0) {
+                return str;
+            }
+            // 获取数据长度
+            int length = str.length();
+            // 如果数据小于 start 位则直接返回
+            if (length <= start) {
+                return str;
+            } else { // 大于 start 位
+                StringBuilder builder = new StringBuilder();
+                builder.append(str.substring(0, start));
+                int len = length - start - symbolNumber;
+                // 如果超出总长度, 则进行控制
+                if (len <= 0) { // 表示后面的全部转换
+                    len = length - start;
+                } else { // 需要裁剪的数量
+                    len = symbolNumber;
+                }
+                // 进行遍历保存
+                for (int i = 0; i < len; i++) {
+                    builder.append(symbol);
+                }
+                builder.append(str.substring(start + len, length));
+                return builder.toString();
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 裁剪内容, 设置符号处理
+     * @param str               待处理字符串
+     * @param frontRetainLength 前面保留的长度
+     * @param rearRetainLength  后面保留的长度
+     * @param symbol            转换符号
+     * @return 处理后的字符串
+     */
+    public static String subSetSymbol(final String str, final int frontRetainLength, final int rearRetainLength, final String symbol) {
+        if (str != null) {
+            try {
+                // 截取前面需保留的内容
+                String startStr = str.substring(0, frontRetainLength);
+                // 截取后面需保留的内容
+                String endStr = str.substring(str.length() - rearRetainLength);
+                // 特殊符号长度
+                int symbolLength = str.length() - (frontRetainLength + rearRetainLength);
+                if (symbolLength >= 1) {
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < symbolLength; i++) {
+                        builder.append(symbol);
+                    }
+                    return startStr + builder.toString() + endStr;
+                }
+                return startStr + endStr;
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "subSetSymbol");
+            }
+        }
+        return null;
+    }
+
+    // ==================
+    // = 替换、截取操作 =
+    // ==================
+
+    /**
+     * 裁剪字符串
+     * @param str      需要裁剪的字符串
+     * @param endIndex 结束裁剪的位置
+     * @return 裁剪后的字符串
+     */
+    public static String substring(final String str, final int endIndex) {
+        return substring(str, 0, endIndex, true);
+    }
+
+    /**
+     * 裁剪字符串
+     * @param str      需要裁剪的字符串
+     * @param endIndex 结束裁剪的位置
+     * @param isReturn 开始位置超过限制是否返回内容
+     * @return 裁剪后的字符串
+     */
+    public static String substring(final String str, final int endIndex, final boolean isReturn) {
+        return substring(str, 0, endIndex, isReturn);
+    }
+
+    /**
+     * 裁剪字符串
+     * @param str        需要裁剪的字符串
+     * @param beginIndex 开始裁剪的位置
+     * @param endIndex   结束裁剪的位置
+     * @param isReturn   开始位置超过限制是否返回内容
+     * @return 裁剪后的字符串
+     */
+    public static String substring(final String str, final int beginIndex, final int endIndex, final boolean isReturn) {
+        if (!isEmpty(str) && beginIndex >= 0 && endIndex >= 0 && endIndex >= beginIndex) {
+            // 获取数据长度
+            int len = length(str);
+            // 防止超过限制
+            if (beginIndex > len) {
+                return isReturn ? str : "";
+            }
+            // 防止超过限制
+            return str.substring(beginIndex, (endIndex >= len) ? len : endIndex);
+        }
+        return isReturn ? str : "";
+    }
+
+    // =
+
+    /**
+     * 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
+     * * 如 _____a_a_a_a________ 传入 _ 等于 ____a_a_a_a____
+     * @param str    待处理字符串
+     * @param suffix 替换符号字符串
+     * @return 处理后的字符串
+     */
+    public static String toReplaceSEWith(final String str, final String suffix) {
+        return toReplaceSEWith(str, suffix, "");
+    }
+
+    /**
+     * 替换字符串中符合 特定标记字符的 startsWith - endsWith
+     * 如 _____a_a_a_a________ 传入 _, c 等于 c____a_a_a_a____c
+     * @param str    待处理字符串
+     * @param suffix 替换匹配内容
+     * @param value  需要替换的内容
+     * @return 处理后的字符串
+     */
+    public static String toReplaceSEWith(final String str, final String suffix, final String value) {
+        try {
+            if (isEmpty(str) || isEmpty(suffix) || isEmpty(value) || suffix.equals(value))
+                return str;
+            // 获取编辑内容长度
+            int suffixLength = suffix.length();
+            // 保存新的 Builder 中, 减少内存开销
+            StringBuilder builder = new StringBuilder(str);
+            // 判断是否在最头部
+            if (builder.indexOf(suffix) == 0) {
+                builder.delete(0, suffixLength);
+                // 追加内容
+                builder.insert(0, value);
+            }
+            // 获取尾部的位置
+            int lastIndexOf = -1;
+            // 数据长度
+            int bufLength = -1;
+            // 判断是否在最尾部
+            if ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - suffixLength)) {
+                builder.delete(lastIndexOf, bufLength);
+                // 追加内容
+                builder.insert(lastIndexOf, value);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toReplaceSEWith");
+        }
+        return str;
+    }
+
+    // =
+
+    /**
+     * 替换开头字符串
+     * @param str    待处理字符串
+     * @param prefix 开头匹配字符串
+     * @return 处理后的字符串
+     */
+    public static String toReplaceStartsWith(final String str, final String prefix) {
+        return toReplaceStartsWith(str, prefix, "");
+    }
+
+    /**
+     * 替换开头字符串
+     * @param str         待处理字符串
+     * @param prefix      开头匹配字符串
+     * @param startAppend 开头追加的内容
+     * @return 处理后的字符串
+     */
+    public static String toReplaceStartsWith(final String str, final String prefix, final String startAppend) {
+        if (!isEmpty(str) && !isEmpty(prefix)) {
+            try {
+                if (str.startsWith(prefix)) {
+                    return toCheckValue(startAppend) + str.substring(prefix.length());
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "toReplaceStartsWith");
+            }
+        }
+        return str;
+    }
+
+    /**
+     * 替换结尾字符串
+     * @param str    待处理字符串
+     * @param suffix 结尾匹配字符串
+     * @return 处理后的字符串
+     */
+    public static String toReplaceEndsWith(final String str, final String suffix) {
+        return toReplaceEndsWith(str, suffix, "");
+    }
+
+    /**
+     * 替换结尾字符串
+     * @param str    待处理字符串
+     * @param suffix 结尾匹配字符串
+     * @param value  需要替换的内容
+     * @return 处理后的字符串
+     */
+    public static String toReplaceEndsWith(final String str, final String suffix, final String value) {
+        if (!isEmpty(str) && !isEmpty(suffix)) {
+            try {
+                if (str.endsWith(suffix)) {
+                    return str.substring(0, str.length() - suffix.length()) + value;
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "toReplaceEndsWith");
+            }
+        }
+        return str;
+    }
+
+    // =
+
+    /**
+     * 这个方法功能主要把字符符合标记的 头部和尾部都替换成 ""
+     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a
+     * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf)
+     * @param str    待处理字符串
+     * @param suffix 匹配判断字符串
+     * @return 处理后的字符串
+     */
+    public static String toClearSEWiths(final String str, final String suffix) {
+        if (isEmpty(str) || isEmpty(suffix)) return str;
+        try {
+            // 获取编辑内容长度
+            int suffixLength = suffix.length();
+            // 保存新的 Builder 中, 减少内存开销
+            StringBuilder builder = new StringBuilder(str);
+            // 进行循环判断 - 属于最前面的, 才进行处理
+            while (builder.indexOf(suffix) == 0) {
+                builder.delete(0, suffixLength);
+            }
+            // 获取尾部的位置
+            int lastIndexOf = -1;
+            // 数据长度
+            int bufLength = -1;
+            // 进行循环判断 - 属于最后面的, 才进行处理
+            while ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - suffixLength)) {
+                builder.delete(lastIndexOf, bufLength);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toClearSEWiths");
+        }
+        return str;
+    }
+
+    /**
+     * 清空属于特定字符串开头的字段
+     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a_____
+     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
+     * @param str    待处理字符串
+     * @param suffix 匹配判断字符串
+     * @return 处理后的字符串
+     */
+    public static String toClearStartsWith(final String str, final String suffix) {
+        if (isEmpty(str) || isEmpty(suffix)) return str;
+        try {
+            // 获取编辑内容长度
+            int suffixLength = suffix.length();
+            // 保存新的 Builder 中, 减少内存开销
+            StringBuilder builder = new StringBuilder(str);
+            // 进行循环判断 - 属于最前面的, 才进行处理
+            while (builder.indexOf(suffix) == 0) {
+                builder.delete(0, suffixLength);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toClearStartsWith");
+        }
+        return str;
+    }
+
+    /**
+     * 清空属于特定字符串结尾的字段
+     * 如 _____a_a_a_a________ 传入 _ 等于 _____a_a_a_a
+     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
+     * @param str    待处理字符串
+     * @param suffix 匹配判断字符串
+     * @return 处理后的字符串
+     */
+    public static String toClearEndsWith(final String str, final String suffix) {
+        if (isEmpty(str) || isEmpty(suffix)) return str;
+        try {
+            // 获取编辑内容长度
+            int suffixLength = suffix.length();
+            // 保存新的 Builder 中, 减少内存开销
+            StringBuilder builder = new StringBuilder(str);
+            // 获取最后一位位置
+            int bufLength = 0;
+            // 进行循环判断 - 属于最前面的, 才进行处理
+            while (builder.lastIndexOf(suffix) == ((bufLength = builder.length()) - suffixLength)) {
+                builder.delete(bufLength - suffixLength, bufLength);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toClearEndsWith");
+        }
+        return str;
+    }
+
+    // =
+
+    /**
+     * 替换字符串
+     * @param str     待处理字符串
+     * @param suffix  匹配判断字符串
+     * @param replace 替换的内容
+     * @return 处理后的字符串
+     */
+    public static String replaceStr(final String str, final String suffix, final String replace) {
+        // 如果替换的内容或者判断的字符串为 null, 则直接跳过
+        if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
+            try {
+                return str.replaceAll(suffix, replace);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "replaceStr");
+            }
+        }
+        return str;
+    }
+
+    /**
+     * 替换字符串
+     * @param str     待处理字符串
+     * @param suffix  匹配判断字符串
+     * @param replace 替换的内容
+     * @return 处理后的字符串, 替换失败则返回 null
+     */
+    public static String replaceStrToNull(final String str, final String suffix, final String replace) {
+        // 如果替换的内容或者判断的字符串为 null, 则直接跳过
+        if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
+            try {
+                return str.replaceAll(suffix, replace);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "replaceStrToNull");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 替换字符串
+     * @param str         内容
+     * @param suffixArys  匹配判断字符串数组
+     * @param replaceArys 准备替换的字符串数组
+     * @return 处理后的字符串
+     */
+    public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
+        // 防止数据为 null
+        if (str != null && suffixArys != null && replaceArys != null) {
+            String tempString = str;
+            // 替换的特殊字符串长度
+            int spCount = suffixArys.length;
+            // 替换的内容长度
+            int reCount = replaceArys.length;
+            // 相同才进行处理
+            if (spCount == reCount) {
+                // 遍历进行判断
+                for (int i = 0; i < spCount; i++) {
+                    // 进行替换字符串
+                    tempString = replaceStr(tempString, suffixArys[i], replaceArys[i]);
+                }
+                return tempString;
+            }
+        }
+        return null;
+    }
 }
