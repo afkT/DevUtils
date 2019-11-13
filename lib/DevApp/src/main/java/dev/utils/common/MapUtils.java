@@ -203,7 +203,6 @@ public final class MapUtils {
     public static <K, V> K getKeyByValue(final Map<K, V> map, final V value) {
         if (map != null) {
             try {
-                List<K> lists = new ArrayList<>();
                 // 进行遍历判断
                 Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
                 while (iterator.hasNext()) {
@@ -713,6 +712,7 @@ public final class MapUtils {
                             map.put(key, entry.getValue());
                         }
                     }
+                    return true;
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "putAll");
                 }
@@ -780,7 +780,7 @@ public final class MapUtils {
                 if (equals(value, map.get(key))) {
                     map.remove(key);
                 }
-                // return map.remove(key, value);
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "remove");
             }
@@ -802,6 +802,7 @@ public final class MapUtils {
                 for (K key : keys) {
                     map.remove(key);
                 }
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "removeToKeys");
             }
