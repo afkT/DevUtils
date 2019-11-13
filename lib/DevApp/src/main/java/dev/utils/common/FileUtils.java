@@ -164,9 +164,9 @@ public final class FileUtils {
             for (int i = 0, len = filePaths.length; i < len; i++) {
                 createFolder(filePaths[i]);
             }
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -179,9 +179,9 @@ public final class FileUtils {
             for (int i = 0, len = files.length; i < len; i++) {
                 createFolder(files[i]);
             }
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     // =
@@ -543,7 +543,7 @@ public final class FileUtils {
      * @return 文件编码格式
      */
     public static String getFileCharsetSimple(final File file) {
-        if (file == null) return null;
+        if (!isFileExists(file)) return null;
         int pos = 0;
         InputStream is = null;
         try {
@@ -581,7 +581,7 @@ public final class FileUtils {
      * @return 文件行数
      */
     public static int getFileLines(final File file) {
-        if (file == null) return 0;
+        if (!isFileExists(file)) return 0;
         int lineCount = 1;
         InputStream is = null;
         try {
@@ -702,8 +702,9 @@ public final class FileUtils {
      */
     public static long getFileLengthNetwork(final String httpUri) {
         if (isSpace(httpUri)) return 0L;
-        boolean isURL = httpUri.toLowerCase().matches("http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?");
-        if (isURL) {
+        // 判断是否网络资源
+        boolean isHttpRes = httpUri.toLowerCase().startsWith("http:") || httpUri.toLowerCase().startsWith("https:");
+        if (isHttpRes) {
             try {
                 HttpURLConnection conn = (HttpURLConnection) new URL(httpUri).openConnection();
                 conn.setRequestProperty("Accept-Encoding", "identity");
@@ -2176,7 +2177,7 @@ public final class FileUtils {
      * @return {@code true} success, {@code false} fail
      */
     private static boolean writeFileFromIS(final File file, final InputStream inputStream, final boolean append) {
-        if (!createOrExistsFile(file) || inputStream == null) return false;
+        if (inputStream == null || !createOrExistsFile(file)) return false;
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
