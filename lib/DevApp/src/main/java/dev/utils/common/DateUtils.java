@@ -811,6 +811,7 @@ public final class DateUtils {
                 }
             }
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "secToTimeRetain");
         }
         return null;
     }
@@ -857,6 +858,7 @@ public final class DateUtils {
                 }
             }
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "convertTimeArys");
         }
         return null;
     }

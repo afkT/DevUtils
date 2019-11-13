@@ -336,8 +336,6 @@ public final class FileRecordUtils {
                 if (!file.exists()) {
                     // 允许创建多级目录
                     return file.mkdirs();
-                    // 这个无法创建多级目录
-                    // rootFile.mkdir();
                 }
                 return true;
             } catch (Exception e) {

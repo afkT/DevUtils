@@ -200,24 +200,6 @@ public final class ConvertUtils {
                         } else if (clazz.isAssignableFrom(short[].class)) {
                             return Arrays.toString((short[]) object);
                         }
-//                        // = 基本类型封装 =
-//                        if (clazz.isAssignableFrom(Integer[].class)) {
-//                            return Arrays.toString((Integer[]) object);
-//                        } else if (clazz.isAssignableFrom(Boolean[].class)) {
-//                            return Arrays.toString((Boolean[]) object);
-//                        } else if (clazz.isAssignableFrom(Long[].class)) {
-//                            return Arrays.toString((Long[]) object);
-//                        } else if (clazz.isAssignableFrom(Double[].class)) {
-//                            return Arrays.toString((Double[]) object);
-//                        } else if (clazz.isAssignableFrom(Float[].class)) {
-//                            return Arrays.toString((Float[]) object);
-//                        } else if (clazz.isAssignableFrom(Byte[].class)) {
-//                            return Arrays.toString((Byte[]) object);
-//                        } else if (clazz.isAssignableFrom(Character[].class)) {
-//                            return Arrays.toString((Character[]) object);
-//                        } else if (clazz.isAssignableFrom(Short[].class)) {
-//                            return Arrays.toString((Short[]) object);
-//                        }
                         return Arrays.toString((Object[]) object);
                     }
                     return object.toString();
