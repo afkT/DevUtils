@@ -141,7 +141,7 @@ public final class DevCommonUtils {
         if (str != null && number >= 1) {
             int saltLen = (salts != null) ? salts.length : 0;
             // 临时字符串
-            String dataTemp = str;
+            String tempString = str;
             // 判断是否大写
             if (isUppercase) {
                 // 循环加密
@@ -149,12 +149,12 @@ public final class DevCommonUtils {
                     if (saltLen > i) {
                         String salt = salts[i];
                         if (salt != null) {
-                            dataTemp = md5Upper(dataTemp + salt);
+                            tempString = md5Upper(tempString + salt);
                         } else {
-                            dataTemp = md5Upper(dataTemp);
+                            tempString = md5Upper(tempString);
                         }
                     } else {
-                        dataTemp = md5Upper(dataTemp);
+                        tempString = md5Upper(tempString);
                     }
                 }
             } else {
@@ -163,16 +163,16 @@ public final class DevCommonUtils {
                     if (saltLen > i) {
                         String salt = salts[i];
                         if (salt != null) {
-                            dataTemp = md5(dataTemp + salt);
+                            tempString = md5(tempString + salt);
                         } else {
-                            dataTemp = md5(dataTemp);
+                            tempString = md5(tempString);
                         }
                     } else {
-                        dataTemp = md5(dataTemp);
+                        tempString = md5(tempString);
                     }
                 }
             }
-            return dataTemp;
+            return tempString;
         }
         return str;
     }
