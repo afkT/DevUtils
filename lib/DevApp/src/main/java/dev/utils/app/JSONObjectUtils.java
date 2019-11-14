@@ -414,4 +414,110 @@ public final class JSONObjectUtils {
         }
         return null;
     }
+
+    // =
+
+    /**
+     * 获取 JSONObject
+     * @param json JSON String
+     * @return {@link JSONObject}
+     */
+    public static JSONObject getJSONObject(final String json) {
+        try {
+            return new JSONObject(json);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getJSONObject");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 JSONArray
+     * @param json JSON String
+     * @return {@link JSONArray}
+     */
+    public static JSONArray getJSONArray(final String json) {
+        try {
+            return new JSONArray(json);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getJSONArray");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取指定 key 数据
+     * @param jsonObject {@link JSONObject}
+     * @param key        Key
+     * @param <T>        泛型
+     * @return 指定 key 数据
+     */
+    public static <T> T get(final JSONObject jsonObject, final String key) {
+        if (jsonObject != null && key != null) {
+            try {
+                return (T) jsonObject.get(key);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "get - JSONObject");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取指定 key 数据
+     * @param jsonObject {@link JSONObject}
+     * @param key        Key
+     * @param <T>        泛型
+     * @return 指定 key 数据
+     */
+    public static <T> T opt(final JSONObject jsonObject, final String key) {
+        if (jsonObject != null && key != null) {
+            try {
+                return (T) jsonObject.opt(key);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "opt - JSONObject");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取指定索引数据
+     * @param jsonArray {@link JSONArray}
+     * @param index     索引
+     * @param <T>       泛型
+     * @return 指定 key 数据
+     */
+    public static <T> T get(final JSONArray jsonArray, final int index) {
+        if (jsonArray != null && index >= 0) {
+            try {
+                return (T) jsonArray.get(index);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "get - JSONArray");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取指定索引数据
+     * @param jsonArray {@link JSONArray}
+     * @param index     索引
+     * @param <T>       泛型
+     * @return 指定 key 数据
+     */
+    public static <T> T opt(final JSONArray jsonArray, final int index) {
+        if (jsonArray != null && index >= 0) {
+            try {
+                return (T) jsonArray.opt(index);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "opt - JSONArray");
+            }
+        }
+        return null;
+    }
 }
