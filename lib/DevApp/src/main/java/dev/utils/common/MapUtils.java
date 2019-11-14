@@ -1204,7 +1204,7 @@ public final class MapUtils {
     private static <T> T[] toArrayT(final Collection<T> collection) {
         if (collection != null) {
             try {
-                return new CollectionUtils.ArrayWithTypeToken<T>(collection).create();
+                return new ArrayWithTypeToken<T>(collection).create();
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toArrayT");
             }
