@@ -448,6 +448,70 @@ public final class JSONObjectUtils {
     // =
 
     /**
+     * 获取 JSONObject
+     * @param jsonObject {@link JSONObject}
+     * @param key        Key
+     * @return {@link JSONObject}
+     */
+    public static JSONObject getJSONObject(final JSONObject jsonObject, final String key) {
+        try {
+            return jsonObject.getJSONObject(key);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getJSONObject");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 JSONArray
+     * @param jsonObject {@link JSONObject}
+     * @param key        Key
+     * @return {@link JSONArray}
+     */
+    public static JSONArray getJSONArray(final JSONObject jsonObject, final String key) {
+        try {
+            return jsonObject.getJSONArray(key);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getJSONArray");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 JSONObject
+     * @param jsonArray {@link JSONArray}
+     * @param index     索引
+     * @return {@link JSONObject}
+     */
+    public static JSONObject getJSONObject(final JSONArray jsonArray, final int index) {
+        try {
+            return jsonArray.getJSONObject(index);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getJSONObject");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 JSONArray
+     * @param jsonArray {@link JSONArray}
+     * @param index     索引
+     * @return {@link JSONArray}
+     */
+    public static JSONArray getJSONArray(final JSONArray jsonArray, final int index) {
+        try {
+            return jsonArray.getJSONArray(index);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getJSONArray");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * 获取指定 key 数据
      * @param jsonObject {@link JSONObject}
      * @param key        Key
