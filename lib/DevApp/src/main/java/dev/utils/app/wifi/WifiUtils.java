@@ -97,8 +97,7 @@ public final class WifiUtils {
         // 如果没有打开 wifi, 才进行打开
         if (!isOpenWifi()) {
             try {
-                mWifiManager.setWifiEnabled(true);
-                return true;
+                return mWifiManager.setWifiEnabled(true);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "openWifi");
             }
@@ -115,8 +114,7 @@ public final class WifiUtils {
         // 如果已经打开了 wifi, 才进行关闭
         if (isOpenWifi()) {
             try {
-                mWifiManager.setWifiEnabled(false);
-                return true;
+                return mWifiManager.setWifiEnabled(false);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeWifi");
             }
@@ -135,8 +133,7 @@ public final class WifiUtils {
     @SuppressLint("MissingPermission")
     public boolean toggleWifiEnabled() {
         try {
-            mWifiManager.setWifiEnabled(!isOpenWifi());
-            return true;
+            return mWifiManager.setWifiEnabled(!isOpenWifi());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "toggleWifiEnabled");
         }
@@ -615,8 +612,7 @@ public final class WifiUtils {
                     }
                 }
                 // 保存操作
-                mWifiManager.saveConfiguration();
-                return true;
+                return mWifiManager.saveConfiguration();
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "delWifiConfig");

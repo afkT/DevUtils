@@ -1111,11 +1111,10 @@ public final class ImageUtils {
     public static Drawable setBounds(final Drawable drawable) {
         try {
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-            return drawable;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setBounds");
         }
-        return null;
+        return drawable;
     }
 
     /**
@@ -1141,11 +1140,10 @@ public final class ImageUtils {
     public static Drawable setBounds(final Drawable drawable, final int left, final int top, final int right, final int bottom) {
         try {
             drawable.setBounds(left, top, right, bottom);
-            return drawable;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setBounds");
         }
-        return null;
+        return drawable;
     }
 
     // ======================
