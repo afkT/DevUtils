@@ -114,7 +114,6 @@ final class DevCacheManager {
             Long currentTime = System.currentTimeMillis();
             file.setLastModified(currentTime);
             mLastUsageDateMaps.put(file, currentTime);
-            return file;
         }
         return file;
     }

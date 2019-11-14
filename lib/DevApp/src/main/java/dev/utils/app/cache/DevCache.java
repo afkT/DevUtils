@@ -164,10 +164,14 @@ public final class DevCache {
      * @return {@link DevCache} 缓存工具类对象
      */
     private DevCache(final File cacheDir, final long maxSize, final int maxCount) {
+        Exception e = null;
         if (cacheDir == null) {
-            new Exception("cacheDir is null");
+            e = new Exception("cacheDir is null");
         } else if (!cacheDir.exists() && !cacheDir.mkdirs()) {
-            new Exception("can't make dirs in " + cacheDir.getAbsolutePath());
+            e = new Exception("can't make dirs in " + cacheDir.getAbsolutePath());
+        }
+        if (e != null) {
+            LogPrintUtils.eTag(TAG, e, "private DevCache()");
         }
         mCache = new DevCacheManager(cacheDir, maxSize, maxCount);
     }

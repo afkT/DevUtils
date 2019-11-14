@@ -155,7 +155,6 @@ public final class CameraAssist {
         if (mPreviewSize == null) {
             // 获取预览大小
             mPreviewSize = mCameraSizeAssist.getPreviewSize();
-            return mPreviewSize;
         }
         return mPreviewSize;
     }

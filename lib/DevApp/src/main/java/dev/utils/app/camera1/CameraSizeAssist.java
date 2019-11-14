@@ -161,7 +161,7 @@ public final class CameraSizeAssist {
                 if (parameters == null) {
                     parameters = mCamera.getParameters();
                 }
-                // 设置预览大小
+                // 设置拍照大小
                 parameters.setPictureSize(pictureSize.width, pictureSize.height);
 //                // 设置拍照输出格式
 //                parameters.setPictureFormat(PixelFormat.JPEG);
