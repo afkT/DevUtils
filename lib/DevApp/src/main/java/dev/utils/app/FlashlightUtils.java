@@ -6,7 +6,6 @@ import android.hardware.Camera;
 
 import java.io.IOException;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**

@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
 
@@ -381,7 +380,7 @@ public final class ImageUtils {
      */
     public static Bitmap decodeResource(@DrawableRes final int resId, final BitmapFactory.Options options) {
         try {
-            return BitmapFactory.decodeResource(getResources(), resId, options);
+            return BitmapFactory.decodeResource(ResourceUtils.getResources(), resId, options);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "decodeResource");
             return null;
@@ -797,7 +796,7 @@ public final class ImageUtils {
      */
     public static Bitmap getBitmap(@DrawableRes final int resId, final int maxWidth, final int maxHeight) {
         try {
-            Resources resources = getResources();
+            Resources resources = ResourceUtils.getResources();
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeResource(resources, resId, options);
@@ -1219,23 +1218,6 @@ public final class ImageUtils {
                 }
             }
         }
-    }
-
-    // =================
-    // = ResourceUtils =
-    // =================
-
-    /**
-     * 获取 Resources
-     * @return {@link Resources}
-     */
-    private static Resources getResources() {
-        try {
-            return DevUtils.getContext().getResources();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getResources");
-        }
-        return null;
     }
 
     // ===============

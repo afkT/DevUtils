@@ -548,11 +548,39 @@ public final class ResourceUtils {
      * @param fileName 文件名
      * @return {@link InputStream}
      */
-    public static InputStream openAssetsResource(final String fileName) {
+    public static InputStream open(final String fileName) {
         try {
             return DevUtils.getContext().getAssets().open(fileName);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openAssetsResource");
+            LogPrintUtils.eTag(TAG, e, "open");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 AssetManager 指定资源 AssetFileDescriptor
+     * @param fileName 文件名
+     * @return {@link AssetFileDescriptor}
+     */
+    public static AssetFileDescriptor openFd(final String fileName) {
+        try {
+            return DevUtils.getContext().getAssets().openFd(fileName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openFd");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 AssetManager 指定资源 AssetFileDescriptor
+     * @param fileName 文件名
+     * @return {@link AssetFileDescriptor}
+     */
+    public static AssetFileDescriptor openNonAssetFd(final String fileName) {
+        try {
+            return DevUtils.getContext().getAssets().openNonAssetFd(fileName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openNonAssetFd");
         }
         return null;
     }
