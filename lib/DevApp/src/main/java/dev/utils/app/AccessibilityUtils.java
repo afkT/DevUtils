@@ -65,7 +65,7 @@ public final class AccessibilityUtils {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility() {
-        return checkAccessibility(AppUtils.getAppPackageName());
+        return checkAccessibility(AppUtils.getPackageName());
     }
 
     /**

@@ -93,11 +93,11 @@ public final class AppUtils {
      * 获取 APP 包名
      * @return APP 包名
      */
-    public static String getAppPackageName() {
+    public static String getPackageName() {
         try {
             return DevUtils.getContext().getPackageName();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppPackageName");
+            LogPrintUtils.eTag(TAG, e, "getPackageName");
         }
         return null;
     }
@@ -107,7 +107,7 @@ public final class AppUtils {
      * @return {@link Drawable}
      */
     public static Drawable getAppIcon() {
-        return getAppIcon(getAppPackageName());
+        return getAppIcon(AppUtils.getPackageName());
     }
 
     /**
@@ -132,7 +132,7 @@ public final class AppUtils {
      * @return APP 应用名
      */
     public static String getAppName() {
-        return getAppName(getAppPackageName());
+        return getAppName(AppUtils.getPackageName());
     }
 
     /**
@@ -157,7 +157,7 @@ public final class AppUtils {
      * @return APP versionName
      */
     public static String getAppVersionName() {
-        return getAppVersionName(getAppPackageName());
+        return getAppVersionName(AppUtils.getPackageName());
     }
 
     /**
@@ -181,7 +181,7 @@ public final class AppUtils {
      * @return APP versionCode
      */
     public static int getAppVersionCode() {
-        return getAppVersionCode(getAppPackageName());
+        return getAppVersionCode(AppUtils.getPackageName());
     }
 
     /**
@@ -205,7 +205,7 @@ public final class AppUtils {
      * @return APP 安装包路径
      */
     public static String getAppPath() {
-        return getAppPath(getAppPackageName());
+        return getAppPath(AppUtils.getPackageName());
     }
 
     /**
@@ -232,7 +232,7 @@ public final class AppUtils {
      * @return {@link Signature} 数组
      */
     public static Signature[] getAppSignature() {
-        return getAppSignature(getAppPackageName());
+        return getAppSignature(AppUtils.getPackageName());
     }
 
     /**
@@ -259,7 +259,7 @@ public final class AppUtils {
      * @return APP 签名 MD5 值
      */
     public static String getAppSignatureMD5() {
-        return getAppSignatureMD5(getAppPackageName());
+        return getAppSignatureMD5(AppUtils.getPackageName());
     }
 
     /**
@@ -276,7 +276,7 @@ public final class AppUtils {
      * @return APP 签名 SHA1 值
      */
     public static String getAppSignatureSHA1() {
-        return getAppSignatureSHA1(getAppPackageName());
+        return getAppSignatureSHA1(AppUtils.getPackageName());
     }
 
     /**
@@ -293,7 +293,7 @@ public final class AppUtils {
      * @return APP 签名 SHA256 值
      */
     public static String getAppSignatureSHA256() {
-        return getAppSignatureSHA256(getAppPackageName());
+        return getAppSignatureSHA256(AppUtils.getPackageName());
     }
 
     /**
@@ -330,7 +330,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppDebug() {
-        return isAppDebug(getAppPackageName());
+        return isAppDebug(AppUtils.getPackageName());
     }
 
     /**
@@ -354,7 +354,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppRelease() {
-        return isAppRelease(getAppPackageName());
+        return isAppRelease(AppUtils.getPackageName());
     }
 
     /**
@@ -380,7 +380,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppSystem() {
-        return isAppSystem(getAppPackageName());
+        return isAppSystem(AppUtils.getPackageName());
     }
 
     /**
@@ -405,7 +405,7 @@ public final class AppUtils {
      */
     @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
     public static boolean isAppForeground() {
-        return isAppForeground(getAppPackageName());
+        return isAppForeground(AppUtils.getPackageName());
     }
 
     /**
@@ -742,7 +742,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings() {
-        return launchAppDetailsSettings(getAppPackageName());
+        return launchAppDetailsSettings(AppUtils.getPackageName());
     }
 
     /**
@@ -767,7 +767,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetails(final String marketPkg) {
-        return launchAppDetails(getAppPackageName(), marketPkg);
+        return launchAppDetails(AppUtils.getPackageName(), marketPkg);
     }
 
     /**

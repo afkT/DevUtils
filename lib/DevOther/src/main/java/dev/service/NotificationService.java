@@ -145,7 +145,7 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotificationListenerEnabled() {
-        return isNotificationListenerEnabled(AppUtils.getAppPackageName());
+        return isNotificationListenerEnabled(AppUtils.getPackageName());
     }
 
     /**
