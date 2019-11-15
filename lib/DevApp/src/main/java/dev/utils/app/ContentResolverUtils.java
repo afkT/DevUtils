@@ -60,7 +60,7 @@ public final class ContentResolverUtils {
         if (file != null) {
             try {
                 // 添加到相册
-                MediaStore.Images.Media.insertImage(DevUtils.getContext().getContentResolver(),
+                MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(),
                         file.getAbsolutePath(), TextUtils.isEmpty(fileName) ? file.getName() : fileName, null);
                 // 通知图库扫描更新
                 if (isNotify) notifyMediaStore(file);
@@ -93,7 +93,7 @@ public final class ContentResolverUtils {
     public static boolean insertIntoMediaStore(final File file, final long createTime, final boolean isVideo, final String mimeType) {
         if (file != null && !TextUtils.isEmpty(mimeType)) {
             try {
-                ContentResolver resolver = DevUtils.getContext().getContentResolver();
+                ContentResolver resolver = ResourceUtils.getContentResolver();
                 // 插入时间
                 long insertTime = createTime;
                 // 防止创建时间为 null

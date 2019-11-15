@@ -11,7 +11,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -66,7 +65,7 @@ public final class AccessibilityUtils {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility() {
-        return checkAccessibility(DevUtils.getContext().getPackageName());
+        return checkAccessibility(AppUtils.getAppPackageName());
     }
 
     /**
@@ -82,7 +81,7 @@ public final class AccessibilityUtils {
         // 判断辅助功能是否开启
         if (!AccessibilityUtils.isAccessibilitySettingsOn(packageName)) {
             // 跳转至辅助功能设置页面
-            DevUtils.getContext().startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            AppUtils.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
             return false;
         }
         return true;
@@ -98,13 +97,13 @@ public final class AccessibilityUtils {
         // 无障碍功能开启状态
         int accessibilityEnabled = 0;
         try {
-            accessibilityEnabled = Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
+            accessibilityEnabled = Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
         } catch (Settings.SettingNotFoundException e) {
             LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ACCESSIBILITY_ENABLED");
         }
         if (accessibilityEnabled == 1) {
             try {
-                String services = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+                String services = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
                 if (services != null) {
                     return services.toLowerCase().contains(packageName.toLowerCase());
                 }

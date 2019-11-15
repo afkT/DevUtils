@@ -9,6 +9,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AccessibilityUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.app.ResourceUtils;
 
 /**
  * detail: 无障碍功能监听服务
@@ -174,13 +175,13 @@ public final class AccessibilityListenerService extends AccessibilityService {
         // 无障碍功能开启状态
         int accessibilityEnabled = 0;
         try {
-            accessibilityEnabled = Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
+            accessibilityEnabled = Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
         } catch (Settings.SettingNotFoundException e) {
             LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ACCESSIBILITY_ENABLED");
         }
         if (accessibilityEnabled == 1) {
             try {
-                String services = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+                String services = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
                 if (services != null) {
                     return services.toLowerCase().contains(packageName.toLowerCase());
                 }

@@ -94,7 +94,12 @@ public final class AppUtils {
      * @return APP 包名
      */
     public static String getAppPackageName() {
-        return DevUtils.getContext().getPackageName();
+        try {
+            return DevUtils.getContext().getPackageName();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAppPackageName");
+        }
+        return null;
     }
 
     /**

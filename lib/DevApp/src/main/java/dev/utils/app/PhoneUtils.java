@@ -438,7 +438,7 @@ public final class PhoneUtils {
      */
     public static String getAndroidId() {
         try {
-            return Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+            return Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAndroidId");
         }
@@ -658,7 +658,7 @@ public final class PhoneUtils {
         Cursor cursor = null;
         try {
             // 1. 获取内容解析者
-            ContentResolver resolver = DevUtils.getContext().getContentResolver();
+            ContentResolver resolver = ResourceUtils.getContentResolver();
             // 2. 获取内容提供者的地址 com.android.contacts
             // raw_contacts 表的地址 raw_contacts
             // view_data 表的地址 data
@@ -724,7 +724,7 @@ public final class PhoneUtils {
     public static List<Map<String, String>> getAllContactInfo2() {
         List<Map<String, String>> list = new ArrayList<>();
         try {
-            Cursor cursor = DevUtils.getContext().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            Cursor cursor = ResourceUtils.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                     null, null, null, null);
             while (cursor.moveToNext()) {
                 Map<String, String> map = new HashMap<>();
@@ -758,7 +758,7 @@ public final class PhoneUtils {
         try {
             // 1. 获取短信
             // 1.1 获取内容解析者
-            ContentResolver resolver = DevUtils.getContext().getContentResolver();
+            ContentResolver resolver = ResourceUtils.getContentResolver();
             // 1.2 获取内容提供者地址 sms, sms 表的地址 null 不写
             // 1.3 获取查询路径
             Uri uri = Uri.parse("content://sms");

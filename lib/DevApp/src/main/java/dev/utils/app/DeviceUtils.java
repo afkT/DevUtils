@@ -393,7 +393,7 @@ public final class DeviceUtils {
     public static String getAndroidId() {
         String androidId = null;
         try {
-            androidId = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+            androidId = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAndroidId");
         }
@@ -487,7 +487,7 @@ public final class DeviceUtils {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean isAdbEnabled() {
         try {
-            return Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0;
+            return Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAdbEnabled");
         }

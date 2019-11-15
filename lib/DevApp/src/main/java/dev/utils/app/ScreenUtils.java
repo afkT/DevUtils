@@ -567,7 +567,7 @@ public final class ScreenUtils {
     @RequiresPermission(android.Manifest.permission.WRITE_SETTINGS)
     public static boolean setSleepDuration(final int duration) {
         try {
-            Settings.System.putInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);
+            Settings.System.putInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSleepDuration");
@@ -581,7 +581,7 @@ public final class ScreenUtils {
      */
     public static int getSleepDuration() {
         try {
-            return Settings.System.getInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT);
+            return Settings.System.getInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSleepDuration");
             return -1;

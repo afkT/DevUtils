@@ -35,7 +35,7 @@ public final class BrightnessUtils {
      */
     public static boolean isAutoBrightnessEnabled() {
         try {
-            int mode = Settings.System.getInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE);
+            int mode = Settings.System.getInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE);
             return mode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAutoBrightnessEnabled");
@@ -62,7 +62,7 @@ public final class BrightnessUtils {
             return false;
         }
         try {
-            return Settings.System.putInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE,
+            return Settings.System.putInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE,
                     enabled ? Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC : Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setAutoBrightnessEnabled");
@@ -76,7 +76,7 @@ public final class BrightnessUtils {
      */
     public static int getBrightness() {
         try {
-            return Settings.System.getInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
+            return Settings.System.getInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBrightness");
             return 0;
@@ -102,7 +102,7 @@ public final class BrightnessUtils {
             return false;
         }
         try {
-            ContentResolver resolver = DevUtils.getContext().getContentResolver();
+            ContentResolver resolver = ResourceUtils.getContentResolver();
             boolean result = Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
             resolver.notifyChange(Settings.System.getUriFor("screen_brightness"), null);
             return result;
