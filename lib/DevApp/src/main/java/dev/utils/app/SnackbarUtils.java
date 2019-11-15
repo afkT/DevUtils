@@ -1536,7 +1536,7 @@ public final class SnackbarUtils {
         try {
             WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
             if (windowManager == null) {
-                return DevUtils.getContext().getResources().getDisplayMetrics().heightPixels;
+                return ResourceUtils.getDisplayMetrics().heightPixels;
             }
             Point point = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

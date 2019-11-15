@@ -36,7 +36,7 @@ public final class SizeUtils {
      */
     public static float dipConvertPxf(final float dpValue) {
         try {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, DevUtils.getContext().getResources().getDisplayMetrics());
+            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, ResourceUtils.getDisplayMetrics());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "dipConvertPxf");
         }
@@ -61,7 +61,7 @@ public final class SizeUtils {
      */
     public static float pxConvertDipf(final float pxValue) {
         try {
-            float scale = DevUtils.getContext().getResources().getDisplayMetrics().density;
+            float scale = ResourceUtils.getDisplayMetrics().density;
             return (pxValue / scale);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "pxConvertDipf");
@@ -87,7 +87,7 @@ public final class SizeUtils {
      */
     public static float spConvertPxf(final float spValue) {
         try {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, DevUtils.getContext().getResources().getDisplayMetrics());
+            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, ResourceUtils.getDisplayMetrics());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "spConvertPxf");
         }
@@ -112,7 +112,7 @@ public final class SizeUtils {
      */
     public static float pxConvertSpf(final float pxValue) {
         try {
-            float scale = DevUtils.getContext().getResources().getDisplayMetrics().scaledDensity;
+            float scale = ResourceUtils.getDisplayMetrics().scaledDensity;
             return (pxValue / scale);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "pxConvertSpf");
@@ -130,7 +130,7 @@ public final class SizeUtils {
      */
     public static float applyDimension(final int unit, final float value) {
         try {
-            return applyDimension(unit, value, DevUtils.getContext().getResources().getDisplayMetrics());
+            return applyDimension(unit, value, ResourceUtils.getDisplayMetrics());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "applyDimension");
         }

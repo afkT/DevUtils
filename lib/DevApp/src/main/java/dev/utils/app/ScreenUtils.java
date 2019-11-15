@@ -103,7 +103,7 @@ public final class ScreenUtils {
         try {
             WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
             if (windowManager == null) {
-                DisplayMetrics displayMetrics = DevUtils.getContext().getResources().getDisplayMetrics();
+                DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
                 return new int[]{displayMetrics.widthPixels, displayMetrics.heightPixels};
             }
             Point point = new Point();
@@ -127,7 +127,7 @@ public final class ScreenUtils {
         try {
             WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
             if (windowManager == null) {
-                DisplayMetrics displayMetrics = DevUtils.getContext().getResources().getDisplayMetrics();
+                DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
                 return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
             }
             Point point = new Point();

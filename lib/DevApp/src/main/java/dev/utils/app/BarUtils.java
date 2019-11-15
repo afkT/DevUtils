@@ -557,7 +557,7 @@ public final class BarUtils {
     public static int getActionBarHeight() {
         TypedValue tv = new TypedValue();
         if (DevUtils.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            return TypedValue.complexToDimensionPixelSize(tv.data, DevUtils.getContext().getResources().getDisplayMetrics());
+            return TypedValue.complexToDimensionPixelSize(tv.data, ResourceUtils.getDisplayMetrics());
         }
         return 0;
     }
