@@ -219,7 +219,7 @@ public final class ActivityUtils {
             Intent intent = new Intent(Intent.ACTION_MAIN, null);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             List<ResolveInfo> lists = packageManager.queryIntentActivities(intent, 0);
             for (ResolveInfo resolveinfo : lists) {
                 if (resolveinfo != null && resolveinfo.activityInfo != null) {
@@ -257,7 +257,7 @@ public final class ActivityUtils {
     public static Drawable getActivityIcon(final ComponentName componentName) {
         if (componentName == null) return null;
         try {
-            return DevUtils.getContext().getPackageManager().getActivityIcon(componentName);
+            return AppUtils.getPackageManager().getActivityIcon(componentName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivityIcon");
         }
@@ -287,7 +287,7 @@ public final class ActivityUtils {
     public static Drawable getActivityLogo(final ComponentName componentName) {
         if (componentName == null) return null;
         try {
-            return DevUtils.getContext().getPackageManager().getActivityLogo(componentName);
+            return AppUtils.getPackageManager().getActivityLogo(componentName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivityLogo");
         }
@@ -305,7 +305,7 @@ public final class ActivityUtils {
     public static String getActivityToLauncher(final String packageName) {
         if (packageName == null) return null;
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             // 获取对应的 PackageInfo
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
 
@@ -341,7 +341,7 @@ public final class ActivityUtils {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            return DevUtils.getContext().getPackageManager().resolveActivity(intent, 0);
+            return AppUtils.getPackageManager().resolveActivity(intent, 0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLauncherCategoryHomeToResolveInfo");
         }
@@ -866,7 +866,7 @@ public final class ActivityUtils {
      */
     public ActivityUtils restartApplication() {
         try {
-            Intent intent = DevUtils.getContext().getPackageManager().getLaunchIntentForPackage(AppUtils.getPackageName());
+            Intent intent = AppUtils.getPackageManager().getLaunchIntentForPackage(AppUtils.getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             DevUtils.getContext().startActivity(intent);
         } catch (Exception e) {

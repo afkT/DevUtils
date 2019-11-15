@@ -48,7 +48,7 @@ public final class AppInfoUtils {
      */
     public static PackageInfo getPackageInfoToPath(final String apkUri) {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
             // 设置 APK 位置信息
             ApplicationInfo appInfo = packageInfo.applicationInfo;
@@ -77,7 +77,7 @@ public final class AppInfoUtils {
      */
     public static PackageInfo getPackageInfo(final String packageName) {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             // 获取对应的 PackageInfo ( 原始的 PackageInfo 获取 signatures 等于 null, 需要这样获取 )
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             // 返回 APP 信息
@@ -205,7 +205,7 @@ public final class AppInfoUtils {
         // 防止为 null
         if (appType != null) {
             // 管理应用程序包
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             // 获取手机内所有应用
             List<PackageInfo> packlist = packageManager.getInstalledPackages(0);
             // 判断是否属于添加全部
@@ -275,7 +275,7 @@ public final class AppInfoUtils {
      */
     public static String[] getAppPermission(final String packageName) {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             return packageInfo.requestedPermissions;
         } catch (Exception e) {
@@ -292,7 +292,7 @@ public final class AppInfoUtils {
         try {
             StringBuilder builder = new StringBuilder();
             // =
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             String[] usesPermissionsArray = packageInfo.requestedPermissions;
             for (int i = 0; i < usesPermissionsArray.length; i++) {

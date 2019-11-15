@@ -6,6 +6,7 @@ import android.view.SurfaceHolder;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 摄像头辅助类
@@ -281,9 +282,7 @@ public final class CameraAssist {
      * @return {@code true} 打开, {@code false} 关闭
      */
     public boolean isFlashlightOn() {
-        if (mCamera == null) {
-            return false;
-        }
+        if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
         return Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
     }
@@ -293,7 +292,7 @@ public final class CameraAssist {
      * @return {@code true} 支持, {@code false} 不支持
      */
     public static boolean isFlashlightEnable() {
-        return DevUtils.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        return AppUtils.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
     }
 
     // ========

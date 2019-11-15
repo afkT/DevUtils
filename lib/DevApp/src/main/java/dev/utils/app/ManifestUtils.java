@@ -45,7 +45,7 @@ public final class ManifestUtils {
      */
     public static String getMetaData(final String packageName, final String metaKey) {
         try {
-            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             return appInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaData");
@@ -95,7 +95,7 @@ public final class ManifestUtils {
     public static String getMetaDataInActivity(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ActivityInfo activityInfo = DevUtils.getContext().getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
+            ActivityInfo activityInfo = AppUtils.getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
             return activityInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
@@ -145,7 +145,7 @@ public final class ManifestUtils {
     public static String getMetaDataInService(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ServiceInfo serviceInfo = DevUtils.getContext().getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
+            ServiceInfo serviceInfo = AppUtils.getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
             return serviceInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
@@ -195,7 +195,7 @@ public final class ManifestUtils {
     public static String getMetaDataInReceiver(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ActivityInfo receiverInfo = DevUtils.getContext().getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
+            ActivityInfo receiverInfo = AppUtils.getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
             return receiverInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
@@ -245,7 +245,7 @@ public final class ManifestUtils {
     public static String getMetaDataInProvider(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ProviderInfo providerInfo = DevUtils.getContext().getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
+            ProviderInfo providerInfo = AppUtils.getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
             return providerInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
@@ -261,7 +261,7 @@ public final class ManifestUtils {
      */
     public static String[] getAppVersion() {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(), PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
                 String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
@@ -280,7 +280,7 @@ public final class ManifestUtils {
      */
     public static int getAppVersionCode() {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(), PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
                 return packageInfo.versionCode;
@@ -297,7 +297,7 @@ public final class ManifestUtils {
      */
     public static String getAppVersionName() {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(), PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
                 return packageInfo.versionName;
@@ -318,7 +318,7 @@ public final class ManifestUtils {
     public static int getAppVersionCode(final String packageName) {
         if (isSpace(packageName)) return -1;
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? -1 : packageInfo.versionCode;
         } catch (Exception e) {
@@ -335,7 +335,7 @@ public final class ManifestUtils {
     public static String getAppVersionName(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.versionName;
         } catch (Exception e) {

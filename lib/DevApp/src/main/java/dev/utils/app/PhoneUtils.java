@@ -1020,7 +1020,7 @@ public final class PhoneUtils {
     private static boolean isIntentAvailable(final Intent intent) {
         if (intent == null) return false;
         try {
-            return DevUtils.getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
+            return AppUtils.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isIntentAvailable");
         }

@@ -201,7 +201,7 @@ public final class ProcessUtils {
         // SDK 大于 21 时
         if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP) {
             try {
-                PackageManager packageManager = DevUtils.getContext().getPackageManager();
+                PackageManager packageManager = AppUtils.getPackageManager();
                 Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
                 List<ResolveInfo> listResolves = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
                 // 无权限

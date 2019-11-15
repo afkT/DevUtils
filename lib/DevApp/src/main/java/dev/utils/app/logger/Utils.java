@@ -475,7 +475,7 @@ final class Utils {
      */
     private static String[] getAppVersion() {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(), PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
                 String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;

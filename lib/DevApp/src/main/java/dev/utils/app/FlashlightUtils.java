@@ -117,7 +117,7 @@ public final class FlashlightUtils {
      */
     public boolean isFlashlightEnable() {
         try {
-            return DevUtils.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+            return AppUtils.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isFlashlightEnable");
         }

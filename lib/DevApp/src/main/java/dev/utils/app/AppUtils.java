@@ -118,7 +118,7 @@ public final class AppUtils {
     public static Drawable getAppIcon(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.loadIcon(packageManager);
         } catch (Exception e) {
@@ -143,7 +143,7 @@ public final class AppUtils {
     public static String getAppName(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.loadLabel(packageManager).toString();
         } catch (Exception e) {
@@ -168,7 +168,7 @@ public final class AppUtils {
     public static String getAppVersionName(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageInfo packageInfo = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.versionName;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName");
@@ -192,7 +192,7 @@ public final class AppUtils {
     public static int getAppVersionCode(final String packageName) {
         if (isSpace(packageName)) return -1;
         try {
-            PackageInfo packageInfo = DevUtils.getContext().getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? -1 : packageInfo.versionCode;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
@@ -216,7 +216,7 @@ public final class AppUtils {
     public static String getAppPath(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.sourceDir;
         } catch (Exception e) {
@@ -243,7 +243,7 @@ public final class AppUtils {
     public static Signature[] getAppSignature(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.signatures;
         } catch (Exception e) {
@@ -341,7 +341,7 @@ public final class AppUtils {
     public static boolean isAppDebug(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
+            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppDebug");
@@ -365,7 +365,7 @@ public final class AppUtils {
     public static boolean isAppRelease(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
+            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, 0);
             return !(appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppRelease");
@@ -391,7 +391,7 @@ public final class AppUtils {
     public static boolean isAppSystem(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, 0);
+            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppSystem");
@@ -445,7 +445,7 @@ public final class AppUtils {
         try {
             Intent intent = new Intent(action);
             intent.addCategory(category);
-            ResolveInfo resolveinfo = DevUtils.getContext().getPackageManager().resolveActivity(intent, 0);
+            ResolveInfo resolveinfo = AppUtils.getPackageManager().resolveActivity(intent, 0);
             return resolveinfo != null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");
@@ -462,7 +462,7 @@ public final class AppUtils {
     public static boolean isInstalledApp(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
+            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
             return true;
         } catch (Exception e) { // 未安装, 则会抛出异常
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");

@@ -58,7 +58,7 @@ public final class IntentUtils {
     public static boolean isIntentAvailable(final Intent intent) {
         if (intent != null) {
             try {
-                return DevUtils.getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
+                return AppUtils.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isIntentAvailable");
             }
@@ -152,7 +152,7 @@ public final class IntentUtils {
      */
     public static Intent getLaunchAppIntent(final String packageName, final boolean isNewTask) {
         try {
-            Intent intent = DevUtils.getContext().getPackageManager().getLaunchIntentForPackage(packageName);
+            Intent intent = AppUtils.getPackageManager().getLaunchIntentForPackage(packageName);
             if (intent == null) return null;
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
@@ -219,7 +219,7 @@ public final class IntentUtils {
      */
     public static Intent getLaunchAppNotificationSettingsIntent(final String packageName, final boolean isNewTask) {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             ApplicationInfo applicationInfo = packageInfo.applicationInfo;
 

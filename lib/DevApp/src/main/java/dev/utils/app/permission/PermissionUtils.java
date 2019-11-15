@@ -428,7 +428,7 @@ public final class PermissionUtils {
     public static boolean canRequestPackageInstalls() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
-                return DevUtils.getContext().getPackageManager().canRequestPackageInstalls();
+                return AppUtils.getPackageManager().canRequestPackageInstalls();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "canRequestPackageInstalls");
             }
@@ -510,7 +510,7 @@ public final class PermissionUtils {
      */
     public static String[] getAppPermission(final String packageName) {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             return packageInfo.requestedPermissions;
         } catch (Exception e) {
