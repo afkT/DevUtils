@@ -518,7 +518,7 @@ public final class ResourceUtils {
      */
     public static int getIdentifier(final String resName, final String defType) {
         try {
-            return getIdentifier(resName, defType, DevUtils.getContext().getPackageName());
+            return getIdentifier(resName, defType, AppUtils.getPackageName());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIdentifier - " + resName + ": " + defType);
         }

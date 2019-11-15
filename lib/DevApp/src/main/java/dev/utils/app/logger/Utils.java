@@ -20,6 +20,7 @@ import java.util.Map;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 内部快捷操作工具类 ( 便于单独提取 Logger, 不依赖其他工具类 )
@@ -77,10 +78,7 @@ final class Utils {
 
         // 获取包名
         if (TextUtils.isEmpty(PACKAGE_NAME)) {
-            try {
-                PACKAGE_NAME = DevUtils.getContext().getPackageName();
-            } catch (Exception e) {
-            }
+            PACKAGE_NAME = AppUtils.getPackageName();
         }
 
         // 判断是否存在设备信息
@@ -478,7 +476,7 @@ final class Utils {
     private static String[] getAppVersion() {
         try {
             PackageManager packageManager = DevUtils.getContext().getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(), PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
                 String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
                 String versionCode = packageInfo.versionCode + "";

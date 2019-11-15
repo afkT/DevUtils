@@ -84,7 +84,7 @@ public final class DBUtils {
     public static String getDBPath() {
         try {
             // Database 文件地址
-            return Environment.getDataDirectory() + "/data/" + DevUtils.getContext().getPackageName() + "/databases/";
+            return Environment.getDataDirectory() + "/data/" + AppUtils.getPackageName() + "/databases/";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDBPath");
         }

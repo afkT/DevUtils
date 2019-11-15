@@ -52,7 +52,7 @@ public final class UriUtils {
     public static Uri getUriForFileToName(final File file, final String fileProvider) {
         if (file == null || fileProvider == null) return null;
         try {
-            String authority = DevUtils.getContext().getPackageName() + "." + fileProvider;
+            String authority = AppUtils.getPackageName() + "." + fileProvider;
             return getUriForFile(file, authority);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getUriForFileToName");

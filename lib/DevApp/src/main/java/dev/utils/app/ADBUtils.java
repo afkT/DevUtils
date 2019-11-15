@@ -992,7 +992,7 @@ public final class ADBUtils {
     public static boolean startSelfApp(final boolean closeActivity) {
         try {
             // 获取包名
-            String packageName = DevUtils.getContext().getPackageName();
+            String packageName = AppUtils.getPackageName();
             // 获取 Launcher Activity
             String activity = ActivityUtils.getLauncherActivity();
             // 跳转应用启动页 ( 启动应用 )

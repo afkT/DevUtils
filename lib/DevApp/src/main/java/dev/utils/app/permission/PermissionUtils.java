@@ -26,6 +26,7 @@ import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 权限请求工具类
@@ -499,7 +500,7 @@ public final class PermissionUtils {
      * @return APP 注册的权限数组
      */
     public static String[] getAppPermission() {
-        return getAppPermission(DevUtils.getContext().getPackageName());
+        return getAppPermission(AppUtils.getPackageName());
     }
 
     /**

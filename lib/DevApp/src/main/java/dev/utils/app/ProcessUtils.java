@@ -60,7 +60,7 @@ public final class ProcessUtils {
      */
     public static boolean isCurProcess() {
         try {
-            return DevUtils.getContext().getPackageName().equals(getCurProcessName());
+            return AppUtils.getPackageName().equals(getCurProcessName());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isCurProcess");
         }

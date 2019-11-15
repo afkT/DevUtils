@@ -121,7 +121,7 @@ public final class ActivityUtils {
      * @return {@code true} 存在, {@code false} 不存在
      */
     public static boolean isActivityExists(final String className) {
-        return isActivityExists(DevUtils.getContext(), DevUtils.getContext().getPackageName(), className);
+        return isActivityExists(DevUtils.getContext(), AppUtils.getPackageName(), className);
     }
 
     /**
@@ -131,7 +131,7 @@ public final class ActivityUtils {
      * @return {@code true} 存在, {@code false} 不存在
      */
     public static boolean isActivityExists(final Context context, final String className) {
-        return isActivityExists(context, DevUtils.getContext().getPackageName(), className);
+        return isActivityExists(context, AppUtils.getPackageName(), className);
     }
 
     /**
@@ -201,7 +201,7 @@ public final class ActivityUtils {
      */
     public static String getLauncherActivity() {
         try {
-            return getLauncherActivity(DevUtils.getContext().getPackageName());
+            return getLauncherActivity(AppUtils.getPackageName());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLauncherActivity");
         }
@@ -866,7 +866,7 @@ public final class ActivityUtils {
      */
     public ActivityUtils restartApplication() {
         try {
-            Intent intent = DevUtils.getContext().getPackageManager().getLaunchIntentForPackage(DevUtils.getContext().getPackageName());
+            Intent intent = DevUtils.getContext().getPackageManager().getLaunchIntentForPackage(AppUtils.getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             DevUtils.getContext().startActivity(intent);
         } catch (Exception e) {

@@ -15,6 +15,7 @@ import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: APP 信息获取工具类
@@ -66,7 +67,7 @@ public final class AppInfoUtils {
      * @return {@link PackageInfo}
      */
     public static PackageInfo getPackageInfo() {
-        return getPackageInfo(DevUtils.getContext().getPackageName());
+        return getPackageInfo(AppUtils.getPackageName());
     }
 
     /**
@@ -264,7 +265,7 @@ public final class AppInfoUtils {
      * @return APP 注册的权限数组
      */
     public static String[] getAppPermission() {
-        return getAppPermission(DevUtils.getContext().getPackageName());
+        return getAppPermission(AppUtils.getPackageName());
     }
 
     /**

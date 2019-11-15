@@ -53,7 +53,7 @@ public final class BrightnessUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.System.canWrite(DevUtils.getContext())) {
             try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-                intent.setData(Uri.parse("package:" + DevUtils.getContext().getPackageName()));
+                intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 DevUtils.getContext().startActivity(intent);
             } catch (Exception e) {
@@ -93,7 +93,7 @@ public final class BrightnessUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.System.canWrite(DevUtils.getContext())) {
             try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-                intent.setData(Uri.parse("package:" + DevUtils.getContext().getPackageName()));
+                intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 DevUtils.getContext().startActivity(intent);
             } catch (Exception e) {
