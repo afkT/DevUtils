@@ -24,7 +24,6 @@ import dev.utils.BuildConfig;
 import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AnalysisRecordUtils;
-import dev.utils.app.AppUtils;
 import dev.utils.app.FileRecordUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
@@ -926,7 +925,7 @@ public final class DevUtils {
      */
     public static String getAuthority() {
         try {
-            return AppUtils.getPackageName() + "." + LIB_FILE_PROVIDER;
+            return DevUtils.getContext().getPackageName() + "." + LIB_FILE_PROVIDER;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAuthority");
         }
