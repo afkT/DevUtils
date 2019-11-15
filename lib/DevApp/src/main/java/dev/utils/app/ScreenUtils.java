@@ -434,7 +434,7 @@ public final class ScreenUtils {
      */
     public static boolean isLandscape() {
         try {
-            return DevUtils.getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+            return ResourceUtils.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isLandscape");
         }
@@ -447,7 +447,7 @@ public final class ScreenUtils {
      */
     public static boolean isPortrait() {
         try {
-            return DevUtils.getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+            return ResourceUtils.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isPortrait");
         }
@@ -520,7 +520,7 @@ public final class ScreenUtils {
      */
     public static boolean isTablet() {
         try {
-            return (DevUtils.getContext().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+            return (ResourceUtils.getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isTablet");
         }
