@@ -13,6 +13,7 @@ import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 通知栏监听服务
@@ -144,7 +145,7 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotificationListenerEnabled() {
-        return isNotificationListenerEnabled(DevUtils.getContext().getPackageName());
+        return isNotificationListenerEnabled(AppUtils.getAppPackageName());
     }
 
     /**

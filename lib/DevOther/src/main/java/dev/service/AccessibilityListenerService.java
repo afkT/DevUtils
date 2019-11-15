@@ -8,6 +8,7 @@ import android.view.accessibility.AccessibilityEvent;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AccessibilityUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 无障碍功能监听服务
@@ -141,7 +142,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility() {
-        return checkAccessibility(DevUtils.getContext().getPackageName());
+        return checkAccessibility(AppUtils.getAppPackageName());
     }
 
     /**

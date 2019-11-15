@@ -102,7 +102,7 @@ public final class AppUtils {
      * @return {@link Drawable}
      */
     public static Drawable getAppIcon() {
-        return getAppIcon(DevUtils.getContext().getPackageName());
+        return getAppIcon(getAppPackageName());
     }
 
     /**
@@ -127,7 +127,7 @@ public final class AppUtils {
      * @return APP 应用名
      */
     public static String getAppName() {
-        return getAppName(DevUtils.getContext().getPackageName());
+        return getAppName(getAppPackageName());
     }
 
     /**
@@ -152,7 +152,7 @@ public final class AppUtils {
      * @return APP versionName
      */
     public static String getAppVersionName() {
-        return getAppVersionName(DevUtils.getContext().getPackageName());
+        return getAppVersionName(getAppPackageName());
     }
 
     /**
@@ -176,7 +176,7 @@ public final class AppUtils {
      * @return APP versionCode
      */
     public static int getAppVersionCode() {
-        return getAppVersionCode(DevUtils.getContext().getPackageName());
+        return getAppVersionCode(getAppPackageName());
     }
 
     /**
@@ -200,7 +200,7 @@ public final class AppUtils {
      * @return APP 安装包路径
      */
     public static String getAppPath() {
-        return getAppPath(DevUtils.getContext().getPackageName());
+        return getAppPath(getAppPackageName());
     }
 
     /**
@@ -227,7 +227,7 @@ public final class AppUtils {
      * @return {@link Signature} 数组
      */
     public static Signature[] getAppSignature() {
-        return getAppSignature(DevUtils.getContext().getPackageName());
+        return getAppSignature(getAppPackageName());
     }
 
     /**
@@ -254,7 +254,7 @@ public final class AppUtils {
      * @return APP 签名 MD5 值
      */
     public static String getAppSignatureMD5() {
-        return getAppSignatureMD5(DevUtils.getContext().getPackageName());
+        return getAppSignatureMD5(getAppPackageName());
     }
 
     /**
@@ -271,7 +271,7 @@ public final class AppUtils {
      * @return APP 签名 SHA1 值
      */
     public static String getAppSignatureSHA1() {
-        return getAppSignatureSHA1(DevUtils.getContext().getPackageName());
+        return getAppSignatureSHA1(getAppPackageName());
     }
 
     /**
@@ -288,7 +288,7 @@ public final class AppUtils {
      * @return APP 签名 SHA256 值
      */
     public static String getAppSignatureSHA256() {
-        return getAppSignatureSHA256(DevUtils.getContext().getPackageName());
+        return getAppSignatureSHA256(getAppPackageName());
     }
 
     /**
@@ -325,7 +325,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppDebug() {
-        return isAppDebug(DevUtils.getContext().getPackageName());
+        return isAppDebug(getAppPackageName());
     }
 
     /**
@@ -349,7 +349,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppRelease() {
-        return isAppRelease(DevUtils.getContext().getPackageName());
+        return isAppRelease(getAppPackageName());
     }
 
     /**
@@ -375,7 +375,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppSystem() {
-        return isAppSystem(DevUtils.getContext().getPackageName());
+        return isAppSystem(getAppPackageName());
     }
 
     /**
@@ -400,7 +400,7 @@ public final class AppUtils {
      */
     @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
     public static boolean isAppForeground() {
-        return isAppForeground(DevUtils.getContext().getPackageName());
+        return isAppForeground(getAppPackageName());
     }
 
     /**
@@ -737,7 +737,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings() {
-        return launchAppDetailsSettings(DevUtils.getContext().getPackageName());
+        return launchAppDetailsSettings(getAppPackageName());
     }
 
     /**
@@ -762,7 +762,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetails(final String marketPkg) {
-        return launchAppDetails(DevUtils.getContext().getPackageName(), marketPkg);
+        return launchAppDetails(getAppPackageName(), marketPkg);
     }
 
     /**
