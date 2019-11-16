@@ -76,7 +76,7 @@ public final class AnalysisRecordUtils {
         // 如果为 null, 才设置
         if (TextUtils.isEmpty(sLogStoragePath)) {
             // 获取根路径
-            sLogStoragePath = getDiskCacheDir();
+            sLogStoragePath = getExternalAppCachePath();
         }
 
         // 如果版本信息为 null, 才进行处理
@@ -684,21 +684,17 @@ public final class AnalysisRecordUtils {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
+    // =============
+    // = PathUtils =
+    // =============
+
     /**
-     * 获取 APP Cache 文件夹地址
-     * @return APP Cache 文件夹地址
+     * 获取外存应用缓存路径 - path/storage/emulated/0/Android/data/package/cache
+     * @return /storage/emulated/0/Android/data/package/cache
      */
-    private static String getDiskCacheDir() {
-        String cachePath;
-        if (isSDCardEnable()) { // 判断 SDCard 是否挂载
-            cachePath = DevUtils.getContext().getExternalCacheDir().getPath();
-        } else {
-            cachePath = DevUtils.getContext().getCacheDir().getPath();
-        }
-        // 防止不存在目录文件, 自动创建
-        createFolder(cachePath);
-        // 返回文件存储地址
-        return cachePath;
+    private static String getExternalAppCachePath() {
+        if (!isSDCardEnable()) return "";
+        return getAbsolutePath(DevUtils.getContext().getExternalCacheDir());
     }
 
     // =============

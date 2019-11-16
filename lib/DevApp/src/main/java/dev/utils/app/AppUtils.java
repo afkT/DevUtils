@@ -15,6 +15,7 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
+import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.content.FileProvider;
@@ -68,6 +69,14 @@ public final class AppUtils {
      */
     public static SensorManager getSensorManager() {
         return getSystemService(Context.SENSOR_SERVICE);
+    }
+
+    /**
+     * 获取 StorageManager
+     * @return {@link StorageManager}
+     */
+    public static StorageManager getStorageManager() {
+        return getSystemService(Context.STORAGE_SERVICE);
     }
 
     /**

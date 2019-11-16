@@ -25,6 +25,14 @@ public final class PathUtils {
     }
 
     /**
+     * 获取 APP Cache 目录 - path /data/data/package/cache
+     * @return /data/data/package/cache
+     */
+    public static String getCachePath() {
+        return getAbsolutePath(DevUtils.getContext().getCacheDir());
+    }
+
+    /**
      * 获取 data 目录 - path /data
      * @return /data
      */

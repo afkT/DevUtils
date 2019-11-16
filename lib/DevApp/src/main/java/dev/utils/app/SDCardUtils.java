@@ -75,8 +75,7 @@ public final class SDCardUtils {
      * @return 内置 SDCard 中指定文件路径
      */
     public static File getSDCardFile(final String filePath) {
-        if (filePath == null) return null;
-        return new File(getSDCardPath(), filePath);
+        return getFile(getSDCardPath(), filePath);
     }
 
     /**
@@ -85,8 +84,7 @@ public final class SDCardUtils {
      * @return 内置 SDCard 中指定文件路径
      */
     public static String getSDCardPath(final String filePath) {
-        if (filePath == null) return null;
-        return new File(getSDCardPath(), filePath).getAbsolutePath();
+        return getAbsolutePath(getFile(getSDCardPath(), filePath));
     }
 
     // =
@@ -107,7 +105,7 @@ public final class SDCardUtils {
     public static List<String> getSDCardPaths() {
         List<String> listPaths = new ArrayList<>();
         try {
-            StorageManager storageManager = (StorageManager) DevUtils.getContext().getSystemService(Context.STORAGE_SERVICE);
+            StorageManager storageManager = getStorageManager();
             Method getVolumePathsMethod = StorageManager.class.getMethod("getVolumePaths");
             getVolumePathsMethod.setAccessible(true);
             Object invoke = getVolumePathsMethod.invoke(storageManager);
@@ -127,7 +125,7 @@ public final class SDCardUtils {
     public static List<String> getSDCardPaths(final boolean removable) {
         List<String> listPaths = new ArrayList<>();
         try {
-            StorageManager storageManager = (StorageManager) DevUtils.getContext().getSystemService(Context.STORAGE_SERVICE);
+            StorageManager storageManager = getStorageManager();
             Class<?> storageVolumeClazz = Class.forName("android.os.storage.StorageVolume");
             Method getVolumeList = StorageManager.class.getMethod("getVolumeList");
             Method getPath = storageVolumeClazz.getMethod("getPath");
@@ -370,49 +368,6 @@ public final class SDCardUtils {
         return null;
     }
 
-    // =
-
-    /**
-     * 获取 APP Cache 文件夹地址
-     * @return APP Cache 文件夹地址
-     */
-    public static String getDiskCacheDir() {
-        String cachePath;
-        if (isSDCardEnable()) { // 判断 SDCard 是否挂载
-            cachePath = DevUtils.getContext().getExternalCacheDir().getPath();
-        } else {
-            cachePath = DevUtils.getContext().getCacheDir().getPath();
-        }
-        // 防止不存在目录文件, 自动创建
-        createFolder(cachePath);
-        // 返回文件存储地址
-        return cachePath;
-    }
-
-    /**
-     * 获取 APP Cache 路径 File
-     * @param filePath 文件路径
-     * @return APP Cache 路径 File
-     */
-    public static File getCacheFile(final String filePath) {
-        return getFile(getCachePath(filePath));
-    }
-
-    /**
-     * 获取 APP Cache 路径
-     * @param filePath 文件路径
-     * @return APP Cache 路径
-     */
-    public static String getCachePath(final String filePath) {
-        if (filePath == null) return null;
-        // 获取缓存地址
-        String cachePath = new File(getDiskCacheDir(), filePath).getAbsolutePath();
-        // 防止不存在目录文件, 自动创建
-        createFolder(cachePath);
-        // 返回缓存地址
-        return cachePath;
-    }
-
     // ======================
     // = 其他工具类实现代码 =
     // ======================
@@ -424,48 +379,66 @@ public final class SDCardUtils {
     /**
      * 获取文件
      * @param filePath 文件路径
+     * @param fileName 文件名
      * @return 文件 {@link File}
      */
-    private static File getFile(final String filePath) {
-        return getFileByPath(filePath);
+    private static File getFile(final String filePath, final String fileName) {
+        return (filePath != null && fileName != null) ? new File(filePath, fileName) : null;
     }
 
     /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
+     * 获取文件绝对路径
+     * @param file 文件
+     * @return 文件绝对路径
      */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
+    private static String getAbsolutePath(final File file) {
+        return file != null ? file.getAbsolutePath() : null;
+    }
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 StorageManager
+     * @return {@link StorageManager}
+     */
+    private static StorageManager getStorageManager() {
+        return getSystemService(Context.STORAGE_SERVICE);
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
-     * @param dirPath 文件夹路径 ( 无文件名字. 后缀 )
-     * @return {@code true} success, {@code false} fail
+     * 获取 SystemService
+     * @param name 服务名
+     * @param <T>  泛型
+     * @return SystemService Object
      */
-    private static boolean createFolder(final String dirPath) {
-        return createFolder(getFileByPath(dirPath));
+    private static <T> T getSystemService(final String name) {
+        if (isSpace(name)) return null;
+        try {
+            return (T) DevUtils.getContext().getSystemService(name);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSystemService");
+        }
+        return null;
     }
 
+    // ===============
+    // = StringUtils =
+    // ===============
+
     /**
-     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
-     * @param file 文件夹路径 ( 无文件名字. 后缀 )
-     * @return {@code true} success, {@code false} fail
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return {@code true} yes, {@code false} no
      */
-    private static boolean createFolder(final File file) {
-        if (file != null) {
-            try {
-                // 当这个文件夹不存在的时候则创建文件夹
-                if (!file.exists()) {
-                    // 允许创建多级目录
-                    return file.mkdirs();
-                }
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "createFolder");
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }
