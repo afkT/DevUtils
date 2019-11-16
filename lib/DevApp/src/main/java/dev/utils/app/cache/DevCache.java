@@ -604,7 +604,7 @@ public final class DevCache {
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(final String key, final Bitmap value) {
-        return put(key, DevCacheUtils.bitmapToBytes(value));
+        return put(key, DevCacheUtils.bitmapToByte(value));
     }
 
     /**
@@ -615,7 +615,7 @@ public final class DevCache {
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(final String key, final Bitmap value, final int saveTime) {
-        return put(key, DevCacheUtils.bitmapToBytes(value), saveTime);
+        return put(key, DevCacheUtils.bitmapToByte(value), saveTime);
     }
 
     /**
@@ -626,7 +626,7 @@ public final class DevCache {
     public Bitmap getAsBitmap(final String key) {
         byte[] data = getAsBinary(key);
         if (data == null) return null;
-        return DevCacheUtils.bytesToBitmap(data);
+        return DevCacheUtils.byteToBitmap(data);
     }
 
     // ======================
@@ -662,7 +662,7 @@ public final class DevCache {
     public Drawable getAsDrawable(final String key) {
         byte[] data = getAsBinary(key);
         if (data == null) return null;
-        return DevCacheUtils.bitmapToDrawable(DevCacheUtils.bytesToBitmap(data));
+        return DevCacheUtils.bitmapToDrawable(DevCacheUtils.byteToBitmap(data));
     }
 
     /**

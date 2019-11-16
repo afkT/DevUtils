@@ -204,7 +204,7 @@ final class DevCacheUtils {
      * @param bitmap {@link Bitmap}
      * @return byte[]
      */
-    public static byte[] bitmapToBytes(final Bitmap bitmap) {
+    public static byte[] bitmapToByte(final Bitmap bitmap) {
         if (bitmap == null) return null;
         ByteArrayOutputStream baos = null;
         try {
@@ -212,7 +212,7 @@ final class DevCacheUtils {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
             return baos.toByteArray();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "bitmapToBytes");
+            LogPrintUtils.eTag(TAG, e, "bitmapToByte");
         } finally {
             if (baos != null) {
                 try {
@@ -229,12 +229,12 @@ final class DevCacheUtils {
      * @param bytes byte[]
      * @return {@link Bitmap}
      */
-    public static Bitmap bytesToBitmap(final byte[] bytes) {
+    public static Bitmap byteToBitmap(final byte[] bytes) {
         if (bytes != null && bytes.length != 0) {
             try {
                 return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "bytesToBitmap");
+                LogPrintUtils.eTag(TAG, e, "byteToBitmap");
             }
         }
         return null;
@@ -242,20 +242,31 @@ final class DevCacheUtils {
 
     /**
      * Drawable 转 Bitmap
-     * @param drawable {@link Drawable}
+     * @param drawable 待转换图片
      * @return {@link Bitmap}
      */
     public static Bitmap drawableToBitmap(final Drawable drawable) {
         if (drawable == null) return null;
+        // 属于 BitmapDrawable 直接转换
+        if (drawable instanceof BitmapDrawable) {
+            try {
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+                if (bitmapDrawable.getBitmap() != null) {
+                    return bitmapDrawable.getBitmap();
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "drawableToBitmap - BitmapDrawable");
+            }
+        }
         try {
-            // 取 drawable 的长宽
+            // 获取 drawable 的宽高
             int width = drawable.getIntrinsicWidth();
             int height = drawable.getIntrinsicHeight();
-            // 取 drawable 的颜色格式
+            // 获取 drawable 的颜色格式
             Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
-            // 建立对应 bitmap
+            // 创建 bitmap
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
-            // 建立对应 bitmap 的画布
+            // 创建 bitmap 画布
             Canvas canvas = new Canvas(bitmap);
             drawable.setBounds(0, 0, width, height);
             // 把 drawable 内容画到画布中
@@ -272,7 +283,6 @@ final class DevCacheUtils {
      * @param bitmap {@link Bitmap}
      * @return {@link Drawable}
      */
-    @SuppressWarnings("deprecation")
     public static Drawable bitmapToDrawable(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
