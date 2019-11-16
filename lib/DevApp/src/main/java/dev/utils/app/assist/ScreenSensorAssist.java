@@ -8,6 +8,7 @@ import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -17,7 +18,7 @@ import dev.utils.LogPrintUtils;
 public final class ScreenSensorAssist {
 
     // 日志 TAG
-    private final String TAG = ScreenSensorAssist.class.getSimpleName();
+    private static final String TAG = ScreenSensorAssist.class.getSimpleName();
 
     // ======================
     // = 重力传感器监听对象 =
@@ -135,56 +136,56 @@ public final class ScreenSensorAssist {
 
     /**
      * 初始化操作
-     * @param context {@link Context}
      * @param handler 回调 {@link Handler}
      */
-    private void init(final Context context, final Handler handler) {
+    private void init(final Handler handler) {
         this.mHandler = handler;
-
+        // 注册重力感应器, 监听屏幕旋转
+        mSensorManager = getSensorManager();
+        mListener = new OrientationSensorListener();
+        // 根据 旋转之后、点击全屏之后 两者方向一致, 激活 SensorManager
+        mSensorManagerChange = getSensorManager();
+        mListenerChange = new OrientationSensorChangeListener();
         // 设置传感器
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        // 注册重力感应器, 监听屏幕旋转
-        mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        mListener = new OrientationSensorListener();
-
-        // 根据 旋转之后、点击全屏之后 两者方向一致, 激活 SensorManager
-        mSensorManagerChange = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        mListenerChange = new OrientationSensorChangeListener();
     }
 
     /**
      * 开始监听
-     * @param context {@link Context}
      * @param handler 回调 {@link Handler}
+     * @return {@code true} success, {@code false} fail
      */
-    public void start(final Context context, final Handler handler) {
+    public boolean start(final Handler handler) {
         mAllowChange = true;
         try {
             LogPrintUtils.dTag(TAG, "start orientation listener.");
             // 初始化操作
-            init(context, handler);
+            init(handler);
             // 监听重力传感器
             mSensorManager.registerListener(mListener, mSensor, SensorManager.SENSOR_DELAY_UI);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "start");
         }
+        return false;
     }
 
     /**
      * 停止监听
+     * @return {@code true} success, {@code false} fail
      */
-    public void stop() {
+    public boolean stop() {
         mAllowChange = false;
         LogPrintUtils.dTag(TAG, "stop orientation listener.");
         try {
             mSensorManager.unregisterListener(mListener);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "stop");
         }
         try {
             mSensorManagerChange.unregisterListener(mListenerChange);
         } catch (Exception e) {
         }
+        return true;
     }
 
     /**
@@ -285,5 +286,56 @@ public final class ScreenSensorAssist {
                 }
             }
         }
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 SensorManager
+     * @return {@link SensorManager}
+     */
+    private static SensorManager getSensorManager() {
+        return getSystemService(Context.SENSOR_SERVICE);
+    }
+
+    /**
+     * 获取 SystemService
+     * @param name 服务名
+     * @param <T>  泛型
+     * @return SystemService Object
+     */
+    private static <T> T getSystemService(final String name) {
+        if (isSpace(name)) return null;
+        try {
+            return (T) DevUtils.getContext().getSystemService(name);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSystemService");
+        }
+        return null;
+    }
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

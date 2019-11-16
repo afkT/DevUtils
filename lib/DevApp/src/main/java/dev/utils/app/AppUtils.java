@@ -10,8 +10,11 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
+import android.hardware.SensorManager;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.content.FileProvider;
@@ -48,12 +51,31 @@ public final class AppUtils {
      * @return {@link WindowManager}
      */
     public static WindowManager getWindowManager() {
-        try {
-            return (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getWindowManager");
-        }
-        return null;
+        return getSystemService(Context.WINDOW_SERVICE);
+    }
+
+    /**
+     * 获取 AudioManager
+     * @return {@link AudioManager}
+     */
+    public static AudioManager getAudioManager() {
+        return getSystemService(Context.AUDIO_SERVICE);
+    }
+
+    /**
+     * 获取 SensorManager
+     * @return {@link SensorManager}
+     */
+    public static SensorManager getSensorManager() {
+        return getSystemService(Context.SENSOR_SERVICE);
+    }
+
+    /**
+     * 获取 Vibrator
+     * @return {@link Vibrator}
+     */
+    public static Vibrator getVibrator() {
+        return getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     /**

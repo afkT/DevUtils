@@ -105,8 +105,7 @@ public final class AnimationUtils {
      * @return {@link Animation}
      */
     public static Animation getAnimation(final View view) {
-        if (view != null) return view.getAnimation();
-        return null;
+        return (view != null) ? view.getAnimation() : null;
     }
 
     /**

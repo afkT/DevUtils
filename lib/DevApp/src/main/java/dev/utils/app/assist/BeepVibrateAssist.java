@@ -11,6 +11,7 @@ import android.support.annotation.RequiresPermission;
 
 import java.io.Closeable;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -49,7 +50,7 @@ public final class BeepVibrateAssist implements Closeable {
      */
     public BeepVibrateAssist(final Activity activity, @RawRes final int rawId) {
         this.mActivity = activity;
-        this.mMediaPlayer = buildMediaPlayer(activity, rawId);
+        this.mMediaPlayer = buildMediaPlayer(rawId);
     }
 
     /**
@@ -68,17 +69,15 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 判断是否允许播放声音
+     * <pre>
+     *     RINGER_MODE_NORMAL( 普通 )、RINGER_MODE_SILENT( 静音 )、RINGER_MODE_VIBRATE( 震动 )
+     * </pre>
      * @return {@code true} 允许, {@code false} 不允许
      */
     private boolean shouldBeep() {
-        try {
-            // RINGER_MODE_NORMAL( 普通 )、RINGER_MODE_SILENT( 静音 )、RINGER_MODE_VIBRATE( 震动 )
-            AudioManager audioService = (AudioManager) mActivity.getSystemService(Context.AUDIO_SERVICE);
-            if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-                return false; // 只有属于, 静音、震动, 才不播放
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "shouldBeep");
+        AudioManager audioManager = getAudioManager();
+        if (audioManager != null && audioManager.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
+            return false; // 只有属于 静音、震动 才不播放
         }
         return true;
     }
@@ -154,25 +153,27 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 进行播放声音, 并且震动
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.VIBRATE)
-    public synchronized void playBeepSoundAndVibrate() {
+    public synchronized boolean playBeepSoundAndVibrate() {
         // 判断是否允许播放
         if (shouldBeep() && mMediaPlayer != null) {
+            // 判断是否允许震动
+            if (mIsVibrate) {
+                try {
+                    getVibrator().vibrate(mVibrateDuration);
+                } catch (Exception e) {
+                }
+            }
             try {
                 // 播放
                 mMediaPlayer.start();
+                return true;
             } catch (Exception e) {
             }
         }
-        // 判断是否允许震动
-        if (mIsVibrate) {
-            try {
-                Vibrator vibrator = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(mVibrateDuration);
-            } catch (Exception e) {
-            }
-        }
+        return false;
     }
 
     /**
@@ -192,22 +193,20 @@ public final class BeepVibrateAssist implements Closeable {
 
     /**
      * 创建 MediaPlayer 对象
-     * @param context {@link Context}
-     * @param rawId   R.raw.id
+     * @param rawId R.raw.id
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(final Context context, @RawRes final int rawId) {
-        return buildMediaPlayer(context, rawId, 0.1f);
+    public static MediaPlayer buildMediaPlayer(@RawRes final int rawId) {
+        return buildMediaPlayer(rawId, 0.1f);
     }
 
     /**
      * 创建 MediaPlayer 对象
-     * @param context    {@link Context}
      * @param rawId      R.raw.id
      * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(final Context context, @RawRes final int rawId, final float beepVolume) {
+    public static MediaPlayer buildMediaPlayer(@RawRes final int rawId, final float beepVolume) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -225,13 +224,15 @@ public final class BeepVibrateAssist implements Closeable {
             }
         });
         try {
-            AssetFileDescriptor file = context.getResources().openRawResourceFd(rawId);
+            AssetFileDescriptor file = openRawResourceFd(rawId);
             try {
                 mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
             } finally {
-                try {
-                    file.close();
-                } catch (Exception e) {
+                if (file != null) {
+                    try {
+                        file.close();
+                    } catch (Exception e) {
+                    }
                 }
             }
             mediaPlayer.setVolume(beepVolume, beepVolume);
@@ -288,5 +289,82 @@ public final class BeepVibrateAssist implements Closeable {
             mediaPlayer.release();
             return null;
         }
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 AudioManager
+     * @return {@link AudioManager}
+     */
+    private static AudioManager getAudioManager() {
+        return getSystemService(Context.AUDIO_SERVICE);
+    }
+
+    /**
+     * 获取 Vibrator
+     * @return {@link Vibrator}
+     */
+    private static Vibrator getVibrator() {
+        return getSystemService(Context.VIBRATOR_SERVICE);
+    }
+
+    /**
+     * 获取 SystemService
+     * @param name 服务名
+     * @param <T>  泛型
+     * @return SystemService Object
+     */
+    private static <T> T getSystemService(final String name) {
+        if (isSpace(name)) return null;
+        try {
+            return (T) DevUtils.getContext().getSystemService(name);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSystemService");
+        }
+        return null;
+    }
+
+    // =================
+    // = ResourceUtils =
+    // =================
+
+    /**
+     * 获取对应资源 AssetFileDescriptor
+     * @param id resource identifier
+     * @return {@link AssetFileDescriptor}
+     */
+    private static AssetFileDescriptor openRawResourceFd(@RawRes final int id) {
+        try {
+            return DevUtils.getContext().getResources().openRawResourceFd(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openRawResourceFd");
+        }
+        return null;
+    }
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }
