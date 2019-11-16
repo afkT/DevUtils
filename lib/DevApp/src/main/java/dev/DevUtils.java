@@ -24,7 +24,7 @@ import dev.utils.BuildConfig;
 import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AnalysisRecordUtils;
-import dev.utils.app.FileRecordUtils;
+import dev.utils.app.AppCommonUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
 import dev.utils.app.UriUtils;
@@ -84,8 +84,8 @@ public final class DevUtils {
         DevCache.get(context);
         // 初始化 SharedPreferences
         SharedUtils.init(context);
-        // 初始化 File Record
-        FileRecordUtils.init();
+        // 初始化 应用、设备信息
+        AppCommonUtils.refreshAppDeviceInfo();
         // 初始化 Record
         AnalysisRecordUtils.init();
         // 初始化 DevLogger

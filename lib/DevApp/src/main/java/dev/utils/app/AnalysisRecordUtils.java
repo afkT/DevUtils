@@ -851,8 +851,9 @@ public final class AnalysisRecordUtils {
     /**
      * 获取设备信息
      * @param deviceInfoMap 设备信息 Map
+     * @return {@link Map<String, String>}
      */
-    private static void getDeviceInfo(final Map<String, String> deviceInfoMap) {
+    private static Map<String, String> getDeviceInfo(final Map<String, String> deviceInfoMap) {
         // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -881,6 +882,7 @@ public final class AnalysisRecordUtils {
                 LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
             }
         }
+        return deviceInfoMap;
     }
 
     /**

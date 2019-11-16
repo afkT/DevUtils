@@ -5,10 +5,11 @@ import com.dev.utils.Config;
 import java.io.File;
 
 import dev.utils.app.AnalysisRecordUtils;
+import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
-import dev.utils.app.FileRecordUtils;
 import dev.utils.app.SDCardUtils;
 import dev.utils.app.logger.DevLoggerUtils;
+import dev.utils.common.FileRecordUtils;
 import dev.utils.common.ThrowableUtils;
 
 /**
@@ -134,9 +135,20 @@ public final class FileRecordUse {
 
             // = FileRecordUtils 使用方法 =
 
-            FileRecordUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
+            // 设置插入信息
+            FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
 
-            FileRecordUtils.saveLog("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
+            FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log");
+
+            FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
+
+            FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
+
+            FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log");
+
+            FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
+
+            FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
         }
     }
 }

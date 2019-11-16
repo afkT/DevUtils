@@ -1,8 +1,17 @@
 package dev.utils.app;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringRes;
+import android.text.TextUtils;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -22,6 +31,51 @@ public final class AppCommonUtils {
 
     // 日志 TAG
     private static final String TAG = AppCommonUtils.class.getSimpleName();
+    // 应用、设备信息 ( 可用于 FileRecordUtils 插入信息使用 )
+    private static String APP_DEVICE_INFO = null;
+
+    /**
+     * 获取应用、设备信息
+     * @return 应用、设备信息
+     */
+    public static String getAppDeviceInfo() {
+        return APP_DEVICE_INFO;
+    }
+
+    /**
+     * 刷新应用、设备信息
+     * @return 应用、设备信息
+     */
+    public static String refreshAppDeviceInfo() {
+        try {
+            StringBuilder builder = new StringBuilder();
+            // 获取 APP 版本信息
+            String[] versions = getAppVersion();
+            String versionName = versions[0];
+            String versionCode = versions[1];
+            String packageName = getPackageName();
+            String deviceInfo = handlerDeviceInfo(getDeviceInfo(), null);
+            if (TextUtils.isEmpty(versionName) || TextUtils.isEmpty(versionCode) ||
+                    TextUtils.isEmpty(packageName) || TextUtils.isEmpty(deviceInfo)) {
+                return null;
+            }
+            // 保存 APP 版本信息
+            builder.append("versionName: " + versionName);
+            builder.append(NEW_LINE_STR);
+            builder.append("versionCode: " + versionCode);
+            builder.append(NEW_LINE_STR);
+            builder.append("package: " + packageName);
+            builder.append(NEW_LINE_STR);
+            builder.append(deviceInfo);
+            // 设置应用、设备信息
+            APP_DEVICE_INFO = builder.toString();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "refreshAppDeviceInfo");
+        }
+        return APP_DEVICE_INFO;
+    }
+
+    // =
 
     /**
      * 获取设备唯一 UUID
@@ -306,5 +360,132 @@ public final class AppCommonUtils {
                 return "Android 10.0";
         }
         return "unknown";
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = DeviceUtils =
+    // ===============
+
+    // 换行字符串
+    private static final String NEW_LINE_STR = System.getProperty("line.separator");
+
+    /**
+     * 获取设备信息
+     * @return {@link Map<String, String>}
+     */
+    private static Map<String, String> getDeviceInfo() {
+        return getDeviceInfo(new HashMap<>());
+    }
+
+    /**
+     * 获取设备信息
+     * @param deviceInfoMap 设备信息 Map
+     * @return {@link Map<String, String>}
+     */
+    private static Map<String, String> getDeviceInfo(final Map<String, String> deviceInfoMap) {
+        // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
+        Field[] fields = Build.class.getDeclaredFields();
+        // 遍历字段
+        for (Field field : fields) {
+            try {
+                // 取消 Java 的权限控制检查
+                field.setAccessible(true);
+                // 转换当前设备支持的 ABI - CPU 指令集
+                if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
+                    try {
+                        Object object = field.get(null);
+                        // 判断是否数组
+                        if (object instanceof String[]) {
+                            if (object != null) {
+                                // 获取类型对应字段的数据, 并保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
+                                deviceInfoMap.put(field.getName(), Arrays.toString((String[]) object));
+                            }
+                            continue;
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                // 获取类型对应字段的数据, 并保存
+                deviceInfoMap.put(field.getName(), field.get(null).toString());
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
+            }
+        }
+        return deviceInfoMap;
+    }
+
+    /**
+     * 处理设备信息
+     * @param deviceInfoMap 设备信息 Map
+     * @param errorInfo     错误提示信息, 如获取设备信息失败
+     * @return 拼接后的设备信息字符串
+     */
+    private static String handlerDeviceInfo(final Map<String, String> deviceInfoMap, final String errorInfo) {
+        try {
+            // 初始化 Builder, 拼接字符串
+            StringBuilder builder = new StringBuilder();
+            // 获取设备信息
+            Iterator<Map.Entry<String, String>> mapIter = deviceInfoMap.entrySet().iterator();
+            // 遍历设备信息
+            while (mapIter.hasNext()) {
+                // 获取对应的 key - value
+                Map.Entry<String, String> rnEntry = mapIter.next();
+                String rnKey = rnEntry.getKey(); // key
+                String rnValue = rnEntry.getValue(); // value
+                // 保存设备信息
+                builder.append(rnKey);
+                builder.append(" = ");
+                builder.append(rnValue);
+                builder.append(NEW_LINE_STR);
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "handlerDeviceInfo");
+        }
+        return errorInfo;
+    }
+
+    // =================
+    // = ManifestUtils =
+    // =================
+
+    /**
+     * 获取 APP 版本信息
+     * @return 0 = versionName, 1 = versionCode
+     */
+    private static String[] getAppVersion() {
+        try {
+            PackageManager packageManager = AppUtils.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(), PackageManager.GET_SIGNATURES);
+            if (packageInfo != null) {
+                String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
+                String versionCode = packageInfo.versionCode + "";
+                return new String[]{versionName, versionCode};
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAppVersion");
+        }
+        return null;
+    }
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 APP 包名
+     * @return APP 包名
+     */
+    private static String getPackageName() {
+        try {
+            return DevUtils.getContext().getPackageName();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageName");
+        }
+        return null;
     }
 }

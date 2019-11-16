@@ -80,16 +80,15 @@ public final class DeviceUtils {
      * @return {@link Map<String, String>}
      */
     public static Map<String, String> getDeviceInfo() {
-        Map<String, String> deviceInfoMap = new HashMap<>();
-        getDeviceInfo(deviceInfoMap);
-        return deviceInfoMap;
+        return getDeviceInfo(new HashMap<>());
     }
 
     /**
      * 获取设备信息
      * @param deviceInfoMap 设备信息 Map
+     * @return {@link Map<String, String>}
      */
-    public static void getDeviceInfo(final Map<String, String> deviceInfoMap) {
+    public static Map<String, String> getDeviceInfo(final Map<String, String> deviceInfoMap) {
         // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -118,6 +117,7 @@ public final class DeviceUtils {
                 LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
             }
         }
+        return deviceInfoMap;
     }
 
     /**
