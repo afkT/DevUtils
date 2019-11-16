@@ -4,21 +4,17 @@
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger)
 
-* 日志操作类（[DevLogger](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLogger.java)）：日志操作类(对外公开直接调用), 直接调用日志输入类方法
-
-* 日志操作工具类（[DevLoggerUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)）：提供常用日志配置快捷获取方法、以及日志存储方法等
+* 日志操作类（[DevLogger](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLogger.java)）：日志操作类(对外公开直接调用), 直接
 
 * 日志接口（[IPrinter](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/IPrinter.java)）：主要编写可以被外部调用接口, 以及可以操作的类型
 
 * 日志输出类（[LoggerPrinter](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LoggerPrinter.java)）：实现日志接口, 并且对对应的方法, 进行处理, 最终打印
 
-* 日志设置（[LogConfig](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogConfig.java)）：该类主要控制日志输出方式, 以及是否输入日志, 堆栈方法等
+* 日志设置（[LogConfig](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogConfig.java)）：该类主要控制日志输出方式, 以及是否输入日志, 堆栈方法等、提供常用日志配置快捷获取方法
 
 * 日志配置（[LogConstants](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogConstants.java)）：该类主要是常量配置信息
 
 * 日志级别（[LogLevel](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogLevel.java)）：该类主要控制日志级别
-
-* 日志内部工具类（[Utils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/Utils.java)）：内部快捷操作工具类(获取应用信息、设备信息、存储日志等)
 
 
 #### 框架亮点
@@ -91,8 +87,6 @@ logConfig.logLevel = LogLevel.DEBUG;
 logConfig.tag = "BaseLog";
 // 进行初始化配置, 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
 DevLogger.init(logConfig);
-// 进行初始化配置, 在DevUtils.init() 内部调用了
-// DevLoggerUtils.init(mContext); // 日志操作工具类, 快捷获取 LogConfig、以及保存日志到文件中等
 ```
 
 
@@ -104,11 +98,9 @@ logConfig.logLevel = LogLevel.NONE; // 全部不打印
 DevLogger.init(logConfig); // 该方法设置全局默认日志配置
 
 // 还有一种情况, 部分日志发布的时候不打印, 但是有部分异常信息需要打印, 则单独使用配置
-DevLoggerUtils.getReleaseLogConfig(TAG) // 使用封装好的线上配置都行
-DevLoggerUtils.getReleaseLogConfig(TAG, LogLevel) // 使用封装好的线上配置都行
-DevLogger.init(DevLoggerUtils.getReleaseLogConfig(TAG));
-
-// DevLoggerUtils 内部包含 常用日志配置快捷获取方法、以及日志存储方法等
+LogConfig.getReleaseLogConfig(TAG) // 使用封装好的线上配置都行
+LogConfig.getReleaseLogConfig(TAG, LogLevel) // 使用封装好的线上配置都行
+DevLogger.init(LogConfig.getReleaseLogConfig(TAG));
 ```
 
 
@@ -166,49 +158,6 @@ DevLogger.other(logConfig).eTag(tag, "new Config - e");
 ```
 
 
-#### 存储日志文件
-```java
-// ====================
-// = 存储异常日志信息 =
-// ====================
-
-try {
-    String s = null;
-    s.indexOf("c");
-} catch (NullPointerException e) {
-    // 打印格式化后的日志信息
-    DevLogger.other(DevLoggerUtils.getSortLogConfig("LogPro")).e(e, "s = null");
-    // 保存的路径
-    String fileName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
-    // 保存日志信息
-    DevLoggerUtils.saveErrorLog(e, fileName);
-    // =
-    // 保存自定义头部、底部信息
-    DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
-    // =
-    // 保存的路径
-    fileName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
-    // 保存日志信息
-    DevLoggerUtils.saveErrorLog(e, fileName);
-}
-
-// ================
-// = 存储日志信息 =
-// ================
-
-// 保存文件名
-String fileName = System.currentTimeMillis() + ".log";
-// 保存日志
-DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fileName);
-
-// = 保存日志, 包含头部信息、底部信息 =
-// 保存文件名
-fileName = System.currentTimeMillis() + ".log";
-// 保存日志
-DevLoggerUtils.saveLog("保存自定义信息日志", "头部", "底部", LOG_SD_PATH, fileName);
-```
-
-
 # 预览
 
 ***XML、JSON 格式化打印***
@@ -226,7 +175,3 @@ DevLoggerUtils.saveLog("保存自定义信息日志", "头部", "底部", LOG_SD
 ***正常打印***
 
 ![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_other.png)
-
-***保存日志文件***
-
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_file_error.png)

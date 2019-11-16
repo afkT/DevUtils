@@ -7,7 +7,6 @@ import com.dev.utils.Config;
 import java.io.File;
 
 import dev.utils.app.logger.DevLogger;
-import dev.utils.app.logger.DevLoggerUtils;
 import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
 import dev.utils.common.DevCommonUtils;
@@ -53,8 +52,6 @@ public final class LoggerUse {
         logConfig.tag = "BaseLog";
         // 进行初始化配置, 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
         DevLogger.init(logConfig);
-//        // 进行初始化配置, 在DevUtils.init() 内部调用了
-//        DevLoggerUtils.init(mContext); // 日志操作工具类, 快捷获取 LogConfig、以及保存日志到文件中等
     }
 
     // = 使用 =
@@ -65,12 +62,6 @@ public final class LoggerUse {
     public static void loggerUse() {
         // 测试打印Log所用时间
         testTime();
-
-        // try, catch 保存异常日志
-        exLog();
-
-        // 正常保存日志
-        saveLog();
 
         // 使用日志操作
         tempLog();
@@ -126,49 +117,6 @@ public final class LoggerUse {
         DevCommonUtils.timeRecord(builder, "Logger耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
         // 打印时间
         Log.d(LOG_TAG, builder.toString());
-    }
-
-    /**
-     * 打印、保存异常日志
-     */
-    private static void exLog() {
-        // = 保存异常日志 =
-        try {
-            String s = null;
-            s.indexOf("c");
-        } catch (NullPointerException e) {
-            // 打印格式化后的日志信息
-            DevLogger.other(DevLoggerUtils.getSortLogConfig("LogPro")).e(e, "s = null");
-            // 保存的路径
-            String fileName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
-            // 保存日志信息
-            DevLoggerUtils.saveErrorLog(e, fileName);
-            // =
-            // 保存自定义头部、底部信息
-            DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
-            // =
-            // 保存的路径
-            fileName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
-            // 保存日志信息
-            DevLoggerUtils.saveErrorLog(e, fileName);
-        }
-    }
-
-    /**
-     * 保存日志
-     */
-    private static void saveLog() {
-        // = 保存日志 =
-        // 保存文件名
-        String fileName = System.currentTimeMillis() + ".log";
-        // 保存日志
-        DevLoggerUtils.saveLog("保存自定义信息日志", LOG_SD_PATH, fileName);
-
-        // = 保存日志, 包含头部信息、底部信息 =
-        // 保存文件名
-        fileName = System.currentTimeMillis() + ".log";
-        // 保存日志
-        DevLoggerUtils.saveLog("保存自定义信息日志", "头部", "底部", LOG_SD_PATH, fileName);
     }
 
     /**
@@ -229,14 +177,14 @@ public final class LoggerUse {
         // DevLogger.other(logConfig).d(message);
         // DevLogger.other(logConfig).dTag(tag, message);
         // 打印不换行的日志信息
-        DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).vTag("Temp", "测试数据 - v");
-        DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).d("测试数据 - d");
-        DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).i("测试数据 - i");
-        DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).w("测试数据 - w");
-        DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).e("错误 - e");
-        DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag)).wtf(tag, "测试数据 - wtf");
+        DevLogger.other(LogConfig.getDebugLogConfig(tag)).vTag("Temp", "测试数据 - v");
+        DevLogger.other(LogConfig.getDebugLogConfig(tag)).d("测试数据 - d");
+        DevLogger.other(LogConfig.getDebugLogConfig(tag)).i("测试数据 - i");
+        DevLogger.other(LogConfig.getDebugLogConfig(tag)).w("测试数据 - w");
+        DevLogger.other(LogConfig.getDebugLogConfig(tag)).e("错误 - e");
+        DevLogger.other(LogConfig.getDebugLogConfig(tag)).wtf(tag, "测试数据 - wtf");
         // =
-        DevLogger.other(DevLoggerUtils.getDebugLogConfig(tag, LogLevel.DEBUG)).json(TestData.SMALL_SON_WITH_NO_LINE_BREAK);
+        DevLogger.other(LogConfig.getDebugLogConfig(tag, LogLevel.DEBUG)).json(TestData.SMALL_SON_WITH_NO_LINE_BREAK);
 
         // =
         // 初始化日志配置
