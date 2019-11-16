@@ -47,6 +47,8 @@ public final class AnalysisRecordUtils {
     private static boolean sIsHandler = true;
     // 判断是否加空格
     private static boolean sAppendSpace = true;
+    // 文件记录回调
+    private static CallBack RECORD_CALLBACK = null;
 
     // ============
     // = 配置信息 =
@@ -101,6 +103,14 @@ public final class AnalysisRecordUtils {
             // 转换字符串
             handlerDeviceInfo("");
         }
+    }
+
+    /**
+     * 设置文件记录回调
+     * @param callBack {@link CallBack}
+     */
+    public static void setCallBack(final CallBack callBack) {
+        RECORD_CALLBACK = callBack;
     }
 
     // ============
@@ -222,6 +232,8 @@ public final class AnalysisRecordUtils {
         // 获取文件提示
         String fileHint = fileInfo.getFileFunction();
         try {
+            // 操作结果
+            boolean result;
             // 获取处理的日志
             String logContent = splitLog(logs);
             // 日志保存路径
@@ -232,7 +244,7 @@ public final class AnalysisRecordUtils {
             File file = new File(logFile);
             // 判断是否存在
             if (file.exists()) {
-                appendFile(logFile, logContent);
+                result = appendFile(logFile, logContent);
             } else {
                 // = 首次则保存设备、APP 信息 =
                 StringBuilder builder = new StringBuilder();
@@ -280,7 +292,11 @@ public final class AnalysisRecordUtils {
                 // 创建文件夹, 并且进行处理
                 saveFile(logPath, fileName, builder.toString());
                 // 追加内容
-                appendFile(logFile, logContent);
+                result = appendFile(logFile, logContent);
+            }
+            // 触发回调
+            if (RECORD_CALLBACK != null) {
+                RECORD_CALLBACK.callback(result, fileInfo, logContent, logPath, fileName, logs);
             }
             // 返回打印日志
             return logContent;
@@ -629,6 +645,29 @@ public final class AnalysisRecordUtils {
         return DEVICE_INFO_STR;
     }
 
+    // ============
+    // = 接口回调 =
+    // ============
+
+    /**
+     * detail: 文件记录回调
+     * @author Ttt
+     */
+    public interface CallBack {
+
+        /**
+         * 记录结果回调
+         * @param result     保存结果
+         * @param fileInfo   {@link FileInfo}
+         * @param logContent 日志信息
+         * @param filePath   保存路径
+         * @param fileName   文件名 ( 含后缀 )
+         * @param logs       原始日志内容数组
+         */
+        void callback(boolean result, final FileInfo fileInfo, final String logContent,
+                      final String filePath, final String fileName, final String... logs);
+    }
+
     // ======================
     // = 其他工具类实现代码 =
     // ======================
@@ -670,17 +709,19 @@ public final class AnalysisRecordUtils {
      * 追加文件 ( 使用 FileWriter)
      * @param filePath 文件路径
      * @param content  追加内容
+     * @return {@code true} success, {@code false} fail
      */
-    private static void appendFile(final String filePath, final String content) {
-        if (filePath == null || content == null) return;
+    public static boolean appendFile(final String filePath, final String content) {
+        if (filePath == null || content == null) return false;
         File file = new File(filePath);
         // 如果文件不存在, 则跳过
-        if (!file.exists()) return;
+        if (!file.exists()) return false;
         FileWriter writer = null;
         try {
             // 打开一个写文件器, 构造函数中的第二个参数 true 表示以追加形式写文件
             writer = new FileWriter(file, true);
             writer.write(content);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "appendFile");
         } finally {
@@ -691,6 +732,7 @@ public final class AnalysisRecordUtils {
                 }
             }
         }
+        return false;
     }
 
     /**
