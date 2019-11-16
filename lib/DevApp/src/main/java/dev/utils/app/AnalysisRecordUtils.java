@@ -11,9 +11,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
@@ -828,39 +825,6 @@ public final class AnalysisRecordUtils {
             }
         }
         return false;
-    }
-
-    // ==================
-    // = ThrowableUtils =
-    // ==================
-
-    /**
-     * 获取异常栈信息
-     * @param throwable 异常
-     * @param errorInfo 获取失败返回字符串
-     * @return 异常栈信息字符串
-     */
-    private static String getThrowableStackTrace(final Throwable throwable, final String errorInfo) {
-        if (throwable != null) {
-            PrintWriter printWriter = null;
-            try {
-                Writer writer = new StringWriter();
-                printWriter = new PrintWriter(writer);
-                throwable.printStackTrace(printWriter);
-                return writer.toString();
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getThrowableStackTrace");
-                return e.toString();
-            } finally {
-                if (printWriter != null) {
-                    try {
-                        printWriter.close();
-                    } catch (Exception e) {
-                    }
-                }
-            }
-        }
-        return errorInfo;
     }
 
     // =============
