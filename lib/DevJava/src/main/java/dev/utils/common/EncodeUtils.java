@@ -202,9 +202,6 @@ public final class EncodeUtils {
 
     /**
      * Html 字符串编码
-     * <pre>
-     *     TextUtils.htmlEncode()
-     * </pre>
      * @param input 待处理数据
      * @return Html 编码后的数据
      */
