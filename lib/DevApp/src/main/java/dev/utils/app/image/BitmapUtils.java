@@ -1,5 +1,6 @@
 package dev.utils.app.image;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -24,8 +25,8 @@ import java.io.File;
 import java.io.FileDescriptor;
 import java.io.InputStream;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.app.ResourceUtils;
 
 /**
  * detail: Bitmap 工具类
@@ -178,7 +179,7 @@ public final class BitmapUtils {
             // 只解析图片信息, 不加载到内存中
             options.inJustDecodeBounds = true;
             // 返回的 bitmap 为 null
-            BitmapFactory.decodeResource(ResourceUtils.getResources(), resId, options);
+            BitmapFactory.decodeResource(getResources(), resId, options);
             // options.outHeight 为原始图片的高
             return new int[]{options.outWidth, options.outHeight};
         } catch (Exception e) {
@@ -1385,5 +1386,22 @@ public final class BitmapUtils {
      */
     private static boolean isFileExists(final String filePath) {
         return isFileExists(getFileByPath(filePath));
+    }
+
+    // =================
+    // = ResourceUtils =
+    // =================
+
+    /**
+     * 获取 Resources
+     * @return {@link Resources}
+     */
+    private static Resources getResources() {
+        try {
+            return DevUtils.getContext().getResources();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getResources");
+        }
+        return null;
     }
 }

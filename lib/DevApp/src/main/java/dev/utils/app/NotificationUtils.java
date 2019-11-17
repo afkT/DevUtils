@@ -72,7 +72,7 @@ public final class NotificationUtils {
                     Field opPostNotificationValue = appOpsClass.getDeclaredField("OP_POST_NOTIFICATION");
                     int value = (Integer) opPostNotificationValue.get(Integer.class);
                     return (Integer) checkOpNoThrowMethod.invoke(appOps, value, uid, pkg) == 0;
-                } catch (Throwable ignored) {
+                } catch (Throwable ignore) {
                     return true;
                 }
             } else {
