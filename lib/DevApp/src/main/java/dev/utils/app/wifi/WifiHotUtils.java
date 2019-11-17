@@ -1,5 +1,6 @@
 package dev.utils.app.wifi;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -34,8 +35,6 @@ public final class WifiHotUtils {
 
     // 日志 TAG
     private static final String TAG = WifiHotUtils.class.getSimpleName();
-    // Context
-    private Context mContext;
     // WifiManager 对象
     private WifiManager mWifiManager;
     // Wifi 热点配置
@@ -45,17 +44,8 @@ public final class WifiHotUtils {
      * 构造函数
      */
     public WifiHotUtils() {
-        this(DevUtils.getContext());
-    }
-
-    /**
-     * 构造函数
-     * @param context {@link Context}
-     */
-    public WifiHotUtils(final Context context) {
-        this.mContext = context;
         // 初始化 WifiManager 对象
-        mWifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
+        mWifiManager = getWifiManager();
     }
 
     // =============
@@ -181,7 +171,7 @@ public final class WifiHotUtils {
                 intent.setAction(Intent.ACTION_MAIN);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.TetherSettings"));
-                mContext.startActivity(intent);
+                DevUtils.getContext().startActivity(intent);
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "stratWifiAp");
@@ -620,5 +610,57 @@ public final class WifiHotUtils {
          * @param reason 失败原因 ( 错误码 )
          */
         void onFailed(int reason);
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 WifiManager
+     * @return {@link WifiManager}
+     */
+    @SuppressLint("WifiManagerLeak")
+    private static WifiManager getWifiManager() {
+        return getSystemService(Context.WIFI_SERVICE);
+    }
+
+    /**
+     * 获取 SystemService
+     * @param name 服务名
+     * @param <T>  泛型
+     * @return SystemService Object
+     */
+    private static <T> T getSystemService(final String name) {
+        if (isSpace(name)) return null;
+        try {
+            return (T) DevUtils.getContext().getSystemService(name);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSystemService");
+        }
+        return null;
+    }
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

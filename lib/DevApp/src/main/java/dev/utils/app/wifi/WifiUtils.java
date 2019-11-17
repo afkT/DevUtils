@@ -56,24 +56,8 @@ public final class WifiUtils {
      * 构造函数
      */
     public WifiUtils() {
-        this(DevUtils.getContext());
-    }
-
-    /**
-     * 构造函数
-     * @param context {@link Context}
-     */
-    public WifiUtils(final Context context) {
         // 初始化 WifiManager 对象
-        mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-    }
-
-    /**
-     * 获取 WifiManager
-     * @return {@link WifiManager}
-     */
-    public WifiManager getWifiManager() {
-        return this.mWifiManager;
+        mWifiManager = getWifiManager();
     }
 
     // ===========================
@@ -282,10 +266,8 @@ public final class WifiUtils {
     @SuppressLint("MissingPermission")
     public static String getSSID() {
         try {
-            // 初始化 WifiManager 对象
-            WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             // 获取当前连接的 wifi
-            WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
+            WifiInfo wifiInfo = getWifiManager().getConnectionInfo();
             // 获取 wifi SSID
             return formatSSID(wifiInfo.getSSID(), false);
         } catch (Exception e) {
@@ -397,7 +379,6 @@ public final class WifiUtils {
         } else if (typeStr.contains("WEP")) {
             return WEP;
         }
-        // 默认没有密码
         return NOPWD;
     }
 
@@ -413,7 +394,6 @@ public final class WifiUtils {
         } else if (typeInt.equals("1")) {
             return WEP;
         }
-        // 默认没有密码
         return NOPWD;
     }
 
@@ -468,7 +448,7 @@ public final class WifiUtils {
     public static String isConnectAphot() {
         try {
             // 连接管理
-            ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cManager = getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 连接状态
@@ -596,9 +576,9 @@ public final class WifiUtils {
         if (ssid == null) return false;
         try {
             // 初始化 WifiManager 对象
-            WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = getWifiManager();
             // 获取 wifi 连接过的配置信息
-            List<WifiConfiguration> listWifiConfigs = mWifiManager.getConfiguredNetworks();
+            List<WifiConfiguration> listWifiConfigs = wifiManager.getConfiguredNetworks();
             // 防止为 null
             if (listWifiConfigs != null) {
                 // 遍历判断是否存在
@@ -607,12 +587,12 @@ public final class WifiUtils {
                     if (wConfig != null) {
                         if (wConfig.SSID.equals("\"" + ssid + "\"")) {
                             // 删除操作
-                            mWifiManager.removeNetwork(wConfig.networkId);
+                            wifiManager.removeNetwork(wConfig.networkId);
                         }
                     }
                 }
                 // 保存操作
-                return mWifiManager.saveConfiguration();
+                return wifiManager.saveConfiguration();
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "delWifiConfig");
@@ -865,8 +845,7 @@ public final class WifiUtils {
     public boolean disconnectWifi(final int networkId) {
         try {
             mWifiManager.disableNetwork(networkId);
-            mWifiManager.disconnect();
-            return true;
+            return mWifiManager.disconnect();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, "disconnectWifi", e);
         }
@@ -910,11 +889,10 @@ public final class WifiUtils {
      * @param networkPrefixLength 网络前缀长度
      * @return {@link WifiConfiguration}
      */
-    private WifiConfiguration setStaticWifiConfig(final WifiConfiguration wifiConfig, final String ip, final String gateway, final String dns, final int networkPrefixLength) {
+    private WifiConfiguration setStaticWifiConfig(final WifiConfiguration wifiConfig, final String ip,
+                                                  final String gateway, final String dns, final int networkPrefixLength) {
         try {
-            if (ip == null || gateway == null) {
-                return null;
-            }
+            if (ip == null || gateway == null) return null;
             // 设置 InetAddress
             InetAddress intetAddress = InetAddress.getByName(ip);
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT_WATCH) { // 旧的版本, 5.0 之前
@@ -1097,5 +1075,65 @@ public final class WifiUtils {
     private void setValueField(final Object object, final Object val, final String name) throws Exception {
         Field field = object.getClass().getField(name);
         field.set(object, val);
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 WifiManager
+     * @return {@link WifiManager}
+     */
+    @SuppressLint("WifiManagerLeak")
+    private static WifiManager getWifiManager() {
+        return getSystemService(Context.WIFI_SERVICE);
+    }
+
+    /**
+     * 获取 ConnectivityManager
+     * @return {@link ConnectivityManager}
+     */
+    private static ConnectivityManager getConnectivityManager() {
+        return getSystemService(Context.CONNECTIVITY_SERVICE);
+    }
+
+    /**
+     * 获取 SystemService
+     * @param name 服务名
+     * @param <T>  泛型
+     * @return SystemService Object
+     */
+    private static <T> T getSystemService(final String name) {
+        if (isSpace(name)) return null;
+        try {
+            return (T) DevUtils.getContext().getSystemService(name);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSystemService");
+        }
+        return null;
+    }
+
+    // ===============
+    // = StringUtils =
+    // ===============
+
+    /**
+     * 判断字符串是否为 null 或全为空白字符
+     * @param str 待校验字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSpace(final String str) {
+        if (str == null) return true;
+        for (int i = 0, len = str.length(); i < len; ++i) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

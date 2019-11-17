@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -12,13 +13,16 @@ import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
+import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Vibrator;
 import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.content.FileProvider;
+import android.telephony.TelephonyManager;
 import android.view.WindowManager;
 
 import java.io.File;
@@ -77,6 +81,31 @@ public final class AppUtils {
      */
     public static StorageManager getStorageManager() {
         return getSystemService(Context.STORAGE_SERVICE);
+    }
+
+    /**
+     * 获取 WifiManager
+     * @return {@link WifiManager}
+     */
+    @SuppressLint("WifiManagerLeak")
+    public static WifiManager getWifiManager() {
+        return getSystemService(Context.WIFI_SERVICE);
+    }
+
+    /**
+     * 获取 ConnectivityManager
+     * @return {@link ConnectivityManager}
+     */
+    public static ConnectivityManager getConnectivityManager() {
+        return getSystemService(Context.CONNECTIVITY_SERVICE);
+    }
+
+    /**
+     * 获取 TelephonyManager
+     * @return {@link TelephonyManager}
+     */
+    public static TelephonyManager getTelephonyManager() {
+        return getSystemService(Context.TELEPHONY_SERVICE);
     }
 
     /**
