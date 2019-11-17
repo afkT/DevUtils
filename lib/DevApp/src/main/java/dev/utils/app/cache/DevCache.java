@@ -1,8 +1,8 @@
 package dev.utils.app.cache;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Environment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -57,86 +57,55 @@ public final class DevCache {
     // 缓存管理类
     private DevCacheManager mCache;
     // 缓存地址
-    private static File sContextCacheDir = null;
+    private static File sCacheDir = null;
 
     /**
-     * 内部处理防止 Context 为 null 崩溃问题
-     * @param context {@link Context}
-     * @return {@link Context}
-     */
-    private static Context getContext(final Context context) {
-        if (context != null) {
-            return context;
-        } else {
-            // 设置全局 Context
-            return DevUtils.getContext();
-        }
-    }
-
-    /**
-     * 获取缓存地址
-     * @param context {@link Context}
-     * @return 应用缓存地址
-     */
-    public static File getCacheDir(final Context context) {
-        if (sContextCacheDir == null) {
-            sContextCacheDir = getContext(context).getCacheDir();
-        }
-        return sContextCacheDir;
-    }
-
-    /**
-     * 默认缓存地址
-     * @param context {@link Context}
+     * 获取 DevCache - 默认缓存文件名
      * @return {@link DevCache}
      */
-    public static DevCache get(final Context context) {
-        return get(context, DEF_FILE_NAME);
+    public static DevCache obtain() {
+        return obtain(DEF_FILE_NAME);
     }
 
     /**
-     * 获取缓存地址
-     * @param context   {@link Context}
+     * 获取 DevCache -  - 自定义缓存文件名
      * @param cacheName 缓存文件名
      * @return {@link DevCache}
      */
-    public static DevCache get(final Context context, final String cacheName) {
+    public static DevCache obtain(final String cacheName) {
         if (cacheName == null) return null;
-        // 进行处理
-        File file = new File(getCacheDir(context), cacheName);
-        // 获取默认地址
-        return get(file, MAX_SIZE, MAX_COUNT);
+        File file = new File(getCacheDir(), cacheName);
+        return obtain(file, MAX_SIZE, MAX_COUNT);
     }
 
     /**
-     * 设置自定义缓存地址
+     * 获取 DevCache - 自定义缓存文件地址
      * @param cacheDir 缓存文件地址
      * @return {@link DevCache}
      */
-    public static DevCache get(final File cacheDir) {
-        return get(cacheDir, MAX_SIZE, MAX_COUNT);
+    public static DevCache obtain(final File cacheDir) {
+        return obtain(cacheDir, MAX_SIZE, MAX_COUNT);
     }
 
     /**
-     * 自定义缓存大小
-     * @param context  {@link Context}
+     * 获取 DevCache - 自定义缓存大小
      * @param maxSize  文件最大大小
      * @param maxCount 最大存储数量
      * @return {@link DevCache}
      */
-    public static DevCache get(final Context context, final long maxSize, final int maxCount) {
-        File file = new File(getCacheDir(context), DEF_FILE_NAME);
-        return get(file, maxSize, maxCount);
+    public static DevCache obtain(final long maxSize, final int maxCount) {
+        File file = new File(getCacheDir(), DEF_FILE_NAME);
+        return obtain(file, maxSize, maxCount);
     }
 
     /**
-     * 自定义缓存地址、大小等
+     * 获取 DevCache - 自定义缓存文件地址、大小等
      * @param cacheDir 缓存文件地址
      * @param maxSize  文件最大大小
      * @param maxCount 最大存储数量
      * @return {@link DevCache}
      */
-    public static DevCache get(final File cacheDir, final long maxSize, final int maxCount) {
+    public static DevCache obtain(final File cacheDir, final long maxSize, final int maxCount) {
         if (cacheDir == null) return null;
         // 判断是否存在缓存信息
         DevCache manager = sInstanceMaps.get(cacheDir.getAbsoluteFile() + myPid());
@@ -147,6 +116,8 @@ public final class DevCache {
         }
         return manager;
     }
+
+    // =
 
     /**
      * 获取进程 id - android.os.Process.myPid()
@@ -692,5 +663,61 @@ public final class DevCache {
      */
     public void clear() {
         mCache.clear();
+    }
+
+    // ============
+    // = 内部方法 =
+    // ============
+
+    /**
+     * 获取缓存地址
+     * @return 应用缓存地址
+     */
+    private static File getCacheDir() {
+        if (sCacheDir == null) {
+            sCacheDir = new File(getInternalCachePath());
+        }
+        return sCacheDir;
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ===============
+    // = SDCardUtils =
+    // ===============
+
+    /**
+     * 判断内置 SDCard 是否正常挂载
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean isSDCardEnable() {
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+    }
+
+    // =============
+    // = PathUtils =
+    // =============
+
+    /**
+     * 获取内存应用缓存路径 - path /data/data/package/cache
+     * @return /data/data/package/cache
+     */
+    private static String getInternalCachePath() {
+        return getAbsolutePath(DevUtils.getContext().getCacheDir());
+    }
+
+    // =============
+    // = FileUtils =
+    // =============
+
+    /**
+     * 获取文件绝对路径
+     * @param file 文件
+     * @return 文件绝对路径
+     */
+    private static String getAbsolutePath(final File file) {
+        return file != null ? file.getAbsolutePath() : null;
     }
 }

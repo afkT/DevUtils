@@ -80,7 +80,7 @@ public final class DevUtils {
         // ====================
 
         // 初始化 Cache
-        DevCache.get(context);
+        DevCache.obtain();
         // 初始化 SharedPreferences
         SharedUtils.init(context);
         // 初始化 应用、设备信息

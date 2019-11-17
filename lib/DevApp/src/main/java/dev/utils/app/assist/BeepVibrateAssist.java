@@ -92,7 +92,7 @@ public final class BeepVibrateAssist implements Closeable {
                 // so we now play on the music stream.
                 mActivity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "update");
+                LogPrintUtils.eTag(TAG, e, "streamUpdate");
             }
         }
     }
@@ -123,8 +123,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @return {@link BeepVibrateAssist}
      */
     public BeepVibrateAssist setVibrate(final boolean vibrate) {
-        setVibrate(vibrate, 200L);
-        return this;
+        return setVibrate(vibrate, 200L);
     }
 
     /**

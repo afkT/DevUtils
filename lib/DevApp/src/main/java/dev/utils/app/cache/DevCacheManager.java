@@ -124,7 +124,7 @@ final class DevCacheManager {
      * @return {@link File}
      */
     protected File newFile(final String key) {
-        if (key != null) {
+        if (mCacheDir != null && key != null) {
             return new File(mCacheDir, key.hashCode() + "");
         }
         return null;

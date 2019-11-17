@@ -31,7 +31,7 @@ final class DevCacheUtils {
      * @param data 待存储数据
      * @return {@code true} 到期了, {@code false} 还没有到期
      */
-    public static boolean isDue(final String data) {
+    protected static boolean isDue(final String data) {
         if (data == null) return true;
         return isDue(data.getBytes());
     }
@@ -41,7 +41,7 @@ final class DevCacheUtils {
      * @param data 待存储数据
      * @return {@code true} 到期了, {@code false} 还没有到期
      */
-    public static boolean isDue(final byte[] data) {
+    protected static boolean isDue(final byte[] data) {
         // 获取时间数据信息
         String[] strs = getDateInfoFromDate(data);
         // 判断是否过期
@@ -69,7 +69,7 @@ final class DevCacheUtils {
      * @param strInfo 字符串信息
      * @return 字符串, 包含创建时间、存储数据等
      */
-    public static String newStringWithDateInfo(final int second, final String strInfo) {
+    protected static String newStringWithDateInfo(final int second, final String strInfo) {
         return createDateInfo(second) + strInfo;
     }
 
@@ -79,7 +79,7 @@ final class DevCacheUtils {
      * @param data   待存储数据
      * @return byte[], 包含创建时间、存储数据等
      */
-    public static byte[] newByteArrayWithDateInfo(final int second, final byte[] data) {
+    protected static byte[] newByteArrayWithDateInfo(final int second, final byte[] data) {
         if (data != null) {
             try {
                 byte[] dateArys = createDateInfo(second).getBytes();
@@ -111,7 +111,7 @@ final class DevCacheUtils {
      * @param strInfo 存储数据
      * @return 存储数据
      */
-    public static String clearDateInfo(final String strInfo) {
+    protected static String clearDateInfo(final String strInfo) {
         if (strInfo != null && hasDateInfo(strInfo.getBytes())) {
             return strInfo.substring(strInfo.indexOf(mSeparator) + 1);
         }
@@ -123,7 +123,7 @@ final class DevCacheUtils {
      * @param data 存储数据
      * @return 存储数据
      */
-    public static byte[] clearDateInfo(final byte[] data) {
+    protected static byte[] clearDateInfo(final byte[] data) {
         if (hasDateInfo(data)) {
             try {
                 return copyOfRange(data, indexOf(data, mSeparator) + 1, data.length);
@@ -204,7 +204,7 @@ final class DevCacheUtils {
      * @param bitmap {@link Bitmap}
      * @return byte[]
      */
-    public static byte[] bitmapToByte(final Bitmap bitmap) {
+    protected static byte[] bitmapToByte(final Bitmap bitmap) {
         if (bitmap == null) return null;
         ByteArrayOutputStream baos = null;
         try {
@@ -229,7 +229,7 @@ final class DevCacheUtils {
      * @param bytes byte[]
      * @return {@link Bitmap}
      */
-    public static Bitmap byteToBitmap(final byte[] bytes) {
+    protected static Bitmap byteToBitmap(final byte[] bytes) {
         if (bytes != null && bytes.length != 0) {
             try {
                 return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -245,7 +245,7 @@ final class DevCacheUtils {
      * @param drawable 待转换图片
      * @return {@link Bitmap}
      */
-    public static Bitmap drawableToBitmap(final Drawable drawable) {
+    protected static Bitmap drawableToBitmap(final Drawable drawable) {
         if (drawable == null) return null;
         // 属于 BitmapDrawable 直接转换
         if (drawable instanceof BitmapDrawable) {
@@ -283,7 +283,7 @@ final class DevCacheUtils {
      * @param bitmap {@link Bitmap}
      * @return {@link Drawable}
      */
-    public static Drawable bitmapToDrawable(final Bitmap bitmap) {
+    protected static Drawable bitmapToDrawable(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
             BitmapDrawable drawable = new BitmapDrawable(bitmap);
