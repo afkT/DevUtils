@@ -149,7 +149,7 @@ final class ToastFactory {
 
                     Handler handler = (Handler) field_handler.get(mTN);
                     field_handler.set(mTN, new SafeHandler(handler));
-                } catch (Exception ignored) {
+                } catch (Exception ignore) {
                 }
             }
         }
@@ -175,7 +175,7 @@ final class ToastFactory {
             public void dispatchMessage(Message msg) {
                 try {
                     mHandler.dispatchMessage(msg);
-                } catch (Exception ignored) {
+                } catch (Exception ignore) {
                 }
             }
         }
@@ -344,7 +344,7 @@ final class ToastFactory {
             if (mShow) {
                 try {
                     Utils.getWindowManager(DevUtils.getTopActivity()).removeView(mToast.getView());
-                } catch (Exception ignored) {
+                } catch (Exception ignore) {
                 }
                 // 当前没有显示
                 mShow = false;

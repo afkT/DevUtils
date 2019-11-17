@@ -6,7 +6,6 @@ import android.os.Build;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.concurrent.RejectedExecutionException;
 
 import dev.utils.LogPrintUtils;
 
@@ -89,10 +88,9 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * @param collection 对焦模式集合
      */
     public static void setFocusModes(final Collection<String> collection) {
-        // 清空旧的
-        FOCUS_MODES.clear();
-        // 防止为 null
         if (collection != null) {
+            FOCUS_MODES.clear();
+            // 保存对焦模式集合
             FOCUS_MODES.addAll(collection);
         }
     }
@@ -152,8 +150,8 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
                     newTask.execute();
                 }
                 mOutstandingTask = newTask;
-            } catch (RejectedExecutionException ree) {
-                LogPrintUtils.eTag(TAG, ree, "autoFocusAgainLater");
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "autoFocusAgainLater");
             }
         }
     }
@@ -163,9 +161,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      */
     public synchronized void start() {
         // 如果不使用自动对焦, 则不处理
-        if (!mAutoFocus) {
-            return;
-        }
+        if (!mAutoFocus) return;
         // 支持对焦才处理
         if (mUseAutoFocus) {
             // 重置任务为 null
@@ -177,8 +173,8 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
                     mCamera.autoFocus(this);
                     // 表示对焦中
                     mFocusing = true;
-                } catch (RuntimeException re) {
-                    LogPrintUtils.eTag(TAG, re, "start");
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "start");
                     // Try again later to keep cycle going
                     autoFocusAgainLater();
                 }
@@ -194,13 +190,13 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
         mStopped = true;
         // 判断是否支持对焦
         if (mUseAutoFocus) {
-            // 关闭任务
-            cancelOutstandingTask();
             try {
+                // 关闭任务
+                cancelOutstandingTask();
                 // 取消对焦
                 mCamera.cancelAutoFocus();
-            } catch (RuntimeException re) {
-                LogPrintUtils.eTag(TAG, re, "stop");
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "stop");
             }
         }
     }
@@ -227,7 +223,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
             try {
                 // 堵塞时间
                 Thread.sleep(mInterval);
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
             }
             // 开启定时
             start();

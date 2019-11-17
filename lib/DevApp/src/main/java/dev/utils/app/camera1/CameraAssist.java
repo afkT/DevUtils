@@ -4,8 +4,8 @@ import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.view.SurfaceHolder;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.app.AppUtils;
 
 /**
  * detail: 摄像头辅助类
@@ -14,7 +14,7 @@ import dev.utils.app.AppUtils;
 public final class CameraAssist {
 
     // 日志 TAG
-    private final String TAG = CameraAssist.class.getSimpleName();
+    private static final String TAG = CameraAssist.class.getSimpleName();
     // 摄像头对象
     private Camera mCamera;
     // 是否预览中
@@ -152,8 +152,7 @@ public final class CameraAssist {
      * @return {@link Camera.Size} 相机分辨率
      */
     public Camera.Size getCameraResolution() {
-        if (mPreviewSize == null) {
-            // 获取预览大小
+        if (mPreviewSize == null) { // 获取预览大小
             mPreviewSize = mCameraSizeAssist.getPreviewSize();
         }
         return mPreviewSize;
@@ -253,7 +252,7 @@ public final class CameraAssist {
     public boolean setFlashlightOn() {
         if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
-        if (!Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+        if (parameters != null && !Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             mCamera.setParameters(parameters);
             return true;
@@ -268,7 +267,7 @@ public final class CameraAssist {
     public boolean setFlashlightOff() {
         if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
-        if (Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+        if (parameters != null && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             mCamera.setParameters(parameters);
             return true;
@@ -283,7 +282,7 @@ public final class CameraAssist {
     public boolean isFlashlightOn() {
         if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
-        return Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
+        return parameters != null && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
     }
 
     /**
@@ -291,7 +290,25 @@ public final class CameraAssist {
      * @return {@code true} 支持, {@code false} 不支持
      */
     public static boolean isFlashlightEnable() {
-        return AppUtils.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        PackageManager packageManager = getPackageManager();
+        return (packageManager != null) ? packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH) : false;
+    }
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 PackageManager
+     * @return {@link PackageManager}
+     */
+    private static PackageManager getPackageManager() {
+        try {
+            return DevUtils.getContext().getPackageManager();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageManager");
+        }
+        return null;
     }
 
     // ========

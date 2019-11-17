@@ -128,7 +128,9 @@ public final class ScreenUtils {
             WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
             if (windowManager == null) {
                 DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
-                return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
+                if (displayMetrics != null) {
+                    return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
+                }
             }
             Point point = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
