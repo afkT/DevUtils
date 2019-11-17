@@ -26,7 +26,6 @@ import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.app.AppUtils;
 
 /**
  * detail: 权限请求工具类
@@ -73,8 +72,8 @@ public final class PermissionUtils {
     private List<String> mPermissionsNotFoundLists = new ArrayList<>();
     // 操作回调
     private PermissionCallBack mCallBack;
-    // 回调方法
-    private Looper mLooper = Looper.getMainLooper();
+    // 回调方法 Handler
+    private Handler mHandler = new Handler(Looper.getMainLooper());
     // 判断是否请求过
     private boolean mIsRequest = false;
     // 是否需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this);
@@ -380,14 +379,14 @@ public final class PermissionUtils {
             boolean isGrantedAll = (mPermissionSets.size() == mPermissionsGrantedLists.size());
             // 允许则触发回调
             if (isGrantedAll) {
-                new Handler(mLooper).post(new Runnable() {
+                mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         mCallBack.onGranted();
                     }
                 });
             } else {
-                new Handler(mLooper).post(new Runnable() {
+                mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         mCallBack.onDenied(mPermissionsGrantedLists, mPermissionsDeniedLists, mPermissionsNotFoundLists);
@@ -428,7 +427,7 @@ public final class PermissionUtils {
     public static boolean canRequestPackageInstalls() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
-                return AppUtils.getPackageManager().canRequestPackageInstalls();
+                return getPackageManager().canRequestPackageInstalls();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "canRequestPackageInstalls");
             }
@@ -500,7 +499,7 @@ public final class PermissionUtils {
      * @return APP 注册的权限数组
      */
     public static String[] getAppPermission() {
-        return getAppPermission(AppUtils.getPackageName());
+        return getAppPermission(getPackageName());
     }
 
     /**
@@ -510,11 +509,44 @@ public final class PermissionUtils {
      */
     public static String[] getAppPermission(final String packageName) {
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             return packageInfo.requestedPermissions;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppPermission");
+        }
+        return null;
+    }
+
+    // ======================
+    // = 其他工具类实现代码 =
+    // ======================
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 PackageManager
+     * @return {@link PackageManager}
+     */
+    private static PackageManager getPackageManager() {
+        try {
+            return DevUtils.getContext().getPackageManager();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageManager");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 APP 包名
+     * @return APP 包名
+     */
+    private static String getPackageName() {
+        try {
+            return DevUtils.getContext().getPackageName();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageName");
         }
         return null;
     }

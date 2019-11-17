@@ -13,8 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.app.AppUtils;
 
 /**
  * detail: APP 信息获取工具类
@@ -47,8 +47,7 @@ public final class AppInfoUtils {
      */
     public static PackageInfo getPackageInfoToPath(final String apkUri) {
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
+            PackageInfo packageInfo = getPackageManager().getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
             // 设置 APK 位置信息
             ApplicationInfo appInfo = packageInfo.applicationInfo;
             // 必须加这两句, 不然下面 icon 获取是 default icon 而不是应用包的 icon
@@ -66,7 +65,7 @@ public final class AppInfoUtils {
      * @return {@link PackageInfo}
      */
     public static PackageInfo getPackageInfo() {
-        return getPackageInfo(AppUtils.getPackageName());
+        return getPackageInfo(getPackageName());
     }
 
     /**
@@ -76,9 +75,8 @@ public final class AppInfoUtils {
      */
     public static PackageInfo getPackageInfo(final String packageName) {
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
             // 获取对应的 PackageInfo ( 原始的 PackageInfo 获取 signatures 等于 null, 需要这样获取 )
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             // 返回 APP 信息
             return packageInfo;
         } catch (Exception e) {
@@ -204,7 +202,7 @@ public final class AppInfoUtils {
         // 防止为 null
         if (appType != null) {
             // 管理应用程序包
-            PackageManager packageManager = AppUtils.getPackageManager();
+            PackageManager packageManager = getPackageManager();
             // 获取手机内所有应用
             List<PackageInfo> packlist = packageManager.getInstalledPackages(0);
             // 判断是否属于添加全部
@@ -264,7 +262,7 @@ public final class AppInfoUtils {
      * @return APP 注册的权限数组
      */
     public static String[] getAppPermission() {
-        return getAppPermission(AppUtils.getPackageName());
+        return getAppPermission(getPackageName());
     }
 
     /**
@@ -274,8 +272,7 @@ public final class AppInfoUtils {
      */
     public static String[] getAppPermission(final String packageName) {
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             return packageInfo.requestedPermissions;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppPermission");
@@ -291,7 +288,7 @@ public final class AppInfoUtils {
         try {
             StringBuilder builder = new StringBuilder();
             // =
-            PackageManager packageManager = AppUtils.getPackageManager();
+            PackageManager packageManager = getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             String[] usesPermissionsArray = packageInfo.requestedPermissions;
             for (int i = 0; i < usesPermissionsArray.length; i++) {
@@ -345,5 +342,35 @@ public final class AppInfoUtils {
      */
     private static boolean isFileExists(final File file) {
         return file != null && file.exists();
+    }
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 PackageManager
+     * @return {@link PackageManager}
+     */
+    private static PackageManager getPackageManager() {
+        try {
+            return DevUtils.getContext().getPackageManager();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageManager");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 APP 包名
+     * @return APP 包名
+     */
+    private static String getPackageName() {
+        try {
+            return DevUtils.getContext().getPackageName();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageName");
+        }
+        return null;
     }
 }
