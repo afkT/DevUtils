@@ -66,9 +66,10 @@ public final class ADBUtils {
 
     /**
      * 请求 Root 权限
+     * {@code true} success, {@code false} fail
      */
-    public static void requestRoot() {
-        ShellUtils.execCmd("exit", true);
+    public static boolean requestRoot() {
+        return ShellUtils.execCmd("exit", true).isSuccess();
     }
 
     /**
@@ -76,8 +77,7 @@ public final class ADBUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isGrantedRoot() {
-        ShellUtils.CommandResult result = ShellUtils.execCmd("exit", true);
-        return result.isSuccess2();
+        return ShellUtils.execCmd("exit", true).isSuccess2();
     }
 
     // ============
@@ -166,9 +166,7 @@ public final class ADBUtils {
      */
     public static boolean isInstalledApp(final String packageName) {
         if (isSpace(packageName)) return false;
-        // 执行 shell
-        ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packageName, false);
-        return result.isSuccess3();
+        return ShellUtils.execCmd("pm path " + packageName, false).isSuccess3();
     }
 
     /**
@@ -710,9 +708,7 @@ public final class ADBUtils {
      * @return 对应包名的 Activity 栈信息
      */
     public static String getActivitysToPackage(final String packageName) {
-        if (isSpace(packageName)) {
-            return null;
-        }
+        if (isSpace(packageName)) return null;
         return getActivitys("| grep " + packageName);
     }
 
@@ -998,7 +994,7 @@ public final class ADBUtils {
             // 获取 Launcher Activity
             String activity = getLauncherActivity();
             // 跳转应用启动页 ( 启动应用 )
-            startActivity(packageName + "/" + activity, closeActivity);
+            return startActivity(packageName + "/" + activity, closeActivity);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSelfApp");
         }
@@ -1564,8 +1560,7 @@ public final class ADBUtils {
             ShellUtils.execCmd("reboot -p", true);
             Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
             intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
-            startActivity(intent);
-            return true;
+            return startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shutdown");
         }
