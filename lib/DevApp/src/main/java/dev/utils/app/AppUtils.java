@@ -265,7 +265,7 @@ public final class AppUtils {
      * @return {@link Drawable}
      */
     public static Drawable getAppIcon() {
-        return getAppIcon(AppUtils.getPackageName());
+        return getAppIcon(getPackageName());
     }
 
     /**
@@ -276,7 +276,7 @@ public final class AppUtils {
     public static Drawable getAppIcon(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
+            PackageManager packageManager = getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.loadIcon(packageManager);
         } catch (Exception e) {
@@ -290,7 +290,7 @@ public final class AppUtils {
      * @return APP 应用名
      */
     public static String getAppName() {
-        return getAppName(AppUtils.getPackageName());
+        return getAppName(getPackageName());
     }
 
     /**
@@ -301,7 +301,7 @@ public final class AppUtils {
     public static String getAppName(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
+            PackageManager packageManager = getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.loadLabel(packageManager).toString();
         } catch (Exception e) {
@@ -315,7 +315,7 @@ public final class AppUtils {
      * @return APP versionName
      */
     public static String getAppVersionName() {
-        return getAppVersionName(AppUtils.getPackageName());
+        return getAppVersionName(getPackageName());
     }
 
     /**
@@ -326,7 +326,7 @@ public final class AppUtils {
     public static String getAppVersionName(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.versionName;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName");
@@ -339,7 +339,7 @@ public final class AppUtils {
      * @return APP versionCode
      */
     public static int getAppVersionCode() {
-        return getAppVersionCode(AppUtils.getPackageName());
+        return getAppVersionCode(getPackageName());
     }
 
     /**
@@ -350,7 +350,7 @@ public final class AppUtils {
     public static int getAppVersionCode(final String packageName) {
         if (isSpace(packageName)) return -1;
         try {
-            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? -1 : packageInfo.versionCode;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
@@ -363,7 +363,7 @@ public final class AppUtils {
      * @return APP 安装包路径
      */
     public static String getAppPath() {
-        return getAppPath(AppUtils.getPackageName());
+        return getAppPath(getPackageName());
     }
 
     /**
@@ -374,8 +374,7 @@ public final class AppUtils {
     public static String getAppPath(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.sourceDir;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppPath");
@@ -390,7 +389,7 @@ public final class AppUtils {
      * @return {@link Signature} 数组
      */
     public static Signature[] getAppSignature() {
-        return getAppSignature(AppUtils.getPackageName());
+        return getAppSignature(getPackageName());
     }
 
     /**
@@ -401,8 +400,7 @@ public final class AppUtils {
     public static Signature[] getAppSignature(final String packageName) {
         if (isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.signatures;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppSignature");
@@ -417,7 +415,7 @@ public final class AppUtils {
      * @return APP 签名 MD5 值
      */
     public static String getAppSignatureMD5() {
-        return getAppSignatureMD5(AppUtils.getPackageName());
+        return getAppSignatureMD5(getPackageName());
     }
 
     /**
@@ -434,7 +432,7 @@ public final class AppUtils {
      * @return APP 签名 SHA1 值
      */
     public static String getAppSignatureSHA1() {
-        return getAppSignatureSHA1(AppUtils.getPackageName());
+        return getAppSignatureSHA1(getPackageName());
     }
 
     /**
@@ -451,7 +449,7 @@ public final class AppUtils {
      * @return APP 签名 SHA256 值
      */
     public static String getAppSignatureSHA256() {
-        return getAppSignatureSHA256(AppUtils.getPackageName());
+        return getAppSignatureSHA256(getPackageName());
     }
 
     /**
@@ -488,7 +486,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppDebug() {
-        return isAppDebug(AppUtils.getPackageName());
+        return isAppDebug(getPackageName());
     }
 
     /**
@@ -499,7 +497,7 @@ public final class AppUtils {
     public static boolean isAppDebug(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, 0);
+            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppDebug");
@@ -512,7 +510,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppRelease() {
-        return isAppRelease(AppUtils.getPackageName());
+        return isAppRelease(getPackageName());
     }
 
     /**
@@ -523,7 +521,7 @@ public final class AppUtils {
     public static boolean isAppRelease(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, 0);
+            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, 0);
             return !(appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppRelease");
@@ -538,7 +536,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppSystem() {
-        return isAppSystem(AppUtils.getPackageName());
+        return isAppSystem(getPackageName());
     }
 
     /**
@@ -549,7 +547,7 @@ public final class AppUtils {
     public static boolean isAppSystem(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, 0);
+            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppSystem");
@@ -563,7 +561,7 @@ public final class AppUtils {
      */
     @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
     public static boolean isAppForeground() {
-        return isAppForeground(AppUtils.getPackageName());
+        return isAppForeground(getPackageName());
     }
 
     /**
@@ -575,9 +573,7 @@ public final class AppUtils {
     public static boolean isAppForeground(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-            if (activityManager == null) return false;
-            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            List<ActivityManager.RunningAppProcessInfo> lists = getActivityManager().getRunningAppProcesses();
             if (lists != null && lists.size() > 0) {
                 for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                     if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
@@ -603,7 +599,7 @@ public final class AppUtils {
         try {
             Intent intent = new Intent(action);
             intent.addCategory(category);
-            ResolveInfo resolveinfo = AppUtils.getPackageManager().resolveActivity(intent, 0);
+            ResolveInfo resolveinfo = getPackageManager().resolveActivity(intent, 0);
             return resolveinfo != null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");
@@ -620,7 +616,7 @@ public final class AppUtils {
     public static boolean isInstalledApp(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
+            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
             return true;
         } catch (Exception e) { // 未安装, 则会抛出异常
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");
@@ -937,7 +933,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings() {
-        return launchAppDetailsSettings(AppUtils.getPackageName());
+        return launchAppDetailsSettings(getPackageName());
     }
 
     /**
@@ -962,7 +958,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetails(final String marketPkg) {
-        return launchAppDetails(AppUtils.getPackageName(), marketPkg);
+        return launchAppDetails(getPackageName(), marketPkg);
     }
 
     /**

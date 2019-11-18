@@ -131,8 +131,6 @@ public final class AppCommonUtils {
         return Build.VERSION.SDK_INT;
     }
 
-    // =
-
     /**
      * 是否在 2.2 版本及以上
      * @return 是否在 2.2 版本及以上
@@ -459,8 +457,7 @@ public final class AppCommonUtils {
      */
     private static String[] getAppVersion() {
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(), PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
                 String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
                 String versionCode = packageInfo.versionCode + "";
@@ -475,6 +472,19 @@ public final class AppCommonUtils {
     // ============
     // = AppUtils =
     // ============
+
+    /**
+     * 获取 PackageManager
+     * @return {@link PackageManager}
+     */
+    private static PackageManager getPackageManager() {
+        try {
+            return DevUtils.getContext().getPackageManager();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageManager");
+        }
+        return null;
+    }
 
     /**
      * 获取 APP 包名

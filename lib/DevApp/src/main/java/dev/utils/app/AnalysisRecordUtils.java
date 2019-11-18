@@ -90,7 +90,7 @@ public final class AnalysisRecordUtils {
 
         // 获取包名
         if (TextUtils.isEmpty(PACKAGE_NAME)) {
-            PACKAGE_NAME = AppUtils.getPackageName();
+            PACKAGE_NAME = getPackageName();
         }
 
         // 判断是否存在设备信息
@@ -297,7 +297,8 @@ public final class AnalysisRecordUtils {
             }
             // 返回打印日志
             return logContent;
-        } catch (Exception ignore) {
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "saveLogRecord");
             // 捕获异常
             return "catch exception";
         }
@@ -694,6 +695,36 @@ public final class AnalysisRecordUtils {
         return getAbsolutePath(DevUtils.getContext().getExternalCacheDir());
     }
 
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 PackageManager
+     * @return {@link PackageManager}
+     */
+    private static PackageManager getPackageManager() {
+        try {
+            return DevUtils.getContext().getPackageManager();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageManager");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 APP 包名
+     * @return APP 包名
+     */
+    private static String getPackageName() {
+        try {
+            return DevUtils.getContext().getPackageName();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageName");
+        }
+        return null;
+    }
+
     // =============
     // = FileUtils =
     // =============
@@ -704,7 +735,7 @@ public final class AnalysisRecordUtils {
      * @param content  追加内容
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean appendFile(final String filePath, final String content) {
+    private static boolean appendFile(final String filePath, final String content) {
         if (filePath == null || content == null) return false;
         File file = new File(filePath);
         // 如果文件不存在, 则跳过
@@ -928,8 +959,7 @@ public final class AnalysisRecordUtils {
      */
     private static String[] getAppVersion() {
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(), PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
                 String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
                 String versionCode = packageInfo.versionCode + "";
