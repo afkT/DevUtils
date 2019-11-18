@@ -159,7 +159,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
         // 判断辅助功能是否开启
         if (!isAccessibilitySettingsOn(packageName)) {
             // 跳转至辅助功能设置页面
-            DevUtils.getContext().startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            AppUtils.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
             return false;
         }
         return true;
