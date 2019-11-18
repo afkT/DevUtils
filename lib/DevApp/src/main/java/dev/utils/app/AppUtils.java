@@ -673,6 +673,43 @@ public final class AppUtils {
         return false;
     }
 
+    // ============
+    // = 发送广播 =
+    // ============
+
+    /**
+     * 发送广播
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sendBroadcast(final Intent intent) {
+        if (intent == null) return false;
+        try {
+            DevUtils.getContext().sendBroadcast(intent);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "sendBroadcast");
+        }
+        return false;
+    }
+
+    /**
+     * 发送广播
+     * @param intent             {@link Intent}
+     * @param receiverPermission 广播权限
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sendBroadcast(final Intent intent, final String receiverPermission) {
+        if (intent == null && receiverPermission != null) return false;
+        try {
+            DevUtils.getContext().sendBroadcast(intent, receiverPermission);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "sendBroadcast");
+        }
+        return false;
+    }
+
     // ==============
     // = 安装、卸载 =
     // ==============
@@ -1238,7 +1275,7 @@ public final class AppUtils {
     private static boolean isDeviceRooted() {
         String su = "su";
         String[] locations = {"/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
-                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
+            "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
         for (String location : locations) {
             if (new File(location + su).exists()) {
                 return true;

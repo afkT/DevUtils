@@ -2,6 +2,8 @@ package dev.utils.app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.PowerManager;
 import android.support.annotation.IntRange;
@@ -11,11 +13,11 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.common.DevCommonUtils;
 
 /**
  * detail: ADB shell 工具类
@@ -53,7 +55,7 @@ public final class ADBUtils {
     public static boolean isDeviceRooted() {
         String su = "su";
         String[] locations = {"/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
-                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
+            "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
         for (String location : locations) {
             if (new File(location + su).exists()) {
                 return true;
@@ -795,9 +797,9 @@ public final class ADBUtils {
         // 判断是否重复
         boolean isRepeat = false;
         // 获取
-        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
-        int length = DevCommonUtils.length(lists);
+        int length = length(lists);
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
@@ -831,9 +833,9 @@ public final class ADBUtils {
         // 判断是否重复
         boolean isRepeat = false;
         // 获取
-        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
-        int length = DevCommonUtils.length(lists);
+        int length = length(lists);
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             // 循环判断
@@ -872,9 +874,9 @@ public final class ADBUtils {
         // 重复数量
         int number = 0;
         // 获取
-        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
-        int length = DevCommonUtils.length(lists);
+        int length = length(lists);
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
@@ -910,9 +912,9 @@ public final class ADBUtils {
             return 0;
         }
         // 获取
-        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
-        int length = DevCommonUtils.length(lists);
+        int length = length(lists);
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             // 循环判断
@@ -992,9 +994,9 @@ public final class ADBUtils {
     public static boolean startSelfApp(final boolean closeActivity) {
         try {
             // 获取包名
-            String packageName = AppUtils.getPackageName();
+            String packageName = getPackageName();
             // 获取 Launcher Activity
-            String activity = ActivityUtils.getLauncherActivity();
+            String activity = getLauncherActivity();
             // 跳转应用启动页 ( 启动应用 )
             startActivity(packageName + "/" + activity, closeActivity);
         } catch (Exception e) {
@@ -1562,7 +1564,7 @@ public final class ADBUtils {
             ShellUtils.execCmd("reboot -p", true);
             Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
             intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            startActivity(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shutdown");
@@ -1598,8 +1600,7 @@ public final class ADBUtils {
     public static boolean reboot(final String reason) {
         if (isSpace(reason)) return false;
         try {
-            PowerManager mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
-            mPowerManager.reboot(reason);
+            getPowerManager().reboot(reason);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
@@ -2291,5 +2292,156 @@ public final class ADBUtils {
             }
         }
         return true;
+    }
+
+    // ==================
+    // = DevCommonUtils =
+    // ==================
+
+    /**
+     * 获取 Collection 长度
+     * @param collection {@link Collection}
+     * @return 如果 Collection 为 null, 则返回默认长度, 如果不为 null, 则返回 collection.size()
+     */
+    private static int length(final Collection collection) {
+        return length(collection, 0);
+    }
+
+    /**
+     * 获取 Collection 长度
+     * @param collection    {@link Collection}
+     * @param defaultLength 集合为 null 默认长度
+     * @return 如果 Collection 为 null, 则返回 defaultLength, 如果不为 null, 则返回 collection.size()
+     */
+    private static int length(final Collection collection, final int defaultLength) {
+        return collection != null ? collection.size() : defaultLength;
+    }
+
+    // ============
+    // = AppUtils =
+    // ============
+
+    /**
+     * 获取 PowerManager
+     * @return {@link PowerManager}
+     */
+    private static PowerManager getPowerManager() {
+        return getSystemService(Context.POWER_SERVICE);
+    }
+
+    /**
+     * 获取 SystemService
+     * @param name 服务名
+     * @param <T>  泛型
+     * @return SystemService Object
+     */
+    private static <T> T getSystemService(final String name) {
+        if (isSpace(name)) return null;
+        try {
+            return (T) DevUtils.getContext().getSystemService(name);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSystemService");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 APP 包名
+     * @return APP 包名
+     */
+    private static String getPackageName() {
+        try {
+            return DevUtils.getContext().getPackageName();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageName");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 PackageManager
+     * @return {@link PackageManager}
+     */
+    private static PackageManager getPackageManager() {
+        try {
+            return DevUtils.getContext().getPackageManager();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageManager");
+        }
+        return null;
+    }
+
+    /**
+     * Activity 跳转
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    private static boolean startActivity(final Intent intent) {
+        try {
+            DevUtils.getContext().startActivity(getIntent(intent, true));
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startActivity");
+        }
+        return false;
+    }
+
+    // ===============
+    // = IntentUtils =
+    // ===============
+
+    /**
+     * 获取 Intent
+     * @param intent    {@link Intent}
+     * @param isNewTask 是否开启新的任务栈 (Context 非 Activity 则需要设置 FLAG_ACTIVITY_NEW_TASK)
+     * @return {@link Intent}
+     */
+    private static Intent getIntent(final Intent intent, final boolean isNewTask) {
+        if (intent != null) {
+            return isNewTask ? intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) : intent;
+        }
+        return null;
+    }
+
+    // =================
+    // = ActivityUtils =
+    // =================
+
+    /**
+     * 获取 Launcher activity
+     * @return package.xx.Activity.className
+     */
+    private static String getLauncherActivity() {
+        try {
+            return getLauncherActivity(getPackageName());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getLauncherActivity");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Launcher activity
+     * @param packageName 应用包名
+     * @return package.xx.Activity.className
+     */
+    private static String getLauncherActivity(final String packageName) {
+        if (packageName == null) return null;
+        try {
+            Intent intent = new Intent(Intent.ACTION_MAIN, null);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            List<ResolveInfo> lists = getPackageManager().queryIntentActivities(intent, 0);
+            for (ResolveInfo resolveinfo : lists) {
+                if (resolveinfo != null && resolveinfo.activityInfo != null) {
+                    if (resolveinfo.activityInfo.packageName.equals(packageName)) {
+                        return resolveinfo.activityInfo.name;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getLauncherActivity");
+        }
+        return null;
     }
 }
