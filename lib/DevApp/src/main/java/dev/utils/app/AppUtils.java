@@ -467,7 +467,7 @@ public final class AppUtils {
      * @param algorithm   算法
      * @return 对应算法处理后的签名信息
      */
-    private static String getAppSignatureHash(final String packageName, final String algorithm) {
+    public static String getAppSignatureHash(final String packageName, final String algorithm) {
         if (isSpace(packageName)) return null;
         try {
             Signature[] signature = getAppSignature(packageName);
@@ -696,7 +696,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean sendBroadcast(final Intent intent, final String receiverPermission) {
-        if (intent == null && receiverPermission != null) return false;
+        if (intent == null || receiverPermission == null) return false;
         try {
             DevUtils.getContext().sendBroadcast(intent, receiverPermission);
             return true;
@@ -727,12 +727,11 @@ public final class AppUtils {
     public static boolean installApp(final File file) {
         if (!isFileExists(file)) return false;
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getInstallAppIntent(file, true));
+            return startActivity(IntentUtils.getInstallAppIntent(file, true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "installApp");
             return false;
         }
-        return true;
     }
 
     /**
@@ -757,11 +756,11 @@ public final class AppUtils {
         if (!isFileExists(file)) return false;
         try {
             activity.startActivityForResult(IntentUtils.getInstallAppIntent(file), requestCode);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "installApp");
             return false;
         }
-        return true;
     }
 
     // =
@@ -829,12 +828,11 @@ public final class AppUtils {
     public static boolean uninstallApp(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getUninstallAppIntent(packageName, true));
+            return startActivity(IntentUtils.getUninstallAppIntent(packageName, true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "uninstallApp");
             return false;
         }
-        return true;
     }
 
     /**
@@ -848,11 +846,11 @@ public final class AppUtils {
         if (isSpace(packageName)) return false;
         try {
             activity.startActivityForResult(IntentUtils.getUninstallAppIntent(packageName), requestCode);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "uninstallApp");
             return false;
         }
-        return true;
     }
 
     /**
@@ -900,8 +898,7 @@ public final class AppUtils {
     public static boolean launchApp(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getLaunchAppIntent(packageName, true));
-            return true;
+            return startActivity(IntentUtils.getLaunchAppIntent(packageName, true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "launchApp");
         }
@@ -944,8 +941,7 @@ public final class AppUtils {
     public static boolean launchAppDetailsSettings(final String packageName) {
         if (isSpace(packageName)) return false;
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent(packageName, true));
-            return true;
+            return startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent(packageName, true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "launchAppDetailsSettings");
         }
@@ -970,8 +966,7 @@ public final class AppUtils {
     public static boolean launchAppDetails(final String packageName, final String marketPkg) {
         if (isSpace(packageName)) return false;
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getLaunchAppDetailIntent(packageName, marketPkg, true));
-            return true;
+            return startActivity(IntentUtils.getLaunchAppDetailIntent(packageName, marketPkg, true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "launchAppDetails");
         }
@@ -1006,8 +1001,7 @@ public final class AppUtils {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // 临时授权 ( 必须 )
             intent.setDataAndType(getUriForFile(file, DevUtils.getAuthority()), dataType);
-            DevUtils.getContext().startActivity(intent);
-            return true;
+            return startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openFile");
         }
@@ -1042,8 +1036,7 @@ public final class AppUtils {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setData(Uri.fromFile(file));
             intent.setClassName(packageName, className);
-            DevUtils.getContext().startActivity(intent);
-            return true;
+            return startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openFile");
         }
@@ -1124,8 +1117,7 @@ public final class AppUtils {
      */
     public static boolean startSysSetting() {
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_SETTINGS), true));
-            return true;
+            return startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_SETTINGS), true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSysSetting");
         }
@@ -1140,8 +1132,7 @@ public final class AppUtils {
      */
     public static boolean startSysSetting(final Activity activity, final int requestCode) {
         try {
-            Intent intent = new Intent(Settings.ACTION_SETTINGS);
-            activity.startActivityForResult(intent, requestCode);
+            activity.startActivityForResult(new Intent(Settings.ACTION_SETTINGS), requestCode);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSysSetting");
@@ -1155,8 +1146,7 @@ public final class AppUtils {
      */
     public static boolean openWirelessSettings() {
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS), true));
-            return true;
+            return startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS), true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
         }
@@ -1171,8 +1161,7 @@ public final class AppUtils {
      */
     public static boolean openWirelessSettings(final Activity activity, final int requestCode) {
         try {
-            Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
-            activity.startActivityForResult(intent, requestCode);
+            activity.startActivityForResult(new Intent(Settings.ACTION_WIRELESS_SETTINGS), requestCode);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
@@ -1186,8 +1175,7 @@ public final class AppUtils {
      */
     public static boolean openGpsSettings() {
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), true));
-            return true;
+            return startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), true));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openGpsSettings");
         }
