@@ -3,20 +3,29 @@ package dev.utils.app;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.AppOpsManager;
+import android.app.KeyguardManager;
+import android.app.NotificationManager;
+import android.app.usage.UsageStatsManager;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutManager;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
+import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.PowerManager;
 import android.os.Vibrator;
 import android.os.storage.StorageManager;
 import android.provider.Settings;
@@ -24,6 +33,7 @@ import android.support.annotation.RequiresPermission;
 import android.support.v4.content.FileProvider;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import java.io.File;
 import java.security.MessageDigest;
@@ -106,6 +116,94 @@ public final class AppUtils {
      */
     public static TelephonyManager getTelephonyManager() {
         return getSystemService(Context.TELEPHONY_SERVICE);
+    }
+
+    /**
+     * 获取 AppOpsManager
+     * @return {@link AppOpsManager}
+     */
+    public static AppOpsManager getAppOpsManager() {
+        return getSystemService(Context.APP_OPS_SERVICE);
+    }
+
+    /**
+     * 获取 NotificationManager
+     * @return {@link NotificationManager}
+     */
+    public static NotificationManager getNotificationManager() {
+        return getSystemService(Context.NOTIFICATION_SERVICE);
+    }
+
+    /**
+     * 获取 ShortcutManager
+     * @return {@link ShortcutManager}
+     */
+    public static ShortcutManager getShortcutManager() {
+        return getSystemService(Context.SHORTCUT_SERVICE);
+    }
+
+    /**
+     * 获取 ActivityManager
+     * @return {@link ActivityManager}
+     */
+    public static ActivityManager getActivityManager() {
+        return getSystemService(Context.ACTIVITY_SERVICE);
+    }
+
+    /**
+     * 获取 PowerManager
+     * @return {@link PowerManager}
+     */
+    public static PowerManager getPowerManager() {
+        return getSystemService(Context.POWER_SERVICE);
+    }
+
+    /**
+     * 获取 KeyguardManager
+     * @return {@link KeyguardManager}
+     */
+    public static KeyguardManager getKeyguardManager() {
+        return getSystemService(Context.KEYGUARD_SERVICE);
+    }
+
+    /**
+     * 获取 InputMethodManager
+     * @return {@link InputMethodManager}
+     */
+    public static InputMethodManager getInputMethodManager() {
+        return getSystemService(Context.INPUT_METHOD_SERVICE);
+    }
+
+    /**
+     * 获取 ClipboardManager
+     * @return {@link ClipboardManager}
+     */
+    public static ClipboardManager getClipboardManager() {
+        return getSystemService(Context.CLIPBOARD_SERVICE);
+    }
+
+    /**
+     * 获取 UsageStatsManager
+     * @return {@link UsageStatsManager}
+     */
+    public static UsageStatsManager getUsageStatsManager() {
+        return getSystemService(Context.USAGE_STATS_SERVICE);
+    }
+
+    /**
+     * 获取 AlarmManager
+     * @return {@link AlarmManager}
+     */
+    public static AlarmManager getAlarmManager() {
+        return getSystemService(Context.ALARM_SERVICE);
+    }
+
+    /**
+     * 获取 LocationManager
+     * @return {@link LocationManager}
+     */
+    public static LocationManager getLocationManager() {
+        return getSystemService(Context.LOCATION_SERVICE);
     }
 
     /**
