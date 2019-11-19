@@ -43,25 +43,12 @@ public final class ScreenUtils {
     private static final String TAG = ScreenUtils.class.getSimpleName();
 
     /**
-     * 获取 WindowManager
-     * @return {@link WindowManager}
-     */
-    public static WindowManager getWindowManager() {
-        try {
-            return (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getWindowManager");
-        }
-        return null;
-    }
-
-    /**
      * 获取 DisplayMetrics
      * @return {@link DisplayMetrics}
      */
     public static DisplayMetrics getDisplayMetrics() {
         try {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = AppUtils.getWindowManager();
             if (windowManager != null) {
                 DisplayMetrics displayMetrics = new DisplayMetrics();
                 windowManager.getDefaultDisplay().getMetrics(displayMetrics);
@@ -101,7 +88,7 @@ public final class ScreenUtils {
      */
     public static int[] getScreenWidthHeight() {
         try {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = AppUtils.getWindowManager();
             if (windowManager == null) {
                 DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
                 return new int[]{displayMetrics.widthPixels, displayMetrics.heightPixels};
@@ -125,7 +112,7 @@ public final class ScreenUtils {
      */
     public static Point getScreenWidthHeightToPoint() {
         try {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = AppUtils.getWindowManager();
             if (windowManager == null) {
                 DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
                 if (displayMetrics != null) {
@@ -181,7 +168,7 @@ public final class ScreenUtils {
         try {
             Point point = new Point();
             DisplayMetrics displayMetrics = new DisplayMetrics();
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = AppUtils.getWindowManager();
             windowManager.getDefaultDisplay().getRealSize(point);
             windowManager.getDefaultDisplay().getMetrics(displayMetrics);
             // 计算尺寸

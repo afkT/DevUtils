@@ -1534,7 +1534,7 @@ public final class SnackbarUtils {
      */
     private int getScreenHeight() {
         try {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = AppUtils.getWindowManager();
             if (windowManager == null) {
                 return ResourceUtils.getDisplayMetrics().heightPixels;
             }

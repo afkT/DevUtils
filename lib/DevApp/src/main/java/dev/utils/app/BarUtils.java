@@ -708,7 +708,7 @@ public final class BarUtils {
      */
     public static boolean isSupportNavBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = AppUtils.getWindowManager();
             Display display = windowManager.getDefaultDisplay();
             Point size = new Point();
             Point realSize = new Point();
