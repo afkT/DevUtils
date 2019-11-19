@@ -522,7 +522,7 @@ public final class ScreenUtils {
      */
     public static int getStatusHeight() {
         try {
-            int id = ResourceUtils.getResources().getIdentifier("status_bar_height", "dimen", "android");
+            int id = ResourceUtils.getIdentifier("status_bar_height", "dimen", "android");
             return ResourceUtils.getResources().getDimensionPixelSize(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getStatusHeight");
