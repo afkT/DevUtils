@@ -105,7 +105,7 @@ public final class SDCardUtils {
     public static List<String> getSDCardPaths() {
         List<String> listPaths = new ArrayList<>();
         try {
-            StorageManager storageManager = getStorageManager();
+            StorageManager storageManager = AppUtils.getStorageManager();
             Method getVolumePathsMethod = StorageManager.class.getMethod("getVolumePaths");
             getVolumePathsMethod.setAccessible(true);
             Object invoke = getVolumePathsMethod.invoke(storageManager);
@@ -125,7 +125,7 @@ public final class SDCardUtils {
     public static List<String> getSDCardPaths(final boolean removable) {
         List<String> listPaths = new ArrayList<>();
         try {
-            StorageManager storageManager = getStorageManager();
+            StorageManager storageManager = AppUtils.getStorageManager();
             Class<?> storageVolumeClazz = Class.forName("android.os.storage.StorageVolume");
             Method getVolumeList = StorageManager.class.getMethod("getVolumeList");
             Method getPath = storageVolumeClazz.getMethod("getPath");
@@ -393,52 +393,5 @@ public final class SDCardUtils {
      */
     private static String getAbsolutePath(final File file) {
         return file != null ? file.getAbsolutePath() : null;
-    }
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 StorageManager
-     * @return {@link StorageManager}
-     */
-    private static StorageManager getStorageManager() {
-        return getSystemService(Context.STORAGE_SERVICE);
-    }
-
-    /**
-     * 获取 SystemService
-     * @param name 服务名
-     * @param <T>  泛型
-     * @return SystemService Object
-     */
-    private static <T> T getSystemService(final String name) {
-        if (isSpace(name)) return null;
-        try {
-            return (T) DevUtils.getContext().getSystemService(name);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSystemService");
-        }
-        return null;
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }
