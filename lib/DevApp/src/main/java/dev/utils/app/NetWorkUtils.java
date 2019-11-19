@@ -320,7 +320,7 @@ public final class NetWorkUtils {
     public static boolean getWifiEnabled() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return wifiManager.isWifiEnabled();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getWifiEnabled");
@@ -599,7 +599,7 @@ public final class NetWorkUtils {
     public static String getIpAddressByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return Formatter.formatIpAddress(wifiManager.getDhcpInfo().ipAddress);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIpAddressByWifi");
@@ -615,7 +615,7 @@ public final class NetWorkUtils {
     public static String getGatewayByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return Formatter.formatIpAddress(wifiManager.getDhcpInfo().gateway);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getGatewayByWifi");
@@ -631,7 +631,7 @@ public final class NetWorkUtils {
     public static String getNetMaskByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return Formatter.formatIpAddress(wifiManager.getDhcpInfo().netmask);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getNetMaskByWifi");
@@ -647,7 +647,7 @@ public final class NetWorkUtils {
     public static String getServerAddressByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return Formatter.formatIpAddress(wifiManager.getDhcpInfo().serverAddress);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getServerAddressByWifi");
