@@ -1,14 +1,12 @@
 package dev.utils.app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Picture;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -17,10 +15,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -31,8 +26,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.ArrayUtils;
+import dev.utils.common.NumberUtils;
 
 /**
  * detail: 截图工具类
@@ -113,7 +109,7 @@ public final class CapturePictureUtils {
             Bitmap cacheBitmap = view.getDrawingCache();
             if (cacheBitmap == null) return null;
             // 获取屏幕宽度
-            int[] widthHeight = getScreenWidthHeight();
+            int[] widthHeight = ScreenUtils.getScreenWidthHeight();
 
             Rect frame = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
@@ -143,9 +139,9 @@ public final class CapturePictureUtils {
             Bitmap cacheBitmap = view.getDrawingCache();
             if (cacheBitmap == null) return null;
             // 获取屏幕宽度
-            int[] widthHeight = getScreenWidthHeight();
+            int[] widthHeight = ScreenUtils.getScreenWidthHeight();
             // 获取状态栏高度
-            int statusBarHeight = getStatusBarHeight(activity);
+            int statusBarHeight = ScreenUtils.getStatusBarHeight(activity);
 
             Rect frame = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
@@ -595,7 +591,7 @@ public final class CapturePictureUtils {
             // 循环绘制每个 Item 并保存 Bitmap
             for (int i = 0; i < itemCount; i++) {
                 View childView = listAdapter.getView(i, null, listView);
-                measureView(childView, listView.getWidth());
+                ViewUtils.measureView(childView, listView.getWidth());
                 bitmaps[i] = canvasBitmap(childView, config);
                 height += childView.getMeasuredHeight();
             }
@@ -679,7 +675,7 @@ public final class CapturePictureUtils {
                 // 循环绘制每个 Item 并保存 Bitmap
                 for (int i = 0; i < itemCount; i++) {
                     View childView = listAdapter.getView(i, null, gridView);
-                    measureView(childView, gridView.getWidth());
+                    ViewUtils.measureView(childView, gridView.getWidth());
                     bitmaps[i] = canvasBitmap(childView, config);
                     height += childView.getMeasuredHeight();
                 }
@@ -703,7 +699,7 @@ public final class CapturePictureUtils {
                 return bitmap;
             } else {
                 // 获取倍数 ( 行数 )
-                int lineNumber = getMultiple(itemCount, numColumns);
+                int lineNumber = NumberUtils.getMultiple(itemCount, numColumns);
                 // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / numColumns
                 int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
 
@@ -722,7 +718,7 @@ public final class CapturePictureUtils {
                         // 小于总数才处理
                         if (position < itemCount) {
                             View childView = listAdapter.getView(position, null, gridView);
-                            measureView(childView, childWidth);
+                            ViewUtils.measureView(childView, childWidth);
                             bitmaps[position] = canvasBitmap(childView, config);
 
                             int itemHeight = childView.getMeasuredHeight();
@@ -910,7 +906,7 @@ public final class CapturePictureUtils {
             // 获取一共多少列
             int spanCount = gridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
-            int lineNumber = getMultiple(itemCount, spanCount);
+            int lineNumber = NumberUtils.getMultiple(itemCount, spanCount);
             if (vertical) {
 
                 // ============
@@ -935,7 +931,7 @@ public final class CapturePictureUtils {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
                             adapter.onBindViewHolder(holder, position);
                             View childView = holder.itemView;
-                            measureView(childView, childWidth);
+                            ViewUtils.measureView(childView, childWidth);
                             bitmaps[position] = canvasBitmap(childView, config);
                             int itemHeight = childView.getMeasuredHeight();
                             // 保留最大高度
@@ -1000,7 +996,7 @@ public final class CapturePictureUtils {
                 // 记录每一行高度
                 int[] rowHeightArrays = new int[lineNumber];
                 // 获取一共多少列
-                int numColumns = getMultiple(itemCount, lineNumber);
+                int numColumns = NumberUtils.getMultiple(itemCount, lineNumber);
                 // 临时高度 - 保存行中最高的列高度
                 int tempHeight;
                 for (int i = 0; i < lineNumber; i++) {
@@ -1015,7 +1011,7 @@ public final class CapturePictureUtils {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
                             adapter.onBindViewHolder(holder, position);
                             View childView = holder.itemView;
-                            measureView(childView, 0);
+                            ViewUtils.measureView(childView, 0);
                             bitmaps[position] = canvasBitmap(childView, config);
                             rowWidthArrays[i] += childView.getMeasuredWidth();
                             int itemHeight = childView.getMeasuredHeight();
@@ -1122,7 +1118,7 @@ public final class CapturePictureUtils {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
-                    measureView(childView, recyclerView.getWidth());
+                    ViewUtils.measureView(childView, recyclerView.getWidth());
                     bitmaps[i] = canvasBitmap(childView, config);
                     height += childView.getMeasuredHeight();
                 }
@@ -1157,7 +1153,7 @@ public final class CapturePictureUtils {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
-                    measureView(childView, 0);
+                    ViewUtils.measureView(childView, 0);
                     bitmaps[i] = canvasBitmap(childView, config);
                     width += childView.getMeasuredWidth();
                     int itemHeight = childView.getMeasuredHeight();
@@ -1227,7 +1223,7 @@ public final class CapturePictureUtils {
             // 获取一共多少列
             int spanCount = staggeredGridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
-            int lineNumber = getMultiple(itemCount, spanCount);
+            int lineNumber = NumberUtils.getMultiple(itemCount, spanCount);
             if (vertical) {
 
                 // ============
@@ -1242,7 +1238,7 @@ public final class CapturePictureUtils {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
-                    measureView(childView, childWidth);
+                    ViewUtils.measureView(childView, childWidth);
                     bitmaps[i] = canvasBitmap(childView, config);
                     itemHeightArrays[i] = childView.getMeasuredHeight();
                 }
@@ -1254,7 +1250,7 @@ public final class CapturePictureUtils {
                 // 循环高度, 计算绘制位置
                 for (int i = 0; i < itemCount; i++) {
                     // 获取最小高度索引
-                    int minIndex = getMinimumIndex(columnsHeightArrays);
+                    int minIndex = ArrayUtils.getMinimumIndex(columnsHeightArrays);
                     // 累加高度
                     columnsHeightArrays[minIndex] += itemHeightArrays[i];
                     // 累加数量
@@ -1270,7 +1266,7 @@ public final class CapturePictureUtils {
                 }
 
                 // 获取列最大高度索引
-                int columnsHeightMaxIndex = getMaximumIndex(columnsHeightArrays);
+                int columnsHeightMaxIndex = ArrayUtils.getMaximumIndex(columnsHeightArrays);
                 // 获取最大高度值
                 int maxColumnsHeight = columnsHeightArrays[columnsHeightMaxIndex];
                 // 使用最大值
@@ -1286,7 +1282,7 @@ public final class CapturePictureUtils {
                 // 循环绘制
                 for (int i = 0; i < itemCount; i++) {
                     // 获取最小高度索引
-                    int minIndex = getMinimumIndex(columnsHeightArrays);
+                    int minIndex = ArrayUtils.getMinimumIndex(columnsHeightArrays);
                     // 计算边距
                     int left = minIndex * (horizontalSpacing + childWidth);
                     Matrix matrix = new Matrix();
@@ -1317,7 +1313,7 @@ public final class CapturePictureUtils {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
-                    measureView(childView, 0);
+                    ViewUtils.measureView(childView, 0);
                     bitmaps[i] = canvasBitmap(childView, config);
                     itemWidthArrays[i] = childView.getMeasuredWidth();
                     itemHeightArrays[i] = childView.getMeasuredHeight();
@@ -1334,7 +1330,7 @@ public final class CapturePictureUtils {
                 // 循环宽度, 计算绘制位置
                 for (int i = 0; i < itemCount; i++) {
                     // 获取最小宽度索引
-                    int minIndex = getMinimumIndex(columnsWidthArrays);
+                    int minIndex = ArrayUtils.getMinimumIndex(columnsWidthArrays);
                     // 累加宽度
                     columnsWidthArrays[minIndex] += itemWidthArrays[i];
                     // 累加数量
@@ -1356,7 +1352,7 @@ public final class CapturePictureUtils {
                 }
 
                 // 获取最大宽值
-                int maxColumnsWidth = columnsWidthArrays[getMaximumIndex(columnsWidthArrays)];
+                int maxColumnsWidth = columnsWidthArrays[ArrayUtils.getMaximumIndex(columnsWidthArrays)];
                 // 使用最大值
                 height += (lineNumber - 1) * verticalSpacing;
                 width = maxColumnsWidth;
@@ -1369,7 +1365,7 @@ public final class CapturePictureUtils {
                 // 循环绘制
                 for (int i = 0; i < itemCount; i++) {
                     // 获取最小宽度索引
-                    int minIndex = getMinimumIndex(columnsWidthArrays);
+                    int minIndex = ArrayUtils.getMinimumIndex(columnsWidthArrays);
                     Matrix matrix = new Matrix();
                     matrix.postTranslate(columnsWidthArrays[minIndex], columnsTopArrays[minIndex]);
                     // 绘制到 Bitmap
@@ -1405,178 +1401,5 @@ public final class CapturePictureUtils {
         canvas.drawColor(BACKGROUND_COLOR);
         childView.draw(canvas);
         return bitmap;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = ScreenUtils =
-    // ===============
-
-    /**
-     * 获取屏幕宽高
-     * @return int[], 0 = 宽度, 1 = 高度
-     */
-    private static int[] getScreenWidthHeight() {
-        try {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-            if (windowManager == null) {
-                DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
-                return new int[]{displayMetrics.widthPixels, displayMetrics.heightPixels};
-            }
-            Point point = new Point();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                windowManager.getDefaultDisplay().getRealSize(point);
-            } else {
-                windowManager.getDefaultDisplay().getSize(point);
-            }
-            return new int[]{point.x, point.y};
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getScreenWidthHeight");
-        }
-        return new int[]{0, 0};
-    }
-
-    /**
-     * 获取应用区域 TitleBar 高度 ( 顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示 )
-     * @param activity {@link Activity}
-     * @return 应用区域 TitleBar 高度
-     */
-    private static int getStatusBarHeight(final Activity activity) {
-        try {
-            Rect rect = new Rect();
-            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-            return rect.top;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getStatusBarHeight");
-        }
-        return 0;
-    }
-
-    // ===============
-    // = NumberUtils =
-    // ===============
-
-    /**
-     * 获取倍数 ( 自动补 1)
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    private static int getMultiple(final int value, final int divisor) {
-        if (value <= 0 || divisor <= 0) return 0;
-        if (value <= divisor) return 1;
-        return (value % divisor == 0) ? (value / divisor) : (value / divisor) + 1;
-    }
-
-    // ==============
-    // = ArrayUtils =
-    // ==============
-
-    /**
-     * 获取数组中最小值索引
-     * @param data 数组
-     * @return 最小值索引
-     */
-    private static int getMinimumIndex(final int[] data) {
-        if (data != null) {
-            int len = data.length;
-            if (len > 0) {
-                int index = 0;
-                int temp = data[index];
-                for (int i = 1; i < len; i++) {
-                    int value = data[i];
-                    if (value < temp) {
-                        index = i;
-                        temp = value;
-                    }
-                }
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * 获取数组中最大值索引
-     * @param data 数组
-     * @return 最大值索引
-     */
-    private static int getMaximumIndex(final int[] data) {
-        if (data != null) {
-            int len = data.length;
-            if (len > 0) {
-                int index = 0;
-                int temp = data[index];
-                for (int i = 1; i < len; i++) {
-                    int value = data[i];
-                    if (value > temp) {
-                        index = i;
-                        temp = value;
-                    }
-                }
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    // =============
-    // = ViewUtils =
-    // =============
-
-    /**
-     * 测量 View
-     * @param view           {@link View}
-     * @param specifiedWidth 指定宽度
-     * @return {@code true} success, {@code false} fail
-     */
-    private static boolean measureView(final View view, final int specifiedWidth) {
-        return measureView(view, specifiedWidth, 0);
-    }
-
-    /**
-     * 测量 View
-     * @param view            {@link View}
-     * @param specifiedWidth  指定宽度
-     * @param specifiedHeight 指定高度
-     * @return {@code true} success, {@code false} fail
-     */
-    private static boolean measureView(final View view, final int specifiedWidth, final int specifiedHeight) {
-        try {
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            // MeasureSpec
-            int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-            int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-            // 如果大于 0
-            if (specifiedWidth > 0) {
-                widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedWidth, View.MeasureSpec.EXACTLY);
-            }
-            // 如果大于 0
-            if (specifiedHeight > 0) {
-                heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(specifiedHeight, View.MeasureSpec.EXACTLY);
-            }
-            // 判断是否存在自定义宽高
-            if (layoutParams != null) {
-                int width = layoutParams.width;
-                int height = layoutParams.height;
-                if (width > 0 && height > 0) {
-                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
-                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
-                } else if (width > 0) {
-                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
-                } else if (height > 0) {
-                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
-                }
-            }
-            view.measure(widthMeasureSpec, heightMeasureSpec);
-            view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "measureView");
-        }
-        return false;
     }
 }

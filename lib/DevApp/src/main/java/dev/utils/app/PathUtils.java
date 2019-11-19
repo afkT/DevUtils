@@ -100,7 +100,7 @@ public final class PathUtils {
      * @return /data/data/package/shared_prefs
      */
     public static String getInternalAppSpPath() {
-        return DevUtils.getContext().getApplicationInfo().dataDir + "shared_prefs";
+        return DevUtils.getContext().getApplicationInfo().dataDir + "/shared_prefs";
     }
 
     /**
@@ -109,7 +109,7 @@ public final class PathUtils {
      */
     public static String getInternalAppNoBackupFilesPath() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return DevUtils.getContext().getApplicationInfo().dataDir + "no_backup";
+            return DevUtils.getContext().getApplicationInfo().dataDir + "/no_backup";
         }
         return getAbsolutePath(DevUtils.getContext().getNoBackupFilesDir());
     }

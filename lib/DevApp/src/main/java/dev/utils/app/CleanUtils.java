@@ -1,11 +1,10 @@
 package dev.utils.app;
 
-import android.os.Environment;
-
 import java.io.File;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: 本应用数据清除管理工具类
@@ -23,16 +22,19 @@ public final class CleanUtils {
     private static final String TAG = CleanUtils.class.getSimpleName();
 
     /**
+     * 清除外部缓存 - path /storage/emulated/0/android/data/package/cache
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean cleanExternalCache() {
+        return FileUtils.deleteFilesInDir(PathUtils.getExternalAppCachePath());
+    }
+
+    /**
      * 清除内部缓存 - path /data/data/package/cache
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanInternalCache() {
-        try {
-            return deleteFilesInDir(DevUtils.getContext().getCacheDir());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "cleanInternalCache");
-        }
-        return false;
+        return FileUtils.deleteFilesInDir(PathUtils.getInternalCachePath());
     }
 
     /**
@@ -40,12 +42,15 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanInternalFiles() {
-        try {
-            return deleteFilesInDir(DevUtils.getContext().getFilesDir());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "cleanInternalFiles");
-        }
-        return false;
+        return FileUtils.deleteFilesInDir(PathUtils.getInternalAppFilesPath());
+    }
+
+    /**
+     * 清除内部 SP - path /data/data/package/shared_prefs
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean cleanInternalSp() {
+        return FileUtils.deleteFilesInDir(PathUtils.getInternalAppSpPath());
     }
 
     /**
@@ -53,12 +58,7 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanInternalDbs() {
-        try {
-            return deleteFilesInDir(new File(DevUtils.getContext().getFilesDir().getParent(), "databases"));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "cleanInternalDbs");
-        }
-        return false;
+        return FileUtils.deleteFilesInDir(PathUtils.getInternalAppDbsPath());
     }
 
     /**
@@ -75,33 +75,6 @@ public final class CleanUtils {
         return false;
     }
 
-    /**
-     * 清除内部 SP - path /data/data/package/shared_prefs
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean cleanInternalSp() {
-        try {
-            return deleteFilesInDir(new File(DevUtils.getContext().getFilesDir().getParent(), "shared_prefs"));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "cleanInternalSp");
-        }
-        return false;
-    }
-
-    /**
-     * 清除外部缓存 - path /storage/emulated/0/android/data/package/cache
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean cleanExternalCache() {
-        try {
-            if (isSDCardEnable())
-                return deleteFilesInDir(DevUtils.getContext().getExternalCacheDir());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "cleanExternalCache");
-        }
-        return false;
-    }
-
     // =
 
     /**
@@ -110,7 +83,7 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanCustomDir(final String filePath) {
-        return deleteFilesInDir(getFileByPath(filePath));
+        return FileUtils.deleteFilesInDir(filePath);
     }
 
     /**
@@ -119,103 +92,34 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanCustomDir(final File file) {
-        return deleteFilesInDir(file);
+        return FileUtils.deleteFilesInDir(file);
     }
 
     /**
      * 清除本应用所有的数据
      * @param filePaths 文件路径数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void cleanApplicationData(final String... filePaths) {
-        cleanInternalCache();
-        cleanExternalCache();
-        cleanInternalDbs();
-        cleanInternalSp();
-        cleanInternalFiles();
+    public static boolean cleanApplicationData(final String... filePaths) {
+        boolean result = true;
+        try {
+            cleanExternalCache();
+            cleanInternalCache();
+            cleanInternalFiles();
+            cleanInternalSp();
+            cleanInternalDbs();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "cleanApplicationData");
+            result = false;
+        }
         try {
             for (String path : filePaths) {
                 cleanCustomDir(path);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanApplicationData");
+            result = false;
         }
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 删除目录下所有过滤的文件
-     * @param dir 目录
-     * @return {@code true} 删除成功, {@code false} 删除失败
-     */
-    private static boolean deleteFilesInDir(final File dir) {
-        // dir is null then return false
-        if (dir == null) return false;
-        // dir doesn't exist then return true
-        if (!dir.exists()) return true;
-        // dir isn't a directory then return false
-        if (!dir.isDirectory()) return false;
-        File[] files = dir.listFiles();
-        if (files != null && files.length != 0) {
-            for (File file : files) {
-                if (file.isFile()) {
-                    if (!file.delete()) return false;
-                } else if (file.isDirectory()) {
-                    if (!deleteDir(file)) return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     * 删除目录
-     * @param dir 目录
-     * @return {@code true} 删除成功, {@code false} 删除失败
-     */
-    private static boolean deleteDir(final File dir) {
-        if (dir == null) return false;
-        // dir doesn't exist then return true
-        if (!dir.exists()) return true;
-        // dir isn't a directory then return false
-        if (!dir.isDirectory()) return false;
-        File[] files = dir.listFiles();
-        if (files != null && files.length != 0) {
-            for (File file : files) {
-                if (file.isFile()) {
-                    if (!file.delete()) return false;
-                } else if (file.isDirectory()) {
-                    if (!deleteDir(file)) return false;
-                }
-            }
-        }
-        return dir.delete();
-    }
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
-
-    // ===============
-    // = SDCardUtils =
-    // ===============
-
-    /**
-     * 判断内置 SDCard 是否正常挂载
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSDCardEnable() {
-        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+        return result;
     }
 }
