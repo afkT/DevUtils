@@ -535,7 +535,7 @@ public final class DeviceUtils {
     private static String getMacAddressByWifiInfo() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             if (wifiManager != null) {
                 WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                 if (wifiInfo != null) return wifiInfo.getMacAddress();

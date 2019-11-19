@@ -61,7 +61,7 @@ public final class NetWorkUtils {
             // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
-                ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager cManager = AppUtils.getConnectivityManager();
                 // 反射获取方法
                 Method method = cManager.getClass().getMethod("getMobileDataEnabled");
                 // 调用方法, 获取状态
@@ -92,7 +92,7 @@ public final class NetWorkUtils {
             // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
-                ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager cManager = AppUtils.getConnectivityManager();
                 // 通过反射设置移动网络
                 Method mMethod = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
                 // 设置移动网络
@@ -119,7 +119,7 @@ public final class NetWorkUtils {
     public static boolean isConnect() {
         // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
-            ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 获取网络连接管理的对象
@@ -154,7 +154,7 @@ public final class NetWorkUtils {
         // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
             // 获取网络连接状态
-            ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 判断连接的是否 wifi
@@ -280,7 +280,7 @@ public final class NetWorkUtils {
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static NetworkInfo getActiveNetworkInfo() {
         try {
-            return ((ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+            return AppUtils.getConnectivityManager().getActiveNetworkInfo();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActiveNetworkInfo");
         }
@@ -295,7 +295,7 @@ public final class NetWorkUtils {
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static Network getActiveNetwork() {
         try {
-            return ((ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetwork();
+            return AppUtils.getConnectivityManager().getActiveNetwork();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActiveNetwork");
         }
@@ -429,7 +429,7 @@ public final class NetWorkUtils {
         } else {
             try {
                 // 获取网络连接状态
-                ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager cManager = AppUtils.getConnectivityManager();
                 // 获取当前活跃的网络 ( 连接的网络信息 )
                 Network network = cManager.getActiveNetwork();
                 // 防止为 null
