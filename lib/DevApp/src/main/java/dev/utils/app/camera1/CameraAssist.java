@@ -243,7 +243,7 @@ public final class CameraAssist {
      * @return {@code true} success, {@code false} fail
      */
     public boolean setFlashlightOn() {
-        return FlashlightUtils.getInstance().setFlashlightOn();
+        return FlashlightUtils.getInstance().setFlashlightOn(mCamera);
     }
 
     /**
@@ -251,7 +251,7 @@ public final class CameraAssist {
      * @return {@code true} success, {@code false} fail
      */
     public boolean setFlashlightOff() {
-        return FlashlightUtils.getInstance().setFlashlightOff();
+        return FlashlightUtils.getInstance().setFlashlightOff(mCamera);
     }
 
     /**
@@ -259,7 +259,7 @@ public final class CameraAssist {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isFlashlightOn() {
-        return FlashlightUtils.getInstance().isFlashlightOn();
+        return FlashlightUtils.getInstance().isFlashlightOn(mCamera);
     }
 
     /**

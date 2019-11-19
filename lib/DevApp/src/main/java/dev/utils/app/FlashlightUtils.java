@@ -124,7 +124,7 @@ public final class FlashlightUtils {
     /**
      * 打开闪光灯
      * @param camera {@link android.graphics.Camera}
-     * @return {@code true} yes, {@code false} no
+     * @return {@code true} success, {@code false} fail
      */
     public boolean setFlashlightOn(final Camera camera) {
         if (camera != null) {
@@ -143,7 +143,7 @@ public final class FlashlightUtils {
     /**
      * 关闭闪光灯
      * @param camera {@link android.graphics.Camera}
-     * @return {@code true} yes, {@code false} no
+     * @return {@code true} success, {@code false} fail
      */
     public boolean setFlashlightOff(final Camera camera) {
         if (camera != null) {

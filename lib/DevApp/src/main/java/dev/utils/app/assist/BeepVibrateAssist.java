@@ -12,6 +12,7 @@ import java.io.Closeable;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.VibrationUtils;
 
 /**
  * detail: 播放「bee」的声音, 并且震动辅助类
@@ -157,10 +158,7 @@ public final class BeepVibrateAssist implements Closeable {
         if (shouldBeep() && mMediaPlayer != null) {
             // 判断是否允许震动
             if (mIsVibrate) {
-                try {
-                    AppUtils.getVibrator().vibrate(mVibrateDuration);
-                } catch (Exception e) {
-                }
+                VibrationUtils.vibrate(mVibrateDuration);
             }
             try {
                 // 播放

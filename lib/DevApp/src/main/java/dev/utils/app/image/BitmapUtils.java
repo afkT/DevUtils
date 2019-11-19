@@ -56,7 +56,7 @@ public final class BitmapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Bitmap bitmap) {
-        return bitmap == null || bitmap.getWidth() == 0 || bitmap.getHeight() == 0;
+        return ImageUtils.isEmpty(bitmap);
     }
 
     /**
@@ -65,7 +65,7 @@ public final class BitmapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Bitmap bitmap) {
-        return bitmap != null && bitmap.getWidth() != 0 && bitmap.getHeight() != 0;
+        return ImageUtils.isNotEmpty(bitmap);
     }
 
     // ============

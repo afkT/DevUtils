@@ -27,6 +27,7 @@ import java.util.Set;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.app.info.AppInfoUtils;
 
 /**
  * detail: 权限请求工具类
@@ -462,10 +463,6 @@ public final class PermissionUtils {
         return new ArrayList<>(getAllPermissionToSet());
     }
 
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
     // ================
     // = AppInfoUtils =
     // ================
@@ -475,7 +472,7 @@ public final class PermissionUtils {
      * @return APP 注册的权限
      */
     public static List<String> getAppPermissionToList() {
-        return new ArrayList<>(getAppPermissionToSet());
+        return AppInfoUtils.getAppPermissionToList();
     }
 
     /**
@@ -483,16 +480,7 @@ public final class PermissionUtils {
      * @return APP 注册的权限
      */
     public static Set<String> getAppPermissionToSet() {
-        String[] permissions = getAppPermission();
-        // 防止数据为 null
-        if (permissions != null && permissions.length != 0) {
-            Set<String> permissionSets = new HashSet<>();
-            for (String permission : permissions) {
-                permissionSets.add(permission);
-            }
-            return permissionSets;
-        }
-        return Collections.emptySet();
+        return AppInfoUtils.getAppPermissionToSet();
     }
 
     /**
@@ -500,7 +488,7 @@ public final class PermissionUtils {
      * @return APP 注册的权限数组
      */
     public static String[] getAppPermission() {
-        return getAppPermission(AppUtils.getPackageName());
+        return AppInfoUtils.getAppPermission();
     }
 
     /**
@@ -509,12 +497,6 @@ public final class PermissionUtils {
      * @return APP 注册的权限数组
      */
     public static String[] getAppPermission(final String packageName) {
-        try {
-            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
-            return packageInfo.requestedPermissions;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppPermission");
-        }
-        return null;
+        return AppInfoUtils.getAppPermission(packageName);
     }
 }
