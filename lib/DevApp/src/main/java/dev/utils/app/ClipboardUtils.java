@@ -2,7 +2,6 @@ package dev.utils.app;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -28,7 +27,7 @@ public final class ClipboardUtils {
      */
     public static boolean copyText(final CharSequence text) {
         try {
-            ClipboardManager clipManager = (ClipboardManager) DevUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipboardManager clipManager = AppUtils.getClipboardManager();
             // 复制的数据
             ClipData clipData = ClipData.newPlainText("text", text);
             // 设置复制的数据
@@ -46,7 +45,7 @@ public final class ClipboardUtils {
      */
     public static CharSequence getText() {
         try {
-            ClipboardManager clipManager = (ClipboardManager) DevUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipboardManager clipManager = AppUtils.getClipboardManager();
             ClipData clipData = clipManager.getPrimaryClip();
             if (clipData != null && clipData.getItemCount() > 0) {
                 return clipData.getItemAt(0).coerceToText(DevUtils.getContext());
@@ -64,7 +63,7 @@ public final class ClipboardUtils {
      */
     public static boolean copyUri(final Uri uri) {
         try {
-            ClipboardManager clipManager = (ClipboardManager) DevUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipboardManager clipManager = AppUtils.getClipboardManager();
             // 复制的数据
             ClipData clipData = ClipData.newUri(ResourceUtils.getContentResolver(), "", uri);
             // 设置复制的数据
@@ -82,7 +81,7 @@ public final class ClipboardUtils {
      */
     public static Uri getUri() {
         try {
-            ClipboardManager clipManager = (ClipboardManager) DevUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipboardManager clipManager = AppUtils.getClipboardManager();
             ClipData clipData = clipManager.getPrimaryClip();
             if (clipData != null && clipData.getItemCount() > 0) {
                 return clipData.getItemAt(0).getUri();
@@ -100,7 +99,7 @@ public final class ClipboardUtils {
      */
     public static boolean copyIntent(final Intent intent) {
         try {
-            ClipboardManager clipManager = (ClipboardManager) DevUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipboardManager clipManager = AppUtils.getClipboardManager();
             // 复制的数据
             ClipData clipData = ClipData.newIntent("intent", intent);
             // 设置复制的数据
@@ -118,7 +117,7 @@ public final class ClipboardUtils {
      */
     public static Intent getIntent() {
         try {
-            ClipboardManager clipManager = (ClipboardManager) DevUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipboardManager clipManager = AppUtils.getClipboardManager();
             ClipData clipData = clipManager.getPrimaryClip();
             if (clipData != null && clipData.getItemCount() > 0) {
                 return clipData.getItemAt(0).getIntent();
