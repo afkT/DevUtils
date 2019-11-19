@@ -691,7 +691,7 @@ public final class DeviceUtils {
      */
     public static boolean reboot(final String reason) {
         try {
-            PowerManager mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
+            PowerManager mPowerManager = AppUtils.getPowerManager();
             mPowerManager.reboot(reason);
             return true;
         } catch (Exception e) {

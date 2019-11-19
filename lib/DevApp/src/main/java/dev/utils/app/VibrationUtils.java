@@ -31,7 +31,7 @@ public final class VibrationUtils {
     @RequiresPermission(android.Manifest.permission.VIBRATE)
     public static boolean vibrate(final long milliseconds) {
         try {
-            Vibrator vibrator = (Vibrator) DevUtils.getContext().getSystemService(Context.VIBRATOR_SERVICE);
+            Vibrator vibrator = AppUtils.getVibrator();
             vibrator.vibrate(milliseconds);
             return true;
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public final class VibrationUtils {
     public static boolean vibrate(final long[] pattern, final int repeat) {
         if (pattern == null) return false;
         try {
-            Vibrator vibrator = (Vibrator) DevUtils.getContext().getSystemService(Context.VIBRATOR_SERVICE);
+            Vibrator vibrator = AppUtils.getVibrator();
             vibrator.vibrate(pattern, repeat);
             return true;
         } catch (Exception e) {
@@ -67,7 +67,7 @@ public final class VibrationUtils {
     @RequiresPermission(android.Manifest.permission.VIBRATE)
     public static boolean cancel() {
         try {
-            ((Vibrator) DevUtils.getContext().getSystemService(Context.VIBRATOR_SERVICE)).cancel();
+            AppUtils.getVibrator().cancel();
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cancel");

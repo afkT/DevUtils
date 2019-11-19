@@ -495,7 +495,7 @@ public final class ScreenUtils {
      */
     public static boolean isScreenLock() {
         try {
-            KeyguardManager keyguardManager = (KeyguardManager) DevUtils.getContext().getSystemService(Context.KEYGUARD_SERVICE);
+            KeyguardManager keyguardManager = AppUtils.getKeyguardManager();
             return keyguardManager != null && keyguardManager.inKeyguardRestrictedInputMode();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isScreenLock");

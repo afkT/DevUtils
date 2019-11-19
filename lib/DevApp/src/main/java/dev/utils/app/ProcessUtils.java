@@ -77,7 +77,7 @@ public final class ProcessUtils {
             // 获取自身进程 id
             int pid = android.os.Process.myPid();
             // 判断全部运行中的进程
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.pid == pid) {
@@ -119,7 +119,7 @@ public final class ProcessUtils {
      */
     public static int getPid(final String packageName) {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.processName.equals(packageName)) {
@@ -139,7 +139,7 @@ public final class ProcessUtils {
      */
     public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final int pid) {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.pid == pid) {
@@ -159,7 +159,7 @@ public final class ProcessUtils {
      */
     public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final String packageName) {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.processName.equals(packageName)) {
@@ -181,7 +181,7 @@ public final class ProcessUtils {
     @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
     public static String getForegroundProcessName() {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             if (activityManager == null) return null;
             List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
             if (lists != null && lists.size() > 0) {
@@ -205,7 +205,7 @@ public final class ProcessUtils {
                     return null;
                 }
 
-                UsageStatsManager usageStatsManager = (UsageStatsManager) DevUtils.getContext().getSystemService(Context.USAGE_STATS_SERVICE);
+                UsageStatsManager usageStatsManager = AppUtils.getUsageStatsManager();
                 List<UsageStats> listUsageStats = null;
                 if (usageStatsManager != null) {
                     long endTime = System.currentTimeMillis();
@@ -234,7 +234,7 @@ public final class ProcessUtils {
     @RequiresPermission(android.Manifest.permission.KILL_BACKGROUND_PROCESSES)
     public static Set<String> getAllBackgroundProcesses() {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             if (activityManager == null) return Collections.emptySet();
             List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
             Set<String> set = new HashSet<>();
@@ -257,7 +257,7 @@ public final class ProcessUtils {
     @RequiresPermission(android.Manifest.permission.KILL_BACKGROUND_PROCESSES)
     public static Set<String> killAllBackgroundProcesses() {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             if (activityManager == null) return Collections.emptySet();
             List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
             Set<String> set = new HashSet<>();
@@ -288,7 +288,7 @@ public final class ProcessUtils {
     @RequiresPermission(android.Manifest.permission.KILL_BACKGROUND_PROCESSES)
     public static boolean killBackgroundProcesses(final String packageName) {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             if (activityManager == null) return false;
             List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
             if (lists == null || lists.size() == 0) return true;

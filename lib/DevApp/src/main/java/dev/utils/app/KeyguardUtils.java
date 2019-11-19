@@ -46,7 +46,7 @@ public final class KeyguardUtils {
      */
     private KeyguardUtils() {
         try {
-            mKeyguardManager = (KeyguardManager) DevUtils.getContext().getSystemService(Context.KEYGUARD_SERVICE);
+            mKeyguardManager = AppUtils.getKeyguardManager();
             // 初始化锁
             mKeyguardLock = mKeyguardManager.newKeyguardLock(TAG);
         } catch (Exception e) {

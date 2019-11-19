@@ -123,7 +123,7 @@ public final class MemoryUtils {
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo getMemoryInfo() {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             activityManager.getMemoryInfo(memoryInfo);
             return memoryInfo;
@@ -143,7 +143,7 @@ public final class MemoryUtils {
     public static long getAvailMemory() {
         try {
             // 获取 android 当前可用内存大小
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             activityManager.getMemoryInfo(memoryInfo);
             // 当前系统的可用内存

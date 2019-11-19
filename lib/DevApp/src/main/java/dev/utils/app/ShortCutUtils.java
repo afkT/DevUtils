@@ -192,7 +192,7 @@ public final class ShortCutUtils {
                 try {
                     Context context = DevUtils.getContext();
                     // 获取 ShortcutManager
-                    ShortcutManager shortcutManager = (ShortcutManager) context.getSystemService(Context.SHORTCUT_SERVICE);
+                    ShortcutManager shortcutManager = AppUtils.getShortcutManager();
                     // 如果默认桌面支持 requestPinShortcut(ShortcutInfo、IntentSender) 方法
                     if (shortcutManager != null && shortcutManager.isRequestPinShortcutSupported()) {
                         // 快捷方式创建相关信息

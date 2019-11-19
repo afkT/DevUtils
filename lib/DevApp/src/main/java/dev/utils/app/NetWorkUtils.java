@@ -67,7 +67,7 @@ public final class NetWorkUtils {
                 // 调用方法, 获取状态
                 mState = (Boolean) method.invoke(cManager);
             } else {
-                TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 反射获取方法
                 Method method = telephonyManager.getClass().getDeclaredMethod("getDataEnabled");
                 // 调用方法, 获取状态
@@ -98,7 +98,7 @@ public final class NetWorkUtils {
                 // 设置移动网络
                 mMethod.invoke(cManager, isOpen);
             } else { // 需要 android.Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 APP 无法获取
-                TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 通过反射设置移动网络
                 Method mMethod = telephonyManager.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
                 // 设置移动网络
@@ -343,7 +343,7 @@ public final class NetWorkUtils {
      */
     public static String getNetworkOperatorName() {
         try {
-            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             return telephonyManager != null ? telephonyManager.getNetworkOperatorName() : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getNetworkOperatorName");
@@ -442,7 +442,7 @@ public final class NetWorkUtils {
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) { // 判断是否连接 wifi
                         netType = NetworkType.NETWORK_WIFI;
                     } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) { // 判断连接的是否移动网络
-                        TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                        TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                         // 获取网络类型
                         int networkType = telephonyManager.getNetworkType();
                         // 获取移动网络类型

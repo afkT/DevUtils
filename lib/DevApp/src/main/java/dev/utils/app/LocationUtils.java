@@ -56,7 +56,7 @@ public final class LocationUtils {
     public static Location getLocation(final LocationListener listener, final long time, final float distance) {
         Location location = null;
         try {
-            sLocationManager = (LocationManager) DevUtils.getContext().getSystemService(Context.LOCATION_SERVICE);
+            sLocationManager = AppUtils.getLocationManager();
             if (isLocationEnabled()) {
                 sLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, time, distance, listener);
                 if (sLocationManager != null) {
@@ -92,7 +92,7 @@ public final class LocationUtils {
      */
     public static boolean isGpsEnabled() {
         try {
-            LocationManager locationManager = (LocationManager) DevUtils.getContext().getSystemService(Context.LOCATION_SERVICE);
+            LocationManager locationManager = AppUtils.getLocationManager();
             return locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isGpsEnabled");
@@ -106,7 +106,7 @@ public final class LocationUtils {
      */
     public static boolean isLocationEnabled() {
         try {
-            LocationManager locationManager = (LocationManager) DevUtils.getContext().getSystemService(Context.LOCATION_SERVICE);
+            LocationManager locationManager = AppUtils.getLocationManager();
             return locationManager != null && (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) || locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isLocationEnabled");
@@ -143,7 +143,7 @@ public final class LocationUtils {
     public static boolean register(final long minTime, final long minDistance, final OnLocationChangeListener listener) {
         if (listener == null) return false;
         try {
-            sLocationManager = (LocationManager) DevUtils.getContext().getSystemService(Context.LOCATION_SERVICE);
+            sLocationManager = AppUtils.getLocationManager();
             if (sLocationManager == null || (!sLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
                     && !sLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))) {
                 return false;

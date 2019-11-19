@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: Toast 内部工具类
@@ -94,10 +95,10 @@ final class Utils {
      */
     public static boolean isNotificationEnabled(final Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).areNotificationsEnabled();
+            return AppUtils.getNotificationManager().areNotificationsEnabled();
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             try {
-                AppOpsManager appOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+                AppOpsManager appOps = AppUtils.getAppOpsManager();
                 ApplicationInfo appInfo = context.getApplicationInfo();
                 String pkg = context.getApplicationContext().getPackageName();
                 int uid = appInfo.uid;

@@ -51,25 +51,12 @@ public final class PhoneUtils {
     private static final String TAG = PhoneUtils.class.getSimpleName();
 
     /**
-     * 获取 TelephonyManager
-     * @return {@link TelephonyManager}
-     */
-    public static TelephonyManager getTelephonyManager() {
-        try {
-            return (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getTelephonyManager");
-        }
-        return null;
-    }
-
-    /**
      * 判断设备是否是手机
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhone() {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             return telephonyManager != null && telephonyManager.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isPhone");
@@ -92,7 +79,7 @@ public final class PhoneUtils {
      */
     public static int getSimState(final int slotIndex) {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
                 return telephonyManager.getSimState();
             } else { // 使用默认卡槽
@@ -137,7 +124,7 @@ public final class PhoneUtils {
      */
     public static String getSimCountryIso() {
         try {
-            return getTelephonyManager().getSimCountryIso();
+            return AppUtils.getTelephonyManager().getSimCountryIso();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimCountryIso");
         }
@@ -150,7 +137,7 @@ public final class PhoneUtils {
      */
     public static String getNetworkCountryIso() {
         try {
-            return getTelephonyManager().getNetworkCountryIso();
+            return AppUtils.getTelephonyManager().getNetworkCountryIso();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getNetworkCountryIso");
         }
@@ -163,7 +150,7 @@ public final class PhoneUtils {
      */
     public static String getSimCountry() {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             // SIM 卡运营商的国家代码
             String simCountry = telephonyManager.getSimCountryIso();
             // 注册的网络运营商的国家代码
@@ -222,8 +209,8 @@ public final class PhoneUtils {
     public static String getMEID(final int slotIndex) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
-                if (slotIndex == -1) return getTelephonyManager().getMeid();
-                return getTelephonyManager().getMeid(slotIndex);
+                if (slotIndex == -1) return AppUtils.getTelephonyManager().getMeid();
+                return AppUtils.getTelephonyManager().getMeid(slotIndex);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getMEID");
             }
@@ -257,7 +244,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getIMEI(final int slotIndex) {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (slotIndex == -1) return telephonyManager.getImei();
                 return telephonyManager.getImei(slotIndex);
@@ -294,7 +281,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getIMSI() {
         try {
-            return getTelephonyManager().getSubscriberId();
+            return AppUtils.getTelephonyManager().getSubscriberId();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIMSI");
         }
@@ -307,7 +294,7 @@ public final class PhoneUtils {
      */
     public static String getSimOperatorName() {
         try {
-            return getTelephonyManager().getSimOperatorName();
+            return AppUtils.getTelephonyManager().getSimOperatorName();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimOperatorName");
         }
@@ -320,7 +307,7 @@ public final class PhoneUtils {
      */
     public static String getSimOperator() {
         try {
-            return getTelephonyManager().getSimOperator();
+            return AppUtils.getTelephonyManager().getSimOperator();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimOperator");
         }
@@ -393,7 +380,7 @@ public final class PhoneUtils {
      */
     public static int getPhoneType() {
         try {
-            return getTelephonyManager().getPhoneType();
+            return AppUtils.getTelephonyManager().getPhoneType();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPhoneType");
         }
@@ -417,7 +404,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getDeviceId(final int slotIndex) {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (slotIndex == -1) return telephonyManager.getDeviceId();
                 return telephonyManager.getDeviceId(slotIndex);
@@ -467,7 +454,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getSimSerialNumber() {
         try {
-            return getTelephonyManager().getSimSerialNumber();
+            return AppUtils.getTelephonyManager().getSimSerialNumber();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimSerialNumber");
         }
@@ -512,7 +499,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getPhoneStatus() {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             if (telephonyManager == null) return "";
             StringBuilder builder = new StringBuilder();
             builder.append("DeviceId(IMEI) = " + telephonyManager.getDeviceId());
@@ -864,7 +851,7 @@ public final class PhoneUtils {
             fields2.setAccessible(true);
             int simId_2 = (Integer) fields2.get(null);
 
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             Method getSubscriberIdGemini = TelephonyManager.class.getDeclaredMethod("getSubscriberIdGemini", int.class);
             String imsi_1 = (String) getSubscriberIdGemini.invoke(telephonyManager, simId_1);
             String imsi_2 = (String) getSubscriberIdGemini.invoke(telephonyManager, simId_2);
@@ -897,7 +884,7 @@ public final class PhoneUtils {
     public static TeleInfo getMtkTeleInfo2() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager tm = getTelephonyManager();
+            TelephonyManager tm = AppUtils.getTelephonyManager();
             Class<?> phone = Class.forName("com.android.internal.telephony.Phone");
             Field fields1 = phone.getField("GEMINI_SIM_1");
             fields1.setAccessible(true);
@@ -937,7 +924,7 @@ public final class PhoneUtils {
     public static TeleInfo getQualcommTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             Class<?> simTMclass = Class.forName("android.telephony.MSimTelephonyManager");
             @SuppressWarnings("WrongConstant")
             Object sim = DevUtils.getContext().getSystemService("phone_msim");
@@ -975,7 +962,7 @@ public final class PhoneUtils {
     public static TeleInfo getSpreadtrumTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager tm1 = getTelephonyManager();
+            TelephonyManager tm1 = AppUtils.getTelephonyManager();
             String imsi_1 = tm1.getSubscriberId();
             String imei_1 = tm1.getDeviceId();
             int phoneType_1 = tm1.getPhoneType();

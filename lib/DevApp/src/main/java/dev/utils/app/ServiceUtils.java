@@ -51,7 +51,7 @@ public final class ServiceUtils {
      */
     public static boolean isServiceRunning(final String className) {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             if (activityManager == null) return false;
             List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
             if (lists == null || lists.size() == 0) return false;
@@ -72,7 +72,7 @@ public final class ServiceUtils {
      */
     public static Set getAllRunningService() {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             if (activityManager == null) return Collections.emptySet();
             List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
             if (lists == null || lists.size() == 0) return null;

@@ -60,7 +60,7 @@ public final class KeyBoardUtils {
     public static boolean openKeyboard(final EditText editText) {
         if (editText != null) {
             try {
-                InputMethodManager imm = (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = AppUtils.getInputMethodManager();
                 imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
                 return true;
@@ -114,7 +114,7 @@ public final class KeyBoardUtils {
      */
     public static boolean openKeyboard() {
         try {
-            InputMethodManager imm = (InputMethodManager) DevUtils.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = AppUtils.getInputMethodManager();
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
             return true;
         } catch (Exception e) {
@@ -163,7 +163,7 @@ public final class KeyBoardUtils {
     public static boolean closeKeyboard(final EditText editText) {
         if (editText != null) {
             try {
-                InputMethodManager imm = (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = AppUtils.getInputMethodManager();
                 imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
                 return true;
             } catch (Exception e) {
@@ -180,7 +180,7 @@ public final class KeyBoardUtils {
     public static boolean closeKeyboard() {
         if (DevUtils.getContext() != null) {
             try {
-                InputMethodManager imm = (InputMethodManager) DevUtils.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = AppUtils.getInputMethodManager();
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 return true;
             } catch (Exception e) {
@@ -198,7 +198,7 @@ public final class KeyBoardUtils {
     public static boolean closeKeyboard(final Activity activity) {
         if (activity != null) {
             try {
-                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = AppUtils.getInputMethodManager();
                 imm.hideSoftInputFromWindow(activity.getWindow().peekDecorView().getWindowToken(), 0);
                 return true;
             } catch (Exception e) {
@@ -216,7 +216,7 @@ public final class KeyBoardUtils {
     public static boolean closeKeyboard(final Dialog dialog) {
         if (dialog != null) {
             try {
-                InputMethodManager imm = (InputMethodManager) dialog.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = AppUtils.getInputMethodManager();
                 imm.hideSoftInputFromWindow(dialog.getWindow().peekDecorView().getWindowToken(), 0);
                 return true;
             } catch (Exception e) {
@@ -413,7 +413,7 @@ public final class KeyBoardUtils {
      */
     public static boolean toggleKeyboard() {
         try {
-            InputMethodManager imm = (InputMethodManager) DevUtils.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = AppUtils.getInputMethodManager();
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
             return true;
         } catch (Exception e) {
@@ -584,7 +584,7 @@ public final class KeyBoardUtils {
     public static void fixSoftInputLeaks(final Context context) {
         if (context == null) return;
         try {
-            InputMethodManager imm = (InputMethodManager) DevUtils.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = AppUtils.getInputMethodManager();
             String[] strArr = new String[]{"mCurRootView", "mServedView", "mNextServedView", "mLastSrvView"};
             for (int i = 0, len = strArr.length; i < len; i++) {
                 try {

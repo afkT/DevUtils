@@ -42,7 +42,7 @@ public final class NotificationUtils {
     public static NotificationManager getNotificationManager() {
         if (sNotificationManager == null) {
             try {
-                sNotificationManager = (NotificationManager) DevUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                sNotificationManager = AppUtils.getNotificationManager();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getNotificationManager");
             }
@@ -59,10 +59,10 @@ public final class NotificationUtils {
         Context context = DevUtils.getContext();
         if (context != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                return ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).areNotificationsEnabled();
+                return AppUtils.getNotificationManager().areNotificationsEnabled();
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
-                    AppOpsManager appOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+                    AppOpsManager appOps = AppUtils.getAppOpsManager();
                     ApplicationInfo appInfo = context.getApplicationInfo();
                     String pkg = context.getApplicationContext().getPackageName();
                     int uid = appInfo.uid;
