@@ -2,16 +2,12 @@ package dev.utils.app.toast;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -25,6 +21,9 @@ import java.lang.reflect.Field;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.R;
+import dev.utils.app.ImageViewUtils;
+import dev.utils.app.ResourceUtils;
+import dev.utils.app.image.ImageUtils;
 
 /**
  * detail: 自定义 View 着色美化 Toast 工具类
@@ -255,7 +254,7 @@ public final class ToastTintUtils {
         if (sInfoDrawable != null) {
             return sInfoDrawable;
         }
-        sInfoDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_info_white);
+        sInfoDrawable = ResourceUtils.getDrawable(R.drawable.dev_toast_icon_info_white);
         return sInfoDrawable;
     }
 
@@ -267,7 +266,7 @@ public final class ToastTintUtils {
         if (sWarningDrawable != null) {
             return sWarningDrawable;
         }
-        sWarningDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_warning_white);
+        sWarningDrawable = ResourceUtils.getDrawable(R.drawable.dev_toast_icon_warning_white);
         return sWarningDrawable;
     }
 
@@ -279,7 +278,7 @@ public final class ToastTintUtils {
         if (sErrorDrawable != null) {
             return sErrorDrawable;
         }
-        sErrorDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_error_white);
+        sErrorDrawable = ResourceUtils.getDrawable(R.drawable.dev_toast_icon_error_white);
         return sErrorDrawable;
     }
 
@@ -291,7 +290,7 @@ public final class ToastTintUtils {
         if (sSuccessDrawable != null) {
             return sSuccessDrawable;
         }
-        sSuccessDrawable = getDrawable(DevUtils.getContext(), R.drawable.dev_toast_icon_success_white);
+        sSuccessDrawable = ResourceUtils.getDrawable(R.drawable.dev_toast_icon_success_white);
         return sSuccessDrawable;
     }
 
@@ -1077,10 +1076,10 @@ public final class ToastTintUtils {
                 if (icon != null) {
                     // 判断是否渲染图标
                     if (style.isTintIcon() && style.getTintIconColor() != 0) {
-                        icon = tintIcon(icon, style.getTintIconColor());
+                        icon = ImageUtils.setColorFilter(icon, style.getTintIconColor());
                     }
                     // 设置 ImageView 图片
-                    setBackground(toastIcon, icon);
+                    ImageViewUtils.setBackground(toastIcon, icon);
                 } else {
                     // 隐藏图标
                     toastIcon.setVisibility(View.GONE);
@@ -1094,86 +1093,19 @@ public final class ToastTintUtils {
                 Drawable drawableFrame = style.getBackground();
                 // 判断是否为 null
                 if (drawableFrame == null) {
-                    drawableFrame = getDrawable(context, dev.utils.R.drawable.dev_toast_frame);
+                    drawableFrame = ResourceUtils.getNinePatchDrawable(dev.utils.R.drawable.dev_toast_frame);
                     // 判断是否需要着色
                     if (style.getBackgroundTintColor() != 0) { // 根据背景色进行渲染透明图片
-                        drawableFrame = tint9PatchDrawableFrame(context, style.getBackgroundTintColor());
+                        drawableFrame = ImageUtils.setColorFilter(drawableFrame, style.getBackgroundTintColor());
                     }
                 }
                 // 设置 View 背景
-                setBackground(toastLayout, drawableFrame);
+                ImageViewUtils.setBackground(toastLayout, drawableFrame);
                 // 返回 View
                 return toastLayout;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "inflaterView");
             }
-        }
-        return null;
-    }
-
-    // ============
-    // = 内部方法 =
-    // ============
-
-    /**
-     * 设置背景
-     * @param view     {@link View}
-     * @param drawable 背景 {@link Drawable}
-     */
-    private static void setBackground(final View view, final Drawable drawable) {
-        if (view != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                view.setBackground(drawable);
-            else
-                view.setBackgroundDrawable(drawable);
-        }
-    }
-
-    /**
-     * 获取 Drawable
-     * @param context {@link Context}
-     * @param id      R.drawable.id
-     * @return {@link Drawable}
-     */
-    private static Drawable getDrawable(final Context context, @DrawableRes final int id) {
-        if (context == null) {
-            return null;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            return context.getDrawable(id);
-        else
-            return context.getResources().getDrawable(id);
-    }
-
-    /**
-     * 图片着色
-     * @param drawable  {@link Drawable}
-     * @param tintColor R.color.id
-     * @return {@link Drawable}
-     */
-    private static Drawable tintIcon(final Drawable drawable, @ColorInt final int tintColor) {
-        if (drawable != null) {
-            try {
-                drawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "tintIcon");
-            }
-        }
-        return drawable;
-    }
-
-    /**
-     * .9 图片着色
-     * @param context   {@link Context}
-     * @param tintColor R.color.id
-     * @return {@link Drawable}
-     */
-    private static Drawable tint9PatchDrawableFrame(final Context context, @ColorInt final int tintColor) {
-        try {
-            final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, dev.utils.R.drawable.dev_toast_frame);
-            return tintIcon(toastDrawable, tintColor);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "tint9PatchDrawableFrame");
         }
         return null;
     }

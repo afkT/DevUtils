@@ -26,9 +26,9 @@ import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.R;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: Snackbar 工具类
@@ -251,7 +251,7 @@ public final class SnackbarUtils {
     public SnackbarUtils setAction(final View.OnClickListener listener, @StringRes final int resId, final Object... objs) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
-            String content = getFormatRes(resId, objs);
+            String content = AppCommonUtils.getFormatRes(resId, objs);
             if (!TextUtils.isEmpty(content)) {
                 snackbar.setAction(content, listener);
             }
@@ -279,7 +279,7 @@ public final class SnackbarUtils {
     public SnackbarUtils setAction(final View.OnClickListener listener, final String text, final Object... objs) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
-            String content = getFormatString(text, objs);
+            String content = StringUtils.getFormatString(text, objs);
             if (!TextUtils.isEmpty(content)) {
                 snackbar.setAction(content, listener);
             }
@@ -319,7 +319,7 @@ public final class SnackbarUtils {
      * @param objs  格式化参数
      */
     public void showShort(@StringRes final int resId, final Object... objs) {
-        priShow(getFormatRes(resId, objs), Snackbar.LENGTH_SHORT);
+        priShow(AppCommonUtils.getFormatRes(resId, objs), Snackbar.LENGTH_SHORT);
     }
 
     /**
@@ -328,7 +328,7 @@ public final class SnackbarUtils {
      * @param objs  格式化参数
      */
     public void showLong(@StringRes final int resId, final Object... objs) {
-        priShow(getFormatRes(resId, objs), Snackbar.LENGTH_LONG);
+        priShow(AppCommonUtils.getFormatRes(resId, objs), Snackbar.LENGTH_LONG);
     }
 
     /**
@@ -337,7 +337,7 @@ public final class SnackbarUtils {
      * @param objs  格式化参数
      */
     public void showIndefinite(@StringRes final int resId, final Object... objs) {
-        priShow(getFormatRes(resId, objs), Snackbar.LENGTH_INDEFINITE);
+        priShow(AppCommonUtils.getFormatRes(resId, objs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // =
@@ -348,7 +348,7 @@ public final class SnackbarUtils {
      * @param objs 格式化参数
      */
     public void showShort(final String text, final Object... objs) {
-        priShow(getFormatString(text, objs), Snackbar.LENGTH_SHORT);
+        priShow(StringUtils.getFormatString(text, objs), Snackbar.LENGTH_SHORT);
     }
 
     /**
@@ -357,7 +357,7 @@ public final class SnackbarUtils {
      * @param objs 格式化参数
      */
     public void showLong(final String text, final Object... objs) {
-        priShow(getFormatString(text, objs), Snackbar.LENGTH_LONG);
+        priShow(StringUtils.getFormatString(text, objs), Snackbar.LENGTH_LONG);
     }
 
     /**
@@ -366,7 +366,7 @@ public final class SnackbarUtils {
      * @param objs 格式化参数
      */
     public void showIndefinite(final String text, final Object... objs) {
-        priShow(getFormatString(text, objs), Snackbar.LENGTH_INDEFINITE);
+        priShow(StringUtils.getFormatString(text, objs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // ============
@@ -1594,49 +1594,6 @@ public final class SnackbarUtils {
             return view.getMeasuredHeight();
         }
         return 0;
-    }
-
-    // ==================
-    // = 数据格式化处理 =
-    // ==================
-
-    /**
-     * 获取格式化后的字符串
-     * @param format 待格式化字符串
-     * @param args   格式化参数
-     * @return 格式化后的字符串
-     */
-    private String getFormatString(final String format, final Object... args) {
-        if (format == null) return null;
-        try {
-            if (args != null && args.length != 0) {
-                return String.format(format, args);
-            } else {
-                return format;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getFormatString");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 R.string 资源的格式化字符串
-     * @param resId R.string.id
-     * @param objs  格式化参数
-     * @return 格式化后的字符串
-     */
-    private String getFormatRes(@StringRes final int resId, final Object... objs) {
-        try {
-            if (objs != null && objs.length != 0) {
-                return DevUtils.getContext().getString(resId, objs);
-            } else {
-                return DevUtils.getContext().getString(resId);
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getFormatRes");
-        }
-        return null;
     }
 
     // =

@@ -5,7 +5,6 @@ import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.StringUtils;
 
@@ -99,9 +98,9 @@ public final class AppCommonUtils {
     public static String getFormatRes(final boolean errorMsg, @StringRes final int resId, final Object... objs) {
         try {
             if (objs != null && objs.length != 0) {
-                return DevUtils.getContext().getString(resId, objs);
+                return ResourceUtils.getString(resId, objs);
             } else {
-                return DevUtils.getContext().getString(resId);
+                return ResourceUtils.getString(resId);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getFormatRes");
