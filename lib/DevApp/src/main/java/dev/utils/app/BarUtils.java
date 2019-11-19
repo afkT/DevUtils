@@ -551,7 +551,7 @@ public final class BarUtils {
     // ==============
 
     /**
-     * 获取 ActionBase 高度
+     * 获取 ActionBar 高度
      * @return the action bar's height
      */
     public static int getActionBarHeight() {

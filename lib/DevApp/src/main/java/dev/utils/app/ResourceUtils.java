@@ -646,7 +646,7 @@ public final class ResourceUtils {
     public static byte[] readBytesFromAssets(final String fileName) {
         InputStream is = null;
         try {
-            is = DevUtils.getContext().getResources().getAssets().open(fileName);
+            is = open(fileName);
             int length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);
@@ -683,7 +683,7 @@ public final class ResourceUtils {
     public static byte[] readBytesFromRaw(@RawRes final int resId) {
         InputStream is = null;
         try {
-            is = DevUtils.getContext().getResources().openRawResource(resId);
+            is = openRawResource(resId);
             int length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);
@@ -721,7 +721,7 @@ public final class ResourceUtils {
         InputStream is = null;
         BufferedReader br = null;
         try {
-            is = DevUtils.getContext().getResources().getAssets().open(fileName);
+            is = open(fileName);
             br = new BufferedReader(new InputStreamReader(is));
 
             List<String> lists = new ArrayList<>();
@@ -747,7 +747,7 @@ public final class ResourceUtils {
         InputStream is = null;
         BufferedReader br = null;
         try {
-            is = DevUtils.getContext().getResources().openRawResource(resId);
+            is = openRawResource(resId);
             br = new BufferedReader(new InputStreamReader(is));
 
             List<String> lists = new ArrayList<>();
@@ -775,7 +775,7 @@ public final class ResourceUtils {
     public static boolean saveAssetsFormFile(final String fileName, final File file) {
         try {
             // 获取 Assets 文件
-            InputStream is = DevUtils.getContext().getResources().getAssets().open(fileName);
+            InputStream is = open(fileName);
             // 存入 SDCard
             FileOutputStream fos = new FileOutputStream(file);
             // 设置数据缓冲
@@ -810,7 +810,7 @@ public final class ResourceUtils {
     public static boolean saveRawFormFile(@RawRes final int resId, final File file) {
         try {
             // 获取 raw 文件
-            InputStream is = DevUtils.getContext().getResources().openRawResource(resId);
+            InputStream is = openRawResource(resId);
             // 存入 SDCard
             FileOutputStream fos = new FileOutputStream(file);
             // 设置数据缓冲

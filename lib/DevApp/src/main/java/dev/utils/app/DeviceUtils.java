@@ -674,7 +674,7 @@ public final class DeviceUtils {
             intent.putExtra("nowait", 1);
             intent.putExtra("interval", 1);
             intent.putExtra("window", 0);
-            DevUtils.getContext().sendBroadcast(intent);
+            AppUtils.sendBroadcast(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");

@@ -108,7 +108,7 @@ public final class NotificationService extends NotificationListenerService {
      */
     public static void startService() {
         try {
-            DevUtils.getContext().startService(new Intent(DevUtils.getContext(), NotificationService.class));
+            AppUtils.startService(new Intent(DevUtils.getContext(), NotificationService.class));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, "startService");
         }
@@ -119,7 +119,7 @@ public final class NotificationService extends NotificationListenerService {
      */
     public static void stopService() {
         try {
-            DevUtils.getContext().stopService(new Intent(DevUtils.getContext(), NotificationService.class));
+            AppUtils.stopService(new Intent(DevUtils.getContext(), NotificationService.class));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, "stopService");
         }

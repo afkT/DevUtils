@@ -112,9 +112,7 @@ public final class ServiceUtils {
      */
     public static boolean startService(final Class<?> clazz) {
         try {
-            Intent intent = new Intent(DevUtils.getContext(), clazz);
-            DevUtils.getContext().startService(intent);
-            return true;
+            return AppUtils.startService(new Intent(DevUtils.getContext(), clazz));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
         }
@@ -146,8 +144,7 @@ public final class ServiceUtils {
      */
     public static boolean stopService(final Class<?> clazz) {
         try {
-            Intent intent = new Intent(DevUtils.getContext(), clazz);
-            return DevUtils.getContext().stopService(intent);
+            return AppUtils.stopService(new Intent(DevUtils.getContext(), clazz));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
             return false;

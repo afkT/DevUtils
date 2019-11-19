@@ -116,7 +116,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      */
     public static void startService() {
         try {
-            DevUtils.getContext().startService(new Intent(DevUtils.getContext(), AccessibilityListenerService.class));
+            AppUtils.startService(new Intent(DevUtils.getContext(), AccessibilityListenerService.class));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
         }
@@ -127,7 +127,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      */
     public static void stopService() {
         try {
-            DevUtils.getContext().stopService(new Intent(DevUtils.getContext(), AccessibilityListenerService.class));
+            AppUtils.stopService(new Intent(DevUtils.getContext(), AccessibilityListenerService.class));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
         }

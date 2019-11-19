@@ -707,6 +707,42 @@ public final class AppUtils {
         return false;
     }
 
+    // ========
+    // = 服务 =
+    // ========
+
+    /**
+     * 启动服务
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startService(final Intent intent) {
+        if (intent == null) return false;
+        try {
+            DevUtils.getContext().startService(intent);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startService");
+        }
+        return false;
+    }
+
+    /**
+     * 停止服务
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean stopService(final Intent intent) {
+        if (intent == null) return false;
+        try {
+            DevUtils.getContext().stopService(intent);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "stopService");
+        }
+        return false;
+    }
+
     // ==============
     // = 安装、卸载 =
     // ==============
