@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.accessibilityservice.AccessibilityService;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
@@ -12,7 +11,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -67,7 +65,7 @@ public final class AccessibilityUtils {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility() {
-        return checkAccessibility(getPackageName());
+        return checkAccessibility(AppUtils.getPackageName());
     }
 
     /**
@@ -83,7 +81,7 @@ public final class AccessibilityUtils {
         // 判断辅助功能是否开启
         if (!isAccessibilitySettingsOn(packageName)) {
             // 跳转至辅助功能设置页面
-            startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+            AppUtils.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
             return false;
         }
         return true;
@@ -99,13 +97,13 @@ public final class AccessibilityUtils {
         // 无障碍功能开启状态
         int accessibilityEnabled = 0;
         try {
-            accessibilityEnabled = Settings.Secure.getInt(getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
+            accessibilityEnabled = Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
         } catch (Settings.SettingNotFoundException e) {
             LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ACCESSIBILITY_ENABLED");
         }
         if (accessibilityEnabled == 1) {
             try {
-                String services = Settings.Secure.getString(getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+                String services = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
                 if (services != null) {
                     return services.toLowerCase().contains(packageName.toLowerCase());
                 }
@@ -718,76 +716,6 @@ public final class AccessibilityUtils {
             return service.performGlobalAction(action);
         }
         return false;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // =================
-    // = ResourceUtils =
-    // =================
-
-    /**
-     * 获取 ContentResolver
-     * @return {@link ContentResolver}
-     */
-    private static ContentResolver getContentResolver() {
-        try {
-            return DevUtils.getContext().getContentResolver();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getContentResolver");
-        }
-        return null;
-    }
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 APP 包名
-     * @return APP 包名
-     */
-    private static String getPackageName() {
-        try {
-            return DevUtils.getContext().getPackageName();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getPackageName");
-        }
-        return null;
-    }
-
-    /**
-     * Activity 跳转
-     * @param intent {@link Intent}
-     * @return {@code true} success, {@code false} fail
-     */
-    private static boolean startActivity(final Intent intent) {
-        try {
-            DevUtils.getContext().startActivity(getIntent(intent, true));
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startActivity");
-        }
-        return false;
-    }
-
-    // ===============
-    // = IntentUtils =
-    // ===============
-
-    /**
-     * 获取 Intent
-     * @param intent    {@link Intent}
-     * @param isNewTask 是否开启新的任务栈 (Context 非 Activity 则需要设置 FLAG_ACTIVITY_NEW_TASK)
-     * @return {@link Intent}
-     */
-    private static Intent getIntent(final Intent intent, final boolean isNewTask) {
-        if (intent != null) {
-            return isNewTask ? intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) : intent;
-        }
-        return null;
     }
 
 //    // 获取根节点

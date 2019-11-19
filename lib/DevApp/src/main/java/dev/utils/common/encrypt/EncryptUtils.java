@@ -340,7 +340,7 @@ public final class EncryptUtils {
      * @param algorithm 算法
      * @return 指定加密算法加密后的数据
      */
-    private static byte[] hashTemplate(final byte[] data, final String algorithm) {
+    public static byte[] hashTemplate(final byte[] data, final String algorithm) {
         if (data == null || data.length == 0) return null;
         try {
             MessageDigest digest = MessageDigest.getInstance(algorithm);
@@ -557,7 +557,7 @@ public final class EncryptUtils {
      * @param algorithm 算法
      * @return 指定加密算法和密钥, 加密后的数据
      */
-    private static byte[] hmacTemplate(final byte[] data, final byte[] key, final String algorithm) {
+    public static byte[] hmacTemplate(final byte[] data, final byte[] key, final String algorithm) {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
         try {
             SecretKeySpec secretKey = new SecretKeySpec(key, algorithm);
@@ -808,7 +808,7 @@ public final class EncryptUtils {
      * @param isEncrypt      是否加密处理
      * @return 指定加密算法, 加解密后的数据
      */
-    private static byte[] symmetricTemplate(final byte[] data, final byte[] key, final String algorithm,
+    public static byte[] symmetricTemplate(final byte[] data, final byte[] key, final String algorithm,
                                             final String transformation, final byte[] iv, final boolean isEncrypt) {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
         try {
@@ -919,7 +919,7 @@ public final class EncryptUtils {
      * @param isEncrypt      是否加密处理
      * @return 指定加密算法, 加解密后的数据
      */
-    private static byte[] rsaTemplate(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation, final boolean isEncrypt) {
+    public static byte[] rsaTemplate(final byte[] data, final byte[] key, final boolean isPublicKey, final String transformation, final boolean isEncrypt) {
         if (data == null || key == null) return null;
         try {
             int dataLength = data.length;

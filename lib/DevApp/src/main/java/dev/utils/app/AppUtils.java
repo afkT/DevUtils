@@ -24,23 +24,24 @@ import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.PowerManager;
 import android.os.Vibrator;
 import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.support.annotation.RequiresPermission;
-import android.support.v4.content.FileProvider;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import java.io.File;
-import java.security.MessageDigest;
 import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.ConvertUtils;
+import dev.utils.common.FileUtils;
+import dev.utils.common.StringUtils;
+import dev.utils.common.encrypt.EncryptUtils;
 
 /**
  * detail: APP (Android) 工具类
@@ -221,7 +222,7 @@ public final class AppUtils {
      * @return SystemService Object
      */
     public static <T> T getSystemService(final String name) {
-        if (isSpace(name)) return null;
+        if (StringUtils.isSpace(name)) return null;
         try {
             return (T) DevUtils.getContext().getSystemService(name);
         } catch (Exception e) {
@@ -274,7 +275,7 @@ public final class AppUtils {
      * @return {@link Drawable}
      */
     public static Drawable getAppIcon(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             PackageManager packageManager = getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
@@ -299,7 +300,7 @@ public final class AppUtils {
      * @return APP 应用名
      */
     public static String getAppName(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             PackageManager packageManager = getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
@@ -324,7 +325,7 @@ public final class AppUtils {
      * @return APP versionName
      */
     public static String getAppVersionName(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.versionName;
@@ -348,7 +349,7 @@ public final class AppUtils {
      * @return APP versionCode
      */
     public static int getAppVersionCode(final String packageName) {
-        if (isSpace(packageName)) return -1;
+        if (StringUtils.isSpace(packageName)) return -1;
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? -1 : packageInfo.versionCode;
@@ -372,7 +373,7 @@ public final class AppUtils {
      * @return APP 安装包路径
      */
     public static String getAppPath(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.sourceDir;
@@ -398,7 +399,7 @@ public final class AppUtils {
      * @return {@link Signature} 数组
      */
     public static Signature[] getAppSignature(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.signatures;
@@ -468,11 +469,11 @@ public final class AppUtils {
      * @return 对应算法处理后的签名信息
      */
     public static String getAppSignatureHash(final String packageName, final String algorithm) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             Signature[] signature = getAppSignature(packageName);
             if (signature == null || signature.length == 0) return null;
-            return colonSplit(toHexString(hashTemplate(signature[0].toByteArray(), algorithm), HEX_DIGITS));
+            return StringUtils.colonSplit(ConvertUtils.toHexString(EncryptUtils.hashTemplate(signature[0].toByteArray(), algorithm)));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppSignatureHash - packageName: " + packageName + ", algorithm: " + algorithm);
             return null;
@@ -495,7 +496,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppDebug(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
@@ -519,7 +520,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppRelease(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, 0);
             return !(appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
@@ -545,7 +546,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppSystem(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
@@ -571,7 +572,7 @@ public final class AppUtils {
      */
     @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
     public static boolean isAppForeground(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             List<ActivityManager.RunningAppProcessInfo> lists = getActivityManager().getRunningAppProcesses();
             if (lists != null && lists.size() > 0) {
@@ -614,7 +615,7 @@ public final class AppUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isInstalledApp(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
             return true;
@@ -630,7 +631,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isInstalledApp2(final String packageName) {
-        return !isSpace(packageName) && IntentUtils.getLaunchAppIntent(packageName) != null;
+        return !StringUtils.isSpace(packageName) && IntentUtils.getLaunchAppIntent(packageName) != null;
     }
 
     // =================
@@ -716,7 +717,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final String filePath) {
-        return installApp(getFileByPath(filePath));
+        return installApp(FileUtils.getFileByPath(filePath));
     }
 
     /**
@@ -725,7 +726,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final File file) {
-        if (!isFileExists(file)) return false;
+        if (!FileUtils.isFileExists(file)) return false;
         try {
             return startActivity(IntentUtils.getInstallAppIntent(file, true));
         } catch (Exception e) {
@@ -742,7 +743,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final Activity activity, final String filePath, final int requestCode) {
-        return installApp(activity, getFileByPath(filePath), requestCode);
+        return installApp(activity, FileUtils.getFileByPath(filePath), requestCode);
     }
 
     /**
@@ -753,7 +754,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final Activity activity, final File file, final int requestCode) {
-        if (!isFileExists(file)) return false;
+        if (!FileUtils.isFileExists(file)) return false;
         try {
             activity.startActivityForResult(IntentUtils.getInstallAppIntent(file), requestCode);
             return true;
@@ -790,7 +791,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final String filePath, final String params) {
-        return installAppSilent(getFileByPath(filePath), params, isDeviceRooted());
+        return installAppSilent(FileUtils.getFileByPath(filePath), params, ADBUtils.isDeviceRooted());
     }
 
     /**
@@ -800,7 +801,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final File file, final String params) {
-        return installAppSilent(file, params, isDeviceRooted());
+        return installAppSilent(file, params, ADBUtils.isDeviceRooted());
     }
 
     /**
@@ -811,7 +812,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final File file, final String params, final boolean isRooted) {
-        if (!isFileExists(file)) return false;
+        if (!FileUtils.isFileExists(file)) return false;
         String filePath = '"' + file.getAbsolutePath() + '"';
         String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
         ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
@@ -826,7 +827,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             return startActivity(IntentUtils.getUninstallAppIntent(packageName, true));
         } catch (Exception e) {
@@ -843,7 +844,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final Activity activity, final String packageName, final int requestCode) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             activity.startActivityForResult(IntentUtils.getUninstallAppIntent(packageName), requestCode);
             return true;
@@ -859,7 +860,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallAppSilent(final String packageName) {
-        return uninstallAppSilent(packageName, false, isDeviceRooted());
+        return uninstallAppSilent(packageName, false, ADBUtils.isDeviceRooted());
     }
 
     /**
@@ -869,7 +870,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData) {
-        return uninstallAppSilent(packageName, isKeepData, isDeviceRooted());
+        return uninstallAppSilent(packageName, isKeepData, ADBUtils.isDeviceRooted());
     }
 
     /**
@@ -880,7 +881,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
         ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
         return result.isSuccess4("success");
@@ -896,7 +897,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchApp(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             return startActivity(IntentUtils.getLaunchAppIntent(packageName, true));
         } catch (Exception e) {
@@ -913,7 +914,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchApp(final Activity activity, final String packageName, final int requestCode) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             activity.startActivityForResult(IntentUtils.getLaunchAppIntent(packageName), requestCode);
             return true;
@@ -939,7 +940,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             return startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent(packageName, true));
         } catch (Exception e) {
@@ -964,7 +965,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetails(final String packageName, final String marketPkg) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             return startActivity(IntentUtils.getLaunchAppDetailIntent(packageName, marketPkg, true));
         } catch (Exception e) {
@@ -984,7 +985,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openFile(final String filePath, final String dataType) {
-        return openFile(getFileByPath(filePath), dataType);
+        return openFile(FileUtils.getFileByPath(filePath), dataType);
     }
 
     /**
@@ -994,13 +995,13 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openFile(final File file, final String dataType) {
-        if (!isFileExists(file)) return false;
+        if (!FileUtils.isFileExists(file)) return false;
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // 临时授权 ( 必须 )
-            intent.setDataAndType(getUriForFile(file, DevUtils.getAuthority()), dataType);
+            intent.setDataAndType(UriUtils.getUriForFile(file, DevUtils.getAuthority()), dataType);
             return startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openFile");
@@ -1018,7 +1019,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openFileByApp(final String filePath, final String packageName, final String className) {
-        return openFileByApp(getFileByPath(filePath), packageName, className);
+        return openFileByApp(FileUtils.getFileByPath(filePath), packageName, className);
     }
 
     /**
@@ -1029,7 +1030,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openFileByApp(final File file, final String packageName, final String className) {
-        if (!isFileExists(file)) return false;
+        if (!FileUtils.isFileExists(file)) return false;
         try {
             Intent intent = new Intent();
             intent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -1051,7 +1052,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openPDFFile(final String filePath) {
-        return openPDFFile(getFileByPath(filePath));
+        return openPDFFile(FileUtils.getFileByPath(filePath));
     }
 
     /**
@@ -1071,7 +1072,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openWordFile(final String filePath) {
-        return openWordFile(getFileByPath(filePath));
+        return openWordFile(FileUtils.getFileByPath(filePath));
     }
 
     /**
@@ -1091,7 +1092,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openOfficeByWPS(final String filePath) {
-        return openOfficeByWPS(getFileByPath(filePath));
+        return openOfficeByWPS(FileUtils.getFileByPath(filePath));
     }
 
     /**
@@ -1180,166 +1181,5 @@ public final class AppUtils {
             LogPrintUtils.eTag(TAG, e, "openGpsSettings");
         }
         return false;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 检查是否存在某个文件
-     * @param file 文件
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isFileExists(final File file) {
-        return file != null && file.exists();
-    }
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
-    }
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * 冒号分割处理
-     * @param str 待处理字符串
-     * @return 冒号分割后的字符串
-     */
-    private static String colonSplit(final String str) {
-        if (!isEmpty(str)) {
-            return str.replaceAll("(?<=[0-9A-F]{2})[0-9A-F]{2}", ":$0");
-        }
-        return str;
-    }
-
-    // ===============
-    // = DeviceUtils =
-    // ===============
-
-    /**
-     * 判断设备是否 root
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isDeviceRooted() {
-        String su = "su";
-        String[] locations = {"/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
-            "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
-        for (String location : locations) {
-            if (new File(location + su).exists()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // ================
-    // = ConvertUtils =
-    // ================
-
-    // 用于建立十六进制字符的输出的小写字符数组
-    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data      待转换数据
-     * @param hexDigits {@link #HEX_DIGITS}
-     * @return 十六进制字符串
-     */
-    private static String toHexString(final byte[] data, final char[] hexDigits) {
-        if (data == null || hexDigits == null) return null;
-        try {
-            int len = data.length;
-            StringBuilder builder = new StringBuilder(len);
-            for (int i = 0; i < len; i++) {
-                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-                builder.append(hexDigits[data[i] & 0x0f]);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "toHexString");
-        }
-        return null;
-    }
-
-    // ================
-    // = EncryptUtils =
-    // ================
-
-    /**
-     * Hash 加密模版方法
-     * @param data      待加密数据
-     * @param algorithm 算法
-     * @return 指定加密算法加密后的数据
-     */
-    private static byte[] hashTemplate(final byte[] data, final String algorithm) {
-        if (data == null || data.length == 0) return null;
-        try {
-            MessageDigest digest = MessageDigest.getInstance(algorithm);
-            digest.update(data);
-            return digest.digest();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "hashTemplate");
-            return null;
-        }
-    }
-
-    // ============
-    // = UriUtils =
-    // ============
-
-    /**
-     * 获取文件 Uri
-     * @param file      文件
-     * @param authority android:authorities
-     * @return 指定文件 {@link Uri}
-     */
-    private static Uri getUriForFile(final File file, final String authority) {
-        if (file == null || authority == null) return null;
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                return FileProvider.getUriForFile(DevUtils.getContext(), authority, file);
-            } else {
-                return Uri.fromFile(file);
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getUriForFile");
-            return null;
-        }
     }
 }

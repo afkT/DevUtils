@@ -120,7 +120,7 @@ public final class ActivityUtils {
      * @return {@code true} 存在, {@code false} 不存在
      */
     public static boolean isActivityExists(final String className) {
-        return isActivityExists(getPackageName(), className);
+        return isActivityExists(AppUtils.getPackageName(), className);
     }
 
     /**
@@ -133,7 +133,7 @@ public final class ActivityUtils {
         if (packageName == null || className == null) return false;
         boolean result = true;
         try {
-            PackageManager packageManager = getPackageManager();
+            PackageManager packageManager = AppUtils.getPackageManager();
             Intent intent = new Intent();
             intent.setClassName(packageName, className);
             if (packageManager.resolveActivity(intent, 0) == null) {
@@ -165,7 +165,7 @@ public final class ActivityUtils {
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
-            return startActivity(intent);
+            return AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startHomeActivity");
         }
@@ -178,7 +178,7 @@ public final class ActivityUtils {
      */
     public static String getLauncherActivity() {
         try {
-            return getLauncherActivity(getPackageName());
+            return getLauncherActivity(AppUtils.getPackageName());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLauncherActivity");
         }
@@ -196,7 +196,7 @@ public final class ActivityUtils {
             Intent intent = new Intent(Intent.ACTION_MAIN, null);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            List<ResolveInfo> lists = getPackageManager().queryIntentActivities(intent, 0);
+            List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(intent, 0);
             for (ResolveInfo resolveinfo : lists) {
                 if (resolveinfo != null && resolveinfo.activityInfo != null) {
                     if (resolveinfo.activityInfo.packageName.equals(packageName)) {
@@ -233,7 +233,7 @@ public final class ActivityUtils {
     public static Drawable getActivityIcon(final ComponentName componentName) {
         if (componentName == null) return null;
         try {
-            return getPackageManager().getActivityIcon(componentName);
+            return AppUtils.getPackageManager().getActivityIcon(componentName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivityIcon");
         }
@@ -263,7 +263,7 @@ public final class ActivityUtils {
     public static Drawable getActivityLogo(final ComponentName componentName) {
         if (componentName == null) return null;
         try {
-            return getPackageManager().getActivityLogo(componentName);
+            return AppUtils.getPackageManager().getActivityLogo(componentName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivityLogo");
         }
@@ -275,7 +275,7 @@ public final class ActivityUtils {
      * @return package.xx.Activity.className
      */
     public static String getActivityToLauncher() {
-        return getActivityToLauncher(getPackageName());
+        return getActivityToLauncher(AppUtils.getPackageName());
     }
 
     /**
@@ -293,8 +293,8 @@ public final class ActivityUtils {
             Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
             resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
             resolveIntent.setPackage(packageName);
-            // 通过 getPackageManager() 的 queryIntentActivities 方法遍历
-            List<ResolveInfo> lists = getPackageManager().queryIntentActivities(resolveIntent, 0);
+            // 通过 AppUtils.getPackageManager() 的 queryIntentActivities 方法遍历
+            List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(resolveIntent, 0);
             for (ResolveInfo resolveinfo : lists) {
                 if (resolveinfo != null && resolveinfo.activityInfo != null) {
                     // resolveinfo.activityInfo.packageName; // packageName
@@ -317,7 +317,7 @@ public final class ActivityUtils {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            return getPackageManager().resolveActivity(intent, 0);
+            return AppUtils.getPackageManager().resolveActivity(intent, 0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLauncherCategoryHomeToResolveInfo");
         }
@@ -842,78 +842,12 @@ public final class ActivityUtils {
      */
     public ActivityUtils restartApplication() {
         try {
-            Intent intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
+            Intent intent = AppUtils.getPackageManager().getLaunchIntentForPackage(AppUtils.getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "restartApplication");
         }
         return this;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 APP 包名
-     * @return APP 包名
-     */
-    private static String getPackageName() {
-        try {
-            return DevUtils.getContext().getPackageName();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getPackageName");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 PackageManager
-     * @return {@link PackageManager}
-     */
-    private static PackageManager getPackageManager() {
-        try {
-            return DevUtils.getContext().getPackageManager();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getPackageManager");
-        }
-        return null;
-    }
-
-    /**
-     * Activity 跳转
-     * @param intent {@link Intent}
-     * @return {@code true} success, {@code false} fail
-     */
-    private static boolean startActivity(final Intent intent) {
-        try {
-            DevUtils.getContext().startActivity(getIntent(intent, true));
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startActivity");
-        }
-        return false;
-    }
-
-    // ===============
-    // = IntentUtils =
-    // ===============
-
-    /**
-     * 获取 Intent
-     * @param intent    {@link Intent}
-     * @param isNewTask 是否开启新的任务栈 (Context 非 Activity 则需要设置 FLAG_ACTIVITY_NEW_TASK)
-     * @return {@link Intent}
-     */
-    private static Intent getIntent(final Intent intent, final boolean isNewTask) {
-        if (intent != null) {
-            return isNewTask ? intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) : intent;
-        }
-        return null;
     }
 }

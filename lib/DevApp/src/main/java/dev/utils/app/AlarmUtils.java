@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -58,7 +57,7 @@ public final class AlarmUtils {
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean startAlarmIntent(final int type, final long triggerAtMillis, final PendingIntent pendingIntent) {
         try {
-            AlarmManager manager = getAlarmManager();
+            AlarmManager manager = AppUtils.getAlarmManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 manager.setExactAndAllowWhileIdle(type, triggerAtMillis, pendingIntent);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -85,7 +84,7 @@ public final class AlarmUtils {
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean stopAlarmIntent(final PendingIntent pendingIntent) {
         try {
-            getAlarmManager().cancel(pendingIntent);
+            AppUtils.getAlarmManager().cancel(pendingIntent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmIntent");
@@ -331,56 +330,5 @@ public final class AlarmUtils {
             LogPrintUtils.eTag(TAG, e, "stopAlarmActivity");
         }
         return false;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 AlarmManager
-     * @return {@link AlarmManager}
-     */
-    private static AlarmManager getAlarmManager() {
-        return getSystemService(Context.ALARM_SERVICE);
-    }
-
-    /**
-     * 获取 SystemService
-     * @param name 服务名
-     * @param <T>  泛型
-     * @return SystemService Object
-     */
-    private static <T> T getSystemService(final String name) {
-        if (isSpace(name)) return null;
-        try {
-            return (T) DevUtils.getContext().getSystemService(name);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSystemService");
-        }
-        return null;
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

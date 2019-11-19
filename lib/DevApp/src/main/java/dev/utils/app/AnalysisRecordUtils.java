@@ -1,29 +1,19 @@
 package dev.utils.app;
 
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Environment;
 import android.support.annotation.IntDef;
 import android.text.TextUtils;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.DateUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: 日志记录分析工具类
@@ -73,13 +63,13 @@ public final class AnalysisRecordUtils {
         // 如果为 null, 才设置
         if (TextUtils.isEmpty(sLogStoragePath)) {
             // 获取根路径
-            sLogStoragePath = getExternalAppCachePath();
+            sLogStoragePath = PathUtils.getExternalAppCachePath();
         }
 
         // 如果版本信息为 null, 才进行处理
         if (TextUtils.isEmpty(APP_VERSION_CODE) || TextUtils.isEmpty(APP_VERSION_NAME)) {
             // 获取 APP 版本信息
-            String[] versions = getAppVersion();
+            String[] versions = ManifestUtils.getAppVersion();
             // 防止为 null
             if (versions != null && versions.length == 2) {
                 // 保存 APP 版本信息
@@ -90,13 +80,13 @@ public final class AnalysisRecordUtils {
 
         // 获取包名
         if (TextUtils.isEmpty(PACKAGE_NAME)) {
-            PACKAGE_NAME = getPackageName();
+            PACKAGE_NAME = AppUtils.getPackageName();
         }
 
         // 判断是否存在设备信息
         if (DEVICE_INFO_MAPS.size() == 0) {
             // 获取设备信息
-            getDeviceInfo(DEVICE_INFO_MAPS);
+            DeviceUtils.getDeviceInfo(DEVICE_INFO_MAPS);
             // 转换字符串
             handlerDeviceInfo("");
         }
@@ -241,7 +231,7 @@ public final class AnalysisRecordUtils {
             File file = new File(logFile);
             // 判断是否存在
             if (file.exists()) {
-                result = appendFile(logFile, logContent);
+                result = FileUtils.appendFile(logFile, logContent);
             } else {
                 // = 首次则保存设备、APP 信息 =
                 StringBuilder builder = new StringBuilder();
@@ -287,9 +277,9 @@ public final class AnalysisRecordUtils {
                 builder.append(NEW_LINE_STR_X2);
                 builder.append("===========================");
                 // 创建文件夹, 并且进行处理
-                saveFile(logPath, fileName, builder.toString());
+                FileUtils.saveFile(logPath, fileName, builder.toString());
                 // 追加内容
-                result = appendFile(logFile, logContent);
+                result = FileUtils.appendFile(logFile, logContent);
             }
             // 触发回调
             if (RECORD_CALLBACK != null) {
@@ -568,8 +558,8 @@ public final class AnalysisRecordUtils {
          */
         public String getLogPath() {
             // 返回拼接后的路径
-            return getFilePathCreateFolder(getStoragePath(),
-                    sLogFolderName + File.separator + getDateNow("yyyy_MM_dd")) + getIntervalTimeFolder();
+            return FileUtils.getFilePathCreateFolder(getStoragePath(),
+                    sLogFolderName + File.separator + DateUtils.getDateNow("yyyy_MM_dd")) + getIntervalTimeFolder();
         }
 
         /**
@@ -589,7 +579,7 @@ public final class AnalysisRecordUtils {
                 case MM:
                 case SS:
                     // 小时格式
-                    String hh_Foramt = getDateNow("HH");
+                    String hh_Foramt = DateUtils.getDateNow("HH");
                     // 判断属于小时格式
                     if (iTime == HH) {
                         // /folder/HH/HH_number/
@@ -597,7 +587,7 @@ public final class AnalysisRecordUtils {
                         return folder + "HH/HH_" + hh_Foramt + File.separator;
                     } else {
                         // 分钟格式
-                        String mm_Foramt = getDateNow("mm");
+                        String mm_Foramt = DateUtils.getDateNow("mm");
                         // 判断是否属于分钟
                         if (iTime == MM) {
                             // /folder/HH/HH_number/MM/MM_number/
@@ -605,7 +595,7 @@ public final class AnalysisRecordUtils {
                             return folder + "HH/HH_" + hh_Foramt + "/MM/MM_" + mm_Foramt + File.separator;
                         } else { // 属于秒
                             // 秒格式
-                            String ss_Foramt = getDateNow("ss");
+                            String ss_Foramt = DateUtils.getDateNow("ss");
                             // /folder/HH/HH_number/MM/MM_number/SS_number/
                             // /LogSpace/HH/HH_15/MM/MM_55/SS_12/
                             return folder + "HH/HH_" + hh_Foramt + "/MM/MM_" + mm_Foramt + "/SS_" + ss_Foramt + File.separator;
@@ -632,7 +622,7 @@ public final class AnalysisRecordUtils {
             return DEVICE_INFO_STR;
         }
         // 设备信息
-        String deviceInfo = handlerDeviceInfo(DEVICE_INFO_MAPS, null);
+        String deviceInfo = DeviceUtils.handlerDeviceInfo(DEVICE_INFO_MAPS, null);
         // 如果为 null
         if (deviceInfo == null) {
             return errorInfo;
@@ -664,310 +654,5 @@ public final class AnalysisRecordUtils {
          */
         void callback(boolean result, final FileInfo fileInfo, final String logContent,
                       final String filePath, final String fileName, final String... logs);
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = SDCardUtils =
-    // ===============
-
-    /**
-     * 判断内置 SDCard 是否正常挂载
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSDCardEnable() {
-        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-    }
-
-    // =============
-    // = PathUtils =
-    // =============
-
-    /**
-     * 获取外存应用缓存路径 - path/storage/emulated/0/Android/data/package/cache
-     * @return /storage/emulated/0/Android/data/package/cache
-     */
-    private static String getExternalAppCachePath() {
-        if (!isSDCardEnable()) return "";
-        return getAbsolutePath(DevUtils.getContext().getExternalCacheDir());
-    }
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 PackageManager
-     * @return {@link PackageManager}
-     */
-    private static PackageManager getPackageManager() {
-        try {
-            return DevUtils.getContext().getPackageManager();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getPackageManager");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 APP 包名
-     * @return APP 包名
-     */
-    private static String getPackageName() {
-        try {
-            return DevUtils.getContext().getPackageName();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getPackageName");
-        }
-        return null;
-    }
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 追加文件 ( 使用 FileWriter)
-     * @param filePath 文件路径
-     * @param content  追加内容
-     * @return {@code true} success, {@code false} fail
-     */
-    private static boolean appendFile(final String filePath, final String content) {
-        if (filePath == null || content == null) return false;
-        File file = new File(filePath);
-        // 如果文件不存在, 则跳过
-        if (!file.exists()) return false;
-        FileWriter writer = null;
-        try {
-            // 打开一个写文件器, 构造函数中的第二个参数 true 表示以追加形式写文件
-            writer = new FileWriter(file, true);
-            writer.write(content);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "appendFile");
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 保存文件
-     * @param filePath 保存路径
-     * @param fileName 文件名. 后缀
-     * @param content  保存内容
-     * @return {@code true} success, {@code false} fail
-     */
-    private static boolean saveFile(final String filePath, final String fileName, final String content) {
-        if (filePath != null && fileName != null && content != null) {
-            try {
-                // 防止文件没创建
-                createFolder(filePath);
-                // 保存路径
-                File file = new File(filePath, fileName);
-                // 保存内容到一个文件
-                FileOutputStream fos = new FileOutputStream(file);
-                fos.write(content.getBytes());
-                fos.close();
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "saveFile");
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 获取文件绝对路径
-     * @param file 文件
-     * @return 文件绝对路径
-     */
-    private static String getAbsolutePath(final File file) {
-        return file != null ? file.getAbsolutePath() : null;
-    }
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @param fileName 文件名
-     * @return 文件 {@link File}
-     */
-    private static File getFile(final String filePath, final String fileName) {
-        return (filePath != null && fileName != null) ? new File(filePath, fileName) : null;
-    }
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
-
-    /**
-     * 获取路径, 并且进行创建目录
-     * @param filePath 保存目录
-     * @param fileName 文件名
-     * @return 文件 {@link File}
-     */
-    private static String getFilePathCreateFolder(final String filePath, final String fileName) {
-        // 防止不存在目录文件, 自动创建
-        createFolder(filePath);
-        // 返回处理过后的 File
-        File file = getFile(filePath, fileName);
-        // 返回文件路径
-        return getAbsolutePath(file);
-    }
-
-    /**
-     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
-     * @param dirPath 文件夹路径 ( 无文件名字. 后缀 )
-     * @return {@code true} success, {@code false} fail
-     */
-    private static boolean createFolder(final String dirPath) {
-        return createFolder(getFileByPath(dirPath));
-    }
-
-    /**
-     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
-     * @param file 文件夹路径 ( 无文件名字. 后缀 )
-     * @return {@code true} success, {@code false} fail
-     */
-    private static boolean createFolder(final File file) {
-        if (file != null) {
-            try {
-                // 当这个文件夹不存在的时候则创建文件夹
-                if (!file.exists()) {
-                    // 允许创建多级目录
-                    return file.mkdirs();
-                }
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "createFolder");
-            }
-        }
-        return false;
-    }
-
-    // =============
-    // = DateUtils =
-    // =============
-
-    /**
-     * 获取当前日期的字符串
-     * @param format 日期格式, 如: yyyy-MM-dd HH:mm:ss
-     * @return 当前日期指定格式字符串
-     */
-    private static String getDateNow(final String format) {
-        if (format == null) return null;
-        try {
-            return new SimpleDateFormat(format).format(Calendar.getInstance().getTime());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDateNow");
-        }
-        return null;
-    }
-
-    // ===============
-    // = DeviceUtils =
-    // ===============
-
-    /**
-     * 获取设备信息
-     * @param deviceInfoMap 设备信息 Map
-     * @return {@link Map<String, String>}
-     */
-    private static Map<String, String> getDeviceInfo(final Map<String, String> deviceInfoMap) {
-        // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
-        Field[] fields = Build.class.getDeclaredFields();
-        // 遍历字段
-        for (Field field : fields) {
-            try {
-                // 取消 Java 的权限控制检查
-                field.setAccessible(true);
-                // 转换当前设备支持的 ABI - CPU 指令集
-                if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
-                    try {
-                        Object object = field.get(null);
-                        // 判断是否数组
-                        if (object instanceof String[]) {
-                            if (object != null) {
-                                // 获取类型对应字段的数据, 并保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
-                                deviceInfoMap.put(field.getName(), Arrays.toString((String[]) object));
-                            }
-                            continue;
-                        }
-                    } catch (Exception e) {
-                    }
-                }
-                // 获取类型对应字段的数据, 并保存
-                deviceInfoMap.put(field.getName(), field.get(null).toString());
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
-            }
-        }
-        return deviceInfoMap;
-    }
-
-    /**
-     * 处理设备信息
-     * @param deviceInfoMap 设备信息 Map
-     * @param errorInfo     错误提示信息, 如获取设备信息失败
-     * @return 拼接后的设备信息字符串
-     */
-    private static String handlerDeviceInfo(final Map<String, String> deviceInfoMap, final String errorInfo) {
-        try {
-            // 初始化 Builder, 拼接字符串
-            StringBuilder builder = new StringBuilder();
-            // 获取设备信息
-            Iterator<Map.Entry<String, String>> mapIter = deviceInfoMap.entrySet().iterator();
-            // 遍历设备信息
-            while (mapIter.hasNext()) {
-                // 获取对应的 key - value
-                Map.Entry<String, String> rnEntry = mapIter.next();
-                String rnKey = rnEntry.getKey(); // key
-                String rnValue = rnEntry.getValue(); // value
-                // 保存设备信息
-                builder.append(rnKey);
-                builder.append(" = ");
-                builder.append(rnValue);
-                builder.append(NEW_LINE_STR);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "handlerDeviceInfo");
-        }
-        return errorInfo;
-    }
-
-    // =================
-    // = ManifestUtils =
-    // =================
-
-    /**
-     * 获取 APP 版本信息
-     * @return 0 = versionName, 1 = versionCode
-     */
-    private static String[] getAppVersion() {
-        try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-            if (packageInfo != null) {
-                String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
-                String versionCode = packageInfo.versionCode + "";
-                return new String[]{versionName, versionCode};
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppVersion");
-        }
-        return null;
     }
 }
