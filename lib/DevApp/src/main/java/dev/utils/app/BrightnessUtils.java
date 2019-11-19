@@ -54,8 +54,7 @@ public final class BrightnessUtils {
             try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
                 intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                DevUtils.getContext().startActivity(intent);
+                AppUtils.startActivity(intent);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setAutoBrightnessEnabled");
             }
@@ -94,8 +93,7 @@ public final class BrightnessUtils {
             try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
                 intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                DevUtils.getContext().startActivity(intent);
+                AppUtils.startActivity(intent);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setBrightness");
             }

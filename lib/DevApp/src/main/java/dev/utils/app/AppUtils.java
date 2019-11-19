@@ -999,7 +999,6 @@ public final class AppUtils {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // 临时授权 ( 必须 )
             intent.setDataAndType(UriUtils.getUriForFile(file, DevUtils.getAuthority()), dataType);
             return startActivity(intent);
@@ -1034,7 +1033,6 @@ public final class AppUtils {
         try {
             Intent intent = new Intent();
             intent.addCategory(Intent.CATEGORY_DEFAULT);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setData(Uri.fromFile(file));
             intent.setClassName(packageName, className);
             return startActivity(intent);

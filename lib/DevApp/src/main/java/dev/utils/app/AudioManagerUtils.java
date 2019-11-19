@@ -1,12 +1,10 @@
 package dev.utils.app;
 
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Build;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -45,19 +43,6 @@ public final class AudioManagerUtils {
     // 日志 TAG
     private static final String TAG = AudioManagerUtils.class.getSimpleName();
 
-    /**
-     * 获取 AudioManager
-     * @return {@link AudioManager}
-     */
-    public static AudioManager getAudioManager() {
-        try {
-            return (AudioManager) DevUtils.getContext().getSystemService(Context.AUDIO_SERVICE);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAudioManager");
-        }
-        return null;
-    }
-
     // ============
     // = 音量大小 =
     // ============
@@ -68,7 +53,7 @@ public final class AudioManagerUtils {
      * @return 最大音量大小
      */
     public static int getStreamMaxVolume(final int streamType) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.getStreamMaxVolume(streamType);
@@ -85,7 +70,7 @@ public final class AudioManagerUtils {
      * @return 音量大小
      */
     public static int getStreamVolume(final int streamType) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.getStreamVolume(streamType);
@@ -103,7 +88,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setStreamVolume(final int streamType, final int index) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setStreamVolume(streamType, index, 0);
@@ -143,7 +128,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean adjustVolume(final int direction) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.adjustVolume(direction, 0);
@@ -186,7 +171,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean adjustStreamVolume(final int streamType, final int direction) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.adjustStreamVolume(streamType, direction, 0);
@@ -263,7 +248,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setStreamMute(final int streamType, final boolean state) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setStreamMute(streamType, state);
@@ -291,7 +276,7 @@ public final class AudioManagerUtils {
      * @return 当前的音频模式
      */
     public static int getMode() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.getMode();
@@ -315,7 +300,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setMode(final int mode) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setMode(mode);
@@ -342,7 +327,7 @@ public final class AudioManagerUtils {
      * @return 当前的铃声模式
      */
     public static int getRingerMode() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.getRingerMode();
@@ -375,7 +360,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setRingerMode(final int ringerMode, final boolean setting) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 if (isDoNotDisturb(setting)) {
@@ -427,15 +412,12 @@ public final class AudioManagerUtils {
      */
     public static boolean isDoNotDisturb(final boolean setting) {
         try {
-            NotificationManager notificationManager =
-                    (NotificationManager) DevUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-
+            NotificationManager notificationManager = AppUtils.getNotificationManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
                     && !notificationManager.isNotificationPolicyAccessGranted()) {
                 if (setting) {
                     Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    DevUtils.getContext().startActivity(intent);
+                    AppUtils.startActivity(intent);
                 }
             } else {
                 return true;
@@ -454,7 +436,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setSpeakerphoneOn(final boolean on) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setSpeakerphoneOn(on);
@@ -472,7 +454,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setMicrophoneMute(final boolean on) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setMicrophoneMute(on);
@@ -489,7 +471,7 @@ public final class AudioManagerUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isSpeakerphoneOn() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.isSpeakerphoneOn();
@@ -505,7 +487,7 @@ public final class AudioManagerUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isMicrophoneMute() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.isMicrophoneMute();
@@ -521,7 +503,7 @@ public final class AudioManagerUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isMusicActive() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.isMusicActive();
@@ -537,7 +519,7 @@ public final class AudioManagerUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isWiredHeadsetOn() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.isWiredHeadsetOn();
@@ -553,7 +535,7 @@ public final class AudioManagerUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isBluetoothA2dpOn() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.isBluetoothA2dpOn();
@@ -569,7 +551,7 @@ public final class AudioManagerUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isBluetoothScoAvailableOffCall() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.isBluetoothScoAvailableOffCall();
@@ -585,7 +567,7 @@ public final class AudioManagerUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isBluetoothScoOn() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.isBluetoothScoOn();
@@ -602,7 +584,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setBluetoothScoOn(final boolean on) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.setBluetoothScoOn(on);
@@ -619,7 +601,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startBluetoothSco() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.startBluetoothSco();
@@ -636,7 +618,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopBluetoothSco() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.stopBluetoothSco();
@@ -655,7 +637,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean loadSoundEffects() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.loadSoundEffects();
@@ -672,7 +654,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean unloadSoundEffects() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.unloadSoundEffects();
@@ -700,7 +682,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean playSoundEffect(final int effectType, final float volume) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.playSoundEffect(effectType, volume);
@@ -720,7 +702,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean abandonAudioFocus(final AudioManager.OnAudioFocusChangeListener listener) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.abandonAudioFocus(listener);
@@ -738,7 +720,7 @@ public final class AudioManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean adjustSuggestedStreamVolume(final int direction) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 audioManager.adjustSuggestedStreamVolume(direction, AudioManager.USE_DEFAULT_STREAM_TYPE, 0);
@@ -756,7 +738,7 @@ public final class AudioManagerUtils {
      * @return 音频硬件指定 key 的参数值
      */
     public static String getParameters(final String keys) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.getParameters(keys);
@@ -773,7 +755,7 @@ public final class AudioManagerUtils {
      * @return {@link AudioManager#VIBRATE_SETTING_ON}, {@link AudioManager#VIBRATE_SETTING_OFF}, {@link AudioManager#VIBRATE_SETTING_ONLY_SILENT}
      */
     public static int getVibrateSetting(final int vibrateType) {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
                 return audioManager.getVibrateSetting(vibrateType);

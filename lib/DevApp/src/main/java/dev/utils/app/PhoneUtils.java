@@ -544,7 +544,7 @@ public final class PhoneUtils {
     public static boolean dial(final String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
         if (isIntentAvailable(intent)) {
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            AppUtils.startActivity(intent);
             return true;
         }
         return false;
@@ -559,7 +559,7 @@ public final class PhoneUtils {
     public static boolean call(final String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
         if (isIntentAvailable(intent)) {
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            AppUtils.startActivity(intent);
             return true;
         }
         return false;
@@ -576,7 +576,7 @@ public final class PhoneUtils {
         Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
         if (isIntentAvailable(intent)) {
             intent.putExtra("sms_body", content);
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            AppUtils.startActivity(intent);
             return true;
         }
         return false;

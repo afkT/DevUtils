@@ -1,7 +1,6 @@
 package dev.service;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
@@ -169,10 +168,7 @@ public final class NotificationService extends NotificationListenerService {
             } else {
                 intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
             }
-            if (!(DevUtils.getContext() instanceof Activity)) {
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            }
-            DevUtils.getContext().startActivity(intent);
+            AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startNotificationListenSettings");
         }

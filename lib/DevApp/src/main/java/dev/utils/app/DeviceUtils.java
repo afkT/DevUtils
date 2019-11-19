@@ -656,7 +656,7 @@ public final class DeviceUtils {
             ShellUtils.execCmd("reboot -p", true);
             Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
             intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            AppUtils.startActivity(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shutdown");

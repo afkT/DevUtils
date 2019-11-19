@@ -14,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Method;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
 
@@ -169,9 +168,8 @@ public final class WifiHotUtils {
                 // 跳转到便携式热点设置页面
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_MAIN);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.TetherSettings"));
-                DevUtils.getContext().startActivity(intent);
+                AppUtils.startActivity(intent);
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "stratWifiAp");

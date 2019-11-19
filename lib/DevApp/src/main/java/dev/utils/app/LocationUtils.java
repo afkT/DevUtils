@@ -121,7 +121,7 @@ public final class LocationUtils {
     public static boolean openGpsSettings() {
         try {
             Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            AppUtils.startActivity(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openGpsSettings");
