@@ -8,9 +8,11 @@ import android.app.AppOpsManager;
 import android.app.KeyguardManager;
 import android.app.NotificationManager;
 import android.app.usage.UsageStatsManager;
+import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -247,6 +249,20 @@ public final class AppUtils {
     // ============
     // = APP 相关 =
     // ============
+
+    /**
+     * 根据名称清除数据库
+     * @param dbName 数据库名
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean deleteDatabase(final String dbName) {
+        try {
+            return DevUtils.getContext().deleteDatabase(dbName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "deleteDatabase");
+        }
+        return false;
+    }
 
     /**
      * 获取 APP 包名
@@ -644,6 +660,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startActivity(final Intent intent) {
+        if (intent == null) return false;
         try {
             DevUtils.getContext().startActivity(IntentUtils.getIntent(intent, true));
             return true;
@@ -661,11 +678,49 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startActivityForResult(final Activity activity, final Intent intent, final int requestCode) {
+        if (activity == null || intent == null) return false;
         try {
             activity.startActivityForResult(intent, requestCode);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startActivityForResult");
+        }
+        return false;
+    }
+
+    // ========
+    // = 广播 =
+    // ========
+
+    /**
+     * 注册广播监听
+     * @param receiver {@linkBroadcastReceiver}
+     * @param filter {@link IntentFilter}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean registerReceiver(final BroadcastReceiver receiver, final IntentFilter filter) {
+        if (receiver == null || filter == null) return false;
+        try {
+            DevUtils.getContext().registerReceiver(receiver, filter);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "registerReceiver");
+        }
+        return false;
+    }
+
+    /**
+     * 注销广播监听
+     * @param receiver {@linkBroadcastReceiver}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean unregisterReceiver(final BroadcastReceiver receiver) {
+        if (receiver == null) return false;
+        try {
+            DevUtils.getContext().unregisterReceiver(receiver);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
         return false;
     }

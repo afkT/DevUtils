@@ -19,7 +19,6 @@ import android.view.WindowManager;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -523,8 +522,8 @@ public final class ScreenUtils {
      */
     public static int getStatusHeight() {
         try {
-            int id = DevUtils.getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
-            return DevUtils.getContext().getResources().getDimensionPixelSize(id);
+            int id = ResourceUtils.getResources().getIdentifier("status_bar_height", "dimen", "android");
+            return ResourceUtils.getResources().getDimensionPixelSize(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getStatusHeight");
         }
@@ -584,7 +583,7 @@ public final class ScreenUtils {
      */
     public static int getNavigationBarHeight() {
         try {
-            Resources resources = DevUtils.getContext().getResources();
+            Resources resources = ResourceUtils.getResources();
             // 获取对应方向字符串
             String orientation = resources.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? "navigation_bar_height" : "navigation_bar_height_landscape";
             // 获取对应的 id
@@ -608,7 +607,7 @@ public final class ScreenUtils {
     public static boolean checkDeviceHasNavigationBar() {
         boolean hasNavigationBar = false;
         try {
-            Resources resources = DevUtils.getContext().getResources();
+            Resources resources = ResourceUtils.getResources();
             int id = resources.getIdentifier("config_showNavigationBar", "bool", "android");
             if (id > 0) {
                 hasNavigationBar = resources.getBoolean(id);

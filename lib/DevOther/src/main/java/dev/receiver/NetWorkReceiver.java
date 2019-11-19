@@ -11,7 +11,6 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.support.annotation.RequiresPermission;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
 
@@ -133,7 +132,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
             filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            DevUtils.getContext().registerReceiver(netReceiver, filter);
+            AppUtils.registerReceiver(netReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -144,7 +143,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            DevUtils.getContext().unregisterReceiver(netReceiver);
+            AppUtils.unregisterReceiver(netReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }

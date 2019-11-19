@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 屏幕监听广播 ( 锁屏 / 解锁 / 亮屏 )
@@ -69,7 +69,7 @@ public final class ScreenReceiver extends BroadcastReceiver {
             filter.addAction(Intent.ACTION_USER_PRESENT);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            DevUtils.getContext().registerReceiver(screenReceiver, filter);
+            AppUtils.registerReceiver(screenReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -80,7 +80,7 @@ public final class ScreenReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            DevUtils.getContext().unregisterReceiver(screenReceiver);
+            AppUtils.unregisterReceiver(screenReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }

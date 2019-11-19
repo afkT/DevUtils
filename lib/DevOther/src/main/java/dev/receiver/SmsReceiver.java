@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.telephony.SmsMessage;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 短信监听广播
@@ -98,7 +98,7 @@ public final class SmsReceiver extends BroadcastReceiver {
             filter.addAction("android.provider.Telephony.SMS_RECEIVED");
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            DevUtils.getContext().registerReceiver(smsReceiver, filter);
+            AppUtils.registerReceiver(smsReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -109,7 +109,7 @@ public final class SmsReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            DevUtils.getContext().unregisterReceiver(smsReceiver);
+            AppUtils.unregisterReceiver(smsReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }

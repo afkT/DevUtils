@@ -248,7 +248,7 @@ public final class NotificationUtils {
             // 设置图标
             builder.setSmallIcon(icon);
             // 设置图标
-            builder.setLargeIcon(BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon));
+            builder.setLargeIcon(BitmapFactory.decodeResource(ResourceUtils.getResources(), icon));
             // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
             builder.setTicker(ticker);
             // 设置标题
@@ -283,7 +283,7 @@ public final class NotificationUtils {
 //            // 设置图标
 //            notification.icon = icon;
 //            // 设置图标
-//            notification.largeIcon = BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon);
+//            notification.largeIcon = BitmapFactory.decodeResource(ResourceUtils.getResources(), icon);
 //            // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
 //            notification.tickerText = title;
 //            // 设置时间

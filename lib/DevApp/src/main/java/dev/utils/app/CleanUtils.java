@@ -2,7 +2,6 @@ package dev.utils.app;
 
 import java.io.File;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
 
@@ -67,12 +66,7 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanInternalDbByName(final String dbName) {
-        try {
-            return DevUtils.getContext().deleteDatabase(dbName);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "cleanInternalDbByName");
-        }
-        return false;
+        return AppUtils.deleteDatabase(dbName);
     }
 
     // =

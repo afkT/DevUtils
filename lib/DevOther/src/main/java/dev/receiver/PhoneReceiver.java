@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 手机监听广播
@@ -115,7 +115,7 @@ public final class PhoneReceiver extends BroadcastReceiver {
             filter.addAction(NEW_OUTGOING_CALL);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            DevUtils.getContext().registerReceiver(phoneReceiver, filter);
+            AppUtils.registerReceiver(phoneReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -126,7 +126,7 @@ public final class PhoneReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            DevUtils.getContext().unregisterReceiver(phoneReceiver);
+            AppUtils.unregisterReceiver(phoneReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
