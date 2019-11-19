@@ -1266,6 +1266,8 @@ public final class FileUtils {
             if (overlay) {
                 // 删除已经存在的目标文件, 无论目标文件是目录还是单个文件
                 destFile.delete();
+            } else { // 如果文件存在, 但是不覆盖, 则返回 false 表示失败
+                return false;
             }
         } else {
             // 如果目标文件所在目录不存在, 则创建目录
@@ -1331,6 +1333,8 @@ public final class FileUtils {
             if (overlay) {
                 // 删除已经存在的目标文件, 无论目标文件是目录还是单个文件
                 new File(destFilePath).delete();
+            } else { // 如果文件存在, 但是不覆盖, 则返回 false 表示失败
+                return false;
             }
         } else {
             // 如果目标文件所在目录不存在, 则创建目录

@@ -1,10 +1,7 @@
 package dev.utils.app;
 
-import android.os.Environment;
-
 import java.io.InputStream;
 
-import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -20,25 +17,51 @@ public final class DBUtils {
     private static final String TAG = DBUtils.class.getSimpleName();
 
     /**
+     * 获取内存应用数据库路径 - path /data/data/package/databases
+     * @return /data/data/package/databases
+     */
+    public static String getInternalAppDbsPath() {
+        return PathUtils.getInternalAppDbsPath();
+    }
+
+    /**
+     * 获取内存应用数据库路径 - path /data/data/package/databases/name
+     * @param name 数据库路径 + 名称
+     * @return /data/data/package/databases/name
+     */
+    public static String getInternalAppDbPath(final String name) {
+        return PathUtils.getInternalAppDbPath(name);
+    }
+
+    // ==============
+    // = 导出数据库 =
+    // ==============
+
+    /**
      * 导出数据库
      * @param targetFile 目标文件
      * @param dbName     数据库名
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startExportDatabase(final String targetFile, final String dbName) {
-        if (!isSDCardEnable()) return false;
-        try {
-            // Database 文件地址
-            String sourceFilePath = getDBPath() + dbName;
-            // 复制文件
-            return FileUtils.copyFile(sourceFilePath, targetFile, true);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startExportDatabase");
-        }
-        return false;
+        return startExportDatabase(targetFile, dbName, true);
     }
 
-    // =
+    /**
+     * 导出数据库
+     * @param targetFile 目标文件
+     * @param dbName     数据库名
+     * @param overlay      如果目标文件存在, 是否覆盖
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startExportDatabase(final String targetFile, final String dbName, final boolean overlay) {
+        if (!SDCardUtils.isSDCardEnable()) return false;
+        return FileUtils.copyFile(getInternalAppDbPath(dbName), targetFile, overlay);
+    }
+
+    // ==============
+    // = 导入数据库 =
+    // ==============
 
     /**
      * 导入数据库
@@ -47,15 +70,22 @@ public final class DBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startImportDatabase(final String srcFilePath, final String destFilePath) {
-        if (!isSDCardEnable()) return false;
-        try {
-            // 复制文件
-            return FileUtils.copyFile(srcFilePath, destFilePath, true);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startImportDatabase");
-        }
-        return false;
+        return startImportDatabase(srcFilePath, destFilePath, true);
     }
+
+    /**
+     * 导入数据库
+     * @param srcFilePath  待复制的文件地址
+     * @param destFilePath 目标文件地址
+     * @param overlay      如果目标文件存在, 是否覆盖
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startImportDatabase(final String srcFilePath, final String destFilePath, final boolean overlay) {
+        if (!SDCardUtils.isSDCardEnable()) return false;
+        return FileUtils.copyFile(srcFilePath, destFilePath, overlay);
+    }
+
+    // =
 
     /**
      * 导入数据库
@@ -64,45 +94,18 @@ public final class DBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startImportDatabase(final InputStream inputStream, final String destFilePath) {
-        if (!isSDCardEnable()) return false;
-        try {
-            // 复制文件
-            return FileUtils.copyFile(inputStream, destFilePath, true);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startImportDatabase");
-        }
-        return false;
+        return startImportDatabase(inputStream, destFilePath, true);
     }
 
-    // =
-
     /**
-     * 获取数据库路径
-     * @return 数据库路径
+     * 导入数据库
+     * @param inputStream  文件流 ( 被复制 )
+     * @param destFilePath 目标文件地址
+     * @param overlay      如果目标文件存在, 是否覆盖
+     * @return {@code true} success, {@code false} fail
      */
-    public static String getDBPath() {
-        try {
-            // Database 文件地址
-            return Environment.getDataDirectory() + "/data/" + AppUtils.getPackageName() + "/databases/";
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDBPath");
-        }
-        return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = SDCardUtils =
-    // ===============
-
-    /**
-     * 判断内置 SDCard 是否正常挂载
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSDCardEnable() {
-        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+    public static boolean startImportDatabase(final InputStream inputStream, final String destFilePath, final boolean overlay) {
+        if (!SDCardUtils.isSDCardEnable()) return false;
+        return FileUtils.copyFile(inputStream, destFilePath, overlay);
     }
 }

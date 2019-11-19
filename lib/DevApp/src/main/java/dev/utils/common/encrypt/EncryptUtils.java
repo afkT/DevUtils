@@ -809,7 +809,7 @@ public final class EncryptUtils {
      * @return 指定加密算法, 加解密后的数据
      */
     public static byte[] symmetricTemplate(final byte[] data, final byte[] key, final String algorithm,
-                                            final String transformation, final byte[] iv, final boolean isEncrypt) {
+                                           final String transformation, final byte[] iv, final boolean isEncrypt) {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
         try {
             SecretKey secretKey;

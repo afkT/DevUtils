@@ -1019,7 +1019,7 @@ public final class BitmapUtils {
      * @return 添加边框后的图片
      */
     public static Bitmap addBorder(final Bitmap bitmap, @IntRange(from = 1) final int borderSize,
-                                    @ColorInt final int color, final boolean isCircle, final float cornerRadius) {
+                                   @ColorInt final int color, final boolean isCircle, final float cornerRadius) {
         if (isEmpty(bitmap)) return null;
 
         Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
