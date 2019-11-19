@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.app.ActivityManager;
-import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.text.format.Formatter;

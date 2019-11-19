@@ -1,12 +1,10 @@
 package dev.utils.app;
 
 import android.app.KeyguardManager;
-import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.RequiresPermission;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**

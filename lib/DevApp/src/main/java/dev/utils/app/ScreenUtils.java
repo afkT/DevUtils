@@ -2,7 +2,6 @@ package dev.utils.app;
 
 import android.app.Activity;
 import android.app.KeyguardManager;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;

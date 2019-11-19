@@ -3,7 +3,6 @@ package dev.utils.app;
 import android.app.ActivityManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -19,7 +18,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
 

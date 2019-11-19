@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;

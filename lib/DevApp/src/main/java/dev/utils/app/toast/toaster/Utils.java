@@ -2,7 +2,6 @@ package dev.utils.app.toast.toaster;
 
 import android.app.Activity;
 import android.app.AppOpsManager;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.graphics.PorterDuff;
