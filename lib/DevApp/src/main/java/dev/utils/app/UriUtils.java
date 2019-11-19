@@ -15,6 +15,7 @@ import java.io.File;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: Uri 工具类
@@ -121,7 +122,7 @@ public final class UriUtils {
                         path = cursor.getString(columnIndex);
                     }
                 }
-                cursor.close();
+                CloseUtils.closeIOQuietly(cursor);
             }
             return path;
         }
@@ -186,8 +187,7 @@ public final class UriUtils {
                 return cursor.getString(column_index);
             }
         } finally {
-            if (cursor != null)
-                cursor.close();
+            CloseUtils.closeIOQuietly(cursor);
         }
         return null;
     }

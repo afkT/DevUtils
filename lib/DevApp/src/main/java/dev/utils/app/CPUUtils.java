@@ -115,7 +115,6 @@ public final class CPUUtils {
             while (is.read(re) != -1) {
                 result = result + new String(re);
             }
-            is.close();
             result = Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(result.trim()) * 1024) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMaxCpuFreq");
@@ -143,7 +142,6 @@ public final class CPUUtils {
             while (is.read(re) != -1) {
                 result = result + new String(re);
             }
-            is.close();
             result = Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(result.trim()) * 1024) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMinCpuFreq");
@@ -211,16 +209,18 @@ public final class CPUUtils {
      * @return CPU 名字
      */
     public static String getCpuName() {
+        BufferedReader br = null;
         try {
-            BufferedReader br = new BufferedReader(new FileReader("/proc/cpuinfo"), 8192);
+            br = new BufferedReader(new FileReader("/proc/cpuinfo"), 8192);
             String line = br.readLine();
-            br.close();
             String[] array = line.split(":\\s+", 2);
             if (array.length > 1) {
                 return array[1];
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCpuName");
+        } finally {
+            CloseUtils.closeIOQuietly(br);
         }
         return null;
     }
@@ -242,7 +242,7 @@ public final class CPUUtils {
             while ((len = is.read(re)) != -1) {
                 builder.append(new String(re, 0, len));
             }
-            is.close();
+            CloseUtils.closeIOQuietly(is);
             process.destroy();
             return builder.toString();
         } catch (Exception e) {

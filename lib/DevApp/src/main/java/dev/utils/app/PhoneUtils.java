@@ -32,6 +32,7 @@ import java.util.UUID;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 手机相关工具类
@@ -624,7 +625,7 @@ public final class PhoneUtils {
      *              while (cursor.moveToNext()) {
      *                  num = cursor.getString(cursor.getColumnIndex("data1"));
      *              }
-     *              cursor.close();
+     *              CloseUtils.closeIOQuietly(cursor);
      *              num = num.replaceAll("-", "");
      *          }
      *      }
@@ -701,18 +702,14 @@ public final class PhoneUtils {
                         // 11. 添加到集合中数据
                         list.add(map);
                         // 12. 关闭 cursor
-                        if (c != null) {
-                            c.close();
-                        }
+                        CloseUtils.closeIOQuietly(c);
                     }
                 }
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllContactInfo");
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+            CloseUtils.closeIOQuietly(cursor);
         }
         return list;
     }

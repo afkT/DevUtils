@@ -650,7 +650,6 @@ public final class ResourceUtils {
             int length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);
-            is.close();
             return buffer;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "readBytesFromAssets");
@@ -688,7 +687,6 @@ public final class ResourceUtils {
             int length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);
-            is.close();
             return buffer;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "readBytesFromRaw");
@@ -793,11 +791,9 @@ public final class ResourceUtils {
             // 写入保存的文件
             fos.write(bytes);
             // 关闭流
-            baos.close();
-            is.close();
-            // =
+            CloseUtils.closeIOQuietly(baos, is);
             fos.flush();
-            fos.close();
+            CloseUtils.closeIOQuietly(fos);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "saveAssetsFormFile");
@@ -830,11 +826,9 @@ public final class ResourceUtils {
             // 写入保存的文件
             fos.write(bytes);
             // 关闭流
-            baos.close();
-            is.close();
-            // =
+            CloseUtils.closeIOQuietly(baos, is);
             fos.flush();
-            fos.close();
+            CloseUtils.closeIOQuietly(fos);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "saveRawFormFile");

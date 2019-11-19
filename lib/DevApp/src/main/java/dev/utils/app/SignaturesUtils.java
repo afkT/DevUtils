@@ -23,6 +23,7 @@ import java.util.jar.JarFile;
 import javax.security.auth.x500.X500Principal;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 签名工具类 ( 获取 APP 签名信息 )
@@ -298,7 +299,7 @@ public final class SignaturesUtils {
             InputStream is = jarFile.getInputStream(jarEntry);
             while (is.read(readBuffer, 0, readBuffer.length) != -1) {
             }
-            is.close();
+            CloseUtils.closeIOQuietly(is);
             return jarEntry != null ? jarEntry.getCertificates() : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "loadCertificates");
