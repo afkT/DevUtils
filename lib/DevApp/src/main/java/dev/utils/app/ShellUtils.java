@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: Shell 命令工具类
@@ -115,10 +116,8 @@ public final class ShellUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "execCmd");
         } finally {
-            try {
-                dos.close();
-            } catch (Exception e) {
-            }
+            CloseUtils.closeIOQuietly(dos);
+            // 进程销毁
             if (process != null) {
                 process.destroy();
             }
@@ -147,12 +146,7 @@ public final class ShellUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "consumeInputStream");
         } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(br);
         }
         return null;
     }

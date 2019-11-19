@@ -20,6 +20,7 @@ import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 快捷方式工具类
@@ -69,12 +70,7 @@ public final class ShortCutUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "hasShortcut");
         } finally {
-            if (cursor != null) {
-                try {
-                    cursor.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(cursor);
         }
         return false;
     }

@@ -16,6 +16,7 @@ import java.lang.reflect.Method;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: Wifi 热点工具类
@@ -457,12 +458,7 @@ public final class WifiHotUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getHotspotAllotIp");
         } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(br);
         }
         return null;
     }

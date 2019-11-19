@@ -39,6 +39,7 @@ import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 资源文件工具类
@@ -654,12 +655,7 @@ public final class ResourceUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "readBytesFromAssets");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return null;
     }
@@ -697,12 +693,7 @@ public final class ResourceUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "readBytesFromRaw");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return null;
     }
@@ -744,18 +735,7 @@ public final class ResourceUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "geFileToListFromAssets");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is, br);
         }
         return null;
     }
@@ -781,18 +761,7 @@ public final class ResourceUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "geFileToListFromRaw");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is, br);
         }
         return null;
     }

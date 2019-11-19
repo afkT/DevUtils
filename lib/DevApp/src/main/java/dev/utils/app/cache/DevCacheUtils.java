@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.common.ArrayUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 缓存内部工具类
@@ -215,12 +216,7 @@ final class DevCacheUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bitmapToByte");
         } finally {
-            if (baos != null) {
-                try {
-                    baos.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(baos);
         }
         return null;
     }

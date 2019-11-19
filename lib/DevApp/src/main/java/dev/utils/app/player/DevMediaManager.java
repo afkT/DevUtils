@@ -13,6 +13,7 @@ import android.support.annotation.RawRes;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: MediaPlayer 统一管理类
@@ -158,12 +159,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                         // 设置播放路径
                         mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
                     } finally {
-                        if (file != null) {
-                            try {
-                                file.close();
-                            } catch (Exception e) {
-                            }
-                        }
+                        CloseUtils.closeIOQuietly(file);
                     }
                 }
 
@@ -217,12 +213,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                         // 设置播放路径
                         mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
                     } finally {
-                        if (file != null) {
-                            try {
-                                file.close();
-                            } catch (Exception e) {
-                            }
-                        }
+                        CloseUtils.closeIOQuietly(file);
                     }
                 }
 

@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 获取 CPU 信息工具类
@@ -120,12 +121,7 @@ public final class CPUUtils {
             LogPrintUtils.eTag(TAG, e, "getMaxCpuFreq");
             result = "unknown";
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return result;
     }
@@ -153,12 +149,7 @@ public final class CPUUtils {
             LogPrintUtils.eTag(TAG, e, "getMinCpuFreq");
             result = "unknown";
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return result;
     }
@@ -257,12 +248,7 @@ public final class CPUUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCMDOutputString");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return null;
     }

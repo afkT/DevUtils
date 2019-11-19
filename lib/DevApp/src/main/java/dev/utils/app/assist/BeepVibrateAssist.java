@@ -13,6 +13,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.VibrationUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 播放「bee」的声音, 并且震动辅助类
@@ -222,12 +223,7 @@ public final class BeepVibrateAssist implements Closeable {
             try {
                 mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
             } finally {
-                if (file != null) {
-                    try {
-                        file.close();
-                    } catch (Exception e) {
-                    }
-                }
+                CloseUtils.closeIOQuietly(file);
             }
             mediaPlayer.setVolume(beepVolume, beepVolume);
             mediaPlayer.prepare();

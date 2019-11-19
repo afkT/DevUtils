@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: OS 系统相关工具类
@@ -311,12 +312,7 @@ public final class OSUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "initRomType");
         } finally {
-            if (fis != null) {
-                try {
-                    fis.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(fis);
         }
         return rom;
     }

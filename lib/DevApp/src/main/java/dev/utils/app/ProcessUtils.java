@@ -21,6 +21,7 @@ import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 进程相关工具类
@@ -106,12 +107,7 @@ public final class ProcessUtils {
         } catch (Throwable throwable) {
             LogPrintUtils.eTag(TAG, throwable, "getProcessName");
         } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(br);
         }
         return null;
     }

@@ -28,6 +28,7 @@ import java.util.Map;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.PathUtils;
+import dev.utils.common.CloseUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -191,12 +192,7 @@ public final class DevCache {
                 } catch (Exception e) {
                 }
             }
-            if (bw != null) {
-                try {
-                    bw.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(bw);
             mCache.put(file);
         }
         return false;
@@ -250,12 +246,7 @@ public final class DevCache {
             LogPrintUtils.eTag(TAG, e, "getAsString");
             return null;
         } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(br);
             if (removeFile)
                 remove(key);
         }
@@ -400,12 +391,7 @@ public final class DevCache {
                 } catch (Exception e) {
                 }
             }
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(fos);
             mCache.put(file);
         }
         return false;
@@ -476,12 +462,7 @@ public final class DevCache {
             LogPrintUtils.eTag(TAG, e, "getAsBinary");
             return null;
         } finally {
-            if (raFile != null) {
-                try {
-                    raFile.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(raFile);
             if (removeFile)
                 remove(key);
         }
@@ -524,12 +505,7 @@ public final class DevCache {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put");
         } finally {
-            if (oos != null) {
-                try {
-                    oos.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(oos);
         }
         return false;
     }
@@ -550,12 +526,7 @@ public final class DevCache {
                 LogPrintUtils.eTag(TAG, e, "getAsObject");
                 return null;
             } finally {
-                if (ois != null) {
-                    try {
-                        ois.close();
-                    } catch (Exception e) {
-                    }
-                }
+                CloseUtils.closeIOQuietly(ois);
             }
         }
         return null;
