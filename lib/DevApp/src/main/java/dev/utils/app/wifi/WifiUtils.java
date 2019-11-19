@@ -1,7 +1,6 @@
 package dev.utils.app.wifi;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -21,9 +20,9 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.common.ConvertUtils;
 
 /**
  * detail: Wifi 工具类
@@ -340,28 +339,7 @@ public final class WifiUtils {
         if (len != 10 && len != 26 && len != 58) {
             return false;
         }
-        return isHex(wepKey);
-    }
-
-    /**
-     * 判断是否十六进制数据
-     * @param data 待检验数据
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isHex(final String data) {
-        if (data == null) return false;
-        // 获取数据长度
-        int len = data.length();
-        if (len > 0) {
-            for (int i = len - 1; i >= 0; i--) {
-                char c = data.charAt(i);
-                if (!(c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f')) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
+        return ConvertUtils.isHex(wepKey);
     }
 
     // ============

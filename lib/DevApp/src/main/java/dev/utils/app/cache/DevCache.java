@@ -28,6 +28,7 @@ import java.util.Map;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.PathUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: 缓存工具类
@@ -48,15 +49,15 @@ public final class DevCache {
     // 一天 24 小时
     public static final int TIME_DAY = TIME_HOUR * 24;
     // 缓存最大值 50 MB
-    private static final int MAX_SIZE = 1000 * 1000 * 50;
+    public static final int MAX_SIZE = 1000 * 1000 * 50;
     // 不限制存放数据的数量
-    private static final int MAX_COUNT = Integer.MAX_VALUE;
+    public static final int MAX_COUNT = Integer.MAX_VALUE;
     // 不同地址配置缓存对象
     private static Map<String, DevCache> sInstanceMaps = new HashMap<>();
     // 缓存管理类
     private DevCacheManager mCache;
     // 缓存地址
-    private static File sCacheDir = null;
+    private static String sCachePath = null;
 
     /**
      * 获取 DevCache - 默认缓存文件名
@@ -72,9 +73,7 @@ public final class DevCache {
      * @return {@link DevCache}
      */
     public static DevCache obtain(final String cacheName) {
-        if (cacheName == null) return null;
-        File file = new File(getCacheDir(), cacheName);
-        return obtain(file, MAX_SIZE, MAX_COUNT);
+        return obtain(FileUtils.getFile(getCachePath(), cacheName), MAX_SIZE, MAX_COUNT);
     }
 
     /**
@@ -93,8 +92,7 @@ public final class DevCache {
      * @return {@link DevCache}
      */
     public static DevCache obtain(final long maxSize, final int maxCount) {
-        File file = new File(getCacheDir(), DEF_FILE_NAME);
-        return obtain(file, maxSize, maxCount);
+        return obtain(FileUtils.getFile(getCachePath(), DEF_FILE_NAME), maxSize, maxCount);
     }
 
     /**
@@ -672,10 +670,10 @@ public final class DevCache {
      * 获取缓存地址
      * @return 应用缓存地址
      */
-    private static File getCacheDir() {
-        if (sCacheDir == null) {
-            sCacheDir = new File(PathUtils.getInternalCachePath());
+    private static String getCachePath() {
+        if (sCachePath == null) {
+            sCachePath = PathUtils.getInternalCachePath();
         }
-        return sCacheDir;
+        return sCachePath;
     }
 }

@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.support.annotation.AnimRes;
 import android.support.annotation.AnimatorRes;
 import android.support.annotation.AnyRes;
@@ -200,6 +201,20 @@ public final class ResourceUtils {
             return ContextCompat.getDrawable(DevUtils.getContext(), drawableId);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDrawable");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 .9 Drawable
+     * @param drawableId R.drawable.id
+     * @return .9 {@link NinePatchDrawable}
+     */
+    public static NinePatchDrawable getNinePatchDrawable(@DrawableRes final int drawableId) {
+        try {
+            return (NinePatchDrawable) getDrawable(drawableId);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getNinePatchDrawable");
         }
         return null;
     }

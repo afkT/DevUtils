@@ -1,5 +1,6 @@
 package dev.utils.app.wifi;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.DhcpInfo;
@@ -404,6 +405,7 @@ public final class WifiHotUtils {
      * 获取热点主机 IP 地址
      * @return 热点主机 IP 地址
      */
+    @SuppressLint("MissingPermission")
     public String getHotspotServiceIp() {
         try {
             // 获取网关信息

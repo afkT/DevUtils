@@ -42,27 +42,34 @@ public final class TimerManager {
 
     /**
      * 回收定时器资源
+     * @return {@code true} success, {@code false} fail
      */
-    public static void gc() {
+    public static boolean gc() {
         synchronized (mTimerLists) {
-            // 临时数据源
-            List<AbsTimer> lists = new ArrayList<>(mTimerLists);
-            // 清空旧的数据
-            mTimerLists.clear();
-            // 开始删除无用资源
-            Iterator<AbsTimer> iterator = lists.iterator();
-            while (iterator.hasNext()) {
-                AbsTimer absTimer = iterator.next();
-                if (absTimer == null || absTimer.markSweep) { // 进行回收
-                    iterator.remove();
+            try {
+                // 临时数据源
+                List<AbsTimer> lists = new ArrayList<>(mTimerLists);
+                // 清空旧的数据
+                mTimerLists.clear();
+                // 开始删除无用资源
+                Iterator<AbsTimer> iterator = lists.iterator();
+                while (iterator.hasNext()) {
+                    AbsTimer absTimer = iterator.next();
+                    if (absTimer == null || absTimer.markSweep) { // 进行回收
+                        iterator.remove();
+                    }
                 }
+                // 把不需要回收的保存回去
+                mTimerLists.addAll(lists);
+                // 移除旧的
+                lists.clear();
+                lists = null;
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "gc");
             }
-            // 把不需要回收的保存回去
-            mTimerLists.addAll(lists);
-            // 移除旧的
-            lists.clear();
-            lists = null;
         }
+        return false;
     }
 
     /**
@@ -168,8 +175,9 @@ public final class TimerManager {
 
     /**
      * 关闭全部任务
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeAll() {
+    public static boolean closeAll() {
         try {
             for (int i = 0, len = mTimerLists.size(); i < len; i++) {
                 AbsTimer absTimer = mTimerLists.get(i);
@@ -177,15 +185,18 @@ public final class TimerManager {
                     absTimer.closeTimer();
                 }
             }
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "closeAll");
         }
+        return false;
     }
 
     /**
      * 关闭所有未运行的任务
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeNotRunTask() {
+    public static boolean closeNotRunTask() {
         try {
             for (int i = 0, len = mTimerLists.size(); i < len; i++) {
                 AbsTimer absTimer = mTimerLists.get(i);
@@ -194,15 +205,18 @@ public final class TimerManager {
                     absTimer.closeTimer(); // 关闭定时器
                 }
             }
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "closeNotRunTask");
         }
+        return false;
     }
 
     /**
      * 关闭所有无限循环的任务
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeInfiniteTask() {
+    public static boolean closeInfiniteTask() {
         try {
             for (int i = 0, len = mTimerLists.size(); i < len; i++) {
                 AbsTimer absTimer = mTimerLists.get(i);
@@ -211,16 +225,19 @@ public final class TimerManager {
                     absTimer.closeTimer(); // 关闭定时器
                 }
             }
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "closeInfiniteTask");
         }
+        return false;
     }
 
     /**
      * 关闭所有符合对应的字符串标记的定时器任务
      * @param markStr 判断 {@link AbsTimer#getMarkStr()}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeMark(final String markStr) {
+    public static boolean closeMark(final String markStr) {
         if (markStr != null) {
             try {
                 for (int i = 0, len = mTimerLists.size(); i < len; i++) {
@@ -230,17 +247,20 @@ public final class TimerManager {
                         absTimer.closeTimer(); // 关闭定时器
                     }
                 }
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeMark");
             }
         }
+        return false;
     }
 
     /**
      * 关闭所有符合对应的标记 id 的定时器任务
      * @param markId 判断 {@link AbsTimer#getMarkId()}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeMark(final int markId) {
+    public static boolean closeMark(final int markId) {
         try {
             for (int i = 0, len = mTimerLists.size(); i < len; i++) {
                 AbsTimer absTimer = mTimerLists.get(i);
@@ -248,9 +268,11 @@ public final class TimerManager {
                     absTimer.closeTimer(); // 关闭定时器
                 }
             }
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "closeMark");
         }
+        return false;
     }
 
     // ================================================================
