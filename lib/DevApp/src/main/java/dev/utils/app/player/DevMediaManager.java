@@ -11,8 +11,8 @@ import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.media.MediaPlayer.OnVideoSizeChangedListener;
 import android.support.annotation.RawRes;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.ResourceUtils;
 
 /**
  * detail: MediaPlayer 统一管理类
@@ -153,7 +153,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                 @Override
                 public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
                     // 获取资源文件
-                    AssetFileDescriptor file = openRawResourceFd(rawId);
+                    AssetFileDescriptor file = ResourceUtils.openRawResourceFd(rawId);
                     try {
                         // 设置播放路径
                         mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
@@ -212,7 +212,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                 @Override
                 public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
                     // 获取资源文件
-                    AssetFileDescriptor file = openNonAssetFd("assets" + tempPlayUri);
+                    AssetFileDescriptor file = ResourceUtils.openNonAssetFd("assets" + tempPlayUri);
                     try {
                         // 设置播放路径
                         mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
@@ -718,41 +718,5 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
             LogPrintUtils.eTag(TAG, e, "getPlayPercent");
         }
         return 0;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // =================
-    // = ResourceUtils =
-    // =================
-
-    /**
-     * 获取对应资源 AssetFileDescriptor
-     * @param id resource identifier
-     * @return {@link AssetFileDescriptor}
-     */
-    private static AssetFileDescriptor openRawResourceFd(@RawRes final int id) {
-        try {
-            return DevUtils.getContext().getResources().openRawResourceFd(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openRawResourceFd");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 AssetManager 指定资源 AssetFileDescriptor
-     * @param fileName 文件名
-     * @return {@link AssetFileDescriptor}
-     */
-    private static AssetFileDescriptor openNonAssetFd(final String fileName) {
-        try {
-            return DevUtils.getContext().getAssets().openNonAssetFd(fileName);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openNonAssetFd");
-        }
-        return null;
     }
 }

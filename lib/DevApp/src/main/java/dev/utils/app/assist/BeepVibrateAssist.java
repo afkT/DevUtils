@@ -1,18 +1,17 @@
 package dev.utils.app.assist;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.Vibrator;
 import android.support.annotation.RawRes;
 import android.support.annotation.RequiresPermission;
 
 import java.io.Closeable;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
+import dev.utils.app.ResourceUtils;
 
 /**
  * detail: 播放「bee」的声音, 并且震动辅助类
@@ -75,7 +74,7 @@ public final class BeepVibrateAssist implements Closeable {
      * @return {@code true} 允许, {@code false} 不允许
      */
     private boolean shouldBeep() {
-        AudioManager audioManager = getAudioManager();
+        AudioManager audioManager = AppUtils.getAudioManager();
         // 只有属于普通模式才播放
         return (audioManager != null && audioManager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL);
     }
@@ -159,7 +158,7 @@ public final class BeepVibrateAssist implements Closeable {
             // 判断是否允许震动
             if (mIsVibrate) {
                 try {
-                    getVibrator().vibrate(mVibrateDuration);
+                    AppUtils.getVibrator().vibrate(mVibrateDuration);
                 } catch (Exception e) {
                 }
             }
@@ -221,7 +220,7 @@ public final class BeepVibrateAssist implements Closeable {
             }
         });
         try {
-            AssetFileDescriptor file = openRawResourceFd(rawId);
+            AssetFileDescriptor file = ResourceUtils.openRawResourceFd(rawId);
             try {
                 mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
             } finally {
@@ -286,82 +285,5 @@ public final class BeepVibrateAssist implements Closeable {
             mediaPlayer.release();
             return null;
         }
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 AudioManager
-     * @return {@link AudioManager}
-     */
-    private static AudioManager getAudioManager() {
-        return getSystemService(Context.AUDIO_SERVICE);
-    }
-
-    /**
-     * 获取 Vibrator
-     * @return {@link Vibrator}
-     */
-    private static Vibrator getVibrator() {
-        return getSystemService(Context.VIBRATOR_SERVICE);
-    }
-
-    /**
-     * 获取 SystemService
-     * @param name 服务名
-     * @param <T>  泛型
-     * @return SystemService Object
-     */
-    private static <T> T getSystemService(final String name) {
-        if (isSpace(name)) return null;
-        try {
-            return (T) DevUtils.getContext().getSystemService(name);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSystemService");
-        }
-        return null;
-    }
-
-    // =================
-    // = ResourceUtils =
-    // =================
-
-    /**
-     * 获取对应资源 AssetFileDescriptor
-     * @param id resource identifier
-     * @return {@link AssetFileDescriptor}
-     */
-    private static AssetFileDescriptor openRawResourceFd(@RawRes final int id) {
-        try {
-            return DevUtils.getContext().getResources().openRawResourceFd(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openRawResourceFd");
-        }
-        return null;
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -2,7 +2,6 @@ package dev.utils.app.cache;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Environment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,8 +26,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.PathUtils;
 
 /**
  * detail: 缓存工具类
@@ -675,49 +674,8 @@ public final class DevCache {
      */
     private static File getCacheDir() {
         if (sCacheDir == null) {
-            sCacheDir = new File(getInternalCachePath());
+            sCacheDir = new File(PathUtils.getInternalCachePath());
         }
         return sCacheDir;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = SDCardUtils =
-    // ===============
-
-    /**
-     * 判断内置 SDCard 是否正常挂载
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSDCardEnable() {
-        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-    }
-
-    // =============
-    // = PathUtils =
-    // =============
-
-    /**
-     * 获取内存应用缓存路径 - path /data/data/package/cache
-     * @return /data/data/package/cache
-     */
-    private static String getInternalCachePath() {
-        return getAbsolutePath(DevUtils.getContext().getCacheDir());
-    }
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 获取文件绝对路径
-     * @param file 文件
-     * @return 文件绝对路径
-     */
-    private static String getAbsolutePath(final File file) {
-        return file != null ? file.getAbsolutePath() : null;
     }
 }

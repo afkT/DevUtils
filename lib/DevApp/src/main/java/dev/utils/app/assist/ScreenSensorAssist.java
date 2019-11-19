@@ -1,6 +1,5 @@
 package dev.utils.app.assist;
 
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -8,8 +7,8 @@ import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 屏幕传感器辅助类 ( 监听是否横竖屏 )
@@ -141,10 +140,10 @@ public final class ScreenSensorAssist {
     private void init(final Handler handler) {
         this.mHandler = handler;
         // 注册重力感应器, 监听屏幕旋转
-        mSensorManager = getSensorManager();
+        mSensorManager = AppUtils.getSensorManager();
         mListener = new OrientationSensorListener();
         // 根据 旋转之后、点击全屏之后 两者方向一致, 激活 SensorManager
-        mSensorManagerChange = getSensorManager();
+        mSensorManagerChange = AppUtils.getSensorManager();
         mListenerChange = new OrientationSensorChangeListener();
         // 设置传感器
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -286,56 +285,5 @@ public final class ScreenSensorAssist {
                 }
             }
         }
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 SensorManager
-     * @return {@link SensorManager}
-     */
-    private static SensorManager getSensorManager() {
-        return getSystemService(Context.SENSOR_SERVICE);
-    }
-
-    /**
-     * 获取 SystemService
-     * @param name 服务名
-     * @param <T>  泛型
-     * @return SystemService Object
-     */
-    private static <T> T getSystemService(final String name) {
-        if (isSpace(name)) return null;
-        try {
-            return (T) DevUtils.getContext().getSystemService(name);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSystemService");
-        }
-        return null;
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -26,6 +26,7 @@ import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 权限请求工具类
@@ -427,7 +428,7 @@ public final class PermissionUtils {
     public static boolean canRequestPackageInstalls() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
-                return getPackageManager().canRequestPackageInstalls();
+                return AppUtils.getPackageManager().canRequestPackageInstalls();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "canRequestPackageInstalls");
             }
@@ -499,7 +500,7 @@ public final class PermissionUtils {
      * @return APP 注册的权限数组
      */
     public static String[] getAppPermission() {
-        return getAppPermission(getPackageName());
+        return getAppPermission(AppUtils.getPackageName());
     }
 
     /**
@@ -509,44 +510,10 @@ public final class PermissionUtils {
      */
     public static String[] getAppPermission(final String packageName) {
         try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             return packageInfo.requestedPermissions;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppPermission");
-        }
-        return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 PackageManager
-     * @return {@link PackageManager}
-     */
-    private static PackageManager getPackageManager() {
-        try {
-            return DevUtils.getContext().getPackageManager();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getPackageManager");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 APP 包名
-     * @return APP 包名
-     */
-    private static String getPackageName() {
-        try {
-            return DevUtils.getContext().getPackageName();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getPackageName");
         }
         return null;
     }

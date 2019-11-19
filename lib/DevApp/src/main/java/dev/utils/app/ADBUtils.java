@@ -66,7 +66,7 @@ public final class ADBUtils {
 
     /**
      * 请求 Root 权限
-     * {@code true} success, {@code false} fail
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean requestRoot() {
         return ShellUtils.execCmd("exit", true).isSuccess();

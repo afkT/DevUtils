@@ -17,17 +17,17 @@ import android.view.View;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.ResourceUtils;
+import dev.utils.common.CloseUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: Image ( Bitmap、Drawable 等 ) 工具类
@@ -92,16 +92,13 @@ public final class ImageUtils {
     // = 图片类型判断 =
     // ================
 
-    // 图片格式
-    private static final String[] IMAGE_FORMATS = new String[]{".PNG", ".JPG", ".JPEG", ".BMP", ".GIF", ".WEBP"};
-
     /**
      * 根据文件名判断文件是否为图片
      * @param file 文件
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isImageFormats(final File file) {
-        return file != null && isImageFormats(file.getPath(), IMAGE_FORMATS);
+        return FileUtils.isImageFormats(file);
     }
 
     /**
@@ -110,7 +107,7 @@ public final class ImageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isImageFormats(final String filePath) {
-        return isImageFormats(filePath, IMAGE_FORMATS);
+        return FileUtils.isImageFormats(filePath);
     }
 
     /**
@@ -120,16 +117,7 @@ public final class ImageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isImageFormats(final String filePath, final String[] imageFormats) {
-        if (filePath == null || imageFormats == null || imageFormats.length == 0) return false;
-        String path = filePath.toUpperCase();
-        for (String format : imageFormats) {
-            if (format != null) {
-                if (path.endsWith(format.toUpperCase())) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return FileUtils.isImageFormats(filePath, imageFormats);
     }
 
     // =
@@ -177,7 +165,7 @@ public final class ImageUtils {
      * @return {@link ImageType} 图片类型
      */
     public static ImageType getImageType(final String filePath) {
-        return getImageType(getFileByPath(filePath));
+        return getImageType(FileUtils.getFileByPath(filePath));
     }
 
     /**
@@ -195,7 +183,7 @@ public final class ImageUtils {
             LogPrintUtils.eTag(TAG, e, "getImageType");
             return ImageType.TYPE_UNKNOWN;
         } finally {
-            closeIOQuietly(is);
+            CloseUtils.closeIOQuietly(is);
         }
     }
 
@@ -323,7 +311,7 @@ public final class ImageUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap decodeFile(final File file) {
-        return decodeFile(getAbsolutePath(file), null);
+        return decodeFile(FileUtils.getAbsolutePath(file), null);
     }
 
     /**
@@ -333,7 +321,7 @@ public final class ImageUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap decodeFile(final File file, final BitmapFactory.Options options) {
-        return decodeFile(getAbsolutePath(file), options);
+        return decodeFile(FileUtils.getAbsolutePath(file), options);
     }
 
     /**
@@ -380,7 +368,7 @@ public final class ImageUtils {
      */
     public static Bitmap decodeResource(@DrawableRes final int resId, final BitmapFactory.Options options) {
         try {
-            return BitmapFactory.decodeResource(getResources(), resId, options);
+            return BitmapFactory.decodeResource(ResourceUtils.getResources(), resId, options);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "decodeResource");
             return null;
@@ -650,7 +638,7 @@ public final class ImageUtils {
      */
     public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format,
                                              @IntRange(from = 0, to = 100) final int quality) {
-        return saveBitmapToSDCard(bitmap, getFileByPath(filePath), format, quality);
+        return saveBitmapToSDCard(bitmap, FileUtils.getFileByPath(filePath), format, quality);
     }
 
     /**
@@ -665,7 +653,7 @@ public final class ImageUtils {
                                              @IntRange(from = 0, to = 100) final int quality) {
         if (bitmap == null || file == null || format == null) return false;
         // 防止 Bitmap 为 null, 或者创建文件夹失败 ( 文件存在则删除 )
-        if (isEmpty(bitmap) || !createFileByDeleteOldFile(file)) return false;
+        if (isEmpty(bitmap) || !FileUtils.createFileByDeleteOldFile(file)) return false;
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file));
@@ -676,7 +664,7 @@ public final class ImageUtils {
             LogPrintUtils.eTag(TAG, e, "saveBitmapToSDCard");
             return false;
         } finally {
-            closeIOQuietly(os);
+            CloseUtils.closeIOQuietly(os);
         }
         return true;
     }
@@ -762,7 +750,7 @@ public final class ImageUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmap(final File file, final int maxWidth, final int maxHeight) {
-        return getBitmap(getAbsolutePath(file), maxWidth, maxHeight);
+        return getBitmap(FileUtils.getAbsolutePath(file), maxWidth, maxHeight);
     }
 
     /**
@@ -778,7 +766,7 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(filePath, options);
-            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeFile(filePath, options);
         } catch (Exception e) {
@@ -796,11 +784,11 @@ public final class ImageUtils {
      */
     public static Bitmap getBitmap(@DrawableRes final int resId, final int maxWidth, final int maxHeight) {
         try {
-            Resources resources = getResources();
+            Resources resources = ResourceUtils.getResources();
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeResource(resources, resId, options);
-            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeResource(resources, resId, options);
         } catch (Exception e) {
@@ -822,7 +810,7 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(inputStream, null, options);
-            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeStream(inputStream, null, options);
         } catch (Exception e) {
@@ -844,7 +832,7 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFileDescriptor(fd, null, options);
-            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeFileDescriptor(fd, null, options);
         } catch (Exception e) {
@@ -866,7 +854,7 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeByteArray(data, 0, data.length, options);
-            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeByteArray(data, 0, data.length, options);
         } catch (Exception e) {
@@ -1042,7 +1030,7 @@ public final class ImageUtils {
     public static Drawable bitmapToDrawable(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
-            return new BitmapDrawable(getResources(), bitmap);
+            return new BitmapDrawable(ResourceUtils.getResources(), bitmap);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bitmapToDrawable");
         }
@@ -1143,125 +1131,5 @@ public final class ImageUtils {
             LogPrintUtils.eTag(TAG, e, "setBounds");
         }
         return drawable;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
-
-    /**
-     * 获取文件绝对路径
-     * @param file 文件
-     * @return 文件绝对路径
-     */
-    private static String getAbsolutePath(final File file) {
-        return file != null ? file.getAbsolutePath() : null;
-    }
-
-    /**
-     * 判断文件是否存在, 存在则在创建之前删除
-     * @param file 文件
-     * @return {@code true} 创建成功, {@code false} 创建失败
-     */
-    private static boolean createFileByDeleteOldFile(final File file) {
-        if (file == null) return false;
-        // 文件存在并且删除失败返回 false
-        if (file.exists() && !file.delete()) return false;
-        // 创建目录失败返回 false
-        if (!createOrExistsDir(file.getParentFile())) return false;
-        try {
-            return file.createNewFile();
-        } catch (IOException e) {
-            LogPrintUtils.eTag(TAG, e, "createFileByDeleteOldFile");
-            return false;
-        }
-    }
-
-    /**
-     * 判断目录是否存在, 不存在则判断是否创建成功
-     * @param file 文件
-     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
-     */
-    private static boolean createOrExistsDir(final File file) {
-        // 如果存在, 是目录则返回 true, 是文件则返回 false, 不存在则返回是否创建成功
-        return file != null && (file.exists() ? file.isDirectory() : file.mkdirs());
-    }
-
-    // ==============
-    // = CloseUtils =
-    // ==============
-
-    /**
-     * 安静关闭 IO
-     * @param closeables Closeable[]
-     */
-    private static void closeIOQuietly(final Closeable... closeables) {
-        if (closeables == null) return;
-        for (Closeable closeable : closeables) {
-            if (closeable != null) {
-                try {
-                    closeable.close();
-                } catch (Exception ignore) {
-                }
-            }
-        }
-    }
-
-    // ===============
-    // = BitmapUtils =
-    // ===============
-
-    /**
-     * 计算采样大小
-     * <pre>
-     *     最大宽高只是阀值, 实际算出来的图片将小于等于这个值
-     * </pre>
-     * @param options   {@link BitmapFactory.Options}
-     * @param maxWidth  最大宽度
-     * @param maxHeight 最大高度
-     * @return 采样大小
-     */
-    private static int calculateInSampleSize(final BitmapFactory.Options options, final int maxWidth, final int maxHeight) {
-        if (options == null) return 0;
-
-        int height = options.outHeight;
-        int width = options.outWidth;
-        int inSampleSize = 1;
-        while (height > maxHeight || width > maxWidth) {
-            height >>= 1;
-            width >>= 1;
-            inSampleSize <<= 1;
-        }
-        return inSampleSize;
-    }
-
-    // =================
-    // = ResourceUtils =
-    // =================
-
-    /**
-     * 获取 Resources
-     * @return {@link Resources}
-     */
-    private static Resources getResources() {
-        try {
-            return DevUtils.getContext().getResources();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getResources");
-        }
-        return null;
     }
 }

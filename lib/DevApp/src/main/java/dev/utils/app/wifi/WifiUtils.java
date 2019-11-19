@@ -23,6 +23,7 @@ import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: Wifi 工具类
@@ -57,7 +58,7 @@ public final class WifiUtils {
      */
     public WifiUtils() {
         // 初始化 WifiManager 对象
-        mWifiManager = getWifiManager();
+        mWifiManager = AppUtils.getWifiManager();
     }
 
     // ===========================
@@ -267,7 +268,7 @@ public final class WifiUtils {
     public static String getSSID() {
         try {
             // 获取当前连接的 wifi
-            WifiInfo wifiInfo = getWifiManager().getConnectionInfo();
+            WifiInfo wifiInfo = AppUtils.getWifiManager().getConnectionInfo();
             // 获取 wifi SSID
             return formatSSID(wifiInfo.getSSID(), false);
         } catch (Exception e) {
@@ -448,7 +449,7 @@ public final class WifiUtils {
     public static String isConnectAphot() {
         try {
             // 连接管理
-            ConnectivityManager cManager = getConnectivityManager();
+            ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 连接状态
@@ -576,7 +577,7 @@ public final class WifiUtils {
         if (ssid == null) return false;
         try {
             // 初始化 WifiManager 对象
-            WifiManager wifiManager = getWifiManager();
+            WifiManager wifiManager = AppUtils.getWifiManager();
             // 获取 wifi 连接过的配置信息
             List<WifiConfiguration> listWifiConfigs = wifiManager.getConfiguredNetworks();
             // 防止为 null
@@ -1075,65 +1076,5 @@ public final class WifiUtils {
     private void setValueField(final Object object, final Object val, final String name) throws Exception {
         Field field = object.getClass().getField(name);
         field.set(object, val);
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 WifiManager
-     * @return {@link WifiManager}
-     */
-    @SuppressLint("WifiManagerLeak")
-    private static WifiManager getWifiManager() {
-        return getSystemService(Context.WIFI_SERVICE);
-    }
-
-    /**
-     * 获取 ConnectivityManager
-     * @return {@link ConnectivityManager}
-     */
-    private static ConnectivityManager getConnectivityManager() {
-        return getSystemService(Context.CONNECTIVITY_SERVICE);
-    }
-
-    /**
-     * 获取 SystemService
-     * @param name 服务名
-     * @param <T>  泛型
-     * @return SystemService Object
-     */
-    private static <T> T getSystemService(final String name) {
-        if (isSpace(name)) return null;
-        try {
-            return (T) DevUtils.getContext().getSystemService(name);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSystemService");
-        }
-        return null;
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

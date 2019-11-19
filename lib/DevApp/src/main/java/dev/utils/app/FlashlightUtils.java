@@ -77,7 +77,7 @@ public final class FlashlightUtils {
     public boolean setFlashlightOn() {
         if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
-        if (!Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+        if (parameters != null && !Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             mCamera.setParameters(parameters);
             return true;
@@ -92,7 +92,7 @@ public final class FlashlightUtils {
     public boolean setFlashlightOff() {
         if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
-        if (Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+        if (parameters != null && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             mCamera.setParameters(parameters);
             return true;
@@ -107,20 +107,16 @@ public final class FlashlightUtils {
     public boolean isFlashlightOn() {
         if (mCamera == null) return false;
         Camera.Parameters parameters = mCamera.getParameters();
-        return Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
+        return parameters != null && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
     }
 
     /**
      * 是否支持手机闪光灯
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFlashlightEnable() {
-        try {
-            return AppUtils.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isFlashlightEnable");
-        }
-        return false;
+    public static boolean isFlashlightEnable() {
+        PackageManager packageManager = AppUtils.getPackageManager();
+        return (packageManager != null) ? packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH) : false;
     }
 
     // =

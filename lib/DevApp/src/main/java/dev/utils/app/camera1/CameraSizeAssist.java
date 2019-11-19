@@ -1,19 +1,15 @@
 package dev.utils.app.camera1;
 
-import android.content.Context;
 import android.graphics.Point;
 import android.hardware.Camera;
-import android.os.Build;
-import android.util.DisplayMetrics;
-import android.view.WindowManager;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.ScreenUtils;
 
 /**
  * detail: 摄像头 ( 预览、输出大小 ) 辅助类
@@ -334,7 +330,7 @@ public final class CameraSizeAssist {
     private Camera.Size calcPreviewSize(Point point, double distortion) {
         // 判断是否为 null
         if (point == null) {
-            point = getScreenWidthHeightToPoint();
+            point = ScreenUtils.getScreenWidthHeightToPoint();
         }
         // 如果误差为负数, 则使用默认值
         if (distortion < 0) {
@@ -459,7 +455,7 @@ public final class CameraSizeAssist {
     private Camera.Size calcPictureSize(final boolean max, Point point, double distortion) {
         // 判断是否为 null
         if (point == null) {
-            point = getScreenWidthHeightToPoint();
+            point = ScreenUtils.getScreenWidthHeightToPoint();
         }
         // 如果误差为负数, 则使用默认值
         if (distortion < 0) {
@@ -611,7 +607,7 @@ public final class CameraSizeAssist {
     private Camera.Size calcVideoSize(final boolean max, Point point, double distortion, final boolean minAccord) {
         // 判断是否为 null
         if (point == null) {
-            point = getScreenWidthHeightToPoint();
+            point = ScreenUtils.getScreenWidthHeightToPoint();
         }
         // 如果误差为负数, 则使用默认值
         if (distortion < 0) {
@@ -753,103 +749,5 @@ public final class CameraSizeAssist {
         // 获取默认视频大小
         Camera.Size defaultSize = params.getPreferredPreviewSizeForVideo();
         return defaultSize;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ============
-    // = AppUtils =
-    // ============
-
-    /**
-     * 获取 WindowManager
-     * @return {@link WindowManager}
-     */
-    private static WindowManager getWindowManager() {
-        return getSystemService(Context.WINDOW_SERVICE);
-    }
-
-    /**
-     * 获取 SystemService
-     * @param name 服务名
-     * @param <T>  泛型
-     * @return SystemService Object
-     */
-    private static <T> T getSystemService(final String name) {
-        if (isSpace(name)) return null;
-        try {
-            return (T) DevUtils.getContext().getSystemService(name);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSystemService");
-        }
-        return null;
-    }
-
-    // ===============
-    // = ScreenUtils =
-    // ===============
-
-    /**
-     * 获取屏幕宽高
-     * @return {@link Point}, point.x 宽, point.y 高
-     */
-    private static Point getScreenWidthHeightToPoint() {
-        try {
-            WindowManager windowManager = getWindowManager();
-            if (windowManager == null) {
-                DisplayMetrics displayMetrics = getDisplayMetrics();
-                if (displayMetrics != null) {
-                    return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
-                }
-            }
-            Point point = new Point();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                windowManager.getDefaultDisplay().getRealSize(point);
-            } else {
-                windowManager.getDefaultDisplay().getSize(point);
-            }
-            return point;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getScreenWidthHeightToPoint");
-        }
-        return null;
-    }
-
-    // =================
-    // = ResourceUtils =
-    // =================
-
-    /**
-     * 获取 DisplayMetrics
-     * @return {@link DisplayMetrics}
-     */
-    private static DisplayMetrics getDisplayMetrics() {
-        try {
-            return DevUtils.getContext().getResources().getDisplayMetrics();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDisplayMetrics");
-        }
-        return null;
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }
