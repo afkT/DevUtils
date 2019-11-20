@@ -302,6 +302,7 @@ public final class AppUtils {
     /**
      * 获取 SharedPreferences
      * @param fileName 文件名
+     * @return {@link SharedPreferences}
      */
     public static SharedPreferences getSharedPreferences(final String fileName) {
         return getSharedPreferences(fileName, Context.MODE_PRIVATE);
@@ -311,6 +312,7 @@ public final class AppUtils {
      * 获取 SharedPreferences
      * @param fileName 文件名
      * @param mode     SharedPreferences 操作模式
+     * @return {@link SharedPreferences}
      */
     public static SharedPreferences getSharedPreferences(final String fileName, final int mode) {
         try {
