@@ -13,6 +13,7 @@ import java.util.Set;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.app.ServiceUtils;
 
 /**
  * detail: 通知栏监听服务
@@ -107,22 +108,14 @@ public final class NotificationService extends NotificationListenerService {
      * 启动服务
      */
     public static void startService() {
-        try {
-            AppUtils.startService(new Intent(DevUtils.getContext(), NotificationService.class));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, "startService");
-        }
+        ServiceUtils.startService(NotificationService.class);
     }
 
     /**
      * 停止服务
      */
     public static void stopService() {
-        try {
-            AppUtils.stopService(new Intent(DevUtils.getContext(), NotificationService.class));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, "stopService");
-        }
+        ServiceUtils.stopService(NotificationService.class);
     }
 
     // =

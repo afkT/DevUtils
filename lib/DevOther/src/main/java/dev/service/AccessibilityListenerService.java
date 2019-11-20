@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AccessibilityUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.ServiceUtils;
 
 /**
  * detail: 无障碍功能监听服务
@@ -115,22 +115,14 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * 启动服务
      */
     public static void startService() {
-        try {
-            AppUtils.startService(new Intent(DevUtils.getContext(), AccessibilityListenerService.class));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startService");
-        }
+        ServiceUtils.startService(AccessibilityListenerService.class);
     }
 
     /**
      * 停止服务
      */
     public static void stopService() {
-        try {
-            AppUtils.stopService(new Intent(DevUtils.getContext(), AccessibilityListenerService.class));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "stopService");
-        }
+        ServiceUtils.stopService(AccessibilityListenerService.class);
     }
 
     // =
