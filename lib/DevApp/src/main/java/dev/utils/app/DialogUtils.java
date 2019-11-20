@@ -10,6 +10,7 @@ import android.support.annotation.ArrayRes;
 import android.support.annotation.StyleRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -744,7 +745,7 @@ public final class DialogUtils {
                                                            @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -760,7 +761,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -774,7 +775,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -853,7 +854,7 @@ public final class DialogUtils {
                                                            @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -869,7 +870,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -883,7 +884,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -969,7 +970,7 @@ public final class DialogUtils {
                                                        final SingleChoiceListener singleChoiceListener, @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -985,7 +986,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -999,7 +1000,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1083,7 +1084,7 @@ public final class DialogUtils {
                                                        final SingleChoiceListener singleChoiceListener, @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -1099,7 +1100,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1113,7 +1114,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1240,7 +1241,7 @@ public final class DialogUtils {
                                                       @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -1256,7 +1257,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1270,7 +1271,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1353,7 +1354,7 @@ public final class DialogUtils {
                                                       final MultiChoiceListener multiChoiceListener, @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -1369,7 +1370,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1383,7 +1384,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1511,7 +1512,7 @@ public final class DialogUtils {
                                                @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -1521,7 +1522,7 @@ public final class DialogUtils {
                 builder.setView(view);
             }
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1535,7 +1536,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1562,22 +1563,5 @@ public final class DialogUtils {
             LogPrintUtils.eTag(TAG, e, "createViewDialog");
         }
         return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
     }
 }

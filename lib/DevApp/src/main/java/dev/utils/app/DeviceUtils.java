@@ -13,7 +13,6 @@ import android.text.TextUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
@@ -403,17 +402,17 @@ public final class DeviceUtils {
      * @return 基带版本 BASEBAND-VER
      */
     public static String getBaseband_Ver() {
-        String Version = "";
+        String basebandVersion = "";
         try {
-            Class cl = Class.forName("android.os.SystemProperties");
-            Object invoker = cl.newInstance();
-            Method m = cl.getMethod("get", String.class, String.class);
-            Object result = m.invoke(invoker, "gsm.version.baseband", "no message");
-            Version = (String) result;
+            Class clazz = Class.forName("android.os.SystemProperties");
+            Object invoker = clazz.newInstance();
+            Method method = clazz.getMethod("get", String.class, String.class);
+            Object result = method.invoke(invoker, "gsm.version.baseband", "no message");
+            basebandVersion = (String) result;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBaseband_Ver");
         }
-        return Version;
+        return basebandVersion;
     }
 
     /**
@@ -423,36 +422,23 @@ public final class DeviceUtils {
     public static String getLinuxCore_Ver() {
         String kernelVersion = "";
         try {
-            Process process = null;
-            try {
-                process = Runtime.getRuntime().exec("cat /proc/version");
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver - Process");
-            }
+            Process process = Runtime.getRuntime().exec("cat /proc/version");
             InputStream is = process.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr, 8 * 1024);
 
             String line;
             StringBuilder builder = new StringBuilder();
-            try {
-                while ((line = br.readLine()) != null) {
-                    builder.append(line);
-                }
-            } catch (IOException e) {
-                LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver - readLine");
+            while ((line = br.readLine()) != null) {
+                builder.append(line);
             }
             String result = builder.toString();
-            try {
-                if (result != "") {
-                    String Keyword = "version ";
-                    int index = result.indexOf(Keyword);
-                    line = result.substring(index + Keyword.length());
-                    index = line.indexOf(" ");
-                    kernelVersion = line.substring(0, index);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver - substring");
+            if (result != "") {
+                String keyword = "version ";
+                int index = result.indexOf(keyword);
+                line = result.substring(index + keyword.length());
+                index = line.indexOf(" ");
+                kernelVersion = line.substring(0, index);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver");
@@ -654,8 +640,7 @@ public final class DeviceUtils {
             ShellUtils.execCmd("reboot -p", true);
             Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
             intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
-            AppUtils.startActivity(intent);
-            return true;
+            return AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shutdown");
         }
@@ -673,8 +658,7 @@ public final class DeviceUtils {
             intent.putExtra("nowait", 1);
             intent.putExtra("interval", 1);
             intent.putExtra("window", 0);
-            AppUtils.sendBroadcast(intent);
-            return true;
+            return AppUtils.sendBroadcast(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }

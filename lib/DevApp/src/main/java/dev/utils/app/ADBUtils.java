@@ -1575,8 +1575,7 @@ public final class ADBUtils {
             intent.putExtra("nowait", 1);
             intent.putExtra("interval", 1);
             intent.putExtra("window", 0);
-            AppUtils.sendBroadcast(intent);
-            return true;
+            return AppUtils.sendBroadcast(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
