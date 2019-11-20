@@ -219,8 +219,7 @@ public final class IntentUtils {
      */
     public static Intent getLaunchAppNotificationSettingsIntent(final String packageName, final boolean isNewTask) {
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
+            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, 0);
             ApplicationInfo applicationInfo = packageInfo.applicationInfo;
 
             Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);

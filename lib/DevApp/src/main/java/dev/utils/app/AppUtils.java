@@ -246,6 +246,58 @@ public final class AppUtils {
         return null;
     }
 
+    /**
+     * 获取 ApplicationInfo
+     * @return {@link ApplicationInfo}
+     */
+    public static ApplicationInfo getApplicationInfo() {
+        try {
+            return DevUtils.getContext().getApplicationInfo();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getApplicationInfo");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 ApplicationInfo
+     * @param packageName 应用包名
+     * @param flags application flags
+     * @return {@link ApplicationInfo}
+     */
+    public static ApplicationInfo getApplicationInfo(final String packageName, final int flags) {
+        try {
+            return DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, flags);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getApplicationInfo - " + packageName);
+        }
+        return null;
+    }
+
+    /**
+     * 获取 PackageInfo
+     * @param flags package flags
+     * @return {@link ApplicationInfo}
+     */
+    public static PackageInfo getPackageInfo(final int flags) {
+        return getPackageInfo(getPackageName(), flags);
+    }
+
+    /**
+     * 获取 PackageInfo
+     * @param packageName 应用包名
+     * @param flags package flags
+     * @return {@link ApplicationInfo}
+     */
+    public static PackageInfo getPackageInfo(final String packageName, final int flags) {
+        try {
+            return DevUtils.getContext().getPackageManager().getPackageInfo(packageName, flags);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPackageInfo - " + packageName);
+        }
+        return null;
+    }
+
     // ============
     // = APP 相关 =
     // ============
@@ -343,7 +395,7 @@ public final class AppUtils {
     public static String getAppVersionName(final String packageName) {
         if (StringUtils.isSpace(packageName)) return null;
         try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.versionName;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName");
@@ -367,7 +419,7 @@ public final class AppUtils {
     public static int getAppVersionCode(final String packageName) {
         if (StringUtils.isSpace(packageName)) return -1;
         try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? -1 : packageInfo.versionCode;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
@@ -391,7 +443,7 @@ public final class AppUtils {
     public static String getAppPath(final String packageName) {
         if (StringUtils.isSpace(packageName)) return null;
         try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, 0);
+            PackageInfo packageInfo = getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.sourceDir;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppPath");
@@ -417,7 +469,7 @@ public final class AppUtils {
     public static Signature[] getAppSignature(final String packageName) {
         if (StringUtils.isSpace(packageName)) return null;
         try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.signatures;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppSignature");

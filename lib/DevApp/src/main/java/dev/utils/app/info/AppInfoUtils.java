@@ -77,9 +77,7 @@ public final class AppInfoUtils {
     public static PackageInfo getPackageInfo(final String packageName) {
         try {
             // 获取对应的 PackageInfo ( 原始的 PackageInfo 获取 signatures 等于 null, 需要这样获取 )
-            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            // 返回 APP 信息
-            return packageInfo;
+            return AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPackageInfo");
         }
@@ -273,7 +271,7 @@ public final class AppInfoUtils {
      */
     public static String[] getAppPermission(final String packageName) {
         try {
-            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
             return packageInfo.requestedPermissions;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppPermission");
