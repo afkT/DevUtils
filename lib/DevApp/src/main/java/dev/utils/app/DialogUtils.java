@@ -49,11 +49,8 @@ public final class DialogUtils {
      * @return {@link WindowManager.LayoutParams}
      */
     public static WindowManager.LayoutParams getAttributes(final Dialog dialog) {
-        if (dialog != null) {
-            Window window = dialog.getWindow();
-            if (window != null) return window.getAttributes();
-        }
-        return null;
+        Window window = getWindow(dialog);
+        return (window != null) ? window.getAttributes() : null;
     }
 
     /**
@@ -64,9 +61,9 @@ public final class DialogUtils {
      * @return {@link Dialog}
      */
     public static <T extends Dialog> T setAttributes(final T dialog, final WindowManager.LayoutParams params) {
-        if (dialog != null && params != null) {
-            Window window = dialog.getWindow();
-            if (window != null) window.setAttributes(params);
+        Window window = getWindow(dialog);
+        if (window != null && params != null) {
+            window.setAttributes(params);
         }
         return dialog;
     }
@@ -246,6 +243,35 @@ public final class DialogUtils {
         return dialog;
     }
 
+    // =
+
+    /**
+     * 获取 Dialog 是否显示
+     * @param dialog {@link Dialog}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isShowing(final Dialog dialog) {
+        return (dialog != null && dialog.isShowing());
+    }
+
+    /**
+     * 获取 Dialog 是否显示
+     * @param dialogFragment {@link DialogFragment}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isShowing(final DialogFragment dialogFragment) {
+        return (dialogFragment != null && dialogFragment.getDialog() != null && dialogFragment.getDialog().isShowing());
+    }
+
+    /**
+     * 获取 PopupWindow 是否显示
+     * @param popupWindow {@link PopupWindow}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isShowing(final PopupWindow popupWindow) {
+        return (popupWindow != null && popupWindow.isShowing());
+    }
+
     // ===============
     // = Dialog 操作 =
     // ===============
@@ -291,15 +317,8 @@ public final class DialogUtils {
      */
     public static boolean closeDialogs(final Dialog... dialogs) {
         if (dialogs != null && dialogs.length != 0) {
-            for (int i = 0, len = dialogs.length; i < len; i++) {
-                Dialog dialog = dialogs[i];
-                if (dialog != null && dialog.isShowing()) {
-                    try {
-                        dialog.dismiss();
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "closeDialogs");
-                    }
-                }
+            for (Dialog dialog : dialogs) {
+                closeDialog(dialog);
             }
             return true;
         }
@@ -332,15 +351,8 @@ public final class DialogUtils {
      */
     public static boolean closeDialogs(final DialogFragment... dialogs) {
         if (dialogs != null && dialogs.length != 0) {
-            for (int i = 0, len = dialogs.length; i < len; i++) {
-                DialogFragment dialog = dialogs[i];
-                if (dialog != null) {
-                    try {
-                        dialog.dismiss();
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "closeDialogs");
-                    }
-                }
+            for (DialogFragment dialog : dialogs) {
+                closeDialog(dialog);
             }
             return true;
         }
@@ -358,10 +370,10 @@ public final class DialogUtils {
         if (popupWindow != null && popupWindow.isShowing()) {
             try {
                 popupWindow.dismiss();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closePopupWindow");
             }
-            return true;
         }
         return false;
     }
@@ -373,15 +385,8 @@ public final class DialogUtils {
      */
     public static boolean closePopupWindows(final PopupWindow... popupWindows) {
         if (popupWindows != null && popupWindows.length != 0) {
-            for (int i = 0, len = popupWindows.length; i < len; i++) {
-                PopupWindow popupWindow = popupWindows[i];
-                if (popupWindow != null && popupWindow.isShowing()) {
-                    try {
-                        popupWindow.dismiss();
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "closePopupWindows");
-                    }
-                }
+            for (PopupWindow popupWindow : popupWindows) {
+                closePopupWindow(popupWindow);
             }
             return true;
         }
@@ -588,12 +593,7 @@ public final class DialogUtils {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            if (dialog != null && dialog.isShowing()) {
-                                dialog.dismiss();
-                            }
-                        } catch (Exception e) {
-                        }
+                        closeDialog(dialog);
                     }
                 }, delayMillis);
             }
@@ -615,12 +615,7 @@ public final class DialogUtils {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            if (dialog != null) {
-                                dialog.dismiss();
-                            }
-                        } catch (Exception e) {
-                        }
+                        closeDialog(dialog);
                     }
                 }, delayMillis);
             }
@@ -642,12 +637,7 @@ public final class DialogUtils {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            if (popupWindow != null && popupWindow.isShowing()) {
-                                popupWindow.dismiss();
-                            }
-                        } catch (Exception e) {
-                        }
+                        closePopupWindow(popupWindow);
                     }
                 }, delayMillis);
             }
