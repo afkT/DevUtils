@@ -239,6 +239,14 @@ public final class CameraAssist {
     // =
 
     /**
+     * 是否支持手机闪光灯
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isFlashlightEnable() {
+        return FlashlightUtils.isFlashlightEnable();
+    }
+
+    /**
      * 打开闪光灯
      * @return {@code true} success, {@code false} fail
      */
@@ -260,14 +268,6 @@ public final class CameraAssist {
      */
     public boolean isFlashlightOn() {
         return FlashlightUtils.getInstance().isFlashlightOn(mCamera);
-    }
-
-    /**
-     * 是否支持手机闪光灯
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isFlashlightEnable() {
-        return FlashlightUtils.isFlashlightEnable();
     }
 
     // ========
