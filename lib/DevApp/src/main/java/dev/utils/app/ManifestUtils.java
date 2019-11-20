@@ -44,7 +44,7 @@ public final class ManifestUtils {
      */
     public static String getMetaData(final String packageName, final String metaKey) {
         try {
-            ApplicationInfo appInfo = AppUtils.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            ApplicationInfo appInfo = AppUtils.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             return appInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaData");

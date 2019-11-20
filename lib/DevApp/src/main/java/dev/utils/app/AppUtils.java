@@ -13,6 +13,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -298,6 +299,28 @@ public final class AppUtils {
         return null;
     }
 
+    /**
+     * 获取 SharedPreferences
+     * @param fileName 文件名
+     */
+    public static SharedPreferences getSharedPreferences(final String fileName) {
+        return getSharedPreferences(fileName, Context.MODE_PRIVATE);
+    }
+
+    /**
+     * 获取 SharedPreferences
+     * @param fileName 文件名
+     * @param mode     SharedPreferences 操作模式
+     */
+    public static SharedPreferences getSharedPreferences(final String fileName, final int mode) {
+        try {
+            return DevUtils.getContext().getSharedPreferences(fileName, mode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSharedPreferences - " + fileName);
+        }
+        return null;
+    }
+
     // ============
     // = APP 相关 =
     // ============
@@ -566,7 +589,7 @@ public final class AppUtils {
     public static boolean isAppDebug(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, 0);
+            ApplicationInfo appInfo = getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppDebug");
@@ -590,7 +613,7 @@ public final class AppUtils {
     public static boolean isAppRelease(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, 0);
+            ApplicationInfo appInfo = getApplicationInfo(packageName, 0);
             return !(appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppRelease");
@@ -616,7 +639,7 @@ public final class AppUtils {
     public static boolean isAppSystem(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, 0);
+            ApplicationInfo appInfo = getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAppSystem");
@@ -685,7 +708,7 @@ public final class AppUtils {
     public static boolean isInstalledApp(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
+            ApplicationInfo appInfo = getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
             return true;
         } catch (Exception e) { // 未安装, 则会抛出异常
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");
