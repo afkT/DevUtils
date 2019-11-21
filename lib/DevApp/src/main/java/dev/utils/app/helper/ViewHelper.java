@@ -2516,6 +2516,17 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置触摸事件
+     * @param onTouchListener {@link View.OnTouchListener}
+     * @param views               View 数组
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setOnTouchs(final View.OnTouchListener onTouchListener, final View... views) {
+        ListenerUtils.setOnTouchs(onTouchListener, views);
+        return this;
+    }
+
+    /**
      * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
      * @param view  待添加点击范围 View
      * @param range 点击范围
