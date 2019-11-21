@@ -132,7 +132,7 @@ public final class JSONObjectUtils {
     public static <T> T fromJson(final Object object, final Class<T> type) {
         if (object == null || type == null) return null;
         try {
-            if (type.equals(JSONObject.class)) {
+            if (type == JSONObject.class) {
                 if (object instanceof JSONObject) {
                     return (T) object;
                 } else if (object instanceof String) {
@@ -142,7 +142,7 @@ public final class JSONObjectUtils {
                 } else if (object instanceof Map) {
                     return (T) new JSONObject((Map) object);
                 }
-            } else if (type.equals(JSONArray.class)) {
+            } else if (type == JSONArray.class) {
                 if (object instanceof JSONArray) {
                     return (T) object;
                 } else if (object instanceof String) {
@@ -163,7 +163,7 @@ public final class JSONObjectUtils {
                         return (T) jsonArray;
                     }
                 }
-            } else if (type.equals(JSONTokener.class)) {
+            } else if (type == JSONTokener.class) {
                 if (object instanceof String) {
                     return (T) new JSONTokener((String) object);
                 }

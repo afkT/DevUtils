@@ -3,7 +3,6 @@ package dev.utils.app;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -18,6 +17,7 @@ import java.io.File;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: Intent 相关工具类
@@ -72,7 +72,7 @@ public final class IntentUtils {
      * @return 安装 APP( 支持 8.0) 的意图
      */
     public static Intent getInstallAppIntent(final String filePath) {
-        return getInstallAppIntent(getFileByPath(filePath));
+        return getInstallAppIntent(FileUtils.getFileByPath(filePath));
     }
 
     /**
@@ -153,7 +153,6 @@ public final class IntentUtils {
     public static Intent getLaunchAppIntent(final String packageName, final boolean isNewTask) {
         try {
             Intent intent = AppUtils.getPackageManager().getLaunchIntentForPackage(packageName);
-            if (intent == null) return null;
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLaunchAppIntent");
@@ -219,9 +218,7 @@ public final class IntentUtils {
      */
     public static Intent getLaunchAppNotificationSettingsIntent(final String packageName, final boolean isNewTask) {
         try {
-            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, 0);
-            ApplicationInfo applicationInfo = packageInfo.applicationInfo;
-
+            ApplicationInfo applicationInfo = AppUtils.getPackageInfo(packageName, 0).applicationInfo;
             Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
             // 这种方案适用于 API 26 即 8.0 ( 含 8.0) 以上可以用
             intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName);
@@ -343,7 +340,7 @@ public final class IntentUtils {
      */
     public static Intent getShareImageIntent(final String content, final String imagePath, final boolean isNewTask) {
         try {
-            return getShareImageIntent(content, getFileByPath(imagePath), isNewTask);
+            return getShareImageIntent(content, FileUtils.getFileByPath(imagePath), isNewTask);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getShareImageIntent");
         }
@@ -588,46 +585,5 @@ public final class IntentUtils {
             LogPrintUtils.eTag(TAG, e, "getCaptureIntent");
         }
         return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
-
-    // ============
-    // = UriUtils =
-    // ============
-
-    /**
-     * 获取文件 Uri
-     * @param file      文件
-     * @param authority android:authorities
-     * @return 指定文件 {@link Uri}
-     */
-    private static Uri getUriForFile(final File file, final String authority) {
-        if (file == null || authority == null) return null;
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                return FileProvider.getUriForFile(DevUtils.getContext(), authority, file);
-            } else {
-                return Uri.fromFile(file);
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getUriForFile");
-            return null;
-        }
     }
 }
