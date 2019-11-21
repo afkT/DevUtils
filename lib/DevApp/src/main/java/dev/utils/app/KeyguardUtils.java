@@ -94,9 +94,11 @@ public final class KeyguardUtils {
     /**
      * 设置 KeyguardManager
      * @param keyguardManager {@link KeyguardManager}
+     * @return {@link KeyguardUtils}
      */
-    public void setKeyguardManager(final KeyguardManager keyguardManager) {
+    public KeyguardUtils setKeyguardManager(final KeyguardManager keyguardManager) {
         this.mKeyguardManager = keyguardManager;
+        return this;
     }
 
     // =
@@ -104,32 +106,41 @@ public final class KeyguardUtils {
     /**
      * 屏蔽系统的屏保
      * 利用 disableKeyguard 解锁, 解锁并不是真正的解锁, 只是把锁屏的界面隐藏掉而已
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
-    public void disableKeyguard() {
+    public boolean disableKeyguard() {
         if (mKeyguardLock != null) {
             mKeyguardLock.disableKeyguard();
+            return true;
         }
+        return false;
     }
 
     /**
      * 使能显示锁屏界面, 如果你之前调用了 disableKeyguard() 方法取消锁屏界面, 那么会马上显示锁屏界面
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
-    public void reenableKeyguard() {
+    public boolean reenableKeyguard() {
         if (mKeyguardLock != null) {
             mKeyguardLock.reenableKeyguard();
+            return true;
         }
+        return false;
     }
 
     /**
      * 释放资源
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
-    public void release() {
+    public boolean release() {
         if (mKeyguardLock != null) {
             mKeyguardLock.reenableKeyguard();
+            return true;
         }
+        return false;
     }
 
     // =
@@ -145,18 +156,22 @@ public final class KeyguardUtils {
     /**
      * 设置 KeyguardManager.KeyguardLock
      * @param keyguardLock {@link KeyguardManager.KeyguardLock}
+     * @return {@link KeyguardUtils}
      */
-    public void setKeyguardLock(final KeyguardManager.KeyguardLock keyguardLock) {
+    public KeyguardUtils setKeyguardLock(final KeyguardManager.KeyguardLock keyguardLock) {
         this.mKeyguardLock = keyguardLock;
+        return this;
     }
 
     /**
      * 设置 KeyguardManager.KeyguardLock ( 通过 TAG 生成 )
      * @param tag TAG
+     * @return {@link KeyguardUtils}
      */
-    public void setKeyguardLock(final String tag) {
+    public KeyguardUtils setKeyguardLock(final String tag) {
         if (mKeyguardManager != null && tag != null) {
-            this.mKeyguardLock = mKeyguardManager.newKeyguardLock(tag);
+            mKeyguardLock = mKeyguardManager.newKeyguardLock(tag);
         }
+        return this;
     }
 }

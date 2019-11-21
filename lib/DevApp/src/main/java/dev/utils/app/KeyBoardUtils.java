@@ -14,7 +14,6 @@ import android.widget.EditText;
 
 import java.lang.reflect.Field;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -34,7 +33,7 @@ public final class KeyBoardUtils {
     // 日志 TAG
     private static final String TAG = KeyBoardUtils.class.getSimpleName();
     // 默认延迟时间 ( 毫秒 )
-    private static int DELAY_MILLIS = 300;
+    private static long DELAY_MILLIS = 300;
     // 键盘显示
     public static final int KEYBOARD_DISPLAY = 930;
     // 键盘隐藏
@@ -44,7 +43,7 @@ public final class KeyBoardUtils {
      * 设置延迟时间
      * @param delayMillis 延迟时间 ( 毫秒 )
      */
-    public static void setDelayMillis(final int delayMillis) {
+    public static void setDelayMillis(final long delayMillis) {
         DELAY_MILLIS = delayMillis;
     }
 
@@ -88,7 +87,7 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openKeyboard(final EditText editText, final Handler handler, final int delayMillis) {
+    public static boolean openKeyboard(final EditText editText, final Handler handler, final long delayMillis) {
         if (editText != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -138,8 +137,8 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openKeyboard(final Handler handler, final int delayMillis) {
-        if (DevUtils.getContext() != null && handler != null) {
+    public static boolean openKeyboard(final Handler handler, final long delayMillis) {
+        if (handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -178,14 +177,12 @@ public final class KeyBoardUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean closeKeyboard() {
-        if (DevUtils.getContext() != null) {
-            try {
-                InputMethodManager imm = AppUtils.getInputMethodManager();
-                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "closeKeyboard");
-            }
+        try {
+            InputMethodManager imm = AppUtils.getInputMethodManager();
+            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "closeKeyboard");
         }
         return false;
     }
@@ -268,7 +265,7 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyBoardSpecial(final EditText editText, final Dialog dialog, final Handler handler, final int delayMillis) {
+    public static boolean closeKeyBoardSpecial(final EditText editText, final Dialog dialog, final Handler handler, final long delayMillis) {
         if (handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -300,7 +297,7 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final EditText editText, final Handler handler, final int delayMillis) {
+    public static boolean closeKeyboard(final EditText editText, final Handler handler, final long delayMillis) {
         if (editText != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -328,8 +325,8 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final Handler handler, final int delayMillis) {
-        if (DevUtils.getContext() != null && handler != null) {
+    public static boolean closeKeyboard(final Handler handler, final long delayMillis) {
+        if (handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -358,7 +355,7 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final Activity activity, final Handler handler, final int delayMillis) {
+    public static boolean closeKeyboard(final Activity activity, final Handler handler, final long delayMillis) {
         if (activity != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -388,7 +385,7 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final Dialog dialog, final Handler handler, final int delayMillis) {
+    public static boolean closeKeyboard(final Dialog dialog, final Handler handler, final long delayMillis) {
         if (dialog != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
