@@ -2,6 +2,7 @@ package dev.utils.app;
 
 import android.app.Activity;
 import android.app.KeyguardManager;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -19,6 +20,7 @@ import android.view.WindowManager;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -360,8 +362,17 @@ public final class ScreenUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLandscape() {
+        return isLandscape(DevUtils.getContext());
+    }
+
+    /**
+     * 判断是否横屏
+     * @param context {@link Context}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isLandscape(final Context context) {
         try {
-            return ResourceUtils.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+            return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isLandscape");
         }
@@ -373,8 +384,17 @@ public final class ScreenUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPortrait() {
+        return isPortrait(DevUtils.getContext());
+    }
+
+    /**
+     * 判断是否竖屏
+     * @param context {@link Context}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPortrait(final Context context) {
         try {
-            return ResourceUtils.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+            return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isPortrait");
         }
