@@ -253,10 +253,15 @@ public final class PathUtils {
      */
     public static String getExternalDocumentsPath() {
         if (!SDCardUtils.isSDCardEnable()) return null;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            return FileUtils.getAbsolutePath(Environment.getExternalStorageDirectory()) + "/Documents";
+        try {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+                return FileUtils.getAbsolutePath(Environment.getExternalStorageDirectory()) + "/Documents";
+            }
+            return FileUtils.getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getExternalDocumentsPath");
         }
-        return FileUtils.getAbsolutePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS));
+        return null;
     }
 
     /**

@@ -85,7 +85,10 @@ public final class NotificationUtils {
     // =
 
     /**
-     * 移除通知 - 移除所有通知 ( 只是针对当前 Context 下的 Notification)
+     * 移除通知 - 移除所有通知
+     * <pre>
+     *      只是针对当前 Context 下的所有 Notification
+     * </pre>
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cancelAll() {
@@ -101,7 +104,10 @@ public final class NotificationUtils {
     }
 
     /**
-     * 移除通知 - 移除标记为 id 的通知 ( 只是针对当前 Context 下的所有 Notification)
+     * 移除通知 - 移除标记为 id 的通知
+     * <pre>
+     *      只是针对当前 Context 下的所有 Notification
+     * </pre>
      * @param args 消息 id 集合
      * @return {@code true} success, {@code false} fail
      */
@@ -120,7 +126,10 @@ public final class NotificationUtils {
     }
 
     /**
-     * 移除通知 - 移除标记为 id 的通知 ( 只是针对当前 Context 下的所有 Notification)
+     * 移除通知 - 移除标记为 id 的通知
+     * <pre>
+     *      只是针对当前 Context 下的所有 Notification
+     * </pre>
      * @param tag 标记 TAG
      * @param id  消息 id
      * @return {@code true} success, {@code false} fail
@@ -191,9 +200,7 @@ public final class NotificationUtils {
      */
     public static PendingIntent createPendingIntent(final Intent intent, final int requestCode) {
         try {
-            // 跳转 Intent
-            PendingIntent pendingIntent = PendingIntent.getActivity(DevUtils.getContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            return pendingIntent;
+            return PendingIntent.getActivity(DevUtils.getContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "createPendingIntent");
         }
@@ -325,7 +332,7 @@ public final class NotificationUtils {
     public static class LightPattern {
 
         private int argb = 0; // 控制 LED 灯的颜色, 一般有红绿蓝三种颜色可选
-        private int startOffMS = 0; // 指定 LED 灯暗去的时长, 也是以毫秒为单位
+        private int startOffMS = 0; // 指定 LED 灯暗去的时长, 以毫秒为单位
         private int durationMS = 0; // 指定 LED 灯亮起的时长, 以毫秒为单位
 
         /**
