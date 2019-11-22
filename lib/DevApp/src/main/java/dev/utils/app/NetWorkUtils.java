@@ -55,7 +55,7 @@ public final class NetWorkUtils {
     public static boolean getMobileDataEnabled() {
         try {
             // 移动网络开关状态
-            boolean mState;
+            boolean state;
             // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
@@ -63,16 +63,15 @@ public final class NetWorkUtils {
                 // 反射获取方法
                 Method method = cManager.getClass().getMethod("getMobileDataEnabled");
                 // 调用方法, 获取状态
-                mState = (Boolean) method.invoke(cManager);
+                state = (Boolean) method.invoke(cManager);
             } else {
                 TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 反射获取方法
                 Method method = telephonyManager.getClass().getDeclaredMethod("getDataEnabled");
                 // 调用方法, 获取状态
-                mState = (Boolean) method.invoke(telephonyManager);
+                state = (Boolean) method.invoke(telephonyManager);
             }
-            // 返回移动网络开关状态
-            return mState;
+            return state;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMobileDataEnabled");
         }
@@ -80,7 +79,10 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 设置移动网络开关 ( 无判断是否已开启移动网络 ) - 实际无效果, 非系统应用无权限
+     * 设置移动网络开关 ( 无判断是否已开启移动网络 )
+     * <pre>
+     *     实际无效果, 非系统应用无权限需手动开启
+     * </pre>
      * @param isOpen 是否打开移动网络
      * @return {@code true} success, {@code false} fail
      */
@@ -92,7 +94,7 @@ public final class NetWorkUtils {
                 // 获取网络连接状态
                 ConnectivityManager cManager = AppUtils.getConnectivityManager();
                 // 通过反射设置移动网络
-                Method mMethod = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+                Method mMethod = cManager.getClass().getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
                 // 设置移动网络
                 mMethod.invoke(cManager, isOpen);
             } else { // 需要 android.Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 APP 无法获取
@@ -102,11 +104,11 @@ public final class NetWorkUtils {
                 // 设置移动网络
                 mMethod.invoke(telephonyManager, isOpen);
             }
+            return true;
         } catch (Exception e) { // 开启移动网络失败
             LogPrintUtils.eTag(TAG, e, "setMobileDataEnabled");
-            return false;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -115,8 +117,8 @@ public final class NetWorkUtils {
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isConnect() {
-        // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
+            // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
             ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
@@ -149,9 +151,8 @@ public final class NetWorkUtils {
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static int getConnectType() {
-        // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
-            // 获取网络连接状态
+            // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
             ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
@@ -214,6 +215,7 @@ public final class NetWorkUtils {
      */
     public enum NetworkType {
         NETWORK_WIFI,
+        NETWORK_5G,
         NETWORK_4G,
         NETWORK_3G,
         NETWORK_2G,
@@ -286,7 +288,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 获取活动网络信息
+     * 获取活动网络
      * @return {@link Network}
      */
     @RequiresApi(Build.VERSION_CODES.M)
@@ -399,18 +401,22 @@ public final class NetWorkUtils {
                             // = 4G 网络 =
                             case TelephonyManager.NETWORK_TYPE_LTE:
                             case TelephonyManager.NETWORK_TYPE_IWLAN:
-                                // case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
-                            case 19:
+                            case 19: // TelephonyManager.NETWORK_TYPE_LTE_CA
                                 netType = NetworkType.NETWORK_4G;
                                 break;
-                            default: // 其他判断
+                            // = 5G 网络 =
+                            case TelephonyManager.NETWORK_TYPE_NR:
+                                netType = NetworkType.NETWORK_5G;
+                                break;
+                            // = 其他判断 =
+                            default:
                                 try {
                                     // 判断子类名字
                                     String subtypeName = networkInfo.getSubtypeName();
                                     // = 3G 网络 =
                                     if (subtypeName.equalsIgnoreCase("TD-SCDMA")
-                                            || subtypeName.equalsIgnoreCase("WCDMA")
-                                            || subtypeName.equalsIgnoreCase("CDMA2000")) {
+                                        || subtypeName.equalsIgnoreCase("WCDMA")
+                                        || subtypeName.equalsIgnoreCase("CDMA2000")) {
                                         netType = NetworkType.NETWORK_3G;
                                     } else {
                                         netType = NetworkType.NETWORK_UNKNOWN;
@@ -454,6 +460,9 @@ public final class NetWorkUtils {
                             case 3: // 4G
                                 netType = NetworkType.NETWORK_4G;
                                 break;
+                            case 4: // 5G
+                                netType = NetworkType.NETWORK_5G;
+                                break;
                         }
                     }
                 }
@@ -470,7 +479,7 @@ public final class NetWorkUtils {
      *     {@link TelephonyManager#getNetworkClass} hide 方法
      * </pre>
      * @param networkType {@link TelephonyManager#getNetworkType}
-     * @return 0 = 未知, 1 = 2G, 2 = 3G, 3 = 4G
+     * @return 0 = 未知, 1 = 2G, 2 = 3G, 3 = 4G, 4 = 5G
      */
     public static int getNetworkClass(final int networkType) {
         switch (networkType) {
@@ -494,9 +503,10 @@ public final class NetWorkUtils {
                 return 2;
             case TelephonyManager.NETWORK_TYPE_LTE:
             case TelephonyManager.NETWORK_TYPE_IWLAN:
-                // case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
-            case 19:
+            case 19: // TelephonyManager.NETWORK_TYPE_LTE_CA
                 return 3;
+            case TelephonyManager.NETWORK_TYPE_NR:
+                return 4;
             default:
                 return 0;
         }
