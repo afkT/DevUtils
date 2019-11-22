@@ -64,9 +64,7 @@ public final class ShortCutUtils {
             ContentResolver resolver = context.getContentResolver();
             cursor = resolver.query(uri, new String[]{"title", "iconResource"}, "title=?", new String[]{name}, null);
             // 判断是否存在快捷方式
-            if (cursor != null && cursor.getCount() > 0) {
-                return true;
-            }
+            return (cursor != null && cursor.getCount() > 0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "hasShortcut");
         } finally {
@@ -85,10 +83,7 @@ public final class ShortCutUtils {
      * @return {@link Intent}
      */
     public static Intent getShortCutIntent(final Class clazz) {
-        if (clazz != null) {
-            return getShortCutIntent(clazz.getName());
-        }
-        return null;
+        return (clazz != null) ? getShortCutIntent(clazz.getName()) : null;
     }
 
     /**
@@ -121,10 +116,7 @@ public final class ShortCutUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean addShortcut(final Class clazz, final String name, @AnyRes final int icon) {
-        if (clazz != null) {
-            return addShortcut(clazz.getName(), name, icon);
-        }
-        return false;
+        return (clazz != null) ? addShortcut(clazz.getName(), name, icon) : false;
     }
 
     /**
@@ -228,10 +220,7 @@ public final class ShortCutUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean deleteShortcut(final Class clazz, final String name) {
-        if (clazz != null) {
-            return deleteShortcut(clazz.getName(), name);
-        }
-        return false;
+        return (clazz != null) ? deleteShortcut(clazz.getName(), name) : false;
     }
 
     /**
