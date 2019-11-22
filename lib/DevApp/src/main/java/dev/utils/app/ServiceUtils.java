@@ -36,12 +36,7 @@ public final class ServiceUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isServiceRunning(final Class<?> clazz) {
-        try {
-            return isServiceRunning(clazz.getName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isServiceRunning");
-        }
-        return false;
+        return (clazz != null) ? isServiceRunning(clazz.getName()) : false;
     }
 
     /**
@@ -52,9 +47,7 @@ public final class ServiceUtils {
     public static boolean isServiceRunning(final String className) {
         try {
             ActivityManager activityManager = AppUtils.getActivityManager();
-            if (activityManager == null) return false;
             List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
-            if (lists == null || lists.size() == 0) return false;
             for (RunningServiceInfo info : lists) {
                 if (className.equals(info.service.getClassName())) return true;
             }
@@ -72,11 +65,9 @@ public final class ServiceUtils {
      */
     public static Set getAllRunningService() {
         try {
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            if (activityManager == null) return Collections.emptySet();
-            List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
-            if (lists == null || lists.size() == 0) return null;
             Set<String> names = new HashSet<>();
+            ActivityManager activityManager = AppUtils.getActivityManager();
+            List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
             for (RunningServiceInfo info : lists) {
                 names.add(info.service.getClassName());
             }
