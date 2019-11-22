@@ -45,47 +45,6 @@ public final class LocationUtils {
     private static LocationManager sLocationManager;
 
     /**
-     * 获取位置, 需要先判断是否开启了定位
-     * @param listener {@link LocationListener}
-     * @param time     间隔时间
-     * @param distance 间隔距离
-     * @return {@link Location}
-     */
-    @SuppressLint("MissingPermission")
-    public static Location getLocation(final LocationListener listener, final long time, final float distance) {
-        Location location = null;
-        try {
-            sLocationManager = AppUtils.getLocationManager();
-            if (isLocationEnabled()) {
-                sLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, time, distance, listener);
-                if (sLocationManager != null) {
-                    location = sLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    if (location != null) {
-                        sLocationManager.removeUpdates(listener);
-                        return location;
-                    }
-                }
-            }
-            // when GPS is enabled.
-            if (isGpsEnabled()) {
-                if (location == null) {
-                    sLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, time, distance, listener);
-                    if (sLocationManager != null) {
-                        location = sLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if (location != null) {
-                            sLocationManager.removeUpdates(listener);
-                            return location;
-                        }
-                    }
-                }
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getLocation");
-        }
-        return location;
-    }
-
-    /**
      * 判断 GPS 是否可用
      * @return {@code true} yes, {@code false} no
      */
@@ -120,8 +79,7 @@ public final class LocationUtils {
     public static boolean openGpsSettings() {
         try {
             Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            AppUtils.startActivity(intent);
-            return true;
+            return AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openGpsSettings");
         }
@@ -143,10 +101,7 @@ public final class LocationUtils {
         if (listener == null) return false;
         try {
             sLocationManager = AppUtils.getLocationManager();
-            if (sLocationManager == null || (!sLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-                    && !sLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))) {
-                return false;
-            }
+            if (!isLocationEnabled()) return false;
             sListener = listener;
             String provider = sLocationManager.getBestProvider(getCriteria(), true);
             Location location = sLocationManager.getLastKnownLocation(provider);
@@ -183,6 +138,46 @@ public final class LocationUtils {
             LogPrintUtils.eTag(TAG, e, "unregister");
         }
         return false;
+    }
+
+    /**
+     * 获取位置 ( 需要先判断是否开启了定位 )
+     * @param listener {@link LocationListener}
+     * @param time     间隔时间
+     * @param distance 间隔距离
+     * @return {@link Location}
+     */
+    @SuppressLint("MissingPermission")
+    public static Location getLocation(final LocationListener listener, final long time, final float distance) {
+        Location location = null;
+        try {
+            sLocationManager = AppUtils.getLocationManager();
+            if (isLocationEnabled()) {
+                sLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, time, distance, listener);
+                if (sLocationManager != null) {
+                    location = sLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    if (location != null) {
+                        sLocationManager.removeUpdates(listener);
+                        return location;
+                    }
+                }
+            }
+            if (isGpsEnabled()) {
+                if (location == null) {
+                    sLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, time, distance, listener);
+                    if (sLocationManager != null) {
+                        location = sLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if (location != null) {
+                            sLocationManager.removeUpdates(listener);
+                            return location;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getLocation");
+        }
+        return location;
     }
 
     /**

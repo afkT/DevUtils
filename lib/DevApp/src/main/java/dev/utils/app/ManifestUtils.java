@@ -9,6 +9,7 @@ import android.content.pm.ProviderInfo;
 import android.content.pm.ServiceInfo;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: Android Manifest 工具类
@@ -28,12 +29,7 @@ public final class ManifestUtils {
      * @return Application meta Data
      */
     public static String getMetaData(final String metaKey) {
-        try {
-            return getMetaData(AppUtils.getPackageName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaData");
-        }
-        return null;
+        return getMetaData(AppUtils.getPackageName(), metaKey);
     }
 
     /**
@@ -61,12 +57,7 @@ public final class ManifestUtils {
      * @return Activity meta Data
      */
     public static String getMetaDataInActivity(final Class<?> clazz, final String metaKey) {
-        try {
-            return getMetaDataInActivity(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
-        }
-        return null;
+        return (clazz != null) ? getMetaDataInActivity(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
     /**
@@ -76,12 +67,7 @@ public final class ManifestUtils {
      * @return Activity meta Data
      */
     public static String getMetaDataInActivity(final String name, final String metaKey) {
-        try {
-            return getMetaDataInActivity(AppUtils.getPackageName(), name, metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
-        }
-        return null;
+        return getMetaDataInActivity(AppUtils.getPackageName(), name, metaKey);
     }
 
     /**
@@ -111,12 +97,7 @@ public final class ManifestUtils {
      * @return Service meta Data
      */
     public static String getMetaDataInService(final Class<?> clazz, final String metaKey) {
-        try {
-            return getMetaDataInService(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
-        }
-        return null;
+        return (clazz != null) ? getMetaDataInService(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
     /**
@@ -126,12 +107,7 @@ public final class ManifestUtils {
      * @return Service meta Data
      */
     public static String getMetaDataInService(final String name, final String metaKey) {
-        try {
-            return getMetaDataInService(AppUtils.getPackageName(), name, metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
-        }
-        return null;
+        return getMetaDataInService(AppUtils.getPackageName(), name, metaKey);
     }
 
     /**
@@ -161,12 +137,7 @@ public final class ManifestUtils {
      * @return Receiver meta Data
      */
     public static String getMetaDataInReceiver(final Class<?> clazz, final String metaKey) {
-        try {
-            return getMetaDataInReceiver(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
-        }
-        return null;
+        return (clazz != null) ? getMetaDataInReceiver(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
     /**
@@ -176,12 +147,7 @@ public final class ManifestUtils {
      * @return Receiver meta Data
      */
     public static String getMetaDataInReceiver(final String name, final String metaKey) {
-        try {
-            return getMetaDataInReceiver(AppUtils.getPackageName(), name, metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
-        }
-        return null;
+        return getMetaDataInReceiver(AppUtils.getPackageName(), name, metaKey);
     }
 
     /**
@@ -211,12 +177,7 @@ public final class ManifestUtils {
      * @return ContentProvider meta Data
      */
     public static String getMetaDataInProvider(final Class<?> clazz, final String metaKey) {
-        try {
-            return getMetaDataInProvider(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
-        }
-        return null;
+        return (clazz != null) ? getMetaDataInProvider(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
     /**
@@ -226,12 +187,7 @@ public final class ManifestUtils {
      * @return ContentProvider meta Data
      */
     public static String getMetaDataInProvider(final String name, final String metaKey) {
-        try {
-            return getMetaDataInProvider(AppUtils.getPackageName(), name, metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
-        }
-        return null;
+        return getMetaDataInProvider(AppUtils.getPackageName(), name, metaKey);
     }
 
     /**
@@ -305,7 +261,7 @@ public final class ManifestUtils {
      * @return APP versionCode
      */
     public static int getAppVersionCode(final String packageName) {
-        if (isSpace(packageName)) return -1;
+        if (StringUtils.isSpace(packageName)) return -1;
         try {
             PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? -1 : packageInfo.versionCode;
@@ -321,7 +277,7 @@ public final class ManifestUtils {
      * @return APP versionName
      */
     public static String getAppVersionName(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.versionName;
@@ -329,28 +285,5 @@ public final class ManifestUtils {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName - " + packageName);
             return null;
         }
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }
