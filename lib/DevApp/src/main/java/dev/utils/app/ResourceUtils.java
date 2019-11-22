@@ -533,12 +533,7 @@ public final class ResourceUtils {
      * @return 资源 id
      */
     public static int getIdentifier(final String resName, final String defType) {
-        try {
-            return getIdentifier(resName, defType, AppUtils.getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getIdentifier - " + resName + ": " + defType);
-        }
-        return 0;
+        return getIdentifier(resName, defType, AppUtils.getPackageName());
     }
 
     /**
@@ -552,7 +547,7 @@ public final class ResourceUtils {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, defType, packageName);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getIdentifier - " + packageName + " " + resName + ": " + defType);
+            LogPrintUtils.eTag(TAG, e, "getIdentifier - " + resName + " " + defType + ": " + packageName);
         }
         return 0;
     }

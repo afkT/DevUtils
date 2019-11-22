@@ -47,11 +47,9 @@ public final class ScreenUtils {
     public static DisplayMetrics getDisplayMetrics() {
         try {
             WindowManager windowManager = AppUtils.getWindowManager();
-            if (windowManager != null) {
-                DisplayMetrics displayMetrics = new DisplayMetrics();
-                windowManager.getDefaultDisplay().getMetrics(displayMetrics);
-                return displayMetrics;
-            }
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+            return displayMetrics;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDisplayMetrics");
         }
@@ -86,11 +84,10 @@ public final class ScreenUtils {
      */
     public static int[] getScreenWidthHeight() {
         try {
+//            DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
+//            return new int[]{displayMetrics.widthPixels, displayMetrics.heightPixels};
+
             WindowManager windowManager = AppUtils.getWindowManager();
-            if (windowManager == null) {
-                DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
-                return new int[]{displayMetrics.widthPixels, displayMetrics.heightPixels};
-            }
             Point point = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 windowManager.getDefaultDisplay().getRealSize(point);
@@ -110,13 +107,10 @@ public final class ScreenUtils {
      */
     public static Point getScreenWidthHeightToPoint() {
         try {
+//            DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
+//            return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
+
             WindowManager windowManager = AppUtils.getWindowManager();
-            if (windowManager == null) {
-                DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
-                if (displayMetrics != null) {
-                    return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
-                }
-            }
             Point point = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 windowManager.getDefaultDisplay().getRealSize(point);
@@ -146,15 +140,10 @@ public final class ScreenUtils {
      * @return 屏幕分辨率
      */
     public static String getScreenSize(final String symbol) {
-        try {
-            // 获取分辨率
-            int[] widthHeight = getScreenWidthHeight();
-            // 返回分辨率信息
-            return widthHeight[1] + symbol + widthHeight[0];
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getScreenSize");
-        }
-        return "unknown";
+        // 获取分辨率
+        int[] widthHeight = getScreenWidthHeight();
+        // 返回分辨率信息
+        return widthHeight[1] + symbol + widthHeight[0];
     }
 
     /**
@@ -188,16 +177,9 @@ public final class ScreenUtils {
      * @return 屏幕密度
      */
     public static float getDensity() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                // 屏幕密度, 如 (0.75 / 1.0 / 1.5 / 2.0)
-                return displayMetrics.density;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDensity");
-        }
-        return 0;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        // 屏幕密度, 如 (0.75 / 1.0 / 1.5 / 2.0)
+        return (displayMetrics != null) ? displayMetrics.density : 0f;
     }
 
     /**
@@ -205,16 +187,9 @@ public final class ScreenUtils {
      * @return 屏幕密度 dpi
      */
     public static int getDensityDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                // 屏幕密度 DPI, 如 (120 / 160 / 240 / 320)
-                return displayMetrics.densityDpi;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDensityDpi");
-        }
-        return 0;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        // 屏幕密度 DPI, 如 (120 / 160 / 240 / 320)
+        return (displayMetrics != null) ? displayMetrics.densityDpi : 0;
     }
 
     /**
@@ -222,15 +197,8 @@ public final class ScreenUtils {
      * @return 屏幕缩放密度
      */
     public static float getScaledDensity() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.scaledDensity;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getScaledDensity");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? displayMetrics.scaledDensity : 0f;
     }
 
     /**
@@ -238,15 +206,8 @@ public final class ScreenUtils {
      * @return X 轴 dpi
      */
     public static float getXDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.xdpi;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getXDpi");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? displayMetrics.xdpi : 0f;
     }
 
     /**
@@ -254,15 +215,8 @@ public final class ScreenUtils {
      * @return Y 轴 dpi
      */
     public static float getYDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.ydpi;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getYDpi");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? displayMetrics.ydpi : 0f;
     }
 
     /**
@@ -270,15 +224,8 @@ public final class ScreenUtils {
      * @return 宽度比例 dpi 基准
      */
     public static float getWidthDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.widthPixels / displayMetrics.density;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getWidthDpi");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? (displayMetrics.widthPixels / displayMetrics.density) : 0f;
     }
 
     /**
@@ -286,15 +233,8 @@ public final class ScreenUtils {
      * @return 高度比例 dpi 基准
      */
     public static float getHeightDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.heightPixels / displayMetrics.density;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getHeightDpi");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? (displayMetrics.heightPixels / displayMetrics.density) : 0f;
     }
 
     /**
