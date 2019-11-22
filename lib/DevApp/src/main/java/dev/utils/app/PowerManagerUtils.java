@@ -83,17 +83,13 @@ public final class PowerManagerUtils {
     }
 
     /**
-     * 释放屏幕锁, 允许休眠时间自动黑屏
+     * 释放屏幕锁 ( 允许休眠时间自动黑屏 )
      * @return {@code true} success, {@code false} fail
      */
     public boolean turnScreenOff() {
         if (mWakeLock != null && mWakeLock.isHeld()) {
-            try {
-                mWakeLock.release();
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "turnScreenOff");
-            }
+            mWakeLock.release();
+            return true;
         }
         return false;
     }
@@ -109,9 +105,11 @@ public final class PowerManagerUtils {
     /**
      * 设置 PowerManager.WakeLock
      * @param wakeLock {@link PowerManager.WakeLock}
+     * @return {@link PowerManagerUtils}
      */
-    public void setWakeLock(final PowerManager.WakeLock wakeLock) {
+    public PowerManagerUtils setWakeLock(final PowerManager.WakeLock wakeLock) {
         this.mWakeLock = wakeLock;
+        return this;
     }
 
     /**
@@ -125,9 +123,11 @@ public final class PowerManagerUtils {
     /**
      * 设置 PowerManager
      * @param powerManager {@link PowerManager}
+     * @return {@link PowerManagerUtils}
      */
-    public void setPowerManager(final PowerManager powerManager) {
+    public PowerManagerUtils setPowerManager(final PowerManager powerManager) {
         this.mPowerManager = powerManager;
+        return this;
     }
 
     /**
