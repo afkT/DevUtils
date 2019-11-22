@@ -178,7 +178,7 @@ public final class PhoneUtils {
                 // zh_CN Locale.SIMPLIFIED_CHINESE
                 // 截取前面两位属于 zh 表示属于中国
                 String country = countryCode.substring(0, 2);
-                // 如果属于 ch 表示属于国内
+                // 如果属于 cn 表示属于国内
                 if (country.toLowerCase().equals("cn")) {
                     return 1;
                 } else {
@@ -530,10 +530,13 @@ public final class PhoneUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean dial(final String phoneNumber) {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
-        if (isIntentAvailable(intent)) {
-            AppUtils.startActivity(intent);
-            return true;
+        try {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+            if (IntentUtils.isIntentAvailable(intent)) {
+                return AppUtils.startActivity(intent);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "dial");
         }
         return false;
     }
@@ -545,10 +548,13 @@ public final class PhoneUtils {
      */
     @RequiresPermission(android.Manifest.permission.CALL_PHONE)
     public static boolean call(final String phoneNumber) {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
-        if (isIntentAvailable(intent)) {
-            AppUtils.startActivity(intent);
-            return true;
+        try {
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+            if (IntentUtils.isIntentAvailable(intent)) {
+                return AppUtils.startActivity(intent);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "call");
         }
         return false;
     }
@@ -560,12 +566,14 @@ public final class PhoneUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean sendSms(final String phoneNumber, final String content) {
-        Uri uri = Uri.parse("smsto:" + phoneNumber);
-        Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
-        if (isIntentAvailable(intent)) {
-            intent.putExtra("sms_body", content);
-            AppUtils.startActivity(intent);
-            return true;
+        try {
+            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneNumber));
+            if (IntentUtils.isIntentAvailable(intent)) {
+                intent.putExtra("sms_body", content);
+                return AppUtils.startActivity(intent);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "sendSms");
         }
         return false;
     }
@@ -986,28 +994,5 @@ public final class PhoneUtils {
             LogPrintUtils.eTag(TAG, e, "getSpreadtrumTeleInfo");
         }
         return teleInfo;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = IntentUtils =
-    // ===============
-
-    /**
-     * 判断 Intent 是否可用
-     * @param intent {@link Intent}
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isIntentAvailable(final Intent intent) {
-        if (intent == null) return false;
-        try {
-            return AppUtils.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isIntentAvailable");
-        }
-        return false;
     }
 }
