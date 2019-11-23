@@ -3,7 +3,6 @@ package dev.utils.app;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 
 import dev.utils.LogPrintUtils;
 
@@ -34,12 +33,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float dipConvertPxf(final float dpValue) {
-        try {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, ResourceUtils.getDisplayMetrics());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "dipConvertPxf");
-        }
-        return 0f;
+        return applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, ResourceUtils.getDisplayMetrics());
     }
 
     // =
@@ -85,12 +79,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float spConvertPxf(final float spValue) {
-        try {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, ResourceUtils.getDisplayMetrics());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "spConvertPxf");
-        }
-        return 0f;
+        return applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, ResourceUtils.getDisplayMetrics());
     }
 
     // =
@@ -128,12 +117,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float applyDimension(final int unit, final float value) {
-        try {
-            return applyDimension(unit, value, ResourceUtils.getDisplayMetrics());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "applyDimension");
-        }
-        return 0f;
+        return applyDimension(unit, value, ResourceUtils.getDisplayMetrics());
     }
 
     /**
@@ -196,10 +180,6 @@ public final class SizeUtils {
         void onGetSize(View view);
     }
 
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
     // =============
     // = ViewUtils =
     // =============
@@ -210,27 +190,7 @@ public final class SizeUtils {
      * @return int[] 0 = 宽度, 1 = 高度
      */
     public static int[] measureView(final View view) {
-        if (view != null) {
-            try {
-                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                if (layoutParams == null) {
-                    layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                }
-                int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
-                int height = layoutParams.height;
-                int heightSpec;
-                if (height > 0) {
-                    heightSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
-                } else {
-                    heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-                }
-                view.measure(widthSpec, heightSpec);
-                return new int[]{view.getMeasuredWidth(), view.getMeasuredHeight()};
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "measureView");
-            }
-        }
-        return new int[]{0, 0};
+        return ViewUtils.measureView(view);
     }
 
     /**
@@ -239,11 +199,7 @@ public final class SizeUtils {
      * @return View 的宽度
      */
     public static int getMeasuredWidth(final View view) {
-        if (view != null) {
-            measureView(view);
-            return view.getMeasuredWidth();
-        }
-        return 0;
+        return ViewUtils.getMeasuredWidth(view);
     }
 
     /**
@@ -252,10 +208,6 @@ public final class SizeUtils {
      * @return View 的高度
      */
     public static int getMeasuredHeight(final View view) {
-        if (view != null) {
-            measureView(view);
-            return view.getMeasuredHeight();
-        }
-        return 0;
+        return ViewUtils.getMeasuredHeight(view);
     }
 }

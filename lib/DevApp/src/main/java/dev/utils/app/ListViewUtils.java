@@ -339,10 +339,6 @@ public final class ListViewUtils {
         return view;
     }
 
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
     // =============
     // = ViewUtils =
     // =============
@@ -358,8 +354,7 @@ public final class ListViewUtils {
      * @return {@link View}
      */
     public static View scrollTo(final View view, final int x, final int y) {
-        if (view != null) view.scrollTo(x, y);
-        return view;
+        return ViewUtils.scrollTo(view, x, y);
     }
 
     /**
@@ -373,8 +368,7 @@ public final class ListViewUtils {
      * @return {@link View}
      */
     public static View scrollBy(final View view, final int x, final int y) {
-        if (view != null) view.scrollBy(x, y);
-        return view;
+        return ViewUtils.scrollBy(view, x, y);
     }
 
     /**
@@ -384,8 +378,7 @@ public final class ListViewUtils {
      * @return {@link View}
      */
     public static View setScrollX(final View view, final int value) {
-        if (view != null) view.setScrollX(value);
-        return view;
+        return ViewUtils.setScrollX(view, value);
     }
 
     /**
@@ -395,8 +388,7 @@ public final class ListViewUtils {
      * @return {@link View}
      */
     public static View setScrollY(final View view, final int value) {
-        if (view != null) view.setScrollY(value);
-        return view;
+        return ViewUtils.setScrollY(view, value);
     }
 
     /**
@@ -405,7 +397,7 @@ public final class ListViewUtils {
      * @return 滑动的 X 轴坐标
      */
     public static int getScrollX(final View view) {
-        return view != null ? view.getScrollX() : 0;
+        return ViewUtils.getScrollX(view);
     }
 
     /**
@@ -414,7 +406,7 @@ public final class ListViewUtils {
      * @return 滑动的 Y 轴坐标
      */
     public static int getScrollY(final View view) {
-        return view != null ? view.getScrollY() : 0;
+        return ViewUtils.getScrollY(view);
     }
 
     // =
@@ -433,12 +425,7 @@ public final class ListViewUtils {
      * @return {@link ViewGroup}
      */
     public static <T extends ViewGroup> T setDescendantFocusability(final T view, final int focusability) {
-        try {
-            if (view != null) view.setDescendantFocusability(focusability);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setDescendantFocusability");
-        }
-        return view;
+        return ViewUtils.setDescendantFocusability(view, focusability);
     }
 
     /**
@@ -453,11 +440,6 @@ public final class ListViewUtils {
      * @return {@link View}
      */
     public static <T extends View> T setOverScrollMode(final T view, final int overScrollMode) {
-        try {
-            if (view != null) view.setOverScrollMode(overScrollMode);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setOverScrollMode");
-        }
-        return view;
+        return ViewUtils.setOverScrollMode(view, overScrollMode);
     }
 }
