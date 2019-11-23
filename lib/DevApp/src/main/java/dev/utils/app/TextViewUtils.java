@@ -218,7 +218,7 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setHint(final T textView, final String text) {
+    public static <T extends TextView> T setHint(final T textView, final CharSequence text) {
         if (textView != null) {
             textView.setHint(text);
         }
@@ -231,7 +231,7 @@ public final class TextViewUtils {
      * @param text Hint text
      * @return {@link View}
      */
-    public static View setHint(final View view, final String text) {
+    public static View setHint(final View view, final CharSequence text) {
         setHint(getTextView(view), text);
         return view;
     }
@@ -243,7 +243,7 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setText(final T textView, final String text) {
+    public static <T extends TextView> T setText(final T textView, final CharSequence text) {
         if (textView != null) {
             textView.setText(text);
         }
@@ -256,7 +256,7 @@ public final class TextViewUtils {
      * @param text TextView text
      * @return {@link View}
      */
-    public static View setText(final View view, final String text) {
+    public static View setText(final View view, final CharSequence text) {
         setText(getTextView(view), text);
         return view;
     }
@@ -269,7 +269,7 @@ public final class TextViewUtils {
      * @param views View(TextView)[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setTexts(final String text, final View... views) {
+    public static boolean setTexts(final CharSequence text, final View... views) {
         if (views != null) {
             for (View view : views) {
                 setText(view, text);
@@ -286,7 +286,7 @@ public final class TextViewUtils {
      * @param <T>   泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> boolean setTexts(final String text, final T... views) {
+    public static <T extends TextView> boolean setTexts(final CharSequence text, final T... views) {
         if (views != null) {
             for (T view : views) {
                 setText(view, text);
@@ -1637,7 +1637,7 @@ public final class TextViewUtils {
      * @param <T>       泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setMaxLengthAndText(final T textView, final String content, final int maxLength) {
+    public static <T extends TextView> T setMaxLengthAndText(final T textView, final CharSequence content, final int maxLength) {
         setText(setMaxLength(textView, maxLength), content);
         return textView;
     }
@@ -1649,7 +1649,7 @@ public final class TextViewUtils {
      * @param maxLength 长度限制
      * @return {@link View}
      */
-    public static View setMaxLengthAndText(final View view, final String content, final int maxLength) {
+    public static View setMaxLengthAndText(final View view, final CharSequence content, final int maxLength) {
         return setText(setMaxLength(view, maxLength), content);
     }
 
