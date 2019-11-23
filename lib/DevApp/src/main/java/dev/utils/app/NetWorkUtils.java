@@ -415,8 +415,8 @@ public final class NetWorkUtils {
                                     String subtypeName = networkInfo.getSubtypeName();
                                     // = 3G 网络 =
                                     if (subtypeName.equalsIgnoreCase("TD-SCDMA")
-                                        || subtypeName.equalsIgnoreCase("WCDMA")
-                                        || subtypeName.equalsIgnoreCase("CDMA2000")) {
+                                            || subtypeName.equalsIgnoreCase("WCDMA")
+                                            || subtypeName.equalsIgnoreCase("CDMA2000")) {
                                         netType = NetworkType.NETWORK_3G;
                                     } else {
                                         netType = NetworkType.NETWORK_UNKNOWN;

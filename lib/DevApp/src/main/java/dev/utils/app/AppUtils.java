@@ -263,7 +263,7 @@ public final class AppUtils {
     /**
      * 获取 ApplicationInfo
      * @param packageName 应用包名
-     * @param flags application flags
+     * @param flags       application flags
      * @return {@link ApplicationInfo}
      */
     public static ApplicationInfo getApplicationInfo(final String packageName, final int flags) {
@@ -287,7 +287,7 @@ public final class AppUtils {
     /**
      * 获取 PackageInfo
      * @param packageName 应用包名
-     * @param flags package flags
+     * @param flags       package flags
      * @return {@link ApplicationInfo}
      */
     public static PackageInfo getPackageInfo(final String packageName, final int flags) {
@@ -772,7 +772,7 @@ public final class AppUtils {
     /**
      * 注册广播监听
      * @param receiver {@linkBroadcastReceiver}
-     * @param filter {@link IntentFilter}
+     * @param filter   {@link IntentFilter}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean registerReceiver(final BroadcastReceiver receiver, final IntentFilter filter) {

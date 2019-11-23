@@ -1076,7 +1076,7 @@ public final class DevHelper {
     /**
      * 设置触摸事件
      * @param onTouchListener {@link View.OnTouchListener}
-     * @param views               View 数组
+     * @param views           View 数组
      * @return {@link DevHelper}
      */
     public DevHelper setOnTouchs(final View.OnTouchListener onTouchListener, final View... views) {

@@ -117,7 +117,7 @@ public final class SDCardUtils {
             Method getVolumePathsMethod = StorageManager.class.getMethod("getVolumePaths");
             getVolumePathsMethod.setAccessible(true);
             Object invoke = getVolumePathsMethod.invoke(storageManager);
-             return new ArrayList<>(Arrays.asList((String[]) invoke));
+            return new ArrayList<>(Arrays.asList((String[]) invoke));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSDCardPaths");
         }

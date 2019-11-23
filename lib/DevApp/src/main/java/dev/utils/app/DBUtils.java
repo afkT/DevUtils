@@ -51,7 +51,7 @@ public final class DBUtils {
      * 导出数据库
      * @param targetFile 目标文件
      * @param dbName     数据库名
-     * @param overlay      如果目标文件存在, 是否覆盖
+     * @param overlay    如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startExportDatabase(final String targetFile, final String dbName, final boolean overlay) {

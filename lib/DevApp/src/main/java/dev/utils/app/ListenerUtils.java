@@ -213,9 +213,9 @@ public final class ListenerUtils {
 
     /**
      * 设置触摸事件
-     * @param view                {@link View}
+     * @param view            {@link View}
      * @param onTouchListener {@link View.OnTouchListener}
-     * @param viewIds             View id 数组
+     * @param viewIds         View id 数组
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnTouchs(final View view, final View.OnTouchListener onTouchListener, @IdRes final int... viewIds) {
@@ -233,9 +233,9 @@ public final class ListenerUtils {
 
     /**
      * 设置触摸事件
-     * @param activity            {@link Activity}
+     * @param activity        {@link Activity}
      * @param onTouchListener {@link View.OnTouchListener}
-     * @param viewIds             View id 数组
+     * @param viewIds         View id 数组
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnTouchs(final Activity activity, final View.OnTouchListener onTouchListener, @IdRes final int... viewIds) {
@@ -254,7 +254,7 @@ public final class ListenerUtils {
     /**
      * 设置触摸事件
      * @param onTouchListener {@link View.OnTouchListener}
-     * @param views               View 数组
+     * @param views           View 数组
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnTouchs(final View.OnTouchListener onTouchListener, final View... views) {

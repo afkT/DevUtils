@@ -9,7 +9,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.view.View;
 
 import dev.DevUtils;
@@ -49,7 +48,7 @@ public final class ShapeUtils {
     /**
      * 设置 Drawable 背景
      * @param view {@link View}
-     * @param <T>       泛型
+     * @param <T>  泛型
      * @return {@link View}
      */
     public <T extends View> T setDrawable(final T view) {
