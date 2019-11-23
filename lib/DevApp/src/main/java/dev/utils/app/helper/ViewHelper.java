@@ -2304,6 +2304,7 @@ public final class ViewHelper {
      * <pre>
      *     CompoundDrawable 的大小控制是通过 drawable.setBounds() 控制
      *     需要先设置 Drawable 的 setBounds
+     *     {@link dev.utils.app.image.ImageUtils#setBounds}
      * </pre>
      * @param textView {@link TextView}
      * @param left     left Drawable
