@@ -707,7 +707,7 @@ public final class DateUtils {
             String[] timeSplit = time.split(":");
             if (timeSplit != null && timeSplit.length == 2) {
                 // 转换小时
-                int hour = toInt(timeSplit[0], -1);
+                int hour = ConvertUtils.toInt(timeSplit[0], -1);
                 // 判断是否小于 0
                 if (hour < 0) {
                     return -1;
@@ -722,7 +722,7 @@ public final class DateUtils {
                     case 1:
                     case 2:
                         // 转换分钟
-                        int minute = toInt(timeSplit[1], -1);
+                        int minute = ConvertUtils.toInt(timeSplit[1], -1);
                         // 判断是否小于 0
                         if (minute < 0) {
                             return -1;
@@ -1104,29 +1104,5 @@ public final class DateUtils {
             JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
         }
         return -1;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ================
-    // = ConvertUtils =
-    // ================
-
-    /**
-     * 字符串 转 int
-     * @param str          String
-     * @param defaultValue 默认值
-     * @return int 如果转换失败, 则返回 defaultValue
-     */
-    private static int toInt(final String str, final int defaultValue) {
-        if (str == null) return defaultValue;
-        try {
-            return Integer.parseInt(str);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toInt");
-        }
-        return defaultValue;
     }
 }

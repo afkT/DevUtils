@@ -1,8 +1,6 @@
 package dev.utils.common;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Collection;
@@ -31,7 +29,7 @@ public final class CloneUtils {
      */
     public static <T> T deepClone(final Serializable data) {
         if (data == null) return null;
-        return (T) bytesToObject(serializableToBytes(data));
+        return (T) ConvertUtils.bytesToObject(serializableToBytes(data));
     }
 
     /**
@@ -79,7 +77,7 @@ public final class CloneUtils {
                     // 获取 key
                     K key = entry.getKey();
                     // 克隆对象
-                    V cloneObj = (V) bytesToObject(serializableToBytes((Serializable) entry.getValue()));
+                    V cloneObj = (V) ConvertUtils.bytesToObject(serializableToBytes((Serializable) entry.getValue()));
                     if (cloneObj != null) {
                         // 保存到集合
                         map.put(key, cloneObj);
@@ -106,7 +104,7 @@ public final class CloneUtils {
             while (iterator.hasNext()) {
                 try {
                     // 克隆对象
-                    T cloneObj = (T) bytesToObject(serializableToBytes((Serializable) iterator.next()));
+                    T cloneObj = (T) ConvertUtils.bytesToObject(serializableToBytes((Serializable) iterator.next()));
                     if (cloneObj != null) {
                         collection.add(cloneObj);
                     }
@@ -117,37 +115,5 @@ public final class CloneUtils {
             return true;
         }
         return false;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ================
-    // = ConvertUtils =
-    // ================
-
-    /**
-     * byte[] 转为 Object
-     * @param bytes byte[]
-     * @return {@link Object}
-     */
-    private static Object bytesToObject(final byte[] bytes) {
-        if (bytes == null) return null;
-        ObjectInputStream ois = null;
-        try {
-            ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
-            return ois.readObject();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "bytesToObject");
-        } finally {
-            if (ois != null) {
-                try {
-                    ois.close();
-                } catch (Exception e) {
-                }
-            }
-        }
-        return null;
     }
 }

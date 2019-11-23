@@ -31,7 +31,7 @@ public final class FieldUtils {
      * @return {@link Field}
      */
     public static Field getField(final Object object, final String name) {
-        return getField(getClass(object), name);
+        return getField(ClassUtils.getClass(object), name);
     }
 
     /**
@@ -63,7 +63,7 @@ public final class FieldUtils {
      * @return {@link Field}
      */
     public static Field getDeclaredField(final Object object, final String name) {
-        return getDeclaredField(getClass(object), name);
+        return getDeclaredField(ClassUtils.getClass(object), name);
     }
 
     /**
@@ -94,7 +94,7 @@ public final class FieldUtils {
      * @return Field[]
      */
     public static Field[] getFields(final Object object) {
-        return getFields(getClass(object));
+        return getFields(ClassUtils.getClass(object));
     }
 
     /**
@@ -124,7 +124,7 @@ public final class FieldUtils {
      * @return Field[]
      */
     public static Field[] getDeclaredFields(final Object object) {
-        return getDeclaredFields(getClass(object));
+        return getDeclaredFields(ClassUtils.getClass(object));
     }
 
     /**
@@ -397,22 +397,5 @@ public final class FieldUtils {
             JCLogUtils.eTag(TAG, e, "getAllDeclaredFields");
         }
         return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ==============
-    // = ClassUtils =
-    // ==============
-
-    /**
-     * 获取 Object Class
-     * @param object {@link Object}
-     * @return Object Class
-     */
-    private static Class getClass(final Object object) {
-        return (object != null) ? object.getClass() : null;
     }
 }

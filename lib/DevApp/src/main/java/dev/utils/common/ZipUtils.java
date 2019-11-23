@@ -2,7 +2,6 @@ package dev.utils.common;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -57,13 +56,13 @@ public final class ZipUtils {
         try {
             zos = new ZipOutputStream(new FileOutputStream(zipFilePath));
             for (String resFile : resFilePaths) {
-                if (!zipFile(getFileByPath(resFile), "", zos, comment)) return false;
+                if (!zipFile(FileUtils.getFileByPath(resFile), "", zos, comment)) return false;
             }
             return true;
         } finally {
             if (zos != null) {
                 zos.finish();
-                closeIOQuietly(zos);
+                CloseUtils.closeIOQuietly(zos);
             }
         }
     }
@@ -99,7 +98,7 @@ public final class ZipUtils {
         } finally {
             if (zos != null) {
                 zos.finish();
-                closeIOQuietly(zos);
+                CloseUtils.closeIOQuietly(zos);
             }
         }
     }
@@ -112,7 +111,7 @@ public final class ZipUtils {
      * @throws Exception 异常时抛出
      */
     public static boolean zipFile(final String resFilePath, final String zipFilePath) throws Exception {
-        return zipFile(getFileByPath(resFilePath), getFileByPath(zipFilePath), null);
+        return zipFile(FileUtils.getFileByPath(resFilePath), FileUtils.getFileByPath(zipFilePath), null);
     }
 
     /**
@@ -124,7 +123,7 @@ public final class ZipUtils {
      * @throws Exception 异常时抛出
      */
     public static boolean zipFile(final String resFilePath, final String zipFilePath, final String comment) throws Exception {
-        return zipFile(getFileByPath(resFilePath), getFileByPath(zipFilePath), comment);
+        return zipFile(FileUtils.getFileByPath(resFilePath), FileUtils.getFileByPath(zipFilePath), comment);
     }
 
     /**
@@ -154,7 +153,7 @@ public final class ZipUtils {
             return zipFile(resFile, "", zos, comment);
         } finally {
             if (zos != null) {
-                closeIOQuietly(zos);
+                CloseUtils.closeIOQuietly(zos);
             }
         }
     }
@@ -170,7 +169,7 @@ public final class ZipUtils {
      */
     private static boolean zipFile(final File resFile, final String rootPath, final ZipOutputStream zos, final String comment) throws Exception {
         // 处理后的文件路径
-        String filePath = rootPath + (isSpace(rootPath) ? "" : File.separator) + resFile.getName();
+        String filePath = rootPath + (StringUtils.isSpace(rootPath) ? "" : File.separator) + resFile.getName();
         if (resFile.isDirectory()) {
             File[] fileList = resFile.listFiles();
             // 如果是空文件夹那么创建它
@@ -199,7 +198,7 @@ public final class ZipUtils {
                 }
                 zos.closeEntry();
             } finally {
-                closeIOQuietly(is);
+                CloseUtils.closeIOQuietly(is);
             }
         }
         return true;
@@ -236,7 +235,7 @@ public final class ZipUtils {
      * @throws Exception 异常时抛出
      */
     public static List<File> unzipFileByKeyword(final String zipFilePath, final String destDirPath, final String keyword) throws Exception {
-        return unzipFileByKeyword(getFileByPath(zipFilePath), getFileByPath(destDirPath), keyword);
+        return unzipFileByKeyword(FileUtils.getFileByPath(zipFilePath), FileUtils.getFileByPath(destDirPath), keyword);
     }
 
     /**
@@ -252,7 +251,7 @@ public final class ZipUtils {
         List<File> files = new ArrayList<>();
         ZipFile zip = new ZipFile(zipFile);
         Enumeration<?> entries = zip.entries();
-        if (isSpace(keyword)) {
+        if (StringUtils.isSpace(keyword)) {
             while (entries.hasMoreElements()) {
                 ZipEntry entry = ((ZipEntry) entries.nextElement());
                 String entryName = entry.getName();
@@ -293,9 +292,9 @@ public final class ZipUtils {
         File file = new File(destDir, entryName);
         files.add(file);
         if (entry.isDirectory()) {
-            return createOrExistsDir(file);
+            return FileUtils.createOrExistsDir(file);
         } else {
-            if (!createOrExistsFile(file)) return false;
+            if (!FileUtils.createOrExistsFile(file)) return false;
             InputStream is = null;
             OutputStream os = null;
             try {
@@ -307,7 +306,7 @@ public final class ZipUtils {
                     os.write(buffer, 0, len);
                 }
             } finally {
-                closeIOQuietly(is, os);
+                CloseUtils.closeIOQuietly(is, os);
             }
         }
         return true;
@@ -320,7 +319,7 @@ public final class ZipUtils {
      * @throws Exception 异常时抛出
      */
     public static List<String> getFilesPath(final String zipFilePath) throws Exception {
-        return getFilesPath(getFileByPath(zipFilePath));
+        return getFilesPath(FileUtils.getFileByPath(zipFilePath));
     }
 
     /**
@@ -352,7 +351,7 @@ public final class ZipUtils {
      * @throws Exception 异常时抛出
      */
     public static List<String> getComments(final String zipFilePath) throws Exception {
-        return getComments(getFileByPath(zipFilePath));
+        return getComments(FileUtils.getFileByPath(zipFilePath));
     }
 
     /**
@@ -370,91 +369,5 @@ public final class ZipUtils {
             comments.add(entry.getComment());
         }
         return comments;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ==============
-    // = CloseUtils =
-    // ==============
-
-    /**
-     * 安静关闭 IO
-     * @param closeables Closeable[]
-     */
-    private static void closeIOQuietly(final Closeable... closeables) {
-        if (closeables == null) return;
-        for (Closeable closeable : closeables) {
-            if (closeable != null) {
-                try {
-                    closeable.close();
-                } catch (Exception ignore) {
-                }
-            }
-        }
-    }
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
-
-    /**
-     * 判断目录是否存在, 不存在则判断是否创建成功
-     * @param file 文件
-     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
-     */
-    private static boolean createOrExistsDir(final File file) {
-        // 如果存在, 是目录则返回 true, 是文件则返回 false, 不存在则返回是否创建成功
-        return file != null && (file.exists() ? file.isDirectory() : file.mkdirs());
-    }
-
-    /**
-     * 判断文件是否存在, 不存在则判断是否创建成功
-     * @param file 文件
-     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
-     */
-    private static boolean createOrExistsFile(final File file) {
-        if (file == null) return false;
-        // 如果存在, 是文件则返回 true, 是目录则返回 false
-        if (file.exists()) return file.isFile();
-        // 判断文件是否存在, 不存在则直接返回
-        if (!createOrExistsDir(file.getParentFile())) return false;
-        try {
-            // 存在, 则返回新的路径
-            return file.createNewFile();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "createOrExistsFile");
-            return false;
-        }
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }
