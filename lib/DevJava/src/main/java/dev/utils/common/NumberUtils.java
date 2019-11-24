@@ -1,9 +1,9 @@
 package dev.utils.common;
 
 import java.math.BigDecimal;
-import java.util.regex.Pattern;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.validator.ValidatorUtils;
 
 /**
  * detail: 数字 ( 计算 ) 工具类
@@ -945,31 +945,9 @@ public final class NumberUtils {
         return builder.toString();
     }
 
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
-    }
-
     // ==================
     // = ValidatorUtils =
     // ==================
-
-    // 正则表达式: 验证数字
-    private static final String REGEX_NUMBER = "^[0-9]*$";
-    // 正则表达式: 验证数字或包含小数点
-    private static final String REGEX_NUMBER_OR_DECIMAL = "^[0-9]*[.]?[0-9]*$";
 
     /**
      * 检验数字
@@ -977,7 +955,7 @@ public final class NumberUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumber(final String str) {
-        return match(REGEX_NUMBER, str);
+        return ValidatorUtils.isNumber(str);
     }
 
     /**
@@ -986,23 +964,6 @@ public final class NumberUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumberDecimal(final String str) {
-        return match(REGEX_NUMBER_OR_DECIMAL, str);
-    }
-
-    /**
-     * 通用匹配函数
-     * @param regex 正则表达式
-     * @param input 待校验的字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean match(final String regex, final String input) {
-        if (!isEmpty(input)) {
-            try {
-                return Pattern.matches(regex, input);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "match");
-            }
-        }
-        return false;
+        return ValidatorUtils.isNumberDecimal(str);
     }
 }

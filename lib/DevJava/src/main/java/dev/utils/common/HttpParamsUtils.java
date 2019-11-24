@@ -200,10 +200,6 @@ public final class HttpParamsUtils {
         return false;
     }
 
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
     // ===============
     // = StringUtils =
     // ===============
@@ -214,7 +210,7 @@ public final class HttpParamsUtils {
      * @return UTF-8 编码格式 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str) {
-        return toUrlEncode(str, "UTF-8");
+        return StringUtils.toUrlEncode(str);
     }
 
     /**
@@ -224,12 +220,6 @@ public final class HttpParamsUtils {
      * @return 指定编码格式 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str, final String enc) {
-        if (str == null || enc == null) return null;
-        try {
-            return URLEncoder.encode(str, enc);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toUrlEncode");
-        }
-        return null;
+        return StringUtils.toUrlEncode(str, enc);
     }
 }

@@ -1,6 +1,5 @@
 package dev.utils.common;
 
-import dev.utils.JCLogUtils;
 import dev.utils.common.cipher.Base64;
 
 /**
@@ -20,9 +19,6 @@ public final class EncodeUtils {
 
     private EncodeUtils() {
     }
-
-    // 日志 TAG
-    private static final String TAG = EncodeUtils.class.getSimpleName();
 
     // ==========
     // = Base64 =
@@ -48,7 +44,7 @@ public final class EncodeUtils {
      * @return Base64 编码后的 byte[]
      */
     public static byte[] base64Encode(final String input, final int flags) {
-        return base64Encode(toBytes(input), flags);
+        return base64Encode(ConvertUtils.toBytes(input), flags);
     }
 
     /**
@@ -89,7 +85,7 @@ public final class EncodeUtils {
      * @return Base64 编码后的 byte[] 转 String
      */
     public static String base64EncodeToString(final String input, final int flags) {
-        return base64EncodeToString(toBytes(input), flags);
+        return base64EncodeToString(ConvertUtils.toBytes(input), flags);
     }
 
     /**
@@ -109,7 +105,7 @@ public final class EncodeUtils {
      */
     public static String base64EncodeToString(final byte[] input, final int flags) {
         if (input == null) return null;
-        return toString(Base64.encode(input, flags));
+        return ConvertUtils.toString(Base64.encode(input, flags));
     }
 
     // ===============
@@ -132,7 +128,7 @@ public final class EncodeUtils {
      * @return Base64 解码后的 byte[]
      */
     public static byte[] base64Decode(final String input, final int flags) {
-        return base64Decode(toBytes(input), flags);
+        return base64Decode(ConvertUtils.toBytes(input), flags);
     }
 
     /**
@@ -173,7 +169,7 @@ public final class EncodeUtils {
      * @return Base64 解码后的 byte[] 转 String
      */
     public static String base64DecodeToString(final String input, final int flags) {
-        return base64DecodeToString(toBytes(input), flags);
+        return base64DecodeToString(ConvertUtils.toBytes(input), flags);
     }
 
     /**
@@ -193,7 +189,7 @@ public final class EncodeUtils {
      */
     public static String base64DecodeToString(final byte[] input, final int flags) {
         if (input == null) return null;
-        return toString(Base64.decode(input, flags));
+        return ConvertUtils.toString(Base64.decode(input, flags));
     }
 
     // ========
@@ -236,48 +232,5 @@ public final class EncodeUtils {
             }
         }
         return builder.toString();
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ================
-    // = ConvertUtils =
-    // ================
-
-    /**
-     * byte[] 转 String
-     * @param data byte[]
-     * @return {@link String}
-     */
-    private static String toString(final byte[] data) {
-        return toString(data, null);
-    }
-
-    /**
-     * byte[] 转 String
-     * @param data       byte[]
-     * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
-     */
-    private static String toString(final byte[] data, final String defaultStr) {
-        if (data != null) {
-            try {
-                return new String(data);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toString");
-            }
-        }
-        return defaultStr;
-    }
-
-    /**
-     * 字符串 获取 byte[]
-     * @param str String
-     * @return byte[]
-     */
-    private static byte[] toBytes(final String str) {
-        return (str != null) ? str.getBytes() : null;
     }
 }

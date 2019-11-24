@@ -3,6 +3,7 @@ package dev.utils.common.validator;
 import java.util.regex.Pattern;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: 校验工具类
@@ -68,7 +69,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean match(final String regex, final String input) {
-        if (!isEmpty(input)) {
+        if (!StringUtils.isEmpty(input)) {
             try {
                 return Pattern.matches(regex, input);
             } catch (Exception e) {
@@ -194,7 +195,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isUrl(final String str) {
-        if (!isEmpty(str)) {
+        if (!StringUtils.isEmpty(str)) {
             return match(REGEX_URL, str.toLowerCase());
         }
         return false;
@@ -246,7 +247,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isContainChinese(final String str) {
-        if (!isEmpty(str)) {
+        if (!StringUtils.isEmpty(str)) {
             try {
                 int length;
                 if (str != null && (length = str.length()) != 0) {
@@ -263,22 +264,5 @@ public final class ValidatorUtils {
             }
         }
         return false;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
     }
 }

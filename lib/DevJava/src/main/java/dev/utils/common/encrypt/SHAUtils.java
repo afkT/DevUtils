@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.ConvertUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: SHA 加密工具类
@@ -72,7 +74,7 @@ public final class SHAUtils {
      * @return 文件 SHA1 字符串信息
      */
     public static String getFileSHA1(final String filePath) {
-        File file = isSpace(filePath) ? null : new File(filePath);
+        File file = StringUtils.isSpace(filePath) ? null : new File(filePath);
         return getFileSHA(file, "SHA-1");
     }
 
@@ -91,7 +93,7 @@ public final class SHAUtils {
      * @return 文件 SHA256 字符串信息
      */
     public static String getFileSHA256(final String filePath) {
-        File file = isSpace(filePath) ? null : new File(filePath);
+        File file = StringUtils.isSpace(filePath) ? null : new File(filePath);
         return getFileSHA(file, "SHA-256");
     }
 
@@ -121,7 +123,7 @@ public final class SHAUtils {
             // 使用指定的字节更新摘要
             digest.update(bytes);
             // 获取密文
-            return toHexString(digest.digest(), HEX_DIGITS);
+            return ConvertUtils.toHexString(digest.digest(), true);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "shaHex");
         }
@@ -145,7 +147,7 @@ public final class SHAUtils {
             while ((numRead = is.read(buffer)) > 0) {
                 digest.update(buffer, 0, numRead);
             }
-            return toHexString(digest.digest(), HEX_DIGITS);
+            return ConvertUtils.toHexString(digest.digest(), true);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileSHA");
         } finally {
@@ -157,61 +159,5 @@ public final class SHAUtils {
             }
         }
         return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ================
-    // = ConvertUtils =
-    // ================
-
-    // 用于建立十六进制字符的输出的小写字符数组
-    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data      待转换数据
-     * @param hexDigits {@link #HEX_DIGITS}
-     * @return 十六进制字符串
-     */
-    private static String toHexString(final byte[] data, final char[] hexDigits) {
-        if (data == null || hexDigits == null) return null;
-        try {
-            int len = data.length;
-            StringBuilder builder = new StringBuilder(len);
-            for (int i = 0; i < len; i++) {
-                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-                builder.append(hexDigits[data[i] & 0x0f]);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toHexString");
-        }
-        return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

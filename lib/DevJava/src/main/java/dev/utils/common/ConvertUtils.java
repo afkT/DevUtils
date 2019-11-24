@@ -80,7 +80,7 @@ public final class ConvertUtils {
      * @return {@link String} 如果转换失败, 则返回 defaultStr
      */
     public static String toString(final char[] data, final String defaultStr) {
-        if (length(data) == 0) {
+        if (ArrayUtils.length(data) == 0) {
             try {
                 return new String(data);
             } catch (Exception e) {
@@ -1432,7 +1432,7 @@ public final class ConvertUtils {
      * @return 十六进制转 ( 解 ) 码后的数据
      */
     public static byte[] decodeHex(final byte[] data) {
-        return decodeHex((length(data) == 0) ? null : bytesToChars(data));
+        return decodeHex((ArrayUtils.length(data) == 0) ? null : bytesToChars(data));
     }
 
     /**
@@ -1441,7 +1441,7 @@ public final class ConvertUtils {
      * @return 十六进制转 ( 解 ) 码后的数据
      */
     public static byte[] decodeHex(final String str) {
-        return decodeHex(isEmpty(str) ? null : str.toCharArray());
+        return decodeHex(StringUtils.isEmpty(str) ? null : str.toCharArray());
     }
 
     /**
@@ -1582,7 +1582,7 @@ public final class ConvertUtils {
      * @return 十六进制 char[]
      */
     public static char[] toHexChars(final String str, final boolean toLowerCase) {
-        return toHexChars(isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
+        return toHexChars(StringUtils.isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
     }
 
     // =
@@ -1640,7 +1640,7 @@ public final class ConvertUtils {
      * @return 十六进制字符串
      */
     public static String toHexString(final String str, final boolean toLowerCase) {
-        return toHexString(isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
+        return toHexString(StringUtils.isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
     }
 
     // =
@@ -1716,35 +1716,5 @@ public final class ConvertUtils {
             d = ~d; // 按位补运算符, 翻转操作数的每一位, 即 0 变成 1, 1 变成 0, 再通过反转后的二进制初始化回十六进制
             data[i] = (byte) d;
         }
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
-    }
-
-    // ==============
-    // = ArrayUtils =
-    // ==============
-
-    /**
-     * 获取数组长度
-     * @param objects object[]
-     * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
-     */
-    private static int length(final Object... objects) {
-        return objects != null ? objects.length : 0;
     }
 }
