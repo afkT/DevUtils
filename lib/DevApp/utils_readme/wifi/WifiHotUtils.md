@@ -43,7 +43,7 @@
 // <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 // <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-final WifiHotUtils wifiHotUtils = new WifiHotUtils(DevUtils.getContext());
+final WifiHotUtils wifiHotUtils = new WifiHotUtils();
 
 // 有密码
 WifiConfiguration wifiConfiguration = WifiHotUtils.createWifiConfigToAp("WifiHot_AP", "123456789");

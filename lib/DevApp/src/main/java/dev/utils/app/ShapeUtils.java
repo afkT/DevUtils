@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
-import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
@@ -50,14 +49,12 @@ public final class ShapeUtils {
     /**
      * 设置 Drawable 背景
      * @param view {@link View}
+     * @param <T>  泛型
+     * @return {@link View}
      */
-    public void setDrawable(final View view) {
-        if (view != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                view.setBackground(mDrawable);
-            else
-                view.setBackgroundDrawable(mDrawable);
-        }
+    public <T extends View> T setDrawable(final T view) {
+        ImageViewUtils.setBackground(view, mDrawable);
+        return view;
     }
 
     // =
@@ -79,9 +76,7 @@ public final class ShapeUtils {
          * @param drawable {@link GradientDrawable}
          */
         public Builder(final GradientDrawable drawable) {
-            if (drawable != null) {
-                this.gradientDrawable = drawable;
-            }
+            if (drawable != null) this.gradientDrawable = drawable;
         }
 
         /**
@@ -199,7 +194,7 @@ public final class ShapeUtils {
          * @return {@link ShapeUtils.Builder}
          */
         public Builder setColor(final String color) {
-            if (gradientDrawable != null && !TextUtils.isEmpty(color)) {
+            if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setColor(Color.parseColor(color));
                 } catch (Exception e) {
@@ -280,7 +275,7 @@ public final class ShapeUtils {
          */
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         public Builder setStroke(final int width, final ColorStateList color) {
-            if (gradientDrawable != null && color != null) {
+            if (gradientDrawable != null) {
                 try {
                     gradientDrawable.setStroke(width, color);
                 } catch (Exception e) {

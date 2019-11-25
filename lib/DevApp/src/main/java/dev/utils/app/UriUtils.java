@@ -16,6 +16,7 @@ import java.io.File;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: Uri 工具类
@@ -53,7 +54,7 @@ public final class UriUtils {
     public static Uri getUriForFileToName(final File file, final String fileProvider) {
         if (file == null || fileProvider == null) return null;
         try {
-            String authority = DevUtils.getContext().getPackageName() + "." + fileProvider;
+            String authority = AppUtils.getPackageName() + "." + fileProvider;
             return getUriForFile(file, authority);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getUriForFileToName");
@@ -97,6 +98,8 @@ public final class UriUtils {
         }
     }
 
+    // =
+
     /**
      * 通过 Uri 获取文件路径
      * @param context {@link Context}
@@ -122,7 +125,7 @@ public final class UriUtils {
                         path = cursor.getString(columnIndex);
                     }
                 }
-                cursor.close();
+                CloseUtils.closeIOQuietly(cursor);
             }
             return path;
         }
@@ -187,8 +190,7 @@ public final class UriUtils {
                 return cursor.getString(column_index);
             }
         } finally {
-            if (cursor != null)
-                cursor.close();
+            CloseUtils.closeIOQuietly(cursor);
         }
         return null;
     }

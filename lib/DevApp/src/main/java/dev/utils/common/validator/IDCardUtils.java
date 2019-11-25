@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: 居民身份证工具类
@@ -242,7 +243,7 @@ public final class IDCardUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean validateHKCard(final String idCard) {
-        if (isEmpty(idCard)) return false;
+        if (StringUtils.isEmpty(idCard)) return false;
         try {
             String card = idCard.replaceAll("[\\(|\\)]", "");
             Integer sum = 0;
@@ -278,7 +279,7 @@ public final class IDCardUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static String[] validateIdCard10(final String idCard) {
-        if (isEmpty(idCard)) return null;
+        if (StringUtils.isEmpty(idCard)) return null;
         String[] info = new String[3];
         info[0] = "N"; // 默认未知地区
         info[1] = "N"; // 默认未知性别
@@ -324,7 +325,7 @@ public final class IDCardUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean validateCard(final String idCard) {
-        if (isEmpty(idCard)) return false;
+        if (StringUtils.isEmpty(idCard)) return false;
         String card = idCard.trim();
         if (validateIdCard18(card)) return true;
         if (validateIdCard15(card)) return true;
@@ -338,7 +339,7 @@ public final class IDCardUtils {
      * @return 年龄
      */
     public static int getAgeByIdCard(final String idCard) {
-        if (isEmpty(idCard)) return 0;
+        if (StringUtils.isEmpty(idCard)) return 0;
         try {
             String idCardStr = idCard;
             // 属于 15 位身份证, 则转换为 18 位
@@ -365,7 +366,7 @@ public final class IDCardUtils {
      * @return 生日 (yyyyMMdd)
      */
     public static String getBirthByIdCard(final String idCard) {
-        if (isEmpty(idCard)) return null;
+        if (StringUtils.isEmpty(idCard)) return null;
         try {
             String idCardStr = idCard;
             // 属于 15 位身份证, 则转换为 18 位
@@ -464,7 +465,7 @@ public final class IDCardUtils {
      * @return 性别 男 (M)、女 (F)、未知 (N)
      */
     public static String getGenderByIdCard(final String idCard) {
-        if (isEmpty(idCard)) return null;
+        if (StringUtils.isEmpty(idCard)) return null;
         try {
             String idCardStr = idCard;
             // 属于 15 位身份证, 则转换为 18 位
@@ -491,7 +492,7 @@ public final class IDCardUtils {
      * @return 省级编码
      */
     public static String getProvinceByIdCard(final String idCard) {
-        if (isEmpty(idCard)) return null;
+        if (StringUtils.isEmpty(idCard)) return null;
         try {
             // 身份证长度
             int idCardLength = idCard.length();
@@ -638,23 +639,6 @@ public final class IDCardUtils {
      * @return {@code true} yes, {@code false} no
      */
     private static boolean isNumber(final String str) {
-        return !isEmpty(str) && str.matches("^[0-9]*$");
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
+        return !StringUtils.isEmpty(str) && str.matches("^[0-9]*$");
     }
 }

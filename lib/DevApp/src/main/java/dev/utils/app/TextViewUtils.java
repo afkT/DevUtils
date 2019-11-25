@@ -85,7 +85,7 @@ public final class TextViewUtils {
     }
 
     // ========
-    // = Text =
+    // = Hint =
     // ========
 
     /**
@@ -111,30 +111,6 @@ public final class TextViewUtils {
     public static String getHint(final View view) {
         return getHint(getTextView(view));
     }
-
-    /**
-     * 获取文本
-     * @param textView {@link TextView}
-     * @param <T>      泛型
-     * @return {@link TextView#getText()}
-     */
-    public static <T extends TextView> String getText(final T textView) {
-        if (textView != null) {
-            return textView.getText().toString();
-        }
-        return null;
-    }
-
-    /**
-     * 获取文本
-     * @param view {@link TextView}
-     * @return {@link TextView#getText()}
-     */
-    public static String getText(final View view) {
-        return getText(getTextView(view));
-    }
-
-    // =
 
     /**
      * 获取多个 TextView Hint 文本
@@ -174,52 +150,13 @@ public final class TextViewUtils {
     }
 
     /**
-     * 获取多个 TextView 文本
-     * @param views View(TextView)[]
-     * @return {@link List<String>} 多个 TextView 文本
-     */
-    public static List<String> getTexts(final View... views) {
-        List<String> lists = new ArrayList<>();
-        if (views != null) {
-            for (View view : views) {
-                String text = getText(view);
-                if (text != null) {
-                    lists.add(text);
-                }
-            }
-        }
-        return lists;
-    }
-
-    /**
-     * 获取多个 TextView 文本
-     * @param views TextView[]
-     * @param <T>   泛型
-     * @return {@link List<String>} 多个 TextView 文本
-     */
-    public static <T extends TextView> List<String> getTexts(final T... views) {
-        List<String> lists = new ArrayList<>();
-        if (views != null) {
-            for (T view : views) {
-                String text = getText(view);
-                if (text != null) {
-                    lists.add(text);
-                }
-            }
-        }
-        return lists;
-    }
-
-    // =
-
-    /**
      * 设置 Hint 文本
      * @param textView {@link TextView}
      * @param text     Hint text
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setHint(final T textView, final String text) {
+    public static <T extends TextView> T setHint(final T textView, final CharSequence text) {
         if (textView != null) {
             textView.setHint(text);
         }
@@ -232,128 +169,10 @@ public final class TextViewUtils {
      * @param text Hint text
      * @return {@link View}
      */
-    public static View setHint(final View view, final String text) {
+    public static View setHint(final View view, final CharSequence text) {
         setHint(getTextView(view), text);
         return view;
     }
-
-    /**
-     * 设置文本
-     * @param textView {@link TextView}
-     * @param text     TextView text
-     * @param <T>      泛型
-     * @return {@link TextView}
-     */
-    public static <T extends TextView> T setText(final T textView, final String text) {
-        if (textView != null) {
-            textView.setText(text);
-        }
-        return textView;
-    }
-
-    /**
-     * 设置文本
-     * @param view {@link TextView}
-     * @param text TextView text
-     * @return {@link View}
-     */
-    public static View setText(final View view, final String text) {
-        setText(getTextView(view), text);
-        return view;
-    }
-
-    // =
-
-    /**
-     * 设置多个 TextView 文本
-     * @param text  TextView text
-     * @param views View(TextView)[]
-     */
-    public static void setTexts(final String text, final View... views) {
-        if (views != null) {
-            for (View view : views) {
-                setText(view, text);
-            }
-        }
-    }
-
-    /**
-     * 设置多个 TextView 文本
-     * @param text  TextView text
-     * @param views TextView[]
-     * @param <T>   泛型
-     */
-    public static <T extends TextView> void setTexts(final String text, final T... views) {
-        if (views != null) {
-            for (T view : views) {
-                setText(view, text);
-            }
-        }
-    }
-
-    // =
-
-    /**
-     * 设置 Html 内容
-     * @param textView {@link TextView}
-     * @param content  Html content
-     * @param <T>      泛型
-     * @return {@link TextView}
-     */
-    public static <T extends TextView> T setHtmlText(final T textView, final String content) {
-        if (textView != null && content != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                textView.setText(Html.fromHtml(content, Html.FROM_HTML_MODE_LEGACY));
-            } else {
-                textView.setText(Html.fromHtml(content));
-            }
-        }
-        return textView;
-    }
-
-    /**
-     * 设置 Html 内容
-     * @param view    {@link TextView}
-     * @param content Html content
-     * @return {@link View}
-     */
-    public static View setHtmlText(final View view, final String content) {
-        setHtmlText(getTextView(view), content);
-        return view;
-    }
-
-    // =
-
-    /**
-     * 设置多个 TextView Html 内容
-     * @param content Html content
-     * @param views   View(TextView)[]
-     */
-    public static void setHtmlTexts(final String content, final View... views) {
-        if (content != null && views != null) {
-            for (View view : views) {
-                setHtmlText(view, content);
-            }
-        }
-    }
-
-    /**
-     * 设置多个 TextView Html 内容
-     * @param content Html content
-     * @param views   TextView[]
-     * @param <T>     泛型
-     */
-    public static <T extends TextView> void setHtmlTexts(final String content, final T... views) {
-        if (content != null && views != null) {
-            for (T view : views) {
-                setHtmlText(view, content);
-            }
-        }
-    }
-
-    // ============
-    // = 属性相关 =
-    // ============
 
     /**
      * 获取 Hint 字体颜色
@@ -376,8 +195,6 @@ public final class TextViewUtils {
     public static ColorStateList getHintTextColors(final View view) {
         return getHintTextColors(getTextView(view));
     }
-
-    // =
 
     /**
      * 设置 Hint 字体颜色
@@ -429,7 +246,192 @@ public final class TextViewUtils {
         return view;
     }
 
-    // =
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param color R.color.id
+     * @param views View(TextView)[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setHintTextColors(@ColorInt final int color, final View... views) {
+        if (views != null) {
+            for (View view : views) {
+                setHintTextColor(view, color);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param color R.color.id
+     * @param views TextView[]
+     * @param <T>   泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends TextView> boolean setHintTextColors(@ColorInt final int color, final T... views) {
+        if (views != null) {
+            for (T view : views) {
+                setHintTextColor(view, color);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param colors {@link ColorStateList}
+     * @param views  View(TextView)[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setHintTextColors(final ColorStateList colors, final View... views) {
+        if (views != null) {
+            for (View view : views) {
+                setHintTextColor(view, colors);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param colors {@link ColorStateList}
+     * @param views  TextView[]
+     * @param <T>    泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends TextView> boolean setHintTextColors(final ColorStateList colors, final T... views) {
+        if (views != null) {
+            for (T view : views) {
+                setHintTextColor(view, colors);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // ========
+    // = Text =
+    // ========
+
+    /**
+     * 获取文本
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link TextView#getText()}
+     */
+    public static <T extends TextView> String getText(final T textView) {
+        if (textView != null) {
+            return textView.getText().toString();
+        }
+        return null;
+    }
+
+    /**
+     * 获取文本
+     * @param view {@link TextView}
+     * @return {@link TextView#getText()}
+     */
+    public static String getText(final View view) {
+        return getText(getTextView(view));
+    }
+
+    /**
+     * 获取多个 TextView 文本
+     * @param views View(TextView)[]
+     * @return {@link List<String>} 多个 TextView 文本
+     */
+    public static List<String> getTexts(final View... views) {
+        List<String> lists = new ArrayList<>();
+        if (views != null) {
+            for (View view : views) {
+                String text = getText(view);
+                if (text != null) {
+                    lists.add(text);
+                }
+            }
+        }
+        return lists;
+    }
+
+    /**
+     * 获取多个 TextView 文本
+     * @param views TextView[]
+     * @param <T>   泛型
+     * @return {@link List<String>} 多个 TextView 文本
+     */
+    public static <T extends TextView> List<String> getTexts(final T... views) {
+        List<String> lists = new ArrayList<>();
+        if (views != null) {
+            for (T view : views) {
+                String text = getText(view);
+                if (text != null) {
+                    lists.add(text);
+                }
+            }
+        }
+        return lists;
+    }
+
+    /**
+     * 设置文本
+     * @param textView {@link TextView}
+     * @param text     TextView text
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setText(final T textView, final CharSequence text) {
+        if (textView != null) {
+            textView.setText(text);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置文本
+     * @param view {@link TextView}
+     * @param text TextView text
+     * @return {@link View}
+     */
+    public static View setText(final View view, final CharSequence text) {
+        setText(getTextView(view), text);
+        return view;
+    }
+
+    /**
+     * 设置多个 TextView 文本
+     * @param text  TextView text
+     * @param views View(TextView)[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setTexts(final CharSequence text, final View... views) {
+        if (views != null) {
+            for (View view : views) {
+                setText(view, text);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 设置多个 TextView 文本
+     * @param text  TextView text
+     * @param views TextView[]
+     * @param <T>   泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends TextView> boolean setTexts(final CharSequence text, final T... views) {
+        if (views != null) {
+            for (T view : views) {
+                setText(view, text);
+            }
+            return true;
+        }
+        return false;
+    }
 
     /**
      * 获取字体颜色
@@ -452,8 +454,6 @@ public final class TextViewUtils {
     public static ColorStateList getTextColors(final View view) {
         return getTextColors(getTextView(view));
     }
-
-    // =
 
     /**
      * 设置字体颜色
@@ -505,75 +505,20 @@ public final class TextViewUtils {
         return view;
     }
 
-    // =
-
-    /**
-     * 设置多个 TextView Hint 字体颜色
-     * @param color R.color.id
-     * @param views View(TextView)[]
-     */
-    public static void setHintTextColors(@ColorInt final int color, final View... views) {
-        if (views != null) {
-            for (View view : views) {
-                setHintTextColor(view, color);
-            }
-        }
-    }
-
-    /**
-     * 设置多个 TextView Hint 字体颜色
-     * @param color R.color.id
-     * @param views TextView[]
-     * @param <T>   泛型
-     */
-    public static <T extends TextView> void setHintTextColors(@ColorInt final int color, final T... views) {
-        if (views != null) {
-            for (T view : views) {
-                setHintTextColor(view, color);
-            }
-        }
-    }
-
-    /**
-     * 设置多个 TextView Hint 字体颜色
-     * @param colors {@link ColorStateList}
-     * @param views  View(TextView)[]
-     */
-    public static void setHintTextColors(final ColorStateList colors, final View... views) {
-        if (views != null) {
-            for (View view : views) {
-                setHintTextColor(view, colors);
-            }
-        }
-    }
-
-    /**
-     * 设置多个 TextView Hint 字体颜色
-     * @param colors {@link ColorStateList}
-     * @param views  TextView[]
-     * @param <T>    泛型
-     */
-    public static <T extends TextView> void setHintTextColors(final ColorStateList colors, final T... views) {
-        if (views != null) {
-            for (T view : views) {
-                setHintTextColor(view, colors);
-            }
-        }
-    }
-
-    // =
-
     /**
      * 设置多个 TextView 字体颜色
      * @param color R.color.id
      * @param views View(TextView)[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setTextColors(@ColorInt final int color, final View... views) {
+    public static boolean setTextColors(@ColorInt final int color, final View... views) {
         if (views != null) {
             for (View view : views) {
                 setTextColor(view, color);
             }
+            return true;
         }
+        return false;
     }
 
     /**
@@ -581,26 +526,32 @@ public final class TextViewUtils {
      * @param color R.color.id
      * @param views TextView[]
      * @param <T>   泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> void setTextColors(@ColorInt final int color, final T... views) {
+    public static <T extends TextView> boolean setTextColors(@ColorInt final int color, final T... views) {
         if (views != null) {
             for (T view : views) {
                 setTextColor(view, color);
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * 设置多个 TextView 字体颜色
      * @param colors {@link ColorStateList}
      * @param views  View(TextView)[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setTextColors(final ColorStateList colors, final View... views) {
+    public static boolean setTextColors(final ColorStateList colors, final View... views) {
         if (views != null) {
             for (View view : views) {
                 setTextColor(view, colors);
             }
+            return true;
         }
+        return false;
     }
 
     /**
@@ -608,13 +559,82 @@ public final class TextViewUtils {
      * @param colors {@link ColorStateList}
      * @param views  TextView[]
      * @param <T>    泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> void setTextColors(final ColorStateList colors, final T... views) {
+    public static <T extends TextView> boolean setTextColors(final ColorStateList colors, final T... views) {
         if (views != null) {
             for (T view : views) {
                 setTextColor(view, colors);
             }
+            return true;
         }
+        return false;
+    }
+
+    // ========
+    // = Html =
+    // ========
+
+    /**
+     * 设置 Html 内容
+     * @param textView {@link TextView}
+     * @param content  Html content
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setHtmlText(final T textView, final String content) {
+        if (textView != null && content != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                textView.setText(Html.fromHtml(content, Html.FROM_HTML_MODE_LEGACY));
+            } else {
+                textView.setText(Html.fromHtml(content));
+            }
+        }
+        return textView;
+    }
+
+    /**
+     * 设置 Html 内容
+     * @param view    {@link TextView}
+     * @param content Html content
+     * @return {@link View}
+     */
+    public static View setHtmlText(final View view, final String content) {
+        setHtmlText(getTextView(view), content);
+        return view;
+    }
+
+    /**
+     * 设置多个 TextView Html 内容
+     * @param content Html content
+     * @param views   View(TextView)[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setHtmlTexts(final String content, final View... views) {
+        if (content != null && views != null) {
+            for (View view : views) {
+                setHtmlText(view, content);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 设置多个 TextView Html 内容
+     * @param content Html content
+     * @param views   TextView[]
+     * @param <T>     泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends TextView> boolean setHtmlTexts(final String content, final T... views) {
+        if (content != null && views != null) {
+            for (T view : views) {
+                setHtmlText(view, content);
+            }
+            return true;
+        }
+        return false;
     }
 
     // ============
@@ -814,13 +834,16 @@ public final class TextViewUtils {
      * @param views View(TextView)[]
      * @param unit  参数类型
      * @param size  字体大小
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setTextSizes(final View[] views, final int unit, final float size) {
+    public static boolean setTextSizes(final View[] views, final int unit, final float size) {
         if (views != null) {
             for (View view : views) {
                 setTextSize(view, unit, size);
             }
+            return true;
         }
+        return false;
     }
 
     /**
@@ -829,13 +852,16 @@ public final class TextViewUtils {
      * @param unit  参数类型
      * @param size  字体大小
      * @param <T>   泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> void setTextSizes(final T[] views, final int unit, final float size) {
+    public static <T extends TextView> boolean setTextSizes(final T[] views, final int unit, final float size) {
         if (views != null) {
             for (T view : views) {
                 setTextSize(view, unit, size);
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -1596,7 +1622,7 @@ public final class TextViewUtils {
      * @param <T>       泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setMaxLengthAndText(final T textView, final String content, final int maxLength) {
+    public static <T extends TextView> T setMaxLengthAndText(final T textView, final CharSequence content, final int maxLength) {
         setText(setMaxLength(textView, maxLength), content);
         return textView;
     }
@@ -1608,7 +1634,7 @@ public final class TextViewUtils {
      * @param maxLength 长度限制
      * @return {@link View}
      */
-    public static View setMaxLengthAndText(final View view, final String content, final int maxLength) {
+    public static View setMaxLengthAndText(final View view, final CharSequence content, final int maxLength) {
         return setText(setMaxLength(view, maxLength), content);
     }
 

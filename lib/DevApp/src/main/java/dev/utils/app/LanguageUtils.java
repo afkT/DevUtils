@@ -48,8 +48,8 @@ public final class LanguageUtils {
     }
 
     /**
-     * 修改系统语言 (APP 多语言, 单独改变 APP 语言 )
-     * @param context {@link Context}
+     * 修改系统语言 ( APP 多语言, 单独改变 APP 语言 )
+     * @param context {@link Context} - Activity
      * @param locale  {@link Locale}
      * @return {@code true} success, {@code false} fail
      */

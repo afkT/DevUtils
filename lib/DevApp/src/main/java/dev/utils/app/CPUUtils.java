@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 获取 CPU 信息工具类
@@ -114,18 +115,12 @@ public final class CPUUtils {
             while (is.read(re) != -1) {
                 result = result + new String(re);
             }
-            is.close();
             result = Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(result.trim()) * 1024) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMaxCpuFreq");
             result = "unknown";
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return result;
     }
@@ -147,18 +142,12 @@ public final class CPUUtils {
             while (is.read(re) != -1) {
                 result = result + new String(re);
             }
-            is.close();
             result = Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(result.trim()) * 1024) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMinCpuFreq");
             result = "unknown";
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return result;
     }
@@ -220,16 +209,18 @@ public final class CPUUtils {
      * @return CPU 名字
      */
     public static String getCpuName() {
+        BufferedReader br = null;
         try {
-            BufferedReader br = new BufferedReader(new FileReader("/proc/cpuinfo"), 8192);
+            br = new BufferedReader(new FileReader("/proc/cpuinfo"), 8192);
             String line = br.readLine();
-            br.close();
             String[] array = line.split(":\\s+", 2);
             if (array.length > 1) {
                 return array[1];
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCpuName");
+        } finally {
+            CloseUtils.closeIOQuietly(br);
         }
         return null;
     }
@@ -251,18 +242,13 @@ public final class CPUUtils {
             while ((len = is.read(re)) != -1) {
                 builder.append(new String(re, 0, len));
             }
-            is.close();
+            CloseUtils.closeIOQuietly(is);
             process.destroy();
             return builder.toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCMDOutputString");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return null;
     }

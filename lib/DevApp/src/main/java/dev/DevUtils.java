@@ -25,12 +25,11 @@ import dev.utils.BuildConfig;
 import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AnalysisRecordUtils;
-import dev.utils.app.FileRecordUtils;
+import dev.utils.app.AppCommonUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
 import dev.utils.app.UriUtils;
 import dev.utils.app.cache.DevCache;
-import dev.utils.app.logger.DevLoggerUtils;
 import dev.utils.app.share.SharedUtils;
 import dev.utils.app.toast.toaster.DevToast;
 import dev.utils.common.FileUtils;
@@ -82,15 +81,13 @@ public final class DevUtils {
         // ====================
 
         // 初始化 Cache
-        DevCache.get(context);
+        DevCache.obtain();
         // 初始化 SharedPreferences
         SharedUtils.init(context);
-        // 初始化 File Record
-        FileRecordUtils.init();
+        // 初始化 应用、设备信息
+        AppCommonUtils.refreshAppDeviceInfo();
         // 初始化 Record
         AnalysisRecordUtils.init();
-        // 初始化 DevLogger
-        DevLoggerUtils.init();
         // 初始化 Toast
         DevToast.init(sApplication);
 
@@ -154,11 +151,7 @@ public final class DevUtils {
      * @return {@link Context}
      */
     public static Context getContext(final Context context) {
-        // 进行判断
-        if (context != null) {
-            return context;
-        }
-        return DevUtils.sContext;
+        return (context != null) ? context : DevUtils.sContext;
     }
 
     /**

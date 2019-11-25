@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -33,6 +32,7 @@ import java.util.UUID;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 手机相关工具类
@@ -51,25 +51,12 @@ public final class PhoneUtils {
     private static final String TAG = PhoneUtils.class.getSimpleName();
 
     /**
-     * 获取 TelephonyManager
-     * @return {@link TelephonyManager}
-     */
-    public static TelephonyManager getTelephonyManager() {
-        try {
-            return (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getTelephonyManager");
-        }
-        return null;
-    }
-
-    /**
      * 判断设备是否是手机
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhone() {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             return telephonyManager != null && telephonyManager.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isPhone");
@@ -92,7 +79,7 @@ public final class PhoneUtils {
      */
     public static int getSimState(final int slotIndex) {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
                 return telephonyManager.getSimState();
             } else { // 使用默认卡槽
@@ -137,7 +124,7 @@ public final class PhoneUtils {
      */
     public static String getSimCountryIso() {
         try {
-            return getTelephonyManager().getSimCountryIso();
+            return AppUtils.getTelephonyManager().getSimCountryIso();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimCountryIso");
         }
@@ -150,7 +137,7 @@ public final class PhoneUtils {
      */
     public static String getNetworkCountryIso() {
         try {
-            return getTelephonyManager().getNetworkCountryIso();
+            return AppUtils.getTelephonyManager().getNetworkCountryIso();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getNetworkCountryIso");
         }
@@ -163,7 +150,7 @@ public final class PhoneUtils {
      */
     public static String getSimCountry() {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             // SIM 卡运营商的国家代码
             String simCountry = telephonyManager.getSimCountryIso();
             // 注册的网络运营商的国家代码
@@ -191,7 +178,7 @@ public final class PhoneUtils {
                 // zh_CN Locale.SIMPLIFIED_CHINESE
                 // 截取前面两位属于 zh 表示属于中国
                 String country = countryCode.substring(0, 2);
-                // 如果属于 ch 表示属于国内
+                // 如果属于 cn 表示属于国内
                 if (country.toLowerCase().equals("cn")) {
                     return 1;
                 } else {
@@ -222,8 +209,8 @@ public final class PhoneUtils {
     public static String getMEID(final int slotIndex) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
-                if (slotIndex == -1) return getTelephonyManager().getMeid();
-                return getTelephonyManager().getMeid(slotIndex);
+                if (slotIndex == -1) return AppUtils.getTelephonyManager().getMeid();
+                return AppUtils.getTelephonyManager().getMeid(slotIndex);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getMEID");
             }
@@ -257,7 +244,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getIMEI(final int slotIndex) {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (slotIndex == -1) return telephonyManager.getImei();
                 return telephonyManager.getImei(slotIndex);
@@ -294,7 +281,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getIMSI() {
         try {
-            return getTelephonyManager().getSubscriberId();
+            return AppUtils.getTelephonyManager().getSubscriberId();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIMSI");
         }
@@ -307,7 +294,7 @@ public final class PhoneUtils {
      */
     public static String getSimOperatorName() {
         try {
-            return getTelephonyManager().getSimOperatorName();
+            return AppUtils.getTelephonyManager().getSimOperatorName();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimOperatorName");
         }
@@ -320,7 +307,7 @@ public final class PhoneUtils {
      */
     public static String getSimOperator() {
         try {
-            return getTelephonyManager().getSimOperator();
+            return AppUtils.getTelephonyManager().getSimOperator();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimOperator");
         }
@@ -393,7 +380,7 @@ public final class PhoneUtils {
      */
     public static int getPhoneType() {
         try {
-            return getTelephonyManager().getPhoneType();
+            return AppUtils.getTelephonyManager().getPhoneType();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPhoneType");
         }
@@ -417,7 +404,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getDeviceId(final int slotIndex) {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (slotIndex == -1) return telephonyManager.getDeviceId();
                 return telephonyManager.getDeviceId(slotIndex);
@@ -439,7 +426,7 @@ public final class PhoneUtils {
      */
     public static String getAndroidId() {
         try {
-            return Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+            return Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAndroidId");
         }
@@ -467,7 +454,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getSimSerialNumber() {
         try {
-            return getTelephonyManager().getSimSerialNumber();
+            return AppUtils.getTelephonyManager().getSimSerialNumber();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSimSerialNumber");
         }
@@ -512,7 +499,7 @@ public final class PhoneUtils {
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getPhoneStatus() {
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             if (telephonyManager == null) return "";
             StringBuilder builder = new StringBuilder();
             builder.append("DeviceId(IMEI) = " + telephonyManager.getDeviceId());
@@ -543,10 +530,13 @@ public final class PhoneUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean dial(final String phoneNumber) {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
-        if (isIntentAvailable(intent)) {
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            return true;
+        try {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+            if (IntentUtils.isIntentAvailable(intent)) {
+                return AppUtils.startActivity(intent);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "dial");
         }
         return false;
     }
@@ -558,10 +548,13 @@ public final class PhoneUtils {
      */
     @RequiresPermission(android.Manifest.permission.CALL_PHONE)
     public static boolean call(final String phoneNumber) {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
-        if (isIntentAvailable(intent)) {
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            return true;
+        try {
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+            if (IntentUtils.isIntentAvailable(intent)) {
+                return AppUtils.startActivity(intent);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "call");
         }
         return false;
     }
@@ -573,12 +566,14 @@ public final class PhoneUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean sendSms(final String phoneNumber, final String content) {
-        Uri uri = Uri.parse("smsto:" + phoneNumber);
-        Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
-        if (isIntentAvailable(intent)) {
-            intent.putExtra("sms_body", content);
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            return true;
+        try {
+            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneNumber));
+            if (IntentUtils.isIntentAvailable(intent)) {
+                intent.putExtra("sms_body", content);
+                return AppUtils.startActivity(intent);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "sendSms");
         }
         return false;
     }
@@ -587,20 +582,27 @@ public final class PhoneUtils {
      * 发送短信
      * @param phoneNumber 接收号码
      * @param content     短信内容
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.SEND_SMS)
-    public static void sendSmsSilent(final String phoneNumber, final String content) {
-        if (TextUtils.isEmpty(content)) return;
-        PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent("send"), 0);
-        SmsManager smsManager = SmsManager.getDefault();
-        if (content.length() >= 70) {
-            List<String> ms = smsManager.divideMessage(content);
-            for (String str : ms) {
-                smsManager.sendTextMessage(phoneNumber, null, str, sentIntent, null);
+    public static boolean sendSmsSilent(final String phoneNumber, final String content) {
+        if (TextUtils.isEmpty(content)) return false;
+        try {
+            PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent("send"), 0);
+            SmsManager smsManager = SmsManager.getDefault();
+            if (content.length() >= 70) {
+                List<String> ms = smsManager.divideMessage(content);
+                for (String str : ms) {
+                    smsManager.sendTextMessage(phoneNumber, null, str, sentIntent, null);
+                }
+            } else {
+                smsManager.sendTextMessage(phoneNumber, null, content, sentIntent, null);
             }
-        } else {
-            smsManager.sendTextMessage(phoneNumber, null, content, sentIntent, null);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "sendSmsSilent");
         }
+        return false;
     }
 
     /**
@@ -618,20 +620,27 @@ public final class PhoneUtils {
      *              while (cursor.moveToNext()) {
      *                  num = cursor.getString(cursor.getColumnIndex("data1"));
      *              }
-     *              cursor.close();
+     *              CloseUtils.closeIOQuietly(cursor);
      *              num = num.replaceAll("-", "");
      *          }
      *      }
      * </pre>
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void getContactNum(final Activity activity) {
+    public static boolean getContactNum(final Activity activity) {
         if (activity != null && !activity.isFinishing()) {
-            Intent intent = new Intent();
-            intent.setAction("android.intent.action.PICK");
-            intent.setType("vnd.android.cursor.dir/phone_v2");
-            activity.startActivityForResult(intent, 0);
+            try {
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.PICK");
+                intent.setType("vnd.android.cursor.dir/phone_v2");
+                activity.startActivityForResult(intent, 0);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getContactNum");
+            }
         }
+        return false;
     }
 
     /**
@@ -645,7 +654,7 @@ public final class PhoneUtils {
         Cursor cursor = null;
         try {
             // 1. 获取内容解析者
-            ContentResolver resolver = DevUtils.getContext().getContentResolver();
+            ContentResolver resolver = ResourceUtils.getContentResolver();
             // 2. 获取内容提供者的地址 com.android.contacts
             // raw_contacts 表的地址 raw_contacts
             // view_data 表的地址 data
@@ -688,18 +697,14 @@ public final class PhoneUtils {
                         // 11. 添加到集合中数据
                         list.add(map);
                         // 12. 关闭 cursor
-                        if (c != null) {
-                            c.close();
-                        }
+                        CloseUtils.closeIOQuietly(c);
                     }
                 }
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllContactInfo");
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+            CloseUtils.closeIOQuietly(cursor);
         }
         return list;
     }
@@ -711,7 +716,7 @@ public final class PhoneUtils {
     public static List<Map<String, String>> getAllContactInfo2() {
         List<Map<String, String>> list = new ArrayList<>();
         try {
-            Cursor cursor = DevUtils.getContext().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            Cursor cursor = ResourceUtils.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                     null, null, null, null);
             while (cursor.moveToNext()) {
                 Map<String, String> map = new HashMap<>();
@@ -736,15 +741,16 @@ public final class PhoneUtils {
     /**
      * 获取手机短信并保存到 xml 中
      * @param filePath 文件路径 /sdcard/xxx.xml
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(allOf = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_SMS})
-    public static void getAllSMS(final String filePath) {
+    public static boolean getAllSMS(final String filePath) {
         // 游标
         Cursor cursor = null;
         try {
             // 1. 获取短信
             // 1.1 获取内容解析者
-            ContentResolver resolver = DevUtils.getContext().getContentResolver();
+            ContentResolver resolver = ResourceUtils.getContentResolver();
             // 1.2 获取内容提供者地址 sms, sms 表的地址 null 不写
             // 1.3 获取查询路径
             Uri uri = Uri.parse("content://sms");
@@ -797,9 +803,11 @@ public final class PhoneUtils {
             xmlSerializer.endDocument();
             // 2.8 将数据刷新到文件中
             xmlSerializer.flush();
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllSMS");
         }
+        return false;
     }
 
     // ============
@@ -851,7 +859,7 @@ public final class PhoneUtils {
             fields2.setAccessible(true);
             int simId_2 = (Integer) fields2.get(null);
 
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             Method getSubscriberIdGemini = TelephonyManager.class.getDeclaredMethod("getSubscriberIdGemini", int.class);
             String imsi_1 = (String) getSubscriberIdGemini.invoke(telephonyManager, simId_1);
             String imsi_2 = (String) getSubscriberIdGemini.invoke(telephonyManager, simId_2);
@@ -884,7 +892,7 @@ public final class PhoneUtils {
     public static TeleInfo getMtkTeleInfo2() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager tm = getTelephonyManager();
+            TelephonyManager tm = AppUtils.getTelephonyManager();
             Class<?> phone = Class.forName("com.android.internal.telephony.Phone");
             Field fields1 = phone.getField("GEMINI_SIM_1");
             fields1.setAccessible(true);
@@ -924,10 +932,10 @@ public final class PhoneUtils {
     public static TeleInfo getQualcommTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager telephonyManager = getTelephonyManager();
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             Class<?> simTMclass = Class.forName("android.telephony.MSimTelephonyManager");
             @SuppressWarnings("WrongConstant")
-            Object sim = DevUtils.getContext().getSystemService("phone_msim");
+            Object sim = AppUtils.getSystemService("phone_msim");
             int simId_1 = 0;
             int simId_2 = 1;
 
@@ -962,7 +970,7 @@ public final class PhoneUtils {
     public static TeleInfo getSpreadtrumTeleInfo() {
         TeleInfo teleInfo = new TeleInfo();
         try {
-            TelephonyManager tm1 = getTelephonyManager();
+            TelephonyManager tm1 = AppUtils.getTelephonyManager();
             String imsi_1 = tm1.getSubscriberId();
             String imei_1 = tm1.getDeviceId();
             int phoneType_1 = tm1.getPhoneType();
@@ -975,7 +983,7 @@ public final class PhoneUtils {
             getServiceName.setAccessible(true);
             String spreadTmService = (String) getServiceName.invoke(phoneFactory, Context.TELEPHONY_SERVICE, 1);
 
-            TelephonyManager tm2 = (TelephonyManager) DevUtils.getContext().getSystemService(spreadTmService);
+            TelephonyManager tm2 = AppUtils.getSystemService(spreadTmService);
             String imsi_2 = tm2.getSubscriberId();
             String imei_2 = tm2.getDeviceId();
             int phoneType_2 = tm2.getPhoneType();
@@ -986,28 +994,5 @@ public final class PhoneUtils {
             LogPrintUtils.eTag(TAG, e, "getSpreadtrumTeleInfo");
         }
         return teleInfo;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = IntentUtils =
-    // ===============
-
-    /**
-     * 判断 Intent 是否可用
-     * @param intent {@link Intent}
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isIntentAvailable(final Intent intent) {
-        if (intent == null) return false;
-        try {
-            return DevUtils.getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isIntentAvailable");
-        }
-        return false;
     }
 }

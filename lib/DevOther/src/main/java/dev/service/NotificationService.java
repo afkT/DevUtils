@@ -1,7 +1,6 @@
 package dev.service;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
@@ -14,6 +13,8 @@ import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
+import dev.utils.app.ServiceUtils;
 
 /**
  * detail: 通知栏监听服务
@@ -108,22 +109,14 @@ public final class NotificationService extends NotificationListenerService {
      * 启动服务
      */
     public static void startService() {
-        try {
-            DevUtils.getContext().startService(new Intent(DevUtils.getContext(), NotificationService.class));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, "startService");
-        }
+        ServiceUtils.startService(NotificationService.class);
     }
 
     /**
      * 停止服务
      */
     public static void stopService() {
-        try {
-            DevUtils.getContext().stopService(new Intent(DevUtils.getContext(), NotificationService.class));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, "stopService");
-        }
+        ServiceUtils.stopService(NotificationService.class);
     }
 
     // =
@@ -145,7 +138,7 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotificationListenerEnabled() {
-        return isNotificationListenerEnabled(DevUtils.getContext().getPackageName());
+        return isNotificationListenerEnabled(AppUtils.getPackageName());
     }
 
     /**
@@ -169,10 +162,7 @@ public final class NotificationService extends NotificationListenerService {
             } else {
                 intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
             }
-            if (!(DevUtils.getContext() instanceof Activity)) {
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            }
-            DevUtils.getContext().startActivity(intent);
+            AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startNotificationListenSettings");
         }

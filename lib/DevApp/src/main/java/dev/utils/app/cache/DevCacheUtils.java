@@ -10,6 +10,8 @@ import android.graphics.drawable.Drawable;
 import java.io.ByteArrayOutputStream;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.ArrayUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 缓存内部工具类
@@ -31,7 +33,7 @@ final class DevCacheUtils {
      * @param data 待存储数据
      * @return {@code true} 到期了, {@code false} 还没有到期
      */
-    public static boolean isDue(final String data) {
+    protected static boolean isDue(final String data) {
         if (data == null) return true;
         return isDue(data.getBytes());
     }
@@ -41,7 +43,7 @@ final class DevCacheUtils {
      * @param data 待存储数据
      * @return {@code true} 到期了, {@code false} 还没有到期
      */
-    public static boolean isDue(final byte[] data) {
+    protected static boolean isDue(final byte[] data) {
         // 获取时间数据信息
         String[] strs = getDateInfoFromDate(data);
         // 判断是否过期
@@ -69,7 +71,7 @@ final class DevCacheUtils {
      * @param strInfo 字符串信息
      * @return 字符串, 包含创建时间、存储数据等
      */
-    public static String newStringWithDateInfo(final int second, final String strInfo) {
+    protected static String newStringWithDateInfo(final int second, final String strInfo) {
         return createDateInfo(second) + strInfo;
     }
 
@@ -79,11 +81,11 @@ final class DevCacheUtils {
      * @param data   待存储数据
      * @return byte[], 包含创建时间、存储数据等
      */
-    public static byte[] newByteArrayWithDateInfo(final int second, final byte[] data) {
+    protected static byte[] newByteArrayWithDateInfo(final int second, final byte[] data) {
         if (data != null) {
             try {
                 byte[] dateArys = createDateInfo(second).getBytes();
-                return arraycopy(dateArys, data);
+                return ArrayUtils.arraycopy(dateArys, data);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "newByteArrayWithDateInfo");
             }
@@ -111,7 +113,7 @@ final class DevCacheUtils {
      * @param strInfo 存储数据
      * @return 存储数据
      */
-    public static String clearDateInfo(final String strInfo) {
+    protected static String clearDateInfo(final String strInfo) {
         if (strInfo != null && hasDateInfo(strInfo.getBytes())) {
             return strInfo.substring(strInfo.indexOf(mSeparator) + 1);
         }
@@ -123,7 +125,7 @@ final class DevCacheUtils {
      * @param data 存储数据
      * @return 存储数据
      */
-    public static byte[] clearDateInfo(final byte[] data) {
+    protected static byte[] clearDateInfo(final byte[] data) {
         if (hasDateInfo(data)) {
             try {
                 return copyOfRange(data, indexOf(data, mSeparator) + 1, data.length);
@@ -204,7 +206,7 @@ final class DevCacheUtils {
      * @param bitmap {@link Bitmap}
      * @return byte[]
      */
-    public static byte[] bitmapToBytes(final Bitmap bitmap) {
+    protected static byte[] bitmapToByte(final Bitmap bitmap) {
         if (bitmap == null) return null;
         ByteArrayOutputStream baos = null;
         try {
@@ -212,14 +214,9 @@ final class DevCacheUtils {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
             return baos.toByteArray();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "bitmapToBytes");
+            LogPrintUtils.eTag(TAG, e, "bitmapToByte");
         } finally {
-            if (baos != null) {
-                try {
-                    baos.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(baos);
         }
         return null;
     }
@@ -229,12 +226,12 @@ final class DevCacheUtils {
      * @param bytes byte[]
      * @return {@link Bitmap}
      */
-    public static Bitmap bytesToBitmap(final byte[] bytes) {
+    protected static Bitmap byteToBitmap(final byte[] bytes) {
         if (bytes != null && bytes.length != 0) {
             try {
                 return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "bytesToBitmap");
+                LogPrintUtils.eTag(TAG, e, "byteToBitmap");
             }
         }
         return null;
@@ -242,20 +239,31 @@ final class DevCacheUtils {
 
     /**
      * Drawable 转 Bitmap
-     * @param drawable {@link Drawable}
+     * @param drawable 待转换图片
      * @return {@link Bitmap}
      */
-    public static Bitmap drawableToBitmap(final Drawable drawable) {
+    protected static Bitmap drawableToBitmap(final Drawable drawable) {
         if (drawable == null) return null;
+        // 属于 BitmapDrawable 直接转换
+        if (drawable instanceof BitmapDrawable) {
+            try {
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+                if (bitmapDrawable.getBitmap() != null) {
+                    return bitmapDrawable.getBitmap();
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "drawableToBitmap - BitmapDrawable");
+            }
+        }
         try {
-            // 取 drawable 的长宽
+            // 获取 drawable 的宽高
             int width = drawable.getIntrinsicWidth();
             int height = drawable.getIntrinsicHeight();
-            // 取 drawable 的颜色格式
+            // 获取 drawable 的颜色格式
             Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
-            // 建立对应 bitmap
+            // 创建 bitmap
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
-            // 建立对应 bitmap 的画布
+            // 创建 bitmap 画布
             Canvas canvas = new Canvas(bitmap);
             drawable.setBounds(0, 0, width, height);
             // 把 drawable 内容画到画布中
@@ -272,8 +280,7 @@ final class DevCacheUtils {
      * @param bitmap {@link Bitmap}
      * @return {@link Drawable}
      */
-    @SuppressWarnings("deprecation")
-    public static Drawable bitmapToDrawable(final Bitmap bitmap) {
+    protected static Drawable bitmapToDrawable(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
             BitmapDrawable drawable = new BitmapDrawable(bitmap);
@@ -283,37 +290,5 @@ final class DevCacheUtils {
             LogPrintUtils.eTag(TAG, e, "bitmapToDrawable");
         }
         return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ==============
-    // = ArrayUtils =
-    // ==============
-
-    /**
-     * 拼接数组
-     * @param prefix 第一个数组
-     * @param suffix 第二个数组
-     * @return 拼接后的数组
-     */
-    private static byte[] arraycopy(final byte[] prefix, final byte[] suffix) {
-        // 获取数据长度
-        int prefixLength = (prefix != null) ? prefix.length : 0;
-        int suffixLength = (suffix != null) ? suffix.length : 0;
-        // 数据都为 null, 则直接跳过
-        if (prefixLength + suffixLength == 0) return null;
-        // 创建数组
-        byte[] arrays = new byte[prefixLength + suffixLength];
-        // 进行判断处理
-        if (prefixLength != 0) {
-            System.arraycopy(prefix, 0, arrays, 0, prefixLength);
-        }
-        if (suffixLength != 0) {
-            System.arraycopy(suffix, 0, arrays, prefixLength, suffixLength);
-        }
-        return arrays;
     }
 }

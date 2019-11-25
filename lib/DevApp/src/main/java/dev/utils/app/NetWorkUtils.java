@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -28,7 +27,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -58,24 +56,23 @@ public final class NetWorkUtils {
     public static boolean getMobileDataEnabled() {
         try {
             // 移动网络开关状态
-            boolean mState;
+            boolean state;
             // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
-                ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager cManager = AppUtils.getConnectivityManager();
                 // 反射获取方法
                 Method method = cManager.getClass().getMethod("getMobileDataEnabled");
                 // 调用方法, 获取状态
-                mState = (Boolean) method.invoke(cManager);
+                state = (Boolean) method.invoke(cManager);
             } else {
-                TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 反射获取方法
                 Method method = telephonyManager.getClass().getDeclaredMethod("getDataEnabled");
                 // 调用方法, 获取状态
-                mState = (Boolean) method.invoke(telephonyManager);
+                state = (Boolean) method.invoke(telephonyManager);
             }
-            // 返回移动网络开关状态
-            return mState;
+            return state;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMobileDataEnabled");
         }
@@ -83,7 +80,10 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 设置移动网络开关 ( 无判断是否已开启移动网络 ) - 实际无效果, 非系统应用无权限
+     * 设置移动网络开关 ( 无判断是否已开启移动网络 )
+     * <pre>
+     *     实际无效果, 非系统应用无权限需手动开启
+     * </pre>
      * @param isOpen 是否打开移动网络
      * @return {@code true} success, {@code false} fail
      */
@@ -93,23 +93,23 @@ public final class NetWorkUtils {
             // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
-                ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager cManager = AppUtils.getConnectivityManager();
                 // 通过反射设置移动网络
-                Method mMethod = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+                Method mMethod = cManager.getClass().getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
                 // 设置移动网络
                 mMethod.invoke(cManager, isOpen);
             } else { // 需要 android.Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 APP 无法获取
-                TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 通过反射设置移动网络
                 Method mMethod = telephonyManager.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
                 // 设置移动网络
                 mMethod.invoke(telephonyManager, isOpen);
             }
+            return true;
         } catch (Exception e) { // 开启移动网络失败
             LogPrintUtils.eTag(TAG, e, "setMobileDataEnabled");
-            return false;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -118,9 +118,9 @@ public final class NetWorkUtils {
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isConnect() {
-        // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
-            ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
+            ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 获取网络连接管理的对象
@@ -152,10 +152,9 @@ public final class NetWorkUtils {
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static int getConnectType() {
-        // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
-            // 获取网络连接状态
-            ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
+            ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 判断连接的是否 wifi
@@ -217,6 +216,7 @@ public final class NetWorkUtils {
      */
     public enum NetworkType {
         NETWORK_WIFI,
+        NETWORK_5G,
         NETWORK_4G,
         NETWORK_3G,
         NETWORK_2G,
@@ -281,7 +281,7 @@ public final class NetWorkUtils {
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static NetworkInfo getActiveNetworkInfo() {
         try {
-            return ((ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+            return AppUtils.getConnectivityManager().getActiveNetworkInfo();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActiveNetworkInfo");
         }
@@ -289,14 +289,14 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 获取活动网络信息
+     * 获取活动网络
      * @return {@link Network}
      */
     @RequiresApi(Build.VERSION_CODES.M)
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static Network getActiveNetwork() {
         try {
-            return ((ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetwork();
+            return AppUtils.getConnectivityManager().getActiveNetwork();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActiveNetwork");
         }
@@ -321,7 +321,7 @@ public final class NetWorkUtils {
     public static boolean getWifiEnabled() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return wifiManager.isWifiEnabled();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getWifiEnabled");
@@ -344,7 +344,7 @@ public final class NetWorkUtils {
      */
     public static String getNetworkOperatorName() {
         try {
-            TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             return telephonyManager != null ? telephonyManager.getNetworkOperatorName() : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getNetworkOperatorName");
@@ -402,11 +402,15 @@ public final class NetWorkUtils {
                             // = 4G 网络 =
                             case TelephonyManager.NETWORK_TYPE_LTE:
                             case TelephonyManager.NETWORK_TYPE_IWLAN:
-                                // case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
-                            case 19:
+                            case 19: // TelephonyManager.NETWORK_TYPE_LTE_CA
                                 netType = NetworkType.NETWORK_4G;
                                 break;
-                            default: // 其他判断
+                            // = 5G 网络 =
+                            case TelephonyManager.NETWORK_TYPE_NR:
+                                netType = NetworkType.NETWORK_5G;
+                                break;
+                            // = 其他判断 =
+                            default:
                                 try {
                                     // 判断子类名字
                                     String subtypeName = networkInfo.getSubtypeName();
@@ -430,7 +434,7 @@ public final class NetWorkUtils {
         } else {
             try {
                 // 获取网络连接状态
-                ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager cManager = AppUtils.getConnectivityManager();
                 // 获取当前活跃的网络 ( 连接的网络信息 )
                 Network network = cManager.getActiveNetwork();
                 // 防止为 null
@@ -443,7 +447,7 @@ public final class NetWorkUtils {
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) { // 判断是否连接 wifi
                         netType = NetworkType.NETWORK_WIFI;
                     } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) { // 判断连接的是否移动网络
-                        TelephonyManager telephonyManager = (TelephonyManager) DevUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                        TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                         // 获取网络类型
                         int networkType = telephonyManager.getNetworkType();
                         // 获取移动网络类型
@@ -456,6 +460,9 @@ public final class NetWorkUtils {
                                 break;
                             case 3: // 4G
                                 netType = NetworkType.NETWORK_4G;
+                                break;
+                            case 4: // 5G
+                                netType = NetworkType.NETWORK_5G;
                                 break;
                         }
                     }
@@ -473,7 +480,7 @@ public final class NetWorkUtils {
      *     {@link TelephonyManager#getNetworkClass} hide 方法
      * </pre>
      * @param networkType {@link TelephonyManager#getNetworkType}
-     * @return 0 = 未知, 1 = 2G, 2 = 3G, 3 = 4G
+     * @return 0 = 未知, 1 = 2G, 2 = 3G, 3 = 4G, 4 = 5G
      */
     public static int getNetworkClass(final int networkType) {
         switch (networkType) {
@@ -497,9 +504,10 @@ public final class NetWorkUtils {
                 return 2;
             case TelephonyManager.NETWORK_TYPE_LTE:
             case TelephonyManager.NETWORK_TYPE_IWLAN:
-                // case TelephonyManager.NETWORK_TYPE_LTE_CA: // 19
-            case 19:
+            case 19: // TelephonyManager.NETWORK_TYPE_LTE_CA
                 return 3;
+            case TelephonyManager.NETWORK_TYPE_NR:
+                return 4;
             default:
                 return 0;
         }
@@ -600,7 +608,7 @@ public final class NetWorkUtils {
     public static String getIpAddressByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return Formatter.formatIpAddress(wifiManager.getDhcpInfo().ipAddress);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIpAddressByWifi");
@@ -616,7 +624,7 @@ public final class NetWorkUtils {
     public static String getGatewayByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return Formatter.formatIpAddress(wifiManager.getDhcpInfo().gateway);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getGatewayByWifi");
@@ -632,7 +640,7 @@ public final class NetWorkUtils {
     public static String getNetMaskByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return Formatter.formatIpAddress(wifiManager.getDhcpInfo().netmask);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getNetMaskByWifi");
@@ -648,7 +656,7 @@ public final class NetWorkUtils {
     public static String getServerAddressByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             return Formatter.formatIpAddress(wifiManager.getDhcpInfo().serverAddress);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getServerAddressByWifi");

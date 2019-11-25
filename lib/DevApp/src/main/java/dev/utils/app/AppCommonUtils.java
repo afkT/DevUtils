@@ -1,12 +1,13 @@
 package dev.utils.app;
 
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.RequiresPermission;
 import androidx.annotation.StringRes;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: APP 通用工具类
@@ -23,6 +24,51 @@ public final class AppCommonUtils {
 
     // 日志 TAG
     private static final String TAG = AppCommonUtils.class.getSimpleName();
+    // 应用、设备信息 ( 可用于 FileRecordUtils 插入信息使用 )
+    private static String APP_DEVICE_INFO = null;
+
+    /**
+     * 获取应用、设备信息
+     * @return 应用、设备信息
+     */
+    public static String getAppDeviceInfo() {
+        return APP_DEVICE_INFO;
+    }
+
+    /**
+     * 刷新应用、设备信息
+     * @return 应用、设备信息
+     */
+    public static String refreshAppDeviceInfo() {
+        try {
+            StringBuilder builder = new StringBuilder();
+            // 获取 APP 版本信息
+            String[] versions = ManifestUtils.getAppVersion();
+            String versionName = versions[0];
+            String versionCode = versions[1];
+            String packageName = AppUtils.getPackageName();
+            String deviceInfo = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), null);
+            if (TextUtils.isEmpty(versionName) || TextUtils.isEmpty(versionCode) ||
+                    TextUtils.isEmpty(packageName) || TextUtils.isEmpty(deviceInfo)) {
+                return null;
+            }
+            // 保存 APP 版本信息
+            builder.append("versionName: " + versionName);
+            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append("versionCode: " + versionCode);
+            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append("package: " + packageName);
+            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append(deviceInfo);
+            // 设置应用、设备信息
+            APP_DEVICE_INFO = builder.toString();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "refreshAppDeviceInfo");
+        }
+        return APP_DEVICE_INFO;
+    }
+
+    // =
 
     /**
      * 获取设备唯一 UUID
@@ -53,9 +99,9 @@ public final class AppCommonUtils {
     public static String getFormatRes(final boolean errorMsg, @StringRes final int resId, final Object... objs) {
         try {
             if (objs != null && objs.length != 0) {
-                return DevUtils.getContext().getString(resId, objs);
+                return ResourceUtils.getString(resId, objs);
             } else {
-                return DevUtils.getContext().getString(resId);
+                return ResourceUtils.getString(resId);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getFormatRes");
@@ -77,8 +123,6 @@ public final class AppCommonUtils {
     public static int getSDKVersion() {
         return Build.VERSION.SDK_INT;
     }
-
-    // =
 
     /**
      * 是否在 2.2 版本及以上

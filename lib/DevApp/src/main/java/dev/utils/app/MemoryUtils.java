@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.app.ActivityManager;
-import android.content.Context;
 import android.os.Build;
 import android.text.format.Formatter;
 
@@ -12,6 +11,7 @@ import java.io.FileReader;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 内存信息工具类
@@ -76,17 +76,19 @@ public final class MemoryUtils {
      * @return 内存信息
      */
     public static String printMemoryInfo() {
+        BufferedReader br = null;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
+            br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
             StringBuilder builder = new StringBuilder();
             String str;
             while ((str = br.readLine()) != null) {
                 builder.append(str);
             }
-            br.close();
             return builder.toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printMemoryInfo");
+        } finally {
+            CloseUtils.closeIOQuietly(br);
         }
         return null;
     }
@@ -121,7 +123,7 @@ public final class MemoryUtils {
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo getMemoryInfo() {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             activityManager.getMemoryInfo(memoryInfo);
             return memoryInfo;
@@ -141,7 +143,7 @@ public final class MemoryUtils {
     public static long getAvailMemory() {
         try {
             // 获取 android 当前可用内存大小
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityManager = AppUtils.getActivityManager();
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             activityManager.getMemoryInfo(memoryInfo);
             // 当前系统的可用内存
@@ -203,21 +205,23 @@ public final class MemoryUtils {
      * @return 对应 type 内存信息
      */
     public static long getMemInfoIype(final String type) {
+        BufferedReader br = null;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
+            br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
             String str;
             while ((str = br.readLine()) != null) {
                 if (str.contains(type)) {
                     break;
                 }
             }
-            br.close();
             // 拆分空格、回车、换行等空白符
             String[] array = str.split("\\s+");
             // 获取系统总内存, 单位是 KB, 乘以 1024 转换为 Byte
             return Long.valueOf(array[1]).longValue() * 1024;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMemInfoIype - " + type);
+        } finally {
+            CloseUtils.closeIOQuietly(br);
         }
         return 0L;
     }

@@ -102,13 +102,13 @@ public interface IHttpEngine {
 
         /**
          * 开始请求方法 ( 同步 )
-         * @return {@code true} operation successfully, {@code false} operation failed
+         * @return {@code true} success, {@code false} fail
          */
         boolean start();
 
         /**
          * 开始请求方法 ( 异步 )
-         * @return {@code true} operation successfully, {@code false} operation failed
+         * @return {@code true} success, {@code false} fail
          */
         boolean startAync();
     }

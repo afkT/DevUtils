@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 时间监听广播
@@ -69,7 +69,7 @@ public final class TimeReceiver extends BroadcastReceiver {
             filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            DevUtils.getContext().registerReceiver(timeReceiver, filter);
+            AppUtils.registerReceiver(timeReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -80,7 +80,7 @@ public final class TimeReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            DevUtils.getContext().unregisterReceiver(timeReceiver);
+            AppUtils.unregisterReceiver(timeReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }

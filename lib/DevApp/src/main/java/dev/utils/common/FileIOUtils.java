@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -53,7 +52,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromIS(final String filePath, final InputStream inputStream) {
-        return writeFileFromIS(getFileByPath(filePath), inputStream, false);
+        return writeFileFromIS(FileUtils.getFileByPath(filePath), inputStream, false);
     }
 
     /**
@@ -64,7 +63,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromIS(final String filePath, final InputStream inputStream, final boolean append) {
-        return writeFileFromIS(getFileByPath(filePath), inputStream, append);
+        return writeFileFromIS(FileUtils.getFileByPath(filePath), inputStream, append);
     }
 
     /**
@@ -85,7 +84,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromIS(final File file, final InputStream inputStream, final boolean append) {
-        if (!createOrExistsFile(file) || inputStream == null) return false;
+        if (inputStream == null || !FileUtils.createOrExistsFile(file)) return false;
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
@@ -99,7 +98,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromIS");
             return false;
         } finally {
-            closeIOQuietly(inputStream, os);
+            CloseUtils.closeIOQuietly(inputStream, os);
         }
     }
 
@@ -110,7 +109,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes) {
-        return writeFileFromBytesByStream(getFileByPath(filePath), bytes, false);
+        return writeFileFromBytesByStream(FileUtils.getFileByPath(filePath), bytes, false);
     }
 
     /**
@@ -121,7 +120,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes, final boolean append) {
-        return writeFileFromBytesByStream(getFileByPath(filePath), bytes, append);
+        return writeFileFromBytesByStream(FileUtils.getFileByPath(filePath), bytes, append);
     }
 
     /**
@@ -142,7 +141,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByStream(final File file, final byte[] bytes, final boolean append) {
-        if (bytes == null || !createOrExistsFile(file)) return false;
+        if (bytes == null || !FileUtils.createOrExistsFile(file)) return false;
         BufferedOutputStream bos = null;
         try {
             bos = new BufferedOutputStream(new FileOutputStream(file, append));
@@ -152,7 +151,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByStream");
             return false;
         } finally {
-            closeIOQuietly(bos);
+            CloseUtils.closeIOQuietly(bos);
         }
     }
 
@@ -164,7 +163,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean isForce) {
-        return writeFileFromBytesByChannel(getFileByPath(filePath), bytes, false, isForce);
+        return writeFileFromBytesByChannel(FileUtils.getFileByPath(filePath), bytes, false, isForce);
     }
 
     /**
@@ -176,7 +175,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
-        return writeFileFromBytesByChannel(getFileByPath(filePath), bytes, append, isForce);
+        return writeFileFromBytesByChannel(FileUtils.getFileByPath(filePath), bytes, append, isForce);
     }
 
     /**
@@ -199,7 +198,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByChannel(final File file, final byte[] bytes, final boolean append, final boolean isForce) {
-        if (bytes == null) return false;
+        if (bytes == null || !FileUtils.createOrExistsFile(file)) return false;
         FileChannel fc = null;
         try {
             fc = new FileOutputStream(file, append).getChannel();
@@ -211,7 +210,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByChannel");
             return false;
         } finally {
-            closeIOQuietly(fc);
+            CloseUtils.closeIOQuietly(fc);
         }
     }
 
@@ -235,7 +234,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByMap(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
-        return writeFileFromBytesByMap(getFileByPath(filePath), bytes, append, isForce);
+        return writeFileFromBytesByMap(FileUtils.getFileByPath(filePath), bytes, append, isForce);
     }
 
     /**
@@ -258,7 +257,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromBytesByMap(final File file, final byte[] bytes, final boolean append, final boolean isForce) {
-        if (bytes == null || !createOrExistsFile(file)) return false;
+        if (bytes == null || !FileUtils.createOrExistsFile(file)) return false;
         FileChannel fc = null;
         try {
             fc = new FileOutputStream(file, append).getChannel();
@@ -270,7 +269,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByMap");
             return false;
         } finally {
-            closeIOQuietly(fc);
+            CloseUtils.closeIOQuietly(fc);
         }
     }
 
@@ -281,7 +280,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromString(final String filePath, final String content) {
-        return writeFileFromString(getFileByPath(filePath), content, false);
+        return writeFileFromString(FileUtils.getFileByPath(filePath), content, false);
     }
 
     /**
@@ -292,7 +291,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromString(final String filePath, final String content, final boolean append) {
-        return writeFileFromString(getFileByPath(filePath), content, append);
+        return writeFileFromString(FileUtils.getFileByPath(filePath), content, append);
     }
 
     /**
@@ -313,8 +312,7 @@ public final class FileIOUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean writeFileFromString(final File file, final String content, final boolean append) {
-        if (file == null || content == null) return false;
-        if (!createOrExistsFile(file)) return false;
+        if (content == null || !FileUtils.createOrExistsFile(file)) return false;
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter(file, append));
@@ -324,7 +322,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "writeFileFromString");
             return false;
         } finally {
-            closeIOQuietly(bw);
+            CloseUtils.closeIOQuietly(bw);
         }
     }
 
@@ -338,7 +336,7 @@ public final class FileIOUtils {
      * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final String filePath) {
-        return readFileToList(getFileByPath(filePath), null);
+        return readFileToList(FileUtils.getFileByPath(filePath), null);
     }
 
     /**
@@ -348,7 +346,7 @@ public final class FileIOUtils {
      * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final String filePath, final String charsetName) {
-        return readFileToList(getFileByPath(filePath), charsetName);
+        return readFileToList(FileUtils.getFileByPath(filePath), charsetName);
     }
 
     /**
@@ -378,7 +376,7 @@ public final class FileIOUtils {
      * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final String filePath, final int start, final int end) {
-        return readFileToList(getFileByPath(filePath), start, end, null);
+        return readFileToList(FileUtils.getFileByPath(filePath), start, end, null);
     }
 
     /**
@@ -390,7 +388,7 @@ public final class FileIOUtils {
      * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final String filePath, final int start, final int end, final String charsetName) {
-        return readFileToList(getFileByPath(filePath), start, end, charsetName);
+        return readFileToList(FileUtils.getFileByPath(filePath), start, end, charsetName);
     }
 
     /**
@@ -413,14 +411,14 @@ public final class FileIOUtils {
      * @return 换行 {@link List<String>}
      */
     public static List<String> readFileToList(final File file, final int start, final int end, final String charsetName) {
-        if (!isFileExists(file)) return null;
+        if (!FileUtils.isFileExists(file)) return null;
         if (start > end) return null;
         BufferedReader br = null;
         try {
             String line;
             int curLine = 1;
             List<String> list = new ArrayList<>();
-            if (isSpace(charsetName)) {
+            if (StringUtils.isSpace(charsetName)) {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
@@ -435,7 +433,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToList");
             return null;
         } finally {
-            closeIOQuietly(br);
+            CloseUtils.closeIOQuietly(br);
         }
     }
 
@@ -447,7 +445,7 @@ public final class FileIOUtils {
      * @return 文件内容字符串
      */
     public static String readFileToString(final String filePath) {
-        return readFileToString(getFileByPath(filePath), null);
+        return readFileToString(FileUtils.getFileByPath(filePath), null);
     }
 
     /**
@@ -457,7 +455,7 @@ public final class FileIOUtils {
      * @return 文件内容字符串
      */
     public static String readFileToString(final String filePath, final String charsetName) {
-        return readFileToString(getFileByPath(filePath), charsetName);
+        return readFileToString(FileUtils.getFileByPath(filePath), charsetName);
     }
 
     /**
@@ -476,11 +474,11 @@ public final class FileIOUtils {
      * @return 文件内容字符串
      */
     public static String readFileToString(final File file, final String charsetName) {
-        if (!isFileExists(file)) return null;
+        if (!FileUtils.isFileExists(file)) return null;
         BufferedReader br = null;
         try {
             StringBuilder builder = new StringBuilder();
-            if (isSpace(charsetName)) {
+            if (StringUtils.isSpace(charsetName)) {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
@@ -497,7 +495,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToString");
             return null;
         } finally {
-            closeIOQuietly(br);
+            CloseUtils.closeIOQuietly(br);
         }
     }
 
@@ -507,7 +505,7 @@ public final class FileIOUtils {
      * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByStream(final String filePath) {
-        return readFileToBytesByStream(getFileByPath(filePath));
+        return readFileToBytesByStream(FileUtils.getFileByPath(filePath));
     }
 
     /**
@@ -516,7 +514,7 @@ public final class FileIOUtils {
      * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByStream(final File file) {
-        if (!isFileExists(file)) return null;
+        if (!FileUtils.isFileExists(file)) return null;
         FileInputStream fis = null;
         ByteArrayOutputStream baos = null;
         try {
@@ -532,7 +530,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByStream");
             return null;
         } finally {
-            closeIOQuietly(fis, baos);
+            CloseUtils.closeIOQuietly(fis, baos);
         }
     }
 
@@ -542,7 +540,7 @@ public final class FileIOUtils {
      * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByChannel(final String filePath) {
-        return readFileToBytesByChannel(getFileByPath(filePath));
+        return readFileToBytesByChannel(FileUtils.getFileByPath(filePath));
     }
 
     /**
@@ -551,7 +549,7 @@ public final class FileIOUtils {
      * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByChannel(final File file) {
-        if (!isFileExists(file)) return null;
+        if (!FileUtils.isFileExists(file)) return null;
         FileChannel fc = null;
         try {
             fc = new RandomAccessFile(file, "r").getChannel();
@@ -564,7 +562,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByChannel");
             return null;
         } finally {
-            closeIOQuietly(fc);
+            CloseUtils.closeIOQuietly(fc);
         }
     }
 
@@ -574,7 +572,7 @@ public final class FileIOUtils {
      * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByMap(final String filePath) {
-        return readFileToBytesByMap(getFileByPath(filePath));
+        return readFileToBytesByMap(FileUtils.getFileByPath(filePath));
     }
 
     /**
@@ -583,7 +581,7 @@ public final class FileIOUtils {
      * @return 文件内容 byte[]
      */
     public static byte[] readFileToBytesByMap(final File file) {
-        if (!isFileExists(file)) return null;
+        if (!FileUtils.isFileExists(file)) return null;
         FileChannel fc = null;
         try {
             fc = new RandomAccessFile(file, "r").getChannel();
@@ -596,111 +594,7 @@ public final class FileIOUtils {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByMap");
             return null;
         } finally {
-            closeIOQuietly(fc);
+            CloseUtils.closeIOQuietly(fc);
         }
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ==============
-    // = CloseUtils =
-    // ==============
-
-    /**
-     * 安静关闭 IO
-     * @param closeables Closeable[]
-     */
-    private static void closeIOQuietly(final Closeable... closeables) {
-        if (closeables == null) return;
-        for (Closeable closeable : closeables) {
-            if (closeable != null) {
-                try {
-                    closeable.close();
-                } catch (Exception ignore) {
-                }
-            }
-        }
-    }
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
-
-    /**
-     * 判断文件是否存在, 不存在则判断是否创建成功
-     * @param filePath 文件路径
-     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
-     */
-    private static boolean createOrExistsFile(final String filePath) {
-        return createOrExistsFile(getFileByPath(filePath));
-    }
-
-    /**
-     * 判断文件是否存在, 不存在则判断是否创建成功
-     * @param file 文件
-     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
-     */
-    private static boolean createOrExistsFile(final File file) {
-        if (file == null) return false;
-        // 如果存在, 是文件则返回 true, 是目录则返回 false
-        if (file.exists()) return file.isFile();
-        // 判断文件是否存在, 不存在则直接返回
-        if (!createOrExistsDir(file.getParentFile())) return false;
-        try {
-            // 存在, 则返回新的路径
-            return file.createNewFile();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "createOrExistsFile");
-            return false;
-        }
-    }
-
-    /**
-     * 判断目录是否存在, 不存在则判断是否创建成功
-     * @param file 文件
-     * @return {@code true} 存在或创建成功, {@code false} 不存在或创建失败
-     */
-    private static boolean createOrExistsDir(final File file) {
-        // 如果存在, 是目录则返回 true, 是文件则返回 false, 不存在则返回是否创建成功
-        return file != null && (file.exists() ? file.isDirectory() : file.mkdirs());
-    }
-
-    /**
-     * 检查是否存在某个文件
-     * @param file 文件
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isFileExists(final File file) {
-        return file != null && file.exists();
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

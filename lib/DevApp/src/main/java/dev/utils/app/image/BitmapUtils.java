@@ -1,6 +1,5 @@
 package dev.utils.app.image;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -26,8 +25,9 @@ import java.io.File;
 import java.io.FileDescriptor;
 import java.io.InputStream;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.ResourceUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: Bitmap 工具类
@@ -57,7 +57,7 @@ public final class BitmapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Bitmap bitmap) {
-        return bitmap == null || bitmap.getWidth() == 0 || bitmap.getHeight() == 0;
+        return ImageUtils.isEmpty(bitmap);
     }
 
     /**
@@ -66,7 +66,7 @@ public final class BitmapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Bitmap bitmap) {
-        return bitmap != null && bitmap.getWidth() != 0 && bitmap.getHeight() != 0;
+        return ImageUtils.isNotEmpty(bitmap);
     }
 
     // ============
@@ -88,7 +88,7 @@ public final class BitmapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isImage(final String filePath) {
-        if (!isFileExists(filePath)) return false;
+        if (!FileUtils.isFileExists(filePath)) return false;
         BitmapFactory.Options options = new BitmapFactory.Options();
         // 只解析图片信息, 不加载到内存中
         options.inJustDecodeBounds = true;
@@ -143,7 +143,7 @@ public final class BitmapUtils {
      * @return int[] { 宽度, 高度 }
      */
     public static int[] getBitmapWidthHeight(final File file) {
-        return getBitmapWidthHeight(getAbsolutePath(file));
+        return getBitmapWidthHeight(FileUtils.getAbsolutePath(file));
     }
 
     /**
@@ -152,7 +152,7 @@ public final class BitmapUtils {
      * @return int[] { 宽度, 高度 }
      */
     public static int[] getBitmapWidthHeight(final String filePath) {
-        if (!isFileExists(filePath)) return new int[]{0, 0};
+        if (!FileUtils.isFileExists(filePath)) return new int[]{0, 0};
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
             // 只解析图片信息, 不加载到内存中
@@ -180,7 +180,7 @@ public final class BitmapUtils {
             // 只解析图片信息, 不加载到内存中
             options.inJustDecodeBounds = true;
             // 返回的 bitmap 为 null
-            BitmapFactory.decodeResource(getResources(), resId, options);
+            BitmapFactory.decodeResource(ResourceUtils.getResources(), resId, options);
             // options.outHeight 为原始图片的高
             return new int[]{options.outWidth, options.outHeight};
         } catch (Exception e) {
@@ -325,16 +325,19 @@ public final class BitmapUtils {
     /**
      * Bitmap 通知回收
      * @param bitmap 待回收图片
+     * @return {@code true} success, {@code false} fail
      */
-    public static void recycle(final Bitmap bitmap) {
-        if (bitmap == null) return;
+    public static boolean recycle(final Bitmap bitmap) {
+        if (bitmap == null) return false;
         if (!bitmap.isRecycled()) {
             try {
                 bitmap.recycle();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "recycle");
             }
         }
+        return false;
     }
 
     // ===============
@@ -1016,8 +1019,8 @@ public final class BitmapUtils {
      * @param cornerRadius 圆角半径
      * @return 添加边框后的图片
      */
-    private static Bitmap addBorder(final Bitmap bitmap, @IntRange(from = 1) final int borderSize,
-                                    @ColorInt final int color, final boolean isCircle, final float cornerRadius) {
+    public static Bitmap addBorder(final Bitmap bitmap, @IntRange(from = 1) final int borderSize,
+                                   @ColorInt final int color, final boolean isCircle, final float cornerRadius) {
         if (isEmpty(bitmap)) return null;
 
         Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
@@ -1340,66 +1343,5 @@ public final class BitmapUtils {
             inSampleSize <<= 1;
         }
         return inSampleSize;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
-
-    /**
-     * 获取文件绝对路径
-     * @param file 文件
-     * @return 文件绝对路径
-     */
-    private static String getAbsolutePath(final File file) {
-        return file != null ? file.getAbsolutePath() : null;
-    }
-
-    /**
-     * 检查是否存在某个文件
-     * @param file 文件
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isFileExists(final File file) {
-        return file != null && file.exists();
-    }
-
-    /**
-     * 检查是否存在某个文件
-     * @param filePath 文件路径
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isFileExists(final String filePath) {
-        return isFileExists(getFileByPath(filePath));
-    }
-
-    // =================
-    // = ResourceUtils =
-    // =================
-
-    /**
-     * 获取 Resources
-     * @return {@link Resources}
-     */
-    private static Resources getResources() {
-        try {
-            return DevUtils.getContext().getResources();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getResources");
-        }
-        return null;
     }
 }

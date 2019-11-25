@@ -24,7 +24,7 @@ final class DevCacheManager {
     // 文件总数限制
     private final int mCountLimit;
     // 保存文件时间信息 - 文件地址, 文件最后使用时间
-    private final Map<File, Long> mLastUsageDateMaps = Collections.synchronizedMap(new HashMap<File, Long>());
+    private final Map<File, Long> mLastUsageDateMaps = Collections.synchronizedMap(new HashMap<>());
     // 文件目录
     private File mCacheDir;
 
@@ -114,7 +114,6 @@ final class DevCacheManager {
             Long currentTime = System.currentTimeMillis();
             file.setLastModified(currentTime);
             mLastUsageDateMaps.put(file, currentTime);
-            return file;
         }
         return file;
     }
@@ -125,7 +124,7 @@ final class DevCacheManager {
      * @return {@link File}
      */
     protected File newFile(final String key) {
-        if (key != null) {
+        if (mCacheDir != null && key != null) {
             return new File(mCacheDir, key.hashCode() + "");
         }
         return null;

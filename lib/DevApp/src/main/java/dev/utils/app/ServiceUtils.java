@@ -36,12 +36,7 @@ public final class ServiceUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isServiceRunning(final Class<?> clazz) {
-        try {
-            return isServiceRunning(clazz.getName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isServiceRunning");
-        }
-        return false;
+        return (clazz != null) ? isServiceRunning(clazz.getName()) : false;
     }
 
     /**
@@ -51,10 +46,8 @@ public final class ServiceUtils {
      */
     public static boolean isServiceRunning(final String className) {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-            if (activityManager == null) return false;
+            ActivityManager activityManager = AppUtils.getActivityManager();
             List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
-            if (lists == null || lists.size() == 0) return false;
             for (RunningServiceInfo info : lists) {
                 if (className.equals(info.service.getClassName())) return true;
             }
@@ -72,11 +65,9 @@ public final class ServiceUtils {
      */
     public static Set getAllRunningService() {
         try {
-            ActivityManager activityManager = (ActivityManager) DevUtils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
-            if (activityManager == null) return Collections.emptySet();
-            List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
-            if (lists == null || lists.size() == 0) return null;
             Set<String> names = new HashSet<>();
+            ActivityManager activityManager = AppUtils.getActivityManager();
+            List<RunningServiceInfo> lists = activityManager.getRunningServices(Integer.MAX_VALUE);
             for (RunningServiceInfo info : lists) {
                 names.add(info.service.getClassName());
             }
@@ -94,26 +85,29 @@ public final class ServiceUtils {
     /**
      * 启动服务
      * @param className package.ServiceClassName - class.getName()
+     * @return {@code true} success, {@code false} fail
      */
-    public static void startService(final String className) {
+    public static boolean startService(final String className) {
         try {
-            startService(Class.forName(className));
+            return startService(Class.forName(className));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
         }
+        return false;
     }
 
     /**
      * 启动服务
      * @param clazz {@link Class}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void startService(final Class<?> clazz) {
+    public static boolean startService(final Class<?> clazz) {
         try {
-            Intent intent = new Intent(DevUtils.getContext(), clazz);
-            DevUtils.getContext().startService(intent);
+            return AppUtils.startService(new Intent(DevUtils.getContext(), clazz));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
         }
+        return false;
     }
 
     // ============
@@ -141,8 +135,7 @@ public final class ServiceUtils {
      */
     public static boolean stopService(final Class<?> clazz) {
         try {
-            Intent intent = new Intent(DevUtils.getContext(), clazz);
-            return DevUtils.getContext().stopService(intent);
+            return AppUtils.stopService(new Intent(DevUtils.getContext(), clazz));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
             return false;
@@ -164,13 +157,15 @@ public final class ServiceUtils {
      *                  {@link Context#BIND_ABOVE_CLIENT}
      *                  {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
      *                  {@link Context#BIND_WAIVE_PRIORITY}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void bindService(final String className, final ServiceConnection conn, final int flags) {
+    public static boolean bindService(final String className, final ServiceConnection conn, final int flags) {
         try {
-            bindService(Class.forName(className), conn, flags);
+            return bindService(Class.forName(className), conn, flags);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bindService");
         }
+        return false;
     }
 
     /**
@@ -184,14 +179,17 @@ public final class ServiceUtils {
      *              {@link Context#BIND_ABOVE_CLIENT}
      *              {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
      *              {@link Context#BIND_WAIVE_PRIORITY}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void bindService(final Class<?> clazz, final ServiceConnection conn, final int flags) {
+    public static boolean bindService(final Class<?> clazz, final ServiceConnection conn, final int flags) {
         try {
             Intent intent = new Intent(DevUtils.getContext(), clazz);
             DevUtils.getContext().bindService(intent, conn, flags);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bindService");
         }
+        return false;
     }
 
     // ============
@@ -201,12 +199,15 @@ public final class ServiceUtils {
     /**
      * 解绑服务
      * @param conn {@link ServiceConnection}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void unbindService(final ServiceConnection conn) {
+    public static boolean unbindService(final ServiceConnection conn) {
         try {
             DevUtils.getContext().unbindService(conn);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unbindService");
         }
+        return false;
     }
 }

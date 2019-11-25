@@ -14,39 +14,37 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| getCacheDir | 获取缓存地址 |
-| get | 默认缓存地址 |
+| obtain | 获取 DevCache - 默认缓存文件名 |
 | put | 保存 String 数据到缓存中 |
 | getAsString | 读取 String 数据 |
 | getAsJSONObject | 读取 JSONObject 数据 |
 | getAsJSONArray | 读取 JSONArray 数据 |
+| get | 获取对应 key 的 File 输入流 |
 | getAsBinary | 获取 byte[] 数据 |
 | getAsObject | 读取 Serializable 数据 |
 | getAsBitmap | 读取 Bitmap 数据 |
 | getAsDrawable | 读取 Drawable 数据 |
 | file | 获取缓存文件 |
-| remove | 移除某个key |
+| remove | 移除某个 key 的数据 |
 | clear | 清除所有数据 |
 
 #### 使用方法
 ```java
-final Context mContext = DevUtils.getContext();
-
 // 初始化
 CacheVo cacheVo = new CacheVo("测试持久化");
 // 打印信息
 LogPrintUtils.dTag(TAG, "保存前: " + cacheVo.toString());
 // 保存数据
-DevCache.get(mContext).put("ctv", cacheVo);
+DevCache.obtain().put("ctv", cacheVo);
 // 重新获取
-CacheVo ctv = (CacheVo) DevCache.get(mContext).getAsObject("ctv");
+CacheVo ctv = (CacheVo) DevCache.obtain().getAsObject("ctv");
 // 打印获取后的数据
 DevLogger.dTag(TAG, "保存后: " + ctv.toString());
 // 设置保存有效时间 5秒
-DevCache.get(mContext).put("ctva", new CacheVo("测试有效时间"), 1);
+DevCache.obtain().put("ctva", new CacheVo("测试有效时间"), 1);
 
 // 保存到指定文件夹下
-DevCache.get(new File(SDCardUtils.getSDCardPath(), "Cache")).put("key", "保存数据");
+DevCache.obtain(new File(SDCardUtils.getSDCardPath(), "Cache")).put("key", "保存数据");
 
 // 延迟后
 new Thread(new Runnable() {
@@ -56,7 +54,7 @@ new Thread(new Runnable() {
             // 延迟 1.5 已经过期再去获取
             Thread.sleep(1500);
             // 获取数据
-            CacheVo ctva = (CacheVo) DevCache.get(mContext).getAsObject("ctva");
+            CacheVo ctva = (CacheVo) DevCache.obtain().getAsObject("ctva");
             // 判断是否过期
             DevLogger.dTag(TAG, "是否过期: " + (ctva == null));
         } catch (Exception e) {

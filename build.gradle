@@ -14,10 +14,13 @@ buildscript {
 
         google()
         jcenter()
+
+        // JitPack Maven
+        maven { url 'https://jitpack.io' }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.1'
+        classpath 'com.android.tools.build:gradle:3.5.2'
         // Mavan
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         // bintray
@@ -35,6 +38,9 @@ allprojects {
 
         google()
         jcenter()
+
+        // JitPack Maven
+        maven { url 'https://jitpack.io' }
     }
 
 //    gradle.projectsEvaluated {

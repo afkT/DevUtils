@@ -34,18 +34,17 @@ public final class AlarmUtils {
 
     /**
      * 开启一次性闹钟
-     * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param pendingIntent   {@link PendingIntent} 响应动作
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmIntent(final Context context, final long triggerAtMillis, final PendingIntent pendingIntent) {
-        startAlarmIntent(context, AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+    public static boolean startAlarmIntent(final long triggerAtMillis, final PendingIntent pendingIntent) {
+        return startAlarmIntent(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
     }
 
     /**
      * 开启一次性闹钟
-     * @param context         {@link Context}
      * @param type            闹钟类型, 常用的有 5 个值:
      *                        AlarmManager.ELAPSED_REALTIME、
      *                        AlarmManager.ELAPSED_REALTIME_WAKEUP、
@@ -54,11 +53,12 @@ public final class AlarmUtils {
      *                        AlarmManager.POWER_OFF_WAKEUP
      * @param triggerAtMillis 执行时间
      * @param pendingIntent   {@link PendingIntent} 响应动作
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmIntent(final Context context, final int type, final long triggerAtMillis, final PendingIntent pendingIntent) {
+    public static boolean startAlarmIntent(final int type, final long triggerAtMillis, final PendingIntent pendingIntent) {
         try {
-            AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            AlarmManager manager = AppUtils.getAlarmManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 manager.setExactAndAllowWhileIdle(type, triggerAtMillis, pendingIntent);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -66,9 +66,11 @@ public final class AlarmUtils {
             } else {
                 manager.set(type, triggerAtMillis, pendingIntent);
             }
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmIntent");
         }
+        return false;
     }
 
     // ============
@@ -77,17 +79,18 @@ public final class AlarmUtils {
 
     /**
      * 关闭闹钟
-     * @param context       {@link Context}
      * @param pendingIntent {@link PendingIntent} 响应动作
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmIntent(final Context context, final PendingIntent pendingIntent) {
+    public static boolean stopAlarmIntent(final PendingIntent pendingIntent) {
         try {
-            AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            manager.cancel(pendingIntent);
+            AppUtils.getAlarmManager().cancel(pendingIntent);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmIntent");
         }
+        return false;
     }
 
     // ================
@@ -100,32 +103,36 @@ public final class AlarmUtils {
      * @param triggerAtMillis 执行时间
      * @param clazz           Class
      * @param action          Intent Action
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmService(final Context context, final long triggerAtMillis, final Class<?> clazz, final String action) {
+    public static boolean startAlarmService(final Context context, final long triggerAtMillis, final Class<?> clazz, final String action) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
-            startAlarmService(context, triggerAtMillis, intent);
+            return startAlarmService(context, triggerAtMillis, intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmService");
         }
+        return false;
     }
 
     /**
      * 开启 Service 闹钟
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
-     * @param intent          {@link Intent}
+     * @param intent          {@link Intent
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmService(final Context context, final long triggerAtMillis, final Intent intent) {
+    public static boolean startAlarmService(final Context context, final long triggerAtMillis, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            startAlarmIntent(context, triggerAtMillis, pendingIntent);
+            return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmService");
         }
+        return false;
     }
 
     // =
@@ -135,31 +142,35 @@ public final class AlarmUtils {
      * @param context {@link Context}
      * @param clazz   Class
      * @param action  Intent Action
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmService(final Context context, final Class<?> clazz, final String action) {
+    public static boolean stopAlarmService(final Context context, final Class<?> clazz, final String action) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
-            stopAlarmService(context, intent);
+            return stopAlarmService(context, intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmService");
         }
+        return false;
     }
 
     /**
      * 关闭 Service 闹钟
      * @param context {@link Context}
      * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmService(final Context context, final Intent intent) {
+    public static boolean stopAlarmService(final Context context, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            stopAlarmIntent(context, pendingIntent);
+            return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmService");
         }
+        return false;
     }
 
     // =====================
@@ -172,16 +183,18 @@ public final class AlarmUtils {
      * @param triggerAtMillis 执行时间
      * @param clazz           Class
      * @param action          Intent Action
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static void startAlarmForegroundService(final Context context, final long triggerAtMillis, final Class<?> clazz, final String action) {
+    public static boolean startAlarmForegroundService(final Context context, final long triggerAtMillis, final Class<?> clazz, final String action) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
-            startAlarmForegroundService(context, triggerAtMillis, intent);
+            return startAlarmForegroundService(context, triggerAtMillis, intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmForegroundService");
         }
+        return false;
     }
 
     /**
@@ -189,15 +202,17 @@ public final class AlarmUtils {
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param intent          {@link Intent}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static void startAlarmForegroundService(final Context context, final long triggerAtMillis, final Intent intent) {
+    public static boolean startAlarmForegroundService(final Context context, final long triggerAtMillis, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            startAlarmIntent(context, triggerAtMillis, pendingIntent);
+            return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmForegroundService");
         }
+        return false;
     }
 
     // =
@@ -207,31 +222,35 @@ public final class AlarmUtils {
      * @param context {@link Context}
      * @param clazz   Class
      * @param action  Intent Action
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static void stopAlarmForegroundService(final Context context, final Class<?> clazz, final String action) {
+    public static boolean stopAlarmForegroundService(final Context context, final Class<?> clazz, final String action) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
-            stopAlarmForegroundService(context, intent);
+            return stopAlarmForegroundService(context, intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmForegroundService");
         }
+        return false;
     }
 
     /**
      * 关闭 ForegroundService 闹钟
      * @param context {@link Context}
      * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static void stopAlarmForegroundService(final Context context, final Intent intent) {
+    public static boolean stopAlarmForegroundService(final Context context, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            stopAlarmIntent(context, pendingIntent);
+            return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmForegroundService");
         }
+        return false;
     }
 
     // ===========================
@@ -243,15 +262,17 @@ public final class AlarmUtils {
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param intent          {@link Intent}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmBroadcast(final Context context, final long triggerAtMillis, final Intent intent) {
+    public static boolean startAlarmBroadcast(final Context context, final long triggerAtMillis, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            startAlarmIntent(context, triggerAtMillis, pendingIntent);
+            return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmBroadcast");
         }
+        return false;
     }
 
     // =
@@ -260,15 +281,17 @@ public final class AlarmUtils {
      * 关闭 Receiver 闹钟
      * @param context {@link Context}
      * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmBroadcast(final Context context, final Intent intent) {
+    public static boolean stopAlarmBroadcast(final Context context, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            stopAlarmIntent(context, pendingIntent);
+            return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmBroadcast");
         }
+        return false;
     }
 
     // =================
@@ -280,29 +303,33 @@ public final class AlarmUtils {
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param intent          {@link Intent}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void startAlarmActivity(final Context context, final long triggerAtMillis, final Intent intent) {
+    public static boolean startAlarmActivity(final Context context, final long triggerAtMillis, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            startAlarmIntent(context, triggerAtMillis, pendingIntent);
+            return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmActivity");
         }
+        return false;
     }
 
     /**
      * 关闭 Activity 闹钟
      * @param context {@link Context}
      * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static void stopAlarmActivity(final Context context, final Intent intent) {
+    public static boolean stopAlarmActivity(final Context context, final Intent intent) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            stopAlarmIntent(context, pendingIntent);
+            return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmActivity");
         }
+        return false;
     }
 }

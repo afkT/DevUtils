@@ -3,7 +3,6 @@ package dev.utils.common;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
@@ -18,13 +17,12 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.DigestInputStream;
-import java.security.MessageDigest;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.encrypt.MD5Utils;
 
 /**
  * detail: 文件操作工具类
@@ -117,8 +115,6 @@ public final class FileUtils {
                 if (!file.exists()) {
                     // 允许创建多级目录
                     return file.mkdirs();
-                    // 这个无法创建多级目录
-                    // rootFile.mkdir();
                 }
                 return true;
             } catch (Exception e) {
@@ -157,25 +153,31 @@ public final class FileUtils {
     /**
      * 创建多个文件夹, 如果不存在则创建
      * @param filePaths 文件路径数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void createFolderByPaths(final String... filePaths) {
+    public static boolean createFolderByPaths(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
             for (int i = 0, len = filePaths.length; i < len; i++) {
                 createFolder(filePaths[i]);
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * 创建多个文件夹, 如果不存在则创建
      * @param files 文件数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void createFolderByPaths(final File... files) {
+    public static boolean createFolderByPaths(final File... files) {
         if (files != null && files.length != 0) {
             for (int i = 0, len = files.length; i < len; i++) {
                 createFolder(files[i]);
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -301,7 +303,7 @@ public final class FileUtils {
      * @return 文件名, 如果文件路径为 null 时, 返回默认字符串
      */
     public static String getName(final String filePath, final String defaultStr) {
-        return isSpace(filePath) ? defaultStr : new File(filePath).getName();
+        return StringUtils.isSpace(filePath) ? defaultStr : new File(filePath).getName();
     }
 
     /**
@@ -382,7 +384,7 @@ public final class FileUtils {
      * @return 不带拓展名的文件名
      */
     public static String getFileNameNoExtension(final String filePath) {
-        if (isSpace(filePath)) return filePath;
+        if (StringUtils.isSpace(filePath)) return filePath;
         int lastPoi = filePath.lastIndexOf('.');
         int lastSep = filePath.lastIndexOf(File.separator);
         if (lastSep == -1) {
@@ -410,7 +412,7 @@ public final class FileUtils {
      * @return 文件拓展名
      */
     public static String getFileExtension(final String filePath) {
-        if (isSpace(filePath)) return filePath;
+        if (StringUtils.isSpace(filePath)) return filePath;
         int lastPoi = filePath.lastIndexOf('.');
         int lastSep = filePath.lastIndexOf(File.separator);
         if (lastPoi == -1 || lastSep >= lastPoi) return "";
@@ -537,7 +539,7 @@ public final class FileUtils {
      * @return 文件编码格式
      */
     public static String getFileCharsetSimple(final File file) {
-        if (file == null) return null;
+        if (!isFileExists(file)) return null;
         int pos = 0;
         InputStream is = null;
         try {
@@ -546,7 +548,7 @@ public final class FileUtils {
         } catch (IOException e) {
             JCLogUtils.eTag(TAG, e, "getFileCharsetSimple");
         } finally {
-            closeIOQuietly(is);
+            CloseUtils.closeIOQuietly(is);
         }
         switch (pos) {
             case 0xefbb:
@@ -575,7 +577,7 @@ public final class FileUtils {
      * @return 文件行数
      */
     public static int getFileLines(final File file) {
-        if (file == null) return 0;
+        if (!isFileExists(file)) return 0;
         int lineCount = 1;
         InputStream is = null;
         try {
@@ -598,7 +600,7 @@ public final class FileUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileLines");
         } finally {
-            closeIOQuietly(is);
+            CloseUtils.closeIOQuietly(is);
         }
         return lineCount;
     }
@@ -695,9 +697,10 @@ public final class FileUtils {
      * @return 文件大小
      */
     public static long getFileLengthNetwork(final String httpUri) {
-        if (isSpace(httpUri)) return 0L;
-        boolean isURL = httpUri.toLowerCase().matches("http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?");
-        if (isURL) {
+        if (StringUtils.isSpace(httpUri)) return 0L;
+        // 判断是否网络资源
+        boolean isHttpRes = httpUri.toLowerCase().startsWith("http:") || httpUri.toLowerCase().startsWith("https:");
+        if (isHttpRes) {
             try {
                 HttpURLConnection conn = (HttpURLConnection) new URL(httpUri).openConnection();
                 conn.setRequestProperty("Accept-Encoding", "identity");
@@ -729,7 +732,7 @@ public final class FileUtils {
      * @return 文件名
      */
     public static String getFileName(final String filePath) {
-        if (isSpace(filePath)) return filePath;
+        if (StringUtils.isSpace(filePath)) return filePath;
         int lastSep = filePath.lastIndexOf(File.separator);
         return lastSep == -1 ? filePath : filePath.substring(lastSep + 1);
     }
@@ -750,7 +753,7 @@ public final class FileUtils {
      * @return 最长目录地址
      */
     public static String getDirName(final String filePath) {
-        if (isSpace(filePath)) return filePath;
+        if (StringUtils.isSpace(filePath)) return filePath;
         int lastSep = filePath.lastIndexOf(File.separator);
         return lastSep == -1 ? "" : filePath.substring(0, lastSep + 1);
     }
@@ -894,25 +897,31 @@ public final class FileUtils {
     /**
      * 删除多个文件
      * @param filePaths 文件路径数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void deleteFiles(final String... filePaths) {
+    public static boolean deleteFiles(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
             for (int i = 0, len = filePaths.length; i < len; i++) {
                 deleteFile(filePaths[i]);
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * 删除多个文件
      * @param files 文件数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void deleteFiles(final File... files) {
+    public static boolean deleteFiles(final File... files) {
         if (files != null && files.length != 0) {
             for (int i = 0, len = files.length; i < len; i++) {
                 deleteFile(files[i]);
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -1073,17 +1082,19 @@ public final class FileUtils {
      * 追加文件 ( 使用 FileWriter)
      * @param filePath 文件路径
      * @param content  追加内容
+     * @return {@code true} success, {@code false} fail
      */
-    public static void appendFile(final String filePath, final String content) {
-        if (filePath == null || content == null) return;
+    public static boolean appendFile(final String filePath, final String content) {
+        if (filePath == null || content == null) return false;
         File file = new File(filePath);
         // 如果文件不存在, 则跳过
-        if (!file.exists()) return;
+        if (!file.exists()) return false;
         FileWriter writer = null;
         try {
             // 打开一个写文件器, 构造函数中的第二个参数 true 表示以追加形式写文件
             writer = new FileWriter(file, true);
             writer.write(content);
+            return true;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "appendFile");
         } finally {
@@ -1094,6 +1105,7 @@ public final class FileUtils {
                 }
             }
         }
+        return false;
     }
 
     // =
@@ -1252,6 +1264,8 @@ public final class FileUtils {
             if (overlay) {
                 // 删除已经存在的目标文件, 无论目标文件是目录还是单个文件
                 destFile.delete();
+            } else { // 如果文件存在, 但是不覆盖, 则返回 false 表示失败
+                return false;
             }
         } else {
             // 如果目标文件所在目录不存在, 则创建目录
@@ -1317,6 +1331,8 @@ public final class FileUtils {
             if (overlay) {
                 // 删除已经存在的目标文件, 无论目标文件是目录还是单个文件
                 new File(destFilePath).delete();
+            } else { // 如果文件存在, 但是不覆盖, 则返回 false 表示失败
+                return false;
             }
         } else {
             // 如果目标文件所在目录不存在, 则创建目录
@@ -1369,7 +1385,7 @@ public final class FileUtils {
      * 复制文件夹
      * @param srcFolderPath  待复制的文件夹地址
      * @param destFolderPath 目标文件夹地址
-     * @param sourcePath     源文件地址
+     * @param sourcePath     源文件地址 ( 用于保递归留记录 )
      * @param overlay        如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
@@ -1464,9 +1480,7 @@ public final class FileUtils {
         return false;
     }
 
-    // =============
-    // = FileUtils =
-    // =============
+    // =
 
     /**
      * 复制或移动目录
@@ -1559,7 +1573,7 @@ public final class FileUtils {
         // 目标目录不存在返回 false
         if (!createOrExistsDir(destFile.getParentFile())) return false;
         try {
-            return writeFileFromIS(destFile, new FileInputStream(srcFile), false) && !(isMove && !deleteFile(srcFile));
+            return FileIOUtils.writeFileFromIS(destFile, new FileInputStream(srcFile), false) && !(isMove && !deleteFile(srcFile));
         } catch (FileNotFoundException e) {
             JCLogUtils.eTag(TAG, e, "copyOrMoveFile");
             return false;
@@ -2020,10 +2034,6 @@ public final class FileUtils {
         return false;
     }
 
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
     // ============
     // = MD5Utils =
     // ============
@@ -2034,8 +2044,7 @@ public final class FileUtils {
      * @return 文件 MD5 值
      */
     public static byte[] getFileMD5(final String filePath) {
-        File file = isSpace(filePath) ? null : new File(filePath);
-        return getFileMD5(file);
+        return MD5Utils.getFileMD5(filePath);
     }
 
     /**
@@ -2044,8 +2053,7 @@ public final class FileUtils {
      * @return 文件 MD5 值转十六进制字符串
      */
     public static String getFileMD5ToHexString(final String filePath) {
-        File file = isSpace(filePath) ? null : new File(filePath);
-        return getFileMD5ToHexString(file);
+        return MD5Utils.getFileMD5ToHexString(filePath);
     }
 
     /**
@@ -2054,7 +2062,7 @@ public final class FileUtils {
      * @return 文件 MD5 值转十六进制字符串
      */
     public static String getFileMD5ToHexString(final File file) {
-        return toHexString(getFileMD5(file));
+        return MD5Utils.getFileMD5ToHexString(file);
     }
 
     /**
@@ -2063,147 +2071,6 @@ public final class FileUtils {
      * @return 文件 MD5 值 byte[]
      */
     public static byte[] getFileMD5(final File file) {
-        if (file == null) return null;
-        DigestInputStream dis = null;
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            dis = new DigestInputStream(fis, digest);
-            byte[] buffer = new byte[256 * 1024];
-            while (true) {
-                if (!(dis.read(buffer) > 0)) break;
-            }
-            digest = dis.getMessageDigest();
-            return digest.digest();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFileMD5");
-            return null;
-        } finally {
-            if (dis != null) {
-                try {
-                    dis.close();
-                } catch (Exception e) {
-                }
-            }
-        }
-    }
-
-    // ================
-    // = ConvertUtils =
-    // ================
-
-    // 用于建立十六进制字符的输出的小写字符数组
-    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data 待转换数据
-     * @return 十六进制 String
-     */
-    private static String toHexString(final byte[] data) {
-        return toHexString(data, HEX_DIGITS);
-    }
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data      待转换数据
-     * @param hexDigits {@link #HEX_DIGITS}
-     * @return 十六进制字符串
-     */
-    private static String toHexString(final byte[] data, final char[] hexDigits) {
-        if (data == null || hexDigits == null) return null;
-        try {
-            int len = data.length;
-            StringBuilder builder = new StringBuilder(len);
-            for (int i = 0; i < len; i++) {
-                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-                builder.append(hexDigits[data[i] & 0x0f]);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toHexString");
-        }
-        return null;
-    }
-
-    // ==============
-    // = CloseUtils =
-    // ==============
-
-    /**
-     * 安静关闭 IO
-     * @param closeables Closeable[]
-     */
-    private static void closeIOQuietly(final Closeable... closeables) {
-        if (closeables == null) return;
-        for (Closeable closeable : closeables) {
-            if (closeable != null) {
-                try {
-                    closeable.close();
-                } catch (Exception ignore) {
-                }
-            }
-        }
-    }
-
-    // ===============
-    // = FileIOUtils =
-    // ===============
-
-    // 缓存大小
-    private static final int sBufferSize = 8192;
-
-    /**
-     * 通过输入流写入文件
-     * @param file        文件
-     * @param inputStream {@link InputStream}
-     * @param append      是否追加到结尾
-     * @return {@code true} success, {@code false} fail
-     */
-    private static boolean writeFileFromIS(final File file, final InputStream inputStream, final boolean append) {
-        if (!createOrExistsFile(file) || inputStream == null) return false;
-        OutputStream os = null;
-        try {
-            os = new BufferedOutputStream(new FileOutputStream(file, append));
-            byte[] data = new byte[sBufferSize];
-            int len;
-            while ((len = inputStream.read(data, 0, sBufferSize)) != -1) {
-                os.write(data, 0, len);
-            }
-            return true;
-        } catch (IOException e) {
-            JCLogUtils.eTag(TAG, e, "writeFileFromIS");
-            return false;
-        } finally {
-            closeIOQuietly(inputStream, os);
-        }
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
-    }
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
+        return MD5Utils.getFileMD5(file);
     }
 }

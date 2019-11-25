@@ -5,10 +5,10 @@ import com.dev.utils.Config;
 import java.io.File;
 
 import dev.utils.app.AnalysisRecordUtils;
+import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
-import dev.utils.app.FileRecordUtils;
 import dev.utils.app.SDCardUtils;
-import dev.utils.app.logger.DevLoggerUtils;
+import dev.utils.common.FileRecordUtils;
 import dev.utils.common.ThrowableUtils;
 
 /**
@@ -30,18 +30,14 @@ public final class FileRecordUse {
 
         // AnalysisRecordUtils
 
-        // DevLoggerUtils
-
         // FileRecordUtils
-
-        // DevLoggerUtils 内部的 Utils, 实际和 FileRecordUtils 代码相同, 使用方式一致
 
         // = 记录文件 =
 
         // AnalysisRecordUtils 工具类使用方法
         analysisRecord();
 
-        // DevLoggerUtils、FileRecordUtils 工具类
+        // FileRecordUtils 工具类
         logRecord();
     }
 
@@ -95,8 +91,6 @@ public final class FileRecordUse {
         AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath() + "/特殊地址", "OtherRecord", "log.txt", "临时地址", AnalysisRecordUtils.HH),
                 "日志内容");
 
-        // =
-
         // 保存错误信息
         NullPointerException nullPointerException = new NullPointerException("报错啦, null 异常啊");
         // 记录日志
@@ -104,7 +98,7 @@ public final class FileRecordUse {
     }
 
     /**
-     * DevLoggerUtils、FileRecordUtils 工具类
+     * FileRecordUtils 工具类
      */
     private void logRecord() {
         try {
@@ -112,31 +106,20 @@ public final class FileRecordUse {
             s.indexOf("c");
         } catch (NullPointerException e) {
 
-            // = DevLoggerUtils 使用方法 =
+            // 设置插入信息
+            FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
 
-            // 保存的路径
-            String fileName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
-            // 保存日志信息
-            DevLoggerUtils.saveErrorLog(e, fileName);
-            // =
-            // 保存自定义头部、底部信息
-            DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
-            // =
-            // 保存的路径
-            fileName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
-            // 保存日志信息
-            DevLoggerUtils.saveErrorLog(e, fileName);
+            FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log");
 
-            // 保存日志信息
-            DevLoggerUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log");
-            // 保存日志信息
-            DevLoggerUtils.saveLog("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
+            FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
 
-            // = FileRecordUtils 使用方法 =
+            FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
 
-            FileRecordUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
+            FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log");
 
-            FileRecordUtils.saveLog("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
+            FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
+
+            FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
         }
     }
 }

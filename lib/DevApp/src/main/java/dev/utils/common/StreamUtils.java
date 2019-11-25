@@ -139,7 +139,7 @@ public final class StreamUtils {
      * @return 指定编码字符串
      */
     public static String inputStreamToString(final InputStream inputStream, final String charsetName) {
-        if (inputStream == null || isSpace(charsetName)) return null;
+        if (inputStream == null || StringUtils.isSpace(charsetName)) return null;
         try {
             return new String(inputStreamToBytes(inputStream), charsetName);
         } catch (Exception e) {
@@ -155,7 +155,7 @@ public final class StreamUtils {
      * @return {@link InputStream}
      */
     public static InputStream stringToInputStream(final String string, final String charsetName) {
-        if (string == null || isSpace(charsetName)) return null;
+        if (string == null || StringUtils.isSpace(charsetName)) return null;
         try {
             return new ByteArrayInputStream(string.getBytes(charsetName));
         } catch (Exception e) {
@@ -171,7 +171,7 @@ public final class StreamUtils {
      * @return 指定编码字符串
      */
     public static String outputStreamToString(final OutputStream outputStream, final String charsetName) {
-        if (outputStream == null || isSpace(charsetName)) return null;
+        if (outputStream == null || StringUtils.isSpace(charsetName)) return null;
         try {
             return new String(outputStreamToBytes(outputStream), charsetName);
         } catch (Exception e) {
@@ -187,35 +187,12 @@ public final class StreamUtils {
      * @return {@link OutputStream}
      */
     public static OutputStream stringToOutputStream(final String string, final String charsetName) {
-        if (string == null || isSpace(charsetName)) return null;
+        if (string == null || StringUtils.isSpace(charsetName)) return null;
         try {
             return bytesToOutputStream(string.getBytes(charsetName));
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "stringToOutputStream");
             return null;
         }
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

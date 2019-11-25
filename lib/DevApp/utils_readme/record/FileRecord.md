@@ -2,40 +2,24 @@
 
 #### 使用演示类 [FileRecordUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/record/FileRecordUse.java) 介绍了配置参数及使用
 
-> 三个工具类, 实际上是两个工具类的差异 ( DevLoggerUtils/FileRecordUtils、AnalysisRecordUtils)
-
-> DevLoggerUtils 内部的 Utils, 实际和 FileRecordUtils 代码相同, 使用方式一致
+> 实际上是两个工具类的差异 ( FileRecordUtils、AnalysisRecordUtils )
 
 #### 项目类结构
 
-* 日志操作工具类（[DevLoggerUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)）：提供常用日志配置快捷获取方法、以及日志存储方法等
-
-* 文件记录工具类（[FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/FileRecordUtils.java)）：同 DevLoggerUtils 一样, 专门用于信息存储工具类
+* 文件记录工具类（[FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/FileRecordUtils.java)）：专门用于信息存储工具类
 
 * 分析记录工具类（[AnalysisRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/AnalysisRecordUtils.java)）：专业记录信息, 并存储方便分析, 支持存储目录、时间段保存
 
 ## API 文档
 
-* **日志操作工具类 ->** [DevLoggerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLoggerUtils.java)
+* **文件记录工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/FileRecordUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| init | 初始化调用方法(获取版本号) |
-| getReleaseLogConfig | 获取 Release Log 配置(打印线程信息、显示方法总数 3、从 0 开始、不进行排序、默认只打印 ERROR 级别日志) |
-| getDebugLogConfig | 获取 Debug Log 配置(打印线程信息、显示方法总数 3、从 0 开始、不进行排序、默认只打印 ERROR 级别日志) |
-| getSortLogConfig | 获取 Log 配置(打印线程信息、显示方法总数 3、从 0 开始、并且美化日志信息、默认打印 DEBUG 级别及以上日志) |
-| getLogConfig | 获取 Log 配置 |
+| setInsertInfo | 设置插入信息 |
+| setCallBack | 设置文件记录回调 |
 | saveErrorLog | 保存异常日志 |
 | saveLog | 保存日志 |
-
-* **文件记录工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/FileRecordUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| init | 初始化调用方法 |
-| saveErrorLog | 保存异常日志 |
-| saveLog | 保存日志 |
-
 
 * **分析记录工具类 ->** [AnalysisRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/AnalysisRecordUtils.java)
 
@@ -60,38 +44,30 @@
 | getLogPath | 获取日志地址 |
 | getIntervalTimeFolder | 获取时间间隔 - 文件夹 |
 
-#### DevLoggerUtils、FileRecordUtils 工具类 - 使用方法
+#### FileRecordUtils 工具类 - 使用方法
 ```java
 try {
     String s = null;
     s.indexOf("c");
 } catch (NullPointerException e) {
+    
+    // 设置插入信息
+    FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
 
-    // = DevLoggerUtils 使用方法 =
+    // 设置插入信息
+    FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
 
-    // 保存的路径
-    String fileName = LOG_SD_PATH + System.currentTimeMillis() + ".log";
-    // 保存日志信息
-    DevLoggerUtils.saveErrorLog(e, fileName);
-    // =
-    // 保存自定义头部、底部信息
-    DevLoggerUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
-    // =
-    // 保存的路径
-    fileName = LOG_SD_PATH + System.currentTimeMillis() + "_orgs.log";
-    // 保存日志信息
-    DevLoggerUtils.saveErrorLog(e, fileName);
+    FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log");
 
-    // 保存日志信息
-    DevLoggerUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log");
-    // 保存日志信息
-    DevLoggerUtils.saveLog("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log");
+    FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
 
-    // = FileRecordUtils 使用方法 =
+    FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
 
-    FileRecordUtils.saveErrorLog(e, "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
+    FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log");
 
-    FileRecordUtils.saveLog("日志内容", "头部", "底部", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", true);
+    FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
+
+    FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
 }
 ```
 

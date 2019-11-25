@@ -1,14 +1,12 @@
 package dev.utils.common;
 
-import java.lang.reflect.Array;
-import java.security.MessageDigest;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.encrypt.MD5Utils;
 
 /**
  * detail: 开发常用方法工具类
@@ -55,8 +53,8 @@ public final class DevCommonUtils {
             builder.append(title);
         }
         // 计算时间
-        builder.append(NEW_LINE_STR + "开始时间: " + formatTime(startTime, yyyyMMddHHmmss));
-        builder.append(NEW_LINE_STR + "结束时间: " + formatTime(endTime, yyyyMMddHHmmss));
+        builder.append(NEW_LINE_STR + "开始时间: " + DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss));
+        builder.append(NEW_LINE_STR + "结束时间: " + DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
         builder.append(NEW_LINE_STR + "所用时间(毫秒): " + diffTime);
         builder.append(NEW_LINE_STR + "所用时间(秒): " + (diffTime / 1000));
     }
@@ -83,7 +81,7 @@ public final class DevCommonUtils {
         // 大于 2 才处理
         if (randomTime >= 2) {
             // 随机时间
-            random = getRandom(randomTime);
+            random = RandomUtils.getRandom(randomTime);
         }
         // 返回操作时间
         return Math.max(0, operateTime) + random;
@@ -107,8 +105,8 @@ public final class DevCommonUtils {
         if (time > 0) {
             try {
                 Thread.sleep(time);
-            } catch (Throwable e1) {
-                JCLogUtils.eTag(TAG, e1, "sleepOperate");
+            } catch (Throwable throwable) {
+                JCLogUtils.eTag(TAG, throwable, "sleepOperate");
             }
         }
     }
@@ -141,37 +139,38 @@ public final class DevCommonUtils {
         if (str != null && number >= 1) {
             int saltLen = (salts != null) ? salts.length : 0;
             // 临时字符串
-            String dataTemp = str;
+            String tempString = str;
             // 判断是否大写
             if (isUppercase) {
                 // 循环加密
                 for (int i = 0; i < number; i++) {
-                    if (saltLen >= i) {
+                    if (saltLen > i) {
                         String salt = salts[i];
                         if (salt != null) {
-                            dataTemp = md5Upper(dataTemp + salt);
+                            tempString = MD5Utils.md5Upper(tempString + salt);
                         } else {
-                            dataTemp = md5Upper(dataTemp);
+                            tempString = MD5Utils.md5Upper(tempString);
                         }
                     } else {
-                        dataTemp = md5Upper(dataTemp);
+                        tempString = MD5Utils.md5Upper(tempString);
                     }
                 }
             } else {
                 // 循环加密
                 for (int i = 0; i < number; i++) {
-                    if (saltLen >= i) {
+                    if (saltLen > i) {
                         String salt = salts[i];
                         if (salt != null) {
-                            dataTemp = md5(dataTemp + salt);
+                            tempString = MD5Utils.md5(tempString + salt);
                         } else {
-                            dataTemp = md5(dataTemp);
+                            tempString = MD5Utils.md5(tempString);
                         }
                     } else {
-                        dataTemp = md5(dataTemp);
+                        tempString = MD5Utils.md5(tempString);
                     }
                 }
             }
+            return tempString;
         }
         return str;
     }
@@ -216,9 +215,8 @@ public final class DevCommonUtils {
         String random2 = (900000 + new Random().nextInt(10000)) + "";
         // 获取当前时间
         String time = System.currentTimeMillis() + random1 + random2;
-        // 生成唯一随机 uuid  time.hashCode(), random1.hashCode() | random2.hashCode()
-        UUID randomUUID = new UUID(time.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
-        return randomUUID;
+        // 生成唯一随机 UUID
+        return new UUID(time.hashCode(), ((long) random1.hashCode() << 32) | random2.hashCode());
     }
 
     /**
@@ -229,632 +227,26 @@ public final class DevCommonUtils {
         return getRandomUUID().toString();
     }
 
-    // ==============
-    // = 字符串处理 =
-    // ==============
-
-    /**
-     * 转换手机号
-     * @param phone 待处理字符串
-     * @return 处理后的字符串
-     */
-    public static String converHideMobile(final String phone) {
-        return converHideMobile(phone, "*");
-    }
-
-    /**
-     * 转换手机号
-     * @param phone  待处理字符串
-     * @param symbol 转换符号
-     * @return 处理后的字符串
-     */
-    public static String converHideMobile(final String phone, final String symbol) {
-        return converSymbolHide(3, phone, symbol);
-    }
-
-    /**
-     * 转换符号处理
-     * @param start  开始位置
-     * @param str    待处理字符串
-     * @param symbol 转换符号
-     * @return 处理后的字符串
-     */
-    public static String converSymbolHide(final int start, final String str, final String symbol) {
-        if (!isEmpty(str)) {
-            if (start <= 0) {
-                return str;
-            }
-            // 获取数据长度
-            int length = str.length();
-            // 如果数据小于 start 位则直接返回
-            if (length <= start) {
-                return str;
-            } else { // 大于 start 位
-                StringBuilder builder = new StringBuilder();
-                builder.append(str.substring(0, start));
-                int len = length - start;
-                // 进行平分
-                len /= 2;
-                // 进行遍历保存
-                for (int i = 0; i < len; i++) {
-                    builder.append(symbol);
-                }
-                builder.append(str.substring(start + len, length));
-                return builder.toString();
-            }
-        }
-        return "";
-    }
-
-    // =
-
-    /**
-     * 裁剪超出的内容, 并且追加符号 ( 如 ...)
-     * @param maxLength 允许最大的长度
-     * @param str       待处理字符串
-     * @param symbol    转换符号
-     * @return 处理后的字符串
-     */
-    public static String subEllipsize(final int maxLength, final String str, final String symbol) {
-        if (maxLength >= 1) {
-            // 获取内容长度
-            int strLength = length(str);
-            // 防止为不存在数据
-            if (strLength != 0) {
-                if (maxLength >= strLength) {
-                    return str;
-                }
-                return str.substring(0, maxLength) + toCheckValue(symbol);
-            }
-        }
-        return "";
-    }
-
-    /**
-     * 裁剪符号处理
-     * @param start        开始位置
-     * @param symbolNumber 转换数量
-     * @param str          待处理字符串
-     * @param symbol       转换符号
-     * @return 处理后的字符串
-     */
-    public static String subSymbolHide(final int start, final int symbolNumber, final String str, final String symbol) {
-        if (!isEmpty(str)) {
-            if (start <= 0 || symbolNumber <= 0) {
-                return str;
-            }
-            // 获取数据长度
-            int length = str.length();
-            // 如果数据小于 start 位则直接返回
-            if (length <= start) {
-                return str;
-            } else { // 大于 start 位
-                StringBuilder builder = new StringBuilder();
-                builder.append(str.substring(0, start));
-                int len = length - start - symbolNumber;
-                // 如果超出总长度, 则进行控制
-                if (len <= 0) { // 表示后面的全部转换
-                    len = length - start;
-                } else { // 需要裁剪的数量
-                    len = symbolNumber;
-                }
-                // 进行遍历保存
-                for (int i = 0; i < len; i++) {
-                    builder.append(symbol);
-                }
-                builder.append(str.substring(start + len, length));
-                return builder.toString();
-            }
-        }
-        return "";
-    }
-
-    /**
-     * 裁剪内容, 设置符号处理
-     * @param str               待处理字符串
-     * @param frontRetainLength 前面保留的长度
-     * @param rearRetainLength  后面保留的长度
-     * @param symbol            转换符号
-     * @return 处理后的字符串
-     */
-    public static String subSetSymbol(final String str, final int frontRetainLength, final int rearRetainLength, final String symbol) {
-        if (str != null) {
-            try {
-
-                // 截取前面需保留的内容
-                String startStr = str.substring(0, frontRetainLength);
-                // 截取后面需保留的内容
-                String endStr = str.substring(str.length() - rearRetainLength);
-                // 特殊符号长度
-                int symbolLength = str.length() - (frontRetainLength + rearRetainLength);
-                if (symbolLength >= 1) {
-                    StringBuilder builder = new StringBuilder();
-                    for (int i = 0; i < symbolLength; i++) {
-                        builder.append(symbol);
-                    }
-                    return startStr + builder.toString() + endStr;
-                }
-                return startStr + endStr;
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "subSetSymbol");
-            }
-        }
-        return null;
-    }
-
-    // ==================
-    // = 替换、截取操作 =
-    // ==================
-
-    /**
-     * 裁剪字符串
-     * @param str      需要裁剪的字符串
-     * @param endIndex 结束裁剪的位置
-     * @return 裁剪后的字符串
-     */
-    public static String substring(final String str, final int endIndex) {
-        return substring(str, 0, endIndex, true);
-    }
-
-    /**
-     * 裁剪字符串
-     * @param str      需要裁剪的字符串
-     * @param endIndex 结束裁剪的位置
-     * @param isReturn 开始位置超过限制是否返回内容
-     * @return 裁剪后的字符串
-     */
-    public static String substring(final String str, final int endIndex, final boolean isReturn) {
-        return substring(str, 0, endIndex, isReturn);
-    }
-
-    /**
-     * 裁剪字符串
-     * @param str        需要裁剪的字符串
-     * @param beginIndex 开始裁剪的位置
-     * @param endIndex   结束裁剪的位置
-     * @param isReturn   开始位置超过限制是否返回内容
-     * @return 裁剪后的字符串
-     */
-    public static String substring(final String str, final int beginIndex, final int endIndex, final boolean isReturn) {
-        if (!isEmpty(str) && beginIndex >= 0 && endIndex >= 0 && endIndex >= beginIndex) {
-            // 获取数据长度
-            int len = length(str);
-            // 防止超过限制
-            if (beginIndex > len) {
-                return isReturn ? str : "";
-            }
-            // 防止超过限制
-            return str.substring(beginIndex, (endIndex >= len) ? len : endIndex);
-        }
-        return isReturn ? str : "";
-    }
-
-    // =
-
-    /**
-     * 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
-     * * 如 _____a_a_a_a________ 传入 _ 等于 ____a_a_a_a____
-     * @param str    待处理字符串
-     * @param suffix 替换符号字符串
-     * @return 处理后的字符串
-     */
-    public static String toReplaceSEWith(final String str, final String suffix) {
-        return toReplaceSEWith(str, suffix, "");
-    }
-
-    /**
-     * 替换字符串中符合 特定标记字符的 startsWith - endsWith
-     * 如 _____a_a_a_a________ 传入 _, c 等于 c____a_a_a_a____c
-     * @param str    待处理字符串
-     * @param suffix 替换匹配内容
-     * @param value  需要替换的内容
-     * @return 处理后的字符串
-     */
-    public static String toReplaceSEWith(final String str, final String suffix, final String value) {
-        try {
-            if (isEmpty(str) || isEmpty(suffix) || isEmpty(value) || suffix.equals(value))
-                return str;
-            // 获取编辑内容长度
-            int kLength = suffix.length();
-            // 保存新的 Builder 中, 减少内存开销
-            StringBuilder builder = new StringBuilder(str);
-            // 判断是否在最头部
-            if (builder.indexOf(suffix) == 0) {
-                builder.delete(0, kLength);
-                // 追加内容
-                builder.insert(0, value);
-            }
-            // 获取尾部的位置
-            int lastIndexOf = -1;
-            // 数据长度
-            int bufLength = -1;
-            // 判断是否在最尾部
-            if ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - kLength)) {
-                builder.delete(lastIndexOf, bufLength);
-                // 追加内容
-                builder.insert(lastIndexOf, value);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toReplaceSEWith");
-        }
-        return str;
-    }
-
-    // =
-
-    /**
-     * 替换开头字符串
-     * @param str    待处理字符串
-     * @param prefix 开头匹配字符串
-     * @return 处理后的字符串
-     */
-    public static String toReplaceStartsWith(final String str, final String prefix) {
-        return toReplaceStartsWith(str, prefix, "");
-    }
-
-    /**
-     * 替换开头字符串
-     * @param str         待处理字符串
-     * @param prefix      开头匹配字符串
-     * @param startAppend 开头追加的内容
-     * @return 处理后的字符串
-     */
-    public static String toReplaceStartsWith(final String str, final String prefix, final String startAppend) {
-        if (!isEmpty(str) && !isEmpty(prefix)) {
-            try {
-                if (str.startsWith(prefix)) {
-                    return toCheckValue(startAppend) + str.substring(prefix.length());
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toReplaceStartsWith");
-            }
-        }
-        return str;
-    }
-
-    /**
-     * 替换结尾字符串
-     * @param str    待处理字符串
-     * @param suffix 结尾匹配字符串
-     * @return 处理后的字符串
-     */
-    public static String toReplaceEndsWith(final String str, final String suffix) {
-        return toReplaceEndsWith(str, suffix, "");
-    }
-
-    /**
-     * 替换结尾字符串
-     * @param str    待处理字符串
-     * @param suffix 结尾匹配字符串
-     * @param value  需要替换的内容
-     * @return 处理后的字符串
-     */
-    public static String toReplaceEndsWith(final String str, final String suffix, final String value) {
-        if (!isEmpty(str) && !isEmpty(suffix)) {
-            try {
-                if (str.endsWith(suffix)) {
-                    return str.substring(0, str.length() - suffix.length()) + value;
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toReplaceEndsWith");
-            }
-        }
-        return str;
-    }
-
-    // =
-
-    /**
-     * 这个方法功能主要把字符符合标记的 头部和尾部都替换成 ""
-     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a
-     * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf)
-     * @param str    待处理字符串
-     * @param suffix 匹配判断字符串
-     * @return 处理后的字符串
-     */
-    public static String toClearSEWiths(final String str, final String suffix) {
-        if (isEmpty(str) || isEmpty(suffix)) return str;
-        try {
-            // 获取编辑内容长度
-            int kLength = suffix.length();
-            // 保存新的 Builder 中, 减少内存开销
-            StringBuilder builder = new StringBuilder(str);
-            // 进行循环判断 - 属于最前面的, 才进行处理
-            while (builder.indexOf(suffix) == 0) {
-                builder.delete(0, kLength);
-            }
-            // 获取尾部的位置
-            int lastIndexOf = -1;
-            // 数据长度
-            int bufLength = -1;
-            // 进行循环判断 - 属于最后面的, 才进行处理
-            while ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - kLength)) {
-                builder.delete(lastIndexOf, bufLength);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toClearSEWiths");
-        }
-        return str;
-    }
-
-    /**
-     * 清空属于特定字符串开头的字段
-     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a_____
-     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
-     * @param str    待处理字符串
-     * @param suffix 匹配判断字符串
-     * @return 处理后的字符串
-     */
-    public static String toClearStartsWith(final String str, final String suffix) {
-        if (isEmpty(str) || isEmpty(suffix)) return str;
-        try {
-            // 获取编辑内容长度
-            int kLength = suffix.length();
-            // 保存新的 Builder 中, 减少内存开销
-            StringBuilder builder = new StringBuilder(str);
-            // 进行循环判断 - 属于最前面的, 才进行处理
-            while (builder.indexOf(suffix) == 0) {
-                builder.delete(0, kLength);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toClearStartsWith");
-        }
-        return str;
-    }
-
-    /**
-     * 清空属于特定字符串结尾的字段
-     * 如 _____a_a_a_a________ 传入 _ 等于 _____a_a_a_a
-     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
-     * @param str    待处理字符串
-     * @param suffix 匹配判断字符串
-     * @return 处理后的字符串
-     */
-    public static String toClearEndsWith(final String str, final String suffix) {
-        if (isEmpty(str) || isEmpty(suffix)) return str;
-        try {
-            // 获取编辑内容长度
-            int kLength = suffix.length();
-            // 保存新的 Builder 中, 减少内存开销
-            StringBuilder builder = new StringBuilder(str);
-            // 获取最后一位位置
-            int sLength = 0;
-            // 进行循环判断 - 属于最前面的, 才进行处理
-            while (builder.lastIndexOf(suffix) == ((sLength = builder.length()) - kLength)) {
-                builder.delete(sLength - kLength, sLength);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toClearEndsWith");
-        }
-        return str;
-    }
-
-    // =
-
-    /**
-     * 替换字符串
-     * @param str     待处理字符串
-     * @param suffix  匹配判断字符串
-     * @param replace 替换的内容
-     * @return 处理后的字符串
-     */
-    public static String replaceStr(final String str, final String suffix, final String replace) {
-        // 如果替换的内容或者判断的字符串为 null, 则直接跳过
-        if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
-            try {
-                return str.replaceAll(suffix, replace);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "replaceStr");
-            }
-        }
-        return str;
-    }
-
-    /**
-     * 替换字符串
-     * @param str     待处理字符串
-     * @param suffix  匹配判断字符串
-     * @param replace 替换的内容
-     * @return 处理后的字符串, 替换失败则返回 null
-     */
-    public static String replaceStrToNull(final String str, final String suffix, final String replace) {
-        // 如果替换的内容或者判断的字符串为 null, 则直接跳过
-        if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
-            try {
-                return str.replaceAll(suffix, replace);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "replaceStrToNull");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 替换字符串
-     * @param str         内容
-     * @param suffixArys  匹配判断字符串数组
-     * @param replaceArys 准备替换的字符串数组
-     * @return 处理后的字符串
-     */
-    public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
-        // 防止数据为 null
-        if (str != null && suffixArys != null && replaceArys != null) {
-            String cStr = str;
-            // 替换的特殊字符串长度
-            int spCount = suffixArys.length;
-            // 替换的内容长度
-            int reCount = replaceArys.length;
-            // 相同才进行处理
-            if (spCount == reCount) {
-                // 遍历进行判断
-                for (int i = 0; i < spCount; i++) {
-                    // 进行替换字符串
-                    cStr = replaceStr(cStr, suffixArys[i], replaceArys[i]);
-                }
-                // 最终不为 null, 则进行返回
-                return cStr;
-            }
-        }
-        return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
     // ===============
-    // = RandomUtils =
+    // = ObjectUtils =
     // ===============
 
     /**
-     * 获取 0 - 最大随机数之间的随机数
-     * @param max 最大随机数
-     * @return 随机介于 [0, max) 的区间值
+     * 判断对象是否为空
+     * @param object 对象
+     * @return {@code true} is null, {@code false} not null
      */
-    private static int getRandom(final int max) {
-        return getRandom(0, max);
+    public static boolean isEmpty(final Object object) {
+        return ObjectUtils.isEmpty(object);
     }
 
     /**
-     * 获取两个数之间的随机数 ( 不含最大随机数, 需要 + 1)
-     * @param min 最小随机数
-     * @param max 最大随机数
-     * @return 随机介于 [min, max) 的区间值
+     * 判断对象是否非空
+     * @param object 对象
+     * @return {@code true} not null, {@code false} is null
      */
-    private static int getRandom(final int min, final int max) {
-        if (min > max) {
-            return 0;
-        } else if (min == max) {
-            return min;
-        }
-        return min + new Random().nextInt(max - min);
-    }
-
-    // =============
-    // = DateUtils =
-    // =============
-
-    private static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
-
-    /**
-     * 将时间戳转换日期字符串
-     * @param time   时间戳
-     * @param format 日期格式
-     * @return 按照指定格式的日期字符串
-     */
-    private static String formatTime(final long time, final String format) {
-        if (format == null) return null;
-        try {
-            return new SimpleDateFormat(format).format(time);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "formatTime");
-        }
-        return null;
-    }
-
-    // ============
-    // = MD5Utils =
-    // ============
-
-    // 用于建立十六进制字符的输出的小写字符数组
-    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    // 用于建立十六进制字符的输出的大写字符数组
-    private static final char[] HEX_DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-
-    /**
-     * 加密内容 (32 位小写 MD5)
-     * @param data 待加密数据
-     * @return MD5 加密后的字符串
-     */
-    private static String md5(final String data) {
-        if (data == null) return null;
-        try {
-            return md5(data.getBytes());
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "md5");
-        }
-        return null;
-    }
-
-    /**
-     * 加密内容 (32 位小写 MD5)
-     * @param data 待加密数据
-     * @return MD5 加密后的字符串
-     */
-    private static String md5(final byte[] data) {
-        if (data == null) return null;
-        try {
-            // 获取 MD5 摘要算法的 MessageDigest 对象
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            // 使用指定的字节更新摘要
-            digest.update(data);
-            // 获取密文
-            return toHexString(digest.digest(), HEX_DIGITS);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "md5");
-        }
-        return null;
-    }
-
-    /**
-     * 加密内容 (32 位大写 MD5)
-     * @param data 待加密数据
-     * @return MD5 加密后的字符串
-     */
-    private static String md5Upper(final String data) {
-        if (data == null) return null;
-        try {
-            return md5Upper(data.getBytes());
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "md5Upper");
-        }
-        return null;
-    }
-
-    /**
-     * 加密内容 (32 位大写 MD5)
-     * @param data 待加密数据
-     * @return MD5 加密后的字符串
-     */
-    private static String md5Upper(final byte[] data) {
-        if (data == null) return null;
-        try {
-            // 获取 MD5 摘要算法的 MessageDigest 对象
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            // 使用指定的字节更新摘要
-            digest.update(data);
-            // 获取密文
-            return toHexString(digest.digest(), HEX_DIGITS_UPPER);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "md5Upper");
-        }
-        return null;
-    }
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data      待转换数据
-     * @param hexDigits {@link #HEX_DIGITS}、{@link #HEX_DIGITS_UPPER}
-     * @return 十六进制字符串
-     */
-    private static String toHexString(final byte[] data, final char[] hexDigits) {
-        if (data == null || hexDigits == null) return null;
-        try {
-            int len = data.length;
-            StringBuilder builder = new StringBuilder(len);
-            for (int i = 0; i < len; i++) {
-                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-                builder.append(hexDigits[data[i] & 0x0f]);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toHexString");
-        }
-        return null;
+    public static boolean isNotEmpty(final Object object) {
+        return ObjectUtils.isNotEmpty(object);
     }
 
     // ==============
@@ -867,7 +259,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Object[] objects) {
-        return objects == null || objects.length == 0;
+        return ArrayUtils.isEmpty(objects);
     }
 
     /**
@@ -876,7 +268,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final int[] ints) {
-        return ints == null || ints.length == 0;
+        return ArrayUtils.isEmpty(ints);
     }
 
     /**
@@ -885,7 +277,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final byte[] bytes) {
-        return bytes == null || bytes.length == 0;
+        return ArrayUtils.isEmpty(bytes);
     }
 
     /**
@@ -894,7 +286,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final char[] chars) {
-        return chars == null || chars.length == 0;
+        return ArrayUtils.isEmpty(chars);
     }
 
     /**
@@ -903,7 +295,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final short[] shorts) {
-        return shorts == null || shorts.length == 0;
+        return ArrayUtils.isEmpty(shorts);
     }
 
     /**
@@ -912,7 +304,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final long[] longs) {
-        return longs == null || longs.length == 0;
+        return ArrayUtils.isEmpty(longs);
     }
 
     /**
@@ -921,7 +313,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final float[] floats) {
-        return floats == null || floats.length == 0;
+        return ArrayUtils.isEmpty(floats);
     }
 
     /**
@@ -930,7 +322,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final double[] doubles) {
-        return doubles == null || doubles.length == 0;
+        return ArrayUtils.isEmpty(doubles);
     }
 
     /**
@@ -939,7 +331,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final boolean[] booleans) {
-        return booleans == null || booleans.length == 0;
+        return ArrayUtils.isEmpty(booleans);
     }
 
     // =
@@ -950,7 +342,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final Object[] objects) {
-        return objects != null && objects.length != 0;
+        return ArrayUtils.isNotEmpty(objects);
     }
 
     /**
@@ -959,7 +351,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final int[] ints) {
-        return ints != null && ints.length != 0;
+        return ArrayUtils.isNotEmpty(ints);
     }
 
     /**
@@ -968,7 +360,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final byte[] bytes) {
-        return bytes != null && bytes.length != 0;
+        return ArrayUtils.isNotEmpty(bytes);
     }
 
     /**
@@ -977,7 +369,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final char[] chars) {
-        return chars != null && chars.length != 0;
+        return ArrayUtils.isNotEmpty(chars);
     }
 
     /**
@@ -986,7 +378,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final short[] shorts) {
-        return shorts != null && shorts.length != 0;
+        return ArrayUtils.isNotEmpty(shorts);
     }
 
     /**
@@ -995,7 +387,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final long[] longs) {
-        return longs != null && longs.length != 0;
+        return ArrayUtils.isNotEmpty(longs);
     }
 
     /**
@@ -1004,7 +396,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final float[] floats) {
-        return floats != null && floats.length != 0;
+        return ArrayUtils.isNotEmpty(floats);
     }
 
     /**
@@ -1013,7 +405,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final double[] doubles) {
-        return doubles != null && doubles.length != 0;
+        return ArrayUtils.isNotEmpty(doubles);
     }
 
     /**
@@ -1022,7 +414,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final boolean[] booleans) {
-        return booleans != null && booleans.length != 0;
+        return ArrayUtils.isNotEmpty(booleans);
     }
 
     // ============
@@ -1035,7 +427,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final Object[] objects) {
-        return length(objects, 0);
+        return ArrayUtils.length(objects);
     }
 
     /**
@@ -1044,7 +436,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final int[] ints) {
-        return length(ints, 0);
+        return ArrayUtils.length(ints);
     }
 
     /**
@@ -1053,7 +445,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final byte[] bytes) {
-        return length(bytes, 0);
+        return ArrayUtils.length(bytes);
     }
 
     /**
@@ -1062,7 +454,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final char[] chars) {
-        return length(chars, 0);
+        return ArrayUtils.length(chars);
     }
 
     /**
@@ -1071,7 +463,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final short[] shorts) {
-        return length(shorts, 0);
+        return ArrayUtils.length(shorts);
     }
 
     /**
@@ -1080,7 +472,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final long[] longs) {
-        return length(longs, 0);
+        return ArrayUtils.length(longs);
     }
 
     /**
@@ -1089,7 +481,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final float[] floats) {
-        return length(floats, 0);
+        return ArrayUtils.length(floats);
     }
 
     /**
@@ -1098,7 +490,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final double[] doubles) {
-        return length(doubles, 0);
+        return ArrayUtils.length(doubles);
     }
 
     /**
@@ -1107,7 +499,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回默认长度, 如果不为 null, 则返回 array[].length
      */
     public static int length(final boolean[] booleans) {
-        return length(booleans, 0);
+        return ArrayUtils.length(booleans);
     }
 
     // =
@@ -1119,7 +511,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final Object[] objects, final int defaultLength) {
-        return objects != null ? objects.length : defaultLength;
+        return ArrayUtils.length(objects, defaultLength);
     }
 
     /**
@@ -1129,7 +521,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final int[] ints, final int defaultLength) {
-        return ints != null ? ints.length : defaultLength;
+        return ArrayUtils.length(ints, defaultLength);
     }
 
     /**
@@ -1139,7 +531,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final byte[] bytes, final int defaultLength) {
-        return bytes != null ? bytes.length : defaultLength;
+        return ArrayUtils.length(bytes, defaultLength);
     }
 
     /**
@@ -1149,7 +541,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final char[] chars, final int defaultLength) {
-        return chars != null ? chars.length : defaultLength;
+        return ArrayUtils.length(chars, defaultLength);
     }
 
     /**
@@ -1159,7 +551,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final short[] shorts, final int defaultLength) {
-        return shorts != null ? shorts.length : defaultLength;
+        return ArrayUtils.length(shorts, defaultLength);
     }
 
     /**
@@ -1169,7 +561,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final long[] longs, final int defaultLength) {
-        return longs != null ? longs.length : defaultLength;
+        return ArrayUtils.length(longs, defaultLength);
     }
 
     /**
@@ -1179,7 +571,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final float[] floats, final int defaultLength) {
-        return floats != null ? floats.length : defaultLength;
+        return ArrayUtils.length(floats, defaultLength);
     }
 
     /**
@@ -1189,7 +581,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final double[] doubles, final int defaultLength) {
-        return doubles != null ? doubles.length : defaultLength;
+        return ArrayUtils.length(doubles, defaultLength);
     }
 
     /**
@@ -1199,7 +591,7 @@ public final class DevCommonUtils {
      * @return 如果数据为 null, 则返回 defaultLength, 如果不为 null, 则返回 array[].length
      */
     public static int length(final boolean[] booleans, final int defaultLength) {
-        return booleans != null ? booleans.length : defaultLength;
+        return ArrayUtils.length(booleans, defaultLength);
     }
 
     // =
@@ -1211,7 +603,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final Object[] objects, final int length) {
-        return objects != null && objects.length == length;
+        return ArrayUtils.isLength(objects, length);
     }
 
     /**
@@ -1221,7 +613,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final int[] ints, final int length) {
-        return ints != null && ints.length == length;
+        return ArrayUtils.isLength(ints, length);
     }
 
     /**
@@ -1231,7 +623,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final byte[] bytes, final int length) {
-        return bytes != null && bytes.length == length;
+        return ArrayUtils.isLength(bytes, length);
     }
 
     /**
@@ -1241,7 +633,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final char[] chars, final int length) {
-        return chars != null && chars.length == length;
+        return ArrayUtils.isLength(chars, length);
     }
 
     /**
@@ -1251,7 +643,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final short[] shorts, final int length) {
-        return shorts != null && shorts.length == length;
+        return ArrayUtils.isLength(shorts, length);
     }
 
     /**
@@ -1261,7 +653,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final long[] longs, final int length) {
-        return longs != null && longs.length == length;
+        return ArrayUtils.isLength(longs, length);
     }
 
     /**
@@ -1271,7 +663,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final float[] floats, final int length) {
-        return floats != null && floats.length == length;
+        return ArrayUtils.isLength(floats, length);
     }
 
     /**
@@ -1281,7 +673,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final double[] doubles, final int length) {
-        return doubles != null && doubles.length == length;
+        return ArrayUtils.isLength(doubles, length);
     }
 
     /**
@@ -1291,7 +683,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final boolean[] booleans, final int length) {
-        return booleans != null && booleans.length == length;
+        return ArrayUtils.isLength(booleans, length);
     }
 
     // ===================
@@ -1304,7 +696,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Collection collection) {
-        return (collection == null || collection.size() == 0);
+        return CollectionUtils.isEmpty(collection);
     }
 
     /**
@@ -1313,7 +705,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final Collection collection) {
-        return (collection != null && collection.size() != 0);
+        return CollectionUtils.isNotEmpty(collection);
     }
 
     // ============
@@ -1326,7 +718,7 @@ public final class DevCommonUtils {
      * @return 如果 Collection 为 null, 则返回默认长度, 如果不为 null, 则返回 collection.size()
      */
     public static int length(final Collection collection) {
-        return length(collection, 0);
+        return CollectionUtils.length(collection);
     }
 
     /**
@@ -1336,19 +728,19 @@ public final class DevCommonUtils {
      * @return 如果 Collection 为 null, 则返回 defaultLength, 如果不为 null, 则返回 collection.size()
      */
     public static int length(final Collection collection, final int defaultLength) {
-        return collection != null ? collection.size() : defaultLength;
+        return CollectionUtils.length(collection, defaultLength);
     }
 
     // =
 
     /**
-     * 获取长度 to Collection 是否等于期望长度
+     * 获取长度 Collection 是否等于期望长度
      * @param collection {@link Collection}
      * @param length     期望长度
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final Collection collection, final int length) {
-        return collection != null && collection.size() == length;
+        return CollectionUtils.isLength(collection, length);
     }
 
     // ============
@@ -1361,7 +753,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final Map map) {
-        return (map == null || map.size() == 0);
+        return MapUtils.isEmpty(map);
     }
 
     /**
@@ -1370,7 +762,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final Map map) {
-        return (map != null && map.size() != 0);
+        return MapUtils.isNotEmpty(map);
     }
 
     // ============
@@ -1383,7 +775,7 @@ public final class DevCommonUtils {
      * @return 如果 Map 为 null, 则返回默认长度, 如果不为 null, 则返回 map.size()
      */
     public static int length(final Map map) {
-        return length(map, 0);
+        return MapUtils.length(map);
     }
 
     /**
@@ -1393,19 +785,19 @@ public final class DevCommonUtils {
      * @return 如果 Map 为 null, 则返回 defaultLength, 如果不为 null, 则返回 map.size()
      */
     public static int length(final Map map, final int defaultLength) {
-        return map != null ? map.size() : defaultLength;
+        return MapUtils.length(map, defaultLength);
     }
 
     // =
 
     /**
-     * 获取长度 to Map 是否等于期望长度
+     * 获取长度 Map 是否等于期望长度
      * @param map    {@link Map}
      * @param length 期望长度
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final Map map, final int length) {
-        return map != null && map.size() == length;
+        return MapUtils.isLength(map, length);
     }
 
     // ===============
@@ -1418,7 +810,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
+        return StringUtils.isEmpty(str);
     }
 
     /**
@@ -1428,10 +820,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String str, final boolean isTrim) {
-        if (str != null) {
-            return isEmpty(isTrim ? str.trim() : str);
-        }
-        return false;
+        return StringUtils.isEmpty(str, isTrim);
     }
 
     /**
@@ -1440,16 +829,7 @@ public final class DevCommonUtils {
      * @return {@code true} is null, {@code false} not null
      */
     public static boolean isEmpty(final String... strs) {
-        if (strs != null && strs.length != 0) {
-            for (int i = 0, len = strs.length; i < len; i++) {
-                if (isEmpty(strs[i])) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        // 默认表示属于 null
-        return true;
+        return StringUtils.isEmpty(strs);
     }
 
     // =
@@ -1460,7 +840,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final String str) {
-        return (str != null && str.length() != 0);
+        return StringUtils.isNotEmpty(str);
     }
 
     /**
@@ -1470,7 +850,7 @@ public final class DevCommonUtils {
      * @return {@code true} not null, {@code false} is null
      */
     public static boolean isNotEmpty(final String str, final boolean isTrim) {
-        return isNotEmpty(isTrim ? str.trim() : str);
+        return StringUtils.isNotEmpty(str, isTrim);
     }
 
     // ============
@@ -1483,7 +863,7 @@ public final class DevCommonUtils {
      * @return 字符串长度, 如果字符串为 null, 则返回 0
      */
     public static int length(final String str) {
-        return str == null ? 0 : str.length();
+        return StringUtils.length(str);
     }
 
     /**
@@ -1493,7 +873,7 @@ public final class DevCommonUtils {
      * @return 字符串长度, 如果字符串为 null, 则返回 defaultLength
      */
     public static int length(final String str, final int defaultLength) {
-        return str != null ? str.length() : defaultLength;
+        return StringUtils.length(str, defaultLength);
     }
 
     // =
@@ -1505,7 +885,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(final String str, final int length) {
-        return str != null && str.length() == length;
+        return StringUtils.isLength(str, length);
     }
 
     // ============
@@ -1520,36 +900,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static <T> boolean equals(final T value1, final T value2) {
-        // 两个值都不为 null
-        if (value1 != null && value2 != null) {
-            try {
-                if (value1 instanceof String && value2 instanceof String) {
-                    return value1.equals(value2);
-                } else if (value1 instanceof CharSequence && value2 instanceof CharSequence) {
-                    CharSequence v1 = (CharSequence) value1;
-                    CharSequence v2 = (CharSequence) value2;
-                    // 获取数据长度
-                    int length = v1.length();
-                    // 判断数据长度是否一致
-                    if (length == v2.length()) {
-                        for (int i = 0; i < length; i++) {
-                            if (v1.charAt(i) != v2.charAt(i)) {
-                                return false;
-                            }
-                        }
-                        return true;
-                    }
-                    return false;
-                }
-                // 其他都使用 equals 判断
-                return value1.equals(value2);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "equals");
-            }
-            return false;
-        }
-        // 防止两个值都为 null
-        return (value1 == null && value2 == null);
+        return StringUtils.equals(value1, value2);
     }
 
     /**
@@ -1558,7 +909,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEquals(final String... strs) {
-        return isEquals(false, strs);
+        return StringUtils.isEquals(strs);
     }
 
     /**
@@ -1568,38 +919,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEquals(final boolean isIgnore, final String... strs) {
-        if (strs != null) {
-            String last = null;
-            // 获取数据长度
-            int len = strs.length;
-            // 如果最多只有一个数据判断, 则直接跳过
-            if (len <= 1) {
-                return false;
-            }
-            // 遍历判断
-            for (int i = 0; i < len; i++) {
-                // 获取临时变量
-                String val = strs[i];
-                // 如果等于 null, 则跳过
-                if (val == null) {
-                    return false;
-                }
-                if (last != null) {
-                    if (isIgnore) {
-                        if (!val.equalsIgnoreCase(last)) {
-                            return false;
-                        }
-                    } else {
-                        if (!val.equals(last)) {
-                            return false;
-                        }
-                    }
-                }
-                last = val;
-            }
-            return true;
-        }
-        return false;
+        return StringUtils.isEquals(isIgnore, strs);
     }
 
     /**
@@ -1609,7 +929,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isOrEquals(final String str, final String... strs) {
-        return isOrEquals(false, str, strs);
+        return StringUtils.isOrEquals(str, strs);
     }
 
     /**
@@ -1620,30 +940,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isOrEquals(final boolean isIgnore, final String str, final String... strs) {
-        if (str != null && strs != null && strs.length != 0) {
-            // 获取数据长度
-            int len = strs.length;
-            // 遍历判断
-            for (int i = 0; i < len; i++) {
-                // 获取临时变量
-                String val = strs[i];
-                // 如果等于 null, 则跳过
-                if (val == null) {
-                    continue;
-                } else {
-                    if (isIgnore) {
-                        if (val.equalsIgnoreCase(str)) {
-                            return true;
-                        }
-                    } else {
-                        if (val.equals(str)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+        return StringUtils.isOrEquals(isIgnore, str, strs);
     }
 
     /**
@@ -1653,7 +950,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isContains(final String str, final String... strs) {
-        return isContains(false, str, strs);
+        return StringUtils.isContains(str, strs);
     }
 
     /**
@@ -1664,43 +961,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isContains(final boolean isIgnore, final String str, final String... strs) {
-        if (str != null && strs != null && strs.length != 0) {
-            String strTemp = str;
-            // 判断是否需要忽略大小写
-            if (isIgnore) {
-                strTemp = strTemp.toLowerCase();
-            }
-            // 获取内容长度
-            int cLength = strTemp.length();
-            // 遍历判断
-            for (int i = 0, len = strs.length; i < len; i++) {
-                // 获取参数
-                String val = strs[i];
-                // 判断是否为 null, 或者长度为 0
-                if (!isEmpty(val) && cLength != 0) {
-                    if (isIgnore) {
-                        // 转换小写
-                        String valIgnore = val.toLowerCase();
-                        // 判断是否包含
-                        if (valIgnore.indexOf(strTemp) != -1) {
-                            return true;
-                        }
-                    } else {
-                        // 判断是否包含
-                        if (val.indexOf(strTemp) != -1) {
-                            return true;
-                        }
-                    }
-                } else {
-                    // 下面这一串可以不要, 因为判断字符串是否包含
-                    // 已经处理了值不为 null, 并且需要判断的值长度不能为 0, 下面则不需要加上
-                    if (strTemp.equals(val)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        return StringUtils.isContains(isIgnore, str, strs);
     }
 
     /**
@@ -1710,7 +971,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isStartsWith(final String str, final String... strs) {
-        return isStartsWith(false, str, strs);
+        return StringUtils.isStartsWith(str, strs);
     }
 
     /**
@@ -1721,37 +982,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isStartsWith(final boolean isIgnore, final String str, final String... strs) {
-        if (!isEmpty(str) && strs != null && strs.length != 0) {
-            String strTemp = str;
-            // 判断是否需要忽略大小写
-            if (isIgnore) {
-                strTemp = strTemp.toLowerCase();
-            }
-            // 获取数据长度
-            int len = strs.length;
-            // 遍历判断
-            for (int i = 0; i < len; i++) {
-                // 获取临时变量
-                String val = strs[i];
-                // 判断是否为 null, 或者长度为 0
-                if (!isEmpty(val)) {
-                    if (isIgnore) {
-                        // 转换小写
-                        String valIgnore = val.toLowerCase();
-                        // 判断是否属于 val 开头
-                        if (strTemp.startsWith(valIgnore)) {
-                            return true;
-                        }
-                    } else {
-                        // 判断是否属于 val 开头
-                        if (strTemp.startsWith(val)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+        return StringUtils.isStartsWith(isIgnore, str, strs);
     }
 
     /**
@@ -1761,7 +992,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEndsWith(final String str, final String... strs) {
-        return isEndsWith(false, str, strs);
+        return StringUtils.isEndsWith(str, strs);
     }
 
     /**
@@ -1772,37 +1003,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEndsWith(final boolean isIgnore, final String str, final String... strs) {
-        if (!isEmpty(str) && strs != null && strs.length != 0) {
-            String strTemp = str;
-            // 判断是否需要忽略大小写
-            if (isIgnore) {
-                strTemp = strTemp.toLowerCase();
-            }
-            // 获取数据长度
-            int len = strs.length;
-            // 遍历判断
-            for (int i = 0; i < len; i++) {
-                // 获取临时变量
-                String val = strs[i];
-                // 判断是否为 null, 或者长度为 0
-                if (!isEmpty(val)) {
-                    if (isIgnore) {
-                        // 转换小写
-                        String valIgnore = val.toLowerCase();
-                        // 判断是否属于 val 结尾
-                        if (strTemp.endsWith(valIgnore)) {
-                            return true;
-                        }
-                    } else {
-                        // 判断是否属于 val 结尾
-                        if (strTemp.endsWith(val)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+        return StringUtils.isEndsWith(isIgnore, str, strs);
     }
 
     // ============
@@ -1815,13 +1016,7 @@ public final class DevCommonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
+        return StringUtils.isSpace(str);
     }
 
     /**
@@ -1830,8 +1025,7 @@ public final class DevCommonUtils {
      * @return 处理后的字符串
      */
     public static String toClearSpace(final String str) {
-        if (isEmpty(str)) return str;
-        return str.replaceAll(" ", "");
+        return StringUtils.toClearSpace(str);
     }
 
     /**
@@ -1840,13 +1034,7 @@ public final class DevCommonUtils {
      * @return 处理后的字符串
      */
     public static String toClearSpaceTrim(final String str) {
-        if (isEmpty(str)) return str;
-        String strTemp = str;
-        // 如果前面或者后面都是空格开头, 就一直进行处理
-        while (strTemp.startsWith(" ") || strTemp.endsWith(" ")) {
-            strTemp = strTemp.trim();
-        }
-        return strTemp;
+        return StringUtils.toClearSpaceTrim(str);
     }
 
     // =
@@ -1857,13 +1045,7 @@ public final class DevCommonUtils {
      * @return 指定数量的空格字符串
      */
     public static String appendSpace(final int number) {
-        StringBuilder builder = new StringBuilder();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                builder.append(" ");
-            }
-        }
-        return builder.toString();
+        return StringUtils.appendSpace(number);
     }
 
     /**
@@ -1872,13 +1054,7 @@ public final class DevCommonUtils {
      * @return 指定数量的 Tab 字符串
      */
     public static String appendTab(final int number) {
-        StringBuilder builder = new StringBuilder();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                builder.append("\t");
-            }
-        }
-        return builder.toString();
+        return StringUtils.appendTab(number);
     }
 
     /**
@@ -1887,13 +1063,7 @@ public final class DevCommonUtils {
      * @return 指定数量的换行字符串
      */
     public static String appendLine(final int number) {
-        StringBuilder builder = new StringBuilder();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                builder.append(NEW_LINE_STR);
-            }
-        }
-        return builder.toString();
+        return StringUtils.appendLine(number);
     }
 
     // =
@@ -1904,7 +1074,7 @@ public final class DevCommonUtils {
      * @return 如果待校验字符串为 null, 则返回默认字符串, 如果不为 null, 则返回该字符串
      */
     public static String toCheckValue(final String str) {
-        return toCheckValue("", str);
+        return StringUtils.toCheckValue(str);
     }
 
     /**
@@ -1914,7 +1084,7 @@ public final class DevCommonUtils {
      * @return 如果待校验字符串为 null, 则返回 defaultStr, 如果不为 null, 则返回该字符串
      */
     public static String toCheckValue(final String defaultStr, final String str) {
-        return isEmpty(str) ? defaultStr : str;
+        return StringUtils.toCheckValue(defaultStr, str);
     }
 
     /**
@@ -1925,15 +1095,7 @@ public final class DevCommonUtils {
      * @return 两个待校验字符串中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String toCheckValue(final String defaultStr, final String value1, final String value2) {
-        if (isEmpty(value1)) {
-            if (isEmpty(value2)) {
-                return defaultStr;
-            } else {
-                return value2;
-            }
-        } else {
-            return value1;
-        }
+        return StringUtils.toCheckValue(defaultStr, value1, value2);
     }
 
     /**
@@ -1943,21 +1105,7 @@ public final class DevCommonUtils {
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String toCheckValues(final String defaultStr, final String... strs) {
-        if (strs != null && strs.length != 0) {
-            for (int i = 0, len = strs.length; i < len; i++) {
-                String val = strs[i];
-                if (isEmpty(val)) {
-                    if (i == len - 1) {
-                        return defaultStr; // 属于最后一个, 则返回默认值
-                    } else {
-                        continue; // 不属于最后一个则跳过
-                    }
-                } else {
-                    return val;
-                }
-            }
-        }
-        return defaultStr;
+        return StringUtils.toCheckValues(defaultStr, strs);
     }
 
     /**
@@ -1967,22 +1115,7 @@ public final class DevCommonUtils {
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String toCheckValuesSpace(final String defaultStr, final String... strs) {
-        if (strs != null && strs.length != 0) {
-            for (int i = 0, len = strs.length; i < len; i++) {
-                // 删除前后空格处理后, 进行返回
-                String val = toClearSpaceTrim(strs[i]);
-                if (isEmpty(val)) {
-                    if (i == len - 1) {
-                        return defaultStr; // 属于最后一个, 则返回默认值
-                    } else {
-                        continue; // 不属于最后一个则跳过
-                    }
-                } else {
-                    return val;
-                }
-            }
-        }
-        return defaultStr;
+        return StringUtils.toCheckValuesSpace(defaultStr, strs);
     }
 
     // ==================
@@ -1996,17 +1129,7 @@ public final class DevCommonUtils {
      * @return 格式化后的字符串
      */
     public static String getFormatString(final String format, final Object... args) {
-        if (format == null) return null;
-        try {
-            if (args != null && args.length != 0) {
-                return String.format(format, args);
-            } else {
-                return format;
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFormatString");
-        }
-        return null;
+        return StringUtils.getFormatString(format, args);
     }
 
     // =
@@ -2017,22 +1140,7 @@ public final class DevCommonUtils {
      * @return 格式化后的字符串
      */
     public static String getAutoFormatString(final Object... args) {
-        if (args != null && args.length != 0) {
-            try {
-                int length = args.length;
-                StringBuilder builder = new StringBuilder();
-                builder.append("%s");
-                if (length > 1) {
-                    for (int i = 1; i < length; i++) {
-                        builder.append(" %s");
-                    }
-                }
-                return String.format(builder.toString(), args);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "getAutoFormatString");
-            }
-        }
-        return null;
+        return StringUtils.getAutoFormatString(args);
     }
 
     /**
@@ -2041,22 +1149,7 @@ public final class DevCommonUtils {
      * @return 格式化后的字符串
      */
     public static String getAutoFormatString2(final Object... args) {
-        if (args != null && args.length != 0) {
-            try {
-                int length = args.length;
-                StringBuilder builder = new StringBuilder();
-                builder.append("[%s]");
-                if (length > 1) {
-                    for (int i = 1; i < length; i++) {
-                        builder.append(" %s");
-                    }
-                }
-                return String.format(builder.toString(), args);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "getAutoFormatString2");
-            }
-        }
-        return null;
+        return StringUtils.getAutoFormatString2(args);
     }
 
     // =
@@ -2067,7 +1160,7 @@ public final class DevCommonUtils {
      * @return {@link StringBuilder}
      */
     public static StringBuilder appends(final Object... args) {
-        return appends(new StringBuilder(), null, false, args);
+        return StringUtils.appends(args);
     }
 
     /**
@@ -2077,7 +1170,7 @@ public final class DevCommonUtils {
      * @return {@link StringBuilder}
      */
     public static StringBuilder appends(final String split, final Object... args) {
-        return appends(new StringBuilder(), split, false, args);
+        return StringUtils.appends(split, args);
     }
 
     /**
@@ -2088,7 +1181,7 @@ public final class DevCommonUtils {
      * @return {@link StringBuilder}
      */
     public static StringBuilder appends(final StringBuilder builder, final String split, final Object... args) {
-        return appends(builder, split, false, args);
+        return StringUtils.appends(builder, split, args);
     }
 
     /**
@@ -2100,63 +1193,256 @@ public final class DevCommonUtils {
      * @return {@link StringBuilder}
      */
     public static StringBuilder appends(final StringBuilder builder, final String split, final boolean end, final Object... args) {
-        if (builder != null && args != null) {
-            // 获取间隔字符串, 优化循环判断
-            String str = isEmpty(split) ? "" : split;
-            // 循环处理
-            for (int i = 0, len = args.length; i < len; i++) {
-                builder.append(args[i]); // 拼接数据
-                // 判断是否结尾
-                if (len - i == 1) {
-                    // 判断结尾是否追加
-                    if (end) builder.append(str); // 间隔追加
-                } else {
-                    builder.append(str); // 间隔追加
-                }
-            }
-            return builder;
-        }
-        return builder;
+        return StringUtils.appends(builder, split, end, args);
     }
 
-    // ===============
-    // = ObjectUtils =
-    // ===============
+    // ==============
+    // = 字符串处理 =
+    // ==============
 
     /**
-     * 判断对象是否为空
-     * @param object 对象
-     * @return {@code true} is null, {@code false} not null
+     * 转换手机号
+     * @param phone 待处理字符串
+     * @return 处理后的字符串
      */
-    public static boolean isEmpty(final Object object) {
-        if (object == null) {
-            return true;
-        }
-        try {
-            if (object.getClass().isArray() && Array.getLength(object) == 0) {
-                return true;
-            }
-            if (object instanceof CharSequence && object.toString().length() == 0) {
-                return true;
-            }
-            if (object instanceof Collection && ((Collection) object).isEmpty()) {
-                return true;
-            }
-            if (object instanceof Map && ((Map) object).isEmpty()) {
-                return true;
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "isEmpty");
-        }
-        return false;
+    public static String converHideMobile(final String phone) {
+        return StringUtils.converHideMobile(phone);
     }
 
     /**
-     * 判断对象是否非空
-     * @param object 对象
-     * @return {@code true} not null, {@code false} is null
+     * 转换手机号
+     * @param phone  待处理字符串
+     * @param symbol 转换符号
+     * @return 处理后的字符串
      */
-    public static boolean isNotEmpty(final Object object) {
-        return !isEmpty(object);
+    public static String converHideMobile(final String phone, final String symbol) {
+        return StringUtils.converHideMobile(phone, symbol);
+    }
+
+    /**
+     * 转换符号处理
+     * @param start  开始位置
+     * @param str    待处理字符串
+     * @param symbol 转换符号
+     * @return 处理后的字符串
+     */
+    public static String converSymbolHide(final int start, final String str, final String symbol) {
+        return StringUtils.converSymbolHide(start, str, symbol);
+    }
+
+    // =
+
+    /**
+     * 裁剪超出的内容, 并且追加符号 ( 如 ...)
+     * @param maxLength 允许最大的长度
+     * @param str       待处理字符串
+     * @param symbol    转换符号
+     * @return 处理后的字符串
+     */
+    public static String subEllipsize(final int maxLength, final String str, final String symbol) {
+        return StringUtils.subEllipsize(maxLength, str, symbol);
+    }
+
+    /**
+     * 裁剪符号处理
+     * @param start        开始位置
+     * @param symbolNumber 转换数量
+     * @param str          待处理字符串
+     * @param symbol       转换符号
+     * @return 处理后的字符串
+     */
+    public static String subSymbolHide(final int start, final int symbolNumber, final String str, final String symbol) {
+        return StringUtils.subSymbolHide(start, symbolNumber, str, symbol);
+    }
+
+    /**
+     * 裁剪内容, 设置符号处理
+     * @param str               待处理字符串
+     * @param frontRetainLength 前面保留的长度
+     * @param rearRetainLength  后面保留的长度
+     * @param symbol            转换符号
+     * @return 处理后的字符串
+     */
+    public static String subSetSymbol(final String str, final int frontRetainLength, final int rearRetainLength, final String symbol) {
+        return StringUtils.subSetSymbol(str, frontRetainLength, rearRetainLength, symbol);
+    }
+
+    // ==================
+    // = 替换、截取操作 =
+    // ==================
+
+    /**
+     * 裁剪字符串
+     * @param str      需要裁剪的字符串
+     * @param endIndex 结束裁剪的位置
+     * @return 裁剪后的字符串
+     */
+    public static String substring(final String str, final int endIndex) {
+        return StringUtils.substring(str, endIndex);
+    }
+
+    /**
+     * 裁剪字符串
+     * @param str      需要裁剪的字符串
+     * @param endIndex 结束裁剪的位置
+     * @param isReturn 开始位置超过限制是否返回内容
+     * @return 裁剪后的字符串
+     */
+    public static String substring(final String str, final int endIndex, final boolean isReturn) {
+        return StringUtils.substring(str, endIndex, isReturn);
+    }
+
+    /**
+     * 裁剪字符串
+     * @param str        需要裁剪的字符串
+     * @param beginIndex 开始裁剪的位置
+     * @param endIndex   结束裁剪的位置
+     * @param isReturn   开始位置超过限制是否返回内容
+     * @return 裁剪后的字符串
+     */
+    public static String substring(final String str, final int beginIndex, final int endIndex, final boolean isReturn) {
+        return StringUtils.substring(str, beginIndex, endIndex, isReturn);
+    }
+
+    // =
+
+    /**
+     * 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
+     * * 如 _____a_a_a_a________ 传入 _ 等于 ____a_a_a_a____
+     * @param str    待处理字符串
+     * @param suffix 替换符号字符串
+     * @return 处理后的字符串
+     */
+    public static String toReplaceSEWith(final String str, final String suffix) {
+        return StringUtils.toReplaceSEWith(str, suffix);
+    }
+
+    /**
+     * 替换字符串中符合 特定标记字符的 startsWith - endsWith
+     * 如 _____a_a_a_a________ 传入 _, c 等于 c____a_a_a_a____c
+     * @param str    待处理字符串
+     * @param suffix 替换匹配内容
+     * @param value  需要替换的内容
+     * @return 处理后的字符串
+     */
+    public static String toReplaceSEWith(final String str, final String suffix, final String value) {
+        return StringUtils.toReplaceSEWith(str, suffix, value);
+    }
+
+    // =
+
+    /**
+     * 替换开头字符串
+     * @param str    待处理字符串
+     * @param prefix 开头匹配字符串
+     * @return 处理后的字符串
+     */
+    public static String toReplaceStartsWith(final String str, final String prefix) {
+        return StringUtils.toReplaceStartsWith(str, prefix);
+    }
+
+    /**
+     * 替换开头字符串
+     * @param str         待处理字符串
+     * @param prefix      开头匹配字符串
+     * @param startAppend 开头追加的内容
+     * @return 处理后的字符串
+     */
+    public static String toReplaceStartsWith(final String str, final String prefix, final String startAppend) {
+        return StringUtils.toReplaceStartsWith(str, prefix, startAppend);
+    }
+
+    /**
+     * 替换结尾字符串
+     * @param str    待处理字符串
+     * @param suffix 结尾匹配字符串
+     * @return 处理后的字符串
+     */
+    public static String toReplaceEndsWith(final String str, final String suffix) {
+        return StringUtils.toReplaceEndsWith(str, suffix);
+    }
+
+    /**
+     * 替换结尾字符串
+     * @param str    待处理字符串
+     * @param suffix 结尾匹配字符串
+     * @param value  需要替换的内容
+     * @return 处理后的字符串
+     */
+    public static String toReplaceEndsWith(final String str, final String suffix, final String value) {
+        return StringUtils.toReplaceEndsWith(str, suffix, value);
+    }
+
+    // =
+
+    /**
+     * 这个方法功能主要把字符符合标记的 头部和尾部都替换成 ""
+     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a
+     * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf)
+     * @param str    待处理字符串
+     * @param suffix 匹配判断字符串
+     * @return 处理后的字符串
+     */
+    public static String toClearSEWiths(final String str, final String suffix) {
+        return StringUtils.toClearSEWiths(str, suffix);
+    }
+
+    /**
+     * 清空属于特定字符串开头的字段
+     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a_____
+     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
+     * @param str    待处理字符串
+     * @param suffix 匹配判断字符串
+     * @return 处理后的字符串
+     */
+    public static String toClearStartsWith(final String str, final String suffix) {
+        return StringUtils.toClearStartsWith(str, suffix);
+    }
+
+    /**
+     * 清空属于特定字符串结尾的字段
+     * 如 _____a_a_a_a________ 传入 _ 等于 _____a_a_a_a
+     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
+     * @param str    待处理字符串
+     * @param suffix 匹配判断字符串
+     * @return 处理后的字符串
+     */
+    public static String toClearEndsWith(final String str, final String suffix) {
+        return StringUtils.toClearEndsWith(str, suffix);
+    }
+
+    // =
+
+    /**
+     * 替换字符串
+     * @param str     待处理字符串
+     * @param suffix  匹配判断字符串
+     * @param replace 替换的内容
+     * @return 处理后的字符串
+     */
+    public static String replaceStr(final String str, final String suffix, final String replace) {
+        return StringUtils.replaceStr(str, suffix, replace);
+    }
+
+    /**
+     * 替换字符串
+     * @param str     待处理字符串
+     * @param suffix  匹配判断字符串
+     * @param replace 替换的内容
+     * @return 处理后的字符串, 替换失败则返回 null
+     */
+    public static String replaceStrToNull(final String str, final String suffix, final String replace) {
+        return StringUtils.replaceStrToNull(str, suffix, replace);
+    }
+
+    /**
+     * 替换字符串
+     * @param str         内容
+     * @param suffixArys  匹配判断字符串数组
+     * @param replaceArys 准备替换的字符串数组
+     * @return 处理后的字符串
+     */
+    public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
+        return StringUtils.replaceStrs(str, suffixArys, replaceArys);
     }
 }

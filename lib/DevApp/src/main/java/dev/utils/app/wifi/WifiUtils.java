@@ -1,7 +1,6 @@
 package dev.utils.app.wifi;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -22,8 +21,9 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
+import dev.utils.common.ConvertUtils;
 
 /**
  * detail: Wifi 工具类
@@ -57,24 +57,8 @@ public final class WifiUtils {
      * 构造函数
      */
     public WifiUtils() {
-        this(DevUtils.getContext());
-    }
-
-    /**
-     * 构造函数
-     * @param context {@link Context}
-     */
-    public WifiUtils(final Context context) {
         // 初始化 WifiManager 对象
-        mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-    }
-
-    /**
-     * 获取 WifiManager
-     * @return {@link WifiManager}
-     */
-    public WifiManager getWifiManager() {
-        return this.mWifiManager;
+        mWifiManager = AppUtils.getWifiManager();
     }
 
     // ===========================
@@ -91,32 +75,36 @@ public final class WifiUtils {
 
     /**
      * 打开 wifi
+     * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public void openWifi() {
+    public boolean openWifi() {
         // 如果没有打开 wifi, 才进行打开
         if (!isOpenWifi()) {
             try {
-                mWifiManager.setWifiEnabled(true);
+                return mWifiManager.setWifiEnabled(true);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "openWifi");
             }
         }
+        return false;
     }
 
     /**
      * 关闭 wifi
+     * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public void closeWifi() {
+    public boolean closeWifi() {
         // 如果已经打开了 wifi, 才进行关闭
         if (isOpenWifi()) {
             try {
-                mWifiManager.setWifiEnabled(false);
+                return mWifiManager.setWifiEnabled(false);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeWifi");
             }
         }
+        return false;
     }
 
     /**
@@ -125,14 +113,16 @@ public final class WifiUtils {
      *     如果打开了, 则关闭
      *     如果关闭了, 则打开
      * </pre>
+     * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public void toggleWifiEnabled() {
+    public boolean toggleWifiEnabled() {
         try {
-            mWifiManager.setWifiEnabled(!isOpenWifi());
+            return mWifiManager.setWifiEnabled(!isOpenWifi());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "toggleWifiEnabled");
         }
+        return false;
     }
 
     /**
@@ -277,10 +267,8 @@ public final class WifiUtils {
     @SuppressLint("MissingPermission")
     public static String getSSID() {
         try {
-            // 初始化 WifiManager 对象
-            WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             // 获取当前连接的 wifi
-            WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
+            WifiInfo wifiInfo = AppUtils.getWifiManager().getConnectionInfo();
             // 获取 wifi SSID
             return formatSSID(wifiInfo.getSSID(), false);
         } catch (Exception e) {
@@ -352,28 +340,7 @@ public final class WifiUtils {
         if (len != 10 && len != 26 && len != 58) {
             return false;
         }
-        return isHex(wepKey);
-    }
-
-    /**
-     * 判断是否十六进制数据
-     * @param data 待检验数据
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isHex(final String data) {
-        if (data == null) return false;
-        // 获取数据长度
-        int len = data.length();
-        if (len > 0) {
-            for (int i = len - 1; i >= 0; i--) {
-                char c = data.charAt(i);
-                if (!(c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f')) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
+        return ConvertUtils.isHex(wepKey);
     }
 
     // ============
@@ -392,7 +359,6 @@ public final class WifiUtils {
         } else if (typeStr.contains("WEP")) {
             return WEP;
         }
-        // 默认没有密码
         return NOPWD;
     }
 
@@ -408,7 +374,6 @@ public final class WifiUtils {
         } else if (typeInt.equals("1")) {
             return WEP;
         }
-        // 默认没有密码
         return NOPWD;
     }
 
@@ -463,7 +428,7 @@ public final class WifiUtils {
     public static String isConnectAphot() {
         try {
             // 连接管理
-            ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 连接状态
@@ -591,9 +556,9 @@ public final class WifiUtils {
         if (ssid == null) return false;
         try {
             // 初始化 WifiManager 对象
-            WifiManager mWifiManager = (WifiManager) DevUtils.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             // 获取 wifi 连接过的配置信息
-            List<WifiConfiguration> listWifiConfigs = mWifiManager.getConfiguredNetworks();
+            List<WifiConfiguration> listWifiConfigs = wifiManager.getConfiguredNetworks();
             // 防止为 null
             if (listWifiConfigs != null) {
                 // 遍历判断是否存在
@@ -602,13 +567,12 @@ public final class WifiUtils {
                     if (wConfig != null) {
                         if (wConfig.SSID.equals("\"" + ssid + "\"")) {
                             // 删除操作
-                            mWifiManager.removeNetwork(wConfig.networkId);
+                            wifiManager.removeNetwork(wConfig.networkId);
                         }
                     }
                 }
                 // 保存操作
-                mWifiManager.saveConfiguration();
-                return true;
+                return wifiManager.saveConfiguration();
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "delWifiConfig");
@@ -855,15 +819,17 @@ public final class WifiUtils {
     /**
      * 断开指定 networkId 的网络
      * @param networkId network id
+     * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public void disconnectWifi(final int networkId) {
+    public boolean disconnectWifi(final int networkId) {
         try {
             mWifiManager.disableNetwork(networkId);
-            mWifiManager.disconnect();
+            return mWifiManager.disconnect();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, "disconnectWifi", e);
         }
+        return false;
     }
 
     // ===========================
@@ -903,11 +869,10 @@ public final class WifiUtils {
      * @param networkPrefixLength 网络前缀长度
      * @return {@link WifiConfiguration}
      */
-    private WifiConfiguration setStaticWifiConfig(final WifiConfiguration wifiConfig, final String ip, final String gateway, final String dns, final int networkPrefixLength) {
+    private WifiConfiguration setStaticWifiConfig(final WifiConfiguration wifiConfig, final String ip,
+                                                  final String gateway, final String dns, final int networkPrefixLength) {
         try {
-            if (ip == null || gateway == null) {
-                return null;
-            }
+            if (ip == null || gateway == null) return null;
             // 设置 InetAddress
             InetAddress intetAddress = InetAddress.getByName(ip);
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT_WATCH) { // 旧的版本, 5.0 之前

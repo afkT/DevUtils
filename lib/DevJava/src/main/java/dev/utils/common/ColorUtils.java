@@ -120,7 +120,7 @@ public final class ColorUtils {
      * @return alpha 百分比值
      */
     public static float alphaPercent(final int color) {
-        return percentF(alpha(color), 255);
+        return NumberUtils.percentF(alpha(color), 255);
     }
 
     // =
@@ -140,7 +140,7 @@ public final class ColorUtils {
      * @return red 百分比值
      */
     public static float redPercent(final int color) {
-        return percentF(red(color), 255);
+        return NumberUtils.percentF(red(color), 255);
     }
 
     // =
@@ -160,7 +160,7 @@ public final class ColorUtils {
      * @return green 百分比值
      */
     public static float greenPercent(final int color) {
-        return percentF(green(color), 255);
+        return NumberUtils.percentF(green(color), 255);
     }
 
     // =
@@ -180,7 +180,7 @@ public final class ColorUtils {
      * @return blue 百分比值
      */
     public static float bluePercent(final int color) {
-        return percentF(blue(color), 255);
+        return NumberUtils.percentF(blue(color), 255);
     }
 
     // =
@@ -408,13 +408,18 @@ public final class ColorUtils {
      * @return rgb color String
      */
     public static String intToRgbString(final int colorInt) {
-        int color = colorInt;
-        color = color & 0x00ffffff;
-        String colorStr = Integer.toHexString(color);
-        while (colorStr.length() < 6) {
-            colorStr = "0" + colorStr;
+        try {
+            int color = colorInt;
+            color = color & 0x00ffffff;
+            String colorStr = Integer.toHexString(color);
+            while (colorStr.length() < 6) {
+                colorStr = "0" + colorStr;
+            }
+            return "#" + colorStr;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "intToRgbString");
         }
-        return "#" + colorStr;
+        return null;
     }
 
     /**
@@ -423,14 +428,19 @@ public final class ColorUtils {
      * @return argb color String
      */
     public static String intToArgbString(final int colorInt) {
-        String colorString = Integer.toHexString(colorInt);
-        while (colorString.length() < 6) {
-            colorString = "0" + colorString;
+        try {
+            String colorString = Integer.toHexString(colorInt);
+            while (colorString.length() < 6) {
+                colorString = "0" + colorString;
+            }
+            while (colorString.length() < 8) {
+                colorString = "f" + colorString;
+            }
+            return "#" + colorString;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "intToArgbString");
         }
-        while (colorString.length() < 8) {
-            colorString = "f" + colorString;
-        }
-        return "#" + colorString;
+        return null;
     }
 
     // =
@@ -501,9 +511,9 @@ public final class ColorUtils {
         // 颜色值
         int colorTemp = color;
         // 进行设置
-        colorTemp = setRed(colorTemp, clamp(red, 255, 0));
-        colorTemp = setGreen(colorTemp, clamp(green, 255, 0));
-        colorTemp = setBlue(colorTemp, clamp(blue, 255, 0));
+        colorTemp = setRed(colorTemp, NumberUtils.clamp(red, 255, 0));
+        colorTemp = setGreen(colorTemp, NumberUtils.clamp(green, 255, 0));
+        colorTemp = setBlue(colorTemp, NumberUtils.clamp(blue, 255, 0));
         return colorTemp;
     }
 
@@ -536,9 +546,9 @@ public final class ColorUtils {
         // 颜色值
         int colorTemp = color;
         // 进行设置
-        colorTemp = setRed(colorTemp, clamp(red, 255, 0));
-        colorTemp = setGreen(colorTemp, clamp(green, 255, 0));
-        colorTemp = setBlue(colorTemp, clamp(blue, 255, 0));
+        colorTemp = setRed(colorTemp, NumberUtils.clamp(red, 255, 0));
+        colorTemp = setGreen(colorTemp, NumberUtils.clamp(green, 255, 0));
+        colorTemp = setBlue(colorTemp, NumberUtils.clamp(blue, 255, 0));
         return colorTemp;
     }
 
@@ -565,7 +575,7 @@ public final class ColorUtils {
         // 透明度加深
         alpha += darkValue;
         // 进行设置
-        return setAlpha(color, clamp(alpha, 255, 0));
+        return setAlpha(color, NumberUtils.clamp(alpha, 255, 0));
     }
 
     /**
@@ -591,7 +601,7 @@ public final class ColorUtils {
         // 透明度变浅
         alpha -= lightValue;
         // 进行设置
-        return setAlpha(color, clamp(alpha, 255, 0));
+        return setAlpha(color, NumberUtils.clamp(alpha, 255, 0));
     }
 
     // =
@@ -634,37 +644,5 @@ public final class ColorUtils {
         sColorNameMaps.put("navy", 0xFF000080);
         sColorNameMaps.put("olive", 0xFF808000);
         sColorNameMaps.put("teal", 0xFF008080);
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = NumberUtils =
-    // ===============
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    private static float percentF(final int value, final int max) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return (float) value / (float) max;
-    }
-
-    /**
-     * 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max
-     * @param value 指定值
-     * @param max   最大值
-     * @param min   最小值
-     * @return 介于 max、min 之间的 value
-     */
-    private static int clamp(final int value, final int max, final int min) {
-        return value > max ? max : value < min ? min : value;
     }
 }

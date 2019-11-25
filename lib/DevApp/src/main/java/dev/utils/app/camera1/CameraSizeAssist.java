@@ -25,7 +25,7 @@ import dev.utils.app.ScreenUtils;
 public final class CameraSizeAssist {
 
     // 日志 TAG
-    private final String TAG = CameraSizeAssist.class.getSimpleName();
+    private static final String TAG = CameraSizeAssist.class.getSimpleName();
     // 摄像头对象
     private Camera mCamera;
     // 默认最大的偏差
@@ -161,7 +161,7 @@ public final class CameraSizeAssist {
                 if (parameters == null) {
                     parameters = mCamera.getParameters();
                 }
-                // 设置预览大小
+                // 设置拍照大小
                 parameters.setPictureSize(pictureSize.width, pictureSize.height);
 //                // 设置拍照输出格式
 //                parameters.setPictureFormat(PixelFormat.JPEG);

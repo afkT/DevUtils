@@ -7,8 +7,8 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.Keep;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -59,7 +59,7 @@ public class AppInfoBean {
      * @param packageInfo {@link PackageInfo}
      */
     protected AppInfoBean(final PackageInfo packageInfo) {
-        this(packageInfo, DevUtils.getContext().getPackageManager());
+        this(packageInfo, AppUtils.getPackageManager());
     }
 
     /**

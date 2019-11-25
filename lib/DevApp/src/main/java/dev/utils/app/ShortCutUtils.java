@@ -21,6 +21,7 @@ import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 快捷方式工具类
@@ -64,18 +65,11 @@ public final class ShortCutUtils {
             ContentResolver resolver = context.getContentResolver();
             cursor = resolver.query(uri, new String[]{"title", "iconResource"}, "title=?", new String[]{name}, null);
             // 判断是否存在快捷方式
-            if (cursor != null && cursor.getCount() > 0) {
-                return true;
-            }
+            return (cursor != null && cursor.getCount() > 0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "hasShortcut");
         } finally {
-            if (cursor != null) {
-                try {
-                    cursor.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(cursor);
         }
         return false;
     }
@@ -90,10 +84,7 @@ public final class ShortCutUtils {
      * @return {@link Intent}
      */
     public static Intent getShortCutIntent(final Class clazz) {
-        if (clazz != null) {
-            return getShortCutIntent(clazz.getName());
-        }
-        return null;
+        return (clazz != null) ? getShortCutIntent(clazz.getName()) : null;
     }
 
     /**
@@ -123,11 +114,10 @@ public final class ShortCutUtils {
      * @param clazz 快捷方式点击 Intent class
      * @param name  快捷方式名称
      * @param icon  快捷方式图标
+     * @return {@code true} success, {@code false} fail
      */
-    public static void addShortcut(final Class clazz, final String name, @AnyRes final int icon) {
-        if (clazz != null) {
-            addShortcut(clazz.getName(), name, icon);
-        }
+    public static boolean addShortcut(final Class clazz, final String name, @AnyRes final int icon) {
+        return (clazz != null) ? addShortcut(clazz.getName(), name, icon) : false;
     }
 
     /**
@@ -135,19 +125,21 @@ public final class ShortCutUtils {
      * @param className 快捷方式点击 Intent className(class.getName())
      * @param name      快捷方式名称
      * @param icon      快捷方式图标
+     * @return {@code true} success, {@code false} fail
      */
-    public static void addShortcut(final String className, final String name, @AnyRes final int icon) {
+    public static boolean addShortcut(final String className, final String name, @AnyRes final int icon) {
         if (className != null && name != null) {
             try {
                 // 快捷方式点击 Intent 跳转
                 Intent shortcutIntent = new Intent(Intent.ACTION_MAIN);
                 shortcutIntent.setClassName(DevUtils.getContext(), className);
                 shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                addShortcut(shortcutIntent, name, icon);
+                return addShortcut(shortcutIntent, name, icon);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "addShortcut");
             }
         }
+        return false;
     }
 
     /**
@@ -155,9 +147,10 @@ public final class ShortCutUtils {
      * @param shortcutIntent 快捷方式点击 Intent 跳转
      * @param name           快捷方式名称
      * @param icon           快捷方式图标
+     * @return {@code true} success, {@code false} fail
      */
-    public static void addShortcut(final Intent shortcutIntent, final String name, @AnyRes final int icon) {
-        addShortcut(shortcutIntent, name, icon, null);
+    public static boolean addShortcut(final Intent shortcutIntent, final String name, @AnyRes final int icon) {
+        return addShortcut(shortcutIntent, name, icon, null);
     }
 
     /**
@@ -166,8 +159,9 @@ public final class ShortCutUtils {
      * @param name           快捷方式名称
      * @param icon           快捷方式图标
      * @param pendingIntent  创建结果通知 (Android 8.0)
+     * @return {@code true} success, {@code false} fail
      */
-    public static void addShortcut(final Intent shortcutIntent, final String name, @AnyRes final int icon, final PendingIntent pendingIntent) {
+    public static boolean addShortcut(final Intent shortcutIntent, final String name, @AnyRes final int icon, final PendingIntent pendingIntent) {
         if (shortcutIntent != null && name != null) {
             // Android 8.0 之前
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -183,6 +177,7 @@ public final class ShortCutUtils {
                     shortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconRes);
                     // 发送广播, 创建快捷方式
                     context.sendBroadcast(shortcut);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "addShortcut");
                 }
@@ -190,7 +185,7 @@ public final class ShortCutUtils {
                 try {
                     Context context = DevUtils.getContext();
                     // 获取 ShortcutManager
-                    ShortcutManager shortcutManager = (ShortcutManager) context.getSystemService(Context.SHORTCUT_SERVICE);
+                    ShortcutManager shortcutManager = AppUtils.getShortcutManager();
                     // 如果默认桌面支持 requestPinShortcut(ShortcutInfo、IntentSender) 方法
                     if (shortcutManager != null && shortcutManager.isRequestPinShortcutSupported()) {
                         // 快捷方式创建相关信息
@@ -205,12 +200,14 @@ public final class ShortCutUtils {
                         } else {
                             shortcutManager.requestPinShortcut(shortcutInfo, null);
                         }
+                        return true;
                     }
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "addShortcut");
                 }
             }
         }
+        return false;
     }
 
     // ====================
@@ -221,11 +218,10 @@ public final class ShortCutUtils {
      * 删除桌面快捷方式
      * @param clazz 快捷方式点击 Intent class
      * @param name  快捷方式名称
+     * @return {@code true} success, {@code false} fail
      */
-    public static void deleteShortcut(final Class clazz, final String name) {
-        if (clazz != null) {
-            deleteShortcut(clazz.getName(), name);
-        }
+    public static boolean deleteShortcut(final Class clazz, final String name) {
+        return (clazz != null) ? deleteShortcut(clazz.getName(), name) : false;
     }
 
     /**
@@ -235,8 +231,9 @@ public final class ShortCutUtils {
      * </pre>
      * @param className 快捷方式点击 Intent className(class.getName())
      * @param name      快捷方式名称
+     * @return {@code true} success, {@code false} fail
      */
-    public static void deleteShortcut(final String className, final String name) {
+    public static boolean deleteShortcut(final String className, final String name) {
         if (className != null && name != null) {
             try {
                 Context context = DevUtils.getContext();
@@ -248,10 +245,12 @@ public final class ShortCutUtils {
                 shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name); // 快捷方式名称
                 shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
                 context.sendBroadcast(shortcut);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "deleteShortcut");
             }
         }
+        return false;
     }
 
     // ============

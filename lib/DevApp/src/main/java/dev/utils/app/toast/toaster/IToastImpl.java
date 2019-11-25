@@ -18,6 +18,9 @@ import androidx.annotation.StringRes;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppCommonUtils;
+import dev.utils.app.ImageViewUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: Toast 接口实现方法 ( 处理方法 )
@@ -213,7 +216,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public void show(final String text, final Object... objs) {
-        String context = Utils.getFormatString(text, objs);
+        String context = StringUtils.getFormatString(text, objs);
         if (filter(context)) {
             priShowToastText(handlerContent(context));
         }
@@ -226,7 +229,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
      */
     @Override
     public void show(@StringRes final int resId, final Object... objs) {
-        String context = Utils.getFormatRes(resId, objs);
+        String context = AppCommonUtils.getFormatRes(resId, objs);
         if (filter(context)) {
             // 获取处理的内容
             priShowToastText(handlerContent(context));
@@ -448,7 +451,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             // 如果等于 null
             if (backgroundDrawable != null) {
                 // 设置背景
-                Utils.setBackground(view, backgroundDrawable);
+                ImageViewUtils.setBackground(view, backgroundDrawable);
             } else {
                 if (style.getBackgroundTintColor() != 0) {
                     GradientDrawable drawable = new GradientDrawable();
@@ -457,7 +460,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
                     // 设置圆角大小
                     drawable.setCornerRadius(style.getCornerRadius());
                     // 设置背景
-                    Utils.setBackground(view, drawable);
+                    ImageViewUtils.setBackground(view, drawable);
                 }
             }
 
@@ -539,7 +542,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
             // 如果等于 null
             if (backgroundDrawable != null) {
                 // 设置背景
-                Utils.setBackground(view, backgroundDrawable);
+                ImageViewUtils.setBackground(view, backgroundDrawable);
             } else {
                 if (style.getBackgroundTintColor() != 0) {
                     GradientDrawable drawable = new GradientDrawable();
@@ -548,7 +551,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
                     // 设置圆角大小
                     drawable.setCornerRadius(style.getCornerRadius());
                     // 设置背景
-                    Utils.setBackground(view, drawable);
+                    ImageViewUtils.setBackground(view, drawable);
                 }
             }
 

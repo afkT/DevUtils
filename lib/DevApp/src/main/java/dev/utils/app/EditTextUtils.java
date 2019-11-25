@@ -106,7 +106,7 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setText(final T editText, final String content) {
+    public static <T extends EditText> T setText(final T editText, final CharSequence content) {
         return setText(editText, content, true);
     }
 
@@ -118,7 +118,7 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setText(final T editText, final String content, final boolean isSelect) {
+    public static <T extends EditText> T setText(final T editText, final CharSequence content, final boolean isSelect) {
         if (editText != null && content != null) {
             editText.setText(content);
             // 设置光标
@@ -133,13 +133,16 @@ public final class EditTextUtils {
      * 设置多个 EditText 文本
      * @param content 文本内容
      * @param views   View(EditText)[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setTexts(final String content, final View... views) {
+    public static boolean setTexts(final CharSequence content, final View... views) {
         if (views != null) {
             for (View view : views) {
                 setText(getEditText(view), content);
             }
+            return true;
         }
+        return false;
     }
 
     /**
@@ -147,13 +150,16 @@ public final class EditTextUtils {
      * @param content 文本内容
      * @param views   EditText[]
      * @param <T>     泛型
+     * @return {@code true} success, {@code false} fail
      */
-    public static <T extends EditText> void setTexts(final String content, final T... views) {
+    public static <T extends EditText> boolean setTexts(final CharSequence content, final T... views) {
         if (views != null) {
             for (T view : views) {
                 setText(view, content);
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -166,7 +172,7 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T insert(final T editText, final String content, final boolean isSelect) {
+    public static <T extends EditText> T insert(final T editText, final CharSequence content, final boolean isSelect) {
         if (editText != null) {
             return insert(editText, content, editText.getSelectionStart(), isSelect);
         }
@@ -182,7 +188,7 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T insert(final T editText, final String content, final int start, final boolean isSelect) {
+    public static <T extends EditText> T insert(final T editText, final CharSequence content, final int start, final boolean isSelect) {
         if (editText != null && !TextUtils.isEmpty(content)) {
             try {
                 Editable editable = editText.getText();
@@ -225,7 +231,7 @@ public final class EditTextUtils {
      * @param <T>       泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setMaxLengthAndText(final T editText, final String content, final int maxLength) {
+    public static <T extends EditText> T setMaxLengthAndText(final T editText, final CharSequence content, final int maxLength) {
         return setText(setMaxLength(editText, maxLength), content);
     }
 

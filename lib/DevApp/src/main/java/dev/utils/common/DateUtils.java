@@ -343,8 +343,7 @@ public final class DateUtils {
         try {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
-            int week = calendar.get(Calendar.DAY_OF_WEEK);
-            return week;
+            return calendar.get(Calendar.DAY_OF_WEEK);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getWeek");
         }
@@ -459,8 +458,7 @@ public final class DateUtils {
      * @return 月
      */
     public static int getMonth() {
-        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        return month;
+        return Calendar.getInstance().get(Calendar.MONTH) + 1;
     }
 
     /**
@@ -519,7 +517,6 @@ public final class DateUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLeapYear(final int year) {
-        // 判断是否闰年
         return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
     }
 
@@ -582,7 +579,7 @@ public final class DateUtils {
     public static int getMonthDayNumber(final int year, final int month) {
         // 判断年份, 相同则判断月份
         if (year == getYear()) {
-            // 判断月份, 先同则返回天数
+            // 判断月份, 相同则返回天数
             if (getYearMonthNumber(year) == month) {
                 return getDay();
             }
@@ -710,7 +707,7 @@ public final class DateUtils {
             String[] timeSplit = time.split(":");
             if (timeSplit != null && timeSplit.length == 2) {
                 // 转换小时
-                int hour = toInt(timeSplit[0], -1);
+                int hour = ConvertUtils.toInt(timeSplit[0], -1);
                 // 判断是否小于 0
                 if (hour < 0) {
                     return -1;
@@ -725,7 +722,7 @@ public final class DateUtils {
                     case 1:
                     case 2:
                         // 转换分钟
-                        int minute = toInt(timeSplit[1], -1);
+                        int minute = ConvertUtils.toInt(timeSplit[1], -1);
                         // 判断是否小于 0
                         if (minute < 0) {
                             return -1;
@@ -814,6 +811,7 @@ public final class DateUtils {
                 }
             }
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "secToTimeRetain");
         }
         return null;
     }
@@ -860,6 +858,7 @@ public final class DateUtils {
                 }
             }
         } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "convertTimeArys");
         }
         return null;
     }
@@ -1105,29 +1104,5 @@ public final class DateUtils {
             JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
         }
         return -1;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ================
-    // = ConvertUtils =
-    // ================
-
-    /**
-     * 字符串 转 int
-     * @param str          String
-     * @param defaultValue 默认值
-     * @return int 如果转换失败, 则返回 defaultValue
-     */
-    private static int toInt(final String str, final int defaultValue) {
-        if (str == null) return defaultValue;
-        try {
-            return Integer.parseInt(str);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toInt");
-        }
-        return defaultValue;
     }
 }

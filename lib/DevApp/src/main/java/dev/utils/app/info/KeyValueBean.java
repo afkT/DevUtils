@@ -3,7 +3,7 @@ package dev.utils.app.info;
 import androidx.annotation.Keep;
 import androidx.annotation.StringRes;
 
-import dev.DevUtils;
+import dev.utils.app.ResourceUtils;
 
 /**
  * detail: 键对值实体类
@@ -54,6 +54,6 @@ public class KeyValueBean {
      * @return {@link KeyValueBean}
      */
     public static KeyValueBean get(@StringRes final int resId, final String value) {
-        return new KeyValueBean(DevUtils.getContext().getString(resId), value);
+        return new KeyValueBean(ResourceUtils.getString(resId), value);
     }
 }

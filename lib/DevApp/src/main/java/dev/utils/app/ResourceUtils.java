@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.AnimRes;
@@ -39,6 +40,7 @@ import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: 资源文件工具类
@@ -201,6 +203,20 @@ public final class ResourceUtils {
             return ContextCompat.getDrawable(DevUtils.getContext(), drawableId);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDrawable");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 .9 Drawable
+     * @param drawableId R.drawable.id
+     * @return .9 {@link NinePatchDrawable}
+     */
+    public static NinePatchDrawable getNinePatchDrawable(@DrawableRes final int drawableId) {
+        try {
+            return (NinePatchDrawable) getDrawable(drawableId);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getNinePatchDrawable");
         }
         return null;
     }
@@ -518,12 +534,7 @@ public final class ResourceUtils {
      * @return 资源 id
      */
     public static int getIdentifier(final String resName, final String defType) {
-        try {
-            return getIdentifier(resName, defType, DevUtils.getContext().getPackageName());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getIdentifier - " + resName + ": " + defType);
-        }
-        return 0;
+        return getIdentifier(resName, defType, AppUtils.getPackageName());
     }
 
     /**
@@ -537,7 +548,7 @@ public final class ResourceUtils {
         try {
             return DevUtils.getContext().getResources().getIdentifier(resName, defType, packageName);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getIdentifier - " + packageName + " " + resName + ": " + defType);
+            LogPrintUtils.eTag(TAG, e, "getIdentifier - " + resName + " " + defType + ": " + packageName);
         }
         return 0;
     }
@@ -549,11 +560,39 @@ public final class ResourceUtils {
      * @param fileName 文件名
      * @return {@link InputStream}
      */
-    public static InputStream openAssetsResource(final String fileName) {
+    public static InputStream open(final String fileName) {
         try {
             return DevUtils.getContext().getAssets().open(fileName);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openAssetsResource");
+            LogPrintUtils.eTag(TAG, e, "open");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 AssetManager 指定资源 AssetFileDescriptor
+     * @param fileName 文件名
+     * @return {@link AssetFileDescriptor}
+     */
+    public static AssetFileDescriptor openFd(final String fileName) {
+        try {
+            return DevUtils.getContext().getAssets().openFd(fileName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openFd");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 AssetManager 指定资源 AssetFileDescriptor
+     * @param fileName 文件名
+     * @return {@link AssetFileDescriptor}
+     */
+    public static AssetFileDescriptor openNonAssetFd(final String fileName) {
+        try {
+            return DevUtils.getContext().getAssets().openNonAssetFd(fileName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openNonAssetFd");
         }
         return null;
     }
@@ -603,21 +642,15 @@ public final class ResourceUtils {
     public static byte[] readBytesFromAssets(final String fileName) {
         InputStream is = null;
         try {
-            is = DevUtils.getContext().getResources().getAssets().open(fileName);
+            is = open(fileName);
             int length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);
-            is.close();
             return buffer;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "readBytesFromAssets");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return null;
     }
@@ -646,21 +679,15 @@ public final class ResourceUtils {
     public static byte[] readBytesFromRaw(@RawRes final int resId) {
         InputStream is = null;
         try {
-            is = DevUtils.getContext().getResources().openRawResource(resId);
+            is = openRawResource(resId);
             int length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);
-            is.close();
             return buffer;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "readBytesFromRaw");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return null;
     }
@@ -690,7 +717,7 @@ public final class ResourceUtils {
         InputStream is = null;
         BufferedReader br = null;
         try {
-            is = DevUtils.getContext().getResources().getAssets().open(fileName);
+            is = open(fileName);
             br = new BufferedReader(new InputStreamReader(is));
 
             List<String> lists = new ArrayList<>();
@@ -702,18 +729,7 @@ public final class ResourceUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "geFileToListFromAssets");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is, br);
         }
         return null;
     }
@@ -727,7 +743,7 @@ public final class ResourceUtils {
         InputStream is = null;
         BufferedReader br = null;
         try {
-            is = DevUtils.getContext().getResources().openRawResource(resId);
+            is = openRawResource(resId);
             br = new BufferedReader(new InputStreamReader(is));
 
             List<String> lists = new ArrayList<>();
@@ -739,18 +755,7 @@ public final class ResourceUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "geFileToListFromRaw");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is, br);
         }
         return null;
     }
@@ -766,7 +771,7 @@ public final class ResourceUtils {
     public static boolean saveAssetsFormFile(final String fileName, final File file) {
         try {
             // 获取 Assets 文件
-            InputStream is = DevUtils.getContext().getResources().getAssets().open(fileName);
+            InputStream is = open(fileName);
             // 存入 SDCard
             FileOutputStream fos = new FileOutputStream(file);
             // 设置数据缓冲
@@ -782,11 +787,9 @@ public final class ResourceUtils {
             // 写入保存的文件
             fos.write(bytes);
             // 关闭流
-            baos.close();
-            is.close();
-            // =
+            CloseUtils.closeIOQuietly(baos, is);
             fos.flush();
-            fos.close();
+            CloseUtils.closeIOQuietly(fos);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "saveAssetsFormFile");
@@ -803,7 +806,7 @@ public final class ResourceUtils {
     public static boolean saveRawFormFile(@RawRes final int resId, final File file) {
         try {
             // 获取 raw 文件
-            InputStream is = DevUtils.getContext().getResources().openRawResource(resId);
+            InputStream is = openRawResource(resId);
             // 存入 SDCard
             FileOutputStream fos = new FileOutputStream(file);
             // 设置数据缓冲
@@ -819,11 +822,9 @@ public final class ResourceUtils {
             // 写入保存的文件
             fos.write(bytes);
             // 关闭流
-            baos.close();
-            is.close();
-            // =
+            CloseUtils.closeIOQuietly(baos, is);
             fos.flush();
-            fos.close();
+            CloseUtils.closeIOQuietly(fos);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "saveRawFormFile");

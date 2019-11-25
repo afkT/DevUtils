@@ -73,7 +73,7 @@ public final class MapUtils {
     // =
 
     /**
-     * 获取长度 to Map 是否等于期望长度
+     * 获取长度 Map 是否等于期望长度
      * @param map    {@link Map}
      * @param length 期望长度
      * @return {@code true} yes, {@code false} no
@@ -124,6 +124,24 @@ public final class MapUtils {
      */
     public static boolean lessThanOrEqual(final Map map, final int length) {
         return map != null && map.size() <= length;
+    }
+
+    // ================
+    // = 获取长度总和 =
+    // ================
+
+    /**
+     * 获取 Map 数组长度总和
+     * @param maps Map[]
+     * @return Map 数组长度总和
+     */
+    public static int getCount(final Map... maps) {
+        if (maps == null) return 0;
+        int count = 0;
+        for (Map map : maps) {
+            count += length(map);
+        }
+        return count;
     }
 
     // ============
@@ -185,7 +203,6 @@ public final class MapUtils {
     public static <K, V> K getKeyByValue(final Map<K, V> map, final V value) {
         if (map != null) {
             try {
-                List<K> lists = new ArrayList<>();
                 // 进行遍历判断
                 Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
                 while (iterator.hasNext()) {
@@ -263,7 +280,7 @@ public final class MapUtils {
     public static <K, V> K[] getKeysToArrays(final Map<K, V> map) {
         if (map != null) {
             try {
-                return (K[]) getKeys(map).toArray();
+                return CollectionUtils.toArrayT(getKeys(map));
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getKeysToArrays");
             }
@@ -299,7 +316,7 @@ public final class MapUtils {
     public static <K, V> V[] getValuesToArrays(final Map<K, V> map) {
         if (map != null) {
             try {
-                return (V[]) getValues(map).toArray();
+                return CollectionUtils.toArrayT(getValues(map));
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getValuesToArrays");
             }
@@ -695,6 +712,7 @@ public final class MapUtils {
                             map.put(key, entry.getValue());
                         }
                     }
+                    return true;
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "putAll");
                 }
@@ -762,7 +780,7 @@ public final class MapUtils {
                 if (equals(value, map.get(key))) {
                     map.remove(key);
                 }
-                // return map.remove(key, value);
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "remove");
             }
@@ -784,6 +802,7 @@ public final class MapUtils {
                 for (K key : keys) {
                     map.remove(key);
                 }
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "removeToKeys");
             }
@@ -853,36 +872,7 @@ public final class MapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static <T> boolean equals(final T value1, final T value2) {
-        // 两个值都不为 null
-        if (value1 != null && value2 != null) {
-            try {
-                if (value1 instanceof String && value2 instanceof String) {
-                    return value1.equals(value2);
-                } else if (value1 instanceof CharSequence && value2 instanceof CharSequence) {
-                    CharSequence v1 = (CharSequence) value1;
-                    CharSequence v2 = (CharSequence) value2;
-                    // 获取数据长度
-                    int length = v1.length();
-                    // 判断数据长度是否一致
-                    if (length == v2.length()) {
-                        for (int i = 0; i < length; i++) {
-                            if (v1.charAt(i) != v2.charAt(i)) {
-                                return false;
-                            }
-                        }
-                        return true;
-                    }
-                    return false;
-                }
-                // 其他都使用 equals 判断
-                return value1.equals(value2);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "equals");
-            }
-            return false;
-        }
-        // 防止两个值都为 null
-        return (value1 == null && value2 == null);
+        return ObjectUtils.equals(value1, value2);
     }
 
     // =
@@ -898,8 +888,9 @@ public final class MapUtils {
      * @param value value
      * @param <K>   key
      * @param <V>   value
+     * @return {@code true} success, {@code false} fail
      */
-    public static <K, V> void toggle(final Map<K, V> map, final K key, final V value) {
+    public static <K, V> boolean toggle(final Map<K, V> map, final K key, final V value) {
         if (map != null) {
             // 判断是否存在 key
             boolean existKey = map.containsKey(key);
@@ -909,10 +900,12 @@ public final class MapUtils {
                 } else { // 不存在则保存
                     map.put(key, value);
                 }
+                return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toggle");
             }
         }
+        return false;
     }
 
     /**
@@ -1107,9 +1100,10 @@ public final class MapUtils {
      * @param removeMap {@link Map} 移除对比数据源
      * @param <K>       key
      * @param <T>       value type
+     * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap) {
-        removeToMap(map, removeMap, true, false);
+    public static <K, T> boolean removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap) {
+        return removeToMap(map, removeMap, true, false);
     }
 
     /**
@@ -1120,9 +1114,10 @@ public final class MapUtils {
      * @param isNullRemoveAll 如果待移除的 ArrayList 是 null, 是否移除全部
      * @param <K>             key
      * @param <T>             value type
+     * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> void removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap,
-                                          final boolean removeEmpty, final boolean isNullRemoveAll) {
+    public static <K, T> boolean removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap,
+                                             final boolean removeEmpty, final boolean isNullRemoveAll) {
         if (map != null && removeMap != null) {
             Iterator<Map.Entry<K, ArrayList<T>>> iterator = removeMap.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -1157,6 +1152,8 @@ public final class MapUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 }

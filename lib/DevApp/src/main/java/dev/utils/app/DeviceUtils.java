@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -15,7 +14,6 @@ import androidx.annotation.RequiresPermission;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
@@ -24,10 +22,10 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -77,9 +75,18 @@ public final class DeviceUtils {
 
     /**
      * 获取设备信息
-     * @param deviceInfoMap 设备信息 Map
+     * @return {@link Map<String, String>}
      */
-    public static void getDeviceInfo(final Map<String, String> deviceInfoMap) {
+    public static Map<String, String> getDeviceInfo() {
+        return getDeviceInfo(new HashMap<>());
+    }
+
+    /**
+     * 获取设备信息
+     * @param deviceInfoMap 设备信息 Map
+     * @return {@link Map<String, String>}
+     */
+    public static Map<String, String> getDeviceInfo(final Map<String, String> deviceInfoMap) {
         // 获取设备信息类的所有申明的字段, 即包括 public、private 和 proteced, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -108,6 +115,7 @@ public final class DeviceUtils {
                 LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
             }
         }
+        return deviceInfoMap;
     }
 
     /**
@@ -383,7 +391,7 @@ public final class DeviceUtils {
     public static String getAndroidId() {
         String androidId = null;
         try {
-            androidId = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+            androidId = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAndroidId");
         }
@@ -395,17 +403,17 @@ public final class DeviceUtils {
      * @return 基带版本 BASEBAND-VER
      */
     public static String getBaseband_Ver() {
-        String Version = "";
+        String basebandVersion = "";
         try {
-            Class cl = Class.forName("android.os.SystemProperties");
-            Object invoker = cl.newInstance();
-            Method m = cl.getMethod("get", String.class, String.class);
-            Object result = m.invoke(invoker, "gsm.version.baseband", "no message");
-            Version = (String) result;
+            Class clazz = Class.forName("android.os.SystemProperties");
+            Object invoker = clazz.newInstance();
+            Method method = clazz.getMethod("get", String.class, String.class);
+            Object result = method.invoke(invoker, "gsm.version.baseband", "no message");
+            basebandVersion = (String) result;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBaseband_Ver");
         }
-        return Version;
+        return basebandVersion;
     }
 
     /**
@@ -415,36 +423,23 @@ public final class DeviceUtils {
     public static String getLinuxCore_Ver() {
         String kernelVersion = "";
         try {
-            Process process = null;
-            try {
-                process = Runtime.getRuntime().exec("cat /proc/version");
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver - Process");
-            }
+            Process process = Runtime.getRuntime().exec("cat /proc/version");
             InputStream is = process.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr, 8 * 1024);
 
             String line;
             StringBuilder builder = new StringBuilder();
-            try {
-                while ((line = br.readLine()) != null) {
-                    builder.append(line);
-                }
-            } catch (IOException e) {
-                LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver - readLine");
+            while ((line = br.readLine()) != null) {
+                builder.append(line);
             }
             String result = builder.toString();
-            try {
-                if (result != "") {
-                    String Keyword = "version ";
-                    int index = result.indexOf(Keyword);
-                    line = result.substring(index + Keyword.length());
-                    index = line.indexOf(" ");
-                    kernelVersion = line.substring(0, index);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver - substring");
+            if (result != "") {
+                String keyword = "version ";
+                int index = result.indexOf(keyword);
+                line = result.substring(index + keyword.length());
+                index = line.indexOf(" ");
+                kernelVersion = line.substring(0, index);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver");
@@ -477,7 +472,7 @@ public final class DeviceUtils {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean isAdbEnabled() {
         try {
-            return Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0;
+            return Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAdbEnabled");
         }
@@ -525,7 +520,7 @@ public final class DeviceUtils {
     private static String getMacAddressByWifiInfo() {
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifiManager = (WifiManager) DevUtils.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = AppUtils.getWifiManager();
             if (wifiManager != null) {
                 WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                 if (wifiInfo != null) return wifiInfo.getMacAddress();
@@ -639,47 +634,53 @@ public final class DeviceUtils {
 
     /**
      * 关机 ( 需要 root 权限 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void shutdown() {
+    public static boolean shutdown() {
         try {
             ShellUtils.execCmd("reboot -p", true);
             Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
             intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            return AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shutdown");
         }
+        return false;
     }
 
     /**
      * 重启设备 ( 需要 root 权限 )
+     * @return {@code true} success, {@code false} fail
      */
-    public static void reboot() {
+    public static boolean reboot() {
         try {
             ShellUtils.execCmd("reboot", true);
             Intent intent = new Intent(Intent.ACTION_REBOOT);
             intent.putExtra("nowait", 1);
             intent.putExtra("interval", 1);
             intent.putExtra("window", 0);
-            DevUtils.getContext().sendBroadcast(intent);
+            return AppUtils.sendBroadcast(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
+        return false;
     }
 
     /**
      * 重启设备 ( 需要 root 权限 ) - 并进行特殊的引导模式 (recovery、Fastboot)
      * @param reason 传递给内核来请求特殊的引导模式, 如 "recovery"
      *               重启到 Fastboot 模式 bootloader
+     * @return {@code true} success, {@code false} fail
      */
-    public static void reboot(final String reason) {
+    public static boolean reboot(final String reason) {
         try {
-            PowerManager mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
-            if (mPowerManager == null) return;
+            PowerManager mPowerManager = AppUtils.getPowerManager();
             mPowerManager.reboot(reason);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
+        return false;
     }
 
     /**

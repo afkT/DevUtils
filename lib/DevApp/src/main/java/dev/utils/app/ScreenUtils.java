@@ -44,30 +44,15 @@ public final class ScreenUtils {
     private static final String TAG = ScreenUtils.class.getSimpleName();
 
     /**
-     * 获取 WindowManager
-     * @return {@link WindowManager}
-     */
-    public static WindowManager getWindowManager() {
-        try {
-            return (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getWindowManager");
-        }
-        return null;
-    }
-
-    /**
      * 获取 DisplayMetrics
      * @return {@link DisplayMetrics}
      */
     public static DisplayMetrics getDisplayMetrics() {
         try {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-            if (windowManager != null) {
-                DisplayMetrics displayMetrics = new DisplayMetrics();
-                windowManager.getDefaultDisplay().getMetrics(displayMetrics);
-                return displayMetrics;
-            }
+            WindowManager windowManager = AppUtils.getWindowManager();
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+            return displayMetrics;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDisplayMetrics");
         }
@@ -102,11 +87,10 @@ public final class ScreenUtils {
      */
     public static int[] getScreenWidthHeight() {
         try {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-            if (windowManager == null) {
-                DisplayMetrics displayMetrics = DevUtils.getContext().getResources().getDisplayMetrics();
-                return new int[]{displayMetrics.widthPixels, displayMetrics.heightPixels};
-            }
+//            DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
+//            return new int[]{displayMetrics.widthPixels, displayMetrics.heightPixels};
+
+            WindowManager windowManager = AppUtils.getWindowManager();
             Point point = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 windowManager.getDefaultDisplay().getRealSize(point);
@@ -126,11 +110,10 @@ public final class ScreenUtils {
      */
     public static Point getScreenWidthHeightToPoint() {
         try {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-            if (windowManager == null) {
-                DisplayMetrics displayMetrics = DevUtils.getContext().getResources().getDisplayMetrics();
-                return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
-            }
+//            DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
+//            return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
+
+            WindowManager windowManager = AppUtils.getWindowManager();
             Point point = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 windowManager.getDefaultDisplay().getRealSize(point);
@@ -160,15 +143,10 @@ public final class ScreenUtils {
      * @return 屏幕分辨率
      */
     public static String getScreenSize(final String symbol) {
-        try {
-            // 获取分辨率
-            int[] widthHeight = getScreenWidthHeight();
-            // 返回分辨率信息
-            return widthHeight[1] + symbol + widthHeight[0];
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getScreenSize");
-        }
-        return "unknown";
+        // 获取分辨率
+        int[] widthHeight = getScreenWidthHeight();
+        // 返回分辨率信息
+        return widthHeight[1] + symbol + widthHeight[0];
     }
 
     /**
@@ -180,7 +158,7 @@ public final class ScreenUtils {
         try {
             Point point = new Point();
             DisplayMetrics displayMetrics = new DisplayMetrics();
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = AppUtils.getWindowManager();
             windowManager.getDefaultDisplay().getRealSize(point);
             windowManager.getDefaultDisplay().getMetrics(displayMetrics);
             // 计算尺寸
@@ -202,16 +180,9 @@ public final class ScreenUtils {
      * @return 屏幕密度
      */
     public static float getDensity() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                // 屏幕密度, 如 (0.75 / 1.0 / 1.5 / 2.0)
-                return displayMetrics.density;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDensity");
-        }
-        return 0;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        // 屏幕密度, 如 (0.75 / 1.0 / 1.5 / 2.0)
+        return (displayMetrics != null) ? displayMetrics.density : 0f;
     }
 
     /**
@@ -219,16 +190,9 @@ public final class ScreenUtils {
      * @return 屏幕密度 dpi
      */
     public static int getDensityDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                // 屏幕密度 DPI, 如 (120 / 160 / 240 / 320)
-                return displayMetrics.densityDpi;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDensityDpi");
-        }
-        return 0;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        // 屏幕密度 DPI, 如 (120 / 160 / 240 / 320)
+        return (displayMetrics != null) ? displayMetrics.densityDpi : 0;
     }
 
     /**
@@ -236,15 +200,8 @@ public final class ScreenUtils {
      * @return 屏幕缩放密度
      */
     public static float getScaledDensity() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.scaledDensity;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getScaledDensity");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? displayMetrics.scaledDensity : 0f;
     }
 
     /**
@@ -252,15 +209,8 @@ public final class ScreenUtils {
      * @return X 轴 dpi
      */
     public static float getXDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.xdpi;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getXDpi");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? displayMetrics.xdpi : 0f;
     }
 
     /**
@@ -268,15 +218,8 @@ public final class ScreenUtils {
      * @return Y 轴 dpi
      */
     public static float getYDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.ydpi;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getYDpi");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? displayMetrics.ydpi : 0f;
     }
 
     /**
@@ -284,15 +227,8 @@ public final class ScreenUtils {
      * @return 宽度比例 dpi 基准
      */
     public static float getWidthDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.widthPixels / displayMetrics.density;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getWidthDpi");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? (displayMetrics.widthPixels / displayMetrics.density) : 0f;
     }
 
     /**
@@ -300,15 +236,8 @@ public final class ScreenUtils {
      * @return 高度比例 dpi 基准
      */
     public static float getHeightDpi() {
-        try {
-            DisplayMetrics displayMetrics = getDisplayMetrics();
-            if (displayMetrics != null) {
-                return displayMetrics.heightPixels / displayMetrics.density;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getHeightDpi");
-        }
-        return 0f;
+        DisplayMetrics displayMetrics = getDisplayMetrics();
+        return (displayMetrics != null) ? (displayMetrics.heightPixels / displayMetrics.density) : 0f;
     }
 
     /**
@@ -358,29 +287,35 @@ public final class ScreenUtils {
     /**
      * 设置禁止截屏
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setWindowSecure(final Activity activity) {
+    public static boolean setWindowSecure(final Activity activity) {
         try {
             // 禁止截屏
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setWindowSecure");
         }
+        return false;
     }
 
     /**
      * 设置屏幕为全屏
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setFullScreen(final Activity activity) {
+    public static boolean setFullScreen(final Activity activity) {
         try {
             // 隐藏标题
             activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
             // 设置全屏
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setFullScreen");
         }
+        return false;
     }
 
     /**
@@ -396,25 +331,31 @@ public final class ScreenUtils {
      *     切屏不会重新调用各个生命周期, 只会执行 onConfigurationChanged 方法
      * </pre>
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setLandscape(final Activity activity) {
+    public static boolean setLandscape(final Activity activity) {
         try {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setLandscape");
         }
+        return false;
     }
 
     /**
      * 设置屏幕为竖屏
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setPortrait(final Activity activity) {
+    public static boolean setPortrait(final Activity activity) {
         try {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setPortrait");
         }
+        return false;
     }
 
     /**
@@ -422,8 +363,17 @@ public final class ScreenUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLandscape() {
+        return isLandscape(DevUtils.getContext());
+    }
+
+    /**
+     * 判断是否横屏
+     * @param context {@link Context}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isLandscape(final Context context) {
         try {
-            return DevUtils.getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+            return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isLandscape");
         }
@@ -435,8 +385,17 @@ public final class ScreenUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPortrait() {
+        return isPortrait(DevUtils.getContext());
+    }
+
+    /**
+     * 判断是否竖屏
+     * @param context {@link Context}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPortrait(final Context context) {
         try {
-            return DevUtils.getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+            return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isPortrait");
         }
@@ -495,7 +454,7 @@ public final class ScreenUtils {
      */
     public static boolean isScreenLock() {
         try {
-            KeyguardManager keyguardManager = (KeyguardManager) DevUtils.getContext().getSystemService(Context.KEYGUARD_SERVICE);
+            KeyguardManager keyguardManager = AppUtils.getKeyguardManager();
             return keyguardManager != null && keyguardManager.inKeyguardRestrictedInputMode();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isScreenLock");
@@ -509,7 +468,7 @@ public final class ScreenUtils {
      */
     public static boolean isTablet() {
         try {
-            return (DevUtils.getContext().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+            return (ResourceUtils.getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isTablet");
         }
@@ -524,8 +483,8 @@ public final class ScreenUtils {
      */
     public static int getStatusHeight() {
         try {
-            int id = DevUtils.getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
-            return DevUtils.getContext().getResources().getDimensionPixelSize(id);
+            int id = ResourceUtils.getIdentifier("status_bar_height", "dimen", "android");
+            return ResourceUtils.getResources().getDimensionPixelSize(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getStatusHeight");
         }
@@ -551,14 +510,17 @@ public final class ScreenUtils {
     /**
      * 设置进入休眠时长
      * @param duration 时长
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.WRITE_SETTINGS)
-    public static void setSleepDuration(final int duration) {
+    public static boolean setSleepDuration(final int duration) {
         try {
-            Settings.System.putInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);
+            Settings.System.putInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSleepDuration");
         }
+        return false;
     }
 
     /**
@@ -567,7 +529,7 @@ public final class ScreenUtils {
      */
     public static int getSleepDuration() {
         try {
-            return Settings.System.getInt(DevUtils.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT);
+            return Settings.System.getInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSleepDuration");
             return -1;
@@ -582,7 +544,7 @@ public final class ScreenUtils {
      */
     public static int getNavigationBarHeight() {
         try {
-            Resources resources = DevUtils.getContext().getResources();
+            Resources resources = ResourceUtils.getResources();
             // 获取对应方向字符串
             String orientation = resources.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? "navigation_bar_height" : "navigation_bar_height_landscape";
             // 获取对应的 id
@@ -606,7 +568,7 @@ public final class ScreenUtils {
     public static boolean checkDeviceHasNavigationBar() {
         boolean hasNavigationBar = false;
         try {
-            Resources resources = DevUtils.getContext().getResources();
+            Resources resources = ResourceUtils.getResources();
             int id = resources.getIdentifier("config_showNavigationBar", "bool", "android");
             if (id > 0) {
                 hasNavigationBar = resources.getBoolean(id);

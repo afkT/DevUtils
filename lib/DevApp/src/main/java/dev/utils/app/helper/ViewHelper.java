@@ -149,7 +149,7 @@ public final class ViewHelper {
      * @param text Hint text
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHint(final View view, final String text) {
+    public ViewHelper setHint(final View view, final CharSequence text) {
         TextViewUtils.setHint(view, text);
         return this;
     }
@@ -160,7 +160,7 @@ public final class ViewHelper {
      * @param text TextView text
      * @return {@link ViewHelper}
      */
-    public ViewHelper setText(final View view, final String text) {
+    public ViewHelper setText(final View view, final CharSequence text) {
         if (view instanceof EditText) {
             EditTextUtils.setText(EditTextUtils.getEditText(view), text);
         } else {
@@ -175,7 +175,7 @@ public final class ViewHelper {
      * @param views View(TextView)[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTexts(final String text, final View... views) {
+    public ViewHelper setTexts(final CharSequence text, final View... views) {
         TextViewUtils.setTexts(text, views);
         return this;
     }
@@ -645,7 +645,7 @@ public final class ViewHelper {
      * @param isSelect 是否设置光标
      * @return {@link ViewHelper}
      */
-    public ViewHelper setText(final EditText editText, final String content, final boolean isSelect) {
+    public ViewHelper setText(final EditText editText, final CharSequence content, final boolean isSelect) {
         EditTextUtils.setText(editText, content, isSelect);
         return this;
     }
@@ -657,7 +657,7 @@ public final class ViewHelper {
      * @param isSelect 是否设置光标
      * @return {@link ViewHelper}
      */
-    public ViewHelper insert(final EditText editText, final String content, final boolean isSelect) {
+    public ViewHelper insert(final EditText editText, final CharSequence content, final boolean isSelect) {
         EditTextUtils.insert(editText, content, isSelect);
         return this;
     }
@@ -670,7 +670,7 @@ public final class ViewHelper {
      * @param isSelect 是否设置光标
      * @return {@link ViewHelper}
      */
-    public ViewHelper insert(final EditText editText, final String content, final int start, final boolean isSelect) {
+    public ViewHelper insert(final EditText editText, final CharSequence content, final int start, final boolean isSelect) {
         EditTextUtils.insert(editText, content, start, isSelect);
         return this;
     }
@@ -697,7 +697,7 @@ public final class ViewHelper {
      * @param maxLength 长度限制
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxLengthAndText(final View view, final String content, final int maxLength) {
+    public ViewHelper setMaxLengthAndText(final View view, final CharSequence content, final int maxLength) {
         if (view instanceof EditText) {
             EditTextUtils.setMaxLengthAndText(EditTextUtils.getEditText(view), content, maxLength);
         } else {
@@ -2305,6 +2305,7 @@ public final class ViewHelper {
      * <pre>
      *     CompoundDrawable 的大小控制是通过 drawable.setBounds() 控制
      *     需要先设置 Drawable 的 setBounds
+     *     {@link dev.utils.app.image.ImageUtils#setBounds}
      * </pre>
      * @param textView {@link TextView}
      * @param left     left Drawable
@@ -2513,6 +2514,17 @@ public final class ViewHelper {
      */
     public ViewHelper setOnLongClicks(final View.OnLongClickListener onLongClickListener, final View... views) {
         ListenerUtils.setOnLongClicks(onLongClickListener, views);
+        return this;
+    }
+
+    /**
+     * 设置触摸事件
+     * @param onTouchListener {@link View.OnTouchListener}
+     * @param views           View 数组
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setOnTouchs(final View.OnTouchListener onTouchListener, final View... views) {
+        ListenerUtils.setOnTouchs(onTouchListener, views);
         return this;
     }
 

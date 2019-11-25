@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -8,9 +7,7 @@ import android.graphics.drawable.StateListDrawable;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
-import androidx.core.content.ContextCompat;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -35,7 +32,6 @@ public final class StateListUtils {
     private StateListUtils() {
     }
 
-    // 日志 TAG
     private static final String TAG = StateListUtils.class.getSimpleName();
 
     /**
@@ -44,12 +40,7 @@ public final class StateListUtils {
      * @return {@link ColorStateList}
      */
     public static ColorStateList getColorStateList(@ColorRes final int id) {
-        try {
-            return ContextCompat.getColorStateList(DevUtils.getContext(), id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getColorStateList");
-        }
-        return null;
+        return ResourceUtils.getColorStateList(id);
     }
 
     // ================
@@ -70,14 +61,19 @@ public final class StateListUtils {
      * @return {@link ColorStateList}
      */
     public static ColorStateList createColorStateList(final String pressed, final String normal) {
-        // 颜色值
-        int[] colors = new int[]{Color.parseColor(pressed), Color.parseColor(normal)};
-        // 状态值
-        int[][] states = new int[2][];
-        states[0] = new int[]{android.R.attr.state_pressed}; // 选中状态
-        states[1] = new int[]{}; // 默认状态
-        // 生成 ColorStateList
-        return new ColorStateList(states, colors);
+        try {
+            // 颜色值
+            int[] colors = new int[]{Color.parseColor(pressed), Color.parseColor(normal)};
+            // 状态值
+            int[][] states = new int[2][];
+            states[0] = new int[]{android.R.attr.state_pressed}; // 选中状态
+            states[1] = new int[]{}; // 默认状态
+            // 生成 ColorStateList
+            return new ColorStateList(states, colors);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createColorStateList");
+        }
+        return null;
     }
 
     /**
@@ -88,15 +84,20 @@ public final class StateListUtils {
      * @return {@link ColorStateList}
      */
     public static ColorStateList createColorStateList(final String selected, final String pressed, final String normal) {
-        // 颜色值
-        int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(normal)};
-        // 状态值
-        int[][] states = new int[3][];
-        states[0] = new int[]{android.R.attr.state_selected}; // 选中状态
-        states[1] = new int[]{android.R.attr.state_pressed}; // 点击状态
-        states[2] = new int[]{}; // 默认状态
-        // 生成 ColorStateList
-        return new ColorStateList(states, colors);
+        try {
+            // 颜色值
+            int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(normal)};
+            // 状态值
+            int[][] states = new int[3][];
+            states[0] = new int[]{android.R.attr.state_selected}; // 选中状态
+            states[1] = new int[]{android.R.attr.state_pressed}; // 点击状态
+            states[2] = new int[]{}; // 默认状态
+            // 生成 ColorStateList
+            return new ColorStateList(states, colors);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createColorStateList");
+        }
+        return null;
     }
 
     /**
@@ -111,18 +112,23 @@ public final class StateListUtils {
     public static ColorStateList createColorStateList(final String selected, final String pressed,
                                                       final String focused, final String checked,
                                                       final String normal) {
-        // 颜色值
-        int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed),
-                Color.parseColor(focused), Color.parseColor(checked), Color.parseColor(normal)};
-        // 状态值
-        int[][] states = new int[5][];
-        states[0] = new int[]{android.R.attr.state_selected}; // 选中状态
-        states[1] = new int[]{android.R.attr.state_pressed}; // 点击状态
-        states[2] = new int[]{android.R.attr.state_focused}; // 获取焦点状态
-        states[3] = new int[]{android.R.attr.state_checked}; // 选中状态
-        states[4] = new int[]{}; // 默认状态
-        // 生成 ColorStateList
-        return new ColorStateList(states, colors);
+        try {
+            // 颜色值
+            int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed),
+                    Color.parseColor(focused), Color.parseColor(checked), Color.parseColor(normal)};
+            // 状态值
+            int[][] states = new int[5][];
+            states[0] = new int[]{android.R.attr.state_selected}; // 选中状态
+            states[1] = new int[]{android.R.attr.state_pressed}; // 点击状态
+            states[2] = new int[]{android.R.attr.state_focused}; // 获取焦点状态
+            states[3] = new int[]{android.R.attr.state_checked}; // 选中状态
+            states[4] = new int[]{}; // 默认状态
+            // 生成 ColorStateList
+            return new ColorStateList(states, colors);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createColorStateList");
+        }
+        return null;
     }
 
     // =======
@@ -139,11 +145,10 @@ public final class StateListUtils {
      * @return {@link ColorStateList}
      */
     public static ColorStateList createColorStateList(@ColorRes final int pressed, @ColorRes final int normal) {
-        Context context = DevUtils.getContext();
         // 颜色值
         int[] colors = new int[2];
-        colors[0] = ContextCompat.getColor(context, pressed);
-        colors[1] = ContextCompat.getColor(context, normal);
+        colors[0] = ResourceUtils.getColor(pressed);
+        colors[1] = ResourceUtils.getColor(normal);
         // 状态值
         int[][] states = new int[2][];
         states[0] = new int[]{android.R.attr.state_pressed};
@@ -160,12 +165,11 @@ public final class StateListUtils {
      * @return {@link ColorStateList}
      */
     public static ColorStateList createColorStateList(@ColorRes final int selected, @ColorRes final int pressed, @ColorRes final int normal) {
-        Context context = DevUtils.getContext();
         // 颜色值
         int[] colors = new int[3];
-        colors[0] = ContextCompat.getColor(context, selected);
-        colors[1] = ContextCompat.getColor(context, pressed);
-        colors[2] = ContextCompat.getColor(context, normal);
+        colors[0] = ResourceUtils.getColor(selected);
+        colors[1] = ResourceUtils.getColor(pressed);
+        colors[2] = ResourceUtils.getColor(normal);
         // 状态值
         int[][] states = new int[3][];
         states[0] = new int[]{android.R.attr.state_selected};
@@ -187,14 +191,13 @@ public final class StateListUtils {
     public static ColorStateList createColorStateList(@ColorRes final int selected, @ColorRes final int pressed,
                                                       @ColorRes final int focused, @ColorRes final int checked,
                                                       @ColorRes final int normal) {
-        Context context = DevUtils.getContext();
         // 颜色值
         int[] colors = new int[5];
-        colors[0] = ContextCompat.getColor(context, selected);
-        colors[1] = ContextCompat.getColor(context, pressed);
-        colors[2] = ContextCompat.getColor(context, focused);
-        colors[3] = ContextCompat.getColor(context, checked);
-        colors[4] = ContextCompat.getColor(context, normal);
+        colors[0] = ResourceUtils.getColor(selected);
+        colors[1] = ResourceUtils.getColor(pressed);
+        colors[2] = ResourceUtils.getColor(focused);
+        colors[3] = ResourceUtils.getColor(checked);
+        colors[4] = ResourceUtils.getColor(normal);
         // 状态值
         int[][] states = new int[5][];
         states[0] = new int[]{android.R.attr.state_selected};
@@ -220,10 +223,9 @@ public final class StateListUtils {
      * @return {@link StateListDrawable}
      */
     public static StateListDrawable newSelector(@DrawableRes final int pressed, @DrawableRes final int normal) {
-        Context context = DevUtils.getContext();
         // 获取 Drawable
-        Drawable pressedDraw = ContextCompat.getDrawable(context, pressed);
-        Drawable normalDraw = ContextCompat.getDrawable(context, normal);
+        Drawable pressedDraw = ResourceUtils.getDrawable(pressed);
+        Drawable normalDraw = ResourceUtils.getDrawable(normal);
         // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDraw);
@@ -239,11 +241,10 @@ public final class StateListUtils {
      * @return {@link StateListDrawable}
      */
     public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed, @DrawableRes final int normal) {
-        Context context = DevUtils.getContext();
         // 获取 Drawable
-        Drawable selectedDraw = ContextCompat.getDrawable(context, selected);
-        Drawable pressedDraw = ContextCompat.getDrawable(context, pressed);
-        Drawable normalDraw = ContextCompat.getDrawable(context, normal);
+        Drawable selectedDraw = ResourceUtils.getDrawable(selected);
+        Drawable pressedDraw = ResourceUtils.getDrawable(pressed);
+        Drawable normalDraw = ResourceUtils.getDrawable(normal);
         // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selectedDraw);
@@ -264,13 +265,12 @@ public final class StateListUtils {
     public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed,
                                                 @DrawableRes final int focused, @DrawableRes final int checked,
                                                 @DrawableRes final int normal) {
-        Context context = DevUtils.getContext();
         // 获取 Drawable
-        Drawable selectedDraw = ContextCompat.getDrawable(context, selected);
-        Drawable pressedDraw = ContextCompat.getDrawable(context, pressed);
-        Drawable focusedDraw = ContextCompat.getDrawable(context, focused);
-        Drawable checkedDraw = ContextCompat.getDrawable(context, checked);
-        Drawable normalDraw = ContextCompat.getDrawable(context, normal);
+        Drawable selectedDraw = ResourceUtils.getDrawable(selected);
+        Drawable pressedDraw = ResourceUtils.getDrawable(pressed);
+        Drawable focusedDraw = ResourceUtils.getDrawable(focused);
+        Drawable checkedDraw = ResourceUtils.getDrawable(checked);
+        Drawable normalDraw = ResourceUtils.getDrawable(normal);
         // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selectedDraw);

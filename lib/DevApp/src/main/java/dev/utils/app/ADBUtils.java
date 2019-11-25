@@ -1,9 +1,7 @@
 package dev.utils.app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.PowerManager;
 import android.text.TextUtils;
 
 import androidx.annotation.IntRange;
@@ -14,9 +12,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.common.DevCommonUtils;
+import dev.utils.common.CollectionUtils;
+import dev.utils.common.FileUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: ADB shell 工具类
@@ -65,9 +64,10 @@ public final class ADBUtils {
 
     /**
      * 请求 Root 权限
+     * @return {@code true} success, {@code false} fail
      */
-    public static void requestRoot() {
-        ShellUtils.execCmd("exit", true);
+    public static boolean requestRoot() {
+        return ShellUtils.execCmd("exit", true).isSuccess();
     }
 
     /**
@@ -75,8 +75,7 @@ public final class ADBUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isGrantedRoot() {
-        ShellUtils.CommandResult result = ShellUtils.execCmd("exit", true);
-        return result.isSuccess2();
+        return ShellUtils.execCmd("exit", true).isSuccess2();
     }
 
     // ============
@@ -94,7 +93,7 @@ public final class ADBUtils {
      */
     public static List<String> getAppList(final String type) {
         // adb shell pm list packages [options]
-        String typeStr = isSpace(type) ? "" : " " + type;
+        String typeStr = StringUtils.isSpace(type) ? "" : " " + type;
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("pm list packages" + typeStr, false);
         if (result.isSuccess3()) {
@@ -154,7 +153,7 @@ public final class ADBUtils {
      * @return 包名包含字符串 xxx 的应用列表
      */
     public static List<String> getAppListToFilter(final String filter) {
-        if (isSpace(filter)) return null;
+        if (StringUtils.isSpace(filter)) return null;
         return getAppList("| grep " + filter.trim());
     }
 
@@ -164,10 +163,8 @@ public final class ADBUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isInstalledApp(final String packageName) {
-        if (isSpace(packageName)) return false;
-        // 执行 shell
-        ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packageName, false);
-        return result.isSuccess3();
+        if (StringUtils.isSpace(packageName)) return false;
+        return ShellUtils.execCmd("pm path " + packageName, false).isSuccess3();
     }
 
     /**
@@ -176,7 +173,7 @@ public final class ADBUtils {
      * @return 应用安装路径
      */
     public static String getAppInstallPath(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("pm path " + packageName, false);
         if (result.isSuccess3()) {
@@ -191,7 +188,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean clearAppDataCache(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         // adb shell pm clear <packagename>
         String cmd = "pm clear %s";
         // 执行 shell
@@ -213,7 +210,7 @@ public final class ADBUtils {
      * @return 应用详细信息
      */
     public static String getAppMessage(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName, true);
         if (result.isSuccess3()) {
@@ -228,7 +225,7 @@ public final class ADBUtils {
      * @return versionCode
      */
     public static int getVersionCode(final String packageName) {
-        if (isSpace(packageName)) return 0;
+        if (StringUtils.isSpace(packageName)) return 0;
         try {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
@@ -260,7 +257,7 @@ public final class ADBUtils {
      * @return versionName
      */
     public static String getVersionName(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd("dumpsys package " + packageName + " | grep version", true);
@@ -314,7 +311,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final String filePath, final String params) {
-        if (isSpace(params)) return false;
+        if (StringUtils.isSpace(params)) return false;
         boolean isRoot = isDeviceRooted();
         // adb install [-lrtsdg] <path_to_apk>
         String cmd = "adb install %s %s";
@@ -330,7 +327,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final String filePath) {
-        return installAppSilent(getFileByPath(filePath), null);
+        return installAppSilent(FileUtils.getFileByPath(filePath), null);
     }
 
     /**
@@ -349,7 +346,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final String filePath, final String params) {
-        return installAppSilent(getFileByPath(filePath), params, isDeviceRooted());
+        return installAppSilent(FileUtils.getFileByPath(filePath), params, isDeviceRooted());
     }
 
     /**
@@ -370,7 +367,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final File file, final String params, final boolean isRooted) {
-        if (!isFileExists(file)) return false;
+        if (!FileUtils.isFileExists(file)) return false;
         String filePath = '"' + file.getAbsolutePath() + '"';
         String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
         ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
@@ -395,7 +392,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final String packageName, final boolean isKeepData) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         boolean isRoot = isDeviceRooted();
         // adb uninstall [-k] <packagename>
         String cmd = "adb uninstall ";
@@ -436,7 +433,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
         ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
         return result.isSuccess4("success");
@@ -455,7 +452,7 @@ public final class ADBUtils {
      * @return package.xx.Activity.className
      */
     public static String getActivityToLauncher(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         String cmd = "dumpsys package %s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
@@ -589,7 +586,7 @@ public final class ADBUtils {
      * @return package/package.xx.Activity.className
      */
     public static String getWindowCurrentToPackage(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         String cmd = "dumpsys window windows | grep %s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
@@ -692,7 +689,7 @@ public final class ADBUtils {
      */
     public static String getActivitys(final String append) {
         String cmd = "dumpsys activity activities";
-        if (!isSpace(append)) {
+        if (!StringUtils.isSpace(append)) {
             cmd += " " + append.trim();
         }
         // 执行 shell
@@ -709,9 +706,7 @@ public final class ADBUtils {
      * @return 对应包名的 Activity 栈信息
      */
     public static String getActivitysToPackage(final String packageName) {
-        if (isSpace(packageName)) {
-            return null;
-        }
+        if (StringUtils.isSpace(packageName)) return null;
         return getActivitys("| grep " + packageName);
     }
 
@@ -796,9 +791,9 @@ public final class ADBUtils {
         // 判断是否重复
         boolean isRepeat = false;
         // 获取
-        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
-        int length = DevCommonUtils.length(lists);
+        int length = CollectionUtils.length(lists);
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
@@ -832,9 +827,9 @@ public final class ADBUtils {
         // 判断是否重复
         boolean isRepeat = false;
         // 获取
-        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
-        int length = DevCommonUtils.length(lists);
+        int length = CollectionUtils.length(lists);
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             // 循环判断
@@ -873,9 +868,9 @@ public final class ADBUtils {
         // 重复数量
         int number = 0;
         // 获取
-        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
-        int length = DevCommonUtils.length(lists);
+        int length = CollectionUtils.length(lists);
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
@@ -911,9 +906,9 @@ public final class ADBUtils {
             return 0;
         }
         // 获取
-        List<String> lists = ADBUtils.getActivitysToPackageLists(packageName);
+        List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
-        int length = DevCommonUtils.length(lists);
+        int length = CollectionUtils.length(lists);
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             // 循环判断
@@ -965,7 +960,7 @@ public final class ADBUtils {
      * @return 运行中的 Services 信息
      */
     public static String getServices(final String packageName) {
-        String cmd = "dumpsys activity services" + ((isSpace(packageName) ? "" : " " + packageName));
+        String cmd = "dumpsys activity services" + ((StringUtils.isSpace(packageName) ? "" : " " + packageName));
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
         if (result.isSuccess3()) {
             return result.successMsg;
@@ -993,11 +988,11 @@ public final class ADBUtils {
     public static boolean startSelfApp(final boolean closeActivity) {
         try {
             // 获取包名
-            String packageName = DevUtils.getContext().getPackageName();
+            String packageName = AppUtils.getPackageName();
             // 获取 Launcher Activity
             String activity = ActivityUtils.getLauncherActivity();
             // 跳转应用启动页 ( 启动应用 )
-            startActivity(packageName + "/" + activity, closeActivity);
+            return startActivity(packageName + "/" + activity, closeActivity);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSelfApp");
         }
@@ -1022,7 +1017,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startActivity(final String packageAndLauncher, final String append, final boolean closeActivity) {
-        if (isSpace(packageAndLauncher)) return false;
+        if (StringUtils.isSpace(packageAndLauncher)) return false;
         try {
             // am start [options] <INTENT>
             String cmd = "am start %s";
@@ -1032,7 +1027,7 @@ public final class ADBUtils {
                 cmd = String.format(cmd, packageAndLauncher);
             }
             // 判断是否追加
-            if (!isSpace(append)) {
+            if (!StringUtils.isSpace(append)) {
                 cmd += " " + append.trim();
             }
             // 执行 shell
@@ -1060,14 +1055,14 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startService(final String packageAndService, final String append) {
-        if (isSpace(packageAndService)) return false;
+        if (StringUtils.isSpace(packageAndService)) return false;
         try {
             // am startservice [options] <INTENT>
             String cmd = "am startservice %s";
             // 进行格式化
             cmd = String.format(cmd, packageAndService);
             // 判断是否追加
-            if (!isSpace(append)) {
+            if (!StringUtils.isSpace(append)) {
                 cmd += " " + append.trim();
             }
             // 执行 shell
@@ -1095,14 +1090,14 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopService(final String packageAndService, final String append) {
-        if (isSpace(packageAndService)) return false;
+        if (StringUtils.isSpace(packageAndService)) return false;
         try {
             // am stopservice [options] <INTENT>
             String cmd = "am stopservice %s";
             // 进行格式化
             cmd = String.format(cmd, packageAndService);
             // 判断是否追加
-            if (!isSpace(append)) {
+            if (!StringUtils.isSpace(append)) {
                 cmd += " " + append.trim();
             }
             // 执行 shell
@@ -1124,7 +1119,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean sendBroadcastToAll(final String broadcast) {
-        if (isSpace(broadcast)) return false;
+        if (StringUtils.isSpace(broadcast)) return false;
         try {
             // am broadcast [options] <INTENT>
             String cmd = "am broadcast -a %s";
@@ -1148,8 +1143,8 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean sendBroadcast(final String packageAndBroadcast, final String broadcast) {
-        if (isSpace(packageAndBroadcast)) return false;
-        if (isSpace(broadcast)) return false;
+        if (StringUtils.isSpace(packageAndBroadcast)) return false;
+        if (StringUtils.isSpace(broadcast)) return false;
         try {
             // am broadcast [options] <INTENT>
             String cmd = "am broadcast -a %s -n %s";
@@ -1170,7 +1165,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean kill(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
         try {
             String cmd = "am force-stop %s";
             // 执行 shell
@@ -1189,7 +1184,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean sendTrimMemory(final int pid, final String level) {
-        if (isSpace(level)) return false;
+        if (StringUtils.isSpace(level)) return false;
         try {
             String cmd = "am send-trim-memory %s %s";
             // 执行 shell
@@ -1212,12 +1207,12 @@ public final class ADBUtils {
 //     * @return {@code true} success, {@code false} fail
 //     */
 //    public static boolean pull(final String remote, final String local) {
-//        if (isSpace(remote)) return false;
+//        if (StringUtils.isSpace(remote)) return false;
 //        try {
 //            // adb pull <设备里的文件路径> [电脑上的目录]
 //            String cmd = "adb pull %s";
 //            // 判断是否存到默认地址
-//            if (!isSpace(local)) {
+//            if (!StringUtils.isSpace(local)) {
 //                cmd += " " + local;
 //            }
 //            // 执行 shell
@@ -1236,8 +1231,8 @@ public final class ADBUtils {
 //     * @return {@code true} success, {@code false} fail
 //     */
 //    public static boolean push(final String local, final String remote) {
-//        if (isSpace(local)) return false;
-//        if (isSpace(remote)) return false;
+//        if (StringUtils.isSpace(local)) return false;
+//        if (StringUtils.isSpace(remote)) return false;
 //        try {
 //            // adb push <电脑上的文件路径> <设备里的目录>
 //            String cmd = "adb push %s %s";
@@ -1335,7 +1330,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean text(final String txt) {
-        if (isSpace(txt)) return false;
+        if (StringUtils.isSpace(txt)) return false;
         try {
             // input text <string>
             String cmd = "input text %s";
@@ -1390,7 +1385,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean screencap(final String path, final int displayId) {
-        if (isSpace(path)) return false;
+        if (StringUtils.isSpace(path)) return false;
         try {
             String cmd = "screencap -p -d %s %s";
             // 执行 shell
@@ -1441,11 +1436,11 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean screenrecord(final String path, final String size, final int bitRate, final int time) {
-        if (isSpace(path)) return false;
+        if (StringUtils.isSpace(path)) return false;
         try {
             StringBuilder builder = new StringBuilder();
             builder.append("screenrecord");
-            if (!isSpace(size)) {
+            if (!StringUtils.isSpace(size)) {
                 builder.append(" --size " + size);
             }
             if (bitRate > 0) {
@@ -1501,7 +1496,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setSystemTime(final String time) {
-        if (isSpace(time)) return false;
+        if (StringUtils.isSpace(time)) return false;
         try {
             String cmd = "date -s %s";
             // 执行 shell
@@ -1520,7 +1515,7 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setSystemTime2(final String time) {
-        if (isSpace(time)) return false;
+        if (StringUtils.isSpace(time)) return false;
         try {
             String cmd = "date %s";
             // 执行 shell
@@ -1563,8 +1558,7 @@ public final class ADBUtils {
             ShellUtils.execCmd("reboot -p", true);
             Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
             intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
-            DevUtils.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            return true;
+            return AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "shutdown");
         }
@@ -1582,8 +1576,7 @@ public final class ADBUtils {
             intent.putExtra("nowait", 1);
             intent.putExtra("interval", 1);
             intent.putExtra("window", 0);
-            DevUtils.getContext().sendBroadcast(intent);
-            return true;
+            return AppUtils.sendBroadcast(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
@@ -1594,17 +1587,17 @@ public final class ADBUtils {
      * 重启设备 ( 需要 root 权限 ) - 并进行特殊的引导模式 (recovery、Fastboot)
      * @param reason 传递给内核来请求特殊的引导模式, 如 "recovery"
      *               重启到 Fastboot 模式 bootloader
+     * @return {@code true} success, {@code false} fail
      */
-    public static void reboot(final String reason) {
-        if (isSpace(reason)) return;
+    public static boolean reboot(final String reason) {
+        if (StringUtils.isSpace(reason)) return false;
         try {
-            PowerManager mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
-            if (mPowerManager == null)
-                return;
-            mPowerManager.reboot(reason);
+            AppUtils.getPowerManager().reboot(reason);
+            return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");
         }
+        return false;
     }
 
     /**
@@ -2215,8 +2208,8 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openAccessibility(final String packageName, final String accessibilityServiceName) {
-        if (isSpace(packageName)) return false;
-        if (isSpace(accessibilityServiceName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
+        if (StringUtils.isSpace(accessibilityServiceName)) return false;
 
         String cmd = "settings put secure enabled_accessibility_services %s/%s";
         // 格式化 shell 命令
@@ -2235,8 +2228,8 @@ public final class ADBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean closeAccessibility(final String packageName, final String accessibilityServiceName) {
-        if (isSpace(packageName)) return false;
-        if (isSpace(accessibilityServiceName)) return false;
+        if (StringUtils.isSpace(packageName)) return false;
+        if (StringUtils.isSpace(accessibilityServiceName)) return false;
 
         String cmd = "settings put secure enabled_accessibility_services %s/%s";
         // 格式化 shell 命令
@@ -2246,50 +2239,5 @@ public final class ADBUtils {
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
         return result.isSuccess2();
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // =============
-    // = FileUtils =
-    // =============
-
-    /**
-     * 检查是否存在某个文件
-     * @param file 文件
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isFileExists(final File file) {
-        return file != null && file.exists();
-    }
-
-    /**
-     * 获取文件
-     * @param filePath 文件路径
-     * @return 文件 {@link File}
-     */
-    private static File getFileByPath(final String filePath) {
-        return filePath != null ? new File(filePath) : null;
-    }
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -8,8 +8,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.content.pm.ServiceInfo;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: Android Manifest 工具类
@@ -29,12 +29,7 @@ public final class ManifestUtils {
      * @return Application meta Data
      */
     public static String getMetaData(final String metaKey) {
-        try {
-            return getMetaData(DevUtils.getContext().getPackageName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaData");
-        }
-        return null;
+        return getMetaData(AppUtils.getPackageName(), metaKey);
     }
 
     /**
@@ -45,7 +40,7 @@ public final class ManifestUtils {
      */
     public static String getMetaData(final String packageName, final String metaKey) {
         try {
-            ApplicationInfo appInfo = DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            ApplicationInfo appInfo = AppUtils.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             return appInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaData");
@@ -62,12 +57,7 @@ public final class ManifestUtils {
      * @return Activity meta Data
      */
     public static String getMetaDataInActivity(final Class<?> clazz, final String metaKey) {
-        try {
-            return getMetaDataInActivity(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
-        }
-        return null;
+        return (clazz != null) ? getMetaDataInActivity(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
     /**
@@ -77,12 +67,7 @@ public final class ManifestUtils {
      * @return Activity meta Data
      */
     public static String getMetaDataInActivity(final String name, final String metaKey) {
-        try {
-            return getMetaDataInActivity(DevUtils.getContext().getPackageName(), name, metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
-        }
-        return null;
+        return getMetaDataInActivity(AppUtils.getPackageName(), name, metaKey);
     }
 
     /**
@@ -95,7 +80,7 @@ public final class ManifestUtils {
     public static String getMetaDataInActivity(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ActivityInfo activityInfo = DevUtils.getContext().getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
+            ActivityInfo activityInfo = AppUtils.getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
             return activityInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
@@ -112,12 +97,7 @@ public final class ManifestUtils {
      * @return Service meta Data
      */
     public static String getMetaDataInService(final Class<?> clazz, final String metaKey) {
-        try {
-            return getMetaDataInService(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
-        }
-        return null;
+        return (clazz != null) ? getMetaDataInService(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
     /**
@@ -127,12 +107,7 @@ public final class ManifestUtils {
      * @return Service meta Data
      */
     public static String getMetaDataInService(final String name, final String metaKey) {
-        try {
-            return getMetaDataInService(DevUtils.getContext().getPackageName(), name, metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
-        }
-        return null;
+        return getMetaDataInService(AppUtils.getPackageName(), name, metaKey);
     }
 
     /**
@@ -145,7 +120,7 @@ public final class ManifestUtils {
     public static String getMetaDataInService(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ServiceInfo serviceInfo = DevUtils.getContext().getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
+            ServiceInfo serviceInfo = AppUtils.getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
             return serviceInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
@@ -162,12 +137,7 @@ public final class ManifestUtils {
      * @return Receiver meta Data
      */
     public static String getMetaDataInReceiver(final Class<?> clazz, final String metaKey) {
-        try {
-            return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
-        }
-        return null;
+        return (clazz != null) ? getMetaDataInReceiver(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
     /**
@@ -177,12 +147,7 @@ public final class ManifestUtils {
      * @return Receiver meta Data
      */
     public static String getMetaDataInReceiver(final String name, final String metaKey) {
-        try {
-            return getMetaDataInReceiver(DevUtils.getContext().getPackageName(), name, metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
-        }
-        return null;
+        return getMetaDataInReceiver(AppUtils.getPackageName(), name, metaKey);
     }
 
     /**
@@ -195,7 +160,7 @@ public final class ManifestUtils {
     public static String getMetaDataInReceiver(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ActivityInfo receiverInfo = DevUtils.getContext().getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
+            ActivityInfo receiverInfo = AppUtils.getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
             return receiverInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
@@ -212,12 +177,7 @@ public final class ManifestUtils {
      * @return ContentProvider meta Data
      */
     public static String getMetaDataInProvider(final Class<?> clazz, final String metaKey) {
-        try {
-            return getMetaDataInProvider(DevUtils.getContext().getPackageName(), clazz.getCanonicalName(), metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
-        }
-        return null;
+        return (clazz != null) ? getMetaDataInProvider(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
     /**
@@ -227,12 +187,7 @@ public final class ManifestUtils {
      * @return ContentProvider meta Data
      */
     public static String getMetaDataInProvider(final String name, final String metaKey) {
-        try {
-            return getMetaDataInProvider(DevUtils.getContext().getPackageName(), name, metaKey);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
-        }
-        return null;
+        return getMetaDataInProvider(AppUtils.getPackageName(), name, metaKey);
     }
 
     /**
@@ -245,7 +200,7 @@ public final class ManifestUtils {
     public static String getMetaDataInProvider(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ProviderInfo providerInfo = DevUtils.getContext().getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
+            ProviderInfo providerInfo = AppUtils.getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
             return providerInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");
@@ -260,9 +215,17 @@ public final class ManifestUtils {
      * @return 0 = versionName, 1 = versionCode
      */
     public static String[] getAppVersion() {
+        return getAppVersion(AppUtils.getPackageName());
+    }
+
+    /**
+     * 获取 APP 版本信息
+     * @param packageName 应用包名
+     * @return 0 = versionName, 1 = versionCode
+     */
+    public static String[] getAppVersion(final String packageName) {
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
                 String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
                 String versionCode = packageInfo.versionCode + "";
@@ -279,16 +242,7 @@ public final class ManifestUtils {
      * @return APP versionCode
      */
     public static int getAppVersionCode() {
-        try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
-            if (packageInfo != null) {
-                return packageInfo.versionCode;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
-        }
-        return -1;
+        return getAppVersionCode(AppUtils.getPackageName());
     }
 
     /**
@@ -296,16 +250,7 @@ public final class ManifestUtils {
      * @return APP versionName
      */
     public static String getAppVersionName() {
-        try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(DevUtils.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
-            if (packageInfo != null) {
-                return packageInfo.versionName;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppVersionName");
-        }
-        return null;
+        return getAppVersionName(AppUtils.getPackageName());
     }
 
     // =
@@ -316,10 +261,9 @@ public final class ManifestUtils {
      * @return APP versionCode
      */
     public static int getAppVersionCode(final String packageName) {
-        if (isSpace(packageName)) return -1;
+        if (StringUtils.isSpace(packageName)) return -1;
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? -1 : packageInfo.versionCode;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionCode - " + packageName);
@@ -333,37 +277,13 @@ public final class ManifestUtils {
      * @return APP versionName
      */
     public static String getAppVersionName(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (StringUtils.isSpace(packageName)) return null;
         try {
-            PackageManager packageManager = DevUtils.getContext().getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.versionName;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName - " + packageName);
             return null;
         }
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null 或全为空白字符
-     * @param str 待校验字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean isSpace(final String str) {
-        if (str == null) return true;
-        for (int i = 0, len = str.length(); i < len; ++i) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

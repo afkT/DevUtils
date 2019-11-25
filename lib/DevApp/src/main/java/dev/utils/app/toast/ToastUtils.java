@@ -733,7 +733,7 @@ public final class ToastUtils {
 
                 Handler handler = (Handler) field_handler.get(mTN);
                 field_handler.set(mTN, new SafeHandler(handler));
-            } catch (Exception ignored) {
+            } catch (Exception ignore) {
             }
         }
     }
@@ -759,7 +759,7 @@ public final class ToastUtils {
         public void dispatchMessage(Message msg) {
             try {
                 mHandler.dispatchMessage(msg);
-            } catch (Exception ignored) {
+            } catch (Exception ignore) {
             }
         }
     }

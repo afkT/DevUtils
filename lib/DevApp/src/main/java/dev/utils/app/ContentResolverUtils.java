@@ -9,7 +9,6 @@ import android.text.TextUtils;
 
 import java.io.File;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -40,8 +39,7 @@ public final class ContentResolverUtils {
         if (file != null) {
             try {
                 // 通知图库扫描更新
-                DevUtils.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-                return true;
+                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
             }
@@ -60,10 +58,11 @@ public final class ContentResolverUtils {
         if (file != null) {
             try {
                 // 添加到相册
-                MediaStore.Images.Media.insertImage(DevUtils.getContext().getContentResolver(),
+                MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(),
                         file.getAbsolutePath(), TextUtils.isEmpty(fileName) ? file.getName() : fileName, null);
                 // 通知图库扫描更新
                 if (isNotify) notifyMediaStore(file);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "insertImageIntoMediaStore");
             }
@@ -93,7 +92,7 @@ public final class ContentResolverUtils {
     public static boolean insertIntoMediaStore(final File file, final long createTime, final boolean isVideo, final String mimeType) {
         if (file != null && !TextUtils.isEmpty(mimeType)) {
             try {
-                ContentResolver resolver = DevUtils.getContext().getContentResolver();
+                ContentResolver resolver = ResourceUtils.getContentResolver();
                 // 插入时间
                 long insertTime = createTime;
                 // 防止创建时间为 null
@@ -118,8 +117,7 @@ public final class ContentResolverUtils {
                 // 生成所属的 URI 资源
                 Uri uri = resolver.insert(isVideo ? MediaStore.Video.Media.EXTERNAL_CONTENT_URI : MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                 // 最后通知图库更新
-                DevUtils.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
-                return true;
+                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "insertIntoMediaStore");
             }

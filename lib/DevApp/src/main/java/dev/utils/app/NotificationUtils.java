@@ -43,7 +43,7 @@ public final class NotificationUtils {
     public static NotificationManager getNotificationManager() {
         if (sNotificationManager == null) {
             try {
-                sNotificationManager = (NotificationManager) DevUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                sNotificationManager = AppUtils.getNotificationManager();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getNotificationManager");
             }
@@ -60,10 +60,10 @@ public final class NotificationUtils {
         Context context = DevUtils.getContext();
         if (context != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                return ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).areNotificationsEnabled();
+                return AppUtils.getNotificationManager().areNotificationsEnabled();
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
-                    AppOpsManager appOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+                    AppOpsManager appOps = AppUtils.getAppOpsManager();
                     ApplicationInfo appInfo = context.getApplicationInfo();
                     String pkg = context.getApplicationContext().getPackageName();
                     int uid = appInfo.uid;
@@ -73,7 +73,7 @@ public final class NotificationUtils {
                     Field opPostNotificationValue = appOpsClass.getDeclaredField("OP_POST_NOTIFICATION");
                     int value = (Integer) opPostNotificationValue.get(Integer.class);
                     return (Integer) checkOpNoThrowMethod.invoke(appOps, value, uid, pkg) == 0;
-                } catch (Throwable ignored) {
+                } catch (Throwable ignore) {
                     return true;
                 }
             } else {
@@ -86,47 +86,65 @@ public final class NotificationUtils {
     // =
 
     /**
-     * 移除通知 - 移除所有通知 ( 只是针对当前 Context 下的 Notification)
+     * 移除通知 - 移除所有通知
+     * <pre>
+     *      只是针对当前 Context 下的所有 Notification
+     * </pre>
+     * @return {@code true} success, {@code false} fail
      */
-    public static void cancelAll() {
+    public static boolean cancelAll() {
         if (getNotificationManager() != null) {
             try {
                 sNotificationManager.cancelAll();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "cancelAll");
             }
         }
+        return false;
     }
 
     /**
-     * 移除通知 - 移除标记为 id 的通知 ( 只是针对当前 Context 下的所有 Notification)
+     * 移除通知 - 移除标记为 id 的通知
+     * <pre>
+     *      只是针对当前 Context 下的所有 Notification
+     * </pre>
      * @param args 消息 id 集合
+     * @return {@code true} success, {@code false} fail
      */
-    public static void cancel(final int... args) {
+    public static boolean cancel(final int... args) {
         if (getNotificationManager() != null && args != null) {
             for (int id : args) {
                 try {
                     sNotificationManager.cancel(id);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "cancel - id: " + id);
                 }
             }
         }
+        return false;
     }
 
     /**
-     * 移除通知 - 移除标记为 id 的通知 ( 只是针对当前 Context 下的所有 Notification)
+     * 移除通知 - 移除标记为 id 的通知
+     * <pre>
+     *      只是针对当前 Context 下的所有 Notification
+     * </pre>
      * @param tag 标记 TAG
      * @param id  消息 id
+     * @return {@code true} success, {@code false} fail
      */
-    public static void cancel(final String tag, final int id) {
+    public static boolean cancel(final String tag, final int id) {
         if (getNotificationManager() != null && tag != null) {
             try {
                 sNotificationManager.cancel(tag, id);
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "cancel - id: " + id + ", tag: " + tag);
             }
         }
+        return false;
     }
 
     /**
@@ -183,9 +201,7 @@ public final class NotificationUtils {
      */
     public static PendingIntent createPendingIntent(final Intent intent, final int requestCode) {
         try {
-            // 跳转 Intent
-            PendingIntent pendingIntent = PendingIntent.getActivity(DevUtils.getContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            return pendingIntent;
+            return PendingIntent.getActivity(DevUtils.getContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "createPendingIntent");
         }
@@ -240,7 +256,7 @@ public final class NotificationUtils {
             // 设置图标
             builder.setSmallIcon(icon);
             // 设置图标
-            builder.setLargeIcon(BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon));
+            builder.setLargeIcon(BitmapFactory.decodeResource(ResourceUtils.getResources(), icon));
             // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
             builder.setTicker(ticker);
             // 设置标题
@@ -275,7 +291,7 @@ public final class NotificationUtils {
 //            // 设置图标
 //            notification.icon = icon;
 //            // 设置图标
-//            notification.largeIcon = BitmapFactory.decodeResource(DevUtils.getContext().getResources(), icon);
+//            notification.largeIcon = BitmapFactory.decodeResource(ResourceUtils.getResources(), icon);
 //            // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
 //            notification.tickerText = title;
 //            // 设置时间
@@ -317,7 +333,7 @@ public final class NotificationUtils {
     public static class LightPattern {
 
         private int argb = 0; // 控制 LED 灯的颜色, 一般有红绿蓝三种颜色可选
-        private int startOffMS = 0; // 指定 LED 灯暗去的时长, 也是以毫秒为单位
+        private int startOffMS = 0; // 指定 LED 灯暗去的时长, 以毫秒为单位
         private int durationMS = 0; // 指定 LED 灯亮起的时长, 以毫秒为单位
 
         /**

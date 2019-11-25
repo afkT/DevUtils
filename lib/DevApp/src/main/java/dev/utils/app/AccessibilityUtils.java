@@ -12,7 +12,6 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -67,7 +66,7 @@ public final class AccessibilityUtils {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility() {
-        return checkAccessibility(DevUtils.getContext().getPackageName());
+        return checkAccessibility(AppUtils.getPackageName());
     }
 
     /**
@@ -81,9 +80,9 @@ public final class AccessibilityUtils {
     public static boolean checkAccessibility(final String packageName) {
         if (packageName == null) return false;
         // 判断辅助功能是否开启
-        if (!AccessibilityUtils.isAccessibilitySettingsOn(packageName)) {
+        if (!isAccessibilitySettingsOn(packageName)) {
             // 跳转至辅助功能设置页面
-            DevUtils.getContext().startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            AppUtils.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
             return false;
         }
         return true;
@@ -99,13 +98,13 @@ public final class AccessibilityUtils {
         // 无障碍功能开启状态
         int accessibilityEnabled = 0;
         try {
-            accessibilityEnabled = Settings.Secure.getInt(DevUtils.getContext().getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
+            accessibilityEnabled = Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
         } catch (Settings.SettingNotFoundException e) {
             LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ACCESSIBILITY_ENABLED");
         }
         if (accessibilityEnabled == 1) {
             try {
-                String services = Settings.Secure.getString(DevUtils.getContext().getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+                String services = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
                 if (services != null) {
                     return services.toLowerCase().contains(packageName.toLowerCase());
                 }
@@ -428,9 +427,10 @@ public final class AccessibilityUtils {
      * 点击指定的节点
      * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+     * @return {@code true} success, {@code false} fail
      */
-    public static void performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
-        performClick(nodeInfo, clickParent, false);
+    public static boolean performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
+        return performClick(nodeInfo, clickParent, false);
     }
 
     /**
@@ -438,25 +438,27 @@ public final class AccessibilityUtils {
      * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @param clickAll    判断是否点击全部节点
+     * @return {@code true} success, {@code false} fail
      */
-    public static void performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
-        if (nodeInfo == null) return;
+    public static boolean performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
+        if (nodeInfo == null) return false;
         if (clickParent) {
             if (nodeInfo.isClickable()) {
-                nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                return nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
             } else {
                 AccessibilityNodeInfo parent = nodeInfo.getParent();
                 while (parent != null) {
                     if (performClick(parent)) {
                         if (!clickAll) {
-                            return;
+                            return true;
                         }
                     }
                     parent = parent.getParent();
                 }
+                return true;
             }
         } else {
-            performClick(nodeInfo);
+            return performClick(nodeInfo);
         }
     }
 
@@ -478,9 +480,10 @@ public final class AccessibilityUtils {
      * 长按指定的节点
      * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+     * @return {@code true} success, {@code false} fail
      */
-    public static void performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
-        performLongClick(nodeInfo, clickParent, false);
+    public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
+        return performLongClick(nodeInfo, clickParent, false);
     }
 
     /**
@@ -488,25 +491,27 @@ public final class AccessibilityUtils {
      * @param nodeInfo    {@link AccessibilityNodeInfo}
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @param clickAll    判断是否点击全部节点
+     * @return {@code true} success, {@code false} fail
      */
-    public static void performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
-        if (nodeInfo == null) return;
+    public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
+        if (nodeInfo == null) return false;
         if (clickParent) {
             if (nodeInfo.isClickable()) {
-                nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
+                return nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
             } else {
                 AccessibilityNodeInfo parent = nodeInfo.getParent();
                 while (parent != null) {
                     if (performLongClick(parent)) {
                         if (!clickAll) {
-                            return;
+                            return true;
                         }
                     }
                     parent = parent.getParent();
                 }
+                return true;
             }
         } else {
-            performLongClick(nodeInfo);
+            return performLongClick(nodeInfo);
         }
     }
 

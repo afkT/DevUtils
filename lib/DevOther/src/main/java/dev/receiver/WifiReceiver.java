@@ -9,8 +9,8 @@ import android.net.wifi.WifiManager;
 import android.os.Message;
 import android.os.Parcelable;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 import dev.utils.app.wifi.WifiUtils;
 
 /**
@@ -209,7 +209,7 @@ public final class WifiReceiver extends BroadcastReceiver {
             // 判断是否 Wifi 打开了, 变化触发一次
             filter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
             // 注册广播
-            DevUtils.getContext().registerReceiver(wifiReceiver, filter);
+            AppUtils.registerReceiver(wifiReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -220,7 +220,7 @@ public final class WifiReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            DevUtils.getContext().unregisterReceiver(wifiReceiver);
+            AppUtils.unregisterReceiver(wifiReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }

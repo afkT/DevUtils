@@ -162,8 +162,9 @@ public final class HttpParamsUtils {
      * @param objStr    数组名
      * @param key       数组 key
      * @param value     数组 [key] 保存值
+     * @return {@code true} success, {@code false} fail
      */
-    public static void toConvertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
+    public static boolean toConvertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
         if (mapParams != null) {
             String data = null;
             try {
@@ -172,7 +173,9 @@ public final class HttpParamsUtils {
                 JCLogUtils.eTag(TAG, e, "toConvertObjToMS");
             }
             mapParams.put(objStr + "[" + key + "]", data);
+            return true;
         }
+        return false;
     }
 
     /**
@@ -181,8 +184,9 @@ public final class HttpParamsUtils {
      * @param objStr    数组名
      * @param key       数组 key
      * @param value     数组 [key] 保存值
+     * @return {@code true} success, {@code false} fail
      */
-    public static void toConvertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
+    public static boolean toConvertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
         if (mapParams != null) {
             Object data = null;
             try {
@@ -191,12 +195,10 @@ public final class HttpParamsUtils {
                 JCLogUtils.eTag(TAG, e, "toConvertObjToMO");
             }
             mapParams.put(objStr + "[" + key + "]", data);
+            return true;
         }
+        return false;
     }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
 
     // ===============
     // = StringUtils =
@@ -208,7 +210,7 @@ public final class HttpParamsUtils {
      * @return UTF-8 编码格式 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str) {
-        return toUrlEncode(str, "UTF-8");
+        return StringUtils.toUrlEncode(str);
     }
 
     /**
@@ -218,12 +220,6 @@ public final class HttpParamsUtils {
      * @return 指定编码格式 URL 编码后的字符串
      */
     public static String toUrlEncode(final String str, final String enc) {
-        if (str == null || enc == null) return null;
-        try {
-            return URLEncoder.encode(str, enc);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toUrlEncode");
-        }
-        return null;
+        return StringUtils.toUrlEncode(str, enc);
     }
 }

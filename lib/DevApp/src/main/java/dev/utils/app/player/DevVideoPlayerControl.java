@@ -334,7 +334,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
                 }
             }
         }
-        return isPlaying();
+        return false;
     }
 
     /**

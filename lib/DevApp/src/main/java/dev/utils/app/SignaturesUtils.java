@@ -23,6 +23,8 @@ import java.util.jar.JarFile;
 import javax.security.auth.x500.X500Principal;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
+import dev.utils.common.ConvertUtils;
 
 /**
  * detail: 签名工具类 ( 获取 APP 签名信息 )
@@ -47,6 +49,23 @@ public final class SignaturesUtils {
     private static final X500Principal DEBUG_DN = new X500Principal("CN=Android Debug,O=Android,C=US");
 
     /**
+     * 获取 APP Signature
+     * @return {@link Signature} 数组
+     */
+    public static Signature[] getAppSignature() {
+        return AppUtils.getAppSignature();
+    }
+
+    /**
+     * 获取 APP Signature
+     * @param packageName 应用包名
+     * @return {@link Signature} 数组
+     */
+    public static Signature[] getAppSignature(final String packageName) {
+        return AppUtils.getAppSignature(packageName);
+    }
+
+    /**
      * 获取 MD5 签名
      * @param signatures {@link Signature}[]
      * @return MD5 签名
@@ -61,7 +80,7 @@ public final class SignaturesUtils {
                     }
                 }
             }
-            return toHexString(digest.digest());
+            return ConvertUtils.toHexString(digest.digest());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "signatureMD5");
             return "";
@@ -83,7 +102,7 @@ public final class SignaturesUtils {
                     }
                 }
             }
-            return toHexString(digest.digest());
+            return ConvertUtils.toHexString(digest.digest());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "signatureSHA1");
             return "";
@@ -105,7 +124,7 @@ public final class SignaturesUtils {
                     }
                 }
             }
-            return toHexString(digest.digest());
+            return ConvertUtils.toHexString(digest.digest());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "signatureSHA256");
             return "";
@@ -226,7 +245,7 @@ public final class SignaturesUtils {
                     String certDercode = null;
                     try {
                         // 证书 DER 编码
-                        certDercode = toHexString(cert.getTBSCertificate());
+                        certDercode = ConvertUtils.toHexString(cert.getTBSCertificate());
                     } catch (CertificateEncodingException e) {
                     }
                     // 证书公钥
@@ -298,52 +317,10 @@ public final class SignaturesUtils {
             InputStream is = jarFile.getInputStream(jarEntry);
             while (is.read(readBuffer, 0, readBuffer.length) != -1) {
             }
-            is.close();
+            CloseUtils.closeIOQuietly(is);
             return jarEntry != null ? jarEntry.getCertificates() : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "loadCertificates");
-        }
-        return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ================
-    // = ConvertUtils =
-    // ================
-
-    // 用于建立十六进制字符的输出的小写字符数组
-    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data 待转换数据
-     * @return 十六进制字符串
-     */
-    private static String toHexString(final byte[] data) {
-        return toHexString(data, HEX_DIGITS);
-    }
-
-    /**
-     * 将 byte[] 转换 十六进制字符串
-     * @param data      待转换数据
-     * @param hexDigits {@link #HEX_DIGITS}
-     * @return 十六进制字符串
-     */
-    private static String toHexString(final byte[] data, final char[] hexDigits) {
-        if (data == null || hexDigits == null) return null;
-        try {
-            int len = data.length;
-            StringBuilder builder = new StringBuilder(len);
-            for (int i = 0; i < len; i++) {
-                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-                builder.append(hexDigits[data[i] & 0x0f]);
-            }
-            return builder.toString();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "toHexString");
         }
         return null;
     }

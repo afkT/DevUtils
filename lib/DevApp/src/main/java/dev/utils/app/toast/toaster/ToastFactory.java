@@ -1,5 +1,6 @@
 package dev.utils.app.toast.toaster;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
@@ -18,6 +19,7 @@ import java.lang.reflect.Field;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.NotificationUtils;
 
 /**
  * detail: Toast 工厂模式
@@ -149,7 +151,7 @@ final class ToastFactory {
 
                     Handler handler = (Handler) field_handler.get(mTN);
                     field_handler.set(mTN, new SafeHandler(handler));
-                } catch (Exception ignored) {
+                } catch (Exception ignore) {
                 }
             }
         }
@@ -175,7 +177,7 @@ final class ToastFactory {
             public void dispatchMessage(Message msg) {
                 try {
                     mHandler.dispatchMessage(msg);
-                } catch (Exception ignored) {
+                } catch (Exception ignore) {
                 }
             }
         }
@@ -221,7 +223,7 @@ final class ToastFactory {
      * @return {@link BaseToast}
      */
     public static BaseToast create(final Context context) {
-        if (Utils.isNotificationEnabled(context)) {
+        if (NotificationUtils.isNotificationEnabled()) {
             return new SafeToast(context);
         }
         return new NotificationToast(context);
@@ -323,7 +325,7 @@ final class ToastFactory {
                     params.packageName = packageName;
 
                     // View 对象不能重复添加, 否则会抛出异常
-                    Utils.getWindowManager(DevUtils.getTopActivity()).addView(mToast.getView(), params);
+                    getWindowManager(DevUtils.getTopActivity()).addView(mToast.getView(), params);
                     // 当前已经显示
                     mShow = true;
                     // 添加一个移除 Toast 的任务
@@ -343,12 +345,32 @@ final class ToastFactory {
             // 如果显示中, 则移除 View
             if (mShow) {
                 try {
-                    Utils.getWindowManager(DevUtils.getTopActivity()).removeView(mToast.getView());
-                } catch (Exception ignored) {
+                    getWindowManager(DevUtils.getTopActivity()).removeView(mToast.getView());
+                } catch (Exception ignore) {
                 }
                 // 当前没有显示
                 mShow = false;
             }
         }
+    }
+
+    // =
+
+    /**
+     * 获取一个 WindowManager 对象
+     * @param activity {@link Activity}
+     * @return {@link WindowManager}
+     */
+    private static WindowManager getWindowManager(final Activity activity) {
+        // 如果使用的 WindowManager 对象不是当前 Activity 创建的, 则会抛出异常
+        // android.view.WindowManager$BadTokenException: Unable to add window - token null is not for an application
+        if (activity != null) {
+            try {
+                return ((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE));
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getWindowManager");
+            }
+        }
+        return null;
     }
 }

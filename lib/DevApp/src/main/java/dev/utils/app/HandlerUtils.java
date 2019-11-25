@@ -54,7 +54,7 @@ public final class HandlerUtils {
      * @param number      轮询次数
      * @param interval    轮询时间
      */
-    public static void postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval) {
+    public static void postRunnable(final Runnable runnable, final long delayMillis, final int number, final long interval) {
         postRunnable(runnable, delayMillis, number, interval, null);
     }
 
@@ -66,7 +66,7 @@ public final class HandlerUtils {
      * @param interval      轮询时间
      * @param onEndListener 结束通知
      */
-    public static void postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval, final OnEndListener onEndListener) {
+    public static void postRunnable(final Runnable runnable, final long delayMillis, final int number, final long interval, final OnEndListener onEndListener) {
         if (runnable != null) {
             Runnable loop = new Runnable() {
                 private int mNumber;
@@ -123,6 +123,6 @@ public final class HandlerUtils {
          * @param number      轮询次数
          * @param interval    轮询时间
          */
-        void onEnd(long delayMillis, int number, int interval);
+        void onEnd(long delayMillis, int number, long interval);
     }
 }

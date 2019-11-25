@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.0.5'
+implementation 'com.afkt:DevJava:1.0.6'
 ```
 
 ## 目录结构
@@ -65,6 +65,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isNotEmpty | 判断数组是否不为 null |
 | length | 获取数组长度 |
 | isLength | 判断数组长度是否等于期望长度 |
+| getCount | 获取数组长度总和 |
 | get | 获取数组对应索引数据 |
 | getFirst | 获取数组第一条数据 |
 | getLast | 获取数组最后一条数据 |
@@ -98,13 +99,19 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
+| setScale | 设置小数点位数 |
+| setRoundingMode | 设置舍入模式 |
+| getBigDecimal | 获取 BigDecimal |
+| toString | 获取此 BigDecimal 的字符串表示形式科学记数法 |
+| toPlainString | 获取此 BigDecimal 的字符串表示形式不带指数字段 |
+| toEngineeringString | 获取此 BigDecimal 的字符串表示形式工程计数法 |
 | add | 提供精确的加法运算 |
-| substract | 提供精确的减法运算 |
+| subtract | 提供精确的减法运算 |
 | multiply | 提供精确的乘法运算 |
-| divide | 提供 ( 相对 ) 精确的除法运算 |
+| divide | 提供精确的除法运算 |
+| remainder | 提供精确的取余运算 |
 | round | 提供精确的小数位四舍五入处理 |
-| remainder | 取余数 |
-| compare | 比较大小 |
+| compareTo | 比较大小 |
 | formatMoney | 金额分割, 四舍五入金额 |
 | adjustDouble | 获取自己想要的数据格式 |
 
@@ -113,11 +120,13 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
-| isBaseDataType | 判断类是否是基础数据类型 - 目前支持 11 种 |
 | newInstance | 根据类获取对象, 不再必须一个无参构造 |
-| getDefaultPrimiticeValue | 判断 Class 是否为原始类型 (boolean、char、byte、short、int、long、float、double) |
-| isCollection | 判断是否集合类型 |
-| isArray | 判断是否数组类型 |
+| getDefaultPrimiticeValue | 获取 Class 原始类型值 |
+| getClass | 获取 Object Class |
+| isPrimitive | 判断 Class 是否为原始类型 |
+| isCollection | 判断是否 Collection 类型 |
+| isMap | 判断是否 Map 类型 |
+| isArray | 判断是否 Array 类型 |
 | getGenericSuperclass | 获取父类泛型类型 |
 | getGenericInterfaces | 获取接口泛型类型 |
 
@@ -145,11 +154,12 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isEmpty | 判断 Collection 是否为 null |
 | isNotEmpty | 判断 Collection 是否不为 null |
 | length | 获取 Collection 长度 |
-| isLength | 获取长度 to Collection 是否等于期望长度 |
+| isLength | 获取长度 Collection 是否等于期望长度 |
 | greaterThan | 判断 Collection 长度是否大于指定长度 |
 | greaterThanOrEqual | 判断 Collection 长度是否大于等于指定长度 |
 | lessThan | 判断 Collection 长度是否小于指定长度 |
 | lessThanOrEqual | 判断 Collection 长度是否小于等于指定长度 |
+| getCount | 获取 Collection 数组长度总和 |
 | get | 获取数据 |
 | getFirst | 获取第一条数据 |
 | getLast | 获取最后一条数据 |
@@ -178,6 +188,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | subtract | 两个集合差集 ( 扣除 ) 处理 |
 | equals | 判断两个值是否一样 |
 | toArray | 转换数组 to Object |
+| toArrayT | 转换数组 to T |
 | reverse | 集合翻转处理 |
 | getMinimumIndexI | 获取集合中最小值索引 |
 | getMinimumIndexL | 获取集合中最小值索引 |
@@ -352,23 +363,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | randomUUIDToHashCode | 获取随机唯一数 HashCode |
 | getRandomUUID | 获取随机规则生成 UUID |
 | getRandomUUIDToString | 获取随机规则生成 UUID 字符串 |
-| converHideMobile | 转换手机号 |
-| converSymbolHide | 转换符号处理 |
-| subEllipsize | 裁剪超出的内容, 并且追加符号 ( 如 ...) |
-| subSymbolHide | 裁剪符号处理 |
-| subSetSymbol | 裁剪内容, 设置符号处理 |
-| substring | 裁剪字符串 |
-| toReplaceSEWith | 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith |
-| toReplaceStartsWith | 替换开头字符串 |
-| toReplaceEndsWith | 替换结尾字符串 |
-| toClearSEWiths | 这个方法功能主要把字符符合标记的 头部和尾部都替换成 "" |
-| toClearStartsWith | 清空属于特定字符串开头的字段 |
-| toClearEndsWith | 清空属于特定字符串结尾的字段 |
-| replaceStr | 替换字符串 |
-| replaceStrToNull | 替换字符串 |
-| replaceStrs | 替换字符串 |
-| isEmpty | 判断数组是否为 null |
-| isNotEmpty | 判断数组是否不为 null |
+| isEmpty | 判断对象是否为空 |
+| isNotEmpty | 判断对象是否非空 |
 | length | 获取数组长度 |
 | isLength | 判断数组长度是否等于期望长度 |
 | equals | 判断两个值是否一样 |
@@ -390,6 +386,21 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getAutoFormatString | 获取自动数量格式化后的字符串 ( 可变参数 ) |
 | getAutoFormatString2 | 获取自动数量格式化后的字符串 ( 可变参数 ) |
 | appends | StringBuilder 拼接处理 |
+| converHideMobile | 转换手机号 |
+| converSymbolHide | 转换符号处理 |
+| subEllipsize | 裁剪超出的内容, 并且追加符号 ( 如 ...) |
+| subSymbolHide | 裁剪符号处理 |
+| subSetSymbol | 裁剪内容, 设置符号处理 |
+| substring | 裁剪字符串 |
+| toReplaceSEWith | 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith |
+| toReplaceStartsWith | 替换开头字符串 |
+| toReplaceEndsWith | 替换结尾字符串 |
+| toClearSEWiths | 这个方法功能主要把字符符合标记的 头部和尾部都替换成 "" |
+| toClearStartsWith | 清空属于特定字符串开头的字段 |
+| toClearEndsWith | 清空属于特定字符串结尾的字段 |
+| replaceStr | 替换字符串 |
+| replaceStrToNull | 替换字符串 |
+| replaceStrs | 替换字符串 |
 
 
 * **编码工具类 ->** [EncodeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/EncodeUtils.java)
@@ -407,18 +418,30 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
-| isSerializable | 判断是否序列化 |
+| getField | 获取变量对象 |
+| getDeclaredField | 获取变量对象 |
+| getFields | 获取变量对象数组 |
+| getDeclaredFields | 获取变量对象数组 |
 | set | 设置字段的值 |
 | get | 获取字段的值 |
 | isLong | 是否 long/Long 类型 |
 | isFloat | 是否 float/Float 类型 |
 | isDouble | 是否 double/Double 类型 |
 | isInteger | 是否 int/Integer 类型 |
+| isBoolean | 是否 boolean/Boolean 类型 |
+| isCharacter | 是否 char/Character 类型 |
+| isByte | 是否 byte/Byte 类型 |
+| isShort | 是否 short/Short 类型 |
 | isString | 是否 String 类型 |
+| isSerializable | 判断是否序列化 |
+| isInvalid | 是否静态常量或者内部结构属性 |
+| isStatic | 是否静态变量 |
+| isFinal | 是否常量 |
+| isStaticFinal | 是否静态变量 |
+| isSynthetic | 是否内部结构属性 |
 | getGenericType | 获取字段的泛型类型, 如果不带泛型返回 null |
 | getComponentType | 获取数组的类型 |
 | getAllDeclaredFields | 获取全部 Field, 包括父类 |
-| isInvalid | 是静态常量或者内部结构属性 |
 
 
 * **文件 (IO 流 ) 工具类 ->** [FileIOUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/FileIOUtils.java)
@@ -436,6 +459,16 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | readFileToBytesByStream | 读取文件内容, 返回 byte[] |
 | readFileToBytesByChannel | 通过 FileChannel, 读取文件内容, 返回 byte[] |
 | readFileToBytesByMap | 通过 MappedByteBuffer, 读取文件内容, 返回 byte[] |
+
+
+* **文件记录工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/FileRecordUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| setInsertInfo | 设置插入信息 |
+| setCallBack | 设置文件记录回调 |
+| saveErrorLog | 保存异常日志 |
+| saveLog | 保存日志 |
 
 
 * **文件操作工具类 ->** [FileUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/FileUtils.java)
@@ -506,6 +539,29 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getFileMD5ToHexString | 获取文件 MD5 值 |
 
 
+* **Html 工具类 ->** [HtmlUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/HtmlUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| addHtmlColor | 为给定的字符串添加 HTML 颜色标记 |
+| addHtmlBold | 为给定的字符串添加 HTML 加粗标记 |
+| addHtmlColorAndBlod | 为给定的字符串添加 HTML 颜色标记并加粗 |
+| addHtmlUnderline | 为给定的字符串添加 HTML 下划线 |
+| addHtmlStrikeThruline | 为给定的字符串添加 HTML 中划线 |
+| addHtmlOverline | 为给定的字符串添加 HTML 上划线 |
+| addHtmlIncline | 为给定的字符串添加 HTML 字体倾斜 |
+| addHtmlSPAN | 为给定的字符串添加 HTML SPAN 标签 |
+| addHtmlP | 为给定的字符串添加 HTML P 标签 |
+| addHtmlIMG | 为给定的字符串添加 HTML IMG 标签 |
+| addHtmlIMGByWidth | 为给定的字符串添加 HTML IMG 标签 |
+| addHtmlIMGByHeight | 为给定的字符串添加 HTML IMG 标签 |
+| addHtmlDIV | 为给定的字符串添加 HTML DIV 标签 |
+| addHtmlDIVByMargin | 为给定的字符串添加 HTML DIV 标签 |
+| addHtmlDIVByPadding | 为给定的字符串添加 HTML DIV 标签 |
+| addHtmlDIVByMarginPadding | 为给定的字符串添加 HTML DIV 标签 |
+| keywordReplaceHtmlColor | 将给定的字符串中所有给定的关键字标色 |
+
+
 * **Http 参数工具类 ->** [HttpParamsUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/HttpParamsUtils.java)
 
 | 方法 | 注释 |
@@ -535,11 +591,12 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isEmpty | 判断 Map 是否为 null |
 | isNotEmpty | 判断 Map 是否不为 null |
 | length | 获取 Map 长度 |
-| isLength | 获取长度 to Map 是否等于期望长度 |
+| isLength | 获取长度 Map 是否等于期望长度 |
 | greaterThan | 判断 Map 长度是否大于指定长度 |
 | greaterThanOrEqual | 判断 Map 长度是否大于等于指定长度 |
 | lessThan | 判断 Map 长度是否小于指定长度 |
 | lessThanOrEqual | 判断 Map 长度是否小于等于指定长度 |
+| getCount | 获取 Map 数组长度总和 |
 | get | 获取 value |
 | getKeyByValue | 通过 value 获取 key |
 | getKeysByValue | 通过 value 获取 key 集合 ( 返回等于 value 的 key 集合 ) |
@@ -604,7 +661,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getOrDefault | 获取非空或默认对象 |
 | hashCode | 获取对象哈希值 |
 | getObjectTag | 获取一个对象的独一无二的标记 |
-| converObj | 获取转换对象 |
+| convert | Object 转换所需类型对象 |
 
 
 * **随机工具类 ->** [RandomUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/RandomUtils.java)
@@ -624,8 +681,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getRandomLetters | 获取大小写字母自定义长度的随机数 |
 | getRandomNumbersAndLetters | 获取数字、大小写字母自定义长度的随机数 |
 | getRandom | 获取自定义数据自定义长度的随机数 |
-| shuffle | 洗牌算法 ( 第一种 ), 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 ) |
-| shuffle2 | 洗牌算法 ( 第二种 ), 随机置换指定的数组使用的默认源的随机性 |
+| shuffle | 洗牌算法 ( 第一种 ) 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 ) |
+| shuffle2 | 洗牌算法 ( 第二种 ) 随机置换指定的数组使用的默认源的随机性 |
 | nextIntRange | 获取指定范围 int 值 |
 | nextLongRange | 获取指定范围 long 值 |
 | nextDoubleRange | 获取指定范围 double 值 |
@@ -745,6 +802,21 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | underScoreCaseToCamelCase | 下划线命名转为驼峰命名 |
 | camelCaseToUnderScoreCase | 驼峰命名法转为下划线命名 |
 | sqliteEscape | 字符串数据库字符转义 |
+| converHideMobile | 转换手机号 |
+| converSymbolHide | 转换符号处理 |
+| subEllipsize | 裁剪超出的内容, 并且追加符号 ( 如 ...) |
+| subSymbolHide | 裁剪符号处理 |
+| subSetSymbol | 裁剪内容, 设置符号处理 |
+| substring | 裁剪字符串 |
+| toReplaceSEWith | 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith |
+| toReplaceStartsWith | 替换开头字符串 |
+| toReplaceEndsWith | 替换结尾字符串 |
+| toClearSEWiths | 这个方法功能主要把字符符合标记的 头部和尾部都替换成 "" |
+| toClearStartsWith | 清空属于特定字符串开头的字段 |
+| toClearEndsWith | 清空属于特定字符串结尾的字段 |
+| replaceStr | 替换字符串 |
+| replaceStrToNull | 替换字符串 |
+| replaceStrs | 替换字符串 |
 
 
 * **异常处理工具类 ->** [ThrowableUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ThrowableUtils.java)
@@ -922,6 +994,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | encryptSHA384ToHexString | SHA384 加密 |
 | encryptSHA512 | SHA512 加密 |
 | encryptSHA512ToHexString | SHA512 加密 |
+| hashTemplate | Hash 加密模版方法 |
 | encryptHmacMD5 | HmacMD5 加密 |
 | encryptHmacMD5ToHexString | HmacMD5 加密 |
 | encryptHmacSHA1 | HmacSHA1 加密 |
@@ -934,6 +1007,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | encryptHmacSHA384ToHexString | HmacSHA384 加密 |
 | encryptHmacSHA512 | HmacSHA512 加密 |
 | encryptHmacSHA512ToHexString | HmacSHA512 加密 |
+| hmacTemplate | Hmac 加密模版方法 |
 | encryptDES | DES 加密 |
 | encryptDESToBase64 | DES 加密 |
 | encryptDESToHexString | DES 加密 |
@@ -952,12 +1026,14 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | decryptAES | AES 解密 |
 | decryptAESToBase64 | AES 解密 |
 | decryptAESToHexString | AES 解密 |
+| symmetricTemplate | 对称加密模版方法 |
 | encryptRSA | RSA 加密 |
 | encryptRSAToBase64 | RSA 加密 |
 | encryptRSAToHexString | RSA 加密 |
 | decryptRSA | RSA 解密 |
 | decryptRSAToBase64 | RSA 解密 |
 | decryptRSAToHexString | RSA 解密 |
+| rsaTemplate | RSA 加解密模版方法 |
 
 
 * **字符串 ( 编解码 ) 工具类 ->** [EscapeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/encrypt/EscapeUtils.java)

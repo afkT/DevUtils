@@ -1,8 +1,6 @@
 package dev.utils.app;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -14,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -29,9 +26,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.ref.WeakReference;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.R;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: Snackbar 工具类
@@ -69,11 +66,10 @@ public final class SnackbarUtils {
      * @return {@link SnackbarUtils}
      */
     public static SnackbarUtils with(final Activity activity) {
-        View view = null;
         if (activity != null && activity.getWindow() != null) {
             return new SnackbarUtils(activity.getWindow().getDecorView());
         }
-        return new SnackbarUtils(view);
+        return new SnackbarUtils(null);
     }
 
     /**
@@ -177,7 +173,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
+     * 向 Snackbar 布局中添加 View ( Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
      * @param layoutId R.layout.id
      * @param index    添加索引
      * @return {@link SnackbarUtils}
@@ -197,7 +193,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
+     * 向 Snackbar 布局中添加 View ( Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
      * @param view  {@link View}
      * @param index 添加索引
      * @return {@link SnackbarUtils}
@@ -254,7 +250,7 @@ public final class SnackbarUtils {
     public SnackbarUtils setAction(final View.OnClickListener listener, @StringRes final int resId, final Object... objs) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
-            String content = getFormatRes(resId, objs);
+            String content = AppCommonUtils.getFormatRes(resId, objs);
             if (!TextUtils.isEmpty(content)) {
                 snackbar.setAction(content, listener);
             }
@@ -282,7 +278,7 @@ public final class SnackbarUtils {
     public SnackbarUtils setAction(final View.OnClickListener listener, final String text, final Object... objs) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
-            String content = getFormatString(text, objs);
+            String content = StringUtils.getFormatString(text, objs);
             if (!TextUtils.isEmpty(content)) {
                 snackbar.setAction(content, listener);
             }
@@ -322,7 +318,7 @@ public final class SnackbarUtils {
      * @param objs  格式化参数
      */
     public void showShort(@StringRes final int resId, final Object... objs) {
-        priShow(getFormatRes(resId, objs), Snackbar.LENGTH_SHORT);
+        priShow(AppCommonUtils.getFormatRes(resId, objs), Snackbar.LENGTH_SHORT);
     }
 
     /**
@@ -331,7 +327,7 @@ public final class SnackbarUtils {
      * @param objs  格式化参数
      */
     public void showLong(@StringRes final int resId, final Object... objs) {
-        priShow(getFormatRes(resId, objs), Snackbar.LENGTH_LONG);
+        priShow(AppCommonUtils.getFormatRes(resId, objs), Snackbar.LENGTH_LONG);
     }
 
     /**
@@ -340,7 +336,7 @@ public final class SnackbarUtils {
      * @param objs  格式化参数
      */
     public void showIndefinite(@StringRes final int resId, final Object... objs) {
-        priShow(getFormatRes(resId, objs), Snackbar.LENGTH_INDEFINITE);
+        priShow(AppCommonUtils.getFormatRes(resId, objs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // =
@@ -351,7 +347,7 @@ public final class SnackbarUtils {
      * @param objs 格式化参数
      */
     public void showShort(final String text, final Object... objs) {
-        priShow(getFormatString(text, objs), Snackbar.LENGTH_SHORT);
+        priShow(StringUtils.getFormatString(text, objs), Snackbar.LENGTH_SHORT);
     }
 
     /**
@@ -360,7 +356,7 @@ public final class SnackbarUtils {
      * @param objs 格式化参数
      */
     public void showLong(final String text, final Object... objs) {
-        priShow(getFormatString(text, objs), Snackbar.LENGTH_LONG);
+        priShow(StringUtils.getFormatString(text, objs), Snackbar.LENGTH_LONG);
     }
 
     /**
@@ -369,7 +365,7 @@ public final class SnackbarUtils {
      * @param objs 格式化参数
      */
     public void showIndefinite(final String text, final Object... objs) {
-        priShow(getFormatString(text, objs), Snackbar.LENGTH_INDEFINITE);
+        priShow(StringUtils.getFormatString(text, objs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // ============
@@ -1188,7 +1184,7 @@ public final class SnackbarUtils {
             // 如果等于 null
             if (rootBackgroundDrawable != null) {
                 // 设置背景
-                setBackground(rootView, rootBackgroundDrawable);
+                ImageViewUtils.setBackground(rootView, rootBackgroundDrawable);
             } else {
                 if (style.getRootBackgroundTintColor() != 0) {
                     GradientDrawable drawable = new GradientDrawable();
@@ -1197,7 +1193,7 @@ public final class SnackbarUtils {
                     // 设置圆角大小
                     drawable.setCornerRadius(style.getRootCornerRadius());
                     // 设置背景
-                    setBackground(rootView, drawable);
+                    ImageViewUtils.setBackground(rootView, drawable);
                 }
             }
 
@@ -1287,7 +1283,7 @@ public final class SnackbarUtils {
                 // 如果等于 null
                 if (actionBackgroundDrawable != null) {
                     // 设置背景
-                    setBackground(actionButton, actionBackgroundDrawable);
+                    ImageViewUtils.setBackground(actionButton, actionBackgroundDrawable);
                 } else {
                     if (style.getActionBackgroundTintColor() != 0) {
                         GradientDrawable drawable = new GradientDrawable();
@@ -1296,7 +1292,7 @@ public final class SnackbarUtils {
                         // 设置圆角大小
                         drawable.setCornerRadius(style.getActionCornerRadius());
                         // 设置背景
-                        setBackground(actionButton, drawable);
+                        ImageViewUtils.setBackground(actionButton, drawable);
                     }
                 }
             }
@@ -1433,11 +1429,11 @@ public final class SnackbarUtils {
                 // 获取 View 上方距离
                 int mViewTop = mViewLocations[1];
                 // 获取屏幕高度
-                int screenHeight = getScreenHeight();
+                int screenHeight = ScreenUtils.getScreenHeight();
                 // 防止等于 0
                 if (screenHeight != 0) {
                     // 获取测量高度 ( 不一定准确 )
-                    int measuredHeight = getMeasuredHeight(rootView);
+                    int measuredHeight = ViewUtils.getMeasuredHeight(rootView);
                     // 判断方向, 在指定坐标上方, 判断是否够空间
                     if (mViewGravity == Gravity.TOP) {
                         // 判断是否超出可显示高度
@@ -1520,141 +1516,5 @@ public final class SnackbarUtils {
         }
         // 清空重置处理
         clearLocations();
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = ScreenUtils =
-    // ===============
-
-    /**
-     * 获取屏幕高度
-     * @return 屏幕高度
-     */
-    private int getScreenHeight() {
-        try {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
-            if (windowManager == null) {
-                return DevUtils.getContext().getResources().getDisplayMetrics().heightPixels;
-            }
-            Point point = new Point();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                windowManager.getDefaultDisplay().getRealSize(point);
-            } else {
-                windowManager.getDefaultDisplay().getSize(point);
-            }
-            return point.y;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getScreenHeight");
-        }
-        return 0;
-    }
-
-    // =============
-    // = ViewUtils =
-    // =============
-
-    /**
-     * 测量 View
-     * @param view {@link View}
-     * @return int[] 0 = 宽度, 1 = 高度
-     */
-    private int[] measureView(final View view) {
-        if (view != null) {
-            try {
-                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                if (layoutParams == null) {
-                    layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                }
-                int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
-                int height = layoutParams.height;
-                int heightSpec;
-                if (height > 0) {
-                    heightSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
-                } else {
-                    heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-                }
-                view.measure(widthSpec, heightSpec);
-                return new int[]{view.getMeasuredWidth(), view.getMeasuredHeight()};
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "measureView");
-            }
-        }
-        return new int[]{0, 0};
-    }
-
-    /**
-     * 获取 View 的高度
-     * @param view {@link View}
-     * @return View 的高度
-     */
-    private int getMeasuredHeight(final View view) {
-        if (view != null) {
-            measureView(view);
-            return view.getMeasuredHeight();
-        }
-        return 0;
-    }
-
-    // ==================
-    // = 数据格式化处理 =
-    // ==================
-
-    /**
-     * 获取格式化后的字符串
-     * @param format 待格式化字符串
-     * @param args   格式化参数
-     * @return 格式化后的字符串
-     */
-    private String getFormatString(final String format, final Object... args) {
-        if (format == null) return null;
-        try {
-            if (args != null && args.length != 0) {
-                return String.format(format, args);
-            } else {
-                return format;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getFormatString");
-        }
-        return null;
-    }
-
-    /**
-     * 获取 R.string 资源的格式化字符串
-     * @param resId R.string.id
-     * @param objs  格式化参数
-     * @return 格式化后的字符串
-     */
-    private String getFormatRes(@StringRes final int resId, final Object... objs) {
-        try {
-            if (objs != null && objs.length != 0) {
-                return DevUtils.getContext().getString(resId, objs);
-            } else {
-                return DevUtils.getContext().getString(resId);
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getFormatRes");
-        }
-        return null;
-    }
-
-    // =
-
-    /**
-     * 设置背景
-     * @param view     {@link View}
-     * @param drawable 背景 {@link Drawable}
-     */
-    private void setBackground(final View view, final Drawable drawable) {
-        if (view != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                view.setBackground(drawable);
-            else
-                view.setBackgroundDrawable(drawable);
-        }
     }
 }

@@ -16,8 +16,6 @@
 
 * Toast 工厂模式（[ToastFactory](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/ToastFactory.java)）：用于生成适配不同 Android 版本对应的 Toast, 以及解决无通知权限显示 Toast
 
-* Toast 内部工具类（[Utils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/Utils.java)）：内部快捷操作工具类
-
 * Toast 默认样式（[DefaultToastStyle](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/DefaultToastStyle.java)）：该类实现 IToast.Style 用于配置自定义 Toast
 
 

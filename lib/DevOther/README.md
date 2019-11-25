@@ -135,6 +135,55 @@
 | stop | 停止图片加载 |
 
 
+* **Android 平台下的图片选择器 ->** [PictureSelectorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/PictureSelectorUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getPicConfig | 获取全局相册配置 |
+| setPicConfig | 设置全局相册配置 |
+| getCameraSavePath | 获取拍照保存地址 |
+| getCompressSavePath | 获取压缩图片保存地址 |
+| setSavePath | 设置保存地址 |
+| getMinimumCompressSize | 获取图片大于多少才进行压缩 (kb) |
+| setMinimumCompressSize | 设置图片大于多少才进行压缩 (kb) |
+| deleteCacheDirFile | 清空缓存 |
+| getLocalMedias | 获取选中的资源集合 |
+| getSingleMedia | 获取单独选中的资源 |
+| getLocalMediaPath | 获取本地资源路径 |
+| getLocalMediaPaths | 获取本地资源地址集合 |
+| getPictureSelectionModel | 获取图片选择配置模型 |
+| openCamera | 打开相册拍照 |
+| openGallery | 打开相册选择 |
+| getMimeType | 获取相册选择类型 |
+| setMimeType | 设置相册选择类型 |
+| getSelectionMode | 获取相册选择模式 |
+| setSelectionMode | 设置相册选择模式 |
+| isCamera | 是否显示拍照 |
+| setCamera | 设置是否显示拍照 |
+| isCrop | 是否裁减 |
+| setCrop | 设置是否裁减 |
+| isCircleCrop | 是否圆形裁减 |
+| setCircleCrop | 设置是否圆形裁减 |
+| isCompress | 是否压缩 |
+| setCompress | 设置是否压缩 |
+| getWithAspectRatio | 获取裁减比例 |
+| setWithAspectRatio | 设置裁减比例 |
+| isGif | 是否显示 Gif |
+| setGif | 设置是否显示 Gif |
+| getImageSpanCount | 获取每行显示个数 |
+| setImageSpanCount | 设置每行显示个数 |
+| getMinSelectNum | 获取最小选择数量 |
+| setMinSelectNum | 设置最小选择数量 |
+| getMaxSelectNum | 获取最大选择数量 |
+| setMaxSelectNum | 设置最大选择数量 |
+| getLocalMedia | 获取已选择的本地资源 |
+| setLocalMedia | 设置已选择的本地资源 |
+| setCameraSavePath | 设置拍照保存地址 |
+| setCompressSavePath | 设置压缩图片保存地址 |
+| clone | 克隆新的相册配置 |
+| set | 设置新的相册配置 |
+
+
 ## <span id="devreceiver">**`dev.receiver`**</span>
 
 

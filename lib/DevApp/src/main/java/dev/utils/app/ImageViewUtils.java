@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi;
 import java.lang.reflect.Field;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.app.image.ImageUtils;
 
 /**
  * detail: ImageView 工具类
@@ -751,7 +752,7 @@ public final class ImageViewUtils {
      */
     public static <T extends ImageView> T setColorFilter(final T imageView, final Drawable drawable, @ColorInt final int color) {
         try {
-            setBackground(imageView, setColorFilter(drawable, color));
+            setBackground(imageView, ImageUtils.setColorFilter(drawable, color));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setColorFilter");
         }
@@ -781,7 +782,7 @@ public final class ImageViewUtils {
      */
     public static <T extends ImageView> T setColorFilter(final T imageView, final Drawable drawable, final ColorFilter colorFilter) {
         try {
-            setBackground(imageView, setColorFilter(drawable, colorFilter));
+            setBackground(imageView, ImageUtils.setColorFilter(drawable, colorFilter));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setColorFilter");
         }
@@ -796,9 +797,10 @@ public final class ImageViewUtils {
      * 设置 View 图片资源
      * @param resId resource identifier
      * @param views View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setBackgroundResources(@DrawableRes final int resId, final View... views) {
-        setBackgroundResources(resId, View.VISIBLE, views);
+    public static boolean setBackgroundResources(@DrawableRes final int resId, final View... views) {
+        return setBackgroundResources(resId, View.VISIBLE, views);
     }
 
     /**
@@ -806,8 +808,9 @@ public final class ImageViewUtils {
      * @param resId        resource identifier
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param views        View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setBackgroundResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
+    public static boolean setBackgroundResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 View view = views[i];
@@ -822,7 +825,9 @@ public final class ImageViewUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -831,9 +836,10 @@ public final class ImageViewUtils {
      * 设置 View 图片资源
      * @param resId resource identifier
      * @param views View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setImageResources(@DrawableRes final int resId, final View... views) {
-        setImageResources(resId, View.VISIBLE, views);
+    public static boolean setImageResources(@DrawableRes final int resId, final View... views) {
+        return setImageResources(resId, View.VISIBLE, views);
     }
 
     /**
@@ -841,8 +847,9 @@ public final class ImageViewUtils {
      * @param resId        resource identifier
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param views        View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setImageResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
+    public static boolean setImageResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 ImageView imageView = getImageView(views[i]);
@@ -857,7 +864,9 @@ public final class ImageViewUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -866,9 +875,10 @@ public final class ImageViewUtils {
      * 设置 View Bitmap
      * @param bitmap {@link Bitmap}
      * @param views  View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setImageBitmaps(final Bitmap bitmap, final View... views) {
-        setImageBitmaps(bitmap, View.VISIBLE, views);
+    public static boolean setImageBitmaps(final Bitmap bitmap, final View... views) {
+        return setImageBitmaps(bitmap, View.VISIBLE, views);
     }
 
     /**
@@ -876,8 +886,9 @@ public final class ImageViewUtils {
      * @param bitmap       {@link Bitmap}
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param views        View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setImageBitmaps(final Bitmap bitmap, final int isVisibility, final View... views) {
+    public static boolean setImageBitmaps(final Bitmap bitmap, final int isVisibility, final View... views) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 ImageView imageView = getImageView(views[i]);
@@ -892,7 +903,9 @@ public final class ImageViewUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -901,9 +914,10 @@ public final class ImageViewUtils {
      * 设置 View Drawable
      * @param drawable {@link drawable}
      * @param views    View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setImageDrawables(final Drawable drawable, final View... views) {
-        setImageDrawables(drawable, View.VISIBLE, views);
+    public static boolean setImageDrawables(final Drawable drawable, final View... views) {
+        return setImageDrawables(drawable, View.VISIBLE, views);
     }
 
     /**
@@ -911,8 +925,9 @@ public final class ImageViewUtils {
      * @param drawable     {@link drawable}
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param views        View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setImageDrawables(final Drawable drawable, final int isVisibility, final View... views) {
+    public static boolean setImageDrawables(final Drawable drawable, final int isVisibility, final View... views) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 ImageView imageView = getImageView(views[i]);
@@ -927,7 +942,9 @@ public final class ImageViewUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -936,9 +953,10 @@ public final class ImageViewUtils {
      * 设置 View 缩放模式
      * @param scaleType {@link ImageView.ScaleType}
      * @param views     View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setScaleTypes(final ImageView.ScaleType scaleType, final View... views) {
-        setScaleTypes(scaleType, View.VISIBLE, views);
+    public static boolean setScaleTypes(final ImageView.ScaleType scaleType, final View... views) {
+        return setScaleTypes(scaleType, View.VISIBLE, views);
     }
 
     /**
@@ -946,8 +964,9 @@ public final class ImageViewUtils {
      * @param scaleType    {@link ImageView.ScaleType}
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param views        View[]
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setScaleTypes(final ImageView.ScaleType scaleType, final int isVisibility, final View... views) {
+    public static boolean setScaleTypes(final ImageView.ScaleType scaleType, final int isVisibility, final View... views) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 ImageView imageView = getImageView(views[i]);
@@ -962,7 +981,9 @@ public final class ImageViewUtils {
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 
     // ============
@@ -1036,58 +1057,5 @@ public final class ImageViewUtils {
             LogPrintUtils.eTag(TAG, e, "getImageViewFieldValue");
         }
         return value;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ==============
-    // = ImageUtils =
-    // ==============
-
-    /**
-     * 图片着色 - tint
-     * @param drawable {@link Drawable}
-     * @param color    颜色值
-     * @return 着色后的 {@link Drawable}
-     */
-    private static Drawable setColorFilter(final Drawable drawable, @ColorInt final int color) {
-        return setColorFilter(drawable, color, PorterDuff.Mode.SRC_IN);
-    }
-
-    /**
-     * 图片着色 - tint
-     * @param drawable {@link Drawable}
-     * @param color    颜色值
-     * @param mode     着色模式 {@link PorterDuff.Mode}
-     * @return 着色后的 {@link Drawable}
-     */
-    private static Drawable setColorFilter(final Drawable drawable, @ColorInt final int color, final PorterDuff.Mode mode) {
-        if (drawable != null && mode != null) {
-            try {
-                drawable.setColorFilter(color, mode);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setColorFilter");
-            }
-        }
-        return drawable;
-    }
-
-    /**
-     * 图片着色 - tint
-     * @param drawable    {@link Drawable}
-     * @param colorFilter 颜色过滤 ( 效果 )
-     * @return 着色后的 {@link Drawable}
-     */
-    private static Drawable setColorFilter(final Drawable drawable, final ColorFilter colorFilter) {
-        if (drawable != null && colorFilter != null) {
-            try {
-                drawable.setColorFilter(colorFilter);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setColorFilter");
-            }
-        }
-        return drawable;
     }
 }

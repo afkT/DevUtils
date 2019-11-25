@@ -552,13 +552,13 @@ public final class BarUtils {
     // ==============
 
     /**
-     * 获取 ActionBase 高度
+     * 获取 ActionBar 高度
      * @return the action bar's height
      */
     public static int getActionBarHeight() {
         TypedValue tv = new TypedValue();
         if (DevUtils.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            return TypedValue.complexToDimensionPixelSize(tv.data, DevUtils.getContext().getResources().getDisplayMetrics());
+            return TypedValue.complexToDimensionPixelSize(tv.data, ResourceUtils.getDisplayMetrics());
         }
         return 0;
     }
@@ -709,7 +709,7 @@ public final class BarUtils {
      */
     public static boolean isSupportNavBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            WindowManager windowManager = (WindowManager) DevUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = AppUtils.getWindowManager();
             Display display = windowManager.getDefaultDisplay();
             Point size = new Point();
             Point realSize = new Point();

@@ -1,13 +1,11 @@
 package dev.utils.app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Build;
 import android.os.PowerManager;
 import android.view.Window;
 import android.view.WindowManager;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -47,7 +45,7 @@ public final class PowerManagerUtils {
     private PowerManagerUtils() {
         try {
             // 获取系统服务
-            mPowerManager = (PowerManager) DevUtils.getContext().getSystemService(Context.POWER_SERVICE);
+            mPowerManager = AppUtils.getPowerManager();
             // 电源管理锁
             mWakeLock = mPowerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.FULL_WAKE_LOCK, TAG);
         } catch (Exception e) {
@@ -74,24 +72,26 @@ public final class PowerManagerUtils {
 
     /**
      * 唤醒 / 点亮 屏幕
+     * @return {@code true} success, {@code false} fail
      */
-    public void turnScreenOn() {
+    public boolean turnScreenOn() {
         if (mWakeLock != null && !mWakeLock.isHeld()) {
             mWakeLock.acquire();
+            return true;
         }
+        return false;
     }
 
     /**
-     * 释放屏幕锁, 允许休眠时间自动黑屏
+     * 释放屏幕锁 ( 允许休眠时间自动黑屏 )
+     * @return {@code true} success, {@code false} fail
      */
-    public void turnScreenOff() {
+    public boolean turnScreenOff() {
         if (mWakeLock != null && mWakeLock.isHeld()) {
-            try {
-                mWakeLock.release();
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "turnScreenOff");
-            }
+            mWakeLock.release();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -105,9 +105,11 @@ public final class PowerManagerUtils {
     /**
      * 设置 PowerManager.WakeLock
      * @param wakeLock {@link PowerManager.WakeLock}
+     * @return {@link PowerManagerUtils}
      */
-    public void setWakeLock(final PowerManager.WakeLock wakeLock) {
+    public PowerManagerUtils setWakeLock(final PowerManager.WakeLock wakeLock) {
         this.mWakeLock = wakeLock;
+        return this;
     }
 
     /**
@@ -121,29 +123,40 @@ public final class PowerManagerUtils {
     /**
      * 设置 PowerManager
      * @param powerManager {@link PowerManager}
+     * @return {@link PowerManagerUtils}
      */
-    public void setPowerManager(final PowerManager powerManager) {
+    public PowerManagerUtils setPowerManager(final PowerManager powerManager) {
         this.mPowerManager = powerManager;
+        return this;
     }
 
     /**
      * 设置屏幕常亮
      * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setBright(final Activity activity) {
+    public static boolean setBright(final Activity activity) {
         if (activity != null) {
-            setBright(activity.getWindow());
+            return setBright(activity.getWindow());
         }
+        return false;
     }
 
     /**
      * 设置屏幕常亮
      * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void setBright(final Window window) {
+    public static boolean setBright(final Window window) {
         if (window != null) {
-            window.setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            try {
+                window.setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setBright");
+            }
         }
+        return false;
     }
 
     /**

@@ -1,9 +1,5 @@
 package dev.utils.common.validator;
 
-import java.util.regex.Pattern;
-
-import dev.utils.JCLogUtils;
-
 /**
  * detail: 检验联系 ( 手机号, 座机 ) 工具类
  * @author Ttt
@@ -23,16 +19,13 @@ public final class ValiToPhoneUtils {
     private ValiToPhoneUtils() {
     }
 
-    // 日志 TAG
-    private static final String TAG = ValiToPhoneUtils.class.getSimpleName();
-
     /**
      * 中国手机号格式验证, 在输入可以调用该方法, 点击发送验证码, 使用 isPhone
      * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneCheck(final String phone) {
-        return match(CHAIN_PHONE_FORMAT_CHECK, phone);
+        return ValidatorUtils.match(CHAIN_PHONE_FORMAT_CHECK, phone);
     }
 
     /**
@@ -41,7 +34,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhone(final String phone) {
-        return match(CHINA_PHONE_PATTERN, phone);
+        return ValidatorUtils.match(CHINA_PHONE_PATTERN, phone);
     }
 
     /**
@@ -50,7 +43,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaTelecom(final String phone) {
-        return match(CHINA_TELECOM_PATTERN, phone);
+        return ValidatorUtils.match(CHINA_TELECOM_PATTERN, phone);
     }
 
     /**
@@ -59,7 +52,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaUnicom(final String phone) {
-        return match(CHINA_UNICOM_PATTERN, phone);
+        return ValidatorUtils.match(CHINA_UNICOM_PATTERN, phone);
     }
 
     /**
@@ -68,7 +61,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaMobile(final String phone) {
-        return match(CHINA_MOBILE_PATTERN, phone);
+        return ValidatorUtils.match(CHINA_MOBILE_PATTERN, phone);
     }
 
     /**
@@ -77,7 +70,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToHkMobile(final String phone) {
-        return match(HK_PHONE_PATTERN, phone);
+        return ValidatorUtils.match(HK_PHONE_PATTERN, phone);
     }
 
     /**
@@ -86,7 +79,7 @@ public final class ValiToPhoneUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneCallNum(final String phone) {
-        return match(PHONE_CALL_PATTERN, phone);
+        return ValidatorUtils.match(PHONE_CALL_PATTERN, phone);
     }
 
     // ==============
@@ -194,43 +187,5 @@ public final class ValiToPhoneUtils {
          * 虚拟运营商: 170
          */
         CHINA_PHONE_PATTERN = "^13[\\d]{9}$|^14[5,6,7,8,9]{1}\\d{8}$|^15[^4]{1}\\d{8}$|^16[5,6]{1}\\d{8}$|^17[0,1,2,3,4,5,6,7,8]{1}\\d{8}$|^18[\\d]{9}$|^19[1,8,9]{1}\\d{8}$";
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
-    }
-
-    // ==================
-    // = ValidatorUtils =
-    // ==================
-
-    /**
-     * 通用匹配函数
-     * @param regex 正则表达式
-     * @param input 待校验的字符串
-     * @return {@code true} yes, {@code false} no
-     */
-    private static boolean match(final String regex, final String input) {
-        if (!isEmpty(input)) {
-            try {
-                return Pattern.matches(regex, input);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "match");
-            }
-        }
-        return false;
     }
 }

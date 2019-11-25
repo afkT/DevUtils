@@ -12,8 +12,9 @@ import android.media.MediaPlayer.OnVideoSizeChangedListener;
 
 import androidx.annotation.RawRes;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.ResourceUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: MediaPlayer 统一管理类
@@ -24,7 +25,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         OnErrorListener, OnSeekCompleteListener {
 
     // 日志 TAG
-    private String TAG = DevMediaManager.class.getSimpleName();
+    private static String TAG = DevMediaManager.class.getSimpleName();
     // MediaPlayer 对象
     private MediaPlayer mMediaPlayer;
     // 单例实例
@@ -154,17 +155,12 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                 @Override
                 public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
                     // 获取资源文件
-                    AssetFileDescriptor file = DevUtils.getContext().getResources().openRawResourceFd(rawId);
+                    AssetFileDescriptor file = ResourceUtils.openRawResourceFd(rawId);
                     try {
                         // 设置播放路径
                         mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
                     } finally {
-                        if (file != null) {
-                            try {
-                                file.close();
-                            } catch (Exception e) {
-                            }
-                        }
+                        CloseUtils.closeIOQuietly(file);
                     }
                 }
 
@@ -213,17 +209,12 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                 @Override
                 public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
                     // 获取资源文件
-                    AssetFileDescriptor file = DevUtils.getContext().getResources().getAssets().openNonAssetFd("assets" + tempPlayUri);
+                    AssetFileDescriptor file = ResourceUtils.openNonAssetFd("assets" + tempPlayUri);
                     try {
                         // 设置播放路径
                         mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
                     } finally {
-                        if (file != null) {
-                            try {
-                                file.close();
-                            } catch (Exception e) {
-                            }
-                        }
+                        CloseUtils.closeIOQuietly(file);
                     }
                 }
 
@@ -339,7 +330,11 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      */
     public void pause() {
         if (mMediaPlayer != null) {
-            mMediaPlayer.pause();
+            try {
+                mMediaPlayer.pause();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "pause");
+            }
         }
     }
 
@@ -362,7 +357,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      */
     public static boolean isIgnoreWhat(final int errorWhat) {
         // 是否忽略
-        boolean isIgnore = false;
+        boolean ignore = false;
         switch (errorWhat) {
             case -38:
             case 1:
@@ -370,10 +365,10 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
             case 700:
             case 701:
             case 800:
-                isIgnore = true;
+                ignore = true;
                 break;
         }
-        return isIgnore;
+        return ignore;
     }
 
     // ============

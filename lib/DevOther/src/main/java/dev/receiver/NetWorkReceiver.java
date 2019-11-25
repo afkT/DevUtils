@@ -12,8 +12,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresPermission;
 
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.AppUtils;
 
 /**
  * detail: 网络监听广播
@@ -83,7 +83,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
         // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
             // 获取网络连接状态
-            ConnectivityManager cManager = (ConnectivityManager) DevUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 判断连接的是否 wifi
@@ -133,7 +133,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
             filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            DevUtils.getContext().registerReceiver(netReceiver, filter);
+            AppUtils.registerReceiver(netReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -144,7 +144,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            DevUtils.getContext().unregisterReceiver(netReceiver);
+            AppUtils.unregisterReceiver(netReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }

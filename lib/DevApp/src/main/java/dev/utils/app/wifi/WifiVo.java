@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.Keep;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
@@ -70,11 +71,23 @@ public class WifiVo implements Parcelable {
 
     /**
      * 扫描 wifi 信息
+     * @param listScanResults 扫描返回的数据
+     * @return {@link List<WifiVo>}
+     */
+    public static List<WifiVo> scanWifiVos(final List<ScanResult> listScanResults) {
+        List<WifiVo> listWifiVos = new ArrayList<>();
+        scanWifiVos(listWifiVos, listScanResults);
+        return listWifiVos;
+    }
+
+    /**
+     * 扫描 wifi 信息
      * @param listWifiVos     数据源
      * @param listScanResults 扫描返回的数据
+     * @return {@code true} success, {@code false} fail
      */
-    public static void scanWifiVos(final List<WifiVo> listWifiVos, final List<ScanResult> listScanResults) {
-        if (listWifiVos == null || listScanResults == null) return;
+    public static boolean scanWifiVos(final List<WifiVo> listWifiVos, final List<ScanResult> listScanResults) {
+        if (listWifiVos == null || listScanResults == null) return false;
         // 清空旧数据
         listWifiVos.clear();
         // 遍历 wifi 列表数据
@@ -93,6 +106,7 @@ public class WifiVo implements Parcelable {
                 LogPrintUtils.eTag(TAG, e, "scanWifiVos");
             }
         }
+        return true;
     }
 
     // ==============

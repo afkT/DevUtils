@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -49,11 +50,8 @@ public final class DialogUtils {
      * @return {@link WindowManager.LayoutParams}
      */
     public static WindowManager.LayoutParams getAttributes(final Dialog dialog) {
-        if (dialog != null) {
-            Window window = dialog.getWindow();
-            if (window != null) return window.getAttributes();
-        }
-        return null;
+        Window window = getWindow(dialog);
+        return (window != null) ? window.getAttributes() : null;
     }
 
     /**
@@ -64,9 +62,9 @@ public final class DialogUtils {
      * @return {@link Dialog}
      */
     public static <T extends Dialog> T setAttributes(final T dialog, final WindowManager.LayoutParams params) {
-        if (dialog != null && params != null) {
-            Window window = dialog.getWindow();
-            if (window != null) window.setAttributes(params);
+        Window window = getWindow(dialog);
+        if (window != null && params != null) {
+            window.setAttributes(params);
         }
         return dialog;
     }
@@ -246,6 +244,35 @@ public final class DialogUtils {
         return dialog;
     }
 
+    // =
+
+    /**
+     * 获取 Dialog 是否显示
+     * @param dialog {@link Dialog}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isShowing(final Dialog dialog) {
+        return (dialog != null && dialog.isShowing());
+    }
+
+    /**
+     * 获取 Dialog 是否显示
+     * @param dialogFragment {@link DialogFragment}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isShowing(final DialogFragment dialogFragment) {
+        return (dialogFragment != null && dialogFragment.getDialog() != null && dialogFragment.getDialog().isShowing());
+    }
+
+    /**
+     * 获取 PopupWindow 是否显示
+     * @param popupWindow {@link PopupWindow}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isShowing(final PopupWindow popupWindow) {
+        return (popupWindow != null && popupWindow.isShowing());
+    }
+
     // ===============
     // = Dialog 操作 =
     // ===============
@@ -270,34 +297,33 @@ public final class DialogUtils {
     /**
      * 关闭 Dialog
      * @param dialog {@link Dialog}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeDialog(final Dialog dialog) {
+    public static boolean closeDialog(final Dialog dialog) {
         if (dialog != null && dialog.isShowing()) {
             try {
                 dialog.dismiss();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeDialog");
             }
         }
+        return false;
     }
 
     /**
      * 关闭多个 Dialog
      * @param dialogs {@link Dialog} 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeDialogs(final Dialog... dialogs) {
+    public static boolean closeDialogs(final Dialog... dialogs) {
         if (dialogs != null && dialogs.length != 0) {
-            for (int i = 0, len = dialogs.length; i < len; i++) {
-                Dialog dialog = dialogs[i];
-                if (dialog != null && dialog.isShowing()) {
-                    try {
-                        dialog.dismiss();
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "closeDialogs");
-                    }
-                }
+            for (Dialog dialog : dialogs) {
+                closeDialog(dialog);
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -305,34 +331,33 @@ public final class DialogUtils {
     /**
      * 关闭 DialogFragment
      * @param dialog {@link DialogFragment}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeDialog(final DialogFragment dialog) {
+    public static boolean closeDialog(final DialogFragment dialog) {
         if (dialog != null) {
             try {
                 dialog.dismiss();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeDialog");
             }
         }
+        return false;
     }
 
     /**
      * 关闭多个 DialogFragment
      * @param dialogs {@link DialogFragment} 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closeDialogs(final DialogFragment... dialogs) {
+    public static boolean closeDialogs(final DialogFragment... dialogs) {
         if (dialogs != null && dialogs.length != 0) {
-            for (int i = 0, len = dialogs.length; i < len; i++) {
-                DialogFragment dialog = dialogs[i];
-                if (dialog != null) {
-                    try {
-                        dialog.dismiss();
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "closeDialogs");
-                    }
-                }
+            for (DialogFragment dialog : dialogs) {
+                closeDialog(dialog);
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -340,34 +365,33 @@ public final class DialogUtils {
     /**
      * 关闭 PopupWindow
      * @param popupWindow {@link PopupWindow}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closePopupWindow(final PopupWindow popupWindow) {
+    public static boolean closePopupWindow(final PopupWindow popupWindow) {
         if (popupWindow != null && popupWindow.isShowing()) {
             try {
                 popupWindow.dismiss();
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closePopupWindow");
             }
         }
+        return false;
     }
 
     /**
      * 关闭多个 PopupWindow
      * @param popupWindows {@link PopupWindow} 数组
+     * @return {@code true} success, {@code false} fail
      */
-    public static void closePopupWindows(final PopupWindow... popupWindows) {
+    public static boolean closePopupWindows(final PopupWindow... popupWindows) {
         if (popupWindows != null && popupWindows.length != 0) {
-            for (int i = 0, len = popupWindows.length; i < len; i++) {
-                PopupWindow popupWindow = popupWindows[i];
-                if (popupWindow != null && popupWindow.isShowing()) {
-                    try {
-                        popupWindow.dismiss();
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "closePopupWindows");
-                    }
-                }
+            for (PopupWindow popupWindow : popupWindows) {
+                closePopupWindow(popupWindow);
             }
+            return true;
         }
+        return false;
     }
 
     // =
@@ -570,12 +594,7 @@ public final class DialogUtils {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            if (dialog != null && dialog.isShowing()) {
-                                dialog.dismiss();
-                            }
-                        } catch (Exception e) {
-                        }
+                        closeDialog(dialog);
                     }
                 }, delayMillis);
             }
@@ -597,12 +616,7 @@ public final class DialogUtils {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            if (dialog != null) {
-                                dialog.dismiss();
-                            }
-                        } catch (Exception e) {
-                        }
+                        closeDialog(dialog);
                     }
                 }, delayMillis);
             }
@@ -624,12 +638,7 @@ public final class DialogUtils {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            if (popupWindow != null && popupWindow.isShowing()) {
-                                popupWindow.dismiss();
-                            }
-                        } catch (Exception e) {
-                        }
+                        closePopupWindow(popupWindow);
                     }
                 }, delayMillis);
             }
@@ -727,7 +736,7 @@ public final class DialogUtils {
                                                            @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -743,7 +752,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -757,7 +766,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -836,7 +845,7 @@ public final class DialogUtils {
                                                            @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -852,7 +861,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -866,7 +875,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -952,7 +961,7 @@ public final class DialogUtils {
                                                        final SingleChoiceListener singleChoiceListener, @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -968,7 +977,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -982,7 +991,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1066,7 +1075,7 @@ public final class DialogUtils {
                                                        final SingleChoiceListener singleChoiceListener, @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -1082,7 +1091,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1096,7 +1105,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1223,7 +1232,7 @@ public final class DialogUtils {
                                                       @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -1239,7 +1248,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1253,7 +1262,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1336,7 +1345,7 @@ public final class DialogUtils {
                                                       final MultiChoiceListener multiChoiceListener, @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -1352,7 +1361,7 @@ public final class DialogUtils {
             });
 
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1366,7 +1375,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1494,7 +1503,7 @@ public final class DialogUtils {
                                                @StyleRes final int themeResId) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, themeResId);
-            if (!isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 builder.setTitle(title);
             }
             if (icon != null) {
@@ -1504,7 +1513,7 @@ public final class DialogUtils {
                 builder.setView(view);
             }
             // 判断是否存在确认按钮文案
-            if (!isEmpty(positiveBtnText)) {
+            if (!TextUtils.isEmpty(positiveBtnText)) {
                 builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1518,7 +1527,7 @@ public final class DialogUtils {
             }
 
             // 判断是否存在取消按钮文案
-            if (!isEmpty(negativeBtnText)) {
+            if (!TextUtils.isEmpty(negativeBtnText)) {
                 builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1545,22 +1554,5 @@ public final class DialogUtils {
             LogPrintUtils.eTag(TAG, e, "createViewDialog");
         }
         return null;
-    }
-
-    // ======================
-    // = 其他工具类实现代码 =
-    // ======================
-
-    // ===============
-    // = StringUtils =
-    // ===============
-
-    /**
-     * 判断字符串是否为 null
-     * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
-     */
-    private static boolean isEmpty(final String str) {
-        return (str == null || str.length() == 0);
     }
 }

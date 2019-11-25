@@ -59,6 +59,7 @@ import java.lang.ref.WeakReference;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: SpannableString 工具类
@@ -1291,9 +1292,7 @@ public final class SpannableStringUtils {
                     bitmap = BitmapFactory.decodeStream(is);
                     drawable = new BitmapDrawable(getContext().getResources(), bitmap);
                     drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-                    if (is != null) {
-                        is.close();
-                    }
+                    CloseUtils.closeIOQuietly(is);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "Failed to loaded content " + mContentUri);
                 }

@@ -24,14 +24,17 @@ public final class ClickUtils {
     private static final ClickAssist sGlobalClickAssist = new ClickAssist();
     // 功能模块 ClickAssist Maps
     private static final Map<Object, ClickAssist> sClickAssistMaps = new HashMap<>();
+    // 双击间隔时间
+    private static long sGlobalIntervalTime = 1000L;
 
     /**
      * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
      * @param view  待添加点击范围 View
      * @param range 点击范围
+     * @return {@code true} success, {@code false} fail
      */
-    public static void addTouchArea(final View view, final int range) {
-        addTouchArea(view, range, range, range, range);
+    public static boolean addTouchArea(final View view, final int range) {
+        return addTouchArea(view, range, range, range, range);
     }
 
     /**
@@ -41,8 +44,9 @@ public final class ClickUtils {
      * @param bottom bottom range
      * @param left   left range
      * @param right  right range
+     * @return {@code true} success, {@code false} fail
      */
-    public static void addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
+    public static boolean addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
         if (view != null) {
             try {
                 final View parent = (View) view.getParent();
@@ -67,10 +71,20 @@ public final class ClickUtils {
                         }
                     }
                 });
+                return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "addTouchArea");
             }
         }
+        return false;
+    }
+
+    /**
+     * 设置全局双击间隔时间
+     * @param globalIntervalTime 全局双击间隔时间
+     */
+    public static void setGlobalIntervalTime(final long globalIntervalTime) {
+        ClickUtils.sGlobalIntervalTime = globalIntervalTime;
     }
 
     // ======================
@@ -249,7 +263,7 @@ public final class ClickUtils {
         // 最后一次点击时间
         private long mLastClickTime = 0L;
         // 双击间隔时间
-        private long mIntervalTime = 1000L;
+        private long mIntervalTime = ClickUtils.sGlobalIntervalTime;
         // 配置数据
         private final Map<String, Long> mConfigMaps = new HashMap<>();
         // 点击记录数据
@@ -434,7 +448,7 @@ public final class ClickUtils {
             // 重置最后一次点击时间
             mLastClickTime = 0L;
             // 重置双击间隔时间
-            mIntervalTime = 1000L;
+            mIntervalTime = ClickUtils.sGlobalIntervalTime;
             // 清空配置信息
             mConfigMaps.clear();
             // 清空点击记录
