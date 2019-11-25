@@ -8,5 +8,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
+// gradlew clean
+// gradlew install
 // gradlew bintrayUpload
 //apply from : rootProject.file(files.java_bintray_upload)
