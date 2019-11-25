@@ -1,6 +1,25 @@
 Change Log
 ==========
 
+Version 1.8.5 *(2019-11-25)*
+----------------------------
+
+* `[Refactor]` 重构整个项目, 优化代码逻辑判断、代码风格、合并工具类减少包大小等, 并修改 95% 返回值 void 的方法为 boolean 明确获取调用结果
+ 
+* `[Add]` JSONObjectUtils#isJSONObject、isJSONArray、jsonToMap、jsonToList、getJSONObject、getJSONArray、get、opt
+
+* `[Add]` AppCommonUtils#getAppDeviceInfo、refreshAppDeviceInfo
+
+* `[Add]` AnalysisRecordUtils、FileRecordUtils 文件记录结果回调
+
+* `[Add]` BigDecimalUtils#setScale、setRoundingMode、getBigDecimal、toString、toPlainString、toEngineeringString
+
+* `[Add]` ClassUtils#getClass、isPrimitive、isMap
+
+* `[Add]` MapUtils、CollectionUtils 获取泛型数组 toArrayT
+
+* `[Update]` 移动 FileRecordUtils、HtmlUtils 到 Java 模块
+
 Version 1.8.4 *(2019-11-05)*
 ----------------------------
  
