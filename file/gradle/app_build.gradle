@@ -34,4 +34,5 @@ dependencies {
     implementation deps.android.appcompat_v7
     implementation deps.android.support_v4
     implementation deps.android.design
+    implementation deps.android.cardview
 }
