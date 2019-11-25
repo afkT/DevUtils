@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/vid_am_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,15 +11,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:stateListAnimator="@drawable/touch"
         card_view:cardCornerRadius="25.0dip"
-        card_view:cardElevation="10.0dip">
+        card_view:cardElevation="10.0dip"
+        tools:targetApi="lollipop">
 
         <ImageView
             android:layout_width="120.0dip"
             android:layout_height="120.0dip"
             android:layout_gravity="center"
             android:background="@mipmap/icon" />
-
     </android.support.v7.widget.CardView>
 
 </FrameLayout>
