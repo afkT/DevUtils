@@ -15,14 +15,15 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // 初始化工具类
+        // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化
         DevUtils.init(this.getApplicationContext());
         // = 初始化日志配置 =
-        // 设置默认Logger配置
+        // 设置默认 Logger 配置
         LogConfig logConfig = new LogConfig();
         logConfig.logLevel = LogLevel.DEBUG;
         logConfig.tag = LOG_TAG;
         logConfig.sortLog = true; // 美化日志, 边框包围
+        logConfig.methodCount = 0;
         DevLogger.init(logConfig);
         // 打开 lib 内部日志 - 线上环境, 不调用方法就行
         DevUtils.openLog();
