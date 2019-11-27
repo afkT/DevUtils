@@ -21,8 +21,8 @@ import java.lang.reflect.Field;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.R;
-import dev.utils.app.ImageViewUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.ViewUtils;
 import dev.utils.app.image.ImageUtils;
 
 /**
@@ -1079,7 +1079,7 @@ public final class ToastTintUtils {
                         icon = ImageUtils.setColorFilter(icon, style.getTintIconColor());
                     }
                     // 设置 ImageView 图片
-                    ImageViewUtils.setBackground(toastIcon, icon);
+                    ViewUtils.setBackground(toastIcon, icon);
                 } else {
                     // 隐藏图标
                     toastIcon.setVisibility(View.GONE);
@@ -1100,7 +1100,7 @@ public final class ToastTintUtils {
                     }
                 }
                 // 设置 View 背景
-                ImageViewUtils.setBackground(toastLayout, drawableFrame);
+                ViewUtils.setBackground(toastLayout, drawableFrame);
                 // 返回 View
                 return toastLayout;
             } catch (Exception e) {
