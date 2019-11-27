@@ -10,7 +10,7 @@ import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
 
 /**
- * detail: 全局Application
+ * detail: 全局 Application
  * @author Ttt
  */
 public class BaseApplication extends Application {

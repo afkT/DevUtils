@@ -102,7 +102,7 @@ Version 1.7.9 *(2019-09-19)*
  
  * `[Update]` ImageUtils#getImageType、ImageUtils#isImage modify to isImageFormats
  
- * `[Update]` 修改部分方法 void 返回值 (返回当前对象, 方便链式调用)
+ * `[Update]` 修改部分方法 void 返回值 ( 返回当前对象, 方便链式调用 )
  
  * `[Add]` AppCommonUtils#isQ
  
@@ -159,4 +159,3 @@ Version 1.0.0~1.7.5 *(2019-07-26)*
 ----------------------------
 
  * 整个工具类 review code, 并规范代码风格、检测注释、代码间距等
-

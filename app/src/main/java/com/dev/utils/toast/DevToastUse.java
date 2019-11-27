@@ -101,7 +101,7 @@ public final class DevToastUse {
         }
 
         /**
-         * X轴偏移
+         * X 轴偏移
          * @return
          */
         @Override
@@ -110,7 +110,7 @@ public final class DevToastUse {
         }
 
         /**
-         * Y轴偏移
+         * Y 轴偏移
          * @return
          */
         @Override
@@ -137,7 +137,7 @@ public final class DevToastUse {
         }
 
         /**
-         * Toast Z轴坐标阴影
+         * Toast Z 轴坐标阴影
          * @return
          */
         @Override

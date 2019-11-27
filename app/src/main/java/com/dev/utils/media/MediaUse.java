@@ -37,7 +37,7 @@ public final class MediaUse {
         DevMediaManager.getInstance().getVolume();
         // 获取当前播放的地址
         DevMediaManager.getInstance().getPlayUri();
-        // 获取播放的资源id
+        // 获取播放的资源 id
         DevMediaManager.getInstance().getPlayRawId();
         // 获取 当前播放时间
         DevMediaManager.getInstance().getCurrentPosition();

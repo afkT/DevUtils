@@ -22,7 +22,7 @@ public final class ShareUse {
 
         // SharedUtils 二次分装 SPUtils, 直接调用
 
-        // 在DevUtils.init 中初始化了, 实际可以不调用
+        // 在 DevUtils.init 中初始化了, 实际可以不调用
         SharedUtils.init(DevUtils.getContext());
 
         SharedUtils.put("aa", "aa");
@@ -52,7 +52,7 @@ public final class ShareUse {
 //                return preferences.getString(key, null);
 //            case STRING_SET:
 //                return preferences.getStringSet(key, null);
-//            default: // 默认取出String类型的数据
+//            default: // 默认取出 String 类型的数据
 //                return null;
 //        }
     }
