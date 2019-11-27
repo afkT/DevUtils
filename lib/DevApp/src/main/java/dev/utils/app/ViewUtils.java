@@ -1446,6 +1446,24 @@ public final class ViewUtils {
         return focusable;
     }
 
+    /**
+     * 切换获取焦点状态
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean toggleFocusable(final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view != null) {
+                    view.setFocusable(!view.isFocusable());
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     // =
 
     /**
@@ -1476,6 +1494,24 @@ public final class ViewUtils {
             }
         }
         return selected;
+    }
+
+    /**
+     * 切换选中状态
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean toggleSelected(final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view != null) {
+                    view.setSelected(!view.isSelected());
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     // =
@@ -1510,6 +1546,24 @@ public final class ViewUtils {
         return enabled;
     }
 
+    /**
+     * 切换 View 是否启用状态
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean toggleEnabled(final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view != null) {
+                    view.setEnabled(!view.isEnabled());
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     // =
 
     /**
@@ -1542,6 +1596,24 @@ public final class ViewUtils {
         return clickable;
     }
 
+    /**
+     * 切换 View 是否可以点击状态
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean toggleClickable(final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view != null) {
+                    view.setClickable(!view.isClickable());
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     // =
 
     /**
@@ -1572,6 +1644,24 @@ public final class ViewUtils {
             }
         }
         return longClickable;
+    }
+
+    /**
+     * 切换 View 是否可以长按状态
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean toggleLongClickable(final View... views) {
+        if (views != null) {
+            for (int i = 0, len = views.length; i < len; i++) {
+                View view = views[i];
+                if (view != null) {
+                    view.setLongClickable(!view.isLongClickable());
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     // =================
@@ -1945,7 +2035,7 @@ public final class ViewUtils {
             float motionX = ev.getRawX();
             float motionY = ev.getRawY();
             return motionX >= locations[0] && motionX <= (locations[0] + view.getWidth())
-                    && motionY >= locations[1] && motionY <= (locations[1] + view.getHeight());
+                && motionY >= locations[1] && motionY <= (locations[1] + view.getHeight());
         }
         return false;
     }
@@ -2245,8 +2335,8 @@ public final class ViewUtils {
                         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
                         // 设置边距
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
-                                .setMargins(leftMargin, layoutParams.topMargin,
-                                        layoutParams.rightMargin, layoutParams.bottomMargin);
+                            .setMargins(leftMargin, layoutParams.topMargin,
+                                layoutParams.rightMargin, layoutParams.bottomMargin);
                         return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginLeft");
@@ -2290,8 +2380,8 @@ public final class ViewUtils {
                         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
                         // 设置边距
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
-                                .setMargins(layoutParams.leftMargin, topMargin,
-                                        layoutParams.rightMargin, layoutParams.bottomMargin);
+                            .setMargins(layoutParams.leftMargin, topMargin,
+                                layoutParams.rightMargin, layoutParams.bottomMargin);
                         return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginTop");
@@ -2335,8 +2425,8 @@ public final class ViewUtils {
                         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
                         // 设置边距
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
-                                .setMargins(layoutParams.leftMargin, layoutParams.topMargin,
-                                        rightMargin, layoutParams.bottomMargin);
+                            .setMargins(layoutParams.leftMargin, layoutParams.topMargin,
+                                rightMargin, layoutParams.bottomMargin);
                         return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginRight");
@@ -2380,8 +2470,8 @@ public final class ViewUtils {
                         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
                         // 设置边距
                         ((ViewGroup.MarginLayoutParams) view.getLayoutParams())
-                                .setMargins(layoutParams.leftMargin, layoutParams.topMargin,
-                                        layoutParams.rightMargin, bottomMargin);
+                            .setMargins(layoutParams.leftMargin, layoutParams.topMargin,
+                                layoutParams.rightMargin, bottomMargin);
                         return true;
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "setMarginBottom");
