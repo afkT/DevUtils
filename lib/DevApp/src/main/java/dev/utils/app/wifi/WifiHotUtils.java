@@ -111,55 +111,59 @@ public final class WifiHotUtils {
         this.mAPWifiConfig = wifiConfig;
         // 大于 8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // 关闭热点
-            if (mReservation != null) {
-                mReservation.close();
+            try {
+                // 关闭热点
+                if (mReservation != null) {
+                    mReservation.close();
+                }
+                // 清空信息
+                mAPWifiSSID = mAPWifiPwd = null;
+                // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行创建, 无法进行控制 (APP 关闭后, 热点自动关闭 )
+                // 必须有定位权限
+                mWifiManager.startLocalOnlyHotspot(new WifiManager.LocalOnlyHotspotCallback() {
+                    @Override
+                    public void onStarted(WifiManager.LocalOnlyHotspotReservation reservation) {
+                        super.onStarted(reservation);
+                        // 保存信息
+                        mReservation = reservation;
+                        // 获取配置信息
+                        WifiConfiguration wifiConfiguration = reservation.getWifiConfiguration();
+                        mAPWifiSSID = wifiConfiguration.SSID;
+                        mAPWifiPwd = wifiConfiguration.preSharedKey;
+                        // 打印信息
+                        LogPrintUtils.dTag(TAG, "Android 8.0 onStarted wifiAp ssid: " + mAPWifiSSID + ", pwd: " + mAPWifiPwd);
+                        // 触发回调
+                        if (mWifiAPListener != null) {
+                            mWifiAPListener.onStarted(wifiConfiguration);
+                        }
+                    }
+
+                    @Override
+                    public void onStopped() {
+                        super.onStopped();
+                        // 打印信息
+                        LogPrintUtils.dTag(TAG, "Android 8.0 onStopped wifiAp");
+                        // 触发回调
+                        if (mWifiAPListener != null) {
+                            mWifiAPListener.onStopped();
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(int reason) {
+                        super.onFailed(reason);
+                        // 打印信息
+                        LogPrintUtils.eTag(TAG, "Android 8.0 onFailed wifiAp, reason: " + reason);
+                        // 触发回调
+                        if (mWifiAPListener != null) {
+                            mWifiAPListener.onFailed(reason);
+                        }
+                    }
+                }, null);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "stratWifiAp");
             }
-            // 清空信息
-            mAPWifiSSID = mAPWifiPwd = null;
-            // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行创建, 无法进行控制 (APP 关闭后, 热点自动关闭 )
-            // 必须有定位权限
-            mWifiManager.startLocalOnlyHotspot(new WifiManager.LocalOnlyHotspotCallback() {
-                @Override
-                public void onStarted(WifiManager.LocalOnlyHotspotReservation reservation) {
-                    super.onStarted(reservation);
-                    // 保存信息
-                    mReservation = reservation;
-                    // 获取配置信息
-                    WifiConfiguration wifiConfiguration = reservation.getWifiConfiguration();
-                    mAPWifiSSID = wifiConfiguration.SSID;
-                    mAPWifiPwd = wifiConfiguration.preSharedKey;
-                    // 打印信息
-                    LogPrintUtils.dTag(TAG, "Android 8.0 onStarted wifiAp ssid: " + mAPWifiSSID + ", pwd: " + mAPWifiPwd);
-                    // 触发回调
-                    if (mWifiAPListener != null) {
-                        mWifiAPListener.onStarted(wifiConfiguration);
-                    }
-                }
-
-                @Override
-                public void onStopped() {
-                    super.onStopped();
-                    // 打印信息
-                    LogPrintUtils.dTag(TAG, "Android 8.0 onStopped wifiAp");
-                    // 触发回调
-                    if (mWifiAPListener != null) {
-                        mWifiAPListener.onStopped();
-                    }
-                }
-
-                @Override
-                public void onFailed(int reason) {
-                    super.onFailed(reason);
-                    // 打印信息
-                    LogPrintUtils.eTag(TAG, "Android 8.0 onFailed wifiAp, reason: " + reason);
-                    // 触发回调
-                    if (mWifiAPListener != null) {
-                        mWifiAPListener.onFailed(reason);
-                    }
-                }
-            }, null);
-            return true;
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) { // android 7.1 系统以上不支持自动开启热点, 需要手动开启热点
             try {
                 // 先设置 wifi 热点信息, 这样跳转前保存热点信息, 开启热点则是对应设置的信息
