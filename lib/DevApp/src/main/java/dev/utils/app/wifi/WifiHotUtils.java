@@ -104,6 +104,10 @@ public final class WifiHotUtils {
 
     /**
      * 开启 wifi 热点
+     * <pre>
+     *     android 8.0 及以上必须要有定位权限
+     *     android 7.0 及以下需要 WRITE_SETTINGS 权限
+     * </pre>
      * @param wifiConfig wifi 配置
      * @return {@code true} success, {@code false} fail
      */
@@ -181,6 +185,7 @@ public final class WifiHotUtils {
             }
         } else {
             try {
+                // 需要 android.permission.WRITE_SETTINGS 权限
                 // 获取设置 wifi 热点方法
                 Method method = mWifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
                 // 开启 wifi 热点
