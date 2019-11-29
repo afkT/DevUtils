@@ -10,22 +10,50 @@ android {
         minSdkVersion versions.minSdkVersion
         versionCode versions.versionCode
         versionName versions.versionName
-    }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        // 开启 multidex
+        multiDexEnabled true
     }
 
     lintOptions {
+        // https://blog.csdn.net/berber78/article/details/60766091
         abortOnError false
+        checkReleaseBuilds false
     }
 
     compileOptions {
         sourceCompatibility versions.javaVersion
         targetCompatibility versions.javaVersion
+    }
+
+    // 签名配置
+    signingConfigs {
+        release {
+            storeFile rootProject.file("file/sign/demo.jks")
+            storePassword "123456"
+            keyAlias "demo"
+            keyPassword "123456"
+        }
+
+        debug {
+            storeFile rootProject.file("file/sign/demo.jks")
+            storePassword "123456"
+            keyAlias "demo"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
     }
 }
 
