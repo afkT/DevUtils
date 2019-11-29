@@ -13,22 +13,22 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| createWifiConfigToAp | 创建 wifi 热点配置(支持 无密码/WPA2 PSK) |
-| stratWifiAp | 开启 wifi 热点 |
-| closeWifiAp | 关闭 wifi 热点 |
-| getWifiApState | 获取 wifi 热点状态 |
-| getWifiApConfiguration | 获取 wifi 热点配置信息 |
-| setWifiApConfiguration | 设置 wifi 热点配置信息 |
-| isOpenWifiAp | 判断是否打开 wifi 热点 |
-| closeWifiApCheck | 关闭 wifi 热点(判断当前状态) |
+| createWifiConfigToAp | 创建 Wifi 热点配置(支持 无密码/WPA2 PSK) |
+| stratWifiAp | 开启 Wifi 热点 |
+| closeWifiAp | 关闭 Wifi 热点 |
+| getWifiApState | 获取 Wifi 热点状态 |
+| getWifiApConfiguration | 获取 Wifi 热点配置信息 |
+| setWifiApConfiguration | 设置 Wifi 热点配置信息 |
+| isOpenWifiAp | 判断是否打开 Wifi 热点 |
+| closeWifiApCheck | 关闭 Wifi 热点(判断当前状态) |
 | isConnectHot | 是否有设备连接热点 |
 | getHotspotServiceIp | 获取热点主机 IP 地址 |
 | getHotspotAllotIp | 获取连接上的子网关热点 IP(一个) |
 | getConnectHotspotMsg | 获取连接的热点信息 |
 | getHotspotSplitIpMask | 获取热点拼接后的 IP 网关掩码 |
-| getApWifiSSID | 获取 wifi 热点名 |
-| getApWifiPwd | 获取 wifi 热点密码 |
-| setOnWifiAPListener | 设置 wifi 热点监听事件 |
+| getApWifiSSID | 获取 Wifi 热点名 |
+| getApWifiPwd | 获取 Wifi 热点密码 |
+| setOnWifiAPListener | 设置 Wifi 热点监听事件 |
 | onStarted | 开启热点回调 |
 | onStopped | 关闭热点回调 |
 | onFailed | 失败回调 |
