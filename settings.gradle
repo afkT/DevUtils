@@ -1,5 +1,6 @@
-include ':app', ':DevApp', ':DevJava', ':DevAssist', ':DevOther'
+include ':app', ':DevApp', ':DevJava', ':DevAssist', ':DevOther', ':DevBase'
 project(':DevApp').projectDir = new File('lib/DevApp')
 project(':DevJava').projectDir = new File('lib/DevJava')
 project(':DevAssist').projectDir = new File('lib/DevAssist')
 project(':DevOther').projectDir = new File('lib/DevOther')
+project(':DevBase').projectDir = new File('lib/DevBase')

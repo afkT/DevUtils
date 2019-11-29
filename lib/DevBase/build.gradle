@@ -1,0 +1,10 @@
+apply {
+    from rootProject.file(files.app_lib_gradle)
+}
+
+dependencies {
+    implementation deps.android.appcompat_v7
+    implementation deps.android.support_v4
+    implementation deps.android.design
+    compileOnly project(path: ':DevApp')
+}

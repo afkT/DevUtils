@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/lib/DevApp/DevApp.iml" filepath="$PROJECT_DIR$/lib/DevApp/DevApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/DevAssist/DevAssist.iml" filepath="$PROJECT_DIR$/lib/DevAssist/DevAssist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/DevBase/DevBase.iml" filepath="$PROJECT_DIR$/lib/DevBase/DevBase.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/DevJava/DevJava.iml" filepath="$PROJECT_DIR$/lib/DevJava/DevJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/DevOther/DevOther.iml" filepath="$PROJECT_DIR$/lib/DevOther/DevOther.iml" />
       <module fileurl="file://$PROJECT_DIR$/DevUtils.iml" filepath="$PROJECT_DIR$/DevUtils.iml" />
