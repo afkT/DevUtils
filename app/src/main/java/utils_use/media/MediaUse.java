@@ -1,4 +1,4 @@
-package com.dev.utils.media;
+package utils_use.media;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;

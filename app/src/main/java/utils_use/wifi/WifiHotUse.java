@@ -1,9 +1,8 @@
-package com.dev.utils.wifi;
+package utils_use.wifi;
 
 import android.net.wifi.WifiConfiguration;
 import android.os.Build;
 
-import dev.DevUtils;
 import dev.utils.app.wifi.WifiHotUtils;
 
 /**

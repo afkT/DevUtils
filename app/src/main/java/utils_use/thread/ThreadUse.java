@@ -1,4 +1,4 @@
-package com.dev.utils.thread;
+package utils_use.thread;
 
 import dev.utils.common.thread.DevThreadManager;
 import dev.utils.common.thread.DevThreadPool;

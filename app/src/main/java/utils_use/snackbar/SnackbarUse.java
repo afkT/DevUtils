@@ -1,4 +1,4 @@
-package com.dev.utils.snackbar;
+package utils_use.snackbar;
 
 import android.app.Activity;
 import android.graphics.Color;

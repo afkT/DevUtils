@@ -1,4 +1,4 @@
-package com.dev.utils.logger;
+package utils_use.logger;
 
 /**
  * detail: 测试数据

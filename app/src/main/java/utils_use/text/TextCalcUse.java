@@ -1,4 +1,4 @@
-package com.dev.utils.text;
+package utils_use.text;
 
 import android.view.View;
 import android.widget.LinearLayout;

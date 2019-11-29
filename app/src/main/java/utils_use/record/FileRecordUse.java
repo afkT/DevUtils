@@ -1,6 +1,6 @@
-package com.dev.utils.record;
+package utils_use.record;
 
-import com.dev.utils.Config;
+import utils_use.Config;
 
 import java.io.File;
 

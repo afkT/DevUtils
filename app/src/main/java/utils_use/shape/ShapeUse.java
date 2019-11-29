@@ -1,4 +1,4 @@
-package com.dev.utils.shape;
+package utils_use.shape;
 
 import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;

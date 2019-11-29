@@ -12,6 +12,8 @@ dependencies {
     implementation project(path: ':DevApp')
     implementation project(path: ':DevAssist')
     implementation project(path: ':DevOther')
+    implementation project(path: ':DevBase')
+    implementation project(path: ':DevWidget')
 
     // =======
     // = lib =

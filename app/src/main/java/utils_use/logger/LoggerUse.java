@@ -1,8 +1,8 @@
-package com.dev.utils.logger;
+package utils_use.logger;
 
 import android.util.Log;
 
-import com.dev.utils.Config;
+import utils_use.Config;
 
 import java.io.File;
 

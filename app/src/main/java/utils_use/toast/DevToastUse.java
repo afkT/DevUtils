@@ -1,4 +1,4 @@
-package com.dev.utils.toast;
+package utils_use.toast;
 
 import android.app.Application;
 import android.graphics.Color;
