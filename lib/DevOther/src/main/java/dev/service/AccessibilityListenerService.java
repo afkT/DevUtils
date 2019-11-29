@@ -25,7 +25,7 @@ import dev.utils.app.ServiceUtils;
  *     AccessibilityServiceInfo serviceInfo = new AccessibilityServiceInfo();
  *     serviceInfo.eventTypes = AccessibilityEvent.TYPES_ALL_MASK;
  *     serviceInfo.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
- *     serviceInfo.packageNames = new String[]{ "com.dev"" };
+ *     serviceInfo.packageNames = new String[]{ "afkt.project"" };
  *     serviceInfo.notificationTimeout=100;
  *     setServiceInfo(serviceInfo);
  * </pre>

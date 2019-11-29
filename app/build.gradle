@@ -4,7 +4,7 @@ apply {
 
 android {
     defaultConfig {
-        applicationId "com.dev"
+        applicationId "afkt.project"
     }
 }
 
