@@ -61,4 +61,4 @@ public class BaseApplication extends Application {
 
 # == 使用相关 ==
 
-## [TextViewUtils - 字体计算工具类使用](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/text/TextCalcUse.java)
+## [TextViewUtils - 字体计算工具类使用](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/text/TextCalcUse.java)

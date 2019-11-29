@@ -1,6 +1,6 @@
 # Shape 工具类文档
 
-#### 使用演示类 [ShapeUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/shape/ShapeUse.java) 介绍了配置参数及使用
+#### 使用演示类 [ShapeUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/shape/ShapeUse.java) 介绍了配置参数及使用
 
 > 1. https://blog.csdn.net/tanghongchang123/article/details/80283686
 > 2. https://www.cnblogs.com/popfisher/p/5606690.html

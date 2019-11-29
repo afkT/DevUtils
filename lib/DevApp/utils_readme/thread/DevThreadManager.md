@@ -1,6 +1,6 @@
 # 线程工具类
 
-#### 使用演示类 [ThreadUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/thread/ThreadUse.java) 介绍了配置参数及使用
+#### 使用演示类 [ThreadUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/thread/ThreadUse.java) 介绍了配置参数及使用
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread)
 

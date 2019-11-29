@@ -1,6 +1,6 @@
 # 定时器工具类
 
-#### 使用演示类 [TimerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/timer/TimerUse.java) 介绍了配置参数及使用
+#### 使用演示类 [TimerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/timer/TimerUse.java) 介绍了配置参数及使用
 
 ```java
 /**

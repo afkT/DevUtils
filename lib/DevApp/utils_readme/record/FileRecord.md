@@ -1,6 +1,6 @@
 # 日志、异常文件记录保存工具类文档
 
-#### 使用演示类 [FileRecordUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/record/FileRecordUse.java) 介绍了配置参数及使用
+#### 使用演示类 [FileRecordUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/record/FileRecordUse.java) 介绍了配置参数及使用
 
 > 实际上是两个工具类的差异 ( FileRecordUtils、AnalysisRecordUtils )
 

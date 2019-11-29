@@ -1,6 +1,6 @@
 # SharedPreferences 工具类
 
-#### 使用演示类 [ShareUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/share/ShareUse.java) 介绍了配置参数及使用
+#### 使用演示类 [ShareUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/share/ShareUse.java) 介绍了配置参数及使用
 
 > 1. apply没有返回值而 commit返回boolean表明修改是否提交成功
 > 2. apply是将修改数据原子提交到内存, 而后异步真正提交到硬件磁盘, 而commit是同步的提交到硬件磁盘

@@ -1,6 +1,6 @@
 # Cache 工具类
 
-#### 使用演示类 [CacheUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/cache/CacheUse.java) 介绍了配置参数及使用
+#### 使用演示类 [CacheUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/cache/CacheUse.java) 介绍了配置参数及使用
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache)
 
