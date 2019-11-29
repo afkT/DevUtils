@@ -19,19 +19,88 @@ dependencies {
     // = lib =
     // =======
 
-    // Multidex
-    implementation deps.android.multidex
-    // Gson
-    implementation deps.lib.gson
-    // Imageloader
-    implementation deps.lib.imageloader
-    // Glide
-    implementation deps.lib.glide
-    annotationProcessor deps.lib.glide_compiler
-    // EventBus
-    implementation deps.lib.eventbus
-    // OkHttp3
-    implementation deps.lib.okhttp3
-    // PictureSelector
-    implementation deps.lib.pictureSelector
+//    // Gson
+//    implementation deps.lib.gson
+//    // Imageloader
+//    implementation deps.lib.imageloader
+//    // Glide
+//    implementation deps.lib.glide
+//    annotationProcessor deps.lib.glide_compiler
+//    // EventBus
+//    implementation deps.lib.eventbus
+//    // OkHttp3
+//    implementation deps.lib.okhttp3
+//    // PictureSelector
+//    implementation deps.lib.pictureSelector
+
+    // ============
+    // = 第三方库 =
+    // ============
+
+    // ==============
+    // = 快捷开发库 =
+    // ==============
+
+    // View 注入框架 https://github.com/JakeWharton/butterknife
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    implementation 'com.jakewharton:butterknife-compiler:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    // 网络请求框架 https://github.com/square/okhttp
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    // okhttp 日志拦截器
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    // https://github.com/jeasonlzy/okhttp-OkGo
+    implementation 'com.lzy.net:okgo:3.0.4' // 必须使用
+    // 以下三个选择添加 okrx 和 okrx2 不能同时使用
+//    implementation 'com.lzy.net:okrx:1.0.2'
+//    implementation 'com.lzy.net:okrx2:2.0.2'
+    implementation 'com.lzy.net:okserver:2.0.5' // https://github.com/jeasonlzy/okhttp-OkGo/wiki
+    // Gson https://github.com/google/gson
+    implementation 'com.google.code.gson:gson:2.8.2'
+    // fastjson https://github.com/alibaba/fastjson
+    implementation 'com.alibaba:fastjson:1.2.47'
+    // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    // Glide 加载框架 https://github.com/bumptech/glide
+    implementation('com.github.bumptech.glide:glide:4.8.0') {
+        exclude group: "com.android.support"
+    }
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    // ===============================
+    // = 其他第三方库 - 小功能、简约 =
+    // ===============================
+
+    // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
+    implementation 'com.google.android:flexbox:0.2.5' // https://juejin.im/post/58d1035161ff4b00603ca9c4
+    // 评价等级控件 https://github.com/hedge-hog/RatingBar
+    implementation 'com.hedgehog.ratingbar:app:1.1.2'
+    // 加载动画效果 https://github.com/Kyson/WhorlView
+    implementation 'com.tt:whorlviewlibrary:1.0.3'
+    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
+    implementation 'com.contrarywind:Android-PickerView:3.2.3' // https://blog.csdn.net/qq_22393017/article/details/58099486
+    // 图片缩放 https://github.com/chrisbanes/PhotoView
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    // GPU Filters https://github.com/cats-oss/android-gpuimage
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    // 动画库 https://github.com/airbnb/lottie-android
+    implementation 'com.airbnb.android:lottie:2.5.0'
+    // 图片选择器 https://github.com/LuckSiege/PictureSelector
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5'
+    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+    // 二维码 ZXing https://github.com/zxing/zxing
+    implementation 'com.google.zxing:core:3.3.3' // http://mvnrepository.com/artifact/com.google.zxing/core
+    implementation 'com.google.zxing:android-core:3.3.0' // http://mvnrepository.com/artifact/com.google.zxing/android-core
+    // Glide 图形库 https://github.com/wasabeef/glide-transformations
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    // 内存检测工具 https://github.com/square/leakcanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 }

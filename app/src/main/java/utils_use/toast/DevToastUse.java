@@ -7,8 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.dev.R;
-
+import afkt.project.R;
 import dev.utils.app.toast.toaster.DevToast;
 import dev.utils.app.toast.toaster.IToast;
 

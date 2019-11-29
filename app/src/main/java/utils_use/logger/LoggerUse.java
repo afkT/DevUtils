@@ -2,10 +2,9 @@ package utils_use.logger;
 
 import android.util.Log;
 
-import utils_use.Config;
-
 import java.io.File;
 
+import afkt.project.base.config.PathConfig;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
@@ -23,7 +22,7 @@ public final class LoggerUse {
     // 日志 TAG
     private static final String LOG_TAG = LoggerUse.class.getSimpleName();
     // 日志文件夹路径
-    private static final String LOG_SD_PATH = Config.SDP_PATH + File.separator + "Logger" + File.separator;
+    private static final String LOG_SD_PATH = PathConfig.SDP_PATH + File.separator + "Logger" + File.separator;
 
     // ========
     // = 配置 =

@@ -414,8 +414,8 @@ abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMetho
      * <pre>
      *     需在此方法中调用 initMethodOrder
      * </pre>
-     * @param view {@link View}
-     * @param container {@link ViewGroup}
+     * @param view               {@link View}
+     * @param container          {@link ViewGroup}
      * @param savedInstanceState {@link Bundle}
      */
     protected abstract void onInit(View view, ViewGroup container, Bundle savedInstanceState);

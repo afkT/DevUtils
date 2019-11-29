@@ -1,11 +1,82 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Button 默认样式 -->
+    <style name="AppTheme.Base_Button" parent="Widget.AppCompat.Button">
+        <!-- 设置铺满 -->
+        <item name="android:layout_width">match_parent</item>
+        <!-- 设置高度 -->
+        <item name="android:layout_height">50dp</item>
+        <!-- 设置向上边距 -->
+        <item name="android:layout_marginTop">10dp</item>
+        <!-- 设置字体颜色 -->
+        <item name="android:textColor">@color/black</item>
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="android:textAllCaps">false</item>
+        <!-- 字体居中 -->
+        <item name="android:gravity">center</item>
+        <!-- 不绘制边距 -->
+        <item name="android:includeFontPadding">false</item>
+        <!-- 表示可以点击 -->
+        <item name="android:clickable">true</item>
+    </style>
+
+    <!-- TextView 边距样式 -->
+    <style name="AppTheme.margin_TextView">
+        <!-- 设置铺满 -->
+        <item name="android:layout_width">match_parent</item>
+        <!-- 设置高度 -->
+        <item name="android:layout_height">wrap_content</item>
+        <!-- 设置向上边距 -->
+        <item name="android:layout_marginTop">20dp</item>
+        <!-- 设置向下边距 -->
+        <item name="android:layout_marginBottom">10dp</item>
+        <!-- 设置字体颜色 -->
+        <item name="android:textColor">@color/black</item>
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- 左右 Margin 样式 -->
+    <style name="AppTheme.margin_lr">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
+    <!-- 左右 padding 样式 -->
+    <style name="AppTheme.padding_lr">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- 白色 背景 无标题、ActionBar 样式 -->
+    <style name="DevNoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
     </style>
 
 </resources>

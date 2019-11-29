@@ -12,8 +12,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.dev.R;
-
+import afkt.project.R;
 import dev.utils.app.SnackbarUtils;
 
 /**

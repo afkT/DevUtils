@@ -7,7 +7,7 @@ android {
     compileSdkVersion versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion versions.minSdkVersion
+        minSdkVersion versions.app_minSdkVersion
         versionCode versions.versionCode
         versionName versions.versionName
 
@@ -63,4 +63,7 @@ dependencies {
     implementation deps.android.support_v4
     implementation deps.android.design
     implementation deps.android.cardview
+    implementation deps.android.recyclerview
+    implementation deps.android.multidex
+    implementation deps.android.constraint_layout
 }

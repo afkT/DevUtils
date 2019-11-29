@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.dev">
+    package="afkt.project">
 
     <!-- Android 平台下的图片选择器强制兼容 minSdkVersion 14 -->
     <uses-sdk tools:overrideLibrary="com.luck.picture.lib,com.yalantis.ucrop" />
 
-    <!-- 网络权限 -->
+    <!-- 上网权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 读写文件权限 -->
+    <!-- 读写权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 改变 Wifi 状态 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 获取 Wifi 状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 改变网络状态 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- 写入系统设置权限 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- 摄像头权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 麦克风设置权限 -->
@@ -19,11 +33,11 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
-        android:name=".BaseApplication"
+        android:name="afkt.project.base.app.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -38,6 +52,14 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- Wifi 相关(热点) -->
+
+        <activity
+            android:name=".ui.activity.WifiActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
