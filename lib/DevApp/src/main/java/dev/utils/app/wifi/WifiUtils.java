@@ -107,7 +107,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 自动切换 wifi 开关状态
+     * 自动切换 Wifi 开关状态
      * <pre>
      *     如果打开了, 则关闭
      *     如果关闭了, 则打开
@@ -125,8 +125,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取当前 wifi 连接状态
-     * @return wifi 连接状态
+     * 获取当前 Wifi 连接状态
+     * @return Wifi 连接状态
      */
     @SuppressLint("MissingPermission")
     public int getWifiState() {
@@ -162,8 +162,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取已配置 ( 连接过 ) 的 wifi 配置
-     * @return {@link List<WifiConfiguration>} 已配置 ( 连接过 ) 的 wifi 配置
+     * 获取已配置 ( 连接过 ) 的 Wifi 配置
+     * @return {@link List<WifiConfiguration>} 已配置 ( 连接过 ) 的 Wifi 配置
      */
     @SuppressLint("MissingPermission")
     public List<WifiConfiguration> getConfiguration() {
@@ -176,8 +176,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取附近的 wifi 列表
-     * @return {@link List<ScanResult>} 附近的 wifi 列表
+     * 获取附近的 Wifi 列表
+     * @return {@link List<ScanResult>} 附近的 Wifi 列表
      */
     @SuppressLint("MissingPermission")
     public List<ScanResult> getWifiList() {
@@ -244,9 +244,9 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取 wifi SSID
+     * 获取 Wifi SSID
      * @param wifiInfo {@link WifiInfo}
-     * @return wifi SSID
+     * @return Wifi SSID
      */
     public static String getSSID(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return null;
@@ -260,15 +260,15 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取当前连接的 wifi SSID
-     * @return wifi SSID
+     * 获取当前连接的 Wifi SSID
+     * @return Wifi SSID
      */
     @SuppressLint("MissingPermission")
     public static String getSSID() {
         try {
             // 获取当前连接的 wifi
             WifiInfo wifiInfo = AppUtils.getWifiManager().getConnectionInfo();
-            // 获取 wifi SSID
+            // 获取 Wifi SSID
             return formatSSID(wifiInfo.getSSID(), false);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSSID");
@@ -411,7 +411,7 @@ public final class WifiUtils {
 
     /**
      * 判断是否连接为 null - unknown ssid
-     * @param ssid wifi ssid
+     * @param ssid Wifi ssid
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isConnNull(final String ssid) {
@@ -420,8 +420,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 获取连接的 wifi 热点 SSID
-     * @return wifi 热点 SSID
+     * 获取连接的 Wifi 热点 SSID
+     * @return Wifi 热点 SSID
      */
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static String isConnectAphot() {
@@ -468,9 +468,9 @@ public final class WifiUtils {
     public static final int SECURITY_EAP = 3;
 
     /**
-     * 获取 wifi 加密类型
-     * @param wifiConfig wifi 配置信息
-     * @return wifi 加密类型
+     * 获取 Wifi 加密类型
+     * @param wifiConfig Wifi 配置信息
+     * @return Wifi 加密类型
      */
     public static int getSecurity(final WifiConfiguration wifiConfig) {
         if (wifiConfig == null) return SECURITY_NONE;
@@ -485,8 +485,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 判断 wifi 加密类型, 是否为加密类型
-     * @param wifiConfig wifi 配置信息
+     * 判断 Wifi 加密类型, 是否为加密类型
+     * @param wifiConfig Wifi 配置信息
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isExistsPwd(final WifiConfiguration wifiConfig) {
@@ -498,12 +498,12 @@ public final class WifiUtils {
 
     /**
      * 获取指定的 ssid 网络配置 ( 需连接保存过, 才存在 )
-     * @param ssid wifi ssid
+     * @param ssid Wifi ssid
      * @return {@link WifiConfiguration}
      */
     public WifiConfiguration isExists(final String ssid) {
         if (ssid == null) return null;
-        // 获取 wifi 连接过的配置信息
+        // 获取 Wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
         // 防止为 null
         if (listWifiConfigs == null) return null;
@@ -525,7 +525,7 @@ public final class WifiUtils {
      * @return {@link WifiConfiguration}
      */
     public WifiConfiguration isExists(final int networkId) {
-        // 获取 wifi 连接过的配置信息
+        // 获取 Wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
         // 防止为 null
         if (listWifiConfigs == null) return null;
@@ -547,7 +547,7 @@ public final class WifiUtils {
 
     /**
      * 删除指定的 wifi(SSID) 配置信息
-     * @param ssid wifi ssid
+     * @param ssid Wifi ssid
      * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
@@ -556,7 +556,7 @@ public final class WifiUtils {
         try {
             // 初始化 WifiManager 对象
             WifiManager wifiManager = AppUtils.getWifiManager();
-            // 获取 wifi 连接过的配置信息
+            // 获取 Wifi 连接过的配置信息
             List<WifiConfiguration> listWifiConfigs = wifiManager.getConfiguredNetworks();
             // 防止为 null
             if (listWifiConfigs != null) {
@@ -582,10 +582,10 @@ public final class WifiUtils {
     // =
 
     /**
-     * 快速连接 wifi ( 不使用静态 IP 方式 )
-     * @param ssid wifi ssid
-     * @param pwd  wifi 密码
-     * @param type wifi 加密类型
+     * 快速连接 Wifi ( 不使用静态 IP 方式 )
+     * @param ssid Wifi ssid
+     * @param pwd  Wifi 密码
+     * @param type Wifi 加密类型
      * @return {@link WifiConfiguration}
      */
     public WifiConfiguration quickConnWifi(final String ssid, final String pwd, final int type) {
@@ -594,9 +594,9 @@ public final class WifiUtils {
 
     /**
      * 快速连接 wifi
-     * @param ssid     wifi ssid
-     * @param pwd      wifi 密码
-     * @param type     wifi 加密类型
+     * @param ssid     Wifi ssid
+     * @param pwd      Wifi 密码
+     * @param type     Wifi 加密类型
      * @param isStatic 是否使用静态 IP 连接
      * @param ip       静态 IP 地址
      * @return {@link WifiConfiguration}
@@ -604,22 +604,22 @@ public final class WifiUtils {
     @SuppressLint("MissingPermission")
     public WifiConfiguration quickConnWifi(final String ssid, final String pwd, final int type, final boolean isStatic, final String ip) {
         // 步骤:
-        // 1. 创建 wifi 静态 IP 连接配置
-        // 2. 创建正常 wifi 连接配置
-        // 3. 查询准备连接的 wifi SSID 是否存在配置文件, 准备进行删除
-        // 4. 查询当前连接的 wifi SSID 准备进行断开
+        // 1. 创建 Wifi 静态 IP 连接配置
+        // 2. 创建正常 Wifi 连接配置
+        // 3. 查询准备连接的 Wifi SSID 是否存在配置文件, 准备进行删除
+        // 4. 查询当前连接的 Wifi SSID 准备进行断开
         // 5. 同步进行断开, 删除操作, 并且进行保存
         // 6. 调用连接方法
         // 7. 返回连接的配置信息
         // =
         try {
-            // 正常的 wifi 连接配置
+            // 正常的 Wifi 连接配置
             WifiConfiguration connWifiConfig = null;
             // 如果需要通过静态 IP 方式连接, 则进行设置
             if (isStatic && !TextUtils.isEmpty(ip)) {
-                // 创建 wifi 静态 IP 连接配置
+                // 创建 Wifi 静态 IP 连接配置
                 WifiConfiguration staticWifiConfig = setStaticWifiConfig(createWifiConfig(ssid, pwd, type, true), ip);
-                // 如果静态 IP 方式, 配置失败, 则初始化正常连接的 wifi 配置
+                // 如果静态 IP 方式, 配置失败, 则初始化正常连接的 Wifi 配置
                 if (staticWifiConfig == null) {
                     // 创建正常的配置信息
                     connWifiConfig = createWifiConfig(ssid, pwd, type, true);
@@ -653,7 +653,7 @@ public final class WifiUtils {
             int nId = mWifiManager.addNetwork(connWifiConfig);
             if (nId != -1) {
                 try {
-                    // 获取当前连接的 wifi 对象
+                    // 获取当前连接的 Wifi 对象
                     WifiInfo wifiInfo = getWifiInfo();
                     // 获取连接的 id
                     int networdId = wifiInfo.getNetworkId();
@@ -681,7 +681,7 @@ public final class WifiUtils {
                 nId = mWifiManager.addNetwork(connWifiConfig);
                 if (nId != -1) {
                     try {
-                        // 获取当前连接的 wifi 对象
+                        // 获取当前连接的 Wifi 对象
                         WifiInfo wifiInfo = getWifiInfo();
                         // 获取连接的 id
                         int networdId = wifiInfo.getNetworkId();
@@ -717,10 +717,10 @@ public final class WifiUtils {
     }
 
     /**
-     * 创建 wifi 配置信息
-     * @param ssid      wifi ssid
-     * @param pwd       wifi 密码
-     * @param type      wifi 加密类型
+     * 创建 Wifi 配置信息
+     * @param ssid      Wifi ssid
+     * @param pwd       Wifi 密码
+     * @param type      Wifi 加密类型
      * @param isHandler 是否处理双引号
      * @return {@link WifiConfiguration}
      */
@@ -794,8 +794,8 @@ public final class WifiUtils {
     // ============
 
     /**
-     * 移除 wifi 配置信息
-     * @param wifiConfig wifi 配置信息
+     * 移除 Wifi 配置信息
+     * @param wifiConfig Wifi 配置信息
      * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
@@ -836,8 +836,8 @@ public final class WifiUtils {
     // ===========================
 
     /**
-     * 设置静态 wifi 配置信息
-     * @param wifiConfig wifi 配置信息
+     * 设置静态 Wifi 配置信息
+     * @param wifiConfig Wifi 配置信息
      * @param ip         静态 IP
      * @return {@link WifiConfiguration}
      */
@@ -860,8 +860,8 @@ public final class WifiUtils {
     }
 
     /**
-     * 设置静态 wifi 配置信息
-     * @param wifiConfig          wifi 配置信息
+     * 设置静态 Wifi 配置信息
+     * @param wifiConfig          Wifi 配置信息
      * @param ip                  静态 IP
      * @param gateway             网关
      * @param dns                 DNS
@@ -920,7 +920,7 @@ public final class WifiUtils {
     /**
      * 设置 DNS
      * @param dns        DNS
-     * @param wifiConfig wifi 配置信息
+     * @param wifiConfig Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
     private void setDNS(final InetAddress dns, final WifiConfiguration wifiConfig) throws Exception {
@@ -936,7 +936,7 @@ public final class WifiUtils {
     /**
      * 设置网关
      * @param gateway    网关
-     * @param wifiConfig wifi 配置信息
+     * @param wifiConfig Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
     private void setGateway(final InetAddress gateway, final WifiConfiguration wifiConfig) throws Exception {
@@ -956,7 +956,7 @@ public final class WifiUtils {
      * 设置 IP 地址
      * @param address      IP 地址
      * @param prefixLength 网络前缀长度
-     * @param wifiConfig   wifi 配置信息
+     * @param wifiConfig   Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
     private void setIpAddress(final InetAddress address, final int prefixLength, final WifiConfiguration wifiConfig) throws Exception {
@@ -978,7 +978,7 @@ public final class WifiUtils {
      * @param gateway      网关
      * @param dns          DNS
      * @param prefixLength 网络前缀长度
-     * @param object       wifi 配置信息
+     * @param object       Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
     private void setStaticIpConfig(final String ip, final String gateway, final String dns, final int prefixLength, final Object object) throws Exception {

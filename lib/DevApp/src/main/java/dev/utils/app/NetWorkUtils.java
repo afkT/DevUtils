@@ -314,7 +314,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 判断 wifi 是否打开
+     * 判断 Wifi 是否打开
      * @return {@code true} yes, {@code false} no
      */
     public static boolean getWifiEnabled() {
@@ -329,7 +329,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 判断 wifi 数据是否可用
+     * 判断 Wifi 数据是否可用
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(allOf = {android.Manifest.permission.ACCESS_NETWORK_STATE, android.Manifest.permission.INTERNET})
