@@ -13,6 +13,7 @@ import afkt.project.ui.activity.WifiActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
+import dev.utils.app.toast.ToastTintUtils;
 
 /**
  * detail: Module 列表 Activity
@@ -40,8 +41,16 @@ public class ModuleActivity extends BaseToolbarActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
+
+                    // ============
+                    // = 其他功能 =
+                    // ============
+
                     case ButtonValue.BTN_WIFI: // Wifi 相关 ( 热点 )
                         SkipUtils.startActivity(WifiActivity.class, buttonValue);
+                        break;
+                    default:
+                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
                         break;
                 }
             }
