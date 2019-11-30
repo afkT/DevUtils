@@ -12,7 +12,7 @@ import java.util.List;
 
 import afkt.project.base.app.BaseActivity;
 import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.activity.WifiActivity;
+import afkt.project.ui.ModuleActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
@@ -105,8 +105,11 @@ public class MainActivity extends BaseActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
-                    case ButtonValue.BTN_WIFI: // Wifi 相关 ( 热点 )
-                        SkipUtils.startActivity(WifiActivity.class, buttonValue);
+                    case ButtonValue.MODULE_FRAMEWORK:
+                    case ButtonValue.MODULE_LIB:
+                    case ButtonValue.MODULE_UI:
+                    case ButtonValue.MODULE_OTHER:
+                        SkipUtils.startActivity(ModuleActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");

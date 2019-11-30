@@ -17,7 +17,7 @@ import dev.utils.app.ViewUtils;
 public abstract class BaseToolbarActivity extends BaseActivity {
 
     // ToolBar
-    Toolbar vid_bt_toolbar;
+    protected Toolbar vid_bt_toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,5 +65,13 @@ public abstract class BaseToolbarActivity extends BaseActivity {
      */
     protected void setTitle(String title) {
         vid_bt_toolbar.setTitle(title);
+    }
+
+    /**
+     * 获取 Module 类型
+     * @return Module 类型
+     */
+    protected int getModuleType() {
+        return getIntent().getIntExtra(KeyConstants.Common.KEY_TYPE, 0);
     }
 }

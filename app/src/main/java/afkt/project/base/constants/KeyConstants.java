@@ -37,7 +37,7 @@ public final class KeyConstants {
         private Common() {
         }
 
-        // KEY 数据
+        // 数据
         public static final String KEY_DATA = "data";
         // 标题
         public static final String KEY_TITLE = "title";
@@ -45,6 +45,8 @@ public final class KeyConstants {
         public static final String KEY_OBJECT = "object";
         // 参数
         public static final String KEY_PARAMS = "params";
+        // 类型
+        public static final String KEY_TYPE = "type";
     }
 
     /**

@@ -53,6 +53,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
+        <!-- Module -->
+
+        <activity
+            android:name=".ui.ModuleActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- Wifi 相关(热点) -->
 
         <activity

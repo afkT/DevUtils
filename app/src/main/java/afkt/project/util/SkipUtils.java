@@ -21,6 +21,7 @@ public class SkipUtils {
      */
     public static boolean startActivity(Class clazz, ButtonValue buttonValue) {
         Intent intent = new Intent(DevUtils.getContext(), clazz);
+        intent.putExtra(KeyConstants.Common.KEY_TYPE, buttonValue.type);
         intent.putExtra(KeyConstants.Common.KEY_TITLE, buttonValue.text);
         return AppUtils.startActivity(intent);
     }
