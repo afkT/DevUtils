@@ -44,6 +44,7 @@ public class NotificationServiceActivity extends BaseToolbarActivity {
     protected void onDestroy() {
         super.onDestroy();
         // 注销监听
+        NotificationService.setNotificationListener(null);
         NotificationService.stopService();
     }
 
