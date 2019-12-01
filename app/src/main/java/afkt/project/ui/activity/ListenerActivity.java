@@ -1,7 +1,11 @@
 package afkt.project.ui.activity;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.SmsMessage;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -12,10 +16,17 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
+import dev.receiver.NetWorkReceiver;
+import dev.receiver.PhoneReceiver;
+import dev.receiver.ScreenReceiver;
+import dev.receiver.SmsReceiver;
+import dev.receiver.TimeReceiver;
+import dev.receiver.WifiReceiver;
 import dev.utils.app.ResourceUtils;
-import dev.utils.app.TextViewUtils;
 import dev.utils.app.ViewUtils;
+import dev.utils.app.assist.ScreenSensorAssist;
 import dev.utils.app.helper.ViewHelper;
+import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
@@ -40,7 +51,7 @@ public class ListenerActivity extends BaseToolbarActivity {
         super.initValues();
 
         View view = ViewUtils.inflate(R.layout.base_view_textview);
-        ViewHelper.get().setText(view, "单击绑定, 双击注销")
+        ViewHelper.get().setText(view, "单击绑定, 长按注销")
                 .setTextColor(view, ResourceUtils.getColor(R.color.grey));
         vid_act_linear.addView(view);
 
@@ -53,12 +64,506 @@ public class ListenerActivity extends BaseToolbarActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
-
+                    case ButtonValue.BTN_WIFI_LISTENER: // Wifi 监听
+                        wifiListener(true);
+                        break;
+                    case ButtonValue.BTN_NETWORK_LISTENER: // 网络监听
+                        netListener(true);
+                        break;
+                    case ButtonValue.BTN_PHONE_LISTENER: // 电话监听
+                        phoneListener(true);
+                        break;
+                    case ButtonValue.BTN_SMS_LISTENER: // 短信监听
+                        smsListener(true);
+                        break;
+                    case ButtonValue.BTN_TIME_LISTENER: // 时区、时间监听
+                        timeListener(true);
+                        break;
+                    case ButtonValue.BTN_SCREEN_LISTENER: // 屏幕监听
+                        screenListener(true);
+                        break;
+                    case ButtonValue.BTN_ROTA_LISTENER: // 屏幕旋转监听 ( 重力传感器 )
+                        rotaListener(true);
+                        break;
+                    case ButtonValue.BTN_ROTA2_LISTENER: // 屏幕旋转监听 ( OrientationEventListener )
+                        rotaListener2(true);
+                        break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
                         break;
                 }
             }
         });
+        buttonAdapter.setOnItemChildLongClickListener(new BaseQuickAdapter.OnItemChildLongClickListener() {
+            @Override
+            public boolean onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
+                ButtonValue buttonValue = buttonAdapter.getItem(position);
+                switch (buttonValue.type) {
+                    case ButtonValue.BTN_WIFI_LISTENER: // Wifi 监听
+                        wifiListener(false);
+                        break;
+                    case ButtonValue.BTN_NETWORK_LISTENER: // 网络监听
+                        netListener(false);
+                        break;
+                    case ButtonValue.BTN_PHONE_LISTENER: // 电话监听
+                        phoneListener(false);
+                        break;
+                    case ButtonValue.BTN_SMS_LISTENER: // 短信监听
+                        smsListener(false);
+                        break;
+                    case ButtonValue.BTN_TIME_LISTENER: // 时区、时间监听
+                        timeListener(false);
+                        break;
+                    case ButtonValue.BTN_SCREEN_LISTENER: // 屏幕监听
+                        screenListener(false);
+                        break;
+                    case ButtonValue.BTN_ROTA_LISTENER: // 屏幕旋转监听 ( 重力传感器 )
+                        rotaListener(false);
+                        break;
+                    case ButtonValue.BTN_ROTA2_LISTENER: // 屏幕旋转监听 ( OrientationEventListener )
+                        rotaListener2(false);
+                        break;
+                    default:
+                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        break;
+                }
+                return false;
+            }
+        });
+    }
+
+    // ============
+    // = Listener =
+    // ============
+
+    /**
+     * Wifi 监听
+     * @param isBind 是否绑定
+     */
+    private void wifiListener(boolean isBind) {
+        if (!isBind) { // 取反判断, 方便代码顺序查看
+            ToastTintUtils.success("取消 Wifi 监听成功");
+            // 清空回调
+            WifiReceiver.setWifiListener(null);
+            // 注销监听
+            WifiReceiver.unregisterReceiver();
+        } else {
+            ToastTintUtils.success("绑定 Wifi 监听成功, 请查看 Logcat");
+            // 设置监听事件
+            WifiReceiver.setWifiListener(new WifiReceiver.WifiListener() {
+                @Override
+                public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
+                    DevLogger.dTag(mTag, "Wifi 是否打开: " + isOpenWifi);
+                }
+
+                @Override
+                public void onIntoTrigger() {
+                    super.onIntoTrigger();
+                    DevLogger.dTag(mTag, "触发回调通知 ( 每次进入都通知 )");
+                }
+
+                @Override
+                public void onTrigger(int what) {
+                    switch (what) {
+                        case WifiReceiver.WIFI_SCAN_FINISH: // startScan() 扫描附近 Wifi 结束触发
+                            DevLogger.dTag(mTag, "startScan() 扫描附近 Wifi 结束触发");
+                            break;
+                        case WifiReceiver.WIFI_RSSI_CHANGED: // 已连接的 Wifi 强度发生变化
+                            DevLogger.dTag(mTag, "已连接的 Wifi 强度发生变化");
+                            break;
+                        case WifiReceiver.WIFI_ERROR_AUTHENTICATING: // Wifi 认证错误 ( 密码错误等 )
+                            DevLogger.dTag(mTag, "Wifi 认证错误 ( 密码错误等 )");
+                            break;
+                        case WifiReceiver.WIFI_ERROR_UNKNOWN: // 连接错误 ( 其他错误 )
+                            DevLogger.dTag(mTag, "连接错误 ( 其他错误 )");
+                            break;
+                        case WifiReceiver.WIFI_STATE_ENABLED: // Wifi 已打开
+                            DevLogger.dTag(mTag, "Wifi 已打开");
+                            break;
+                        case WifiReceiver.WIFI_STATE_ENABLING: // Wifi 正在打开
+                            DevLogger.dTag(mTag, "Wifi 正在打开");
+                            break;
+                        case WifiReceiver.WIFI_STATE_DISABLED: // Wifi  已关闭
+                            DevLogger.dTag(mTag, "Wifi 已关闭");
+                            break;
+                        case WifiReceiver.WIFI_STATE_DISABLING: // Wifi  正在关闭
+                            DevLogger.dTag(mTag, "Wifi 正在关闭");
+                            break;
+                        case WifiReceiver.WIFI_STATE_UNKNOWN: // Wifi  状态未知
+                            DevLogger.dTag(mTag, "Wifi 状态未知");
+                            break;
+                        case WifiReceiver.CONNECTED: // Wifi  连接成功
+                            DevLogger.dTag(mTag, "Wifi 连接成功");
+                            break;
+                        case WifiReceiver.CONNECTING: // Wifi  连接中
+                            DevLogger.dTag(mTag, "Wifi 连接中");
+                            break;
+                        case WifiReceiver.DISCONNECTED: // Wifi  连接失败、断开
+                            DevLogger.dTag(mTag, "Wifi 连接失败、断开");
+                            break;
+                        case WifiReceiver.SUSPENDED: // Wifi  暂停、延迟
+                            DevLogger.dTag(mTag, "Wifi 暂停、延迟");
+                            break;
+                        case WifiReceiver.UNKNOWN: // Wifi  未知
+                            DevLogger.dTag(mTag, "Wifi 未知");
+                            break;
+                    }
+                }
+
+                @Override
+                public void onTrigger(int what, Message message) { // Wifi 在连接过程的状态返回
+                    String ssid = (String) message.obj;
+                    // 判断连接状态
+                    switch (what) {
+                        case WifiReceiver.CONNECTED: // Wifi 连接成功
+                            DevLogger.dTag(mTag, "连接 Wifi 成功: " + message.obj);
+                            break;
+                        case WifiReceiver.CONNECTING: // Wifi 连接中
+                            DevLogger.dTag(mTag, "连接 Wifi 中: " + message.obj);
+                            break;
+                        case WifiReceiver.DISCONNECTED: // Wifi 连接失败、断开
+                            DevLogger.dTag(mTag, "连接 Wifi 断开");
+                            break;
+                        case WifiReceiver.SUSPENDED: // Wifi 暂停、延迟
+                            DevLogger.dTag(mTag, "连接 Wifi 暂停、延迟");
+                            break;
+                        case WifiReceiver.UNKNOWN: // Wifi 未知
+                            DevLogger.dTag(mTag, "连接 Wifi 状态未知");
+                            break;
+                    }
+                }
+            });
+            // 注册监听
+            WifiReceiver.registerReceiver();
+        }
+    }
+
+    /**
+     * 网络监听
+     * @param isBind 是否绑定
+     */
+    private void netListener(boolean isBind) {
+        if (!isBind) { // 取反判断, 方便代码顺序查看
+            ToastTintUtils.success("注销网络监听成功");
+            // 清空回调
+            NetWorkReceiver.setNetListener(null);
+            // 注销监听
+            NetWorkReceiver.unregisterReceiver();
+        } else {
+            ToastTintUtils.success("绑定网络监听成功, 请查看 Logcat");
+            // 设置监听事件
+            NetWorkReceiver.setNetListener(new NetWorkReceiver.NetwordStateListener() {
+                @Override
+                public void onNetworkState(int nType) {
+                    String state = "";
+                    switch (nType) {
+                        case NetWorkReceiver.NET_WIFI: // Wifi
+                            state = "Wifi";
+                            break;
+                        case NetWorkReceiver.NET_MOBILE: // 移动网络
+                            state = "移动网络";
+                            break;
+                        case NetWorkReceiver.NO_NETWORK: // ( 无网络 / 未知 ) 状态
+                            state = "( 无网络 / 未知 ) 状态";
+                            break;
+                    }
+                    DevLogger.dTag(mTag, "网络连接状态 -> " + state);
+                }
+            });
+            // 注册监听
+            NetWorkReceiver.registerReceiver();
+        }
+    }
+
+    /**
+     * 电话监听
+     * @param isBind 是否绑定
+     */
+    private void phoneListener(boolean isBind) {
+        if (!isBind) { // 取反判断, 方便代码顺序查看
+            ToastTintUtils.success("注销电话监听成功");
+            // 清空回调
+            PhoneReceiver.setPhoneListener(null);
+            // 注销监听
+            PhoneReceiver.unregisterReceiver();
+        } else {
+            ToastTintUtils.success("绑定电话监听成功, 请查看 Logcat");
+            // 设置监听事件
+            PhoneReceiver.setPhoneListener(new PhoneReceiver.PhoneListener() {
+                @Override
+                public void onPhoneStateChanged(PhoneReceiver.CallState callState, String number) {
+                    /**
+                     * 分别是:
+                     * 播出电话
+                     * 播出电话结束
+                     * 接入电话铃响
+                     * 接入通话中
+                     * 接入通话完毕
+                     */
+                    switch (callState) {
+                        case Outgoing:
+                            DevLogger.dTag(mTag, "播出电话: " + number);
+                            break;
+                        case OutgoingEnd:
+                            DevLogger.dTag(mTag, "播出电话结束: " + number);
+                            break;
+                        case IncomingRing:
+                            DevLogger.dTag(mTag, "接入电话铃响: " + number);
+                            break;
+                        case Incoming:
+                            DevLogger.dTag(mTag, "接入通话中: " + number);
+                            break;
+                        case IncomingEnd:
+                            DevLogger.dTag(mTag, "接入通话完毕: " + number);
+                            break;
+                    }
+                }
+            });
+            // 注册监听
+            PhoneReceiver.registerReceiver();
+        }
+    }
+
+    /**
+     * 短信监听
+     * @param isBind 是否绑定
+     */
+    private void smsListener(boolean isBind) {
+        if (!isBind) { // 取反判断, 方便代码顺序查看
+            ToastTintUtils.success("注销短信监听成功");
+            // 清空回调
+            SmsReceiver.setSmsListener(null);
+            // 注销监听
+            SmsReceiver.unregisterReceiver();
+        } else {
+            ToastTintUtils.success("绑定短信监听成功, 请查看 Logcat");
+            // 设置监听事件
+            SmsReceiver.setSmsListener(new SmsReceiver.SmsListener() {
+                @Override
+                public void onMessage(String msg, String fromAddress, String serviceCenterAddress) {
+                    DevLogger.dTag(mTag, "onMessage\nmsg: " + msg + "\nfromAddress: " + fromAddress + "\nserviceCenterAddress: " + serviceCenterAddress);
+                }
+
+                @Override
+                public void onMessage(SmsMessage msg) {
+                    super.onMessage(msg);
+                    DevLogger.dTag(mTag, "onMessage\nSmsMessage: " + msg.toString());
+                }
+            });
+            // 注册监听
+            SmsReceiver.registerReceiver();
+        }
+    }
+
+    /**
+     * 时区、时间监听
+     * @param isBind 是否绑定
+     */
+    private void timeListener(boolean isBind) {
+        if (!isBind) { // 取反判断, 方便代码顺序查看
+            ToastTintUtils.success("注销时区、时间监听成功");
+            // 清空回调
+            TimeReceiver.setTimeListener(null);
+            // 注销监听
+            TimeReceiver.unregisterReceiver();
+        } else {
+            ToastTintUtils.success("绑定时区、时间监听成功, 请查看 Logcat");
+            // 设置监听事件
+            TimeReceiver.setTimeListener(new TimeReceiver.TimeListener() {
+                @Override
+                public void onTimeZoneChanged() {
+                    DevLogger.dTag(mTag, "onTimeZoneChanged: 时区改变");
+                }
+
+                @Override
+                public void onTimeChanged() {
+                    DevLogger.dTag(mTag, "onTimeChanged: 时间改变");
+                }
+
+                @Override
+                public void onTimeTick() {
+                    DevLogger.dTag(mTag, "onTimeTick: 分钟改变");
+                }
+            });
+            // 注册监听
+            TimeReceiver.registerReceiver();
+        }
+    }
+
+    /**
+     * 屏幕监听
+     * @param isBind 是否绑定
+     */
+    private void screenListener(boolean isBind) {
+        if (!isBind) { // 取反判断, 方便代码顺序查看
+            ToastTintUtils.success("注销屏幕监听成功");
+            // 清空回调
+            ScreenReceiver.setScreenListener(null);
+            // 注销监听
+            ScreenReceiver.unregisterReceiver();
+        } else {
+            ToastTintUtils.success("绑定屏幕监听成功, 请查看 Logcat");
+            // 设置监听事件
+            ScreenReceiver.setScreenListener(new ScreenReceiver.ScreenListener() {
+                @Override
+                public void screenOn() {
+                    DevLogger.dTag(mTag, "screenOn: 用户打开屏幕 - 屏幕变亮");
+                }
+
+                @Override
+                public void screenOff() {
+                    DevLogger.dTag(mTag, "screenOff: 锁屏触发");
+                }
+
+                @Override
+                public void userPresent() {
+                    DevLogger.dTag(mTag, "userPresent: 用户解锁触发");
+                }
+            });
+            // 注册监听
+            ScreenReceiver.registerReceiver();
+        }
+    }
+
+    // =
+
+    // 重力传感器辅助类
+    private ScreenSensorAssist screenSensor;
+    // 切屏时间
+    private long cOrientationTime = 0l;
+
+    /**
+     * 旋转监听
+     * @param isBind
+     */
+    private void rotaListener(boolean isBind) {
+        if (screenSensor != null) {
+            screenSensor.stop();
+        }
+        // 进行提示
+        if (!isBind) { // 取反判断, 方便代码顺序查看
+            ToastTintUtils.success("注销重力传感器监听");
+        } else {
+            ToastTintUtils.success("绑定重力传感器监听");
+            // 初始化传感器
+            screenSensor = new ScreenSensorAssist();
+            // 开启重力传感器监听
+            screenSensor.start(new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    super.handleMessage(msg);
+
+                    switch (msg.what) {
+                        /** 触发屏幕方向改变回调 */
+                        case ScreenSensorAssist.CHANGE_ORIENTATION_WHAT:
+                            if (!screenSensor.isAllowChange()) { // 如果不允许切屏,则不显示
+                                return;
+                            } else if (isFinishing()) { // 如果页面关闭了
+                                return;
+                            }
+                            // 获取触发的方向
+                            int orientation = msg.arg1;
+                            // 判断方向
+                            if (orientation == 1) { // 横屏
+                                // 当前时间 - 切屏的时间,大于 1.5 秒间隔才进行跳转
+                                if (System.currentTimeMillis() - cOrientationTime >= 1500) {
+                                    DevLogger.dTag(mTag, "横屏");
+                                    // 重置时间,防止多次触发
+                                    cOrientationTime = System.currentTimeMillis();
+                                    // 跳转到横屏
+                                    //Intent intent = new Intent(mContext, Activity.class);
+                                    //mContext.startActivity(intent);
+
+                                    // -- 关闭传感器，或者onStop方法等关闭传感器
+                                }
+                            } else if (orientation == 2) { // 竖屏
+                                DevLogger.dTag(mTag, "竖屏");
+                            }
+                            break;
+                    }
+                }
+            });
+        }
+    }
+
+    // =
+
+    // 判断是否竖屏
+    private boolean isPortrait = true;
+    // 录制角度记录值
+    private int mRotationFlag = 90;
+    // 录制角度旋值
+    private int mRotationRecord = 90;
+    // 旋转监听事件
+    private OrientationEventListener mOrientationEventListener;
+
+    /**
+     * 旋转监听
+     * @param isBind
+     */
+    private void rotaListener2(boolean isBind) {
+        if (mOrientationEventListener == null) {
+            mOrientationEventListener = new OrientationEventListener(mContext) {
+                @Override
+                public void onOrientationChanged(int rotation) {
+                    if (((rotation >= 0) && (rotation <= 30)) || (rotation >= 330)) {
+                        DevLogger.dTag(mTag, "竖屏拍摄");
+                        isPortrait = true;
+                        // 竖屏拍摄
+                        if (mRotationFlag != 0) {
+                            // 这是竖屏视频需要的角度
+                            mRotationRecord = 90;
+                            // 这是记录当前角度的flag
+                            mRotationFlag = 0;
+                        }
+                    } else if (((rotation >= 230) && (rotation <= 310))) {
+                        DevLogger.dTag(mTag, "横屏拍摄");
+                        isPortrait = false;
+                        // 横屏拍摄
+                        if (mRotationFlag != 90) {
+                            // 这是正横屏视频需要的角度
+                            mRotationRecord = 0;
+                            // 这是记录当前角度的flag
+                            mRotationFlag = 90;
+                        }
+                    } else if (rotation > 30 && rotation < 135) {
+                        DevLogger.dTag(mTag, "反横屏拍摄");
+                        isPortrait = false;
+                        // 反横屏拍摄
+                        if (mRotationFlag != 270) {
+                            // 这是反横屏视频需要的角度
+                            mRotationRecord = 180;
+                            // 这是记录当前角度的flag
+                            mRotationFlag = 270;
+                        }
+                    } else if (rotation > 135 && rotation < 230) {
+                        DevLogger.dTag(mTag, "反竖屏拍摄");
+                        isPortrait = true;
+                        // 竖屏拍摄
+                        if (mRotationFlag != 360) {
+                            // 这是竖屏视频需要的角度
+                            mRotationRecord = 270;
+                            // 这是记录当前角度的flag
+                            mRotationFlag = 360;
+                        }
+                    }
+                }
+            };
+        }
+
+
+        try {
+            // 进行提示
+            if (!isBind) { // 取反判断, 方便代码顺序查看
+                ToastTintUtils.success("注销屏幕旋转监听");
+                // -
+                mOrientationEventListener.disable();
+            } else {
+                ToastTintUtils.success("绑定屏幕旋转监听");
+                // -
+                mOrientationEventListener.enable();
+            }
+        } catch (Exception e) {
+        }
     }
 }

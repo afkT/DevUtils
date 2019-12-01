@@ -177,7 +177,7 @@ public class WifiActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_WIFI_LISTENER_REGISTER:
                         WifiReceiver.registerReceiver();
-                        showLogcat(true, "注册监听成功, 请查看 Logcat");
+                        showToast(true, "注册监听成功, 请查看 Logcat");
                         break;
                     case ButtonValue.BTN_WIFI_LISTENER_UNREGISTER:
                         WifiReceiver.unregisterReceiver();
@@ -195,8 +195,19 @@ public class WifiActivity extends BaseToolbarActivity {
     public void initListeners() {
         super.initListeners();
 
-        // Wifi 监听
+        // 设置监听事件
         WifiReceiver.setWifiListener(new WifiReceiver.WifiListener() {
+            @Override
+            public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
+                DevLogger.dTag(mTag, "Wifi 是否打开: " + isOpenWifi);
+            }
+
+            @Override
+            public void onIntoTrigger() {
+                super.onIntoTrigger();
+                DevLogger.dTag(mTag, "触发回调通知 ( 每次进入都通知 )");
+            }
+
             @Override
             public void onTrigger(int what) {
                 switch (what) {
@@ -266,11 +277,6 @@ public class WifiActivity extends BaseToolbarActivity {
                         DevLogger.dTag(mTag, "连接 Wifi 状态未知");
                         break;
                 }
-            }
-
-            @Override
-            public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
-                DevLogger.dTag(mTag, "Wifi 是否打开: " + isOpenWifi);
             }
         });
     }

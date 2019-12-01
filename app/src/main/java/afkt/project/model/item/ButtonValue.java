@@ -83,7 +83,7 @@ public class ButtonValue {
      */
     public static List<ButtonValue> getListenerButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
-        lists.add(new ButtonValue(BTN_WIFI_LISTENER, "Wifi、网络监听"));
+        lists.add(new ButtonValue(BTN_WIFI_LISTENER, "Wifi 监听"));
         lists.add(new ButtonValue(BTN_NETWORK_LISTENER, "网络监听"));
         lists.add(new ButtonValue(BTN_PHONE_LISTENER, "电话监听"));
         lists.add(new ButtonValue(BTN_SMS_LISTENER, "短信监听"));
@@ -128,7 +128,7 @@ public class ButtonValue {
 
     // 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
     public static final int BTN_LISTENER = MODULE_OTHER;
-    // Wifi、网络监听
+    // Wifi 监听
     public static final int BTN_WIFI_LISTENER = BTN_LISTENER + 1;
     // 网络监听
     public static final int BTN_NETWORK_LISTENER = BTN_LISTENER + 2;

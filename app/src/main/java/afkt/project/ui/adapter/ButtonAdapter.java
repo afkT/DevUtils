@@ -22,6 +22,8 @@ public class ButtonAdapter extends BaseQuickAdapter<ButtonValue, BaseViewHolder>
 
     @Override
     protected void convert(BaseViewHolder helper, ButtonValue item) {
-        helper.setText(R.id.vid_bvb_btn, item.text).addOnClickListener(R.id.vid_bvb_btn);
+        helper.setText(R.id.vid_bvb_btn, item.text)
+                .addOnClickListener(R.id.vid_bvb_btn)
+                .addOnLongClickListener(R.id.vid_bvb_btn);
     }
 }
