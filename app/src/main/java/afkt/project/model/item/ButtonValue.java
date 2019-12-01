@@ -48,7 +48,7 @@ public class ButtonValue {
      * @param type Module Type
      * @return {@link List < ButtonValue >}
      */
-    public static  List<ButtonValue> getModuleButtonValues(int type) {
+    public static List<ButtonValue> getModuleButtonValues(int type) {
         switch (type) {
             case ButtonValue.MODULE_FRAMEWORK:
                 break;
