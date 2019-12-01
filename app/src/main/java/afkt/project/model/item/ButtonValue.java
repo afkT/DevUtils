@@ -74,6 +74,7 @@ public class ButtonValue {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_LISTENER, "事件 / 广播监听 ( 网络状态、屏幕旋转等 )"));
         lists.add(new ButtonValue(BTN_NOTIFICATION_SERVICE, "通知栏监听服务 ( NotificationService )"));
+        lists.add(new ButtonValue(BTN_ACCESSIBILITY_SERVICE, "无障碍监听服务 ( AccessibilityListenerService )"));
         lists.add(new ButtonValue(BTN_WIFI, "Wifi 相关 ( 热点 )"));
         return lists;
     }
@@ -104,6 +105,18 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_NOTIFICATION_SERVICE_CHECK, "检查是否开启"));
         lists.add(new ButtonValue(BTN_NOTIFICATION_SERVICE_REGISTER, "开始监听"));
         lists.add(new ButtonValue(BTN_NOTIFICATION_SERVICE_UNREGISTER, "注销监听"));
+        return lists;
+    }
+
+    /**
+     * 获取 Accessibility Listener Service Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getAccessibilityListenerServiceButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_ACCESSIBILITY_SERVICE_CHECK, "检查是否开启"));
+        lists.add(new ButtonValue(BTN_ACCESSIBILITY_SERVICE_REGISTER, "开始监听"));
+        lists.add(new ButtonValue(BTN_ACCESSIBILITY_SERVICE_UNREGISTER, "注销监听"));
         return lists;
     }
 
@@ -165,6 +178,15 @@ public class ButtonValue {
     public static final int BTN_NOTIFICATION_SERVICE_REGISTER = BTN_NOTIFICATION_SERVICE + 2;
     // 注销监听
     public static final int BTN_NOTIFICATION_SERVICE_UNREGISTER = BTN_NOTIFICATION_SERVICE + 3;
+
+    // 无障碍监听服务 ( AccessibilityListenerService )
+    public static final int BTN_ACCESSIBILITY_SERVICE = MODULE_OTHER + 200;
+    // 检查是否开启
+    public static final int BTN_ACCESSIBILITY_SERVICE_CHECK = BTN_ACCESSIBILITY_SERVICE + 1;
+    // 开始监听
+    public static final int BTN_ACCESSIBILITY_SERVICE_REGISTER = BTN_ACCESSIBILITY_SERVICE + 2;
+    // 注销监听
+    public static final int BTN_ACCESSIBILITY_SERVICE_UNREGISTER = BTN_ACCESSIBILITY_SERVICE + 3;
 
     // Wifi 相关 ( 热点 )
     public static final int BTN_WIFI = MODULE_OTHER + 300;

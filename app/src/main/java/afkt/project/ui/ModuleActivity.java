@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
+import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
 import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.WifiActivity;
@@ -53,6 +54,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_NOTIFICATION_SERVICE: // 通知栏监听服务 ( NotificationService )
                         SkipUtils.startActivity(NotificationServiceActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_ACCESSIBILITY_SERVICE: // 无障碍监听服务 ( AccessibilityListenerService )
+                        SkipUtils.startActivity(AccessibilityListenerServiceActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_WIFI: // Wifi 相关 ( 热点 )
                         SkipUtils.startActivity(WifiActivity.class, buttonValue);

@@ -3,5 +3,6 @@
     android:accessibilityEventTypes="typeAllMask"
     android:accessibilityFeedbackType="feedbackGeneric"
     android:canRetrieveWindowContent="true"
+    android:description="@string/accessibility_description"
     android:notificationTimeout="100"
-    android:packageNames="afkt.project" />
+    android:packageNames="com.tencent.mm" />

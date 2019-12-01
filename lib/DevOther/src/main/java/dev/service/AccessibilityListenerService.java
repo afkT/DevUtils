@@ -1,14 +1,10 @@
 package dev.service;
 
 import android.accessibilityservice.AccessibilityService;
-import android.content.Intent;
-import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AccessibilityUtils;
-import dev.utils.app.AppUtils;
-import dev.utils.app.ResourceUtils;
 import dev.utils.app.ServiceUtils;
 
 /**
@@ -135,7 +131,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility() {
-        return checkAccessibility(AppUtils.getPackageName());
+        return AccessibilityUtils.checkAccessibility();
     }
 
     /**
@@ -147,14 +143,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility(final String packageName) {
-        if (packageName == null) return false;
-        // 判断辅助功能是否开启
-        if (!isAccessibilitySettingsOn(packageName)) {
-            // 跳转至辅助功能设置页面
-            AppUtils.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
-            return false;
-        }
-        return true;
+        return AccessibilityUtils.checkAccessibility(packageName);
     }
 
     /**
@@ -163,25 +152,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * @return {@code true} open, {@code false} close
      */
     public static boolean isAccessibilitySettingsOn(final String packageName) {
-        if (packageName == null) return false;
-        // 无障碍功能开启状态
-        int accessibilityEnabled = 0;
-        try {
-            accessibilityEnabled = Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
-        } catch (Settings.SettingNotFoundException e) {
-            LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ACCESSIBILITY_ENABLED");
-        }
-        if (accessibilityEnabled == 1) {
-            try {
-                String services = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
-                if (services != null) {
-                    return services.toLowerCase().contains(packageName.toLowerCase());
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES");
-            }
-        }
-        return false;
+        return AccessibilityUtils.isAccessibilitySettingsOn(packageName);
     }
 
     // =

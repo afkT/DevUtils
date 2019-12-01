@@ -81,6 +81,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 无障碍监听服务 ( AccessibilityListenerService ) -->
+
+        <activity
+            android:name=".ui.activity.AccessibilityListenerServiceActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- Wifi 相关 ( 热点 ) -->
 
         <activity
@@ -102,6 +110,23 @@
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
+        </service>
+
+        <!--
+            AccessibilityListenerService 无障碍功能操作监听服务
+            AccessibilityService 在 API < 18 的时候使用 AccessibilityService
+        -->
+        <service
+            android:name="dev.service.AccessibilityListenerService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <!-- 在 meta-data 里申明配置信息 -->
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_config" />
         </service>
     </application>
 
