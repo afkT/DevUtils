@@ -72,9 +72,28 @@ public class ButtonValue {
      */
     public static List<ButtonValue> getModuleOtherButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_LISTENER, "事件 / 广播监听 ( 网络状态、屏幕旋转等 )"));
         lists.add(new ButtonValue(BTN_WIFI, "Wifi 相关 ( 热点 )"));
         return lists;
     }
+
+    /**
+     * 获取 Listener Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getListenerButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_WIFI_LISTENER, "Wifi、网络监听"));
+        lists.add(new ButtonValue(BTN_NETWORK_LISTENER, "网络监听"));
+        lists.add(new ButtonValue(BTN_PHONE_LISTENER, "电话监听"));
+        lists.add(new ButtonValue(BTN_SMS_LISTENER, "短信监听"));
+        lists.add(new ButtonValue(BTN_TIME_LISTENER, "时区、时间监听"));
+        lists.add(new ButtonValue(BTN_SCREEN_LISTENER, "屏幕监听"));
+        lists.add(new ButtonValue(BTN_ROTA_LISTENER, "屏幕旋转监听 ( 重力传感器 )"));
+        lists.add(new ButtonValue(BTN_ROTA2_LISTENER, "屏幕旋转监听 ( OrientationEventListener )"));
+        return lists;
+    }
+
 
     /**
      * 获取 Wifi Button Value 集合
@@ -107,8 +126,27 @@ public class ButtonValue {
 
     // =
 
+    // 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
+    public static final int BTN_LISTENER = MODULE_OTHER;
+    // Wifi、网络监听
+    public static final int BTN_WIFI_LISTENER = BTN_LISTENER + 1;
+    // 网络监听
+    public static final int BTN_NETWORK_LISTENER = BTN_LISTENER + 2;
+    // 电话监听
+    public static final int BTN_PHONE_LISTENER = BTN_LISTENER + 3;
+    // 短信监听
+    public static final int BTN_SMS_LISTENER = BTN_LISTENER + 4;
+    // 时区、时间监听
+    public static final int BTN_TIME_LISTENER = BTN_LISTENER + 5;
+    // 屏幕监听
+    public static final int BTN_SCREEN_LISTENER = BTN_LISTENER + 6;
+    // 屏幕旋转监听 ( 重力传感器 )
+    public static final int BTN_ROTA_LISTENER = BTN_LISTENER + 7;
+    // 屏幕旋转监听 ( OrientationEventListener )
+    public static final int BTN_ROTA2_LISTENER = BTN_LISTENER + 8;
+
     // Wifi 相关 ( 热点 )
-    public static final int BTN_WIFI = MODULE_OTHER;
+    public static final int BTN_WIFI = MODULE_OTHER + 100;
     // 打开 Wifi
     public static final int BTN_WIFI_OPEN = BTN_WIFI + 1;
     // 关闭 Wifi

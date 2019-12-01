@@ -29,7 +29,7 @@ import dev.utils.app.wifi.WifiHotUtils;
 import dev.utils.app.wifi.WifiUtils;
 
 /**
- * detail: Wifi 相关操作代码
+ * detail: Wifi 相关 ( 热点 )
  * @author Ttt
  * <pre>
  *     Wifi 热点状态监听等可参考 {@link QuickWifiHotUtils}
@@ -177,7 +177,7 @@ public class WifiActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_WIFI_LISTENER_REGISTER:
                         WifiReceiver.registerReceiver();
-                        showToast(true, "注册监听成功, 请查看 Logcat");
+                        showLogcat(true, "注册监听成功, 请查看 Logcat");
                         break;
                     case ButtonValue.BTN_WIFI_LISTENER_UNREGISTER:
                         WifiReceiver.unregisterReceiver();

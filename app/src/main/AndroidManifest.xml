@@ -61,7 +61,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- Wifi 相关(热点) -->
+        <!-- 事件 / 广播监听 ( 网络状态、屏幕旋转等 ) -->
+
+        <activity
+            android:name=".ui.activity.ListenerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Wifi 相关 ( 热点 ) -->
 
         <activity
             android:name=".ui.activity.WifiActivity"
