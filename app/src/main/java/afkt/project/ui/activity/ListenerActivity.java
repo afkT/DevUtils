@@ -50,14 +50,17 @@ public class ListenerActivity extends BaseToolbarActivity {
     protected void onDestroy() {
         super.onDestroy();
         // 注销监听
-        wifiListener(false);
-        netListener(false);
-        phoneListener(false);
-        smsListener(false);
-        timeListener(false);
-        screenListener(false);
-        rotaListener(false);
-        rotaListener2(false);
+        WifiReceiver.unregisterReceiver();
+        NetWorkReceiver.unregisterReceiver();
+        PhoneReceiver.unregisterReceiver();
+        SmsReceiver.unregisterReceiver();
+        TimeReceiver.unregisterReceiver();
+        ScreenReceiver.unregisterReceiver();
+        screenSensorAssist.stop();
+        try {
+            mOrientationEventListener.disable();
+        } catch (Exception e) {
+        }
     }
 
     @Override
