@@ -89,6 +89,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+
+        <!-- 服务相关 -->
+
         <!--
             NotificationListenerService 通知栏监听服务, 是在 Android 4.3 （API 18）时被加入的, 作用就是用来监听通知栏消息
             并且官方建议在 Android 4.3 及以上使用 NotificationListenerService 来监听通知栏消息, 以此取代 AccessibilityService

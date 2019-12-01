@@ -95,6 +95,17 @@ public class ButtonValue {
         return lists;
     }
 
+    /**
+     * 获取 Notification Service Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getNotificationServiceButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_NOTIFICATION_SERVICE_CHECK, "检查是否开启"));
+        lists.add(new ButtonValue(BTN_NOTIFICATION_SERVICE_REGISTER, "开始监听"));
+        lists.add(new ButtonValue(BTN_NOTIFICATION_SERVICE_UNREGISTER, "注销监听"));
+        return lists;
+    }
 
     /**
      * 获取 Wifi Button Value 集合
@@ -148,6 +159,12 @@ public class ButtonValue {
 
     // 通知栏监听服务 ( NotificationService )
     public static final int BTN_NOTIFICATION_SERVICE = MODULE_OTHER + 100;
+    // 检查是否开启
+    public static final int BTN_NOTIFICATION_SERVICE_CHECK = BTN_NOTIFICATION_SERVICE + 1;
+    // 开始监听
+    public static final int BTN_NOTIFICATION_SERVICE_REGISTER = BTN_NOTIFICATION_SERVICE + 2;
+    // 注销监听
+    public static final int BTN_NOTIFICATION_SERVICE_UNREGISTER = BTN_NOTIFICATION_SERVICE + 3;
 
     // Wifi 相关 ( 热点 )
     public static final int BTN_WIFI = MODULE_OTHER + 300;

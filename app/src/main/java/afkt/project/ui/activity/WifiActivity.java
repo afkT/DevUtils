@@ -188,7 +188,7 @@ public class WifiActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_WIFI_LISTENER_UNREGISTER:
                         WifiReceiver.unregisterReceiver();
-                        showToast(true, "取消监听成功");
+                        showToast(true, "注销监听成功");
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");

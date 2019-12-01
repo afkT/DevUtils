@@ -159,7 +159,7 @@ public class ListenerActivity extends BaseToolbarActivity {
      */
     private void wifiListener(boolean isBind) {
         if (!isBind) { // 取反判断, 方便代码顺序查看
-            ToastTintUtils.success("取消 Wifi 监听成功");
+            ToastTintUtils.success("注销 Wifi 监听成功");
             // 清空回调
             WifiReceiver.setWifiListener(null);
             // 注销监听
