@@ -3,16 +3,11 @@ package dev.service;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
-import android.provider.Settings;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.support.v4.app.NotificationManagerCompat;
 
-import java.util.Set;
-
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.app.AppUtils;
+import dev.utils.app.NotificationUtils;
 import dev.utils.app.ServiceUtils;
 
 /**
@@ -125,11 +120,7 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean checkAndIntentSetting() {
-        if (!isNotificationListenerEnabled()) {
-            startNotificationListenSettings();
-            return false;
-        }
-        return true;
+        return NotificationUtils.checkAndIntentSetting();
     }
 
     /**
@@ -137,7 +128,7 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotificationListenerEnabled() {
-        return isNotificationListenerEnabled(AppUtils.getPackageName());
+        return NotificationUtils.isNotificationListenerEnabled();
     }
 
     /**
@@ -146,25 +137,14 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotificationListenerEnabled(final String packageName) {
-        Set<String> packageNames = NotificationManagerCompat.getEnabledListenerPackages(DevUtils.getContext());
-        return packageNames.contains(packageName);
+        return NotificationUtils.isNotificationListenerEnabled(packageName);
     }
 
     /**
      * 跳转到设置页面, 开启获取通知栏信息权限
      */
     public static void startNotificationListenSettings() {
-        try {
-            Intent intent;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
-            } else {
-                intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-            }
-            AppUtils.startActivity(intent);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startNotificationListenSettings");
-        }
+        NotificationUtils.startNotificationListenSettings();
     }
 
     // =

@@ -234,6 +234,29 @@ public final class IntentUtils {
     }
 
     /**
+     * 获取 APP 通知使用权页面
+     * @return APP 通知使用权页面
+     */
+    public static Intent getLaunchAppNotificationListenSettingsIntent() {
+        return getLaunchAppNotificationListenSettingsIntent(false);
+    }
+
+    /**
+     * 获取 APP 通知使用权页面
+     * @param isNewTask   是否开启新的任务栈
+     * @return APP 通知使用权页面
+     */
+    public static Intent getLaunchAppNotificationListenSettingsIntent(final boolean isNewTask) {
+        Intent intent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+        } else {
+            intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+        }
+        return getIntent(intent, isNewTask);
+    }
+
+    /**
      * 获取 APP 具体设置的意图
      * @param packageName 应用包名
      * @return APP 具体设置的意图

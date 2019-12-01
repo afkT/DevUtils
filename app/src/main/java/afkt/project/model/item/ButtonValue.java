@@ -73,6 +73,7 @@ public class ButtonValue {
     public static List<ButtonValue> getModuleOtherButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_LISTENER, "事件 / 广播监听 ( 网络状态、屏幕旋转等 )"));
+        lists.add(new ButtonValue(BTN_NOTIFICATION_SERVICE, "通知栏监听服务 ( NotificationService )"));
         lists.add(new ButtonValue(BTN_WIFI, "Wifi 相关 ( 热点 )"));
         return lists;
     }
@@ -145,8 +146,11 @@ public class ButtonValue {
     // 屏幕旋转监听 ( OrientationEventListener )
     public static final int BTN_ROTA2_LISTENER = BTN_LISTENER + 8;
 
+    // 通知栏监听服务 ( NotificationService )
+    public static final int BTN_NOTIFICATION_SERVICE = MODULE_OTHER + 100;
+
     // Wifi 相关 ( 热点 )
-    public static final int BTN_WIFI = MODULE_OTHER + 100;
+    public static final int BTN_WIFI = MODULE_OTHER + 300;
     // 打开 Wifi
     public static final int BTN_WIFI_OPEN = BTN_WIFI + 1;
     // 关闭 Wifi
