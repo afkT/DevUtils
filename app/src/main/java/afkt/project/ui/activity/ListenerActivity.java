@@ -47,6 +47,20 @@ public class ListenerActivity extends BaseToolbarActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 注销监听
+        wifiListener(false);
+        netListener(false);
+        phoneListener(false);
+        smsListener(false);
+        timeListener(false);
+        screenListener(false);
+        rotaListener(false);
+        rotaListener2(false);
+    }
+
+    @Override
     public void initValues() {
         super.initValues();
 
@@ -428,35 +442,29 @@ public class ListenerActivity extends BaseToolbarActivity {
     // =
 
     // 重力传感器辅助类
-    private ScreenSensorAssist screenSensor;
+    private ScreenSensorAssist screenSensorAssist = new ScreenSensorAssist();
     // 切屏时间
     private long cOrientationTime = 0l;
 
     /**
-     * 旋转监听
-     * @param isBind
+     * 屏幕旋转监听 ( 重力传感器 )
+     * @param isBind 是否绑定
      */
     private void rotaListener(boolean isBind) {
-        if (screenSensor != null) {
-            screenSensor.stop();
-        }
-        // 进行提示
         if (!isBind) { // 取反判断, 方便代码顺序查看
-            ToastTintUtils.success("注销重力传感器监听");
+            ToastTintUtils.success("注销屏幕旋转监听 ( 重力传感器 ) 成功");
+            // 注销监听
+            screenSensorAssist.stop();
         } else {
-            ToastTintUtils.success("绑定重力传感器监听");
-            // 初始化传感器
-            screenSensor = new ScreenSensorAssist();
-            // 开启重力传感器监听
-            screenSensor.start(new Handler() {
+            ToastTintUtils.success("绑定屏幕旋转监听 ( 重力传感器 ) 成功, 请查看 Logcat");
+            // 注册监听
+            screenSensorAssist.start(new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
                     super.handleMessage(msg);
-
                     switch (msg.what) {
-                        /** 触发屏幕方向改变回调 */
-                        case ScreenSensorAssist.CHANGE_ORIENTATION_WHAT:
-                            if (!screenSensor.isAllowChange()) { // 如果不允许切屏,则不显示
+                        case ScreenSensorAssist.CHANGE_ORIENTATION_WHAT: // 触发屏幕方向改变回调
+                            if (!screenSensorAssist.isAllowChange()) { // 如果不允许切屏, 则不显示
                                 return;
                             } else if (isFinishing()) { // 如果页面关闭了
                                 return;
@@ -465,16 +473,14 @@ public class ListenerActivity extends BaseToolbarActivity {
                             int orientation = msg.arg1;
                             // 判断方向
                             if (orientation == 1) { // 横屏
-                                // 当前时间 - 切屏的时间,大于 1.5 秒间隔才进行跳转
+                                // 当前时间 - 切屏的时间大于 1.5 秒间隔才进行处理
                                 if (System.currentTimeMillis() - cOrientationTime >= 1500) {
                                     DevLogger.dTag(mTag, "横屏");
                                     // 重置时间,防止多次触发
                                     cOrientationTime = System.currentTimeMillis();
-                                    // 跳转到横屏
+                                    // 跳转到横屏, 并且关闭监听
                                     //Intent intent = new Intent(mContext, Activity.class);
                                     //mContext.startActivity(intent);
-
-                                    // -- 关闭传感器，或者onStop方法等关闭传感器
                                 }
                             } else if (orientation == 2) { // 竖屏
                                 DevLogger.dTag(mTag, "竖屏");
@@ -498,8 +504,8 @@ public class ListenerActivity extends BaseToolbarActivity {
     private OrientationEventListener mOrientationEventListener;
 
     /**
-     * 旋转监听
-     * @param isBind
+     * 屏幕旋转监听 ( OrientationEventListener )
+     * @param isBind 是否绑定
      */
     private void rotaListener2(boolean isBind) {
         if (mOrientationEventListener == null) {
@@ -513,7 +519,7 @@ public class ListenerActivity extends BaseToolbarActivity {
                         if (mRotationFlag != 0) {
                             // 这是竖屏视频需要的角度
                             mRotationRecord = 90;
-                            // 这是记录当前角度的flag
+                            // 这是记录当前角度的 flag
                             mRotationFlag = 0;
                         }
                     } else if (((rotation >= 230) && (rotation <= 310))) {
@@ -523,7 +529,7 @@ public class ListenerActivity extends BaseToolbarActivity {
                         if (mRotationFlag != 90) {
                             // 这是正横屏视频需要的角度
                             mRotationRecord = 0;
-                            // 这是记录当前角度的flag
+                            // 这是记录当前角度的 flag
                             mRotationFlag = 90;
                         }
                     } else if (rotation > 30 && rotation < 135) {
@@ -533,7 +539,7 @@ public class ListenerActivity extends BaseToolbarActivity {
                         if (mRotationFlag != 270) {
                             // 这是反横屏视频需要的角度
                             mRotationRecord = 180;
-                            // 这是记录当前角度的flag
+                            // 这是记录当前角度的 flag
                             mRotationFlag = 270;
                         }
                     } else if (rotation > 135 && rotation < 230) {
@@ -543,7 +549,7 @@ public class ListenerActivity extends BaseToolbarActivity {
                         if (mRotationFlag != 360) {
                             // 这是竖屏视频需要的角度
                             mRotationRecord = 270;
-                            // 这是记录当前角度的flag
+                            // 这是记录当前角度的 flag
                             mRotationFlag = 360;
                         }
                     }
@@ -551,19 +557,18 @@ public class ListenerActivity extends BaseToolbarActivity {
             };
         }
 
-
         try {
-            // 进行提示
             if (!isBind) { // 取反判断, 方便代码顺序查看
-                ToastTintUtils.success("注销屏幕旋转监听");
-                // -
+                ToastTintUtils.success("注销屏幕旋转监听 ( OrientationEventListener ) 成功");
+                // 注销监听
                 mOrientationEventListener.disable();
             } else {
-                ToastTintUtils.success("绑定屏幕旋转监听");
-                // -
+                ToastTintUtils.success("绑定屏幕旋转监听 ( OrientationEventListener ) 成功, 请查看 Logcat");
+                // 注册监听
                 mOrientationEventListener.enable();
             }
         } catch (Exception e) {
+            DevLogger.eTag(mTag, "rotaListener2");
         }
     }
 }

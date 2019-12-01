@@ -56,6 +56,13 @@ public class WifiActivity extends BaseToolbarActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 注销监听
+        WifiReceiver.unregisterReceiver();
+    }
+
+    @Override
     public void initValues() {
         super.initValues();
 
