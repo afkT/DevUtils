@@ -11,6 +11,7 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
 import afkt.project.ui.activity.CacheActivity;
+import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.LoggerActivity;
@@ -76,6 +77,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_LOGGER: // DevLogger 日志工具类
                         SkipUtils.startActivity(LoggerActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_FILE_RECORD: // 日志、异常文件记录保存
+                        SkipUtils.startActivity(FileRecordActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");

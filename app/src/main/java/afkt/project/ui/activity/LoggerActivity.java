@@ -60,9 +60,6 @@ public class LoggerActivity extends BaseToolbarActivity {
         buttonAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                // 获取操作结果
-                boolean result;
-
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_LOGGER_PRINT:

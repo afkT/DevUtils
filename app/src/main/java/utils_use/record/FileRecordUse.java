@@ -25,7 +25,7 @@ public final class FileRecordUse {
     /**
      * 日志、异常文件记录保存使用方法
      */
-    private void fileRecordUse() {
+    public static void fileRecordUse() {
 
         // AnalysisRecordUtils
 
@@ -48,7 +48,7 @@ public final class FileRecordUse {
     /**
      * AnalysisRecordUtils 工具类使用方法
      */
-    private void analysisRecord() {
+    public static void analysisRecord() {
         // 默认存储到 android/data/包名/cache文件/, 可以自己特殊设置
         AnalysisRecordUtils.setLogStoragePath(SDCardUtils.getSDCardPath());
 
@@ -87,8 +87,8 @@ public final class FileRecordUse {
                 "日志内容");
 
         // 存储到 sdcard/特殊地址/LogFolderName/2018-08-23/OtherRecord/xxx/log.txt
-        AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath() + "/特殊地址", "OtherRecord", "log.txt", "临时地址", AnalysisRecordUtils.HH),
-                "日志内容");
+        AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath() + "/特殊地址", "OtherRecord",
+            "log.txt", "临时地址", AnalysisRecordUtils.HH), "日志内容");
 
         // 保存错误信息
         NullPointerException nullPointerException = new NullPointerException("报错啦, null 异常啊");
@@ -99,7 +99,7 @@ public final class FileRecordUse {
     /**
      * FileRecordUtils 工具类
      */
-    private void logRecord() {
+    public static void logRecord() {
         try {
             String s = null;
             s.indexOf("c");

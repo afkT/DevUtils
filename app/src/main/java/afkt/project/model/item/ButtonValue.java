@@ -80,6 +80,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_TIMER, "TimerManager 定时器工具类"));
         lists.add(new ButtonValue(BTN_CACHE, "DevCache 缓存工具类"));
         lists.add(new ButtonValue(BTN_LOGGER, "DevLogger 日志工具类"));
+        lists.add(new ButtonValue(BTN_FILE_RECORD, "日志、异常文件记录保存"));
         return lists;
     }
 
@@ -207,6 +208,17 @@ public class ButtonValue {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_LOGGER_PRINT, "打印日志"));
         lists.add(new ButtonValue(BTN_LOGGER_TIME, "打印日志耗时测试"));
+        return lists;
+    }
+
+    /**
+     * 获取 File Record Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getFileRecordButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_FILE_RECORD_ANALYSIS, "AnalysisRecordUtils 工具类"));
+        lists.add(new ButtonValue(BTN_FILE_RECORD_UTILS, "FileRecordUtils 工具类"));
         return lists;
     }
 
@@ -359,4 +371,11 @@ public class ButtonValue {
     public static final int BTN_LOGGER_PRINT = BTN_LOGGER + 1;
     // 打印日志耗时测试
     public static final int BTN_LOGGER_TIME = BTN_LOGGER + 2;
+
+    // 日志、异常文件记录保存
+    public static final int BTN_FILE_RECORD = MODULE_OTHER + 800;
+    // AnalysisRecordUtils 工具类
+    public static final int BTN_FILE_RECORD_ANALYSIS = BTN_FILE_RECORD + 1;
+    // FileRecordUtils 工具类
+    public static final int BTN_FILE_RECORD_UTILS = BTN_FILE_RECORD + 2;
 }
