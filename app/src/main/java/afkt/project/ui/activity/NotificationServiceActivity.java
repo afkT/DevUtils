@@ -63,7 +63,7 @@ public class NotificationServiceActivity extends BaseToolbarActivity {
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_NOTIFICATION_SERVICE_CHECK:
                         boolean check = NotificationService.isNotificationListenerEnabled();
-                        showToast(check, "已开启服务通知","未开启服务通知");
+                        showToast(check, "已开启服务通知", "未开启服务通知");
                         break;
                     case ButtonValue.BTN_NOTIFICATION_SERVICE_REGISTER:
                         if (!NotificationService.checkAndIntentSetting()) {

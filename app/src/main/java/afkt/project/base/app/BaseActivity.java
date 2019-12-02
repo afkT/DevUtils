@@ -128,7 +128,7 @@ public abstract class BaseActivity extends DevBaseActivity {
 
     /**
      * 显示 Toast
-     * @param success     是否成功样式
+     * @param success 是否成功样式
      */
     public void showToast(boolean success) {
         showToast(success, "操作成功", "操作失败");

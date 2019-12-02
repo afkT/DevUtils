@@ -88,7 +88,7 @@ public final class FileRecordUse {
 
         // 存储到 sdcard/特殊地址/LogFolderName/2018-08-23/OtherRecord/xxx/log.txt
         AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath() + "/特殊地址", "OtherRecord",
-            "log.txt", "临时地址", AnalysisRecordUtils.HH), "日志内容");
+                "log.txt", "临时地址", AnalysisRecordUtils.HH), "日志内容");
 
         // 保存错误信息
         NullPointerException nullPointerException = new NullPointerException("报错啦, null 异常啊");

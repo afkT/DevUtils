@@ -17,7 +17,7 @@ import dev.utils.app.ViewUtils;
  */
 public class ShapeUse {
 
-    private void shapeUse() {
+    public static void shapeUse() {
         Button vid_btn1 = null;
 
         // 默认就设置背景色

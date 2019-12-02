@@ -27,7 +27,7 @@ public final class LoggerUse {
      * 日志配置相关
      */
     private void logConfig() {
-        // = 在BaseApplication 中调用 =
+        // = 在 BaseApplication 中调用 =
         // 初始化日志配置
         LogConfig logConfig = new LogConfig();
         // 堆栈方法总数(显示经过的方法)

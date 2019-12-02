@@ -81,7 +81,7 @@ public class DevExtendActivity extends BaseToolbarActivity {
                         dealResultCallback.setExpandResult(callParams);
                         // 触发回调
                         dealResultCallback.onResult("数据", "消息", "结果 - 成功");
-                        dealResultCallback.onResult(100,"数据", "消息", "结果 - 成功");
+                        dealResultCallback.onResult(100, "数据", "消息", "结果 - 成功");
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
@@ -120,7 +120,7 @@ public class DevExtendActivity extends BaseToolbarActivity {
                 builder.append("\ntype: " + callParams.type);
                 builder.append("\nuserInfo: " + GsonUtils.toJson(callParams.userInfo));
                 builder.append("\nhashMap: " + callParams.hashMap.toString());
-                DevLogger.dTag(mTag, "value: " + value +  ", type: " + type + builder.toString());
+                DevLogger.dTag(mTag, "value: " + value + ", type: " + type + builder.toString());
             }
         };
     }
@@ -161,7 +161,7 @@ public class DevExtendActivity extends BaseToolbarActivity {
 
     /**
      * 保存文件
-     * @param path 保存路径
+     * @param path     保存路径
      * @param fileName 文件名
      * @param callBack 回调方法
      */

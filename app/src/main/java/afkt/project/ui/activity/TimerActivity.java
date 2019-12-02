@@ -81,10 +81,10 @@ public class TimerActivity extends BaseToolbarActivity {
                             }, NOTIFY, 500l, 2000l, -1);
                             absTimer.setMarkStr("GET");
                         }
-                        if (absTimer.isRunTimer()){
-                            showToast(false,"定时器已经启动, 请查看 Logcat");
+                        if (absTimer.isRunTimer()) {
+                            showToast(false, "定时器已经启动, 请查看 Logcat");
                         } else {
-                            showToast(true,"定时器启动成功, 请查看 Logcat");
+                            showToast(true, "定时器启动成功, 请查看 Logcat");
                             // 启动定时器
                             absTimer.startTimer();
                         }
@@ -101,7 +101,7 @@ public class TimerActivity extends BaseToolbarActivity {
                             showToast(false, "请先启动定时器");
                             return;
                         }
-                        showToast(true,"定时器启动成功, 请查看 Logcat");
+                        showToast(true, "定时器启动成功, 请查看 Logcat");
                         // 启动定时器
                         absTimer.startTimer();
                         break;

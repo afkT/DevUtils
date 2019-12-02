@@ -3,7 +3,7 @@
 
 ```java
 /**
- * detail: 全局Application
+ * detail: 全局 Application
  * @author Ttt
  */
 public class BaseApplication extends Application {
