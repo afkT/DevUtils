@@ -60,7 +60,7 @@ public class AccessibilityListenerServiceActivity extends BaseToolbarActivity {
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_ACCESSIBILITY_SERVICE_CHECK:
                         boolean check = AccessibilityListenerService.isAccessibilitySettingsOn(AppUtils.getPackageName());
-                        showToast(check, check ? "已开启无障碍功能" : "未开启无障碍功能");
+                        showToast(check, "已开启无障碍功能", "未开启无障碍功能");
                         break;
                     case ButtonValue.BTN_ACCESSIBILITY_SERVICE_REGISTER:
                         if (!AccessibilityListenerService.checkAccessibility()) {

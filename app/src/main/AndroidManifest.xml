@@ -19,18 +19,22 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <!-- 获取网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 这个权限用于进行网络定位-->
+    <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- 这个权限用于访问GPS定位-->
+    <!-- 这个权限用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- 写入系统设置权限 -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- 摄像头权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 麦克风设置权限 -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <!-- 录音权限 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 允许访问震动设备 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 读取短信 -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <!-- 写入系统设置权限 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- NotificationListenerService 所需权限 监听应用程序消息 -->
     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
     <!-- AccessibilityService 所需权限 读取新通知 -->
@@ -93,6 +97,14 @@
 
         <activity
             android:name=".ui.activity.WifiActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 铃声、震动、通知栏等功能 -->
+
+        <activity
+            android:name=".ui.activity.FunctionActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

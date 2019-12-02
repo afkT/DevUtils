@@ -125,4 +125,22 @@ public abstract class BaseActivity extends DevBaseActivity {
             ToastTintUtils.error(text);
         }
     }
+
+    /**
+     * 显示 Toast
+     * @param success     是否成功样式
+     */
+    public void showToast(boolean success) {
+        showToast(success, "操作成功", "操作失败");
+    }
+
+    /**
+     * 显示 Toast
+     * @param success     是否成功样式
+     * @param successText 成功 Toast 文本
+     * @param errorText   错误 Toast 文本
+     */
+    public void showToast(boolean success, String successText, String errorText) {
+        showToast(success, success ? successText : errorText);
+    }
 }

@@ -10,6 +10,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
+import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.WifiActivity;
@@ -60,6 +61,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_WIFI: // Wifi 相关 ( 热点 )
                         SkipUtils.startActivity(WifiActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_FUNCTION: // 铃声、震动、通知栏等功能
+                        SkipUtils.startActivity(FunctionActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");

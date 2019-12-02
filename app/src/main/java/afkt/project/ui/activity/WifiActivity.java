@@ -89,7 +89,7 @@ public class WifiActivity extends BaseToolbarActivity {
                             return;
                         } else {
                             boolean success = wifiUtils.openWifi();
-                            showToast(success, success ? "打开成功" : "打开失败");
+                            showToast(success, "打开成功", "打开失败");
                         }
                         break;
                     case ButtonValue.BTN_WIFI_CLOSE:
@@ -98,7 +98,7 @@ public class WifiActivity extends BaseToolbarActivity {
                             return;
                         } else {
                             boolean success = wifiUtils.closeWifi();
-                            showToast(success, success ? "关闭成功" : "关闭失败");
+                            showToast(success, "关闭成功", "关闭失败");
                         }
                         break;
                     case ButtonValue.BTN_WIFI_HOT_OPEN:
@@ -145,7 +145,7 @@ public class WifiActivity extends BaseToolbarActivity {
                                                 // 密码必须大于等于 8 位
                                                 WifiConfiguration wifiConfiguration = WifiHotUtils.createWifiConfigToAp(wifiHotSSID, wifiHotPwd);
                                                 boolean success = wifiHotUtils.stratWifiAp(wifiConfiguration);
-                                                showToast(success, success ? "打开热点成功" : "打开热点失败");
+                                                showToast(success, "打开热点成功", "打开热点失败");
                                             }
 
                                             @Override
@@ -170,7 +170,7 @@ public class WifiActivity extends BaseToolbarActivity {
                             //wifiConfiguration = WifiHotUtils.createWifiConfigToAp("TttWifiAp1", null);
                             // 开启热点
                             boolean success = wifiHotUtils.stratWifiAp(wifiConfiguration); // Android 7.1 以上特殊处理
-                            showToast(success, success ? "打开热点成功" : "打开热点失败");
+                            showToast(success, "打开热点成功", "打开热点失败");
                         }
                         break;
                     case ButtonValue.BTN_WIFI_HOT_CLOSE:
@@ -179,7 +179,7 @@ public class WifiActivity extends BaseToolbarActivity {
                             return;
                         } else {
                             boolean success = wifiHotUtils.closeWifiAp();
-                            showToast(success, success ? "热点关闭成功" : "热点关闭失败");
+                            showToast(success, "热点关闭成功", "热点关闭失败");
                         }
                         break;
                     case ButtonValue.BTN_WIFI_LISTENER_REGISTER:

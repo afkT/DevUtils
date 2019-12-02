@@ -76,6 +76,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_NOTIFICATION_SERVICE, "通知栏监听服务 ( NotificationService )"));
         lists.add(new ButtonValue(BTN_ACCESSIBILITY_SERVICE, "无障碍监听服务 ( AccessibilityListenerService )"));
         lists.add(new ButtonValue(BTN_WIFI, "Wifi 相关 ( 热点 )"));
+        lists.add(new ButtonValue(BTN_FUNCTION, "铃声、震动、通知栏等功能"));
         return lists;
     }
 
@@ -132,6 +133,20 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_WIFI_HOT_CLOSE, "关闭 Wifi 热点"));
         lists.add(new ButtonValue(BTN_WIFI_LISTENER_REGISTER, "注册 Wifi 监听"));
         lists.add(new ButtonValue(BTN_WIFI_LISTENER_UNREGISTER, "注销 Wifi 监听"));
+        return lists;
+    }
+
+    /**
+     * 获取 Function Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getFunctionButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_FUNCTION_VIBRATE, "震动"));
+        lists.add(new ButtonValue(BTN_FUNCTION_BEEP, "铃声 - 播放一小段音频"));
+        lists.add(new ButtonValue(BTN_FUNCTION_NOTIFICATION, "通知消息"));
+        lists.add(new ButtonValue(BTN_FUNCTION_NOTIFICATION_REMOVE, "移除消息"));
+        lists.add(new ButtonValue(BTN_FUNCTION_HOME, "回到桌面"));
         return lists;
     }
 
@@ -202,4 +217,18 @@ public class ButtonValue {
     public static final int BTN_WIFI_LISTENER_REGISTER = BTN_WIFI + 5;
     // 注销 Wifi 监听
     public static final int BTN_WIFI_LISTENER_UNREGISTER = BTN_WIFI + 6;
+
+    // 铃声、震动、通知栏等功能
+    public static final int BTN_FUNCTION = MODULE_OTHER + 400;
+    // 震动
+    public static final int BTN_FUNCTION_VIBRATE = BTN_FUNCTION + 1;
+    // 铃声 - 播放一小段音频
+    public static final int BTN_FUNCTION_BEEP = BTN_FUNCTION + 2;
+    // 通知消息
+    public static final int BTN_FUNCTION_NOTIFICATION = BTN_FUNCTION + 3;
+    // 移除消息
+    public static final int BTN_FUNCTION_NOTIFICATION_REMOVE = BTN_FUNCTION + 4;
+    // 回到桌面
+    public static final int BTN_FUNCTION_HOME = BTN_FUNCTION + 5;
+
 }
