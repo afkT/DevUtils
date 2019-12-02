@@ -30,19 +30,19 @@ public final class LoggerUse {
         // = 在 BaseApplication 中调用 =
         // 初始化日志配置
         LogConfig logConfig = new LogConfig();
-        // 堆栈方法总数(显示经过的方法)
+        // 堆栈方法总数 ( 显示经过的方法 )
         logConfig.methodCount = 3;
-        // 堆栈方法索引偏移(0 = 最新经过调用的方法信息, 偏移则往上推, 如 1 = 倒数第二条经过调用的方法信息)
+        // 堆栈方法索引偏移 (0 = 最新经过调用的方法信息, 偏移则往上推, 如 1 = 倒数第二条经过调用的方法信息 )
         logConfig.methodOffset = 0;
-        // 是否输出全部方法(在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数)
+        // 是否输出全部方法 ( 在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数 )
         logConfig.outputMethodAll = false;
-        // 显示日志线程信息(特殊情况, 显示经过的线程信息, 具体情况如上)
+        // 显示日志线程信息 ( 特殊情况, 显示经过的线程信息, 具体情况如上 )
         logConfig.displayThreadInfo = false;
-        // 是否排序日志(格式化后)
+        // 是否排序日志 ( 格式化后 )
         logConfig.sortLog = false; // 是否美化日志, 边框包围
         // 日志级别
         logConfig.logLevel = LogLevel.DEBUG;
-        // 设置 TAG (特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下)
+        // 设置 TAG ( 特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下 )
         logConfig.tag = "BaseLog";
         // 进行初始化配置, 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
         DevLogger.init(logConfig);
@@ -95,9 +95,9 @@ public final class LoggerUse {
         // =
         // 初始化日志配置
         LogConfig logConfig = new LogConfig();
-        // 显示日志线程信息(特殊情况, 显示经过的线程信息, 具体情况如上)
+        // 显示日志线程信息 ( 特殊情况, 显示经过的线程信息, 具体情况如上 )
         logConfig.displayThreadInfo = true;
-        // 是否排序日志(格式化后)
+        // 是否排序日志 ( 格式化后 )
         logConfig.sortLog = true;
         // 日志级别
         logConfig.logLevel = LogLevel.DEBUG;
@@ -121,7 +121,7 @@ public final class LoggerUse {
     public static void tempLog() {
         // = 打印零散数据 =
         TestData.ShareMsgVo sMsgVo = new TestData.ShareMsgVo();
-        sMsgVo.sTitle = "分享Blog";
+        sMsgVo.sTitle = "分享 Blog";
         sMsgVo.sText = null;
         sMsgVo.sImagePath = "http://t.jpg";
         sMsgVo.sTitleUrl = "http://www.test.com";
@@ -142,11 +142,11 @@ public final class LoggerUse {
         // 日志 TAG
         final String tag = LOG_TAG;
         // = 使用 BaseApplication 默认配置 =
-        // JSON数组
+        // JSON 数组
         DevLogger.json("[" + TestData.JSON_WITH_NO_LINE_BREAK + "," + TestData.JSON_WITH_NO_LINE_BREAK + "]");
-        // JSON对象
+        // JSON 对象
         DevLogger.json(TestData.SMALL_SON_WITH_NO_LINE_BREAK);
-        // XML数据
+        // XML 数据
         DevLogger.xml(TestData.XML_DATA);
         // = 其他 =
         DevLogger.v("测试数据 - v");
@@ -163,10 +163,10 @@ public final class LoggerUse {
         } catch (ClassNotFoundException e) {
             DevLogger.e(e, "发生异常");
         }
-        // 占位符(其他类型, 一样)
-        DevLogger.d("%s测试占位符数据 - d%s", "1.", " - Format");
+        // 占位符 ( 其他类型, 一样 )
+        DevLogger.d("%s 测试占位符数据 - d%s", "1.", "Format");
         // =
-        DevLogger.dTag(tag, "%s测试占位符数据 - d%s", "1.", " - Format");
+        DevLogger.dTag(tag, "%s 测试占位符数据 - d%s", "1.", "Format");
 
         // = 使用自定义临时配置 =
         // 自定义配置, 如下使用方式
@@ -185,19 +185,19 @@ public final class LoggerUse {
         // =
         // 初始化日志配置
         LogConfig logConfig = new LogConfig();
-        // 堆栈方法总数(显示经过的方法)
+        // 堆栈方法总数 ( 显示经过的方法 )
         logConfig.methodCount = 3;
-        // 堆栈方法索引偏移(0 = 最新经过调用的方法信息, 偏移则往上推, 如 1 = 倒数第二条经过调用的方法信息)
+        // 堆栈方法索引偏移 (0 = 最新经过调用的方法信息, 偏移则往上推, 如 1 = 倒数第二条经过调用的方法信息 )
         logConfig.methodOffset = 0;
-        // 是否输出全部方法(在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数)
+        // 是否输出全部方法 ( 在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数 )
         logConfig.outputMethodAll = false;
-        // 显示日志线程信息(特殊情况, 显示经过的线程信息, 具体情况如上)
+        // 显示日志线程信息 ( 特殊情况, 显示经过的线程信息, 具体情况如上 )
         logConfig.displayThreadInfo = true;
-        // 是否排序日志(格式化后)
+        // 是否排序日志 ( 格式化后 )
         logConfig.sortLog = true;
         // 日志级别
         logConfig.logLevel = LogLevel.DEBUG;
-        // 设置 TAG (特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下)
+        // 设置 TAG ( 特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下 )
         logConfig.tag = "SAD";
         // 打印不换行的日志信息
         DevLogger.other(logConfig).e("new Config - e");
@@ -205,19 +205,19 @@ public final class LoggerUse {
         // =
         // 使用方法
         LogConfig tempLogConfig = new LogConfig();
-        // 堆栈方法总数(显示经过的方法)
+        // 堆栈方法总数 ( 显示经过的方法 )
         tempLogConfig.methodCount = 10;
-        // 堆栈方法索引偏移(0 = 最新经过调用的方法信息, 偏移则往上推, 如 1 = 倒数第二条经过调用的方法信息)
+        // 堆栈方法索引偏移 (0 = 最新经过调用的方法信息, 偏移则往上推, 如 1 = 倒数第二条经过调用的方法信息 )
         tempLogConfig.methodOffset = 0;
-        // 是否输出全部方法(在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数)
+        // 是否输出全部方法 ( 在特殊情况下, 如想要打印全部经过的方法, 但是不知道经过的总数 )
         tempLogConfig.outputMethodAll = false;
-        // 显示日志线程信息(特殊情况, 显示经过的线程信息, 具体情况如上)
+        // 显示日志线程信息 ( 特殊情况, 显示经过的线程信息, 具体情况如上 )
         tempLogConfig.displayThreadInfo = true;
-        // 是否排序日志(格式化后)
+        // 是否排序日志 ( 格式化后 )
         tempLogConfig.sortLog = true;
         // 日志级别
         tempLogConfig.logLevel = LogLevel.DEBUG;
-        // 设置 TAG (特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下)
+        // 设置 TAG ( 特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下 )
         tempLogConfig.tag = "SAD";
         try {
             String s = null;

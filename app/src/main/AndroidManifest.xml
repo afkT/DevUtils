@@ -21,7 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- 这个权限用于访问GPS定位 -->
+    <!-- 这个权限用于访问 GPS 定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 摄像头权限 -->
     <uses-permission android:name="android.permission.CAMERA" />

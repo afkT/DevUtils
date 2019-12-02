@@ -60,7 +60,7 @@ public final class SnackbarUse {
         // 获取 Snackbar 底层 View
         View snackbarView = SnackbarUtils.with(view).getSnackbarView();
 
-        // 获取 Snackbar TextView(snackbar_text) - 左侧 文本TextView
+        // 获取 Snackbar TextView(snackbar_text) - 左侧 文本 TextView
         TextView textView = SnackbarUtils.with(view).getTextView();
 
         // 获取 Snackbar Action Button(snackbar_action) - 右侧 Button
@@ -74,7 +74,7 @@ public final class SnackbarUse {
         // 获取 View 阴影边距大小 - View 自带阴影
         int shadowMargin = SnackbarUtils.with(view).getShadowMargin();
 
-        // 获取 是否自动计算边距 (如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示)
+        // 获取 是否自动计算边距 ( 如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示 )
         boolean autoCalc = SnackbarUtils.with(view).isAutoCalc(); // 只有调用 above / bellow 该属性才有意义
 
         // 获取 Snackbar 显示效果样式配置信息
@@ -87,7 +87,7 @@ public final class SnackbarUse {
         // 设置 View 阴影边距大小
         SnackbarUtils.with(view).setShadowMargin(2);
 
-        // 设置是否自动计算边距 (如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示)
+        // 设置是否自动计算边距 ( 如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示 )
         SnackbarUtils.with(view).setAutoCalc(true); // 只有调用 above / bellow 该属性才有意义
 
         // 设置 Snackbar 显示效果样式
@@ -158,12 +158,12 @@ public final class SnackbarUse {
         // 显示 Long Snackbar
         SnackbarUtils.with(view).showLong("已收藏该消息!");
 
-        // 显示 Indefinite Snackbar (无限时, 一直显示)
+        // 显示 Indefinite Snackbar ( 无限时, 一直显示 )
         SnackbarUtils.with(view).showIndefinite("已收藏该消息!");
 
         // = 显示区域 =
 
-        // 设置是否自动计算边距 (如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示)
+        // 设置是否自动计算边距 ( 如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示 )
         // setAutoCalc 只有调用 above / bellow 该属性才有意义
 
         // 设置 Snackbar 显示在指定 View 的上方, 并且向上边距 20
@@ -172,10 +172,10 @@ public final class SnackbarUse {
         // 设置 Snackbar 显示在指定 View 的下方, 并且向下边距 5
         SnackbarUtils.with(view).bellow(targetView, 5);
 
-        // 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
+        // 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
         SnackbarUtils.with(view).addView(newTextView, 0);
 
-        // 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示)
+        // 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
         SnackbarUtils.with(view).addView(viewId, 1);
 
         // = 结合使用 =

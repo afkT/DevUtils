@@ -33,14 +33,14 @@ public final class TextCalcUse {
             }
         }
 
-//        // 计算第几位超过宽度(600)
+//        // 计算第几位超过宽度 (600)
 //        int pos = TextViewUtils.calcTextWidth(vid_tv.getPaint(), "测试内容", 600);
 
         TextView tv = new TextView(DevUtils.getContext());
         // 获取字体高度
         TextViewUtils.getTextHeight(tv);
         // 获取字体大小
-        TextViewUtils.reckonTextSize(90); // 获取字体高度为90的字体大小
+        TextViewUtils.reckonTextSize(90); // 获取字体高度为 90 的字体大小
     }
 
     // =

@@ -129,7 +129,7 @@ public class QuickWifiHotUtils {
         } else {
             // 停止线程检查
             this.isCheck = true;
-            // 删除上一个任务,并且重新绑定任务
+            // 删除上一个任务, 并且重新绑定任务
             hotHandler.removeCallbacks(startWifiSpotThread);
         }
     }
@@ -221,7 +221,7 @@ public class QuickWifiHotUtils {
             }
             // 判断是否延时 0.4 秒进行开启热点
             if (isPostDelayed) {
-                // 删除上一个任务,并且重新绑定任务
+                // 删除上一个任务, 并且重新绑定任务
                 hotHandler.removeCallbacks(startWifiSpotThread);
                 hotHandler.postDelayed(startWifiSpotThread, 400);
             } else { // 开启热点成功
