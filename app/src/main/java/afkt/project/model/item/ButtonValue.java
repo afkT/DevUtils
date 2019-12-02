@@ -156,6 +156,10 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_FUNCTION_SHORTCUT_DELETE, "删除桌面快捷方式"));
         lists.add(new ButtonValue(BTN_FUNCTION_MEMORY_PRINT, "打印内存信息"));
         lists.add(new ButtonValue(BTN_FUNCTION_DEVICE_PRINT, "打印设备信息"));
+        lists.add(new ButtonValue(BTN_FUNCTION_APP_DETAILS_SETTINGS, "跳转到 APP 设置详情页面"));
+        lists.add(new ButtonValue(BTN_FUNCTION_GPS_SETTINGS, "打开 GPS 设置界面"));
+        lists.add(new ButtonValue(BTN_FUNCTION_WIRELESS_SETTINGS, "打开网络设置界面"));
+        lists.add(new ButtonValue(BTN_FUNCTION_SYS_SETTINGS, "跳转到系统设置页面"));
         return lists;
     }
 
@@ -257,5 +261,13 @@ public class ButtonValue {
     public static final int BTN_FUNCTION_MEMORY_PRINT = BTN_FUNCTION + 13;
     // 打印设备信息
     public static final int BTN_FUNCTION_DEVICE_PRINT = BTN_FUNCTION + 14;
+    // 跳转到 APP 设置详情页面
+    public static final int BTN_FUNCTION_APP_DETAILS_SETTINGS = BTN_FUNCTION + 15;
+    // 打开 GPS 设置界面
+    public static final int BTN_FUNCTION_GPS_SETTINGS = BTN_FUNCTION + 16;
+    // 打开网络设置界面
+    public static final int BTN_FUNCTION_WIRELESS_SETTINGS = BTN_FUNCTION + 17;
+    // 跳转到系统设置页面
+    public static final int BTN_FUNCTION_SYS_SETTINGS = BTN_FUNCTION + 18;
 
 }

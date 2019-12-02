@@ -14,7 +14,6 @@ import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
-import afkt.project.util.SkipUtils;
 import butterknife.BindView;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppUtils;
@@ -151,6 +150,22 @@ public class FunctionActivity extends BaseToolbarActivity {
                         String deviceInfo = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "");
                         ToastUtils.showLong(deviceInfo);
                         DevLogger.dTag(mTag, deviceInfo);
+                        break;
+                    case ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS:
+                        result = AppUtils.launchAppDetailsSettings();
+                        showToast(result);
+                        break;
+                    case ButtonValue.BTN_FUNCTION_GPS_SETTINGS:
+                        result = AppUtils.openGpsSettings();
+                        showToast(result);
+                        break;
+                    case ButtonValue.BTN_FUNCTION_WIRELESS_SETTINGS:
+                        result = AppUtils.openWirelessSettings();
+                        showToast(result);
+                        break;
+                    case ButtonValue.BTN_FUNCTION_SYS_SETTINGS:
+                        result = AppUtils.startSysSetting();
+                        showToast(result);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
