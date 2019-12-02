@@ -58,7 +58,8 @@ public final class CacheUse {
     }
 
     /**
-     * 缓存实体类
+     * detail: 缓存实体类
+     * @author Ttt
      */
     static class CacheVo implements Serializable {
 

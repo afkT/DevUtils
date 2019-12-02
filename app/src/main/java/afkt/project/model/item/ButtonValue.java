@@ -78,6 +78,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_WIFI, "Wifi 相关 ( 热点 )"));
         lists.add(new ButtonValue(BTN_FUNCTION, "铃声、震动、通知栏等功能"));
         lists.add(new ButtonValue(BTN_TIMER, "TimerManager 定时器工具类"));
+        lists.add(new ButtonValue(BTN_CACHE, "DevCache 缓存工具类"));
         return lists;
     }
 
@@ -176,6 +177,24 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_TIMER_CHECK, "定时器是否启动"));
         lists.add(new ButtonValue(BTN_TIMER_GET, "获取定时器"));
         lists.add(new ButtonValue(BTN_TIMER_GET_NUMBER, "获取运行次数"));
+        return lists;
+    }
+
+    /**
+     * 获取 Cache Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getCacheButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_CACHE_STRING, "存储字符串"));
+        lists.add(new ButtonValue(BTN_CACHE_STRING_TIME, "存储有效期字符串"));
+        lists.add(new ButtonValue(BTN_CACHE_STRING_GET, "获取字符串"));
+        lists.add(new ButtonValue(BTN_CACHE_BEAN, "存储实体类"));
+        lists.add(new ButtonValue(BTN_CACHE_BEAN_TIME, "存储有效期实体类"));
+        lists.add(new ButtonValue(BTN_CACHE_BEAN_GET, "获取实体类"));
+        lists.add(new ButtonValue(BTN_CACHE_FILE, "存储到指定位置"));
+        lists.add(new ButtonValue(BTN_CACHE_FILE_GET, "获取指定位置缓存数据"));
+        lists.add(new ButtonValue(BTN_CACHE_CLEAR, "清除全部数据"));
         return lists;
     }
 
@@ -300,5 +319,27 @@ public class ButtonValue {
     public static final int BTN_TIMER_GET = BTN_TIMER + 5;
     // 获取运行次数
     public static final int BTN_TIMER_GET_NUMBER = BTN_TIMER + 6;
+
+    // DevCache 缓存工具类
+    public static final int BTN_CACHE = MODULE_OTHER + 600;
+    // 存储字符串
+    public static final int BTN_CACHE_STRING = BTN_CACHE + 1;
+    // 存储有效期字符串
+    public static final int BTN_CACHE_STRING_TIME = BTN_CACHE + 2;
+    // 获取字符串
+    public static final int BTN_CACHE_STRING_GET = BTN_CACHE + 3;
+    // 存储实体类
+    public static final int BTN_CACHE_BEAN = BTN_CACHE + 4;
+    // 存储有效期实体类
+    public static final int BTN_CACHE_BEAN_TIME = BTN_CACHE + 5;
+    // 获取实体类
+    public static final int BTN_CACHE_BEAN_GET = BTN_CACHE + 6;
+    // 存储到指定位置
+    public static final int BTN_CACHE_FILE = BTN_CACHE + 7;
+    // 获取指定位置缓存数据
+    public static final int BTN_CACHE_FILE_GET = BTN_CACHE + 8;
+    // 清除全部数据
+    public static final int BTN_CACHE_CLEAR = BTN_CACHE + 9;
+
 
 }

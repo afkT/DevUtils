@@ -10,6 +10,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
+import afkt.project.ui.activity.CacheActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
@@ -68,6 +69,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_TIMER: // TimerManager 定时器工具类
                         SkipUtils.startActivity(TimerActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_CACHE: // DevCache 缓存工具类
+                        SkipUtils.startActivity(CacheActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
