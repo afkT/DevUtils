@@ -2,9 +2,6 @@ package utils_use.logger;
 
 import android.util.Log;
 
-import java.io.File;
-
-import afkt.project.base.config.PathConfig;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
@@ -21,8 +18,6 @@ public final class LoggerUse {
 
     // 日志 TAG
     private static final String LOG_TAG = LoggerUse.class.getSimpleName();
-    // 日志文件夹路径
-    private static final String LOG_SD_PATH = PathConfig.SDP_PATH + File.separator + "Logger" + File.separator;
 
     // ========
     // = 配置 =
@@ -59,7 +54,7 @@ public final class LoggerUse {
      * 日志使用方法
      */
     public static void loggerUse() {
-        // 测试打印Log所用时间
+        // 测试打印 Log 所用时间
         testTime();
 
         // 使用日志操作
@@ -67,16 +62,16 @@ public final class LoggerUse {
     }
 
     /**
-     * 测试打印Log所用时间
+     * 测试打印 Log 所用时间
      */
-    private static void testTime() {
+    public static void testTime() {
         // 拼接字符串
         StringBuilder builder = new StringBuilder();
         // 日志 TAG
         final String tag = "CALC_TIME";
         // =
         // 遍历次数
-        int count = 1000;
+        int count = 100;
         // 设置开始时间
         long sTime = System.currentTimeMillis();
         // 开始遍历
@@ -84,7 +79,7 @@ public final class LoggerUse {
             Log.d(tag, "A: " + (i + 1));
         }
         // 拼接时间信息
-        DevCommonUtils.timeRecord(builder, "正常系统Log耗时记录", sTime, System.currentTimeMillis());
+        DevCommonUtils.timeRecord(builder, "正常系统 Log 耗时记录", sTime, System.currentTimeMillis());
 
         // =
         // 设置开始时间
@@ -95,7 +90,7 @@ public final class LoggerUse {
             DevLogger.dTag(tag, "B: " + (i + 1));
         }
         // 拼接时间信息
-        DevCommonUtils.timeRecord(builder, "Logger耗时记录", sTime, System.currentTimeMillis());
+        DevCommonUtils.timeRecord(builder, "\nLogger 耗时记录", sTime, System.currentTimeMillis());
 
         // =
         // 初始化日志配置
@@ -113,15 +108,17 @@ public final class LoggerUse {
             DevLogger.other(logConfig).dTag(tag, "C: " + (i + 1));
         }
         // 拼接时间信息
-        DevCommonUtils.timeRecord(builder, "Logger耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
-        // 打印时间
-        Log.d(LOG_TAG, builder.toString());
+        DevCommonUtils.timeRecord(builder, "\nLogger 耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
+        // 打印次数
+        builder.append("\n\n打印次数: " + count);
+        // 打印耗时信息
+        DevLogger.dTag(LOG_TAG, builder.toString());
     }
 
     /**
      * 打印临时日志
      */
-    private static void tempLog() {
+    public static void tempLog() {
         // = 打印零散数据 =
         TestData.ShareMsgVo sMsgVo = new TestData.ShareMsgVo();
         sMsgVo.sTitle = "分享Blog";

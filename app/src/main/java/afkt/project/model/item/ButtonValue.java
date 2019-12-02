@@ -205,7 +205,8 @@ public class ButtonValue {
      */
     public static List<ButtonValue> getLoggerButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
-        lists.add(new ButtonValue(BTN_CACHE_STRING, "存储字符串"));
+        lists.add(new ButtonValue(BTN_LOGGER_PRINT, "打印日志"));
+        lists.add(new ButtonValue(BTN_LOGGER_TIME, "打印日志耗时测试"));
         return lists;
     }
 
@@ -354,4 +355,8 @@ public class ButtonValue {
 
     // DevLogger 日志工具类
     public static final int BTN_LOGGER = MODULE_OTHER + 700;
+    // 打印日志
+    public static final int BTN_LOGGER_PRINT = BTN_LOGGER + 1;
+    // 打印日志耗时测试
+    public static final int BTN_LOGGER_TIME = BTN_LOGGER + 2;
 }
