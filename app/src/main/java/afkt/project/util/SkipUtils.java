@@ -11,7 +11,10 @@ import dev.utils.app.AppUtils;
  * detail: 跳转 工具类
  * @author Ttt
  */
-public class SkipUtils {
+public final class SkipUtils {
+
+    private SkipUtils() {
+    }
 
     /**
      * 跳转方法

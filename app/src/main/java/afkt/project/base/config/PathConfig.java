@@ -39,4 +39,7 @@ public final class PathConfig {
 
     // 文本路径
     public static final String SDP_TEXT_PATH = SDP_PATH + "Text" + File.separator;
+
+    // 错误日志路径
+    public static final String SDP_ERROR_PATH = SDP_PATH + "Error" + File.separator;
 }

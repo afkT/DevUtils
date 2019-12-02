@@ -5,6 +5,7 @@ import android.os.Build;
 
 import afkt.project.R;
 import afkt.project.base.config.AppConfig;
+import afkt.project.util.ProjectUtils;
 import dev.DevUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
@@ -13,6 +14,7 @@ import dev.utils.app.logger.DevLogger;
 import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
 import dev.utils.common.DateUtils;
+import dev.utils.common.FileRecordUtils;
 import dev.utils.common.assist.TimeCounter;
 
 /**
@@ -93,6 +95,9 @@ public class BaseApplication extends Application {
      * 统一初始化方法
      */
     private void init() {
-
+        // 初始化项目文件夹
+        ProjectUtils.createFolder();
+        // 插入设备信息
+        FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
     }
 }

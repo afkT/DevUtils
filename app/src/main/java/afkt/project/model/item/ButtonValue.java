@@ -81,6 +81,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_CACHE, "DevCache 缓存工具类"));
         lists.add(new ButtonValue(BTN_LOGGER, "DevLogger 日志工具类"));
         lists.add(new ButtonValue(BTN_FILE_RECORD, "日志、异常文件记录保存"));
+        lists.add(new ButtonValue(BTN_CRASH, "奔溃日志捕获"));
         return lists;
     }
 
@@ -219,6 +220,16 @@ public class ButtonValue {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_FILE_RECORD_ANALYSIS, "AnalysisRecordUtils 工具类"));
         lists.add(new ButtonValue(BTN_FILE_RECORD_UTILS, "FileRecordUtils 工具类"));
+        return lists;
+    }
+
+    /**
+     * 获取 Crash Record Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getCrashButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_CRASH_CLICK_CATCH, "点击崩溃捕获信息"));
         return lists;
     }
 
@@ -378,4 +389,9 @@ public class ButtonValue {
     public static final int BTN_FILE_RECORD_ANALYSIS = BTN_FILE_RECORD + 1;
     // FileRecordUtils 工具类
     public static final int BTN_FILE_RECORD_UTILS = BTN_FILE_RECORD + 2;
+
+    // 奔溃日志捕获
+    public static final int BTN_CRASH = MODULE_OTHER + 900;
+    // 点击崩溃捕获信息
+    public static final int BTN_CRASH_CLICK_CATCH = BTN_CRASH + 1;
 }
