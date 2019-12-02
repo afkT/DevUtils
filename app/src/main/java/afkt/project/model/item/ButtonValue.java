@@ -144,9 +144,18 @@ public class ButtonValue {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_FUNCTION_VIBRATE, "震动"));
         lists.add(new ButtonValue(BTN_FUNCTION_BEEP, "铃声 - 播放一小段音频"));
+        lists.add(new ButtonValue(BTN_FUNCTION_NOTIFICATION_CHECK, "是否存在通知权限"));
+        lists.add(new ButtonValue(BTN_FUNCTION_NOTIFICATION_OPEN, "开启通知权限"));
         lists.add(new ButtonValue(BTN_FUNCTION_NOTIFICATION, "通知消息"));
         lists.add(new ButtonValue(BTN_FUNCTION_NOTIFICATION_REMOVE, "移除消息"));
         lists.add(new ButtonValue(BTN_FUNCTION_HOME, "回到桌面"));
+        lists.add(new ButtonValue(BTN_FUNCTION_FLASHLIGHT_OPEN, "打开手电筒"));
+        lists.add(new ButtonValue(BTN_FUNCTION_FLASHLIGHT_CLOSE, "关闭手电筒"));
+        lists.add(new ButtonValue(BTN_FUNCTION_SHORTCUT_CHECK, "是否创建桌面快捷方式"));
+        lists.add(new ButtonValue(BTN_FUNCTION_SHORTCUT_CREATE, "创建桌面快捷方式"));
+        lists.add(new ButtonValue(BTN_FUNCTION_SHORTCUT_DELETE, "删除桌面快捷方式"));
+        lists.add(new ButtonValue(BTN_FUNCTION_MEMORY_PRINT, "打印内存信息"));
+        lists.add(new ButtonValue(BTN_FUNCTION_DEVICE_PRINT, "打印设备信息"));
         return lists;
     }
 
@@ -224,11 +233,29 @@ public class ButtonValue {
     public static final int BTN_FUNCTION_VIBRATE = BTN_FUNCTION + 1;
     // 铃声 - 播放一小段音频
     public static final int BTN_FUNCTION_BEEP = BTN_FUNCTION + 2;
+    // 是否存在通知权限
+    public static final int BTN_FUNCTION_NOTIFICATION_CHECK = BTN_FUNCTION + 3;
+    // 开启通知权限
+    public static final int BTN_FUNCTION_NOTIFICATION_OPEN = BTN_FUNCTION + 4;
     // 通知消息
-    public static final int BTN_FUNCTION_NOTIFICATION = BTN_FUNCTION + 3;
+    public static final int BTN_FUNCTION_NOTIFICATION = BTN_FUNCTION + 5;
     // 移除消息
-    public static final int BTN_FUNCTION_NOTIFICATION_REMOVE = BTN_FUNCTION + 4;
+    public static final int BTN_FUNCTION_NOTIFICATION_REMOVE = BTN_FUNCTION + 6;
     // 回到桌面
-    public static final int BTN_FUNCTION_HOME = BTN_FUNCTION + 5;
+    public static final int BTN_FUNCTION_HOME = BTN_FUNCTION + 7;
+    // 打开手电筒
+    public static final int BTN_FUNCTION_FLASHLIGHT_OPEN = BTN_FUNCTION + 8;
+    // 关闭手电筒
+    public static final int BTN_FUNCTION_FLASHLIGHT_CLOSE = BTN_FUNCTION + 9;
+    // 是否创建桌面快捷方式
+    public static final int BTN_FUNCTION_SHORTCUT_CHECK = BTN_FUNCTION + 10;
+    // 创建桌面快捷方式
+    public static final int BTN_FUNCTION_SHORTCUT_CREATE = BTN_FUNCTION + 11;
+    // 删除桌面快捷方式
+    public static final int BTN_FUNCTION_SHORTCUT_DELETE = BTN_FUNCTION + 12;
+    // 打印内存信息
+    public static final int BTN_FUNCTION_MEMORY_PRINT = BTN_FUNCTION + 13;
+    // 打印设备信息
+    public static final int BTN_FUNCTION_DEVICE_PRINT = BTN_FUNCTION + 14;
 
 }

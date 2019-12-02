@@ -81,28 +81,28 @@ public class ListenerActivity extends BaseToolbarActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
-                    case ButtonValue.BTN_WIFI_LISTENER: // Wifi 监听
+                    case ButtonValue.BTN_WIFI_LISTENER:
                         wifiListener(true);
                         break;
-                    case ButtonValue.BTN_NETWORK_LISTENER: // 网络监听
+                    case ButtonValue.BTN_NETWORK_LISTENER:
                         netListener(true);
                         break;
-                    case ButtonValue.BTN_PHONE_LISTENER: // 电话监听
+                    case ButtonValue.BTN_PHONE_LISTENER:
                         phoneListener(true);
                         break;
-                    case ButtonValue.BTN_SMS_LISTENER: // 短信监听
+                    case ButtonValue.BTN_SMS_LISTENER:
                         smsListener(true);
                         break;
-                    case ButtonValue.BTN_TIME_LISTENER: // 时区、时间监听
+                    case ButtonValue.BTN_TIME_LISTENER:
                         timeListener(true);
                         break;
-                    case ButtonValue.BTN_SCREEN_LISTENER: // 屏幕监听
+                    case ButtonValue.BTN_SCREEN_LISTENER:
                         screenListener(true);
                         break;
-                    case ButtonValue.BTN_ROTA_LISTENER: // 屏幕旋转监听 ( 重力传感器 )
+                    case ButtonValue.BTN_ROTA_LISTENER:
                         rotaListener(true);
                         break;
-                    case ButtonValue.BTN_ROTA2_LISTENER: // 屏幕旋转监听 ( OrientationEventListener )
+                    case ButtonValue.BTN_ROTA2_LISTENER:
                         rotaListener2(true);
                         break;
                     default:
@@ -116,28 +116,28 @@ public class ListenerActivity extends BaseToolbarActivity {
             public boolean onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
-                    case ButtonValue.BTN_WIFI_LISTENER: // Wifi 监听
+                    case ButtonValue.BTN_WIFI_LISTENER:
                         wifiListener(false);
                         break;
-                    case ButtonValue.BTN_NETWORK_LISTENER: // 网络监听
+                    case ButtonValue.BTN_NETWORK_LISTENER:
                         netListener(false);
                         break;
-                    case ButtonValue.BTN_PHONE_LISTENER: // 电话监听
+                    case ButtonValue.BTN_PHONE_LISTENER:
                         phoneListener(false);
                         break;
-                    case ButtonValue.BTN_SMS_LISTENER: // 短信监听
+                    case ButtonValue.BTN_SMS_LISTENER:
                         smsListener(false);
                         break;
-                    case ButtonValue.BTN_TIME_LISTENER: // 时区、时间监听
+                    case ButtonValue.BTN_TIME_LISTENER:
                         timeListener(false);
                         break;
-                    case ButtonValue.BTN_SCREEN_LISTENER: // 屏幕监听
+                    case ButtonValue.BTN_SCREEN_LISTENER:
                         screenListener(false);
                         break;
-                    case ButtonValue.BTN_ROTA_LISTENER: // 屏幕旋转监听 ( 重力传感器 )
+                    case ButtonValue.BTN_ROTA_LISTENER:
                         rotaListener(false);
                         break;
-                    case ButtonValue.BTN_ROTA2_LISTENER: // 屏幕旋转监听 ( OrientationEventListener )
+                    case ButtonValue.BTN_ROTA2_LISTENER:
                         rotaListener2(false);
                         break;
                     default:
