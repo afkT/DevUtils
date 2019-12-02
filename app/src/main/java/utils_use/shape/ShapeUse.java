@@ -15,7 +15,7 @@ import dev.utils.app.ViewUtils;
  * detail: ShapeUtils 使用方法
  * @author Ttt
  */
-class ShapeUse {
+public class ShapeUse {
 
     private void shapeUse() {
         Button vid_btn1 = null;

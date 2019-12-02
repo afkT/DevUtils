@@ -79,6 +79,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_FUNCTION, "铃声、震动、通知栏等功能"));
         lists.add(new ButtonValue(BTN_TIMER, "TimerManager 定时器工具类"));
         lists.add(new ButtonValue(BTN_CACHE, "DevCache 缓存工具类"));
+        lists.add(new ButtonValue(BTN_LOGGER, "DevLogger 日志工具类"));
         return lists;
     }
 
@@ -195,6 +196,16 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_CACHE_FILE, "存储到指定位置"));
         lists.add(new ButtonValue(BTN_CACHE_FILE_GET, "获取指定位置缓存数据"));
         lists.add(new ButtonValue(BTN_CACHE_CLEAR, "清除全部数据"));
+        return lists;
+    }
+
+    /**
+     * 获取 Logger Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getLoggerButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_CACHE_STRING, "存储字符串"));
         return lists;
     }
 
@@ -341,5 +352,6 @@ public class ButtonValue {
     // 清除全部数据
     public static final int BTN_CACHE_CLEAR = BTN_CACHE + 9;
 
-
+    // DevLogger 日志工具类
+    public static final int BTN_LOGGER = MODULE_OTHER + 700;
 }

@@ -13,7 +13,6 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
-import dev.utils.app.FlashlightUtils;
 import dev.utils.app.SDCardUtils;
 import dev.utils.app.cache.DevCache;
 import dev.utils.app.toast.ToastTintUtils;
@@ -34,14 +33,6 @@ public class CacheActivity extends BaseToolbarActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        FlashlightUtils.getInstance().setFlashlightOff();
-        FlashlightUtils.getInstance().unregister();
-    }
-
-    @Override
     public void initValues() {
         super.initValues();
 
@@ -52,8 +43,6 @@ public class CacheActivity extends BaseToolbarActivity {
         buttonAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                // 获取操作结果
-                boolean result;
                 // 获取字符串
                 String str;
 

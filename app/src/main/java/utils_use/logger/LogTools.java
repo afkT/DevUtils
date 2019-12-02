@@ -8,7 +8,7 @@ package utils_use.logger;
  *     不用在代码中, 拼接String, 然后打印日志, 这样代码维护起来方便快捷, 都是 1-2 句代码实现具体功能调用
  * </pre>
  */
-class LogTools {
+public class LogTools {
 
     /**
      * 获取分享信息实体类数据

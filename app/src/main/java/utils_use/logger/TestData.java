@@ -4,7 +4,7 @@ package utils_use.logger;
  * detail: 测试数据
  * @author Ttt
  */
-class TestData {
+public class TestData {
 
     /**
      * 分享信息实体类 ( 测试 )

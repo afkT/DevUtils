@@ -13,6 +13,7 @@ import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
 import afkt.project.ui.activity.CacheActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.ListenerActivity;
+import afkt.project.ui.activity.LoggerActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.TimerActivity;
 import afkt.project.ui.activity.WifiActivity;
@@ -72,6 +73,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_CACHE: // DevCache 缓存工具类
                         SkipUtils.startActivity(CacheActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_LOGGER: // DevLogger 日志工具类
+                        SkipUtils.startActivity(LoggerActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
