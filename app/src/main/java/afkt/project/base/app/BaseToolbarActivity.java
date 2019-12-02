@@ -46,7 +46,7 @@ public abstract class BaseToolbarActivity extends BaseActivity {
         if (actionBar != null) {
             // 给左上角图标的左边加上一个返回的图标
             actionBar.setDisplayHomeAsUpEnabled(true);
-            // 对应ActionBar.DISPLAY_SHOW_TITLE
+            // 对应 ActionBar.DISPLAY_SHOW_TITLE
             actionBar.setDisplayShowTitleEnabled(false);
         }
         // 设置点击事件

@@ -319,13 +319,13 @@ public class WifiActivity extends BaseToolbarActivity {
                                 }
                                 // 防止页面已经关闭
                                 if (!isFinishing() && wifiUtils != null) {
-                                    // 打开wifi
+                                    // 打开 wifi
                                     wifiUtils.openWifi();
                                 }
                             }
                         }, 1500);
                     } else { // 如果没有开启热点, 则判断是否开启 Wifi
-                        // 判断是否开启Wifi
+                        // 判断是否开启 Wifi
                         if (!wifiUtils.isOpenWifi()) {
                             wifiUtils.openWifi();
                         }
