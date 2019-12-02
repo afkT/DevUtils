@@ -48,7 +48,7 @@ public class FileRecordActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_FILE_RECORD_UTILS:
                         showToast(true, "保存成功");
-                        FileRecordUse.logRecord();
+                        FileRecordUse.fileRecord();
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");

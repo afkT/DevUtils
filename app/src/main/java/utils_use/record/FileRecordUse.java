@@ -37,7 +37,7 @@ public final class FileRecordUse {
         analysisRecord();
 
         // FileRecordUtils 工具类
-        logRecord();
+        fileRecord();
     }
 
     /**
@@ -99,7 +99,7 @@ public final class FileRecordUse {
     /**
      * FileRecordUtils 工具类
      */
-    public static void logRecord() {
+    public static void fileRecord() {
         try {
             String s = null;
             s.indexOf("c");
