@@ -48,7 +48,7 @@ public class FunctionActivity extends BaseToolbarActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        // 关闭手电筒
         FlashlightUtils.getInstance().setFlashlightOff();
         FlashlightUtils.getInstance().unregister();
     }
@@ -173,10 +173,5 @@ public class FunctionActivity extends BaseToolbarActivity {
                 }
             }
         });
-    }
-
-    @Override
-    public void initListeners() {
-        super.initListeners();
     }
 }

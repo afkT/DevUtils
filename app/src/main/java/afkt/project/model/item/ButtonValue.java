@@ -77,6 +77,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_ACCESSIBILITY_SERVICE, "无障碍监听服务 ( AccessibilityListenerService )"));
         lists.add(new ButtonValue(BTN_WIFI, "Wifi 相关 ( 热点 )"));
         lists.add(new ButtonValue(BTN_FUNCTION, "铃声、震动、通知栏等功能"));
+        lists.add(new ButtonValue(BTN_TIMER, "TimerManager 定时器工具类"));
         return lists;
     }
 
@@ -160,6 +161,21 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_FUNCTION_GPS_SETTINGS, "打开 GPS 设置界面"));
         lists.add(new ButtonValue(BTN_FUNCTION_WIRELESS_SETTINGS, "打开网络设置界面"));
         lists.add(new ButtonValue(BTN_FUNCTION_SYS_SETTINGS, "跳转到系统设置页面"));
+        return lists;
+    }
+
+    /**
+     * 获取 Timer Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getTimerButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_TIMER_START, "启动定时器"));
+        lists.add(new ButtonValue(BTN_TIMER_STOP, "停止定时器"));
+        lists.add(new ButtonValue(BTN_TIMER_RESTART, "重新启动定时器"));
+        lists.add(new ButtonValue(BTN_TIMER_CHECK, "定时器是否启动"));
+        lists.add(new ButtonValue(BTN_TIMER_GET, "获取定时器"));
+        lists.add(new ButtonValue(BTN_TIMER_GET_NUMBER, "获取运行次数"));
         return lists;
     }
 
@@ -269,5 +285,20 @@ public class ButtonValue {
     public static final int BTN_FUNCTION_WIRELESS_SETTINGS = BTN_FUNCTION + 17;
     // 跳转到系统设置页面
     public static final int BTN_FUNCTION_SYS_SETTINGS = BTN_FUNCTION + 18;
+
+    // TimerManager 定时器工具类
+    public static final int BTN_TIMER = MODULE_OTHER + 500;
+    // 启动定时器
+    public static final int BTN_TIMER_START = BTN_TIMER + 1;
+    // 停止定时器
+    public static final int BTN_TIMER_STOP = BTN_TIMER + 2;
+    // 重新启动定时器
+    public static final int BTN_TIMER_RESTART = BTN_TIMER + 3;
+    // 定时器是否启动
+    public static final int BTN_TIMER_CHECK = BTN_TIMER + 4;
+    // 获取定时器
+    public static final int BTN_TIMER_GET = BTN_TIMER + 5;
+    // 获取运行次数
+    public static final int BTN_TIMER_GET_NUMBER = BTN_TIMER + 6;
 
 }

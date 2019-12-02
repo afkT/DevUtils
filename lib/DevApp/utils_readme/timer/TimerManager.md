@@ -120,9 +120,9 @@ absTimer = TimerManager.createTimer(new Handler() {
         int number = absTimer.getTriggerNumber();
         // 触发次数
         if (number == 1) {
-            DevLogger.dTag(TAG, "第一次触发, 0.5秒延迟");
+            DevLogger.dTag(TAG, "第一次触发, 0.5 秒延迟");
         } else {
-            DevLogger.dTag(TAG, "每隔2秒触发一次, 触发次数: " + number);
+            DevLogger.dTag(TAG, "每隔 2 秒触发一次, 触发次数: " + number);
         }
     }
 }, NOTIFY, 500L, 2000L, -1);
@@ -149,36 +149,40 @@ Handler handler = new Handler() {
     }
 };
 
-// 配置参数 - 意思是 一开始0秒直接触发第一次, 然后后面每隔60秒触发一次, 通过Handler通知 NOTIFY 常量 (-1表示无限次)
+// 配置参数 - 意思是 一开始 0 秒直接触发第一次, 然后后面每隔 60 秒触发一次, 通过 Handler 通知 NOTIFY 常量 ( -1 表示无限次 )
 absTimer.setTriggerLimit(-1).setTime(0, 60 * 1000).setNotifyWhat(NOTIFY);
-
-// 配置参数 - 一秒钟后进行触发, 然后每隔1秒循环触发(但是触发一次 TriggerLimit 限制了次数), 并通过设置的Handler通知 对应传入的 What
+// 配置参数 - 一秒钟后进行触发, 然后每隔 1 秒循环触发 ( 但是触发一次 TriggerLimit 限制了次数 ), 并通过设置的 Handler 通知 对应传入的 What
 absTimer.setHandler(handler).setTriggerLimit(1).setTime(1000, 1000).setNotifyWhat(NOTIFY);
-
-// 配置参数 - 3秒钟后进行触发, 然后每隔3秒循环触发(但是触发10次 TriggerLimit 限制了次数), 并通过设置的Handler通知 对应传入的 What, 并且开始定时器
+// 配置参数 - 3 秒钟后进行触发, 然后每隔 3 秒循环触发 ( 但是触发 10 次 TriggerLimit 限制了次数 ), 并通过设置的 Handler 通知 对应传入的 What, 并且开始定时器
 absTimer.setHandler(handler).setTriggerLimit(10).setTime(3000, 3000).setNotifyWhat(NOTIFY).startTimer();
-
 // 开始运行定时器
 absTimer.startTimer();
-
 // 关闭定时器
 absTimer.closeTimer();
-
 // 判断是否运行中
 absTimer.isRunTimer();
 
-// 关闭所有符合对应的标记id的定时器任务
+int id = 0;
+// 关闭所有符合对应的标记 id 的定时器任务
 TimerManager.closeMark(id);
-
 // 关闭所有符合对应的字符串标记的定时器任务
 TimerManager.closeMark("mark");
-
 // 关闭所有无限循环的任务
 TimerManager.closeInfiniteTask();
-
+// 关闭所有未运行的任务
+TimerManager.closeNotRunTask();
 // 关闭全部任务
 TimerManager.closeAll();
-
-// 回收资源 - 回收需要回收的
+// 回收定时器资源
 TimerManager.gc();
+// 获取全部任务总数
+TimerManager.getTimerSize();
+// 获取属于标记 id 的定时器任务 ( 优先获取符合的 )
+TimerManager.getTimer(id);
+// 获取属于对应字符串标记的定时器任务 ( 优先获取符合的 )
+TimerManager.getTimer("mark");
+// 获取属于标记 id 的定时器任务集合
+TimerManager.getTimers(id);
+// 获取属于对应字符串标记的定时器任务集合
+TimerManager.getTimers("mark");
 ```

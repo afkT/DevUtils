@@ -116,8 +116,17 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- TimerManager 定时器工具类 -->
 
+        <activity
+            android:name=".ui.activity.TimerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- ======== -->
         <!-- 服务相关 -->
+        <!-- ======== -->
 
         <!--
             NotificationListenerService 通知栏监听服务, 是在 Android 4.3 （API 18）时被加入的, 作用就是用来监听通知栏消息
