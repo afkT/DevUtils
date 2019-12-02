@@ -17,8 +17,21 @@ public final class ProjectUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean createFolder() {
-        return FileUtils.createFolderByPaths(PathConfig.SDP_TEMP_PATH, PathConfig.SDP_CACHE_PATH,
-                PathConfig.SDP_DOWN_PATH, PathConfig.SDP_DOWN_IMAGE_PATH,
-                PathConfig.SDP_TEXT_PATH, PathConfig.SDP_ERROR_PATH);
+        // 默认创建的文件夹路径
+        String[] paths = new String[]{
+                // 临时存储
+                PathConfig.SDP_TEMP_PATH,
+                // 本地 SDCard 资源缓存地址
+                PathConfig.SDP_CACHE_PATH,
+                // 下载路径
+                PathConfig.SDP_DOWN_PATH,
+                // 图片路径
+                PathConfig.SDP_DOWN_IMAGE_PATH,
+                // 文本路径
+                PathConfig.SDP_TEXT_PATH,
+                // 错误日志路径
+                PathConfig.SDP_ERROR_PATH
+        };
+        return FileUtils.createFolderByPaths(paths);
     }
 }
