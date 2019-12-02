@@ -15,7 +15,7 @@ public interface IHttpEngine {
 
     /**
      * detail: Request Response
-     * Created by Ttt
+     * @author Ttt
      */
     class Response {
 
@@ -115,7 +115,7 @@ public interface IHttpEngine {
 
     /**
      * detail: Request CallBack
-     * Created by Ttt
+     * @author Ttt
      */
     abstract class RequestCallBack<T extends Response> {
 

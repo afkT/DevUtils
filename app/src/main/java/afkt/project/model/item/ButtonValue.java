@@ -82,6 +82,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_LOGGER, "DevLogger 日志工具类"));
         lists.add(new ButtonValue(BTN_FILE_RECORD, "日志、异常文件记录保存"));
         lists.add(new ButtonValue(BTN_CRASH, "奔溃日志捕获"));
+        lists.add(new ButtonValue(BTN_EXTEND, "通用结果回调类 ( 针对 DevResultCallback 进行扩展 )"));
         return lists;
     }
 
@@ -230,6 +231,17 @@ public class ButtonValue {
     public static List<ButtonValue> getCrashButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_CRASH_CLICK_CATCH, "点击崩溃捕获信息"));
+        return lists;
+    }
+
+    /**
+     * 获取 Extend Record Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getExtendButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_EXTEND_SAVE, "保存文件获取结果"));
+        lists.add(new ButtonValue(BTN_EXTEND_TRIGGER, "触发拓展回调"));
         return lists;
     }
 
@@ -394,4 +406,11 @@ public class ButtonValue {
     public static final int BTN_CRASH = MODULE_OTHER + 900;
     // 点击崩溃捕获信息
     public static final int BTN_CRASH_CLICK_CATCH = BTN_CRASH + 1;
+
+    // 通用结果回调类 ( 针对 DevResultCallback 进行扩展 )
+    public static final int BTN_EXTEND = MODULE_OTHER + 1000;
+    // 保存文件获取结果
+    public static final int BTN_EXTEND_SAVE = BTN_EXTEND + 1;
+    // 触发拓展回调
+    public static final int BTN_EXTEND_TRIGGER = BTN_EXTEND + 2;
 }

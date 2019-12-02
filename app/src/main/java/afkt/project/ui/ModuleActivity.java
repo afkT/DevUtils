@@ -12,6 +12,7 @@ import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
 import afkt.project.ui.activity.CacheActivity;
 import afkt.project.ui.activity.CrashCatchActivity;
+import afkt.project.ui.activity.DevExtendActivity;
 import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.ListenerActivity;
@@ -84,6 +85,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_CRASH: // 奔溃日志捕获
                         SkipUtils.startActivity(CrashCatchActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_EXTEND: // 通用结果回调类 ( 针对 DevResultCallback 进行扩展 )
+                        SkipUtils.startActivity(DevExtendActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
