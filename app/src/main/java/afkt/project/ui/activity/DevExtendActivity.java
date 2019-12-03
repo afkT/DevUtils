@@ -72,6 +72,7 @@ public class DevExtendActivity extends BaseToolbarActivity {
                         });
                         break;
                     case ButtonValue.BTN_EXTEND_TRIGGER:
+                        showToast(true, "触发成功, 请查看 Logcat");
                         // 初始化保存参数
                         CallParams callParams = new CallParams();
                         callParams.userInfo = new UserInfo("测试用户名");
