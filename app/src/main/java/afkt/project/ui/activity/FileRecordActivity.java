@@ -17,6 +17,9 @@ import utils_use.record.FileRecordUse;
 /**
  * detail: 日志、异常文件记录保存
  * @author Ttt
+ * <pre>
+ *     {@link FileRecordUse}
+ * </pre>
  */
 public class FileRecordActivity extends BaseToolbarActivity {
 

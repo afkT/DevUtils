@@ -17,10 +17,14 @@ import dev.utils.app.FlashlightUtils;
 import dev.utils.app.assist.manager.TimerManager;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
+import utils_use.timer.TimerUse;
 
 /**
  * detail: TimerManager 定时器工具类
  * @author Ttt
+ * <pre>
+ *     {@link TimerUse}
+ * </pre>
  */
 public class TimerActivity extends BaseToolbarActivity {
 

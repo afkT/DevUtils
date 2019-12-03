@@ -17,6 +17,9 @@ import utils_use.logger.LoggerUse;
 /**
  * detail: DevLogger 日志工具类
  * @author Ttt
+ * <pre>
+ *     {@link LoggerUse}
+ * </pre>
  */
 public class LoggerActivity extends BaseToolbarActivity {
 

@@ -55,16 +55,45 @@ public class ButtonValue {
             case ButtonValue.MODULE_LIB:
                 break;
             case ButtonValue.MODULE_UI:
-                break;
+                return getModuleUIButtonValues();
             case ButtonValue.MODULE_OTHER:
                 return getModuleOtherButtonValues();
         }
         return Collections.emptyList();
     }
 
-    // ==========
-    // = Module =
-    // ==========
+    // ======
+    // = UI =
+    // ======
+
+    /**
+     * 获取 UI Module Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getModuleUIButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_TOAST_TINT, "ToastTint ( 着色美化 Toast )"));
+        return lists;
+    }
+
+    /**
+     * 获取 Toast Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getToastButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_TOAST_TINT_SUCCESS, "Toast Success"));
+        lists.add(new ButtonValue(BTN_TOAST_TINT_ERROR, "Toast Error"));
+        lists.add(new ButtonValue(BTN_TOAST_TINT_INFO, "Toast Info"));
+        lists.add(new ButtonValue(BTN_TOAST_TINT_NORMAL, "Toast Normal"));
+        lists.add(new ButtonValue(BTN_TOAST_TINT_WARNING, "Toast Warning"));
+        lists.add(new ButtonValue(BTN_TOAST_TINT_CUSTOM_STYLE, "Toast Custom Style"));
+        return lists;
+    }
+
+    // ============
+    // = 其他功能 =
+    // ============
 
     /**
      * 获取 Other Module Button Value 集合
@@ -249,17 +278,38 @@ public class ButtonValue {
     // = 常量 =
     // ========
 
-    private static final int BASE = 1000;
+    private static final int BASE = 1001;
     // 架构
-    public static final int MODULE_FRAMEWORK = BASE + 1000;
+    public static final int MODULE_FRAMEWORK = BASE + 10000;
     // Lib
-    public static final int MODULE_LIB = BASE + 2000;
+    public static final int MODULE_LIB = BASE + 20000;
     // UI
-    public static final int MODULE_UI = BASE + 3000;
+    public static final int MODULE_UI = BASE + 30000;
     // 其他功能
-    public static final int MODULE_OTHER = BASE + 4000;
+    public static final int MODULE_OTHER = BASE + 40000;
 
-    // =
+    // ======
+    // = UI =
+    // ======
+
+    // ToastTint ( 着色美化 Toast )
+    public static final int BTN_TOAST_TINT = MODULE_UI;
+    // Toast Success
+    public static final int BTN_TOAST_TINT_SUCCESS = BTN_TOAST_TINT + 1;
+    // Toast Error
+    public static final int BTN_TOAST_TINT_ERROR = BTN_TOAST_TINT + 2;
+    // Toast Info
+    public static final int BTN_TOAST_TINT_INFO = BTN_TOAST_TINT + 3;
+    // Toast Normal
+    public static final int BTN_TOAST_TINT_NORMAL = BTN_TOAST_TINT + 4;
+    // Toast Warning
+    public static final int BTN_TOAST_TINT_WARNING = BTN_TOAST_TINT + 5;
+    // Toast Custom Style
+    public static final int BTN_TOAST_TINT_CUSTOM_STYLE = BTN_TOAST_TINT + 6;
+
+    // ============
+    // = 其他功能 =
+    // ============
 
     // 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
     public static final int BTN_LISTENER = MODULE_OTHER;

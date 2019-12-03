@@ -19,6 +19,7 @@ import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.LoggerActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.TimerActivity;
+import afkt.project.ui.activity.ToastTintActivity;
 import afkt.project.ui.activity.WifiActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
@@ -51,6 +52,14 @@ public class ModuleActivity extends BaseToolbarActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
+
+                    // ======
+                    // = UI =
+                    // ======
+
+                    case ButtonValue.BTN_TOAST_TINT: // ToastTint ( 着色美化 Toast )
+                        SkipUtils.startActivity(ToastTintActivity.class, buttonValue);
+                        break;
 
                     // ============
                     // = 其他功能 =

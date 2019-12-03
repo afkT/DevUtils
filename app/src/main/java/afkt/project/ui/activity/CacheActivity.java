@@ -16,10 +16,14 @@ import butterknife.BindView;
 import dev.utils.app.SDCardUtils;
 import dev.utils.app.cache.DevCache;
 import dev.utils.app.toast.ToastTintUtils;
+import utils_use.cache.CacheUse;
 
 /**
  * detail: DevCache 缓存工具类
  * @author Ttt
+ * <pre>
+ *     {@link CacheUse}
+ * </pre>
  */
 public class CacheActivity extends BaseToolbarActivity {
 
