@@ -1,6 +1,7 @@
 package afkt.project.base.app;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -11,6 +12,7 @@ import butterknife.Unbinder;
 import dev.base.activity.DevBaseActivity;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.toast.ToastTintUtils;
+import dev.widget.StateLayout;
 
 /**
  * detail: Base 基类
@@ -27,6 +29,8 @@ public abstract class BaseActivity extends DevBaseActivity {
     protected LinearLayout vid_ba_content_linear;
     // 状态布局容器
     protected LinearLayout vid_ba_state_linear;
+    // 状态布局
+    protected StateLayout stateLayout;
     // = Object =
     // Unbinder
     public Unbinder unbinder;
@@ -107,9 +111,26 @@ public abstract class BaseActivity extends DevBaseActivity {
             // 添加 View
             LinearLayout.LayoutParams contentViewLP = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             vid_ba_content_linear.addView(layoutView, contentViewLP);
+            // 插入 StateLayout
+            insertStateLayout();
             // 绑定 View
             unbinder = ButterKnife.bind(this, layoutView);
         }
+    }
+
+    // ============
+    // = 状态布局 =
+    // ============
+
+    /**
+     * 插入 State Layout
+     */
+    public void insertStateLayout() {
+        if (stateLayout != null) vid_ba_state_linear.removeView(stateLayout);
+        if (stateLayout == null) stateLayout = new StateLayout(this);
+        // 添加 View
+        LinearLayout.LayoutParams contentViewLP = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        vid_ba_state_linear.addView(stateLayout, contentViewLP);
     }
 
     // =========
@@ -145,5 +166,44 @@ public abstract class BaseActivity extends DevBaseActivity {
      */
     public void showToast(boolean success, String successText, String errorText) {
         showToast(success, success ? successText : errorText);
+    }
+
+    // ============
+    // = 特殊方法 =
+    // ============
+
+    /**
+     * 注册 Adapter 观察者
+     * @param recyclerView {@link RecyclerView}
+     */
+    public void registerAdapterDataObserver(RecyclerView recyclerView) {
+        registerAdapterDataObserver(recyclerView, null);
+    }
+
+    /**
+     * 注册 Adapter 观察者
+     * @param recyclerView        {@link RecyclerView}
+     * @param adapterDataObserver Adapter 观察者
+     */
+    public void registerAdapterDataObserver(RecyclerView recyclerView, RecyclerView.AdapterDataObserver adapterDataObserver) {
+        if (recyclerView != null) {
+            RecyclerView.Adapter adapter = recyclerView.getAdapter();
+            if (adapter != null) {
+                adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                    @Override
+                    public void onChanged() {
+                        super.onChanged();
+                        // 获取数据总数
+                        int itemCount = adapter.getItemCount();
+                        // 如果为 null 特殊处理
+                        ViewUtils.reverseVisibilitys(itemCount != 0, vid_ba_content_linear, vid_ba_state_linear);
+
+                        if (adapterDataObserver != null) {
+                            adapterDataObserver.onChanged();
+                        }
+                    }
+                });
+            }
+        }
     }
 }

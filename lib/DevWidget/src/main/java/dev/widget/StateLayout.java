@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -30,12 +29,10 @@ public class StateLayout extends FrameLayout {
     private int mState = State.INIT.getValue();
     // 状态值改变接口
     private OnStateChanged mOnStateChanged;
-    // 插入 View Map state - layoutId
-    private Map<Integer, Integer> mLayoutIdMaps = new LinkedHashMap<>();
     // View Map 校验
     private Map<Integer, View> mViewMaps = new LinkedHashMap<>();
     // 全局配置
-    private static GlobalBuilder builder;
+    private static GlobalBuilder sBuilder;
 
     public StateLayout(Context context) {
         this(context, null);
@@ -160,41 +157,54 @@ public class StateLayout extends FrameLayout {
 
     /**
      * 设置状态值
-     * @param state 状态
+     * @param state 状态值
      * @return {@link StateLayout}
      */
     public StateLayout setState(int state) {
         this.mState = state;
+        // 切换 View
+        toggleStateView(state);
+        // 触发回调
         if (mOnStateChanged != null) {
             mOnStateChanged.OnChanged(this, mState, mType, mSize);
         }
-        if (builder != null && builder.onStateChanged != null) {
-            builder.onStateChanged.OnChanged(this, mState, mType, mSize);
+        if (sBuilder != null && sBuilder.onStateChanged != null) {
+            sBuilder.onStateChanged.OnChanged(this, mState, mType, mSize);
         }
         return this;
     }
 
     /**
      * 设置状态值
-     * @param state 状态
+     * @param state 状态值
      * @param size  数据总数
      * @return {@link StateLayout}
      */
     public StateLayout setState(int state, int size) {
-        this.mState = state;
         this.mSize = size;
-        if (mOnStateChanged != null) {
-            mOnStateChanged.OnChanged(this, mState, mType, mSize);
-        }
-        if (builder != null && builder.onStateChanged != null) {
-            builder.onStateChanged.OnChanged(this, mState, mType, mSize);
-        }
+        return setState(state);
+    }
+
+    // =
+
+    /**
+     * 切换状态 View
+     * @param state 状态值
+     * @return {@link StateLayout}
+     */
+    public StateLayout toggleStateView(int state) {
+        // 隐藏其他 View
+        ViewUtils.setVisibilitys(false, ViewUtils.getChilds(this));
+        // 显示当前状态 View
+        ViewUtils.setVisibility(true, getView(state));
         return this;
     }
 
+    // =
+
     /**
      * 获取对应状态 View
-     * @param state 状态
+     * @param state 状态值
      * @return 对应状态 View
      */
     public View getView(int state) {
@@ -208,7 +218,6 @@ public class StateLayout extends FrameLayout {
      * @return {@link StateLayout}
      */
     public StateLayout insert(int state, @LayoutRes int resource) {
-        mLayoutIdMaps.put(state, resource);
         return insertView(state, resource);
     }
 
@@ -228,7 +237,6 @@ public class StateLayout extends FrameLayout {
      * @return {@link StateLayout}
      */
     public StateLayout remove(int state) {
-        mLayoutIdMaps.remove(state);
         return removeView(state);
     }
 
@@ -277,7 +285,7 @@ public class StateLayout extends FrameLayout {
      * @param builder {@link GlobalBuilder}
      */
     public static void setBuilder(GlobalBuilder builder) {
-        StateLayout.builder = builder;
+        StateLayout.sBuilder = builder;
     }
 
     /**
@@ -345,7 +353,6 @@ public class StateLayout extends FrameLayout {
         mType = "";
         mState = State.INIT.getValue();
         mOnStateChanged = null;
-        mLayoutIdMaps = new HashMap<>();
         mViewMaps = new LinkedHashMap<>();
         this.post(new Runnable() {
             @Override
@@ -360,15 +367,17 @@ public class StateLayout extends FrameLayout {
      * 内部初始化方法
      */
     private void init() {
+        // 插入 View Map state - layoutId
+        Map<Integer, Integer> layoutIdMaps = new LinkedHashMap<>();
         // 防止为 null
-        if (builder != null) {
-            mLayoutIdMaps.putAll(builder.layoutIdMaps);
+        if (sBuilder != null) {
+            layoutIdMaps.putAll(sBuilder.layoutIdMaps);
         }
 
         // 清空全部 View
         removeAllViews();
 
-        Iterator<Map.Entry<Integer, Integer>> iterator = mLayoutIdMaps.entrySet().iterator();
+        Iterator<Map.Entry<Integer, Integer>> iterator = layoutIdMaps.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<Integer, Integer> entry = iterator.next();
             int state = entry.getKey();
@@ -377,11 +386,9 @@ public class StateLayout extends FrameLayout {
         }
 
         // 默认触发初始化回调 ( 一开始 mType 非准确, 可通过获取 StateLayout 判断 Context 所属功能页面 )
-        if (builder != null && builder.onStateChanged != null) {
-            builder.onStateChanged.OnChanged(this, mState, mType, mSize);
+        if (sBuilder != null && sBuilder.onStateChanged != null) {
+            sBuilder.onStateChanged.OnChanged(this, mState, mType, mSize);
         }
-        // 默认隐藏 View
-        ViewUtils.setVisibility(false, this);
     }
 
     /**
@@ -391,14 +398,14 @@ public class StateLayout extends FrameLayout {
      * @return {@link StateLayout}
      */
     private StateLayout insertView(int state, int layout) {
-        View view = ViewUtils.inflate(this.getContext(), layout, this);
+        View view = ViewUtils.inflate(this.getContext(), layout);
         return insertView(state, view);
     }
 
     /**
      * 插入 View
-     * @param state  状态值
-     * @param view View Layout
+     * @param state 状态值
+     * @param view  View Layout
      * @return {@link StateLayout}
      */
     private StateLayout insertView(int state, View view) {
@@ -415,7 +422,7 @@ public class StateLayout extends FrameLayout {
 
     /**
      * 移除 View
-     * @param state  状态值
+     * @param state 状态值
      * @return {@link StateLayout}
      */
     private StateLayout removeView(int state) {
