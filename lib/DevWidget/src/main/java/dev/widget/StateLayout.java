@@ -345,7 +345,7 @@ public class StateLayout extends FrameLayout {
 
         // 默认触发初始化回调 ( 一开始 mType 非准确, 可通过获取 StateLayout 判断 Context 所属功能页面 )
         if (builder != null && builder.onStateChanged != null) {
-            builder.onStateChanged.OnChanged(this, State.INIT.getValue(), "", 0);
+            builder.onStateChanged.OnChanged(this, mState, mType, mSize);
         }
     }
 }

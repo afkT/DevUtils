@@ -10,6 +10,9 @@ import android.widget.ScrollView;
 /**
  * detail: 自定义 ScrollView 监听滑动改变
  * @author Ttt
+ * <pre>
+ *     推荐使用 {@link CustomNestedScrollView}
+ * </pre>
  */
 public class CustomScrollView extends ScrollView {
 
