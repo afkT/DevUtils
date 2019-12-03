@@ -37,7 +37,6 @@ public class ProgressBarActivity extends BaseToolbarActivity {
     public void initValues() {
         super.initValues();
 
-
         // 内外圆环 + 数字 + 无扇形
         vid_ap_bar1.setProgressStyle(CustomProgressBar.ProgressStyle.DEFAULT)
             .setOuterRingWidth(SizeUtils.dipConvertPx(5)) // 内环宽度
@@ -61,7 +60,6 @@ public class ProgressBarActivity extends BaseToolbarActivity {
         vid_ap_bar4.setProgressStyle(CustomProgressBar.ProgressStyle.NUMBER)
             .setNumberTextSize(20f) // 字体大小
             .setNumberTextColor(ResourceUtils.getColor(R.color.deeppink)); // 字体颜色
-
 
         // 延迟发送通知
         handler.sendEmptyMessageDelayed(0, 100);
