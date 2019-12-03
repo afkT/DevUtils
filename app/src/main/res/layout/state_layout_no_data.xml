@@ -22,12 +22,4 @@
         android:layout_height="match_parent"
         android:orientation="vertical" />
 
-    <!-- 状态布局容器 -->
-
-    <LinearLayout
-        android:id="@+id/vid_ba_state_linear"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" />
-
 </LinearLayout>

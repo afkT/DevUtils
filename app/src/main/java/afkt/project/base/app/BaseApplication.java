@@ -10,12 +10,14 @@ import dev.DevUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.StateListUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
 import dev.utils.common.DateUtils;
 import dev.utils.common.FileRecordUtils;
 import dev.utils.common.assist.TimeCounter;
+import dev.widget.StateLayout;
 
 /**
  * detail: Base Application
@@ -99,5 +101,21 @@ public class BaseApplication extends Application {
         ProjectUtils.createFolder();
         // 插入设备信息
         FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
+        // 初始化状态布局配置
+        initStateLayout();
+    }
+
+    /**
+     * 初始化状态布局配置
+     */
+    private void initStateLayout() {
+        StateLayout.GlobalBuilder globalBuilder = new StateLayout.GlobalBuilder(new StateLayout.OnStateChanged() {
+            @Override
+            public void OnChanged(StateLayout stateLayout, int state, String type, int size) {
+
+            }
+        }).insert(StateLayout.State.NO_DATA, R.layout.state_layout_no_data);
+        // 设置全局配置
+        StateLayout.setBuilder(globalBuilder);
     }
 }

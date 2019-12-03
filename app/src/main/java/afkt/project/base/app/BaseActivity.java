@@ -25,6 +25,8 @@ public abstract class BaseActivity extends DevBaseActivity {
     protected LinearLayout vid_ba_title_linear;
     // View 容器
     protected LinearLayout vid_ba_content_linear;
+    // 状态布局容器
+    protected LinearLayout vid_ba_state_linear;
     // = Object =
     // Unbinder
     public Unbinder unbinder;
@@ -96,6 +98,7 @@ public abstract class BaseActivity extends DevBaseActivity {
         vid_ba_linear = ViewUtils.findViewById(this, R.id.vid_ba_linear);
         vid_ba_title_linear = ViewUtils.findViewById(this, R.id.vid_ba_title_linear);
         vid_ba_content_linear = ViewUtils.findViewById(this, R.id.vid_ba_content_linear);
+        vid_ba_state_linear = ViewUtils.findViewById(this, R.id.vid_ba_state_linear);
         // 清空旧的 View
         ViewUtils.removeAllViews(vid_ba_content_linear);
         // 获取 Layout Id View
