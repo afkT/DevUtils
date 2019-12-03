@@ -95,5 +95,7 @@ public class ModuleActivity extends BaseToolbarActivity {
                 }
             }
         });
+        // 注册观察者
+        registerAdapterDataObserver(vid_bvr_recy,true);
     }
 }

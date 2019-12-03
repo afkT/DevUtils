@@ -2,6 +2,7 @@ package afkt.project.base.app;
 
 import android.app.Application;
 import android.os.Build;
+import android.view.View;
 
 import afkt.project.R;
 import afkt.project.base.config.AppConfig;
@@ -10,6 +11,8 @@ import dev.DevUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.TextViewUtils;
+import dev.utils.app.ViewUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.logger.LogConfig;
 import dev.utils.app.logger.LogLevel;
@@ -111,7 +114,13 @@ public class BaseApplication extends Application {
         StateLayout.GlobalBuilder globalBuilder = new StateLayout.GlobalBuilder(new StateLayout.OnStateChanged() {
             @Override
             public void OnChanged(StateLayout stateLayout, int state, String type, int size) {
-
+                View view = stateLayout.getView(state);
+                if (view != null) {
+                    if (state == 4) { // NO_DATA
+                        View vid_slnd_tips_tv = ViewUtils.findViewById(view, R.id.vid_slnd_tips_tv);
+                        TextViewUtils.setText(vid_slnd_tips_tv, "暂无数据");
+                    }
+                }
             }
         }).insert(StateLayout.State.NO_DATA, R.layout.state_layout_no_data);
         // 设置全局配置

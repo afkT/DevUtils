@@ -412,6 +412,8 @@ public class StateLayout extends FrameLayout {
         if (view != null) {
             // 移除旧的 View
             removeView(state);
+            // 默认隐藏 View
+            ViewUtils.setVisibility(false, view);
             // 保存新的 View
             this.addView(view);
             // 保存 View

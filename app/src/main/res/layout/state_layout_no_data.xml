@@ -3,9 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="100.0dip"
-        android:layout_height="100.0dip"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@mipmap/icon_launcher_round" />
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="180.0dp"
+            android:layout_height="180.0dp"
+            android:background="@drawable/icon_tips" />
+
+        <afkt.project.ui.widget.BaseTextView
+            android:id="@+id/vid_slnd_tips_tv"
+            style="@style/AppTheme.Base_TextView"
+            android:layout_marginTop="20.0dip"
+            android:gravity="center"
+            android:textSize="15.0sp" />
+    </LinearLayout>
 </FrameLayout>

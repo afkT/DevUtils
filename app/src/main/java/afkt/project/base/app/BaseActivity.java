@@ -177,15 +177,25 @@ public abstract class BaseActivity extends DevBaseActivity {
      * @param recyclerView {@link RecyclerView}
      */
     public void registerAdapterDataObserver(RecyclerView recyclerView) {
-        registerAdapterDataObserver(recyclerView, null);
+        registerAdapterDataObserver(recyclerView, null, false);
+    }
+
+    /**
+     * 注册 Adapter 观察者
+     * @param recyclerView {@link RecyclerView}
+     * @param isRefAdapter 是否刷新适配器
+     */
+    public void registerAdapterDataObserver(RecyclerView recyclerView, boolean isRefAdapter) {
+        registerAdapterDataObserver(recyclerView, null, isRefAdapter);
     }
 
     /**
      * 注册 Adapter 观察者
      * @param recyclerView        {@link RecyclerView}
      * @param adapterDataObserver Adapter 观察者
+     * @param isRefAdapter        是否刷新适配器
      */
-    public void registerAdapterDataObserver(RecyclerView recyclerView, RecyclerView.AdapterDataObserver adapterDataObserver) {
+    public void registerAdapterDataObserver(RecyclerView recyclerView, RecyclerView.AdapterDataObserver adapterDataObserver, boolean isRefAdapter) {
         if (recyclerView != null) {
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
             if (adapter != null) {
@@ -197,12 +207,18 @@ public abstract class BaseActivity extends DevBaseActivity {
                         int itemCount = adapter.getItemCount();
                         // 如果为 null 特殊处理
                         ViewUtils.reverseVisibilitys(itemCount != 0, vid_ba_content_linear, vid_ba_state_linear);
+                        // 判断是否不存在数据
+                        if (itemCount == 0) {
+                            stateLayout.setState(StateLayout.State.NO_DATA.getValue());
+                        }
 
                         if (adapterDataObserver != null) {
                             adapterDataObserver.onChanged();
                         }
                     }
                 });
+                // 刷新适配器
+                if (isRefAdapter) adapter.notifyDataSetChanged();
             }
         }
     }
