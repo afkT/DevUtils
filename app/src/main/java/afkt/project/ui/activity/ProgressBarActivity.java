@@ -54,6 +54,7 @@ public class ProgressBarActivity extends BaseToolbarActivity {
             .setOuterRingWidth(SizeUtils.dipConvertPx(1)) // 内环宽度
             .setOuterRingColor(Color.RED) // 内环颜色
             .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
+            .setNumberTextColor(Color.parseColor("#FB7D00")) // 字体颜色
             .setCanvasNumber(true); // 是否绘制数字
 
         // 单独字体
@@ -72,11 +73,12 @@ public class ProgressBarActivity extends BaseToolbarActivity {
             // 如果页面销毁了则不处理
             if (ActivityUtils.isFinishing(mActivity)) return;
             try {
+                int progress = vid_ap_bar1.getProgress() + 1;
                 // 每次进行累加
-                vid_ap_bar1.setProgress(vid_ap_bar1.getProgress() + 1);
-                vid_ap_bar2.setProgress(vid_ap_bar2.getProgress() + 1);
-                vid_ap_bar3.setProgress(vid_ap_bar3.getProgress() + 1);
-                vid_ap_bar4.setProgress(vid_ap_bar4.getProgress() + 1);
+                vid_ap_bar1.setProgress(progress);
+                vid_ap_bar2.setProgress(progress);
+                vid_ap_bar3.setProgress(progress);
+                vid_ap_bar4.setProgress(progress);
                 // 判断是否符合条件
                 if (vid_ap_bar1.getProgress() < vid_ap_bar1.getMax()) {
                     // 延迟发送通知

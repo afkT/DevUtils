@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 统一的配置 -->
+
+    <!-- 圆角角度 -->
+    <dimen name="un_radius">3.0dip</dimen>
+
+    <!-- 线条 -->
+    <dimen name="un_line_width">0.5dip</dimen>
+
+    <!-- 边框(描边) 宽度 -->
+    <dimen name="un_border_width">1.0dip</dimen>
+
+</resources>

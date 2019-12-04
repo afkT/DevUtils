@@ -180,6 +180,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 常见 UI、GradientDrawable 效果等 -->
+
+        <activity
+            android:name=".ui.activity.UIEffectActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- ======== -->
         <!-- 服务相关 -->
         <!-- ======== -->

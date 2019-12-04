@@ -1733,6 +1733,16 @@ public final class ViewHelper {
     }
 
     /**
+     * 切换获取焦点状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleFocusable(final View... views) {
+        ViewUtils.toggleFocusable(views);
+        return this;
+    }
+
+    /**
      * 设置 View 是否选中
      * @param selected {@code true} 选中, {@code false} 非选中
      * @param views    View[]
@@ -1740,6 +1750,16 @@ public final class ViewHelper {
      */
     public ViewHelper setSelected(final boolean selected, final View... views) {
         ViewUtils.setSelected(selected, views);
+        return this;
+    }
+
+    /**
+     * 切换选中状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleSelected(final View... views) {
+        ViewUtils.toggleSelected(views);
         return this;
     }
 
@@ -1755,6 +1775,16 @@ public final class ViewHelper {
     }
 
     /**
+     * 切换 View 是否启用状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleEnabled(final View... views) {
+        ViewUtils.toggleEnabled(views);
+        return this;
+    }
+
+    /**
      * 设置 View 是否可以点击
      * @param clickable {@code true} 可点击, {@code false} 不可点击
      * @param views     View[]
@@ -1766,6 +1796,16 @@ public final class ViewHelper {
     }
 
     /**
+     * 切换 View 是否可以点击状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleClickable(final View... views) {
+        ViewUtils.toggleClickable(views);
+        return this;
+    }
+
+    /**
      * 设置 View 是否可以长按
      * @param longClickable {@code true} 可长按, {@code false} 不可长按
      * @param views         View[]
@@ -1773,6 +1813,16 @@ public final class ViewHelper {
      */
     public ViewHelper setLongClickable(final boolean longClickable, final View... views) {
         ViewUtils.setLongClickable(longClickable, views);
+        return this;
+    }
+
+    /**
+     * 切换 View 是否可以长按状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleLongClickable(final View... views) {
+        ViewUtils.toggleLongClickable(views);
         return this;
     }
 

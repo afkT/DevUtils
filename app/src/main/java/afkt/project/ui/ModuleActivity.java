@@ -21,6 +21,7 @@ import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.ProgressBarActivity;
 import afkt.project.ui.activity.TimerActivity;
 import afkt.project.ui.activity.ToastTintActivity;
+import afkt.project.ui.activity.UIEffectActivity;
 import afkt.project.ui.activity.WifiActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
@@ -61,9 +62,11 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_TOAST_TINT: // ToastTint ( 着色美化 Toast )
                         SkipUtils.startActivity(ToastTintActivity.class, buttonValue);
                         break;
-
                     case ButtonValue.BTN_CUSTOM_PROGRESS_BAR: // 自定义 ProgressBar 样式 View
                         SkipUtils.startActivity(ProgressBarActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_UI_EFFECT: // 常见 UI、GradientDrawable 效果等
+                        SkipUtils.startActivity(UIEffectActivity.class, buttonValue);
                         break;
 
                     // ============

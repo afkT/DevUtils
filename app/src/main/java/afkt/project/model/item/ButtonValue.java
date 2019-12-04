@@ -74,6 +74,7 @@ public class ButtonValue {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_TOAST_TINT, "ToastTint ( 着色美化 Toast )"));
         lists.add(new ButtonValue(BTN_CUSTOM_PROGRESS_BAR, "自定义 ProgressBar 样式 View"));
+        lists.add(new ButtonValue(BTN_UI_EFFECT, "常见 UI、GradientDrawable 效果等"));
         return lists;
     }
 
@@ -310,6 +311,9 @@ public class ButtonValue {
 
     // 自定义 ProgressBar 样式 View
     public static final int BTN_CUSTOM_PROGRESS_BAR = MODULE_UI + 100;
+
+    // 常见 UI、GradientDrawable 效果等
+    public static final int BTN_UI_EFFECT = MODULE_UI + 200;
 
     // ============
     // = 其他功能 =
