@@ -22,6 +22,7 @@ import afkt.project.ui.activity.ProgressBarActivity;
 import afkt.project.ui.activity.TimerActivity;
 import afkt.project.ui.activity.ToastTintActivity;
 import afkt.project.ui.activity.UIEffectActivity;
+import afkt.project.ui.activity.ViewPagerActivity;
 import afkt.project.ui.activity.WifiActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
@@ -67,6 +68,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_UI_EFFECT: // 常见 UI、GradientDrawable 效果等
                         SkipUtils.startActivity(UIEffectActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_VIEW_PAGER: // ViewPager 滑动监听、控制滑动
+                        SkipUtils.startActivity(ViewPagerActivity.class, buttonValue);
                         break;
 
                     // ============

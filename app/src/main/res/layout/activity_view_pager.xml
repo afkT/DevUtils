@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppTheme.padding_lr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <afkt.project.ui.widget.BaseButton
+        android:id="@+id/vid_avp_allow_btn"
+        style="@style/AppTheme.Base_Button"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="允许滑动" />
+
+    <afkt.project.ui.widget.BaseButton
+        android:id="@+id/vid_avp_ban_btn"
+        style="@style/AppTheme.Base_Button"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="禁止滑动" />
+
+    <dev.widget.ControlSlideViewPager
+        android:id="@+id/vid_avp_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20.0dip" />
+
+</LinearLayout>
