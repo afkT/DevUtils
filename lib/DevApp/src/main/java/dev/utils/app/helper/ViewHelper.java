@@ -380,6 +380,16 @@ public final class ViewHelper {
 
     /**
      * 设置 TextView 是否加粗
+     * @param view {@link TextView}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBold(final View view) {
+        TextViewUtils.setBold(view);
+        return this;
+    }
+
+    /**
+     * 设置 TextView 是否加粗
      * @param view   {@link TextView}
      * @param isBold {@code true} yes, {@code false} no
      * @return {@link ViewHelper}

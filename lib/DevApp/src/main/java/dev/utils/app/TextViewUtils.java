@@ -918,6 +918,16 @@ public final class TextViewUtils {
     /**
      * 设置 TextView 是否加粗
      * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setBold(final T textView) {
+        return setBold(textView, true);
+    }
+
+    /**
+     * 设置 TextView 是否加粗
+     * @param textView {@link TextView}
      * @param isBold   {@code true} yes, {@code false} no
      * @param <T>      泛型
      * @return {@link TextView}
@@ -942,6 +952,16 @@ public final class TextViewUtils {
             textView.setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
         }
         return textView;
+    }
+
+    /**
+     * 设置 TextView 是否加粗
+     * @param view {@link TextView}
+     * @return {@link View}
+     */
+    public static View setBold(final View view) {
+        setBold(getTextView(view), true);
+        return view;
     }
 
     /**
@@ -1837,7 +1857,7 @@ public final class TextViewUtils {
     public static <T extends TextView> T setTransformationMethod(final T textView, final boolean isDisplayPassword) {
         if (textView != null) {
             textView.setTransformationMethod(isDisplayPassword ?
-                    HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
+                HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
         }
         return textView;
     }
