@@ -20,6 +20,7 @@ import afkt.project.ui.activity.LoggerActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.ProgressBarActivity;
 import afkt.project.ui.activity.StatusBarActivity;
+import afkt.project.ui.activity.TextCalcActivity;
 import afkt.project.ui.activity.TimerActivity;
 import afkt.project.ui.activity.ToastTintActivity;
 import afkt.project.ui.activity.UIEffectActivity;
@@ -75,6 +76,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_STATUS_BAR: // 点击 显示/隐藏 ( 状态栏 )
                         SkipUtils.startActivity(StatusBarActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_TEXT_CALC: // 计算字体宽度、高度
+                        SkipUtils.startActivity(TextCalcActivity.class, buttonValue);
                         break;
 
                     // ============

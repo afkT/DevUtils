@@ -204,6 +204,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 计算字体宽度、高度 -->
+
+        <activity
+            android:name=".ui.activity.TextCalcActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- ======== -->
         <!-- 服务相关 -->
         <!-- ======== -->
