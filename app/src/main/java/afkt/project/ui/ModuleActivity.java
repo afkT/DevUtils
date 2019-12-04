@@ -19,6 +19,7 @@ import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.LoggerActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.ProgressBarActivity;
+import afkt.project.ui.activity.StatusBarActivity;
 import afkt.project.ui.activity.TimerActivity;
 import afkt.project.ui.activity.ToastTintActivity;
 import afkt.project.ui.activity.UIEffectActivity;
@@ -71,6 +72,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_VIEW_PAGER: // ViewPager 滑动监听、控制滑动
                         SkipUtils.startActivity(ViewPagerActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_STATUS_BAR: // 点击 显示/隐藏 ( 状态栏 )
+                        SkipUtils.startActivity(StatusBarActivity.class, buttonValue);
                         break;
 
                     // ============

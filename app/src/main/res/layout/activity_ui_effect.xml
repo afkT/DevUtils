@@ -24,7 +24,6 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_tab_left_selector"
                 android:gravity="center"
-                android:onClick="onClick"
                 android:text="热门"
                 android:textColor="@color/selector_tab_text_color" />
 
@@ -34,7 +33,6 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_tab_right_selector"
                 android:gravity="center"
-                android:onClick="onClick"
                 android:text="最新"
                 android:textColor="@color/selector_tab_text_color" />
         </LinearLayout>
@@ -51,7 +49,6 @@
                 android:layout_width="120.0dip"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:onClick="onClick"
                 android:text="文章" />
 
             <afkt.project.ui.widget.BaseTextView
@@ -59,7 +56,6 @@
                 android:layout_width="120.0dip"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:onClick="onClick"
                 android:text="视频" />
         </LinearLayout>
 
@@ -75,7 +71,6 @@
                 android:layout_width="120.0dip"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:onClick="onClick"
                 android:text="精选" />
 
             <afkt.project.ui.widget.BaseTextView
@@ -83,7 +78,6 @@
                 android:layout_width="120.0dip"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:onClick="onClick"
                 android:text="推荐" />
         </LinearLayout>
 
@@ -99,7 +93,6 @@
                 android:layout_width="120.0dip"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5.0dip"
-                android:onClick="onClick"
                 android:text="登录" />
 
             <afkt.project.ui.widget.BaseButton
@@ -107,7 +100,6 @@
                 android:layout_width="120.0dip"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5.0dip"
-                android:onClick="onClick"
                 android:text="注册" />
         </LinearLayout>
 

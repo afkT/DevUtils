@@ -76,6 +76,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_CUSTOM_PROGRESS_BAR, "自定义 ProgressBar 样式 View"));
         lists.add(new ButtonValue(BTN_UI_EFFECT, "常见 UI、GradientDrawable 效果等"));
         lists.add(new ButtonValue(BTN_VIEW_PAGER, "ViewPager 滑动监听、控制滑动"));
+        lists.add(new ButtonValue(BTN_STATUS_BAR, "点击 显示/隐藏 ( 状态栏 )"));
         return lists;
     }
 
@@ -318,6 +319,9 @@ public class ButtonValue {
 
     // ViewPager 滑动监听、控制滑动
     public static final int BTN_VIEW_PAGER = MODULE_UI + 300;
+
+    // 点击 显示/隐藏 ( 状态栏 )
+    public static final int BTN_STATUS_BAR = MODULE_UI + 400;
 
     // ============
     // = 其他功能 =
