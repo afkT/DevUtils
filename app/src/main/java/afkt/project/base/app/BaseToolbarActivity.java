@@ -61,7 +61,7 @@ public abstract class BaseToolbarActivity extends BaseActivity {
 
     /**
      * 设置 ToolBar 标题
-     * @param title
+     * @param title 标题
      */
     protected void setTitle(String title) {
         vid_bt_toolbar.setTitle(title);
