@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.widget.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        style="@style/AppTheme.padding_lr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <afkt.project.ui.widget.BaseButton
+            android:id="@+id/vid_agfa_select_btn"
+            style="@style/AppTheme.Base_Button"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="选择图片" />
+
+        <dev.widget.ControlSlideGallery
+            android:id="@+id/vid_agfa_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="70.0dip" />
+
+        <ImageView
+            android:id="@+id/vid_agfa_igview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</dev.widget.CustomNestedScrollView>

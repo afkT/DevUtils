@@ -16,6 +16,7 @@ import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
 import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FunctionActivity;
+import afkt.project.ui.activity.GPUFilterACVActivity;
 import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.LoggerActivity;
 import afkt.project.ui.activity.MultiSelectActivity;
@@ -87,6 +88,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_MULTI_SELECT: // 多选辅助类 MultiSelectAssist
                         SkipUtils.startActivity(MultiSelectActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_GPU_ACV: // GPU ACV 文件滤镜效果
+                        SkipUtils.startActivity(GPUFilterACVActivity.class, buttonValue);
                         break;
 
                     // ============
