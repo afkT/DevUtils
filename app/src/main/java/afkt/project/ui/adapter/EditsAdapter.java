@@ -37,7 +37,7 @@ public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder>
         super(R.layout.adapter_item_edits, data);
         // 获取默认 RequestOptions
         requestOptions = GlideUtils.defaultOptions();
-        // 设置圆角 - 使用 RoundedCorners 图片不会闪烁
+        // 设置圆角, 使用 RoundedCorners 图片不会闪烁
         requestOptions.transform(new RoundedCorners((int) ResourceUtils.getDimension(R.dimen.un_radius)));
     }
 

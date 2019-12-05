@@ -18,6 +18,7 @@ import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.LoggerActivity;
+import afkt.project.ui.activity.MultiSelectActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.ProgressBarActivity;
 import afkt.project.ui.activity.StatusBarActivity;
@@ -83,6 +84,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_ADAPTER_EDITS: // Adapter Item EditText 输入监听
                         SkipUtils.startActivity(AdapterEditsActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_MULTI_SELECT: // 多选辅助类 MultiSelectAssist
+                        SkipUtils.startActivity(MultiSelectActivity.class, buttonValue);
                         break;
 
                     // ============

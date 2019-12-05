@@ -19,7 +19,7 @@ public class EvaluateItem {
     public String evaluateContent;
     // 存储对象
     public CommodityEvaluateBean commodityEvaluateBean;
-    // 上传的图片
+    // 选择的图片
     public List<String> imageList = new ArrayList<>();
 
     public EvaluateItem() {

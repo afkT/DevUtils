@@ -79,6 +79,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_STATUS_BAR, "点击 显示/隐藏 ( 状态栏 )"));
         lists.add(new ButtonValue(BTN_TEXT_CALC, "计算字体宽度、高度"));
         lists.add(new ButtonValue(BTN_ADAPTER_EDITS, "Adapter Item EditText 输入监听"));
+        lists.add(new ButtonValue(BTN_MULTI_SELECT, "多选辅助类 MultiSelectAssist"));
         return lists;
     }
 
@@ -330,6 +331,9 @@ public class ButtonValue {
 
     // Adapter Item EditText 输入监听
     public static final int BTN_ADAPTER_EDITS = MODULE_UI + 600;
+
+    // 多选辅助类 MultiSelectAssist
+    public static final int BTN_MULTI_SELECT = MODULE_UI + 700;
 
     // ============
     // = 其他功能 =
