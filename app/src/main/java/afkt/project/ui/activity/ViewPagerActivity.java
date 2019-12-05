@@ -37,19 +37,26 @@ public class ViewPagerActivity extends BaseToolbarActivity {
             lists.add((i + 1) + "");
         }
         vid_avp_viewpager.setAdapter(new ViewPagerAdapter(lists));
+        vid_avp_viewpager.setCurrentItem(lists.size() * 100, false);
         vid_avp_viewpager.setOnPageChangeListener(new ControlSlideViewPager.OnDirectionListener() {
             @Override
             public void onSlideDirection(boolean left, boolean right) {
                 if (left && !right) {
-                    showToast("往左滑 - 从右往左");
+                    DevLogger.dTag(mTag,"往左滑 - 从右往左");
                 } else {
-                    showToast("往右滑 - 从左往右");
+                    DevLogger.dTag(mTag,"往右滑 - 从左往右");
                 }
             }
 
             @Override
             public void onPageSelected(int i) {
                 DevLogger.dTag(mTag, "索引变动: " + i);
+
+                if (mLeftScroll) {
+                    showToast("往左滑 - 从右往左");
+                } else {
+                    showToast("往右滑 - 从左往右");
+                }
             }
         });
     }
