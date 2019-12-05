@@ -10,6 +10,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
+import afkt.project.ui.activity.AdapterEditsActivity;
 import afkt.project.ui.activity.CacheActivity;
 import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
@@ -79,6 +80,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_TEXT_CALC: // 计算字体宽度、高度
                         SkipUtils.startActivity(TextCalcActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_ADAPTER_EDITS: // Adapter Item EditText 输入监听
+                        SkipUtils.startActivity(AdapterEditsActivity.class, buttonValue);
                         break;
 
                     // ============

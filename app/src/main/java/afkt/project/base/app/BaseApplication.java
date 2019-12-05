@@ -8,6 +8,7 @@ import afkt.project.R;
 import afkt.project.base.config.AppConfig;
 import afkt.project.util.ProjectUtils;
 import dev.DevUtils;
+import dev.other.GlideUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ResourceUtils;
@@ -103,6 +104,8 @@ public class BaseApplication extends Application {
         ProjectUtils.createFolder();
         // 插入设备信息
         FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
+        // 初始化 Glide
+        GlideUtils.init(this);
         // 初始化状态布局配置
         initStateLayout();
     }

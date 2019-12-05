@@ -78,6 +78,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_VIEW_PAGER, "ViewPager 滑动监听、控制滑动"));
         lists.add(new ButtonValue(BTN_STATUS_BAR, "点击 显示/隐藏 ( 状态栏 )"));
         lists.add(new ButtonValue(BTN_TEXT_CALC, "计算字体宽度、高度"));
+        lists.add(new ButtonValue(BTN_ADAPTER_EDITS, "Adapter Item EditText 输入监听"));
         return lists;
     }
 
@@ -326,6 +327,9 @@ public class ButtonValue {
 
     // 计算字体宽度、高度
     public static final int BTN_TEXT_CALC = MODULE_UI + 500;
+
+    // Adapter Item EditText 输入监听
+    public static final int BTN_ADAPTER_EDITS = MODULE_UI + 600;
 
     // ============
     // = 其他功能 =

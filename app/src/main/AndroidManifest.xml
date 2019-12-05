@@ -212,6 +212,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- Adapter Item EditText 输入监听 -->
+
+        <activity
+            android:name=".ui.activity.AdapterEditsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- ======== -->
         <!-- 服务相关 -->
         <!-- ======== -->

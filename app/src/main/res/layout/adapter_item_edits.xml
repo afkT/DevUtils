@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="10.0dip"
+    android:paddingRight="10.0dip"
+    android:paddingBottom="10.0dip"
+    tools:background="@color/color_f5">
+
+    <View
+        android:id="@+id/vid_aie_line"
+        android:layout_width="match_parent"
+        android:layout_height="10.0dip" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg_white_r10"
+        android:orientation="vertical"
+        android:paddingLeft="14.0dip"
+        android:paddingTop="10.0dip"
+        android:paddingRight="10.0dip">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70.0dip"
+            android:layout_marginTop="10.0dip"
+            android:layout_marginBottom="10.0dip">
+
+            <FrameLayout
+                android:id="@+id/vid_aie_pic_frame"
+                android:layout_width="70.0dip"
+                android:layout_height="70.0dip"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_border_image"
+                android:padding="5.0dip">
+
+                <ImageView
+                    android:id="@+id/vid_aie_pic_igview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="8.0dip"
+                android:layout_toRightOf="@id/vid_aie_pic_frame"
+                android:orientation="vertical">
+
+                <afkt.project.ui.widget.BaseTextView
+                    android:id="@+id/vid_aie_name_tv"
+                    style="@style/AppTheme.Base_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1.0dip"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/color_33"
+                    android:textSize="14.0sp"
+                    tools:text="商品名" />
+
+                <afkt.project.ui.widget.BaseTextView
+                    android:id="@+id/vid_aie_price_tv"
+                    style="@style/AppTheme.Base_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4.0dip"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/red"
+                    android:textSize="14.0sp"
+                    tools:text="￥17.2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <afkt.project.ui.widget.BaseTextView
+                        style="@style/AppTheme.Base_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="评分描述"
+                        android:textColor="@color/color_33"
+                        android:textSize="14.0sp" />
+
+                    <!-- 评星控件 -->
+
+                    <com.hedgehog.ratingbar.RatingBar
+                        android:id="@+id/vid_aie_ratingbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="15.0dip"
+                        android:gravity="center|left"
+                        app:clickable="true"
+                        app:halfstart="false"
+                        app:starCount="5"
+                        app:starEmpty="@drawable/icon_star_unselected"
+                        app:starFill="@drawable/icon_star_selected"
+                        app:starImageHeight="18.0dip" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/un_line_width"
+            android:layout_marginTop="10.0dip"
+            android:background="@color/color_d7" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip">
+
+            <!-- 输入的评价内容 -->
+
+            <EditText
+                android:id="@+id/vid_aie_content_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/vid_aie_number_tv"
+                android:background="@null"
+                android:gravity="start"
+                android:hint="分享你的评价"
+                android:maxLength="120"
+                android:minHeight="110.0dip"
+                android:textColor="@color/color_33"
+                android:textColorHint="@color/color_99"
+                android:textSize="15.0sp" />
+
+            <!-- 输入的字数数量 -->
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_aie_number_tv"
+                style="@style/AppTheme.Base_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="15.0dip"
+                android:textColor="@color/color_33"
+                android:textSize="14.0sp"
+                tools:text="120" />
+        </RelativeLayout>
+
+        <!-- 选择的图片 -->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/vid_aie_pic_recy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip"
+            android:layout_marginBottom="12.0dip" />
+    </LinearLayout>
+</LinearLayout>
