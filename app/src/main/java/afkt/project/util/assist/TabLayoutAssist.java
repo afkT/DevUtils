@@ -88,7 +88,7 @@ public final class TabLayoutAssist {
     }
 
     /**
-     * 滑动Tab处理
+     * 滑动 Tab 处理
      * @param pos 需要滑动的索引
      */
     private void scrollTab(final int pos) {

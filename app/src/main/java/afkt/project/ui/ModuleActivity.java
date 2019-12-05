@@ -76,7 +76,7 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_VIEW_PAGER: // ViewPager 滑动监听、控制滑动
                         SkipUtils.startActivity(ViewPagerActivity.class, buttonValue);
                         break;
-                    case ButtonValue.BTN_STATUS_BAR: // 点击 显示/隐藏 ( 状态栏 )
+                    case ButtonValue.BTN_STATUS_BAR: // 点击 显示 / 隐藏 ( 状态栏 )
                         SkipUtils.startActivity(StatusBarActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_TEXT_CALC: // 计算字体宽度、高度
