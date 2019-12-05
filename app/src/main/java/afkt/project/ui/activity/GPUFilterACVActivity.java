@@ -36,10 +36,10 @@ import jp.co.cyberagent.android.gpuimage.GPUImageToneCurveFilter;
 public class GPUFilterACVActivity extends BaseToolbarActivity {
 
     // = View =
-    @BindView(R.id.vid_agfa_gallery)
-    ControlSlideGallery vid_agfa_gallery;
-    @BindView(R.id.vid_agfa_igview)
-    ImageView vid_agfa_igview;
+    @BindView(R.id.vid_agf_gallery)
+    ControlSlideGallery vid_agf_gallery;
+    @BindView(R.id.vid_agf_igview)
+    ImageView vid_agf_igview;
     // 适配器
     GPUFilterACVAdapter gpuFilterACVAdapter;
     // ACV 文件集合
@@ -51,7 +51,7 @@ public class GPUFilterACVActivity extends BaseToolbarActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_gpu_filter_acv;
+        return R.layout.activity_gpu_filter;
     }
 
     @Override
@@ -80,8 +80,8 @@ public class GPUFilterACVActivity extends BaseToolbarActivity {
         listACVFiles.add(new ACVFileBean("Greens", "filter/Greens.acv"));
         listACVFiles.add(new ACVFileBean("Miami", "filter/Miami.acv"));
         // 设置适配器
-        vid_agfa_gallery.setAdapter(gpuFilterACVAdapter = new GPUFilterACVAdapter(this, listACVFiles));
-        vid_agfa_gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        vid_agf_gallery.setAdapter(gpuFilterACVAdapter = new GPUFilterACVAdapter(this, listACVFiles));
+        vid_agf_gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 gpuFilterACVAdapter.setSelectPosition(position);
@@ -95,15 +95,15 @@ public class GPUFilterACVActivity extends BaseToolbarActivity {
             }
         });
         // 默认选中第一个
-        vid_agfa_gallery.setSelection(0);
+        vid_agf_gallery.setSelection(0);
     }
 
-    @OnClick({R.id.vid_agfa_select_btn})
+    @OnClick({R.id.vid_agf_select_btn})
     @Override
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
-            case R.id.vid_agfa_select_btn:
+            case R.id.vid_agf_select_btn:
                 // 初始化图片配置
                 PictureSelectorUtils.PicConfig picConfig = new PictureSelectorUtils.PicConfig()
                         .setCompress(false).setMaxSelectNum(1).setCrop(false).setMimeType(PictureMimeType.ofImage())
@@ -145,13 +145,13 @@ public class GPUFilterACVActivity extends BaseToolbarActivity {
         try {
             if (selectBitmap == null) return;
             // 获取选中的滤镜
-            int position = vid_agfa_gallery.getSelectedItemPosition();
+            int position = vid_agf_gallery.getSelectedItemPosition();
             // 获取滤镜文件实体类
             ACVFileBean acvFileBean = gpuFilterACVAdapter.getItem(position);
             // 设置滤镜效果
             GPUImageToneCurveFilter gpuFilter = GPUFilterUtils.getGPUImageToneCurveFilter(ResourceUtils.open(acvFileBean.acvPath));
             Bitmap bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, gpuFilter);
-            vid_agfa_igview.setImageBitmap(bitmapFilter);
+            vid_agf_igview.setImageBitmap(bitmapFilter);
         } catch (Exception e) {
             DevLogger.eTag(mTag, e, "setFilter");
         }
