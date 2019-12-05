@@ -81,6 +81,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_ADAPTER_EDITS, "Adapter Item EditText 输入监听"));
         lists.add(new ButtonValue(BTN_MULTI_SELECT, "多选辅助类 MultiSelectAssist"));
         lists.add(new ButtonValue(BTN_GPU_ACV, "GPU ACV 文件滤镜效果"));
+        lists.add(new ButtonValue(BTN_GPU_FILTER, "GPU 滤镜效果"));
         return lists;
     }
 
@@ -338,6 +339,9 @@ public class ButtonValue {
 
     // GPU ACV 文件滤镜效果
     public static final int BTN_GPU_ACV = MODULE_UI + 800;
+
+    // GPU 滤镜效果
+    public static final int BTN_GPU_FILTER = MODULE_UI + 900;
 
     // ============
     // = 其他功能 =
