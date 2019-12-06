@@ -33,11 +33,11 @@ public class KeyValueAdapter extends BaseQuickAdapter<KeyValueBean, BaseViewHold
             .setOnClicks(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String txt = item.toString();
+                    String text = item.toString();
                     // 复制到剪切板
-                    ClipboardUtils.copyText(txt);
+                    ClipboardUtils.copyText(text);
                     // 进行提示
-                    ToastTintUtils.success(ResourceUtils.getString(R.string.copy_suc) + " -> " + txt);
+                    ToastTintUtils.success(ResourceUtils.getString(R.string.copy_suc) + " -> " + text);
                 }
             }, helper.getView(R.id.vid_akv_linear));
     }

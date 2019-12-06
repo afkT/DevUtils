@@ -83,6 +83,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_GPU_ACV, "GPU ACV 文件滤镜效果"));
         lists.add(new ButtonValue(BTN_GPU_FILTER, "GPU 滤镜效果"));
         lists.add(new ButtonValue(BTN_QRCODE_CREATE, "创建二维码"));
+        lists.add(new ButtonValue(BTN_QRCODE_IMAGE, "二维码图片解析"));
         return lists;
     }
 
@@ -348,6 +349,9 @@ public class ButtonValue {
 
     // 创建二维码
     public static final int BTN_QRCODE_CREATE = MODULE_UI + 1000;
+
+    // 二维码图片解析
+    public static final int BTN_QRCODE_IMAGE = MODULE_UI + 1100;
 
     // ============
     // = 其他功能 =
