@@ -39,12 +39,12 @@ public class TextCalcActivity extends BaseToolbarActivity {
 
             BaseTextView baseTextView = new BaseTextView(this);
             ViewHelper.get().setPadding(baseTextView, 30)
-                .setMarginTop(baseTextView, 40)
-                .setMarginBottom(baseTextView, 20)
-                .setTextColor(baseTextView, Color.BLACK)
-                .setTextSizeBySp(baseTextView, RandomUtils.getRandom(13, 20))
-                .setBold(baseTextView, RandomUtils.nextBoolean())
-                .setText(baseTextView, randomText).setOnClicks(new View.OnClickListener() {
+                    .setMarginTop(baseTextView, 40)
+                    .setMarginBottom(baseTextView, 20)
+                    .setTextColor(baseTextView, Color.BLACK)
+                    .setTextSizeBySp(baseTextView, RandomUtils.getRandom(13, 20))
+                    .setBold(baseTextView, RandomUtils.nextBoolean())
+                    .setText(baseTextView, randomText).setOnClicks(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     BaseTextView baseTextView = (BaseTextView) v;

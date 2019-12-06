@@ -101,7 +101,7 @@ public class UIEffectActivity extends BaseToolbarActivity {
         // ============
 
         ShapeUtils.newBuilderToGradient(GradientDrawable.Orientation.BR_TL,
-            new int[]{Color.RED, Color.BLUE, Color.GREEN}).build().setDrawable(vid_aue_5_0_view);
+                new int[]{Color.RED, Color.BLUE, Color.GREEN}).build().setDrawable(vid_aue_5_0_view);
 
         int[] colors = new int[3];
         colors[0] = ContextCompat.getColor(this, R.color.black);
@@ -142,10 +142,10 @@ public class UIEffectActivity extends BaseToolbarActivity {
                 @Override
                 public void onClick(View v) {
                     ViewHelper.get()
-                        .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), false)
-                        .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), ResourceUtils.getColor(R.color.black))
-                        .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, position), true)
-                        .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, position), ResourceUtils.getColor(R.color.red));
+                            .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), false)
+                            .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), ResourceUtils.getColor(R.color.black))
+                            .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, position), true)
+                            .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, position), ResourceUtils.getColor(R.color.red));
                     // 修改索引
                     selectTabIndex = position;
                     // 滑动 Tab 处理
@@ -163,18 +163,18 @@ public class UIEffectActivity extends BaseToolbarActivity {
         // 设置数据源
         tabLayoutAssist = TabLayoutAssist.obtain(vid_aue_8_0_tab);
         tabLayoutAssist.setListTabs(listTabs).setSelect(tabLayoutAssist.getTabCount() - 1)
-            .setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
-                @Override
-                public void onTabChange(TabItem tabItem, int pos) {
-                    DevLogger.dTag(mTag, "TabItem : " + tabItem.getTitle() + ", pos: " + pos);
-                    // 设置选中
-                    tabLayoutAssist.setSelect(pos);
-                }
-            });
+                .setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
+                    @Override
+                    public void onTabChange(TabItem tabItem, int pos) {
+                        DevLogger.dTag(mTag, "TabItem : " + tabItem.getTitle() + ", pos: " + pos);
+                        // 设置选中
+                        tabLayoutAssist.setSelect(pos);
+                    }
+                });
 
         TabLayoutAssist.obtain(vid_aue_9_0_tab)
-            .setListTabs(ArrayUtils.asList(ArrayUtils.subarray(listTabs.toArray(new TabItem[0]), 0, 3)))
-            .setSelect(0).setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
+                .setListTabs(ArrayUtils.asList(ArrayUtils.subarray(listTabs.toArray(new TabItem[0]), 0, 3)))
+                .setSelect(0).setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
             @Override
             public void onTabChange(TabItem tabItem, int pos) {
                 DevLogger.dTag(mTag, "TabItem : " + tabItem.getTitle() + ", pos: " + pos);

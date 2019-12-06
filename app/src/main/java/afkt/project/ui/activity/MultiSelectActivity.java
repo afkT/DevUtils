@@ -48,7 +48,7 @@ public class MultiSelectActivity extends BaseToolbarActivity {
         ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0)
-            .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33));
+                .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33));
     }
 
     @Override
@@ -62,13 +62,13 @@ public class MultiSelectActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         multiSelectAdapter = new MultiSelectAdapter(lists)
-            .setSelectListener(new MultiSelectAdapter.OnSelectListener() {
-                @Override
-                public void onClickSelect(int pos, boolean now) {
-                    CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getData().get(pos);
-                    DevLogger.eTag(mTag, "新状态: " + now + ", 商品名: " + commodityEvaluateBean.commodityName);
-                }
-            });
+                .setSelectListener(new MultiSelectAdapter.OnSelectListener() {
+                    @Override
+                    public void onClickSelect(int pos, boolean now) {
+                        CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getData().get(pos);
+                        DevLogger.eTag(mTag, "新状态: " + now + ", 商品名: " + commodityEvaluateBean.commodityName);
+                    }
+                });
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(multiSelectAdapter);
     }
@@ -154,13 +154,13 @@ public class MultiSelectActivity extends BaseToolbarActivity {
     private BaseTextView createTextView(String text, View.OnClickListener onClickListener) {
         BaseTextView baseTextView = new BaseTextView(this);
         ViewHelper.get().setVisibility(false, baseTextView) // 默认隐藏
-            .setText(baseTextView, text)
-            .setBold(baseTextView)
-            .setTextColor(baseTextView, ResourceUtils.getColor(R.color.white))
-            .setTextSizeBySp(baseTextView, 13.0f)
-            .setPaddingLeft(baseTextView, 30)
-            .setPaddingRight(baseTextView, 30)
-            .setOnClicks(onClickListener, baseTextView);
+                .setText(baseTextView, text)
+                .setBold(baseTextView)
+                .setTextColor(baseTextView, ResourceUtils.getColor(R.color.white))
+                .setTextSizeBySp(baseTextView, 13.0f)
+                .setPaddingLeft(baseTextView, 30)
+                .setPaddingRight(baseTextView, 30)
+                .setOnClicks(onClickListener, baseTextView);
         return baseTextView;
     }
 }

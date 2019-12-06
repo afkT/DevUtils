@@ -1857,7 +1857,7 @@ public final class TextViewUtils {
     public static <T extends TextView> T setTransformationMethod(final T textView, final boolean isDisplayPassword) {
         if (textView != null) {
             textView.setTransformationMethod(isDisplayPassword ?
-                HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
+                    HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
         }
         return textView;
     }

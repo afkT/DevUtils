@@ -58,7 +58,7 @@ public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder>
         helper.setText(R.id.vid_aie_name_tv, commodityEvaluateBean.commodityName);
         // 商品价格
         helper.setText(R.id.vid_aie_price_tv,
-            "￥" + BigDecimalUtils.round(commodityEvaluateBean.commodityPrice, 2));
+                "￥" + BigDecimalUtils.round(commodityEvaluateBean.commodityPrice, 2));
         // 商品图片
         GlideUtils.with().displayImage(commodityEvaluateBean.commodityPicture, helper.getView(R.id.vid_aie_pic_igview), requestOptions);
 

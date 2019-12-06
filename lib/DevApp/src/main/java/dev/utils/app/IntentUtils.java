@@ -243,7 +243,7 @@ public final class IntentUtils {
 
     /**
      * 获取 APP 通知使用权页面
-     * @param isNewTask   是否开启新的任务栈
+     * @param isNewTask 是否开启新的任务栈
      * @return APP 通知使用权页面
      */
     public static Intent getLaunchAppNotificationListenSettingsIntent(final boolean isNewTask) {

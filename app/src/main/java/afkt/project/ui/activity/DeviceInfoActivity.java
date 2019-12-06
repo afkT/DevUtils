@@ -46,7 +46,7 @@ public class DeviceInfoActivity extends BaseToolbarActivity {
         ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0)
-            .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33));
+                .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33));
     }
 
     @Override

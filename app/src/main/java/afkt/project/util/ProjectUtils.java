@@ -44,10 +44,10 @@ public final class ProjectUtils {
 
     /**
      * 刷新类型处理
-     * @param scanView 扫描 View
+     * @param scanView  扫描 View
      * @param scanShape 扫描类型
      */
-    public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShape){
+    public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShape) {
         // 设置扫描 View 类型
         scanView.setShapeType(scanShape);
 
@@ -171,7 +171,7 @@ public final class ProjectUtils {
         scanView.setDrawBackground(true);
 
         // 判断类型
-        switch (scanShape){
+        switch (scanShape) {
             case Square: // 正方形
                 // 天蓝色
                 int squareColor = Color.argb(255, 0, 128, 255);

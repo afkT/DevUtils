@@ -43,30 +43,30 @@ public class AdapterEditsActivity extends BaseToolbarActivity {
         // 添加按钮
         BaseTextView baseTextView = new BaseTextView(this);
         ViewHelper.get().setText(baseTextView, "提交")
-            .setBold(baseTextView)
-            .setTextColor(baseTextView, ResourceUtils.getColor(R.color.white))
-            .setTextSizeBySp(baseTextView, 13.0f)
-            .setPaddingLeft(baseTextView, 30)
-            .setPaddingRight(baseTextView, 30)
-            .setOnClicks(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    StringBuilder builder = new StringBuilder();
-                    for (EvaluateItem item : editsAdapter.getData()) {
-                        builder.append("\nevaluateContent: " + item.evaluateContent);
-                        builder.append("\nevaluateLevel: " + item.evaluateLevel);
-                        builder.append("\n");
+                .setBold(baseTextView)
+                .setTextColor(baseTextView, ResourceUtils.getColor(R.color.white))
+                .setTextSizeBySp(baseTextView, 13.0f)
+                .setPaddingLeft(baseTextView, 30)
+                .setPaddingRight(baseTextView, 30)
+                .setOnClicks(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StringBuilder builder = new StringBuilder();
+                        for (EvaluateItem item : editsAdapter.getData()) {
+                            builder.append("\nevaluateContent: " + item.evaluateContent);
+                            builder.append("\nevaluateLevel: " + item.evaluateLevel);
+                            builder.append("\n");
+                        }
+                        DevLogger.dTag(mTag, builder.toString());
+                        ToastTintUtils.success("数据已打印, 请查看 Logcat");
                     }
-                    DevLogger.dTag(mTag, builder.toString());
-                    ToastTintUtils.success("数据已打印, 请查看 Logcat");
-                }
-            }, baseTextView);
+                }, baseTextView);
         vid_bt_toolbar.addView(baseTextView);
 
         ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0)
-            .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33));
+                .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33));
     }
 
     @Override

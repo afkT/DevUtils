@@ -59,8 +59,10 @@ public final class TabLayoutAssist {
                 // 切换状态
                 updateTabTextView(tab, false);
             }
+
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
         });
     }
 
@@ -78,13 +80,13 @@ public final class TabLayoutAssist {
 
     /**
      * 改变 Tab TextView 选中状态
-     * @param tab Tab
+     * @param tab      Tab
      * @param isSelect 是否选中
      */
     private void updateTabTextView(TabLayout.Tab tab, boolean isSelect) {
         View view = tab.getCustomView();
         ViewHelper.get().setBold(view.findViewById(R.id.vid_tiv_tv), isSelect)
-            .setVisibility(isSelect, view.findViewById(R.id.vid_tiv_line));
+                .setVisibility(isSelect, view.findViewById(R.id.vid_tiv_line));
     }
 
     /**
@@ -181,7 +183,7 @@ public final class TabLayoutAssist {
      * 获取选中的 Tab 索引
      * @return 选中的 Tab 索引
      */
-    public int getSelectedTabPosition () {
+    public int getSelectedTabPosition() {
         return tabLayout.getSelectedTabPosition();
     }
 

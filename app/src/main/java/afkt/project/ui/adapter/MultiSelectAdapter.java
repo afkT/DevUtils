@@ -57,7 +57,7 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         helper.setText(R.id.vid_ams_name_tv, item.commodityName);
         // 商品价格
         helper.setText(R.id.vid_ams_price_tv,
-            "￥" + BigDecimalUtils.round(item.commodityPrice, 2));
+                "￥" + BigDecimalUtils.round(item.commodityPrice, 2));
         // 商品图片
         GlideUtils.with().displayImage(item.commodityPicture, helper.getView(R.id.vid_ams_pic_igview), requestOptions);
 
@@ -68,28 +68,28 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         ImageView vid_ams_igview = helper.getView(R.id.vid_ams_igview);
         // 是否显示编辑按钮、以及是否选中
         ViewHelper.get().setVisibility(isEditStatus(), vid_ams_igview)
-            .setSelected(multiSelectMapAssist.isSelectKey(position), vid_ams_igview)
-            .setOnClicks(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!isEditStatus()) return;
-                    // 反选处理
-                    multiSelectMapAssist.toggle(position, item);
-                    // 设置是否选中
-                    ViewUtils.setSelected(multiSelectMapAssist.isSelectKey(position), vid_ams_igview);
-                    // 触发回调
-                    if (selectListener != null) {
-                        selectListener.onClickSelect(position, multiSelectMapAssist.isSelectKey(position));
+                .setSelected(multiSelectMapAssist.isSelectKey(position), vid_ams_igview)
+                .setOnClicks(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!isEditStatus()) return;
+                        // 反选处理
+                        multiSelectMapAssist.toggle(position, item);
+                        // 设置是否选中
+                        ViewUtils.setSelected(multiSelectMapAssist.isSelectKey(position), vid_ams_igview);
+                        // 触发回调
+                        if (selectListener != null) {
+                            selectListener.onClickSelect(position, multiSelectMapAssist.isSelectKey(position));
+                        }
                     }
-                }
-            }, helper.getView(R.id.vid_ams_linear));
+                }, helper.getView(R.id.vid_ams_linear));
     }
 
     /**
      * 获取全选辅助类
      * @return {@link MultiSelectMapAssist}
      */
-    public MultiSelectMapAssist getmultiSelectMapAssist(){
+    public MultiSelectMapAssist getmultiSelectMapAssist() {
         return multiSelectMapAssist;
     }
 
@@ -203,7 +203,7 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         /**
          * 点击选中切换
          * @param position 对应的索引
-         * @param now 新的状态
+         * @param now      新的状态
          */
         void onClickSelect(int position, boolean now);
 

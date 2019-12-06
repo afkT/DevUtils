@@ -53,7 +53,7 @@ public class QRCodeImageActivity extends BaseToolbarActivity {
                 // 初始化图片配置
                 PictureSelectorUtils.PicConfig picConfig = new PictureSelectorUtils.PicConfig()
                         .setCompress(false).setMaxSelectNum(1).setCrop(false).setMimeType(PictureMimeType.ofImage())
-                        .setCamera(true).setGif (false);
+                        .setCamera(true).setGif(false);
                 // 打开图片选择器
                 PictureSelectorUtils.openGallery(PictureSelector.create(this), picConfig);
                 break;

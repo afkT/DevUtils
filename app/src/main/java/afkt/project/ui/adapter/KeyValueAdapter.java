@@ -28,17 +28,17 @@ public class KeyValueAdapter extends BaseQuickAdapter<KeyValueBean, BaseViewHold
     @Override
     protected void convert(BaseViewHolder helper, KeyValueBean item) {
         ViewHelper.get().setVisibility(helper.getLayoutPosition() == 0, helper.getView(R.id.vid_akv_line))
-            .setText(helper.getView(R.id.vid_akv_key_tv), item.getKey())
-            .setText(helper.getView(R.id.vid_akv_value_tv), item.getValue())
-            .setOnClicks(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String text = item.toString();
-                    // 复制到剪切板
-                    ClipboardUtils.copyText(text);
-                    // 进行提示
-                    ToastTintUtils.success(ResourceUtils.getString(R.string.copy_suc) + " -> " + text);
-                }
-            }, helper.getView(R.id.vid_akv_linear));
+                .setText(helper.getView(R.id.vid_akv_key_tv), item.getKey())
+                .setText(helper.getView(R.id.vid_akv_value_tv), item.getValue())
+                .setOnClicks(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String text = item.toString();
+                        // 复制到剪切板
+                        ClipboardUtils.copyText(text);
+                        // 进行提示
+                        ToastTintUtils.success(ResourceUtils.getString(R.string.copy_suc) + " -> " + text);
+                    }
+                }, helper.getView(R.id.vid_akv_linear));
     }
 }

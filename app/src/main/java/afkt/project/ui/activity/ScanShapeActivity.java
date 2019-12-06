@@ -81,7 +81,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
     }
 
     @OnClick({R.id.vid_ass_flashlight_igview, R.id.vid_ass_square_igview,
-        R.id.vid_ass_hexagon_igview, R.id.vid_ass_annulus_igview})
+            R.id.vid_ass_hexagon_igview, R.id.vid_ass_annulus_igview})
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -121,7 +121,8 @@ public class ScanShapeActivity extends BaseToolbarActivity {
         }
 
         @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        }
 
         @Override
         public void surfaceDestroyed(SurfaceHolder holder) {
@@ -129,10 +130,10 @@ public class ScanShapeActivity extends BaseToolbarActivity {
             setFlashlight(false);
             try {
                 // 停止预览
-                if (cameraAssist != null){
+                if (cameraAssist != null) {
                     cameraAssist.stopPreview();
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 DevLogger.eTag(mTag, e, "surfaceDestroyed");
             }
         }
@@ -141,11 +142,11 @@ public class ScanShapeActivity extends BaseToolbarActivity {
     /**
      * 检查摄像头权限
      */
-    private void checkPermission(){
+    private void checkPermission() {
         // 摄像头权限
         String cameraPermission = Manifest.permission.CAMERA;
         // 判断是否允许权限
-        if (PermissionUtils.isGranted(cameraPermission)){
+        if (PermissionUtils.isGranted(cameraPermission)) {
             try {
                 // 打开摄像头
                 Camera camera = CameraUtils.open();
@@ -161,7 +162,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
                 cameraAssist.openDriver(vid_ass_surface.getHolder()).startPreview();
 //                // 默认开启自动对焦, 设置不需要自动对焦
 //                cameraAssist.setAutoFocus(false);
-            } catch (Exception e){
+            } catch (Exception e) {
                 DevLogger.eTag(mTag, e, "checkPermission - startPreview");
             }
         } else {

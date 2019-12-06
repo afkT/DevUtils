@@ -134,7 +134,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
     }
 
     @OnClick({R.id.vid_ass_flashlight_igview, R.id.vid_ass_square_igview,
-        R.id.vid_ass_hexagon_igview, R.id.vid_ass_annulus_igview, R.id.vid_ass_image_igview})
+            R.id.vid_ass_hexagon_igview, R.id.vid_ass_annulus_igview, R.id.vid_ass_image_igview})
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -160,7 +160,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
                 // 初始化图片配置
                 PictureSelectorUtils.PicConfig picConfig = new PictureSelectorUtils.PicConfig()
                         .setCompress(false).setMaxSelectNum(1).setCrop(false).setMimeType(PictureMimeType.ofImage())
-                        .setCamera(true).setGif (false);
+                        .setCamera(true).setGif(false);
                 // 打开图片选择器
                 PictureSelectorUtils.openGallery(PictureSelector.create(this), picConfig);
                 break;
@@ -182,7 +182,8 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
         }
 
         @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        }
 
         @Override
         public void surfaceDestroyed(SurfaceHolder holder) {
@@ -190,10 +191,10 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
             setFlashlight(false);
             try {
                 // 停止预览
-                if (cameraAssist != null){
+                if (cameraAssist != null) {
                     cameraAssist.stopPreview();
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 DevLogger.eTag(mTag, e, "surfaceDestroyed");
             }
         }
@@ -202,11 +203,11 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
     /**
      * 检查摄像头权限
      */
-    private void checkPermission(){
+    private void checkPermission() {
         // 摄像头权限
         String cameraPermission = Manifest.permission.CAMERA;
         // 判断是否允许权限
-        if (PermissionUtils.isGranted(cameraPermission)){
+        if (PermissionUtils.isGranted(cameraPermission)) {
             try {
                 // 打开摄像头
                 Camera camera = CameraUtils.open();
@@ -293,7 +294,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
                         }
                     }, mDecodeMode, cameraAssist, mPreviewCallback, this);
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 DevLogger.eTag(mTag, e, "checkPermission - startPreview");
             }
         } else {
@@ -386,7 +387,8 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
     // 扫描区域
     private Rect mCropRect;
     // 解码类型
-    private  @DecodeFormat.DecodeMode int mDecodeMode = DecodeFormat.ALL;
+    private @DecodeFormat.DecodeMode
+    int mDecodeMode = DecodeFormat.ALL;
 
     /**
      * detail: 捕获预览画面处理 Handler
@@ -409,11 +411,11 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
 
         /**
          * 构造函数
-         * @param decodeConfig 解析配置
-         * @param decodeMode 解析类型
-         * @param cameraAssist Camera 辅助类
+         * @param decodeConfig    解析配置
+         * @param decodeMode      解析类型
+         * @param cameraAssist    Camera 辅助类
          * @param previewCallback 预览回调
-         * @param decodeResult 解码结果回调
+         * @param decodeResult    解码结果回调
          */
         public CaptureHandler(DecodeConfig decodeConfig, @DecodeFormat.DecodeMode int decodeMode,
                               CameraAssist cameraAssist, PreviewCallback previewCallback, DecodeResult decodeResult) {

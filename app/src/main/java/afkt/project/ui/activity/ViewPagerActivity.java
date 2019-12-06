@@ -42,9 +42,9 @@ public class ViewPagerActivity extends BaseToolbarActivity {
             @Override
             public void onSlideDirection(boolean left, boolean right) {
                 if (left && !right) {
-                    DevLogger.dTag(mTag,"往左滑 - 从右往左");
+                    DevLogger.dTag(mTag, "往左滑 - 从右往左");
                 } else {
-                    DevLogger.dTag(mTag,"往右滑 - 从左往右");
+                    DevLogger.dTag(mTag, "往右滑 - 从左往右");
                 }
             }
 
