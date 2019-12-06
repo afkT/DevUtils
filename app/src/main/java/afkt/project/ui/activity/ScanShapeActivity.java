@@ -6,14 +6,19 @@ import android.graphics.Rect;
 import android.hardware.Camera;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.ImageView;
 
 import java.util.List;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import butterknife.BindView;
+import butterknife.OnClick;
+import dev.utils.app.FlashlightUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
+import dev.utils.app.ViewUtils;
 import dev.utils.app.camera1.CameraAssist;
 import dev.utils.app.camera1.CameraUtils;
 import dev.utils.app.logger.DevLogger;
@@ -32,6 +37,8 @@ public class ScanShapeActivity extends BaseToolbarActivity {
     SurfaceView vid_ass_surface;
     @BindView(R.id.vid_ass_scanview)
     ScanShapeView vid_ass_scanview;
+    @BindView(R.id.vid_ass_flashlight_igview)
+    ImageView vid_ass_flashlight_igview;
     // 获取类型 ( 默认正方形 )
     ScanShapeView.Shape mScanShape = ScanShapeView.Shape.Square;
 
@@ -54,6 +61,39 @@ public class ScanShapeActivity extends BaseToolbarActivity {
         initCamera();
         // 刷新扫描类型
         refShape();
+    }
+
+    @OnClick({R.id.vid_ass_flashlight_igview, R.id.vid_ass_square_igview,
+        R.id.vid_ass_hexagon_igview, R.id.vid_ass_annulus_igview})
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+            case R.id.vid_ass_flashlight_igview:
+                if (!FlashlightUtils.isFlashlightEnable()) {
+                    showToast(false, "暂不支持开启手电筒");
+                    return;
+                }
+                if (ViewUtils.isSelected(vid_ass_flashlight_igview)) {
+                    FlashlightUtils.getInstance().setFlashlightOff(cameraAssist.getCamera());
+                } else {
+                    FlashlightUtils.getInstance().setFlashlightOn(cameraAssist.getCamera());
+                }
+                ViewUtils.toggleSelected(vid_ass_flashlight_igview);
+                break;
+            case R.id.vid_ass_square_igview:
+                mScanShape = ScanShapeView.Shape.Square;
+                refShape();
+                break;
+            case R.id.vid_ass_hexagon_igview:
+                mScanShape = ScanShapeView.Shape.Hexagon;
+                refShape();
+                break;
+            case R.id.vid_ass_annulus_igview:
+                mScanShape = ScanShapeView.Shape.Annulus;
+                refShape();
+                break;
+        }
     }
 
     /**
