@@ -32,7 +32,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
     SurfaceView vid_ass_surface;
     @BindView(R.id.vid_ass_scanview)
     ScanShapeView vid_ass_scanview;
-    // 获取类型 (默认正方形)
+    // 获取类型 ( 默认正方形 )
     ScanShapeView.Shape mScanShape = ScanShapeView.Shape.Square;
 
     @Override
@@ -88,26 +88,26 @@ public class ScanShapeActivity extends BaseToolbarActivity {
             vid_ass_scanview.getShapeType();
             // 设置是否绘制背景
             vid_ass_scanview.setDrawBackground(true);
-            // 设置背景颜色 - (黑色 百分之40透明度) #66000000
+            // 设置背景颜色 - ( 黑色 百分之 40 透明度 ) #66000000
             vid_ass_scanview.setBGColor(Color.argb(102, 0, 0, 0));
             // 设置是否自动启动动画
             vid_ass_scanview.setAutoAnim(false);
-            // 是否需要绘制动画(效果)
+            // 是否需要绘制动画 ( 效果 )
             vid_ass_scanview.setDrawAnim(false);
             // 设置拐角效果
             vid_ass_scanview.setCornerEffect(new ScanShapeView.CornerEffect(10));
-            // 设置扫描区域大小(扫描View) 无关阴影背景以及整个View 宽高
+            // 设置扫描区域大小 ( 扫描 View) 无关阴影背景以及整个 View 宽高
             vid_ass_scanview.setRegion(700);
             vid_ass_scanview.setRegion(700, 700);
             vid_ass_scanview.setRegion(new Rect(0, 0, 700, 700));
-            // 获取扫描区域 距离 整个View的左/右边距 距离
+            // 获取扫描区域 距离 整个 View 的左 / 右边距 距离
             vid_ass_scanview.getRegionLeft();
-            // 获取扫描区域 距离 整个View的上/下边距 距离
+            // 获取扫描区域 距离 整个 View 的上 / 下边距 距离
             vid_ass_scanview.getRegionTop();
             // 获取扫描区域位置信息
             vid_ass_scanview.getRegion(); // 获取扫描区域位置信息
-            vid_ass_scanview.getRegion(100f, 200f); // 获取纠偏(偏差)位置后的扫描区域
-            vid_ass_scanview.getRegionParent(); // 获取扫描区域在View中的位置
+            vid_ass_scanview.getRegion(100f, 200f); // 获取纠偏 ( 偏差 ) 位置后的扫描区域
+            vid_ass_scanview.getRegionParent(); // 获取扫描区域在 View 中的位置
             vid_ass_scanview.getRegionWidth();
             vid_ass_scanview.getRegionHeight();
             // 获取边框边距
@@ -125,23 +125,23 @@ public class ScanShapeActivity extends BaseToolbarActivity {
             // = 正方形特殊配置 =
             // ==================
 
-            // 设置 正方形描边(边框), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
+            // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
             vid_ass_scanview.setBorderToSquare(0);
             // 设置四个角落与边框共存时, 对应边框宽度
             vid_ass_scanview.setBorderWidthToSquare(SizeUtils.dipConvertPxf(1));
-            // 设置每个角的点距离(长度)
+            // 设置每个角的点距离 ( 长度 )
             vid_ass_scanview.setTriAngleLength(SizeUtils.dipConvertPxf(20));
-            // 设置特殊处理(正方形边框) - 当 描边类型为 2 , 并且存在圆角时, 设置距离尺寸过大会出现边框圆角 + 四个角落圆角有部分透出背景情况
-            vid_ass_scanview.setSpecialToSquare(false); // 出现的时候则设置 true, 小尺寸(setBorderWidthToSquare, setBorderWidth) 则不会出现
-            // 设置正方形扫描动画速度(毫秒)
+            // 设置特殊处理 ( 正方形边框 ) - 当 描边类型为 2 , 并且存在圆角时, 设置距离尺寸过大会出现边框圆角 + 四个角落圆角有部分透出背景情况
+            vid_ass_scanview.setSpecialToSquare(false); // 出现的时候则设置 true, 小尺寸 (setBorderWidthToSquare, setBorderWidth) 则不会出现
+            // 设置正方形扫描动画速度 ( 毫秒 )
             vid_ass_scanview.setLineDurationToSquare(10l);
             // 设置正方形扫描线条 Bitmap
             vid_ass_scanview.setBitmapToSquare(ResourceUtils.getBitmap(R.drawable.line_scan));
-            // 设置正方形线条动画(着色) -> 如果不使用自己的 Bitmap(setBitmapToSquare), 则可以使用默认内置的图片, 进行着色达到想要的颜色
+            // 设置正方形线条动画 ( 着色 ) -> 如果不使用自己的 Bitmap(setBitmapToSquare), 则可以使用默认内置的图片, 进行着色达到想要的颜色
             vid_ass_scanview.setLineColorToSquare(Color.WHITE);
-            // 设置正方形扫描线条向上(下)边距
+            // 设置正方形扫描线条向上 ( 下 ) 边距
             vid_ass_scanview.setLineMarginTopToSquare(0);
-            // 设置正方形扫描线条向左(右)边距
+            // 设置正方形扫描线条向左 ( 右 ) 边距
             vid_ass_scanview.setLineMarginLeftToSquare(0);
 
             // ==================
@@ -163,7 +163,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
 
             // 设置环形扫描线条 Bitmap
             vid_ass_scanview.setBitmapToAnnulus(ResourceUtils.getBitmap(R.drawable.line_scan));
-            // 设置环形线条动画(着色)
+            // 设置环形线条动画 ( 着色 )
             vid_ass_scanview.setLineColorToAnnulus(Color.WHITE);
             // 设置环形扫描线条速度
             vid_ass_scanview.setLineOffsetSpeedToAnnulus(4);
@@ -193,7 +193,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
                 vid_ass_scanview.setBorderColor(squareColor);
                 // 不需要圆角
                 vid_ass_scanview.setCornerEffect(null);
-//                // 设置 正方形描边(边框), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
+//                // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
 //                vid_ass_scanview.setBorderToSquare(2);
                 break;
             case Hexagon: // 六边形
@@ -207,7 +207,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
 //                vid_ass_scanview.setLineAnimDirection(false);
                 break;
             case Annulus: // 环形
-                // 设置环形线条动画(着色)
+                // 设置环形线条动画 ( 着色 )
                 vid_ass_scanview.setLineColorToAnnulus(Color.RED);
                 // 设置是否需要阴影背景
                 vid_ass_scanview.setDrawBackground(false);
@@ -275,7 +275,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
                 DevLogger.eTag(mTag, e, "checkPermission - startPreview");
             }
         } else {
-            ToastTintUtils.info("需要摄像头权限预览");
+            ToastTintUtils.warning("需要摄像头权限预览");
             // 申请权限
             PermissionUtils.permission(cameraPermission).callBack(new PermissionUtils.PermissionCallBack() {
                 @Override
