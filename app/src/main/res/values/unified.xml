@@ -9,7 +9,7 @@
     <!-- 线条 -->
     <dimen name="un_line_width">0.5dip</dimen>
 
-    <!-- 边框(描边) 宽度 -->
+    <!-- 边框 ( 描边 ) 宽度 -->
     <dimen name="un_border_width">1.0dip</dimen>
 
     <!-- 圆角角度 -->

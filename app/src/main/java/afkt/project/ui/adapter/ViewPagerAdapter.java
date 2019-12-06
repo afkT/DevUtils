@@ -30,7 +30,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        // 加载View
+        // 加载 View
         View view = ViewUtils.inflate(R.layout.view_pager_item_view);
         // 设置文本
         ((TextView) view.findViewById(R.id.vid_vpiv_content_tv)).setText(lists.get(position % lists.size()));

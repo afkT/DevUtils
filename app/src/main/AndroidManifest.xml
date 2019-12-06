@@ -196,7 +196,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 点击 显示/隐藏 ( 状态栏 ) -->
+        <!-- 点击 显示 / 隐藏 ( 状态栏 ) -->
 
         <activity
             android:name=".ui.activity.StatusBarActivity"
@@ -224,6 +224,22 @@
 
         <activity
             android:name=".ui.activity.MultiSelectActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- GPU ACV 文件滤镜效果 -->
+
+        <activity
+            android:name=".ui.activity.GPUFilterACVActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- GPU 滤镜效果 -->
+
+        <activity
+            android:name=".ui.activity.GPUFilterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

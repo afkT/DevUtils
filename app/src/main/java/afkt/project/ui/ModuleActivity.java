@@ -16,6 +16,8 @@ import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
 import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FunctionActivity;
+import afkt.project.ui.activity.GPUFilterACVActivity;
+import afkt.project.ui.activity.GPUFilterActivity;
 import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.LoggerActivity;
 import afkt.project.ui.activity.MultiSelectActivity;
@@ -76,7 +78,7 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_VIEW_PAGER: // ViewPager 滑动监听、控制滑动
                         SkipUtils.startActivity(ViewPagerActivity.class, buttonValue);
                         break;
-                    case ButtonValue.BTN_STATUS_BAR: // 点击 显示/隐藏 ( 状态栏 )
+                    case ButtonValue.BTN_STATUS_BAR: // 点击 显示 / 隐藏 ( 状态栏 )
                         SkipUtils.startActivity(StatusBarActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_TEXT_CALC: // 计算字体宽度、高度
@@ -87,6 +89,12 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_MULTI_SELECT: // 多选辅助类 MultiSelectAssist
                         SkipUtils.startActivity(MultiSelectActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_GPU_ACV: // GPU ACV 文件滤镜效果
+                        SkipUtils.startActivity(GPUFilterACVActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_GPU_FILTER: // GPU 滤镜效果
+                        SkipUtils.startActivity(GPUFilterActivity.class, buttonValue);
                         break;
 
                     // ============

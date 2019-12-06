@@ -80,6 +80,8 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_TEXT_CALC, "计算字体宽度、高度"));
         lists.add(new ButtonValue(BTN_ADAPTER_EDITS, "Adapter Item EditText 输入监听"));
         lists.add(new ButtonValue(BTN_MULTI_SELECT, "多选辅助类 MultiSelectAssist"));
+        lists.add(new ButtonValue(BTN_GPU_ACV, "GPU ACV 文件滤镜效果"));
+        lists.add(new ButtonValue(BTN_GPU_FILTER, "GPU 滤镜效果"));
         return lists;
     }
 
@@ -334,6 +336,12 @@ public class ButtonValue {
 
     // 多选辅助类 MultiSelectAssist
     public static final int BTN_MULTI_SELECT = MODULE_UI + 700;
+
+    // GPU ACV 文件滤镜效果
+    public static final int BTN_GPU_ACV = MODULE_UI + 800;
+
+    // GPU 滤镜效果
+    public static final int BTN_GPU_FILTER = MODULE_UI + 900;
 
     // ============
     // = 其他功能 =

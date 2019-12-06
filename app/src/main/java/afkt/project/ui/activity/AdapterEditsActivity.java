@@ -17,6 +17,7 @@ import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.helper.ViewHelper;
+import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
@@ -50,7 +51,14 @@ public class AdapterEditsActivity extends BaseToolbarActivity {
             .setOnClicks(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ToastTintUtils.success("点击了提交");
+                    StringBuilder builder = new StringBuilder();
+                    for (EvaluateItem item : editsAdapter.getData()) {
+                        builder.append("\nevaluateContent: " + item.evaluateContent);
+                        builder.append("\nevaluateLevel: " + item.evaluateLevel);
+                        builder.append("\n");
+                    }
+                    DevLogger.dTag(mTag, builder.toString());
+                    ToastTintUtils.success("数据已打印, 请查看 Logcat");
                 }
             }, baseTextView);
         vid_bt_toolbar.addView(baseTextView);

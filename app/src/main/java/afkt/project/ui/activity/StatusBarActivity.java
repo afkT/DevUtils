@@ -11,7 +11,7 @@ import dev.utils.app.BarUtils;
 import dev.utils.app.ResourceUtils;
 
 /**
- * detail: 点击 显示/隐藏 ( 状态栏 )
+ * detail: 点击 显示 / 隐藏 ( 状态栏 )
  * @author Ttt
  */
 public class StatusBarActivity extends BaseToolbarActivity {

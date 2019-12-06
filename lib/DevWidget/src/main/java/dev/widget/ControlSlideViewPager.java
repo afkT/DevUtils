@@ -79,6 +79,8 @@ public class ControlSlideViewPager extends ViewPager {
         private boolean mIsScrolling;
         // 是否滑向左边、右边
         private boolean mIsLeft, mIsRight;
+        // 是否向左滑动
+        protected boolean mLeftScroll = false;
 
         @Override
         public void onPageScrolled(int pos, float arg1, int arg2) {
@@ -90,9 +92,11 @@ public class ControlSlideViewPager extends ViewPager {
                 if (mLastValue > arg2) {
                     mIsRight = true;
                     mIsLeft = false;
+                    mLeftScroll = false;
                 } else if (mLastValue < arg2) {
                     mIsRight = false;
                     mIsLeft = true;
+                    mLeftScroll = true;
                 } else if (mLastValue == arg2) {
                     mIsRight = mIsLeft = false;
                 }
