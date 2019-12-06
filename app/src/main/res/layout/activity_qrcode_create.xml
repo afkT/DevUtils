@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.widget.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        style="@style/AppTheme.padding_lr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <afkt.project.ui.widget.BaseButton
+            android:id="@+id/vid_aqc_create_btn"
+            style="@style/AppTheme.Base_Button"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="生成二维码" />
+
+        <afkt.project.ui.widget.BaseButton
+            android:id="@+id/vid_aqc_select_btn"
+            style="@style/AppTheme.Base_Button"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="选择 Logo 图片" />
+
+        <EditText
+            android:id="@+id/vid_aqc_content_edit"
+            android:layout_width="match_parent"
+            android:layout_height="150.0dip"
+            android:layout_marginTop="10.0dip"
+            android:background="@color/white"
+            android:gravity="left|top"
+            android:hint="最多输入120个字作为生成二维码内容"
+            android:inputType="textMultiLine"
+            android:maxLength="120"
+            android:maxLines="6"
+            android:padding="10.0dip"
+            android:textSize="15.0sp" />
+
+        <ImageView
+            android:id="@+id/vid_aqc_igview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10.0dip" />
+    </LinearLayout>
+</dev.widget.CustomNestedScrollView>

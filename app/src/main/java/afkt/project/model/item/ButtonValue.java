@@ -82,6 +82,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_MULTI_SELECT, "多选辅助类 MultiSelectAssist"));
         lists.add(new ButtonValue(BTN_GPU_ACV, "GPU ACV 文件滤镜效果"));
         lists.add(new ButtonValue(BTN_GPU_FILTER, "GPU 滤镜效果"));
+        lists.add(new ButtonValue(BTN_QRCODE_CREATE, "创建二维码"));
         return lists;
     }
 
@@ -344,6 +345,9 @@ public class ButtonValue {
 
     // GPU 滤镜效果
     public static final int BTN_GPU_FILTER = MODULE_UI + 900;
+
+    // 创建二维码
+    public static final int BTN_QRCODE_CREATE = MODULE_UI + 1000;
 
     // ============
     // = 其他功能 =
