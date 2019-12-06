@@ -3,4 +3,50 @@
 
     <string name="str_app_name">开发项目</string>
     <string name="str_app_name_en">DevUtils</string>
+
+    <string name="empty"></string>
+    <string name="copy_suc">复制成功</string>
+
+    <string name="model">手机型号</string>
+    <string name="manufacturer">设备制造商</string>
+    <string name="brand">设备品牌</string>
+    <string name="version_release">Android 版本</string>
+    <string name="screen">屏幕尺寸(英寸)</string>
+    <string name="screen_size">屏幕分辨率</string>
+    <string name="sdcard_total">SDCard 总大小</string>
+    <string name="sdcard_available">SDCard 可用空间</string>
+    <string name="memory_total">内存总大小</string>
+    <string name="memory_available">可用内存空间</string>
+    <string name="display">设备版本</string>
+    <string name="id">设备版本号码</string>
+    <string name="device">设备名</string>
+    <string name="baseband_version">基带版本</string>
+    <string name="linuxcode_version">内核版本</string>
+    <string name="cpuinfo">CPU 型号</string>
+    <string name="cpu_abi1">CPU 指令集1</string>
+    <string name="cpu_abi2">CPU 指令集2</string>
+    <string name="cpu_max">CPU 最大频率</string>
+    <string name="cpu_min">CPU 最小频率</string>
+    <string name="cpu_cur">CPU 当前频率</string>
+    <string name="cpu_number">CPU 数量</string>
+    <string name="serial">序列号</string>
+    <string name="fingerprint">设备唯一标识</string>
+    <string name="board">设备基板名</string>
+    <string name="hardware">设备硬件名称</string>
+    <string name="product">产品名称</string>
+    <string name="is_emulator">是否模拟器</string>
+    <string name="is_debuggable">是否可以调试</string>
+    <string name="supported_abis">支持的指令集</string>
+
+    <string name="height_pixels">屏幕高度</string>
+    <string name="width_pixels">屏幕宽度</string>
+    <string name="xdpi">X轴 DPI(xdpi)</string>
+    <string name="ydpi">Y轴 DPI(ydpi)</string>
+    <string name="density">密度(density)</string>
+    <string name="density_dpi">DPI 密度(densityDpi)</string>
+    <string name="scaled_density">缩放密度(scaledDensity)</string>
+    <string name="height_dpi">高度基准 DPI</string>
+    <string name="width_dpi">宽度基准 DPI</string>
+    <string name="convert_dpi">转换 DPI</string>
+
 </resources>

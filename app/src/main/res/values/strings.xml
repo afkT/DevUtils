@@ -3,4 +3,50 @@
 
     <string name="str_app_name">开发项目</string>
     <string name="str_app_name_en">DevUtils</string>
+
+    <string name="empty"></string>
+    <string name="copy_suc">copy suc</string>
+
+    <string name="model">Phone model</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="brand">Brand</string>
+    <string name="version_release">Android release</string>
+    <string name="screen">Screen inch</string>
+    <string name="screen_size">Screen size</string>
+    <string name="sdcard_total">SDCard total</string>
+    <string name="sdcard_available">SDCard available</string>
+    <string name="memory_total">Memory total</string>
+    <string name="memory_available">Memory available</string>
+    <string name="display">Device display</string>
+    <string name="id">Device ID</string>
+    <string name="device">Device</string>
+    <string name="baseband_version">Baseband version</string>
+    <string name="linuxcode_version">LinuxCode version</string>
+    <string name="cpuinfo">CPUInfo</string>
+    <string name="cpu_abi1">CPU ABI1</string>
+    <string name="cpu_abi2">CPU ABI2</string>
+    <string name="cpu_max">CPU Max Freq</string>
+    <string name="cpu_min">CPU Min Freq</string>
+    <string name="cpu_cur">CPU Cur Freq</string>
+    <string name="cpu_number">CPU Number</string>
+    <string name="serial">Serial</string>
+    <string name="fingerprint">Fingerprint</string>
+    <string name="board">Board</string>
+    <string name="hardware">Hardware</string>
+    <string name="product">Product</string>
+    <string name="is_emulator">IS Emulator</string>
+    <string name="is_debuggable">IS Debuggable</string>
+    <string name="supported_abis">Supported abis</string>
+
+    <string name="height_pixels">Height Pixels</string>
+    <string name="width_pixels">Width Pixels</string>
+    <string name="xdpi">X Dpi</string>
+    <string name="ydpi">Y Dpi</string>
+    <string name="density">Density</string>
+    <string name="density_dpi">Density Dpi</string>
+    <string name="scaled_density">Scaled Density</string>
+    <string name="height_dpi">Height Dpi</string>
+    <string name="width_dpi">Width Dpi</string>
+    <string name="convert_dpi">Convert Dpi</string>
+
 </resources>

@@ -121,6 +121,8 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_FILE_RECORD, "日志、异常文件记录保存"));
         lists.add(new ButtonValue(BTN_CRASH, "奔溃日志捕获"));
         lists.add(new ButtonValue(BTN_EXTEND, "通用结果回调类 ( 针对 DevResultCallback 进行扩展 )"));
+        lists.add(new ButtonValue(BTN_DEVICE_INFO, "设备信息"));
+        lists.add(new ButtonValue(BTN_SCREEN_INFO, "屏幕信息"));
         return lists;
     }
 
@@ -499,4 +501,10 @@ public class ButtonValue {
     public static final int BTN_EXTEND_SAVE = BTN_EXTEND + 1;
     // 触发拓展回调
     public static final int BTN_EXTEND_TRIGGER = BTN_EXTEND + 2;
+
+    // 设备信息
+    public static final int BTN_DEVICE_INFO = MODULE_OTHER + 1100;
+
+    // 屏幕信息
+    public static final int BTN_SCREEN_INFO = MODULE_OTHER + 1200;
 }

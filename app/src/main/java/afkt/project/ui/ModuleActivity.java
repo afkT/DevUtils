@@ -14,6 +14,7 @@ import afkt.project.ui.activity.AdapterEditsActivity;
 import afkt.project.ui.activity.CacheActivity;
 import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
+import afkt.project.ui.activity.DeviceInfoActivity;
 import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.GPUFilterACVActivity;
@@ -132,6 +133,12 @@ public class ModuleActivity extends BaseToolbarActivity {
                         SkipUtils.startActivity(CrashCatchActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_EXTEND: // 通用结果回调类 ( 针对 DevResultCallback 进行扩展 )
+                        SkipUtils.startActivity(DevExtendActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_DEVICE_INFO: // 设备信息
+                        SkipUtils.startActivity(DeviceInfoActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_SCREEN_INFO: // 屏幕信息
                         SkipUtils.startActivity(DevExtendActivity.class, buttonValue);
                         break;
                     default:
