@@ -33,6 +33,7 @@ public class PreviewCallback implements Camera.PreviewCallback {
      * 设置 Handler、what
      * @param previewHandler 通知处理 Handler
      * @param what           通知 What
+     * @return {@link PreviewCallback}
      */
     public PreviewCallback setHandler(Handler previewHandler, int what) {
         this.mPreviewHandler = previewHandler;
