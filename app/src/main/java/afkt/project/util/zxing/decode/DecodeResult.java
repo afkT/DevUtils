@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.google.zxing.Result;
 
 /**
- * detail: 解码结果
+ * detail: 解码结果回调
  * @author Ttt
  */
 public interface DecodeResult {
