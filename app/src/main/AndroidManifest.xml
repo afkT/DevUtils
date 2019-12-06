@@ -172,6 +172,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 屏幕信息 -->
+
+        <activity
+            android:name=".ui.activity.ScreenInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- ToastTint ( 着色美化 Toast ) -->
 
         <activity

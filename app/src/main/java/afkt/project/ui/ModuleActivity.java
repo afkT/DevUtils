@@ -24,6 +24,7 @@ import afkt.project.ui.activity.LoggerActivity;
 import afkt.project.ui.activity.MultiSelectActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.ProgressBarActivity;
+import afkt.project.ui.activity.ScreenInfoActivity;
 import afkt.project.ui.activity.StatusBarActivity;
 import afkt.project.ui.activity.TextCalcActivity;
 import afkt.project.ui.activity.TimerActivity;
@@ -139,7 +140,7 @@ public class ModuleActivity extends BaseToolbarActivity {
                         SkipUtils.startActivity(DeviceInfoActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_SCREEN_INFO: // 屏幕信息
-                        SkipUtils.startActivity(DevExtendActivity.class, buttonValue);
+                        SkipUtils.startActivity(ScreenInfoActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
