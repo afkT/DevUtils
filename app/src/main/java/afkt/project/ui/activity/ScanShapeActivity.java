@@ -55,6 +55,13 @@ public class ScanShapeActivity extends BaseToolbarActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        // 关闭手电筒
+        setFlashlight(false);
+    }
+
+    @Override
     public void initValues() {
         super.initValues();
         // 初始化 Camera
@@ -74,12 +81,8 @@ public class ScanShapeActivity extends BaseToolbarActivity {
                     showToast(false, "暂不支持开启手电筒");
                     return;
                 }
-                if (ViewUtils.isSelected(vid_ass_flashlight_igview)) {
-                    FlashlightUtils.getInstance().setFlashlightOff(cameraAssist.getCamera());
-                } else {
-                    FlashlightUtils.getInstance().setFlashlightOn(cameraAssist.getCamera());
-                }
-                ViewUtils.toggleSelected(vid_ass_flashlight_igview);
+                // 设置开关
+                setFlashlight(!ViewUtils.isSelected(vid_ass_flashlight_igview));
                 break;
             case R.id.vid_ass_square_igview:
                 mScanShape = ScanShapeView.Shape.Square;
@@ -288,8 +291,10 @@ public class ScanShapeActivity extends BaseToolbarActivity {
                         cameraAssist.stopPreview();
                     }
                 } catch (Exception e){
-                    e.printStackTrace();
+                    DevLogger.eTag(mTag, e, "surfaceDestroyed");
                 }
+                // 关闭手电筒
+                setFlashlight(false);
             }
         });
     }
@@ -305,8 +310,14 @@ public class ScanShapeActivity extends BaseToolbarActivity {
             try {
                 // 打开摄像头
                 Camera camera = CameraUtils.open();
-                camera.setDisplayOrientation(90);
+                camera.setDisplayOrientation(90); // 设置竖屏显示
                 cameraAssist.setCamera(camera);
+                // 获取预览大小
+                final Camera.Size size = cameraAssist.getCameraResolution();
+                // 设置预览大小, 需要这样设置, 开闪光灯才不会闪烁
+                Camera.Parameters parameters = camera.getParameters();
+                parameters.setPreviewSize(size.width, size.height);
+                camera.setParameters(parameters);
                 // 开始预览
                 cameraAssist.openDriver(vid_ass_surface.getHolder()).startPreview();
                 // 默认开启自动对焦, 设置不需要自动对焦
@@ -331,5 +342,22 @@ public class ScanShapeActivity extends BaseToolbarActivity {
                 }
             }).request(this);
         }
+    }
+
+    // ==============
+    // = 手电筒处理 =
+    // ==============
+
+    /**
+     * 设置手电筒开关
+     * @param open 是否打开
+     */
+    private void setFlashlight(boolean open) {
+        if (open) {
+            FlashlightUtils.getInstance().setFlashlightOn(cameraAssist.getCamera());
+        } else {
+            FlashlightUtils.getInstance().setFlashlightOff(cameraAssist.getCamera());
+        }
+        ViewUtils.setSelected(open, vid_ass_flashlight_igview);
     }
 }
