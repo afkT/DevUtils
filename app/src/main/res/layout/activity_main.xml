@@ -32,6 +32,11 @@
                 android:background="@mipmap/icon" />
         </android.support.v7.widget.CardView>
 
+        <afkt.project.ui.widget.BaseTextView
+            android:id="@+id/vid_am_android_tv"
+            style="@style/AppTheme.Base_TextView"
+            android:gravity="center" />
+
         <include layout="@layout/base_view_recyclerview" />
     </LinearLayout>
 </dev.widget.CustomNestedScrollView>

@@ -14,8 +14,10 @@ import afkt.project.base.app.BaseActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.ModuleActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
+import afkt.project.ui.widget.BaseTextView;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
+import dev.utils.app.AppCommonUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
@@ -24,6 +26,8 @@ import dev.utils.common.HttpURLConnectionUtils;
 
 public class MainActivity extends BaseActivity {
 
+    @BindView(R.id.vid_am_android_tv)
+    BaseTextView vid_am_android_tv;
     @BindView(R.id.vid_bvr_recy)
     RecyclerView vid_bvr_recy;
 
@@ -96,6 +100,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initValues() {
         super.initValues();
+        // 设置 Android 版本信息
+        vid_am_android_tv.setText(AppCommonUtils.convertSDKVersion());
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonValue.getMainButtonValues());
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
