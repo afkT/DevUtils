@@ -27,10 +27,10 @@ import dev.utils.app.toast.ToastTintUtils;
 import dev.widget.ScanShapeView;
 
 /**
- * detail: 自定义扫描 View ( QRCode、AR )
+ * detail: 二维码扫描解析
  * @author Ttt
  */
-public class ScanShapeActivity extends BaseToolbarActivity {
+public class QRCodeScanActivity extends BaseToolbarActivity {
 
     // = View =
     @BindView(R.id.vid_ass_surface)

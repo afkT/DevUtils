@@ -26,6 +26,7 @@ import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.ProgressBarActivity;
 import afkt.project.ui.activity.QRCodeCreateActivity;
 import afkt.project.ui.activity.QRCodeImageActivity;
+import afkt.project.ui.activity.QRCodeScanActivity;
 import afkt.project.ui.activity.ScanShapeActivity;
 import afkt.project.ui.activity.ScreenInfoActivity;
 import afkt.project.ui.activity.StatusBarActivity;
@@ -110,6 +111,10 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_QRCODE_IMAGE: // 二维码图片解析
                         SkipUtils.startActivity(QRCodeImageActivity.class, buttonValue);
                         break;
+                    case ButtonValue.BTN_QRCODE_SCAN: // 二维码扫描解析
+                        SkipUtils.startActivity(QRCodeScanActivity.class, buttonValue);
+                        break;
+
 
                     // ============
                     // = 其他功能 =

@@ -85,6 +85,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_SCAN_VIEW, "自定义扫描 View ( QRCode、AR )"));
         lists.add(new ButtonValue(BTN_QRCODE_CREATE, "创建二维码"));
         lists.add(new ButtonValue(BTN_QRCODE_IMAGE, "二维码图片解析"));
+        lists.add(new ButtonValue(BTN_QRCODE_SCAN, "二维码扫描解析"));
         return lists;
     }
 
@@ -356,6 +357,9 @@ public class ButtonValue {
 
     // 二维码图片解析
     public static final int BTN_QRCODE_IMAGE = MODULE_UI + 1200;
+
+    // 二维码扫描解析
+    public static final int BTN_QRCODE_SCAN = MODULE_UI + 1300;
 
     // ============
     // = 其他功能 =

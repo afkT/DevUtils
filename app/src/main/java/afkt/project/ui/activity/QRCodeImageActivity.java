@@ -96,7 +96,7 @@ public class QRCodeImageActivity extends BaseToolbarActivity {
                                 builder.append(DevCommonUtils.toCheckValue("null", ZXingQRCodeUtils.getResultData(result)));
                                 TextViewUtils.setText(vid_aqi_tv, builder.toString());
                             } else {
-                                TextViewUtils.setText(vid_aqi_tv, ThrowableUtils.getThrowableStackTrace(e));
+                                TextViewUtils.setText(vid_aqi_tv, "图片非二维码 / 识别失败\n" + ThrowableUtils.getThrowableStackTrace(e));
                             }
                         }
                     });
