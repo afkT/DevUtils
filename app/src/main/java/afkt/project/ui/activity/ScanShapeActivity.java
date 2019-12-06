@@ -159,8 +159,8 @@ public class ScanShapeActivity extends BaseToolbarActivity {
                 camera.setParameters(parameters);
                 // 开始预览
                 cameraAssist.openDriver(vid_ass_surface.getHolder()).startPreview();
-                // 默认开启自动对焦, 设置不需要自动对焦
-                cameraAssist.setAutoFocus(false);
+//                // 默认开启自动对焦, 设置不需要自动对焦
+//                cameraAssist.setAutoFocus(false);
             } catch (Exception e){
                 DevLogger.eTag(mTag, e, "checkPermission - startPreview");
             }

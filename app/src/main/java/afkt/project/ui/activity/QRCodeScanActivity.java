@@ -1,24 +1,37 @@
 package afkt.project.ui.activity;
 
 import android.Manifest;
-import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.hardware.Camera;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.zxing.Result;
+
 import java.util.List;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.util.ProjectUtils;
+import afkt.project.util.zxing.PreviewCallback;
+import afkt.project.util.zxing.decode.DecodeConfig;
+import afkt.project.util.zxing.decode.DecodeFormat;
+import afkt.project.util.zxing.decode.DecodeResult;
+import afkt.project.util.zxing.decode.DecodeThread;
 import butterknife.BindView;
 import butterknife.OnClick;
+import dev.other.ZXingQRCodeUtils;
 import dev.utils.app.FlashlightUtils;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.SizeUtils;
+import dev.utils.app.HandlerUtils;
 import dev.utils.app.ViewUtils;
+import dev.utils.app.assist.BeepVibrateAssist;
+import dev.utils.app.assist.InactivityTimerAssist;
 import dev.utils.app.camera1.CameraAssist;
 import dev.utils.app.camera1.CameraUtils;
 import dev.utils.app.logger.DevLogger;
@@ -30,7 +43,7 @@ import dev.widget.ScanShapeView;
  * detail: 二维码扫描解析
  * @author Ttt
  */
-public class QRCodeScanActivity extends BaseToolbarActivity {
+public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeResult {
 
     // = View =
     @BindView(R.id.vid_ass_surface)
@@ -39,8 +52,10 @@ public class QRCodeScanActivity extends BaseToolbarActivity {
     ScanShapeView vid_ass_scanview;
     @BindView(R.id.vid_ass_flashlight_igview)
     ImageView vid_ass_flashlight_igview;
-    // 获取类型 ( 默认正方形 )
-    ScanShapeView.Shape mScanShape = ScanShapeView.Shape.Square;
+    // 无操作计时辅助类
+    private InactivityTimerAssist mInactivityTimerAssist;
+    // 扫描成功响声 + 震动
+    private BeepVibrateAssist mBeepVibrateAssist;
 
     @Override
     public int getLayoutId() {
@@ -51,23 +66,61 @@ public class QRCodeScanActivity extends BaseToolbarActivity {
     protected void onDestroy() {
         // 销毁处理
         vid_ass_scanview.destroy();
+        // 结束计时
+        mInactivityTimerAssist.onDestroy();
         super.onDestroy();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // 关闭手电筒
-        setFlashlight(false);
+        // 清空重新初始化
+        mCaptureHandler = null;
+        // 开始计时
+        mInactivityTimerAssist.onResume();
+        // 开始动画
+        vid_ass_scanview.startAnim();
+        try {
+            // 添加回调
+            vid_ass_surface.getHolder().addCallback(mHolderCallBack);
+        } catch (Exception e) {
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (mCaptureHandler != null) {
+            // 停止预览、解码
+            mCaptureHandler.quitSynchronously();
+            mCaptureHandler = null;
+        }
+        // 暂停计时
+        mInactivityTimerAssist.onPause();
+        // 停止动画
+        vid_ass_scanview.stopAnim();
+        try {
+            // 停止预览
+            cameraAssist.stopPreview();
+        } catch (Exception e) {
+        }
     }
 
     @Override
     public void initValues() {
         super.initValues();
-        // 初始化 Camera
-        initCamera();
-        // 刷新扫描类型
-        refShape();
+
+        // ================
+        // = 初始化辅助类 =
+        // ================
+
+        // 停留在该页面无操作计时辅助类
+        mInactivityTimerAssist = new InactivityTimerAssist(this);
+        // 设置扫描成功响声 + 震动
+        mBeepVibrateAssist = new BeepVibrateAssist(this, R.raw.dev_beep);
+        // 设置扫描类型
+        ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Square);
     }
 
     @OnClick({R.id.vid_ass_flashlight_igview, R.id.vid_ass_square_igview,
@@ -85,183 +138,15 @@ public class QRCodeScanActivity extends BaseToolbarActivity {
                 setFlashlight(!ViewUtils.isSelected(vid_ass_flashlight_igview));
                 break;
             case R.id.vid_ass_square_igview:
-                mScanShape = ScanShapeView.Shape.Square;
-                refShape();
+                ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Square);
                 break;
             case R.id.vid_ass_hexagon_igview:
-                mScanShape = ScanShapeView.Shape.Hexagon;
-                refShape();
+                ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Hexagon);
                 break;
             case R.id.vid_ass_annulus_igview:
-                mScanShape = ScanShapeView.Shape.Annulus;
-                refShape();
+                ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Annulus);
                 break;
         }
-    }
-
-    /**
-     * 刷新类型处理
-     */
-    private void refShape(){
-        // 设置扫描 View 类型
-        vid_ass_scanview.setShapeType(mScanShape);
-
-        boolean isExecute = false;
-        if (isExecute) {
-            // ============
-            // = 处理方法 =
-            // ============
-
-            // 销毁方法
-            vid_ass_scanview.destroy();
-            // 启动动画
-            vid_ass_scanview.startAnim();
-            // 停止动画
-            vid_ass_scanview.stopAnim();
-            // 动画是否运行中
-            vid_ass_scanview.isAnimRunning();
-
-            // ========
-            // = 共用 =
-            // ========
-
-            // 设置扫描 View 类型
-            vid_ass_scanview.setShapeType(mScanShape);
-            // 获取扫描 View 类型
-            vid_ass_scanview.getShapeType();
-            // 设置是否绘制背景
-            vid_ass_scanview.setDrawBackground(true);
-            // 设置背景颜色 - ( 黑色 百分之 40 透明度 ) #66000000
-            vid_ass_scanview.setBGColor(Color.argb(102, 0, 0, 0));
-            // 设置是否自动启动动画
-            vid_ass_scanview.setAutoAnim(false);
-            // 是否需要绘制动画 ( 效果 )
-            vid_ass_scanview.setDrawAnim(false);
-            // 设置拐角效果
-            vid_ass_scanview.setCornerEffect(new ScanShapeView.CornerEffect(10));
-            // 设置扫描区域大小 ( 扫描 View) 无关阴影背景以及整个 View 宽高
-            vid_ass_scanview.setRegion(700);
-            vid_ass_scanview.setRegion(700, 700);
-            vid_ass_scanview.setRegion(new Rect(0, 0, 700, 700));
-            // 获取扫描区域 距离 整个 View 的左 / 右边距 距离
-            vid_ass_scanview.getRegionLeft();
-            // 获取扫描区域 距离 整个 View 的上 / 下边距 距离
-            vid_ass_scanview.getRegionTop();
-            // 获取扫描区域位置信息
-            vid_ass_scanview.getRegion(); // 获取扫描区域位置信息
-            vid_ass_scanview.getRegion(100f, 200f); // 获取纠偏 ( 偏差 ) 位置后的扫描区域
-            vid_ass_scanview.getRegionParent(); // 获取扫描区域在 View 中的位置
-            vid_ass_scanview.getRegionWidth();
-            vid_ass_scanview.getRegionHeight();
-            // 获取边框边距
-            vid_ass_scanview.getBorderMargin();
-            // 设置扫描区域绘制边框边距
-            vid_ass_scanview.setBorderMargin(0);
-            // 设置扫描区域边框颜色
-            vid_ass_scanview.setBorderColor(Color.WHITE);
-            // 设置扫描区域边框宽度
-            vid_ass_scanview.setBorderWidth(SizeUtils.dipConvertPxf(2));
-            // 是否绘制边框
-            vid_ass_scanview.setDrawBorder(true);
-
-            // ==================
-            // = 正方形特殊配置 =
-            // ==================
-
-            // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
-            vid_ass_scanview.setBorderToSquare(0);
-            // 设置四个角落与边框共存时, 对应边框宽度
-            vid_ass_scanview.setBorderWidthToSquare(SizeUtils.dipConvertPxf(1));
-            // 设置每个角的点距离 ( 长度 )
-            vid_ass_scanview.setTriAngleLength(SizeUtils.dipConvertPxf(20));
-            // 设置特殊处理 ( 正方形边框 ) - 当 描边类型为 2 , 并且存在圆角时, 设置距离尺寸过大会出现边框圆角 + 四个角落圆角有部分透出背景情况
-            vid_ass_scanview.setSpecialToSquare(false); // 出现的时候则设置 true, 小尺寸 (setBorderWidthToSquare, setBorderWidth) 则不会出现
-            // 设置正方形扫描动画速度 ( 毫秒 )
-            vid_ass_scanview.setLineDurationToSquare(10l);
-            // 设置正方形扫描线条 Bitmap
-            vid_ass_scanview.setBitmapToSquare(ResourceUtils.getBitmap(R.drawable.line_scan));
-            // 设置正方形线条动画 ( 着色 ) -> 如果不使用自己的 Bitmap(setBitmapToSquare), 则可以使用默认内置的图片, 进行着色达到想要的颜色
-            vid_ass_scanview.setLineColorToSquare(Color.WHITE);
-            // 设置正方形扫描线条向上 ( 下 ) 边距
-            vid_ass_scanview.setLineMarginTopToSquare(0);
-            // 设置正方形扫描线条向左 ( 右 ) 边距
-            vid_ass_scanview.setLineMarginLeftToSquare(0);
-
-            // ==================
-            // = 六边形特殊配置 =
-            // ==================
-
-            // 设置六边形线条动画 - 线条宽度
-            vid_ass_scanview.setLineWidthToHexagon(4f);
-            // 置六边形线条动画 - 线条边距
-            vid_ass_scanview.setLineMarginToHexagon(20f);
-            // 设置六边形线条动画方向 true = 从左到右, false = 从右到左
-            vid_ass_scanview.setLineAnimDirection(true);
-            // 设置六边形线条动画颜色
-            vid_ass_scanview.setLineColorToHexagon(Color.WHITE);
-
-            // ================
-            // = 环形特殊配置 =
-            // ================
-
-            // 设置环形扫描线条 Bitmap
-            vid_ass_scanview.setBitmapToAnnulus(ResourceUtils.getBitmap(R.drawable.line_scan));
-            // 设置环形线条动画 ( 着色 )
-            vid_ass_scanview.setLineColorToAnnulus(Color.WHITE);
-            // 设置环形扫描线条速度
-            vid_ass_scanview.setLineOffsetSpeedToAnnulus(4);
-            // 设置环形对应的环是否绘制 0 - 外环, 1 - 中间环, 2 - 外环
-            vid_ass_scanview.setAnnulusDraws(false, true, true);
-            // 设置环形对应的环绘制颜色 0 - 外环, 1 - 中间环, 2 - 外环
-            vid_ass_scanview.setAnnulusColors(Color.BLUE, Color.RED, Color.WHITE);
-            // 设置环形对应的环绘制长度 0 - 外环, 1 - 中间环, 2 - 外环
-            vid_ass_scanview.setAnnulusLengths(20, 30, 85);
-            // 设置环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环
-            vid_ass_scanview.setAnnulusWidths(SizeUtils.dipConvertPx(3), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
-            // 设置环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环
-            vid_ass_scanview.setAnnulusMargins(SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
-        }
-
-        // 设置是否需要阴影背景
-        vid_ass_scanview.setDrawBackground(true);
-
-        // 判断类型
-        switch (mScanShape){
-            case Square: // 正方形
-                // 天蓝色
-                int squareColor = Color.argb(255, 0, 128, 255);
-                // 设置扫描线条颜色
-                vid_ass_scanview.setLineColorToSquare(squareColor);
-                // 边框颜色
-                vid_ass_scanview.setBorderColor(squareColor);
-                // 设置圆角
-                vid_ass_scanview.setCornerEffect(new ScanShapeView.CornerEffect(10));
-//                // 不需要圆角
-//                vid_ass_scanview.setCornerEffect(null);
-//                // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
-//                vid_ass_scanview.setBorderToSquare(2);
-                break;
-            case Hexagon: // 六边形
-                // 白色
-                int hexagonColor = Color.WHITE;
-                // 边框颜色
-                vid_ass_scanview.setBorderColor(hexagonColor);
-                // 设置六边形线条动画颜色
-                vid_ass_scanview.setLineColorToHexagon(hexagonColor);
-//                // 设置六边形线条动画方向 true = 从左到右, false = 从右到左
-//                vid_ass_scanview.setLineAnimDirection(false);
-                break;
-            case Annulus: // 环形
-                // 设置环形线条动画 ( 着色 )
-                vid_ass_scanview.setLineColorToAnnulus(Color.RED);
-                // 设置是否需要阴影背景
-                vid_ass_scanview.setDrawBackground(false);
-//                // 设置环形扫描线条速度
-//                vid_ass_scanview.setLineOffsetSpeedToAnnulus(6f);
-                break;
-        }
-        // 重新绘制
-        vid_ass_scanview.postInvalidate();
     }
 
     // ==============
@@ -271,35 +156,30 @@ public class QRCodeScanActivity extends BaseToolbarActivity {
     // 摄像头辅助类
     CameraAssist cameraAssist = new CameraAssist();
 
-    /**
-     * 初始化 Camera
-     */
-    private void initCamera() {
-        // 添加回调
-        vid_ass_surface.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                // 检查权限
-                checkPermission();
-            }
+    private SurfaceHolder.Callback mHolderCallBack = new SurfaceHolder.Callback() {
+        @Override
+        public void surfaceCreated(SurfaceHolder holder) {
+            // 检查权限
+            checkPermission();
+        }
 
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+        @Override
+        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
 
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                try {
-                    if (cameraAssist != null){
-                        cameraAssist.stopPreview();
-                    }
-                } catch (Exception e){
-                    DevLogger.eTag(mTag, e, "surfaceDestroyed");
+        @Override
+        public void surfaceDestroyed(SurfaceHolder holder) {
+            // 关闭手电筒
+            setFlashlight(false);
+            try {
+                // 停止预览
+                if (cameraAssist != null){
+                    cameraAssist.stopPreview();
                 }
-                // 关闭手电筒
-                setFlashlight(false);
+            } catch (Exception e){
+                DevLogger.eTag(mTag, e, "surfaceDestroyed");
             }
-        });
-    }
+        }
+    };
 
     /**
      * 检查摄像头权限
@@ -314,16 +194,87 @@ public class QRCodeScanActivity extends BaseToolbarActivity {
                 Camera camera = CameraUtils.open();
                 camera.setDisplayOrientation(90); // 设置竖屏显示
                 cameraAssist.setCamera(camera);
+                // 设置监听
+                cameraAssist.setPreviewNotify(new CameraAssist.PreviewNotify() {
+                    @Override
+                    public void stopPreviewNotify() {
+                        DevLogger.dTag(mTag, "停止预览通知");
+                        // 通知处理
+                        if (mPreviewCallback != null) {
+                            mPreviewCallback.setHandler(null, 0);
+                        }
+                    }
+
+                    @Override
+                    public void startPreviewNotify() {
+                        DevLogger.dTag(mTag, "开始预览通知");
+                    }
+                });
                 // 获取预览大小
                 final Camera.Size size = cameraAssist.getCameraResolution();
                 // 设置预览大小, 需要这样设置, 开闪光灯才不会闪烁
                 Camera.Parameters parameters = camera.getParameters();
                 parameters.setPreviewSize(size.width, size.height);
                 camera.setParameters(parameters);
-                // 开始预览
-                cameraAssist.openDriver(vid_ass_surface.getHolder()).startPreview();
-                // 默认开启自动对焦, 设置不需要自动对焦
-                cameraAssist.setAutoFocus(false);
+                // 打开摄像头
+                cameraAssist.openDriver(vid_ass_surface.getHolder());
+                // 初始化预览回调
+                mPreviewCallback = new PreviewCallback(size);
+                // 初始化获取 Handler
+                if (mCaptureHandler == null) {
+                    // 内部调用 startPreview() 开始预览方法
+                    mCaptureHandler = new CaptureHandler(new DecodeConfig() {
+
+                        // 是否出现异常
+                        boolean isError = false;
+
+                        @Override
+                        public Handler getHandler() {
+                            return mCaptureHandler;
+                        }
+
+                        @Override
+                        public boolean isCropRect() {
+                            return false;
+                        }
+
+                        @Override
+                        public Rect getCropRect() {
+                            if (mCropRect == null) {
+                                // 获取扫描区域
+                                RectF rectF = vid_ass_scanview.getRegion();
+                                // 重设扫描区域
+                                Rect rect = new Rect();
+                                rect.left = (int) rectF.left;
+                                rect.top = (int) rectF.top;
+                                rect.right = (int) rectF.right;
+                                rect.bottom = (int) rectF.bottom;
+                                mCropRect = rect;
+                            }
+                            return mCropRect;
+                        }
+
+                        @Override
+                        public Camera.Size getPreviewSize() {
+                            if (cameraAssist != null) {
+                                return cameraAssist.getPreviewSize();
+                            }
+                            return null;
+                        }
+
+                        @Override
+                        public boolean isError() {
+                            return isError;
+                        }
+
+                        @Override
+                        public void setError(boolean isError, Exception e) {
+                            this.isError = isError;
+                            // 打印日志
+                            DevLogger.eTag(mTag, e, "setError");
+                        }
+                    }, mDecodeMode, cameraAssist, mPreviewCallback, this);
+                }
             } catch (Exception e){
                 DevLogger.eTag(mTag, e, "checkPermission - startPreview");
             }
@@ -356,10 +307,187 @@ public class QRCodeScanActivity extends BaseToolbarActivity {
      */
     private void setFlashlight(boolean open) {
         if (open) {
-            FlashlightUtils.getInstance().setFlashlightOn(cameraAssist.getCamera());
+            cameraAssist.setFlashlightOn();
         } else {
-            FlashlightUtils.getInstance().setFlashlightOff(cameraAssist.getCamera());
+            cameraAssist.setFlashlightOff();
         }
         ViewUtils.setSelected(open, vid_ass_flashlight_igview);
+    }
+
+    // ================
+    // = DecodeResult =
+    // ================
+
+    @Override
+    public void handleDecode(Result result, Bundle bundle) {
+        // Camera 解码结果
+
+        // 提示解析成功声音
+        mBeepVibrateAssist.playBeepSoundAndVibrate();
+        // 打印结果
+        DevLogger.dTag(mTag, "handleDecode - result: " + ZXingQRCodeUtils.getResultData(result));
+
+//        // 回传
+//        Intent resultIntent = new Intent();
+//        bundle.putInt("width", (mCropRect != null) ? mCropRect.width() : ScreenUtils.getScreenWidth());
+//        bundle.putInt("height", (mCropRect != null) ? mCropRect.height() : ScreenUtils.getScreenHeight());
+//        bundle.putString(KeyConstants.Common.KEY_DATA, result.getText());
+//        resultIntent.putExtras(bundle);
+//        this.setResult(RESULT_OK, resultIntent);
+//        this.finish();
+
+        showToast(true, "二维码内容: " + ZXingQRCodeUtils.getResultData(result));
+
+        // 以下代码只是为了解决停留在此页面可以一直扫码, 实际扫码成功应该回传
+        if (mCaptureHandler != null) {
+            // mCaptureHandler.restartPreviewAndDecode();
+
+            // 延迟重置, 否则手机一直震动 ( 扫描成功, 重置后又解析成功连续触发 )
+            HandlerUtils.postRunnable(new Runnable() {
+                @Override
+                public void run() {
+                    if (mCaptureHandler != null) {
+                        try {
+                            mCaptureHandler.restartPreviewAndDecode();
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+            }, 1000);
+        }
+    }
+
+    // ==================
+    // = 二维码识别相关 =
+    // ==================
+
+    // 预览回调
+    private PreviewCallback mPreviewCallback;
+    // 数据解析 Handler
+    private CaptureHandler mCaptureHandler;
+    // 扫描区域
+    private Rect mCropRect;
+    // 解码类型
+    private  @DecodeFormat.DecodeMode int mDecodeMode = DecodeFormat.ALL;
+
+    /**
+     * detail: 捕获预览画面处理 Handler
+     * @author Ttt
+     */
+    private static class CaptureHandler extends Handler {
+
+        // 日志 TAG
+        private static final String TAG = CaptureHandler.class.getSimpleName();
+        // 解码线程
+        private final DecodeThread mDecodeThread;
+        // 默认表示成功
+        private State mState;
+        // Camera 辅助类
+        private CameraAssist mCameraAssist;
+        // 数据回调
+        private PreviewCallback mPreviewCallback;
+        // 解码结果回调
+        private DecodeResult mDecodeResult;
+
+        /**
+         * 构造函数
+         * @param decodeConfig 解析配置
+         * @param decodeMode 解析类型
+         * @param cameraAssist Camera 辅助类
+         * @param previewCallback 预览回调
+         * @param decodeResult 解码结果回调
+         */
+        public CaptureHandler(DecodeConfig decodeConfig, @DecodeFormat.DecodeMode int decodeMode,
+                              CameraAssist cameraAssist, PreviewCallback previewCallback, DecodeResult decodeResult) {
+            this.mState = State.SUCCESS;
+            // 初始化解码线程
+            this.mDecodeThread = new DecodeThread(decodeConfig, decodeMode);
+            this.mDecodeThread.start();
+            // 初始化辅助类, 并开始预览
+            this.mCameraAssist = cameraAssist;
+            this.mCameraAssist.startPreview();
+            this.mPreviewCallback = previewCallback;
+            this.mDecodeResult = decodeResult;
+            // 设置预览解码线程
+            restartPreviewAndDecode();
+        }
+
+        @Override
+        public void handleMessage(Message message) {
+            if (message.what == R.id.restart_preview) {
+                restartPreviewAndDecode();
+            } else if (message.what == R.id.decode_succeeded) { // 解析成功
+                DevLogger.dTag(TAG, "解析成功");
+                mState = State.SUCCESS;
+                Bundle bundle = message.getData();
+                mDecodeResult.handleDecode((Result) message.obj, bundle);
+            } else if (message.what == R.id.decode_failed) { // 解析失败 ( 解析不出来触发 )
+                DevLogger.dTag(TAG, "解析失败");
+                // 表示预览中
+                mState = State.PREVIEW;
+                // 设置预览解码线程
+                requestPreviewFrame(mDecodeThread.getHandler(), R.id.decode);
+            }
+        }
+
+        /**
+         * detail: 内部枚举状态值
+         * @author Ttt
+         */
+        private enum State {
+            PREVIEW, SUCCESS, DONE
+        }
+
+        /**
+         * 重新设置预览以及解码处理
+         */
+        private void restartPreviewAndDecode() {
+            DevLogger.dTag(TAG, "restartPreviewAndDecode");
+            if (mState == State.SUCCESS) {
+                mState = State.PREVIEW;
+                // 设置请求预览页面
+                requestPreviewFrame(mDecodeThread.getHandler(), R.id.decode);
+            }
+        }
+
+        /**
+         * 设置预览帧数据监听
+         * @param handler 解码 Handler ( DecodeHandler )
+         * @param message 解码消息
+         */
+        private synchronized void requestPreviewFrame(Handler handler, int message) {
+            DevLogger.dTag(TAG, "requestPreviewFrame");
+            Camera theCamera = mCameraAssist.getCamera();
+            // 不为 null 并且预览中才处理
+            if (theCamera != null && mCameraAssist.isPreviewing()) {
+                mPreviewCallback.setHandler(handler, message);
+                theCamera.setOneShotPreviewCallback(mPreviewCallback);
+            }
+        }
+
+        // ================
+        // = 对外公开方法 =
+        // ================
+
+        /**
+         * 同步退出解析处理
+         */
+        public void quitSynchronously() {
+            DevLogger.dTag(TAG, "退出扫描");
+            // 表示状态为默认
+            mState = State.DONE;
+            // 停止预览
+            mCameraAssist.stopPreview();
+            Message quit = Message.obtain(mDecodeThread.getHandler(), R.id.quit);
+            quit.sendToTarget();
+            try {
+                // 进行处理解析数据
+                mDecodeThread.join(200l);
+            } catch (InterruptedException e) {
+            }
+            // 移除堵塞在队列的消息
+            removeMessages(R.id.decode_succeeded);
+            removeMessages(R.id.decode_failed);
+        }
     }
 }

@@ -1,14 +1,18 @@
 package afkt.project.base.app;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
 import android.view.View;
 
 import afkt.project.R;
 import afkt.project.base.config.AppConfig;
+import afkt.project.base.config.PathConfig;
 import afkt.project.util.ProjectUtils;
 import dev.DevUtils;
+import dev.base.DevBaseCrash;
 import dev.other.GlideUtils;
+import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ResourceUtils;
@@ -108,6 +112,8 @@ public class BaseApplication extends Application {
         GlideUtils.init(this);
         // 初始化状态布局配置
         initStateLayout();
+        // 初始化异常捕获处理
+        initCrash();
     }
 
     /**
@@ -128,5 +134,30 @@ public class BaseApplication extends Application {
         }).insert(StateLayout.State.NO_DATA, R.layout.state_layout_no_data);
         // 设置全局配置
         StateLayout.setBuilder(globalBuilder);
+    }
+
+    /**
+     * 初始化异常捕获处理
+     */
+    private void initCrash() {
+        // 捕获异常处理 => 在 BaseApplication 中调用
+        DevBaseCrash.getInstance().init(getApplicationContext(), new DevBaseCrash.CrashCatchListener() {
+            @Override
+            public void handleException(Throwable ex) {
+                // 保存日志信息
+                FileRecordUtils.saveErrorLog(ex, PathConfig.SDP_ERROR_PATH, "crash_" + DateUtils.getDateNow() + ".txt");
+            }
+
+            @Override
+            public void uncaughtException(Context context, Thread thread, Throwable ex) {
+//                // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
+//                System.exit(-1);
+//                // 从操作系统中结束掉当前程序的进程
+//                android.os.Process.killProcess(android.os.Process.myPid());
+                // 关闭 APP
+                ActivityUtils.getManager().appExit();
+                // 可开启定时任务, 延迟几秒启动 APP
+            }
+        });
     }
 }
