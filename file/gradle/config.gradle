@@ -90,7 +90,7 @@ ext {
                     eventbus                     : "org.greenrobot:eventbus:3.1.1",
                     // https://github.com/square/okio
                     okio                         : "com.squareup.okio:okio:2.4.0",
-                    // 网络请求框架 https://github.com/square/okhttp
+                    // OkHttp3 网络请求框架 https://github.com/square/okhttp
                     okhttp3                      : "com.squareup.okhttp3:okhttp:4.1.0",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
                     okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.1.1",

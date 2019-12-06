@@ -26,7 +26,7 @@ dependencies {
     // View 注入框架 https://github.com/JakeWharton/butterknife
     implementation deps.lib.butterknife
     annotationProcessor deps.lib.butterknife_compiler
-    // 网络请求框架 https://github.com/square/okhttp
+    // OkHttp3 网络请求框架 https://github.com/square/okhttp
     implementation deps.lib.okhttp3
     implementation deps.lib.okhttp3_logging
     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
