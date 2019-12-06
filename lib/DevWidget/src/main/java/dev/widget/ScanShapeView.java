@@ -465,7 +465,7 @@ public class ScanShapeView extends View {
 
     /**
      * 设置扫描区域大小
-     * @param width 扫描区域宽
+     * @param width  扫描区域宽
      * @param height 扫描区域高
      * @return {@link ScanShapeView}
      */
@@ -961,8 +961,7 @@ public class ScanShapeView extends View {
      * 获取六边形线条动画颜色
      * @return 六边形线条动画颜色
      */
-    public @ColorInt
-    int getLineColorToHexagon() {
+    public int getLineColorToHexagon() {
         return mLineColorToHexagon;
     }
 
