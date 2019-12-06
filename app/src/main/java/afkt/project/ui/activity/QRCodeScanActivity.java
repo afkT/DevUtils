@@ -1,6 +1,9 @@
 package afkt.project.ui.activity;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.Camera;
@@ -13,6 +16,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.google.zxing.Result;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
 
 import java.util.List;
 
@@ -26,6 +32,7 @@ import afkt.project.util.zxing.decode.DecodeResult;
 import afkt.project.util.zxing.decode.DecodeThread;
 import butterknife.BindView;
 import butterknife.OnClick;
+import dev.other.PictureSelectorUtils;
 import dev.other.ZXingQRCodeUtils;
 import dev.utils.app.FlashlightUtils;
 import dev.utils.app.HandlerUtils;
@@ -34,6 +41,7 @@ import dev.utils.app.assist.BeepVibrateAssist;
 import dev.utils.app.assist.InactivityTimerAssist;
 import dev.utils.app.camera1.CameraAssist;
 import dev.utils.app.camera1.CameraUtils;
+import dev.utils.app.image.ImageUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
@@ -121,10 +129,12 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
         mBeepVibrateAssist = new BeepVibrateAssist(this, R.raw.dev_beep);
         // 设置扫描类型
         ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Square);
+        // 显示图片识别按钮
+        ViewUtils.setVisibility(true, findViewById(R.id.vid_ass_image_igview));
     }
 
     @OnClick({R.id.vid_ass_flashlight_igview, R.id.vid_ass_square_igview,
-        R.id.vid_ass_hexagon_igview, R.id.vid_ass_annulus_igview})
+        R.id.vid_ass_hexagon_igview, R.id.vid_ass_annulus_igview, R.id.vid_ass_image_igview})
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -145,6 +155,14 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
                 break;
             case R.id.vid_ass_annulus_igview:
                 ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Annulus);
+                break;
+            case R.id.vid_ass_image_igview:
+                // 初始化图片配置
+                PictureSelectorUtils.PicConfig picConfig = new PictureSelectorUtils.PicConfig()
+                        .setCompress(false).setMaxSelectNum(1).setCrop(false).setMimeType(PictureMimeType.ofImage())
+                        .setCamera(true).setGif (false);
+                // 打开图片选择器
+                PictureSelectorUtils.openGallery(PictureSelector.create(this), picConfig);
                 break;
         }
     }
@@ -488,6 +506,40 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
             // 移除堵塞在队列的消息
             removeMessages(R.id.decode_succeeded);
             removeMessages(R.id.decode_failed);
+        }
+    }
+
+    // ============
+    // = 图片回传 =
+    // ============
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // 判断是否属于图片选择
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            LocalMedia localMedia = PictureSelectorUtils.getSingleMedia(data);
+            // 获取图片地址
+            String imgPath = PictureSelectorUtils.getLocalMediaPath(localMedia, true);
+            // 获取图片 Bitmap
+            Bitmap selectBitmap = ImageUtils.decodeFile(imgPath);
+            // 解析图片
+            ZXingQRCodeUtils.decodeQRCode(selectBitmap, new ZXingQRCodeUtils.QRScanCallBack() {
+                @Override
+                public void onResult(boolean success, Result result, Exception e) {
+                    HandlerUtils.postRunnable(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (success) {
+                                handleDecode(result, new Bundle());
+                            } else {
+                                showToast(false, "图片非二维码 / 识别失败");
+                            }
+                        }
+                    });
+                }
+            });
         }
     }
 }
