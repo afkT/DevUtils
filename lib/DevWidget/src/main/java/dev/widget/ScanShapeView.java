@@ -1653,7 +1653,7 @@ public class ScanShapeView extends View {
                         rectF.top = rectF.top + mLineMarginTopToSquare;
                         rectF.right = rectF.right - mLineMarginLeftToSquare;
                         rectF.bottom = rectF.bottom - mLineMarginTopToSquare;
-                        // 循环划线，从上到下
+                        // 循环划线, 从上到下
                         if (mLineOffsetToSquare > rectF.bottom - rectF.top - mDFCommonDP) {
                             mLineOffsetToSquare = 0;
                         } else {

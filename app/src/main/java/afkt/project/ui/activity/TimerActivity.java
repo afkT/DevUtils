@@ -13,7 +13,6 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
-import dev.utils.app.FlashlightUtils;
 import dev.utils.app.assist.manager.TimerManager;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
@@ -39,14 +38,6 @@ public class TimerActivity extends BaseToolbarActivity {
     @Override
     public int getLayoutId() {
         return R.layout.base_view_recyclerview;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        FlashlightUtils.getInstance().setFlashlightOff();
-        FlashlightUtils.getInstance().unregister();
     }
 
     @Override

@@ -260,6 +260,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 自定义扫描 View ( QRCode、AR ) -->
+
+        <activity
+            android:name=".ui.activity.ScanShapeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- 创建二维码 -->
 
         <activity

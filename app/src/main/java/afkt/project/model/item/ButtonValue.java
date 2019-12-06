@@ -82,6 +82,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_MULTI_SELECT, "多选辅助类 MultiSelectAssist"));
         lists.add(new ButtonValue(BTN_GPU_ACV, "GPU ACV 文件滤镜效果"));
         lists.add(new ButtonValue(BTN_GPU_FILTER, "GPU 滤镜效果"));
+        lists.add(new ButtonValue(BTN_SCAN_VIEW, "自定义扫描 View ( QRCode、AR )"));
         lists.add(new ButtonValue(BTN_QRCODE_CREATE, "创建二维码"));
         lists.add(new ButtonValue(BTN_QRCODE_IMAGE, "二维码图片解析"));
         return lists;
@@ -347,11 +348,14 @@ public class ButtonValue {
     // GPU 滤镜效果
     public static final int BTN_GPU_FILTER = MODULE_UI + 900;
 
+    // 自定义扫描 View ( QRCode、AR )
+    public static final int BTN_SCAN_VIEW = MODULE_UI + 1000;
+
     // 创建二维码
-    public static final int BTN_QRCODE_CREATE = MODULE_UI + 1000;
+    public static final int BTN_QRCODE_CREATE = MODULE_UI + 1100;
 
     // 二维码图片解析
-    public static final int BTN_QRCODE_IMAGE = MODULE_UI + 1100;
+    public static final int BTN_QRCODE_IMAGE = MODULE_UI + 1200;
 
     // ============
     // = 其他功能 =

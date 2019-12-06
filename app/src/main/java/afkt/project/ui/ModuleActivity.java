@@ -26,6 +26,7 @@ import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.ProgressBarActivity;
 import afkt.project.ui.activity.QRCodeCreateActivity;
 import afkt.project.ui.activity.QRCodeImageActivity;
+import afkt.project.ui.activity.ScanShapeActivity;
 import afkt.project.ui.activity.ScreenInfoActivity;
 import afkt.project.ui.activity.StatusBarActivity;
 import afkt.project.ui.activity.TextCalcActivity;
@@ -99,6 +100,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_GPU_FILTER: // GPU 滤镜效果
                         SkipUtils.startActivity(GPUFilterActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_SCAN_VIEW: // 自定义扫描 View ( QRCode、AR )
+                        SkipUtils.startActivity(ScanShapeActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_QRCODE_CREATE: // 创建二维码
                         SkipUtils.startActivity(QRCodeCreateActivity.class, buttonValue);
