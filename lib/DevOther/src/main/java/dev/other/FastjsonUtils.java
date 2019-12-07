@@ -1,11 +1,18 @@
 package dev.other;
 
+import android.support.annotation.NonNull;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.util.ParameterizedTypeImpl;
 
+import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import dev.utils.JCLogUtils;
 
@@ -171,50 +178,56 @@ public final class FastjsonUtils {
     // = Type =
     // ========
 
-//    /**
-//     * 获取 Array Type
-//     * @param type Bean.class
-//     * @return Bean[] Type
-//     */
-//    public static Type getArrayType(final Type type) {
-//        return TypeToken.getArray(type).getType();
-//    }
-//
-//    /**
-//     * 获取 List Type
-//     * @param type Bean.class
-//     * @return List<Bean> Type
-//     */
-//    public static Type getListType(final Type type) {
-//        return TypeToken.getParameterized(List.class, type).getType();
-//    }
-//
-//    /**
-//     * 获取 Set Type
-//     * @param type Bean.class
-//     * @return Set<Bean> Type
-//     */
-//    public static Type getSetType(final Type type) {
-//        return TypeToken.getParameterized(Set.class, type).getType();
-//    }
-//
-//    /**
-//     * 获取 Map Type
-//     * @param keyType   Key.class
-//     * @param valueType Value.class
-//     * @return Map<Bean> Type
-//     */
-//    public static Type getMapType(final Type keyType, final Type valueType) {
-//        return TypeToken.getParameterized(Map.class, keyType, valueType).getType();
-//    }
-//
-//    /**
-//     * 获取 Type
-//     * @param rawType       raw type
-//     * @param typeArguments type arguments
-//     * @return Type
-//     */
-//    public static Type getType(final Type rawType, final Type... typeArguments) {
-//        return TypeToken.getParameterized(rawType, typeArguments).getType();
-//    }
+    /**
+     * 获取 Array Type
+     * @param type Bean.class
+     * @return Bean[] Type
+     */
+    public static Type getArrayType(final Type type) {
+        return new GenericArrayType() {
+            @NonNull
+            @Override
+            public Type getGenericComponentType() {
+                return type;
+            }
+        };
+    }
+
+    /**
+     * 获取 List Type
+     * @param type Bean.class
+     * @return List<Bean> Type
+     */
+    public static Type getListType(final Type type) {
+        return new ParameterizedTypeImpl(new Type[]{type}, null, List.class);
+    }
+
+    /**
+     * 获取 Set Type
+     * @param type Bean.class
+     * @return Set<Bean> Type
+     */
+    public static Type getSetType(final Type type) {
+        return new ParameterizedTypeImpl(new Type[]{type}, null, Set.class);
+    }
+
+    /**
+     * 获取 Map Type
+     * @param keyType   Key.class
+     * @param valueType Value.class
+     * @return Map<Bean> Type
+     */
+    public static Type getMapType(final Type keyType, final Type valueType) {
+        return new ParameterizedTypeImpl(new Type[]{keyType, valueType}, null, Map.class);
+    }
+
+    /**
+     * 获取 Type
+     * @param rawType       raw type
+     * @param typeArguments type arguments
+     * @return Type
+     */
+    public static Type getType(final Type rawType, final Type... typeArguments) {
+        return new ParameterizedTypeImpl(typeArguments, null, rawType);
+    }
 }
