@@ -86,6 +86,8 @@ public class WrapView extends ViewGroup {
                 newLine = true;
                 // 累加行数
                 rowLine++;
+                // 如果超过了则修改边距
+                leftMargin = mRowFristLeftMargin;
             } else if (fillWidth) { // 属于铺满的, 则重置处理
                 // 表示属于换行
                 newLine = true;
