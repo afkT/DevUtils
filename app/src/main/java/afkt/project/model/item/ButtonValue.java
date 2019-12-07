@@ -76,6 +76,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_GLIDE, "GlideUtils"));
         lists.add(new ButtonValue(BTN_IMAGE_LOADER, "ImageLoaderUtils"));
         lists.add(new ButtonValue(BTN_GSON, "GsonUtils"));
+        lists.add(new ButtonValue(BTN_FASTJSON, "FastjsonUtils"));
         lists.add(new ButtonValue(BTN_ZXING, "ZXingQRCodeUtils"));
         lists.add(new ButtonValue(BTN_PICTURE_SELECTOR, "PictureSelectorUtils"));
         return lists;
@@ -366,11 +367,14 @@ public class ButtonValue {
     // GsonUtils
     public static final int BTN_GSON = MODULE_LIB + 3;
 
+    // FastjsonUtils
+    public static final int BTN_FASTJSON = MODULE_LIB + 4;
+
     // ZXingQRCodeUtils
-    public static final int BTN_ZXING = MODULE_LIB + 4;
+    public static final int BTN_ZXING = MODULE_LIB + 5;
 
     // PictureSelectorUtils
-    public static final int BTN_PICTURE_SELECTOR = MODULE_LIB + 5;
+    public static final int BTN_PICTURE_SELECTOR = MODULE_LIB + 6;
 
     // ======
     // = UI =

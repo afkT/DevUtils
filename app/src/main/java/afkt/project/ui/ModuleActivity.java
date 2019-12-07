@@ -89,6 +89,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_GSON: // GsonUtils
                         ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
+                    case ButtonValue.BTN_FASTJSON: // FastjsonUtils
+                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        break;
                     case ButtonValue.BTN_ZXING: // ZXingQRCodeUtils
                         ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;

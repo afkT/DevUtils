@@ -138,6 +138,30 @@ public final class DevJSONEngine {
     }
 
     /**
+     * 判断字符串是否 JSON Object 格式
+     * @param json 待校验 JSON String
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isJSONObject(final String json) {
+        if (sJSONEngine != null) {
+            return sJSONEngine.isJSONObject(json);
+        }
+        return false;
+    }
+
+    /**
+     * 判断字符串是否 JSON Array 格式
+     * @param json 待校验 JSON String
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isJSONArray(final String json) {
+        if (sJSONEngine != null) {
+            return sJSONEngine.isJSONArray(json);
+        }
+        return false;
+    }
+
+    /**
      * JSON String 缩进处理
      * @param json JSON String
      * @return JSON String

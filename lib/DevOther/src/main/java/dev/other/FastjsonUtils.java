@@ -3,14 +3,11 @@ package dev.other;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
 
 import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import dev.utils.JCLogUtils;
-import dev.utils.common.StringUtils;
 
 /**
  * detail: Fastjson 工具类
@@ -108,14 +105,10 @@ public final class FastjsonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isJSONObject(final String json) {
-        if (!StringUtils.isEmpty(json)) {
-            if (json.startsWith("{") && json.endsWith("}")) {
-                try {
-                    Object object = JSON.parse(json);
-                    return (object instanceof JSONObject);
-                } catch (Exception e) {
-                }
-            }
+        try {
+            Object object = JSON.parse(json);
+            return (object instanceof JSONObject);
+        } catch (Exception e) {
         }
         return false;
     }
@@ -126,75 +119,53 @@ public final class FastjsonUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isJSONArray(final String json) {
-        if (!StringUtils.isEmpty(json)) {
-            if (json.startsWith("[") && json.endsWith("]")) {
-                try {
-                    Object object = JSON.parse(json);
-                    return (object instanceof JSONArray);
-                } catch (Exception e) {
-                }
-            }
+        try {
+            Object object = JSON.parse(json);
+            return (object instanceof JSONArray);
+        } catch (Exception e) {
         }
         return false;
     }
 
-//    /**
-//     * JSON String 缩进处理
-//     * @param json JSON String
-//     * @return JSON String
-//     */
-//    public static String toJsonIndent(final String json) {
-//        return toJsonIndent(json, INDENT_GSON);
-//    }
-//
-//    /**
-//     * JSON String 缩进处理
-//     * @param json JSON String
-//     * @param gson {@link Gson}
-//     * @return JSON String
-//     */
-//    public static String toJsonIndent(final String json, final Gson gson) {
-//        if (gson != null) {
-//            try {
-//                JsonReader reader = new JsonReader(new StringReader(json));
-//                reader.setLenient(true);
-//                JsonParser jsonParser = new JsonParser();
-//                JsonElement jsonElement = jsonParser.parse(reader);
-//                return gson.toJson(jsonElement);
-//            } catch (Exception e) {
-//                JCLogUtils.eTag(TAG, e, "toJsonIndent");
-//            }
-//        }
-//        return null;
-//    }
-//
-//    // =
-//
-//    /**
-//     * Object 转 JSON String 并进行缩进处理
-//     * @param object {@link Object}
-//     * @return JSON String
-//     */
-//    public static String toJsonIndent(final Object object) {
-//        return toJsonIndent(object, INDENT_GSON);
-//    }
-//
-//    /**
-//     * Object 转 JSON String 并进行缩进处理
-//     * @param object {@link Object}
-//     * @param gson   {@link Gson}
-//     * @return JSON String
-//     */
-//    public static String toJsonIndent(final Object object, final Gson gson) {
-//        if (gson != null) {
-//            try {
-//                return gson.toJson(object);
-//            } catch (Exception e) {
-//                JCLogUtils.eTag(TAG, e, "toJsonIndent");
-//            }
-//        }
-//        return null;
-//    }
+    // =
+
+    /**
+     * JSON String 缩进处理
+     * @param json JSON String
+     * @return JSON String
+     */
+    public static String toJsonIndent(final String json) {
+        if (json != null) {
+            try {
+                // 保持 JSON 字符串次序
+                Object object = JSON.parse(json, Feature.OrderedField);
+                if (object instanceof JSONObject) {
+                    return JSONObject.toJSONString(object, true);
+                } else if (object instanceof JSONArray) {
+                    return JSONArray.toJSONString(object, true);
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "toJsonIndent");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Object 转 JSON String 并进行缩进处理
+     * @param object {@link Object}
+     * @return JSON String
+     */
+    public static String toJsonIndent(final Object object) {
+        if (object != null) {
+            try {
+                return toJsonIndent(toJson(object));
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "toJsonIndent");
+            }
+        }
+        return null;
+    }
 
     // ========
     // = Type =

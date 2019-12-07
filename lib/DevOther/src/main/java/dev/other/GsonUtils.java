@@ -148,13 +148,43 @@ public final class GsonUtils {
         } catch (Exception e) {
             return false;
         }
-        if (jsonElement == null) {
+        if (jsonElement == null) return false;
+        if (jsonElement.isJsonObject() || jsonElement.isJsonArray()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 判断字符串是否 JSON Object 格式
+     * @param json 待校验 JSON String
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isJSONObject(final String json) {
+        JsonElement jsonElement;
+        try {
+            jsonElement = new JsonParser().parse(json);
+        } catch (Exception e) {
             return false;
         }
-        if (!jsonElement.isJsonObject()) {
+        if (jsonElement == null) return false;
+        return jsonElement.isJsonObject();
+    }
+
+    /**
+     * 判断字符串是否 JSON Array 格式
+     * @param json 待校验 JSON String
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isJSONArray(final String json) {
+        JsonElement jsonElement;
+        try {
+            jsonElement = new JsonParser().parse(json);
+        } catch (Exception e) {
             return false;
         }
-        return true;
+        if (jsonElement == null) return false;
+        return jsonElement.isJsonArray();
     }
 
     /**

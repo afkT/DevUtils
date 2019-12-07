@@ -88,6 +88,20 @@ public interface IJSONEngine {
     boolean isJSON(String json);
 
     /**
+     * 判断字符串是否 JSON Object 格式
+     * @param json 待校验 JSON String
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isJSONObject(final String json);
+
+    /**
+     * 判断字符串是否 JSON Array 格式
+     * @param json 待校验 JSON String
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isJSONArray(final String json);
+
+    /**
      * JSON String 缩进处理
      * @param json JSON String
      * @return JSON String
