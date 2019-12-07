@@ -105,12 +105,13 @@ public class CapturePictureActivity extends BaseToolbarActivity {
                 SkipUtils.startActivity(CapturePictureListActivity.class, new ButtonValue(1, "CapturePictureUtils ListView 截图"));
                 break;
             case R.id.vid_acp_grid_btn:
-                SkipUtils.startActivity(CapturePictureGridActivity.class, new ButtonValue(1, "CapturePictureUtils GridView 截图"));
+                SkipUtils.startActivity(CapturePictureGridActivity.class, new ButtonValue(2, "CapturePictureUtils GridView 截图"));
                 break;
             case R.id.vid_acp_recy_btn:
-                SkipUtils.startActivity(CapturePictureRecyActivity.class, new ButtonValue(1, "CapturePictureUtils RecyclerView 截图"));
+                SkipUtils.startActivity(CapturePictureRecyActivity.class, new ButtonValue(3, "CapturePictureUtils RecyclerView 截图"));
                 break;
             case R.id.vid_acp_webview_btn:
+                SkipUtils.startActivity(CapturePictureWebActivity.class, new ButtonValue(4, "CapturePictureUtils WebView 截图"));
                 break;
         }
     }
