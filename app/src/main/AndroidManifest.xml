@@ -332,6 +332,22 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- CapturePictureUtils GridView 截图 -->
+
+        <activity
+            android:name=".ui.activity.CapturePictureGridActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- CapturePictureUtils RecyclerView 截图 -->
+
+        <activity
+            android:name=".ui.activity.CapturePictureRecyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- ======== -->
         <!-- 服务相关 -->
         <!-- ======== -->
