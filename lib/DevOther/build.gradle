@@ -8,6 +8,8 @@ dependencies {
 
     // Gson https://github.com/google/gson
     implementation deps.lib.gson
+    // fastjson https://github.com/alibaba/fastjson
+    implementation deps.lib.fastjson
     // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
     implementation deps.lib.imageloader
     // Glide 加载框架 https://github.com/bumptech/glide

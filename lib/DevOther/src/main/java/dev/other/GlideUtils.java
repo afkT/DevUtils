@@ -113,7 +113,7 @@ public final class GlideUtils {
     // ==========
 
     /**
-     * 初始化方法
+     * 初始化方法 ( 必须调用 )
      * @param context {@link Context}
      */
     public static void init(final Context context) {

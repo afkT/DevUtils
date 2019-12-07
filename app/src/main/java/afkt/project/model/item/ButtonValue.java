@@ -73,6 +73,11 @@ public class ButtonValue {
     public static List<ButtonValue> getModuleLibButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_EVENT_BUS, "EventBusUtils"));
+        lists.add(new ButtonValue(BTN_GLIDE, "GlideUtils"));
+        lists.add(new ButtonValue(BTN_IMAGE_LOADER, "ImageLoaderUtils"));
+        lists.add(new ButtonValue(BTN_GSON, "GsonUtils"));
+        lists.add(new ButtonValue(BTN_ZXING, "ZXingQRCodeUtils"));
+        lists.add(new ButtonValue(BTN_PICTURE_SELECTOR, "PictureSelectorUtils"));
         return lists;
     }
 
@@ -351,6 +356,21 @@ public class ButtonValue {
     public static final int BTN_EVENT_SEND = BTN_EVENT_BUS + 4;
     // 发送粘性事件
     public static final int BTN_EVENT_SEND_STICKY = BTN_EVENT_BUS + 5;
+
+    // GlideUtils
+    public static final int BTN_GLIDE = MODULE_LIB + 1;
+
+    // ImageLoaderUtils
+    public static final int BTN_IMAGE_LOADER = MODULE_LIB + 2;
+
+    // GsonUtils
+    public static final int BTN_GSON = MODULE_LIB + 3;
+
+    // ZXingQRCodeUtils
+    public static final int BTN_ZXING = MODULE_LIB + 4;
+
+    // PictureSelectorUtils
+    public static final int BTN_PICTURE_SELECTOR = MODULE_LIB + 5;
 
     // ======
     // = UI =

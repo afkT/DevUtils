@@ -80,6 +80,21 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_EVENT_BUS: // EventBusUtils
                         SkipUtils.startActivity(EventBusActivity.class, buttonValue);
                         break;
+                    case ButtonValue.BTN_GLIDE: // GlideUtils
+                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        break;
+                    case ButtonValue.BTN_IMAGE_LOADER: // ImageLoaderUtils
+                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        break;
+                    case ButtonValue.BTN_GSON: // GsonUtils
+                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        break;
+                    case ButtonValue.BTN_ZXING: // ZXingQRCodeUtils
+                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        break;
+                    case ButtonValue.BTN_PICTURE_SELECTOR: // PictureSelectorUtils
+                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        break;
 
                     // ======
                     // = UI =
