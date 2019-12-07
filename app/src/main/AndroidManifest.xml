@@ -308,6 +308,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 换行监听 View -->
+
+        <activity
+            android:name=".ui.activity.LineActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- ======== -->
         <!-- 服务相关 -->
         <!-- ======== -->

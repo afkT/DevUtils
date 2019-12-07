@@ -19,6 +19,7 @@ import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.GPUFilterACVActivity;
 import afkt.project.ui.activity.GPUFilterActivity;
+import afkt.project.ui.activity.LineActivity;
 import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.LoggerActivity;
 import afkt.project.ui.activity.MultiSelectActivity;
@@ -123,7 +124,7 @@ public class ModuleActivity extends BaseToolbarActivity {
                         SkipUtils.startActivity(SignActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_LINE_VIEW: // 换行监听 View
-                        SkipUtils.startActivity(QRCodeScanActivity.class, buttonValue);
+                        SkipUtils.startActivity(LineActivity.class, buttonValue);
                         break;
 
                     // ============

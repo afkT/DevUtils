@@ -93,4 +93,20 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <!-- 分割线样式 -->
+    <style name="AppTheme.Base_Line_Vertical">
+        <!-- 设置铺满 -->
+        <item name="android:layout_width">match_parent</item>
+        <!-- 设置高度 -->
+        <item name="android:layout_height">@dimen/un_line_height</item>
+    </style>
+
+    <!-- 分割线样式 -->
+    <style name="AppTheme.Base_Line_Horizontal">
+        <!-- 设置铺满 -->
+        <item name="android:layout_width">@dimen/un_line_width</item>
+        <!-- 设置高度 -->
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 </resources>
