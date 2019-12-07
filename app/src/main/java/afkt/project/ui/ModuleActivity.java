@@ -29,6 +29,7 @@ import afkt.project.ui.activity.QRCodeImageActivity;
 import afkt.project.ui.activity.QRCodeScanActivity;
 import afkt.project.ui.activity.ScanShapeActivity;
 import afkt.project.ui.activity.ScreenInfoActivity;
+import afkt.project.ui.activity.SignActivity;
 import afkt.project.ui.activity.StatusBarActivity;
 import afkt.project.ui.activity.TextCalcActivity;
 import afkt.project.ui.activity.TimerActivity;
@@ -36,6 +37,7 @@ import afkt.project.ui.activity.ToastTintActivity;
 import afkt.project.ui.activity.UIEffectActivity;
 import afkt.project.ui.activity.ViewPagerActivity;
 import afkt.project.ui.activity.WifiActivity;
+import afkt.project.ui.activity.WrapActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
@@ -114,7 +116,15 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_QRCODE_SCAN: // 二维码扫描解析
                         SkipUtils.startActivity(QRCodeScanActivity.class, buttonValue);
                         break;
-
+                    case ButtonValue.BTN_WRAP_VIEW: // 自动换行 View
+                        SkipUtils.startActivity(WrapActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_SIGN_VIEW: // 签名 View
+                        SkipUtils.startActivity(SignActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_LINE_VIEW: // 换行监听 View
+                        SkipUtils.startActivity(QRCodeScanActivity.class, buttonValue);
+                        break;
 
                     // ============
                     // = 其他功能 =

@@ -86,6 +86,9 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_QRCODE_CREATE, "创建二维码"));
         lists.add(new ButtonValue(BTN_QRCODE_IMAGE, "二维码图片解析"));
         lists.add(new ButtonValue(BTN_QRCODE_SCAN, "二维码扫描解析"));
+        lists.add(new ButtonValue(BTN_WRAP_VIEW, "自动换行 View"));
+        lists.add(new ButtonValue(BTN_SIGN_VIEW, "签名 View"));
+        lists.add(new ButtonValue(BTN_LINE_VIEW, "换行监听 View"));
         return lists;
     }
 
@@ -360,6 +363,15 @@ public class ButtonValue {
 
     // 二维码扫描解析
     public static final int BTN_QRCODE_SCAN = MODULE_UI + 1300;
+
+    // 自动换行 View
+    public static final int BTN_WRAP_VIEW = MODULE_UI + 1400;
+
+    // 签名 View
+    public static final int BTN_SIGN_VIEW = MODULE_UI + 1500;
+
+    // 换行监听 View
+    public static final int BTN_LINE_VIEW = MODULE_UI + 1600;
 
     // ============
     // = 其他功能 =

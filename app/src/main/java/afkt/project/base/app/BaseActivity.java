@@ -107,6 +107,8 @@ public abstract class BaseActivity extends DevBaseActivity {
         ViewUtils.removeAllViews(vid_ba_content_linear);
         // 获取 Layout Id View
         View layoutView = ViewUtils.inflate(this, getLayoutId(), null);
+        // 如果获取 为 null
+        if (layoutView == null) layoutView = contentView();
         if (layoutView != null) {
             // 添加 View
             LinearLayout.LayoutParams contentViewLP = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);

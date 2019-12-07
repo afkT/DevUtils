@@ -68,7 +68,7 @@ public class GPUFilterAdapter extends BaseAdapter {
 
         boolean isSelect = (selectPosition == position);
         int width = SizeUtils.dipConvertPx(100f);
-        Gallery.LayoutParams lParams = new Gallery.LayoutParams(width, Gallery.LayoutParams.MATCH_PARENT);
+        Gallery.LayoutParams layoutParams = new Gallery.LayoutParams(width, Gallery.LayoutParams.MATCH_PARENT);
         // 初始化 View
         BaseTextView baseTextView = new BaseTextView(context);
         ViewHelper.get().setText(baseTextView, filterItem.filterName)
@@ -76,7 +76,7 @@ public class GPUFilterAdapter extends BaseAdapter {
                 .setTextGravity(baseTextView, Gravity.CENTER)
                 .setTextColor(baseTextView, ResourceUtils.getColor(isSelect ? R.color.red : R.color.black))
                 .setTextSizeBySp(baseTextView, isSelect ? 18.0f : 13.0f)
-                .setLayoutParams(baseTextView, lParams);
+                .setLayoutParams(baseTextView, layoutParams);
 
         return baseTextView;
     }
