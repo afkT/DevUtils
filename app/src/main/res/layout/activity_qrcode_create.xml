@@ -24,7 +24,7 @@
             android:maxLines="1"
             android:text="选择 Logo 图片" />
 
-        <EditText
+        <afkt.project.ui.widget.BaseEditText
             android:id="@+id/vid_aqc_content_edit"
             android:layout_width="match_parent"
             android:layout_height="150.0dip"
@@ -38,7 +38,7 @@
             android:padding="10.0dip"
             android:textSize="15.0sp" />
 
-        <ImageView
+        <afkt.project.ui.widget.BaseImageView
             android:id="@+id/vid_aqc_igview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

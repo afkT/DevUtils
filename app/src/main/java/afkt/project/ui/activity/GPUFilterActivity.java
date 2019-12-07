@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -15,6 +14,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.FilterItem;
 import afkt.project.ui.adapter.GPUFilterAdapter;
+import afkt.project.ui.widget.BaseImageView;
 import afkt.project.util.GPUFilterUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,7 +34,7 @@ public class GPUFilterActivity extends BaseToolbarActivity {
     @BindView(R.id.vid_agf_gallery)
     ControlSlideGallery vid_agf_gallery;
     @BindView(R.id.vid_agf_igview)
-    ImageView vid_agf_igview;
+    BaseImageView vid_agf_igview;
     // 适配器
     GPUFilterAdapter gpuFilterAdapter;
     // 图片 Bitmap

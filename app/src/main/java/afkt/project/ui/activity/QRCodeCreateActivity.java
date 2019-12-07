@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -14,6 +12,8 @@ import com.luck.picture.lib.entity.LocalMedia;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.ui.widget.BaseEditText;
+import afkt.project.ui.widget.BaseImageView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import dev.other.PictureSelectorUtils;
@@ -33,9 +33,9 @@ public class QRCodeCreateActivity extends BaseToolbarActivity {
 
     // = View =
     @BindView(R.id.vid_aqc_content_edit)
-    EditText vid_aqc_content_edit;
+    BaseEditText vid_aqc_content_edit;
     @BindView(R.id.vid_aqc_igview)
-    ImageView vid_aqc_igview;
+    BaseImageView vid_aqc_igview;
     // 图片 Bitmap
     Bitmap selectBitmap;
 

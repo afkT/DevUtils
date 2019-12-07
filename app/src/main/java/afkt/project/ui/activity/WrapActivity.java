@@ -83,7 +83,7 @@ public class WrapActivity extends BaseToolbarActivity {
 
             BaseTextView baseTextView = new BaseTextView(this);
             ViewHelper.get().setLayoutParams(baseTextView, layoutParams)
-                    .setPadding(baseTextView, 30,15, 30, 15)
+                    .setPadding(baseTextView, 30, 15, 30, 15)
                     .setBackground(baseTextView, drawable)
                     .setMaxLines(baseTextView, 1)
                     .setEllipsize(baseTextView, TextUtils.TruncateAt.END)

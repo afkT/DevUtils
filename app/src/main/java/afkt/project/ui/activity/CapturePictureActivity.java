@@ -1,7 +1,5 @@
 package afkt.project.ui.activity;
 
-
-
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.LinearLayout;

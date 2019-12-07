@@ -13,7 +13,6 @@ import android.os.Message;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.google.zxing.Result;
 import com.luck.picture.lib.PictureSelector;
@@ -24,6 +23,7 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.ui.widget.BaseImageView;
 import afkt.project.util.ProjectUtils;
 import afkt.project.util.zxing.PreviewCallback;
 import afkt.project.util.zxing.decode.DecodeConfig;
@@ -59,7 +59,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
     @BindView(R.id.vid_ass_scanview)
     ScanShapeView vid_ass_scanview;
     @BindView(R.id.vid_ass_flashlight_igview)
-    ImageView vid_ass_flashlight_igview;
+    BaseImageView vid_ass_flashlight_igview;
     // 无操作计时辅助类
     private InactivityTimerAssist mInactivityTimerAssist;
     // 扫描成功响声 + 震动

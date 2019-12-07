@@ -23,7 +23,7 @@
         android:paddingLeft="10.0dip"
         android:paddingRight="10.0dip">
 
-        <ImageView
+        <afkt.project.ui.widget.BaseImageView
             android:id="@+id/vid_ams_igview"
             android:layout_width="20.0dip"
             android:layout_height="20.0dip"
@@ -48,7 +48,7 @@
                 android:background="@drawable/shape_border_image"
                 android:padding="5.0dip">
 
-                <ImageView
+                <afkt.project.ui.widget.BaseImageView
                     android:id="@+id/vid_ams_pic_igview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />

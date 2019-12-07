@@ -2,7 +2,6 @@ package afkt.project.ui.adapter;
 
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -14,6 +13,7 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.model.bean.CommodityEvaluateBean;
+import afkt.project.ui.widget.BaseImageView;
 import dev.assist.multiselect.MultiSelectMapAssist;
 import dev.assist.multiselect.edit.IMultiSelectEdit;
 import dev.other.GlideUtils;
@@ -65,7 +65,7 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         // = 多选处理 =
         // ============
 
-        ImageView vid_ams_igview = helper.getView(R.id.vid_ams_igview);
+        BaseImageView vid_ams_igview = helper.getView(R.id.vid_ams_igview);
         // 是否显示编辑按钮、以及是否选中
         ViewHelper.get().setVisibility(isEditStatus(), vid_ams_igview)
                 .setSelected(multiSelectMapAssist.isSelectKey(position), vid_ams_igview)

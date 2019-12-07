@@ -18,7 +18,7 @@
             android:layout_height="70.0dip"
             android:orientation="horizontal">
 
-            <ImageView
+            <afkt.project.ui.widget.BaseImageView
                 android:layout_width="70.0dip"
                 android:layout_height="70.0dip"
                 android:background="@mipmap/icon_launcher_round"

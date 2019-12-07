@@ -25,7 +25,7 @@
             card_view:cardElevation="10.0dip"
             tools:targetApi="lollipop">
 
-            <ImageView
+            <afkt.project.ui.widget.BaseImageView
                 android:layout_width="120.0dip"
                 android:layout_height="120.0dip"
                 android:layout_gravity="center"

@@ -5,12 +5,12 @@ import android.hardware.Camera;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.ImageView;
 
 import java.util.List;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.ui.widget.BaseImageView;
 import afkt.project.util.ProjectUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -35,7 +35,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
     @BindView(R.id.vid_ass_scanview)
     ScanShapeView vid_ass_scanview;
     @BindView(R.id.vid_ass_flashlight_igview)
-    ImageView vid_ass_flashlight_igview;
+    BaseImageView vid_ass_flashlight_igview;
 
     @Override
     public int getLayoutId() {

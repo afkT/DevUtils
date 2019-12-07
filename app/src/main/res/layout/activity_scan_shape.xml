@@ -22,7 +22,7 @@
         android:layout_margin="15.0dip"
         android:orientation="horizontal">
 
-        <ImageView
+        <afkt.project.ui.widget.BaseImageView
             android:id="@+id/vid_ass_image_igview"
             android:layout_width="30.0dip"
             android:layout_height="30.0dip"
@@ -30,28 +30,28 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
-        <ImageView
+        <afkt.project.ui.widget.BaseImageView
             android:id="@+id/vid_ass_flashlight_igview"
             android:layout_width="30.0dip"
             android:layout_height="30.0dip"
             android:layout_marginLeft="20.0dip"
             android:background="@drawable/shape_flashlight_selector" />
 
-        <ImageView
+        <afkt.project.ui.widget.BaseImageView
             android:id="@+id/vid_ass_square_igview"
             android:layout_width="30.0dip"
             android:layout_height="30.0dip"
             android:layout_marginLeft="20.0dip"
             android:background="@drawable/icon_square" />
 
-        <ImageView
+        <afkt.project.ui.widget.BaseImageView
             android:id="@+id/vid_ass_hexagon_igview"
             android:layout_width="30.0dip"
             android:layout_height="30.0dip"
             android:layout_marginLeft="20.0dip"
             android:background="@drawable/icon_hexagon" />
 
-        <ImageView
+        <afkt.project.ui.widget.BaseImageView
             android:id="@+id/vid_ass_annulus_igview"
             android:layout_width="30.0dip"
             android:layout_height="30.0dip"

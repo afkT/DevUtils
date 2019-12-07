@@ -15,6 +15,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.model.bean.CommodityEvaluateBean;
 import afkt.project.model.item.EvaluateItem;
+import afkt.project.ui.widget.BaseEditText;
 import dev.assist.EditTextWatcherAssist;
 import dev.other.GlideUtils;
 import dev.utils.app.ResourceUtils;
@@ -78,7 +79,7 @@ public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder>
         // ============
 
         // 评价内容
-        EditText vid_aie_content_edit = helper.getView(R.id.vid_aie_content_edit);
+        BaseEditText vid_aie_content_edit = helper.getView(R.id.vid_aie_content_edit);
         // 评价内容字数
         TextView vid_aie_number_tv = helper.getView(R.id.vid_aie_number_tv);
         // 计算已经输入的内容长度

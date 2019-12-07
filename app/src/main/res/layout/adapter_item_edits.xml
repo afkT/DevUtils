@@ -39,7 +39,7 @@
                 android:background="@drawable/shape_border_image"
                 android:padding="5.0dip">
 
-                <ImageView
+                <afkt.project.ui.widget.BaseImageView
                     android:id="@+id/vid_aie_pic_igview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -124,7 +124,7 @@
 
             <!-- 输入的评价内容 -->
 
-            <EditText
+            <afkt.project.ui.widget.BaseEditText
                 android:id="@+id/vid_aie_content_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

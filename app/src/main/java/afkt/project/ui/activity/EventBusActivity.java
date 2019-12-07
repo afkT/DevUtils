@@ -52,25 +52,25 @@ public class EventBusActivity extends BaseToolbarActivity {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_EVENT_REGISTER:
-                        showToast(true,"注册成功");
+                        showToast(true, "注册成功");
                         EventBusUtils.register(EventBusActivity.this);
                         break;
                     case ButtonValue.BTN_EVENT_UNREGISTER:
-                        showToast(true,"解绑成功");
+                        showToast(true, "解绑成功");
                         EventBusUtils.unregister(EventBusActivity.this);
                         break;
                     case ButtonValue.BTN_EVENT_CLEAN_STICKY:
-                        showToast(true,"清空全部粘性事件成功");
+                        showToast(true, "清空全部粘性事件成功");
                         EventBusUtils.removeAllStickyEvents();
                         break;
                     case ButtonValue.BTN_EVENT_SEND:
-                        showToast(true,"发送事件成功");
+                        showToast(true, "发送事件成功");
                         DevBaseEvent<String> event = new DevBaseEvent<>();
                         event.setCode(1).setValue("正常消息");
                         EventBusUtils.post(event);
                         break;
                     case ButtonValue.BTN_EVENT_SEND_STICKY:
-                        showToast(true,"发送粘性事件成功");
+                        showToast(true, "发送粘性事件成功");
                         DevBaseEvent<String> eventSticky = new DevBaseEvent<>();
                         eventSticky.setCode(2).setValue("粘性消息");
                         EventBusUtils.postSticky(eventSticky);
