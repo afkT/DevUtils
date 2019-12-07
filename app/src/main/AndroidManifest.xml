@@ -356,6 +356,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- EventBusUtils -->
+
+        <activity
+            android:name=".ui.activity.EventBusActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- ======== -->
         <!-- 服务相关 -->
         <!-- ======== -->

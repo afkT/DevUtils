@@ -53,13 +53,41 @@ public class ButtonValue {
             case ButtonValue.MODULE_FRAMEWORK:
                 break;
             case ButtonValue.MODULE_LIB:
-                break;
+                return getModuleLibButtonValues();
             case ButtonValue.MODULE_UI:
                 return getModuleUIButtonValues();
             case ButtonValue.MODULE_OTHER:
                 return getModuleOtherButtonValues();
         }
         return Collections.emptyList();
+    }
+
+    // =======
+    // = Lib =
+    // =======
+
+    /**
+     * 获取 Lib Module Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getModuleLibButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_EVENT_BUS, "EventBusUtils"));
+        return lists;
+    }
+
+    /**
+     * 获取 Event Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getEventButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_EVENT_REGISTER, "Register"));
+        lists.add(new ButtonValue(BTN_EVENT_UNREGISTER, "unRegister"));
+        lists.add(new ButtonValue(BTN_EVENT_CLEAN_STICKY, "清空粘性事件"));
+        lists.add(new ButtonValue(BTN_EVENT_SEND, "发送事件"));
+        lists.add(new ButtonValue(BTN_EVENT_SEND_STICKY, "发送粘性事件"));
+        return lists;
     }
 
     // ======
@@ -306,6 +334,23 @@ public class ButtonValue {
     public static final int MODULE_UI = BASE + 30000;
     // 其他功能
     public static final int MODULE_OTHER = BASE + 40000;
+
+    // =======
+    // = Lib =
+    // =======
+
+    // EventBusUtils
+    public static final int BTN_EVENT_BUS = MODULE_LIB;
+    // Register
+    public static final int BTN_EVENT_REGISTER = BTN_EVENT_BUS + 1;
+    // unRegister
+    public static final int BTN_EVENT_UNREGISTER = BTN_EVENT_BUS + 2;
+    // 清空粘性事件
+    public static final int BTN_EVENT_CLEAN_STICKY = BTN_EVENT_BUS + 3;
+    // 发送事件
+    public static final int BTN_EVENT_SEND = BTN_EVENT_BUS + 4;
+    // 发送粘性事件
+    public static final int BTN_EVENT_SEND_STICKY = BTN_EVENT_BUS + 5;
 
     // ======
     // = UI =

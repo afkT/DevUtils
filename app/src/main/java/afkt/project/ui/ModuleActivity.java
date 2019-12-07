@@ -16,6 +16,7 @@ import afkt.project.ui.activity.CapturePictureActivity;
 import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
 import afkt.project.ui.activity.DeviceInfoActivity;
+import afkt.project.ui.activity.EventBusActivity;
 import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.GPUFilterACVActivity;
@@ -71,6 +72,14 @@ public class ModuleActivity extends BaseToolbarActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
+
+                    // =======
+                    // = Lib =
+                    // =======
+
+                    case ButtonValue.BTN_EVENT_BUS: // EventBusUtils
+                        SkipUtils.startActivity(EventBusActivity.class, buttonValue);
+                        break;
 
                     // ======
                     // = UI =
