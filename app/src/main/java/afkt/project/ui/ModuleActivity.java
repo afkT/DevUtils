@@ -12,6 +12,7 @@ import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
 import afkt.project.ui.activity.AdapterEditsActivity;
 import afkt.project.ui.activity.CacheActivity;
+import afkt.project.ui.activity.CapturePictureActivity;
 import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
 import afkt.project.ui.activity.DeviceInfoActivity;
@@ -125,6 +126,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_LINE_VIEW: // 换行监听 View
                         SkipUtils.startActivity(LineActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_CAPTURE_PICTURE: // CapturePictureUtils 截图工具类
+                        SkipUtils.startActivity(CapturePictureActivity.class, buttonValue);
                         break;
 
                     // ============

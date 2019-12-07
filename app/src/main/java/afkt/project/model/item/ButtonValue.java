@@ -89,6 +89,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_WRAP_VIEW, "自动换行 View"));
         lists.add(new ButtonValue(BTN_SIGN_VIEW, "签名 View"));
         lists.add(new ButtonValue(BTN_LINE_VIEW, "换行监听 View"));
+        lists.add(new ButtonValue(BTN_CAPTURE_PICTURE, "CapturePictureUtils 截图工具类"));
         return lists;
     }
 
@@ -372,6 +373,9 @@ public class ButtonValue {
 
     // 换行监听 View
     public static final int BTN_LINE_VIEW = MODULE_UI + 1600;
+
+    // CapturePictureUtils 截图工具类
+    public static final int BTN_CAPTURE_PICTURE = MODULE_UI + 1700;
 
     // ============
     // = 其他功能 =

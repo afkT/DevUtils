@@ -76,7 +76,7 @@ public class WrapActivity extends BaseToolbarActivity {
         // 设置点击效果
         GradientDrawable drawable = ShapeUtils.newBuilder(30f, R.color.color_88).build().getDrawable();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             // 随机字符串
             String text = ChineseUtils.getRandomWord(RandomUtils.getRandom(20)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(10));
             String randomText = RandomUtils.getRandom(text.toCharArray(), text.length());

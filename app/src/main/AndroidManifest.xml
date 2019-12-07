@@ -316,6 +316,22 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- CapturePictureUtils 截图工具类 -->
+
+        <activity
+            android:name=".ui.activity.CapturePictureActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- CapturePictureUtils ListView 截图 -->
+
+        <activity
+            android:name=".ui.activity.CapturePictureListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- ======== -->
         <!-- 服务相关 -->
         <!-- ======== -->
