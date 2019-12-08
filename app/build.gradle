@@ -6,6 +6,11 @@ android {
     defaultConfig {
         applicationId "afkt.project"
     }
+
+    // data binding
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

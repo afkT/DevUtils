@@ -8,7 +8,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
-import afkt.project.framework.ArticleActivity;
+import afkt.project.framework.mvp.ArticleMVPActivity;
+import afkt.project.framework.mvvm.ArticleMVVMActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
 import afkt.project.ui.activity.AdapterEditsActivity;
@@ -82,7 +83,10 @@ public class ModuleActivity extends BaseToolbarActivity {
                     // 其目的是要解决编程过程中, 模块内部高内聚、模块与模块之间低耦合、可维护性、易测试等问题
 
                     case ButtonValue.BTN_MVP: // MVP
-                        SkipUtils.startActivity(ArticleActivity.class, buttonValue);
+                        SkipUtils.startActivity(ArticleMVPActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_MVVM: // MVVM
+                        SkipUtils.startActivity(ArticleMVVMActivity.class, buttonValue);
                         break;
 
                     // =======

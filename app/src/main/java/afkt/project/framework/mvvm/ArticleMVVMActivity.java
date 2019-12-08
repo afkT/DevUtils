@@ -1,4 +1,4 @@
-package afkt.project.framework;
+package afkt.project.framework.mvvm;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,10 +17,10 @@ import dev.utils.common.CollectionUtils;
 import dev.widget.StateLayout;
 
 /**
- * detail: 文章 Activity
+ * detail: 文章 MVVM Activity
  * @author Ttt
  */
-public class ArticleActivity extends BaseMVPToolbarActivity<ArticleMVP.Presenter> implements ArticleMVP.View {
+public class ArticleMVVMActivity extends BaseMVPToolbarActivity<ArticleMVP.Presenter> implements ArticleMVP.View {
 
     @BindView(R.id.vid_bvr_recy)
     RecyclerView vid_bvr_recy;

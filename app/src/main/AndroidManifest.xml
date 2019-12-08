@@ -364,10 +364,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 文章 Activity -->
+        <!-- 文章 MVP Activity -->
 
         <activity
-            android:name=".framework.ArticleActivity"
+            android:name=".framework.mvp.ArticleMVPActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 文章 MVVM Activity -->
+
+        <activity
+            android:name=".framework.mvvm.ArticleMVVMActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
