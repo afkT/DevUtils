@@ -131,7 +131,8 @@ public class BaseApplication extends Application {
                     }
                 }
             }
-        }).insert(StateLayout.State.NO_DATA, R.layout.state_layout_no_data);
+        }).insert(StateLayout.State.NO_DATA, R.layout.state_layout_no_data)
+                .insert(StateLayout.State.ING, R.layout.state_layout_ing);
         // 设置全局配置
         StateLayout.setBuilder(globalBuilder);
     }

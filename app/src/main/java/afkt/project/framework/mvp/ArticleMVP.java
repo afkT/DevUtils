@@ -1,7 +1,11 @@
 package afkt.project.framework.mvp;
 
+import afkt.project.base.constants.http.HttpApis;
 import afkt.project.model.bean.ArticleBean;
 import dev.base.mvp.MVP;
+import dev.other.GsonUtils;
+import dev.utils.app.HandlerUtils;
+import dev.utils.common.HttpURLConnectionUtils;
 
 /**
  * detail: 文章 MVP
@@ -45,7 +49,33 @@ public final class ArticleMVP {
             mModel = new Model() {
                 @Override
                 public void requestArticleLists() {
+                    HttpURLConnectionUtils.doGetAsyn(String.format(HttpApis.ARTICLE_LIST, "0"),
+                            new HttpURLConnectionUtils.CallBack() {
+                                @Override
+                                public void onResponse(String result, long response) {
+                                    if (mView != null) {
+                                        HandlerUtils.postRunnable(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                ArticleBean articleBean = GsonUtils.fromJson(result, ArticleBean.class);
+                                                mView.onArticleListResponse(true, articleBean);
+                                            }
+                                        });
+                                    }
+                                }
 
+                                @Override
+                                public void onFail(Exception e) {
+                                    if (mView != null) {
+                                        HandlerUtils.postRunnable(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                mView.onArticleListResponse(false, null);
+                                            }
+                                        });
+                                    }
+                                }
+                            });
                 }
             };
         }
