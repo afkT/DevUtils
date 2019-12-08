@@ -1,9 +1,13 @@
 package afkt.project.framework;
 
-import afkt.project.base.app.BaseMVPActivity;
+import afkt.project.base.app.BaseMVPToolbarActivity;
 import afkt.project.framework.mvp.ArticleMVP;
 
-public class ArticleActivity extends BaseMVPActivity<ArticleMVP.Presenter> {
+/**
+ * detail: 文章 Activity
+ * @author Ttt
+ */
+public class ArticleActivity extends BaseMVPToolbarActivity<ArticleMVP.Presenter> {
 
     @Override
     protected ArticleMVP.Presenter presenter() {

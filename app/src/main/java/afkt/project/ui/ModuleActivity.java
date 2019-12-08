@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.framework.ArticleActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
 import afkt.project.ui.activity.AdapterEditsActivity;
@@ -73,6 +74,14 @@ public class ModuleActivity extends BaseToolbarActivity {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
 
+                    // =============
+                    // = Framework =
+                    // =============
+
+                    case ButtonValue.BTN_MVP: // MVP
+                        SkipUtils.startActivity(ArticleActivity.class, buttonValue);
+                        break;
+
                     // =======
                     // = Lib =
                     // =======
@@ -81,22 +90,22 @@ public class ModuleActivity extends BaseToolbarActivity {
                         SkipUtils.startActivity(EventBusActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_GLIDE: // GlideUtils
-                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_IMAGE_LOADER: // ImageLoaderUtils
-                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_GSON: // GsonUtils
-                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_FASTJSON: // FastjsonUtils
-                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_ZXING: // ZXingQRCodeUtils
-                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_PICTURE_SELECTOR: // PictureSelectorUtils
-                        ToastTintUtils.warning("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
 
                     // ======

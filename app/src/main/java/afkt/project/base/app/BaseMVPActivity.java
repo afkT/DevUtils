@@ -16,7 +16,7 @@ import dev.utils.app.toast.ToastTintUtils;
 import dev.widget.StateLayout;
 
 /**
- * detail: Base 基类
+ * detail: Base MVP 基类
  * @author Ttt
  * <pre>
  *     代码与 BaseActivity 完全一致, 只是继承 DevBaseMVPActivity

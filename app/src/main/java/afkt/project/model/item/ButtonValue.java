@@ -51,7 +51,7 @@ public class ButtonValue {
     public static List<ButtonValue> getModuleButtonValues(int type) {
         switch (type) {
             case ButtonValue.MODULE_FRAMEWORK:
-                break;
+                return getModuleFrameworkButtonValues();
             case ButtonValue.MODULE_LIB:
                 return getModuleLibButtonValues();
             case ButtonValue.MODULE_UI:
@@ -60,6 +60,21 @@ public class ButtonValue {
                 return getModuleOtherButtonValues();
         }
         return Collections.emptyList();
+    }
+
+    // =============
+    // = Framework =
+    // =============
+
+    /**
+     * 获取 Framework Module Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getModuleFrameworkButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_MVP, "MVP"));
+        lists.add(new ButtonValue(BTN_MVVM, "MVVM"));
+        return lists;
     }
 
     // =======
@@ -340,6 +355,15 @@ public class ButtonValue {
     public static final int MODULE_UI = BASE + 30000;
     // 其他功能
     public static final int MODULE_OTHER = BASE + 40000;
+
+    // =============
+    // = Framework =
+    // =============
+
+    // MVP
+    public static final int BTN_MVP = MODULE_FRAMEWORK;
+    // MVVM
+    public static final int BTN_MVVM = BTN_MVP + 100;
 
     // =======
     // = Lib =
