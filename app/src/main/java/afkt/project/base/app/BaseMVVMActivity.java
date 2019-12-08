@@ -82,4 +82,23 @@ public abstract class BaseMVVMActivity<VDB extends ViewDataBinding> extends Base
 
     // Presenter 层持有 View 层对象的引用, 除此之外不持有其他的 UI 控件等的引用, Model 层会把想要更新 View 的操作委托 Presenter 去操作,
     // 而 Presenter 层会把更新 View 操作交给 View 层对象去操作
+
+    // =======
+    // = MVC =
+    // =======
+
+    // Android 中界面部分也采用了当前比较流行的 MVC 框架, 在 Android 中
+
+    // 1 视图层 ( View ) : 一般采用 XML 文件进行界面的描述, 使用的时候可以非常方便的引入
+
+    // 2 控制层 ( Controller ) : Android 的控制层的重任通常落在了众多的 Acitvity 的肩上, 这句话也就暗含了不要在 Acitivity 中写代码
+    // 要通过 Activity 交割 Model 业务逻辑层处理, 这样做的另外一个原因是 Android 中的 Acitivity 的响应时间是 5s, 如果耗时的操作放在这里, 程序就很容易被回收掉
+
+    // 3 模型层 (Model ) : 对数据库的操作、对网络等的操作都应该在 Model 里面处理, 当然对业务计算等操作也是必须放在的该层的
+    // 在 Android SDK 中的数据绑定, 也都是采用了与 MVC 框架类似的方法来显示数据
+    // 在控制层上将数据按照视图模型的要求 ( 也就是 Android SDK 中的 Adapter ) 封装就可以直接在视图模型上显示了
+    // 从而实现了数据绑定, 比如显示 Cursor 中所有数据的 ListActivity, 其视图层就是一个 ListView
+    // 将数据封装为 ListAdapter 并传递给 ListView, 数据就在 ListView 中显示
+
+    // 正常 Activity 就起到了 Controller 的角色, 除非非常复杂的逻辑, 以及页面功能等, 才会单独分装 Control 类
 }
