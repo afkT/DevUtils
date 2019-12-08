@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/color_f5">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10.0dip"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:stateListAnimator="@drawable/touch"
+        card_view:cardCornerRadius="5.0dip"
+        card_view:cardElevation="5.0dip"
+        tools:targetApi="lollipop">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70.0dip"
+            android:layout_margin="10.0dip">
+
+            <FrameLayout
+                android:id="@+id/vid_aa_pic_frame"
+                android:layout_width="70.0dip"
+                android:layout_height="70.0dip"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_border_image"
+                android:padding="5.0dip">
+
+                <afkt.project.ui.widget.BaseImageView
+                    android:id="@+id/vid_aa_pic_igview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="8.0dip"
+                android:layout_toRightOf="@id/vid_aa_pic_frame"
+                android:orientation="vertical">
+
+                <afkt.project.ui.widget.BaseTextView
+                    android:id="@+id/vid_aa_title_tv"
+                    style="@style/AppTheme.Base_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:maxLines="1"
+                    android:textColor="@color/color_33"
+                    android:textSize="16.0sp"
+                    tools:text="标题" />
+
+                <afkt.project.ui.widget.BaseTextView
+                    android:id="@+id/vid_aa_time_tv"
+                    style="@style/AppTheme.Base_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:maxLines="1"
+                    android:textColor="@color/red"
+                    android:textSize="15.0sp"
+                    tools:text="时间" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
