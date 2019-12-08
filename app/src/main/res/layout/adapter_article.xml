@@ -8,6 +8,7 @@
     tools:background="@color/color_f5">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/vid_aa_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
