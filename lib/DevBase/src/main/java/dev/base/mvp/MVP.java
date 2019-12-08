@@ -45,7 +45,7 @@ public final class MVP {
      * detail: MVP 模式的指挥者 ( 连接 View 和 Model)
      * @author Ttt
      */
-    public class Presenter<V extends IView, M extends IModel> implements IPresenter<V> {
+    public static class Presenter<V extends IView, M extends IModel> implements IPresenter<V> {
 
         // IView
         protected V mView;

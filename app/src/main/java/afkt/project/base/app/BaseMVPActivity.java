@@ -9,7 +9,8 @@ import android.widget.LinearLayout;
 import afkt.project.R;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dev.base.activity.DevBaseActivity;
+import dev.base.mvp.DevBaseMVPActivity;
+import dev.base.mvp.MVP;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.widget.StateLayout;
@@ -17,8 +18,11 @@ import dev.widget.StateLayout;
 /**
  * detail: Base 基类
  * @author Ttt
+ * <pre>
+ *     代码与 BaseActivity 完全一致, 只是继承 DevBaseMVPActivity
+ * </pre>
  */
-public abstract class BaseActivity extends DevBaseActivity {
+public abstract class BaseMVPActivity<P extends MVP.Presenter> extends DevBaseMVPActivity<P> {
 
     // = View =
     // 最外层 View
