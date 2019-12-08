@@ -59,4 +59,27 @@ public abstract class BaseMVVMActivity<VDB extends ViewDataBinding> extends Base
 
     // 主要等同于, 写了个类  ActivityArticleMvvmBinding ( 自动生成 ), 内部初始化 View, 并且改变值等方法, 都会同步刷新, 调用 View 对应的方法
     // 并且 ViewModel 持有 Binding 类对象, 内部做逻辑处理等, 最后通过 Binding 类通知改变等
+
+    // =======
+    // = MVP =
+    // =======
+
+    // Model: 数据部分
+    // View: 主要负责界面的显示及跟数据无关的逻辑, 比如设置控件的点击事件等
+    // Presenter: 主要负责 View 与 Model 的交互
+
+    // MVP 很好的解决了 View 层与 Model 层的分离, 使之交互都是通过 Presenter 层来做, 这样做得好处有以下几点:
+    // 1 便于单元测试, 因为对于 Model 层或者 Presenter 来说, 都是一些接口, 便于编写测试用例
+    // 2 维护性提高, 对于 View 层来说的改动不影响 Presenter 和 Model 层的改动
+
+    // 最主要的好处就是以上两点, 坏处也有以下几点:
+    // 1 代码量增加, 特别是需要新增加 View 与 Model, 及 Presenter 类
+    // 2 View 与 Presenter 的交互的接口的粒度不好把握, 这个需要深入的理解业务才能好好解决
+
+    // MVP 的核心是:
+    // View 层不持有 Model 层对象任何引用, 当然参数里面和临时变量里可以有 Model 层对象, 只持有 Presenter 层对象引用, 任何需要更新或者操作数据的
+    // 都间接通过 Presenter 对象去操作数据, 而 Model 层想要操作 View 层是无法实现的, 必须通过 Presenter 层
+
+    // Presenter 层持有 View 层对象的引用, 除此之外不持有其他的 UI 控件等的引用, Model 层会把想要更新 View 的操作委托 Presenter 去操作,
+    // 而 Presenter 层会把更新 View 操作交给 View 层对象去操作
 }
