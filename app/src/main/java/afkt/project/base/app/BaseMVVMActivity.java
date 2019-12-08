@@ -1,6 +1,5 @@
 package afkt.project.base.app;
 
-import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
@@ -20,8 +19,8 @@ public abstract class BaseMVVMActivity<VDB extends ViewDataBinding, P extends MV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // MVVM 只需要调用此句绑定
-        viewDataBinding = DataBindingUtil.bind(mContentView);
+//        // MVVM 只需要调用此句绑定
+//        viewDataBinding = DataBindingUtil.bind(mContentView);
 //        viewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
     }
 
