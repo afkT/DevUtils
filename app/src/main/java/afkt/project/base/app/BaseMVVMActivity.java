@@ -3,16 +3,14 @@ package afkt.project.base.app;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
-import dev.base.mvp.MVP;
-
 /**
- * detail: ToolBar Activity MVVM 基类
+ * detail: Activity MVVM 基类
  * @author Ttt
  * <pre>
  *     MVVM 需要传入 ViewDataBinding
  * </pre>
  */
-public abstract class BaseMVVMActivity<VDB extends ViewDataBinding, P extends MVP.Presenter> extends BaseMVPActivity<P> {
+public abstract class BaseMVVMActivity<VDB extends ViewDataBinding> extends BaseActivity {
 
     protected VDB viewDataBinding;
 

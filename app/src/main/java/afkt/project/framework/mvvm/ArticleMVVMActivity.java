@@ -13,28 +13,20 @@ import afkt.project.R;
 import afkt.project.base.app.BaseMVVMActivity;
 import afkt.project.base.constants.KeyConstants;
 import afkt.project.databinding.ActivityArticleMvvmBinding;
-import afkt.project.framework.mvp.ArticleMVP;
-import afkt.project.model.bean.ArticleBean;
 import afkt.project.ui.adapter.ArticleAdapter;
 import dev.utils.app.ViewUtils;
-import dev.utils.common.CollectionUtils;
 import dev.widget.StateLayout;
 
 /**
  * detail: 文章 MVVM Activity
  * @author Ttt
  */
-public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBinding, ArticleMVP.Presenter> implements ArticleMVP.View {
+public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBinding> {
 
+    // MVVM VM
+    ArticleMVVM.ViewModel viewModel;
     // 加载动画
     WhorlView whorlView;
-    // 适配器
-    ArticleAdapter articleAdapter;
-
-    @Override
-    protected ArticleMVP.Presenter presenter() {
-        return new ArticleMVP.Presenter();
-    }
 
     @Override
     public int getLayoutId() {
@@ -85,9 +77,11 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     public void initValues() {
         super.initValues();
         // 初始化布局管理器、适配器
-        articleAdapter = new ArticleAdapter();
+        ArticleAdapter articleAdapter = new ArticleAdapter();
         viewDataBinding.vidAamRecy.setLayoutManager(new LinearLayoutManager(this));
         viewDataBinding.vidAamRecy.setAdapter(articleAdapter);
+        // 初始化 VM
+        viewModel = new ArticleMVVM.ViewModel(viewDataBinding, articleAdapter);
     }
 
     @Override
@@ -121,7 +115,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         // 表示请求中
         viewDataBinding.vidAamState.setState(StateLayout.State.ING.getValue());
         // 获取文章列表
-        mPresenter.getArticleLists();
+        viewModel.getArticleLists();
     }
 
     @Override
@@ -129,24 +123,5 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         super.onDestroy();
         // 停止动画
         whorlView.stop();
-    }
-
-    // ===================
-    // = ArticleMVP.View =
-    // ===================
-
-    @Override
-    public void onArticleListResponse(boolean succeed, ArticleBean articleBean) {
-        if (succeed) {
-            if (CollectionUtils.isEmpty(articleBean.data.datas)) { // 无数据
-                viewDataBinding.vidAamState.setState(StateLayout.State.NO_DATA.getValue());
-            } else { // 请求成功
-                viewDataBinding.vidAamState.setState(StateLayout.State.SUCCESS.getValue());
-                // 设置数据源
-                articleAdapter.setNewData(articleBean.data.datas);
-            }
-        } else { // 请求失败
-            viewDataBinding.vidAamState.setState(StateLayout.State.FAIL.getValue());
-        }
     }
 }
