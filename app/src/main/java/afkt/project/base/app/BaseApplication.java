@@ -128,10 +128,14 @@ public class BaseApplication extends Application {
                     if (state == 4) { // NO_DATA
                         View vid_slnd_tips_tv = ViewUtils.findViewById(view, R.id.vid_slnd_tips_tv);
                         TextViewUtils.setText(vid_slnd_tips_tv, "暂无数据");
+                    } else if (state == 2) { // FAIL
+                        View vid_slf_tips_tv = ViewUtils.findViewById(view, R.id.vid_slf_tips_tv);
+                        TextViewUtils.setText(vid_slf_tips_tv, "请求失败, 请稍后重试!");
                     }
                 }
             }
         }).insert(StateLayout.State.NO_DATA, R.layout.state_layout_no_data)
+                .insert(StateLayout.State.FAIL, R.layout.state_layout_fail)
                 .insert(StateLayout.State.ING, R.layout.state_layout_ing);
         // 设置全局配置
         StateLayout.setBuilder(globalBuilder);

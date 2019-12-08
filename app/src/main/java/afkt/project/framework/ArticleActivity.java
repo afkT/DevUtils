@@ -106,11 +106,13 @@ public class ArticleActivity extends BaseMVPToolbarActivity<ArticleMVP.Presenter
         if (succeed) {
             if (CollectionUtils.isEmpty(articleBean.data.datas)) { // 无数据
                 stateLayout.setState(StateLayout.State.NO_DATA.getValue());
-            } else {
+            } else { // 请求成功
                 stateLayout.setState(StateLayout.State.SUCCESS.getValue());
                 // 设置数据源
                 articleAdapter.setNewData(articleBean.data.datas);
             }
+        } else { // 请求失败
+            stateLayout.setState(StateLayout.State.FAIL.getValue());
         }
     }
 }

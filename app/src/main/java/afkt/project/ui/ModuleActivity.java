@@ -78,6 +78,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                     // = Framework =
                     // =============
 
+                    // 架构只是一种思维方式, 不管是MVC、MVP, 还是MVVM, 都只是一种思考问题解决问题的思维
+                    // 其目的是要解决编程过程中, 模块内部高内聚、模块与模块之间低耦合、可维护性、易测试等问题
+
                     case ButtonValue.BTN_MVP: // MVP
                         SkipUtils.startActivity(ArticleActivity.class, buttonValue);
                         break;
