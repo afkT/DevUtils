@@ -2316,6 +2316,17 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 CompoundDrawables Padding
+     * @param textView {@link TextView}
+     * @param padding  CompoundDrawables Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablePadding(final TextView textView, int padding) {
+        TextViewUtils.setCompoundDrawablePadding(textView, padding);
+        return this;
+    }
+
+    /**
      * 设置 Left CompoundDrawables
      * @param textView {@link TextView}
      * @param left     left Drawable

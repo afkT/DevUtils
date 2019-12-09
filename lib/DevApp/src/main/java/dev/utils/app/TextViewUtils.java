@@ -2279,6 +2279,18 @@ public final class TextViewUtils {
         return 0;
     }
 
+    /**
+     * 设置 CompoundDrawables Padding
+     * @param textView {@link TextView}
+     * @param padding  CompoundDrawables Padding
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablePadding(final T textView, int padding) {
+        if (textView != null) textView.setCompoundDrawablePadding(padding);
+        return textView;
+    }
+
     // ========================
     // = setCompoundDrawables =
     // ========================
