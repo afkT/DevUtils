@@ -2321,7 +2321,7 @@ public final class ViewHelper {
      * @param padding  CompoundDrawables Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablePadding(final TextView textView, int padding) {
+    public ViewHelper setCompoundDrawablePadding(final TextView textView, final int padding) {
         TextViewUtils.setCompoundDrawablePadding(textView, padding);
         return this;
     }

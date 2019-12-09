@@ -2286,7 +2286,7 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablePadding(final T textView, int padding) {
+    public static <T extends TextView> T setCompoundDrawablePadding(final T textView, final int padding) {
         if (textView != null) textView.setCompoundDrawablePadding(padding);
         return textView;
     }
