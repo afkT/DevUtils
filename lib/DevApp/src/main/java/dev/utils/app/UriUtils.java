@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -79,6 +80,40 @@ public final class UriUtils {
             LogPrintUtils.eTag(TAG, e, "getUriForFile");
             return null;
         }
+    }
+
+    /**
+     * 判断 Uri 路径资源是否存在
+     * @param uriString uri 路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isUriExists(final String uriString) {
+        if (uriString == null) return false;
+        return isUriExists(Uri.parse(uriString));
+    }
+
+    /**
+     * 判断 Uri 路径资源是否存在
+     * @param uri {@link Uri}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isUriExists(final Uri uri) {
+        if (uri == null) return false;
+        AssetFileDescriptor afd = null;
+        try {
+            afd = ResourceUtils.getContentResolver().openAssetFileDescriptor(uri, "r");
+            if (afd == null) {
+                return false;
+            } else {
+                CloseUtils.closeIOQuietly(afd);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isUriExists");
+            return false;
+        } finally {
+            CloseUtils.closeIOQuietly(afd);
+        }
+        return true;
     }
 
     // =

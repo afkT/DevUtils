@@ -219,11 +219,11 @@ public final class BeepVibrateAssist implements Closeable {
             }
         });
         try {
-            AssetFileDescriptor file = ResourceUtils.openRawResourceFd(rawId);
+            AssetFileDescriptor afd = ResourceUtils.openRawResourceFd(rawId);
             try {
-                mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
+                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
             } finally {
-                CloseUtils.closeIOQuietly(file);
+                CloseUtils.closeIOQuietly(afd);
             }
             mediaPlayer.setVolume(beepVolume, beepVolume);
             mediaPlayer.prepare();
