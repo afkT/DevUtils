@@ -486,7 +486,7 @@ public final class DeviceUtils {
     /**
      * 获取设备 MAC 地址
      * <pre>
-     *     没有打开 wifi, 则获取 WLAN MAC 地址失败
+     *     没有打开 Wifi, 则获取 WLAN MAC 地址失败
      * </pre>
      * @return 设备 MAC 地址
      */

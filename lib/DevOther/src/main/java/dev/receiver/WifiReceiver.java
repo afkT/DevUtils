@@ -266,7 +266,7 @@ public final class WifiReceiver extends BroadcastReceiver {
 
         /**
          * Wifi 开关状态
-         * @param isOpenWifi 是否打开 wifi
+         * @param isOpenWifi 是否打开 Wifi
          */
         public abstract void onWifiSwitch(boolean isOpenWifi);
     }

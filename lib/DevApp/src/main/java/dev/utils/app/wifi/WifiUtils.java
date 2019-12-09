@@ -65,7 +65,7 @@ public final class WifiUtils {
     // ===========================
 
     /**
-     * 判断是否打开 wifi
+     * 判断是否打开 Wifi
      * @return {@code true} yes, {@code false} no
      */
     public boolean isOpenWifi() {
@@ -73,12 +73,12 @@ public final class WifiUtils {
     }
 
     /**
-     * 打开 wifi
+     * 打开 Wifi
      * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
     public boolean openWifi() {
-        // 如果没有打开 wifi, 才进行打开
+        // 如果没有打开 Wifi, 才进行打开
         if (!isOpenWifi()) {
             try {
                 return mWifiManager.setWifiEnabled(true);
@@ -90,12 +90,12 @@ public final class WifiUtils {
     }
 
     /**
-     * 关闭 wifi
+     * 关闭 Wifi
      * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
     public boolean closeWifi() {
-        // 如果已经打开了 wifi, 才进行关闭
+        // 如果已经打开了 Wifi, 才进行关闭
         if (isOpenWifi()) {
             try {
                 return mWifiManager.setWifiEnabled(false);
@@ -148,7 +148,7 @@ public final class WifiUtils {
     // ============
 
     /**
-     * 开始扫描 wifi
+     * 开始扫描 Wifi
      * @return {@code true} 操作成功, {@code false} 操作失败
      */
     @SuppressLint("MissingPermission")
@@ -266,7 +266,7 @@ public final class WifiUtils {
     @SuppressLint("MissingPermission")
     public static String getSSID() {
         try {
-            // 获取当前连接的 wifi
+            // 获取当前连接的 Wifi
             WifiInfo wifiInfo = AppUtils.getWifiManager().getConnectionInfo();
             // 获取 Wifi SSID
             return formatSSID(wifiInfo.getSSID(), false);
@@ -441,7 +441,7 @@ public final class WifiUtils {
                 Network network = cManager.getActiveNetwork();
                 if (network != null) {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
-                    // 判断是否连接 wifi
+                    // 判断是否连接 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         // 获取连接的 ssid
                         return getSSID();
@@ -546,7 +546,7 @@ public final class WifiUtils {
     // ============
 
     /**
-     * 删除指定的 wifi(SSID) 配置信息
+     * 删除指定的 Wifi(SSID) 配置信息
      * @param ssid Wifi ssid
      * @return {@code true} success, {@code false} fail
      */
@@ -593,7 +593,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 快速连接 wifi
+     * 快速连接 Wifi
      * @param ssid     Wifi ssid
      * @param pwd      Wifi 密码
      * @param type     Wifi 加密类型
@@ -637,7 +637,7 @@ public final class WifiUtils {
                 // =
                 LogPrintUtils.dTag(TAG, "属于正常方式连接 (DHCP)");
             }
-            // 判断当前准备连接的 wifi, 是否存在配置文件
+            // 判断当前准备连接的 Wifi, 是否存在配置文件
             WifiConfiguration preWifiConfig = this.isExists(ssid);
             // =
             if (preWifiConfig != null) {

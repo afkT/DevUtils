@@ -85,7 +85,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
             ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                // 判断连接的是否 wifi
+                // 判断连接的是否 Wifi
                 NetworkInfo.State wifiState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
                 // 判断是否连接上
                 if (wifiState == NetworkInfo.State.CONNECTED || wifiState == NetworkInfo.State.CONNECTING) {
@@ -103,7 +103,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
                 Network network = cManager.getActiveNetwork();
                 if (network != null) {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
-                    // 判断连接的是否 wifi
+                    // 判断连接的是否 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         return NET_WIFI;
                     } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {

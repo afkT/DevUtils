@@ -319,7 +319,7 @@ public class WifiActivity extends BaseToolbarActivity {
                                 }
                                 // 防止页面已经关闭
                                 if (!isFinishing() && wifiUtils != null) {
-                                    // 打开 wifi
+                                    // 打开 Wifi
                                     wifiUtils.openWifi();
                                 }
                             }
