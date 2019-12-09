@@ -573,6 +573,8 @@ implementation 'com.afkt:DevAssist:1.0.2'
 | toJson | 将对象转换为 JSON String |
 | fromJson | 将 JSON String 映射为指定类型对象 |
 | isJSON | 判断字符串是否 JSON 格式 |
+| isJSONObject | 判断字符串是否 JSON Object 格式 |
+| isJSONArray | 判断字符串是否 JSON Array 格式 |
 | toJsonIndent | JSON String 缩进处理 |
 
 
@@ -583,6 +585,8 @@ implementation 'com.afkt:DevAssist:1.0.2'
 | toJson | 将对象转换为 JSON String |
 | fromJson | 将 JSON String 映射为指定类型对象 |
 | isJSON | 判断字符串是否 JSON 格式 |
+| isJSONObject | 判断字符串是否 JSON Object 格式 |
+| isJSONArray | 判断字符串是否 JSON Array 格式 |
 | toJsonIndent | JSON String 缩进处理 |
 
 

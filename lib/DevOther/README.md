@@ -47,6 +47,23 @@
 | removeAllStickyEvents | 移除所有的粘性订阅事件 |
 
 
+* **Fastjson 工具类 ->** [FastjsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/FastjsonUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| toJson | 将对象转换为 JSON String |
+| fromJson | 将 JSON String 映射为指定类型对象 |
+| isJSON | 判断字符串是否 JSON 格式 |
+| isJSONObject | 判断字符串是否 JSON Object 格式 |
+| isJSONArray | 判断字符串是否 JSON Array 格式 |
+| toJsonIndent | JSON String 缩进处理 |
+| getArrayType | 获取 Array Type |
+| getListType | 获取 List Type |
+| getSetType | 获取 Set Type |
+| getMapType | 获取 Map Type |
+| getType | 获取 Type |
+
+
 * **Glide 图形处理工具类 ->** [GlideTransformUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/GlideTransformUtils.java)
 
 | 方法 | 注释 |
@@ -61,7 +78,7 @@
 | 方法 | 注释 |
 | :- | :- |
 | with | with |
-| init | 初始化方法 |
+| init | 初始化方法 ( 必须调用 ) |
 | cloneImageOptions | 克隆图片加载配置 |
 | defaultOptions | 获取默认加载配置 |
 | emptyOptions | 获取空白加载配置 |
@@ -94,6 +111,8 @@
 | toJson | 将对象转换为 JSON String |
 | fromJson | 将 JSON String 映射为指定类型对象 |
 | isJSON | 判断字符串是否 JSON 格式 |
+| isJSONObject | 判断字符串是否 JSON Object 格式 |
+| isJSONArray | 判断字符串是否 JSON Array 格式 |
 | toJsonIndent | JSON String 缩进处理 |
 | createGson | 创建 GsonBuilder |
 | createGsonExcludeFields | 创建过滤指定修饰符字段 GsonBuilder |
@@ -182,6 +201,18 @@
 | setCompressSavePath | 设置压缩图片保存地址 |
 | clone | 克隆新的相册配置 |
 | set | 设置新的相册配置 |
+
+
+* **ZXing 二维码工具类 ->** [ZXingQRCodeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/ZXingQRCodeUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| createQRCodeImage | 生成二维码图片 |
+| decodeQRCode | 解析二维码图片 |
+| getResultData | 获取扫描结果数据 |
+| syncEncodeQRCode | 同步创建黑色前景色、白色背景色的二维码图片 |
+| addLogoToQRCode | 添加 Logo 到二维码图片上 |
+| onResult | 生成二维码结果回调 |
 
 
 ## <span id="devreceiver">**`dev.receiver`**</span>

@@ -762,11 +762,11 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | equals | 判断两个值是否一样 |
 | isEquals | 判断多个字符串是否相等, 只有全相等才返回 true - 对比大小写 |
 | isOrEquals | 判断多个字符串, 只要有一个符合条件则通过 |
-| countMatches | 统计字符串匹配个数 |
-| countMatches2 | 统计字符串匹配个数 |
 | isContains | 判断一堆值中, 是否存在符合该条件的 ( 包含 ) |
 | isStartsWith | 判断内容, 是否属于特定字符串开头 - 对比大小写 |
 | isEndsWith | 判断内容, 是否属于特定字符串结尾 - 对比大小写 |
+| countMatches | 统计字符串匹配个数 |
+| countMatches2 | 统计字符串匹配个数 |
 | isSpace | 判断字符串是否为 null 或全为空白字符 |
 | toClearSpace | 清空字符串全部空格 |
 | toClearSpaceTrim | 清空字符串前后所有空格 |
