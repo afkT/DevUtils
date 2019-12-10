@@ -2,7 +2,7 @@ package dev.temp;
 
 import java.util.Random;
 
-import dev.utils.LogPrintUtils;
+import dev.utils.JCLogUtils;
 
 /**
  * detail: 随机生成汉字工具类
@@ -43,7 +43,7 @@ public final class ChineseUtils {
         try {
             return new String(bytes, "GBK");
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getRandomWord");
+            JCLogUtils.eTag(TAG, e, "getRandomWord");
         }
         return "";
     }
