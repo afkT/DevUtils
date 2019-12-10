@@ -3,8 +3,6 @@ package afkt.project.ui.adapter;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -14,10 +12,10 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.model.bean.CommodityEvaluateBean;
 import afkt.project.ui.widget.BaseImageView;
+import afkt.project.util.ProjectUtils;
 import dev.assist.multiselect.MultiSelectMapAssist;
 import dev.assist.multiselect.edit.IMultiSelectEdit;
 import dev.other.GlideUtils;
-import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.common.BigDecimalUtils;
@@ -29,17 +27,11 @@ import dev.utils.common.DevCommonUtils;
  */
 public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, BaseViewHolder> implements IMultiSelectEdit {
 
-    // 圆角 RequestOptions
-    private RequestOptions requestOptions;
     // 多选辅助类
     private MultiSelectMapAssist<Integer, CommodityEvaluateBean> multiSelectMapAssist = new MultiSelectMapAssist();
 
     public MultiSelectAdapter(@Nullable List<CommodityEvaluateBean> data) {
         super(R.layout.adapter_multi_select, data);
-        // 获取默认 RequestOptions
-        requestOptions = GlideUtils.defaultOptions();
-        // 设置圆角, 使用 RoundedCorners 图片不会闪烁
-        requestOptions.transform(new RoundedCorners((int) ResourceUtils.getDimension(R.dimen.un_radius)));
     }
 
     @Override
@@ -59,7 +51,7 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         helper.setText(R.id.vid_ams_price_tv,
                 "￥" + BigDecimalUtils.round(item.commodityPrice, 2));
         // 商品图片
-        GlideUtils.with().displayImage(item.commodityPicture, helper.getView(R.id.vid_ams_pic_igview), requestOptions);
+        GlideUtils.with().displayImage(item.commodityPicture, helper.getView(R.id.vid_ams_pic_igview), ProjectUtils.getRoundOptions());
 
         // ============
         // = 多选处理 =

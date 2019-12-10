@@ -3,8 +3,12 @@ package afkt.project.util;
 import android.graphics.Color;
 import android.graphics.Rect;
 
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+
 import afkt.project.R;
 import afkt.project.base.config.PathConfig;
+import dev.other.GlideUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.common.FileUtils;
@@ -17,6 +21,23 @@ import dev.widget.ScanShapeView;
 public final class ProjectUtils {
 
     private ProjectUtils() {
+    }
+
+    // 圆角 RequestOptions
+    private static RequestOptions sRoundOptions;
+
+    /**
+     * 获取圆角 RequestOptions
+     * @return 圆角 {@link RequestOptions}
+     */
+    public static RequestOptions getRoundOptions(){
+        if (sRoundOptions == null) {
+            // 获取默认 RequestOptions
+            sRoundOptions = GlideUtils.defaultOptions();
+            // 设置圆角, 使用 RoundedCorners 图片不会闪烁
+            sRoundOptions.transform(new RoundedCorners((int) ResourceUtils.getDimension(R.dimen.un_radius)));
+        }
+        return sRoundOptions;
     }
 
     /**
