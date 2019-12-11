@@ -526,14 +526,7 @@ public final class PathUtils {
          * @return /data/data/package/databases
          */
         public String getAppDbsPath() {
-            try {
-                String filePath = getAppDataPath();
-                if (filePath == null) return null;
-                return filePath + "/databases";
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getAppDbsPath");
-            }
-            return null;
+            return FileUtils.getAbsolutePath(getAppDbsDir());
         }
 
         /**
@@ -541,7 +534,7 @@ public final class PathUtils {
          * @return /data/data/package/databases
          */
         public File getAppDbsDir() {
-            return FileUtils.getFile(getAppDbsPath());
+            return FileUtils.getFile(getAppDataPath(), "databases");
         }
 
         // =
@@ -599,14 +592,7 @@ public final class PathUtils {
          * @return /data/data/package/shared_prefs
          */
         public String getAppSpPath() {
-            try {
-                String filePath = getAppDataPath();
-                if (filePath == null) return null;
-                return filePath + "/shared_prefs";
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getAppSpPath");
-            }
-            return null;
+            return FileUtils.getAbsolutePath(getAppSpDir());
         }
 
         /**
@@ -614,7 +600,7 @@ public final class PathUtils {
          * @return /data/data/package/shared_prefs
          */
         public File getAppSpDir() {
-            return FileUtils.getFile(getAppSpPath());
+            return FileUtils.getFile(getAppDataPath(), "shared_prefs");
         }
 
         /**
@@ -632,12 +618,7 @@ public final class PathUtils {
          * @return /data/data/package/shared_prefs
          */
         public File getAppSpFile(final String spName) {
-            try {
-                return FileUtils.getFile(getAppSpPath(), spName);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getAppSpFile - " + spName);
-            }
-            return null;
+            return FileUtils.getFile(getAppSpPath(), spName);
         }
 
         // =
