@@ -43,15 +43,7 @@ public class MainActivity extends BaseActivity {
         super.initOtherOperate();
 
         StringBuilder builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
-                "应用外部存储路径类",
-                PathUtils.getAppExternal().getAppDataPath(),
-                PathUtils.getAppExternal().getAppDataDir(),
-                PathUtils.getAppExternal().getAppDataPath("temp"),
-                PathUtils.getAppExternal().getAppDataDir("temp"),
-                PathUtils.getAppExternal().getAppCachePath(),
-                PathUtils.getAppExternal().getAppCacheDir(),
-                PathUtils.getAppExternal().getAppCachePath("devutils"),
-                PathUtils.getAppExternal().getAppCacheDir("devutils"),
+                "外部存储路径 ( SDCard )",
                 ""
         );
 

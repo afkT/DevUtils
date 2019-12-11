@@ -72,7 +72,7 @@ public final class PathUtils {
          * 获取应用外部存储数据路径 - path /storage/emulated/0/Android/data/package
          * @return /storage/emulated/0/Android/data/package
          */
-        public static String getAppDataPath() {
+        public String getAppDataPath() {
             return FileUtils.getAbsolutePath(getAppDataDir());
         }
 
@@ -80,7 +80,7 @@ public final class PathUtils {
          * 获取应用外部存储数据路径 - path /storage/emulated/0/Android/data/package
          * @return /storage/emulated/0/Android/data/package
          */
-        public static File getAppDataDir() {
+        public File getAppDataDir() {
             if (!SDCardUtils.isSDCardEnable()) return null;
             try {
                 return DevUtils.getContext().getExternalCacheDir().getParentFile();
@@ -148,6 +148,303 @@ public final class PathUtils {
          */
         public File getAppCacheDir(final String fileName) {
             return FileUtils.getFile(getAppCachePath(), fileName);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储文件路径 - path /storage/emulated/0/Android/data/package/files
+         * @param type 文件类型
+         * @return /storage/emulated/0/Android/data/package/files
+         */
+        public String getExternalFilesPath(final String type) {
+            return FileUtils.getAbsolutePath(getExternalFilesDir(type));
+        }
+
+        /**
+         * 获取应用外部存储文件路径 - path /storage/emulated/0/Android/data/package/files
+         * <pre>
+         *     Environment.STANDARD_DIRECTORIES
+         * </pre>
+         * @param type 文件类型
+         * @return /storage/emulated/0/Android/data/package/files
+         */
+        public File getExternalFilesDir(final String type) {
+            if (!SDCardUtils.isSDCardEnable()) return null;
+            try {
+                return DevUtils.getContext().getExternalFilesDir(type);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getExternalFilesDir");
+            }
+            return null;
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储文件路径 - path /storage/emulated/0/Android/data/package/files
+         * @return /storage/emulated/0/Android/data/package/files
+         */
+        public String getAppFilesPath() {
+            return getExternalFilesPath(null);
+        }
+
+        /**
+         * 获取应用外部存储文件路径 - path /storage/emulated/0/Android/data/package/files
+         * @return /storage/emulated/0/Android/data/package/files
+         */
+        public File getAppFilesDir() {
+            return getExternalFilesDir(null);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储文件路径 - path /storage/emulated/0/Android/data/package/files
+         * @param fileName 文件名
+         * @return /storage/emulated/0/Android/data/package/files
+         */
+        public String getAppFilesPath(final String fileName) {
+            return FileUtils.getAbsolutePath(getAppFilesDir(fileName));
+        }
+
+        /**
+         * 获取应用外部存储文件路径 - path /storage/emulated/0/Android/data/package/files
+         * @param fileName 文件名
+         * @return /storage/emulated/0/Android/data/package/files
+         */
+        public File getAppFilesDir(final String fileName) {
+            return FileUtils.getFile(getAppFilesPath(), fileName);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储音乐路径 - path /storage/emulated/0/Android/data/package/files/Music
+         * @return /storage/emulated/0/Android/data/package/files/Music
+         */
+        public String getAppMusicPath() {
+            return getExternalFilesPath(Environment.DIRECTORY_MUSIC);
+        }
+
+        /**
+         * 获取应用外部存储音乐路径 - path /storage/emulated/0/Android/data/package/files/Music
+         * @return /storage/emulated/0/Android/data/package/files/Music
+         */
+        public File getAppMusicDir() {
+            return getExternalFilesDir(Environment.DIRECTORY_MUSIC);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储播客路径 - path /storage/emulated/0/Android/data/package/files/Podcasts
+         * @return /storage/emulated/0/Android/data/package/files/Podcasts
+         */
+        public String getAppPodcastsPath() {
+            return getExternalFilesPath(Environment.DIRECTORY_PODCASTS);
+        }
+
+        /**
+         * 获取应用外部存储播客路径 - path /storage/emulated/0/Android/data/package/files/Podcasts
+         * @return /storage/emulated/0/Android/data/package/files/Podcasts
+         */
+        public File getAppPodcastsDir() {
+            return getExternalFilesDir(Environment.DIRECTORY_PODCASTS);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储铃声路径 - path /storage/emulated/0/Android/data/package/files/Ringtones
+         * @return /storage/emulated/0/Android/data/package/files/Ringtones
+         */
+        public String getAppRingtonesPath() {
+            return getExternalFilesPath(Environment.DIRECTORY_RINGTONES);
+        }
+
+        /**
+         * 获取应用外部存储铃声路径 - path /storage/emulated/0/Android/data/package/files/Ringtones
+         * @return /storage/emulated/0/Android/data/package/files/Ringtones
+         */
+        public File getAppRingtonesDir() {
+            return getExternalFilesDir(Environment.DIRECTORY_RINGTONES);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储闹铃路径 - path /storage/emulated/0/Android/data/package/files/Alarms
+         * @return /storage/emulated/0/Android/data/package/files/Alarms
+         */
+        public String getAppAlarmsPath() {
+            return getExternalFilesPath(Environment.DIRECTORY_ALARMS);
+        }
+
+        /**
+         * 获取应用外部存储闹铃路径 - path /storage/emulated/0/Android/data/package/files/Alarms
+         * @return /storage/emulated/0/Android/data/package/files/Alarms
+         */
+        public File getAppAlarmsDir() {
+            return getExternalFilesDir(Environment.DIRECTORY_ALARMS);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储通知路径 - path /storage/emulated/0/Android/data/package/files/Notifications
+         * @return /storage/emulated/0/Android/data/package/files/Notifications
+         */
+        public String getAppNotificationsPath() {
+            return getExternalFilesPath(Environment.DIRECTORY_NOTIFICATIONS);
+        }
+
+        /**
+         * 获取应用外部存储通知路径 - path /storage/emulated/0/Android/data/package/files/Notifications
+         * @return /storage/emulated/0/Android/data/package/files/Notifications
+         */
+        public File getAppNotificationsDir() {
+            return getExternalFilesDir(Environment.DIRECTORY_NOTIFICATIONS);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储图片路径 - path /storage/emulated/0/Android/data/package/files/Pictures
+         * @return /storage/emulated/0/Android/data/package/files/Pictures
+         */
+        public String getAppPicturesPath() {
+            return getExternalFilesPath(Environment.DIRECTORY_PICTURES);
+        }
+
+        /**
+         * 获取应用外部存储图片路径 - path /storage/emulated/0/Android/data/package/files/Pictures
+         * @return /storage/emulated/0/Android/data/package/files/Pictures
+         */
+        public File getAppPicturesDir() {
+            return getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储影片路径 - path /storage/emulated/0/Android/data/package/files/Movies
+         * @return /storage/emulated/0/Android/data/package/files/Movies
+         */
+        public String getAppMoviesPath() {
+            return getExternalFilesPath(Environment.DIRECTORY_MOVIES);
+        }
+
+        /**
+         * 获取应用外部存储影片路径 - path /storage/emulated/0/Android/data/package/files/Movies
+         * @return /storage/emulated/0/Android/data/package/files/Movies
+         */
+        public File getAppMoviesDir() {
+            return getExternalFilesDir(Environment.DIRECTORY_MOVIES);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储下载路径 - path /storage/emulated/0/Android/data/package/files/Download
+         * @return /storage/emulated/0/Android/data/package/files/Download
+         */
+        public String getAppDownloadPath() {
+            return getExternalFilesPath(Environment.DIRECTORY_DOWNLOADS);
+        }
+
+        /**
+         * 获取应用外部存储下载路径 - path /storage/emulated/0/Android/data/package/files/Download
+         * @return /storage/emulated/0/Android/data/package/files/Download
+         */
+        public File getAppDownloadDir() {
+            return getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储数码相机图片路径 - path /storage/emulated/0/Android/data/package/files/DCIM
+         * @return /storage/emulated/0/Android/data/package/files/DCIM
+         */
+        public String getAppDCIMPath() {
+            return getExternalFilesPath(Environment.DIRECTORY_DCIM);
+        }
+
+        /**
+         * 获取应用外部存储数码相机图片路径 - path /storage/emulated/0/Android/data/package/files/DCIM
+         * @return /storage/emulated/0/Android/data/package/files/DCIM
+         */
+        public File getAppDCIMDir() {
+            return getExternalFilesDir(Environment.DIRECTORY_DCIM);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储文档路径 - path /storage/emulated/0/Android/data/package/files/Documents
+         * @return /storage/emulated/0/Android/data/package/files/Documents
+         */
+        public String getAppDocumentsPath() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+                return getExternalFilesPath("Documents");
+            return getExternalFilesPath(Environment.DIRECTORY_DOCUMENTS);
+        }
+
+        /**
+         * 获取应用外部存储文档路径 - path /storage/emulated/0/Android/data/package/files/Documents
+         * @return /storage/emulated/0/Android/data/package/files/Documents
+         */
+        public File getAppDocumentsDir() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+                return getExternalFilesDir("Documents");
+            return getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储有声读物路径 - path /storage/emulated/0/Android/data/package/files/Audiobooks
+         * @return /storage/emulated/0/Android/data/package/files/Audiobooks
+         */
+        public String getAppAudiobooksPath() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+                return getExternalFilesPath("Audiobooks");
+            return getExternalFilesPath(Environment.DIRECTORY_AUDIOBOOKS);
+        }
+
+        /**
+         * 获取应用外部存储有声读物路径 - path /storage/emulated/0/Android/data/package/files/Audiobooks
+         * @return /storage/emulated/0/Android/data/package/files/Audiobooks
+         */
+        public File getAppAudiobooksDir() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+                return getExternalFilesDir("Audiobooks");
+            return getExternalFilesDir(Environment.DIRECTORY_AUDIOBOOKS);
+        }
+
+        // =
+
+        /**
+         * 获取应用外部存储 OBB 路径 - path /storage/emulated/0/Android/obb/package
+         * @return /storage/emulated/0/Android/obb/package
+         */
+        public String getAppObbPath() {
+            return FileUtils.getAbsolutePath(getAppObbDir());
+        }
+
+        /**
+         * 获取应用外部存储 OBB 路径 - path /storage/emulated/0/Android/obb/package
+         * @return /storage/emulated/0/Android/obb/package
+         */
+        public File getAppObbDir() {
+            if (!SDCardUtils.isSDCardEnable()) return null;
+            try {
+                return DevUtils.getContext().getObbDir();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAppObbDir");
+            }
+            return null;
         }
     }
 
