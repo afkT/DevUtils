@@ -12,6 +12,12 @@ import dev.utils.common.FileUtils;
 /**
  * detail: 路径相关工具类
  * @author Ttt
+ * <pre>
+ *     Android 中的存储路径之内部存储
+ *     @see <a href="https://www.jianshu.com/p/c04b8899cf85"/>
+ *     Android 中的存储路径之外部存储
+ *     @see <a href="https://www.jianshu.com/p/2881260e74d7"/>
+ * </pre>
  */
 public final class PathUtils {
 

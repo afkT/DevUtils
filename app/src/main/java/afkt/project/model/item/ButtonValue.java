@@ -180,6 +180,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_EXTEND, "通用结果回调类 ( 针对 DevResultCallback 进行扩展 )"));
         lists.add(new ButtonValue(BTN_DEVICE_INFO, "设备信息"));
         lists.add(new ButtonValue(BTN_SCREEN_INFO, "屏幕信息"));
+        lists.add(new ButtonValue(BTN_PATH, "路径信息"));
         return lists;
     }
 
@@ -339,6 +340,17 @@ public class ButtonValue {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_EXTEND_SAVE, "保存文件获取结果"));
         lists.add(new ButtonValue(BTN_EXTEND_TRIGGER, "触发拓展回调"));
+        return lists;
+    }
+
+    /**
+     * 获取 Path Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getPathButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_PATH_INTERNAL, "内部存储路径"));
+        lists.add(new ButtonValue(BTN_PATH_EXTERNAL, "外部存储路径"));
         return lists;
     }
 
@@ -632,4 +644,11 @@ public class ButtonValue {
 
     // 屏幕信息
     public static final int BTN_SCREEN_INFO = MODULE_OTHER + 1200;
+
+    // 路径信息
+    public static final int BTN_PATH = MODULE_OTHER + 1300;
+    // 内部存储路径
+    public static final int BTN_PATH_INTERNAL = BTN_PATH + 1;
+    // 外部存储路径
+    public static final int BTN_PATH_EXTERNAL = BTN_PATH + 2;
 }

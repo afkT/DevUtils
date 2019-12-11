@@ -28,6 +28,7 @@ import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.LoggerActivity;
 import afkt.project.ui.activity.MultiSelectActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
+import afkt.project.ui.activity.PathActivity;
 import afkt.project.ui.activity.ProgressBarActivity;
 import afkt.project.ui.activity.QRCodeCreateActivity;
 import afkt.project.ui.activity.QRCodeImageActivity;
@@ -216,6 +217,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_SCREEN_INFO: // 屏幕信息
                         SkipUtils.startActivity(ScreenInfoActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_PATH: // 路径信息
+                        SkipUtils.startActivity(PathActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
