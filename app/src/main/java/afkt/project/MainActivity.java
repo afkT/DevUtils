@@ -44,6 +44,11 @@ public class MainActivity extends BaseActivity {
 
         StringBuilder builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
                 "外部存储路径 ( SDCard )",
+                PathUtils.getSDCard().isSDCardEnable(),
+                PathUtils.getSDCard().getSDCardFile(),
+                PathUtils.getSDCard().getSDCardPath(),
+                PathUtils.getSDCard().getSDCardFile("DevUtils"),
+                PathUtils.getSDCard().getSDCardPath("DevUtils"),
                 ""
         );
 

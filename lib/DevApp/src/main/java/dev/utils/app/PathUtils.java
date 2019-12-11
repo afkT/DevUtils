@@ -30,6 +30,8 @@ public final class PathUtils {
     private static final InternalPath sInternalPath = new InternalPath();
     // 应用外部存储路径类
     private static final AppExternalPath sAppExternalPath = new AppExternalPath();
+    // SDCard 外部存储路径类
+    private static final SDCardPath sSDCardPath = new SDCardPath();
 
     /**
      * 获取内部存储路径类
@@ -45,6 +47,77 @@ public final class PathUtils {
      */
     public static AppExternalPath getAppExternal() {
         return sAppExternalPath;
+    }
+
+    /**
+     * 获取 SDCard 外部存储路径类
+     * @return {@link SDCardPath}
+     */
+    public static SDCardPath getSDCard() {
+        return sSDCardPath;
+    }
+
+    // ========================================
+    // = SDCard 外部存储 /storage/emulated/0/ =
+    // ========================================
+
+    /**
+     * detail: SDCard 外部存储路径类
+     * @author Ttt
+     * <pre>
+     *     外部存储, 属于 SDCard 通用目录
+     *     路径: /storage/emulated/0/ 目录
+     *     需读写权限
+     * </pre>
+     */
+    public static final class SDCardPath {
+
+        private SDCardPath(){
+        }
+
+        /**
+         * 判断 SDCard 是否正常挂载
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isSDCardEnable() {
+            return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+        }
+
+        /**
+         * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
+         * @return /storage/emulated/0/
+         */
+        public File getSDCardFile() {
+            return Environment.getExternalStorageDirectory();
+        }
+
+        /**
+         * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
+         * @return /storage/emulated/0/
+         */
+        public String getSDCardPath() {
+            return FileUtils.getAbsolutePath(getSDCardFile());
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
+         * @param fileName 文件名
+         * @return /storage/emulated/0/
+         */
+        public File getSDCardFile(final String fileName) {
+            return FileUtils.getFile(getSDCardPath(), fileName);
+        }
+
+        /**
+         * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
+         * @param fileName 文件名
+         * @return /storage/emulated/0/
+         */
+        public String getSDCardPath(final String fileName) {
+            return FileUtils.getAbsolutePath(getSDCardFile(fileName));
+        }
     }
 
     // ==========================================================
