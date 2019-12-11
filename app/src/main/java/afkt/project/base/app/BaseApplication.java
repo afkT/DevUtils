@@ -10,11 +10,11 @@ import afkt.project.base.config.AppConfig;
 import afkt.project.base.config.PathConfig;
 import afkt.project.util.ProjectUtils;
 import dev.DevUtils;
-import dev.base.DevBaseCrash;
 import dev.other.GlideUtils;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.app.CrashUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.ViewUtils;
@@ -146,7 +146,7 @@ public class BaseApplication extends Application {
      */
     private void initCrash() {
         // 捕获异常处理 => 在 BaseApplication 中调用
-        DevBaseCrash.getInstance().init(getApplicationContext(), new DevBaseCrash.CrashCatchListener() {
+        CrashUtils.getInstance().init(getApplicationContext(), new CrashUtils.CrashCatchListener() {
             @Override
             public void handleException(Throwable ex) {
                 // 保存日志信息

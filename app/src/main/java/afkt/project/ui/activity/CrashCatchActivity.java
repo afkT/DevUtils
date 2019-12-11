@@ -13,8 +13,8 @@ import afkt.project.base.config.PathConfig;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
-import dev.base.DevBaseCrash;
 import dev.utils.app.ActivityUtils;
+import dev.utils.app.CrashUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.DateUtils;
 import dev.utils.common.FileRecordUtils;
@@ -65,7 +65,7 @@ public class CrashCatchActivity extends BaseToolbarActivity {
         super.initOtherOperate();
 
         // 捕获异常处理 => 在 BaseApplication 中调用
-        DevBaseCrash.getInstance().init(getApplicationContext(), new DevBaseCrash.CrashCatchListener() {
+        CrashUtils.getInstance().init(getApplicationContext(), new CrashUtils.CrashCatchListener() {
             @Override
             public void handleException(Throwable ex) {
                 // 保存日志信息
