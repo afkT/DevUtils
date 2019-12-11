@@ -123,9 +123,11 @@ public final class SmsReceiver extends BroadcastReceiver {
     /**
      * 设置短信监听事件
      * @param listener {@link SmsListener}
+     * @return {@link SmsReceiver}
      */
-    public static void setSmsListener(final SmsListener listener) {
+    public static SmsReceiver setSmsListener(final SmsListener listener) {
         SmsReceiver.smsListener = listener;
+        return smsReceiver;
     }
 
     /**

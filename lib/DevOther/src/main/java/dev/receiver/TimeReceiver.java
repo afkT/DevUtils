@@ -94,9 +94,11 @@ public final class TimeReceiver extends BroadcastReceiver {
     /**
      * 设置时间监听事件
      * @param listener {@link TimeListener}
+     * @return {@link TimeReceiver}
      */
-    public static void setTimeListener(final TimeListener listener) {
+    public static TimeReceiver setTimeListener(final TimeListener listener) {
         TimeReceiver.timeListener = listener;
+        return timeReceiver;
     }
 
     /**

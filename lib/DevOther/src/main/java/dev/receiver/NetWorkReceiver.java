@@ -157,9 +157,11 @@ public final class NetWorkReceiver extends BroadcastReceiver {
     /**
      * 设置监听通知事件
      * @param listener {@link NetwordStateListener}
+     * @return {@link NetWorkReceiver}
      */
-    public static void setNetListener(final NetwordStateListener listener) {
+    public static NetWorkReceiver setNetListener(final NetwordStateListener listener) {
         NetWorkReceiver.networdStateListener = listener;
+        return netReceiver;
     }
 
     /**

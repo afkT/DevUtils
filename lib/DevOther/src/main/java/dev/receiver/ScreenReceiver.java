@@ -94,9 +94,11 @@ public final class ScreenReceiver extends BroadcastReceiver {
     /**
      * 设置屏幕监听事件
      * @param listener {@link ScreenListener}
+     * @return {@link ScreenReceiver}
      */
-    public static void setScreenListener(final ScreenListener listener) {
+    public static ScreenReceiver setScreenListener(final ScreenListener listener) {
         ScreenReceiver.screenListener = listener;
+        return screenReceiver;
     }
 
     /**

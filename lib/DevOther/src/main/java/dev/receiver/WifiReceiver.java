@@ -234,9 +234,11 @@ public final class WifiReceiver extends BroadcastReceiver {
     /**
      * 设置 Wifi 监听事件
      * @param listener {@link WifiListener}
+     * @return {@link WifiReceiver}
      */
-    public static void setWifiListener(final WifiListener listener) {
+    public static WifiReceiver setWifiListener(final WifiListener listener) {
         WifiReceiver.wifiListener = listener;
+        return wifiReceiver;
     }
 
     /**

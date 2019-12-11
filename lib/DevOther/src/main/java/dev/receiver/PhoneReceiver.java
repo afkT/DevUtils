@@ -140,9 +140,11 @@ public final class PhoneReceiver extends BroadcastReceiver {
     /**
      * 设置电话状态监听事件
      * @param listener {@link PhoneListener}
+     * @return {@link PhoneReceiver}
      */
-    public static void setPhoneListener(final PhoneListener listener) {
+    public static PhoneReceiver setPhoneListener(final PhoneListener listener) {
         PhoneReceiver.phoneListener = listener;
+        return phoneReceiver;
     }
 
     /**
