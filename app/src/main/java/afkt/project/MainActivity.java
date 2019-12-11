@@ -17,16 +17,12 @@ import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.ui.widget.BaseTextView;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
-import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.PathUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
-import dev.utils.app.share.SPUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
-import dev.utils.common.DevCommonUtils;
-import dev.utils.common.FileUtils;
 import dev.utils.common.HttpURLConnectionUtils;
 import dev.utils.common.StringUtils;
 

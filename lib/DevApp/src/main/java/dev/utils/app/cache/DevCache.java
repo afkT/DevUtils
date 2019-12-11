@@ -638,8 +638,8 @@ public final class DevCache {
     // ============
 
     /**
-     * 获取缓存地址
-     * @return 应用缓存地址
+     * 获取应用内部存储缓存路径
+     * @return 应用内部存储缓存路径
      */
     private static String getCachePath() {
         if (sCachePath == null) {

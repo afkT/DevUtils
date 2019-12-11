@@ -32,7 +32,7 @@ public final class CleanUtils {
      * 清除内部缓存 - path /data/data/package/cache
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalCache() {
+    public static boolean cleanAppCache() {
         return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppCachePath());
     }
 
@@ -40,7 +40,7 @@ public final class CleanUtils {
      * 清除内部文件 - path /data/data/package/files
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalFiles() {
+    public static boolean cleanAppFiles() {
         return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppFilesPath());
     }
 
@@ -48,15 +48,24 @@ public final class CleanUtils {
      * 清除内部 SP - path /data/data/package/shared_prefs
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalSp() {
+    public static boolean cleanAppSp() {
         return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppSpPath());
+    }
+
+    /**
+     * 清除内部 SP - path /data/data/package/shared_prefs
+     * @param spName SP 文件名
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean cleanAppSp(final String spName) {
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppSpPath(spName));
     }
 
     /**
      * 清除内部数据库 - path /data/data/package/databases
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalDbs() {
+    public static boolean cleanAppDbs() {
         return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppDbsPath());
     }
 
@@ -65,7 +74,7 @@ public final class CleanUtils {
      * @param dbName 数据库名
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalDbByName(final String dbName) {
+    public static boolean cleanAppDbByName(final String dbName) {
         return AppUtils.deleteDatabase(dbName);
     }
 
@@ -98,10 +107,10 @@ public final class CleanUtils {
         boolean result = true;
         try {
             cleanExternalCache();
-            cleanInternalCache();
-            cleanInternalFiles();
-            cleanInternalSp();
-            cleanInternalDbs();
+            cleanAppCache();
+            cleanAppFiles();
+            cleanAppSp();
+            cleanAppDbs();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanApplicationData");
             result = false;

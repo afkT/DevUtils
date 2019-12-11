@@ -510,7 +510,7 @@ public final class PathUtils {
         public File getAppCodeCacheDir() {
             try {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    return FileUtils.getFile(DevUtils.getContext().getApplicationInfo().dataDir + "/code_cache");
+                    return FileUtils.getFile(getAppDataPath(), "code_cache");
                 }
                 return DevUtils.getContext().getCodeCacheDir();
             } catch (Exception e) {
@@ -527,7 +527,9 @@ public final class PathUtils {
          */
         public String getAppDbsPath() {
             try {
-                return DevUtils.getContext().getApplicationInfo().dataDir + "/databases";
+                String filePath = getAppDataPath();
+                if (filePath == null) return null;
+                return filePath + "/databases";
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getAppDbsPath");
             }
@@ -598,7 +600,9 @@ public final class PathUtils {
          */
         public String getAppSpPath() {
             try {
-                return DevUtils.getContext().getApplicationInfo().dataDir + "/shared_prefs";
+                String filePath = getAppDataPath();
+                if (filePath == null) return null;
+                return filePath + "/shared_prefs";
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getAppSpPath");
             }
@@ -653,7 +657,7 @@ public final class PathUtils {
         public File getAppNoBackupFilesDir() {
             try {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    return FileUtils.getFile(DevUtils.getContext().getApplicationInfo().dataDir + "/no_backup");
+                    return FileUtils.getFile(getAppDataPath(), "no_backup");
                 }
                 return DevUtils.getContext().getNoBackupFilesDir();
             } catch (Exception e) {

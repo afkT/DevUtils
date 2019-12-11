@@ -450,8 +450,8 @@ public final class DevHelper {
      * 清除内部缓存 - path /data/data/package/cache
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalCache() {
-        CleanUtils.cleanInternalCache();
+    public DevHelper cleanAppCache() {
+        CleanUtils.cleanAppCache();
         return this;
     }
 
@@ -459,8 +459,8 @@ public final class DevHelper {
      * 清除内部文件 - path /data/data/package/files
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalFiles() {
-        CleanUtils.cleanInternalFiles();
+    public DevHelper cleanAppFiles() {
+        CleanUtils.cleanAppFiles();
         return this;
     }
 
@@ -468,8 +468,8 @@ public final class DevHelper {
      * 清除内部数据库 - path /data/data/package/databases
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalDbs() {
-        CleanUtils.cleanInternalDbs();
+    public DevHelper cleanAppDbs() {
+        CleanUtils.cleanAppDbs();
         return this;
     }
 
@@ -478,8 +478,8 @@ public final class DevHelper {
      * @param dbName 数据库名
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalDbByName(final String dbName) {
-        CleanUtils.cleanInternalDbByName(dbName);
+    public DevHelper cleanAppDbByName(final String dbName) {
+        CleanUtils.cleanAppDbByName(dbName);
         return this;
     }
 
@@ -487,8 +487,18 @@ public final class DevHelper {
      * 清除内部 SP - path /data/data/package/shared_prefs
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalSp() {
-        CleanUtils.cleanInternalSp();
+    public DevHelper cleanAppSp() {
+        CleanUtils.cleanAppSp();
+        return this;
+    }
+
+    /**
+     * 清除内部 SP - path /data/data/package/shared_prefs
+     * @param spName SP 文件名
+     * @return {@link DevHelper}
+     */
+    public DevHelper cleanAppSp(final String spName) {
+        CleanUtils.cleanAppSp(spName);
         return this;
     }
 
