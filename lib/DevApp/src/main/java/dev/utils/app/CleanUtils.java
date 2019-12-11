@@ -24,8 +24,8 @@ public final class CleanUtils {
      * 清除外部缓存 - path /storage/emulated/0/android/data/package/cache
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanExternalCache() {
-        return FileUtils.deleteFilesInDir(PathUtils.getExternalAppCachePath());
+    public static boolean cleanCache() {
+        return FileUtils.deleteFilesInDir(PathUtils.getExternal().getAppCachePath());
     }
 
     /**
@@ -106,7 +106,7 @@ public final class CleanUtils {
     public static boolean cleanApplicationData(final String... filePaths) {
         boolean result = true;
         try {
-            cleanExternalCache();
+            cleanCache();
             cleanAppCache();
             cleanAppFiles();
             cleanAppSp();

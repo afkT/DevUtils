@@ -506,8 +506,8 @@ public final class DevHelper {
      * 清除外部缓存 - path /storage/emulated/0/android/data/package/cache
      * @return {@link DevHelper}
      */
-    public DevHelper cleanExternalCache() {
-        CleanUtils.cleanExternalCache();
+    public DevHelper cleanCache() {
+        CleanUtils.cleanCache();
         return this;
     }
 

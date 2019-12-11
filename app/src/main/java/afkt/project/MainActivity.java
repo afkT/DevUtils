@@ -17,12 +17,15 @@ import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.ui.widget.BaseTextView;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
+import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppCommonUtils;
+import dev.utils.app.PathUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.HttpURLConnectionUtils;
+import dev.utils.common.StringUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -40,8 +43,16 @@ public class MainActivity extends BaseActivity {
     public void initOtherOperate() {
         super.initOtherOperate();
 
+        StringBuilder builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
+                "外部存储路径",
+            PathUtils.getExternal().getAppCachePath(),
+            ""
+        );
+
+        DevLogger.dTag("PATH_PATH_PATH", builder.toString());
+
         // 跳转 Home
-//        ActivityUtils.startHomeActivity();
+        ActivityUtils.startHomeActivity();
 
         // ============
         // = 时间校验 =

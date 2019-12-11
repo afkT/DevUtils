@@ -63,7 +63,7 @@ public final class AnalysisRecordUtils {
         // 如果为 null, 才设置
         if (TextUtils.isEmpty(sLogStoragePath)) {
             // 获取根路径
-            sLogStoragePath = PathUtils.getExternalAppCachePath();
+            sLogStoragePath = PathUtils.getExternal().getAppCachePath();
         }
 
         // 如果版本信息为 null, 才进行处理
