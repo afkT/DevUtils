@@ -44,15 +44,15 @@ public class MainActivity extends BaseActivity {
         super.initOtherOperate();
 
         StringBuilder builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
-                "外部存储路径",
-            PathUtils.getExternal().getAppCachePath(),
+                "应用外部存储路径类",
+            PathUtils.getAppExternal().getAppCachePath(),
             ""
         );
 
         DevLogger.dTag("PATH_PATH_PATH", builder.toString());
 
-        // 跳转 Home
-        ActivityUtils.startHomeActivity();
+//        // 跳转 Home
+//        ActivityUtils.startHomeActivity();
 
         // ============
         // = 时间校验 =

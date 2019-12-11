@@ -28,8 +28,8 @@ public final class PathUtils {
     private static final String TAG = PathUtils.class.getSimpleName();
     // 内部存储路径类
     private static final InternalPath sInternalPath = new InternalPath();
-    // 外部存储路径类
-    private static final ExternalPath sExternalPath = new ExternalPath();
+    // 应用外部存储路径类
+    private static final AppExternalPath sAppExternalPath = new AppExternalPath();
 
     /**
      * 获取内部存储路径类
@@ -40,19 +40,19 @@ public final class PathUtils {
     }
 
     /**
-     * 获取外部存储路径类
-     * @return {@link ExternalPath}
+     * 获取应用外部存储路径类
+     * @return {@link AppExternalPath}
      */
-    public static ExternalPath getExternal() {
-        return sExternalPath;
+    public static AppExternalPath getAppExternal() {
+        return sAppExternalPath;
     }
 
-    // ======================================================
-    // = 外部存储 /storage/emulated/0/Android/data/package/ =
-    // ======================================================
+    // ==========================================================
+    // = 应用外部存储 /storage/emulated/0/Android/data/package/ =
+    // ==========================================================
 
     /**
-     * detail: 外部存储路径类
+     * detail: 应用外部存储路径类
      * @author Ttt
      * <pre>
      *     外部存储 ( 内部存储之外的路径都是外部存储 ), 属于 SDCard 路径中为 APP 创建的私有目录
@@ -63,13 +63,13 @@ public final class PathUtils {
      *     推荐常用私有目录
      * </pre>
      */
-    public static final class ExternalPath {
+    public static final class AppExternalPath {
 
-        private ExternalPath() {
+        private AppExternalPath() {
         }
 
         /**
-         * 获取外存应用缓存路径 - path /storage/emulated/0/Android/data/package/cache
+         * 获取应用外部存储缓存路径 - path /storage/emulated/0/Android/data/package/cache
          * @return /storage/emulated/0/Android/data/package/cache
          */
         public String getAppCachePath() {
@@ -77,7 +77,7 @@ public final class PathUtils {
             try {
                 return FileUtils.getAbsolutePath(DevUtils.getContext().getExternalCacheDir());
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getExternalAppCachePath");
+                LogPrintUtils.eTag(TAG, e, "getAppCachePath");
             }
             return null;
         }

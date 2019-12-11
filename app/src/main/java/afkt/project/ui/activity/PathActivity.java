@@ -81,9 +81,17 @@ public class PathActivity extends BaseToolbarActivity {
                         DevLogger.dTag(mTag, builder.toString());
                         showToast(true, "信息已打印, 请查看 Logcat");
                         break;
-                    case ButtonValue.BTN_PATH_EXTERNAL:
+                    case ButtonValue.BTN_PATH_APP_EXTERNAL:
                         builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
-                                "外部存储路径",
+                                "应用外部存储路径",
+                                ""
+                        );
+                        DevLogger.dTag(mTag, builder.toString());
+                        showToast(true, "信息已打印, 请查看 Logcat");
+                        break;
+                    case ButtonValue.BTN_PATH_SDCARD:
+                        builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
+                                "外部存储路径 ( SDCard )",
                                 ""
                         );
                         DevLogger.dTag(mTag, builder.toString());

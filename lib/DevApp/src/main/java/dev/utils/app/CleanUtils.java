@@ -25,7 +25,7 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanCache() {
-        return FileUtils.deleteFilesInDir(PathUtils.getExternal().getAppCachePath());
+        return FileUtils.deleteFilesInDir(PathUtils.getAppExternal().getAppCachePath());
     }
 
     /**

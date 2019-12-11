@@ -350,7 +350,8 @@ public class ButtonValue {
     public static List<ButtonValue> getPathButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_PATH_INTERNAL, "内部存储路径"));
-        lists.add(new ButtonValue(BTN_PATH_EXTERNAL, "外部存储路径"));
+        lists.add(new ButtonValue(BTN_PATH_APP_EXTERNAL, "应用外部存储路径"));
+        lists.add(new ButtonValue(BTN_PATH_SDCARD, "外部存储路径 ( SDCard )"));
         return lists;
     }
 
@@ -649,6 +650,8 @@ public class ButtonValue {
     public static final int BTN_PATH = MODULE_OTHER + 1300;
     // 内部存储路径
     public static final int BTN_PATH_INTERNAL = BTN_PATH + 1;
-    // 外部存储路径
-    public static final int BTN_PATH_EXTERNAL = BTN_PATH + 2;
+    // 应用外部存储路径
+    public static final int BTN_PATH_APP_EXTERNAL = BTN_PATH + 2;
+    // 外部存储路径 ( SDCard )
+    public static final int BTN_PATH_SDCARD = BTN_PATH + 3;
 }
