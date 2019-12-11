@@ -33,7 +33,7 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanInternalCache() {
-        return FileUtils.deleteFilesInDir(PathUtils.getInternalCachePath());
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppCachePath());
     }
 
     /**

@@ -643,7 +643,7 @@ public final class DevCache {
      */
     private static String getCachePath() {
         if (sCachePath == null) {
-            sCachePath = PathUtils.getInternalCachePath();
+            sCachePath = PathUtils.getInternal().getAppCachePath();
         }
         return sCachePath;
     }
