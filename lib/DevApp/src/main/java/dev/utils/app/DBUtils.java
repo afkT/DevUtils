@@ -13,24 +13,21 @@ public final class DBUtils {
     private DBUtils() {
     }
 
-    // 日志 TAG
-    private static final String TAG = DBUtils.class.getSimpleName();
-
     /**
-     * 获取内存应用数据库路径 - path /data/data/package/databases
+     * 获取应用内部存储数据库路径 - path /data/data/package/databases
      * @return /data/data/package/databases
      */
-    public static String getInternalAppDbsPath() {
-        return PathUtils.getInternalAppDbsPath();
+    public static String getAppDbsPath() {
+        return PathUtils.getInternal().getAppDbsPath();
     }
 
     /**
-     * 获取内存应用数据库路径 - path /data/data/package/databases/name
-     * @param name 数据库路径 + 名称
+     * 获取应用内部存储数据库路径 - path /data/data/package/databases/name
+     * @param name 数据库名
      * @return /data/data/package/databases/name
      */
-    public static String getInternalAppDbPath(final String name) {
-        return PathUtils.getInternalAppDbPath(name);
+    public static String getAppDbPath(final String name) {
+        return PathUtils.getInternal().getAppDbPath(name);
     }
 
     // ==============
@@ -56,7 +53,7 @@ public final class DBUtils {
      */
     public static boolean startExportDatabase(final String targetFile, final String dbName, final boolean overlay) {
         if (!SDCardUtils.isSDCardEnable()) return false;
-        return FileUtils.copyFile(getInternalAppDbPath(dbName), targetFile, overlay);
+        return FileUtils.copyFile(getAppDbPath(dbName), targetFile, overlay);
     }
 
     // ==============

@@ -346,7 +346,7 @@ public final class PathUtils {
      * @author Ttt
      * <pre>
      *     内部存储, 只有本 App 才可以访问, 其他应用无法访问
-     *     路径: /data/data/package/目录
+     *     路径: /data/data/package/ 目录
      *     App 卸载该目录文件会全部清除
      *     无需读写权限
      * </pre>
@@ -414,7 +414,7 @@ public final class PathUtils {
          * 获取应用内部存储数据路径 - path /data/data/package
          * @return /data/data/package
          */
-        public static String getAppDataPath() {
+        public String getAppDataPath() {
             return FileUtils.getAbsolutePath(getAppDataDir());
         }
 
@@ -422,7 +422,7 @@ public final class PathUtils {
          * 获取应用内部存储数据路径 - path /data/data/package
          * @return /data/data/package
          */
-        public static File getAppDataDir() {
+        public File getAppDataDir() {
             try {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                     return FileUtils.getFile(DevUtils.getContext().getApplicationInfo().dataDir);
@@ -432,6 +432,24 @@ public final class PathUtils {
                 LogPrintUtils.eTag(TAG, e, "getAppDataDir");
             }
             return null;
+        }
+
+        /**
+         * 获取应用内部存储数据路径 - path /data/data/package
+         * @param fileName 文件名
+         * @return /data/data/package
+         */
+        public String getAppDataPath(final String fileName) {
+            return FileUtils.getAbsolutePath(FileUtils.getFile(getAppDataPath(), fileName));
+        }
+
+        /**
+         * 获取应用内部存储数据路径 - path /data/data/package
+         * @param fileName 文件名
+         * @return /data/data/package
+         */
+        public File getAppDataDir(final String fileName) {
+            return FileUtils.getFile(getAppDataPath(), fileName);
         }
 
         // =
@@ -445,103 +463,203 @@ public final class PathUtils {
         }
 
         /**
-         * 获取内部存储应用缓存路径 - path /data/data/package/cache
+         * 获取应用内部存储缓存路径 - path /data/data/package/cache
          * @return /data/data/package/cache
          */
         public File getAppCacheDir() {
             try {
                 return DevUtils.getContext().getCacheDir();
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getCacheDir");
+                LogPrintUtils.eTag(TAG, e, "getAppCacheDir");
             }
             return null;
         }
-    }
 
+        /**
+         * 获取应用内部存储缓存路径 - path /data/data/package/cache
+         * @param fileName 文件名
+         * @return /data/data/package/cache
+         */
+        public String getAppCachePath(final String fileName) {
+            return FileUtils.getAbsolutePath(FileUtils.getFile(getAppCachePath(), fileName));
+        }
 
+        /**
+         * 获取应用内部存储缓存路径 - path /data/data/package/cache
+         * @param fileName 文件名
+         * @return /data/data/package/cache
+         */
+        public File getAppCacheDir(final String fileName) {
+            return FileUtils.getFile(getAppCachePath(), fileName);
+        }
 
-    /**
-     * 获取内存应用代码缓存路径 - path /data/data/package/code_cache
-     * @return /data/data/package/code_cache
-     */
-    public static String getInternalAppCodeCacheDir() {
-        try {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                return DevUtils.getContext().getApplicationInfo().dataDir + "/code_cache";
+        // =
+
+        /**
+         * 获取应用内部存储代码缓存路径 - path /data/data/package/code_cache
+         * @return /data/data/package/code_cache
+         */
+        public String getAppCodeCachePath() {
+            return FileUtils.getAbsolutePath(getAppCodeCacheDir());
+        }
+
+        /**
+         * 获取应用内部存储代码缓存路径 - path /data/data/package/code_cache
+         * @return /data/data/package/code_cache
+         */
+        public File getAppCodeCacheDir() {
+            try {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    return FileUtils.getFile(DevUtils.getContext().getApplicationInfo().dataDir + "/code_cache");
+                }
+                return DevUtils.getContext().getCodeCacheDir();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAppCodeCacheDir");
             }
-            return FileUtils.getAbsolutePath(DevUtils.getContext().getCodeCacheDir());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getInternalAppCodeCacheDir");
+            return null;
         }
-        return null;
-    }
 
-    /**
-     * 获取内存应用数据库路径 - path /data/data/package/databases
-     * @return /data/data/package/databases
-     */
-    public static String getInternalAppDbsPath() {
-        try {
-            return DevUtils.getContext().getApplicationInfo().dataDir + "/databases";
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getInternalAppDbsPath");
-        }
-        return null;
-    }
+        // =
 
-    /**
-     * 获取内存应用数据库路径 - path /data/data/package/databases/name
-     * @param name 数据库路径 + 名称
-     * @return /data/data/package/databases/name
-     */
-    public static String getInternalAppDbPath(final String name) {
-        try {
-            return FileUtils.getAbsolutePath(DevUtils.getContext().getDatabasePath(name));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getInternalAppDbPath - " + name);
-        }
-        return null;
-    }
-
-    /**
-     * 获取内存应用文件路径 - path/data/data/package/files
-     * @return /data/data/package/files
-     */
-    public static String getInternalAppFilesPath() {
-        try {
-            return FileUtils.getAbsolutePath(DevUtils.getContext().getFilesDir());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getInternalAppFilesPath");
-        }
-        return null;
-    }
-
-    /**
-     * 获取内存应用 SP 路径 - path/data/data/package/shared_prefs
-     * @return /data/data/package/shared_prefs
-     */
-    public static String getInternalAppSpPath() {
-        try {
-            return DevUtils.getContext().getApplicationInfo().dataDir + "/shared_prefs";
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getInternalAppSpPath");
-        }
-        return null;
-    }
-
-    /**
-     * 获取内存应用未备份文件路径 - path/data/data/package/no_backup
-     * @return /data/data/package/no_backup
-     */
-    public static String getInternalAppNoBackupFilesPath() {
-        try {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                return DevUtils.getContext().getApplicationInfo().dataDir + "/no_backup";
+        /**
+         * 获取应用内部存储数据库路径 - path /data/data/package/databases
+         * @return /data/data/package/databases
+         */
+        public String getAppDbsPath() {
+            try {
+                return DevUtils.getContext().getApplicationInfo().dataDir + "/databases";
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAppDbsPath");
             }
-            return FileUtils.getAbsolutePath(DevUtils.getContext().getNoBackupFilesDir());
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getInternalAppNoBackupFilesPath");
+            return null;
         }
-        return null;
+
+        /**
+         * 获取应用内部存储数据库路径 - path /data/data/package/databases
+         * @return /data/data/package/databases
+         */
+        public File getAppDbsDir() {
+            return FileUtils.getFile(getAppDbsPath());
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储数据库路径 - path /data/data/package/databases/name
+         * @param name 数据库名
+         * @return /data/data/package/databases/name
+         */
+        public String getAppDbPath(final String name) {
+            return FileUtils.getAbsolutePath(getAppDbFile(name));
+        }
+
+        /**
+         * 获取应用内部存储数据库路径 - path /data/data/package/databases/name
+         * @param name 数据库名
+         * @return /data/data/package/databases/name
+         */
+        public File getAppDbFile(final String name) {
+            try {
+                return DevUtils.getContext().getDatabasePath(name);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAppDbFile - " + name);
+            }
+            return null;
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储文件路径 - path/data/data/package/files
+         * @return /data/data/package/files
+         */
+        public String getAppFilesPath() {
+            return FileUtils.getAbsolutePath(getAppFilesDir());
+        }
+
+        /**
+         * 获取应用内部存储文件路径 - path/data/data/package/files
+         * @return /data/data/package/files
+         */
+        public File getAppFilesDir() {
+            try {
+                return DevUtils.getContext().getFilesDir();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAppFilesDir");
+            }
+            return null;
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储 SP 路径 - path/data/data/package/shared_prefs
+         * @return /data/data/package/shared_prefs
+         */
+        public String getAppSpPath() {
+            try {
+                return DevUtils.getContext().getApplicationInfo().dataDir + "/shared_prefs";
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAppSpPath");
+            }
+            return null;
+        }
+
+        /**
+         * 获取应用内部存储 SP 路径 - path/data/data/package/shared_prefs
+         * @return /data/data/package/shared_prefs
+         */
+        public File getAppSpDir() {
+            return FileUtils.getFile(getAppSpPath());
+        }
+
+        /**
+         * 获取应用内部存储 SP 路径 - path/data/data/package/shared_prefs
+         * @param spName SP 文件名
+         * @return /data/data/package/shared_prefs
+         */
+        public String getAppSpPath(final String spName) {
+            return FileUtils.getAbsolutePath(getAppSpFile(spName));
+        }
+
+        /**
+         * 获取应用内部存储 SP 路径 - path/data/data/package/shared_prefs
+         * @param spName SP 文件名
+         * @return /data/data/package/shared_prefs
+         */
+        public File getAppSpFile(final String spName) {
+            try {
+                return FileUtils.getFile(getAppSpPath(), spName);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAppSpFile - " + spName);
+            }
+            return null;
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储未备份文件路径 - path/data/data/package/no_backup
+         * @return /data/data/package/no_backup
+         */
+        public String getAppNoBackupFilesPath() {
+            return FileUtils.getAbsolutePath(getAppNoBackupFilesDir());
+        }
+
+        /**
+         * 获取应用内部存储未备份文件路径 - path/data/data/package/no_backup
+         * @return /data/data/package/no_backup
+         */
+        public File getAppNoBackupFilesDir() {
+            try {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    return FileUtils.getFile(DevUtils.getContext().getApplicationInfo().dataDir + "/no_backup");
+                }
+                return DevUtils.getContext().getNoBackupFilesDir();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAppNoBackupFilesDir");
+            }
+            return null;
+        }
     }
 }

@@ -41,7 +41,7 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanInternalFiles() {
-        return FileUtils.deleteFilesInDir(PathUtils.getInternalAppFilesPath());
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppFilesPath());
     }
 
     /**
@@ -49,7 +49,7 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanInternalSp() {
-        return FileUtils.deleteFilesInDir(PathUtils.getInternalAppSpPath());
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppSpPath());
     }
 
     /**
@@ -57,7 +57,7 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanInternalDbs() {
-        return FileUtils.deleteFilesInDir(PathUtils.getInternalAppDbsPath());
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppDbsPath());
     }
 
     /**
