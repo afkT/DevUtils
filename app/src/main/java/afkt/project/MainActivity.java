@@ -18,13 +18,11 @@ import afkt.project.ui.widget.BaseTextView;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
 import dev.utils.app.AppCommonUtils;
-import dev.utils.app.PathUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.HttpURLConnectionUtils;
-import dev.utils.common.StringUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -41,45 +39,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initOtherOperate() {
         super.initOtherOperate();
-
-        StringBuilder builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
-                "外部存储路径 ( SDCard )",
-                PathUtils.getSDCard().isSDCardEnable(),
-                PathUtils.getSDCard().getSDCardFile(),
-                PathUtils.getSDCard().getSDCardPath(),
-                PathUtils.getSDCard().getSDCardFile("DevUtils"),
-                PathUtils.getSDCard().getSDCardPath("DevUtils"),
-                PathUtils.getSDCard().getExternalStoragePublicPath("project"),
-                PathUtils.getSDCard().getExternalStoragePublicDir("project"),
-                PathUtils.getSDCard().getMusicPath(),
-                PathUtils.getSDCard().getMusicDir(),
-                PathUtils.getSDCard().getPodcastsPath(),
-                PathUtils.getSDCard().getPodcastsDir(),
-                PathUtils.getSDCard().getRingtonesPath(),
-                PathUtils.getSDCard().getRingtonesDir(),
-                PathUtils.getSDCard().getAlarmsPath(),
-                PathUtils.getSDCard().getAlarmsDir(),
-                PathUtils.getSDCard().getNotificationsPath(),
-                PathUtils.getSDCard().getNotificationsDir(),
-                PathUtils.getSDCard().getPicturesPath(),
-                PathUtils.getSDCard().getPicturesDir(),
-                PathUtils.getSDCard().getMoviesPath(),
-                PathUtils.getSDCard().getMoviesDir(),
-                PathUtils.getSDCard().getDownloadPath(),
-                PathUtils.getSDCard().getDownloadDir(),
-                PathUtils.getSDCard().getDCIMPath(),
-                PathUtils.getSDCard().getDCIMDir(),
-                PathUtils.getSDCard().getDocumentsPath(),
-                PathUtils.getSDCard().getDocumentsDir(),
-                PathUtils.getSDCard().getAudiobooksPath(),
-                PathUtils.getSDCard().getAudiobooksDir(),
-                ""
-        );
-
-        DevLogger.dTag("PATH_PATH_PATH", builder.toString());
-
-//        // 跳转 Home
-//        ActivityUtils.startHomeActivity();
 
         // ============
         // = 时间校验 =

@@ -16,6 +16,7 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
+import dev.receiver.BatteryReceiver;
 import dev.receiver.NetWorkReceiver;
 import dev.receiver.PhoneReceiver;
 import dev.receiver.ScreenReceiver;
@@ -56,6 +57,7 @@ public class ListenerActivity extends BaseToolbarActivity {
         SmsReceiver.unregisterReceiver();
         TimeReceiver.unregisterReceiver();
         ScreenReceiver.unregisterReceiver();
+        BatteryReceiver.unregisterReceiver();
         screenSensorAssist.stop();
         try {
             mOrientationEventListener.disable();
@@ -105,6 +107,9 @@ public class ListenerActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_ROTA2_LISTENER:
                         rotaListener2(true);
                         break;
+                    case ButtonValue.BTN_BATTERY_LISTENER:
+                        batteryListener(true);
+                        break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
                         break;
@@ -139,6 +144,9 @@ public class ListenerActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_ROTA2_LISTENER:
                         rotaListener2(false);
+                        break;
+                    case ButtonValue.BTN_BATTERY_LISTENER:
+                        batteryListener(false);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
@@ -572,6 +580,51 @@ public class ListenerActivity extends BaseToolbarActivity {
             }
         } catch (Exception e) {
             DevLogger.eTag(mTag, "rotaListener2");
+        }
+    }
+
+    /**
+     * 电量监听
+     * @param isBind 是否绑定
+     */
+    private void batteryListener(boolean isBind) {
+        if (!isBind) { // 取反判断, 方便代码顺序查看
+            ToastTintUtils.success("注销电量监听成功");
+            // 清空回调
+            BatteryReceiver.setBatteryListener(null);
+            // 注销监听
+            BatteryReceiver.unregisterReceiver();
+        } else {
+            ToastTintUtils.success("绑定电量监听成功, 请查看 Logcat");
+            // 设置监听事件
+            BatteryReceiver.setBatteryListener(new BatteryReceiver.BatteryListener() {
+                @Override
+                public void onBatteryChanged(int level) {
+                    DevLogger.dTag(mTag, "电量改变通知 level: " + level);
+                }
+
+                @Override
+                public void onBatteryLow(int level) {
+                    DevLogger.dTag(mTag, "电量低通知 level: " + level);
+                }
+
+                @Override
+                public void onBatteryOkay(int level) {
+                    DevLogger.dTag(mTag, "电量从低变回高通知 level: " + level);
+                }
+
+                @Override
+                public void onPowerConnected(int level, boolean isConnected) {
+                    DevLogger.dTag(mTag, "充电状态改变通知 level: " + level + ", 是否充电中: " + isConnected);
+                }
+
+                @Override
+                public void onPowerUsageSummary(int level) {
+                    DevLogger.dTag(mTag, "电力使用情况总结 level: " + level);
+                }
+            });
+            // 注册监听
+            BatteryReceiver.registerReceiver();
         }
     }
 }

@@ -27,21 +27,38 @@ public final class BatteryReceiver extends BroadcastReceiver {
             String action = intent.getAction();
             // 打印当前触发的广播
             LogPrintUtils.dTag(TAG, "onReceive Action: " + action);
+            // 获取当前电量, 范围是 0-100
+            int level = intent.getIntExtra("level", 0);
             // 判断类型
             switch (action) {
-                case Intent.ACTION_TIMEZONE_CHANGED: // 时区改变
+                case Intent.ACTION_BATTERY_CHANGED: // 电量状态发送改变
                     if (batteryListener != null) {
-                        batteryListener.onTimeZoneChanged();
+                        batteryListener.onBatteryChanged(level);
                     }
                     break;
-                case Intent.ACTION_TIME_CHANGED: // 设置时间
+                case Intent.ACTION_BATTERY_LOW: // 电量低
                     if (batteryListener != null) {
-                        batteryListener.onTimeChanged();
+                        batteryListener.onBatteryLow(level);
                     }
                     break;
-                case Intent.ACTION_TIME_TICK: // 每分钟调用
+                case Intent.ACTION_BATTERY_OKAY: // 电量从低变回高通知
                     if (batteryListener != null) {
-                        batteryListener.onTimeTick();
+                        batteryListener.onBatteryOkay(level);
+                    }
+                    break;
+                case Intent.ACTION_POWER_CONNECTED: // 连接充电器
+                    if (batteryListener != null) {
+                        batteryListener.onPowerConnected(level, true);
+                    }
+                    break;
+                case Intent.ACTION_POWER_DISCONNECTED: // 断开充电器
+                    if (batteryListener != null) {
+                        batteryListener.onPowerConnected(level, false);
+                    }
+                    break;
+                case Intent.ACTION_POWER_USAGE_SUMMARY: // 电力使用情况总结
+                    if (batteryListener != null) {
+                        batteryListener.onPowerUsageSummary(level);
                     }
                     break;
             }
@@ -115,18 +132,34 @@ public final class BatteryReceiver extends BroadcastReceiver {
     public interface BatteryListener {
 
         /**
-         * 时区改变
+         * 电量改变通知
+         * @param level 电量百分比
          */
-        void onTimeZoneChanged();
+        void onBatteryChanged(int level);
 
         /**
-         * 设置电量
+         * 电量低通知
+         * @param level 电量百分比
          */
-        void onTimeChanged();
+        void onBatteryLow(int level);
 
         /**
-         * 每分钟调用
+         * 电量从低变回高通知
+         * @param level 电量百分比
          */
-        void onTimeTick();
+        void onBatteryOkay(int level);
+
+        /**
+         * 充电状态改变通知
+         * @param level       电量百分比
+         * @param isConnected 是否充电连接中
+         */
+        void onPowerConnected(int level, boolean isConnected);
+
+        /**
+         * 电力使用情况总结
+         * @param level 电量百分比
+         */
+        void onPowerUsageSummary(int level);
     }
 }
