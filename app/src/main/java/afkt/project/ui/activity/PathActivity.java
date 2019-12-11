@@ -42,10 +42,11 @@ public class PathActivity extends BaseToolbarActivity {
         buttonAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                StringBuilder builder;
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_PATH_INTERNAL:
-                        StringBuilder builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
+                        builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
                                 "内部存储路径",
                                 PathUtils.getInternal().getRootPath(),
                                 PathUtils.getInternal().getRootDirectory(),
@@ -75,6 +76,14 @@ public class PathActivity extends BaseToolbarActivity {
                                 PathUtils.getInternal().getAppSpFile("SPConfig.xml"),
                                 PathUtils.getInternal().getAppNoBackupFilesPath(),
                                 PathUtils.getInternal().getAppNoBackupFilesDir(),
+                                ""
+                        );
+                        DevLogger.dTag(mTag, builder.toString());
+                        showToast(true, "信息已打印, 请查看 Logcat");
+                        break;
+                    case ButtonValue.BTN_PATH_EXTERNAL:
+                        builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
+                                "外部存储路径",
                                 ""
                         );
                         DevLogger.dTag(mTag, builder.toString());

@@ -18,13 +18,11 @@ import afkt.project.ui.widget.BaseTextView;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
 import dev.utils.app.AppCommonUtils;
-import dev.utils.app.PathUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.HttpURLConnectionUtils;
-import dev.utils.common.StringUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -41,41 +39,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initOtherOperate() {
         super.initOtherOperate();
-
-        StringBuilder builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
-            PathUtils.getInternal().getRootPath(),
-            PathUtils.getInternal().getRootDirectory(),
-            PathUtils.getInternal().getDataPath(),
-            PathUtils.getInternal().getDataDirectory(),
-            PathUtils.getInternal().getDownloadCachePath(),
-            PathUtils.getInternal().getDownloadCacheDirectory(),
-            PathUtils.getInternal().getAppDataPath(),
-            PathUtils.getInternal().getAppDataDir(),
-            PathUtils.getInternal().getAppDataPath("cache/ttt"),
-            PathUtils.getInternal().getAppDataDir("cache/ttt"),
-            PathUtils.getInternal().getAppCachePath(),
-            PathUtils.getInternal().getAppCacheDir(),
-            PathUtils.getInternal().getAppCachePath("ttt"),
-            PathUtils.getInternal().getAppCacheDir("ttt"),
-            PathUtils.getInternal().getAppCodeCachePath(),
-            PathUtils.getInternal().getAppCodeCacheDir(),
-            PathUtils.getInternal().getAppDbsPath(),
-            PathUtils.getInternal().getAppDbsDir(),
-            PathUtils.getInternal().getAppDbPath("dbName"),
-            PathUtils.getInternal().getAppDbFile("dbName"),
-            PathUtils.getInternal().getAppFilesPath(),
-            PathUtils.getInternal().getAppFilesDir(),
-            PathUtils.getInternal().getAppSpPath(),
-            PathUtils.getInternal().getAppSpDir(),
-            PathUtils.getInternal().getAppSpPath("SPConfig.xml"),
-            PathUtils.getInternal().getAppSpFile("SPConfig.xml"),
-            PathUtils.getInternal().getAppNoBackupFilesPath(),
-            PathUtils.getInternal().getAppNoBackupFilesDir(),
-            PathUtils.getExternalAppObbPath(),
-            ""
-        );
-
-        DevLogger.dTag("PATH_PATH_PATH", builder.toString());
 
         // 跳转 Home
 //        ActivityUtils.startHomeActivity();
