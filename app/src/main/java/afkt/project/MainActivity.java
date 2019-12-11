@@ -17,7 +17,6 @@ import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.ui.widget.BaseTextView;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
-import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.PathUtils;
 import dev.utils.app.logger.DevLogger;
@@ -45,8 +44,15 @@ public class MainActivity extends BaseActivity {
 
         StringBuilder builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
                 "应用外部存储路径类",
-            PathUtils.getAppExternal().getAppCachePath(),
-            ""
+                PathUtils.getAppExternal().getAppDataPath(),
+                PathUtils.getAppExternal().getAppDataDir(),
+                PathUtils.getAppExternal().getAppDataPath("temp"),
+                PathUtils.getAppExternal().getAppDataDir("temp"),
+                PathUtils.getAppExternal().getAppCachePath(),
+                PathUtils.getAppExternal().getAppCacheDir(),
+                PathUtils.getAppExternal().getAppCachePath("devutils"),
+                PathUtils.getAppExternal().getAppCacheDir("devutils"),
+                ""
         );
 
         DevLogger.dTag("PATH_PATH_PATH", builder.toString());

@@ -69,17 +69,85 @@ public final class PathUtils {
         }
 
         /**
+         * 获取应用外部存储数据路径 - path /storage/emulated/0/Android/data/package
+         * @return /storage/emulated/0/Android/data/package
+         */
+        public static String getAppDataPath() {
+            return FileUtils.getAbsolutePath(getAppDataDir());
+        }
+
+        /**
+         * 获取应用外部存储数据路径 - path /storage/emulated/0/Android/data/package
+         * @return /storage/emulated/0/Android/data/package
+         */
+        public static File getAppDataDir() {
+            if (!SDCardUtils.isSDCardEnable()) return null;
+            try {
+                return DevUtils.getContext().getExternalCacheDir().getParentFile();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAppDataDir");
+            }
+            return null;
+        }
+
+        /**
+         * 获取应用外部存储数据路径 - path /storage/emulated/0/Android/data/package
+         * @param fileName 文件名
+         * @return /storage/emulated/0/Android/data/package
+         */
+        public String getAppDataPath(final String fileName) {
+            return FileUtils.getAbsolutePath(FileUtils.getFile(getAppDataPath(), fileName));
+        }
+
+        /**
+         * 获取应用外部存储数据路径 - path /storage/emulated/0/Android/data/package
+         * @param fileName 文件名
+         * @return /storage/emulated/0/Android/data/package
+         */
+        public File getAppDataDir(final String fileName) {
+            return FileUtils.getFile(getAppDataPath(), fileName);
+        }
+
+        // =
+
+        /**
          * 获取应用外部存储缓存路径 - path /storage/emulated/0/Android/data/package/cache
          * @return /storage/emulated/0/Android/data/package/cache
          */
         public String getAppCachePath() {
+            return FileUtils.getAbsolutePath(getAppCacheDir());
+        }
+
+        /**
+         * 获取应用外部存储缓存路径 - path /storage/emulated/0/Android/data/package/cache
+         * @return /storage/emulated/0/Android/data/package/cache
+         */
+        public File getAppCacheDir() {
             if (!SDCardUtils.isSDCardEnable()) return null;
             try {
-                return FileUtils.getAbsolutePath(DevUtils.getContext().getExternalCacheDir());
+                return DevUtils.getContext().getExternalCacheDir();
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getAppCachePath");
+                LogPrintUtils.eTag(TAG, e, "getAppCacheDir");
             }
             return null;
+        }
+
+        /**
+         * 获取应用外部存储缓存路径 - path /storage/emulated/0/Android/data/package/cache
+         * @param fileName 文件名
+         * @return /storage/emulated/0/Android/data/package/cache
+         */
+        public String getAppCachePath(final String fileName) {
+            return FileUtils.getAbsolutePath(FileUtils.getFile(getAppCachePath(), fileName));
+        }
+
+        /**
+         * 获取应用外部存储缓存路径 - path /storage/emulated/0/Android/data/package/cache
+         * @param fileName 文件名
+         * @return /storage/emulated/0/Android/data/package/cache
+         */
+        public File getAppCacheDir(final String fileName) {
+            return FileUtils.getFile(getAppCachePath(), fileName);
         }
     }
 
