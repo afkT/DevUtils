@@ -159,7 +159,7 @@ public final class ShellUtils {
      * detail: 命令执行结果实体类
      * @author Ttt
      */
-    public final static class CommandResult {
+    public static final class CommandResult {
 
         // 执行结果状态码
         public int result;

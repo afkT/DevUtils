@@ -31,9 +31,10 @@ public final class DevCommonUtils {
      * @param builder   拼接 Builder
      * @param startTime 开始时间
      * @param endTime   结束时间
+     * @return {@link StringBuilder}
      */
-    public static void timeRecord(final StringBuilder builder, final long startTime, final long endTime) {
-        timeRecord(builder, null, startTime, endTime);
+    public static StringBuilder timeRecord(final StringBuilder builder, final long startTime, final long endTime) {
+        return timeRecord(builder, null, startTime, endTime);
     }
 
     /**
@@ -42,9 +43,10 @@ public final class DevCommonUtils {
      * @param title     标题
      * @param startTime 开始时间
      * @param endTime   结束时间
+     * @return {@link StringBuilder}
      */
-    public static void timeRecord(final StringBuilder builder, final String title, final long startTime, final long endTime) {
-        if (builder == null) return;
+    public static StringBuilder timeRecord(final StringBuilder builder, final String title, final long startTime, final long endTime) {
+        if (builder == null) return builder;
         // 使用时间
         long diffTime = endTime - startTime;
         // 计算时间
@@ -57,6 +59,7 @@ public final class DevCommonUtils {
         builder.append(NEW_LINE_STR + "结束时间: " + DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
         builder.append(NEW_LINE_STR + "所用时间(毫秒): " + diffTime);
         builder.append(NEW_LINE_STR + "所用时间(秒): " + (diffTime / 1000));
+        return builder;
     }
 
     // =

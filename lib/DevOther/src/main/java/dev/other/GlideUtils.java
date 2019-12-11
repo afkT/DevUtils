@@ -251,7 +251,7 @@ public final class GlideUtils {
      * detail: Glide Loader 封装内部类
      * @author Ttt
      */
-    public final static class GlideLoader {
+    public static final class GlideLoader {
 
         // RequestManager
         private RequestManager mRequestManager;
