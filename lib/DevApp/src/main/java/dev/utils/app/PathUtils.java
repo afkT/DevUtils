@@ -72,7 +72,7 @@ public final class PathUtils {
      */
     public static final class SDCardPath {
 
-        private SDCardPath(){
+        private SDCardPath() {
         }
 
         /**
@@ -117,6 +117,241 @@ public final class PathUtils {
          */
         public String getSDCardPath(final String fileName) {
             return FileUtils.getAbsolutePath(getSDCardFile(fileName));
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储文件路径 - path /storage/emulated/0/
+         * @param type 文件类型
+         * @return /storage/emulated/0/
+         */
+        public String getExternalStoragePublicPath(final String type) {
+            return FileUtils.getAbsolutePath(getExternalStoragePublicDir(type));
+        }
+
+        /**
+         * 获取 SDCard 外部存储文件路径 - path /storage/emulated/0/
+         * <pre>
+         *     Environment.STANDARD_DIRECTORIES
+         * </pre>
+         * @param type 文件类型
+         * @return /storage/emulated/0/
+         */
+        public File getExternalStoragePublicDir(final String type) {
+            if (!SDCardUtils.isSDCardEnable()) return null;
+            try {
+                return Environment.getExternalStoragePublicDirectory(type);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getExternalStoragePublicDir");
+            }
+            return null;
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储音乐路径 - path /storage/emulated/0/Music
+         * @return /storage/emulated/0/Music
+         */
+        public String getMusicPath() {
+            return getExternalStoragePublicPath(Environment.DIRECTORY_MUSIC);
+        }
+
+        /**
+         * 获取 SDCard 外部存储音乐路径 - path /storage/emulated/0/Music
+         * @return /storage/emulated/0/Music
+         */
+        public File getMusicDir() {
+            return getExternalStoragePublicDir(Environment.DIRECTORY_MUSIC);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储播客路径 - path /storage/emulated/0/Podcasts
+         * @return /storage/emulated/0/Podcasts
+         */
+        public String getPodcastsPath() {
+            return getExternalStoragePublicPath(Environment.DIRECTORY_PODCASTS);
+        }
+
+        /**
+         * 获取 SDCard 外部存储播客路径 - path /storage/emulated/0/Podcasts
+         * @return /storage/emulated/0/Podcasts
+         */
+        public File getPodcastsDir() {
+            return getExternalStoragePublicDir(Environment.DIRECTORY_PODCASTS);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储铃声路径 - path /storage/emulated/0/Ringtones
+         * @return /storage/emulated/0/Ringtones
+         */
+        public String getRingtonesPath() {
+            return getExternalStoragePublicPath(Environment.DIRECTORY_RINGTONES);
+        }
+
+        /**
+         * 获取 SDCard 外部存储铃声路径 - path /storage/emulated/0/Ringtones
+         * @return /storage/emulated/0/Ringtones
+         */
+        public File getRingtonesDir() {
+            return getExternalStoragePublicDir(Environment.DIRECTORY_RINGTONES);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储闹铃路径 - path /storage/emulated/0/Alarms
+         * @return /storage/emulated/0/Alarms
+         */
+        public String getAlarmsPath() {
+            return getExternalStoragePublicPath(Environment.DIRECTORY_ALARMS);
+        }
+
+        /**
+         * 获取 SDCard 外部存储闹铃路径 - path /storage/emulated/0/Alarms
+         * @return /storage/emulated/0/Alarms
+         */
+        public File getAlarmsDir() {
+            return getExternalStoragePublicDir(Environment.DIRECTORY_ALARMS);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储通知路径 - path /storage/emulated/0/Notifications
+         * @return /storage/emulated/0/Notifications
+         */
+        public String getNotificationsPath() {
+            return getExternalStoragePublicPath(Environment.DIRECTORY_NOTIFICATIONS);
+        }
+
+        /**
+         * 获取 SDCard 外部存储通知路径 - path /storage/emulated/0/Notifications
+         * @return /storage/emulated/0/Notifications
+         */
+        public File getNotificationsDir() {
+            return getExternalStoragePublicDir(Environment.DIRECTORY_NOTIFICATIONS);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储图片路径 - path /storage/emulated/0/Pictures
+         * @return /storage/emulated/0/Pictures
+         */
+        public String getPicturesPath() {
+            return getExternalStoragePublicPath(Environment.DIRECTORY_PICTURES);
+        }
+
+        /**
+         * 获取 SDCard 外部存储图片路径 - path /storage/emulated/0/Pictures
+         * @return /storage/emulated/0/Pictures
+         */
+        public File getPicturesDir() {
+            return getExternalStoragePublicDir(Environment.DIRECTORY_PICTURES);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储影片路径 - path /storage/emulated/0/Movies
+         * @return /storage/emulated/0/Movies
+         */
+        public String getMoviesPath() {
+            return getExternalStoragePublicPath(Environment.DIRECTORY_MOVIES);
+        }
+
+        /**
+         * 获取 SDCard 外部存储影片路径 - path /storage/emulated/0/Movies
+         * @return /storage/emulated/0/Movies
+         */
+        public File getMoviesDir() {
+            return getExternalStoragePublicDir(Environment.DIRECTORY_MOVIES);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储下载路径 - path /storage/emulated/0/Download
+         * @return /storage/emulated/0/Download
+         */
+        public String getDownloadPath() {
+            return getExternalStoragePublicPath(Environment.DIRECTORY_DOWNLOADS);
+        }
+
+        /**
+         * 获取 SDCard 外部存储下载路径 - path /storage/emulated/0/Download
+         * @return /storage/emulated/0/Download
+         */
+        public File getDownloadDir() {
+            return getExternalStoragePublicDir(Environment.DIRECTORY_DOWNLOADS);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储数码相机图片路径 - path /storage/emulated/0/DCIM
+         * @return /storage/emulated/0/DCIM
+         */
+        public String getDCIMPath() {
+            return getExternalStoragePublicPath(Environment.DIRECTORY_DCIM);
+        }
+
+        /**
+         * 获取 SDCard 外部存储数码相机图片路径 - path /storage/emulated/0/DCIM
+         * @return /storage/emulated/0/DCIM
+         */
+        public File getDCIMDir() {
+            return getExternalStoragePublicDir(Environment.DIRECTORY_DCIM);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储文档路径 - path /storage/emulated/0/Documents
+         * @return /storage/emulated/0/Documents
+         */
+        public String getDocumentsPath() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+                return getExternalStoragePublicPath("Documents");
+            return getExternalStoragePublicPath(Environment.DIRECTORY_DOCUMENTS);
+        }
+
+        /**
+         * 获取 SDCard 外部存储文档路径 - path /storage/emulated/0/Documents
+         * @return /storage/emulated/0/Documents
+         */
+        public File getDocumentsDir() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+                return getExternalStoragePublicDir("Documents");
+            return getExternalStoragePublicDir(Environment.DIRECTORY_DOCUMENTS);
+        }
+
+        // =
+
+        /**
+         * 获取 SDCard 外部存储有声读物路径 - path /storage/emulated/0/Audiobooks
+         * @return /storage/emulated/0/Audiobooks
+         */
+        public String getAudiobooksPath() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+                return getExternalStoragePublicPath("Audiobooks");
+            return getExternalStoragePublicPath(Environment.DIRECTORY_AUDIOBOOKS);
+        }
+
+        /**
+         * 获取 SDCard 外部存储有声读物路径 - path /storage/emulated/0/Audiobooks
+         * @return /storage/emulated/0/Audiobooks
+         */
+        public File getAudiobooksDir() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+                return getExternalStoragePublicDir("Audiobooks");
+            return getExternalStoragePublicDir(Environment.DIRECTORY_AUDIOBOOKS);
         }
     }
 
