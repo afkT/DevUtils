@@ -106,6 +106,26 @@ public final class ColorUtils {
     // =
 
     /**
+     * 返回一个颜色 ARGB 色值数组 ( 返回十进制 )
+     * @param color argb/rgb color
+     * @return ARGB 色值数组 { alpha, red, green, blue }
+     */
+    public static int[] getARGB(final int color) {
+        int[] argb = new int[4];
+        if (ColorUtils.isARGB(color)) {
+            argb[0] = alpha(color);
+        } else {
+            argb[0] = 255;
+        }
+        argb[1] = red(color);
+        argb[2] = green(color);
+        argb[3] = blue(color);
+        return argb;
+    }
+
+    // =
+
+    /**
      * 返回一个颜色中的透明度值 ( 返回十进制 )
      * @param color argb color
      * @return alpha 值

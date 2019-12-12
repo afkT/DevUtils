@@ -713,13 +713,13 @@ public final class StringUtils {
 
     /**
      * StringBuilder 拼接处理
-     * @param builder 拼接 Builder
      * @param split   追加间隔
+     * @param end     结尾是否追加
      * @param args    拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appends(final StringBuilder builder, final String split, final Object... args) {
-        return appends(builder, split, false, args);
+    public static StringBuilder appends(final String split, final boolean end, final Object... args) {
+        return appends(new StringBuilder(), split, end, args);
     }
 
     /**
