@@ -30,7 +30,7 @@ public final class ProjectUtils {
      * 获取圆角 RequestOptions
      * @return 圆角 {@link RequestOptions}
      */
-    public static RequestOptions getRoundOptions(){
+    public static RequestOptions getRoundOptions() {
         if (sRoundOptions == null) {
             // 获取默认 RequestOptions
             sRoundOptions = GlideUtils.defaultOptions();

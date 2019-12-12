@@ -650,7 +650,7 @@ public class ListenerActivity extends BaseToolbarActivity {
         } else {
             ToastTintUtils.success("绑定应用状态监听成功, 请查看 Logcat");
             // 设置监听事件
-            AppStatusReceiver.setAppStatusListener(new AppStatusReceiver.AppStatusListener(){
+            AppStatusReceiver.setAppStatusListener(new AppStatusReceiver.AppStatusListener() {
                 @Override
                 public void onAdded(String packageName) {
                     DevLogger.dTag(mTag, "应用安装 packageName: " + packageName);

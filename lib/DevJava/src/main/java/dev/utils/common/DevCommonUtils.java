@@ -125,7 +125,7 @@ public final class DevCommonUtils {
         if (!isEmpty(str)) {
             // 属于第一位开始, 才是属于网络资源
             return str.toLowerCase().startsWith("http:") ||
-                str.toLowerCase().startsWith("https:");
+                    str.toLowerCase().startsWith("https:");
         }
         return false;
     }
