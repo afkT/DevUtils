@@ -29,6 +29,9 @@ import dev.utils.common.FileUtils;
  *     内部存储 : /data/data/package/ 目录
  *     外部存储 ( 私有目录 ) : /storage/emulated/0/Android/data/package/ 目录
  *     外部存储 ( 公开目录 ) : /storage/emulated/0/ 目录
+ *     <p></p>
+ *     推荐使用 {@link PathUtils#getAppExternal()}、 {@link PathUtils#getInternal()} ( 外部存储 ( 私有目录 ) 、内部存储)
+ *     Android 11 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
  * </pre>
  */
 public final class PathUtils {
