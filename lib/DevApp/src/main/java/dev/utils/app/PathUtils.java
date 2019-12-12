@@ -17,6 +17,14 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://www.jianshu.com/p/c04b8899cf85"/>
  *     Android 中的存储路径之外部存储
  *     @see <a href="https://www.jianshu.com/p/2881260e74d7"/>
+ *     将文件保存到外部存储 ( 保存到公开目录 )
+ *     @see <a href="https://developer.android.google.cn/training/data-storage/files/external#PublicFiles"/>
+ *     处理外部存储中的媒体文件
+ *     @see <a href="https://developer.android.google.cn/training/data-storage/files/media"/>
+ *     <p></p>
+ *     内部存储 : /data/data/package/ 目录
+ *     外部存储 ( 私有目录 ) : /storage/emulated/0/Android/data/package/ 目录
+ *     外部存储 ( 公开目录 ) : /storage/emulated/0/ 目录
  * </pre>
  */
 public final class PathUtils {
@@ -65,7 +73,7 @@ public final class PathUtils {
      * detail: SDCard 外部存储路径类
      * @author Ttt
      * <pre>
-     *     外部存储, 属于 SDCard 通用目录
+     *     外部存储, 属于 SDCard 公开目录
      *     路径: /storage/emulated/0/ 目录
      *     需读写权限
      * </pre>
