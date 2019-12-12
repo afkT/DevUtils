@@ -16,6 +16,7 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
+import dev.receiver.AppStatusReceiver;
 import dev.receiver.BatteryReceiver;
 import dev.receiver.NetWorkReceiver;
 import dev.receiver.PhoneReceiver;
@@ -58,6 +59,7 @@ public class ListenerActivity extends BaseToolbarActivity {
         TimeReceiver.unregisterReceiver();
         ScreenReceiver.unregisterReceiver();
         BatteryReceiver.unregisterReceiver();
+        AppStatusReceiver.unregisterReceiver();
         screenSensorAssist.stop();
         try {
             mOrientationEventListener.disable();
@@ -110,6 +112,9 @@ public class ListenerActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_BATTERY_LISTENER:
                         batteryListener(true);
                         break;
+                    case ButtonValue.BTN_APP_STATUS_LISTENER:
+                        appStatusListener(true);
+                        break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
                         break;
@@ -148,11 +153,14 @@ public class ListenerActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_BATTERY_LISTENER:
                         batteryListener(false);
                         break;
+                    case ButtonValue.BTN_APP_STATUS_LISTENER:
+                        appStatusListener(false);
+                        break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
                         break;
                 }
-                return false;
+                return true;
             }
         });
     }
@@ -625,6 +633,41 @@ public class ListenerActivity extends BaseToolbarActivity {
             });
             // 注册监听
             BatteryReceiver.registerReceiver();
+        }
+    }
+
+    /**
+     * 应用状态监听
+     * @param isBind 是否绑定
+     */
+    private void appStatusListener(boolean isBind) {
+        if (!isBind) { // 取反判断, 方便代码顺序查看
+            ToastTintUtils.success("注销应用状态监听成功");
+            // 清空回调
+            AppStatusReceiver.setAppStatusListener(null);
+            // 注销监听
+            AppStatusReceiver.unregisterReceiver();
+        } else {
+            ToastTintUtils.success("绑定应用状态监听成功, 请查看 Logcat");
+            // 设置监听事件
+            AppStatusReceiver.setAppStatusListener(new AppStatusReceiver.AppStatusListener(){
+                @Override
+                public void onAdded(String packageName) {
+                    DevLogger.dTag(mTag, "应用安装 packageName: " + packageName);
+                }
+
+                @Override
+                public void onReplaced(String packageName) {
+                    DevLogger.dTag(mTag, "应用更新 packageName: " + packageName);
+                }
+
+                @Override
+                public void onRemoved(String packageName) {
+                    DevLogger.dTag(mTag, "应用卸载 packageName: " + packageName);
+                }
+            });
+            // 注册监听
+            AppStatusReceiver.registerReceiver();
         }
     }
 }

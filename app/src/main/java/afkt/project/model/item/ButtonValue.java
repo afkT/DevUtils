@@ -199,6 +199,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_ROTA_LISTENER, "屏幕旋转监听 ( 重力传感器 )"));
         lists.add(new ButtonValue(BTN_ROTA2_LISTENER, "屏幕旋转监听 ( OrientationEventListener )"));
         lists.add(new ButtonValue(BTN_BATTERY_LISTENER, "电量监听"));
+        lists.add(new ButtonValue(BTN_APP_STATUS_LISTENER, "应用状态监听"));
         return lists;
     }
 
@@ -508,6 +509,8 @@ public class ButtonValue {
     public static final int BTN_ROTA2_LISTENER = BTN_LISTENER + 8;
     // 电量监听
     public static final int BTN_BATTERY_LISTENER = BTN_LISTENER + 9;
+    // 应用状态监听
+    public static final int BTN_APP_STATUS_LISTENER = BTN_LISTENER + 10;
 
     // 通知栏监听服务 ( NotificationService )
     public static final int BTN_NOTIFICATION_SERVICE = MODULE_OTHER + 100;
