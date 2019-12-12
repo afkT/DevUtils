@@ -1004,6 +1004,27 @@ public final class PathUtils {
             return null;
         }
 
+        /**
+         * 获取应用内部存储文件路径 - path /data/data/package/files
+         * @param type 文件类型
+         * @return /data/data/package/files
+         */
+        public String getAppFilesPath(final String type) {
+            return FileUtils.getAbsolutePath(getAppFilesDir(type));
+        }
+
+        /**
+         * 获取应用内部存储文件路径 - path /data/data/package/files
+         * <pre>
+         *     Environment.STANDARD_DIRECTORIES
+         * </pre>
+         * @param type 文件类型
+         * @return /data/data/package/files
+         */
+        public File getAppFilesDir(final String type) {
+            return FileUtils.getFile(getAppFilesPath(), type);
+        }
+
         // =
 
         /**
@@ -1064,6 +1085,212 @@ public final class PathUtils {
                 LogPrintUtils.eTag(TAG, e, "getAppNoBackupFilesDir");
             }
             return null;
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储音乐路径 - path  /data/data/package/files/Music
+         * @return /data/data/package/files/Music
+         */
+        public String getAppMusicPath() {
+            return getAppFilesPath(Environment.DIRECTORY_MUSIC);
+        }
+
+        /**
+         * 获取应用内部存储音乐路径 - path  /data/data/package/files/Music
+         * @return /data/data/package/files/Music
+         */
+        public File getAppMusicDir() {
+            return getAppFilesDir(Environment.DIRECTORY_MUSIC);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储播客路径 - path  /data/data/package/files/Podcasts
+         * @return /data/data/package/files/Podcasts
+         */
+        public String getAppPodcastsPath() {
+            return getAppFilesPath(Environment.DIRECTORY_PODCASTS);
+        }
+
+        /**
+         * 获取应用内部存储播客路径 - path  /data/data/package/files/Podcasts
+         * @return /data/data/package/files/Podcasts
+         */
+        public File getAppPodcastsDir() {
+            return getAppFilesDir(Environment.DIRECTORY_PODCASTS);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储铃声路径 - path  /data/data/package/files/Ringtones
+         * @return /data/data/package/files/Ringtones
+         */
+        public String getAppRingtonesPath() {
+            return getAppFilesPath(Environment.DIRECTORY_RINGTONES);
+        }
+
+        /**
+         * 获取应用内部存储铃声路径 - path  /data/data/package/files/Ringtones
+         * @return /data/data/package/files/Ringtones
+         */
+        public File getAppRingtonesDir() {
+            return getAppFilesDir(Environment.DIRECTORY_RINGTONES);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储闹铃路径 - path  /data/data/package/files/Alarms
+         * @return /data/data/package/files/Alarms
+         */
+        public String getAppAlarmsPath() {
+            return getAppFilesPath(Environment.DIRECTORY_ALARMS);
+        }
+
+        /**
+         * 获取应用内部存储闹铃路径 - path  /data/data/package/files/Alarms
+         * @return /data/data/package/files/Alarms
+         */
+        public File getAppAlarmsDir() {
+            return getAppFilesDir(Environment.DIRECTORY_ALARMS);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储通知路径 - path  /data/data/package/files/Notifications
+         * @return /data/data/package/files/Notifications
+         */
+        public String getAppNotificationsPath() {
+            return getAppFilesPath(Environment.DIRECTORY_NOTIFICATIONS);
+        }
+
+        /**
+         * 获取应用内部存储通知路径 - path  /data/data/package/files/Notifications
+         * @return /data/data/package/files/Notifications
+         */
+        public File getAppNotificationsDir() {
+            return getAppFilesDir(Environment.DIRECTORY_NOTIFICATIONS);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储图片路径 - path  /data/data/package/files/Pictures
+         * @return /data/data/package/files/Pictures
+         */
+        public String getAppPicturesPath() {
+            return getAppFilesPath(Environment.DIRECTORY_PICTURES);
+        }
+
+        /**
+         * 获取应用内部存储图片路径 - path  /data/data/package/files/Pictures
+         * @return /data/data/package/files/Pictures
+         */
+        public File getAppPicturesDir() {
+            return getAppFilesDir(Environment.DIRECTORY_PICTURES);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储影片路径 - path  /data/data/package/files/Movies
+         * @return /data/data/package/files/Movies
+         */
+        public String getAppMoviesPath() {
+            return getAppFilesPath(Environment.DIRECTORY_MOVIES);
+        }
+
+        /**
+         * 获取应用内部存储影片路径 - path  /data/data/package/files/Movies
+         * @return /data/data/package/files/Movies
+         */
+        public File getAppMoviesDir() {
+            return getAppFilesDir(Environment.DIRECTORY_MOVIES);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储下载路径 - path  /data/data/package/files/Download
+         * @return /data/data/package/files/Download
+         */
+        public String getAppDownloadPath() {
+            return getAppFilesPath(Environment.DIRECTORY_DOWNLOADS);
+        }
+
+        /**
+         * 获取应用内部存储下载路径 - path  /data/data/package/files/Download
+         * @return /data/data/package/files/Download
+         */
+        public File getAppDownloadDir() {
+            return getAppFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储数码相机图片路径 - path  /data/data/package/files/DCIM
+         * @return /data/data/package/files/DCIM
+         */
+        public String getAppDCIMPath() {
+            return getAppFilesPath(Environment.DIRECTORY_DCIM);
+        }
+
+        /**
+         * 获取应用内部存储数码相机图片路径 - path  /data/data/package/files/DCIM
+         * @return /data/data/package/files/DCIM
+         */
+        public File getAppDCIMDir() {
+            return getAppFilesDir(Environment.DIRECTORY_DCIM);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储文档路径 - path  /data/data/package/files/Documents
+         * @return /data/data/package/files/Documents
+         */
+        public String getAppDocumentsPath() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+                return getAppFilesPath("Documents");
+            return getAppFilesPath(Environment.DIRECTORY_DOCUMENTS);
+        }
+
+        /**
+         * 获取应用内部存储文档路径 - path  /data/data/package/files/Documents
+         * @return /data/data/package/files/Documents
+         */
+        public File getAppDocumentsDir() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+                return getAppFilesDir("Documents");
+            return getAppFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        }
+
+        // =
+
+        /**
+         * 获取应用内部存储有声读物路径 - path  /data/data/package/files/Audiobooks
+         * @return /data/data/package/files/Audiobooks
+         */
+        public String getAppAudiobooksPath() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+                return getAppFilesPath("Audiobooks");
+            return getAppFilesPath(Environment.DIRECTORY_AUDIOBOOKS);
+        }
+
+        /**
+         * 获取应用内部存储有声读物路径 - path  /data/data/package/files/Audiobooks
+         * @return /data/data/package/files/Audiobooks
+         */
+        public File getAppAudiobooksDir() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+                return getAppFilesDir("Audiobooks");
+            return getAppFilesDir(Environment.DIRECTORY_AUDIOBOOKS);
         }
     }
 }
