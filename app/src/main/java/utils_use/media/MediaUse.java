@@ -5,7 +5,7 @@ import android.media.MediaPlayer;
 import android.view.SurfaceView;
 
 import afkt.project.R;
-import dev.utils.app.SDCardUtils;
+import dev.utils.app.PathUtils;
 import dev.utils.app.player.DevMediaManager;
 import dev.utils.app.player.DevVideoPlayerControl;
 
@@ -96,7 +96,7 @@ public final class MediaUse {
         // 播放音频
         DevMediaManager.getInstance().playPrepareRaw(R.raw.dev_beep);
         DevMediaManager.getInstance().playPrepareAssets("a.mp3");
-        DevMediaManager.getInstance().playPrepare(SDCardUtils.getSDCardPath() + "/a.mp3");
+        DevMediaManager.getInstance().playPrepare(PathUtils.getSDCard().getSDCardPath() + "/a.mp3");
         DevMediaManager.getInstance().playPrepare("http://xxx.mp3");
         DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet() {
             @Override
@@ -110,7 +110,7 @@ public final class MediaUse {
         SurfaceView surfaceView = null;
         // 播放视频
         DevVideoPlayerControl control = new DevVideoPlayerControl(surfaceView);
-        control.startPlayer(SDCardUtils.getSDCardPath() + "/video_3.mp4");
+        control.startPlayer(PathUtils.getSDCard().getSDCardPath() + "/video_3.mp4");
         control.startPlayer("http://xxx.mp4");
         control.startPlayer(new DevMediaManager.MediaSet() {
             @Override

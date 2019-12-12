@@ -161,7 +161,7 @@ public final class PathUtils {
          */
         @Deprecated
         public File getExternalStoragePublicDir(final String type) {
-            if (!SDCardUtils.isSDCardEnable()) return null;
+            if (!getSDCard().isSDCardEnable()) return null;
             try {
                 return Environment.getExternalStoragePublicDirectory(type);
             } catch (Exception e) {
@@ -433,7 +433,7 @@ public final class PathUtils {
          * @return /storage/emulated/0/Android/data/package
          */
         public File getAppDataDir() {
-            if (!SDCardUtils.isSDCardEnable()) return null;
+            if (!getSDCard().isSDCardEnable()) return null;
             try {
                 return DevUtils.getContext().getExternalCacheDir().getParentFile();
             } catch (Exception e) {
@@ -475,7 +475,7 @@ public final class PathUtils {
          * @return /storage/emulated/0/Android/data/package/cache
          */
         public File getAppCacheDir() {
-            if (!SDCardUtils.isSDCardEnable()) return null;
+            if (!getSDCard().isSDCardEnable()) return null;
             try {
                 return DevUtils.getContext().getExternalCacheDir();
             } catch (Exception e) {
@@ -522,7 +522,7 @@ public final class PathUtils {
          * @return /storage/emulated/0/Android/data/package/files
          */
         public File getExternalFilesDir(final String type) {
-            if (!SDCardUtils.isSDCardEnable()) return null;
+            if (!getSDCard().isSDCardEnable()) return null;
             try {
                 return DevUtils.getContext().getExternalFilesDir(type);
             } catch (Exception e) {
@@ -790,7 +790,7 @@ public final class PathUtils {
          * @return /storage/emulated/0/Android/obb/package
          */
         public File getAppObbDir() {
-            if (!SDCardUtils.isSDCardEnable()) return null;
+            if (!getSDCard().isSDCardEnable()) return null;
             try {
                 return DevUtils.getContext().getObbDir();
             } catch (Exception e) {

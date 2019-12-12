@@ -13,7 +13,7 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
-import dev.utils.app.SDCardUtils;
+import dev.utils.app.PathUtils;
 import dev.utils.app.cache.DevCache;
 import dev.utils.app.toast.ToastTintUtils;
 import utils_use.cache.CacheUse;
@@ -79,16 +79,16 @@ public class CacheActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_CACHE_FILE:
                         // 保存到指定文件夹下
-                        DevCache.obtain(SDCardUtils.getSDCardFile("DevCache")).put("fileStr", "这是指定位置字符串");
+                        DevCache.obtain(PathUtils.getSDCard().getSDCardFile("DevCache")).put("fileStr", "这是指定位置字符串");
                         showToast(true, "存储到指定位置成功");
                         break;
                     case ButtonValue.BTN_CACHE_FILE_GET:
-                        str = DevCache.obtain(SDCardUtils.getSDCardFile("DevCache")).getAsString("fileStr");
+                        str = DevCache.obtain(PathUtils.getSDCard().getSDCardFile("DevCache")).getAsString("fileStr");
                         showToast(str != null, str, "未存储 key 为 fileStr 的字符串");
                         break;
                     case ButtonValue.BTN_CACHE_CLEAR:
                         DevCache.obtain().clear();
-                        DevCache.obtain(SDCardUtils.getSDCardPath("DevCache")).clear();
+                        DevCache.obtain(PathUtils.getSDCard().getSDCardPath("DevCache")).clear();
                         showToast(true, "清除全部数据成功");
                         break;
                     default:

@@ -2,7 +2,7 @@ package afkt.project.base.config;
 
 import java.io.File;
 
-import dev.utils.app.SDCardUtils;
+import dev.utils.app.PathUtils;
 
 /**
  * detail: 文件路径配置
@@ -14,7 +14,7 @@ public final class PathConfig {
     }
 
     // SDCard 路径
-    public static final String BASE_SDCARD_PATH = SDCardUtils.getSDCardPath();
+    public static final String BASE_SDCARD_PATH = PathUtils.getSDCard().getSDCardPath();
 
     // ==========
     // = SDCard =

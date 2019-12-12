@@ -52,7 +52,7 @@ public final class DBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startExportDatabase(final String targetFile, final String dbName, final boolean overlay) {
-        if (!SDCardUtils.isSDCardEnable()) return false;
+        if (!PathUtils.getSDCard().isSDCardEnable()) return false;
         return FileUtils.copyFile(getAppDbPath(dbName), targetFile, overlay);
     }
 
@@ -78,7 +78,7 @@ public final class DBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startImportDatabase(final String srcFilePath, final String destFilePath, final boolean overlay) {
-        if (!SDCardUtils.isSDCardEnable()) return false;
+        if (!PathUtils.getSDCard().isSDCardEnable()) return false;
         return FileUtils.copyFile(srcFilePath, destFilePath, overlay);
     }
 
@@ -102,7 +102,7 @@ public final class DBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startImportDatabase(final InputStream inputStream, final String destFilePath, final boolean overlay) {
-        if (!SDCardUtils.isSDCardEnable()) return false;
+        if (!PathUtils.getSDCard().isSDCardEnable()) return false;
         return FileUtils.copyFile(inputStream, destFilePath, overlay);
     }
 }

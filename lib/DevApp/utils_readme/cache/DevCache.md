@@ -44,7 +44,7 @@ DevLogger.dTag(TAG, "保存后: " + ctv.toString());
 DevCache.obtain().put("ctva", new CacheVo("测试有效时间"), 1);
 
 // 保存到指定文件夹下
-DevCache.obtain(new File(SDCardUtils.getSDCardPath(), "Cache")).put("key", "保存数据");
+DevCache.obtain(new File(PathUtils.getSDCard().getSDCardPath(), "Cache")).put("key", "保存数据");
 
 // 延迟后
 new Thread(new Runnable() {

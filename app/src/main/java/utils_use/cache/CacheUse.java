@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.app.SDCardUtils;
+import dev.utils.app.PathUtils;
 import dev.utils.app.cache.DevCache;
 import dev.utils.app.logger.DevLogger;
 
@@ -38,7 +38,7 @@ public final class CacheUse {
         DevCache.obtain().put("ctva", new CacheVo("测试有效时间"), 1);
 
         // 保存到指定文件夹下
-        DevCache.obtain(new File(SDCardUtils.getSDCardPath(), "Cache")).put("key", "保存数据");
+        DevCache.obtain(new File(PathUtils.getSDCard().getSDCardPath(), "Cache")).put("key", "保存数据");
 
         // 延迟后
         new Thread(new Runnable() {

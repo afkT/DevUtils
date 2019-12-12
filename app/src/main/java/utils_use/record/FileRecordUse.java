@@ -6,7 +6,7 @@ import afkt.project.base.config.PathConfig;
 import dev.utils.app.AnalysisRecordUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
-import dev.utils.app.SDCardUtils;
+import dev.utils.app.PathUtils;
 import dev.utils.common.FileRecordUtils;
 import dev.utils.common.ThrowableUtils;
 
@@ -50,7 +50,7 @@ public final class FileRecordUse {
      */
     public static void analysisRecord() {
         // 默认存储到 android/data/包名/cache文件/, 可以自己特殊设置
-        AnalysisRecordUtils.setLogStoragePath(SDCardUtils.getSDCardPath());
+        AnalysisRecordUtils.setLogStoragePath(PathUtils.getSDCard().getSDCardPath());
 
         // 设置存储文件夹名
         AnalysisRecordUtils.setLogFolderName(AnalysisRecordUtils.getLogFolderName() + "/v" + AppUtils.getAppVersionName());
@@ -67,7 +67,7 @@ public final class FileRecordUse {
 
         fileInfo = AnalysisRecordUtils.FileInfo.obtain("TempRecord", "test_log.txt", "测试记录");
 
-        fileInfo = AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath(), "TempRecord", "test_log.txt", "测试记录");
+        fileInfo = AnalysisRecordUtils.FileInfo.obtain(PathUtils.getSDCard().getSDCardPath(), "TempRecord", "test_log.txt", "测试记录");
 
         // =
 
@@ -75,7 +75,7 @@ public final class FileRecordUse {
 
         fileInfo = AnalysisRecordUtils.FileInfo.obtain("TempRecord", "test_log.txt", "测试记录", AnalysisRecordUtils.MM);
 
-        fileInfo = AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath(), "TempRecord", "test_log.txt", "测试记录", AnalysisRecordUtils.SS);
+        fileInfo = AnalysisRecordUtils.FileInfo.obtain(PathUtils.getSDCard().getSDCardPath(), "TempRecord", "test_log.txt", "测试记录", AnalysisRecordUtils.SS);
 
         // =
 
@@ -83,11 +83,11 @@ public final class FileRecordUse {
         AnalysisRecordUtils.record(fileInfo, "日志内容");
 
         // 存储到 sdcard/LogFolderName/2018-08-23/SDRecord/xxx/log.txt
-        AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath(), "SDRecord", "sd_log.txt", "根目录保存", AnalysisRecordUtils.HH),
+        AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(PathUtils.getSDCard().getSDCardPath(), "SDRecord", "sd_log.txt", "根目录保存", AnalysisRecordUtils.HH),
                 "日志内容");
 
         // 存储到 sdcard/特殊地址/LogFolderName/2018-08-23/OtherRecord/xxx/log.txt
-        AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(SDCardUtils.getSDCardPath() + "/特殊地址", "OtherRecord",
+        AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(PathUtils.getSDCard().getSDCardPath() + "/特殊地址", "OtherRecord",
                 "log.txt", "临时地址", AnalysisRecordUtils.HH), "日志内容");
 
         // 保存错误信息
