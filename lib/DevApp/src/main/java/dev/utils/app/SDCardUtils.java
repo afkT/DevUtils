@@ -40,6 +40,7 @@ public final class SDCardUtils {
      * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
      * @return /storage/emulated/0/
      */
+    @Deprecated
     public static File getSDCardFile() {
         return PathUtils.getSDCard().getSDCardFile();
     }
@@ -48,6 +49,7 @@ public final class SDCardUtils {
      * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
      * @return /storage/emulated/0/
      */
+    @Deprecated
     public static String getSDCardPath() {
         return PathUtils.getSDCard().getSDCardPath();
     }
@@ -59,6 +61,7 @@ public final class SDCardUtils {
      * @param fileName 文件名
      * @return /storage/emulated/0/
      */
+    @Deprecated
     public static File getSDCardFile(final String fileName) {
         return PathUtils.getSDCard().getSDCardFile(fileName);
     }
@@ -68,6 +71,7 @@ public final class SDCardUtils {
      * @param fileName 文件名
      * @return /storage/emulated/0/
      */
+    @Deprecated
     public static String getSDCardPath(final String fileName) {
         return PathUtils.getSDCard().getSDCardPath(fileName);
     }

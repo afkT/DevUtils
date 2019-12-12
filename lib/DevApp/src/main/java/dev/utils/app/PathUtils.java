@@ -21,6 +21,10 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://developer.android.google.cn/training/data-storage/files/external#PublicFiles"/>
  *     处理外部存储中的媒体文件
  *     @see <a href="https://developer.android.google.cn/training/data-storage/files/media"/>
+ *     Android Q 适配指南
+ *     @see <a href="https://juejin.im/post/5ddd2417f265da060a5217ff"/>
+ *     Android 10 Scoped Storage
+ *     @see <a href="https://zhuanlan.zhihu.com/p/89355975"/>
  *     <p></p>
  *     内部存储 : /data/data/package/ 目录
  *     外部存储 ( 私有目录 ) : /storage/emulated/0/Android/data/package/ 目录
@@ -94,7 +98,10 @@ public final class PathUtils {
         /**
          * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
          * @return /storage/emulated/0/
+         * @deprecated 推荐使用 {@link PathUtils#getAppExternal()}、 {@link PathUtils#getInternal()} ( 外部存储 ( 私有目录 ) 、内部存储)
+         * Android 11 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
          */
+        @Deprecated
         public File getSDCardFile() {
             return Environment.getExternalStorageDirectory();
         }
@@ -103,6 +110,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
          * @return /storage/emulated/0/
          */
+        @Deprecated
         public String getSDCardPath() {
             return FileUtils.getAbsolutePath(getSDCardFile());
         }
@@ -114,6 +122,7 @@ public final class PathUtils {
          * @param fileName 文件名
          * @return /storage/emulated/0/
          */
+        @Deprecated
         public File getSDCardFile(final String fileName) {
             return FileUtils.getFile(getSDCardPath(), fileName);
         }
@@ -123,6 +132,7 @@ public final class PathUtils {
          * @param fileName 文件名
          * @return /storage/emulated/0/
          */
+        @Deprecated
         public String getSDCardPath(final String fileName) {
             return FileUtils.getAbsolutePath(getSDCardFile(fileName));
         }
@@ -134,6 +144,7 @@ public final class PathUtils {
          * @param type 文件类型
          * @return /storage/emulated/0/
          */
+        @Deprecated
         public String getExternalStoragePublicPath(final String type) {
             return FileUtils.getAbsolutePath(getExternalStoragePublicDir(type));
         }
@@ -145,7 +156,10 @@ public final class PathUtils {
          * </pre>
          * @param type 文件类型
          * @return /storage/emulated/0/
+         * @deprecated 推荐使用 {@link PathUtils#getAppExternal()}、 {@link PathUtils#getInternal()} ( 外部存储 ( 私有目录 ) 、内部存储)
+         * Android 11 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
          */
+        @Deprecated
         public File getExternalStoragePublicDir(final String type) {
             if (!SDCardUtils.isSDCardEnable()) return null;
             try {
@@ -162,6 +176,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储音乐路径 - path /storage/emulated/0/Music
          * @return /storage/emulated/0/Music
          */
+        @Deprecated
         public String getMusicPath() {
             return getExternalStoragePublicPath(Environment.DIRECTORY_MUSIC);
         }
@@ -170,6 +185,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储音乐路径 - path /storage/emulated/0/Music
          * @return /storage/emulated/0/Music
          */
+        @Deprecated
         public File getMusicDir() {
             return getExternalStoragePublicDir(Environment.DIRECTORY_MUSIC);
         }
@@ -180,6 +196,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储播客路径 - path /storage/emulated/0/Podcasts
          * @return /storage/emulated/0/Podcasts
          */
+        @Deprecated
         public String getPodcastsPath() {
             return getExternalStoragePublicPath(Environment.DIRECTORY_PODCASTS);
         }
@@ -188,6 +205,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储播客路径 - path /storage/emulated/0/Podcasts
          * @return /storage/emulated/0/Podcasts
          */
+        @Deprecated
         public File getPodcastsDir() {
             return getExternalStoragePublicDir(Environment.DIRECTORY_PODCASTS);
         }
@@ -198,6 +216,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储铃声路径 - path /storage/emulated/0/Ringtones
          * @return /storage/emulated/0/Ringtones
          */
+        @Deprecated
         public String getRingtonesPath() {
             return getExternalStoragePublicPath(Environment.DIRECTORY_RINGTONES);
         }
@@ -206,6 +225,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储铃声路径 - path /storage/emulated/0/Ringtones
          * @return /storage/emulated/0/Ringtones
          */
+        @Deprecated
         public File getRingtonesDir() {
             return getExternalStoragePublicDir(Environment.DIRECTORY_RINGTONES);
         }
@@ -216,6 +236,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储闹铃路径 - path /storage/emulated/0/Alarms
          * @return /storage/emulated/0/Alarms
          */
+        @Deprecated
         public String getAlarmsPath() {
             return getExternalStoragePublicPath(Environment.DIRECTORY_ALARMS);
         }
@@ -224,6 +245,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储闹铃路径 - path /storage/emulated/0/Alarms
          * @return /storage/emulated/0/Alarms
          */
+        @Deprecated
         public File getAlarmsDir() {
             return getExternalStoragePublicDir(Environment.DIRECTORY_ALARMS);
         }
@@ -234,6 +256,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储通知路径 - path /storage/emulated/0/Notifications
          * @return /storage/emulated/0/Notifications
          */
+        @Deprecated
         public String getNotificationsPath() {
             return getExternalStoragePublicPath(Environment.DIRECTORY_NOTIFICATIONS);
         }
@@ -242,6 +265,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储通知路径 - path /storage/emulated/0/Notifications
          * @return /storage/emulated/0/Notifications
          */
+        @Deprecated
         public File getNotificationsDir() {
             return getExternalStoragePublicDir(Environment.DIRECTORY_NOTIFICATIONS);
         }
@@ -252,6 +276,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储图片路径 - path /storage/emulated/0/Pictures
          * @return /storage/emulated/0/Pictures
          */
+        @Deprecated
         public String getPicturesPath() {
             return getExternalStoragePublicPath(Environment.DIRECTORY_PICTURES);
         }
@@ -260,6 +285,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储图片路径 - path /storage/emulated/0/Pictures
          * @return /storage/emulated/0/Pictures
          */
+        @Deprecated
         public File getPicturesDir() {
             return getExternalStoragePublicDir(Environment.DIRECTORY_PICTURES);
         }
@@ -270,6 +296,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储影片路径 - path /storage/emulated/0/Movies
          * @return /storage/emulated/0/Movies
          */
+        @Deprecated
         public String getMoviesPath() {
             return getExternalStoragePublicPath(Environment.DIRECTORY_MOVIES);
         }
@@ -278,6 +305,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储影片路径 - path /storage/emulated/0/Movies
          * @return /storage/emulated/0/Movies
          */
+        @Deprecated
         public File getMoviesDir() {
             return getExternalStoragePublicDir(Environment.DIRECTORY_MOVIES);
         }
@@ -288,6 +316,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储下载路径 - path /storage/emulated/0/Download
          * @return /storage/emulated/0/Download
          */
+        @Deprecated
         public String getDownloadPath() {
             return getExternalStoragePublicPath(Environment.DIRECTORY_DOWNLOADS);
         }
@@ -296,6 +325,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储下载路径 - path /storage/emulated/0/Download
          * @return /storage/emulated/0/Download
          */
+        @Deprecated
         public File getDownloadDir() {
             return getExternalStoragePublicDir(Environment.DIRECTORY_DOWNLOADS);
         }
@@ -306,6 +336,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储数码相机图片路径 - path /storage/emulated/0/DCIM
          * @return /storage/emulated/0/DCIM
          */
+        @Deprecated
         public String getDCIMPath() {
             return getExternalStoragePublicPath(Environment.DIRECTORY_DCIM);
         }
@@ -314,6 +345,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储数码相机图片路径 - path /storage/emulated/0/DCIM
          * @return /storage/emulated/0/DCIM
          */
+        @Deprecated
         public File getDCIMDir() {
             return getExternalStoragePublicDir(Environment.DIRECTORY_DCIM);
         }
@@ -324,6 +356,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储文档路径 - path /storage/emulated/0/Documents
          * @return /storage/emulated/0/Documents
          */
+        @Deprecated
         public String getDocumentsPath() {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
                 return getExternalStoragePublicPath("Documents");
@@ -334,6 +367,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储文档路径 - path /storage/emulated/0/Documents
          * @return /storage/emulated/0/Documents
          */
+        @Deprecated
         public File getDocumentsDir() {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
                 return getExternalStoragePublicDir("Documents");
@@ -346,6 +380,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储有声读物路径 - path /storage/emulated/0/Audiobooks
          * @return /storage/emulated/0/Audiobooks
          */
+        @Deprecated
         public String getAudiobooksPath() {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
                 return getExternalStoragePublicPath("Audiobooks");
@@ -356,6 +391,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储有声读物路径 - path /storage/emulated/0/Audiobooks
          * @return /storage/emulated/0/Audiobooks
          */
+        @Deprecated
         public File getAudiobooksDir() {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
                 return getExternalStoragePublicDir("Audiobooks");
