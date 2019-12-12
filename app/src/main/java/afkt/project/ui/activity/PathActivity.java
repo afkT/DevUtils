@@ -42,11 +42,11 @@ public class PathActivity extends BaseToolbarActivity {
         buttonAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                StringBuilder builder;
+                StringBuilder builder = new StringBuilder();
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_PATH_INTERNAL:
-                        builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
+                        StringUtils.appendsIgnoreLast(builder, StringUtils.NEW_LINE_STR,
                             "内部存储路径",
                             PathUtils.getInternal().getRootPath(),
                             PathUtils.getInternal().getRootDirectory(),
@@ -106,7 +106,7 @@ public class PathActivity extends BaseToolbarActivity {
                         showToast(true, "信息已打印, 请查看 Logcat");
                         break;
                     case ButtonValue.BTN_PATH_APP_EXTERNAL:
-                        builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
+                        StringUtils.appendsIgnoreLast(builder, StringUtils.NEW_LINE_STR,
                             "应用外部存储路径类",
                             PathUtils.getAppExternal().getAppDataPath(),
                             PathUtils.getAppExternal().getAppDataDir(),
@@ -152,7 +152,7 @@ public class PathActivity extends BaseToolbarActivity {
                         showToast(true, "信息已打印, 请查看 Logcat");
                         break;
                     case ButtonValue.BTN_PATH_SDCARD:
-                        builder = StringUtils.appends(StringUtils.NEW_LINE_STR,
+                        StringUtils.appendsIgnoreLast(builder, StringUtils.NEW_LINE_STR,
                             "外部存储路径 ( SDCard )",
                             PathUtils.getSDCard().isSDCardEnable(),
                             PathUtils.getSDCard().getSDCardFile(),

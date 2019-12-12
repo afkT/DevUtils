@@ -1159,22 +1159,24 @@ public final class DevCommonUtils {
 
     /**
      * StringBuilder 拼接处理
-     * @param split 追加间隔
-     * @param args  拼接数据源
+     * @param builder 拼接 Builder
+     * @param split   追加间隔
+     * @param args    拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appends(final String split, final Object... args) {
-        return StringUtils.appends(split, args);
+    public static StringBuilder appends(final StringBuilder builder, final String split, final Object... args) {
+        return StringUtils.appends(builder, split, args);
     }
 
     /**
      * StringBuilder 拼接处理 ( 最后一个不追加间隔 )
-     * @param split 追加间隔
-     * @param args  拼接数据源
+     * @param builder 拼接 Builder
+     * @param split   追加间隔
+     * @param args    拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appendsIgnoreLast(final String split, final Object... args) {
-        return StringUtils.appendsIgnoreLast(split, args);
+    public static StringBuilder appendsIgnoreLast(final StringBuilder builder, final String split, final Object... args) {
+        return StringUtils.appendsIgnoreLast(builder, split, args);
     }
 
     // ==============

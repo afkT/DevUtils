@@ -694,13 +694,13 @@ public final class StringUtils {
 
     /**
      * StringBuilder 拼接处理
-     * @param split 追加间隔
-     * @param args  拼接数据源
+     * @param builder 拼接 Builder
+     * @param split   追加间隔
+     * @param args    拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appends(final String split, final Object... args) {
-        StringBuilder builder = new StringBuilder();
-        if (args != null) {
+    public static StringBuilder appends(final StringBuilder builder, final String split, final Object... args) {
+        if (builder != null && args != null) {
             // 获取间隔字符串, 优化循环判断
             String str = isEmpty(split) ? "" : split;
             // 循环处理
@@ -715,23 +715,23 @@ public final class StringUtils {
 
     /**
      * StringBuilder 拼接处理 ( 最后一个不追加间隔 )
-     * @param split 追加间隔
-     * @param args  拼接数据源
+     * @param builder 拼接 Builder
+     * @param split   追加间隔
+     * @param args    拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appendsIgnoreLast(final String split, final Object... args) {
-        StringBuilder builder = new StringBuilder();
-        if (args != null) {
+    public static StringBuilder appendsIgnoreLast(final StringBuilder builder, final String split, final Object... args) {
+        if (builder != null && args != null) {
             // 获取间隔字符串, 优化循环判断
             String str = isEmpty(split) ? "" : split;
-            // 循环处理
-            for (int i = 0, len = args.length; i < len; i++) {
-                builder.append(args[i]); // 拼接数据
-                // 判断是否结尾
-                if (len - i == 1) {
-                } else {
+            int len = args.length;
+            if (len > 0) {
+                // 循环处理
+                for (int i = 0; i < len - 1; i++) {
+                    builder.append(args[i]); // 拼接数据
                     builder.append(str); // 间隔追加
                 }
+                builder.append(args[len - 1]); // 拼接数据
             }
         }
         return builder;
