@@ -739,7 +739,7 @@ public final class PhoneUtils {
 
     /**
      * 获取手机短信并保存到 xml 中
-     * @param filePath 文件路径 /sdcard/xxx.xml
+     * @param filePath 文件路径
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(allOf = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_SMS})
