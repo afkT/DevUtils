@@ -125,7 +125,7 @@ public final class DevCommonUtils {
         if (!isEmpty(str)) {
             // 属于第一位开始, 才是属于网络资源
             return str.toLowerCase().startsWith("http:") ||
-                    str.toLowerCase().startsWith("https:");
+                str.toLowerCase().startsWith("https:");
         }
         return false;
     }
@@ -1159,15 +1159,6 @@ public final class DevCommonUtils {
 
     /**
      * StringBuilder 拼接处理
-     * @param args 拼接数据源
-     * @return {@link StringBuilder}
-     */
-    public static StringBuilder appends(final Object... args) {
-        return StringUtils.appends(args);
-    }
-
-    /**
-     * StringBuilder 拼接处理
      * @param split 追加间隔
      * @param args  拼接数据源
      * @return {@link StringBuilder}
@@ -1177,26 +1168,13 @@ public final class DevCommonUtils {
     }
 
     /**
-     * StringBuilder 拼接处理
-     * @param split   追加间隔
-     * @param end     结尾是否追加
-     * @param args    拼接数据源
+     * StringBuilder 拼接处理 ( 最后一个不追加间隔 )
+     * @param split 追加间隔
+     * @param args  拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appends(final String split, final boolean end, final Object... args) {
-        return StringUtils.appends(split, end, args);
-    }
-
-    /**
-     * StringBuilder 拼接处理
-     * @param builder 拼接 Builder
-     * @param split   追加间隔
-     * @param end     结尾是否追加
-     * @param args    拼接数据源
-     * @return {@link StringBuilder}
-     */
-    public static StringBuilder appends(final StringBuilder builder, final String split, final boolean end, final Object... args) {
-        return StringUtils.appends(builder, split, end, args);
+    public static StringBuilder appendsIgnoreLast(final String split, final Object... args) {
+        return StringUtils.appendsIgnoreLast(split, args);
     }
 
     // ==============

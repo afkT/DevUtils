@@ -694,44 +694,34 @@ public final class StringUtils {
 
     /**
      * StringBuilder 拼接处理
-     * @param args 拼接数据源
-     * @return {@link StringBuilder}
-     */
-    public static StringBuilder appends(final Object... args) {
-        return appends(new StringBuilder(), null, false, args);
-    }
-
-    /**
-     * StringBuilder 拼接处理
      * @param split 追加间隔
      * @param args  拼接数据源
      * @return {@link StringBuilder}
      */
     public static StringBuilder appends(final String split, final Object... args) {
-        return appends(new StringBuilder(), split, false, args);
+        StringBuilder builder = new StringBuilder();
+        if (args != null) {
+            // 获取间隔字符串, 优化循环判断
+            String str = isEmpty(split) ? "" : split;
+            // 循环处理
+            for (int i = 0, len = args.length; i < len; i++) {
+                builder.append(args[i]); // 拼接数据
+                // 追加间隔
+                builder.append(str);
+            }
+        }
+        return builder;
     }
 
     /**
-     * StringBuilder 拼接处理
-     * @param split   追加间隔
-     * @param end     结尾是否追加
-     * @param args    拼接数据源
+     * StringBuilder 拼接处理 ( 最后一个不追加间隔 )
+     * @param split 追加间隔
+     * @param args  拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appends(final String split, final boolean end, final Object... args) {
-        return appends(new StringBuilder(), split, end, args);
-    }
-
-    /**
-     * StringBuilder 拼接处理
-     * @param builder 拼接 Builder
-     * @param split   追加间隔
-     * @param end     结尾是否追加
-     * @param args    拼接数据源
-     * @return {@link StringBuilder}
-     */
-    public static StringBuilder appends(final StringBuilder builder, final String split, final boolean end, final Object... args) {
-        if (builder != null && args != null) {
+    public static StringBuilder appendsIgnoreLast(final String split, final Object... args) {
+        StringBuilder builder = new StringBuilder();
+        if (args != null) {
             // 获取间隔字符串, 优化循环判断
             String str = isEmpty(split) ? "" : split;
             // 循环处理
@@ -739,13 +729,10 @@ public final class StringUtils {
                 builder.append(args[i]); // 拼接数据
                 // 判断是否结尾
                 if (len - i == 1) {
-                    // 判断结尾是否追加
-                    if (end) builder.append(str); // 间隔追加
                 } else {
                     builder.append(str); // 间隔追加
                 }
             }
-            return builder;
         }
         return builder;
     }
@@ -980,11 +967,11 @@ public final class StringUtils {
     public static boolean isChinese(final char ch) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(ch);
         return ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
-                || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-                || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
-                || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
-                || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
-                || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS;
+            || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
+            || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
+            || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
+            || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
+            || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS;
     }
 
     // ==================
