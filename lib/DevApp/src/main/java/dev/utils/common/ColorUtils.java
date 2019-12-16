@@ -726,6 +726,8 @@ public final class ColorUtils {
         private long valueColor;
         // A、R、G、B
         private int alpha = 255, red = 0, green = 0, blue = 0;
+        // 灰度值
+        private int grayLevel;
 
         /**
          * 构造函数
@@ -811,6 +813,14 @@ public final class ColorUtils {
             return blue;
         }
 
+        /**
+         * 获取灰度值
+         * @return 灰度值
+         */
+        public int getGrayLevel() {
+            return grayLevel;
+        }
+
         @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
@@ -821,6 +831,7 @@ public final class ColorUtils {
             builder.append("\nred : " + red);
             builder.append("\ngreen : " + green);
             builder.append("\nblue : " + blue);
+            builder.append("\ngrayLevel : " + grayLevel);
             builder.append("\nintToRgbString : " + ColorUtils.intToRgbString((int) valueColor));
             builder.append("\nintToArgbString : " + ColorUtils.intToArgbString((int) valueColor));
             return builder.toString();
@@ -852,6 +863,8 @@ public final class ColorUtils {
             red = argb[1];
             green = argb[2];
             blue = argb[3];
+            // 获取灰度值
+            grayLevel = (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
         }
 
         // ==============
