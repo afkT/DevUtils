@@ -168,7 +168,7 @@ public final class ColorUtils {
     /**
      * 返回一个颜色中绿色的色值 ( 返回十进制 )
      * @param color argb/rgb color
-     * @return green 百分比值
+     * @return green 值
      */
     public static int green(final int color) {
         return (color >> 8) & 0xFF;
@@ -188,7 +188,7 @@ public final class ColorUtils {
     /**
      * 返回一个颜色中蓝色的色值 ( 返回十进制 )
      * @param color argb/rgb color
-     * @return blue 百分比值
+     * @return blue 值
      */
     public static int blue(final int color) {
         return color & 0xFF;
