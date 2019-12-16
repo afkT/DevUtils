@@ -1,7 +1,5 @@
 package dev.utils.common;
 
-import android.graphics.Color;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -958,8 +956,8 @@ public final class ColorUtils {
          * RGB 转换 HSB
          * <pre>
          *     HSB 等于 HSV, 不同的叫法
-         *     {@link Color#RGBToHSV}
          *     java.awt.Color#RGBtoHSB
+         *     android.graphics.Color#RGBToHSV
          * </pre>
          * @param r       红色值 [0-255]
          * @param g       绿色值 [0-255]
@@ -1021,6 +1019,28 @@ public final class ColorUtils {
                 if (diff < 0) {
                     return 1;
                 } else if (diff > 0) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+    }
+
+    /**
+     * HSB ( HSV) 排序
+     * @param lists 待排序颜色集合
+     */
+    public static void sortHSB(final List<ColorInfo> lists) {
+        Collections.sort(lists, new Comparator<ColorUtils.ColorInfo>() {
+            @Override
+            public int compare(ColorUtils.ColorInfo c1, ColorUtils.ColorInfo c2) {
+                float diff = c1.getHue() - c2.getHue();
+                if (c1.getHue() == 0) {
+                    diff = c1.getSaturation() - c2.getSaturation();
+                }
+                if (diff > 0) {
+                    return 1;
+                } else if (diff < 0) {
                     return -1;
                 }
                 return 0;
