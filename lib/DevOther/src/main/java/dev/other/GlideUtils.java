@@ -28,6 +28,8 @@ import dev.utils.LogPrintUtils;
  * detail: Glide 工具类
  * @author Ttt
  * <pre>
+ *     必须调用 {@link GlideUtils#init(Context)}
+ *     <p></p>
  *     init: GlideUtils.init(getApplicationContext());
  *     use modify: 修改 defaultOptions() 配置、以及加载默认图片资源
  *     <p></p>

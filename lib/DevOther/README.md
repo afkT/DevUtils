@@ -3,11 +3,11 @@
 ## 目录结构
 
 ```
-- dev                                                 | 根目录
-   - other                                            | 第三方库封装工具类
-   - receiver                                         | BroadcastReceiver 监听相关
-   - service                                          | Service 相关
-   - temp                                             | 临时快捷调用工具类
+- dev              | 根目录
+   - other         | 第三方库封装工具类
+   - receiver      | BroadcastReceiver 监听相关
+   - service       | Service 相关
+   - temp          | 临时快捷调用工具类
 ```
 
 
@@ -19,11 +19,11 @@
 ## API
 
 
-- dev                                                 | 根目录
-   - [other](#devother)                               | 第三方库封装工具类
-   - [receiver](#devreceiver)                         | BroadcastReceiver 监听相关
-   - [service](#devservice)                           | Service 相关
-   - [temp](#devtemp)                                 | 临时快捷调用工具类
+- dev                                      | 根目录
+   - [other](#devother)                    | 第三方库封装工具类
+   - [receiver](#devreceiver)              | BroadcastReceiver 监听相关
+   - [service](#devservice)                | Service 相关
+   - [temp](#devtemp)                      | 临时快捷调用工具类
 
 
 
@@ -216,6 +216,34 @@
 
 
 ## <span id="devreceiver">**`dev.receiver`**</span>
+
+
+* **应用状态监听广播 ( 安装、更新、卸载 ) ->** [AppStatusReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/AppStatusReceiver.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onReceive | onReceive |
+| registerReceiver | 注册应用状态监听广播 |
+| unregisterReceiver | 取消注册应用状态监听广播 |
+| setAppStatusListener | 设置应用状态监听事件 |
+| onAdded | 应用安装 |
+| onReplaced | 应用更新 |
+| onRemoved | 应用卸载 |
+
+
+* **电量监听广播 ->** [BatteryReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/BatteryReceiver.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onReceive | onReceive |
+| registerReceiver | 注册电量监听广播 |
+| unregisterReceiver | 取消注册电量监听广播 |
+| setBatteryListener | 设置电量监听事件 |
+| onBatteryChanged | 电量改变通知 |
+| onBatteryLow | 电量低通知 |
+| onBatteryOkay | 电量从低变回高通知 |
+| onPowerConnected | 充电状态改变通知 |
+| onPowerUsageSummary | 电力使用情况总结 |
 
 
 * **网络监听广播 ->** [NetWorkReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/NetWorkReceiver.java)
