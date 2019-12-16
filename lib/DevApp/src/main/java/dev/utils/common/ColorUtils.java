@@ -1,5 +1,7 @@
 package dev.utils.common;
 
+import android.graphics.Color;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -734,6 +736,8 @@ public final class ColorUtils {
         private int alpha = 255, red = 0, green = 0, blue = 0;
         // 灰度值
         private int grayLevel;
+        // H、S、B ( V )
+        private float hue, saturation, brightness;
 
         /**
          * 构造函数
@@ -827,6 +831,30 @@ public final class ColorUtils {
             return grayLevel;
         }
 
+        /**
+         * 获取颜色色调
+         * @return 颜色色调
+         */
+        public float getHue() {
+            return hue;
+        }
+
+        /**
+         * 获取颜色饱和度
+         * @return 颜色饱和度
+         */
+        public float getSaturation() {
+            return saturation;
+        }
+
+        /**
+         * 获取颜色亮度
+         * @return 颜色亮度
+         */
+        public float getBrightness() {
+            return brightness;
+        }
+
         @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
@@ -871,6 +899,11 @@ public final class ColorUtils {
             blue = argb[3];
             // 获取灰度值
             grayLevel = (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
+            // 获取 HSB
+            float[] hsbvals = RGBtoHSB(red, green, blue, null);
+            hue = hsbvals[0]; // 色调
+            saturation = hsbvals[1]; // 饱和度
+            brightness = hsbvals[2]; // 亮度
         }
 
         // ==============
@@ -915,6 +948,60 @@ public final class ColorUtils {
                 }
                 return color;
             }
+        }
+
+        // ============
+        // = 转换处理 =
+        // ============
+
+        /**
+         * RGB 转换 HSB
+         * <pre>
+         *     HSB 等于 HSV, 不同的叫法
+         *     {@link Color#RGBToHSV}
+         *     java.awt.Color#RGBtoHSB
+         * </pre>
+         * @param r       红色值 [0-255]
+         * @param g       绿色值 [0-255]
+         * @param b       蓝色值 [0-255]
+         * @param hsbvals HSB 数组
+         * @return [] { hue, saturation, brightness }
+         */
+        private static float[] RGBtoHSB(int r, int g, int b, float[] hsbvals) {
+            float hue, saturation, brightness;
+            if (hsbvals == null) {
+                hsbvals = new float[3];
+            }
+            int cmax = (r > g) ? r : g;
+            if (b > cmax) cmax = b;
+            int cmin = (r < g) ? r : g;
+            if (b < cmin) cmin = b;
+
+            brightness = ((float) cmax) / 255.0f;
+            if (cmax != 0)
+                saturation = ((float) (cmax - cmin)) / ((float) cmax);
+            else
+                saturation = 0;
+            if (saturation == 0)
+                hue = 0;
+            else {
+                float redc = ((float) (cmax - r)) / ((float) (cmax - cmin));
+                float greenc = ((float) (cmax - g)) / ((float) (cmax - cmin));
+                float bluec = ((float) (cmax - b)) / ((float) (cmax - cmin));
+                if (r == cmax)
+                    hue = bluec - greenc;
+                else if (g == cmax)
+                    hue = 2.0f + redc - bluec;
+                else
+                    hue = 4.0f + greenc - redc;
+                hue = hue / 6.0f;
+                if (hue < 0)
+                    hue = hue + 1.0f;
+            }
+            hsbvals[0] = hue;
+            hsbvals[1] = saturation;
+            hsbvals[2] = brightness;
+            return hsbvals;
         }
     }
 
