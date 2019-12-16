@@ -73,7 +73,7 @@ public class ListenerActivity extends BaseToolbarActivity {
 
         View view = ViewUtils.inflate(R.layout.base_view_textview);
         ViewHelper.get().setText(view, "单击绑定, 长按注销")
-                .setTextColor(view, ResourceUtils.getColor(R.color.grey));
+                .setTextColor(view, ResourceUtils.getColor(R.color.gray));
         vid_act_linear.addView(view);
 
         // 初始化布局管理器、适配器

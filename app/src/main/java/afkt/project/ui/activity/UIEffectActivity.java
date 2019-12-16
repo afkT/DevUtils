@@ -92,7 +92,7 @@ public class UIEffectActivity extends BaseToolbarActivity {
 //        vid_aue_4_1_btn.setBackground(builder.build().getDrawable());
         // 设置点击效果
         GradientDrawable drawable1 = ShapeUtils.newBuilder(10f, R.color.black).setStroke(5, R.color.darkorange).build().getDrawable();
-        GradientDrawable drawable2 = ShapeUtils.newBuilder(10f, R.color.sky_blue).setStroke(5, R.color.grey).build().getDrawable();
+        GradientDrawable drawable2 = ShapeUtils.newBuilder(10f, R.color.sky_blue).setStroke(5, R.color.gray).build().getDrawable();
         vid_aue_4_1_btn.setBackground(StateListUtils.newSelector(drawable2, drawable1));
         vid_aue_4_1_btn.setTextColor(StateListUtils.createColorStateList(R.color.red, R.color.white));
 

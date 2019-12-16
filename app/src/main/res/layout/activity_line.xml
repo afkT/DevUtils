@@ -18,7 +18,7 @@
 
         <View
             style="@style/AppTheme.Base_Line_Vertical"
-            android:background="@color/grey" />
+            android:background="@color/gray" />
 
         <dev.widget.LineTextView
             android:id="@+id/vid_al_content_tv"

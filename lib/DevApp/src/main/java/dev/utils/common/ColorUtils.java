@@ -1,6 +1,9 @@
 package dev.utils.common;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import dev.utils.JCLogUtils;
@@ -702,12 +705,15 @@ public final class ColorUtils {
     // = 颜色信息 =
     // ============
 
+    // 内部解析器
+    private static ColorInfo.Parser sParser;
+
     /**
      * 设置 Color 解析器
      * @param parser {@link ColorInfo.Parser}
      */
     public static void setParser(final ColorInfo.Parser parser) {
-        ColorInfo.sParser = parser;
+        ColorUtils.sParser = parser;
     }
 
     /**
@@ -910,16 +916,28 @@ public final class ColorUtils {
                 return color;
             }
         }
+    }
 
-        // 内部解析器
-        private static Parser sParser;
+    // ============
+    // = 颜色排序 =
+    // ============
 
-        /**
-         * 设置 Color 解析器
-         * @param parser {@link Parser}
-         */
-        public static void setParser(final Parser parser) {
-            ColorInfo.sParser = parser;
-        }
+    /**
+     * 灰度值排序
+     * @param lists 待排序颜色集合
+     */
+    public static void sortGray(final List<ColorInfo> lists) {
+        Collections.sort(lists, new Comparator<ColorInfo>() {
+            @Override
+            public int compare(ColorUtils.ColorInfo c1, ColorUtils.ColorInfo c2) {
+                long diff = c1.getGrayLevel() - c2.getGrayLevel();
+                if (diff < 0) {
+                    return 1;
+                } else if (diff > 0) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
     }
 }
