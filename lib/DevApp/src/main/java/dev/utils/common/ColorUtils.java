@@ -11,6 +11,12 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 颜色工具类 ( 包括常用的色值 )
  * @author Ttt
+ * <pre>
+ *     颜色信息和转换工具
+ *     @see <a href="https://zh.spycolor.com"/>
+ *     RGB 颜色空间、色调、饱和度、亮度、HSV 颜色空间详解
+ *     @see <a href="https://blog.csdn.net/bjbz_cxy/article/details/79701006"/>
+ * </pre>
  */
 public final class ColorUtils {
 
