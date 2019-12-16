@@ -14,6 +14,7 @@ import android.widget.ScrollView;
  *     推荐使用 {@link CustomNestedScrollView}
  * </pre>
  */
+@Deprecated
 public class CustomScrollView extends ScrollView {
 
     // 是否允许滑动
