@@ -626,6 +626,17 @@ public final class ColorUtils {
         return setAlpha(color, NumberUtils.clamp(alpha, 255, 0));
     }
 
+    /**
+     * 获取灰度值
+     * @param color int color
+     * @return 灰度值
+     */
+    public static int grayLevel(final int color) {
+        // [] { alpha, red, green, blue }
+        int[] argb = getARGB(color);
+        return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
+    }
+
     // =
 
     // 颜色字典集合
