@@ -43,8 +43,8 @@ public class BaseApplication extends Application {
         // = DevUtils =
         // ============
 
-        // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化
-        DevUtils.init(this.getApplicationContext());
+//        // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化, 无需调用
+//        DevUtils.init(this.getApplicationContext());
         // = 初始化日志配置 =
         // 设置默认 Logger 配置
         LogConfig logConfig = new LogConfig();
