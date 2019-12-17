@@ -33,7 +33,7 @@ public class ColorSortMain {
             @Override
             public void OnEnd(List<ColorUtils.ColorInfo> lists) {
                 if (CollectionUtils.isEmpty(lists)) {
-                    System.out.println("集合为 null");
+                    System.out.println(" list is empty");
                     return;
                 }
                 // 根据色调排序
@@ -43,7 +43,7 @@ public class ColorSortMain {
                 // 覆盖处理
                 boolean result = FileUtils.saveFile(FileUtils.getFile(xmlFile), content.getBytes());
                 // 获取结果
-                System.out.println("保存结果: " + result);
+                System.out.println("result: " + result);
             }
         });
     }
@@ -62,7 +62,7 @@ public class ColorSortMain {
          * @param lists Color 信息集合
          * @return XML 文件内容
          */
-        public static String createXML(List<ColorUtils.ColorInfo> lists) {
+        public static String createXML(final List<ColorUtils.ColorInfo> lists) {
             StringBuilder builder = new StringBuilder();
             builder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             builder.append(StringUtils.NEW_LINE_STR);
@@ -85,7 +85,7 @@ public class ColorSortMain {
     static final class SAXXml {
 
         // colors.xml 文件地址
-        String xmlFile;
+        private String xmlFile;
 
         private SAXXml(String xmlFile) {
             this.xmlFile = xmlFile;
@@ -96,7 +96,7 @@ public class ColorSortMain {
          * @param listener 监听事件
          * @throws Exception
          */
-        public void analysisColorsXml(DocumentListener listener) throws Exception {
+        public void analysisColorsXml(final DocumentListener listener) throws Exception {
             // 获取 SAXParserFactory 实例
             SAXParserFactory factory = SAXParserFactory.newInstance();
             // 获取 SAXParser 实例
@@ -111,12 +111,12 @@ public class ColorSortMain {
          */
         class SAXDemoHandel extends DefaultHandler {
 
-            String colorKey;
-            String colorValue;
+            private String colorKey;
+            private String colorValue;
             // 解析事件
-            DocumentListener listener;
+            private DocumentListener listener;
             // 解析集合
-            List<ColorUtils.ColorInfo> lists = new ArrayList<>();
+            private List<ColorUtils.ColorInfo> lists = new ArrayList<>();
 
             public SAXDemoHandel(DocumentListener listener) {
                 this.listener = listener;
@@ -124,14 +124,12 @@ public class ColorSortMain {
 
             @Override
             public void startDocument() throws SAXException {
-                super.startDocument();
-                System.out.println("SAX 解析开始");
+                super.startDocument(); // SAX 解析开始
             }
 
             @Override
             public void endDocument() throws SAXException {
-                super.endDocument();
-                System.out.println("SAX 解析结束");
+                super.endDocument(); // SAX 解析结束
                 // 触发回调
                 if (listener != null) {
                     listener.OnEnd(lists);
