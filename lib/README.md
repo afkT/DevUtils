@@ -5,6 +5,7 @@
 
 ## 目录结构
 
+```
 - lib                        | 根目录
    - DevApp                  | Android 工具类库
    - DevAssist               | 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
