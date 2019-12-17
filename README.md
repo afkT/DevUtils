@@ -37,7 +37,7 @@
 
 > [DevWidget](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md) 部分自定义 View 功能、效果
 
-> [DevBase](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base) Base (Activity、Fragment)、MVP 基类等
+> [DevBase](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base) Base ( Activity、Fragment )、MVP 基类等
 
 > [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类 (DevUtils) API 文档，是通过 JavaDoc 项目读取 class 信息生成，并且进行代码、注释间距规范检测，生成效果示范 [DevApp - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
