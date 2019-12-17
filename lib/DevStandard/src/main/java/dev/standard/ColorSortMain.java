@@ -1,0 +1,180 @@
+package dev.standard;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import dev.utils.common.CollectionUtils;
+import dev.utils.common.ColorUtils;
+import dev.utils.common.FileUtils;
+import dev.utils.common.StringUtils;
+
+/**
+ * detail: Color 排序方法
+ * @author Ttt
+ * <pre>
+ *     可用于 colors.xml 颜色排序, 并且统一整个项目 color 规范替换命名等等
+ * </pre>
+ */
+public class ColorSortMain {
+
+    public static void main(String[] args) throws Exception {
+        // colors.xml 文件地址
+        String xmlFile = "app/src/main/res/values/colors.xml";
+
+        // 解析 colors.xml
+        new SAXXml(xmlFile).analysisColorsXml(new SAXXml.DocumentListener() {
+            @Override
+            public void OnEnd(List<ColorUtils.ColorInfo> lists) {
+                if (CollectionUtils.isEmpty(lists)) {
+                    System.out.println("集合为 null");
+                    return;
+                }
+                // 根据色调排序
+                ColorUtils.sortHSB(lists);
+                // 生成 XML 文件内容
+                String content = Builder.createXML(lists);
+                // 覆盖处理
+                boolean result = FileUtils.saveFile(FileUtils.getFile(xmlFile), content.getBytes());
+                // 获取结果
+                System.out.println("保存结果: " + result);
+            }
+        });
+    }
+
+    /**
+     * detail: XML 创建处理
+     * @author Ttt
+     */
+    static final class Builder {
+
+        // XML 内容
+        private static final String XML_CONTENT = "%s\t<color name=\"%s\">%s</color>";
+
+        /**
+         * 创建 XML
+         * @param lists Color 信息集合
+         * @return XML 文件内容
+         */
+        public static String createXML(List<ColorUtils.ColorInfo> lists) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append("<resources>");
+            // 解析数据
+            for (ColorUtils.ColorInfo colorInfo : lists) {
+                builder.append(String.format(XML_CONTENT, StringUtils.NEW_LINE_STR, colorInfo.getKey(), colorInfo.getValue()));
+            }
+            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append("</resources>");
+            String content = builder.toString();
+            return content;
+        }
+    }
+
+    /**
+     * detail: SAX 解析 XML 内部类
+     * @author Ttt
+     */
+    static final class SAXXml {
+
+        // colors.xml 文件地址
+        String xmlFile;
+
+        private SAXXml(String xmlFile) {
+            this.xmlFile = xmlFile;
+        }
+
+        /**
+         * 解析 Colors.xml 内容
+         * @param listener 监听事件
+         * @throws Exception
+         */
+        public void analysisColorsXml(DocumentListener listener) throws Exception {
+            // 获取 SAXParserFactory 实例
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            // 获取 SAXParser 实例
+            SAXParser saxParser = factory.newSAXParser();
+            // 创建 Handler 对象并进行解析
+            saxParser.parse(xmlFile, new SAXDemoHandel(listener));
+        }
+
+        /**
+         * detail: 解析 Handler
+         * @author Ttt
+         */
+        class SAXDemoHandel extends DefaultHandler {
+
+            String colorKey;
+            String colorValue;
+            // 解析事件
+            DocumentListener listener;
+            // 解析集合
+            List<ColorUtils.ColorInfo> lists = new ArrayList<>();
+
+            public SAXDemoHandel(DocumentListener listener) {
+                this.listener = listener;
+            }
+
+            @Override
+            public void startDocument() throws SAXException {
+                super.startDocument();
+                System.out.println("SAX 解析开始");
+            }
+
+            @Override
+            public void endDocument() throws SAXException {
+                super.endDocument();
+                System.out.println("SAX 解析结束");
+                // 触发回调
+                if (listener != null) {
+                    listener.OnEnd(lists);
+                }
+            }
+
+            @Override
+            public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+                super.startElement(uri, localName, qName, attributes);
+                if (qName.equals("color")) {
+                    this.colorKey = attributes.getValue("name");
+                }
+            }
+
+            @Override
+            public void endElement(String uri, String localName, String qName) throws SAXException {
+                super.endElement(uri, localName, qName);
+                if (qName.equals("color")) {
+                    lists.add(new ColorUtils.ColorInfo(colorKey, colorValue));
+                }
+            }
+
+            @Override
+            public void characters(char[] ch, int start, int length) throws SAXException {
+                super.characters(ch, start, length);
+                String value = new String(ch, start, length).trim();
+                if (!value.equals("")) {
+                    this.colorValue = value;
+                }
+            }
+        }
+
+        /**
+         * detail: Xml Document 解析监听事件
+         * @author Ttt
+         */
+        public interface DocumentListener {
+
+            /**
+             * 解析结束触发
+             * @param lists 解析集合
+             */
+            void OnEnd(List<ColorUtils.ColorInfo> lists);
+        }
+    }
+}
