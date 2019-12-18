@@ -3,13 +3,17 @@ package dev.utils.app;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
 import java.io.File;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: ContentResolver 工具类
@@ -59,7 +63,7 @@ public final class ContentResolverUtils {
             try {
                 // 添加到相册
                 MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(),
-                        file.getAbsolutePath(), TextUtils.isEmpty(fileName) ? file.getName() : fileName, null);
+                    file.getAbsolutePath(), TextUtils.isEmpty(fileName) ? file.getName() : fileName, null);
                 // 通知图库扫描更新
                 if (isNotify) notifyMediaStore(file);
                 return true;
@@ -123,5 +127,111 @@ public final class ContentResolverUtils {
             }
         }
         return false;
+    }
+
+    // ==========
+    // = Cursor =
+    // ==========
+
+    // 卷名
+    private static final String VOLUME_EXTERNAL = "external";
+    // 文件搜索 URI
+    private static final Uri FILES_URI = MediaStore.Files.getContentUri(VOLUME_EXTERNAL);
+
+    /**
+     * 获取 Uri Cursor
+     * <pre>
+     *     // 获取指定类型文件
+     *     uri => MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     *     // 全部文件搜索
+     *     MediaStore.Files.getContentUri("external")
+     * </pre>
+     * @param uri           {@link Uri}
+     * @param projection    查询的字段
+     * @param selection     查询的条件
+     * @param selectionArgs 查询条件的参数
+     * @param sortOrder     排序
+     * @return {@link Cursor}
+     */
+    public static Cursor query(final Uri uri, final String[] projection, final String selection,
+                               final String[] selectionArgs, final String sortOrder) {
+        try {
+            return ResourceUtils.getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "query");
+        }
+        return null;
+    }
+
+    /**
+     * 通过 File 获取 Uri
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getContentUri(final File file) {
+        return getContentUri(FILES_URI, file);
+    }
+
+    /**
+     * 通过 File 获取 Uri
+     * @param uri  MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getContentUri(final Uri uri, final File file) {
+        return getContentUri(uri, FileUtils.getAbsolutePath(file));
+    }
+
+    /**
+     * 通过 File Path 获取 Uri
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getContentUri(final String filePath) {
+        return getContentUri(FILES_URI, filePath);
+    }
+
+    /**
+     * 通过 File Path 获取 Uri
+     * <pre>
+     *     通过外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
+     * </pre>
+     * @param uri      MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getContentUri(final Uri uri, final String filePath) {
+        if (uri == null || TextUtils.isEmpty(filePath)) return null;
+        String[] projection; // 查询的字段
+        String selection = MediaStore.Files.FileColumns.DATA + "=?"; // 查询的条件
+        String[] selectionArgs = new String[]{filePath}; // 查询条件的参数
+        // 版本适配
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            projection = new String[]{
+                MediaStore.Files.FileColumns._ID,
+                MediaStore.Files.FileColumns.VOLUME_NAME
+            };
+        } else {
+            projection = new String[]{
+                MediaStore.Files.FileColumns._ID,
+            };
+        }
+        Cursor cursor = query(uri, projection, selection, selectionArgs, null);
+        try {
+            if (cursor != null && cursor.moveToFirst()) {
+                long rowId = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
+                String volumeName = VOLUME_EXTERNAL;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    volumeName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.VOLUME_NAME));
+                }
+                // 返回外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
+                return MediaStore.Files.getContentUri(volumeName, rowId);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getUriForPath - " + filePath);
+        } finally {
+            CloseUtils.closeIOQuietly(cursor);
+        }
+        return null;
     }
 }

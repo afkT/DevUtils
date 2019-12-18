@@ -11,12 +11,14 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 
 import java.io.File;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: Uri 工具类
@@ -46,7 +48,25 @@ public final class UriUtils {
     // ================
 
     /**
-     * 获取文件 Uri ( 自动添加包名 ${applicationId})
+     * 获取 FileProvider File Uri
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getUriForFile(final File file) {
+        return getUriForFile(file, DevUtils.getAuthority());
+    }
+
+    /**
+     * 获取 FileProvider File Path Uri
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getUriForPath(final String filePath) {
+        return getUriForFile(FileUtils.getFileByPath(filePath), DevUtils.getAuthority());
+    }
+
+    /**
+     * 获取 FileProvider File Path Uri ( 自动添加包名 ${applicationId} )
      * @param file         文件
      * @param fileProvider android:authorities = ${applicationId}.fileProvider
      * @return 指定文件 {@link Uri}
@@ -63,7 +83,7 @@ public final class UriUtils {
     }
 
     /**
-     * 获取文件 Uri
+     * 获取 FileProvider File Path Uri
      * @param file      文件
      * @param authority android:authorities
      * @return 指定文件 {@link Uri}
@@ -82,13 +102,20 @@ public final class UriUtils {
         }
     }
 
+    // =======
+    // = Uri =
+    // =======
+
     /**
      * 判断 Uri 路径资源是否存在
+     * <pre>
+     *     uri 非 FilePath, 可通过 {@link UriUtils#getContentUri} 获取
+     * </pre>
      * @param uriString uri 路径
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isUriExists(final String uriString) {
-        if (uriString == null) return false;
+        if (TextUtils.isEmpty(uriString)) return false;
         return isUriExists(Uri.parse(uriString));
     }
 
@@ -116,7 +143,54 @@ public final class UriUtils {
         return true;
     }
 
-    // =
+    // ===============
+    // = Content Uri =
+    // ===============
+
+    /**
+     * 通过 File 获取 Uri
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getContentUri(final File file) {
+        return ContentResolverUtils.getContentUri(file);
+    }
+
+    /**
+     * 通过 File 获取 Uri
+     * @param uri  MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getContentUri(final Uri uri, final File file) {
+        return ContentResolverUtils.getContentUri(uri, file);
+    }
+
+    /**
+     * 通过 File Path 获取 Uri
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getContentUri(final String filePath) {
+        return ContentResolverUtils.getContentUri(filePath);
+    }
+
+    /**
+     * 通过 File Path 获取 Uri
+     * <pre>
+     *     通过外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
+     * </pre>
+     * @param uri      MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getContentUri(final Uri uri, final String filePath) {
+        return ContentResolverUtils.getContentUri(uri, filePath);
+    }
+
+    // ================
+    // = 获取文件路径 =
+    // ================
 
     /**
      * 通过 Uri 获取文件路径
@@ -131,8 +205,6 @@ public final class UriUtils {
             return null;
         }
     }
-
-    // =
 
     /**
      * 通过 Uri 获取文件路径
@@ -179,7 +251,7 @@ public final class UriUtils {
                     // DownloadsProvider
                     final String id = DocumentsContract.getDocumentId(uri);
                     final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),
-                            Long.valueOf(id));
+                        Long.valueOf(id));
                     path = getDataColumn(context, contentUri, null, null);
                     return path;
                 } else if (isMediaDocument(uri)) {
