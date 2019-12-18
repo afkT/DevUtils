@@ -52,7 +52,7 @@ public final class MediaStoreUtils {
         if (TextUtils.isEmpty(filePath)) return 0;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                return getVideoDuration(ContentResolverUtils.getContentUri(filePath));
+                return getVideoDuration(ContentResolverUtils.getMediaUri(filePath));
             }
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(filePath);
@@ -73,7 +73,7 @@ public final class MediaStoreUtils {
         int[] size = new int[2];
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                return getVideoSize(ContentResolverUtils.getContentUri(filePath));
+                return getVideoSize(ContentResolverUtils.getMediaUri(filePath));
             }
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(filePath);

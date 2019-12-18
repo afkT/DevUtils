@@ -164,43 +164,44 @@ public final class ContentResolverUtils {
     }
 
     /**
-     * 通过 File 获取 Uri
+     * 通过 File 获取 Media Uri
      * @param file 文件
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getContentUri(final File file) {
-        return getContentUri(FILES_URI, file);
+    public static Uri getMediaUri(final File file) {
+        return getMediaUri(FILES_URI, file);
     }
 
     /**
-     * 通过 File 获取 Uri
+     * 通过 File 获取 Media Uri
      * @param uri  MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param file 文件
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getContentUri(final Uri uri, final File file) {
-        return getContentUri(uri, FileUtils.getAbsolutePath(file));
+    public static Uri getMediaUri(final Uri uri, final File file) {
+        return getMediaUri(uri, FileUtils.getAbsolutePath(file));
     }
 
     /**
-     * 通过 File Path 获取 Uri
+     * 通过 File Path 获取 Media Uri
      * @param filePath 文件路径
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getContentUri(final String filePath) {
-        return getContentUri(FILES_URI, filePath);
+    public static Uri getMediaUri(final String filePath) {
+        return getMediaUri(FILES_URI, filePath);
     }
 
     /**
-     * 通过 File Path 获取 Uri
+     * 通过 File Path 获取 Media Uri
      * <pre>
+     *     只能用于查询 Media ( SDK_INT >= Q 使用, SDK_INT < Q 则直接使用 {@link Uri#fromFile(File)})
      *     通过外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
      * </pre>
      * @param uri      MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param filePath 文件路径
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getContentUri(final Uri uri, final String filePath) {
+    public static Uri getMediaUri(final Uri uri, final String filePath) {
         if (uri == null || TextUtils.isEmpty(filePath)) return null;
         String[] projection; // 查询的字段
         String selection = MediaStore.Files.FileColumns.DATA + "=?"; // 查询的条件
@@ -228,7 +229,7 @@ public final class ContentResolverUtils {
                 return MediaStore.Files.getContentUri(volumeName, rowId);
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getUriForPath - " + filePath);
+            LogPrintUtils.eTag(TAG, e, "getMediaUri - " + filePath);
         } finally {
             CloseUtils.closeIOQuietly(cursor);
         }

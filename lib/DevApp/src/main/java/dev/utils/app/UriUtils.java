@@ -109,7 +109,7 @@ public final class UriUtils {
     /**
      * 判断 Uri 路径资源是否存在
      * <pre>
-     *     uri 非 FilePath, 可通过 {@link UriUtils#getContentUri} 获取
+     *     uri 非 FilePath, 可通过 {@link UriUtils#getMediaUri} 获取
      * </pre>
      * @param uriString uri 路径
      * @return {@code true} yes, {@code false} no
@@ -143,49 +143,50 @@ public final class UriUtils {
         return true;
     }
 
-    // ===============
-    // = Content Uri =
-    // ===============
+    // =============
+    // = Media Uri =
+    // =============
 
     /**
-     * 通过 File 获取 Uri
+     * 通过 File 获取 Media Uri
      * @param file 文件
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getContentUri(final File file) {
-        return ContentResolverUtils.getContentUri(file);
+    public static Uri getMediaUri(final File file) {
+        return ContentResolverUtils.getMediaUri(file);
     }
 
     /**
-     * 通过 File 获取 Uri
+     * 通过 File 获取 Media Uri
      * @param uri  MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param file 文件
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getContentUri(final Uri uri, final File file) {
-        return ContentResolverUtils.getContentUri(uri, file);
+    public static Uri getMediaUri(final Uri uri, final File file) {
+        return ContentResolverUtils.getMediaUri(uri, file);
     }
 
     /**
-     * 通过 File Path 获取 Uri
+     * 通过 File Path 获取 Media Uri
      * @param filePath 文件路径
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getContentUri(final String filePath) {
-        return ContentResolverUtils.getContentUri(filePath);
+    public static Uri getMediaUri(final String filePath) {
+        return ContentResolverUtils.getMediaUri(filePath);
     }
 
     /**
-     * 通过 File Path 获取 Uri
+     * 通过 File Path 获取 Media Uri
      * <pre>
+     *     只能用于查询 Media ( SDK_INT >= Q 使用, SDK_INT < Q 则直接使用 {@link Uri#fromFile(File)})
      *     通过外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
      * </pre>
      * @param uri      MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param filePath 文件路径
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getContentUri(final Uri uri, final String filePath) {
-        return ContentResolverUtils.getContentUri(uri, filePath);
+    public static Uri getMediaUri(final Uri uri, final String filePath) {
+        return ContentResolverUtils.getMediaUri(uri, filePath);
     }
 
     // ================
