@@ -224,7 +224,7 @@ public final class ContentResolverUtils {
 
     /**
      * 通过 File 获取 Media 信息
-     * @param file 文件
+     * @param file       文件
      * @param mediaQuery 多媒体查询抽象类
      * @return Media 信息
      */
@@ -234,8 +234,8 @@ public final class ContentResolverUtils {
 
     /**
      * 通过 File 获取 Media 信息
-     * @param uri  MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
-     * @param file 文件
+     * @param uri        MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param file       文件
      * @param mediaQuery 多媒体查询抽象类
      * @return Media 信息
      */
@@ -245,7 +245,7 @@ public final class ContentResolverUtils {
 
     /**
      * 通过 File Path 获取 Media Uri
-     * @param filePath 文件路径
+     * @param filePath   文件路径
      * @param mediaQuery 多媒体查询抽象类
      * @return Media 信息
      */
@@ -304,7 +304,7 @@ public final class ContentResolverUtils {
 
         /**
          * 获取查询结果
-         * @param uri Uri
+         * @param uri      Uri
          * @param filePath 文件路径
          * @param cursor   Cursor
          * @return 查询结果
@@ -317,7 +317,7 @@ public final class ContentResolverUtils {
 
         /**
          * 获取查询的字段
-         * @param uri Uri
+         * @param uri      Uri
          * @param filePath 文件路径
          * @return 查询的字段
          */
@@ -325,7 +325,7 @@ public final class ContentResolverUtils {
 
         /**
          * 获取查询的条件
-         * @param uri Uri
+         * @param uri      Uri
          * @param filePath 文件路径
          * @return 查询的条件
          */
@@ -333,7 +333,7 @@ public final class ContentResolverUtils {
 
         /**
          * 获取查询条件的参数
-         * @param uri Uri
+         * @param uri      Uri
          * @param filePath 文件路径
          * @return 查询条件的参数
          */
@@ -341,7 +341,7 @@ public final class ContentResolverUtils {
 
         /**
          * 获取排序方式
-         * @param uri Uri
+         * @param uri      Uri
          * @param filePath 文件路径
          * @return 排序方式
          */
