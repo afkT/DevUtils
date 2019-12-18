@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,6 +23,9 @@ import dev.utils.common.FileUtils;
  * @author Ttt
  * <pre>
  *     @see <a href="https://blog.csdn.net/lemon_blue/article/details/52353851"/>
+ *     <p></p>
+ *     例: content://xxxx/49
+ *     可通过 {@link ContentUris#parseId(Uri)} 获取 49
  * </pre>
  */
 public final class ContentResolverUtils {
@@ -221,6 +225,7 @@ public final class ContentResolverUtils {
     /**
      * 通过 File 获取 Media 信息
      * @param file 文件
+     * @param mediaQuery 多媒体查询抽象类
      * @return Media 信息
      */
     public static String[] mediaQuery(final File file, final MediaQuery mediaQuery) {
@@ -231,6 +236,7 @@ public final class ContentResolverUtils {
      * 通过 File 获取 Media 信息
      * @param uri  MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param file 文件
+     * @param mediaQuery 多媒体查询抽象类
      * @return Media 信息
      */
     public static String[] mediaQuery(final Uri uri, final File file, final MediaQuery mediaQuery) {
@@ -240,6 +246,7 @@ public final class ContentResolverUtils {
     /**
      * 通过 File Path 获取 Media Uri
      * @param filePath 文件路径
+     * @param mediaQuery 多媒体查询抽象类
      * @return Media 信息
      */
     public static String[] mediaQuery(final String filePath, final MediaQuery mediaQuery) {
@@ -262,13 +269,13 @@ public final class ContentResolverUtils {
         Cursor cursor = null;
         try {
             cursor = query(uri,
-                    mediaQuery.getProjection(filePath),
-                    mediaQuery.getSelection(filePath),
-                    mediaQuery.getSelectionArgs(filePath),
-                    mediaQuery.getSortOrder(filePath)
+                    mediaQuery.getProjection(uri, filePath),
+                    mediaQuery.getSelection(uri, filePath),
+                    mediaQuery.getSelectionArgs(uri, filePath),
+                    mediaQuery.getSortOrder(uri, filePath)
             );
             if (cursor != null && cursor.moveToFirst()) {
-                return mediaQuery.getResult(filePath, cursor);
+                return mediaQuery.getResult(uri, filePath, cursor);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "mediaQuery - " + filePath);
@@ -284,6 +291,10 @@ public final class ContentResolverUtils {
 
     // 多媒体查询获取 Uri 处理
     private static final MediaQueryUri MEDIA_QUERY_URI = new MediaQueryUri();
+    // 多媒体查询信息处理
+    public static final MediaQueryInfo MEDIA_QUERY_INFO = new MediaQueryInfo();
+    // 多媒体查询信息处理 Uri
+    public static final MediaQueryInfoUri MEDIA_QUERY_INFO_URI = new MediaQueryInfoUri();
 
     /**
      * detail: 多媒体查询抽象类
@@ -293,11 +304,12 @@ public final class ContentResolverUtils {
 
         /**
          * 获取查询结果
+         * @param uri Uri
          * @param filePath 文件路径
          * @param cursor   Cursor
          * @return 查询结果
          */
-        public abstract String[] getResult(String filePath, Cursor cursor);
+        public abstract String[] getResult(Uri uri, String filePath, Cursor cursor);
 
         // ============
         // = 查询条件 =
@@ -305,31 +317,35 @@ public final class ContentResolverUtils {
 
         /**
          * 获取查询的字段
+         * @param uri Uri
          * @param filePath 文件路径
          * @return 查询的字段
          */
-        public abstract String[] getProjection(String filePath);
+        public abstract String[] getProjection(Uri uri, String filePath);
 
         /**
          * 获取查询的条件
+         * @param uri Uri
          * @param filePath 文件路径
          * @return 查询的条件
          */
-        public abstract String getSelection(String filePath);
+        public abstract String getSelection(Uri uri, String filePath);
 
         /**
          * 获取查询条件的参数
+         * @param uri Uri
          * @param filePath 文件路径
          * @return 查询条件的参数
          */
-        public abstract String[] getSelectionArgs(String filePath);
+        public abstract String[] getSelectionArgs(Uri uri, String filePath);
 
         /**
          * 获取排序方式
+         * @param uri Uri
          * @param filePath 文件路径
          * @return 排序方式
          */
-        public String getSortOrder(String filePath) {
+        public String getSortOrder(Uri uri, String filePath) {
             return null;
         }
     }
@@ -340,7 +356,7 @@ public final class ContentResolverUtils {
      */
     private static class MediaQueryUri extends MediaQuery {
         @Override
-        public String[] getResult(String filePath, Cursor cursor) {
+        public String[] getResult(Uri uri, String filePath, Cursor cursor) {
             String[] result = new String[2];
             long rowId = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
             String volumeName = VOLUME_EXTERNAL;
@@ -353,7 +369,7 @@ public final class ContentResolverUtils {
         }
 
         @Override
-        public String[] getProjection(String filePath) {
+        public String[] getProjection(Uri uri, String filePath) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 return new String[]{
                         MediaStore.Files.FileColumns._ID,
@@ -365,13 +381,89 @@ public final class ContentResolverUtils {
         }
 
         @Override
-        public String getSelection(String filePath) {
+        public String getSelection(Uri uri, String filePath) {
             return MediaStore.Files.FileColumns.DATA + "=?";
         }
 
         @Override
-        public String[] getSelectionArgs(String filePath) {
+        public String[] getSelectionArgs(Uri uri, String filePath) {
             return new String[]{filePath};
+        }
+    }
+
+    /**
+     * detail: 多媒体查询信息处理
+     * @author Ttt
+     */
+    public static class MediaQueryInfo extends MediaQuery {
+        @Override
+        public String[] getResult(Uri uri, String filePath, Cursor cursor) {
+            String[] result = new String[8];
+            long rowId = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
+            int width = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.WIDTH));
+            int height = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.HEIGHT));
+            String mimeType = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.MIME_TYPE));
+            long mediaType = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE));
+            String dateAdded = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_ADDED));
+            String dateModified = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_MODIFIED));
+            long duration = 0;
+            if (mediaType == MediaStore.Files.FileColumns.MEDIA_TYPE_AUDIO
+                    || mediaType == MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO) {
+                duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns.DURATION));
+            }
+
+            result[0] = String.valueOf(rowId);
+            result[1] = String.valueOf(width);
+            result[2] = String.valueOf(height);
+            result[3] = mimeType;
+            result[4] = String.valueOf(mediaType);
+            result[5] = dateAdded;
+            result[6] = dateModified;
+            result[7] = String.valueOf(duration);
+            return result;
+        }
+
+        @Override
+        public String[] getProjection(Uri uri, String filePath) {
+            return new String[]{
+                    MediaStore.Files.FileColumns._ID, // ID
+                    MediaStore.Files.FileColumns.WIDTH, // 宽度
+                    MediaStore.Files.FileColumns.HEIGHT, // 高度
+                    MediaStore.Files.FileColumns.MIME_TYPE, // 文件类型
+                    MediaStore.Files.FileColumns.MEDIA_TYPE, // 资源类型
+                    MediaStore.Files.FileColumns.DATE_ADDED, // 添加时间
+                    MediaStore.Files.FileColumns.DATE_MODIFIED, // 修改时间
+                    MediaStore.Files.FileColumns.DURATION, // 多媒体时长
+            };
+        }
+
+        @Override
+        public String getSelection(Uri uri, String filePath) {
+            return MediaStore.Files.FileColumns.DATA + "=?";
+        }
+
+        @Override
+        public String[] getSelectionArgs(Uri uri, String filePath) {
+            return new String[]{filePath};
+        }
+    }
+
+    /**
+     * detail: 多媒体查询信息处理 Uri
+     * @author Ttt
+     */
+    public static class MediaQueryInfoUri extends MediaQueryInfo {
+
+        @Override
+        public String getSelection(Uri uri, String filePath) {
+//            return MediaStore.Files.FileColumns._ID + "=?";
+            return null;
+        }
+
+        @Override
+        public String[] getSelectionArgs(Uri uri, String filePath) {
+//            return new String[]{ContentUris.parseId(uri) + ""};
+            return null;
         }
     }
 }

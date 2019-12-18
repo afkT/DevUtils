@@ -13,6 +13,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.support.annotation.AnimRes;
 import android.support.annotation.AnimatorRes;
 import android.support.annotation.AnyRes;
@@ -26,6 +28,7 @@ import android.support.annotation.IntegerRes;
 import android.support.annotation.RawRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import java.io.BufferedReader;
@@ -40,6 +43,7 @@ import java.util.List;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
+import dev.utils.common.FileIOUtils;
 
 /**
  * detail: 资源文件工具类
@@ -620,6 +624,62 @@ public final class ResourceUtils {
             return DevUtils.getContext().getResources().openRawResourceFd(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openRawResourceFd");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri InputStream
+     * <pre>
+     *     主要用于获取到分享的 FileProvider Uri 存储起来 {@link FileIOUtils#writeFileFromIS(File, InputStream)}
+     * </pre>
+     * @param uri {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @return Uri InputStream
+     */
+    public static InputStream openInputStream(final Uri uri) {
+        if (uri == null) return null;
+        try {
+            return ResourceUtils.getContentResolver().openInputStream(uri);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openInputStream " + uri.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri ParcelFileDescriptor
+     * <pre>
+     *     通过 new FileInputStream(openFileDescriptor().getFileDescriptor()) 进行文件操作
+     * </pre>
+     * @param uri  {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode 读写模式
+     * @return Uri ParcelFileDescriptor
+     */
+    public static ParcelFileDescriptor openFileDescriptor(final Uri uri, final String mode) {
+        if (uri == null || TextUtils.isEmpty(mode)) return null;
+        try {
+            return ResourceUtils.getContentResolver().openFileDescriptor(uri, mode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openFileDescriptor mode: " + mode + ", " + uri.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri AssetFileDescriptor
+     * <pre>
+     *     通过 new FileInputStream(openAssetFileDescriptor().getFileDescriptor()) 进行文件操作
+     * </pre>
+     * @param uri  {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode 读写模式
+     * @return Uri AssetFileDescriptor
+     */
+    public static AssetFileDescriptor openAssetFileDescriptor(final Uri uri, final String mode) {
+        if (uri == null || TextUtils.isEmpty(mode)) return null;
+        try {
+            return ResourceUtils.getContentResolver().openAssetFileDescriptor(uri, mode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openAssetFileDescriptor mode: " + mode + ", " + uri.toString());
         }
         return null;
     }
